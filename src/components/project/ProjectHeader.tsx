@@ -15,12 +15,15 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
       <Helmet>
         <title>{title} | Hiram Barsky Portfolio</title>
         <meta name="description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky`} />
-        <meta name="keywords" content={`${tags.join(', ')}, portfolio, Hiram Barsky, design project`} />
+        <meta name="keywords" content={`${tags.join(', ')}, portfolio, Hiram Barsky, design project, UX/UI design, web development`} />
         <meta property="og:title" content={`${title} | Hiram Barsky Portfolio`} />
         <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky`} />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://barskydesign.com/project/${title.toLowerCase().replace(/\s+/g, '-')}`} />
+        <meta property="og:image" content="https://barskydesign.com/images/portfolio-preview.png" />
         <meta name="twitter:title" content={`${title} | Hiram Barsky Portfolio`} />
         <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development`} />
+        <meta name="twitter:image" content="https://barskydesign.com/images/portfolio-preview.png" />
       </Helmet>
       
       <div className="flex items-center mb-8">

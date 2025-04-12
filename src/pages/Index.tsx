@@ -30,6 +30,15 @@ const Index = () => {
         <title>Hiram Barsky | UX/UI Designer & Web Developer | Portfolio</title>
         <meta name="description" content="Experienced UX/UI designer and web developer specializing in website design, app design, and UX/UI consultation services. Based in New York." />
         <meta name="keywords" content="UI design, UX design, web development, website design, app design, mobile app, UX/UI consultation, product designer, design systems, user research, New York designer" />
+        <meta property="og:title" content="Hiram Barsky | UX/UI Designer & Web Developer" />
+        <meta property="og:description" content="Professional UX/UI design and web development services. Specializing in website design, app design, and UX/UI consultation." />
+        <meta property="og:image" content="https://barskydesign.com/images/portfolio-preview.png" />
+        <meta property="og:url" content="https://barskydesign.com/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Hiram Barsky | UX/UI Designer & Web Developer" />
+        <meta name="twitter:description" content="Professional UX/UI design and web development services." />
+        <meta name="twitter:image" content="https://barskydesign.com/images/portfolio-preview.png" />
         <link rel="canonical" href="https://barskydesign.com/" />
       </Helmet>
       
