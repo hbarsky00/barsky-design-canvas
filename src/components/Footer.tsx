@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const Footer: React.FC = () => {
@@ -49,14 +48,14 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <span className="text-barsky-blue">Email:</span>
-                <a href="mailto:hiram@barskytech.com" className="text-gray-300 hover:text-barsky-blue transition-colors">
-                  hiram@barskytech.com
+                <a href="mailto:hbarsky01@gmail.com" className="text-gray-300 hover:text-barsky-blue transition-colors">
+                  hbarsky01@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-barsky-blue">Phone:</span>
-                <a href="tel:+12125551234" className="text-gray-300 hover:text-barsky-blue transition-colors">
-                  +1 (212) 555-1234
+                <a href="tel:2016684754" className="text-gray-300 hover:text-barsky-blue transition-colors">
+                  (201) 668-4754
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -76,4 +75,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
