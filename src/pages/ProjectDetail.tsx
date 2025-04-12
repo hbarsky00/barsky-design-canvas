@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ProjectNavigation from "@/components/ProjectNavigation";
 import { ArrowLeft, Calendar, UserCircle, Tags, Code, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -274,6 +275,16 @@ const ProjectDetail: React.FC = () => {
                 </Card>
               </div>
             </div>
+            
+            {/* Add the ProjectNavigation component */}
+            <ProjectNavigation 
+              currentProjectId={projectId || ""} 
+              projectsData={projectsData.map(p => ({
+                id: p.id,
+                title: p.title,
+                image: p.image
+              }))} 
+            />
           </div>
         </section>
       </main>
