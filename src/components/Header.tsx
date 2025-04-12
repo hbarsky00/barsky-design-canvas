@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import AnimatedLogo from "./AnimatedLogo";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -113,7 +114,11 @@ const Header: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
+          <div className="flex items-center space-x-3">
+            <Avatar className="h-12 w-12 border-2 border-barsky-blue">
+              <AvatarImage src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" alt="Hiram Barsky" />
+              <AvatarFallback>HB</AvatarFallback>
+            </Avatar>
             <AnimatedLogo />
           </div>
 
