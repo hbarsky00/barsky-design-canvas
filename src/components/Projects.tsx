@@ -4,6 +4,7 @@ import { ProjectProps } from "./ProjectCard";
 import ProjectCard from "./ProjectCard";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Filter, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const projectsData: ProjectProps[] = [
   {
@@ -139,13 +140,15 @@ const Projects: React.FC = () => {
         
         {visibleProjects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {visibleProjects.map((project, index) => (
+            {visibleProjects.slice(0, 6).map((project, index) => (
               <div 
                 key={project.id}
                 className="opacity-0 animate-fade-in"
                 style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards' }}
               >
-                <ProjectCard project={project} />
+                <Link to={`/project/${project.id}`}>
+                  <ProjectCard project={project} />
+                </Link>
               </div>
             ))}
           </div>
@@ -165,12 +168,12 @@ const Projects: React.FC = () => {
         )}
         
         <div className="text-center mt-12">
-          <a 
-            href="https://example.com/all-projects" 
+          <Link 
+            to="/projects" 
             className="btn-outline inline-flex items-center"
           >
             View All Projects <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

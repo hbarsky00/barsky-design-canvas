@@ -50,19 +50,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             ))}
           </div>
           
-          {project.link && (
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={cn(
-                "inline-flex items-center gap-2 text-sm font-medium text-white hover:text-barsky-blue transition-all duration-300 w-fit",
-                isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}
-            >
-              View Project <ExternalLink size={16} />
-            </a>
-          )}
+          <div className={cn(
+            "inline-flex items-center gap-2 text-sm font-medium text-white hover:text-barsky-blue transition-all duration-300 w-fit",
+            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            View Details
+          </div>
         </div>
       </div>
     </div>
