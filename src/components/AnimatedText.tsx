@@ -15,7 +15,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   className,
   delay = 0,
 }) => {
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLElement | null>(null);
   
   useEffect(() => {
     const element = elementRef.current;
@@ -24,12 +24,12 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     }
   }, [delay]);
 
-  const Tag = tag;
+  const Tag = tag as any; // Use 'any' to avoid the complex union type error
   
   return (
     <div className="text-reveal-container">
       <Tag 
-        ref={elementRef as React.RefObject<any>}
+        ref={elementRef}
         className={cn("text-reveal", className)}
       >
         {text}
