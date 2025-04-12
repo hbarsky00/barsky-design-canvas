@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -29,7 +30,13 @@ const Header: React.FC = () => {
         scrollToSection(href.substring(1));
       }
     } else {
-      navigate(href);
+      // If we're on another page and trying to go to a section on the home page
+      if (href.startsWith('#')) {
+        // Navigate to home page first, then scroll to section after the page loads
+        navigate('/', { state: { scrollTo: href.substring(1) } });
+      } else {
+        navigate(href);
+      }
     }
   };
 
@@ -71,10 +78,18 @@ const Header: React.FC = () => {
   useEffect(() => {
     if (location.pathname === '/') {
       setActiveSection("home");
+      
+      // Check if we have a section to scroll to from navigation state
+      if (location.state && location.state.scrollTo) {
+        // Small timeout to ensure the page has fully loaded
+        setTimeout(() => {
+          scrollToSection(location.state.scrollTo);
+        }, 100);
+      }
     } else {
       setActiveSection("");
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.state]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
