@@ -11,6 +11,26 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleLinkClick = (href: string) => {
+    if (location.pathname === '/') {
+      // If on home page, scroll to section
+      if (href.startsWith('#')) {
+        scrollToSection(href.substring(1));
+      }
+    } else {
+      // If not on home page, navigate to home and then scroll
+      window.location.href = `/${href}`;
+    }
+  };
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
@@ -89,6 +109,7 @@ const Header: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.href}
+                onClick={() => handleLinkClick(link.href)}
                 className={cn(
                   "nav-link",
                   isLinkActive(link.href) && "active"
@@ -122,11 +143,13 @@ const Header: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.href}
+                onClick={() => {
+                  handleLinkClick(link.href);
+                }}
                 className={cn(
                   "nav-link text-lg",
                   isLinkActive(link.href) && "active"
                 )}
-                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
               </Link>
