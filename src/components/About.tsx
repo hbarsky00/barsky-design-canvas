@@ -3,14 +3,14 @@ import React from "react";
 import { CheckCircle, Briefcase, Award, Book } from "lucide-react";
 
 const skills = [
-  "Software Engineering",
-  "Web Development",
-  "Cloud Computing",
-  "System Design",
-  "Frontend Development",
-  "Backend Development",
-  "DevOps",
-  "Technical Leadership"
+  "UX/UI Design",
+  "Design Systems",
+  "Product Strategy",
+  "User Research",
+  "Design Thinking",
+  "Interaction Design",
+  "Wireframing & Prototyping",
+  "Design Leadership"
 ];
 
 const About: React.FC = () => {
@@ -21,14 +21,14 @@ const About: React.FC = () => {
           <div>
             <h2 className="section-title">About Me</h2>
             <p className="text-barsky-text mb-6">
-              I'm a passionate software engineer with extensive experience creating 
-              robust, scalable digital solutions. I focus on developing innovative 
-              technologies that solve complex problems and drive business value.
+              I'm a Senior Product Designer with a passion for creating 
+              user-centered digital experiences that solve complex problems 
+              and drive business value through strategic design.
             </p>
             <p className="text-barsky-text mb-8">
-              My approach combines technical expertise with strategic thinking, 
-              enabling me to design and implement cutting-edge software solutions 
-              that meet both technical and business requirements.
+              My approach combines deep user empathy, design thinking, 
+              and a strategic mindset to craft intuitive and impactful 
+              product solutions that bridge user needs with business goals.
             </p>
             
             <div className="flex flex-col gap-5 mb-8">
@@ -38,7 +38,7 @@ const About: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-barsky-dark">Professional Experience</h3>
-                  <p className="text-sm text-barsky-text-light">10+ years in software engineering</p>
+                  <p className="text-sm text-barsky-text-light">8+ years in product design</p>
                 </div>
               </div>
               
@@ -47,8 +47,8 @@ const About: React.FC = () => {
                   <Award className="w-6 h-6 text-barsky-blue" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-barsky-dark">Technical Achievement</h3>
-                  <p className="text-sm text-barsky-text-light">Multiple patents and innovation awards</p>
+                  <h3 className="font-semibold text-barsky-dark">Design Recognition</h3>
+                  <p className="text-sm text-barsky-text-light">Multiple design awards and patents</p>
                 </div>
               </div>
               
@@ -58,7 +58,7 @@ const About: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-barsky-dark">Continuous Learning</h3>
-                  <p className="text-sm text-barsky-text-light">Constantly exploring emerging technologies</p>
+                  <p className="text-sm text-barsky-text-light">Staying ahead of design trends</p>
                 </div>
               </div>
             </div>
@@ -76,9 +76,9 @@ const About: React.FC = () => {
             </div>
             
             <div className="mt-12">
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Tools & Technologies</h3>
+              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Design Tools & Technologies</h3>
               <div className="flex flex-wrap gap-3">
-                {["React", "TypeScript", "Node.js", "Docker", "Kubernetes", "AWS", "GraphQL", "PostgreSQL", "Python"].map((tool, index) => (
+                {["Figma", "Sketch", "Adobe XD", "InVision", "Miro", "Axure", "Principle", "Zeplin", "Abstract"].map((tool, index) => (
                   <span key={index} className="bg-white px-4 py-2 rounded-full text-barsky-text text-sm shadow-sm">
                     {tool}
                   </span>
@@ -93,4 +93,3 @@ const About: React.FC = () => {
 };
 
 export default About;
-
