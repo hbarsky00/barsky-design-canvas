@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ArrowLeft, Calendar, UserCircle, Tags, Code, ExternalLink } from "lucide-react";
@@ -165,10 +165,10 @@ const ProjectDetail: React.FC = () => {
         <section className="py-20">
           <div className="section-container">
             <div className="flex items-center mb-8">
-              <a href="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors mr-4">
+              <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors mr-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Projects
-              </a>
+              </Link>
             </div>
             
             <h1 className="text-4xl font-bold text-barsky-dark mb-4">{project.title}</h1>

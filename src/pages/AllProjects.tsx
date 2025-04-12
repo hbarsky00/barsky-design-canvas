@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -6,6 +5,7 @@ import { ProjectProps } from "@/components/ProjectCard";
 import ProjectCard from "@/components/ProjectCard";
 import { Filter, Search, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 import { 
   Pagination, 
   PaginationContent, 
@@ -15,7 +15,6 @@ import {
   PaginationPrevious 
 } from "@/components/ui/pagination";
 
-// Import the projects data from the Projects component
 const projectsData: ProjectProps[] = [
   {
     id: "project1",
@@ -67,7 +66,6 @@ const projectsData: ProjectProps[] = [
   }
 ];
 
-// Add more details for each project
 const projectDetails = {
   "project1": {
     fullDescription: "A modern e-commerce website built with React, featuring product filtering, shopping cart functionality, user accounts, and secure checkout integration with Stripe. The responsive design ensures seamless shopping experience across all devices.",
@@ -133,7 +131,6 @@ const AllProjects: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
   
-  // Filter projects based on category and search term
   useEffect(() => {
     const filteredByCategory = activeCategory === "All" 
       ? projectsData 
@@ -150,16 +147,14 @@ const AllProjects: React.FC = () => {
       : filteredByCategory;
     
     setVisibleProjects(filteredBySearch);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
   }, [activeCategory, searchTerm]);
   
-  // Calculate pagination
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = visibleProjects.slice(indexOfFirstProject, indexOfLastProject);
   const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
   
-  // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   
   return (
@@ -169,10 +164,10 @@ const AllProjects: React.FC = () => {
         <section className="py-20 bg-white">
           <div className="section-container">
             <div className="flex items-center mb-8">
-              <a href="/" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors mr-4">
+              <Link to="/" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors mr-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Home
-              </a>
+              </Link>
             </div>
             
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-12">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { ProjectProps } from "./ProjectCard";
 import ProjectCard from "./ProjectCard";
@@ -71,7 +70,6 @@ const Projects: React.FC = () => {
   const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   
-  // Filter projects based on category and search term
   useEffect(() => {
     const filteredByCategory = activeCategory === "All" 
       ? projectsData 
@@ -146,9 +144,7 @@ const Projects: React.FC = () => {
                 className="opacity-0 animate-fade-in"
                 style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards' }}
               >
-                <Link to={`/project/${project.id}`}>
-                  <ProjectCard project={project} />
-                </Link>
+                <ProjectCard project={project} />
               </div>
             ))}
           </div>
