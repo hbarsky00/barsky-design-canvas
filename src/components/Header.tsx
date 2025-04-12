@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import AnimatedLogo from "./AnimatedLogo";
 import { Link, useLocation } from "react-router-dom";
 
 const Header: React.FC = () => {
@@ -80,9 +80,7 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-barsky-dark dark:text-white">
-              Hiram<span className="text-barsky-blue">Barsky</span>
-            </Link>
+            <AnimatedLogo />
           </div>
 
           {/* Desktop Navigation */}
