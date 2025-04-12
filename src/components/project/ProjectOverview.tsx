@@ -1,0 +1,48 @@
+
+import React from "react";
+import { ExternalLink } from "lucide-react";
+
+interface ProjectOverviewProps {
+  fullDescription: string;
+  technologies: string[];
+  projectLink?: string;
+}
+
+const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
+  fullDescription, 
+  technologies,
+  projectLink
+}) => {
+  return (
+    <div>
+      <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Overview</h2>
+      <p className="text-barsky-text mb-8 leading-relaxed">
+        {fullDescription}
+      </p>
+      
+      <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Technologies Used</h2>
+      <div className="flex flex-wrap gap-2 mb-8">
+        {technologies.map((tech) => (
+          <span key={tech} className="bg-barsky-blue/10 text-barsky-blue px-3 py-1 rounded-full text-sm">
+            {tech}
+          </span>
+        ))}
+      </div>
+      
+      {projectLink && (
+        <div className="mb-8">
+          <a
+            href={projectLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-barsky-blue text-white px-4 py-2 rounded-md hover:bg-barsky-blue/90 transition-colors"
+          >
+            View Live Project <ExternalLink className="ml-2 h-4 w-4" />
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProjectOverview;
