@@ -29,6 +29,16 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         ))}
       </div>
       
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Services Provided</h2>
+        <ul className="list-disc pl-5 space-y-2 text-barsky-text">
+          <li>UX/UI Design Consultation</li>
+          <li>Responsive Web Development</li>
+          <li>User Research & Testing</li>
+          <li>Design System Creation</li>
+        </ul>
+      </div>
+      
       {projectLink && (
         <div className="mb-8">
           <a
