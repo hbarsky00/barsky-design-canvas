@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <a href="#home" className="text-2xl font-bold text-barsky-dark">
-              Barsky<span className="text-barsky-blue">Design</span>
+              Hiram<span className="text-barsky-blue">Barsky</span>
             </a>
           </div>
 
@@ -112,3 +112,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+

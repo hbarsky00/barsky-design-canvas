@@ -3,14 +3,14 @@ import React from "react";
 import { CheckCircle, Briefcase, Award, Book } from "lucide-react";
 
 const skills = [
-  "UI/UX Design",
+  "Software Engineering",
   "Web Development",
-  "Brand Identity",
-  "Mobile Design",
+  "Cloud Computing",
+  "System Design",
   "Frontend Development",
-  "User Research",
-  "Wireframing & Prototyping",
-  "Design Systems"
+  "Backend Development",
+  "DevOps",
+  "Technical Leadership"
 ];
 
 const About: React.FC = () => {
@@ -21,14 +21,14 @@ const About: React.FC = () => {
           <div>
             <h2 className="section-title">About Me</h2>
             <p className="text-barsky-text mb-6">
-              I'm a passionate designer and developer with over 8 years of experience creating 
-              beautiful digital experiences. I focus on creating intuitive, user-centered designs 
-              that solve real problems while looking amazing.
+              I'm a passionate software engineer with extensive experience creating 
+              robust, scalable digital solutions. I focus on developing innovative 
+              technologies that solve complex problems and drive business value.
             </p>
             <p className="text-barsky-text mb-8">
-              My approach combines creative design thinking with technical expertise, 
-              allowing me to bridge the gap between aesthetics and functionality. I believe in 
-              creating work that not only looks good but performs excellently.
+              My approach combines technical expertise with strategic thinking, 
+              enabling me to design and implement cutting-edge software solutions 
+              that meet both technical and business requirements.
             </p>
             
             <div className="flex flex-col gap-5 mb-8">
@@ -38,7 +38,7 @@ const About: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-barsky-dark">Professional Experience</h3>
-                  <p className="text-sm text-barsky-text-light">8+ years in design and development</p>
+                  <p className="text-sm text-barsky-text-light">10+ years in software engineering</p>
                 </div>
               </div>
               
@@ -47,8 +47,8 @@ const About: React.FC = () => {
                   <Award className="w-6 h-6 text-barsky-blue" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-barsky-dark">Award Recognition</h3>
-                  <p className="text-sm text-barsky-text-light">Multiple design award recipient</p>
+                  <h3 className="font-semibold text-barsky-dark">Technical Achievement</h3>
+                  <p className="text-sm text-barsky-text-light">Multiple patents and innovation awards</p>
                 </div>
               </div>
               
@@ -58,7 +58,7 @@ const About: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-barsky-dark">Continuous Learning</h3>
-                  <p className="text-sm text-barsky-text-light">Always exploring new technologies</p>
+                  <p className="text-sm text-barsky-text-light">Constantly exploring emerging technologies</p>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@ const About: React.FC = () => {
             <div className="mt-12">
               <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Tools & Technologies</h3>
               <div className="flex flex-wrap gap-3">
-                {["Figma", "Adobe XD", "Photoshop", "Illustrator", "HTML/CSS", "JavaScript", "React", "Tailwind CSS", "TypeScript"].map((tool, index) => (
+                {["React", "TypeScript", "Node.js", "Docker", "Kubernetes", "AWS", "GraphQL", "PostgreSQL", "Python"].map((tool, index) => (
                   <span key={index} className="bg-white px-4 py-2 rounded-full text-barsky-text text-sm shadow-sm">
                     {tool}
                   </span>
@@ -93,3 +93,4 @@ const About: React.FC = () => {
 };
 
 export default About;
+

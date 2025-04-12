@@ -9,12 +9,12 @@ const Footer: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Barsky<span className="text-barsky-blue">Design</span></h3>
+            <h3 className="text-2xl font-bold mb-6">Hiram<span className="text-barsky-blue">Barsky</span></h3>
             <p className="text-gray-300 mb-6">
-              Creating beautiful, functional digital experiences that make an impact.
+              Crafting innovative software solutions that drive technology forward.
             </p>
             <p className="text-gray-400 text-sm">
-              &copy; {currentYear} Barsky Design. All rights reserved.
+              &copy; {currentYear} Hiram Barsky. All rights reserved.
             </p>
           </div>
           
@@ -49,8 +49,8 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <span className="text-barsky-blue">Email:</span>
-                <a href="mailto:hello@barskydesign.com" className="text-gray-300 hover:text-barsky-blue transition-colors">
-                  hello@barskydesign.com
+                <a href="mailto:hiram@barskytech.com" className="text-gray-300 hover:text-barsky-blue transition-colors">
+                  hiram@barskytech.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
-          <p>Designed and developed with passion</p>
+          <p>Engineered with precision and passion</p>
         </div>
       </div>
     </footer>
@@ -76,3 +76,4 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
