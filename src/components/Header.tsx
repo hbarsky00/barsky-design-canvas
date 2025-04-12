@@ -3,13 +3,14 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import AnimatedLogo from "./AnimatedLogo";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -20,14 +21,15 @@ const Header: React.FC = () => {
   };
 
   const handleLinkClick = (href: string) => {
+    setIsMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (location.pathname === '/') {
-      // If on home page, scroll to section
       if (href.startsWith('#')) {
         scrollToSection(href.substring(1));
       }
     } else {
-      // If not on home page, navigate to home and then scroll
-      window.location.href = `/${href}`;
+      navigate(href);
     }
   };
 
@@ -44,9 +46,7 @@ const Header: React.FC = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
 
-      // Only update active section based on scroll if we're on the home page
       if (location.pathname === '/') {
-        // Update active section based on scroll position
         const sections = navLinks
           .filter(link => link.href.startsWith('#'))
           .map(link => link.href.substring(1));
@@ -69,7 +69,6 @@ const Header: React.FC = () => {
   }, [navLinks, location.pathname]);
 
   useEffect(() => {
-    // Reset active section when route changes
     if (location.pathname === '/') {
       setActiveSection("home");
     } else {
@@ -103,7 +102,6 @@ const Header: React.FC = () => {
             <AnimatedLogo />
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
@@ -121,7 +119,6 @@ const Header: React.FC = () => {
             <ThemeToggle />
           </nav>
 
-          {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden space-x-2">
             <ThemeToggle />
             <button 
@@ -135,7 +132,6 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800">
           <nav className="flex flex-col space-y-4">
