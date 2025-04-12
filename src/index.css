@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 240 80% 68%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -35,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +92,63 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-barsky-dark font-sans;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+  }
+  
+  .section-title {
+    @apply text-4xl sm:text-5xl font-bold mb-12 relative inline-block;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute -bottom-3 left-0 w-1/4 h-1 bg-barsky-blue rounded-full;
+  }
+  
+  .text-reveal-container {
+    @apply relative overflow-hidden;
+  }
+  
+  .text-reveal {
+    @apply animate-text-reveal opacity-0;
+    animation-fill-mode: forwards;
+  }
+  
+  .nav-link {
+    @apply relative text-barsky-text hover:text-barsky-blue transition-colors duration-300;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-barsky-blue transition-all duration-300 ease-in-out;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .nav-link.active {
+    @apply text-barsky-blue;
+  }
+  
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  .btn-primary {
+    @apply bg-barsky-blue hover:bg-barsky-blue-dark text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-barsky-blue text-barsky-blue hover:bg-barsky-blue hover:text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300;
   }
 }
