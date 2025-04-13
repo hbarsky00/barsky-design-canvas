@@ -1,4 +1,3 @@
-
 // Project data shared between AllProjects and ProjectDetail
 export const projectsData = [
   {
@@ -19,11 +18,11 @@ export const projectsData = [
   },
   {
     id: "project3",
-    title: "Find A Herbalist App",
-    description: "A holistic wellness platform that connects users with certified herbalists and natural health practitioners for personalized care.",
+    title: "Herbalink: Herbal Wellness Platform",
+    description: "A comprehensive mobile app connecting users with certified herbalists for personalized holistic health consultations.",
     image: "https://images.unsplash.com/photo-1616469829941-c7200edec809?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Mobile Design", "UI/UX", "Healthcare"],
-    link: "https://example.com/project3"
+    tags: ["Mobile Design", "Healthcare", "UI/UX"],
+    link: "https://example.com/herbalink"
   },
   {
     id: "project4",
@@ -76,11 +75,11 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Brand Designer"
   },
   "project3": {
-    fullDescription: "Find A Herbalist is a comprehensive mobile platform designed to bridge the gap between individuals seeking holistic health solutions and qualified herbalists. Similar to BetterHelp's approach to mental health, this app creates a specialized marketplace for herbal medicine practitioners. The app features practitioner profiles with verified credentials, specialties, and approaches to herbal medicine. Users can search for herbalists based on specialty, location, or specific health concerns, read reviews, and book virtual or in-person consultations. The platform includes secure video consultation tools, messaging, appointment scheduling, and electronic health records that focus on holistic health histories. Additionally, the app offers educational resources about herbal remedies, and a community forum for users to share experiences.",
-    technologies: ["React Native", "Node.js", "MongoDB", "WebRTC", "Stripe", "AWS", "Express.js"],
-    duration: "5 months",
-    client: "Holistic Health Network",
-    role: "Lead UI/UX Designer & Frontend Developer"
+    fullDescription: "Herbalink is an innovative mobile platform designed to revolutionize access to holistic healthcare. The app serves as a comprehensive marketplace connecting individuals seeking natural wellness solutions with qualified, vetted herbalists. Users can easily search for practitioners based on specialties, health concerns, or location, view detailed profiles with credentials and expertise, and book both virtual and in-person consultations.",
+    technologies: ["React Native", "Node.js", "MongoDB", "WebRTC", "Stripe", "GraphQL", "TypeScript"],
+    duration: "6 months",
+    client: "Herbalink Wellness Technologies",
+    role: "Lead Product Designer & Frontend Architect"
   },
   "project4": {
     fullDescription: "A comprehensive analytics dashboard for a SaaS platform that provides real-time data visualization, user activity tracking, and performance metrics. The interface was designed for clarity and ease of use while handling complex data sets.",
