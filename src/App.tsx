@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { HelmetProvider } from "react-helmet-async";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -26,6 +27,12 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Analytics tracking component
+const AnalyticsTracker = () => {
+  useAnalytics();
+  return null;
+};
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -35,6 +42,7 @@ const App = () => (
         <TooltipProvider>
           <BrowserRouter>
             <ScrollToTop />
+            <AnalyticsTracker />
             <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
               <Routes>
                 <Route path="/" element={<Index />} />
