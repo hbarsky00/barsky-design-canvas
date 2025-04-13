@@ -8,7 +8,7 @@
  */
 export const trackPageView = (path: string, title: string) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', 'G-MEASUREMENT_ID', {
+    window.gtag('config', 'G-7W0E6167T7', {
       page_path: path,
       page_title: title,
     });
