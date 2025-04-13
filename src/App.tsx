@@ -1,5 +1,5 @@
 
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,7 +19,7 @@ const DesignSystem = lazy(() => import("./pages/DesignSystem"));
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
   
