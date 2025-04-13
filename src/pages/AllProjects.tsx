@@ -1,161 +1,32 @@
-import React, { useState, useEffect } from "react";
+
+import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ProjectProps } from "@/components/ProjectCard";
-import ProjectCard from "@/components/ProjectCard";
-import { Filter, Search, ArrowLeft } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { 
-  Pagination, 
-  PaginationContent, 
-  PaginationItem, 
-  PaginationLink, 
-  PaginationNext, 
-  PaginationPrevious 
-} from "@/components/ui/pagination";
+import { ArrowLeft } from "lucide-react";
 
-const projectsData: ProjectProps[] = [
-  {
-    id: "project1",
-    title: "Co-Parenting App",
-    description: "A comprehensive mobile application that helps separated parents coordinate childcare responsibilities and communication.",
-    image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["UI/UX Design", "Mobile App", "React Native"],
-    link: "https://example.com/project1"
-  },
-  {
-    id: "project2",
-    title: "Corporate Brand Identity",
-    description: "Complete brand identity design including logo, color palette, typography, and brand guidelines.",
-    image: "https://images.unsplash.com/photo-1634942537034-a3f7ae8c5587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Branding", "Logo Design", "Typography"],
-    link: "https://example.com/project2"
-  },
-  {
-    id: "project3",
-    title: "Mobile App UI Design",
-    description: "User interface design for a fitness tracking mobile application with clean and intuitive interactions.",
-    image: "https://images.unsplash.com/photo-1616469829941-c7200edec809?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Mobile Design", "UI/UX", "Prototyping"],
-    link: "https://example.com/project3"
-  },
-  {
-    id: "project4",
-    title: "Dashboard Interface",
-    description: "A comprehensive analytics dashboard with data visualization and interactive elements.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["UI Design", "Data Visualization", "Web Development"],
-    link: "https://example.com/project4"
-  },
-  {
-    id: "project5",
-    title: "Photography Portfolio",
-    description: "Minimalist photography portfolio website showcasing work with elegant transitions and gallery views.",
-    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Web Design", "Photography", "Gallery"],
-    link: "https://example.com/project5"
-  },
-  {
-    id: "project6",
-    title: "Restaurant Rebrand",
-    description: "Complete visual identity redesign for an upscale restaurant, including menus, signage, and web presence.",
-    image: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Branding", "Print Design", "Web Design"],
-    link: "https://example.com/project6"
-  }
-];
-
-const projectDetails = {
-  "project1": {
-    fullDescription: "A mobile application designed to help separated parents better coordinate childcare responsibilities. The app includes features such as shared calendars for custody schedules, expense tracking and splitting, secure messaging, and important document storage. The design focuses on creating a neutral platform that promotes positive co-parenting communication and reduces conflict.",
-    technologies: ["React Native", "Firebase", "Redux", "Node.js", "Express", "MongoDB", "Push Notifications"],
-    duration: "4 months",
-    client: "Family Support Services",
-    role: "Lead Mobile Developer"
-  },
-  "project2": {
-    fullDescription: "Complete brand identity redesign for a technology consulting firm. The project included logo design, color palette selection, typography guidelines, business cards, letterheads, and digital assets for web and social media presence.",
-    technologies: ["Adobe Illustrator", "Adobe Photoshop", "InDesign"],
-    duration: "6 weeks",
-    client: "Tech Consulting Group",
-    role: "Brand Designer"
-  },
-  "project3": {
-    fullDescription: "UI/UX design for a fitness tracking mobile application that helps users track workouts, set goals, and monitor progress. The design focused on creating an intuitive user experience with clean interfaces and meaningful data visualization.",
-    technologies: ["Figma", "Sketch", "Protopie", "Adobe XD"],
-    duration: "2 months",
-    client: "Health & Fitness Startup",
-    role: "UI/UX Designer"
-  },
-  "project4": {
-    fullDescription: "A comprehensive analytics dashboard for a SaaS platform that provides real-time data visualization, user activity tracking, and performance metrics. The interface was designed for clarity and ease of use while handling complex data sets.",
-    technologies: ["React", "D3.js", "Chart.js", "Firebase", "Material UI"],
-    duration: "10 weeks",
-    client: "Marketing Analytics Company",
-    role: "Frontend Developer & UI Designer"
-  },
-  "project5": {
-    fullDescription: "A minimalist photography portfolio website designed to showcase professional photography work with elegant transitions, gallery views, and optimal image loading strategies. The design emphasizes the visual content while providing seamless navigation.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Webflow", "Lightbox"],
-    duration: "4 weeks",
-    client: "Professional Photographer",
-    role: "Web Designer"
-  },
-  "project6": {
-    fullDescription: "Complete visual identity redesign for an upscale restaurant, including new logo, menus, signage, business cards, and web presence. The design emphasizes elegance and sophistication while improving brand recognition.",
-    technologies: ["Adobe Creative Suite", "WordPress", "HTML/CSS"],
-    duration: "8 weeks",
-    client: "Fine Dining Restaurant",
-    role: "Brand Designer & Web Developer"
-  }
-};
-
-const categories = [
-  "All",
-  "UI/UX Design",
-  "Web Development",
-  "Branding",
-  "Mobile Design",
-  "Print Design",
-  "Logo Design",
-  "Photography",
-  "Data Visualization"
-];
+// Importing refactored components and hooks
+import SearchBar from "./projects/components/SearchBar";
+import CategoryFilter from "./projects/components/CategoryFilter";
+import ProjectGrid from "./projects/components/ProjectGrid";
+import ProjectsPagination from "./projects/components/ProjectsPagination";
+import { useProjectsData } from "./projects/hooks/useProjectsData";
+import { categories } from "./projects/ProjectsCategories";
 
 const AllProjects: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 6;
-  
-  useEffect(() => {
-    const filteredByCategory = activeCategory === "All" 
-      ? projectsData 
-      : projectsData.filter(project => 
-          project.tags.some(tag => tag === activeCategory)
-        );
-    
-    const filteredBySearch = searchTerm 
-      ? filteredByCategory.filter(project => 
-          project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          project.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-        )
-      : filteredByCategory;
-    
-    setVisibleProjects(filteredBySearch);
-    setCurrentPage(1);
-  }, [activeCategory, searchTerm]);
-  
-  const indexOfLastProject = currentPage * projectsPerPage;
-  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = visibleProjects.slice(indexOfFirstProject, indexOfLastProject);
-  const totalPages = Math.ceil(visibleProjects.length / projectsPerPage);
-  
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const {
+    activeCategory,
+    setActiveCategory,
+    searchTerm,
+    setSearchTerm,
+    isFilterOpen,
+    setIsFilterOpen,
+    currentPage,
+    totalPages,
+    currentProjects,
+    paginate,
+    resetFilters
+  } = useProjectsData();
   
   return (
     <div className="flex flex-col min-h-screen">
@@ -174,109 +45,31 @@ const AllProjects: React.FC = () => {
               <h1 className="text-4xl font-bold text-barsky-dark">All Projects</h1>
               
               <div className="flex items-center mt-6 md:mt-0">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search projects..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="px-4 py-2 pr-10 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                  />
-                  <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                </div>
+                <SearchBar 
+                  searchTerm={searchTerm} 
+                  setSearchTerm={setSearchTerm} 
+                />
                 
-                <button 
-                  onClick={() => setIsFilterOpen(!isFilterOpen)}
-                  className="ml-3 p-2 rounded-md hover:bg-gray-100 transition-colors"
-                  aria-label="Toggle filters"
-                >
-                  <Filter className="h-5 w-5 text-barsky-text" />
-                </button>
+                <CategoryFilter 
+                  categories={categories}
+                  activeCategory={activeCategory}
+                  setActiveCategory={setActiveCategory}
+                  isFilterOpen={isFilterOpen}
+                  setIsFilterOpen={setIsFilterOpen}
+                />
               </div>
             </div>
             
-            <div className={cn(
-              "flex flex-wrap justify-center gap-3 transition-all duration-300 overflow-hidden",
-              isFilterOpen ? "max-h-40 opacity-100 mb-8" : "max-h-0 opacity-0 mb-0"
-            )}>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={cn(
-                    "px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300",
-                    activeCategory === category
-                      ? "bg-barsky-blue text-white"
-                      : "bg-gray-100 text-barsky-text hover:bg-gray-200"
-                  )}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+            <ProjectGrid 
+              currentProjects={currentProjects}
+              resetFilters={resetFilters}
+            />
             
-            {currentProjects.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {currentProjects.map((project, index) => (
-                  <div 
-                    key={project.id}
-                    className="opacity-0 animate-fade-in"
-                    style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards' }}
-                  >
-                    <ProjectCard project={project} />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-20">
-                <p className="text-barsky-text text-lg mb-4">No projects found matching your criteria.</p>
-                <button 
-                  onClick={() => {
-                    setActiveCategory("All");
-                    setSearchTerm("");
-                  }}
-                  className="text-barsky-blue hover:underline inline-flex items-center"
-                >
-                  View all projects <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
-                </button>
-              </div>
-            )}
-            
-            {totalPages > 1 && (
-              <Pagination className="mt-12">
-                <PaginationContent>
-                  {currentPage > 1 && (
-                    <PaginationItem>
-                      <PaginationPrevious 
-                        onClick={() => paginate(currentPage - 1)}
-                        className="cursor-pointer"
-                      />
-                    </PaginationItem>
-                  )}
-                  
-                  {Array.from({ length: totalPages }).map((_, index) => (
-                    <PaginationItem key={index}>
-                      <PaginationLink 
-                        isActive={currentPage === index + 1}
-                        onClick={() => paginate(index + 1)}
-                        className="cursor-pointer"
-                      >
-                        {index + 1}
-                      </PaginationLink>
-                    </PaginationItem>
-                  ))}
-                  
-                  {currentPage < totalPages && (
-                    <PaginationItem>
-                      <PaginationNext 
-                        onClick={() => paginate(currentPage + 1)}
-                        className="cursor-pointer"
-                      />
-                    </PaginationItem>
-                  )}
-                </PaginationContent>
-              </Pagination>
-            )}
+            <ProjectsPagination 
+              currentPage={currentPage}
+              totalPages={totalPages}
+              paginate={paginate}
+            />
           </div>
         </section>
       </main>
