@@ -29,6 +29,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
                 src={mainImage} 
                 alt={title} 
                 className="w-full h-full object-cover" 
+                loading="lazy"
               />
             </div>
           </CarouselItem>
@@ -39,6 +40,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
                   src={img} 
                   alt={`${title} - view ${index + 1}`} 
                   className="w-full h-full object-cover" 
+                  loading="lazy"
                 />
               </div>
             </CarouselItem>

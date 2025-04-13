@@ -20,7 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
-    <Link to={`/project/${project.id}`} className="block h-full">
+    <Link to={`/project/${project.id}`} className="block h-full" onClick={() => window.scrollTo(0, 0)}>
       <div 
         className="group relative overflow-hidden rounded-lg shadow-md transition-all duration-300 h-full"
         onMouseEnter={() => setIsHovered(true)}
@@ -34,6 +34,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               "w-full h-full object-cover transition-transform duration-500", 
               isHovered && "scale-105"
             )}
+            loading="lazy"
           />
           
           <div className={cn(

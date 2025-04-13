@@ -24,11 +24,12 @@ const Header: React.FC = () => {
 
   const handleLinkClick = (href: string) => {
     setIsMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
+    
     if (location.pathname === '/') {
       if (href.startsWith('#')) {
         scrollToSection(href.substring(1));
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else {
       // If we're on another page and trying to go to a section on the home page
@@ -36,6 +37,7 @@ const Header: React.FC = () => {
         // Navigate to home page first, then scroll to section after the page loads
         navigate('/', { state: { scrollTo: href.substring(1) } });
       } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         navigate(href);
       }
     }
@@ -127,7 +129,10 @@ const Header: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                onClick={() => handleLinkClick(link.href)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href);
+                }}
                 className={cn(
                   "nav-link",
                   isLinkActive(link.href) && "active"
@@ -159,7 +164,8 @@ const Header: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   handleLinkClick(link.href);
                 }}
                 className={cn(
