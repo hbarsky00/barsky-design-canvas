@@ -1,4 +1,7 @@
+
 import React from "react";
+import { Link } from "react-router-dom";
+import { Facebook, Instagram, Linkedin, Twitter, Github, Mail } from "lucide-react";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -21,24 +24,24 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-6">Navigation</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#home" className="text-gray-300 hover:text-barsky-blue transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-barsky-blue transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="text-gray-300 hover:text-barsky-blue transition-colors">
+                <Link to="/projects" className="text-gray-300 hover:text-barsky-blue transition-colors">
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-gray-300 hover:text-barsky-blue transition-colors">
+                <Link to="/#about" className="text-gray-300 hover:text-barsky-blue transition-colors">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-gray-300 hover:text-barsky-blue transition-colors">
+                <Link to="/#contact" className="text-gray-300 hover:text-barsky-blue transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -63,6 +66,57 @@ const Footer: React.FC = () => {
                 <span className="text-gray-300">New York, NY</span>
               </li>
             </ul>
+            
+            <div className="mt-6">
+              <h4 className="text-lg font-semibold mb-4">Connect</h4>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://facebook.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-barsky-blue transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={20} />
+                </a>
+                <a 
+                  href="https://twitter.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-barsky-blue transition-colors"
+                  aria-label="Twitter"
+                >
+                  <Twitter size={20} />
+                </a>
+                <a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-barsky-blue transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a 
+                  href="https://linkedin.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-barsky-blue transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-barsky-blue transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github size={20} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
