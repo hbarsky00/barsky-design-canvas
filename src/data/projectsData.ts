@@ -1,12 +1,11 @@
-
 // Project data shared between AllProjects and ProjectDetail
 export const projectsData = [
   {
     id: "project1",
-    title: "Co-parenting app project",
-    description: "A fully responsive e-commerce platform with product filtering, cart functionality, and secure checkout.",
+    title: "Co-Parenting App",
+    description: "A comprehensive mobile application that helps separated parents coordinate childcare responsibilities and communication.",
     image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["UI/UX Design", "Web Development", "React"],
+    tags: ["UI/UX Design", "Mobile App", "React Native"],
     link: "https://example.com/project1"
   },
   {
@@ -62,11 +61,11 @@ export interface ProjectDetails {
 
 export const projectDetails: Record<string, ProjectDetails> = {
   "project1": {
-    fullDescription: "A modern e-commerce website built with React, featuring product filtering, shopping cart functionality, user accounts, and secure checkout integration with Stripe. The responsive design ensures seamless shopping experience across all devices.",
-    technologies: ["React", "Redux", "Node.js", "Express", "MongoDB", "Stripe API"],
-    duration: "3 months",
-    client: "Fashion Retail Brand",
-    role: "Lead Developer"
+    fullDescription: "A mobile application designed to help separated parents better coordinate childcare responsibilities. The app includes features such as shared calendars for custody schedules, expense tracking and splitting, secure messaging, and important document storage. The design focuses on creating a neutral platform that promotes positive co-parenting communication and reduces conflict.",
+    technologies: ["React Native", "Firebase", "Redux", "Node.js", "Express", "MongoDB", "Push Notifications"],
+    duration: "4 months",
+    client: "Family Support Services",
+    role: "Lead Mobile Developer"
   },
   "project2": {
     fullDescription: "Complete brand identity redesign for a technology consulting firm. The project included logo design, color palette selection, typography guidelines, business cards, letterheads, and digital assets for web and social media presence.",

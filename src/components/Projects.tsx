@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { ProjectProps } from "./ProjectCard";
 import ProjectCard from "./ProjectCard";
@@ -9,10 +8,10 @@ import { Link } from "react-router-dom";
 const projectsData: ProjectProps[] = [
   {
     id: "project1",
-    title: "Co-parenting app project",
-    description: "A fully responsive e-commerce platform with product filtering, cart functionality, and secure checkout.",
+    title: "Co-Parenting App",
+    description: "A comprehensive mobile application that helps separated parents coordinate childcare responsibilities and communication.",
     image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["UI/UX Design", "Web Development", "React"],
+    tags: ["UI/UX Design", "Mobile App", "React Native"],
     link: "https://example.com/project1"
   },
   {
