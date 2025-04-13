@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { ProjectProps } from "./ProjectCard";
 import ProjectCard from "./ProjectCard";
@@ -24,10 +25,10 @@ const projectsData: ProjectProps[] = [
   },
   {
     id: "project3",
-    title: "Mobile App UI Design",
-    description: "User interface design for a fitness tracking mobile application with clean and intuitive interactions.",
+    title: "Find A Herbalist App",
+    description: "A holistic wellness platform that connects users with certified herbalists and natural health practitioners for personalized care.",
     image: "https://images.unsplash.com/photo-1616469829941-c7200edec809?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Mobile Design", "UI/UX", "Prototyping"],
+    tags: ["Mobile Design", "UI/UX", "Healthcare"],
     link: "https://example.com/project3"
   },
   {

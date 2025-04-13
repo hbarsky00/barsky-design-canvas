@@ -8,5 +8,6 @@ export const categories = [
   "Print Design",
   "Logo Design",
   "Photography",
-  "Data Visualization"
+  "Data Visualization",
+  "Healthcare"
 ];
