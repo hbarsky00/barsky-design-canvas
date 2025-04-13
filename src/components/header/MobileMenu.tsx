@@ -21,8 +21,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   isLinkActive,
 }) => {
   return (
-    <>
-      <div className="flex items-center md:hidden space-x-2">
+    <div className="md:hidden">
+      <div className="flex items-center space-x-2">
         <ThemeToggle />
         <button 
           className="text-barsky-dark dark:text-white" 
@@ -34,7 +34,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800">
+        <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800 shadow-md">
           <nav className="flex flex-col space-y-4">
             {links.map((link) => (
               <Link
@@ -55,7 +55,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           </nav>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

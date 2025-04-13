@@ -11,6 +11,7 @@ const Header: React.FC = () => {
   const { 
     isScrolled,
     navLinks,
+    activeSection,
     isMobileMenuOpen,
     handleLinkClick,
     toggleMobileMenu,
@@ -35,7 +36,7 @@ const Header: React.FC = () => {
 
           <Navigation 
             links={navLinks}
-            activeSection=""
+            activeSection={activeSection}
             handleLinkClick={handleLinkClick}
             isLinkActive={isLinkActive}
           />
@@ -49,8 +50,6 @@ const Header: React.FC = () => {
           />
         </div>
       </div>
-
-      {/* Mobile menu dropdown - now inside MobileMenu component */}
     </header>
   );
 };
