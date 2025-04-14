@@ -34,11 +34,11 @@ export const projectsData = [
   },
   {
     id: "project5",
-    title: "Photography Portfolio",
-    description: "Minimalist photography portfolio website showcasing work with elegant transitions and gallery views.",
-    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Web Design", "Photography", "Gallery"],
-    link: "https://example.com/project5"
+    title: "Barsky Food Joint Mobile App",
+    description: "A modern mobile application for ordering gourmet burgers and sandwiches from Barsky Food Joint food truck, featuring real-time order tracking and customization options.",
+    image: "https://images.unsplash.com/photo-1513124146973-c923a79cf2c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
+    tags: ["Mobile App", "UI/UX Design", "Food Service"],
+    link: "https://example.com/barsky-food-joint"
   },
   {
     id: "project6",
@@ -89,11 +89,11 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Frontend Developer & UI Designer"
   },
   "project5": {
-    fullDescription: "A minimalist photography portfolio website designed to showcase professional photography work with elegant transitions, gallery views, and optimal image loading strategies. The design emphasizes the visual content while providing seamless navigation.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Webflow", "Lightbox"],
-    duration: "4 weeks",
-    client: "Professional Photographer",
-    role: "Web Designer"
+    fullDescription: "Barsky Food Joint mobile app revolutionizes the food truck ordering experience with a sleek, user-friendly interface. The app features a curated menu of gourmet options including their signature bacon chicken cheese special sauce sandwich, customizable smash burgers, and innovative vegan options. Key features include real-time order tracking, customizable ingredients, side options between regular and sweet potato fries or salad, and seamless payment integration. The app also includes a loyalty program, push notifications for truck location updates, and estimated waiting times.",
+    technologies: ["React Native", "Redux", "Node.js", "Express", "MongoDB", "Stripe", "Push Notifications", "GPS Integration"],
+    duration: "3 months",
+    client: "Barsky Food Joint",
+    role: "Lead Mobile App Developer"
   },
   "project6": {
     fullDescription: "Complete visual identity redesign for an upscale restaurant, including new logo, menus, signage, business cards, and web presence. The design emphasizes elegance and sophistication while improving brand recognition.",
@@ -104,7 +104,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
   }
 };
 
-// Extra images for projects (in a real app, these would be unique for each project)
+// Extra images for projects
 export const extraImages = [
   "https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
   "https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
