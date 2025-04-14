@@ -1,3 +1,4 @@
+
 // Project data shared between AllProjects and ProjectDetail
 export const projectsData = [
   {
@@ -10,11 +11,11 @@ export const projectsData = [
   },
   {
     id: "project2",
-    title: "Corporate Brand Identity",
-    description: "Complete brand identity design including logo, color palette, typography, and brand guidelines.",
-    image: "https://images.unsplash.com/photo-1634942537034-a3f7ae8c5587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Branding", "Logo Design", "Typography"],
-    link: "https://example.com/project2"
+    title: "WildHarvest: Edible Plant Finder",
+    description: "A location-based mobile application that helps users identify and locate edible plants, mushrooms, and flowers in their local area.",
+    image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
+    tags: ["Mobile App", "Geolocation", "Nature"],
+    link: "https://example.com/wildharvest"
   },
   {
     id: "project3",
@@ -68,11 +69,11 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Mobile Developer"
   },
   "project2": {
-    fullDescription: "Complete brand identity redesign for a technology consulting firm. The project included logo design, color palette selection, typography guidelines, business cards, letterheads, and digital assets for web and social media presence.",
-    technologies: ["Adobe Illustrator", "Adobe Photoshop", "InDesign"],
-    duration: "6 weeks",
-    client: "Tech Consulting Group",
-    role: "Brand Designer"
+    fullDescription: "WildHarvest is an innovative mobile application designed to connect nature enthusiasts, foragers, and curious explorers with edible wild plants, mushrooms, and flowers in their local environment. The app uses GPS and mapping technology to guide users to nearby locations where edible species can be found. Features include detailed species identification with high-quality images, seasonal availability calendars, foraging difficulty levels, and preparation suggestions. The app also includes toxic look-alike warnings, sustainable harvesting tips, and a community feature where users can share discoveries while protecting sensitive locations.",
+    technologies: ["React Native", "MapBox API", "Node.js", "MongoDB", "Image Recognition AI", "GPS Integration", "Offline Mode"],
+    duration: "7 months",
+    client: "EcoExplore Initiatives",
+    role: "Lead UX Designer & Mobile Developer"
   },
   "project3": {
     fullDescription: "Herbalink is an innovative mobile platform designed to revolutionize access to holistic healthcare. The app serves as a comprehensive marketplace connecting individuals seeking natural wellness solutions with qualified, vetted herbalists. Users can easily search for practitioners based on specialties, health concerns, or location, view detailed profiles with credentials and expertise, and book both virtual and in-person consultations.",

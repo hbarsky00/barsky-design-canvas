@@ -9,5 +9,7 @@ export const categories = [
   "Logo Design",
   "Photography",
   "Data Visualization",
-  "Healthcare"
+  "Healthcare",
+  "Nature",
+  "Geolocation"
 ];

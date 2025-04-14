@@ -4,64 +4,15 @@ import ProjectCard from "./ProjectCard";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Filter, Search } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const projectsData: ProjectProps[] = [
-  {
-    id: "project1",
-    title: "Co-Parenting App",
-    description: "A comprehensive mobile application that helps separated parents coordinate childcare responsibilities and communication.",
-    image: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["UI/UX Design", "Mobile App", "React Native"],
-    link: "https://example.com/project1"
-  },
-  {
-    id: "project2",
-    title: "Corporate Brand Identity",
-    description: "Complete brand identity design including logo, color palette, typography, and brand guidelines.",
-    image: "https://images.unsplash.com/photo-1634942537034-a3f7ae8c5587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Branding", "Logo Design", "Typography"],
-    link: "https://example.com/project2"
-  },
-  {
-    id: "project3",
-    title: "Find A Herbalist App",
-    description: "A holistic wellness platform that connects users with certified herbalists and natural health practitioners for personalized care.",
-    image: "https://images.unsplash.com/photo-1616469829941-c7200edec809?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Mobile Design", "UI/UX", "Healthcare"],
-    link: "https://example.com/project3"
-  },
-  {
-    id: "project4",
-    title: "Dashboard Interface",
-    description: "A comprehensive analytics dashboard with data visualization and interactive elements.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["UI Design", "Data Visualization", "Web Development"],
-    link: "https://example.com/project4"
-  },
-  {
-    id: "project5",
-    title: "Photography Portfolio",
-    description: "Minimalist photography portfolio website showcasing work with elegant transitions and gallery views.",
-    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Web Design", "Photography", "Gallery"],
-    link: "https://example.com/project5"
-  },
-  {
-    id: "project6",
-    title: "Restaurant Rebrand",
-    description: "Complete visual identity redesign for an upscale restaurant, including menus, signage, and web presence.",
-    image: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Branding", "Print Design", "Web Design"],
-    link: "https://example.com/project6"
-  }
-];
+import { projectsData } from "@/data/projectsData";
 
 const categories = [
   "All",
   "UI/UX Design",
   "Web Development",
   "Branding",
-  "Mobile Design"
+  "Mobile Design",
+  "Nature"
 ];
 
 const Projects: React.FC = () => {
