@@ -1,4 +1,3 @@
-
 // Project data shared between AllProjects and ProjectDetail
 export const projectsData = [
   {
@@ -11,11 +10,11 @@ export const projectsData = [
   },
   {
     id: "project2",
-    title: "WildHarvest: Edible Plant Finder",
+    title: "Edible Plant Finder",
     description: "A location-based mobile application that helps users identify and locate edible plants, mushrooms, and flowers in their local area.",
     image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
     tags: ["Mobile App", "Geolocation", "Nature"],
-    link: "https://example.com/wildharvest"
+    link: "https://example.com/edibleplantfinder"
   },
   {
     id: "project3",
@@ -69,7 +68,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Mobile Developer"
   },
   "project2": {
-    fullDescription: "WildHarvest is an innovative mobile application designed to connect nature enthusiasts, foragers, and curious explorers with edible wild plants, mushrooms, and flowers in their local environment. The app uses GPS and mapping technology to guide users to nearby locations where edible species can be found. Features include detailed species identification with high-quality images, seasonal availability calendars, foraging difficulty levels, and preparation suggestions. The app also includes toxic look-alike warnings, sustainable harvesting tips, and a community feature where users can share discoveries while protecting sensitive locations.",
+    fullDescription: "Edible Plant Finder is an innovative mobile application designed to connect nature enthusiasts, foragers, and curious explorers with edible wild plants, mushrooms, and flowers in their local environment. The app uses GPS and mapping technology to guide users to nearby locations where edible species can be found. Features include detailed species identification with high-quality images, seasonal availability calendars, foraging difficulty levels, and preparation suggestions. The app also includes toxic look-alike warnings, sustainable harvesting tips, and a community feature where users can share discoveries while protecting sensitive locations.",
     technologies: ["React Native", "MapBox API", "Node.js", "MongoDB", "Image Recognition AI", "GPS Integration", "Offline Mode"],
     duration: "7 months",
     client: "EcoExplore Initiatives",
