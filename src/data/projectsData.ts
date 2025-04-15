@@ -1,3 +1,4 @@
+
 // Project data shared between AllProjects and ProjectDetail
 export const projectsData = [
   {
@@ -34,7 +35,7 @@ export const projectsData = [
   },
   {
     id: "project5",
-    title: "Barsky Food Joint Mobile App",
+    title: "Barsky Joint Food Truck",
     description: "A modern mobile application for ordering gourmet burgers and sandwiches from Barsky Food Joint food truck, featuring real-time order tracking and customization options.",
     image: "https://images.unsplash.com/photo-1513124146973-c923a79cf2c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
     tags: ["Mobile App", "UI/UX Design", "Food Service"],
@@ -42,11 +43,11 @@ export const projectsData = [
   },
   {
     id: "project6",
-    title: "Restaurant Rebrand",
-    description: "Complete visual identity redesign for an upscale restaurant, including menus, signage, and web presence.",
-    image: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["Branding", "Print Design", "Web Design"],
-    link: "https://example.com/project6"
+    title: "Spectrum Apparel Co.",
+    description: "An inclusive e-commerce platform specializing in autism awareness apparel and custom shirt designs, offering a seamless shopping experience with personalization options.",
+    image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
+    tags: ["E-commerce", "Web Development", "Apparel", "UI/UX Design"],
+    link: "https://example.com/spectrum-apparel"
   }
 ];
 
@@ -89,18 +90,18 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Full Stack Developer"
   },
   "project5": {
-    fullDescription: "Barsky Food Joint mobile app revolutionizes the food truck ordering experience with a sleek, user-friendly interface. The app features a curated menu of gourmet options including their signature bacon chicken cheese special sauce sandwich, customizable smash burgers, and innovative vegan options. Key features include real-time order tracking, customizable ingredients, side options between regular and sweet potato fries or salad, and seamless payment integration. The app also includes a loyalty program, push notifications for truck location updates, and estimated waiting times.",
+    fullDescription: "Barsky Joint Food Truck mobile app revolutionizes the food truck ordering experience with a sleek, user-friendly interface. The app features a curated menu of gourmet options including their signature bacon chicken cheese special sauce sandwich, customizable smash burgers, and innovative vegan options. Key features include real-time order tracking, customizable ingredients, side options between regular and sweet potato fries or salad, and seamless payment integration. The app also includes a loyalty program, push notifications for truck location updates, and estimated waiting times.",
     technologies: ["React Native", "Redux", "Node.js", "Express", "MongoDB", "Stripe", "Push Notifications", "GPS Integration"],
     duration: "3 months",
-    client: "Barsky Food Joint",
+    client: "Barsky Joint Food Truck",
     role: "Lead Mobile App Developer"
   },
   "project6": {
-    fullDescription: "Complete visual identity redesign for an upscale restaurant, including new logo, menus, signage, business cards, and web presence. The design emphasizes elegance and sophistication while improving brand recognition.",
-    technologies: ["Adobe Creative Suite", "WordPress", "HTML/CSS"],
-    duration: "8 weeks",
-    client: "Fine Dining Restaurant",
-    role: "Brand Designer & Web Developer"
+    fullDescription: "Spectrum Apparel Co. is a modern e-commerce platform dedicated to creating and selling autism awareness apparel and custom shirts. The platform features an intuitive design interface for custom shirt creation, size-inclusive options, and a streamlined shopping experience. Key features include a drag-and-drop shirt designer, real-time preview of customizations, automated inventory management, and a size recommendation tool. The platform also includes a blog section for autism awareness content and community stories.",
+    technologies: ["React", "Next.js", "Stripe", "AWS", "Tailwind CSS", "Canvas API", "Shopify API"],
+    duration: "4 months",
+    client: "Spectrum Apparel Co.",
+    role: "Lead Full Stack Developer"
   }
 };
 

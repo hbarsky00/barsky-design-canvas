@@ -4,9 +4,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-
-// Importing refactored components and hooks
-import SearchBar from "./projects/components/SearchBar";
 import CategoryFilter from "./projects/components/CategoryFilter";
 import ProjectGrid from "./projects/components/ProjectGrid";
 import ProjectsPagination from "./projects/components/ProjectsPagination";
@@ -17,8 +14,6 @@ const AllProjects: React.FC = () => {
   const {
     activeCategory,
     setActiveCategory,
-    searchTerm,
-    setSearchTerm,
     isFilterOpen,
     setIsFilterOpen,
     currentPage,
@@ -45,11 +40,6 @@ const AllProjects: React.FC = () => {
               <h1 className="text-4xl font-bold text-barsky-dark">All Projects</h1>
               
               <div className="flex items-center mt-6 md:mt-0">
-                <SearchBar 
-                  searchTerm={searchTerm} 
-                  setSearchTerm={setSearchTerm} 
-                />
-                
                 <CategoryFilter 
                   categories={categories}
                   activeCategory={activeCategory}

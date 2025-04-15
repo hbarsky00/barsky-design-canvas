@@ -12,5 +12,8 @@ export const categories = [
   "Nature",
   "Geolocation",
   "FinTech",
-  "Crypto"
+  "Crypto",
+  "E-commerce",
+  "Apparel"
 ];
+
