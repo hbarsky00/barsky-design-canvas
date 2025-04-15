@@ -7,9 +7,10 @@ export const categories = [
   "Mobile Design",
   "Print Design",
   "Logo Design",
-  "Photography",
   "Data Visualization",
   "Healthcare",
   "Nature",
-  "Geolocation"
+  "Geolocation",
+  "FinTech",
+  "Crypto"
 ];

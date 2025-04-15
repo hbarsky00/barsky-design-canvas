@@ -26,11 +26,11 @@ export const projectsData = [
   },
   {
     id: "project4",
-    title: "Dashboard Interface",
-    description: "A comprehensive analytics dashboard with data visualization and interactive elements.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
-    tags: ["UI Design", "Data Visualization", "Web Development"],
-    link: "https://example.com/project4"
+    title: "Gold 2 Crypto Services",
+    description: "A comprehensive cryptocurrency trading platform enabling users to buy, sell, and track various cryptocurrencies with real-time market data visualization.",
+    image: "https://images.unsplash.com/photo-1621504450181-5d356f61d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
+    tags: ["Web App", "Crypto", "FinTech", "Data Visualization"],
+    link: "https://example.com/gold2crypto"
   },
   {
     id: "project5",
@@ -82,11 +82,11 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Product Designer & Frontend Architect"
   },
   "project4": {
-    fullDescription: "A comprehensive analytics dashboard for a SaaS platform that provides real-time data visualization, user activity tracking, and performance metrics. The interface was designed for clarity and ease of use while handling complex data sets.",
-    technologies: ["React", "D3.js", "Chart.js", "Firebase", "Material UI"],
-    duration: "10 weeks",
-    client: "Marketing Analytics Company",
-    role: "Frontend Developer & UI Designer"
+    fullDescription: "Gold 2 Crypto Services is a sophisticated cryptocurrency trading platform that bridges traditional gold investments with modern crypto markets. The platform features real-time price tracking, advanced charting tools, secure wallet integration, and instant trading capabilities. Users can monitor market trends, set price alerts, and execute trades with multiple cryptocurrency pairs. The platform includes a responsive dashboard with portfolio analytics, transaction history, and customizable watchlists. Security features include two-factor authentication, cold storage options, and encrypted transactions.",
+    technologies: ["React", "TypeScript", "WebSocket API", "Trading View Charts", "Crypto APIs", "Node.js", "Redux", "TailwindCSS"],
+    duration: "6 months",
+    client: "Gold 2 Crypto Services",
+    role: "Lead Full Stack Developer"
   },
   "project5": {
     fullDescription: "Barsky Food Joint mobile app revolutionizes the food truck ordering experience with a sleek, user-friendly interface. The app features a curated menu of gourmet options including their signature bacon chicken cheese special sauce sandwich, customizable smash burgers, and innovative vegan options. Key features include real-time order tracking, customizable ingredients, side options between regular and sweet potato fries or salad, and seamless payment integration. The app also includes a loyalty program, push notifications for truck location updates, and estimated waiting times.",
