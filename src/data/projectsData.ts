@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -60,49 +59,49 @@ export const projectsData: ProjectProps[] = [
     id: "project1",
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     tags: ["Mobile App", "React Native", "Firebase"]
   },
   {
     id: "project2",
     title: "Edible Plant Finder",
     description: "Mobile app that helps users identify and locate edible plants, mushrooms, and flowers in their environment.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     tags: ["Mobile App", "React Native", "GPS", "AI"]
   },
   {
     id: "project3",
     title: "Herbalink",
     description: "Connecting individuals with qualified herbalists for virtual and in-person consultations.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     tags: ["Mobile App", "Marketplace", "Healthcare"]
   },
   {
     id: "project4",
     title: "Gold 2 Crypto Services",
     description: "Trading platform bridging traditional gold investments with cryptocurrency markets.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     tags: ["Web App", "Trading", "Crypto", "Finance"]
   },
   {
     id: "project5",
     title: "Barsky Joint Food Truck",
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     tags: ["Mobile App", "Food Service", "E-Commerce"]
   },
   {
     id: "project6",
     title: "Spectrum Apparel Co.",
     description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"]
   }
 ];
 
-// Mock extra images for project detail carousels
+// Also update the extraImages array to use the same image
 export const extraImages = [
-  "/placeholder.svg",
-  "/placeholder.svg",
-  "/placeholder.svg"
+  "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+  "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+  "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
 ];

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,8 +5,7 @@ import { Calendar } from "lucide-react";
 
 const Pricing = () => {
   const openCalendly = () => {
-    // Replace with your actual Calendly link
-    window.open("https://calendly.com/your-calendly-link", "_blank");
+    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
   };
 
   return (
