@@ -58,7 +58,7 @@ export const projectsData: ProjectProps[] = [
     id: "project1",
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
-    image: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
+    image: "/lovable-uploads/bd3592b1-c2b2-4a8f-b804-b906046acfd6.png",
     tags: ["Mobile App", "React Native", "Firebase"]
   },
   {
