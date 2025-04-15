@@ -58,42 +58,42 @@ export const projectsData: ProjectProps[] = [
     id: "project1",
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
-    image: "/lovable-uploads/bd3592b1-c2b2-4a8f-b804-b906046acfd6.png",
+    image: "/placeholder.svg",
     tags: ["Mobile App", "React Native", "Firebase"]
   },
   {
     id: "project2",
     title: "Edible Plant Finder",
     description: "Mobile app that helps users identify and locate edible plants, mushrooms, and flowers in their environment.",
-    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+    image: "/placeholder.svg",
     tags: ["Mobile App", "React Native", "GPS", "AI"]
   },
   {
     id: "project3",
     title: "Herbalink",
     description: "Connecting individuals with qualified herbalists for virtual and in-person consultations.",
-    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+    image: "/placeholder.svg",
     tags: ["Mobile App", "Marketplace", "Healthcare"]
   },
   {
     id: "project4",
     title: "Gold 2 Crypto Services",
     description: "Trading platform bridging traditional gold investments with cryptocurrency markets.",
-    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+    image: "/placeholder.svg",
     tags: ["Web App", "Trading", "Crypto", "Finance"]
   },
   {
     id: "project5",
     title: "Barsky Joint Food Truck",
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
-    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+    image: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
     tags: ["Mobile App", "Food Service", "E-Commerce"]
   },
   {
     id: "project6",
     title: "Spectrum Apparel Co.",
     description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
-    image: "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+    image: "/placeholder.svg",
     tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"]
   }
 ];
