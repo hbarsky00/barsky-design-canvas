@@ -37,7 +37,7 @@ export const projectsData = [
     id: "project5",
     title: "Barsky Joint Food Truck",
     description: "A modern mobile application for ordering gourmet burgers and sandwiches from Barsky Food Joint food truck, featuring real-time order tracking and customization options.",
-    image: "https://images.unsplash.com/photo-1513124146973-c923a79cf2c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
+    image: "https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
     tags: ["Mobile App", "UI/UX Design", "Food Service"],
     link: "https://example.com/barsky-food-joint"
   },
