@@ -53,7 +53,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
   }
 };
 
-// Create the projectsData array that matches the ProjectProps interface 
 export const projectsData: ProjectProps[] = [
   {
     id: "project1",
@@ -99,7 +98,6 @@ export const projectsData: ProjectProps[] = [
   }
 ];
 
-// Also update the extraImages array to use the same image
 export const extraImages = [
   "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
   "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
