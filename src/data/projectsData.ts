@@ -1,4 +1,14 @@
 
+import { ProjectProps } from "@/components/ProjectCard";
+
+export interface ProjectDetails {
+  fullDescription: string;
+  technologies: string[];
+  duration: string;
+  client: string;
+  role: string;
+}
+
 export const projectDetails: Record<string, ProjectDetails> = {
   "project1": {
     fullDescription: "A mobile application designed to help separated parents better coordinate childcare responsibilities. The app includes features such as shared calendars for custody schedules, expense tracking and splitting, secure messaging, and important document storage. The design focuses on creating a neutral platform that promotes positive co-parenting communication and reduces conflict.",
@@ -43,3 +53,56 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Designer & Inventor"
   }
 };
+
+// Create the projectsData array that matches the ProjectProps interface 
+export const projectsData: ProjectProps[] = [
+  {
+    id: "project1",
+    title: "Co-Parenting Coordination App",
+    description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
+    image: "/placeholder.svg",
+    tags: ["Mobile App", "React Native", "Firebase"]
+  },
+  {
+    id: "project2",
+    title: "Edible Plant Finder",
+    description: "Mobile app that helps users identify and locate edible plants, mushrooms, and flowers in their environment.",
+    image: "/placeholder.svg",
+    tags: ["Mobile App", "React Native", "GPS", "AI"]
+  },
+  {
+    id: "project3",
+    title: "Herbalink",
+    description: "Connecting individuals with qualified herbalists for virtual and in-person consultations.",
+    image: "/placeholder.svg",
+    tags: ["Mobile App", "Marketplace", "Healthcare"]
+  },
+  {
+    id: "project4",
+    title: "Gold 2 Crypto Services",
+    description: "Trading platform bridging traditional gold investments with cryptocurrency markets.",
+    image: "/placeholder.svg",
+    tags: ["Web App", "Trading", "Crypto", "Finance"]
+  },
+  {
+    id: "project5",
+    title: "Barsky Joint Food Truck",
+    description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
+    image: "/placeholder.svg",
+    tags: ["Mobile App", "Food Service", "E-Commerce"]
+  },
+  {
+    id: "project6",
+    title: "Spectrum Apparel Co.",
+    description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
+    image: "/placeholder.svg",
+    tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"]
+  }
+];
+
+// Mock extra images for project detail carousels
+export const extraImages = [
+  "/placeholder.svg",
+  "/placeholder.svg",
+  "/placeholder.svg"
+];
