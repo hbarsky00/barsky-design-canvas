@@ -1,10 +1,8 @@
-
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Pricing from "@/components/Pricing";
@@ -47,7 +45,6 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
-        <Services />
         <Projects />
         <About />
         <Pricing />
