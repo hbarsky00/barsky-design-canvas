@@ -79,7 +79,7 @@ export const projectsData: ProjectProps[] = [
     id: "project4",
     title: "Gold 2 Crypto Services",
     description: "Trading platform bridging traditional gold investments with cryptocurrency markets.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
     tags: ["Web App", "Trading", "Crypto", "Finance"]
   },
   {
