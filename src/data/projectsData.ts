@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -59,7 +58,7 @@ export const projectsData: ProjectProps[] = [
     id: "project1",
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
     tags: ["Mobile App", "React Native", "Firebase"]
   },
   {
