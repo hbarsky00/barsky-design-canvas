@@ -1,51 +1,81 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
   <url>
     <loc>https://barskydesign.com/</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://barskydesign.com/images/portfolio-preview.png</image:loc>
+      <image:title>Hiram Barsky UX/UI Designer and Web Developer</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://barskydesign.com/projects</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://barskydesign.com/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png</image:loc>
+      <image:title>Co-Parenting Coordination App by Hiram Barsky</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://barskydesign.com/project/project1</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://barskydesign.com/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png</image:loc>
+      <image:title>Co-Parenting Coordination App</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://barskydesign.com/project/project2</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://barskydesign.com/project/project3</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://barskydesign.com/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png</image:loc>
+      <image:title>Herbalink App</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://barskydesign.com/project/project4</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://barskydesign.com/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png</image:loc>
+      <image:title>Gold 2 Crypto Services</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://barskydesign.com/project/project5</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://barskydesign.com/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png</image:loc>
+      <image:title>Barsky Joint Food Truck App</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://barskydesign.com/project/project6</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

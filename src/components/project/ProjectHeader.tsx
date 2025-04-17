@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { trackContentEngagement } from "@/lib/analytics";
 
 interface ProjectHeaderProps {
   title: string;
@@ -10,6 +11,16 @@ interface ProjectHeaderProps {
 }
 
 const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
+  // Track project view
+  React.useEffect(() => {
+    const projectId = window.location.pathname.split('/').pop() || '';
+    trackContentEngagement('project', projectId, title);
+  }, [title]);
+
+  // Generate slug for canonical URL
+  const titleSlug = title.toLowerCase().replace(/\s+/g, '-');
+  const canonicalUrl = `https://barskydesign.com/project/${titleSlug}`;
+  
   return (
     <>
       <Helmet>
@@ -19,11 +30,30 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
         <meta property="og:title" content={`${title} | Hiram Barsky Portfolio`} />
         <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky`} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://barskydesign.com/project/${title.toLowerCase().replace(/\s+/g, '-')}`} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content="https://barskydesign.com/images/portfolio-preview.png" />
         <meta name="twitter:title" content={`${title} | Hiram Barsky Portfolio`} />
         <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development`} />
         <meta name="twitter:image" content="https://barskydesign.com/images/portfolio-preview.png" />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Structured data for project */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              "name": "${title}",
+              "creator": {
+                "@type": "Person",
+                "name": "Hiram Barsky"
+              },
+              "keywords": "${tags.join(', ')}",
+              "url": "${canonicalUrl}",
+              "description": "${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky"
+            }
+          `}
+        </script>
       </Helmet>
       
       <div className="flex items-center mb-8">

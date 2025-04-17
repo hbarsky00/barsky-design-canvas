@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -8,6 +9,7 @@ import About from "@/components/About";
 import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { trackPageView } from "@/lib/analytics";
 
 const Index = () => {
   const location = useLocation();
@@ -22,6 +24,9 @@ const Index = () => {
         }, 100);
       }
     }
+    
+    // Track homepage view with additional details
+    trackPageView('/', 'Homepage - Hiram Barsky Portfolio');
   }, [location.state]);
 
   return (
@@ -40,6 +45,50 @@ const Index = () => {
         <meta name="twitter:description" content="Professional UX/UI design and web development services." />
         <meta name="twitter:image" content="https://barskydesign.com/images/portfolio-preview.png" />
         <link rel="canonical" href="https://barskydesign.com/" />
+        
+        {/* Structured data for better SEO */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "name": "Hiram Barsky UX/UI Design",
+              "image": "https://barskydesign.com/images/portfolio-preview.png",
+              "url": "https://barskydesign.com",
+              "telephone": "+1-123-456-7890",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "New York",
+                "addressRegion": "NY",
+                "addressCountry": "US"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "40.7128",
+                "longitude": "-74.0060"
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "09:00",
+                "closes": "18:00"
+              },
+              "sameAs": [
+                "https://twitter.com/barskydesign",
+                "https://linkedin.com/in/hirambarsky",
+                "https://instagram.com/barskydesign"
+              ],
+              "priceRange": "$$",
+              "description": "Experienced UX/UI designer and web developer specializing in website design, app design, and UX/UI consultation services."
+            }
+          `}
+        </script>
       </Helmet>
       
       <Header />

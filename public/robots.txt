@@ -30,3 +30,7 @@ Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
+
+# Crawl delay suggestion for heavy crawlers
+User-agent: *
+Crawl-delay: 10

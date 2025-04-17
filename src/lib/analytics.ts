@@ -8,7 +8,7 @@
  */
 export const trackPageView = (path: string, title: string) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', 'G-7W0E6167T7', {
+    window.gtag('config', 'G-VYKW0Y9K0T', {
       page_path: path,
       page_title: title,
     });
@@ -33,6 +33,43 @@ export const trackEvent = (
       event_category: category,
       event_label: label,
       value: value,
+    });
+  }
+};
+
+/**
+ * Tracks user engagement with specific content
+ * @param contentType - The type of content (e.g., 'project', 'blog')
+ * @param contentId - The ID of the content
+ * @param contentName - The name of the content
+ */
+export const trackContentEngagement = (
+  contentType: string,
+  contentId: string,
+  contentName: string
+) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'content_engagement', {
+      content_type: contentType,
+      content_id: contentId,
+      content_name: contentName
+    });
+  }
+};
+
+/**
+ * Tracks form submissions
+ * @param formName - The name of the form (e.g., 'contact', 'newsletter')
+ * @param formSuccess - Whether the form submission was successful
+ */
+export const trackFormSubmission = (
+  formName: string,
+  formSuccess: boolean
+) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'form_submission', {
+      form_name: formName,
+      form_success: formSuccess
     });
   }
 };
