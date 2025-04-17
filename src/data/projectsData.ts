@@ -93,7 +93,7 @@ export const projectsData: ProjectProps[] = [
     id: "project6",
     title: "Spectrum Apparel Co.",
     description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png",
     tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"]
   }
 ];
