@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -72,7 +73,7 @@ export const projectsData: ProjectProps[] = [
     id: "project3",
     title: "Herbalink",
     description: "Connecting individuals with qualified herbalists for virtual and in-person consultations.",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png",
     tags: ["Mobile App", "Marketplace", "Healthcare"]
   },
   {
