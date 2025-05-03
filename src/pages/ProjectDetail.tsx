@@ -8,7 +8,7 @@ import ProjectHeader from "@/components/project/ProjectHeader";
 import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
 import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectSidebar from "@/components/project/ProjectSidebar";
-import { projectsData, projectDetails, extraImages, type ProjectDetails } from "@/data/projectsData";
+import { projectsData, projectDetails, type ProjectDetails } from "@/data/projectsData";
 
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -53,7 +53,7 @@ const ProjectDetail: React.FC = () => {
             <ProjectImageCarousel 
               mainImage={project.image}
               title={project.title}
-              extraImages={extraImages}
+              extraImages={details.extraImages || []}
             />
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
