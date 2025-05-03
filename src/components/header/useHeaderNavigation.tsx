@@ -67,30 +67,60 @@ export const useHeaderNavigation = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
 
+      // Home section logic - set as active when near the top of the page
+      if (location.pathname === '/' && scrollPosition < 200) {
+        setActiveSection("home");
+        return;
+      }
+
       if (location.pathname === '/') {
+        // Get all section elements that correspond to navigation links
         const sections = navLinks
           .filter(link => link.href.startsWith('#'))
-          .map(link => link.href.substring(1));
+          .map(link => ({
+            id: link.href.substring(1),
+            element: document.getElementById(link.href.substring(1))
+          }));
         
-        for (const section of sections.reverse()) {
-          const element = document.getElementById(section);
+        // Find which section is most visible in the viewport
+        let mostVisibleSection = { id: "home", visiblePercent: 0 };
+        
+        for (const { id, element } of sections) {
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (rect.top <= 150) {
-              setActiveSection(section);
-              break;
+            const windowHeight = window.innerHeight;
+            
+            // Calculate how much of the section is visible in the viewport
+            const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+            const sectionHeight = rect.height;
+            const visiblePercent = visibleHeight > 0 ? (visibleHeight / sectionHeight) * 100 : 0;
+            
+            // If this section is more visible than our current most visible section, update
+            if (visiblePercent > mostVisibleSection.visiblePercent && rect.top < windowHeight / 2) {
+              mostVisibleSection = { id, visiblePercent };
             }
           }
+        }
+        
+        // Only update if we found a visible section
+        if (mostVisibleSection.visiblePercent > 0) {
+          setActiveSection(mostVisibleSection.id);
+        } else if (scrollPosition < 200) {
+          // Fallback to home when near the top and no section is visible enough
+          setActiveSection("home");
         }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Trigger once to set initial state
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navLinks, location.pathname]);
 
   useEffect(() => {
     if (location.pathname === '/') {
+      // Set to home by default when first loading the page
       setActiveSection("home");
       
       if (location.state && location.state.scrollTo) {
