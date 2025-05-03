@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -20,18 +21,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
       "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
       "/lovable-uploads/bd3592b1-c2b2-4a8f-b804-b906046acfd6.png"
-    ]
-  },
-  "project2": {
-    fullDescription: "Edible Plant Finder is an innovative mobile application designed to connect nature enthusiasts, foragers, and curious explorers with edible wild plants, mushrooms, and flowers in their local environment. The app uses GPS and mapping technology to guide users to nearby locations where edible species can be found. Features include detailed species identification with high-quality images, seasonal availability calendars, foraging difficulty levels, and preparation suggestions. The app also includes toxic look-alike warnings, sustainable harvesting tips, and a community feature where users can share discoveries while protecting sensitive locations.",
-    technologies: ["React Native", "MapBox API", "Node.js", "MongoDB", "Image Recognition AI", "GPS Integration", "Offline Mode"],
-    duration: "7 months",
-    client: "EcoExplore Initiatives",
-    role: "Lead Designer & Inventor",
-    extraImages: [
-      "/placeholder.svg",
-      "/placeholder.svg",
-      "/placeholder.svg"
     ]
   },
   "project3": {
@@ -91,13 +80,6 @@ export const projectsData: ProjectProps[] = [
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
     image: "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
     tags: ["Mobile App", "React Native", "Firebase"]
-  },
-  {
-    id: "project2",
-    title: "Edible Plant Finder",
-    description: "Mobile app that helps users identify and locate edible plants, mushrooms, and flowers in their environment.",
-    image: "/placeholder.svg",
-    tags: ["Mobile App", "React Native", "GPS", "AI"]
   },
   {
     id: "project3",
