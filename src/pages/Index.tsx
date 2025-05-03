@@ -32,19 +32,19 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Hiram Barsky | UX/UI Designer & Web Developer | Portfolio</title>
-        <meta name="description" content="Experienced UX/UI designer and web developer specializing in website design, app design, and UX/UI consultation services. Based in New York." />
+        <title>Hiram Barsky | Product Designer & Developer | Portfolio</title>
+        <meta name="description" content="Experienced Product Designer and Developer specializing in website design, app design, and UX/UI consultation services. Based in New York." />
         <meta name="keywords" content="UI design, UX design, web development, website design, app design, mobile app, UX/UI consultation, product designer, design systems, user research, New York designer" />
-        <meta property="og:title" content="Hiram Barsky | UX/UI Designer & Web Developer" />
-        <meta property="og:description" content="Professional UX/UI design and web development services. Specializing in website design, app design, and UX/UI consultation." />
-        <meta property="og:image" content="https://barskydesign.com/images/portfolio-preview.png" />
-        <meta property="og:url" content="https://barskydesign.com/" />
+        <meta property="og:title" content="Hiram Barsky | Product Designer & Developer" />
+        <meta property="og:description" content="Professional Product Design and Development services. Specializing in website design, app design, and UX/UI consultation." />
+        <meta property="og:image" content="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta property="og:url" content="https://hirambarsky.com/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Hiram Barsky | UX/UI Designer & Web Developer" />
-        <meta name="twitter:description" content="Professional UX/UI design and web development services." />
-        <meta name="twitter:image" content="https://barskydesign.com/images/portfolio-preview.png" />
-        <link rel="canonical" href="https://barskydesign.com/" />
+        <meta name="twitter:title" content="Hiram Barsky | Product Designer & Developer" />
+        <meta name="twitter:description" content="Professional Product Design and Development services." />
+        <meta name="twitter:image" content="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <link rel="canonical" href="https://hirambarsky.com/" />
         
         {/* Structured data for better SEO */}
         <script type="application/ld+json">
@@ -52,10 +52,10 @@ const Index = () => {
             {
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              "name": "Hiram Barsky UX/UI Design",
-              "image": "https://barskydesign.com/images/portfolio-preview.png",
-              "url": "https://barskydesign.com",
-              "telephone": "+1-123-456-7890",
+              "name": "Hiram Barsky Product Design",
+              "image": "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+              "url": "https://hirambarsky.com",
+              "telephone": "+1-201-668-4754",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "New York",
@@ -80,12 +80,12 @@ const Index = () => {
                 "closes": "18:00"
               },
               "sameAs": [
-                "https://twitter.com/barskydesign",
+                "https://twitter.com/hirambarsky",
                 "https://linkedin.com/in/hirambarsky",
-                "https://instagram.com/barskydesign"
+                "https://instagram.com/hirambarsky"
               ],
               "priceRange": "$$",
-              "description": "Experienced UX/UI designer and web developer specializing in website design, app design, and UX/UI consultation services."
+              "description": "Experienced Product Designer and Developer specializing in website design, app design, and UX/UI consultation services."
             }
           `}
         </script>

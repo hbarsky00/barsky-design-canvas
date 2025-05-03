@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProjectNavigation from "@/components/ProjectNavigation";
@@ -9,6 +10,7 @@ import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
 import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectSidebar from "@/components/project/ProjectSidebar";
 import { projectsData, projectDetails, type ProjectDetails } from "@/data/projectsData";
+import { trackPageView } from "@/lib/analytics";
 
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -22,6 +24,9 @@ const ProjectDetail: React.FC = () => {
     if (foundProject) {
       setProject(foundProject);
       setDetails(projectDetails[projectId as string]);
+      
+      // Track page view
+      trackPageView(`/project/${projectId}`, `${foundProject.title} | Hiram Barsky Portfolio`);
     } else {
       // If project not found, redirect to all projects page
       navigate("/projects");
@@ -44,6 +49,18 @@ const ProjectDetail: React.FC = () => {
   
   return (
     <div className="flex flex-col min-h-screen">
+      <Helmet>
+        <title>{project.title} | Hiram Barsky Portfolio</title>
+        <meta name="description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
+        <meta property="og:title" content={`${project.title} | Hiram Barsky Portfolio`} />
+        <meta property="og:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
+        <meta property="og:image" content={project.image} />
+        <meta property="og:url" content={`https://hirambarsky.com/project/${projectId}`} />
+        <meta name="twitter:title" content={`${project.title} | Hiram Barsky Portfolio`} />
+        <meta name="twitter:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design`} />
+        <meta name="twitter:image" content={project.image} />
+      </Helmet>
+      
       <Header />
       <main className="flex-grow">
         <section className="py-20">
