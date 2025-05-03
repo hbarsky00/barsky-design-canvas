@@ -28,7 +28,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hirambarsky.com/project/project1</loc>
+    <loc>https://hirambarsky.com/project/splittime</loc>
     <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -38,7 +38,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hirambarsky.com/project/project3</loc>
+    <loc>https://hirambarsky.com/project/herbalink</loc>
     <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -48,7 +48,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hirambarsky.com/project/project4</loc>
+    <loc>https://hirambarsky.com/project/gold2crypto</loc>
     <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -58,7 +58,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hirambarsky.com/project/project5</loc>
+    <loc>https://hirambarsky.com/project/barskyjoint</loc>
     <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -68,9 +68,13 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hirambarsky.com/project/project6</loc>
+    <loc>https://hirambarsky.com/project/spectrum</loc>
     <lastmod>2025-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hirambarsky.com/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png</image:loc>
+      <image:title>Spectrum Apparel Co.</image:title>
+    </image:image>
   </url>
 </urlset>
