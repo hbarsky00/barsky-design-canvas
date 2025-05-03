@@ -3,6 +3,7 @@ import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface ProjectNavigationProps {
   currentProjectId: string;
@@ -30,9 +31,18 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {prevProject && (
           <Link
             to={`/project/${prevProject.id}`}
-            className="group flex items-center space-x-2 p-2 -m-2 hover:text-barsky-blue transition-colors"
+            className="group flex items-center space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors"
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+            <div className="hidden sm:block relative w-16 h-16 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue">
+              <AspectRatio ratio={1}>
+                <img 
+                  src={prevProject.image} 
+                  alt={prevProject.title}
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+            </div>
             <div>
               <p className="text-sm text-barsky-text/70">Previous Project</p>
               <p className="font-medium">{prevProject.title}</p>
@@ -58,11 +68,20 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {nextProject && (
           <Link
             to={`/project/${nextProject.id}`}
-            className="group flex items-center justify-end space-x-2 p-2 -m-2 hover:text-barsky-blue transition-colors"
+            className="group flex items-center justify-end space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors"
           >
-            <div>
+            <div className="text-right">
               <p className="text-sm text-barsky-text/70">Next Project</p>
               <p className="font-medium">{nextProject.title}</p>
+            </div>
+            <div className="hidden sm:block relative w-16 h-16 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue">
+              <AspectRatio ratio={1}>
+                <img 
+                  src={nextProject.image} 
+                  alt={nextProject.title}
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
             </div>
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
