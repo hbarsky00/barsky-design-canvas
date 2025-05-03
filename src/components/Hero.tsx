@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
               delay={700}
             />
             <AnimatedText
-              text="Software Engineer & Designer"
+              text="Product Designer & Developer"
               tag="p"
               className="text-xl sm:text-2xl mb-8 text-barsky-text"
               delay={900}
@@ -61,4 +61,3 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
-
