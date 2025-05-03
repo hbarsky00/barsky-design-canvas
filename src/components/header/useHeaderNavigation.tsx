@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -47,9 +48,17 @@ export const useHeaderNavigation = () => {
   };
 
   const isLinkActive = (link: string) => {
+    // Special case for home link
+    if (link === "/") {
+      return location.pathname === "/" && activeSection === "home";
+    }
+    
+    // For section links (anchors)
     if (link.startsWith('#')) {
       return activeSection === link.substring(1);
     }
+    
+    // For other routes
     return location.pathname === link;
   };
 
