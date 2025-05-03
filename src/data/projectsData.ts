@@ -79,36 +79,39 @@ export const projectsData: ProjectProps[] = [
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
     image: "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
-    tags: ["Mobile App", "React Native", "Firebase"]
+    tags: ["Mobile App", "React Native", "Firebase"],
+    link: "https://splittime.pro/"
   },
   {
     id: "project3",
     title: "Herbalink",
     description: "Connecting individuals with qualified herbalists for virtual and in-person consultations.",
     image: "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png",
-    tags: ["Mobile App", "Marketplace", "Healthcare"]
+    tags: ["Mobile App", "Marketplace", "Healthcare"],
+    link: "https://herbalink.live"
   },
   {
     id: "project4",
     title: "Gold 2 Crypto Services",
     description: "Trading platform bridging traditional gold investments with cryptocurrency markets.",
     image: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-    tags: ["Web App", "Trading", "Crypto", "Finance"]
+    tags: ["Web App", "Trading", "Crypto", "Finance"],
+    link: "https://gold2.gold/"
   },
   {
     id: "project5",
     title: "Barsky Joint Food Truck",
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
     image: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-    tags: ["Mobile App", "Food Service", "E-Commerce"]
+    tags: ["Mobile App", "Food Service", "E-Commerce"],
+    link: "https://barskyjoint.biz/"
   },
   {
     id: "project6",
     title: "Spectrum Apparel Co.",
     description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
     image: "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png",
-    tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"]
+    tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"],
+    link: "https://supersha.store"
   }
 ];
-
-// Remove the global extraImages array as we've moved it to each project's details
