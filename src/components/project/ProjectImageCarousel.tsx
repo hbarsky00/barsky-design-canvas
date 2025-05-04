@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { 
   Carousel,
   CarouselContent,
@@ -23,18 +24,42 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const allImages = [mainImage, ...extraImages];
   
-  // Handle when the carousel changes slides
-  const handleCarouselChange = (index: number) => {
+  // Create a ref to store the Embla API
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+
+  // Set up the event listener when emblaApi becomes available
+  React.useEffect(() => {
+    if (emblaApi) {
+      // Update active index when the carousel changes slides
+      const onSelect = () => {
+        setActiveIndex(emblaApi.selectedScrollSnap());
+      };
+
+      emblaApi.on("select", onSelect);
+      // Call once initially to set the correct starting state
+      onSelect();
+      
+      // Cleanup when unmounting
+      return () => {
+        emblaApi.off("select", onSelect);
+      };
+    }
+  }, [emblaApi]);
+
+  // Handle tab selection - scroll carousel to appropriate slide
+  const handleTabChange = (value: string) => {
+    const index = parseInt(value);
     setActiveIndex(index);
+    
+    if (emblaApi) {
+      emblaApi.scrollTo(index);
+    }
   };
 
   return (
     <div className="mb-12 space-y-4">
-      <Carousel 
-        className="w-full" 
-        onValueChange={(value) => handleCarouselChange(parseInt(value))}
-      >
-        <CarouselContent>
+      <Carousel>
+        <CarouselContent ref={emblaRef}>
           {allImages.map((img, index) => (
             <CarouselItem key={index}>
               <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
@@ -57,7 +82,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           <Tabs 
             defaultValue="0"
             value={activeIndex.toString()}
-            onValueChange={(value) => handleCarouselChange(parseInt(value))}
+            onValueChange={handleTabChange}
             className="w-fit"
           >
             <TabsList>
