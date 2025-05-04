@@ -35,8 +35,8 @@ const Hero: React.FC = () => {
                 delay={700}
               />
               
-              {/* Skateboard animation container with room for both passes */}
-              <div className="absolute top-0 left-0 right-0 h-32 overflow-visible pointer-events-none">
+              {/* Animation container with room for both animation paths */}
+              <div className="absolute top-0 left-0 right-0 h-64 overflow-visible pointer-events-none">
                 <SkateboardAnimation startDelay={1400} />
               </div>
             </div>
