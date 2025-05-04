@@ -35,8 +35,8 @@ const Hero: React.FC = () => {
                 delay={700}
               />
               
-              {/* Skateboard animation placed over the text */}
-              <div className="absolute top-12 left-0 right-0 h-12 overflow-visible">
+              {/* Skateboard animation placed at a position to interact with text */}
+              <div className="absolute top-12 left-0 right-0 h-12 overflow-visible pointer-events-none">
                 <SkateboardAnimation startDelay={1400} />
               </div>
             </div>

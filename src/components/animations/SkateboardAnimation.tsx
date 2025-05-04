@@ -1,36 +1,80 @@
-
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 interface SkateboardAnimationProps {
   startDelay?: number;
 }
 
 const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 1500 }) => {
+  const controls = useAnimation();
+  const skaterRef = useRef<HTMLDivElement>(null);
+  
+  // Start the animation sequence and keep it looping
+  useEffect(() => {
+    const startAnimation = async () => {
+      // Wait for the initial delay
+      await new Promise(resolve => setTimeout(resolve, startDelay));
+      
+      // Start the continuous animation
+      const runAnimation = async () => {
+        // Start from left side (outside the screen)
+        await controls.start({
+          x: "-120%",
+          transition: { duration: 0.1, ease: "easeOut" }
+        });
+        
+        // Move to center with subtle bounce
+        await controls.start({
+          x: "0%",
+          y: [0, -2, 0],
+          rotate: [-2, 2, -1],
+          transition: {
+            x: { duration: 1.2, ease: "easeOut" },
+            y: { duration: 1.2, times: [0, 0.5, 1], ease: "easeOut" },
+            rotate: { duration: 1.2, times: [0, 0.5, 1], ease: "easeOut" }
+          }
+        });
+        
+        // Jump animation in the middle (over the name)
+        await controls.start({
+          x: "50%",
+          y: [0, -15, 0],
+          rotate: [0, 15, 0],
+          transition: {
+            x: { duration: 0.8, ease: "easeInOut" },
+            y: { duration: 0.8, times: [0, 0.5, 1], ease: "circOut" },
+            rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeInOut" }
+          }
+        });
+        
+        // Exit to the right
+        await controls.start({
+          x: "150%",
+          y: [-2, 2, -1, 0],
+          rotate: [-1, 3, -2, 0],
+          transition: {
+            x: { duration: 1, ease: "easeIn" },
+            y: { duration: 1, times: [0, 0.3, 0.6, 1], ease: "easeInOut" },
+            rotate: { duration: 1, times: [0, 0.3, 0.6, 1], ease: "easeInOut" }
+          }
+        });
+        
+        // Loop the animation
+        runAnimation();
+      };
+      
+      runAnimation();
+    };
+    
+    startAnimation();
+  }, [controls, startDelay]);
+
   return (
     <motion.div
+      ref={skaterRef}
       className="absolute z-10 transform"
       initial={{ x: "-150%", rotate: 0, y: 0 }}
-      animate={{
-        x: "150%",
-        rotate: [-2, 4, -3, 0],
-        y: [-2, 3, -2, 0],
-        transition: {
-          delay: startDelay / 1000,
-          duration: 1.8,
-          ease: "easeInOut",
-          rotate: {
-            duration: 0.6,
-            repeat: 3,
-            repeatType: "mirror"
-          },
-          y: {
-            duration: 0.4,
-            repeat: 4,
-            repeatType: "reverse"
-          }
-        }
-      }}
+      animate={controls}
     >
       <svg
         width="60"
