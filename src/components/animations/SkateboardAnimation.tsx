@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
+import GhostSkateboardSvg from "./GhostSkateboardSvg";
 
 interface SkateboardAnimationProps {
   startDelay?: number;
@@ -150,13 +151,7 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
       initial={{ x: "-150%", rotate: 0, y: 0, scaleX: 1 }}
       animate={controls}
     >
-      <img 
-        src="/ghost-skateboard.png" 
-        alt="Ghost on skateboard" 
-        width="80" 
-        height="80"
-        className="ghost-rider"
-      />
+      <GhostSkateboardSvg className="ghost-rider" />
     </motion.div>
   );
 };
