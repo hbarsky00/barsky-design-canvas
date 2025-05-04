@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { 
   Carousel,
   CarouselContent,
@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -19,27 +20,28 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   title, 
   extraImages 
 }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const allImages = [mainImage, ...extraImages];
+  
+  // Handle when the carousel changes slides
+  const handleCarouselChange = (index: number) => {
+    setActiveIndex(index);
+  };
+
   return (
-    <div className="mb-12">
-      <Carousel>
+    <div className="mb-12 space-y-4">
+      <Carousel 
+        className="w-full" 
+        onValueChange={(value) => handleCarouselChange(parseInt(value))}
+      >
         <CarouselContent>
-          <CarouselItem>
-            <div className="h-[500px] w-full overflow-hidden rounded-xl">
-              <img 
-                src={mainImage} 
-                alt={title} 
-                className="w-full h-full object-cover" 
-                loading="lazy"
-              />
-            </div>
-          </CarouselItem>
-          {extraImages.map((img, index) => (
+          {allImages.map((img, index) => (
             <CarouselItem key={index}>
-              <div className="h-[500px] w-full overflow-hidden rounded-xl">
+              <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
                 <img 
                   src={img} 
-                  alt={`${title} - view ${index + 1}`} 
-                  className="w-full h-full object-cover" 
+                  alt={`${title} - screenshot ${index + 1}`} 
+                  className="w-full h-full object-contain bg-gray-50 dark:bg-gray-900/30" 
                   loading="lazy"
                 />
               </div>
@@ -49,6 +51,31 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />
       </Carousel>
+      
+      {allImages.length > 1 && (
+        <div className="flex justify-center">
+          <Tabs 
+            defaultValue="0"
+            value={activeIndex.toString()}
+            onValueChange={(value) => handleCarouselChange(parseInt(value))}
+            className="w-fit"
+          >
+            <TabsList>
+              {allImages.map((_, index) => (
+                <TabsTrigger key={index} value={index.toString()} className="px-3 py-1">
+                  {index + 1}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </div>
+      )}
+      
+      <div className="text-center text-sm text-gray-500">
+        {activeIndex === 0 ? 
+          "Main application view" : 
+          `Additional screenshot ${activeIndex} of the ${title} application`}
+      </div>
     </div>
   );
 };

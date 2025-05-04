@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -18,9 +17,9 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Family Support Services",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
-      "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
-      "/lovable-uploads/bd3592b1-c2b2-4a8f-b804-b906046acfd6.png"
+      "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
+      "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png",
+      "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png"
     ]
   },
   "herbalink": {
@@ -78,7 +77,7 @@ export const projectsData: ProjectProps[] = [
     id: "splittime",
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
-    image: "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
+    image: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
     tags: ["Mobile App", "React Native", "Firebase"],
     link: "https://splittime.pro/"
   },
