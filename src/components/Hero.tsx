@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import AnimatedText from "./AnimatedText";
 import { ArrowDownCircle } from "lucide-react";
+import SkateboardAnimation from "./animations/SkateboardAnimation";
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,19 +20,27 @@ const Hero: React.FC = () => {
     <section id="home" className="min-h-screen flex items-center bg-barsky-bg-light">
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center md:text-left">
-          <div className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <AnimatedText 
-              text="Hi, I'm" 
-              tag="h2" 
-              className="text-xl sm:text-2xl font-semibold mb-3 text-barsky-text"
-              delay={500}
-            />
-            <AnimatedText
-              text="Hiram Barsky"
-              tag="h1"
-              className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
-              delay={700}
-            />
+          <div className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'} relative`}>
+            <div className="relative">
+              <AnimatedText 
+                text="Hi, I'm" 
+                tag="h2" 
+                className="text-xl sm:text-2xl font-semibold mb-3 text-barsky-text"
+                delay={500}
+              />
+              <AnimatedText
+                text="Hiram Barsky"
+                tag="h1"
+                className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
+                delay={700}
+              />
+              
+              {/* Skateboard animation placed over the text */}
+              <div className="absolute top-12 left-0 right-0 h-12 overflow-visible">
+                <SkateboardAnimation startDelay={1400} />
+              </div>
+            </div>
+            
             <AnimatedText
               text="Product Designer & Developer"
               tag="p"
