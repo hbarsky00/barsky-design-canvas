@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 
@@ -8,6 +9,7 @@ interface SkateboardAnimationProps {
 const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 1500 }) => {
   const controls = useAnimation();
   const skaterRef = useRef<HTMLDivElement>(null);
+  const [direction, setDirection] = React.useState<"right" | "left">("right");
   
   // Start the animation sequence and keep it looping
   useEffect(() => {
@@ -17,11 +19,14 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
       
       // Start the continuous animation
       const runAnimation = async () => {
-        // Start from left side (outside the screen)
+        // Going right (start from left side, outside the screen)
         await controls.start({
           x: "-120%",
+          scaleX: 1, // Ensure skateboard faces right direction
           transition: { duration: 0.1, ease: "easeOut" }
         });
+        
+        setDirection("right");
         
         // Move to center with subtle bounce
         await controls.start({
@@ -35,15 +40,15 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
           }
         });
         
-        // Jump animation in the middle (over the name)
+        // Hit the "curb" (Hiram's name) with a big jump
         await controls.start({
           x: "50%",
-          y: [0, -15, 0],
-          rotate: [0, 15, 0],
+          y: [0, -25, 0], // Higher jump to simulate hitting a curb
+          rotate: [0, 20, 0], // More rotation for dramatic effect
           transition: {
-            x: { duration: 0.8, ease: "easeInOut" },
-            y: { duration: 0.8, times: [0, 0.5, 1], ease: "circOut" },
-            rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeInOut" }
+            x: { duration: 0.6, ease: "easeInOut" },
+            y: { duration: 0.6, times: [0, 0.5, 1], ease: "circOut" },
+            rotate: { duration: 0.6, times: [0, 0.5, 1], ease: "easeInOut" }
           }
         });
         
@@ -53,10 +58,66 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
           y: [-2, 2, -1, 0],
           rotate: [-1, 3, -2, 0],
           transition: {
-            x: { duration: 1, ease: "easeIn" },
-            y: { duration: 1, times: [0, 0.3, 0.6, 1], ease: "easeInOut" },
-            rotate: { duration: 1, times: [0, 0.3, 0.6, 1], ease: "easeInOut" }
+            x: { duration: 0.8, ease: "easeIn" },
+            y: { duration: 0.8, times: [0, 0.3, 0.6, 1], ease: "easeInOut" },
+            rotate: { duration: 0.8, times: [0, 0.3, 0.6, 1], ease: "easeInOut" }
           }
+        });
+        
+        // Return journey preparation - flip the skateboard to face left
+        await controls.start({
+          scaleX: -1, // Flip horizontally to face left
+          transition: { duration: 0.1 }
+        });
+        
+        setDirection("left");
+        
+        // Start return journey from right side
+        await controls.start({
+          x: "150%",
+          transition: { duration: 0.1 }
+        });
+        
+        // Move to center on return journey (under the text)
+        await controls.start({
+          x: "50%",
+          y: [0, -2, 0],
+          rotate: [2, -2, 1],
+          transition: {
+            x: { duration: 0.8, ease: "easeOut" },
+            y: { duration: 0.8, times: [0, 0.5, 1], ease: "easeOut" },
+            rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeOut" }
+          }
+        });
+        
+        // Continue to left side
+        await controls.start({
+          x: "0%",
+          y: [0, -3, 0],
+          rotate: [1, -3, 2],
+          transition: {
+            x: { duration: 1, ease: "easeInOut" },
+            y: { duration: 1, times: [0, 0.5, 1], ease: "easeInOut" },
+            rotate: { duration: 1, times: [0, 0.5, 1], ease: "easeInOut" }
+          }
+        });
+        
+        // Exit to the left
+        await controls.start({
+          x: "-120%",
+          y: [0, -2, 0],
+          rotate: [0, -2, 0],
+          transition: {
+            x: { duration: 0.8, ease: "easeIn" },
+            y: { duration: 0.8, times: [0, 0.5, 1], ease: "easeInOut" },
+            rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeInOut" }
+          }
+        });
+        
+        // Flip back to face right for the next loop
+        await controls.start({
+          scaleX: 1,
+          transition: { duration: 0.1 }
         });
         
         // Loop the animation
@@ -72,8 +133,8 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
   return (
     <motion.div
       ref={skaterRef}
-      className="absolute z-10 transform"
-      initial={{ x: "-150%", rotate: 0, y: 0 }}
+      className={`absolute z-10 transform ${direction === "left" ? "top-24" : ""}`}
+      initial={{ x: "-150%", rotate: 0, y: 0, scaleX: 1 }}
       animate={controls}
     >
       <svg
