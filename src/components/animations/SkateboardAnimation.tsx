@@ -29,113 +29,93 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
         
         setDirection("right");
         
-        // Move to "Hi, I'm" text and jump over it
+        // Move from left to center with jumps
         await controls.start({
-          x: "-30%",
-          y: [0, -20, 0], // Higher jump over "Hi, I'm"
-          rotate: [-2, 5, -1],
+          x: "-50%",
+          y: [0, -15, 0, -10, 0],
+          rotate: [-2, 2, -1, 1, 0],
           transition: {
-            x: { duration: 0.8, ease: "easeOut" },
-            y: { duration: 0.8, times: [0, 0.5, 1], ease: "circOut" },
+            x: { duration: 1.2, ease: "easeOut" },
+            y: { duration: 1.2, times: [0, 0.2, 0.4, 0.7, 1], ease: "easeOut" },
+            rotate: { duration: 1.2, times: [0, 0.2, 0.4, 0.7, 1], ease: "easeOut" }
+          }
+        });
+        
+        // Continue to right side with more jumps
+        await controls.start({
+          x: "50%",
+          y: [0, -20, 0, -15, 0],
+          rotate: [0, 3, -2, 2, 0],
+          transition: {
+            x: { duration: 1.5, ease: "linear" },
+            y: { duration: 1.5, times: [0, 0.3, 0.5, 0.8, 1], ease: "easeOut" },
+            rotate: { duration: 1.5, times: [0, 0.3, 0.5, 0.8, 1], ease: "easeOut" }
+          }
+        });
+        
+        // Exit to the right with final jump
+        await controls.start({
+          x: "120%",
+          y: [0, -10, 0],
+          rotate: [0, 2, 0],
+          transition: {
+            x: { duration: 0.8, ease: "easeIn" },
+            y: { duration: 0.8, times: [0, 0.5, 1], ease: "easeOut" },
             rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeOut" }
           }
         });
         
-        // Move to center with subtle bounce
+        // Flip direction for return journey
         await controls.start({
-          x: "0%",
-          y: [0, -5, 0],
-          rotate: [-1, 2, -1],
-          transition: {
-            x: { duration: 0.6, ease: "easeOut" },
-            y: { duration: 0.6, times: [0, 0.5, 1], ease: "easeOut" },
-            rotate: { duration: 0.6, times: [0, 0.5, 1], ease: "easeOut" }
-          }
-        });
-        
-        // Continue toward right side
-        await controls.start({
-          x: "50%",
-          y: [0, -10, 0], 
-          rotate: [0, 3, 0],
-          transition: {
-            x: { duration: 0.5, ease: "easeInOut" },
-            y: { duration: 0.5, times: [0, 0.5, 1], ease: "circOut" },
-            rotate: { duration: 0.5, times: [0, 0.5, 1], ease: "easeInOut" }
-          }
-        });
-        
-        // Exit to the right with a jump downward
-        await controls.start({
-          x: "150%",
-          y: "60px", // Jump down to "Hiram Barsky" level
-          rotate: 0,
-          transition: {
-            x: { duration: 0.8, ease: "easeIn" },
-            y: { duration: 0.8, ease: "anticipate" },
-            rotate: { duration: 0.8, ease: "easeInOut" }
-          }
-        });
-        
-        // Return journey preparation - flip the ghost to face left
-        await controls.start({
-          scaleX: -1, // Flip horizontally to face left
+          scaleX: -1,
           transition: { duration: 0.1 }
         });
         
         setDirection("left");
         
-        // Start return journey from right side (already at Hiram Barsky level)
-        await controls.start({
-          x: "150%",
-          transition: { duration: 0.1 }
-        });
-        
-        // Move under "Hiram Barsky" text on return journey
+        // Return from right to center with jumps
         await controls.start({
           x: "50%",
-          y: "60px", // Keep at Hiram Barsky level
-          rotate: [2, -2, 1],
+          y: [0, -15, 0, -10, 0],
+          rotate: [0, -2, 1, -1, 0],
           transition: {
-            x: { duration: 0.8, ease: "easeOut" },
-            y: { duration: 0.8, ease: "easeOut" },
-            rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeOut" }
+            x: { duration: 0.1 },
+            y: { duration: 0.1 },
+            rotate: { duration: 0.1 }
           }
         });
         
-        // Continue to left side
         await controls.start({
           x: "0%",
-          y: "60px", // Keep at Hiram Barsky level
-          rotate: [1, -3, 1],
+          y: [0, -20, 0, -15, 0],
+          rotate: [0, -3, 2, -2, 0],
           transition: {
-            x: { duration: 0.8, ease: "easeInOut" },
-            y: { duration: 0.8, ease: "easeInOut" },
-            rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeInOut" }
+            x: { duration: 1.5, ease: "linear" },
+            y: { duration: 1.5, times: [0, 0.3, 0.5, 0.8, 1], ease: "easeOut" },
+            rotate: { duration: 1.5, times: [0, 0.3, 0.5, 0.8, 1], ease: "easeOut" }
           }
         });
         
-        // Exit to the left
+        // Continue to left side with more jumps
         await controls.start({
           x: "-120%",
-          y: "60px", // Keep at Hiram Barsky level
+          y: [0, -10, 0],
           rotate: [0, -2, 0],
           transition: {
-            x: { duration: 0.8, ease: "easeIn" },
-            y: { duration: 0.8, ease: "easeIn" },
-            rotate: { duration: 0.8, times: [0, 0.5, 1], ease: "easeInOut" }
+            x: { duration: 1.2, ease: "easeIn" },
+            y: { duration: 1.2, times: [0, 0.5, 1], ease: "easeOut" },
+            rotate: { duration: 1.2, times: [0, 0.5, 1], ease: "easeOut" }
           }
         });
         
-        // Start the jump back up to top position
+        // Flip back to original direction
         await controls.start({
-          y: "0%", // Return to top position for next cycle
-          scaleX: 1, // Flip back to face right
+          scaleX: 1,
           transition: { duration: 0.1 }
         });
         
         // Loop the animation
-        runAnimation();
+        setTimeout(runAnimation, 500); // Small pause between loops
       };
       
       runAnimation();
