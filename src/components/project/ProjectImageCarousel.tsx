@@ -8,7 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -46,16 +45,6 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
     }
   }, [emblaApi]);
 
-  // Handle tab selection - scroll carousel to appropriate slide
-  const handleTabChange = (value: string) => {
-    const index = parseInt(value);
-    setActiveIndex(index);
-    
-    if (emblaApi) {
-      emblaApi.scrollTo(index);
-    }
-  };
-
   return (
     <div className="mb-12 space-y-4">
       <Carousel>
@@ -77,30 +66,13 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
         <CarouselNext className="right-4" />
       </Carousel>
       
-      {allImages.length > 1 && (
-        <div className="flex justify-center">
-          <Tabs 
-            defaultValue="0"
-            value={activeIndex.toString()}
-            onValueChange={handleTabChange}
-            className="w-fit"
-          >
-            <TabsList>
-              {allImages.map((_, index) => (
-                <TabsTrigger key={index} value={index.toString()} className="px-3 py-1">
-                  {index + 1}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
+      {allImages.length > 0 && (
+        <div className="text-center text-sm text-gray-500">
+          {activeIndex === 0 ? 
+            "Main application view" : 
+            `Additional screenshot of the ${title} application`}
         </div>
       )}
-      
-      <div className="text-center text-sm text-gray-500">
-        {activeIndex === 0 ? 
-          "Main application view" : 
-          `Additional screenshot ${activeIndex} of the ${title} application`}
-      </div>
     </div>
   );
 };
