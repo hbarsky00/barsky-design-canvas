@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Twitter, Github, Mail } from "lucide-react";
+import { Linkedin, Github } from "lucide-react";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -71,34 +71,7 @@ const Footer: React.FC = () => {
               <h4 className="text-lg font-semibold mb-4">Connect</h4>
               <div className="flex space-x-4">
                 <a 
-                  href="https://facebook.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-300 hover:text-barsky-blue transition-colors"
-                  aria-label="Facebook"
-                >
-                  <Facebook size={20} />
-                </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-300 hover:text-barsky-blue transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter size={20} />
-                </a>
-                <a 
-                  href="https://instagram.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-300 hover:text-barsky-blue transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={20} />
-                </a>
-                <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/in/hiram-barsky" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-gray-300 hover:text-barsky-blue transition-colors"
@@ -107,7 +80,7 @@ const Footer: React.FC = () => {
                   <Linkedin size={20} />
                 </a>
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/hbarsky00/barsky-design-canvas.git" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-gray-300 hover:text-barsky-blue transition-colors"
