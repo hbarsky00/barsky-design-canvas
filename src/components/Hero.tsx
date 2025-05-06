@@ -1,7 +1,9 @@
+
 import React, { useEffect, useState } from "react";
 import AnimatedText from "./AnimatedText";
 import { ArrowDownCircle } from "lucide-react";
 import SkateboardAnimation from "./animations/SkateboardAnimation";
+import SkatebackgroundSvg from "./animations/SkatebackgroundSvg";
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,6 +19,13 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center bg-barsky-bg-light overflow-x-hidden relative">
+      {/* Skating background illustration */}
+      <div className="absolute bottom-0 left-0 w-full h-40 z-0">
+        <div className="relative w-full h-full">
+          <SkatebackgroundSvg className="w-full absolute bottom-0" />
+        </div>
+      </div>
+      
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center md:text-left">
           <div className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'} relative`}>
@@ -63,7 +72,7 @@ const Hero: React.FC = () => {
       </div>
       
       {/* Full-width animation container positioned outside the section container */}
-      <div className="absolute bottom-24 left-0 w-full overflow-visible pointer-events-none">
+      <div className="absolute bottom-24 left-0 w-full overflow-visible pointer-events-none z-10">
         <SkateboardAnimation startDelay={1400} />
       </div>
     </section>

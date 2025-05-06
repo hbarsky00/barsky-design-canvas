@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import GhostSkateboardSvg from "./GhostSkateboardSvg";
@@ -97,7 +96,7 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
         setDirection("left");
         setGhostOffset(0);
         
-        // Return from right at 75% position with a medium ollie
+        // Return from right to 75% position with a medium ollie
         await controls.start({
           x: "75vw",
           y: [0, -20, 0],
@@ -169,7 +168,8 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
   return (
     <motion.div
       ref={ghostRef}
-      className={`absolute z-10 left-1/2 transform ${direction === "left" ? "opacity-90" : "opacity-100"}`}
+      className={`absolute z-10 left-0 transform ${direction === "left" ? "opacity-90" : "opacity-100"}`}
+      style={{ width: "80px", height: "80px" }} // Fix size to prevent resizing
       initial={{ x: "-20vw", rotate: 0, y: 0, scaleX: 1 }}
       animate={controls}
     >
