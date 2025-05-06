@@ -22,7 +22,10 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
+  const [imagesLoaded, setImagesLoaded] = useState<Record<number, boolean>>({});
   const allImages = [mainImage, ...extraImages];
+  
+  console.log("Carousel images:", { mainImage, extraImages, allImages });
   
   // Use the api to track carousel position changes
   useEffect(() => {
@@ -40,6 +43,15 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
     };
   }, [api]);
 
+  const handleImageLoad = (index: number) => {
+    console.log(`Image ${index} loaded successfully`);
+    setImagesLoaded(prev => ({...prev, [index]: true}));
+  };
+
+  const handleImageError = (index: number) => {
+    console.error(`Failed to load image ${index}:`, allImages[index]);
+  };
+
   return (
     <div className="mb-12 space-y-4">
       <Carousel setApi={setApi}>
@@ -52,6 +64,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
                   alt={`${title} - screenshot ${index + 1}`} 
                   className="w-full h-full object-contain bg-gray-50 dark:bg-gray-900/30" 
                   loading="lazy"
+                  onLoad={() => handleImageLoad(index)}
+                  onError={() => handleImageError(index)}
                 />
               </div>
             </CarouselItem>

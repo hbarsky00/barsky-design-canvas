@@ -23,7 +23,14 @@ const ProjectDetail: React.FC = () => {
     const foundProject = projectsData.find(p => p.id === projectId);
     if (foundProject) {
       setProject(foundProject);
-      setDetails(projectDetails[projectId as string]);
+      const projectDetail = projectDetails[projectId as string];
+      setDetails(projectDetail);
+      
+      console.log("Project data loaded:", { 
+        project: foundProject, 
+        details: projectDetail,
+        extraImages: projectDetail?.extraImages || []
+      });
       
       // Track page view
       trackPageView(`/project/${projectId}`, `${foundProject.title} | Hiram Barsky Portfolio`);
@@ -66,6 +73,20 @@ const ProjectDetail: React.FC = () => {
         <section className="py-20">
           <div className="section-container">
             <ProjectHeader title={project.title} tags={project.tags} />
+            
+            {/* Add debugging info to see image paths */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="mb-4 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs">
+                <p><strong>Debug Info:</strong></p>
+                <p>Main image: {project.image}</p>
+                <p>Extra images: {details.extraImages.length}</p>
+                <ul className="ml-4 list-disc">
+                  {details.extraImages.map((img, i) => (
+                    <li key={i}>{img}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             
             <ProjectImageCarousel 
               mainImage={project.image}
