@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Carousel,
   CarouselContent,
@@ -81,7 +81,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           <p className="text-gray-400">No images available</p>
         </div>
       ) : (
-        <Carousel setApi={setApi}>
+        <Carousel setApi={setApi} className="w-full">
           <CarouselContent>
             {allImages.map((img, index) => (
               <CarouselItem key={index}>
@@ -112,13 +112,6 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           <span className="font-medium">{activeIndex + 1}/{allImages.length}:</span> {activeIndex === 0 ? 
             "Main application view" : 
             `Additional screen of the ${title} application`}
-        </div>
-      )}
-
-      {Object.keys(imageErrors).length > 0 && (
-        <div className="mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-xs text-amber-700">
-          <p><strong>Note:</strong> Some images couldn't be loaded and were replaced with placeholders.</p>
-          <p>This might happen if the image files are missing or have incorrect paths.</p>
         </div>
       )}
     </div>

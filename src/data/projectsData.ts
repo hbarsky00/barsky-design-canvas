@@ -20,7 +20,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     extraImages: [
       "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
       "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png"
-      // Main image is already /lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png, removed from here
     ]
   },
   "herbalink": {
@@ -29,16 +28,14 @@ export const projectDetails: Record<string, ProjectDetails> = {
     duration: "6 months",
     client: "Herbalink Wellness Technologies",
     role: "Lead Designer & Inventor",
-    // The main image is /lovable-uploads/9f715d44-69d8-41e0-a399-30a775d33ac5.png, so we don't repeat it here
     extraImages: [
-      "/lovable-uploads/ad5f253f-bf3d-47fa-8e3c-3bc5d9ccca8a.png", 
-      "/lovable-uploads/af96963b-d956-4f00-9dd2-024e082c4ce3.png",
-      "/lovable-uploads/4c34d90f-194f-4e0d-8441-077677636a26.png",
-      "/lovable-uploads/b4e4500c-8c14-4c50-b907-bdce0935fd22.png",
-      "/lovable-uploads/f029901e-a9e3-480d-a621-a3bc686d1994.png",
-      "/lovable-uploads/a0cbc4ac-772d-4862-b7c0-3d8d3d5d2413.png",
-      // Add placeholder in case original images are missing
-      "/placeholder.svg"
+      "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png",
+      "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png",
+      "/lovable-uploads/a1c2b433-9e2c-4537-9b6f-2c731d84a9b7.png",
+      "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png",
+      "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
+      "/lovable-uploads/2e27159e-c598-4ad5-a539-7ae7b5d08ed6.png",
+      "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png"
     ]
   },
   "gold2crypto": {
@@ -48,7 +45,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Gold 2 Crypto Services",
     role: "Lead Designer & Inventor",
     extraImages: [
-      // Using just one reference to avoid duplicates, since all paths are the same
       "/placeholder.svg"
     ]
   },
@@ -59,7 +55,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Barsky Joint Food Truck",
     role: "Lead Designer & Inventor",
     extraImages: [
-      // Using just one reference to avoid duplicates, since all paths are the same
       "/placeholder.svg"
     ]
   },
@@ -70,7 +65,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Spectrum Apparel Co.",
     role: "Lead Designer & Inventor",
     extraImages: [
-      // Using just one reference to avoid duplicates, since all paths are the same
       "/placeholder.svg"
     ]
   }
