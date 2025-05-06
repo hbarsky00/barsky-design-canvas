@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import { 
   Carousel,
   CarouselContent,
@@ -23,32 +22,15 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const allImages = [mainImage, ...extraImages];
   
-  // Create a ref to store the Embla API
-  const [emblaRef, emblaApi] = useEmblaCarousel();
-
-  // Set up the event listener when emblaApi becomes available
-  React.useEffect(() => {
-    if (emblaApi) {
-      // Update active index when the carousel changes slides
-      const onSelect = () => {
-        setActiveIndex(emblaApi.selectedScrollSnap());
-      };
-
-      emblaApi.on("select", onSelect);
-      // Call once initially to set the correct starting state
-      onSelect();
-      
-      // Cleanup when unmounting
-      return () => {
-        emblaApi.off("select", onSelect);
-      };
-    }
-  }, [emblaApi]);
+  // Set up the event listener to track carousel position
+  const handleCarouselChange = (index: number) => {
+    setActiveIndex(index);
+  };
 
   return (
     <div className="mb-12 space-y-4">
-      <Carousel>
-        <CarouselContent ref={emblaRef}>
+      <Carousel onValueChange={handleCarouselChange}>
+        <CarouselContent>
           {allImages.map((img, index) => (
             <CarouselItem key={index}>
               <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
@@ -68,9 +50,9 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
       
       {allImages.length > 0 && (
         <div className="text-center text-sm text-gray-500">
-          {activeIndex === 0 ? 
+          <span className="font-medium">{activeIndex + 1}/{allImages.length}:</span> {activeIndex === 0 ? 
             "Main application view" : 
-            `Additional screenshot of the ${title} application`}
+            `Additional screen of the ${title} application`}
         </div>
       )}
     </div>

@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -23,15 +24,19 @@ export const projectDetails: Record<string, ProjectDetails> = {
     ]
   },
   "herbalink": {
-    fullDescription: "Herbalink is an innovative mobile platform designed to revolutionize access to holistic healthcare. The app serves as a comprehensive marketplace connecting individuals seeking natural wellness solutions with qualified, vetted herbalists. Users can easily search for practitioners based on specialties, health concerns, or location, view detailed profiles with credentials and expertise, and book both virtual and in-person consultations.",
-    technologies: ["React Native", "Node.js", "MongoDB", "WebRTC", "Stripe", "GraphQL", "TypeScript"],
+    fullDescription: "Herbalink is a comprehensive mobile platform connecting users with qualified herbalists for natural health solutions. The app features an intuitive interface with personalized herbalist matching, secure video consultations, in-app messaging, and appointment scheduling. Users can browse practitioner profiles with verified credentials, specialties, and ratings, while accessing a knowledge base of herbal remedies. The payment system supports multiple options, and the app includes personalized treatment tracking and reminder features to ensure users follow their wellness plans.",
+    technologies: ["React Native", "TypeScript", "Redux", "Node.js", "WebRTC", "MongoDB", "Stripe API", "Push Notifications", "Biometric Authentication"],
     duration: "6 months",
     client: "Herbalink Wellness Technologies",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png",
-      "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png",
-      "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png"
+      "/lovable-uploads/9f715d44-69d8-41e0-a399-30a775d33ac5.png",
+      "/lovable-uploads/ad5f253f-bf3d-47fa-8e3c-3bc5d9ccca8a.png",
+      "/lovable-uploads/af96963b-d956-4f00-9dd2-024e082c4ce3.png",
+      "/lovable-uploads/4c34d90f-194f-4e0d-8441-077677636a26.png",
+      "/lovable-uploads/b4e4500c-8c14-4c50-b907-bdce0935fd22.png",
+      "/lovable-uploads/f029901e-a9e3-480d-a621-a3bc686d1994.png",
+      "/lovable-uploads/a0cbc4ac-772d-4862-b7c0-3d8d3d5d2413.png"
     ]
   },
   "gold2crypto": {
@@ -84,9 +89,9 @@ export const projectsData: ProjectProps[] = [
   {
     id: "herbalink",
     title: "Herbalink",
-    description: "Connecting individuals with qualified herbalists for virtual and in-person consultations.",
-    image: "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png",
-    tags: ["Mobile App", "Marketplace", "Healthcare"],
+    description: "Mobile application connecting individuals with qualified herbalists for personalized natural health solutions.",
+    image: "/lovable-uploads/9f715d44-69d8-41e0-a399-30a775d33ac5.png",
+    tags: ["Mobile App", "Healthcare", "React Native"],
     link: "https://herbalink.live"
   },
   {
@@ -114,3 +119,4 @@ export const projectsData: ProjectProps[] = [
     link: "https://supersha.store"
   }
 ];
+
