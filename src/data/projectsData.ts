@@ -29,7 +29,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Herbalink Wellness Technologies",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png",
       "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png",
       "/lovable-uploads/a1c2b433-9e2c-4537-9b6f-2c731d84a9b7.png",
       "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png",
@@ -83,7 +82,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "Herbalink",
     description: "Mobile application connecting individuals with qualified herbalists for personalized natural health solutions.",
-    image: "/lovable-uploads/9f715d44-69d8-41e0-a399-30a775d33ac5.png",
+    image: "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png",
     tags: ["Mobile App", "Healthcare", "React Native"],
     link: "https://herbalink.live"
   },
