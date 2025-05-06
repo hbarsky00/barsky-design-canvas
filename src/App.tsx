@@ -9,12 +9,12 @@ import { ThemeProvider } from "next-themes";
 import { HelmetProvider } from "react-helmet-async";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
-// Lazy load pages for better performance
-const Index = lazy(() => import("./pages/Index"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const AllProjects = lazy(() => import("./pages/AllProjects"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
-const DesignSystem = lazy(() => import("./pages/DesignSystem"));
+// Import the pages directly instead of using lazy loading
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
+import AllProjects from "./pages/AllProjects";
+import ProjectDetail from "./pages/ProjectDetail";
+import DesignSystem from "./pages/DesignSystem";
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -43,16 +43,14 @@ const App = () => (
           <BrowserRouter>
             <ScrollToTop />
             <AnalyticsTracker />
-            <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/projects" element={<AllProjects />} />
-                <Route path="/project/:projectId" element={<ProjectDetail />} />
-                <Route path="/design-system" element={<DesignSystem />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/projects" element={<AllProjects />} />
+              <Route path="/project/:projectId" element={<ProjectDetail />} />
+              <Route path="/design-system" element={<DesignSystem />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </BrowserRouter>
           <Toaster />
           <Sonner />
