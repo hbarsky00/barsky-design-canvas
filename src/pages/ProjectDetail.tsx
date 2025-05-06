@@ -17,30 +17,51 @@ const ProjectDetail: React.FC = () => {
   const navigate = useNavigate();
   const [project, setProject] = useState<typeof projectsData[0] | null>(null);
   const [details, setDetails] = useState<ProjectDetails | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
+    // Reset loading state when project ID changes
+    setIsLoading(true);
+    
     // Find the project based on the URL parameter
     const foundProject = projectsData.find(p => p.id === projectId);
     if (foundProject) {
       setProject(foundProject);
       const projectDetail = projectDetails[projectId as string];
-      setDetails(projectDetail);
       
-      console.log("Project data loaded:", { 
-        project: foundProject, 
-        details: projectDetail,
-        extraImages: projectDetail?.extraImages || []
-      });
+      if (!projectDetail) {
+        console.error(`Project details not found for ID: ${projectId}`);
+      } else {
+        setDetails(projectDetail);
+        
+        // Validate and log image paths
+        console.log("Project data loaded:", { 
+          project: foundProject, 
+          details: projectDetail,
+          mainImage: foundProject.image,
+          extraImages: projectDetail.extraImages || [],
+          // Check for duplicate main image in extraImages
+          hasDuplicateMainImage: projectDetail.extraImages?.includes(foundProject.image)
+        });
+        
+        // Check if any extraImages are the same as the main image
+        if (projectDetail.extraImages?.includes(foundProject.image)) {
+          console.warn("Main image is duplicated in extraImages array, it will be filtered out.");
+        }
+      }
       
       // Track page view
       trackPageView(`/project/${projectId}`, `${foundProject.title} | Hiram Barsky Portfolio`);
     } else {
+      console.error(`Project not found with ID: ${projectId}`);
       // If project not found, redirect to all projects page
       navigate("/projects");
     }
+    
+    setIsLoading(false);
   }, [projectId, navigate]);
   
-  if (!project || !details) {
+  if (isLoading || !project || !details) {
     return (
       <div className="flex flex-col min-h-screen">
         <Header />

@@ -19,8 +19,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Designer & Inventor",
     extraImages: [
       "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
-      "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png",
-      "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png"
+      "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png"
+      // Main image is already /lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png, removed from here
     ]
   },
   "herbalink": {
@@ -29,14 +29,16 @@ export const projectDetails: Record<string, ProjectDetails> = {
     duration: "6 months",
     client: "Herbalink Wellness Technologies",
     role: "Lead Designer & Inventor",
+    // The main image is /lovable-uploads/9f715d44-69d8-41e0-a399-30a775d33ac5.png, so we don't repeat it here
     extraImages: [
-      "/lovable-uploads/9f715d44-69d8-41e0-a399-30a775d33ac5.png",
-      "/lovable-uploads/ad5f253f-bf3d-47fa-8e3c-3bc5d9ccca8a.png",
+      "/lovable-uploads/ad5f253f-bf3d-47fa-8e3c-3bc5d9ccca8a.png", 
       "/lovable-uploads/af96963b-d956-4f00-9dd2-024e082c4ce3.png",
       "/lovable-uploads/4c34d90f-194f-4e0d-8441-077677636a26.png",
       "/lovable-uploads/b4e4500c-8c14-4c50-b907-bdce0935fd22.png",
       "/lovable-uploads/f029901e-a9e3-480d-a621-a3bc686d1994.png",
-      "/lovable-uploads/a0cbc4ac-772d-4862-b7c0-3d8d3d5d2413.png"
+      "/lovable-uploads/a0cbc4ac-772d-4862-b7c0-3d8d3d5d2413.png",
+      // Add placeholder in case original images are missing
+      "/placeholder.svg"
     ]
   },
   "gold2crypto": {
@@ -46,9 +48,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Gold 2 Crypto Services",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-      "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-      "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png"
+      // Using just one reference to avoid duplicates, since all paths are the same
+      "/placeholder.svg"
     ]
   },
   "barskyjoint": {
@@ -58,9 +59,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Barsky Joint Food Truck",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-      "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-      "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png"
+      // Using just one reference to avoid duplicates, since all paths are the same
+      "/placeholder.svg"
     ]
   },
   "spectrum": {
@@ -70,9 +70,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Spectrum Apparel Co.",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png",
-      "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png",
-      "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png"
+      // Using just one reference to avoid duplicates, since all paths are the same
+      "/placeholder.svg"
     ]
   }
 };
@@ -119,4 +118,3 @@ export const projectsData: ProjectProps[] = [
     link: "https://supersha.store"
   }
 ];
-

@@ -15,6 +15,9 @@ interface ProjectImageCarouselProps {
   extraImages: string[];
 }
 
+// Define a placeholder image to use when images fail to load
+const FALLBACK_IMAGE = "/placeholder.svg";
+
 const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({ 
   mainImage, 
   title, 
@@ -23,9 +26,19 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [imagesLoaded, setImagesLoaded] = useState<Record<number, boolean>>({});
-  const allImages = [mainImage, ...extraImages];
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   
-  console.log("Carousel images:", { mainImage, extraImages, allImages });
+  // Filter out main image from extraImages if it's duplicated
+  const filteredExtraImages = extraImages.filter(img => img !== mainImage);
+  const allImages = [mainImage, ...filteredExtraImages];
+  
+  console.log("Carousel images:", { 
+    mainImage, 
+    originalExtraImages: extraImages,
+    filteredExtraImages,
+    allImages,
+    totalImages: allImages.length
+  });
   
   // Use the api to track carousel position changes
   useEffect(() => {
@@ -44,42 +57,68 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   }, [api]);
 
   const handleImageLoad = (index: number) => {
-    console.log(`Image ${index} loaded successfully`);
+    console.log(`Image ${index} loaded successfully:`, allImages[index]);
     setImagesLoaded(prev => ({...prev, [index]: true}));
   };
 
   const handleImageError = (index: number) => {
     console.error(`Failed to load image ${index}:`, allImages[index]);
+    setImageErrors(prev => ({...prev, [index]: true}));
+  };
+
+  // Function to get the proper image source
+  const getImageSrc = (index: number): string => {
+    if (imageErrors[index]) {
+      return FALLBACK_IMAGE;
+    }
+    return allImages[index];
   };
 
   return (
     <div className="mb-12 space-y-4">
-      <Carousel setApi={setApi}>
-        <CarouselContent>
-          {allImages.map((img, index) => (
-            <CarouselItem key={index}>
-              <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
-                <img 
-                  src={img} 
-                  alt={`${title} - screenshot ${index + 1}`} 
-                  className="w-full h-full object-contain bg-gray-50 dark:bg-gray-900/30" 
-                  loading="lazy"
-                  onLoad={() => handleImageLoad(index)}
-                  onError={() => handleImageError(index)}
-                />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="left-4" />
-        <CarouselNext className="right-4" />
-      </Carousel>
+      {allImages.length === 0 ? (
+        <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 flex items-center justify-center bg-gray-50 dark:bg-gray-900/30">
+          <p className="text-gray-400">No images available</p>
+        </div>
+      ) : (
+        <Carousel setApi={setApi}>
+          <CarouselContent>
+            {allImages.map((img, index) => (
+              <CarouselItem key={index}>
+                <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+                  <img 
+                    src={getImageSrc(index)} 
+                    alt={`${title} - screenshot ${index + 1}`} 
+                    className="w-full h-full object-contain bg-gray-50 dark:bg-gray-900/30" 
+                    loading="lazy"
+                    onLoad={() => handleImageLoad(index)}
+                    onError={() => handleImageError(index)}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {allImages.length > 1 && (
+            <>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </>
+          )}
+        </Carousel>
+      )}
       
       {allImages.length > 0 && (
         <div className="text-center text-sm text-gray-500">
           <span className="font-medium">{activeIndex + 1}/{allImages.length}:</span> {activeIndex === 0 ? 
             "Main application view" : 
             `Additional screen of the ${title} application`}
+        </div>
+      )}
+
+      {Object.keys(imageErrors).length > 0 && (
+        <div className="mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-xs text-amber-700">
+          <p><strong>Note:</strong> Some images couldn't be loaded and were replaced with placeholders.</p>
+          <p>This might happen if the image files are missing or have incorrect paths.</p>
         </div>
       )}
     </div>
