@@ -3,7 +3,7 @@ import React from "react";
 
 interface GhostSkateboardSvgProps {
   className?: string;
-  ghostOffset?: number; // New prop to control ghost position during ollies
+  ghostOffset?: number; // Prop to control ghost position during ollies
 }
 
 const GhostSkateboardSvg: React.FC<GhostSkateboardSvgProps> = ({ 

@@ -45,18 +45,13 @@ const Hero: React.FC = () => {
               />
             </div>
             
-            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8 mb-24" style={{ animationDelay: '1100ms' }}>
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8 mb-12" style={{ animationDelay: '1100ms' }}>
               <a href="#projects" className="btn-primary">
                 View Projects
               </a>
               <a href="#contact" className="btn-outline">
                 Get In Touch
               </a>
-            </div>
-            
-            {/* Animation container positioned AFTER the buttons with more space */}
-            <div className="relative h-32 overflow-visible pointer-events-none mt-4">
-              <SkateboardAnimation startDelay={1400} />
             </div>
           </div>
           
@@ -66,6 +61,11 @@ const Hero: React.FC = () => {
             </a>
           </div>
         </div>
+      </div>
+      
+      {/* Full-width animation container positioned outside the section container */}
+      <div className="absolute bottom-24 left-0 w-full overflow-visible pointer-events-none">
+        <SkateboardAnimation startDelay={1400} />
       </div>
     </section>
   );

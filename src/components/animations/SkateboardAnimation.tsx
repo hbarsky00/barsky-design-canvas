@@ -21,9 +21,9 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
       
       // Start the continuous animation
       const runAnimation = async () => {
-        // Initial position - left side, outside the screen
+        // Initial position - off-screen left
         await controls.start({
-          x: "-120%",
+          x: "-20vw", // Start off-screen left
           y: "0%",
           rotate: 0,
           scaleX: 1, 
@@ -33,9 +33,9 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
         setDirection("right");
         setGhostOffset(0);
         
-        // Move from left to center with small ollie
+        // Move from left to 25% with small ollie
         await controls.start({
-          x: "-50%",
+          x: "25vw",
           y: [0, -15, 0],
           rotate: [-2, 3, -1],
           transition: {
@@ -46,11 +46,11 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
         });
         
         // Set ghost offset during ollie
-        setGhostOffset(5);
+        setGhostOffset(8);
         
-        // Continue to right side with bigger ollie
+        // Continue to middle with bigger ollie
         await controls.start({
-          x: "10%",
+          x: "50vw",
           y: [0, -25, 0],
           rotate: [0, 8, 0],
           transition: {
@@ -60,11 +60,11 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
           }
         });
         
-        // Big ollie jump and flip trick
-        setGhostOffset(10);
+        // Big ollie jump and flip trick at 75% across screen
+        setGhostOffset(15);
         await controls.start({
-          x: "50%",
-          y: [0, -35, 0],
+          x: "75vw",
+          y: [0, -40, 0],
           rotate: [0, 12, 0],
           transition: {
             x: { duration: 1.1, ease: "linear" },
@@ -74,11 +74,11 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
         });
         
         // Reset ghost offset after landing
-        setGhostOffset(0);
+        setGhostOffset(5);
         
         // Exit to the right with final smaller ollie
         await controls.start({
-          x: "120%",
+          x: "120vw", // Go off-screen right
           y: [0, -15, 0],
           rotate: [0, 5, 0],
           transition: {
@@ -97,9 +97,9 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
         setDirection("left");
         setGhostOffset(0);
         
-        // Return from right with a medium ollie
+        // Return from right at 75% position with a medium ollie
         await controls.start({
-          x: "50%",
+          x: "75vw",
           y: [0, -20, 0],
           rotate: [0, -5, 0],
           transition: {
@@ -109,11 +109,11 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
           }
         });
         
-        // Big ollie coming back
-        setGhostOffset(8);
+        // Big ollie coming back at 50% position
+        setGhostOffset(12);
         await controls.start({
-          x: "0%",
-          y: [0, -30, 0],
+          x: "50vw",
+          y: [0, -35, 0],
           rotate: [0, -10, 0],
           transition: {
             x: { duration: 1.3, ease: "linear" },
@@ -122,12 +122,25 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
           }
         });
         
+        // Continue to 25% with medium ollie
+        setGhostOffset(8);
+        await controls.start({
+          x: "25vw",
+          y: [0, -25, 0],
+          rotate: [0, -7, 0],
+          transition: {
+            x: { duration: 1.2, ease: "linear" },
+            y: { duration: 1.2, times: [0, 0.5, 1], ease: "easeOut" },
+            rotate: { duration: 1.2, times: [0, 0.5, 1], ease: "easeOut" }
+          }
+        });
+        
         // Reset ghost offset
         setGhostOffset(0);
         
-        // Continue to left side with a small ollie
+        // Continue to left off-screen with a small ollie
         await controls.start({
-          x: "-120%",
+          x: "-20vw", // Go off-screen left
           y: [0, -15, 0],
           rotate: [0, -4, 0],
           transition: {
@@ -156,8 +169,8 @@ const SkateboardAnimation: React.FC<SkateboardAnimationProps> = ({ startDelay = 
   return (
     <motion.div
       ref={ghostRef}
-      className={`absolute z-10 transform ${direction === "left" ? "opacity-80" : "opacity-100"}`}
-      initial={{ x: "-150%", rotate: 0, y: 0, scaleX: 1 }}
+      className={`absolute z-10 left-1/2 transform ${direction === "left" ? "opacity-90" : "opacity-100"}`}
+      initial={{ x: "-20vw", rotate: 0, y: 0, scaleX: 1 }}
       animate={controls}
     >
       <GhostSkateboardSvg className="ghost-rider" ghostOffset={ghostOffset} />
