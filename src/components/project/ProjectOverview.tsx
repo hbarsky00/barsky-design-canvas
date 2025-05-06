@@ -2,12 +2,13 @@
 import React from "react";
 import { ExternalLink, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "react-router-dom";
 
 interface ProjectOverviewProps {
   fullDescription: string;
   technologies: string[];
   projectLink?: string;
-  caseStudyLink?: string; // New optional property
+  caseStudyLink?: string;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -44,28 +45,30 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       
       <div className="flex flex-wrap gap-4 mb-8">
         {projectLink && (
-          <Button
-            as="a"
+          <a
             href={projectLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors"
           >
-            View Live Project <ExternalLink className="ml-2 h-4 w-4" />
-          </Button>
+            <Button className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors">
+              View Live Project <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
         )}
         
         {caseStudyLink && (
-          <Button
-            as="a"
+          <a
             href={caseStudyLink}
             target="_blank"
             rel="noopener noreferrer"
-            variant="outline"
-            className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10"
           >
-            View UX Design Case Study <FileText className="ml-2 h-4 w-4" />
-          </Button>
+            <Button 
+              variant="outline"
+              className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10"
+            >
+              View UX Design Case Study <FileText className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
         )}
       </div>
     </div>
