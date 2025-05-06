@@ -1,11 +1,12 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { 
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi
 } from "@/components/ui/carousel";
 
 interface ProjectImageCarouselProps {
@@ -20,16 +21,28 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   extraImages 
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [api, setApi] = useState<CarouselApi | null>(null);
   const allImages = [mainImage, ...extraImages];
   
-  // Set up the event listener to track carousel position
-  const handleCarouselChange = (index: number) => {
-    setActiveIndex(index);
-  };
+  // Use the api to track carousel position changes
+  useEffect(() => {
+    if (!api) return;
+    
+    const handleSelect = () => {
+      setActiveIndex(api.selectedScrollSnap());
+    };
+    
+    api.on("select", handleSelect);
+    
+    // Cleanup
+    return () => {
+      api.off("select", handleSelect);
+    };
+  }, [api]);
 
   return (
     <div className="mb-12 space-y-4">
-      <Carousel onValueChange={handleCarouselChange}>
+      <Carousel setApi={setApi}>
         <CarouselContent>
           {allImages.map((img, index) => (
             <CarouselItem key={index}>
