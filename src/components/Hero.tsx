@@ -36,27 +36,27 @@ const Hero: React.FC = () => {
               />
             </div>
             
-            <div className="relative mb-12">
+            <div className="relative mb-8">
               <AnimatedText
                 text="Product Designer & Developer"
                 tag="p"
-                className="text-xl sm:text-2xl mb-8 text-barsky-text"
+                className="text-xl sm:text-2xl mb-4 text-barsky-text"
                 delay={900}
               />
-              
-              {/* Animation container positioned under the text */}
-              <div className="absolute top-full left-0 right-0 h-16 overflow-visible pointer-events-none">
-                <SkateboardAnimation startDelay={1400} />
-              </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8" style={{ animationDelay: '1100ms' }}>
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8 mb-24" style={{ animationDelay: '1100ms' }}>
               <a href="#projects" className="btn-primary">
                 View Projects
               </a>
               <a href="#contact" className="btn-outline">
                 Get In Touch
               </a>
+            </div>
+            
+            {/* Animation container positioned AFTER the buttons with more space */}
+            <div className="relative h-32 overflow-visible pointer-events-none mt-4">
+              <SkateboardAnimation startDelay={1400} />
             </div>
           </div>
           
