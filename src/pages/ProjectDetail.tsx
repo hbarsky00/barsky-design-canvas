@@ -121,6 +121,7 @@ const ProjectDetail: React.FC = () => {
                   fullDescription={details.fullDescription}
                   technologies={details.technologies}
                   projectLink={project.link}
+                  caseStudyLink={details.caseStudyLink}
                 />
               </div>
               

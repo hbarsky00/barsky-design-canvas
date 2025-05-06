@@ -8,6 +8,7 @@ export interface ProjectDetails {
   client: string;
   role: string;
   extraImages: string[];
+  caseStudyLink?: string; // New optional property for case study links
 }
 
 export const projectDetails: Record<string, ProjectDetails> = {
@@ -20,7 +21,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     extraImages: [
       "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
       "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png"
-    ]
+    ],
+    caseStudyLink: "https://hirambarsky.com/case-studies/splittime"
   },
   "herbalink": {
     fullDescription: "Herbalink is a comprehensive mobile platform connecting users with qualified herbalists for natural health solutions. The app features an intuitive interface with personalized herbalist matching, secure video consultations, in-app messaging, and appointment scheduling. Users can browse practitioner profiles with verified credentials, specialties, and ratings, while accessing a knowledge base of herbal remedies. The payment system supports multiple options, and the app includes personalized treatment tracking and reminder features to ensure users follow their wellness plans.",
@@ -35,7 +37,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
       "/lovable-uploads/2e27159e-c598-4ad5-a539-7ae7b5d08ed6.png",
       "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png"
-    ]
+    ],
+    caseStudyLink: "https://hirambarsky.com/case-studies/herbalink"
   },
   "gold2crypto": {
     fullDescription: "Gold 2 Crypto Services is a sophisticated cryptocurrency trading platform that bridges traditional gold investments with modern crypto markets. The platform features real-time price tracking, advanced charting tools, secure wallet integration, and instant trading capabilities. Users can monitor market trends, set price alerts, and execute trades with multiple cryptocurrency pairs. The platform includes a responsive dashboard with portfolio analytics, transaction history, and customizable watchlists. Security features include two-factor authentication, cold storage options, and encrypted transactions.",
@@ -45,7 +48,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Designer & Inventor",
     extraImages: [
       "/placeholder.svg"
-    ]
+    ],
+    caseStudyLink: "https://hirambarsky.com/case-studies/gold2crypto"
   },
   "barskyjoint": {
     fullDescription: "Barsky Joint Food Truck mobile app revolutionizes the food truck ordering experience with a sleek, user-friendly interface. The app features a curated menu of gourmet options including their signature bacon chicken cheese special sauce sandwich, customizable smash burgers, and innovative vegan options. Key features include real-time order tracking, customizable ingredients, side options between regular and sweet potato fries or salad, and seamless payment integration. The app also includes a loyalty program, push notifications for truck location updates, and estimated waiting times.",
@@ -55,7 +59,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Designer & Inventor",
     extraImages: [
       "/placeholder.svg"
-    ]
+    ],
+    caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },
   "spectrum": {
     fullDescription: "Spectrum Apparel Co. is a modern e-commerce platform dedicated to creating and selling autism awareness apparel and custom shirts. The platform features an intuitive design interface for custom shirt creation, size-inclusive options, and a streamlined shopping experience. Key features include a drag-and-drop shirt designer, real-time preview of customizations, automated inventory management, and a size recommendation tool. The platform also includes a blog section for autism awareness content and community stories.",
@@ -65,7 +70,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead Designer & Inventor",
     extraImages: [
       "/placeholder.svg"
-    ]
+    ],
+    caseStudyLink: "https://hirambarsky.com/case-studies/spectrum"
   }
 };
 

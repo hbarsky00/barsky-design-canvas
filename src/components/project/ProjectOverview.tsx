@@ -1,17 +1,20 @@
 
 import React from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ProjectOverviewProps {
   fullDescription: string;
   technologies: string[];
   projectLink?: string;
+  caseStudyLink?: string; // New optional property
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
   fullDescription, 
   technologies,
-  projectLink
+  projectLink,
+  caseStudyLink
 }) => {
   return (
     <div>
@@ -39,18 +42,32 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         </ul>
       </div>
       
-      {projectLink && (
-        <div className="mb-8">
-          <a
+      <div className="flex flex-wrap gap-4 mb-8">
+        {projectLink && (
+          <Button
+            as="a"
             href={projectLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center bg-barsky-blue text-white px-4 py-2 rounded-md hover:bg-barsky-blue/90 transition-colors"
+            className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors"
           >
             View Live Project <ExternalLink className="ml-2 h-4 w-4" />
-          </a>
-        </div>
-      )}
+          </Button>
+        )}
+        
+        {caseStudyLink && (
+          <Button
+            as="a"
+            href={caseStudyLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="outline"
+            className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10"
+          >
+            View UX Design Case Study <FileText className="ml-2 h-4 w-4" />
+          </Button>
+        )}
+      </div>
     </div>
   );
 };
