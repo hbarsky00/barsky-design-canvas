@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -30,7 +29,7 @@ const Index = () => {
   }, [location.state]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Helmet>
         <title>Hiram Barsky | Product Designer & Developer | Portfolio</title>
         <meta name="description" content="Experienced Product Designer and Developer specializing in website design, app design, and UX/UI consultation services. Based in New York." />
