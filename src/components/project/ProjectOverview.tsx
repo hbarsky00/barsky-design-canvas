@@ -13,7 +13,8 @@ interface ProjectOverviewProps {
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
   fullDescription, 
   technologies,
-  projectLink
+  projectLink,
+  caseStudyLink
 }) => {
   return (
     <div>
@@ -21,6 +22,13 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       <p className="text-barsky-text mb-8 leading-relaxed">
         {fullDescription}
       </p>
+      
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Platform Compatibility</h2>
+        <p className="text-barsky-text mb-4">
+          This application is designed to work seamlessly across both mobile and desktop platforms, providing a responsive and consistent user experience regardless of device.
+        </p>
+      </div>
       
       <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Technologies Used</h2>
       <div className="flex flex-wrap gap-2 mb-8">
@@ -38,6 +46,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           <li>Responsive Web Development</li>
           <li>User Research & Testing</li>
           <li>Design System Creation</li>
+          <li>Cross-Platform Optimization</li>
         </ul>
       </div>
       
@@ -50,6 +59,18 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           >
             <Button className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors">
               View Live Project <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
+        )}
+        
+        {caseStudyLink && (
+          <a
+            href={caseStudyLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10">
+              View Case Study <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </a>
         )}
