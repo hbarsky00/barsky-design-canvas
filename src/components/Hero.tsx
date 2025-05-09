@@ -1,17 +1,29 @@
 
 import React, { useEffect, useState } from "react";
-import AnimatedText from "./AnimatedText";
+import { motion } from "framer-motion";
 import { ArrowDownCircle } from "lucide-react";
+import AnimatedText from "./AnimatedText";
 import SkateboardAnimation from "./animations/SkateboardAnimation";
 import SkatebackgroundSvg from "./animations/SkatebackgroundSvg";
+import FloatingElement from "./animations/FloatingElement";
+import ShakeElement from "./animations/ShakeElement";
+import BounceWrapper from "./animations/BounceWrapper";
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
   
   useEffect(() => {
     // Delay to allow page to load
     const timer = setTimeout(() => {
       setIsVisible(true);
+      
+      // Show welcome message after main content appears
+      const welcomeTimer = setTimeout(() => {
+        setShowWelcomeMessage(true);
+      }, 2500);
+      
+      return () => clearTimeout(welcomeTimer);
     }, 100);
     
     return () => clearTimeout(timer);
@@ -26,6 +38,46 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
+      {/* Welcome bubble that appears after hero text */}
+      {showWelcomeMessage && (
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ 
+            scale: [0, 1.2, 1], 
+            opacity: 1,
+            y: [0, -10, 0]
+          }}
+          transition={{ 
+            duration: 0.5,
+            times: [0, 0.7, 1],
+            y: {
+              repeat: Infinity,
+              repeatType: "reverse",
+              duration: 2,
+              delay: 0.5
+            }
+          }}
+          className="absolute top-1/4 right-[15%] z-20 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl shadow-lg max-w-[200px] transform -translate-y-full"
+        >
+          <div className="relative">
+            <p className="text-barsky-dark text-sm font-medium">
+              Welcome to my portfolio! Scroll down to see my work.
+            </p>
+            <div className="absolute -bottom-2 right-1/2 transform translate-x-1/2 rotate-45 w-4 h-4 bg-white/90"></div>
+            
+            <ShakeElement 
+              interval={5000} 
+              intensity="subtle"
+              className="absolute -top-3 -right-3"
+            >
+              <span className="h-5 w-5 flex items-center justify-center rounded-full bg-barsky-blue text-white text-xs">
+                !
+              </span>
+            </ShakeElement>
+          </div>
+        </motion.div>
+      )}
+      
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center md:text-left">
           <div className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'} relative`}>
@@ -35,12 +87,18 @@ const Hero: React.FC = () => {
                 tag="h2" 
                 className="text-xl sm:text-2xl font-semibold mb-3 text-barsky-text"
                 delay={500}
+                type="character"
+                animation="bounce"
+                staggerChildren={0.05}
               />
               <AnimatedText
                 text="Hiram Barsky"
                 tag="h1"
                 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
                 delay={700}
+                type="character"
+                animation="bounce"
+                staggerChildren={0.1}
               />
             </div>
             
@@ -50,24 +108,58 @@ const Hero: React.FC = () => {
                 tag="p"
                 className="text-xl sm:text-2xl mb-4 text-barsky-text"
                 delay={900}
+                type="word"
+                animation="fade"
               />
             </div>
             
-            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8 mb-12" style={{ animationDelay: '1100ms' }}>
-              <a href="#projects" className="btn-primary">
-                View Projects
-              </a>
-              <a href="#contact" className="btn-outline">
-                Get In Touch
-              </a>
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8 mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1, duration: 0.5 }}
+              >
+                <BounceWrapper intensity="medium" wiggle={true}>
+                  <a href="#projects" className="btn-primary relative">
+                    View Projects
+                    {/* Attention indicator */}
+                    <motion.span
+                      className="absolute -top-1 -right-1 h-3 w-3 bg-yellow-400 rounded-full"
+                      animate={{ 
+                        scale: [1, 1.5, 1],
+                        opacity: [0.8, 1, 0.8],
+                      }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
+                    />
+                  </a>
+                </BounceWrapper>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.3, duration: 0.5 }}
+              >
+                <BounceWrapper intensity="subtle">
+                  <a href="#contact" className="btn-outline">
+                    Get In Touch
+                  </a>
+                </BounceWrapper>
+              </motion.div>
             </div>
           </div>
           
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-            <a href="#projects" aria-label="Scroll to projects">
-              <ArrowDownCircle className="w-10 h-10 text-barsky-blue" />
-            </a>
-          </div>
+          <FloatingElement yAmount={8} duration={2} className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block">
+            <BounceWrapper intensity="medium">
+              <a href="#projects" aria-label="Scroll to projects">
+                <ArrowDownCircle className="w-10 h-10 text-barsky-blue" />
+              </a>
+            </BounceWrapper>
+          </FloatingElement>
         </div>
       </div>
       
