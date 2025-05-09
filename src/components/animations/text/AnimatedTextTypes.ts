@@ -1,5 +1,5 @@
 
-export type AnimationType = "fade" | "bounce" | "wave" | "rainbow" | "typewriter";
+export type AnimationType = "fade" | "bounce" | "wave" | "rainbow" | "typewriter" | "glitch" | "blur" | "slide" | "flip" | "elastic";
 export type AnimationElementType = "block" | "character" | "word";
 
 export interface BaseAnimatedTextProps {
