@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownCircle } from "lucide-react";
@@ -41,7 +40,7 @@ const Hero: React.FC = () => {
                 tag="h2" 
                 className="text-xl sm:text-2xl font-semibold mb-3 text-barsky-text"
                 delay={500}
-                type="character"
+                type="word"
                 animation="bounce"
                 staggerChildren={0.05}
               />
@@ -50,7 +49,7 @@ const Hero: React.FC = () => {
                 tag="h1"
                 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
                 delay={700}
-                type="character"
+                type="word"
                 animation="bounce"
                 staggerChildren={0.1}
               />
