@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
   type CarouselApi
 } from "@/components/ui/carousel";
+import { Image } from "lucide-react";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -32,14 +33,6 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   const filteredExtraImages = extraImages.filter(img => img !== mainImage);
   const allImages = [mainImage, ...filteredExtraImages];
   
-  console.log("Carousel images:", { 
-    mainImage, 
-    originalExtraImages: extraImages,
-    filteredExtraImages,
-    allImages,
-    totalImages: allImages.length
-  });
-  
   // Use the api to track carousel position changes
   useEffect(() => {
     if (!api) return;
@@ -57,7 +50,6 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   }, [api]);
 
   const handleImageLoad = (index: number) => {
-    console.log(`Image ${index} loaded successfully:`, allImages[index]);
     setImagesLoaded(prev => ({...prev, [index]: true}));
   };
 
@@ -73,12 +65,37 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
     }
     return allImages[index];
   };
+  
+  // Generate descriptions for images
+  const getImageDescription = (index: number): string => {
+    if (index === 0) {
+      return "Main application view";
+    }
+    
+    // For Herbalink project, provide more specific descriptions
+    if (title === "Herbalink") {
+      const descriptions = [
+        "Main application view",
+        "Community and discussion forum",
+        "Herbal consultations booking screen",
+        "Find the perfect herbalist interface",
+        "Herb library detail page",
+        "Herb library main page"
+      ];
+      return descriptions[index] || `Additional screen of the ${title} application`;
+    }
+    
+    return `Additional screen of the ${title} application`;
+  };
 
   return (
     <div className="mb-12 space-y-4">
       {allImages.length === 0 ? (
         <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 flex items-center justify-center bg-gray-50 dark:bg-gray-900/30">
-          <p className="text-gray-400">No images available</p>
+          <div className="flex flex-col items-center text-gray-400">
+            <Image className="w-16 h-16 mb-2 opacity-30" />
+            <p>No images available</p>
+          </div>
         </div>
       ) : (
         <Carousel setApi={setApi} className="w-full">
@@ -109,9 +126,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
       
       {allImages.length > 0 && (
         <div className="text-center text-sm text-gray-500">
-          <span className="font-medium">{activeIndex + 1}/{allImages.length}:</span> {activeIndex === 0 ? 
-            "Main application view" : 
-            `Additional screen of the ${title} application`}
+          <span className="font-medium">{activeIndex + 1}/{allImages.length}:</span> {getImageDescription(activeIndex)}
         </div>
       )}
     </div>

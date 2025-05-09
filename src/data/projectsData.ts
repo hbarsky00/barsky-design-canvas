@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -31,12 +30,12 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Herbalink Wellness Technologies",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png",
-      "/lovable-uploads/a1c2b433-9e2c-4537-9b6f-2c731d84a9b7.png",
-      "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png",
-      "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
-      "/lovable-uploads/2e27159e-c598-4ad5-a539-7ae7b5d08ed6.png",
-      "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png"
+      "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
+      "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png",
+      "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
+      "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png",
+      "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png",
+      "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png"
     ],
     caseStudyLink: "https://hirambarsky.com/case-studies/herbalink"
   },
@@ -88,7 +87,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "Herbalink",
     description: "Mobile application connecting individuals with qualified herbalists for personalized natural health solutions.",
-    image: "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png",
+    image: "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
     tags: ["Mobile App", "Healthcare", "React Native"],
     link: "https://herbalink.live"
   },

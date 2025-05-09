@@ -33,21 +33,6 @@ const ProjectDetail: React.FC = () => {
         console.error(`Project details not found for ID: ${projectId}`);
       } else {
         setDetails(projectDetail);
-        
-        // Validate and log image paths
-        console.log("Project data loaded:", { 
-          project: foundProject, 
-          details: projectDetail,
-          mainImage: foundProject.image,
-          extraImages: projectDetail.extraImages || [],
-          // Check for duplicate main image in extraImages
-          hasDuplicateMainImage: projectDetail.extraImages?.includes(foundProject.image)
-        });
-        
-        // Check if any extraImages are the same as the main image
-        if (projectDetail.extraImages?.includes(foundProject.image)) {
-          console.warn("Main image is duplicated in extraImages array, it will be filtered out.");
-        }
       }
       
       // Track page view
@@ -94,20 +79,6 @@ const ProjectDetail: React.FC = () => {
         <section className="py-20">
           <div className="section-container">
             <ProjectHeader title={project.title} tags={project.tags} />
-            
-            {/* Add debugging info to see image paths */}
-            {process.env.NODE_ENV === 'development' && (
-              <div className="mb-4 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs">
-                <p><strong>Debug Info:</strong></p>
-                <p>Main image: {project.image}</p>
-                <p>Extra images: {details.extraImages.length}</p>
-                <ul className="ml-4 list-disc">
-                  {details.extraImages.map((img, i) => (
-                    <li key={i}>{img}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
             
             <ProjectImageCarousel 
               mainImage={project.image}
