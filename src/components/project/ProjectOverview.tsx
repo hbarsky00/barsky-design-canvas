@@ -2,7 +2,7 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import ContactForm from "@/components/contact/ContactForm";
 
 interface ProjectOverviewProps {
   fullDescription: string;
@@ -71,14 +71,18 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         {/* Case study button removed */}
       </div>
       
-      <div className="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-100">
-        <h3 className="text-lg font-medium text-barsky-dark mb-2">Need Similar Services?</h3>
-        <p className="text-barsky-text mb-3">
-          I offer professional UX/UI design and development services for both mobile and desktop applications. Let's create your next digital experience.
-        </p>
-        <Link to="/#contact" className="text-barsky-blue hover:underline font-medium inline-flex items-center">
-          Get in touch <ExternalLink className="ml-1 h-4 w-4" />
-        </Link>
+      <div className="mt-8">
+        <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+          <h3 className="text-xl font-semibold text-barsky-dark mb-3">Need Similar Services?</h3>
+          <p className="text-barsky-text mb-6">
+            I offer professional UX/UI design and development services for both mobile and desktop applications. Let's create your next digital experience.
+          </p>
+          
+          <div className="bg-white rounded-lg p-6 shadow-sm">
+            <h4 className="text-lg font-medium text-barsky-dark mb-4">Get In Touch</h4>
+            <ContactForm />
+          </div>
+        </div>
       </div>
     </div>
   );
