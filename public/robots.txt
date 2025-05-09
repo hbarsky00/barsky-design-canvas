@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://barskydesign.com/sitemap.xml
+Sitemap: https://hirambarsky.com/sitemap.xml
 
 # Specific rules for major crawlers
 User-agent: Googlebot
@@ -34,3 +34,11 @@ Allow: /
 # Crawl delay suggestion for heavy crawlers
 User-agent: *
 Crawl-delay: 10
+
+# Additional important search paths
+Allow: /services/
+Allow: /projects/
+Allow: /contact/
+Allow: /about/
+Allow: /portfolio/
+Allow: /design-services/

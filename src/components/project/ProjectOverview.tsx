@@ -26,7 +26,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Platform Compatibility</h2>
         <p className="text-barsky-text mb-4">
-          This application is designed to work seamlessly across both mobile and desktop platforms, providing a responsive and consistent user experience regardless of device.
+          This application is designed to work seamlessly across both mobile and desktop platforms, providing a responsive and consistent user experience regardless of device. Our cross-platform approach ensures accessibility on smartphones, tablets, laptops, and desktop computers.
         </p>
       </div>
       
@@ -47,6 +47,9 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           <li>User Research & Testing</li>
           <li>Design System Creation</li>
           <li>Cross-Platform Optimization</li>
+          <li>Mobile and Desktop Interface Design</li>
+          <li>User Flow Optimization</li>
+          <li>Accessibility Implementation</li>
         </ul>
       </div>
       
@@ -56,6 +59,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
             href={projectLink}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View the live project"
           >
             <Button className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors">
               View Live Project <ExternalLink className="ml-2 h-4 w-4" />
@@ -68,12 +72,23 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
             href={caseStudyLink}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View detailed case study"
           >
             <Button variant="outline" className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10">
               View Case Study <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </a>
         )}
+      </div>
+      
+      <div className="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-100">
+        <h3 className="text-lg font-medium text-barsky-dark mb-2">Need Similar Services?</h3>
+        <p className="text-barsky-text mb-3">
+          I offer professional UX/UI design and development services for both mobile and desktop applications. Let's create your next digital experience.
+        </p>
+        <a href="/#contact" className="text-barsky-blue hover:underline font-medium inline-flex items-center">
+          Get in touch <ExternalLink className="ml-1 h-4 w-4" />
+        </a>
       </div>
     </div>
   );

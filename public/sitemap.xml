@@ -9,7 +9,7 @@
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
   <url>
     <loc>https://hirambarsky.com/</loc>
-    <lastmod>2025-05-03</lastmod>
+    <lastmod>2025-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -19,7 +19,7 @@
   </url>
   <url>
     <loc>https://hirambarsky.com/projects</loc>
-    <lastmod>2025-05-03</lastmod>
+    <lastmod>2025-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -28,8 +28,36 @@
     </image:image>
   </url>
   <url>
+    <loc>https://hirambarsky.com/services</loc>
+    <lastmod>2025-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png</image:loc>
+      <image:title>Professional Design Services by Hiram Barsky</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hirambarsky.com/design-services/ux-ui-design</loc>
+    <lastmod>2025-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hirambarsky.com/design-services/web-development</loc>
+    <lastmod>2025-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hirambarsky.com/design-services/mobile-app-design</loc>
+    <lastmod>2025-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hirambarsky.com/project/splittime</loc>
-    <lastmod>2025-05-03</lastmod>
+    <lastmod>2025-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
