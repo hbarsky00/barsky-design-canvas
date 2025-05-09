@@ -11,19 +11,11 @@ import BounceWrapper from "./animations/BounceWrapper";
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
   
   useEffect(() => {
     // Delay to allow page to load
     const timer = setTimeout(() => {
       setIsVisible(true);
-      
-      // Show welcome message after main content appears
-      const welcomeTimer = setTimeout(() => {
-        setShowWelcomeMessage(true);
-      }, 2500);
-      
-      return () => clearTimeout(welcomeTimer);
     }, 100);
     
     return () => clearTimeout(timer);
@@ -38,45 +30,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Welcome bubble that appears after hero text */}
-      {showWelcomeMessage && (
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ 
-            scale: [0, 1.2, 1], 
-            opacity: 1,
-            y: [0, -10, 0]
-          }}
-          transition={{ 
-            duration: 0.5,
-            times: [0, 0.7, 1],
-            y: {
-              repeat: Infinity,
-              repeatType: "reverse",
-              duration: 2,
-              delay: 0.5
-            }
-          }}
-          className="absolute top-1/4 right-[15%] z-20 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-xl shadow-lg max-w-[200px] transform -translate-y-full"
-        >
-          <div className="relative">
-            <p className="text-barsky-dark text-sm font-medium">
-              Welcome to my portfolio! Scroll down to see my work.
-            </p>
-            <div className="absolute -bottom-2 right-1/2 transform translate-x-1/2 rotate-45 w-4 h-4 bg-white/90"></div>
-            
-            <ShakeElement 
-              interval={5000} 
-              intensity="subtle"
-              className="absolute -top-3 -right-3"
-            >
-              <span className="h-5 w-5 flex items-center justify-center rounded-full bg-barsky-blue text-white text-xs">
-                !
-              </span>
-            </ShakeElement>
-          </div>
-        </motion.div>
-      )}
+      {/* Welcome bubble removed */}
       
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center md:text-left">
