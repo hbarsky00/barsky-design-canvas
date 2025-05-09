@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -57,7 +58,9 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Barsky Joint Food Truck",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/placeholder.svg"
+      "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+      "/lovable-uploads/d7198f1c-cc71-40f9-ae5c-c586ea92918b.png",
+      "/lovable-uploads/bebd5718-47dc-4238-ab61-d1892611d24e.png"
     ],
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },

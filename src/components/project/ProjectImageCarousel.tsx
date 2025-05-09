@@ -72,7 +72,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
       return "Main application view";
     }
     
-    // For Herbalink project, provide more specific descriptions
+    // For Herbalink project, provide specific descriptions
     if (title === "Herbalink") {
       const descriptions = [
         "Main application view",
@@ -83,6 +83,18 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
         "Herb library main page"
       ];
       return descriptions[index] || `Additional screen of the ${title} application`;
+    }
+    
+    // For Barsky Joint Food Truck project, provide specific descriptions
+    if (title === "Barsky Joint Food Truck") {
+      const descriptions = [
+        "Main application view",
+        "Cart screen with food items",
+        "Bacon Chicken Cheese Special detail screen",
+        "Menu browsing interface",
+        "Order customization screen"
+      ];
+      return descriptions[index] || `Food item from ${title}`;
     }
     
     return `Additional screen of the ${title} application`;
