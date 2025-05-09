@@ -91,8 +91,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   return (
     <div className="mb-12 space-y-4">
       {allImages.length === 0 ? (
-        <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 flex items-center justify-center bg-gray-50 dark:bg-gray-900/30">
-          <div className="flex flex-col items-center text-gray-400">
+        <div className="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 flex items-center justify-center bg-gray-50 dark:bg-gray-900/30">
+          <div className="flex flex-col items-center text-gray-400 py-8">
             <Image className="w-16 h-16 mb-2 opacity-30" />
             <p>No images available</p>
           </div>
@@ -102,11 +102,11 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           <CarouselContent>
             {allImages.map((img, index) => (
               <CarouselItem key={index}>
-                <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+                <div className="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
                   <img 
                     src={getImageSrc(index)} 
                     alt={`${title} - screenshot ${index + 1}`} 
-                    className="w-full h-full object-contain bg-gray-50 dark:bg-gray-900/30" 
+                    className="w-full object-contain bg-gray-50 dark:bg-gray-900/30" 
                     loading="lazy"
                     onLoad={() => handleImageLoad(index)}
                     onError={() => handleImageError(index)}
