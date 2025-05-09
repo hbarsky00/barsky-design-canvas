@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -47,7 +46,10 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Gold 2 Crypto Services",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/placeholder.svg"
+      "/lovable-uploads/24032530-c712-4fff-9236-3975170ee6e6.png",
+      "/lovable-uploads/ddd4793c-96fd-4af4-a35a-6ee17e1ad879.png",
+      "/lovable-uploads/8ad63858-b980-4021-af95-772475a451b5.png",
+      "/lovable-uploads/f859dde1-e2bb-4777-a2cd-293d24d4d865.png"
     ],
     caseStudyLink: "https://hirambarsky.com/case-studies/gold2crypto"
   },

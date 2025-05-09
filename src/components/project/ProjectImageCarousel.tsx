@@ -97,6 +97,18 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
       return descriptions[index] || `Food item from ${title}`;
     }
     
+    // For Gold 2 Crypto Services project, provide specific descriptions
+    if (title === "Gold 2 Crypto Services") {
+      const descriptions = [
+        "Main application view",
+        "Portfolio dashboard showing investment tracking",
+        "Trading interface with real-time chart data",
+        "Market overview with cryptocurrency listings",
+        "Dashboard with portfolio summary and asset distribution"
+      ];
+      return descriptions[index] || `Trading platform screen from ${title}`;
+    }
+    
     return `Additional screen of the ${title} application`;
   };
 
