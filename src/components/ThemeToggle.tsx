@@ -1,7 +1,6 @@
 
 import React, { useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +24,6 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ className }) => {
       aria-label="Light mode"
       onClick={() => setTheme("light")}
     >
-      <Sun className="h-5 w-5" />
       <span className="sr-only">Light mode</span>
     </Button>
   );
