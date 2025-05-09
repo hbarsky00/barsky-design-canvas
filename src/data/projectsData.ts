@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -88,7 +89,7 @@ export const projectsData: ProjectProps[] = [
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
     image: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
-    tags: ["Mobile App", "React Native", "Firebase"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "React Native"],
     link: "https://splittime.pro/"
   },
   {
@@ -96,7 +97,7 @@ export const projectsData: ProjectProps[] = [
     title: "Herbalink",
     description: "Mobile application connecting individuals with qualified herbalists for personalized natural health solutions.",
     image: "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
-    tags: ["Mobile App", "Healthcare", "React Native"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Healthcare"],
     link: "https://herbalink.live"
   },
   {
@@ -104,7 +105,7 @@ export const projectsData: ProjectProps[] = [
     title: "Gold 2 Crypto Services",
     description: "Trading platform bridging traditional gold investments with cryptocurrency markets.",
     image: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-    tags: ["Web App", "Trading", "Crypto", "Finance"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Web App", "Trading", "Crypto"],
     link: "https://gold2.gold/"
   },
   {
@@ -112,7 +113,7 @@ export const projectsData: ProjectProps[] = [
     title: "Barsky Joint Food Truck",
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
     image: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-    tags: ["Mobile App", "Food Service", "E-Commerce"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Food Service"],
     link: "https://barskyjoint.biz/"
   },
   {
@@ -120,7 +121,7 @@ export const projectsData: ProjectProps[] = [
     title: "Spectrum Apparel Co.",
     description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
     image: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
-    tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Web App", "E-Commerce", "Accessibility"],
     link: "https://supersha.store"
   }
 ];
