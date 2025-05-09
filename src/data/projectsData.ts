@@ -73,7 +73,10 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Spectrum Apparel Co.",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/placeholder.svg"
+      "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
+      "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png",
+      "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png",
+      "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png"
     ],
     caseStudyLink: "https://hirambarsky.com/case-studies/spectrum"
   }
@@ -116,7 +119,7 @@ export const projectsData: ProjectProps[] = [
     id: "spectrum",
     title: "Spectrum Apparel Co.",
     description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
-    image: "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png",
+    image: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
     tags: ["Web App", "E-Commerce", "Design Tool", "Accessibility"],
     link: "https://supersha.store"
   }

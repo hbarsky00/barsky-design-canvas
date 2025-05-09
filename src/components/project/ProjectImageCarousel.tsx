@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { 
   Carousel,
@@ -106,6 +107,17 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
         "Dashboard with portfolio summary and asset distribution"
       ];
       return descriptions[index] || `Trading platform screen from ${title}`;
+    }
+    
+    // For Spectrum Apparel Co. project, provide specific descriptions
+    if (title === "Spectrum Apparel Co.") {
+      const descriptions = [
+        "Main shop page with product categories",
+        "Shopping cart overview with order summary",
+        "Autism Expression Collection featuring sensory-friendly apparel",
+        "Collection of autism awareness clothing with descriptive titles"
+      ];
+      return descriptions[index] || `E-commerce screen from ${title}`;
     }
     
     return `Additional screen of the ${title} application`;
