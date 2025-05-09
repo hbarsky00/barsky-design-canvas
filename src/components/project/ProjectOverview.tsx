@@ -1,8 +1,7 @@
 
 import React from "react";
-import { ExternalLink, FileText } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "react-router-dom";
 
 interface ProjectOverviewProps {
   fullDescription: string;
@@ -14,8 +13,7 @@ interface ProjectOverviewProps {
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
   fullDescription, 
   technologies,
-  projectLink,
-  caseStudyLink
+  projectLink
 }) => {
   return (
     <div>
@@ -52,21 +50,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           >
             <Button className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors">
               View Live Project <ExternalLink className="ml-2 h-4 w-4" />
-            </Button>
-          </a>
-        )}
-        
-        {caseStudyLink && (
-          <a
-            href={caseStudyLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button 
-              variant="outline"
-              className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10"
-            >
-              View UX Design Case Study <FileText className="ml-2 h-4 w-4" />
             </Button>
           </a>
         )}
