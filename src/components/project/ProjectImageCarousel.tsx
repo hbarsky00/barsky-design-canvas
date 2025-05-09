@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { 
   Carousel,
@@ -127,14 +126,16 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
             {allImages.map((img, index) => (
               <CarouselItem key={index}>
                 <div className="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
-                  <img 
-                    src={getImageSrc(index)} 
-                    alt={`${title} - screenshot ${index + 1}`} 
-                    className="w-full object-contain bg-gray-50 dark:bg-gray-900/30" 
-                    loading="lazy"
-                    onLoad={() => handleImageLoad(index)}
-                    onError={() => handleImageError(index)}
-                  />
+                  <div className="flex justify-center bg-gray-50 dark:bg-gray-900/30">
+                    <img 
+                      src={getImageSrc(index)} 
+                      alt={`${title} - screenshot ${index + 1}`} 
+                      className="max-h-[600px] w-auto object-contain"
+                      loading="lazy"
+                      onLoad={() => handleImageLoad(index)}
+                      onError={() => handleImageError(index)}
+                    />
+                  </div>
                 </div>
               </CarouselItem>
             ))}
