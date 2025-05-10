@@ -80,7 +80,7 @@ const ContactForm: React.FC = () => {
   
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="bg-barsky-bg-light dark:bg-gray-800 p-8 rounded-lg shadow-sm">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
         <FormField
           control={form.control}
           name="name"
