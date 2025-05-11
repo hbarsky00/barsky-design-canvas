@@ -38,7 +38,7 @@ const About: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-barsky-dark">Professional Experience</h3>
-                  <p className="text-sm text-barsky-text-light">8+ years in product design</p>
+                  <p className="text-sm text-barsky-text-light">12+ years in product design</p>
                 </div>
               </div>
               
