@@ -1,9 +1,9 @@
-
-import React from "react";
-import { ExternalLink, FileText, List, Award } from "lucide-react";
+import React, { useState } from "react";
+import { ExternalLink, FileText, List, Award, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactForm from "@/components/contact/ContactForm";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import ImageMaximizer from "./ImageMaximizer";
 
 interface ProjectOverviewProps {
   challenge: string;
@@ -27,18 +27,37 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   processImage,
   resultImage,
 }) => {
+  const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
+  const [maximizedTitle, setMaximizedTitle] = useState("");
+  
+  const handleImageClick = (image: string, title: string) => {
+    setMaximizedImage(image);
+    setMaximizedTitle(title);
+  };
+  
+  const handleCloseMaximizer = () => {
+    setMaximizedImage(null);
+    setMaximizedTitle("");
+  };
+  
   return (
     <div>
       <div className="mb-8">
         {challengeImage && (
-          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
             <AspectRatio ratio={16 / 9} className="bg-gray-100">
               <img 
                 src={challengeImage} 
                 alt="Challenge illustration" 
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
                 loading="lazy"
+                onClick={() => handleImageClick(challengeImage, "The Challenge")}
               />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="bg-black/50 p-2 rounded-full">
+                  <Maximize className="h-6 w-6 text-white" />
+                </div>
+              </div>
             </AspectRatio>
           </div>
         )}
@@ -53,14 +72,20 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       
       <div className="mb-8">
         {processImage && (
-          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
             <AspectRatio ratio={16 / 9} className="bg-gray-100">
               <img 
                 src={processImage} 
                 alt="Process illustration" 
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
                 loading="lazy"
+                onClick={() => handleImageClick(processImage, "What I Did")}
               />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="bg-black/50 p-2 rounded-full">
+                  <Maximize className="h-6 w-6 text-white" />
+                </div>
+              </div>
             </AspectRatio>
           </div>
         )}
@@ -75,14 +100,20 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       
       <div className="mb-8">
         {resultImage && (
-          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
             <AspectRatio ratio={16 / 9} className="bg-gray-100">
               <img 
                 src={resultImage} 
                 alt="Result illustration" 
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
                 loading="lazy"
+                onClick={() => handleImageClick(resultImage, "The Result")}
               />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="bg-black/50 p-2 rounded-full">
+                  <Maximize className="h-6 w-6 text-white" />
+                </div>
+              </div>
             </AspectRatio>
           </div>
         )}
@@ -94,6 +125,16 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           {result}
         </p>
       </div>
+      
+      {/* Image Maximizer Component */}
+      {maximizedImage && (
+        <ImageMaximizer
+          image={maximizedImage}
+          title={maximizedTitle}
+          isOpen={!!maximizedImage}
+          onClose={handleCloseMaximizer}
+        />
+      )}
       
       <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Technologies Used</h2>
       <div className="flex flex-wrap gap-2 mb-8">
