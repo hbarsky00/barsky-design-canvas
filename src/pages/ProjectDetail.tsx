@@ -83,7 +83,7 @@ const ProjectDetail: React.FC = () => {
             <ProjectImageCarousel 
               mainImage={project.image}
               title={project.title}
-              extraImages={details.extraImages || []}
+              extraImages={[]} // We're simplifying by not passing extra images
             />
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
