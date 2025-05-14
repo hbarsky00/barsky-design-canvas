@@ -19,7 +19,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   result,
   technologies,
   projectLink,
-  caseStudyLink
 }) => {
   return (
     <div>
@@ -93,19 +92,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           >
             <Button className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors">
               View Live Project <ExternalLink className="ml-2 h-4 w-4" />
-            </Button>
-          </a>
-        )}
-        
-        {caseStudyLink && (
-          <a
-            href={caseStudyLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Read case study"
-          >
-            <Button variant="outline" className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10 transition-colors">
-              Read Case Study <FileText className="ml-2 h-4 w-4" />
             </Button>
           </a>
         )}
