@@ -83,13 +83,13 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Barsky Joint Food Truck",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-      "/lovable-uploads/d7198f1c-cc71-40f9-ae5c-c586ea92918b.png",
-      "/lovable-uploads/bebd5718-47dc-4238-ab61-d1892611d24e.png"
+      "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png",
+      "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
+      "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
     ],
-    challengeImage: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-    processImage: "/lovable-uploads/d7198f1c-cc71-40f9-ae5c-c586ea92918b.png",
-    resultImage: "/lovable-uploads/bebd5718-47dc-4238-ab61-d1892611d24e.png",
+    challengeImage: "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png",
+    processImage: "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
+    resultImage: "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },
   "spectrum": {
@@ -142,7 +142,7 @@ export const projectsData: ProjectProps[] = [
     id: "barskyjoint",
     title: "Barsky Joint Food Truck",
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
-    image: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+    image: "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Food Service"],
     link: "https://barskyjoint.biz/"
   },
