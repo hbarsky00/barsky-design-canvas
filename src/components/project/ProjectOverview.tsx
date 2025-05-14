@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { ExternalLink, FileText, List, Award, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ interface ProjectOverviewProps {
   challengeImage?: string;
   processImage?: string;
   resultImage?: string;
+  imageCaptions?: Record<string, string>;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -26,6 +28,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   challengeImage,
   processImage,
   resultImage,
+  imageCaptions = {}
 }) => {
   const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
   const [maximizedTitle, setMaximizedTitle] = useState("");
@@ -44,7 +47,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
     <div>
       <div className="mb-8">
         {challengeImage && (
-          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
+          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
             <AspectRatio ratio={16 / 9} className="bg-gray-100">
               <img 
                 src={challengeImage} 
@@ -61,6 +64,11 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
             </AspectRatio>
           </div>
         )}
+        {challengeImage && imageCaptions && imageCaptions[challengeImage] && (
+          <div className="mb-4 text-sm text-gray-600 italic text-center">
+            {imageCaptions[challengeImage]}
+          </div>
+        )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
           <FileText className="h-6 w-6 mr-2 text-barsky-blue" />
           The Challenge
@@ -72,7 +80,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       
       <div className="mb-8">
         {processImage && (
-          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
+          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
             <AspectRatio ratio={16 / 9} className="bg-gray-100">
               <img 
                 src={processImage} 
@@ -89,6 +97,11 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
             </AspectRatio>
           </div>
         )}
+        {processImage && imageCaptions && imageCaptions[processImage] && (
+          <div className="mb-4 text-sm text-gray-600 italic text-center">
+            {imageCaptions[processImage]}
+          </div>
+        )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
           <List className="h-6 w-6 mr-2 text-barsky-blue" />
           What I Did
@@ -100,7 +113,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       
       <div className="mb-8">
         {resultImage && (
-          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
+          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
             <AspectRatio ratio={16 / 9} className="bg-gray-100">
               <img 
                 src={resultImage} 
@@ -115,6 +128,11 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
                 </div>
               </div>
             </AspectRatio>
+          </div>
+        )}
+        {resultImage && imageCaptions && imageCaptions[resultImage] && (
+          <div className="mb-4 text-sm text-gray-600 italic text-center">
+            {imageCaptions[resultImage]}
           </div>
         )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">

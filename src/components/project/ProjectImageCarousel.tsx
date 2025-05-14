@@ -8,13 +8,15 @@ interface ProjectImageCarouselProps {
   title: string;
   extraImages?: string[];
   onImageClick?: (image: string, title: string) => void;
+  captions?: Record<string, string>;
 }
 
 const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   mainImage,
   title,
   extraImages = [],
-  onImageClick
+  onImageClick,
+  captions = {}
 }) => {
   const allImages = [mainImage, ...extraImages];
   
@@ -42,6 +44,11 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
               </div>
             </div>
           </AspectRatio>
+          {captions && captions[allImages[0]] && (
+            <div className="mt-2 text-sm text-gray-600 italic text-center">
+              {captions[allImages[0]]}
+            </div>
+          )}
         </div>
       )}
       
@@ -63,6 +70,11 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
                   </div>
                 </div>
               </AspectRatio>
+              {captions && captions[image] && (
+                <div className="mt-1 text-sm text-gray-600 italic text-center line-clamp-2">
+                  {captions[image]}
+                </div>
+              )}
             </div>
           ))}
         </div>
