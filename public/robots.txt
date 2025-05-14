@@ -38,6 +38,7 @@ Crawl-delay: 10
 # Additional important search paths
 Allow: /services/
 Allow: /projects/
+Allow: /project/
 Allow: /contact/
 Allow: /about/
 Allow: /portfolio/
