@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -10,6 +11,7 @@ import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectSidebar from "@/components/project/ProjectSidebar";
 import { projectsData, projectDetails, type ProjectDetails } from "@/data/projectsData";
 import { trackPageView } from "@/lib/analytics";
+import ImageMaximizer from "@/components/project/ImageMaximizer";
 
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -17,6 +19,8 @@ const ProjectDetail: React.FC = () => {
   const [project, setProject] = useState<typeof projectsData[0] | null>(null);
   const [details, setDetails] = useState<ProjectDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
+  const [maximizedTitle, setMaximizedTitle] = useState("");
   
   useEffect(() => {
     // Reset loading state when project ID changes
@@ -44,6 +48,16 @@ const ProjectDetail: React.FC = () => {
     
     setIsLoading(false);
   }, [projectId, navigate]);
+  
+  const handleImageClick = (image: string, title: string) => {
+    setMaximizedImage(image);
+    setMaximizedTitle(title);
+  };
+  
+  const handleCloseMaximizer = () => {
+    setMaximizedImage(null);
+    setMaximizedTitle("");
+  };
   
   if (isLoading || !project || !details) {
     return (
@@ -83,7 +97,8 @@ const ProjectDetail: React.FC = () => {
             <ProjectImageCarousel 
               mainImage={project.image}
               title={project.title}
-              extraImages={[]} 
+              extraImages={[]}
+              onImageClick={handleImageClick}
             />
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -117,6 +132,16 @@ const ProjectDetail: React.FC = () => {
                 image: p.image
               }))} 
             />
+            
+            {/* Image Maximizer Component */}
+            {maximizedImage && (
+              <ImageMaximizer
+                image={maximizedImage}
+                title={maximizedTitle}
+                isOpen={!!maximizedImage}
+                onClose={handleCloseMaximizer}
+              />
+            )}
           </div>
         </section>
       </main>
