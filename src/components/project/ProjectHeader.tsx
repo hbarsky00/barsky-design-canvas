@@ -31,10 +31,10 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
         <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://barskydesign.com/images/portfolio-preview.png" />
+        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta name="twitter:title" content={`${title} | Hiram Barsky Portfolio`} />
         <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development`} />
-        <meta name="twitter:image" content="https://barskydesign.com/images/portfolio-preview.png" />
+        <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Structured data for project */}
@@ -50,7 +50,8 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
               },
               "keywords": "${tags.join(', ')}",
               "url": "${canonicalUrl}",
-              "description": "${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky"
+              "description": "${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky",
+              "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"
             }
           `}
         </script>

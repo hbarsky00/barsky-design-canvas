@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -118,11 +117,11 @@ const ProjectDetail: React.FC = () => {
         <meta name="description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
         <meta property="og:title" content={`${project.title} | Hiram Barsky Portfolio`} />
         <meta property="og:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
-        <meta property="og:image" content={project.image} />
+        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta property="og:url" content={`https://hirambarsky.com/project/${projectId}`} />
         <meta name="twitter:title" content={`${project.title} | Hiram Barsky Portfolio`} />
         <meta name="twitter:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design`} />
-        <meta name="twitter:image" content={project.image} />
+        <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
       </Helmet>
       
       <Header />

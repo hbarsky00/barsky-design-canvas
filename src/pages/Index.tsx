@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -36,13 +37,13 @@ const Index = () => {
         <meta name="keywords" content="UI design, UX design, web development, website design, app design, mobile app, UX/UI consultation, product designer, design systems, user research, New York designer" />
         <meta property="og:title" content="Hiram Barsky | Product Designer & Developer" />
         <meta property="og:description" content="Professional Product Design and Development services. Specializing in website design, app design, and UX/UI consultation." />
-        <meta property="og:image" content="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta property="og:url" content="https://hirambarsky.com/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Hiram Barsky | Product Designer & Developer" />
         <meta name="twitter:description" content="Professional Product Design and Development services." />
-        <meta name="twitter:image" content="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <link rel="canonical" href="https://hirambarsky.com/" />
         
         {/* Structured data for better SEO */}
@@ -52,7 +53,7 @@ const Index = () => {
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               "name": "Hiram Barsky Product Design",
-              "image": "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+              "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9",
               "url": "https://hirambarsky.com",
               "telephone": "+1-201-668-4754",
               "address": {
