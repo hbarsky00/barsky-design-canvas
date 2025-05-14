@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -80,10 +79,11 @@ const ProjectDetail: React.FC = () => {
           <div className="section-container">
             <ProjectHeader title={project.title} tags={project.tags} />
             
+            {/* Keeping the component but not displaying the main image */}
             <ProjectImageCarousel 
               mainImage={project.image}
               title={project.title}
-              extraImages={[]} // We're simplifying by not passing extra images
+              extraImages={[]} 
             />
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
