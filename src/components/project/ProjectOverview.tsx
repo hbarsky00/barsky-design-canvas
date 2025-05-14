@@ -52,13 +52,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         </p>
       </div>
       
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Platform Compatibility</h2>
-        <p className="text-barsky-text mb-4">
-          This application is designed to work seamlessly across both mobile and desktop platforms, providing a responsive and consistent user experience regardless of device. Our cross-platform approach ensures accessibility on smartphones, tablets, laptops, and desktop computers.
-        </p>
-      </div>
-      
       <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Technologies Used</h2>
       <div className="flex flex-wrap gap-2 mb-8">
         {technologies.map((tech) => (
