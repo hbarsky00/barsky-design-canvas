@@ -94,7 +94,9 @@ const ProjectDetail: React.FC = () => {
                   result={details.result}
                   technologies={details.technologies}
                   projectLink={project.link}
-                  caseStudyLink={details.caseStudyLink}
+                  challengeImage={details.challengeImage}
+                  processImage={details.processImage}
+                  resultImage={details.resultImage}
                 />
               </div>
               

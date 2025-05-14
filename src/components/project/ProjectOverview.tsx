@@ -3,6 +3,7 @@ import React from "react";
 import { ExternalLink, FileText, List, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactForm from "@/components/contact/ContactForm";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface ProjectOverviewProps {
   challenge: string;
@@ -11,6 +12,9 @@ interface ProjectOverviewProps {
   technologies: string[];
   projectLink?: string;
   caseStudyLink?: string;
+  challengeImage?: string;
+  processImage?: string;
+  resultImage?: string;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -19,10 +23,25 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   result,
   technologies,
   projectLink,
+  challengeImage,
+  processImage,
+  resultImage,
 }) => {
   return (
     <div>
       <div className="mb-8">
+        {challengeImage && (
+          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+            <AspectRatio ratio={16 / 9} className="bg-gray-100">
+              <img 
+                src={challengeImage} 
+                alt="Challenge illustration" 
+                className="object-cover w-full h-full"
+                loading="lazy"
+              />
+            </AspectRatio>
+          </div>
+        )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
           <FileText className="h-6 w-6 mr-2 text-barsky-blue" />
           The Challenge
@@ -33,6 +52,18 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       </div>
       
       <div className="mb-8">
+        {processImage && (
+          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+            <AspectRatio ratio={16 / 9} className="bg-gray-100">
+              <img 
+                src={processImage} 
+                alt="Process illustration" 
+                className="object-cover w-full h-full"
+                loading="lazy"
+              />
+            </AspectRatio>
+          </div>
+        )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
           <List className="h-6 w-6 mr-2 text-barsky-blue" />
           What I Did
@@ -43,6 +74,18 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       </div>
       
       <div className="mb-8">
+        {resultImage && (
+          <div className="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+            <AspectRatio ratio={16 / 9} className="bg-gray-100">
+              <img 
+                src={resultImage} 
+                alt="Result illustration" 
+                className="object-cover w-full h-full"
+                loading="lazy"
+              />
+            </AspectRatio>
+          </div>
+        )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
           <Award className="h-6 w-6 mr-2 text-barsky-blue" />
           The Result
