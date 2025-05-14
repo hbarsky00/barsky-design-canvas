@@ -28,7 +28,7 @@ const Pricing = () => {
                   <PenLine className="w-5 h-5 text-barsky-blue" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-barsky-dark">UX/UI Design</h4>
+                  <h4 className="font-semibold text-barsky-dark">Product Design</h4>
                   <p className="text-slate-600 text-sm">Crafting user-centered interfaces with meticulous attention to detail, ensuring intuitive navigation and delightful interactions.</p>
                 </div>
               </div>
