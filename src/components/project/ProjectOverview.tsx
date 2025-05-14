@@ -1,28 +1,57 @@
 
 import React from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, FileText, List, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactForm from "@/components/contact/ContactForm";
 
 interface ProjectOverviewProps {
-  fullDescription: string;
+  challenge: string;
+  process: string;
+  result: string;
   technologies: string[];
   projectLink?: string;
   caseStudyLink?: string;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
-  fullDescription, 
+  challenge, 
+  process, 
+  result,
   technologies,
   projectLink,
   caseStudyLink
 }) => {
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Overview</h2>
-      <p className="text-barsky-text mb-8 leading-relaxed">
-        {fullDescription}
-      </p>
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
+          <FileText className="h-6 w-6 mr-2 text-barsky-blue" />
+          The Challenge
+        </h2>
+        <p className="text-barsky-text mb-6 leading-relaxed">
+          {challenge}
+        </p>
+      </div>
+      
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
+          <List className="h-6 w-6 mr-2 text-barsky-blue" />
+          What I Did
+        </h2>
+        <p className="text-barsky-text mb-6 leading-relaxed">
+          {process}
+        </p>
+      </div>
+      
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
+          <Award className="h-6 w-6 mr-2 text-barsky-blue" />
+          The Result
+        </h2>
+        <p className="text-barsky-text mb-6 leading-relaxed">
+          {result}
+        </p>
+      </div>
       
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Platform Compatibility</h2>
@@ -68,7 +97,18 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           </a>
         )}
         
-        {/* Case study button removed */}
+        {caseStudyLink && (
+          <a
+            href={caseStudyLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read case study"
+          >
+            <Button variant="outline" className="border-barsky-blue text-barsky-blue hover:bg-barsky-blue/10 transition-colors">
+              Read Case Study <FileText className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
+        )}
       </div>
       
       <div className="mt-8">

@@ -89,7 +89,9 @@ const ProjectDetail: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="col-span-2">
                 <ProjectOverview 
-                  fullDescription={details.fullDescription}
+                  challenge={details.challenge}
+                  process={details.process}
+                  result={details.result}
                   technologies={details.technologies}
                   projectLink={project.link}
                   caseStudyLink={details.caseStudyLink}
