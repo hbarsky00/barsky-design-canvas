@@ -1,14 +1,7 @@
 
-import React, { useState, useEffect } from "react";
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi
-} from "@/components/ui/carousel";
+import React, { useState } from "react";
 import { Image } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -25,32 +18,14 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   extraImages 
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [api, setApi] = useState<CarouselApi | null>(null);
-  const [imagesLoaded, setImagesLoaded] = useState<Record<number, boolean>>({});
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   
   // Filter out main image from extraImages if it's duplicated
   const filteredExtraImages = extraImages.filter(img => img !== mainImage);
   const allImages = [mainImage, ...filteredExtraImages];
   
-  // Use the api to track carousel position changes
-  useEffect(() => {
-    if (!api) return;
-    
-    const handleSelect = () => {
-      setActiveIndex(api.selectedScrollSnap());
-    };
-    
-    api.on("select", handleSelect);
-    
-    // Cleanup
-    return () => {
-      api.off("select", handleSelect);
-    };
-  }, [api]);
-
-  const handleImageLoad = (index: number) => {
-    setImagesLoaded(prev => ({...prev, [index]: true}));
+  const handleImageClick = (index: number) => {
+    setActiveIndex(index);
   };
 
   const handleImageError = (index: number) => {
@@ -133,32 +108,46 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           </div>
         </div>
       ) : (
-        <Carousel setApi={setApi} className="w-full">
-          <CarouselContent>
-            {allImages.map((img, index) => (
-              <CarouselItem key={index}>
-                <div className="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
-                  <div className="flex justify-center bg-gray-50 dark:bg-gray-900/30">
+        <div className="w-full">
+          <div className="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+            <div className="flex justify-center bg-gray-50 dark:bg-gray-900/30">
+              <img 
+                src={getImageSrc(activeIndex)} 
+                alt={`${title} - screenshot ${activeIndex + 1}`} 
+                className="max-h-[600px] w-auto object-contain"
+                loading="lazy"
+                onError={() => handleImageError(activeIndex)}
+              />
+            </div>
+          </div>
+          
+          {allImages.length > 1 && (
+            <div className="mt-4 flex flex-wrap gap-2 justify-center">
+              {allImages.map((img, index) => (
+                <button 
+                  key={index}
+                  onClick={() => handleImageClick(index)}
+                  className={`w-16 h-16 rounded-md overflow-hidden border-2 transition-all ${
+                    activeIndex === index 
+                      ? 'border-barsky-blue' 
+                      : 'border-gray-200 dark:border-gray-800'
+                  }`}
+                  aria-label={`View ${getImageDescription(index)}`}
+                >
+                  <AspectRatio ratio={1}>
                     <img 
                       src={getImageSrc(index)} 
-                      alt={`${title} - screenshot ${index + 1}`} 
-                      className="max-h-[600px] w-auto object-contain"
+                      alt={`${title} thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
                       loading="lazy"
-                      onLoad={() => handleImageLoad(index)}
                       onError={() => handleImageError(index)}
                     />
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          {allImages.length > 1 && (
-            <>
-              <CarouselPrevious className="left-4" />
-              <CarouselNext className="right-4" />
-            </>
+                  </AspectRatio>
+                </button>
+              ))}
+            </div>
           )}
-        </Carousel>
+        </div>
       )}
       
       {allImages.length > 0 && (
