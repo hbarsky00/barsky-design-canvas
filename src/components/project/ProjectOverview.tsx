@@ -14,8 +14,6 @@ interface ProjectOverviewProps {
   projectLink?: string;
   caseStudyLink?: string;
   challengeImage?: string;
-  processImage?: string;
-  resultImage?: string;
   imageCaptions?: Record<string, string>;
 }
 
@@ -26,8 +24,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   technologies,
   projectLink,
   challengeImage,
-  processImage,
-  resultImage,
   imageCaptions = {}
 }) => {
   const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
@@ -79,29 +75,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       </div>
       
       <div className="mb-8">
-        {processImage && (
-          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
-            <AspectRatio ratio={16 / 9} className="bg-gray-100">
-              <img 
-                src={processImage} 
-                alt="Process illustration" 
-                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
-                loading="lazy"
-                onClick={() => handleImageClick(processImage, "What I Did")}
-              />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-black/50 p-2 rounded-full">
-                  <Maximize className="h-6 w-6 text-white" />
-                </div>
-              </div>
-            </AspectRatio>
-          </div>
-        )}
-        {processImage && imageCaptions && imageCaptions[processImage] && (
-          <div className="mb-4 text-sm text-gray-600 italic text-center">
-            {imageCaptions[processImage]}
-          </div>
-        )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
           <List className="h-6 w-6 mr-2 text-barsky-blue" />
           What I Did
@@ -112,29 +85,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       </div>
       
       <div className="mb-8">
-        {resultImage && (
-          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
-            <AspectRatio ratio={16 / 9} className="bg-gray-100">
-              <img 
-                src={resultImage} 
-                alt="Result illustration" 
-                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
-                loading="lazy"
-                onClick={() => handleImageClick(resultImage, "The Result")}
-              />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-black/50 p-2 rounded-full">
-                  <Maximize className="h-6 w-6 text-white" />
-                </div>
-              </div>
-            </AspectRatio>
-          </div>
-        )}
-        {resultImage && imageCaptions && imageCaptions[resultImage] && (
-          <div className="mb-4 text-sm text-gray-600 italic text-center">
-            {imageCaptions[resultImage]}
-          </div>
-        )}
         <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
           <Award className="h-6 w-6 mr-2 text-barsky-blue" />
           The Result

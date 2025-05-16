@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import ProjectHeader from "@/components/project/ProjectHeader";
-import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
 import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectSidebar from "@/components/project/ProjectSidebar";
 import { projectsData, projectDetails, type ProjectDetails } from "@/data/projectsData";
@@ -111,9 +110,6 @@ const ProjectDetail: React.FC = () => {
   // Get captions for current project
   const currentProjectCaptions = projectImageCaptions[projectId || ""] || {};
   
-  // Check if the current project is Herbalink
-  const isHerbalink = projectId === "herbalink";
-  
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
@@ -134,17 +130,6 @@ const ProjectDetail: React.FC = () => {
           <div className="section-container">
             <ProjectHeader title={project.title} tags={project.tags} />
             
-            {/* Show ProjectImageCarousel for all projects EXCEPT Herbalink */}
-            {!isHerbalink && (
-              <ProjectImageCarousel 
-                mainImage={project.image}
-                title={project.title}
-                extraImages={[]}
-                onImageClick={handleImageClick}
-                captions={currentProjectCaptions}
-              />
-            )}
-            
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="col-span-2">
                 <ProjectOverview 
@@ -154,8 +139,6 @@ const ProjectDetail: React.FC = () => {
                   technologies={details.technologies}
                   projectLink={project.link}
                   challengeImage={details.challengeImage}
-                  processImage={details.processImage}
-                  resultImage={details.resultImage}
                   imageCaptions={currentProjectCaptions}
                 />
               </div>
