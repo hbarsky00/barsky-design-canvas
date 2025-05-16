@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -34,13 +35,13 @@ export const projectDetails: Record<string, ProjectDetails> = {
     caseStudyLink: "https://hirambarsky.com/case-studies/splittime"
   },
   "herbalink": {
-    challenge: "Separated parents face significant challenges in coordinating childcare responsibilities, often leading to miscommunication, scheduling conflicts, and increased tension. Traditional communication methods like text messages and emails can exacerbate these issues, especially when co-parenting relationships are already strained.",
-    process: "I led the design process from ideation to final UI implementation, focusing on creating a neutral platform that promotes positive co-parenting communication. Through extensive user research with divorced parents and family counselors, I identified key pain points and developed intuitive interfaces for shared calendars, expense tracking, and secure messaging. I conducted multiple rounds of usability testing to ensure the app was accessible to users with varying levels of technical proficiency.",
-    result: "The resulting mobile application successfully addresses the core co-parenting coordination challenges, providing divorced parents with a comprehensive tool that reduces conflict and improves childcare management. The app includes features such as shared calendars for custody schedules, expense tracking and splitting, secure messaging, and important document storage. Early adoption metrics show a 40% reduction in co-parenting disputes among test users and significant improvement in scheduling adherence.",
-    technologies: ["React Native", "Firebase", "Redux", "Node.js", "Express", "MongoDB", "Push Notifications"],
-    duration: "4 months",
-    client: "Family Support Services",
-    role: "Lead Designer & Inventor",
+    challenge: "Many individuals seeking natural health solutions face significant barriers in finding qualified herbalists with verifiable credentials. Traditional healthcare platforms lack specialized features for herbal medicine practitioners, while patients struggle to determine the legitimacy and expertise of providers. This disconnect leads to missed opportunities for effective natural treatments and a general distrust in herbal medicine.",
+    process: "I conducted extensive research with both herbalists and potential patients to understand their unique needs and communication barriers. Through collaborative design workshops, I developed user personas representing different stakeholder groups and mapped out comprehensive user journeys for various interaction scenarios. Multiple rounds of wireframing and prototyping focused on creating an intuitive interface that addresses privacy concerns while facilitating effective communication between practitioners and clients.",
+    result: "The Herbalink mobile application successfully bridges the gap between qualified herbalists and individuals seeking natural health solutions. The platform features secure video consultations, credential verification for practitioners, a comprehensive treatment tracking system, and an in-app messaging feature for follow-up questions. Initial user data shows a 65% increase in first-time herbal consultations and significantly improved treatment adherence through the app's monitoring tools.",
+    technologies: ["React Native", "Firebase", "Redux", "HIPAA-Compliant Storage", "Telehealth API", "Push Notifications", "Stripe Integration"],
+    duration: "5 months",
+    client: "Herbalink Inc.",
+    role: "Lead UX Designer & Product Strategist",
     extraImages: [
       "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
       "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
