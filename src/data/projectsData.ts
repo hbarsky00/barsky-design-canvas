@@ -29,7 +29,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
       "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png"
     ],
-    challengeImage: "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
+    challengeImage: "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png",
     processImage: "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png",
     resultImage: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/splittime"
@@ -117,7 +117,7 @@ export const projectsData: ProjectProps[] = [
     id: "splittime",
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
-    image: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
+    image: "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "React Native"],
     link: "https://splittime.pro/"
   },

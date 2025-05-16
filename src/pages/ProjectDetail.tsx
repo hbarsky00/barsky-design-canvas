@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -15,9 +14,10 @@ import ImageMaximizer from "@/components/project/ImageMaximizer";
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
   "splittime": {
-    "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png": "Main interface of the co-parenting app showing the calendar and custody schedule view",
+    "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png": "Main interface of the co-parenting app showing the calendar and custody schedule view",
     "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png": "User research findings highlighting key pain points for separated parents",
-    "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png": "Design process wireframes showing the evolution of the messaging feature"
+    "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png": "Design process wireframes showing the evolution of the messaging feature",
+    "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png": "Final implementation of the co-parenting mobile application"
   },
   "herbalink": {
     "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "The magic of herbalists in your hands - intuitive mobile interface connecting users with qualified practitioners",
