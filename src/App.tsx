@@ -18,6 +18,9 @@ import DesignSystem from "./pages/DesignSystem";
 import Services from "./pages/Services";
 import Store from "./pages/Store";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import UxUiDesign from "./pages/design-services/UxUiDesign";
+import WebDevelopment from "./pages/design-services/WebDevelopment";
+import MobileAppDesign from "./pages/design-services/MobileAppDesign";
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -52,6 +55,9 @@ const App = () => (
               <Route path="/project/:projectId" element={<ProjectDetail />} />
               <Route path="/design-system" element={<DesignSystem />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
+              <Route path="/design-services/web-development" element={<WebDevelopment />} />
+              <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
               <Route path="/store" element={<Store />} />
               <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

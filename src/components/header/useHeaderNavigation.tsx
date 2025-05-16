@@ -12,11 +12,9 @@ export const useHeaderNavigation = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
+    { name: "Services", href: "/services" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
-    // Store and Services links are removed but the routes remain functional
-    // { name: "Services", href: "/services" },
-    // { name: "Store", href: "/store" },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -55,6 +53,11 @@ export const useHeaderNavigation = () => {
     // Special case for home link
     if (link === "/") {
       return location.pathname === "/" && activeSection === "home";
+    }
+    
+    // For service page
+    if (link === "/services") {
+      return location.pathname === "/services" || location.pathname.startsWith("/design-services");
     }
     
     // For section links (anchors)
