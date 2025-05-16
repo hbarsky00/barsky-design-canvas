@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Calendar, PenLine, Users, Clock, Code, Smartphone, Palette } from "lucide-react";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
@@ -124,52 +123,6 @@ const ServicesTabs = () => {
             </CardFooter>
           </Card>
         </div>
-        
-        {/* My Design Process */}
-        <Card className="shadow-lg w-full">
-          <CardHeader>
-            <h3 className="text-2xl font-bold text-center">My Design Process</h3>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2">
-                <span className="font-bold text-barsky-blue">1.</span>
-                <span className="text-slate-700"><span className="font-semibold">Discovery:</span> Understanding your business goals, user needs, and project requirements</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-bold text-barsky-blue">2.</span>
-                <span className="text-slate-700"><span className="font-semibold">Research:</span> Analyzing user behavior, market trends, and competitive landscape</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-bold text-barsky-blue">3.</span>
-                <span className="text-slate-700"><span className="font-semibold">Design:</span> Creating wireframes, prototypes, and high-fidelity designs</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-bold text-barsky-blue">4.</span>
-                <span className="text-slate-700"><span className="font-semibold">Testing:</span> Validating solutions through user testing and iteration</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-bold text-barsky-blue">5.</span>
-                <span className="text-slate-700"><span className="font-semibold">Implementation:</span> Supporting development teams with detailed specifications</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-bold text-barsky-blue">6.</span>
-                <span className="text-slate-700"><span className="font-semibold">Evaluation:</span> Measuring success against key performance indicators and business goals</span>
-              </li>
-            </ul>
-          </CardContent>
-          <CardFooter className="flex flex-col gap-4">
-            <Button 
-              onClick={openCalendly} 
-              className="w-full"
-              size="lg"
-              variant="outline"
-            >
-              <Calendar className="mr-2" />
-              Book a Consultation
-            </Button>
-          </CardFooter>
-        </Card>
       </TabsContent>
       
       <TabsContent value="design" className="space-y-6">
