@@ -1,10 +1,10 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ShoppingCart, Award, ArrowLeft, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Product } from "@/types/product";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -14,6 +14,18 @@ interface ProductDetailsProps {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+
+  // Check for query parameters in the URL
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    
+    if (params.get('success') === 'true') {
+      toast.success('Payment completed successfully!');
+    } else if (params.get('canceled') === 'true') {
+      toast.error('Payment was canceled.');
+    }
+  }, [location]);
 
   const handleAddToCart = () => {
     toast.success(`Added ${product.name} to your cart!`);
