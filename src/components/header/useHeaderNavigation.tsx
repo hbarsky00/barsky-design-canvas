@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -14,7 +13,6 @@ export const useHeaderNavigation = () => {
     { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
     { name: "Services", href: "/services" },
-    { name: "Resume", href: "/resume" },
     { name: "Store", href: "/store" },
     { name: "Contact", href: "#contact" },
   ];

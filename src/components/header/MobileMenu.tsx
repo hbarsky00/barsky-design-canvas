@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, Home, Briefcase, Store, FileText, User, Mail } from "lucide-react";
+import { Menu, X, Home, Briefcase, Store, User, Mail } from "lucide-react";
 import ThemeToggle from "../ThemeToggle";
 
 interface MobileMenuProps {
@@ -31,8 +31,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         return <User className="h-5 w-5 mr-2" />;
       case "services":
         return <Briefcase className="h-5 w-5 mr-2" />;
-      case "resume":
-        return <FileText className="h-5 w-5 mr-2" />;
       case "store":
         return <Store className="h-5 w-5 mr-2" />;
       case "contact":

@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "../ThemeToggle";
-import { Home, Briefcase, Store, FileText, User, Mail } from "lucide-react";
+import { Home, Briefcase, Store, User, Mail } from "lucide-react";
 
 interface NavigationProps {
   links: Array<{ name: string; href: string }>;
@@ -28,8 +28,6 @@ const Navigation: React.FC<NavigationProps> = ({
         return <User className="h-4 w-4 mr-1" />;
       case "services":
         return <Briefcase className="h-4 w-4 mr-1" />;
-      case "resume":
-        return <FileText className="h-4 w-4 mr-1" />;
       case "store":
         return <Store className="h-4 w-4 mr-1" />;
       case "contact":

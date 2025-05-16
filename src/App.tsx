@@ -1,4 +1,3 @@
-
 import React, { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -16,7 +15,6 @@ import AllProjects from "./pages/AllProjects";
 import ProjectDetail from "./pages/ProjectDetail";
 import DesignSystem from "./pages/DesignSystem";
 import Services from "./pages/Services";
-import Resume from "./pages/Resume";
 import Store from "./pages/Store";
 
 // Scroll to top component
@@ -52,7 +50,6 @@ const App = () => (
               <Route path="/project/:projectId" element={<ProjectDetail />} />
               <Route path="/design-system" element={<DesignSystem />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/resume" element={<Resume />} />
               <Route path="/store" element={<Store />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
