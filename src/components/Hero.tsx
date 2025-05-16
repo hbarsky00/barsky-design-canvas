@@ -19,6 +19,15 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Function to scroll to contact section
+  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center bg-barsky-bg-light overflow-x-hidden relative">
       <div className="section-container">
@@ -88,7 +97,7 @@ const Hero: React.FC = () => {
                 transition={{ delay: 1.3, duration: 0.5 }}
               >
                 <BounceWrapper intensity="subtle">
-                  <a href="#contact" className="btn-outline">
+                  <a href="#contact" onClick={scrollToContact} className="btn-outline">
                     Get In Touch
                   </a>
                 </BounceWrapper>

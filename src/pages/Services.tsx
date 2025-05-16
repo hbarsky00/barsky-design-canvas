@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -612,7 +611,7 @@ const Services = () => {
                 Schedule a Free Consultation
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/contact">
+                <Link to="/#contact">
                   Contact Me
                 </Link>
               </Button>

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -18,6 +17,14 @@ export const useHeaderNavigation = () => {
   ];
 
   const scrollToSection = (sectionId: string) => {
+    // First check if we're on the homepage
+    if (location.pathname !== '/') {
+      // If not on homepage, navigate there first with scrollTo state
+      navigate('/', { state: { scrollTo: sectionId } });
+      return;
+    }
+    
+    // If we're already on the homepage, just scroll to the section
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
@@ -28,20 +35,16 @@ export const useHeaderNavigation = () => {
   const handleLinkClick = (href: string) => {
     setIsMobileMenuOpen(false);
     
-    if (location.pathname === '/') {
-      if (href.startsWith('#')) {
-        scrollToSection(href.substring(1));
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        navigate(href);
-      }
+    if (href.startsWith('#')) {
+      // For anchor links, scroll to the section
+      scrollToSection(href.substring(1));
+    } else if (href === '/') {
+      // For home link, go to homepage and scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      navigate(href);
     } else {
-      if (href.startsWith('#')) {
-        navigate('/', { state: { scrollTo: href.substring(1) } });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        navigate(href);
-      }
+      // For other routes like /services, just navigate
+      navigate(href);
     }
   };
 
