@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -9,8 +10,11 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { trackPageView, trackContentEngagement } from "@/lib/analytics";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Services = () => {
+  const isMobile = useIsMobile();
+  
   const openCalendly = () => {
     window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
     trackContentEngagement('service', 'consultation-booking', 'Calendly Booking');
@@ -242,11 +246,11 @@ const Services = () => {
 
             {/* Service Categories Tabs */}
             <Tabs defaultValue="all" className="w-full max-w-4xl mx-auto">
-              <TabsList className="grid w-full grid-cols-4 mb-8">
-                <TabsTrigger value="all">All Services</TabsTrigger>
-                <TabsTrigger value="design">UX/UI Design</TabsTrigger>
-                <TabsTrigger value="web">Web Development</TabsTrigger>
-                <TabsTrigger value="mobile">Mobile Apps</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8">
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="design">{isMobile ? "UX/UI" : "UX/UI Design"}</TabsTrigger>
+                <TabsTrigger value="web">{isMobile ? "Web" : "Web Development"}</TabsTrigger>
+                <TabsTrigger value="mobile">{isMobile ? "Mobile" : "Mobile Apps"}</TabsTrigger>
               </TabsList>
               
               <TabsContent value="all" className="space-y-8">
