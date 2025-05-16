@@ -32,16 +32,16 @@ const Index = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Helmet>
         <title>Hiram Barsky | Product Designer & Developer | Portfolio</title>
-        <meta name="description" content="Experienced Product Designer and Developer specializing in website design, app design, and UX/UI consultation services. Based in New York." />
+        <meta name="description" content="Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences." />
         <meta name="keywords" content="UI design, UX design, web development, website design, app design, mobile app, UX/UI consultation, product designer, design systems, user research, New York designer" />
         <meta property="og:title" content="Hiram Barsky | Product Designer & Developer" />
-        <meta property="og:description" content="Professional Product Design and Development services. Specializing in website design, app design, and UX/UI consultation." />
+        <meta property="og:description" content="Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences." />
         <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta property="og:url" content="https://hirambarsky.com/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Hiram Barsky | Product Designer & Developer" />
-        <meta name="twitter:description" content="Professional Product Design and Development services." />
+        <meta name="twitter:description" content="Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences." />
         <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <link rel="canonical" href="https://hirambarsky.com/" />
         
@@ -84,7 +84,7 @@ const Index = () => {
                 "https://instagram.com/hirambarsky"
               ],
               "priceRange": "$$",
-              "description": "Experienced Product Designer and Developer specializing in website design, app design, and UX/UI consultation services."
+              "description": "Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences."
             }
           `}
         </script>
