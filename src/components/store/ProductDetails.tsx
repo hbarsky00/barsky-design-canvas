@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ShoppingCart, Award, ArrowLeft } from "lucide-react";
+import { ShoppingCart, Award, ArrowLeft, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
@@ -14,6 +14,23 @@ interface ProductDetailsProps {
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const handleAddToCart = () => {
     toast.success(`Added ${product.name} to your cart!`);
+  };
+
+  const handleCheckout = async () => {
+    try {
+      toast.info("Redirecting to checkout...");
+      
+      // In a real implementation, this would call your backend
+      // For example: const response = await fetch('/api/create-checkout-session', {...})
+      
+      // For demo purposes, we'll simulate a redirect to Stripe
+      setTimeout(() => {
+        window.location.href = `https://checkout.stripe.com/pay/cs_test_demo?productName=${encodeURIComponent(product.name)}&amount=${product.price * 100}`;
+      }, 1500);
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast.error("Failed to initiate checkout. Please try again.");
+    }
   };
 
   return (
@@ -75,9 +92,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
               </li>
             </ul>
             
-            <Button className="w-full py-6 text-lg" onClick={handleAddToCart}>
-              <ShoppingCart className="h-5 w-5 mr-2" /> Add to Cart
-            </Button>
+            <div className="flex flex-col space-y-4">
+              <Button className="w-full py-6 text-lg" onClick={handleCheckout}>
+                <CreditCard className="h-5 w-5 mr-2" /> Checkout (${product.price})
+              </Button>
+              
+              <Button variant="outline" className="w-full py-6 text-lg" onClick={handleAddToCart}>
+                <ShoppingCart className="h-5 w-5 mr-2" /> Add to Cart
+              </Button>
+            </div>
           </div>
           
           <div className="bg-slate-100 dark:bg-slate-800 p-4 rounded-md">
