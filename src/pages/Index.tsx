@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
-import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { trackPageView } from "@/lib/analytics";
@@ -96,7 +95,6 @@ const Index = () => {
         <Hero />
         <Projects />
         <About />
-        <Pricing />
         <Contact />
       </main>
       <Footer />

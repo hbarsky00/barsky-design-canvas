@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Briefcase, Store, FileText, User, Mail } from "lucide-react";
 import ThemeToggle from "../ThemeToggle";
 
 interface MobileMenuProps {
@@ -20,6 +20,28 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   handleLinkClick,
   isLinkActive,
 }) => {
+  // Function to get the appropriate icon for each link
+  const getIcon = (linkName: string) => {
+    switch (linkName.toLowerCase()) {
+      case "home":
+        return <Home className="h-5 w-5 mr-2" />;
+      case "projects":
+        return <Briefcase className="h-5 w-5 mr-2" />;
+      case "about":
+        return <User className="h-5 w-5 mr-2" />;
+      case "services":
+        return <Briefcase className="h-5 w-5 mr-2" />;
+      case "resume":
+        return <FileText className="h-5 w-5 mr-2" />;
+      case "store":
+        return <Store className="h-5 w-5 mr-2" />;
+      case "contact":
+        return <Mail className="h-5 w-5 mr-2" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="md:hidden">
       <div className="flex items-center space-x-2">
@@ -45,10 +67,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   handleLinkClick(link.href);
                 }}
                 className={cn(
-                  "nav-link text-lg",
+                  "nav-link text-lg flex items-center",
                   isLinkActive(link.href) && "active"
                 )}
               >
+                {getIcon(link.name)}
                 {link.name}
               </Link>
             ))}

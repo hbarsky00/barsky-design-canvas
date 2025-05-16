@@ -13,6 +13,9 @@ export const useHeaderNavigation = () => {
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
+    { name: "Services", href: "/services" },
+    { name: "Resume", href: "/resume" },
+    { name: "Store", href: "/store" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -32,6 +35,7 @@ export const useHeaderNavigation = () => {
         scrollToSection(href.substring(1));
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        navigate(href);
       }
     } else {
       if (href.startsWith('#')) {
