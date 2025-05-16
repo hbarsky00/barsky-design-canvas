@@ -86,7 +86,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
       "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
     ],
-    challengeImage: "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png",
+    challengeImage: "/lovable-uploads/c35498f2-e657-4982-9b9b-8945aaf817d5.png",
     processImage: "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
     resultImage: "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
