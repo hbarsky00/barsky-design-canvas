@@ -1,13 +1,14 @@
 
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { ShoppingCart, Filter } from "lucide-react";
+import { ShoppingCart, Filter, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { trackPageView } from "@/lib/analytics";
+import { toast } from "sonner";
 
 // Product interface
 interface Product {
@@ -17,10 +18,20 @@ interface Product {
   price: number;
   image: string;
   category: string;
+  badge?: string;
 }
 
 // Sample products data
 const products: Product[] = [
+  {
+    id: "figma-system",
+    name: "Complete Design System Figma File",
+    description: "Professional design system with comprehensive component library, light/dark mode, responsive layouts, and detailed documentation. Perfect for startups and design teams.",
+    price: 129,
+    image: "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png",
+    category: "templates",
+    badge: "Premium"
+  },
   {
     id: "1",
     name: "UX Research Template",
@@ -79,24 +90,36 @@ const categories = [
 ];
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+  const handleAddToCart = () => {
+    toast.success(`Added ${product.name} to your cart!`);
+  };
+
   return (
     <Card className="overflow-hidden flex flex-col h-full">
-      <div className="aspect-video overflow-hidden">
+      <div className="aspect-video overflow-hidden relative">
         <img 
           src={product.image} 
           alt={product.name}
           className="w-full h-full object-cover transition-transform hover:scale-105"
         />
+        {product.badge && (
+          <div className="absolute top-2 right-2">
+            <Badge className="bg-barsky-blue text-white flex items-center gap-1 px-2 py-1">
+              <Award className="h-3 w-3" />
+              {product.badge}
+            </Badge>
+          </div>
+        )}
       </div>
       <CardContent className="pt-6 flex-grow">
         <div className="flex justify-between items-start mb-2">
           <h3 className="font-semibold text-lg">{product.name}</h3>
           <Badge>${product.price}</Badge>
         </div>
-        <p className="text-slate-600 text-sm">{product.description}</p>
+        <p className="text-slate-600 dark:text-slate-300 text-sm">{product.description}</p>
       </CardContent>
       <CardFooter className="pt-2 pb-4">
-        <Button className="w-full">
+        <Button className="w-full" onClick={handleAddToCart}>
           <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
         </Button>
       </CardFooter>
@@ -130,7 +153,7 @@ const Store = () => {
           <div className="section-container">
             <div className="mb-8 text-center">
               <h1 className="text-3xl font-bold mb-4">Design Resource Store</h1>
-              <p className="text-slate-600 max-w-2xl mx-auto">
+              <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
                 Browse my collection of premium design resources to enhance your workflow and create exceptional digital experiences.
               </p>
             </div>
@@ -157,7 +180,7 @@ const Store = () => {
                       className={`w-full text-left px-4 py-2 text-sm ${
                         selectedCategory === category.id 
                           ? 'bg-barsky-blue/10 text-barsky-blue' 
-                          : 'hover:bg-slate-100'
+                          : 'hover:bg-slate-100 dark:hover:bg-slate-800'
                       }`}
                       onClick={() => {
                         setSelectedCategory(category.id);
@@ -181,7 +204,7 @@ const Store = () => {
                     className={`w-full text-left px-4 py-2 rounded-md ${
                       selectedCategory === category.id 
                         ? 'bg-barsky-blue/10 text-barsky-blue' 
-                        : 'hover:bg-slate-100'
+                        : 'hover:bg-slate-100 dark:hover:bg-slate-800'
                     }`}
                     onClick={() => setSelectedCategory(category.id)}
                   >
@@ -200,7 +223,7 @@ const Store = () => {
                   </div>
                 ) : (
                   <div className="text-center py-12">
-                    <p className="text-slate-600">No products found in this category.</p>
+                    <p className="text-slate-600 dark:text-slate-300">No products found in this category.</p>
                   </div>
                 )}
               </div>
