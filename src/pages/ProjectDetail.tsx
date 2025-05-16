@@ -14,6 +14,7 @@ import ImageMaximizer from "@/components/project/ImageMaximizer";
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
   "splittime": {
+    "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png": "From prototype to lifeline - messaging interface of the Splittime co-parenting app",
     "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png": "Main interface of the co-parenting app showing the calendar and custody schedule view",
     "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png": "User research findings highlighting key pain points for separated parents",
     "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png": "Design process wireframes showing the evolution of the messaging feature",

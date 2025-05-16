@@ -117,7 +117,7 @@ export const projectsData: ProjectProps[] = [
     id: "splittime",
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
-    image: "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png",
+    image: "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "React Native"],
     link: "https://splittime.pro/"
   },
