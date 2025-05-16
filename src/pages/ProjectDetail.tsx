@@ -111,6 +111,9 @@ const ProjectDetail: React.FC = () => {
   // Get captions for current project
   const currentProjectCaptions = projectImageCaptions[projectId || ""] || {};
   
+  // Check if the current project is Herbalink
+  const isHerbalink = projectId === "herbalink";
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
@@ -131,14 +134,16 @@ const ProjectDetail: React.FC = () => {
           <div className="section-container">
             <ProjectHeader title={project.title} tags={project.tags} />
             
-            {/* Keeping the component but not displaying the main image */}
-            <ProjectImageCarousel 
-              mainImage={project.image}
-              title={project.title}
-              extraImages={[]}
-              onImageClick={handleImageClick}
-              captions={currentProjectCaptions}
-            />
+            {/* Show ProjectImageCarousel for all projects EXCEPT Herbalink */}
+            {!isHerbalink && (
+              <ProjectImageCarousel 
+                mainImage={project.image}
+                title={project.title}
+                extraImages={[]}
+                onImageClick={handleImageClick}
+                captions={currentProjectCaptions}
+              />
+            )}
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="col-span-2">
