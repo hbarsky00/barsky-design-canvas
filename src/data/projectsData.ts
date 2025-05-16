@@ -141,7 +141,7 @@ export const projectsData: ProjectProps[] = [
     id: "barskyjoint",
     title: "Barsky Joint Food Truck",
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
-    image: "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png",
+    image: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Food Service"],
     link: "https://barskyjoint.biz/"
   },

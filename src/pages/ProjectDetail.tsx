@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -37,7 +38,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/f859dde1-e2bb-4777-a2cd-293d24d4d865.png": "Security features implementation showing two-factor authentication flow"
   },
   "barskyjoint": {
-    "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png": "Main screen of Barsky Joint Food Truck app featuring the burger menu",
+    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Designing beyond the Food - Barsky Joint Food Truck mobile app featuring customizable menu options and real-time delivery tracking",
     "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png": "Customer journey mapping session analyzing the ordering experience",
     "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "Final app interface showing real-time order tracking and loyalty program"
   },
