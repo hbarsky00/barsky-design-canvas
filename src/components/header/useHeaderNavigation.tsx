@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -12,9 +13,10 @@ export const useHeaderNavigation = () => {
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
     { name: "About", href: "#about" },
-    { name: "Services", href: "/services" },
-    { name: "Store", href: "/store" },
     { name: "Contact", href: "#contact" },
+    // Store and Services links are removed but the routes remain functional
+    // { name: "Services", href: "/services" },
+    // { name: "Store", href: "/store" },
   ];
 
   const scrollToSection = (sectionId: string) => {
