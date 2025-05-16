@@ -20,7 +20,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png": "Design process wireframes showing the evolution of the messaging feature"
   },
   "herbalink": {
-    "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png": "Main interface of Herbalink app showing practitioner browsing screen",
+    "/lovable-uploads/f2440dd3-da7f-4191-9f06-9efb7ec29d40.png": "The magic of herbalists in your hands - intuitive mobile interface connecting users with qualified practitioners",
     "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png": "User journey map illustrating the consultation booking process",
     "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png": "Final implementation of the secure video consultation interface",
     "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png": "Treatment tracking dashboard with herbal remedy management",
