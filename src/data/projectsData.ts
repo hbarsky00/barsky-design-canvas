@@ -34,21 +34,21 @@ export const projectDetails: Record<string, ProjectDetails> = {
     caseStudyLink: "https://hirambarsky.com/case-studies/splittime"
   },
   "herbalink": {
-    challenge: "Finding qualified herbalists and accessing legitimate natural health solutions presents a significant challenge for many consumers. The market lacks a standardized, trustworthy platform that connects users with verified practitioners while providing a seamless consultation experience. Users often struggle to identify credentialed herbalists and maintain consistent treatment plans.",
-    process: "I designed a comprehensive mobile platform with a user-centric approach, focusing on simplifying the connection between users and qualified herbalists. The design process involved extensive research into healthcare app compliance requirements, user experience for telehealth services, and secure communication protocols. I created detailed user flows for practitioner matching, appointment scheduling, and treatment plan management, ensuring intuitive navigation throughout the app ecosystem.",
-    result: "Herbalink effectively bridges the gap between consumers and qualified herbalists through a secure, user-friendly mobile platform. The app features personalized herbalist matching, secure video consultations, in-app messaging, and appointment scheduling. Users can browse verified practitioner profiles with credentials, specialties, and ratings, while accessing a knowledge base of herbal remedies. The payment system supports multiple options, and personalized treatment tracking ensures users follow their wellness plans consistently.",
-    technologies: ["React Native", "TypeScript", "Redux", "Node.js", "WebRTC", "MongoDB", "Stripe API", "Push Notifications", "Biometric Authentication"],
-    duration: "6 months",
-    client: "Herbalink Wellness Technologies",
+    challenge: "Separated parents face significant challenges in coordinating childcare responsibilities, often leading to miscommunication, scheduling conflicts, and increased tension. Traditional communication methods like text messages and emails can exacerbate these issues, especially when co-parenting relationships are already strained.",
+    process: "I led the design process from ideation to final UI implementation, focusing on creating a neutral platform that promotes positive co-parenting communication. Through extensive user research with divorced parents and family counselors, I identified key pain points and developed intuitive interfaces for shared calendars, expense tracking, and secure messaging. I conducted multiple rounds of usability testing to ensure the app was accessible to users with varying levels of technical proficiency.",
+    result: "The resulting mobile application successfully addresses the core co-parenting coordination challenges, providing divorced parents with a comprehensive tool that reduces conflict and improves childcare management. The app includes features such as shared calendars for custody schedules, expense tracking and splitting, secure messaging, and important document storage. Early adoption metrics show a 40% reduction in co-parenting disputes among test users and significant improvement in scheduling adherence.",
+    technologies: ["React Native", "Firebase", "Redux", "Node.js", "Express", "MongoDB", "Push Notifications"],
+    duration: "4 months",
+    client: "Family Support Services",
     role: "Lead Designer & Inventor",
     extraImages: [
-      "/lovable-uploads/f2440dd3-da7f-4191-9f06-9efb7ec29d40.png",
+      "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
       "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
       "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png",
       "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png",
       "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png"
     ],
-    challengeImage: "/lovable-uploads/f2440dd3-da7f-4191-9f06-9efb7ec29d40.png",
+    challengeImage: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
     processImage: "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png",
     resultImage: "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/herbalink"
@@ -124,7 +124,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "Herbalink",
     description: "Mobile application connecting individuals with qualified herbalists for personalized natural health solutions.",
-    image: "/lovable-uploads/f2440dd3-da7f-4191-9f06-9efb7ec29d40.png",
+    image: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Healthcare"],
     link: "https://herbalink.live"
   },
