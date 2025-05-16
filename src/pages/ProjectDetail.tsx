@@ -139,6 +139,8 @@ const ProjectDetail: React.FC = () => {
                   technologies={details.technologies}
                   projectLink={project.link}
                   challengeImage={details.challengeImage}
+                  processImage={details.processImage}
+                  resultImage={details.resultImage}
                   imageCaptions={currentProjectCaptions}
                 />
               </div>
