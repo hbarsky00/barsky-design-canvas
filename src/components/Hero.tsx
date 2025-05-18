@@ -63,13 +63,22 @@ const Hero: React.FC = () => {
                 type="word"
                 animation="fade"
               />
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1, duration: 0.5 }}
+                className="text-base sm:text-lg mb-6 text-barsky-text-light max-w-3xl mx-auto md:mx-0"
+              >
+                I design for real people, and love finding simplicity in the complex. Through these three case studies, I'll show how I approach UX, strategy, and AI-driven design
+              </motion.p>
             </div>
             
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8 mb-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.5 }}
+                transition={{ delay: 1.3, duration: 0.5 }}
               >
                 <BounceWrapper intensity="medium" wiggle={true}>
                   <a href="#projects" className="btn-primary relative">
@@ -94,7 +103,7 @@ const Hero: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3, duration: 0.5 }}
+                transition={{ delay: 1.5, duration: 0.5 }}
               >
                 <BounceWrapper intensity="subtle">
                   <a href="#contact" onClick={scrollToContact} className="btn-outline">
