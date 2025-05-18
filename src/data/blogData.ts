@@ -7,7 +7,7 @@ export interface BlogPost {
   author: string;
   date: string;
   readTime: string;
-  coverImage?: string;
+  coverImage: string;
   tags: string[];
   slug: string;
 }
@@ -20,6 +20,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "May 16, 2025",
     readTime: "8 min read",
+    coverImage: "/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
     tags: ["Product Design", "Marketing", "Solo Designer", "UX Design"],
     slug: "built-product-without-real-data",
     content: `

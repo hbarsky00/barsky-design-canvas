@@ -88,7 +88,7 @@ const BlogPost: React.FC = () => {
         <meta name="keywords" content={post.tags.join(', ') + ", product design, UX design, UI design"} />
         <meta property="og:title" content={`${post.title} | Hiram Barsky Blog`} />
         <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
+        <meta property="og:image" content={post.coverImage ? `https://hirambarsky.com${post.coverImage}` : "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"} />
         <meta property="og:url" content={`https://hirambarsky.com/blog/${post.slug}`} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -104,7 +104,7 @@ const BlogPost: React.FC = () => {
               "@type": "BlogPosting",
               "headline": "${post.title}",
               "description": "${post.excerpt}",
-              "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9",
+              "image": "${post.coverImage ? `https://hirambarsky.com${post.coverImage}` : "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"}",
               "author": {
                 "@type": "Person",
                 "name": "${post.author}"
@@ -156,6 +156,17 @@ const BlogPost: React.FC = () => {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-barsky-dark dark:text-white">
                 {post.title}
               </h1>
+              
+              {/* Cover Image */}
+              {post.coverImage && (
+                <div className="mb-6 rounded-lg overflow-hidden">
+                  <img 
+                    src={post.coverImage} 
+                    alt={post.title}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              )}
               
               <div className="flex flex-wrap items-center justify-between gap-y-4">
                 <div className="flex items-center text-barsky-text-light">

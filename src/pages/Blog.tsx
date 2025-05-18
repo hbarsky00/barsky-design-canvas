@@ -84,6 +84,15 @@ const Blog: React.FC = () => {
               {blogPosts.map(post => (
                 <Link to={`/blog/${post.slug}`} key={post.id} className="group">
                   <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
+                    {post.coverImage && (
+                      <div className="w-full h-64 overflow-hidden">
+                        <img 
+                          src={post.coverImage} 
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        />
+                      </div>
+                    )}
                     <CardHeader className="pb-2">
                       <div className="flex flex-wrap gap-2 mb-3">
                         {post.tags.slice(0, 3).map(tag => (
