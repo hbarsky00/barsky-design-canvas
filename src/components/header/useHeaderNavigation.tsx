@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -12,6 +13,7 @@ export const useHeaderNavigation = () => {
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
     { name: "Services", href: "/services" },
+    { name: "Blog", href: "/blog" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
@@ -56,6 +58,11 @@ export const useHeaderNavigation = () => {
     // Special case for home link
     if (link === "/") {
       return location.pathname === "/" && activeSection === "home";
+    }
+    
+    // For blog page
+    if (link === "/blog") {
+      return location.pathname === "/blog" || location.pathname.startsWith("/blog/");
     }
     
     // For service page

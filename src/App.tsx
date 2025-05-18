@@ -21,6 +21,8 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import UxUiDesign from "./pages/design-services/UxUiDesign";
 import WebDevelopment from "./pages/design-services/WebDevelopment";
 import MobileAppDesign from "./pages/design-services/MobileAppDesign";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -60,6 +62,8 @@ const App = () => (
               <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
               <Route path="/store" element={<Store />} />
               <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:postId" element={<BlogPost />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

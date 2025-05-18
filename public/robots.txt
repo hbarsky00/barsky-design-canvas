@@ -43,3 +43,4 @@ Allow: /contact/
 Allow: /about/
 Allow: /portfolio/
 Allow: /design-services/
+Allow: /blog/
