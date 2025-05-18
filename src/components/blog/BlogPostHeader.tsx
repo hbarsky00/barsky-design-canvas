@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BlogPost } from "@/data/blogData";
-import { Button } from "@/components/ui/button";
-import { Calendar, Clock, Share2 } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
+import ShareButtons from "./ShareButtons";
 
 interface BlogPostHeaderProps {
   post: BlogPost;
-  handleShareClick: () => void;
 }
 
-const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post, handleShareClick }) => {
+const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
   return (
     <header className="mb-12">
       <Link 
@@ -46,24 +45,22 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post, handleShareClick 
         </div>
       )}
       
-      <div className="flex flex-wrap items-center justify-between gap-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-y-4 mb-4">
         <div className="flex items-center text-barsky-text-light">
           <Calendar className="h-4 w-4 mr-1" />
           <span className="mr-4">{post.date}</span>
           <Clock className="h-4 w-4 mr-1" />
           <span>{post.readTime}</span>
         </div>
-        
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className="flex items-center" 
-          onClick={handleShareClick}
-        >
-          <Share2 className="mr-2 h-4 w-4" />
-          Share
-        </Button>
       </div>
+      
+      {/* Share buttons */}
+      <ShareButtons 
+        title={post.title} 
+        summary={post.excerpt} 
+        url={window.location.href} 
+        hashtags={post.tags} 
+      />
     </header>
   );
 };

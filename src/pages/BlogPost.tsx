@@ -49,26 +49,6 @@ const BlogPost: React.FC = () => {
     setIsLoading(false);
   }, [postId, navigate]);
   
-  const handleShareClick = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: post?.title || "",
-        text: post?.excerpt || "",
-        url: window.location.href,
-      }).catch(err => {
-        console.error('Error sharing:', err);
-      });
-    } else {
-      // Fallback to copying the URL
-      navigator.clipboard.writeText(window.location.href);
-      toast({
-        title: "Link copied",
-        description: "The blog post URL has been copied to your clipboard.",
-        duration: 3000,
-      });
-    }
-  };
-  
   if (isLoading || !post) {
     return <LoadingState />;
   }
@@ -82,7 +62,7 @@ const BlogPost: React.FC = () => {
       <main className="flex-grow">
         <article className="py-20">
           <div className="section-container max-w-3xl mx-auto px-4 sm:px-6">
-            <BlogPostHeader post={post} handleShareClick={handleShareClick} />
+            <BlogPostHeader post={post} />
             <BlogPostContent content={post.content} />
             <BlogAuthorBio author={post.author} />
             <RelatedPosts posts={relatedPosts} />
