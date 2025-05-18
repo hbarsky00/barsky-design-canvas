@@ -18,11 +18,11 @@ const Blog: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Blog | Hiram Barsky | Product Designer & Developer</title>
-        <meta name="description" content="Insights, case studies, and thoughts on product design, UX/UI, and development from Hiram Barsky." />
-        <meta name="keywords" content="product design blog, UX blog, design case studies, UX/UI insights, product development, solo designer, design process" />
-        <meta property="og:title" content="Blog | Hiram Barsky | Product Designer & Developer" />
-        <meta property="og:description" content="Insights, case studies, and thoughts on product design, UX/UI, and development from Hiram Barsky." />
+        <title>Blog | Hiram Barsky | Professional Design Services</title>
+        <meta name="description" content="Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design from Hiram Barsky." />
+        <meta name="keywords" content="Website Design Services Blog, App Design Services Blog, AI Driven Design Blog, Product Design Blog, UX/UI Design Blog, Design Case Studies, Design Process, Professional Designer Blog" />
+        <meta property="og:title" content="Blog | Hiram Barsky | Professional Design Services" />
+        <meta property="og:description" content="Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design from Hiram Barsky." />
         <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta property="og:url" content="https://hirambarsky.com/blog" />
         <meta property="og:type" content="website" />
@@ -34,8 +34,8 @@ const Blog: React.FC = () => {
             {
               "@context": "https://schema.org",
               "@type": "Blog",
-              "name": "Hiram Barsky Design Blog",
-              "description": "Insights, case studies, and thoughts on product design, UX/UI, and development",
+              "name": "Hiram Barsky Design Services Blog",
+              "description": "Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design",
               "url": "https://hirambarsky.com/blog",
               "author": {
                 "@type": "Person",
@@ -43,7 +43,7 @@ const Blog: React.FC = () => {
               },
               "publisher": {
                 "@type": "Organization",
-                "name": "Hiram Barsky Product Design",
+                "name": "Hiram Barsky Design Services",
                 "logo": {
                   "@type": "ImageObject",
                   "url": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"
@@ -62,7 +62,8 @@ const Blog: React.FC = () => {
                   "mainEntityOfPage": {
                     "@type": "WebPage",
                     "@id": "https://hirambarsky.com/blog/${post.slug}"
-                  }
+                  },
+                  "keywords": "${post.tags.join(', ')}, Website Design Services, App Design Services, AI Driven Design Services"
                 }`).join(',')}
               ]
             }
@@ -77,7 +78,7 @@ const Blog: React.FC = () => {
           <div className="section-container max-w-5xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-barsky-dark dark:text-white">Design Insights & Reflections</h1>
-              <p className="text-xl text-barsky-text max-w-2xl mx-auto">Thoughts, processes, and lessons learned on product design, UX/UI, and development.</p>
+              <p className="text-xl text-barsky-text max-w-2xl mx-auto">Expert thoughts, processes, and lessons learned on Website Design Services, App Design Services, AI Driven Design, and Product Design.</p>
             </div>
             
             <div className="grid grid-cols-1 gap-8 md:gap-10">

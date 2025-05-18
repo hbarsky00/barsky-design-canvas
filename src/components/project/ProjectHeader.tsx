@@ -21,19 +21,28 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
   const titleSlug = title.toLowerCase().replace(/\s+/g, '-');
   const canonicalUrl = `https://barskydesign.com/project/${titleSlug}`;
   
+  // Determine the primary service category
+  const getServiceType = () => {
+    if (tags.includes("Mobile App")) return "App Design Services";
+    if (tags.includes("Web App")) return "Website Design Services";
+    return "Product Design Services";
+  };
+  
+  const serviceType = getServiceType();
+  
   return (
     <>
       <Helmet>
         <title>{title} | Hiram Barsky Portfolio</title>
-        <meta name="description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky`} />
-        <meta name="keywords" content={`${tags.join(', ')}, portfolio, Hiram Barsky, design project, UX/UI design, web development`} />
+        <meta name="description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky`} />
+        <meta name="keywords" content={`${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services, UX/UI Design Services, Portfolio, Case Study`} />
         <meta property="og:title" content={`${title} | Hiram Barsky Portfolio`} />
-        <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky`} />
+        <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta name="twitter:title" content={`${title} | Hiram Barsky Portfolio`} />
-        <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional UX/UI design and development`} />
+        <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType}`} />
         <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <link rel="canonical" href={canonicalUrl} />
         
@@ -48,9 +57,9 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
                 "@type": "Person",
                 "name": "Hiram Barsky"
               },
-              "keywords": "${tags.join(', ')}",
+              "keywords": "${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services",
               "url": "${canonicalUrl}",
-              "description": "${title} - ${tags.join(', ')} | Professional UX/UI design and development by Hiram Barsky",
+              "description": "${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky",
               "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"
             }
           `}

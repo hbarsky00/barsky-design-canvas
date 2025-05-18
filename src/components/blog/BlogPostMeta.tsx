@@ -12,7 +12,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
     <Helmet>
       <title>{post.title} | Hiram Barsky Blog</title>
       <meta name="description" content={post.excerpt} />
-      <meta name="keywords" content={post.tags.join(', ') + ", product design, UX design, UI design"} />
+      <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, UX/UI Design Services"} />
       <meta property="og:title" content={`${post.title} | Hiram Barsky Blog`} />
       <meta property="og:description" content={post.excerpt} />
       <meta property="og:image" content={post.coverImage ? `https://hirambarsky.com${post.coverImage}` : "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"} />
@@ -38,7 +38,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
             },
             "publisher": {
               "@type": "Organization",
-              "name": "Hiram Barsky Product Design",
+              "name": "Hiram Barsky Design Services",
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"
@@ -49,7 +49,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
               "@type": "WebPage",
               "@id": "https://hirambarsky.com/blog/${post.slug}"
             },
-            "keywords": "${post.tags.join(', ')}",
+            "keywords": "${post.tags.join(', ')}, Website Design Services, App Design Services, AI Driven Design Services, Product Design Services",
             "articleBody": "${post.content.replace(/<[^>]*>/g, ' ').substring(0, 500)}..."
           }
         `}

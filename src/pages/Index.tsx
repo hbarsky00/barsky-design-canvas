@@ -31,17 +31,17 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Helmet>
-        <title>Hiram Barsky | Product Designer & Developer | Portfolio</title>
-        <meta name="description" content="Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences." />
-        <meta name="keywords" content="UI design, UX design, web development, website design, app design, mobile app, UX/UI consultation, product designer, design systems, user research, New York designer" />
-        <meta property="og:title" content="Hiram Barsky | Product Designer & Developer" />
-        <meta property="og:description" content="Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences." />
+        <title>Hiram Barsky | Product Designer & Developer | Professional Design Services</title>
+        <meta name="description" content="Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
+        <meta name="keywords" content="Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, UX/UI Design Services, Mobile App Development Services, Design Systems Development, Responsive Web Design, Cross-platform Design Solutions, New York designer" />
+        <meta property="og:title" content="Hiram Barsky | Professional Design Services" />
+        <meta property="og:description" content="Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
         <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta property="og:url" content="https://hirambarsky.com/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Hiram Barsky | Product Designer & Developer" />
-        <meta name="twitter:description" content="Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences." />
+        <meta name="twitter:title" content="Hiram Barsky | Professional Design Services" />
+        <meta name="twitter:description" content="Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
         <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <link rel="canonical" href="https://hirambarsky.com/" />
         
@@ -51,7 +51,7 @@ const Index = () => {
             {
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              "name": "Hiram Barsky Product Design",
+              "name": "Hiram Barsky Design Services",
               "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9",
               "url": "https://hirambarsky.com",
               "telephone": "+1-201-668-4754",
@@ -84,7 +84,41 @@ const Index = () => {
                 "https://instagram.com/hirambarsky"
               ],
               "priceRange": "$$",
-              "description": "Portfolio of Hiram Barsky, Product Designer and Developer specializing in creating beautiful digital experiences."
+              "description": "Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services.",
+              "makesOffer": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Website Design Services",
+                    "description": "Custom website design with focus on user experience and conversion optimization."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "App Design Services",
+                    "description": "Intuitive and engaging mobile application designs for iOS and Android platforms."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "AI Driven Design Services",
+                    "description": "Leveraging artificial intelligence to create innovative, data-driven design solutions."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Product Design Services",
+                    "description": "End-to-end product design from concept to implementation with user research and testing."
+                  }
+                }
+              ]
             }
           `}
         </script>
