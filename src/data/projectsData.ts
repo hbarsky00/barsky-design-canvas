@@ -118,7 +118,7 @@ export const projectsData: ProjectProps[] = [
     title: "Co-Parenting Coordination App",
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
     image: "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png",
-    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "React Native"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "React Native", "AI Driven Design"],
     link: "https://splittime.pro/"
   },
   {
@@ -126,7 +126,7 @@ export const projectsData: ProjectProps[] = [
     title: "Herbalink",
     description: "Mobile application connecting individuals with qualified herbalists for personalized natural health solutions.",
     image: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
-    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Healthcare"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Healthcare", "AI Driven Design"],
     link: "https://herbalink.live"
   },
   {
@@ -134,7 +134,7 @@ export const projectsData: ProjectProps[] = [
     title: "Gold 2 Crypto Services",
     description: "Trading platform bridging traditional gold investments with cryptocurrency markets.",
     image: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Web App", "Trading", "Crypto"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Web App", "Trading", "Crypto", "AI Driven Design"],
     link: "https://gold2.gold/"
   },
   {
@@ -142,7 +142,7 @@ export const projectsData: ProjectProps[] = [
     title: "Barsky Joint Food Truck",
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
     image: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Food Service"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Food Service", "AI Driven Design"],
     link: "https://barskyjoint.biz/"
   },
   {
@@ -150,7 +150,7 @@ export const projectsData: ProjectProps[] = [
     title: "Spectrum Apparel Co.",
     description: "E-commerce platform for autism awareness apparel with custom shirt design capabilities.",
     image: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
-    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Web App", "E-Commerce", "Accessibility"],
+    tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Web App", "E-Commerce", "Accessibility", "AI Driven Design"],
     link: "https://supersha.store"
   }
 ];
