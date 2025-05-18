@@ -49,6 +49,11 @@ export const blogPosts: BlogPost[] = [
       <p><strong>Example intro you could use on Twitter or LinkedIn:</strong><br>
       "Built this solo in nights and weekends—wanted to solve a real problem I kept seeing. It's not live yet (mock data only), but I'd love your feedback."</p>
       
+      <div class="my-8">
+        <img src="/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png" alt="Designer working solo on a project" class="rounded-lg w-full h-auto" />
+        <p class="text-sm text-gray-500 mt-2">Sometimes the best stories come from the journey of creation itself.</p>
+      </div>
+      
       <h2>2. Create a "Tour" Instead of a Launch</h2>
       
       <p>If there's no real data or users, make your marketing about the experience—not the stats.</p>
@@ -62,6 +67,11 @@ export const blogPosts: BlogPost[] = [
       </ul>
       
       <p><strong>Pro tip:</strong> Designers LOVE seeing other designers' behind-the-scenes thinking. That's the real value.</p>
+      
+      <div class="my-8">
+        <img src="/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png" alt="Designer recording a walkthrough of their work" class="rounded-lg w-full h-auto" />
+        <p class="text-sm text-gray-500 mt-2">Walking through your design decisions helps others understand your thought process.</p>
+      </div>
       
       <h2>3. Package Your Work as a Case Study</h2>
       
@@ -86,6 +96,11 @@ export const blogPosts: BlogPost[] = [
         <li>LinkedIn articles</li>
       </ul>
       
+      <div class="my-8">
+        <img src="/lovable-uploads/bd3592b1-c2b2-4a8f-b804-b906046acfd6.png" alt="A well-structured case study example" class="rounded-lg w-full h-auto" />
+        <p class="text-sm text-gray-500 mt-2">A good case study showcases your problem-solving ability, not just the final product.</p>
+      </div>
+      
       <h2>4. Find the "Designer Corners" of the Internet</h2>
       
       <p>There's no need to blast ads or beg for signups. Instead, share your work where product designers hang out:</p>
@@ -97,6 +112,11 @@ export const blogPosts: BlogPost[] = [
         <li>Figma Community: Publish reusable components or templates if relevant</li>
         <li>UX Discords / Slack groups: Ask if anyone's solving a similar problem</li>
       </ul>
+      
+      <div class="my-8">
+        <img src="/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png" alt="Designer communities online" class="rounded-lg w-full h-auto" />
+        <p class="text-sm text-gray-500 mt-2">Find your tribe - communities of designers can provide valuable feedback and support.</p>
+      </div>
       
       <h2>5. Ask for Feedback, Not Fame</h2>
       
@@ -112,6 +132,11 @@ export const blogPosts: BlogPost[] = [
       
       <p>This is still design work. Sharing and improving is part of the job—not just shipping.</p>
       
+      <div class="my-8">
+        <img src="/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png" alt="Designers having a meaningful conversation about work" class="rounded-lg w-full h-auto" />
+        <p class="text-sm text-gray-500 mt-2">Quality conversations can be more valuable than quantity of views.</p>
+      </div>
+      
       <h2>6. Turn It Into a Series</h2>
       
       <p>Instead of one big post, break your experience into smaller bits of content over a few weeks:</p>
@@ -124,6 +149,11 @@ export const blogPosts: BlogPost[] = [
       </ul>
       
       <p>You'll stay top of mind, build credibility, and show growth over time.</p>
+      
+      <div class="my-8">
+        <img src="/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png" alt="Content series planning" class="rounded-lg w-full h-auto" />
+        <p class="text-sm text-gray-500 mt-2">A series of content keeps your audience engaged and coming back for more.</p>
+      </div>
       
       <h2>Final Thoughts</h2>
       
