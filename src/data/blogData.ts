@@ -15,7 +15,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: "1",
-    title: "I Built a Product Without Real Data or a Marketing Plan—Here's How I Shared It Anyway",
+    title: "From Zero to Launch: Shipping a Product with Placeholder Data and No Marketing Budget",
     excerpt: "As a solo product designer, it's easy to get caught in the loop of building, tweaking, and endlessly polishing. Here's how I broke that cycle.",
     author: "Hiram Barsky",
     date: "May 16, 2025",
