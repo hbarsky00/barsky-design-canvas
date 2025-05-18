@@ -14,6 +14,7 @@ import BlogAuthorBio from "@/components/blog/BlogAuthorBio";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import BlogPostMeta from "@/components/blog/BlogPostMeta";
 import LoadingState from "@/components/blog/LoadingState";
+import { useRelatedPosts } from "@/hooks/useRelatedPosts";
 
 const BlogPost: React.FC = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -21,7 +22,13 @@ const BlogPost: React.FC = () => {
   const { toast } = useToast();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  
+  // Get related posts using our custom hook
+  const relatedPosts = useRelatedPosts(
+    post?.id || "",
+    post?.tags || [],
+    3
+  );
   
   useEffect(() => {
     setIsLoading(true);
@@ -34,13 +41,6 @@ const BlogPost: React.FC = () => {
       // Track page view and content engagement
       trackPageView(`/blog/${postId}`, `${foundPost.title} | Hiram Barsky Blog`);
       trackContentEngagement('blog', foundPost.id, foundPost.title);
-      
-      // Find related posts by matching tags
-      const related = blogPosts
-        .filter(p => p.id !== foundPost.id && p.tags.some(tag => foundPost.tags.includes(tag)))
-        .slice(0, 3);
-      
-      setRelatedPosts(related);
     } else {
       // If post not found, redirect to blog list
       navigate("/blog");
