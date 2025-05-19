@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -14,6 +15,12 @@ import ImageMaximizer from "@/components/project/ImageMaximizer";
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
   "splittime": {
+    "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "Messaging interface of the Splittime co-parenting app showing automated replies and weekly message review",
+    "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png": "Multiple views of the Splittime app showing login, children's profiles, and account settings interfaces",
+    "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png": "Web dashboard of Splittime showing notifications, children profiles, and co-parent connection features",
+    "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png": "Design process documentation showing UX goals and user flow mapping for the Splittime app",
+    "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png": "School module interface showing educational success tracking and calendar features",
+    
     "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png": "Messaging interface of the Splittime co-parenting app - designed for clear and neutral communication",
     "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png": "Main interface of the co-parenting app showing the calendar and custody schedule view",
     "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png": "User research findings highlighting key pain points for separated parents",
