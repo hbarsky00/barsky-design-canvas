@@ -1,4 +1,3 @@
-
 import React, { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -43,37 +42,44 @@ const AnalyticsTracker = () => {
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light">
-      <HelmetProvider>
-        <TooltipProvider>
-          <BrowserRouter>
-            <ScrollToTop />
-            <AnalyticsTracker />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/projects" element={<AllProjects />} />
-              <Route path="/project/:projectId" element={<ProjectDetail />} />
-              <Route path="/design-system" element={<DesignSystem />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
-              <Route path="/design-services/web-development" element={<WebDevelopment />} />
-              <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
-              <Route path="/store" element={<Store />} />
-              <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:postId" element={<BlogPost />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-          <Toaster />
-          <Sonner />
-        </TooltipProvider>
-      </HelmetProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+import { ImageMaximizerProvider } from "./context/ImageMaximizerContext";
+
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider attribute="class" defaultTheme="light">
+        <HelmetProvider>
+          <TooltipProvider>
+            <BrowserRouter>
+              <ScrollToTop />
+              <AnalyticsTracker />
+              <ImageMaximizerProvider>
+                {/* Routes */}
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/projects" element={<AllProjects />} />
+                  <Route path="/project/:projectId" element={<ProjectDetail />} />
+                  <Route path="/design-system" element={<DesignSystem />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
+                  <Route path="/design-services/web-development" element={<WebDevelopment />} />
+                  <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
+                  <Route path="/store" element={<Store />} />
+                  <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:postId" element={<BlogPost />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </ImageMaximizerProvider>
+            </BrowserRouter>
+            <Toaster />
+            <Sonner />
+          </TooltipProvider>
+        </HelmetProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

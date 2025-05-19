@@ -56,7 +56,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                   <AspectRatio ratio={16 / 9} className="bg-gray-50">
                     <img
                       src={image}
-                      alt={captions[image] || `Splittime App - Image ${index + 1}`}
+                      alt={captions[image] || `Project Image ${index + 1}`}
                       className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
                       onClick={() => handleImageClick(image)}
                       loading={index === 0 ? "eager" : "lazy"}
@@ -79,8 +79,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
         </CarouselContent>
         {images.length > 1 && (
           <>
-            <CarouselPrevious className="left-2 lg:-left-8" />
-            <CarouselNext className="right-2 lg:-right-8" />
+            <CarouselPrevious className="left-2 lg:-left-8 z-10 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
+            <CarouselNext className="right-2 lg:-right-8 z-10 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
           </>
         )}
       </Carousel>

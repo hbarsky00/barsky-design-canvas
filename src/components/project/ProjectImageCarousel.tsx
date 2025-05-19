@@ -3,25 +3,24 @@ import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
+import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
   title: string;
   extraImages?: string[];
-  onImageClick?: (image: string, title: string) => void;
   captions?: Record<string, string>;
 }
 
 const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   mainImage,
   title,
-  onImageClick,
   captions = {}
 }) => {
+  const { maximizeImage } = useImageMaximizer();
+  
   const handleImageClick = (image: string) => {
-    if (onImageClick) {
-      onImageClick(image, title);
-    }
+    maximizeImage(image, title);
   };
   
   return (

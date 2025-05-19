@@ -3,24 +3,23 @@ import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
+import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 
 interface ProjectImageProps {
   image: string;
   alt: string;
   caption?: string;
-  onImageClick?: (image: string, title: string) => void;
 }
 
 const ProjectImage: React.FC<ProjectImageProps> = ({
   image,
   alt,
-  caption,
-  onImageClick
+  caption
 }) => {
+  const { maximizeImage } = useImageMaximizer();
+  
   const handleImageClick = () => {
-    if (onImageClick) {
-      onImageClick(image, alt);
-    }
+    maximizeImage(image, alt);
   };
 
   return (

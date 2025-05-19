@@ -1,7 +1,6 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { FileText, List, Award } from "lucide-react";
-import ImageMaximizer from "./ImageMaximizer";
 import ProjectSection from "./ProjectSection";
 import TechnologiesList from "./TechnologiesList";
 import ServicesList from "./ServicesList";
@@ -37,19 +36,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   figmaSlideEmbed,
   galleryImages = []
 }) => {
-  const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
-  const [maximizedTitle, setMaximizedTitle] = useState("");
-  
-  const handleImageClick = (image: string, title: string) => {
-    setMaximizedImage(image);
-    setMaximizedTitle(title);
-  };
-  
-  const handleCloseMaximizer = () => {
-    setMaximizedImage(null);
-    setMaximizedTitle("");
-  };
-  
   return (
     <div>
       {/* Challenge Section */}
@@ -59,7 +45,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
             embedUrl={figmaSlideEmbed || ""} 
             galleryImages={galleryImages}
             captions={imageCaptions}
-            onImageClick={handleImageClick}
           />
         ) : null}
         
@@ -69,7 +54,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           content={challenge}
           image={figmaSlideEmbed || galleryImages.length > 0 ? undefined : challengeImage}
           imageCaption={figmaSlideEmbed || galleryImages.length > 0 ? undefined : (challengeImage && imageCaptions[challengeImage])}
-          onImageClick={handleImageClick}
         />
       </div>
       
@@ -80,7 +64,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         content={process}
         image={processImage}
         imageCaption={processImage && imageCaptions[processImage]}
-        onImageClick={handleImageClick}
       />
       
       {/* Result Section */}
@@ -90,18 +73,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         content={result}
         image={resultImage}
         imageCaption={resultImage && imageCaptions[resultImage]}
-        onImageClick={handleImageClick}
       />
-      
-      {/* Image Maximizer Component */}
-      {maximizedImage && (
-        <ImageMaximizer
-          image={maximizedImage}
-          title={maximizedTitle}
-          isOpen={!!maximizedImage}
-          onClose={handleCloseMaximizer}
-        />
-      )}
       
       {/* Technologies Section */}
       <TechnologiesList technologies={technologies} />

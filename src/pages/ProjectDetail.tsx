@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -10,7 +9,7 @@ import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectSidebar from "@/components/project/ProjectSidebar";
 import { projectsData, projectDetails, type ProjectDetails } from "@/data/projectsData";
 import { trackPageView } from "@/lib/analytics";
-import ImageMaximizer from "@/components/project/ImageMaximizer";
+import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
@@ -64,8 +63,6 @@ const ProjectDetail: React.FC = () => {
   const [project, setProject] = useState<typeof projectsData[0] | null>(null);
   const [details, setDetails] = useState<ProjectDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
-  const [maximizedTitle, setMaximizedTitle] = useState("");
   
   useEffect(() => {
     // Reset loading state when project ID changes
@@ -94,16 +91,6 @@ const ProjectDetail: React.FC = () => {
     setIsLoading(false);
   }, [projectId, navigate]);
   
-  const handleImageClick = (image: string, title: string) => {
-    setMaximizedImage(image);
-    setMaximizedTitle(title);
-  };
-  
-  const handleCloseMaximizer = () => {
-    setMaximizedImage(null);
-    setMaximizedTitle("");
-  };
-  
   if (isLoading || !project || !details) {
     return (
       <div className="flex flex-col min-h-screen">
@@ -122,74 +109,66 @@ const ProjectDetail: React.FC = () => {
   const currentProjectCaptions = projectImageCaptions[projectId || ""] || {};
   
   return (
-    <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>{project.title} | Hiram Barsky Portfolio</title>
-        <meta name="description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
-        <meta property="og:title" content={`${project.title} | Hiram Barsky Portfolio`} />
-        <meta property="og:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
-        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
-        <meta property="og:url" content={`https://hirambarsky.com/project/${projectId}`} />
-        <meta name="twitter:title" content={`${project.title} | Hiram Barsky Portfolio`} />
-        <meta name="twitter:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design`} />
-        <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
-      </Helmet>
-      
-      <Header />
-      <main className="flex-grow">
-        <section className="py-20">
-          <div className="section-container">
-            <ProjectHeader title={project.title} tags={project.tags} />
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="col-span-2">
-                <ProjectOverview 
-                  challenge={details.challenge}
-                  process={details.process}
-                  result={details.result}
-                  technologies={details.technologies}
-                  projectLink={project.link}
-                  challengeImage={details.challengeImage}
-                  processImage={details.processImage}
-                  resultImage={details.resultImage}
-                  imageCaptions={currentProjectCaptions}
-                  figmaSlideEmbed={details.figmaSlideEmbed}
-                  galleryImages={details.galleryImages}
-                />
+    <ImageMaximizerProvider>
+      <div className="flex flex-col min-h-screen">
+        <Helmet>
+          <title>{project.title} | Hiram Barsky Portfolio</title>
+          <meta name="description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
+          <meta property="og:title" content={`${project.title} | Hiram Barsky Portfolio`} />
+          <meta property="og:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design by Hiram Barsky`} />
+          <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
+          <meta property="og:url" content={`https://hirambarsky.com/project/${projectId}`} />
+          <meta name="twitter:title" content={`${project.title} | Hiram Barsky Portfolio`} />
+          <meta name="twitter:description" content={`${project.title} - ${project.tags.join(', ')} | Professional Product Design`} />
+          <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
+        </Helmet>
+        
+        <Header />
+        <main className="flex-grow">
+          <section className="py-20">
+            <div className="section-container">
+              <ProjectHeader title={project.title} tags={project.tags} />
+              
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="col-span-2">
+                  <ProjectOverview 
+                    challenge={details.challenge}
+                    process={details.process}
+                    result={details.result}
+                    technologies={details.technologies}
+                    projectLink={project.link}
+                    challengeImage={details.challengeImage}
+                    processImage={details.processImage}
+                    resultImage={details.resultImage}
+                    imageCaptions={currentProjectCaptions}
+                    figmaSlideEmbed={details.figmaSlideEmbed}
+                    galleryImages={details.galleryImages}
+                  />
+                </div>
+                
+                <div>
+                  <ProjectSidebar 
+                    duration={details.duration}
+                    client={details.client}
+                    role={details.role}
+                  />
+                </div>
               </div>
               
-              <div>
-                <ProjectSidebar 
-                  duration={details.duration}
-                  client={details.client}
-                  role={details.role}
-                />
-              </div>
-            </div>
-            
-            <ProjectNavigation 
-              currentProjectId={projectId || ""} 
-              projectsData={projectsData.map(p => ({
-                id: p.id,
-                title: p.title,
-                image: p.image
-              }))} 
-            />
-            
-            {/* Image Maximizer Component */}
-            {maximizedImage && (
-              <ImageMaximizer
-                image={maximizedImage}
-                title={maximizedTitle}
-                isOpen={!!maximizedImage}
-                onClose={handleCloseMaximizer}
+              <ProjectNavigation 
+                currentProjectId={projectId || ""} 
+                projectsData={projectsData.map(p => ({
+                  id: p.id,
+                  title: p.title,
+                  image: p.image
+                }))} 
               />
-            )}
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    </ImageMaximizerProvider>
   );
 };
 
