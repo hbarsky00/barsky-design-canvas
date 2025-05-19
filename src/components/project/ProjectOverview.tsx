@@ -1,9 +1,13 @@
+
 import React, { useState } from "react";
-import { ExternalLink, FileText, List, Award, Maximize } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ContactForm from "@/components/contact/ContactForm";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { FileText, List, Award } from "lucide-react";
 import ImageMaximizer from "./ImageMaximizer";
+import ProjectSection from "./ProjectSection";
+import TechnologiesList from "./TechnologiesList";
+import ServicesList from "./ServicesList";
+import ProjectLinks from "./ProjectLinks";
+import ProjectContactSection from "./ProjectContactSection";
+import FigmaEmbed from "./FigmaEmbed";
 
 interface ProjectOverviewProps {
   challenge: string;
@@ -46,115 +50,41 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   
   return (
     <div>
+      {/* Challenge Section */}
       <div className="mb-8">
         {figmaSlideEmbed ? (
-          <div className="mb-4 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
-            <iframe 
-              style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }} 
-              width="100%" 
-              height="450" 
-              src={figmaSlideEmbed}
-              allowFullScreen 
-              className="w-full"
-            ></iframe>
-          </div>
-        ) : challengeImage && (
-          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
-            <AspectRatio ratio={16 / 9} className="bg-gray-100">
-              <img 
-                src={challengeImage} 
-                alt="Challenge illustration" 
-                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
-                loading="lazy"
-                onClick={() => handleImageClick(challengeImage, "The Challenge")}
-              />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-black/50 p-2 rounded-full">
-                  <Maximize className="h-6 w-6 text-white" />
-                </div>
-              </div>
-            </AspectRatio>
-          </div>
-        )}
-        {challengeImage && !figmaSlideEmbed && imageCaptions && imageCaptions[challengeImage] && (
-          <div className="mb-4 text-sm text-gray-600 italic text-center">
-            {imageCaptions[challengeImage]}
-          </div>
-        )}
-        <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
-          <FileText className="h-6 w-6 mr-2 text-barsky-blue" />
-          The Challenge
-        </h2>
-        <p className="text-barsky-text mb-6 leading-relaxed">
-          {challenge}
-        </p>
+          <FigmaEmbed embedUrl={figmaSlideEmbed} />
+        ) : null}
+        
+        <ProjectSection
+          title="The Challenge"
+          icon={FileText}
+          content={challenge}
+          image={figmaSlideEmbed ? undefined : challengeImage}
+          imageCaption={figmaSlideEmbed ? undefined : (challengeImage && imageCaptions[challengeImage])}
+          onImageClick={handleImageClick}
+        />
       </div>
       
-      <div className="mb-8">
-        {processImage && (
-          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
-            <AspectRatio ratio={16 / 9} className="bg-gray-100">
-              <img 
-                src={processImage} 
-                alt="Process illustration" 
-                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
-                loading="lazy"
-                onClick={() => handleImageClick(processImage, "What I Did")}
-              />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-black/50 p-2 rounded-full">
-                  <Maximize className="h-6 w-6 text-white" />
-                </div>
-              </div>
-            </AspectRatio>
-          </div>
-        )}
-        {processImage && imageCaptions && imageCaptions[processImage] && (
-          <div className="mb-4 text-sm text-gray-600 italic text-center">
-            {imageCaptions[processImage]}
-          </div>
-        )}
-        <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
-          <List className="h-6 w-6 mr-2 text-barsky-blue" />
-          What I Did
-        </h2>
-        <p className="text-barsky-text mb-6 leading-relaxed">
-          {process}
-        </p>
-      </div>
+      {/* Process Section */}
+      <ProjectSection
+        title="What I Did"
+        icon={List}
+        content={process}
+        image={processImage}
+        imageCaption={processImage && imageCaptions[processImage]}
+        onImageClick={handleImageClick}
+      />
       
-      <div className="mb-8">
-        {resultImage && (
-          <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
-            <AspectRatio ratio={16 / 9} className="bg-gray-100">
-              <img 
-                src={resultImage} 
-                alt="Result illustration" 
-                className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
-                loading="lazy"
-                onClick={() => handleImageClick(resultImage, "The Result")}
-              />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-black/50 p-2 rounded-full">
-                  <Maximize className="h-6 w-6 text-white" />
-                </div>
-              </div>
-            </AspectRatio>
-          </div>
-        )}
-        {resultImage && imageCaptions && imageCaptions[resultImage] && (
-          <div className="mb-4 text-sm text-gray-600 italic text-center">
-            {imageCaptions[resultImage]}
-          </div>
-        )}
-        <h2 className="text-2xl font-semibold text-barsky-dark mb-4 flex items-center">
-          <Award className="h-6 w-6 mr-2 text-barsky-blue" />
-          The Result
-        </h2>
-        <p className="text-barsky-text mb-6 leading-relaxed">
-          {result}
-        </p>
-      </div>
+      {/* Result Section */}
+      <ProjectSection
+        title="The Result"
+        icon={Award}
+        content={result}
+        image={resultImage}
+        imageCaption={resultImage && imageCaptions[resultImage]}
+        onImageClick={handleImageClick}
+      />
       
       {/* Image Maximizer Component */}
       {maximizedImage && (
@@ -166,57 +96,17 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         />
       )}
       
-      <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Technologies Used</h2>
-      <div className="flex flex-wrap gap-2 mb-8">
-        {technologies.map((tech) => (
-          <span key={tech} className="bg-barsky-blue/10 text-barsky-blue px-3 py-1 rounded-full text-sm">
-            {tech}
-          </span>
-        ))}
-      </div>
+      {/* Technologies Section */}
+      <TechnologiesList technologies={technologies} />
       
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Services Provided</h2>
-        <ul className="list-disc pl-5 space-y-2 text-barsky-text">
-          <li>UX/UI Design Consultation</li>
-          <li>User Research & Testing</li>
-          <li>Design System Creation</li>
-          <li>Cross-Platform Optimization</li>
-          <li>Mobile and Desktop Interface Design</li>
-          <li>User Flow Optimization</li>
-          <li>Accessibility Implementation</li>
-          <li>Responsive Web Development</li>
-        </ul>
-      </div>
+      {/* Services Section */}
+      <ServicesList />
       
-      <div className="flex flex-wrap gap-4 mb-8">
-        {projectLink && (
-          <a
-            href={projectLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View the live project"
-          >
-            <Button className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors">
-              View Live Project <ExternalLink className="ml-2 h-4 w-4" />
-            </Button>
-          </a>
-        )}
-      </div>
+      {/* Links Section */}
+      <ProjectLinks projectLink={projectLink} />
       
-      <div className="mt-8">
-        <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-          <h3 className="text-xl font-semibold text-barsky-dark mb-3">Need Similar Services?</h3>
-          <p className="text-barsky-text mb-6">
-            I offer professional UX/UI design and development services for both mobile and desktop applications. Let's create your next digital experience.
-          </p>
-          
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <h4 className="text-lg font-medium text-barsky-dark mb-4">Get In Touch</h4>
-            <ContactForm />
-          </div>
-        </div>
-      </div>
+      {/* Contact Section */}
+      <ProjectContactSection />
     </div>
   );
 };
