@@ -14,16 +14,13 @@ import ImageMaximizer from "@/components/project/ImageMaximizer";
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
   "splittime": {
-    "/lovable-uploads/52c52ad5-ba57-47a6-b26e-5414b37b019c.png": "Designing for AI with AI - Messaging interface of the Splittime app with automated reply features",
-    "/lovable-uploads/233ba1a4-d7c6-4861-ac49-aac5ae778cb4.png": "Designing beyond the court - Splittime extends co-parenting experience with profiles, children management and account settings",
-    "/lovable-uploads/82a88805-c57e-4b9f-8e1b-0d81d2c498bc.png": "Supporting coaches supporting you - Dashboard view with notifications and parenting recommendations",
-    "/lovable-uploads/05d2b584-7559-4394-a32e-59dcc87af871.png": "AI as design assistant - UX goals and user flow diagrams for the Splittime app development process",
-    "/lovable-uploads/7207f887-d9da-46fe-b2c4-ed7bcbfbf212.png": "Building with AI - School features showing educational success tracking for co-parents",
+    "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png": "Messaging interface of the Splittime co-parenting app - designed for clear and neutral communication",
+    "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png": "Main interface of the co-parenting app showing the calendar and custody schedule view",
     "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png": "User research findings highlighting key pain points for separated parents",
     "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png": "Design process wireframes showing the evolution of the messaging feature",
     "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png": "Final implementation of the co-parenting mobile application on multiple devices",
-    "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "The platform evolved with new roles and features, maintaining the core design language",
-    "/lovable-uploads/59518d59-73f8-4083-b538-21bdd7215742.png": "Calendar view showing shared custody schedule between parents"
+    "/lovable-uploads/59518d59-73f8-4083-b538-21bdd7215742.png": "Calendar view showing shared custody schedule between parents",
+    "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "The platform evolved with new roles and features, maintaining the core design language"
   },
   "herbalink": {
     "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "The magic of herbalists in your hands - intuitive mobile interface connecting users with qualified practitioners",
