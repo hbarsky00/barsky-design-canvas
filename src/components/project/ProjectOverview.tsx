@@ -52,23 +52,25 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   
   return (
     <div>
-      {/* Challenge Section */}
-      <div className="mb-8">
-        {figmaSlideEmbed || galleryImages.length > 0 ? (
+      {/* Gallery Section */}
+      {galleryImages && galleryImages.length > 0 && (
+        <div className="mb-8">
           <FigmaEmbed 
-            embedUrl={figmaSlideEmbed || ""} 
             galleryImages={galleryImages}
             captions={imageCaptions}
             onImageClick={handleImageClick}
           />
-        ) : null}
-        
+        </div>
+      )}
+      
+      {/* Challenge Section */}
+      <div className="mb-8">
         <ProjectSection
           title="The Challenge"
           icon={FileText}
           content={challenge}
-          image={figmaSlideEmbed || galleryImages.length > 0 ? undefined : challengeImage}
-          imageCaption={figmaSlideEmbed || galleryImages.length > 0 ? undefined : (challengeImage && imageCaptions[challengeImage])}
+          image={galleryImages && galleryImages.length > 0 ? undefined : challengeImage}
+          imageCaption={galleryImages && galleryImages.length > 0 ? undefined : (challengeImage && imageCaptions[challengeImage])}
           onImageClick={handleImageClick}
         />
       </div>

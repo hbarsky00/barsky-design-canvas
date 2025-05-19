@@ -56,7 +56,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                   <AspectRatio ratio={16 / 9} className="bg-gray-50">
                     <img
                       src={image}
-                      alt={captions[image] || `Splittime App - Image ${index + 1}`}
+                      alt={captions[image] || `Project Image ${index + 1}`}
                       className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
                       onClick={() => handleImageClick(image)}
                       loading={index === 0 ? "eager" : "lazy"}
