@@ -2,6 +2,7 @@
 import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { motion } from "framer-motion";
 
 interface ProjectImageProps {
   image: string;
@@ -24,7 +25,13 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
 
   return (
     <>
-      <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
+      <motion.div 
+        className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <AspectRatio ratio={16 / 9} className="bg-gray-100">
           <img 
             src={image} 
@@ -39,11 +46,17 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
             </div>
           </div>
         </AspectRatio>
-      </div>
+      </motion.div>
       {caption && (
-        <div className="mb-4 text-sm text-gray-600 italic text-center">
+        <motion.div 
+          className="mb-4 text-sm text-gray-600 italic text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           {caption}
-        </div>
+        </motion.div>
       )}
     </>
   );

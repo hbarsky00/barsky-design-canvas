@@ -2,6 +2,7 @@
 import React from "react";
 import { LucideIcon } from "lucide-react";
 import ProjectImage from "./ProjectImage";
+import { motion } from "framer-motion";
 
 interface ProjectSectionProps {
   title: string;
@@ -21,7 +22,13 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   onImageClick
 }) => {
   return (
-    <div className="mb-8">
+    <motion.div 
+      className="mb-8"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
       {image && (
         <ProjectImage 
           image={image}
@@ -37,7 +44,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       <p className="text-barsky-text mb-6 leading-relaxed">
         {content}
       </p>
-    </div>
+    </motion.div>
   );
 };
 

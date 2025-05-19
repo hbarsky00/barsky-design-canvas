@@ -2,6 +2,7 @@
 import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { motion } from "framer-motion";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -25,7 +26,13 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   
   return (
     <div className="relative mb-12">
-      <div className="rounded-lg overflow-hidden border border-gray-100 shadow-sm mb-4 group relative">
+      <motion.div 
+        className="rounded-lg overflow-hidden border border-gray-100 shadow-sm mb-4 group relative"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <AspectRatio ratio={16 / 9} className="bg-gray-100">
           <img
             src={mainImage}
@@ -41,11 +48,16 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           </div>
         </AspectRatio>
         {captions && captions[mainImage] && (
-          <div className="mt-2 text-sm text-gray-600 italic text-center">
+          <motion.div 
+            className="mt-2 text-sm text-gray-600 italic text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             {captions[mainImage]}
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };
