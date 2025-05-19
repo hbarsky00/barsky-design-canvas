@@ -21,6 +21,7 @@ interface ProjectOverviewProps {
   resultImage?: string;
   imageCaptions?: Record<string, string>;
   figmaSlideEmbed?: string;
+  galleryImages?: string[];
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -33,7 +34,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   processImage,
   resultImage,
   imageCaptions = {},
-  figmaSlideEmbed
+  figmaSlideEmbed,
+  galleryImages = []
 }) => {
   const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
   const [maximizedTitle, setMaximizedTitle] = useState("");
@@ -52,16 +54,21 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
     <div>
       {/* Challenge Section */}
       <div className="mb-8">
-        {figmaSlideEmbed ? (
-          <FigmaEmbed embedUrl={figmaSlideEmbed} />
+        {figmaSlideEmbed || galleryImages.length > 0 ? (
+          <FigmaEmbed 
+            embedUrl={figmaSlideEmbed || ""} 
+            galleryImages={galleryImages}
+            captions={imageCaptions}
+            onImageClick={handleImageClick}
+          />
         ) : null}
         
         <ProjectSection
           title="The Challenge"
           icon={FileText}
           content={challenge}
-          image={figmaSlideEmbed ? undefined : challengeImage}
-          imageCaption={figmaSlideEmbed ? undefined : (challengeImage && imageCaptions[challengeImage])}
+          image={figmaSlideEmbed || galleryImages.length > 0 ? undefined : challengeImage}
+          imageCaption={figmaSlideEmbed || galleryImages.length > 0 ? undefined : (challengeImage && imageCaptions[challengeImage])}
           onImageClick={handleImageClick}
         />
       </div>

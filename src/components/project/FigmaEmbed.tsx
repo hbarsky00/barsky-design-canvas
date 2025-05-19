@@ -2,12 +2,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ProjectMultiImageGallery from "./ProjectMultiImageGallery";
 
 interface FigmaEmbedProps {
   embedUrl: string;
+  galleryImages?: string[];
+  captions?: Record<string, string>;
+  onImageClick?: (image: string, title: string) => void;
 }
 
-const FigmaEmbed: React.FC<FigmaEmbedProps> = ({ embedUrl }) => {
+const FigmaEmbed: React.FC<FigmaEmbedProps> = ({ 
+  embedUrl, 
+  galleryImages = [],
+  captions = {},
+  onImageClick
+}) => {
   const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = React.useState(true);
   const [hasError, setHasError] = React.useState(false);
@@ -20,6 +29,17 @@ const FigmaEmbed: React.FC<FigmaEmbedProps> = ({ embedUrl }) => {
     setIsLoading(false);
     setHasError(true);
   };
+
+  // If gallery images are provided, render the gallery instead of the Figma embed
+  if (galleryImages && galleryImages.length > 0) {
+    return (
+      <ProjectMultiImageGallery 
+        images={galleryImages}
+        captions={captions}
+        onImageClick={onImageClick}
+      />
+    );
+  }
 
   return (
     <motion.div 

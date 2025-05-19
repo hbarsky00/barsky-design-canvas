@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -14,6 +15,7 @@ export interface ProjectDetails {
   resultImage?: string;
   caseStudyLink?: string;
   figmaSlideEmbed?: string;
+  galleryImages?: string[];
 }
 
 export const projectDetails: Record<string, ProjectDetails> = {
@@ -33,7 +35,15 @@ export const projectDetails: Record<string, ProjectDetails> = {
     processImage: "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png",
     resultImage: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/splittime",
-    figmaSlideEmbed: "https://embed.figma.com/slides/2XGaAEdEOorWXmzdXzhsS2/Splittime-Co-Parenting-App?node-id=1-77&embed-host=share"
+    // figmaSlideEmbed: "https://embed.figma.com/slides/2XGaAEdEOorWXmzdXzhsS2/Splittime-Co-Parenting-App?node-id=1-77&embed-host=share",
+    galleryImages: [
+      "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png",
+      "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png", 
+      "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
+      "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png",
+      "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
+      "/lovable-uploads/59518d59-73f8-4083-b538-21bdd7215742.png"
+    ]
   },
   "herbalink": {
     challenge: "Many individuals seeking natural health solutions face significant barriers in finding qualified herbalists with verifiable credentials. Traditional healthcare platforms lack specialized features for herbal medicine practitioners, while patients struggle to determine the legitimacy and expertise of providers. This disconnect leads to missed opportunities for effective natural treatments and a general distrust in herbal medicine.",
