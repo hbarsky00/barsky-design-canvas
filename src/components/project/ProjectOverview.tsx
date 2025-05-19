@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { ExternalLink, FileText, List, Award, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ interface ProjectOverviewProps {
   processImage?: string;
   resultImage?: string;
   imageCaptions?: Record<string, string>;
+  figmaSlideEmbed?: string;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -28,7 +28,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   challengeImage,
   processImage,
   resultImage,
-  imageCaptions = {}
+  imageCaptions = {},
+  figmaSlideEmbed
 }) => {
   const [maximizedImage, setMaximizedImage] = useState<string | null>(null);
   const [maximizedTitle, setMaximizedTitle] = useState("");
@@ -46,7 +47,18 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   return (
     <div>
       <div className="mb-8">
-        {challengeImage && (
+        {figmaSlideEmbed ? (
+          <div className="mb-4 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+            <iframe 
+              style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }} 
+              width="100%" 
+              height="450" 
+              src={figmaSlideEmbed}
+              allowFullScreen 
+              className="w-full"
+            ></iframe>
+          </div>
+        ) : challengeImage && (
           <div className="mb-2 rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative">
             <AspectRatio ratio={16 / 9} className="bg-gray-100">
               <img 
@@ -64,7 +76,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
             </AspectRatio>
           </div>
         )}
-        {challengeImage && imageCaptions && imageCaptions[challengeImage] && (
+        {challengeImage && !figmaSlideEmbed && imageCaptions && imageCaptions[challengeImage] && (
           <div className="mb-4 text-sm text-gray-600 italic text-center">
             {imageCaptions[challengeImage]}
           </div>

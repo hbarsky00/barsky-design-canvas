@@ -146,6 +146,7 @@ const ProjectDetail: React.FC = () => {
                   processImage={details.processImage}
                   resultImage={details.resultImage}
                   imageCaptions={currentProjectCaptions}
+                  figmaSlideEmbed={details.figmaSlideEmbed}
                 />
               </div>
               

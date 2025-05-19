@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -13,7 +12,8 @@ export interface ProjectDetails {
   challengeImage?: string;
   processImage?: string;
   resultImage?: string;
-  caseStudyLink?: string; 
+  caseStudyLink?: string;
+  figmaSlideEmbed?: string;
 }
 
 export const projectDetails: Record<string, ProjectDetails> = {
@@ -32,7 +32,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     challengeImage: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
     processImage: "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png",
     resultImage: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
-    caseStudyLink: "https://hirambarsky.com/case-studies/splittime"
+    caseStudyLink: "https://hirambarsky.com/case-studies/splittime",
+    figmaSlideEmbed: "https://embed.figma.com/slides/2XGaAEdEOorWXmzdXzhsS2/Splittime-Co-Parenting-App?node-id=1-77&embed-host=share"
   },
   "herbalink": {
     challenge: "Many individuals seeking natural health solutions face significant barriers in finding qualified herbalists with verifiable credentials. Traditional healthcare platforms lack specialized features for herbal medicine practitioners, while patients struggle to determine the legitimacy and expertise of providers. This disconnect leads to missed opportunities for effective natural treatments and a general distrust in herbal medicine.",
