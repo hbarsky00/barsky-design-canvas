@@ -29,7 +29,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
       const caption = captions[image] || "Project Image";
       onImageClick(image, caption);
     } else {
-      maximizeImage(image, captions[image] || "Project Image");
+      maximizeImage(image, captions[image] || "Project Image", images, images.indexOf(image));
+      console.log("Gallery image clicked:", image);
     }
   };
 
@@ -61,16 +62,20 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                     <img
                       src={image}
                       alt={captions[image] || `Project Image ${index + 1}`}
-                      className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:brightness-95"
+                      className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95"
                       onClick={() => handleImageClick(image)}
                       loading={index === 0 ? "eager" : "lazy"}
                       style={{ height: "100%" }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => handleImageClick(image)}
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      aria-label="Maximize image"
+                    >
                       <div className="bg-black/50 p-2 rounded-full">
                         <Maximize className="h-6 w-6 text-white" />
                       </div>
-                    </div>
+                    </button>
                   </div>
                 </div>
                 {captions[image] && (

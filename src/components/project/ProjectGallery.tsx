@@ -18,6 +18,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     // Pass the full gallery images array and current index for navigation
     const currentIndex = galleryImages.indexOf(image);
     maximizeImage(image, title, galleryImages, currentIndex);
+    console.log("Gallery image clicked from ProjectGallery:", image);
   };
   
   // If we have gallery images, show a carousel

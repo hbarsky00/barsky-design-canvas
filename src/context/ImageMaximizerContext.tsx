@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 import ImageMaximizer from '@/components/project/ImageMaximizer';
 
 interface ImageMaximizerContextType {
@@ -26,7 +26,11 @@ export const ImageMaximizerProvider: React.FC<ImageMaximizerProviderProps> = ({ 
   const [imageList, setImageList] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  const maximizeImage = (image: string, title: string, images?: string[], index?: number) => {
+  const maximizeImage = useCallback((image: string, title: string, images?: string[], index?: number) => {
+    console.log("Maximizing image:", image);
+    console.log("With title:", title);
+    if (images) console.log("Image list length:", images.length);
+    
     setMaximizedImage(image);
     setMaximizedTitle(title);
     
@@ -37,14 +41,14 @@ export const ImageMaximizerProvider: React.FC<ImageMaximizerProviderProps> = ({ 
       setImageList([image]);
       setCurrentIndex(0);
     }
-  };
+  }, []);
   
-  const handleCloseMaximizer = () => {
+  const handleCloseMaximizer = useCallback(() => {
     setMaximizedImage(null);
     setMaximizedTitle("");
     setImageList([]);
     setCurrentIndex(0);
-  };
+  }, []);
   
   return (
     <ImageMaximizerContext.Provider value={{ maximizeImage }}>

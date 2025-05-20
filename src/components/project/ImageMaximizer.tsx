@@ -26,6 +26,11 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const hasMultipleImages = imageList && imageList.length > 1;
   
+  useEffect(() => {
+    // Log when the component renders
+    console.log("ImageMaximizer rendered:", { image, isOpen, listLength: imageList?.length });
+  }, [image, isOpen, imageList?.length]);
+  
   const handleZoomIn = () => {
     setScale((prevScale) => Math.min(prevScale + 0.25, 3));
   };
@@ -84,7 +89,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, hasMultipleImages, currentIndex]);
+  }, [isOpen, hasMultipleImages, currentIndex, onClose]);
   
   // Reset scale when dialog closes
   useEffect(() => {
@@ -92,6 +97,8 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
       setScale(1);
     }
   }, [isOpen]);
+  
+  if (!isOpen) return null;
   
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>

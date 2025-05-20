@@ -20,6 +20,7 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
   
   const handleImageClick = () => {
     maximizeImage(image, alt);
+    console.log("Project image clicked:", image);
   };
 
   return (
@@ -35,15 +36,19 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
           <img 
             src={image} 
             alt={alt} 
-            className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:brightness-95"
+            className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95"
             loading="lazy"
             onClick={handleImageClick}
           />
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={handleImageClick}
+            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            aria-label="Maximize image"
+          >
             <div className="bg-black/50 p-2 rounded-full">
               <Maximize className="h-6 w-6 text-white" />
             </div>
-          </div>
+          </button>
         </AspectRatio>
       </motion.div>
       {caption && (
