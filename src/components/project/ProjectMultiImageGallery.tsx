@@ -40,7 +40,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
 
   return (
     <motion.div
-      className="mb-6 overflow-hidden relative"
+      className="mb-8 overflow-hidden relative w-full"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -55,10 +55,10 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
       >
         <CarouselContent>
           {images.map((image, index) => (
-            <CarouselItem key={index} className="md:basis-2/3 lg:basis-3/4">
-              <div className="p-1">
-                <div className="overflow-hidden rounded-lg border border-gray-100 shadow-sm group relative">
-                  <AspectRatio ratio={16 / 9} className="bg-gray-50">
+            <CarouselItem key={index} className="basis-full md:basis-full lg:basis-full">
+              <div className="p-1 w-full">
+                <div className="overflow-hidden rounded-lg border border-gray-100 shadow-sm group relative w-full">
+                  <AspectRatio ratio={16 / 9} className="bg-gray-50 w-full">
                     <img
                       src={image}
                       alt={captions[image] || `Project Image ${index + 1}`}
@@ -74,7 +74,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                   </AspectRatio>
                 </div>
                 {captions[image] && (
-                  <div className="mt-2 text-sm text-gray-600 italic text-center px-2">
+                  <div className="mt-3 text-sm text-gray-600 italic text-center px-2">
                     {captions[image]}
                   </div>
                 )}

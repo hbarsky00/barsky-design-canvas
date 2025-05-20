@@ -63,16 +63,16 @@ export const projectDetails: Record<string, ProjectDetails> = {
     resultImage: "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/herbalink",
     galleryImages: [
-      "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
-      "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png",
-      "/lovable-uploads/2e27159e-c598-4ad5-a539-7ae7b5d08ed6.png",
-      "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png",
-      "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
-      "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
-      "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png",
-      "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
-      "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
-      "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png"
+      "/lovable-uploads/8e4b58bb-b896-4e18-b86d-1fae7fcc576e.png",
+      "/lovable-uploads/a332bc93-8bd7-42b3-b4f9-0f24270eb9ab.png",
+      "/lovable-uploads/41442407-7956-48f5-88bd-f68b4d0ce485.png",
+      "/lovable-uploads/c37c7bf9-100c-4451-9856-1c4ca0adee05.png",
+      "/lovable-uploads/c7039c67-0933-4671-9d1e-0a8e6066b5a0.png",
+      "/lovable-uploads/0937ca2e-b4b7-493a-963e-441f9fdafb2f.png",
+      "/lovable-uploads/8fd697f3-7606-4019-834b-7b9fc4ef4a02.png",
+      "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png",
+      "/lovable-uploads/06c3b4e6-b260-4c9d-90d3-201371ff7381.png",
+      "/lovable-uploads/d33a7d68-a919-4e51-b481-44dedceb60ac.png"
     ]
   },
   "gold2crypto": {
