@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -27,7 +26,8 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png": "Design process wireframes showing the evolution of the messaging feature",
     "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png": "Final implementation of the co-parenting mobile application on multiple devices",
     "/lovable-uploads/59518d59-73f8-4083-b538-21bdd7215742.png": "Calendar view showing shared custody schedule between parents",
-    "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "The platform evolved with new roles and features, maintaining the core design language"
+    "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "The platform evolved with new roles and features, maintaining the core design language",
+    "/lovable-uploads/b8f653d9-0253-43e1-94c8-f4890f48d414.png": "Key challenges in co-parenting coordination: adoption by high-conflict parents, professional integration, and robust security & privacy features"
   },
   "herbalink": {
     "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "The magic of herbalists in your hands - intuitive mobile interface connecting users with qualified practitioners",
