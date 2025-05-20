@@ -13,7 +13,6 @@ export interface ProjectDetails {
   processImage?: string;
   resultImage?: string;
   caseStudyLink?: string;
-  figmaSlideEmbed?: string;
   galleryImages?: string[];
 }
 
@@ -34,7 +33,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     processImage: "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png",
     resultImage: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/splittime",
-    // figmaSlideEmbed: "https://embed.figma.com/slides/2XGaAEdEOorWXmzdXzhsS2/Splittime-Co-Parenting-App?node-id=1-77&embed-host=share",
     galleryImages: [
       "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
       "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png", 

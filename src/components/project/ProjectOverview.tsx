@@ -6,7 +6,7 @@ import TechnologiesList from "./TechnologiesList";
 import ServicesList from "./ServicesList";
 import ProjectLinks from "./ProjectLinks";
 import ProjectContactSection from "./ProjectContactSection";
-import FigmaEmbed from "./FigmaEmbed";
+import ProjectGallery from "./ProjectGallery";
 
 interface ProjectOverviewProps {
   challenge: string;
@@ -19,7 +19,6 @@ interface ProjectOverviewProps {
   processImage?: string;
   resultImage?: string;
   imageCaptions?: Record<string, string>;
-  figmaSlideEmbed?: string;
   galleryImages?: string[];
 }
 
@@ -33,16 +32,14 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   processImage,
   resultImage,
   imageCaptions = {},
-  figmaSlideEmbed,
   galleryImages = []
 }) => {
   return (
     <div>
-      {/* Challenge Section */}
+      {/* Gallery Images Section */}
       <div className="mb-8">
-        {figmaSlideEmbed || galleryImages.length > 0 ? (
-          <FigmaEmbed 
-            embedUrl={figmaSlideEmbed || ""} 
+        {galleryImages && galleryImages.length > 0 ? (
+          <ProjectGallery 
             galleryImages={galleryImages}
             captions={imageCaptions}
           />
@@ -52,8 +49,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           title="The Challenge"
           icon={FileText}
           content={challenge}
-          image={figmaSlideEmbed || galleryImages.length > 0 ? undefined : challengeImage}
-          imageCaption={figmaSlideEmbed || galleryImages.length > 0 ? undefined : (challengeImage && imageCaptions[challengeImage])}
+          image={galleryImages && galleryImages.length > 0 ? undefined : challengeImage}
+          imageCaption={galleryImages && galleryImages.length > 0 ? undefined : (challengeImage && imageCaptions[challengeImage])}
         />
       </div>
       
