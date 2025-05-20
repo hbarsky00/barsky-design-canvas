@@ -3,9 +3,9 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import AnimatedLogo from "./AnimatedLogo";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
-import Navigation from "./header/Navigation";
 import MobileMenu from "./header/MobileMenu";
 import ProfileAvatar from "./header/ProfileAvatar";
+import ThemeToggle from "./ThemeToggle";
 
 const Header: React.FC = () => {
   const { 
@@ -34,20 +34,16 @@ const Header: React.FC = () => {
             <AnimatedLogo />
           </div>
 
-          <Navigation 
-            links={navLinks}
-            activeSection={activeSection}
-            handleLinkClick={handleLinkClick}
-            isLinkActive={isLinkActive}
-          />
-
-          <MobileMenu 
-            links={navLinks}
-            isMobileMenuOpen={isMobileMenuOpen}
-            toggleMobileMenu={toggleMobileMenu}
-            handleLinkClick={handleLinkClick}
-            isLinkActive={isLinkActive}
-          />
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
+            <MobileMenu 
+              links={navLinks}
+              isMobileMenuOpen={isMobileMenuOpen}
+              toggleMobileMenu={toggleMobileMenu}
+              handleLinkClick={handleLinkClick}
+              isLinkActive={isLinkActive}
+            />
+          </div>
         </div>
       </div>
     </header>

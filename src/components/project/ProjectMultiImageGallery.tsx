@@ -8,7 +8,6 @@ import {
   CarouselPrevious 
 } from "@/components/ui/carousel";
 import { Maximize } from "lucide-react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 
@@ -55,23 +54,24 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
       >
         <CarouselContent>
           {images.map((image, index) => (
-            <CarouselItem key={index} className="basis-full md:basis-full lg:basis-full">
+            <CarouselItem key={index} className="basis-full">
               <div className="p-1 w-full">
-                <div className="overflow-hidden rounded-lg border border-gray-100 shadow-sm group relative w-full">
-                  <AspectRatio ratio={16 / 9} className="bg-gray-50 w-full">
+                <div className="overflow-hidden rounded-lg border border-gray-100 shadow-sm group relative w-full h-full">
+                  <div className="w-full h-full">
                     <img
                       src={image}
                       alt={captions[image] || `Project Image ${index + 1}`}
                       className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:brightness-95"
                       onClick={() => handleImageClick(image)}
                       loading={index === 0 ? "eager" : "lazy"}
+                      style={{ height: "100%" }}
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="bg-black/50 p-2 rounded-full">
                         <Maximize className="h-6 w-6 text-white" />
                       </div>
                     </div>
-                  </AspectRatio>
+                  </div>
                 </div>
                 {captions[image] && (
                   <div className="mt-3 text-sm text-gray-600 italic text-center px-2">

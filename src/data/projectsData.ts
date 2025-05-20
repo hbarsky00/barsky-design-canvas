@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -33,7 +32,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
     ],
     challengeImage: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
     processImage: "/lovable-uploads/57188cd2-5ba4-4a9e-8a57-c70016dd2566.png",
-    resultImage: "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png",
+    resultImage: "/lovable-uploads/lovable-uploads.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/splittime",
     galleryImages: [
       "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
