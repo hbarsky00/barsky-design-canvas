@@ -37,7 +37,8 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "The magic of herbalists in your hands - intuitive mobile interface connecting users with qualified practitioners",
     "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png": "User journey map illustrating the consultation booking process",
     "/lovable-uploads/ada2ad24-f156-4851-b6e8-572404ccb959.png": "Design Process: From Concept to Solution - Timeline showing low-fidelity wireframes, interactive prototyping, usability testing, and visual design system development",
-    "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png": "User journey mapping and persona development workshop materials from the Herbalink design process", // Added new image caption
+    "/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png": "User journey mapping and persona development workshop materials from the Herbalink design process",
+    "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png": "Design Process: From Concept to Solution - Showing our rigorous user-centered approach with wireframes, prototyping, testing, and visual design system development",
     "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png": "Final implementation of the secure video consultation interface",
     "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png": "Treatment tracking dashboard with herbal remedy management",
     "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png": "Practitioner profile view showing credentials and specialties",
