@@ -41,7 +41,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <img 
             src={src} 
             alt={alt} 
-            className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
+            className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:brightness-95"
             loading={priority ? "eager" : "lazy"}
             onClick={handleImageClick}
           />

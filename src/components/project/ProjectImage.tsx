@@ -35,7 +35,7 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
           <img 
             src={image} 
             alt={alt} 
-            className="object-cover w-full h-full cursor-pointer transition-all group-hover:brightness-95"
+            className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:brightness-95"
             loading="lazy"
             onClick={handleImageClick}
           />
