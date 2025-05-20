@@ -10,6 +10,7 @@ import {
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
+import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 
 interface ProjectMultiImageGalleryProps {
   images: string[];
@@ -22,10 +23,14 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
   captions = {},
   onImageClick,
 }) => {
+  const { maximizeImage } = useImageMaximizer();
+  
   const handleImageClick = (image: string) => {
     if (onImageClick) {
       const caption = captions[image] || "Project Image";
       onImageClick(image, caption);
+    } else {
+      maximizeImage(image, captions[image] || "Project Image");
     }
   };
 
@@ -79,8 +84,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
         </CarouselContent>
         {images.length > 1 && (
           <>
-            <CarouselPrevious className="left-2 lg:-left-8 z-10 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
-            <CarouselNext className="right-2 lg:-right-8 z-10 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
+            <CarouselPrevious className="left-2 lg:-left-8 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white absolute" />
+            <CarouselNext className="right-2 lg:-right-8 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white absolute" />
           </>
         )}
       </Carousel>

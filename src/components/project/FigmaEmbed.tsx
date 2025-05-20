@@ -17,7 +17,9 @@ const FigmaEmbed: React.FC<FigmaEmbedProps> = ({
   const { maximizeImage } = useImageMaximizer();
   
   const handleImageClick = (image: string, title: string) => {
-    maximizeImage(image, title);
+    // Pass the full gallery images array and current index for navigation
+    const currentIndex = galleryImages.indexOf(image);
+    maximizeImage(image, title, galleryImages, currentIndex);
   };
   
   // If we have gallery images, show a carousel instead of Figma embed

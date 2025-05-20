@@ -1,7 +1,7 @@
 
 import React from "react";
 import { LucideIcon } from "lucide-react";
-import ProjectImage from "./ProjectImage";
+import MaximizableImage from "./MaximizableImage";
 
 interface ProjectSectionProps {
   title: string;
@@ -26,11 +26,13 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       </div>
       
       {image && (
-        <ProjectImage 
-          image={image}
-          alt={title}
-          caption={imageCaption}
-        />
+        <div className="mb-6">
+          <MaximizableImage
+            src={image}
+            alt={title}
+            caption={imageCaption}
+          />
+        </div>
       )}
       
       <div className="prose prose-slate max-w-none dark:prose-invert">
