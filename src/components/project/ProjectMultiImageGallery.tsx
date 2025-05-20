@@ -84,8 +84,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
         </CarouselContent>
         {images.length > 1 && (
           <>
-            <CarouselPrevious className="left-2 lg:-left-8 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white absolute" />
-            <CarouselNext className="right-2 lg:-right-8 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white absolute" />
+            <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
+            <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
           </>
         )}
       </Carousel>
