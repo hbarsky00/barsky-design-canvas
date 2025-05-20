@@ -51,8 +51,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           title="The Challenge"
           icon={FileText}
           content={challenge}
-          image={galleryImages && galleryImages.length > 0 ? undefined : challengeImage}
-          imageCaption={galleryImages && galleryImages.length > 0 ? undefined : (challengeImage && imageCaptions[challengeImage])}
+          image={challengeImage}
+          imageCaption={challengeImage && imageCaptions[challengeImage]}
         />
       </div>
       
