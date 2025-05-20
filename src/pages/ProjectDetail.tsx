@@ -19,6 +19,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png": "Web dashboard of Splittime showing notifications, children profiles, and co-parent connection features",
     "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png": "Design process documentation showing UX goals and user flow mapping for the Splittime app",
     "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png": "School module interface showing educational success tracking and calendar features",
+    "/lovable-uploads/cb589912-0dc5-44e5-bd32-f5d177296cc3.png": "Anticipated Impact: Measurable Outcomes showing 60% court visit reduction, $25K average savings in legal fees, 85% user satisfaction, and 3.5X increase in productive communication",
     
     "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png": "Messaging interface of the Splittime co-parenting app - designed for clear and neutral communication",
     "/lovable-uploads/6246d44b-1242-4369-95d3-c0e7e579a9fe.png": "Main interface of the co-parenting app showing the calendar and custody schedule view",
