@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Image, ZoomIn, ZoomOut, Maximize, ArrowLeft, ArrowRight } from "lucide-react";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import ImageHeader from "./image-maximizer/ImageHeader";
+import NavigationButtons from "./image-maximizer/NavigationButtons";
+import ZoomableImage from "./image-maximizer/ZoomableImage";
 
 interface ImageMaximizerProps {
   image: string;
@@ -108,115 +109,29 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
         <DialogTitle className="sr-only">Image: {title}</DialogTitle>
         <DialogDescription className="sr-only">Full size view of the image</DialogDescription>
         
-        <div className="flex items-center justify-between p-4 border-b">
-          <h3 className="text-lg font-medium flex items-center gap-2">
-            <Image className="h-5 w-5" />
-            <span className="line-clamp-1">{title}</span>
-            {hasMultipleImages && (
-              <span className="text-sm text-gray-500 ml-2">
-                {currentIndex + 1} / {imageList.length}
-              </span>
-            )}
-          </h3>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleZoomOut}
-              disabled={scale <= 0.5}
-              title="Zoom Out"
-            >
-              <ZoomOut className="h-4 w-4" />
-              <span className="sr-only">Zoom Out</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleZoomIn}
-              disabled={scale >= 3}
-              title="Zoom In"
-            >
-              <ZoomIn className="h-4 w-4" />
-              <span className="sr-only">Zoom In</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleReset}
-              disabled={scale === 1}
-              title="Reset Zoom"
-            >
-              <Maximize className="h-4 w-4" />
-              <span className="sr-only">Reset Zoom</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              title="Close"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-              <span className="sr-only">Close</span>
-            </Button>
-          </div>
-        </div>
+        <ImageHeader
+          title={title}
+          currentIndex={currentIndex}
+          totalImages={imageList.length}
+          scale={scale}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onReset={handleReset}
+          onClose={onClose}
+        />
         
         <div className="flex-grow overflow-auto bg-gray-50 flex items-center justify-center p-4 relative">
-          <div 
-            className="relative cursor-grab active:cursor-grabbing transition-all duration-200 overflow-auto"
-            style={{
-              transform: `scale(${scale})`,
-              maxWidth: '100%',
-              maxHeight: '100%'
-            }}
-          >
-            <img
-              src={image}
-              alt={title}
-              className="max-w-full max-h-full object-contain"
-              loading="lazy"
-            />
-          </div>
+          <ZoomableImage 
+            image={image}
+            title={title}
+            scale={scale}
+          />
           
-          {hasMultipleImages && (
-            <>
-              <Button 
-                variant="outline"
-                size="icon"
-                onClick={handlePrevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 border border-gray-200 shadow-md hover:bg-white z-10"
-                disabled={imageList.length <= 1}
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span className="sr-only">Previous Image</span>
-              </Button>
-              
-              <Button 
-                variant="outline"
-                size="icon"
-                onClick={handleNextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 border border-gray-200 shadow-md hover:bg-white z-10"
-                disabled={imageList.length <= 1}
-              >
-                <ArrowRight className="h-4 w-4" />
-                <span className="sr-only">Next Image</span>
-              </Button>
-            </>
-          )}
+          <NavigationButtons
+            onPrev={handlePrevImage}
+            onNext={handleNextImage}
+            disabled={!hasMultipleImages}
+          />
         </div>
       </DialogContent>
     </Dialog>
