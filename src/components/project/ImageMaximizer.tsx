@@ -6,6 +6,7 @@ import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import ImageHeader from "./image-maximizer/ImageHeader";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
 import ZoomableImage from "./image-maximizer/ZoomableImage";
+import { useImageKeyboardNavigation } from "@/hooks/useImageKeyboardNavigation";
 
 interface ImageMaximizerProps {
   image: string;
@@ -28,10 +29,15 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const hasMultipleImages = imageList && imageList.length > 1;
   
+  // Debug logging
   useEffect(() => {
-    // Log when the component renders
-    console.log("ImageMaximizer rendered:", { image, isOpen, listLength: imageList?.length });
-  }, [image, isOpen, imageList?.length]);
+    console.log("ImageMaximizer rendered:", { 
+      image, 
+      isOpen, 
+      listLength: imageList?.length,
+      currentIndex 
+    });
+  }, [image, isOpen, imageList?.length, currentIndex]);
   
   const handleZoomIn = () => {
     setScale((prevScale) => Math.min(prevScale + 0.25, 3));
@@ -59,39 +65,17 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     }
   };
   
-  // Handle keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-      
-      switch (e.key) {
-        case 'ArrowRight':
-          if (hasMultipleImages) handleNextImage();
-          break;
-        case 'ArrowLeft':
-          if (hasMultipleImages) handlePrevImage();
-          break;
-        case 'Escape':
-          onClose();
-          break;
-        case '+':
-        case '=':
-          handleZoomIn();
-          break;
-        case '-':
-          handleZoomOut();
-          break;
-        case '0':
-          handleReset();
-          break;
-      }
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, hasMultipleImages, currentIndex, onClose]);
+  // Use our custom keyboard navigation hook
+  useImageKeyboardNavigation({
+    isOpen,
+    onClose,
+    onNext: hasMultipleImages ? handleNextImage : undefined,
+    onPrevious: hasMultipleImages ? handlePrevImage : undefined,
+    onZoomIn: handleZoomIn,
+    onZoomOut: handleZoomOut,
+    onReset: handleReset,
+    hasNavigation: hasMultipleImages
+  });
   
   // Reset scale when dialog closes
   useEffect(() => {
@@ -120,7 +104,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
           onClose={onClose}
         />
         
-        <div className="flex-grow overflow-auto bg-gray-50 flex items-center justify-center p-4 relative">
+        <div className="flex-grow overflow-hidden bg-gray-50 flex items-center justify-center relative">
           <ZoomableImage 
             image={image}
             title={title}
@@ -131,6 +115,8 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             onPrev={handlePrevImage}
             onNext={handleNextImage}
             disabled={!hasMultipleImages}
+            currentIndex={currentIndex}
+            totalImages={imageList.length}
           />
         </div>
       </DialogContent>
