@@ -27,7 +27,8 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png": "Final implementation of the co-parenting mobile application on multiple devices",
     "/lovable-uploads/59518d59-73f8-4083-b538-21bdd7215742.png": "Calendar view showing shared custody schedule between parents",
     "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "The platform evolved with new roles and features, maintaining the core design language",
-    "/lovable-uploads/b8f653d9-0253-43e1-94c8-f4890f48d414.png": "Key challenges in co-parenting coordination: adoption by high-conflict parents, professional integration, and robust security & privacy features"
+    "/lovable-uploads/b8f653d9-0253-43e1-94c8-f4890f48d414.png": "Key challenges in co-parenting coordination: adoption by high-conflict parents, professional integration, and robust security & privacy features",
+    "/lovable-uploads/57188cd2-5ba4-4a9e-8a57-c70016dd2566.png": "Key Challenges: Solving the Hard Problems - Adoption by High-Conflict Parents, Professional Integration, and Security & Privacy"
   },
   "herbalink": {
     "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "The magic of herbalists in your hands - intuitive mobile interface connecting users with qualified practitioners",
