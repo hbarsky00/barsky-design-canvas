@@ -35,7 +35,18 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png": "Final implementation of the secure video consultation interface",
     "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png": "Treatment tracking dashboard with herbal remedy management",
     "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png": "Practitioner profile view showing credentials and specialties",
-    "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png": "Mobile view of the appointment scheduling calendar"
+    "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png": "Mobile view of the appointment scheduling calendar",
+    
+    "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png": "Market analysis showing growing demand for digital herbal medicine solutions",
+    "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png": "User research findings highlighting trust and verification as key concerns for patients",
+    "/lovable-uploads/2e27159e-c598-4ad5-a539-7ae7b5d08ed6.png": "Competitive analysis of existing telemedicine platforms and their limitations for herbalists",
+    "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png": "Practitioner onboarding flow designed to verify credentials and build patient trust",
+    "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png": "Patient dashboard showing upcoming consultations and treatment plans",
+    "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png": "In-app secure messaging feature for practitioner-patient follow-ups",
+    "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png": "Early wireframes exploring different approaches to practitioner discovery",
+    "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png": "User testing session with focus group of traditional herbalists",
+    "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png": "Responsive design implementation across multiple devices",
+    "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png": "Final design specifications for the treatment tracking feature"
   },
   "gold2crypto": {
     "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png": "Home dashboard of Gold 2 Crypto trading platform",

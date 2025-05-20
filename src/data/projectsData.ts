@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -14,6 +15,7 @@ export interface ProjectDetails {
   resultImage?: string;
   caseStudyLink?: string;
   galleryImages?: string[];
+  slidesUrl?: string;
 }
 
 export const projectDetails: Record<string, ProjectDetails> = {
@@ -59,7 +61,19 @@ export const projectDetails: Record<string, ProjectDetails> = {
     challengeImage: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
     processImage: "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png",
     resultImage: "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
-    caseStudyLink: "https://hirambarsky.com/case-studies/herbalink"
+    caseStudyLink: "https://hirambarsky.com/case-studies/herbalink",
+    galleryImages: [
+      "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
+      "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png",
+      "/lovable-uploads/2e27159e-c598-4ad5-a539-7ae7b5d08ed6.png",
+      "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png",
+      "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
+      "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
+      "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png",
+      "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+      "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
+      "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png"
+    ]
   },
   "gold2crypto": {
     challenge: "Traditional investors interested in cryptocurrency face a significant barrier to entry due to the complexity of trading platforms and the disconnect between conventional gold investments and digital currency markets. There was a need for a platform that could bridge these two worlds while providing a user-friendly interface that appeals to both experienced investors and newcomers to cryptocurrency.",
