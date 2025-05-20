@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -157,6 +158,7 @@ const ProjectDetail: React.FC = () => {
                     resultImage={details.resultImage}
                     imageCaptions={currentProjectCaptions}
                     galleryImages={details.galleryImages}
+                    showTechnologies={false}
                   />
                 </div>
                 

@@ -20,6 +20,7 @@ interface ProjectOverviewProps {
   resultImage?: string;
   imageCaptions?: Record<string, string>;
   galleryImages?: string[];
+  showTechnologies?: boolean;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -32,7 +33,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   processImage,
   resultImage,
   imageCaptions = {},
-  galleryImages = []
+  galleryImages = [],
+  showTechnologies = false
 }) => {
   return (
     <div>
@@ -72,8 +74,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         imageCaption={resultImage && imageCaptions[resultImage]}
       />
       
-      {/* Technologies Section */}
-      <TechnologiesList technologies={technologies} />
+      {/* Technologies Section - Only show if showTechnologies is true */}
+      {showTechnologies && <TechnologiesList technologies={technologies} />}
       
       {/* Services Section */}
       <ServicesList />
