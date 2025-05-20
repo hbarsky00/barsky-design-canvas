@@ -1,8 +1,9 @@
 
 import React, { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Image, X, ZoomIn, ZoomOut, Maximize, ArrowLeft, ArrowRight } from "lucide-react";
+import { DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Image, ZoomIn, ZoomOut, Maximize, ArrowLeft, ArrowRight } from "lucide-react";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 
 interface ImageMaximizerProps {
@@ -103,6 +104,10 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 overflow-hidden flex flex-col">
+        {/* Add DialogTitle for accessibility - can be visually hidden if needed */}
+        <DialogTitle className="sr-only">Image: {title}</DialogTitle>
+        <DialogDescription className="sr-only">Full size view of the image</DialogDescription>
+        
         <div className="flex items-center justify-between p-4 border-b">
           <h3 className="text-lg font-medium flex items-center gap-2">
             <Image className="h-5 w-5" />
@@ -144,17 +149,29 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
               <Maximize className="h-4 w-4" />
               <span className="sr-only">Reset Zoom</span>
             </Button>
-            <DialogClose asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onClose}
-                title="Close"
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              title="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
               >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close</span>
-              </Button>
-            </DialogClose>
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+              <span className="sr-only">Close</span>
+            </Button>
           </div>
         </div>
         
