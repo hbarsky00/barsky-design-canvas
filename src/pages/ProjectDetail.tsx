@@ -50,7 +50,8 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/8fd697f3-7606-4019-834b-7b9fc4ef4a02.png": "Finding Your Perfect Herbalist - Filtering and browsing herbalist profiles",
     "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png": "Seamless Consultation Booking - Three-step process for scheduling appointments",
     "/lovable-uploads/06c3b4e6-b260-4c9d-90d3-201371ff7381.png": "Welcome & Onboarding Experience - First-time user introduction with calming design",
-    "/lovable-uploads/d33a7d68-a919-4e51-b481-44dedceb60ac.png": "Intuitive Home Dashboard - Search functionality and quick navigation"
+    "/lovable-uploads/d33a7d68-a919-4e51-b481-44dedceb60ac.png": "Intuitive Home Dashboard - Search functionality and quick navigation",
+    "/lovable-uploads/8ea27daa-0897-4466-8e91-c24f745f23d7.png": "Core Features: A Dual-Sided Platform - Connecting users with certified herbalists for personalized wellness solutions"
   },
   "gold2crypto": {
     "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png": "Home dashboard of Gold 2 Crypto trading platform",
