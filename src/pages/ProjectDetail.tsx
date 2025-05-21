@@ -67,7 +67,8 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Designing beyond the Food - Barsky Joint Food Truck mobile app featuring customizable menu options and real-time delivery tracking",
     "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png": "Designing beyond the Food - Barsky Joint Food Truck mobile app with GPS meal tracking and custom color themes",
     "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png": "Customer journey mapping session analyzing the ordering experience",
-    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "Final app interface showing real-time order tracking and loyalty program"
+    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "Final app interface showing real-time order tracking and loyalty program",
+    "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png": "Barsky Joint mobile app showing product details screen and real-time delivery tracking with order progress"
   },
   "spectrum": {
     "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png": "Homepage of Spectrum Apparel showing featured autism awareness clothing",

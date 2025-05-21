@@ -109,7 +109,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
     ],
     challengeImage: "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png",
     processImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png", 
-    resultImage: "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
+    resultImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },
   "spectrum": {
