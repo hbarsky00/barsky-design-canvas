@@ -8,7 +8,6 @@ interface ImageControlsProps {
   onZoomIn: () => void;
   onZoomOut: () => void;
   onReset: () => void;
-  onClose: () => void;
 }
 
 const ImageControls: React.FC<ImageControlsProps> = ({
@@ -16,7 +15,6 @@ const ImageControls: React.FC<ImageControlsProps> = ({
   onZoomIn,
   onZoomOut,
   onReset,
-  onClose,
 }) => {
   return (
     <div className="flex items-center gap-2">
@@ -49,29 +47,6 @@ const ImageControls: React.FC<ImageControlsProps> = ({
       >
         <Maximize className="h-4 w-4" />
         <span className="sr-only">Reset Zoom</span>
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={onClose}
-        title="Close"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4 w-4"
-        >
-          <path d="M18 6 6 18" />
-          <path d="m6 6 12 12" />
-        </svg>
-        <span className="sr-only">Close</span>
       </Button>
     </div>
   );

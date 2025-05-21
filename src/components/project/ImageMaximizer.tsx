@@ -101,7 +101,6 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
           onZoomIn={handleZoomIn}
           onZoomOut={handleZoomOut}
           onReset={handleReset}
-          onClose={onClose}
         />
         
         <div className="flex-grow overflow-hidden bg-gray-50 flex items-center justify-center relative">
