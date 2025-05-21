@@ -107,9 +107,9 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
       "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
     ],
-    challengeImage: "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png",
+    challengeImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png", // Switched from resultImage
     processImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png", 
-    resultImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
+    resultImage: "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png", // Switched from challengeImage
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },
   "spectrum": {
@@ -175,3 +175,4 @@ export const projectsData: ProjectProps[] = [
     link: "https://supersha.store"
   }
 ];
+
