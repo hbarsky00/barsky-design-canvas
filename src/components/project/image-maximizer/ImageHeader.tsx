@@ -11,6 +11,7 @@ interface ImageHeaderProps {
   onZoomIn: () => void;
   onZoomOut: () => void;
   onReset: () => void;
+  onClose: () => void;
 }
 
 const ImageHeader: React.FC<ImageHeaderProps> = ({
@@ -21,6 +22,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
   onZoomIn,
   onZoomOut,
   onReset,
+  onClose,
 }) => {
   const hasMultipleImages = totalImages && totalImages > 1;
 
@@ -41,6 +43,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
         onZoomIn={onZoomIn}
         onZoomOut={onZoomOut}
         onReset={onReset}
+        onClose={onClose}
       />
     </div>
   );

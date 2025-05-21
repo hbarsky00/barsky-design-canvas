@@ -1,13 +1,14 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ZoomIn, ZoomOut, Maximize } from "lucide-react";
+import { ZoomIn, ZoomOut, Maximize, X } from "lucide-react";
 
 interface ImageControlsProps {
   scale: number;
   onZoomIn: () => void;
   onZoomOut: () => void;
   onReset: () => void;
+  onClose: () => void;
 }
 
 const ImageControls: React.FC<ImageControlsProps> = ({
@@ -15,6 +16,7 @@ const ImageControls: React.FC<ImageControlsProps> = ({
   onZoomIn,
   onZoomOut,
   onReset,
+  onClose,
 }) => {
   return (
     <div className="flex items-center gap-2">
@@ -47,6 +49,15 @@ const ImageControls: React.FC<ImageControlsProps> = ({
       >
         <Maximize className="h-4 w-4" />
         <span className="sr-only">Reset Zoom</span>
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={onClose}
+        title="Close"
+      >
+        <X className="h-4 w-4" />
+        <span className="sr-only">Close</span>
       </Button>
     </div>
   );

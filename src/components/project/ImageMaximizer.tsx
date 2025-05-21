@@ -88,7 +88,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 overflow-hidden flex flex-col">
+      <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 overflow-hidden flex flex-col" hideCloseButton>
         {/* Add DialogTitle for accessibility - can be visually hidden if needed */}
         <DialogTitle className="sr-only">Image: {title}</DialogTitle>
         <DialogDescription className="sr-only">Full size view of the image</DialogDescription>
@@ -101,6 +101,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
           onZoomIn={handleZoomIn}
           onZoomOut={handleZoomOut}
           onReset={handleReset}
+          onClose={onClose}
         />
         
         <div className="flex-grow overflow-hidden bg-gray-50 flex items-center justify-center relative">
