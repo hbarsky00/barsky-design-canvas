@@ -108,7 +108,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
     ],
     challengeImage: "/lovable-uploads/c35498f2-e657-4982-9b9b-8945aaf817d5.png",
-    processImage: "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
+    processImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png", // Updated to use the new wireframe image
     resultImage: "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },
