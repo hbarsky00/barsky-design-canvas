@@ -65,7 +65,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
   },
   "barskyjoint": {
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Designing beyond the Food - Barsky Joint Food Truck mobile app featuring customizable menu options and real-time delivery tracking",
-    "/lovable-uploads/c35498f2-e657-4982-9b9b-8945aaf817d5.png": "Designing beyond the Food - Barsky Joint Food Truck mobile app featuring customizable menu options and real-time delivery tracking",
+    "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png": "Designing beyond the Food - Barsky Joint Food Truck mobile app with GPS meal tracking and custom color themes",
     "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png": "Customer journey mapping session analyzing the ordering experience",
     "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "Final app interface showing real-time order tracking and loyalty program"
   },
