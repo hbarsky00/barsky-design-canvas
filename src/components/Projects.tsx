@@ -1,17 +1,12 @@
 
-import React, { useState, useEffect } from "react";
-import { ProjectProps } from "./ProjectCard";
+import React from "react";
 import ProjectCard from "./ProjectCard";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { projectsData } from "@/data/projectsData";
+import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 
 const Projects: React.FC = () => {
-  const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
-  
-  useEffect(() => {
-    setVisibleProjects(projectsData);
-  }, []);
+  const { filteredProjects } = useProjectsData();
   
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -24,9 +19,9 @@ const Projects: React.FC = () => {
           <h2 className="section-title">Featured Projects</h2>
         </div>
         
-        {visibleProjects.length > 0 ? (
+        {filteredProjects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {visibleProjects.slice(0, 6).map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <div 
                 key={project.id}
                 className="opacity-0 animate-fade-in"
@@ -40,7 +35,6 @@ const Projects: React.FC = () => {
           <div className="text-center py-20">
             <p className="text-barsky-text text-lg mb-4">No projects found.</p>
             <button 
-              onClick={() => setVisibleProjects(projectsData)}
               className="text-barsky-blue hover:underline inline-flex items-center"
             >
               View all projects <ArrowRight className="ml-2 h-4 w-4" />
