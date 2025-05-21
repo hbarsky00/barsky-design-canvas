@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -109,7 +108,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
     ],
     challengeImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png", // Switched from resultImage
     processImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png", 
-    resultImage: "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png", // Switched from challengeImage
+    resultImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png", // Updated to the newly uploaded image
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },
   "spectrum": {
@@ -175,4 +174,3 @@ export const projectsData: ProjectProps[] = [
     link: "https://supersha.store"
   }
 ];
-
