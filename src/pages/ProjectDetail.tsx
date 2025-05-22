@@ -43,6 +43,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png": "Treatment tracking dashboard with herbal remedy management",
     "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png": "Practitioner profile view showing credentials and specialties",
     "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png": "Mobile view of the appointment scheduling calendar",
+    "/lovable-uploads/90cbccae-4660-4e76-8218-1164bbeb0883.png": "Connect with Certified Herbalists for Personalized Wellness - Mobile and responsive web interfaces showing the main features",
     
     "/lovable-uploads/8e4b58bb-b896-4e18-b86d-1fae7fcc576e.png": "HerbaLink: Connecting You to Holistic Wellness - App overview showing personalized care features",
     "/lovable-uploads/a332bc93-8bd7-42b3-b4f9-0f24270eb9ab.png": "Design Implementation - Visual identity and UI components for the Herb Library feature",

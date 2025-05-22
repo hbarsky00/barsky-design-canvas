@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -59,7 +60,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
     ],
     challengeImage: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
     processImage: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png",
-    resultImage: "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
+    resultImage: "/lovable-uploads/90cbccae-4660-4e76-8218-1164bbeb0883.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/herbalink",
     galleryImages: [
       "/lovable-uploads/8e4b58bb-b896-4e18-b86d-1fae7fcc576e.png",
