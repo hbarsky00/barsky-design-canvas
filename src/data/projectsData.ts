@@ -59,7 +59,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png"
     ],
     challengeImage: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
-    processImage: "/lovable-uploads/a874ae96-464b-4d3f-825b-4678373c6cc8.png",
+    processImage: "/lovable-uploads/bc0bc72b-4cd7-45f7-a1f6-eff8416ad0fa.png",
     resultImage: "/lovable-uploads/90cbccae-4660-4e76-8218-1164bbeb0883.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/herbalink",
     galleryImages: [
