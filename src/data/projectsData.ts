@@ -57,8 +57,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png",
       "/lovable-uploads/31b21f6b-faa3-4ffe-a96b-702f87142fbd.png"
     ],
-    challengeImage: "/lovable-uploads/8ea27daa-0897-4466-8e91-c24f745f23d7.png",
-    processImage: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png", // Updated to new uploaded image
+    challengeImage: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
+    processImage: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png",
     resultImage: "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/herbalink",
     galleryImages: [
@@ -106,9 +106,9 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
       "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
     ],
-    challengeImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png", // Switched from resultImage
+    challengeImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
     processImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png", 
-    resultImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png", // Updated to the newly uploaded image
+    resultImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
   },
   "spectrum": {
