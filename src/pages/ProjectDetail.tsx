@@ -164,6 +164,7 @@ const ProjectDetail: React.FC = () => {
                     projectLink={project.link}
                     challengeImage={details.challengeImage}
                     processImage={details.processImage}
+                    processBottomImage={details.processBottomImage}
                     resultImage={details.resultImage}
                     imageCaptions={currentProjectCaptions}
                     galleryImages={details.galleryImages}

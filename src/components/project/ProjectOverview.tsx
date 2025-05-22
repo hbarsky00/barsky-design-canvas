@@ -17,6 +17,7 @@ interface ProjectOverviewProps {
   caseStudyLink?: string;
   challengeImage?: string;
   processImage?: string;
+  processBottomImage?: string;
   resultImage?: string;
   imageCaptions?: Record<string, string>;
   galleryImages?: string[];
@@ -31,6 +32,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   projectLink,
   challengeImage,
   processImage,
+  processBottomImage,
   resultImage,
   imageCaptions = {},
   galleryImages = [],
@@ -63,6 +65,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         content={process}
         image={processImage}
         imageCaption={processImage && imageCaptions[processImage]}
+        bottomImage={processBottomImage}
+        bottomImageCaption={processBottomImage && imageCaptions[processBottomImage]}
       />
       
       {/* Result Section */}

@@ -9,6 +9,8 @@ interface ProjectSectionProps {
   content: string;
   image?: string;
   imageCaption?: string;
+  bottomImage?: string;
+  bottomImageCaption?: string;
 }
 
 const ProjectSection: React.FC<ProjectSectionProps> = ({
@@ -17,6 +19,8 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   content,
   image,
   imageCaption,
+  bottomImage,
+  bottomImageCaption,
 }) => {
   return (
     <div className="mb-12">
@@ -40,6 +44,16 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
           paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
         ))}
       </div>
+
+      {bottomImage && (
+        <div className="mt-6">
+          <MaximizableImage
+            src={bottomImage}
+            alt={title}
+            caption={bottomImageCaption}
+          />
+        </div>
+      )}
     </div>
   );
 };
