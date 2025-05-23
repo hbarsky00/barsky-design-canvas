@@ -72,7 +72,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/71606fe7-5087-4d02-a61c-8dc2e771ff98.png": "Design Process Overview - Initial sketching with wireframe concepts and user flow mapping, iterative design refining layouts and interaction patterns, and system creation building comprehensive design framework",
     "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png": "Detailed wireframes and user interface mockups showing the evolution from concept to final design",
     "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png": "Testing & Results: Real-World Performance showing 60% decrease in ordering time, 80% improved vegan discovery, and 90% usability rating",
-    "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png": "The challenge: Current mobile app showing basic product details without real-time tracking and order status features"
+    "/lovable-uploads/b53965c1-86f3-479d-a37c-9395c184fb2d.png": "The Barsky Joint website homepage showcasing their signature items and gourmet burger menu with delivery capabilities"
   },
   "spectrum": {
     "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png": "Homepage of Spectrum Apparel showing featured autism awareness clothing",

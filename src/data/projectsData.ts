@@ -109,7 +109,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
       "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
       "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
     ],
-    challengeImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
+    challengeImage: "/lovable-uploads/b53965c1-86f3-479d-a37c-9395c184fb2d.png",
     processImage: "/lovable-uploads/71606fe7-5087-4d02-a61c-8dc2e771ff98.png",
     processBottomImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png",
     resultImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
