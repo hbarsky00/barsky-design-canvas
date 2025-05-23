@@ -6,6 +6,9 @@ import { ProjectProps } from "@/components/ProjectCard";
 // IDs of the featured projects to display on homepage
 const featuredProjectIds = ["splittime", "herbalink", "barskyjoint"];
 
+// IDs of hidden projects that won't appear in listings
+const hiddenProjectIds = ["gold2crypto", "spectrum"];
+
 export const useProjectsData = () => {
   const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +20,8 @@ export const useProjectsData = () => {
   );
   
   useEffect(() => {
-    setVisibleProjects(projectsData);
+    // Filter out hidden projects from visible projects
+    setVisibleProjects(projectsData.filter(project => !hiddenProjectIds.includes(project.id)));
   }, []);
   
   const indexOfLastProject = currentPage * projectsPerPage;
@@ -28,7 +32,7 @@ export const useProjectsData = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   
   const resetFilters = () => {
-    setVisibleProjects(projectsData);
+    setVisibleProjects(projectsData.filter(project => !hiddenProjectIds.includes(project.id)));
   };
 
   return {
