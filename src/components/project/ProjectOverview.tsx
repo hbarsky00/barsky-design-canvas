@@ -22,6 +22,7 @@ interface ProjectOverviewProps {
   imageCaptions?: Record<string, string>;
   galleryImages?: string[];
   showTechnologies?: boolean;
+  videoUrl?: string;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -36,7 +37,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   resultImage,
   imageCaptions = {},
   galleryImages = [],
-  showTechnologies = false
+  showTechnologies = false,
+  videoUrl
 }) => {
   return (
     <div>
@@ -46,6 +48,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           <ProjectGallery 
             galleryImages={galleryImages}
             captions={imageCaptions}
+            videoUrl={videoUrl}
           />
         ) : null}
         

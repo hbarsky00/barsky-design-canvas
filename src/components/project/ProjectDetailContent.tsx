@@ -31,6 +31,9 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   projectsData,
   imageCaptions
 }) => {
+  // Add video URL for Barsky Joint project
+  const videoUrl = projectId === "barskyjoint" ? "https://youtube.com/shorts/UGlOWDnsHi0?feature=share" : undefined;
+
   return (
     <section className="py-20">
       <div className="section-container">
@@ -51,6 +54,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
               imageCaptions={imageCaptions}
               galleryImages={details.galleryImages}
               showTechnologies={false}
+              videoUrl={videoUrl}
             />
           </div>
           
