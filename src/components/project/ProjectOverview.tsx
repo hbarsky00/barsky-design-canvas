@@ -40,6 +40,12 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   showTechnologies = false,
   videoUrl
 }) => {
+  // Convert YouTube Shorts URL to embeddable format
+  const getEmbedUrl = (url: string) => {
+    const videoId = url.match(/shorts\/([^?]+)/)?.[1];
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+  };
+
   return (
     <div>
       {/* Gallery Images Section */}
@@ -48,7 +54,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           <ProjectGallery 
             galleryImages={galleryImages}
             captions={imageCaptions}
-            videoUrl={videoUrl}
           />
         ) : null}
         
@@ -71,6 +76,25 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         bottomImage={processBottomImage}
         bottomImageCaption={processBottomImage && imageCaptions[processBottomImage]}
       />
+      
+      {/* Video Section - Only show for projects with videoUrl */}
+      {videoUrl && (
+        <div className="mb-12">
+          <div className="flex items-center mb-4 space-x-2">
+            <Award className="h-5 w-5 text-barsky-blue" />
+            <h2 className="text-2xl font-bold">Demo Video</h2>
+          </div>
+          <div className="aspect-video w-full rounded-lg overflow-hidden">
+            <iframe
+              src={getEmbedUrl(videoUrl)}
+              title="Project Demo Video"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
       
       {/* Result Section */}
       <ProjectSection
