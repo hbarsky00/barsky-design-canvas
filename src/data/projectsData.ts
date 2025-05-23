@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -115,7 +116,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
     caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint",
     galleryImages: [
       "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-      "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png",
+      "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
       "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png"
     ]
   },
