@@ -66,12 +66,13 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
   "barskyjoint": {
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Designing beyond the Food - Barsky Joint Food Truck mobile app featuring customizable menu options and real-time delivery tracking",
     "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png": "The end result: Barsky Joint Food Truck mobile app with GPS meal tracking and custom color themes",
+    "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png": "Sketching Phase: Concept Development - Hand-drawn wireframes exploring initial ideas with multiple iterations testing different approaches",
     "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png": "Customer journey mapping session analyzing the ordering experience",
     "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "Final app interface showing real-time order tracking and loyalty program",
-    "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png": "Sketching Phase: Concept Development - Hand-drawn wireframes exploring initial ideas with multiple iterations testing different approaches",
     "/lovable-uploads/71606fe7-5087-4d02-a61c-8dc2e771ff98.png": "Design Process Overview - Initial sketching with wireframe concepts and user flow mapping, iterative design refining layouts and interaction patterns, and system creation building comprehensive design framework",
     "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png": "Detailed wireframes and user interface mockups showing the evolution from concept to final design",
-    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png": "Testing & Results: Real-World Performance showing 60% decrease in ordering time, 80% improved vegan discovery, and 90% usability rating"
+    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png": "Testing & Results: Real-World Performance showing 60% decrease in ordering time, 80% improved vegan discovery, and 90% usability rating",
+    "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png": "The challenge: Current mobile app showing basic product details without real-time tracking and order status features"
   },
   "spectrum": {
     "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png": "Homepage of Spectrum Apparel showing featured autism awareness clothing",

@@ -112,7 +112,12 @@ export const projectDetails: Record<string, ProjectDetails> = {
     processImage: "/lovable-uploads/71606fe7-5087-4d02-a61c-8dc2e771ff98.png",
     processBottomImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png",
     resultImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
-    caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint"
+    caseStudyLink: "https://hirambarsky.com/case-studies/barskyjoint",
+    galleryImages: [
+      "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
+      "/lovable-uploads/a69db2eb-7bd4-41ab-a900-78640f05e555.png",
+      "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png"
+    ]
   },
   "spectrum": {
     challenge: "The autism awareness apparel market lacked a dedicated platform that combined customization options with accessibility features. Existing e-commerce solutions failed to address the specific needs of this community, such as sensory-friendly design interfaces and size-inclusive options. Additionally, there was a missed opportunity to integrate autism awareness content with the shopping experience.",
