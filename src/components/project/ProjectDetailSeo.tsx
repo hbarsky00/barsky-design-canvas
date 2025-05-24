@@ -30,53 +30,84 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   
   return (
     <Helmet>
-      <title>{title} | Hiram Barsky Portfolio</title>
-      <meta name="description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky`} />
-      <meta name="keywords" content={`${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services, UX/UI Design Services, Portfolio, Case Study, Hiram Barsky`} />
-      <meta property="og:title" content={`${title} | Hiram Barsky Portfolio`} />
-      <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky`} />
+      <title>{title} | Hiram Barsky - Professional Product Designer & Developer Portfolio</title>
+      <meta name="description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Hiram Barsky, experienced Product Designer & Developer specializing in UX/UI design and digital solutions.`} />
+      <meta name="keywords" content={`Hiram Barsky, ${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services, UX/UI Design Services, Portfolio, Case Study, Professional Designer`} />
+      <meta name="author" content="Hiram Barsky" />
+      <meta property="og:title" content={`${title} | Hiram Barsky - Professional Product Designer Portfolio`} />
+      <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky, Product Designer & Developer`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
-      <meta name="twitter:title" content={`${title} | Hiram Barsky Portfolio`} />
-      <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType}`} />
+      <meta property="og:site_name" content="Hiram Barsky - Professional Design Portfolio" />
+      <meta name="twitter:title" content={`${title} | Hiram Barsky - Product Designer`} />
+      <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky`} />
       <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
+      <meta name="twitter:creator" content="@hirambarsky" />
       <link rel="canonical" href={canonicalUrl} />
-      <meta name="author" content="Hiram Barsky" />
-      <meta property="og:site_name" content="Hiram Barsky Portfolio" />
       
-      {/* Structured data for project with more specific attribution to Hiram Barsky */}
+      {/* Enhanced structured data with explicit person information */}
       <script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
             "@type": "CreativeWork",
             "name": "${title}",
+            "description": "${title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Hiram Barsky",
             "creator": {
               "@type": "Person",
               "name": "Hiram Barsky",
+              "givenName": "Hiram",
+              "familyName": "Barsky",
               "jobTitle": "Product Designer & Developer",
+              "description": "Professional Product Designer and Developer specializing in UX/UI design, web development, and digital solutions",
               "url": "https://hirambarsky.com",
+              "email": "hello@hirambarsky.com",
+              "telephone": "+1-201-668-4754",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "New York",
+                "addressRegion": "NY",
+                "addressCountry": "US"
+              },
               "sameAs": [
                 "https://linkedin.com/in/hirambarsky",
                 "https://twitter.com/hirambarsky",
                 "https://instagram.com/hirambarsky"
+              ],
+              "knowsAbout": [
+                "Product Design",
+                "UX/UI Design", 
+                "Web Development",
+                "Mobile App Design",
+                "AI Driven Design",
+                "Design Systems"
               ]
             },
             "author": {
               "@type": "Person",
-              "name": "Hiram Barsky"
+              "name": "Hiram Barsky",
+              "givenName": "Hiram",
+              "familyName": "Barsky"
             },
             "provider": {
               "@type": "Person",
               "name": "Hiram Barsky",
               "alternateName": "Hiram Barsky Design Services"
             },
-            "keywords": "${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services",
+            "keywords": "Hiram Barsky, ${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services",
             "url": "${canonicalUrl}",
             "mainEntityOfPage": "https://hirambarsky.com/projects",
-            "description": "${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky",
-            "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"
+            "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "Hiram Barsky - Professional Design Portfolio",
+              "url": "https://hirambarsky.com",
+              "author": {
+                "@type": "Person",
+                "name": "Hiram Barsky"
+              }
+            }
           }
         `}
       </script>

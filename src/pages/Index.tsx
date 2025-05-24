@@ -31,30 +31,39 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Helmet>
-        <title>Hiram Barsky | Product Designer & Developer | Professional Design Services</title>
-        <meta name="description" content="Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
-        <meta name="keywords" content="Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, UX/UI Design Services, Mobile App Development Services, Design Systems Development, Responsive Web Design, Cross-platform Design Solutions, New York designer" />
-        <meta property="og:title" content="Hiram Barsky | Professional Design Services" />
-        <meta property="og:description" content="Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
+        <title>Hiram Barsky | Professional Product Designer & Developer | Official Portfolio</title>
+        <meta name="description" content="Official website and portfolio of Hiram Barsky, Professional Product Designer and Developer based in New York. Specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services. Expert UX/UI designer with proven track record." />
+        <meta name="keywords" content="Hiram Barsky, Professional Product Designer, UX/UI Designer, Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, Mobile App Development Services, Design Systems Development, Responsive Web Design, Cross-platform Design Solutions, New York designer, Official Portfolio" />
+        <meta name="author" content="Hiram Barsky" />
+        <meta property="og:title" content="Hiram Barsky | Professional Product Designer & Developer - Official Portfolio" />
+        <meta property="og:description" content="Official website and portfolio of Hiram Barsky, Professional Product Designer and Developer specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
         <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta property="og:url" content="https://hirambarsky.com/" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Hiram Barsky - Official Design Portfolio" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Hiram Barsky | Professional Design Services" />
-        <meta name="twitter:description" content="Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
+        <meta name="twitter:creator" content="@hirambarsky" />
+        <meta name="twitter:title" content="Hiram Barsky | Professional Product Designer & Developer" />
+        <meta name="twitter:description" content="Official website and portfolio of Hiram Barsky, Professional Product Designer and Developer specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
         <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <link rel="canonical" href="https://hirambarsky.com/" />
         
-        {/* Structured data for better SEO */}
+        {/* Enhanced structured data for better SEO */}
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "name": "Hiram Barsky Design Services",
+              "@type": ["Person", "ProfessionalService"],
+              "name": "Hiram Barsky",
+              "givenName": "Hiram",
+              "familyName": "Barsky",
+              "alternateName": "Hiram Barsky Design Services",
+              "description": "Official website and portfolio of Hiram Barsky, Professional Product Designer and Developer based in New York. Specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services.",
+              "jobTitle": "Product Designer & Developer",
               "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9",
               "url": "https://hirambarsky.com",
               "telephone": "+1-201-668-4754",
+              "email": "hello@hirambarsky.com",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "New York",
@@ -84,41 +93,53 @@ const Index = () => {
                 "https://instagram.com/hirambarsky"
               ],
               "priceRange": "$$",
-              "description": "Professional design services by Hiram Barsky, specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services.",
+              "knowsAbout": [
+                "Product Design",
+                "UX Design",
+                "UI Design", 
+                "Web Development",
+                "Mobile App Design",
+                "AI Driven Design",
+                "Design Systems"
+              ],
               "makesOffer": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Website Design Services",
-                    "description": "Custom website design with focus on user experience and conversion optimization."
+                    "name": "Website Design Services by Hiram Barsky",
+                    "description": "Custom website design with focus on user experience and conversion optimization by professional designer Hiram Barsky."
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "App Design Services",
-                    "description": "Intuitive and engaging mobile application designs for iOS and Android platforms."
+                    "name": "App Design Services by Hiram Barsky",
+                    "description": "Intuitive and engaging mobile application designs for iOS and Android platforms by expert designer Hiram Barsky."
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "AI Driven Design Services",
-                    "description": "Leveraging artificial intelligence to create innovative, data-driven design solutions."
+                    "name": "AI Driven Design Services by Hiram Barsky",
+                    "description": "Leveraging artificial intelligence to create innovative, data-driven design solutions by professional designer Hiram Barsky."
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Product Design Services",
-                    "description": "End-to-end product design from concept to implementation with user research and testing."
+                    "name": "Product Design Services by Hiram Barsky",
+                    "description": "End-to-end product design from concept to implementation with user research and testing by experienced designer Hiram Barsky."
                   }
                 }
-              ]
+              ],
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://hirambarsky.com/"
+              }
             }
           `}
         </script>
