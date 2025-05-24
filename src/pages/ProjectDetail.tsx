@@ -20,7 +20,9 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png": "Dribbble research compilation showing comparative analysis of advanced search interfaces and filter design patterns",
     "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png": "Digital Asset Explorer homepage with search functionality and recommended search terms for diabetes-related medical data",
     "/lovable-uploads/88423dc3-1fd1-480a-846f-4d3f82a9d300.png": "Homepage interface showing recent search terms and improved search experience with insulin and diabetes-related queries",
-    "/lovable-uploads/ccb7671a-9fbf-472a-b63b-e11e681ed341.png": "Simplified homepage design with keyword search dropdown and streamlined navigation to data catalog and studies sections"
+    "/lovable-uploads/ccb7671a-9fbf-472a-b63b-e11e681ed341.png": "Simplified homepage design with keyword search dropdown and streamlined navigation to data catalog and studies sections",
+    "/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png": "Final Digital Asset Explorer interface showing the clean homepage with search functionality and organized navigation sections",
+    "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png": "Enhanced search interface with recommended search terms dropdown showing diabetes-related queries and improved user experience"
   },
   "splittime": {
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "Messaging interface of the Splittime co-parenting app showing automated replies and weekly message review",

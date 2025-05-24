@@ -13,6 +13,7 @@ export interface ProjectDetails {
   processImage?: string;
   processBottomImage?: string;
   resultImage?: string;
+  resultGalleryImages?: string[];
   caseStudyLink?: string;
   galleryImages?: string[];
   slidesUrl?: string;
@@ -31,7 +32,10 @@ export const projectDetails: Record<string, ProjectDetails> = {
     challengeImage: "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png",
     processImage: "/lovable-uploads/78d6fb56-e0b4-4632-a262-deba85415e1d.png",
     processBottomImage: "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png",
-    resultImage: "/lovable-uploads/b42f3e73-a21a-4804-9c77-b461251b38d9.png",
+    resultGalleryImages: [
+      "/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png",
+      "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png"
+    ],
     galleryImages: [
       "/lovable-uploads/4a1d14bd-2694-412b-a394-b0ebdc830269.png",
       "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png",

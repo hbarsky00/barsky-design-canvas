@@ -62,6 +62,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
               processImage={details.processImage}
               processBottomImage={details.processBottomImage}
               resultImage={details.resultImage}
+              resultGalleryImages={details.resultGalleryImages}
               imageCaptions={imageCaptions}
               galleryImages={details.galleryImages}
               showTechnologies={false}
