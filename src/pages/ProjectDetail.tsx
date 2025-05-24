@@ -11,6 +11,17 @@ import { useProjectDetail } from "@/hooks/useProjectDetail";
 
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
+  "dae-search": {
+    "/lovable-uploads/dae-old-search.png": "Previous search interface showing confusing tag selection for advanced filtering",
+    "/lovable-uploads/dae-user-journey.png": "Comprehensive user journey mapping for medical professionals with customizable filters",
+    "/lovable-uploads/dae-design-system.png": "Design system establishing brand consistency with dark blue, green, and gray color palette",
+    "/lovable-uploads/dae-final-grid.png": "Final grid layout design showing optimized data asset discovery interface",
+    "/lovable-uploads/dae-sketch-ideation.png": "Initial sketches exploring flow from searching to advanced search filter selection",
+    "/lovable-uploads/dae-comparative-analysis.png": "Comparative analysis of advanced search options researched through Dribbble",
+    "/lovable-uploads/dae-process-flow.png": "Detailed process flow for DAE search functionality and user asset selection",
+    "/lovable-uploads/dae-homepage-design.png": "Homepage design allowing users to search for direct items before browsing assets",
+    "/lovable-uploads/dae-internal-search.png": "Internal search interface with customizable filters within Data Asset Details"
+  },
   "splittime": {
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "Messaging interface of the Splittime co-parenting app showing automated replies and weekly message review",
     "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png": "Multiple views of the Splittime app showing login, children's profiles, and account settings interfaces",

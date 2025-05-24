@@ -19,6 +19,27 @@ export interface ProjectDetails {
 }
 
 export const projectDetails: Record<string, ProjectDetails> = {
+  "dae-search": {
+    challenge: "The previous data asset search system was confusing for medical professionals, particularly when selecting multiple tags for advanced filtering. Users struggled to efficiently browse the data catalog to find relevant assets, leading to poor user experience and reduced productivity in their asset selection journey.",
+    process: "I conducted comprehensive user journey mapping and research specifically focused on medical professionals who needed customizable filters for entities and keywords. Through user interviews, sketching sessions, and comparative analysis using Dribbble research, I developed a clear process flow for the advanced search feature. I established a design system using the client's brand colors (dark blue, green, and gray) to ensure consistency across all design elements. Multiple design iterations were explored, including grid layouts and internal search functionality, before selecting the final version that allowed users to access the Data Asset View and customize it with specific filters.",
+    result: "The redesigned advanced search feature successfully optimized access and management of complex asset data while maintaining a user-friendly interface. Users can now search for direct items on the welcome page and apply multiple filters efficiently within the Data Asset Details. The solution saved the client 20% ROI by reducing time spent searching, minimizing errors, boosting productivity, increasing user satisfaction scores, lowering labor costs, and ultimately increasing revenue through improved data asset discovery and utilization.",
+    technologies: ["User Research", "Journey Mapping", "Sketch", "Dribbble Research", "Design Systems", "Grid Layouts", "Advanced Filtering", "Data Visualization"],
+    duration: "4 months",
+    client: "Data Assets Enterprise (DAE)",
+    role: "Lead UX/UI Designer & Product Strategist",
+    extraImages: [],
+    challengeImage: "/lovable-uploads/dae-old-search.png",
+    processImage: "/lovable-uploads/dae-user-journey.png",
+    processBottomImage: "/lovable-uploads/dae-design-system.png",
+    resultImage: "/lovable-uploads/dae-final-grid.png",
+    galleryImages: [
+      "/lovable-uploads/dae-sketch-ideation.png",
+      "/lovable-uploads/dae-comparative-analysis.png",
+      "/lovable-uploads/dae-process-flow.png",
+      "/lovable-uploads/dae-homepage-design.png",
+      "/lovable-uploads/dae-internal-search.png"
+    ]
+  },
   "splittime": {
     challenge: "Separated parents face significant challenges in coordinating childcare responsibilities, often leading to miscommunication, scheduling conflicts, and increased tension. Traditional communication methods like text messages and emails can exacerbate these issues, especially when co-parenting relationships are already strained.",
     process: "I led the design process from ideation to final UI implementation, focusing on creating a neutral platform that promotes positive co-parenting communication. Through extensive user research with divorced parents and family counselors, I identified key pain points and developed intuitive interfaces for shared calendars, expense tracking, and secure messaging. I conducted multiple rounds of usability testing to ensure the app was accessible to users with varying levels of technical proficiency.",
@@ -141,6 +162,14 @@ export const projectDetails: Record<string, ProjectDetails> = {
 };
 
 export const projectsData: ProjectProps[] = [
+  {
+    id: "dae-search",
+    title: "Data Assets Advanced Search",
+    description: "Optimizing access and management of complex asset data while maintaining a user-friendly interface for medical professionals.",
+    image: "/lovable-uploads/dae-final-grid.png",
+    tags: ["UX Research", "User Journey Mapping", "Design Systems", "Data Visualization", "Enterprise UX", "Advanced Search"],
+    link: "https://hirambarsky.com/case-studies/dae-search"
+  },
   {
     id: "splittime",
     title: "Co-Parenting Coordination App",
