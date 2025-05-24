@@ -31,8 +31,19 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   projectsData,
   imageCaptions
 }) => {
-  // Add video URL for Barsky Joint project
-  const videoUrl = projectId === "barskyjoint" ? "https://youtube.com/shorts/UGlOWDnsHi0?feature=share" : undefined;
+  // Add video URLs for specific projects
+  const getVideoUrl = (id: string) => {
+    switch (id) {
+      case "barskyjoint":
+        return "https://youtube.com/shorts/UGlOWDnsHi0?feature=share";
+      case "dae-search":
+        return "https://youtu.be/lHU7yvZiMhQ?si=uySJC2EVt_3kmxJ8";
+      default:
+        return undefined;
+    }
+  };
+
+  const videoUrl = getVideoUrl(projectId);
 
   return (
     <section className="py-20">
