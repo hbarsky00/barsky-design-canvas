@@ -12,15 +12,15 @@ import { useProjectDetail } from "@/hooks/useProjectDetail";
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
   "dae-search": {
-    "/lovable-uploads/dae-old-search.png": "Previous search interface showing confusing tag selection for advanced filtering",
-    "/lovable-uploads/dae-user-journey.png": "Comprehensive user journey mapping for medical professionals with customizable filters",
-    "/lovable-uploads/dae-design-system.png": "Design system establishing brand consistency with dark blue, green, and gray color palette",
-    "/lovable-uploads/dae-final-grid.png": "Final grid layout design showing optimized data asset discovery interface",
-    "/lovable-uploads/dae-sketch-ideation.png": "Initial sketches exploring flow from searching to advanced search filter selection",
-    "/lovable-uploads/dae-comparative-analysis.png": "Comparative analysis of advanced search options researched through Dribbble",
-    "/lovable-uploads/dae-process-flow.png": "Detailed process flow for DAE search functionality and user asset selection",
-    "/lovable-uploads/dae-homepage-design.png": "Homepage design allowing users to search for direct items before browsing assets",
-    "/lovable-uploads/dae-internal-search.png": "Internal search interface with customizable filters within Data Asset Details"
+    "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png": "Previous data filtering interface showing complex multi-tag selection system that confused medical professionals",
+    "/lovable-uploads/78d6fb56-e0b4-4632-a262-deba85415e1d.png": "Comprehensive process flow diagram mapping the DAE search functionality from login through advanced search and entity selection",
+    "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png": "Design system style guide showing brand colors (dark blue, green, gray), typography, buttons, icons, and UI components for consistency",
+    "/lovable-uploads/b42f3e73-a21a-4804-9c77-b461251b38d9.png": "Final improved search interface with streamlined filtering options and enhanced data asset discovery functionality",
+    "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png": "Initial hand-drawn wireframe sketches exploring data asset selection flow and advanced search filter concepts",
+    "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png": "Dribbble research compilation showing comparative analysis of advanced search interfaces and filter design patterns",
+    "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png": "Digital Asset Explorer homepage with search functionality and recommended search terms for diabetes-related medical data",
+    "/lovable-uploads/88423dc3-1fd1-480a-846f-4d3f82a9d300.png": "Homepage interface showing recent search terms and improved search experience with insulin and diabetes-related queries",
+    "/lovable-uploads/ccb7671a-9fbf-472a-b63b-e11e681ed341.png": "Simplified homepage design with keyword search dropdown and streamlined navigation to data catalog and studies sections"
   },
   "splittime": {
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "Messaging interface of the Splittime co-parenting app showing automated replies and weekly message review",

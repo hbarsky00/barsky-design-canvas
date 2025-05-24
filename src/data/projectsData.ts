@@ -28,16 +28,16 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Data Assets Enterprise (DAE)",
     role: "Lead UX/UI Designer & Product Strategist",
     extraImages: [],
-    challengeImage: "/lovable-uploads/dae-old-search.png",
-    processImage: "/lovable-uploads/dae-user-journey.png",
-    processBottomImage: "/lovable-uploads/dae-design-system.png",
-    resultImage: "/lovable-uploads/dae-final-grid.png",
+    challengeImage: "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png",
+    processImage: "/lovable-uploads/78d6fb56-e0b4-4632-a262-deba85415e1d.png",
+    processBottomImage: "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png",
+    resultImage: "/lovable-uploads/b42f3e73-a21a-4804-9c77-b461251b38d9.png",
     galleryImages: [
-      "/lovable-uploads/dae-sketch-ideation.png",
-      "/lovable-uploads/dae-comparative-analysis.png",
-      "/lovable-uploads/dae-process-flow.png",
-      "/lovable-uploads/dae-homepage-design.png",
-      "/lovable-uploads/dae-internal-search.png"
+      "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png",
+      "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png",
+      "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",
+      "/lovable-uploads/88423dc3-1fd1-480a-846f-4d3f82a9d300.png",
+      "/lovable-uploads/ccb7671a-9fbf-472a-b63b-e11e681ed341.png"
     ]
   },
   "splittime": {
@@ -166,7 +166,7 @@ export const projectsData: ProjectProps[] = [
     id: "dae-search",
     title: "Data Assets Advanced Search",
     description: "Optimizing access and management of complex asset data while maintaining a user-friendly interface for medical professionals.",
-    image: "/lovable-uploads/dae-final-grid.png",
+    image: "/lovable-uploads/b42f3e73-a21a-4804-9c77-b461251b38d9.png",
     tags: ["UX Research", "User Journey Mapping", "Design Systems", "Data Visualization", "Enterprise UX", "Advanced Search"],
     link: "https://hirambarsky.com/case-studies/dae-search"
   },
