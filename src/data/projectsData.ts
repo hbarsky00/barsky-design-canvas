@@ -34,6 +34,7 @@ export const projectDetails: Record<string, ProjectDetails> = {
     processBottomImage: "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png",
     resultImage: "/lovable-uploads/b42f3e73-a21a-4804-9c77-b461251b38d9.png",
     galleryImages: [
+      "/lovable-uploads/4a1d14bd-2694-412b-a394-b0ebdc830269.png",
       "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png",
       "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png",
       "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",
