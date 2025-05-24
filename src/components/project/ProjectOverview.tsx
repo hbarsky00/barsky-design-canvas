@@ -40,10 +40,21 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   showTechnologies = false,
   videoUrl
 }) => {
-  // Convert YouTube Shorts URL to embeddable format
+  // Convert YouTube URLs to embeddable format
   const getEmbedUrl = (url: string) => {
-    const videoId = url.match(/shorts\/([^?]+)/)?.[1];
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    // Handle YouTube Shorts
+    const shortsMatch = url.match(/shorts\/([^?]+)/);
+    if (shortsMatch) {
+      return `https://www.youtube.com/embed/${shortsMatch[1]}`;
+    }
+    
+    // Handle regular YouTube URLs
+    const regularMatch = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([^?&]+)/);
+    if (regularMatch) {
+      return `https://www.youtube.com/embed/${regularMatch[1]}`;
+    }
+    
+    return url;
   };
 
   return (
@@ -82,12 +93,12 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         <div className="mb-12">
           <div className="flex items-center mb-4 space-x-2">
             <Award className="h-5 w-5 text-barsky-blue" />
-            <h2 className="text-2xl font-bold">Demo Video</h2>
+            <h2 className="text-2xl font-bold">Workflow Video</h2>
           </div>
           <div className="aspect-video w-full rounded-lg overflow-hidden">
             <iframe
               src={getEmbedUrl(videoUrl)}
-              title="Project Demo Video"
+              title="Workflow Video"
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

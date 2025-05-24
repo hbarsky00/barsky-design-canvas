@@ -37,7 +37,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       case "barskyjoint":
         return "https://youtube.com/shorts/UGlOWDnsHi0?feature=share";
       case "dae-search":
-        return "https://youtu.be/lHU7yvZiMhQ?si=uySJC2EVt_3kmxJ8";
+        return "https://youtu.be/lHU7yvZiMhQ?feature=shared";
       default:
         return undefined;
     }
