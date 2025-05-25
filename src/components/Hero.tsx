@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
                 transition={{ delay: 1.1, duration: 0.5 }}
                 className="text-base sm:text-lg mb-6 text-barsky-text-light max-w-3xl mx-auto md:mx-0"
               >
-                I design for real people, and love finding simplicity in the complex. Through these three case studies, I'll show how I approach UX, strategy, and AI-driven design
+                I provide rapid, high-quality product design services, including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and consulting on UX strategy.
               </motion.p>
             </div>
             
