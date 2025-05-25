@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
             
             <div className="relative mb-8">
               <AnimatedText
-                text="Product Designer & Developer"
+                text="Freelance Product Designer"
                 tag="p"
                 className="text-xl sm:text-2xl mb-4 text-barsky-text"
                 delay={900}
@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
                 transition={{ delay: 1.1, duration: 0.5 }}
                 className="text-base sm:text-lg mb-6 text-barsky-text-light max-w-3xl mx-auto md:mx-0"
               >
-                I provide rapid, high-quality product design services, including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and consulting on UX strategy.
+                I help early-stage startups and teams create user-friendly digital experiences. I offer UX/UI design, design system creation, MVP design, and design audits to bring your ideas to life.
               </motion.p>
             </div>
             
