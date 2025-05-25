@@ -25,6 +25,7 @@ interface ProjectOverviewProps {
   galleryImages?: string[];
   showTechnologies?: boolean;
   videoUrl?: string;
+  challengeBottomImage?: string;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -41,7 +42,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   imageCaptions = {},
   galleryImages = [],
   showTechnologies = false,
-  videoUrl
+  videoUrl,
+  challengeBottomImage
 }) => {
   // Convert YouTube URLs to embeddable format
   const getEmbedUrl = (url: string) => {
@@ -77,6 +79,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           content={challenge}
           image={challengeImage}
           imageCaption={challengeImage && imageCaptions[challengeImage]}
+          bottomImage={challengeBottomImage}
+          bottomImageCaption={challengeBottomImage && imageCaptions[challengeBottomImage]}
         />
       </div>
       

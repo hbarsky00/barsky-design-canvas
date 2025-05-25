@@ -12,6 +12,7 @@ import { useProjectDetail } from "@/hooks/useProjectDetail";
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
   "dae-search": {
+    "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "Data catalog interface showing search functionality and filtering options for medical data assets",
     "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png": "Previous data filtering interface showing complex multi-tag selection system that confused medical professionals",
     "/lovable-uploads/78d6fb56-e0b4-4632-a262-deba85415e1d.png": "Comprehensive process flow diagram mapping the DAE search functionality from login through advanced search and entity selection",
     "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png": "Design system style guide showing brand colors (dark blue, green, gray), typography, buttons, icons, and UI components for consistency",
