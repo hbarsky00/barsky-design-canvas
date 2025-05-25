@@ -12,143 +12,154 @@
   <!-- Homepage -->
   <url>
     <loc>https://hirambarsky.com/</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png</image:loc>
-      <image:title>Hiram Barsky Product Designer and Developer</image:title>
-      <image:caption>Professional portfolio and services of Hiram Barsky</image:caption>
+      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
+      <image:title>Hiram Barsky - Product Designer & Developer</image:title>
+      <image:caption>Rapid, high-quality product design services including UX audits, MVP design, and strategy consulting</image:caption>
     </image:image>
   </url>
   
   <!-- Projects List Page -->
   <url>
     <loc>https://hirambarsky.com/projects</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://hirambarsky.com/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png</image:loc>
-      <image:title>Co-Parenting Coordination App by Hiram Barsky</image:title>
-      <image:caption>Feature project in the Hiram Barsky portfolio</image:caption>
+      <image:title>Product Design Portfolio by Hiram Barsky</image:title>
+      <image:caption>Featured projects showcasing rapid, high-quality product design and development work</image:caption>
     </image:image>
   </url>
   
   <!-- Services Page -->
   <url>
     <loc>https://hirambarsky.com/services</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png</image:loc>
-      <image:title>Professional Design Services by Hiram Barsky</image:title>
-      <image:caption>UX/UI design, development and consultation services</image:caption>
+      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
+      <image:title>Rapid Product Design Services by Hiram Barsky</image:title>
+      <image:caption>UX audits, MVP design, mobile/web app design, design systems, and strategy consulting services</image:caption>
     </image:image>
   </url>
   
   <!-- Service Category Pages -->
   <url>
     <loc>https://hirambarsky.com/design-services/ux-ui-design</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hirambarsky.com/design-services/web-development</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hirambarsky.com/design-services/mobile-app-design</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Store Pages -->
+  <url>
+    <loc>https://hirambarsky.com/store</loc>
+    <lastmod>2025-05-25</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Blog Pages -->
   <url>
     <loc>https://hirambarsky.com/blog</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hirambarsky.com/blog/built-product-without-real-data</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hirambarsky.com/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png</image:loc>
-      <image:title>Product Design Without Real Data</image:title>
-      <image:caption>How to ship a product using placeholder data and no marketing budget</image:caption>
+      <image:title>Building Products Without Real Data - Hiram Barsky</image:title>
+      <image:caption>How to ship a product using placeholder data and no marketing budget - product design insights</image:caption>
     </image:image>
-  </url>
-  
-  <!-- Store Pages -->
-  <url>
-    <loc>https://hirambarsky.com/store</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   
   <!-- Individual Project Pages -->
   <url>
     <loc>https://hirambarsky.com/project/splittime</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hirambarsky.com/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png</image:loc>
-      <image:title>Co-Parenting Coordination App</image:title>
-      <image:caption>A solution for separated parents to manage schedules and communication</image:caption>
+      <image:title>SplitTime - Co-Parenting Coordination App Design</image:title>
+      <image:caption>MVP design and development for separated parents to manage schedules and communication</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://hirambarsky.com/project/herbalink</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hirambarsky.com/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png</image:loc>
-      <image:title>Herbalink App</image:title>
-      <image:caption>Connecting patients with herbal medicine practitioners</image:caption>
+      <image:title>Herbalink App - Healthcare Platform Design</image:title>
+      <image:caption>Mobile app design connecting patients with herbal medicine practitioners</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://hirambarsky.com/project/gold2crypto</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hirambarsky.com/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png</image:loc>
-      <image:title>Gold 2 Crypto Services</image:title>
-      <image:caption>Trading platform bridging traditional gold investments with cryptocurrency</image:caption>
+      <image:title>Gold2Crypto - Trading Platform Design</image:title>
+      <image:caption>Web application design bridging traditional gold investments with cryptocurrency trading</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://hirambarsky.com/project/barskyjoint</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hirambarsky.com/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png</image:loc>
-      <image:title>Barsky Joint Food Truck App</image:title>
-      <image:caption>Mobile ordering app for a gourmet food truck business</image:caption>
+      <image:title>Barsky Joint - Food Truck App Design</image:title>
+      <image:caption>Mobile ordering app design for gourmet food truck business</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://hirambarsky.com/project/spectrum</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hirambarsky.com/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png</image:loc>
-      <image:title>Spectrum Apparel Co.</image:title>
-      <image:caption>Inclusive clothing brand focused on autism awareness</image:caption>
+      <image:title>Spectrum Apparel Co. - Brand Design</image:title>
+      <image:caption>Inclusive clothing brand design focused on autism awareness and acceptance</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hirambarsky.com/project/dae-search</loc>
+    <lastmod>2025-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hirambarsky.com/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png</image:loc>
+      <image:title>DAE Search - Data Asset Management Platform</image:title>
+      <image:caption>Enterprise data catalog interface design for efficient data asset discovery and management</image:caption>
     </image:image>
   </url>
 </urlset>
