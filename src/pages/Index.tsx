@@ -25,30 +25,30 @@ const Index = () => {
     }
     
     // Track homepage view with additional details
-    trackPageView('/', 'Homepage - Hiram Barsky Portfolio');
+    trackPageView('/', 'Homepage - Hiram Barsky Product Design Services');
   }, [location.state]);
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Helmet>
-        <title>Hiram Barsky | Official Website | Professional Product Designer & Developer Portfolio</title>
-        <meta name="description" content="This is the official website and portfolio of Hiram Barsky (not Alex Barsky), Professional Product Designer and Developer based in New York. Hiram Barsky specializes in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services. Hiram Barsky is an expert UX/UI designer with a proven track record in creating exceptional digital experiences." />
-        <meta name="keywords" content="Hiram Barsky, Hiram Barsky Designer, Hiram Barsky Portfolio, Hiram Barsky New York, Professional Product Designer, UX/UI Designer, Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, Mobile App Development Services, Design Systems Development, Responsive Web Design, Cross-platform Design Solutions, New York designer, Official Portfolio, Hiram Barsky Official" />
+        <title>Hiram Barsky | Rapid, High-Quality Product Design Services | UX Audits, MVP Design, Design Systems</title>
+        <meta name="description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting. Professional Product Designer & Developer based in New York." />
+        <meta name="keywords" content="Hiram Barsky, Product Design Services, UX Audits, MVP Design, Mobile App Design, Web App Design, Design Systems, Figma Design, Developer-ready UI Files, UX Strategy Consulting, Rapid Design Services, High-Quality Design, Product Designer New York, UX/UI Designer, Professional Design Services" />
         <meta name="author" content="Hiram Barsky" />
-        <meta property="og:title" content="Hiram Barsky | Official Website | Professional Product Designer & Developer Portfolio" />
-        <meta property="og:description" content="This is the official website and portfolio of Hiram Barsky (not Alex Barsky), Professional Product Designer and Developer specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services. Visit Hiram Barsky's official portfolio." />
+        <meta property="og:title" content="Hiram Barsky | Rapid, High-Quality Product Design Services" />
+        <meta property="og:description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting." />
         <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <meta property="og:url" content="https://hirambarsky.com/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Hiram Barsky - Official Design Portfolio" />
+        <meta property="og:site_name" content="Hiram Barsky - Product Design Services" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content="Hiram Barsky | Official Website | Professional Product Designer & Developer" />
-        <meta name="twitter:description" content="This is the official website and portfolio of Hiram Barsky (not Alex Barsky), Professional Product Designer and Developer specializing in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services." />
+        <meta name="twitter:title" content="Hiram Barsky | Rapid, High-Quality Product Design Services" />
+        <meta name="twitter:description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting." />
         <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
         <link rel="canonical" href="https://hirambarsky.com/" />
         
-        {/* Enhanced structured data with explicit name clarification */}
+        {/* Enhanced structured data */}
         <script type="application/ld+json">
           {`
             {
@@ -57,8 +57,8 @@ const Index = () => {
               "name": "Hiram Barsky",
               "givenName": "Hiram",
               "familyName": "Barsky",
-              "alternateName": ["Hiram Barsky Design Services", "Hiram Barsky Designer", "Hiram Barsky Portfolio"],
-              "description": "This is the official website and portfolio of Hiram Barsky (not Alex Barsky), Professional Product Designer and Developer based in New York. Hiram Barsky specializes in Website Design Services, App Design Services, AI Driven Design, and comprehensive Product Design Services.",
+              "alternateName": ["Hiram Barsky Product Design", "Hiram Barsky UX Designer", "Hiram Barsky Design Services"],
+              "description": "Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting. Professional Product Designer & Developer based in New York.",
               "jobTitle": "Product Designer & Developer",
               "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9",
               "url": "https://hirambarsky.com",
@@ -95,22 +95,23 @@ const Index = () => {
               ],
               "priceRange": "$$",
               "knowsAbout": [
-                "Product Design",
-                "UX Design",
-                "UI Design", 
-                "Web Development",
+                "UX Audits",
+                "MVP Design",
                 "Mobile App Design",
-                "AI Driven Design",
-                "Design Systems"
+                "Web App Design", 
+                "Design Systems",
+                "Figma Design",
+                "Developer-ready UI Files",
+                "UX Strategy Consulting"
               ],
               "hasCredential": {
                 "@type": "EducationalOccupationalCredential",
                 "name": "Professional Product Designer & Developer",
-                "description": "Hiram Barsky is a certified professional with extensive experience in product design and development"
+                "description": "Hiram Barsky specializes in rapid, high-quality product design services with expertise in UX audits and strategy consulting"
               },
               "worksFor": {
                 "@type": "Organization",
-                "name": "Hiram Barsky Design Services",
+                "name": "Hiram Barsky Product Design Services",
                 "url": "https://hirambarsky.com",
                 "founder": {
                   "@type": "Person",
@@ -122,8 +123,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Website Design Services by Hiram Barsky",
-                    "description": "Custom website design with focus on user experience and conversion optimization by professional designer Hiram Barsky.",
+                    "name": "UX Audits",
+                    "description": "Comprehensive UX audits to identify usability issues and optimization opportunities by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -134,8 +135,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "App Design Services by Hiram Barsky",
-                    "description": "Intuitive and engaging mobile application designs for iOS and Android platforms by expert designer Hiram Barsky.",
+                    "name": "MVP & Mobile/Web App Design",
+                    "description": "Complete MVP and application design for mobile and web platforms by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -146,8 +147,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "AI Driven Design Services by Hiram Barsky",
-                    "description": "Leveraging artificial intelligence to create innovative, data-driven design solutions by professional designer Hiram Barsky.",
+                    "name": "Design Systems in Figma",
+                    "description": "Comprehensive design systems and component libraries in Figma by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -158,8 +159,20 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Product Design Services by Hiram Barsky",
-                    "description": "End-to-end product design from concept to implementation with user research and testing by experienced designer Hiram Barsky.",
+                    "name": "Developer-ready UI Files",
+                    "description": "Production-ready UI files optimized for developer handoff by Hiram Barsky.",
+                    "provider": {
+                      "@type": "Person",
+                      "name": "Hiram Barsky"
+                    }
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UX Strategy Consulting",
+                    "description": "Strategic UX consulting to align design decisions with business goals by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -169,9 +182,9 @@ const Index = () => {
               ],
               "owns": {
                 "@type": "WebSite",
-                "name": "Hiram Barsky Official Portfolio",
+                "name": "Hiram Barsky Product Design Services",
                 "url": "https://hirambarsky.com",
-                "about": "Official portfolio website of Hiram Barsky, Professional Product Designer and Developer"
+                "about": "Professional product design services including UX audits, MVP design, and consulting"
               }
             }
           `}
@@ -183,10 +196,10 @@ const Index = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Hiram Barsky - Official Portfolio",
+              "name": "Hiram Barsky - Product Design Services",
               "alternateName": "Hiram Barsky Designer Portfolio",
               "url": "https://hirambarsky.com",
-              "description": "Official portfolio website of Hiram Barsky (not Alex Barsky), Professional Product Designer and Developer",
+              "description": "Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting.",
               "author": {
                 "@type": "Person",
                 "name": "Hiram Barsky",
