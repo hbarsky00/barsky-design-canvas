@@ -30,18 +30,18 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Private Banking Institution",
     role: "Lead UX/UI Designer & Product Strategist",
     extraImages: [],
-    challengeImage: "/lovable-uploads/screenshot-2.png",
-    processImage: "/lovable-uploads/screenshot-3.png", 
-    processBottomImage: "/lovable-uploads/screenshot-7.png",
-    resultImage: "/lovable-uploads/screenshot-1.png",
+    challengeImage: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
+    processImage: "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png", 
+    processBottomImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
+    resultImage: "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
     galleryImages: [
-      "/lovable-uploads/screenshot-4.png",
-      "/lovable-uploads/screenshot-5.png",
-      "/lovable-uploads/screenshot-6.png",
-      "/lovable-uploads/screenshot-8.png",
-      "/lovable-uploads/screenshot-9.png",
-      "/lovable-uploads/screenshot-10.png",
-      "/lovable-uploads/screenshot-11.png"
+      "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
+      "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
+      "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
+      "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
+      "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png",
+      "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
+      "/lovable-uploads/bebd5718-47dc-4238-ab61-d1892611d24e.png"
     ]
   },
   "dae-search": {
@@ -196,7 +196,7 @@ export const projectsData: ProjectProps[] = [
     id: "investor-loan-app",
     title: "Investor Loan App",
     description: "Comprehensive financial platform for managing investment deals, loan orders, and real-time data updates with advanced search and automation features.",
-    image: "/lovable-uploads/screenshot-1.png",
+    image: "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
     tags: ["Financial Technology", "UX/UI Design", "Enterprise Software", "Data Visualization", "Banking", "Order Management", "Real-time Updates"]
   },
   {
