@@ -8,9 +8,11 @@ import ProjectDetailLoading from "@/components/project/ProjectDetailLoading";
 import ProjectDetailSeo from "@/components/project/ProjectDetailSeo";
 import ProjectDetailContent from "@/components/project/ProjectDetailContent";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
+import { investorLoanImageCaptions } from "@/data/investorLoanData";
 
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
+  "investor-loan-app": investorLoanImageCaptions,
   "dae-search": {
     "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "Data catalog interface showing search functionality and filtering options for medical data assets",
     "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png": "Previous data filtering interface showing complex multi-tag selection system that confused medical professionals",

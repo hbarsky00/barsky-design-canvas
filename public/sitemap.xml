@@ -97,6 +97,17 @@
   
   <!-- Individual Project Pages -->
   <url>
+    <loc>https://hirambarsky.com/project/investor-loan-app</loc>
+    <lastmod>2025-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hirambarsky.com/lovable-uploads/screenshot-1.png</image:loc>
+      <image:title>Investor Loan App - Financial Platform Design</image:title>
+      <image:caption>Comprehensive financial platform for managing investment deals, loan orders, and real-time data updates with advanced search and automation features</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://hirambarsky.com/project/splittime</loc>
     <lastmod>2025-05-25</lastmod>
     <changefreq>monthly</changefreq>

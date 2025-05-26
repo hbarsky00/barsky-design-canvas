@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -22,6 +21,29 @@ export interface ProjectDetails {
 }
 
 export const projectDetails: Record<string, ProjectDetails> = {
+  "investor-loan-app": {
+    challenge: "The client's existing loan management system lacked automation, with all loan updates manually tracked in Excel spreadsheets. This created inefficiencies, increased error rates, and hindered scalability. The private bank needed a modernized solution with an updated design system to show all loan deals, simplify search functionality, enable order creation, update borrower amounts in real-time, and facilitate team collaboration through comments. The challenge was to transform a manual, Excel-based workflow into an automated, user-friendly digital platform that could handle complex financial data while maintaining accuracy and compliance.",
+    process: "I began with comprehensive user research and stakeholder interviews to understand the existing Excel-based workflow and pain points. The design process included detailed user flow mapping, starting with low-fidelity wireframes to establish the core functionality. I conducted usability testing with team members to validate concepts and gather feedback before proceeding to high-fidelity designs. For the search functionality, I analyzed Bloomberg's search interface as inspiration, implementing a predictive AI search with multiple categories. I created a comprehensive design system with a banking-focused color palette and developed both card and grid view options based on internal user surveys. The AG Grid integration was carefully planned with developers to ensure optimal performance for the orderbook functionality.",
+    result: "The new Investor Loan App delivered a seamless interface that completely automated the previous Excel-based workflow. Key features included advanced search integration with predictive AI capabilities, real-time order book updates, comprehensive deal management with both card and grid views, limit order creation and editing functionality, and an integrated comment system for team collaboration. The application significantly enhanced user experience, reduced manual errors, and accelerated the Private Bank's market presence. Users can now efficiently manage deals, create and modify orders, update borrower amounts in real-time, and collaborate effectively through the built-in commenting system.",
+    technologies: ["User Research", "Figma", "Balsamiq", "AG Grid", "Predictive AI Search", "Banking UI/UX", "Financial Data Visualization", "Excel Automation", "Order Management Systems"],
+    duration: "6 months",
+    client: "Private Banking Institution",
+    role: "Lead UX/UI Designer & Product Strategist",
+    extraImages: [],
+    challengeImage: "/lovable-uploads/screenshot-2.png",
+    processImage: "/lovable-uploads/screenshot-3.png", 
+    processBottomImage: "/lovable-uploads/screenshot-7.png",
+    resultImage: "/lovable-uploads/screenshot-1.png",
+    galleryImages: [
+      "/lovable-uploads/screenshot-4.png",
+      "/lovable-uploads/screenshot-5.png",
+      "/lovable-uploads/screenshot-6.png",
+      "/lovable-uploads/screenshot-8.png",
+      "/lovable-uploads/screenshot-9.png",
+      "/lovable-uploads/screenshot-10.png",
+      "/lovable-uploads/screenshot-11.png"
+    ]
+  },
   "dae-search": {
     challenge: "The previous data asset search system was confusing for medical professionals, particularly when selecting multiple tags for advanced filtering. Users struggled to efficiently browse the data catalog to find relevant assets, leading to poor user experience and reduced productivity in their asset selection journey.",
     process: "I conducted comprehensive user journey mapping and research specifically focused on medical professionals who needed customizable filters for entities and keywords. Through user interviews, sketching sessions, and comparative analysis using Dribbble research, I developed a clear process flow for the advanced search feature. I established a design system using the client's brand colors (dark blue, green, and gray) to ensure consistency across all design elements. Multiple design iterations were explored, including grid layouts and internal search functionality, before selecting the final version that allowed users to access the Data Asset View and customize it with specific filters.",
@@ -170,6 +192,13 @@ export const projectDetails: Record<string, ProjectDetails> = {
 };
 
 export const projectsData: ProjectProps[] = [
+  {
+    id: "investor-loan-app",
+    title: "Investor Loan App",
+    description: "Comprehensive financial platform for managing investment deals, loan orders, and real-time data updates with advanced search and automation features.",
+    image: "/lovable-uploads/screenshot-1.png",
+    tags: ["Financial Technology", "UX/UI Design", "Enterprise Software", "Data Visualization", "Banking", "Order Management", "Real-time Updates"]
+  },
   {
     id: "dae-search",
     title: "Data Assets Advanced Search",
