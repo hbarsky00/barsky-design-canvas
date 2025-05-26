@@ -30,18 +30,23 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Private Banking Institution",
     role: "Lead UX/UI Designer & Product Strategist",
     extraImages: [],
-    challengeImage: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
-    processImage: "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png", 
-    processBottomImage: "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
-    resultImage: "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
+    challengeImage: "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+    processImage: "/lovable-uploads/faf1d4bf-d71c-42b8-b5b9-f4520fc26769.png", 
+    processBottomImage: "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
+    resultImage: "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
     galleryImages: [
-      "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
-      "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
-      "/lovable-uploads/77d748e9-8ea5-4084-bc85-5057051b9757.png",
-      "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
-      "/lovable-uploads/85178a1c-7f22-42f9-929d-1feca4871a87.png",
-      "/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png",
-      "/lovable-uploads/bebd5718-47dc-4238-ab61-d1892611d24e.png"
+      "/lovable-uploads/faf1d4bf-d71c-42b8-b5b9-f4520fc26769.png",
+      "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
+      "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+      "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
+      "/lovable-uploads/ddbba1ba-2c8a-48d9-b367-c3ae2bdbcafc.png",
+      "/lovable-uploads/dd8dfb1f-3217-48c3-a4f0-66065be6cca0.png",
+      "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png",
+      "/lovable-uploads/edf8d9fe-bf18-446d-9ba1-82abdbc74f71.png",
+      "/lovable-uploads/110d7af6-b9ec-4d66-91f1-039414b5a7bc.png",
+      "/lovable-uploads/ac9c09b0-cb4b-42b8-a7d4-9d813cdf882d.png",
+      "/lovable-uploads/64cdd602-9356-4938-a1d1-3e2e08443d9c.png",
+      "/lovable-uploads/775861dc-e0e5-4f64-a1df-30d8d74fbcf3.png"
     ]
   },
   "dae-search": {
@@ -196,7 +201,7 @@ export const projectsData: ProjectProps[] = [
     id: "investor-loan-app",
     title: "Investor Loan App",
     description: "Comprehensive financial platform for managing investment deals, loan orders, and real-time data updates with advanced search and automation features.",
-    image: "/lovable-uploads/6edd294a-5638-4a33-9e90-34a3341ddeaf.png",
+    image: "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
     tags: ["Financial Technology", "UX/UI Design", "Enterprise Software", "Data Visualization", "Banking", "Order Management", "Real-time Updates"]
   },
   {
