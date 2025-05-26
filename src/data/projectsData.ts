@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -203,7 +204,7 @@ export const projectsData: ProjectProps[] = [
     id: "dae-search",
     title: "Data Assets Advanced Search",
     description: "Optimizing access and management of complex asset data while maintaining a user-friendly interface for medical professionals.",
-    image: "/lovable-uploads/4a1d14bd-2694-412b-a394-b0ebdc830269.png",
+    image: "/lovable-uploads/7eee77ca-af16-4cd4-a7a3-51d55894ba3c.png",
     tags: ["UX Research", "User Journey Mapping", "Design Systems", "Data Visualization", "Enterprise UX", "Advanced Search"]
   },
   {
