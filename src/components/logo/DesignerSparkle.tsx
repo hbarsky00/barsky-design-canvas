@@ -9,11 +9,11 @@ const DesignerSparkle = () => {
         initial: { opacity: 0, scale: 0, rotate: 0 },
         hover: { 
           opacity: 1, 
-          scale: [0, 1.2, 1],
-          rotate: [0, 15, 10],
+          scale: 1.2,
+          rotate: 10,
           transition: {
             duration: 0.5,
-            times: [0, 0.7, 1],
+            ease: "easeOut",
             delay: 0.3
           }
         }
@@ -26,11 +26,11 @@ const DesignerSparkle = () => {
           variants={{
             initial: { opacity: 0 },
             hover: { 
-              opacity: [0, 1, 0],
-              scale: [0.5, 1.2, 0.8],
+              opacity: 1,
+              scale: 1.2,
               transition: {
                 duration: 0.8,
-                times: [0, 0.5, 1],
+                ease: "easeOut",
                 delay: 0.5,
                 repeat: Infinity,
                 repeatDelay: 1

@@ -15,11 +15,11 @@ const AnimatedLetter = ({ letter, index = 0, isDarkMode, letterTransition }: Ani
       variants={{
         initial: { y: 0, rotate: 0 },
         hover: { 
-          y: [0, -6, 0], 
-          rotate: index % 2 === 0 ? [0, 5, 0] : [0, -5, 0],
+          y: -6, 
+          rotate: index % 2 === 0 ? 5 : -5,
           transition: {
             duration: 0.4,
-            times: [0, 0.5, 1],
+            ease: "easeOut",
             delay: index * 0.05
           }
         }

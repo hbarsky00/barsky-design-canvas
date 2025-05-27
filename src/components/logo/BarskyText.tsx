@@ -17,7 +17,8 @@ const BarskyText = ({ letterTransition, isDarkMode }: BarskyTextProps) => {
           y: 0,
           transition: {
             staggerChildren: 0.03,
-            delayChildren: 0.2
+            delayChildren: 0.2,
+            ease: "easeOut"
           }
         }
       }}
