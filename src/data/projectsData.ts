@@ -31,7 +31,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     client: "Private Banking Institution",
     role: "Lead UX/UI Designer & Product Strategist",
     extraImages: [],
-    challengeImage: "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
     challengeGalleryImages: [
       "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
       "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png",
