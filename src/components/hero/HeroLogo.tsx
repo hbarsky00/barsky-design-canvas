@@ -21,7 +21,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
         delay: 0.2,
         ease: "easeOut"
       }}
-      className="flex justify-center mb-8"
+      className="flex justify-center md:justify-start mb-8"
     >
       <Link to="/">
         <div className="relative group">
