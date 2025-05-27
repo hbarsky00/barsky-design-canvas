@@ -21,20 +21,20 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
         delay: 0.2,
         ease: "easeOut"
       }}
-      className="flex justify-start mb-8"
+      className="flex justify-center mb-8"
     >
       <Link to="/">
         <div className="relative group">
           <img
             src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
             alt="Hiram Barsky"
-            className="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
+            className="h-40 w-40 md:h-48 md:w-48 lg:h-52 lg:w-52 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
             style={{
               imageRendering: 'crisp-edges',
             }}
             loading="eager"
-            width="160"
-            height="160"
+            width="208"
+            height="208"
           />
         </div>
       </Link>
