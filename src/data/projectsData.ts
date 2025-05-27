@@ -31,8 +31,8 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead UX/UI Designer & Product Strategist",
     extraImages: [],
     challengeImage: "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
-    processImage: "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png", 
-    processBottomImage: "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
+    processImage: "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png", 
+    processBottomImage: "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png",
     resultImage: "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
     galleryImages: [
       "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png",
