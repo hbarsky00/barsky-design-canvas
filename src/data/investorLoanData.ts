@@ -1,6 +1,6 @@
 
 export const investorLoanImageCaptions: Record<string, string> = {
-  "/lovable-uploads/faf1d4bf-d71c-42b8-b5b9-f4520fc26769.png": "Design thinking process workflow showing the five key phases: Empathise, Define, Ideate, Prototype, and Test - the foundation of user-centered design methodology",
+  "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png": "Dashboard interface showing both card and grid view options for the Deal Central platform with comprehensive loan management features",
   "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png": "Comprehensive user flow diagram mapping the complete investor loan workflow from deal selection through order processing and limit management",
   "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png": "Hand-drawn wireframes exploring the initial Deal Central interface concepts with detailed navigation structure and card-based deal listings",
   "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png": "Final DEALCENTRAL dashboard interface showing comprehensive deal management with advanced search, sorting, and filtering capabilities",
@@ -15,7 +15,7 @@ export const investorLoanImageCaptions: Record<string, string> = {
 };
 
 export const investorLoanGalleryImages = [
-  "/lovable-uploads/faf1d4bf-d71c-42b8-b5b9-f4520fc26769.png",
+  "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png",
   "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
   "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
   "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
