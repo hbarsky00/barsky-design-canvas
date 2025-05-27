@@ -1,4 +1,3 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export interface ProjectDetails {
@@ -19,6 +18,7 @@ export interface ProjectDetails {
   galleryImages?: string[];
   slidesUrl?: string;
   challengeBottomImage?: string;
+  challengeGalleryImages?: string[];
 }
 
 export const projectDetails: Record<string, ProjectDetails> = {
@@ -32,6 +32,13 @@ export const projectDetails: Record<string, ProjectDetails> = {
     role: "Lead UX/UI Designer & Product Strategist",
     extraImages: [],
     challengeImage: "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+    challengeGalleryImages: [
+      "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+      "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png",
+      "/lovable-uploads/19954f9e-0643-434e-aab0-2f9eb992fabe.png",
+      "/lovable-uploads/d182275b-452b-4699-a81a-2bf1e846f871.png",
+      "/lovable-uploads/14a16e01-623e-4712-b39b-16f61c682a11.png"
+    ],
     processImage: "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png", 
     processBottomImage: "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png",
     resultImage: "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",

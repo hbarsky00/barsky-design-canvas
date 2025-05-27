@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import ProjectHeader from "@/components/project/ProjectHeader";
 import ProjectOverview from "@/components/project/ProjectOverview";
@@ -70,6 +71,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
               showTechnologies={false}
               videoUrl={videoUrl}
               challengeBottomImage={details.challengeBottomImage}
+              challengeGalleryImages={details.challengeGalleryImages}
             />
           </div>
           
@@ -92,3 +94,4 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
 };
 
 export default ProjectDetailContent;
+

@@ -1,5 +1,6 @@
 
 
+
 export const investorLoanImageCaptions: Record<string, string> = {
   "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png": "My Loans Orderbook interface showing comprehensive lender tracking with detailed draft allocations, contact information, and portfolio management features",
   "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png": "Dashboard interface showing both card and grid view options for the Deal Central platform with comprehensive loan management features",
@@ -13,7 +14,11 @@ export const investorLoanImageCaptions: Record<string, string> = {
   "/lovable-uploads/110d7af6-b9ec-4d66-91f1-039414b5a7bc.png": "LOAN CENTRAL card view interface displaying deal cards with comprehensive borrower information, progress indicators, and status tracking",
   "/lovable-uploads/ac9c09b0-cb4b-42b8-a7d4-9d813cdf882d.png": "My Loans orderbook view with comprehensive lender tracking, allocation management, and portfolio analytics dashboard",
   "/lovable-uploads/64cdd602-9356-4938-a1d1-3e2e08443d9c.png": "Add Order modal interface showing single lender selection with detailed contact information and comprehensive order creation workflow",
-  "/lovable-uploads/775861dc-e0e5-4f64-a1df-30d8d74fbcf3.png": "Enhanced order creation interface with improved lender selection, amount specification, and integrated collaboration tools"
+  "/lovable-uploads/775861dc-e0e5-4f64-a1df-30d8d74fbcf3.png": "Enhanced order creation interface with improved lender selection, amount specification, and integrated collaboration tools",
+  "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png": "Design thinking process diagram showing the five stages: Empathise, Define, Ideate, Prototype, and Test in hexagonal layout",
+  "/lovable-uploads/19954f9e-0643-434e-aab0-2f9eb992fabe.png": "Comprehensive orderbook interface showing investor participation details with cashless rolls, lender information, and real-time comments system",
+  "/lovable-uploads/d182275b-452b-4699-a81a-2bf1e846f871.png": "Typography showcase featuring Open Sans font family with various weights and styles from Light to Extra-Bold",
+  "/lovable-uploads/14a16e01-623e-4712-b39b-16f61c682a11.png": "Deal management dashboard showing card-based layout with comprehensive borrower information, industry details, and loan status tracking"
 };
 
 export const investorLoanGalleryImages = [
@@ -30,4 +35,13 @@ export const investorLoanGalleryImages = [
   "/lovable-uploads/64cdd602-9356-4938-a1d1-3e2e08443d9c.png",
   "/lovable-uploads/775861dc-e0e5-4f64-a1df-30d8d74fbcf3.png"
 ];
+
+export const investorLoanChallengeGalleryImages = [
+  "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+  "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png",
+  "/lovable-uploads/19954f9e-0643-434e-aab0-2f9eb992fabe.png",
+  "/lovable-uploads/d182275b-452b-4699-a81a-2bf1e846f871.png",
+  "/lovable-uploads/14a16e01-623e-4712-b39b-16f61c682a11.png"
+];
+
 

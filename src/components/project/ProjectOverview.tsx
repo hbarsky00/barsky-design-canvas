@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import { FileText, List, Award } from "lucide-react";
 import ProjectSection from "./ProjectSection";
@@ -26,6 +27,7 @@ interface ProjectOverviewProps {
   showTechnologies?: boolean;
   videoUrl?: string;
   challengeBottomImage?: string;
+  challengeGalleryImages?: string[];
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -43,7 +45,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   galleryImages = [],
   showTechnologies = false,
   videoUrl,
-  challengeBottomImage
+  challengeBottomImage,
+  challengeGalleryImages = []
 }) => {
   // Convert YouTube URLs to embeddable format
   const getEmbedUrl = (url: string) => {
@@ -82,6 +85,16 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           bottomImage={challengeBottomImage}
           bottomImageCaption={challengeBottomImage && imageCaptions[challengeBottomImage]}
         />
+        
+        {/* Challenge Gallery - Add after the challenge section */}
+        {challengeGalleryImages && challengeGalleryImages.length > 0 && (
+          <div className="mt-6">
+            <ProjectMultiImageGallery 
+              images={challengeGalleryImages}
+              captions={imageCaptions}
+            />
+          </div>
+        )}
       </div>
       
       {/* Process Section */}
@@ -153,3 +166,4 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
 };
 
 export default ProjectOverview;
+

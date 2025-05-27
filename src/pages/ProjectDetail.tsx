@@ -14,6 +14,10 @@ import { investorLoanImageCaptions } from "@/data/investorLoanData";
 const projectImageCaptions: Record<string, Record<string, string>> = {
   "investor-loan-app": {
     "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png": "My Loans Orderbook interface showing comprehensive lender tracking with detailed draft allocations, contact information, and portfolio management features",
+    "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png": "Design thinking process diagram showing the five stages: Empathise, Define, Ideate, Prototype, and Test in hexagonal layout",
+    "/lovable-uploads/19954f9e-0643-434e-aab0-2f9eb992fabe.png": "Comprehensive orderbook interface showing investor participation details with cashless rolls, lender information, and real-time comments system",
+    "/lovable-uploads/d182275b-452b-4699-a81a-2bf1e846f871.png": "Typography showcase featuring Open Sans font family with various weights and styles from Light to Extra-Bold",
+    "/lovable-uploads/14a16e01-623e-4712-b39b-16f61c682a11.png": "Deal management dashboard showing card-based layout with comprehensive borrower information, industry details, and loan status tracking",
     ...investorLoanImageCaptions
   },
   "dae-search": {
