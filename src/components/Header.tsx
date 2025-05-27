@@ -6,6 +6,7 @@ import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
 import ProfileAvatar from "./header/ProfileAvatar";
 import ThemeToggle from "./ThemeToggle";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header: React.FC = () => {
   const { 
@@ -30,14 +31,31 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            {!isScrolled ? (
-              <ProfileAvatar />
-            ) : (
-              <>
-                <ProfileAvatar />
-                <AnimatedLogo />
-              </>
-            )}
+            <AnimatePresence mode="wait">
+              {!isScrolled ? (
+                <motion.div
+                  key="avatar-only"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ProfileAvatar />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="avatar-with-logo"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex items-center space-x-3"
+                >
+                  <ProfileAvatar />
+                  <AnimatedLogo />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <div className="flex items-center space-x-2">

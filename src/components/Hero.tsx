@@ -6,9 +6,11 @@ import AnimatedText from "./AnimatedText";
 import FloatingElement from "./animations/FloatingElement";
 import ShakeElement from "./animations/ShakeElement";
 import BounceWrapper from "./animations/BounceWrapper";
+import HeroLogo from "./hero/HeroLogo";
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showHeroLogo, setShowHeroLogo] = useState(true);
   
   useEffect(() => {
     // Delay to allow page to load
@@ -17,6 +19,17 @@ const Hero: React.FC = () => {
     }, 100);
     
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      // Hide hero logo when user starts scrolling
+      setShowHeroLogo(scrollPosition < 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Function to scroll to contact section
@@ -33,12 +46,15 @@ const Hero: React.FC = () => {
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center md:text-left">
           <div className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'} relative`}>
+            {/* Large Hero Logo */}
+            <HeroLogo isVisible={showHeroLogo} />
+            
             <div className="relative">
               <AnimatedText 
                 text="Hi, I'm" 
                 tag="h2" 
                 className="text-xl sm:text-2xl font-semibold mb-3 text-barsky-text"
-                delay={500}
+                delay={800}
                 type="word"
                 animation="bounce"
                 staggerChildren={0.05}
@@ -47,7 +63,7 @@ const Hero: React.FC = () => {
                 text="Hiram Barsky"
                 tag="h1"
                 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
-                delay={700}
+                delay={1000}
                 type="word"
                 animation="bounce"
                 staggerChildren={0.1}
@@ -59,7 +75,7 @@ const Hero: React.FC = () => {
                 text="Freelance Product Designer"
                 tag="p"
                 className="text-xl sm:text-2xl mb-4 text-barsky-text"
-                delay={900}
+                delay={1200}
                 type="word"
                 animation="fade"
               />
@@ -67,7 +83,7 @@ const Hero: React.FC = () => {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.5 }}
+                transition={{ delay: 1.4, duration: 0.5 }}
                 className="text-base sm:text-lg mb-6 text-barsky-text-light max-w-3xl mx-auto md:mx-0"
               >
                 I help early-stage startups and teams create user-friendly digital experiences. I offer UX/UI design, design system creation, MVP design, and design audits to bring your ideas to life.
@@ -78,7 +94,7 @@ const Hero: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3, duration: 0.5 }}
+                transition={{ delay: 1.6, duration: 0.5 }}
               >
                 <BounceWrapper intensity="medium" wiggle={true}>
                   <a href="#projects" className="btn-primary relative">
@@ -103,7 +119,7 @@ const Hero: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 0.5 }}
+                transition={{ delay: 1.8, duration: 0.5 }}
               >
                 <BounceWrapper intensity="subtle">
                   <a href="#contact" onClick={scrollToContact} className="btn-outline">
