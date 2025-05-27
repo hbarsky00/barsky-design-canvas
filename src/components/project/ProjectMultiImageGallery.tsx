@@ -1,11 +1,12 @@
 
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { 
   Carousel, 
   CarouselContent, 
   CarouselItem, 
   CarouselNext, 
-  CarouselPrevious 
+  CarouselPrevious,
+  type CarouselApi 
 } from "@/components/ui/carousel";
 import { Maximize } from "lucide-react";
 import { motion } from "framer-motion";
@@ -23,6 +24,24 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
   onImageClick,
 }) => {
   const { maximizeImage } = useImageMaximizer();
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  
+  const onSelect = useCallback((api: CarouselApi) => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+  }, []);
+
+  React.useEffect(() => {
+    if (!api) return;
+    
+    onSelect(api);
+    api.on("select", onSelect);
+    
+    return () => {
+      api?.off("select", onSelect);
+    };
+  }, [api, onSelect]);
   
   const handleImageClick = (image: string) => {
     if (onImageClick) {
@@ -55,6 +74,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
     return null;
   }
 
+  const hasMultipleImages = images.length > 1;
+
   return (
     <motion.div
       className="mb-8 overflow-hidden relative w-full"
@@ -64,9 +85,10 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
       transition={{ duration: 0.5 }}
     >
       <Carousel
+        setApi={setApi}
         opts={{
           align: "start",
-          loop: images.length > 1,
+          loop: hasMultipleImages,
         }}
         className="w-full relative"
       >
@@ -93,11 +115,17 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                       </div>
                     </button>
                   </div>
-                  {/* Navigation arrows positioned inside the image */}
-                  {images.length > 1 && (
+                  {/* Custom navigation arrows with proper visibility logic */}
+                  {hasMultipleImages && (
                     <>
-                      <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 border border-gray-200 shadow-md hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 border border-gray-200 shadow-md hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      {/* Show previous arrow only from second image onwards */}
+                      {current > 0 && (
+                        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 border border-gray-200 shadow-md hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      )}
+                      {/* Always show next arrow when there are multiple images and not on last image */}
+                      {current < images.length - 1 && (
+                        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 border border-gray-200 shadow-md hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      )}
                     </>
                   )}
                 </div>
