@@ -51,7 +51,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
           align: "start",
           loop: images.length > 1,
         }}
-        className="w-full"
+        className="w-full relative"
       >
         <CarouselContent>
           {images.map((image, index) => (
@@ -77,6 +77,13 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                       </div>
                     </button>
                   </div>
+                  {/* Navigation arrows positioned inside the image */}
+                  {images.length > 1 && (
+                    <>
+                      <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 border border-gray-200 shadow-md hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 border border-gray-200 shadow-md hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </>
+                  )}
                 </div>
                 {captions[image] && (
                   <div className="mt-3 text-sm text-gray-600 italic text-center px-2">
@@ -87,12 +94,6 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
             </CarouselItem>
           ))}
         </CarouselContent>
-        {images.length > 1 && (
-          <>
-            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
-            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 border border-gray-200 shadow-md hover:bg-white" />
-          </>
-        )}
       </Carousel>
     </motion.div>
   );
