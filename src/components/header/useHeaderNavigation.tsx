@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export const useHeaderNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -82,7 +83,13 @@ export const useHeaderNavigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
+      const heroHeight = window.innerHeight;
+      
+      // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
+      
+      // Set scrolled past hero state for navigation visibility
+      setIsScrolledPastHero(scrollPosition > heroHeight * 0.8);
 
       // Home section logic - set as active when near the top of the page
       if (location.pathname === '/' && scrollPosition < 200) {
@@ -152,6 +159,7 @@ export const useHeaderNavigation = () => {
 
   return {
     isScrolled,
+    isScrolledPastHero,
     activeSection,
     isMobileMenuOpen,
     navLinks,

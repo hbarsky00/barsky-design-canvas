@@ -24,8 +24,9 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      // Hide hero logo when user starts scrolling
-      setShowHeroLogo(scrollPosition < 100);
+      const heroHeight = window.innerHeight;
+      // Hide hero logo when approaching the end of hero section
+      setShowHeroLogo(scrollPosition < heroHeight * 0.8);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -46,7 +47,7 @@ const Hero: React.FC = () => {
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center md:text-left">
           <div className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'} relative`}>
-            {/* Large Hero Logo */}
+            {/* Large Hero Logo - Left Aligned */}
             <HeroLogo isVisible={showHeroLogo} />
             
             <div className="relative">

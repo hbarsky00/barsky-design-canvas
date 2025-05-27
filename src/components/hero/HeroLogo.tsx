@@ -22,7 +22,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
         delay: 0.2,
         ease: "easeOut"
       }}
-      className="flex justify-center mb-8"
+      className="flex justify-start mb-8"
     >
       <Link to="/">
         <Avatar className="h-32 w-32 md:h-40 md:w-40 border-4 border-barsky-blue shadow-xl hover:scale-105 transition-transform duration-300">

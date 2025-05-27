@@ -16,7 +16,8 @@ const Header: React.FC = () => {
     isMobileMenuOpen,
     handleLinkClick,
     toggleMobileMenu,
-    isLinkActive
+    isLinkActive,
+    isScrolledPastHero
   } = useHeaderNavigation();
 
   return (
@@ -32,19 +33,9 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <AnimatePresence mode="wait">
-              {!isScrolled ? (
+              {isScrolledPastHero && (
                 <motion.div
-                  key="avatar-only"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ProfileAvatar />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="avatar-with-logo"
+                  key="navigation-logo"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
