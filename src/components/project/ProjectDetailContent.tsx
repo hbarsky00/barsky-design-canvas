@@ -34,6 +34,8 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   // Add video URLs for specific projects
   const getVideoUrl = (id: string) => {
     switch (id) {
+      case "investor-loan-app":
+        return "https://youtu.be/iUT_tUwJeD8?si=GtxLROOxRQ4Vg3i3";
       case "barskyjoint":
         return "https://youtube.com/shorts/UGlOWDnsHi0?feature=share";
       case "dae-search":
