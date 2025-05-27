@@ -31,7 +31,6 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
             className="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
             style={{
               imageRendering: 'crisp-edges',
-              WebkitImageRendering: 'crisp-edges',
             }}
             loading="eager"
             width="160"
