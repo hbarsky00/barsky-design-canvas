@@ -45,7 +45,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
     galleryImages: [
       "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png",
       "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
-      "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
       "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
       "/lovable-uploads/ddbba1ba-2c8a-48d9-b367-c3ae2bdbcafc.png",
       "/lovable-uploads/dd8dfb1f-3217-48c3-a4f0-66065be6cca0.png",

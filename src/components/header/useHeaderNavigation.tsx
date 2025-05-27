@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -17,6 +18,9 @@ export const useHeaderNavigation = () => {
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
+
+  // Check if we're on the homepage
+  const isHomepage = location.pathname === '/';
 
   const scrollToSection = (sectionId: string) => {
     // First check if we're on the homepage
@@ -87,7 +91,13 @@ export const useHeaderNavigation = () => {
       // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
       
-      // Set scrolled past hero state for navigation visibility - changed threshold
+      // For non-homepage routes, always show the logo
+      if (!isHomepage) {
+        setIsScrolledPastHero(true);
+        return;
+      }
+      
+      // For homepage, use scroll-based logic
       setIsScrolledPastHero(scrollPosition > heroHeight * 0.9);
 
       console.log('Scroll position:', scrollPosition, 'Hero height:', heroHeight, 'Threshold:', heroHeight * 0.9, 'Show logo:', scrollPosition > heroHeight * 0.9);
@@ -141,7 +151,7 @@ export const useHeaderNavigation = () => {
     // Trigger once to set initial state
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navLinks, location.pathname]);
+  }, [navLinks, location.pathname, isHomepage]);
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -155,6 +165,8 @@ export const useHeaderNavigation = () => {
       }
     } else {
       setActiveSection("");
+      // For non-homepage routes, show logo immediately
+      setIsScrolledPastHero(true);
     }
   }, [location.pathname, location.state]);
 
