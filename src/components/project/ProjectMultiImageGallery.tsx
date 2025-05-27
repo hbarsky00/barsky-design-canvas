@@ -57,15 +57,14 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
           {images.map((image, index) => (
             <CarouselItem key={index} className="basis-full">
               <div className="p-1 w-full">
-                <div className="overflow-hidden rounded-lg border border-gray-100 shadow-sm group relative w-full h-full">
-                  <div className="w-full h-full">
+                <div className="overflow-hidden rounded-lg border border-gray-100 shadow-sm group relative w-full min-h-[400px] flex items-center justify-center bg-gray-50">
+                  <div className="w-full h-full flex items-center justify-center p-4">
                     <img
                       src={image}
                       alt={captions[image] || `Project Image ${index + 1}`}
-                      className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95"
+                      className="max-w-full max-h-[600px] object-contain cursor-pointer transition-all duration-300 group-hover:scale-[1.02]"
                       onClick={() => handleImageClick(image)}
                       loading={index === 0 ? "eager" : "lazy"}
-                      style={{ height: "100%" }}
                     />
                     <button
                       onClick={() => handleImageClick(image)}

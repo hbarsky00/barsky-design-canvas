@@ -28,12 +28,13 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
         <CarouselContent>
           {galleryImages.map((image, index) => (
             <CarouselItem key={`image-${index}`}>
-              <div className="flex aspect-video items-center justify-center p-6 relative">
+              <div className="flex items-center justify-center p-6 relative min-h-[400px]">
                 <MaximizableImage
                   src={image}
                   alt={`Project gallery image ${index + 1}`}
                   caption={captions[image]}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full max-h-[600px] object-contain"
+                  aspectRatio={undefined}
                 />
               </div>
             </CarouselItem>
