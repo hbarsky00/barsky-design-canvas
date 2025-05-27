@@ -1,8 +1,9 @@
+
 import React from "react";
 import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { projectsData } from "@/data/projectsData";
+import { projectsData } from "@/data/projects/projectsList";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ProjectDetailLoading from "@/components/project/ProjectDetailLoading";
 import ProjectDetailSeo from "@/components/project/ProjectDetailSeo";

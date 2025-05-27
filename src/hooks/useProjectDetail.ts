@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { projectsData, projectDetails, type ProjectDetails } from "@/data/projectsData";
+import { projectsData } from "@/data/projects/projectsList";
+import { projectDetails, type ProjectDetails } from "@/data/projectsData";
 import { trackPageView } from "@/lib/analytics";
 
 interface UseProjectDetailResult {

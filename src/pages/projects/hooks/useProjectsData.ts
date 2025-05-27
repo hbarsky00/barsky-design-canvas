@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { projectsData } from "@/data/projectsData";
+import { projectsData } from "@/data/projects/projectsList";
 import { ProjectProps } from "@/components/ProjectCard";
 
 // IDs of the featured projects to display on homepage

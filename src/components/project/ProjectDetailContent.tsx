@@ -1,11 +1,9 @@
-
-
 import React from "react";
 import ProjectHeader from "@/components/project/ProjectHeader";
 import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectSidebar from "@/components/project/ProjectSidebar";
 import ProjectNavigation from "@/components/ProjectNavigation";
-import { ProjectDetails } from "@/data/projectsData";
+import { ProjectDetails } from "@/data/types/project";
 
 interface ProjectDetailContentProps {
   project: {
@@ -94,4 +92,3 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
 };
 
 export default ProjectDetailContent;
-
