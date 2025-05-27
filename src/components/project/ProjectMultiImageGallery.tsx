@@ -61,7 +61,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                   <div className="w-full h-full flex items-center justify-center p-4">
                     <img
                       src={image}
-                      alt={captions[image] || `Project Image ${index + 1}`}
+                      alt={captions[image] || `Project image showing relevant design or interface ${index + 1}`}
                       className="max-w-full max-h-[600px] object-contain cursor-pointer transition-all duration-300 group-hover:scale-[1.02]"
                       onClick={() => handleImageClick(image)}
                       loading={index === 0 ? "eager" : "lazy"}

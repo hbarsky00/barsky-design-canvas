@@ -31,7 +31,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               <div className="flex items-center justify-center p-6 relative min-h-[400px]">
                 <MaximizableImage
                   src={image}
-                  alt={`Project gallery image ${index + 1}`}
+                  alt={captions[image] || `Project image ${index + 1}`}
                   caption={captions[image]}
                   className="w-full h-full max-h-[600px] object-contain"
                   aspectRatio={undefined}

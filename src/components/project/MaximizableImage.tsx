@@ -25,10 +25,14 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   
   const handleImageClick = () => {
-    // Pass the gallery images array to enable navigation
-    maximizeImage(src, alt || caption || "Image");
+    // Use caption for the title if available, otherwise use alt text
+    const imageTitle = caption || alt || "Image";
+    maximizeImage(src, imageTitle);
     console.log("Image clicked:", src);
   };
+
+  // Use caption as alt text if available, otherwise use the provided alt text
+  const imageAltText = caption || alt;
 
   return (
     <div className="w-full">
@@ -43,8 +47,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <AspectRatio ratio={aspectRatio} className="bg-gray-100">
             <img 
               src={src} 
-              alt={alt} 
-              className="object-cover w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95"
+              alt={imageAltText} 
+              className="object-contain w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95"
               loading={priority ? "eager" : "lazy"}
               onClick={handleImageClick}
             />
@@ -62,7 +66,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <div className="bg-gray-100 flex items-center justify-center min-h-[200px] p-4">
             <img 
               src={src} 
-              alt={alt} 
+              alt={imageAltText} 
               className="max-w-full max-h-full object-contain cursor-pointer transition-all duration-300 group-hover:scale-105"
               loading={priority ? "eager" : "lazy"}
               onClick={handleImageClick}
