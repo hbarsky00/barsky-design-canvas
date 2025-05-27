@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -88,8 +87,10 @@ export const useHeaderNavigation = () => {
       // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
       
-      // Set scrolled past hero state for navigation visibility
-      setIsScrolledPastHero(scrollPosition > heroHeight * 0.8);
+      // Set scrolled past hero state for navigation visibility - changed threshold
+      setIsScrolledPastHero(scrollPosition > heroHeight * 0.9);
+
+      console.log('Scroll position:', scrollPosition, 'Hero height:', heroHeight, 'Threshold:', heroHeight * 0.9, 'Show logo:', scrollPosition > heroHeight * 0.9);
 
       // Home section logic - set as active when near the top of the page
       if (location.pathname === '/' && scrollPosition < 200) {
