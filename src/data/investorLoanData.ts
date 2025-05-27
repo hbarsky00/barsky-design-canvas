@@ -1,5 +1,7 @@
 
+
 export const investorLoanImageCaptions: Record<string, string> = {
+  "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png": "My Loans Orderbook interface showing comprehensive lender tracking with detailed draft allocations, contact information, and portfolio management features",
   "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png": "Dashboard interface showing both card and grid view options for the Deal Central platform with comprehensive loan management features",
   "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png": "Comprehensive user flow diagram mapping the complete investor loan workflow from deal selection through order processing and limit management",
   "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png": "Hand-drawn wireframes exploring the initial Deal Central interface concepts with detailed navigation structure and card-based deal listings",
@@ -15,7 +17,7 @@ export const investorLoanImageCaptions: Record<string, string> = {
 };
 
 export const investorLoanGalleryImages = [
-  "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png",
+  "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png",
   "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
   "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
   "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
@@ -28,3 +30,4 @@ export const investorLoanGalleryImages = [
   "/lovable-uploads/64cdd602-9356-4938-a1d1-3e2e08443d9c.png",
   "/lovable-uploads/775861dc-e0e5-4f64-a1df-30d8d74fbcf3.png"
 ];
+

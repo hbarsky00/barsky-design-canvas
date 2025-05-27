@@ -12,7 +12,10 @@ import { investorLoanImageCaptions } from "@/data/investorLoanData";
 
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
-  "investor-loan-app": investorLoanImageCaptions,
+  "investor-loan-app": {
+    "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png": "My Loans Orderbook interface showing comprehensive lender tracking with detailed draft allocations, contact information, and portfolio management features",
+    ...investorLoanImageCaptions
+  },
   "dae-search": {
     "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "Data catalog interface showing search functionality and filtering options for medical data assets",
     "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png": "Previous data filtering interface showing complex multi-tag selection system that confused medical professionals",
