@@ -22,6 +22,23 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     return null;
   }
 
+  // Function to generate meaningful fallback alt text
+  const generateFallbackAlt = (index: number) => {
+    const types = [
+      "Interface design",
+      "User workflow", 
+      "Wireframe sketch",
+      "Design mockup",
+      "System diagram",
+      "Dashboard view",
+      "Mobile interface",
+      "Process flow",
+      "Feature overview",
+      "Design concept"
+    ];
+    return types[index % types.length];
+  };
+
   return (
     <div className="mb-8 relative">
       <Carousel className="w-full relative group">
@@ -31,7 +48,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               <div className="flex items-center justify-center p-6 relative min-h-[400px]">
                 <MaximizableImage
                   src={image}
-                  alt={captions[image] || `Project image ${index + 1}`}
+                  alt={captions[image] || generateFallbackAlt(index)}
                   caption={captions[image]}
                   className="w-full h-full max-h-[600px] object-contain"
                   aspectRatio={undefined}

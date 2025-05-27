@@ -26,12 +26,29 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
   
   const handleImageClick = (image: string) => {
     if (onImageClick) {
-      const caption = captions[image] || "Project Image";
+      const caption = captions[image] || "Project Design";
       onImageClick(image, caption);
     } else {
-      maximizeImage(image, captions[image] || "Project Image", images, images.indexOf(image));
+      maximizeImage(image, captions[image] || "Project Design", images, images.indexOf(image));
       console.log("Gallery image clicked:", image);
     }
+  };
+
+  // Function to generate meaningful fallback alt text
+  const generateFallbackAlt = (index: number) => {
+    const types = [
+      "Interface design",
+      "User workflow", 
+      "Wireframe sketch",
+      "Design mockup",
+      "System diagram",
+      "Dashboard view",
+      "Mobile interface",
+      "Process flow",
+      "Feature overview",
+      "Design concept"
+    ];
+    return types[index % types.length];
   };
 
   if (!images || images.length === 0) {
@@ -61,7 +78,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                   <div className="w-full h-full flex items-center justify-center p-4">
                     <img
                       src={image}
-                      alt={captions[image] || `Project image showing relevant design or interface ${index + 1}`}
+                      alt={captions[image] || generateFallbackAlt(index)}
                       className="max-w-full max-h-[600px] object-contain cursor-pointer transition-all duration-300 group-hover:scale-[1.02]"
                       onClick={() => handleImageClick(image)}
                       loading={index === 0 ? "eager" : "lazy"}
