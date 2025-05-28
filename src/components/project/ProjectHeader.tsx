@@ -1,7 +1,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
+import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
 import MaximizableImage from "./MaximizableImage";
 
 interface ProjectHeaderProps {
@@ -44,9 +46,18 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="px-3 py-1">
-                  {tag}
-                </Badge>
+                <Link
+                  key={tag}
+                  to={getServiceUrlFromTag(tag)}
+                  className="inline-block"
+                >
+                  <Badge 
+                    variant="secondary" 
+                    className="px-3 py-1 hover:bg-barsky-blue hover:text-white transition-all duration-200 cursor-pointer"
+                  >
+                    {tag}
+                  </Badge>
+                </Link>
               ))}
             </div>
           </motion.div>

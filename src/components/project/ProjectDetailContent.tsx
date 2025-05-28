@@ -16,6 +16,7 @@ interface ProjectDetailContentProps {
     description: string;
     image: string;
     tags: string[];
+    link?: string;
   };
   details: ProjectDetails;
   projectId: string;
@@ -119,7 +120,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
               process={details.process || ""}
               result={details.result || ""}
               technologies={details.technologies || []}
-              projectLink={details.projectLink}
+              projectLink={project.link || details.projectLink}
               challengeImage={details.challengeImage}
               processImage={details.processImage}
               processBottomImage={details.processBottomImage}

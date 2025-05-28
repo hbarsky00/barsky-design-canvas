@@ -7,7 +7,8 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
 
 export interface ProjectProps {
   id: string;
@@ -23,6 +24,11 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const handleTagClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
   return (
     <Link to={`/project/${project.id}`} className="block h-full" onClick={() => window.scrollTo(0, 0)}>
       <Card className="h-full transition-all duration-300 hover:shadow-lg overflow-hidden">
@@ -41,13 +47,34 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <h3 className="text-xl font-bold text-barsky-dark mb-2">{project.title}</h3>
           <p className="text-barsky-text text-sm line-clamp-3 mb-3">{project.description}</p>
           
-          <div className="flex flex-wrap gap-2 mb-2">
+          <div className="flex flex-wrap gap-2 mb-3">
             {project.tags.map((tag) => (
-              <span key={tag} className="text-xs bg-gray-100 text-barsky-text px-2 py-1 rounded-full">
+              <Link
+                key={tag}
+                to={getServiceUrlFromTag(tag)}
+                onClick={handleTagClick}
+                className="text-xs bg-gray-100 hover:bg-barsky-blue hover:text-white text-barsky-text px-2 py-1 rounded-full transition-all duration-200 hover:shadow-sm"
+              >
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
+
+          {/* Project link if available */}
+          {project.link && (
+            <div className="mb-2">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1 text-sm text-barsky-blue hover:text-barsky-dark transition-colors font-medium"
+              >
+                <ExternalLink className="h-3 w-3" />
+                Visit Website
+              </a>
+            </div>
+          )}
         </CardContent>
         
         <CardFooter className="pt-0">
