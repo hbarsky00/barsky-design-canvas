@@ -29,6 +29,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     e.preventDefault();
   };
 
+  // Projects that should not show the "Visit Website" button
+  const excludedProjects = ["investor-loan-app", "dae-search"];
+  const shouldShowVisitButton = project.link && !excludedProjects.includes(project.id);
+
   return (
     <Link to={`/project/${project.id}`} className="block h-full" onClick={() => window.scrollTo(0, 0)}>
       <Card className="h-full transition-all duration-300 hover:shadow-lg overflow-hidden">
@@ -60,8 +64,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             ))}
           </div>
 
-          {/* Project link if available */}
-          {project.link && (
+          {/* Project link if available and not excluded */}
+          {shouldShowVisitButton && (
             <div className="mb-2">
               <a
                 href={project.link}

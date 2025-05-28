@@ -22,7 +22,7 @@ export const projectsData: ProjectProps[] = [
     description: "A mobile application designed to help separated parents better coordinate childcare responsibilities.",
     image: "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "React Native", "AI Driven Design"],
-    link: "https://splittime.pro/"
+    link: "http://splittime.pro"
   },
   {
     id: "herbalink",
@@ -30,7 +30,7 @@ export const projectsData: ProjectProps[] = [
     description: "Mobile application connecting individuals with qualified herbalists for personalized natural health solutions.",
     image: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Healthcare", "AI Driven Design"],
-    link: "https://herbalink.live"
+    link: "http://herbalink.live"
   },
   {
     id: "gold2crypto",
@@ -46,7 +46,7 @@ export const projectsData: ProjectProps[] = [
     description: "Mobile ordering app for a gourmet food truck with real-time tracking and customization.",
     image: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
     tags: ["Figma", "Lovable.dev", "Product Design", "UX / UI Design", "Mobile App", "Food Service", "AI Driven Design"],
-    link: "https://barskyjoint.biz/"
+    link: "http://Barskyjoint.biz"
   },
   {
     id: "spectrum",
