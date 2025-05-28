@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "../ThemeToggle";
-import { Home, Briefcase, Store, User, Mail, BookOpen } from "lucide-react";
+import { Home, Briefcase, Store, User, Mail, BookOpen, FileText } from "lucide-react";
 
 interface NavigationProps {
   links: Array<{ name: string; href: string }>;
@@ -32,6 +32,8 @@ const Navigation: React.FC<NavigationProps> = ({
         return <Store className="h-4 w-4 mr-1" />;
       case "blog":
         return <BookOpen className="h-4 w-4 mr-1" />;
+      case "resume":
+        return <FileText className="h-4 w-4 mr-1" />;
       case "contact":
         return <Mail className="h-4 w-4 mr-1" />;
       default:
@@ -41,23 +43,42 @@ const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <nav className="hidden md:flex items-center space-x-8">
-      {links.map((link) => (
-        <Link
-          key={link.name}
-          to={link.href}
-          onClick={(e) => {
-            e.preventDefault();
-            handleLinkClick(link.href);
-          }}
-          className={cn(
-            "nav-link flex items-center",
-            isLinkActive(link.href) && "active"
-          )}
-        >
-          {getIcon(link.name)}
-          {link.name}
-        </Link>
-      ))}
+      {links.map((link) => {
+        // For external links, use a regular anchor tag
+        if (link.href.startsWith('http')) {
+          return (
+            <a
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link flex items-center"
+            >
+              {getIcon(link.name)}
+              {link.name}
+            </a>
+          );
+        }
+        
+        // For internal links, use the existing Link component
+        return (
+          <Link
+            key={link.name}
+            to={link.href}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick(link.href);
+            }}
+            className={cn(
+              "nav-link flex items-center",
+              isLinkActive(link.href) && "active"
+            )}
+          >
+            {getIcon(link.name)}
+            {link.name}
+          </Link>
+        );
+      })}
       <ThemeToggle />
     </nav>
   );

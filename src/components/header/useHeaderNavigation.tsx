@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -16,6 +15,7 @@ export const useHeaderNavigation = () => {
     { name: "Services", href: "/services" },
     { name: "Blog", href: "/blog" },
     { name: "About", href: "#about" },
+    { name: "Resume", href: "https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -41,6 +41,12 @@ export const useHeaderNavigation = () => {
   const handleLinkClick = (href: string) => {
     setIsMobileMenuOpen(false);
     
+    // Handle external links (like the resume)
+    if (href.startsWith('http')) {
+      window.open(href, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    
     if (href.startsWith('#')) {
       // For anchor links, scroll to the section
       scrollToSection(href.substring(1));
@@ -59,6 +65,11 @@ export const useHeaderNavigation = () => {
   };
 
   const isLinkActive = (link: string) => {
+    // External links should not be considered active
+    if (link.startsWith('http')) {
+      return false;
+    }
+    
     // Special case for home link
     if (link === "/") {
       return location.pathname === "/" && activeSection === "home";

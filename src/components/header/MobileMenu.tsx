@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, Home, Briefcase, Store, User, Mail, BookOpen } from "lucide-react";
+import { Menu, X, Home, Briefcase, Store, User, Mail, BookOpen, FileText } from "lucide-react";
 
 interface MobileMenuProps {
   links: Array<{ name: string; href: string }>;
@@ -34,6 +34,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         return <Store className="h-5 w-5 mr-2" />;
       case "blog":
         return <BookOpen className="h-5 w-5 mr-2" />;
+      case "resume":
+        return <FileText className="h-5 w-5 mr-2" />;
       case "contact":
         return <Mail className="h-5 w-5 mr-2" />;
       default:
@@ -54,24 +56,44 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       {isMobileMenuOpen && (
         <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800 shadow-md z-50">
           <nav className="flex flex-col space-y-4">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(link.href);
-                  toggleMobileMenu(); // Close menu when clicking a link
-                }}
-                className={cn(
-                  "nav-link text-lg flex items-center",
-                  isLinkActive(link.href) && "active"
-                )}
-              >
-                {getIcon(link.name)}
-                {link.name}
-              </Link>
-            ))}
+            {links.map((link) => {
+              // For external links, use a regular anchor tag
+              if (link.href.startsWith('http')) {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={toggleMobileMenu}
+                    className="nav-link text-lg flex items-center"
+                  >
+                    {getIcon(link.name)}
+                    {link.name}
+                  </a>
+                );
+              }
+              
+              // For internal links, use the existing Link component
+              return (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.href);
+                    toggleMobileMenu(); // Close menu when clicking a link
+                  }}
+                  className={cn(
+                    "nav-link text-lg flex items-center",
+                    isLinkActive(link.href) && "active"
+                  )}
+                >
+                  {getIcon(link.name)}
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}
