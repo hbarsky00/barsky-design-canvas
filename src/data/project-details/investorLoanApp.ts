@@ -20,7 +20,6 @@ export const investorLoanAppDetails: ProjectDetails = {
   ],
   processImage: "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png", 
   processBottomImage: "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png",
-  resultImage: "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
   galleryImages: [
     "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png",
     "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
