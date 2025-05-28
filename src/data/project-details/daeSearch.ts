@@ -19,7 +19,6 @@ export const daeSearchDetails: ProjectDetails = {
     "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png"
   ],
   galleryImages: [
-    "/lovable-uploads/e483e4e7-ee9e-47e4-9711-f3e993abd161.png",
     "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png",
     "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png",
     "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",

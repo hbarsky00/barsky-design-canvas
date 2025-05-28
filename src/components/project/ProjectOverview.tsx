@@ -5,9 +5,8 @@ import ProjectSection from "./ProjectSection";
 import TechnologiesList from "./TechnologiesList";
 import ServicesList from "./ServicesList";
 import ProjectLinks from "./ProjectLinks";
-import ProjectContactSection from "./ProjectContactSection";
-import ProjectGallery from "./ProjectGallery";
 import ProjectMultiImageGallery from "./ProjectMultiImageGallery";
+import { removeDuplicateImages } from "@/utils/imageUtils";
 
 interface ProjectOverviewProps {
   challenge: string;
@@ -27,6 +26,7 @@ interface ProjectOverviewProps {
   videoUrl?: string;
   challengeBottomImage?: string;
   challengeGalleryImages?: string[];
+  allImages: string[];
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -45,7 +45,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   showTechnologies = false,
   videoUrl,
   challengeBottomImage,
-  challengeGalleryImages = []
+  challengeGalleryImages = [],
+  allImages
 }) => {
   // Convert YouTube URLs to embeddable format
   const getEmbedUrl = (url: string) => {
@@ -66,36 +67,35 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
 
   return (
     <div>
-      {/* Gallery Images Section */}
-      <div className="mb-8">
-        {galleryImages && galleryImages.length > 0 ? (
-          <ProjectGallery 
-            images={galleryImages}
-            imageCaptions={imageCaptions}
-            allImages={galleryImages}
+      {/* Gallery Images Section - Use Carousel Format */}
+      {galleryImages && galleryImages.length > 0 && (
+        <div className="mb-8">
+          <ProjectMultiImageGallery 
+            images={removeDuplicateImages(galleryImages)}
+            captions={imageCaptions}
           />
-        ) : null}
-        
-        <ProjectSection
-          title="The Challenge"
-          icon={FileText}
-          content={challenge}
-          image={challengeImage}
-          imageCaption={challengeImage && imageCaptions[challengeImage]}
-          bottomImage={challengeBottomImage}
-          bottomImageCaption={challengeBottomImage && imageCaptions[challengeBottomImage]}
-        />
-        
-        {/* Challenge Gallery - Add after the challenge section */}
-        {challengeGalleryImages && challengeGalleryImages.length > 0 && (
-          <div className="mt-6">
-            <ProjectMultiImageGallery 
-              images={challengeGalleryImages}
-              captions={imageCaptions}
-            />
-          </div>
-        )}
-      </div>
+        </div>
+      )}
+      
+      <ProjectSection
+        title="The Challenge"
+        icon={FileText}
+        content={challenge}
+        image={challengeImage}
+        imageCaption={challengeImage && imageCaptions[challengeImage]}
+        bottomImage={challengeBottomImage}
+        bottomImageCaption={challengeBottomImage && imageCaptions[challengeBottomImage]}
+      />
+      
+      {/* Challenge Gallery - Carousel Format */}
+      {challengeGalleryImages && challengeGalleryImages.length > 0 && (
+        <div className="mt-6 mb-8">
+          <ProjectMultiImageGallery 
+            images={removeDuplicateImages(challengeGalleryImages)}
+            captions={imageCaptions}
+          />
+        </div>
+      )}
       
       {/* Process Section */}
       <ProjectSection
@@ -108,7 +108,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         bottomImageCaption={processBottomImage && imageCaptions[processBottomImage]}
       />
       
-      {/* Result Section with Gallery or Single Image */}
+      {/* Result Section with Carousel Gallery */}
       <div className="mb-12">
         <div className="flex items-center mb-4 space-x-2">
           <Award className="h-5 w-5 text-barsky-blue" />
@@ -118,10 +118,10 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           <p className="text-lg leading-relaxed text-gray-700">{result}</p>
         </div>
         
-        {/* Show gallery if resultGalleryImages exists, otherwise show single image */}
+        {/* Show carousel gallery if resultGalleryImages exists, otherwise show single image */}
         {resultGalleryImages && resultGalleryImages.length > 0 ? (
           <ProjectMultiImageGallery 
-            images={resultGalleryImages}
+            images={removeDuplicateImages(resultGalleryImages)}
             captions={imageCaptions}
           />
         ) : resultImage ? (
@@ -158,9 +158,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       
       {/* Links Section */}
       <ProjectLinks projectLink={projectLink} />
-      
-      {/* Contact Section */}
-      <ProjectContactSection />
     </div>
   );
 };

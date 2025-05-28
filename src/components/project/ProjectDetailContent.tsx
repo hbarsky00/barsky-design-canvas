@@ -3,11 +3,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import ProjectHeader from "./ProjectHeader";
 import ProjectOverview from "./ProjectOverview";
-import ProjectGallery from "./ProjectGallery";
 import ProjectContactSection from "./ProjectContactSection";
 import ProjectNavigation from "../ProjectNavigation";
 import MaximizableImage from "./MaximizableImage";
 import { ProjectDetails } from "@/data/types/project";
+import { deduplicateAllImages } from "@/utils/imageUtils";
 
 interface ProjectDetailContentProps {
   project: {
@@ -31,11 +31,18 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   projectsData,
   imageCaptions,
 }) => {
-  // Create a complete image list for navigation
-  const allImages = [
+  // Create a complete deduplicated image list for navigation
+  const allImages = deduplicateAllImages([
     project.image,
-    ...(details.galleryImages || [])
-  ];
+    details.galleryImages,
+    details.challengeGalleryImages,
+    details.resultGalleryImages,
+    details.challengeImage,
+    details.processImage,
+    details.processBottomImage,
+    details.resultImage,
+    details.challengeBottomImage
+  ]);
 
   const renderContentSection = (section: any, index: number) => {
     if (section.type === "text") {
@@ -78,25 +85,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       );
     }
 
-    if (section.type === "gallery") {
-      return (
-        <motion.div
-          key={`gallery-${index}`}
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-        >
-          <ProjectGallery 
-            images={section.images} 
-            imageCaptions={imageCaptions}
-            allImages={allImages}
-          />
-        </motion.div>
-      );
-    }
-
     return null;
   };
 
@@ -132,6 +120,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
               videoUrl={details.videoUrl}
               challengeBottomImage={details.challengeBottomImage}
               challengeGalleryImages={details.challengeGalleryImages}
+              allImages={allImages}
             />
             
             {/* Render content sections if they exist */}

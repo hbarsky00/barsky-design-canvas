@@ -26,14 +26,13 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png": "Old filtering interface",
     "/lovable-uploads/78d6fb56-e0b4-4632-a262-deba85415e1d.png": "Search process flow",
     "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png": "Design system guide",
-    "/lovable-uploads/b42f3e73-a21a-4804-9c77-b461251b38d9.png": "Improved search interface",
+    "/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png": "Final explorer interface",
+    "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png": "Search recommendations",
     "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png": "Initial wireframes",
     "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png": "Research inspiration",
     "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png": "Homepage with search",
     "/lovable-uploads/88423dc3-1fd1-480a-846f-4d3f82a9d300.png": "Recent search terms",
-    "/lovable-uploads/ccb7671a-9fbf-472a-b63b-e11e681ed341.png": "Simplified homepage",
-    "/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png": "Final explorer interface",
-    "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png": "Search recommendations"
+    "/lovable-uploads/ccb7671a-9fbf-472a-b63b-e11e681ed341.png": "Simplified homepage"
   },
   "splittime": {
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "Messaging interface",
@@ -50,8 +49,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/59518d59-73f8-4083-b538-21bdd7215742.png": "Custody calendar",
     "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "Platform evolution",
     "/lovable-uploads/b8f653d9-0253-43e1-94c8-f4890f48d414.png": "Key challenges",
-    "/lovable-uploads/57188cd2-5ba4-4a9e-8a57-c70016dd2566.png": "Problem solving",
-    "/lovable-uploads/lovable-uploads.png": "Complete solution"
+    "/lovable-uploads/57188cd2-5ba4-4a9e-8a57-c70016dd2566.png": "Problem solving"
   },
   "herbalink": {
     "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "Mobile herbalist connection",
