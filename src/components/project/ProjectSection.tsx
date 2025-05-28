@@ -33,7 +33,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       </div>
       
       {image && (
-        <div className="mb-6">
+        <div className="mb-4">
           <MaximizableImage
             src={image}
             alt={title}
@@ -42,14 +42,14 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
         </div>
       )}
       
-      <div className="prose prose-slate max-w-none dark:prose-invert">
+      <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
         {safeContent.split('\n').map((paragraph, index) => (
           paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
         ))}
       </div>
 
       {bottomImage && (
-        <div className="mt-6">
+        <div className="mt-4">
           <MaximizableImage
             src={bottomImage}
             alt={title}

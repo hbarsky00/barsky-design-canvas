@@ -78,7 +78,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       
       {/* Challenge Gallery - Carousel Format */}
       {challengeGalleryImages && challengeGalleryImages.length > 0 && (
-        <div className="mt-6 mb-8">
+        <div className="mb-8">
           <ProjectMultiImageGallery 
             images={removeDuplicateImages(challengeGalleryImages)}
             captions={imageCaptions}
@@ -103,7 +103,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           <Award className="h-5 w-5 text-barsky-blue" />
           <h2 className="text-2xl font-bold">The Result</h2>
         </div>
-        <div className="mb-6">
+        <div className="mb-4">
           <div className="prose prose-slate max-w-none dark:prose-invert">
             {result.split('\n').map((paragraph, index) => (
               <p key={index} className="mb-4">
@@ -115,10 +115,12 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         
         {/* Show carousel gallery if resultGalleryImages exists, otherwise show single image */}
         {resultGalleryImages && resultGalleryImages.length > 0 ? (
-          <ProjectMultiImageGallery 
-            images={removeDuplicateImages(resultGalleryImages)}
-            captions={imageCaptions}
-          />
+          <div className="mt-4">
+            <ProjectMultiImageGallery 
+              images={removeDuplicateImages(resultGalleryImages)}
+              captions={imageCaptions}
+            />
+          </div>
         ) : resultImage ? (
           <ProjectSection
             title=""
@@ -131,7 +133,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
 
         {/* Video Section - Show in result section if videoUrl exists */}
         {videoUrl && (
-          <div className="mt-8">
+          <div className="mt-6">
             <div className="aspect-video w-full rounded-lg overflow-hidden">
               <iframe
                 src={getEmbedUrl(videoUrl)}

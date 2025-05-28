@@ -97,7 +97,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       </motion.div>
       {caption && (
         <motion.div 
-          className="mt-2 mb-4 text-sm text-gray-600 italic text-center"
+          className="mt-2 text-sm text-gray-600 italic text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
