@@ -10,6 +10,7 @@ export const investorLoanAppDetails: ProjectDetails = {
   client: "Private Banking Institution",
   role: "Lead UX/UI Designer & Product Strategist",
   extraImages: [],
+  videoUrl: "https://youtu.be/iUT_tUwJeD8?si=adGE7dhq6a4Q6BCZ",
   challengeGalleryImages: [
     "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
     "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png",
