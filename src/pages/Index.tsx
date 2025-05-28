@@ -37,7 +37,7 @@ const Index = () => {
         <meta name="author" content="Hiram Barsky" />
         <meta property="og:title" content="Hiram Barsky | Rapid, High-Quality Product Design Services" />
         <meta property="og:description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting." />
-        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
+        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
         <meta property="og:url" content="https://hirambarsky.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Hiram Barsky - Product Design Services" />
@@ -45,7 +45,7 @@ const Index = () => {
         <meta name="twitter:creator" content="@hirambarsky" />
         <meta name="twitter:title" content="Hiram Barsky | Rapid, High-Quality Product Design Services" />
         <meta name="twitter:description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting." />
-        <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
+        <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
         <link rel="canonical" href="https://hirambarsky.com/" />
         
         {/* Enhanced structured data */}
@@ -60,7 +60,7 @@ const Index = () => {
               "alternateName": ["Hiram Barsky Product Design", "Hiram Barsky UX Designer", "Hiram Barsky Design Services"],
               "description": "Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting. Professional Product Designer & Developer based in New York.",
               "jobTitle": "Product Designer & Developer",
-              "image": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9",
+              "image": "https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
               "url": "https://hirambarsky.com",
               "mainEntityOfPage": "https://hirambarsky.com",
               "telephone": "+1-201-668-4754",
