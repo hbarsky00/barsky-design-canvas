@@ -1,3 +1,4 @@
+
 export interface Project {
   id: string;
   title: string;
@@ -23,6 +24,10 @@ export interface ProjectDetails {
   videoUrl?: string;
   challengeBottomImage?: string;
   challengeGalleryImages?: string[];
+  duration?: string;
+  client?: string;
+  role?: string;
+  extraImages?: string[];
   content?: Array<{
     type: string;
     content: string;
