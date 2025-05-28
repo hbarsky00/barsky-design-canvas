@@ -41,7 +41,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   resultImage,
   resultGalleryImages,
   imageCaptions = {},
-  galleryImages = [],
   showTechnologies = false,
   videoUrl,
   challengeBottomImage,
@@ -67,16 +66,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
 
   return (
     <div>
-      {/* Gallery Images Section - Use Carousel Format */}
-      {galleryImages && galleryImages.length > 0 && (
-        <div className="mb-8">
-          <ProjectMultiImageGallery 
-            images={removeDuplicateImages(galleryImages)}
-            captions={imageCaptions}
-          />
-        </div>
-      )}
-      
       <ProjectSection
         title="The Challenge"
         icon={FileText}
