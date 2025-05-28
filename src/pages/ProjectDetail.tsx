@@ -124,7 +124,7 @@ const ProjectDetail: React.FC = () => {
         />
         
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow pt-20">
           <ProjectDetailContent 
             project={project}
             details={details}
