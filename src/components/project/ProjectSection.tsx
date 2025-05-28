@@ -22,6 +22,9 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   bottomImage,
   bottomImageCaption,
 }) => {
+  // Add safety check for content
+  const safeContent = content || "";
+  
   return (
     <div className="mb-12">
       <div className="flex items-center mb-4 space-x-2">
@@ -40,7 +43,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       )}
       
       <div className="prose prose-slate max-w-none dark:prose-invert">
-        {content.split('\n').map((paragraph, index) => (
+        {safeContent.split('\n').map((paragraph, index) => (
           paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
         ))}
       </div>

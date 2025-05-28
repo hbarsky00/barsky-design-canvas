@@ -7,10 +7,16 @@ import ProjectGallery from "./ProjectGallery";
 import ProjectContactSection from "./ProjectContactSection";
 import ProjectNavigation from "../ProjectNavigation";
 import MaximizableImage from "./MaximizableImage";
-import { Project, ProjectDetails } from "@/data/types/project";
+import { ProjectDetails } from "@/data/types/project";
 
 interface ProjectDetailContentProps {
-  project: Project;
+  project: {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+    tags: string[];
+  };
   details: ProjectDetails;
   projectId: string;
   projectsData: Array<{ id: string; title: string; image: string }>;
@@ -27,7 +33,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   // Create a complete image list for navigation
   const allImages = [
     project.image,
-    ...(details.images || [])
+    ...(details.galleryImages || [])
   ];
 
   const renderContentSection = (section: any, index: number) => {
@@ -108,12 +114,37 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           <div className="lg:col-span-3">
-            <ProjectOverview details={details} />
+            <ProjectOverview 
+              challenge={details.challenge || ""}
+              process={details.process || ""}
+              result={details.result || ""}
+              technologies={details.technologies || []}
+              projectLink={details.projectLink}
+              challengeImage={details.challengeImage}
+              processImage={details.processImage}
+              processBottomImage={details.processBottomImage}
+              resultImage={details.resultImage}
+              resultGalleryImages={details.resultGalleryImages}
+              imageCaptions={imageCaptions}
+              galleryImages={details.galleryImages}
+              showTechnologies={details.showTechnologies}
+              videoUrl={details.videoUrl}
+              challengeBottomImage={details.challengeBottomImage}
+              challengeGalleryImages={details.challengeGalleryImages}
+            />
             
-            {/* Render content sections */}
-            <div className="space-y-8">
-              {details.content?.map((section, index) => renderContentSection(section, index))}
-            </div>
+            {/* Render content sections if they exist */}
+            {details.content && (
+              <div className="space-y-8">
+                {details.content.map((section, index) => {
+                  // Add safety check for section content
+                  if (!section || typeof section.content !== 'string') {
+                    return null;
+                  }
+                  return renderContentSection(section, index);
+                })}
+              </div>
+            )}
           </div>
           
           <div className="lg:col-span-1">

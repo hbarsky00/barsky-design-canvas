@@ -1,5 +1,4 @@
 
-
 import React from "react";
 import { FileText, List, Award } from "lucide-react";
 import ProjectSection from "./ProjectSection";
@@ -71,8 +70,9 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       <div className="mb-8">
         {galleryImages && galleryImages.length > 0 ? (
           <ProjectGallery 
-            galleryImages={galleryImages}
-            captions={imageCaptions}
+            images={galleryImages}
+            imageCaptions={imageCaptions}
+            allImages={galleryImages}
           />
         ) : null}
         
@@ -166,4 +166,3 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
 };
 
 export default ProjectOverview;
-
