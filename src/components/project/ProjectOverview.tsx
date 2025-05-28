@@ -6,6 +6,7 @@ import TechnologiesList from "./TechnologiesList";
 import ServicesList from "./ServicesList";
 import ProjectLinks from "./ProjectLinks";
 import ProjectMultiImageGallery from "./ProjectMultiImageGallery";
+import MaximizableImage from "./MaximizableImage";
 import { removeDuplicateImages } from "@/utils/imageUtils";
 
 interface ProjectOverviewProps {
@@ -64,6 +65,33 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
     return url;
   };
 
+  // Bloomberg search inspiration images
+  const bloombergSearchImages = [
+    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
+    "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png",
+    "/lovable-uploads/c90d7110-4675-4b9e-bb87-7cdcce4bfc3f.png"
+  ];
+
+  const bloombergCaptions = {
+    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png": "Bloomberg search interface showing people search results",
+    "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png": "Bloomberg predictive search with categorized results",
+    "/lovable-uploads/c90d7110-4675-4b9e-bb87-7cdcce4bfc3f.png": "Search functionality with recent deals and suggestions"
+  };
+
+  // Split the process text to insert the Bloomberg gallery
+  const processBreakpoint = "For the search functionality, I analyzed Bloomberg's search interface as inspiration, implementing a predictive AI search with multiple categories.";
+  const processIndex = process.indexOf(processBreakpoint);
+  
+  let processBeforeGallery = "";
+  let processAfterGallery = "";
+  
+  if (processIndex !== -1) {
+    processBeforeGallery = process.substring(0, processIndex).trim();
+    processAfterGallery = process.substring(processIndex).trim();
+  } else {
+    processAfterGallery = process;
+  }
+
   return (
     <div>
       <ProjectSection
@@ -87,15 +115,54 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       )}
       
       {/* Process Section */}
-      <ProjectSection
-        title="What I Did"
-        icon={List}
-        content={process}
-        image={processImage}
-        imageCaption={processImage && imageCaptions[processImage]}
-        bottomImage={processBottomImage}
-        bottomImageCaption={processBottomImage && imageCaptions[processBottomImage]}
-      />
+      <div className="mb-12">
+        <div className="flex items-center mb-4 space-x-2">
+          <List className="h-5 w-5 text-barsky-blue" />
+          <h2 className="text-2xl font-bold">What I Did</h2>
+        </div>
+        
+        {processImage && (
+          <div className="mb-4">
+            <MaximizableImage
+              src={processImage}
+              alt="What I Did"
+              caption={processImage && imageCaptions[processImage]}
+            />
+          </div>
+        )}
+        
+        {processBeforeGallery && (
+          <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
+            {processBeforeGallery.split('\n').map((paragraph, index) => (
+              paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
+            ))}
+          </div>
+        )}
+
+        {/* Bloomberg Search Interface Gallery */}
+        <div className="mb-6">
+          <ProjectMultiImageGallery 
+            images={bloombergSearchImages}
+            captions={bloombergCaptions}
+          />
+        </div>
+
+        <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
+          {processAfterGallery.split('\n').map((paragraph, index) => (
+            paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
+          ))}
+        </div>
+
+        {processBottomImage && (
+          <div className="mt-4">
+            <MaximizableImage
+              src={processBottomImage}
+              alt="What I Did"
+              caption={processBottomImage && imageCaptions[processBottomImage]}
+            />
+          </div>
+        )}
+      </div>
       
       {/* Result Section with consistent typography */}
       <div className="mb-12">
