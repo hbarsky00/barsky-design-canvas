@@ -33,7 +33,7 @@ const Index = () => {
       <Helmet>
         <title>Hiram Barsky | Rapid, High-Quality Product Design Services | UX Audits, MVP Design, Design Systems</title>
         <meta name="description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting. Professional Product Designer & Developer based in New York." />
-        <meta name="keywords" content="Hiram Barsky, Product Design Services, UX Audits, MVP Design, Mobile App Design, Web App Design, Design Systems, Figma Design, Developer-ready UI Files, UX Strategy Consulting, Rapid Design Services, High-Quality Design, Product Designer New York, UX/UI Designer, Professional Design Services" />
+        <meta name="keywords" content="Hiram Barsky, design, Product Design Services, UX Audits, MVP Design, Mobile App Design, Web App Design, Design Systems, Figma Design, Developer-ready UI Files, UX Strategy Consulting, Rapid Design Services, High-Quality Design, Product Designer New York, UX/UI Designer, Professional Design Services" />
         <meta name="author" content="Hiram Barsky" />
         <meta property="og:title" content="Hiram Barsky | Rapid, High-Quality Product Design Services" />
         <meta property="og:description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting." />
