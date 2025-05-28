@@ -1,40 +1,73 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { trackContentEngagement } from "@/lib/analytics";
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import MaximizableImage from "./MaximizableImage";
 
 interface ProjectHeaderProps {
   title: string;
+  description: string;
+  image: string;
   tags: string[];
+  imageCaptions: Record<string, string>;
+  imageList: string[];
+  currentIndex: number;
 }
 
-const ProjectHeader: React.FC<ProjectHeaderProps> = ({ title, tags }) => {
-  // Track project view
-  React.useEffect(() => {
-    const projectId = window.location.pathname.split('/').pop() || '';
-    trackContentEngagement('project', projectId, title);
-  }, [title]);
-  
+const ProjectHeader: React.FC<ProjectHeaderProps> = ({
+  title,
+  description,
+  image,
+  tags,
+  imageCaptions,
+  imageList,
+  currentIndex,
+}) => {
+  const caption = imageCaptions[image] || title;
+
   return (
-    <>
-      <div className="flex items-center mb-8">
-        <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors mr-4">
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Projects
-        </Link>
+    <div className="bg-gradient-to-br from-gray-50 to-white py-16">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              {title}
+            </h1>
+            
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              {description}
+            </p>
+            
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="px-3 py-1">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <MaximizableImage
+              src={image}
+              alt={title}
+              caption={caption}
+              imageList={imageList}
+              currentIndex={currentIndex}
+              priority={true}
+            />
+          </motion.div>
+        </div>
       </div>
-      
-      <h1 className="text-4xl font-bold text-barsky-dark mb-4">{title}</h1>
-      
-      <div className="flex flex-wrap gap-2 mb-6">
-        {tags.map((tag) => (
-          <span key={tag} className="bg-gray-100 text-barsky-text px-3 py-1 rounded-full text-sm">
-            {tag}
-          </span>
-        ))}
-      </div>
-    </>
+    </div>
   );
 };
 

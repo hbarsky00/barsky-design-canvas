@@ -1,25 +1,19 @@
+
 import React from "react";
-import ProjectHeader from "@/components/project/ProjectHeader";
-import ProjectOverview from "@/components/project/ProjectOverview";
-import ProjectSidebar from "@/components/project/ProjectSidebar";
-import ProjectNavigation from "@/components/ProjectNavigation";
-import { ProjectDetails } from "@/data/types/project";
+import { motion } from "framer-motion";
+import ProjectHeader from "./ProjectHeader";
+import ProjectOverview from "./ProjectOverview";
+import ProjectGallery from "./ProjectGallery";
+import ProjectContactSection from "./ProjectContactSection";
+import ProjectNavigation from "../ProjectNavigation";
+import MaximizableImage from "./MaximizableImage";
+import { Project, ProjectDetails } from "@/data/types/project";
 
 interface ProjectDetailContentProps {
-  project: {
-    id: string;
-    title: string;
-    tags: string[];
-    link?: string;
-    image: string;
-  };
+  project: Project;
   details: ProjectDetails;
   projectId: string;
-  projectsData: Array<{
-    id: string;
-    title: string;
-    image: string;
-  }>;
+  projectsData: Array<{ id: string; title: string; image: string }>;
   imageCaptions: Record<string, string>;
 }
 
@@ -28,66 +22,109 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   details,
   projectId,
   projectsData,
-  imageCaptions
+  imageCaptions,
 }) => {
-  // Add video URLs for specific projects
-  const getVideoUrl = (id: string) => {
-    switch (id) {
-      case "investor-loan-app":
-        return "https://youtu.be/iUT_tUwJeD8?si=GtxLROOxRQ4Vg3i3";
-      case "barskyjoint":
-        return "https://youtube.com/shorts/UGlOWDnsHi0?feature=share";
-      case "dae-search":
-        return "https://youtu.be/lHU7yvZiMhQ?feature=shared";
-      default:
-        return undefined;
+  // Create a complete image list for navigation
+  const allImages = [
+    project.image,
+    ...(details.images || [])
+  ];
+
+  const renderContentSection = (section: any, index: number) => {
+    if (section.type === "text") {
+      return (
+        <motion.div
+          key={`text-${index}`}
+          className="prose prose-lg max-w-none mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+        >
+          <p className="text-gray-700 leading-relaxed">{section.content}</p>
+        </motion.div>
+      );
     }
+
+    if (section.type === "image") {
+      const imageIndex = allImages.indexOf(section.src);
+      const caption = imageCaptions[section.src] || section.alt || "";
+      
+      return (
+        <motion.div
+          key={`image-${index}`}
+          className="mb-8"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+        >
+          <MaximizableImage
+            src={section.src}
+            alt={section.alt}
+            caption={caption}
+            imageList={allImages}
+            currentIndex={imageIndex >= 0 ? imageIndex : 0}
+            priority={index === 0}
+          />
+        </motion.div>
+      );
+    }
+
+    if (section.type === "gallery") {
+      return (
+        <motion.div
+          key={`gallery-${index}`}
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+        >
+          <ProjectGallery 
+            images={section.images} 
+            imageCaptions={imageCaptions}
+            allImages={allImages}
+          />
+        </motion.div>
+      );
+    }
+
+    return null;
   };
 
-  const videoUrl = getVideoUrl(projectId);
-
   return (
-    <section className="py-20">
-      <div className="section-container">
-        <ProjectHeader title={project.title} tags={project.tags} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="col-span-2">
-            <ProjectOverview 
-              challenge={details.challenge}
-              process={details.process}
-              result={details.result}
-              technologies={details.technologies}
-              projectLink={project.link}
-              challengeImage={details.challengeImage}
-              processImage={details.processImage}
-              processBottomImage={details.processBottomImage}
-              resultImage={details.resultImage}
-              resultGalleryImages={details.resultGalleryImages}
-              imageCaptions={imageCaptions}
-              galleryImages={details.galleryImages}
-              showTechnologies={false}
-              videoUrl={videoUrl}
-              challengeBottomImage={details.challengeBottomImage}
-              challengeGalleryImages={details.challengeGalleryImages}
-            />
+    <div className="min-h-screen bg-white">
+      <ProjectHeader
+        title={project.title}
+        description={project.description}
+        image={project.image}
+        tags={project.tags}
+        imageCaptions={imageCaptions}
+        imageList={allImages}
+        currentIndex={0}
+      />
+      
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <div className="lg:col-span-3">
+            <ProjectOverview details={details} />
+            
+            {/* Render content sections */}
+            <div className="space-y-8">
+              {details.content?.map((section, index) => renderContentSection(section, index))}
+            </div>
           </div>
           
-          <div>
-            <ProjectSidebar 
-              duration={details.duration}
-              client={details.client}
-              role={details.role}
-            />
+          <div className="lg:col-span-1">
+            {/* Project sidebar content can go here */}
           </div>
         </div>
-        
-        <ProjectNavigation 
-          currentProjectId={projectId} 
-          projectsData={projectsData} 
-        />
       </div>
-    </section>
+
+      <ProjectContactSection />
+      <ProjectNavigation currentProjectId={projectId} projectsData={projectsData} />
+    </div>
   );
 };
 

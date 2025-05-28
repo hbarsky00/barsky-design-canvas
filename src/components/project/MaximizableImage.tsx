@@ -12,6 +12,8 @@ interface MaximizableImageProps {
   aspectRatio?: number;
   className?: string;
   priority?: boolean;
+  imageList?: string[];
+  currentIndex?: number;
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -21,14 +23,24 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   aspectRatio,
   className = "",
   priority = false,
+  imageList,
+  currentIndex,
 }) => {
   const { maximizeImage } = useImageMaximizer();
   
   const handleImageClick = () => {
     // Use caption for the title if available, otherwise use alt text
     const imageTitle = caption || alt || "Image";
-    maximizeImage(src, imageTitle);
-    console.log("Image clicked:", src);
+    
+    // If we have an image list and current index, pass them for navigation
+    if (imageList && currentIndex !== undefined) {
+      maximizeImage(src, imageTitle, imageList, currentIndex);
+      console.log("Image clicked with gallery:", src, "Index:", currentIndex, "Total:", imageList.length);
+    } else {
+      // Single image mode
+      maximizeImage(src, imageTitle);
+      console.log("Image clicked (single):", src);
+    }
   };
 
   // Use caption as alt text if available, otherwise use the provided alt text
