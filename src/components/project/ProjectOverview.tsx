@@ -108,14 +108,20 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         bottomImageCaption={processBottomImage && imageCaptions[processBottomImage]}
       />
       
-      {/* Result Section with Carousel Gallery */}
+      {/* Result Section with consistent typography */}
       <div className="mb-12">
         <div className="flex items-center mb-4 space-x-2">
           <Award className="h-5 w-5 text-barsky-blue" />
           <h2 className="text-2xl font-bold">The Result</h2>
         </div>
         <div className="mb-6">
-          <p className="text-lg leading-relaxed text-gray-700">{result}</p>
+          <div className="prose prose-slate max-w-none dark:prose-invert">
+            {result.split('\n').map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
         
         {/* Show carousel gallery if resultGalleryImages exists, otherwise show single image */}
