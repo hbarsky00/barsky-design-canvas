@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
 
 export interface ProjectProps {
@@ -28,10 +28,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     e.stopPropagation();
     e.preventDefault();
   };
-
-  // Projects that should not show the "Visit Website" button
-  const excludedProjects = ["investor-loan-app", "dae-search"];
-  const shouldShowVisitButton = project.link && !excludedProjects.includes(project.id);
 
   return (
     <Link to={`/project/${project.id}`} className="block h-full" onClick={() => window.scrollTo(0, 0)}>
@@ -63,22 +59,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               </Link>
             ))}
           </div>
-
-          {/* Project link if available and not excluded */}
-          {shouldShowVisitButton && (
-            <div className="mb-2">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 text-sm text-barsky-blue hover:text-barsky-dark transition-colors font-medium"
-              >
-                <ExternalLink className="h-3 w-3" />
-                Visit Website
-              </a>
-            </div>
-          )}
         </CardContent>
         
         <CardFooter className="pt-0">
