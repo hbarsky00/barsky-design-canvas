@@ -35,9 +35,10 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
       image, 
       isOpen, 
       listLength: imageList?.length,
-      currentIndex 
+      currentIndex,
+      hasMultipleImages
     });
-  }, [image, isOpen, imageList?.length, currentIndex]);
+  }, [image, isOpen, imageList?.length, currentIndex, hasMultipleImages]);
   
   const handleZoomIn = () => {
     setScale((prevScale) => Math.min(prevScale + 0.25, 3));
@@ -52,15 +53,19 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   };
   
   const handleNextImage = () => {
+    console.log("Next image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const nextIndex = (currentIndex + 1) % imageList.length;
+      console.log("Moving to next image:", nextIndex, imageList[nextIndex]);
       maximizeImage(imageList[nextIndex], title, imageList, nextIndex);
     }
   };
   
   const handlePrevImage = () => {
+    console.log("Previous image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const prevIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      console.log("Moving to previous image:", prevIndex, imageList[prevIndex]);
       maximizeImage(imageList[prevIndex], title, imageList, prevIndex);
     }
   };
