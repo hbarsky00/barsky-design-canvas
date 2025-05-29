@@ -28,6 +28,7 @@ interface ProjectOverviewProps {
   challengeBottomImage?: string;
   challengeGalleryImages?: string[];
   allImages: string[];
+  projectId?: string;
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -46,7 +47,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   videoUrl,
   challengeBottomImage,
   challengeGalleryImages = [],
-  allImages
+  allImages,
+  projectId
 }) => {
   // Convert YouTube URLs to embeddable format
   const getEmbedUrl = (url: string) => {
@@ -65,7 +67,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
     return url;
   };
 
-  // Bloomberg search inspiration images
+  // Bloomberg search inspiration images - only for investor loan app
   const bloombergSearchImages = [
     "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
     "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png",
@@ -78,14 +80,17 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
     "/lovable-uploads/c90d7110-4675-4b9e-bb87-7cdcce4bfc3f.png": "Search functionality with recent deals and suggestions"
   };
 
-  // Split the process text to insert the Bloomberg gallery
+  // Only show Bloomberg gallery for investor loan app project
+  const isInvestorProject = projectId === "investor-loan-app";
+
+  // Split the process text to insert the Bloomberg gallery (only for investor project)
   const processBreakpoint = "For the search functionality, I analyzed Bloomberg's search interface as inspiration, implementing a predictive AI search with multiple categories.";
   const processIndex = process.indexOf(processBreakpoint);
   
   let processBeforeGallery = "";
   let processAfterGallery = "";
   
-  if (processIndex !== -1) {
+  if (isInvestorProject && processIndex !== -1) {
     processBeforeGallery = process.substring(0, processIndex).trim();
     processAfterGallery = process.substring(processIndex).trim();
   } else {
@@ -139,13 +144,15 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           </div>
         )}
 
-        {/* Bloomberg Search Interface Gallery */}
-        <div className="mb-6">
-          <ProjectMultiImageGallery 
-            images={bloombergSearchImages}
-            captions={bloombergCaptions}
-          />
-        </div>
+        {/* Bloomberg Search Interface Gallery - Only for investor project */}
+        {isInvestorProject && processBeforeGallery && (
+          <div className="mb-6">
+            <ProjectMultiImageGallery 
+              images={bloombergSearchImages}
+              captions={bloombergCaptions}
+            />
+          </div>
+        )}
 
         <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
           {processAfterGallery.split('\n').map((paragraph, index) => (
