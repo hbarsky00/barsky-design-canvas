@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
@@ -40,14 +41,19 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
     ...(details.challengeBottomImage ? [details.challengeBottomImage] : [])
   ]);
 
+  // Find current image index
+  const currentImageIndex = allImages.indexOf(project.image);
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <ProjectHeader
-        project={project}
-        details={details}
-        projectId={projectId}
-        allImages={allImages}
+        title={project.title}
+        description={project.description}
+        image={project.image}
+        tags={project.tags}
         imageCaptions={imageCaptions}
+        imageList={allImages}
+        currentIndex={currentImageIndex >= 0 ? currentImageIndex : 0}
       />
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
@@ -91,7 +97,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       {details.galleryImages && details.galleryImages.length > 0 && (
         <ProjectGallery
           images={removeDuplicateImages(details.galleryImages)}
-          title={project.title}
           allImages={allImages}
           imageCaptions={imageCaptions}
         />
