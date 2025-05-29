@@ -13,9 +13,9 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
     "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png"
   ],
-  challengeImage: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
   processImage: "/lovable-uploads/57188cd2-5ba4-4a9e-8a57-c70016dd2566.png",
   resultImage: "/lovable-uploads/cb589912-0dc5-44e5-bd32-f5d177296cc3.png",
+  challengeBottomImage: "/lovable-uploads/40ba5a33-36dc-49f9-a9f6-229e5855d306.png",
   caseStudyLink: "https://hirambarsky.com/case-studies/splittime",
   galleryImages: [
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
