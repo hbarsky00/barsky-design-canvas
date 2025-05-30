@@ -29,6 +29,7 @@ interface ProjectOverviewProps {
   challengeGalleryImages?: string[];
   allImages: string[];
   projectId?: string;
+  servicesGalleryImages?: string[];
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
@@ -48,7 +49,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   challengeBottomImage,
   challengeGalleryImages = [],
   allImages,
-  projectId
+  projectId,
+  servicesGalleryImages = []
 }) => {
   // Convert YouTube URLs to embeddable format
   const getEmbedUrl = (url: string) => {
@@ -80,8 +82,17 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
     "/lovable-uploads/c90d7110-4675-4b9e-bb87-7cdcce4bfc3f.png": "Search functionality with recent deals and suggestions"
   };
 
+  // Services gallery captions for DAE Search project
+  const servicesCaptions = {
+    "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png": "Initial wireframes and user research insights",
+    "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png": "Research inspiration and competitive analysis",
+    "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png": "Homepage design with integrated search functionality"
+  };
+
   // Only show Bloomberg gallery for investor loan app project
   const isInvestorProject = projectId === "investor-loan-app";
+  // Only show services gallery for DAE Search project
+  const isDaeSearchProject = projectId === "dae-search";
 
   // Split the process text to insert the Bloomberg gallery (only for investor project)
   const processBreakpoint = "For the search functionality, I analyzed Bloomberg's search interface as inspiration, implementing a predictive AI search with multiple categories.";
@@ -126,16 +137,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           <h2 className="text-2xl font-bold">What I Did</h2>
         </div>
         
-        {processImage && (
-          <div className="mb-4">
-            <MaximizableImage
-              src={processImage}
-              alt="What I Did"
-              caption={processImage && imageCaptions[processImage]}
-            />
-          </div>
-        )}
-        
         {processBeforeGallery && (
           <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
             {processBeforeGallery.split('\n').map((paragraph, index) => (
@@ -154,11 +155,32 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
           </div>
         )}
 
+        {/* Services Gallery - Only for DAE Search project */}
+        {isDaeSearchProject && servicesGalleryImages.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold mb-4 text-barsky-dark">Services Provided</h3>
+            <ProjectMultiImageGallery 
+              images={removeDuplicateImages(servicesGalleryImages)}
+              captions={servicesCaptions}
+            />
+          </div>
+        )}
+
         <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
           {processAfterGallery.split('\n').map((paragraph, index) => (
             paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
           ))}
         </div>
+
+        {processImage && (
+          <div className="mt-4">
+            <MaximizableImage
+              src={processImage}
+              alt="What I Did"
+              caption={processImage && imageCaptions[processImage]}
+            />
+          </div>
+        )}
 
         {processBottomImage && (
           <div className="mt-4">
@@ -224,8 +246,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       {/* Technologies Section - Only show if showTechnologies is true */}
       {showTechnologies && <TechnologiesList technologies={technologies} />}
       
-      {/* Services Section */}
-      <ServicesList />
+      {/* Services Section - Only show if not DAE Search (since it has its own services carousel) */}
+      {!isDaeSearchProject && <ServicesList />}
       
       {/* Links Section */}
       <ProjectLinks projectLink={projectLink} />

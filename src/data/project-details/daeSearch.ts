@@ -24,5 +24,11 @@ export const daeSearchDetails: ProjectDetails = {
     "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",
     "/lovable-uploads/88423dc3-1fd1-480a-846f-4d3f82a9d300.png",
     "/lovable-uploads/ccb7671a-9fbf-472a-b63b-e11e681ed341.png"
+  ],
+  // New services gallery for carousel
+  servicesGalleryImages: [
+    "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png",
+    "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png",
+    "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png"
   ]
 };

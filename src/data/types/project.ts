@@ -1,17 +1,12 @@
 
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-}
-
 export interface ProjectDetails {
-  challenge?: string;
-  process?: string;
-  result?: string;
-  technologies?: string[];
+  challenge: string;
+  process: string;
+  result: string;
+  technologies: string[];
+  duration: string;
+  client: string;
+  role: string;
   projectLink?: string;
   caseStudyLink?: string;
   challengeImage?: string;
@@ -20,25 +15,9 @@ export interface ProjectDetails {
   resultImage?: string;
   resultGalleryImages?: string[];
   galleryImages?: string[];
-  showTechnologies?: boolean;
+  extraImages?: string[];
   videoUrl?: string;
   challengeBottomImage?: string;
   challengeGalleryImages?: string[];
-  duration?: string;
-  client?: string;
-  role?: string;
-  extraImages?: string[];
-  content?: Array<{
-    type: string;
-    content: string;
-    src?: string;
-    alt?: string;
-    images?: string[];
-  }>;
-}
-
-export interface ProjectsData {
-  id: string;
-  title: string;
-  image: string;
+  servicesGalleryImages?: string[];
 }

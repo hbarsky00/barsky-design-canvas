@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
@@ -37,7 +38,8 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
     ...(details.extraImages || []),
     ...(details.challengeImage ? [details.challengeImage] : []),
     ...(details.resultImage ? [details.resultImage] : []),
-    ...(details.challengeBottomImage ? [details.challengeBottomImage] : [])
+    ...(details.challengeBottomImage ? [details.challengeBottomImage] : []),
+    ...(details.servicesGalleryImages || [])
   ]);
 
   // Find current image index
@@ -77,6 +79,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             challengeGalleryImages={details.challengeGalleryImages}
             allImages={allImages}
             projectId={projectId}
+            servicesGalleryImages={details.servicesGalleryImages}
           />
         </div>
         
