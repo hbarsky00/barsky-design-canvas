@@ -45,6 +45,9 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   // Find current image index
   const currentImageIndex = allImages.indexOf(project.image);
 
+  // Check if this is DAE Search project to conditionally hide bottom gallery
+  const isDaeSearchProject = projectId === "dae-search";
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <ProjectHeader
@@ -92,7 +95,8 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
         </div>
       </div>
       
-      {details.galleryImages && details.galleryImages.length > 0 && (
+      {/* Only show bottom gallery if it's not DAE Search project and has gallery images */}
+      {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (
         <ProjectGallery
           images={removeDuplicateImages(details.galleryImages)}
           allImages={allImages}
