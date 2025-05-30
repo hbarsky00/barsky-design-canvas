@@ -85,8 +85,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             duration={details.duration}
             client={details.client}
             role={details.role}
-            projectsData={projectsData}
-            currentProjectId={projectId}
           />
         </div>
       </div>
