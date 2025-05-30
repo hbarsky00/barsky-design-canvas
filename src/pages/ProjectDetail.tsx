@@ -124,18 +124,18 @@ const ProjectDetail: React.FC = () => {
           projectId={projectId || ""}
         />
         
-        {/* Back to Projects navigation above header */}
-        <div className="fixed top-0 left-0 right-0 z-40 bg-white border-b border-gray-100 py-3">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
-            </Link>
-          </div>
-        </div>
-        
         <Header />
-        <main className="flex-grow pt-32">
+        <main className="flex-grow pt-20">
+          {/* Back to Projects navigation above project content */}
+          <div className="bg-white border-b border-gray-100 py-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Projects
+              </Link>
+            </div>
+          </div>
+          
           <ProjectDetailContent 
             project={project}
             details={details}
