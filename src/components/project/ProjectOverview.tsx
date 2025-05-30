@@ -1,13 +1,13 @@
 
 import React from "react";
-import { FileText, List, Award } from "lucide-react";
-import ProjectSection from "./ProjectSection";
 import TechnologiesList from "./TechnologiesList";
 import ServicesList from "./ServicesList";
 import ProjectLinks from "./ProjectLinks";
-import ProjectMultiImageGallery from "./ProjectMultiImageGallery";
-import MaximizableImage from "./MaximizableImage";
-import { removeDuplicateImages } from "@/utils/imageUtils";
+import ChallengeSection from "./sections/ChallengeSection";
+import ProcessSection from "./sections/ProcessSection";
+import ResultSection from "./sections/ResultSection";
+import { useProjectConfiguration } from "@/hooks/useProjectConfiguration";
+import { useProcessContent } from "@/hooks/useProcessContent";
 
 interface ProjectOverviewProps {
   challenge: string;
@@ -48,200 +48,55 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   videoUrl,
   challengeBottomImage,
   challengeGalleryImages = [],
-  allImages,
   projectId,
   servicesGalleryImages = []
 }) => {
-  // Convert YouTube URLs to embeddable format
-  const getEmbedUrl = (url: string) => {
-    // Handle YouTube Shorts
-    const shortsMatch = url.match(/shorts\/([^?]+)/);
-    if (shortsMatch) {
-      return `https://www.youtube.com/embed/${shortsMatch[1]}`;
-    }
-    
-    // Handle regular YouTube URLs
-    const regularMatch = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([^?&]+)/);
-    if (regularMatch) {
-      return `https://www.youtube.com/embed/${regularMatch[1]}`;
-    }
-    
-    return url;
-  };
+  const {
+    isInvestorProject,
+    isDaeSearchProject,
+    bloombergSearchImages,
+    bloombergCaptions,
+    servicesCaptions,
+    processBreakpoint
+  } = useProjectConfiguration(projectId);
 
-  // Bloomberg search inspiration images - only for investor loan app
-  const bloombergSearchImages = [
-    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
-    "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png",
-    "/lovable-uploads/c90d7110-4675-4b9e-bb87-7cdcce4bfc3f.png"
-  ];
-
-  const bloombergCaptions = {
-    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png": "Bloomberg search interface showing people search results",
-    "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png": "Bloomberg predictive search with categorized results",
-    "/lovable-uploads/c90d7110-4675-4b9e-bb87-7cdcce4bfc3f.png": "Search functionality with recent deals and suggestions"
-  };
-
-  // Services gallery captions for DAE Search project
-  const servicesCaptions = {
-    "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png": "Initial wireframes and user research insights",
-    "/lovable-uploads/5f6ac7d4-58b5-422e-854e-16227fb7c6c9.png": "Research inspiration and competitive analysis",
-    "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png": "Homepage design with integrated search functionality"
-  };
-
-  // Only show Bloomberg gallery for investor loan app project
-  const isInvestorProject = projectId === "investor-loan-app";
-  // Only show services gallery for DAE Search project
-  const isDaeSearchProject = projectId === "dae-search";
-
-  // Split the process text to insert the Bloomberg gallery (only for investor project)
-  const processBreakpoint = "For the search functionality, I analyzed Bloomberg's search interface as inspiration, implementing a predictive AI search with multiple categories.";
-  const processIndex = process.indexOf(processBreakpoint);
-  
-  let processBeforeGallery = "";
-  let processAfterGallery = "";
-  
-  if (isInvestorProject && processIndex !== -1) {
-    processBeforeGallery = process.substring(0, processIndex).trim();
-    processAfterGallery = process.substring(processIndex).trim();
-  } else {
-    processAfterGallery = process;
-  }
+  const { processBeforeGallery, processAfterGallery } = useProcessContent(
+    process,
+    isInvestorProject,
+    processBreakpoint
+  );
 
   return (
     <div>
-      <ProjectSection
-        title="The Challenge"
-        icon={FileText}
-        content={challenge}
-        image={challengeImage}
-        imageCaption={challengeImage && imageCaptions[challengeImage]}
-        bottomImage={challengeBottomImage}
-        bottomImageCaption={challengeBottomImage && imageCaptions[challengeBottomImage]}
+      <ChallengeSection
+        challenge={challenge}
+        challengeImage={challengeImage}
+        challengeBottomImage={challengeBottomImage}
+        challengeGalleryImages={challengeGalleryImages}
+        imageCaptions={imageCaptions}
       />
       
-      {/* Challenge Gallery - Carousel Format */}
-      {challengeGalleryImages && challengeGalleryImages.length > 0 && (
-        <div className="mb-8">
-          <ProjectMultiImageGallery 
-            images={removeDuplicateImages(challengeGalleryImages)}
-            captions={imageCaptions}
-          />
-        </div>
-      )}
+      <ProcessSection
+        processBeforeGallery={processBeforeGallery}
+        processAfterGallery={processAfterGallery}
+        isInvestorProject={isInvestorProject}
+        isDaeSearchProject={isDaeSearchProject}
+        bloombergSearchImages={bloombergSearchImages}
+        bloombergCaptions={bloombergCaptions}
+        servicesGalleryImages={servicesGalleryImages}
+        servicesCaptions={servicesCaptions}
+        processImage={processImage}
+        processBottomImage={processBottomImage}
+        imageCaptions={imageCaptions}
+      />
       
-      {/* Process Section */}
-      <div className="mb-12">
-        <div className="flex items-center mb-4 space-x-2">
-          <List className="h-5 w-5 text-barsky-blue" />
-          <h2 className="text-2xl font-bold">What I Did</h2>
-        </div>
-        
-        {processBeforeGallery && (
-          <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
-            {processBeforeGallery.split('\n').map((paragraph, index) => (
-              paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
-            ))}
-          </div>
-        )}
-
-        {/* Bloomberg Search Interface Gallery - Only for investor project */}
-        {isInvestorProject && processBeforeGallery && (
-          <div className="mb-6">
-            <ProjectMultiImageGallery 
-              images={bloombergSearchImages}
-              captions={bloombergCaptions}
-            />
-          </div>
-        )}
-
-        {/* Services Gallery - Only for DAE Search project */}
-        {isDaeSearchProject && servicesGalleryImages.length > 0 && (
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-4 text-barsky-dark">Services Provided</h3>
-            <ProjectMultiImageGallery 
-              images={removeDuplicateImages(servicesGalleryImages)}
-              captions={servicesCaptions}
-            />
-          </div>
-        )}
-
-        <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
-          {processAfterGallery.split('\n').map((paragraph, index) => (
-            paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
-          ))}
-        </div>
-
-        {processImage && (
-          <div className="mt-4">
-            <MaximizableImage
-              src={processImage}
-              alt="What I Did"
-              caption={processImage && imageCaptions[processImage]}
-            />
-          </div>
-        )}
-
-        {processBottomImage && (
-          <div className="mt-4">
-            <MaximizableImage
-              src={processBottomImage}
-              alt="What I Did"
-              caption={processBottomImage && imageCaptions[processBottomImage]}
-            />
-          </div>
-        )}
-      </div>
-      
-      {/* Result Section with consistent typography */}
-      <div className="mb-12">
-        <div className="flex items-center mb-4 space-x-2">
-          <Award className="h-5 w-5 text-barsky-blue" />
-          <h2 className="text-2xl font-bold">The Result</h2>
-        </div>
-        <div className="mb-4">
-          <div className="prose prose-slate max-w-none dark:prose-invert">
-            {result.split('\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </div>
-        
-        {/* Show carousel gallery if resultGalleryImages exists, otherwise show single image */}
-        {resultGalleryImages && resultGalleryImages.length > 0 ? (
-          <div className="mt-4">
-            <ProjectMultiImageGallery 
-              images={removeDuplicateImages(resultGalleryImages)}
-              captions={imageCaptions}
-            />
-          </div>
-        ) : resultImage ? (
-          <ProjectSection
-            title=""
-            icon={Award}
-            content=""
-            image={resultImage}
-            imageCaption={resultImage && imageCaptions[resultImage]}
-          />
-        ) : null}
-
-        {/* Video Section - Show in result section if videoUrl exists */}
-        {videoUrl && (
-          <div className="mt-6">
-            <div className="aspect-video w-full rounded-lg overflow-hidden">
-              <iframe
-                src={getEmbedUrl(videoUrl)}
-                title="Project Demo Video"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        )}
-      </div>
+      <ResultSection
+        result={result}
+        resultGalleryImages={resultGalleryImages}
+        resultImage={resultImage}
+        videoUrl={videoUrl}
+        imageCaptions={imageCaptions}
+      />
       
       {/* Technologies Section - Only show if showTechnologies is true */}
       {showTechnologies && <TechnologiesList technologies={technologies} />}
