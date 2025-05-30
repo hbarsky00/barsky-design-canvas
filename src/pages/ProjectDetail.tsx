@@ -1,7 +1,5 @@
-
 import React from "react";
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { projectsData } from "@/data/projects/projectsList";
@@ -126,16 +124,6 @@ const ProjectDetail: React.FC = () => {
         
         <Header />
         <main className="flex-grow pt-20">
-          {/* Back to Projects navigation above project content */}
-          <div className="bg-white border-b border-gray-100 py-4">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Projects
-              </Link>
-            </div>
-          </div>
-          
           <ProjectDetailContent 
             project={project}
             details={details}

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
 import MaximizableImage from "./MaximizableImage";
@@ -30,6 +31,19 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white py-16">
       <div className="max-w-6xl mx-auto px-4">
+        {/* Back to Projects link */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+          <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Projects
+          </Link>
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
