@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
@@ -86,7 +85,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             duration={details.duration}
             client={details.client}
             role={details.role}
-            tags={project.tags}
             projectsData={projectsData}
             currentProjectId={projectId}
           />
