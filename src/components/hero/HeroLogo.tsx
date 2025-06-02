@@ -26,13 +26,15 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
       <Link to="/">
         <div className="relative group">
           <img
-            src="/lovable-uploads/b7ce93b1-4c6c-4cd9-80d0-ea98b91e7a62.png"
-            alt="Hiram Barsky Logo"
-            className="h-32 w-auto md:h-40 lg:h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+            src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+            alt="Hiram Barsky"
+            className="h-40 w-40 md:h-48 md:w-48 lg:h-52 lg:w-52 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
             style={{
               imageRendering: 'crisp-edges',
             }}
             loading="eager"
+            width="208"
+            height="208"
           />
         </div>
       </Link>
