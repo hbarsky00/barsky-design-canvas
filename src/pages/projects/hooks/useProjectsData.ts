@@ -1,14 +1,14 @@
-
 import { useState, useEffect } from "react";
 import { projectsData } from "@/data/projects/projectsList";
 import { ProjectProps } from "@/components/ProjectCard";
 
-// IDs of the featured projects to display on homepage
-const featuredProjectIds = ["investor-loan-app", "dae-search", "splittime", "herbalink", "barskyjoint"];
+// Updated IDs of the featured projects to display on homepage
+const featuredProjectIds = ["lovabledev", "investor-loan-app", "dae-search", "splittime", "herbalink"];
 
-// IDs of hidden projects that won't appear in listings
-const hiddenProjectIds = ["gold2crypto", "spectrum"];
+// Updated IDs of hidden projects that won't appear in listings
+const hiddenProjectIds = ["gold2crypto", "spectrum", "barskyjoint"];
 
+// Keep existing code (useProjectsData hook) the same
 export const useProjectsData = () => {
   const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,6 +32,7 @@ export const useProjectsData = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   
   const resetFilters = () => {
+    // Reset visible projects to exclude hidden projects
     setVisibleProjects(projectsData.filter(project => !hiddenProjectIds.includes(project.id)));
   };
 

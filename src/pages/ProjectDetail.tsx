@@ -12,6 +12,19 @@ import { investorLoanImageCaptions } from "@/data/investorLoanData";
 
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
+  "lovabledev": {
+    "/lovable-uploads/7da7067a-d431-4b68-bb8e-d3dbb60a5765.png": "Barsky Design - AI Development Platform Implementation",
+    "/lovable-uploads/placeholder-complex-dev.png": "Complex traditional development environments",
+    "/lovable-uploads/placeholder-frustrated-designer.png": "Designers struggling with technical barriers",
+    "/lovable-uploads/placeholder-traditional-timeline.png": "Extended development cycles and timelines",
+    "/lovable-uploads/placeholder-complex-workflow.png": "Complicated traditional development workflows",
+    "/lovable-uploads/placeholder-lovable-interface.png": "Clean, intuitive Lovable.dev conversational interface",
+    "/lovable-uploads/placeholder-ai-generation.png": "AI generating code from natural language",
+    "/lovable-uploads/placeholder-finished-apps.png": "Professional web applications created with Lovable.dev",
+    "/lovable-uploads/placeholder-happy-clients.png": "Satisfied clients using their new applications",
+    "/lovable-uploads/placeholder-performance-metrics.png": "Development speed and efficiency improvements",
+    "/lovable-uploads/placeholder-mobile-desktop.png": "Responsive applications across all devices"
+  },
   "investor-loan-app": {
     "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png": "Loans orderbook interface",
     "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png": "Design thinking process",
