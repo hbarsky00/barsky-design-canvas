@@ -3,13 +3,6 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
-    id: "lovabledev",
-    title: "Lovable.dev AI Development Platform",
-    description: "Revolutionizing web development through AI-powered conversational programming. Eliminating technical barriers and enabling rapid application creation through natural language interactions.",
-    image: "/lovable-uploads/7da7067a-d431-4b68-bb8e-d3dbb60a5765.png",
-    tags: ["AI Development", "No-Code Platforms", "Web Development", "User Empowerment", "Conversational UI", "Full-Stack Automation"]
-  },
-  {
     id: "investor-loan-app",
     title: "Investor Loan App",
     description: "Comprehensive UX/UI design for a financial platform managing investment deals and loan orders. User research, wireframing, and high-fidelity prototypes for complex data visualization.",

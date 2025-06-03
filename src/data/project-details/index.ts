@@ -1,6 +1,5 @@
 
 import { ProjectDetails } from "../types/project";
-import { lovabledevDetails } from "./lovabledev";
 import { investorLoanAppDetails } from "./investorLoanApp";
 import { daeSearchDetails } from "./daeSearch";
 import { splittimeDetails } from "./splittime";
@@ -10,7 +9,6 @@ import { barskyjointDetails } from "./barskyjoint";
 import { spectrumDetails } from "./spectrum";
 
 export const projectDetails: Record<string, ProjectDetails> = {
-  "lovabledev": lovabledevDetails,
   "investor-loan-app": investorLoanAppDetails,
   "dae-search": daeSearchDetails,
   "splittime": splittimeDetails,
