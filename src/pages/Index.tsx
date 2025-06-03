@@ -3,8 +3,10 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
+import EnhancedHero from "@/components/hero/EnhancedHero";
+import FeaturedProjects from "@/components/home/FeaturedProjects";
+import SkillsShowcase from "@/components/home/SkillsShowcase";
+import AboutPreview from "@/components/home/AboutPreview";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -234,8 +236,10 @@ const Index = () => {
       
       <Header />
       <main className="flex-grow">
-        <Hero />
-        <Projects />
+        <EnhancedHero />
+        <FeaturedProjects />
+        <SkillsShowcase />
+        <AboutPreview />
         <About />
         <Contact />
       </main>

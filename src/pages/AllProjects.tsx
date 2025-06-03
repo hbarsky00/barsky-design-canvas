@@ -1,48 +1,53 @@
 
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import ProjectGrid from "./projects/components/ProjectGrid";
-import ProjectsPagination from "./projects/components/ProjectsPagination";
+import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
 import { useProjectsData } from "./projects/hooks/useProjectsData";
 
 const AllProjects: React.FC = () => {
-  const {
-    currentPage,
-    totalPages,
-    currentProjects,
-    paginate,
-    resetFilters
-  } = useProjectsData();
+  const { currentProjects, resetFilters } = useProjectsData();
   
   return (
     <div className="flex flex-col min-h-screen">
+      <Helmet>
+        <title>All Projects | Hiram Barsky - Product Designer & Developer</title>
+        <meta name="description" content="Browse all projects by Hiram Barsky including UX/UI design, full-stack development, mobile apps, and design systems. Filter by technology and project type." />
+        <meta name="keywords" content="Hiram Barsky projects, UX UI design portfolio, full stack development, mobile app design, web development, design systems" />
+      </Helmet>
+      
       <Header />
-      <main className="flex-grow">
-        <section className="py-20 bg-white">
-          <div className="section-container">
-            <div className="flex items-center mb-8">
-              <Link to="/" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors mr-4">
+      <main className="flex-grow bg-gray-50">
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header */}
+            <div className="mb-12">
+              <Link 
+                to="/" 
+                className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors mb-6 font-medium"
+              >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Home
               </Link>
+              
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl font-bold text-gray-900">
+                  All Projects
+                </h1>
+                <p className="text-xl text-gray-600 max-w-3xl">
+                  A comprehensive collection of my work spanning product design, 
+                  full-stack development, and user experience design. Each project 
+                  represents a unique challenge and innovative solution.
+                </p>
+              </div>
             </div>
             
-            <div className="mb-12">
-              <h1 className="text-4xl font-bold text-barsky-dark">All Projects</h1>
-            </div>
-            
-            <ProjectGrid 
-              currentProjects={currentProjects}
+            <EnhancedProjectGrid 
+              projects={currentProjects}
               resetFilters={resetFilters}
-            />
-            
-            <ProjectsPagination 
-              currentPage={currentPage}
-              totalPages={totalPages}
-              paginate={paginate}
             />
           </div>
         </section>
