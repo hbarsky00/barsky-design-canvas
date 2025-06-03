@@ -198,8 +198,8 @@ const EnhancedHero: React.FC = () => {
               {/* Main Project Showcase */}
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img
-                  src="/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png"
-                  alt="Featured UX/UI design project - Investor Loan App"
+                  src="/lovable-uploads/fc79b2eb-c9ff-47eb-b5a9-f5db1a7857c1.png"
+                  alt="Featured UX/UI design project showcase - Mobile app designs"
                   className="w-full h-auto object-cover"
                   loading="eager"
                 />
@@ -207,8 +207,8 @@ const EnhancedHero: React.FC = () => {
                 
                 {/* Project Info Overlay */}
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-xl font-semibold mb-1">UX/UI Design Project</h3>
-                  <p className="text-sm opacity-90">User Research → Wireframes → Final Design</p>
+                  <h3 className="text-xl font-semibold mb-1">UX/UI Design Projects</h3>
+                  <p className="text-sm opacity-90">User Research → Wireframes → Interactive Prototypes</p>
                 </div>
               </div>
 
