@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, ExternalLink, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Download, ExternalLink, Figma, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -32,9 +32,9 @@ const EnhancedHero: React.FC = () => {
     }
   };
 
-  const technologies = [
-    "React", "TypeScript", "Node.js", "Python", "PostgreSQL", 
-    "AWS", "Docker", "Figma", "Next.js", "MongoDB"
+  const designSkills = [
+    "User Research", "Wireframing", "Prototyping", "Visual Design", "Figma", 
+    "React", "TypeScript", "Responsive Design", "Design Systems", "Usability Testing"
   ];
 
   return (
@@ -62,7 +62,7 @@ const EnhancedHero: React.FC = () => {
             >
               <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-3 py-1">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
-                Available for new projects
+                Available for design projects
               </Badge>
             </motion.div>
 
@@ -85,10 +85,10 @@ const EnhancedHero: React.FC = () => {
                 className="space-y-2"
               >
                 <h2 className="text-2xl sm:text-3xl font-semibold text-gray-700">
-                  Freelance Product Designer
+                  UX/UI Designer & Frontend Developer
                 </h2>
                 <p className="text-xl text-gray-600">
-                  Full Stack Developer & UX/UI Designer
+                  Creating User-Centered Digital Experiences
                 </p>
               </motion.div>
             </div>
@@ -100,25 +100,25 @@ const EnhancedHero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="text-lg text-gray-600 leading-relaxed max-w-xl"
             >
-              I help early-stage startups and teams create user-friendly digital experiences. 
-              Specializing in UX/UI design, design systems, MVP development, and comprehensive 
-              design audits to bring your ideas to life.
+              I help startups and teams design intuitive digital experiences through user research, 
+              wireframing, prototyping, and responsive frontend development. From concept to 
+              implementation, I bridge the gap between user needs and business goals.
             </motion.p>
 
-            {/* Technology Tags */}
+            {/* Design Skills Tags */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.9 }}
               className="flex flex-wrap gap-2 max-w-xl"
             >
-              {technologies.map((tech, index) => (
+              {designSkills.map((skill, index) => (
                 <Badge 
-                  key={tech} 
+                  key={skill} 
                   variant="secondary" 
                   className="bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
                 >
-                  {tech}
+                  {skill}
                 </Badge>
               ))}
             </motion.div>
@@ -135,7 +135,7 @@ const EnhancedHero: React.FC = () => {
                 onClick={scrollToProjects}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold"
               >
-                View My Work
+                View My Design Work
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
@@ -145,7 +145,7 @@ const EnhancedHero: React.FC = () => {
                 onClick={scrollToContact}
                 className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold"
               >
-                Get In Touch
+                Let's Collaborate
                 <Mail className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
@@ -168,12 +168,12 @@ const EnhancedHero: React.FC = () => {
                   <Linkedin className="h-5 w-5 text-gray-600" />
                 </a>
                 <a 
-                  href="https://github.com/hirambarsky" 
+                  href="https://figma.com/@hirambarsky" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                  className="p-2 bg-gray-100 hover:bg-purple-100 rounded-lg transition-colors"
                 >
-                  <Github className="h-5 w-5 text-gray-600" />
+                  <Figma className="h-5 w-5 text-gray-600" />
                 </a>
                 <a 
                   href="https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk"
@@ -199,7 +199,7 @@ const EnhancedHero: React.FC = () => {
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img
                   src="/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png"
-                  alt="Featured project showcase - Investor Loan App"
+                  alt="Featured UX/UI design project - Investor Loan App"
                   className="w-full h-auto object-cover"
                   loading="eager"
                 />
@@ -207,8 +207,8 @@ const EnhancedHero: React.FC = () => {
                 
                 {/* Project Info Overlay */}
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-xl font-semibold mb-1">Investor Loan App</h3>
-                  <p className="text-sm opacity-90">Financial Technology Platform</p>
+                  <h3 className="text-xl font-semibold mb-1">UX/UI Design Project</h3>
+                  <p className="text-sm opacity-90">User Research → Wireframes → Final Design</p>
                 </div>
               </div>
 
@@ -220,7 +220,7 @@ const EnhancedHero: React.FC = () => {
               >
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full" />
-                  <span className="text-sm font-medium">5+ Projects Completed</span>
+                  <span className="text-sm font-medium">7+ Design Projects</span>
                 </div>
               </motion.div>
 
@@ -230,8 +230,8 @@ const EnhancedHero: React.FC = () => {
                 className="absolute -bottom-4 -left-4 bg-blue-600 text-white rounded-xl p-4 shadow-lg"
               >
                 <div className="flex items-center space-x-2">
-                  <ExternalLink className="h-4 w-4" />
-                  <span className="text-sm font-medium">Live Projects</span>
+                  <Figma className="h-4 w-4" />
+                  <span className="text-sm font-medium">Interactive Prototypes</span>
                 </div>
               </motion.div>
             </div>

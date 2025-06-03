@@ -1,44 +1,44 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code, Palette, Database, Cloud, Smartphone, Globe } from "lucide-react";
+import { Users, Eye, PenTool, Palette, Monitor, Smartphone } from "lucide-react";
 
 const SkillsShowcase: React.FC = () => {
   const skillCategories = [
     {
-      icon: Palette,
-      title: "Design & UX",
-      skills: ["Figma", "Adobe XD", "User Research", "Prototyping", "Design Systems"],
+      icon: Eye,
+      title: "User Research",
+      skills: ["User Interviews", "Surveys & Analytics", "Persona Development", "Journey Mapping", "Competitive Analysis"],
       color: "from-purple-500 to-pink-500"
     },
     {
-      icon: Code,
-      title: "Frontend Development",
-      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Framer Motion"],
+      icon: PenTool,
+      title: "UX Design",
+      skills: ["Wireframing", "Information Architecture", "User Flows", "Prototyping", "Usability Testing"],
       color: "from-blue-500 to-cyan-500"
     },
     {
-      icon: Database,
-      title: "Backend Development",
-      skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "API Design"],
+      icon: Palette,
+      title: "UI Design",
+      skills: ["Visual Design", "Design Systems", "Branding", "Figma", "Adobe Creative Suite"],
       color: "from-green-500 to-emerald-500"
     },
     {
-      icon: Cloud,
-      title: "DevOps & Tools",
-      skills: ["AWS", "Docker", "Git", "CI/CD", "Vercel"],
+      icon: Monitor,
+      title: "Frontend Development",
+      skills: ["React", "TypeScript", "HTML5/CSS3", "Responsive Design", "Performance Optimization"],
       color: "from-orange-500 to-red-500"
     },
     {
       icon: Smartphone,
-      title: "Mobile Development",
-      skills: ["React Native", "Mobile UI", "App Store", "Cross-Platform"],
+      title: "Interaction Design",
+      skills: ["Micro-interactions", "Animation", "Mobile UX", "Touch Interfaces", "Accessibility (A11Y)"],
       color: "from-indigo-500 to-purple-500"
     },
     {
-      icon: Globe,
-      title: "Web Technologies",
-      skills: ["HTML5", "CSS3", "JavaScript", "RESTful APIs", "GraphQL"],
+      icon: Users,
+      title: "Collaboration",
+      skills: ["Design Handoff", "Stakeholder Communication", "Agile/Scrum", "Design Reviews", "Cross-functional Teams"],
       color: "from-teal-500 to-green-500"
     }
   ];
@@ -55,11 +55,11 @@ const SkillsShowcase: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Skills & Technologies
+            Design Skills & Process
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A comprehensive toolkit spanning design, development, and deployment. 
-            I leverage the latest technologies to build scalable, maintainable solutions.
+            From user research to frontend implementation, I bring a comprehensive 
+            approach to creating user-centered digital experiences that drive results.
           </p>
         </motion.div>
 
@@ -105,13 +105,13 @@ const SkillsShowcase: React.FC = () => {
                 {/* Proficiency Indicator */}
                 <div className="mt-6">
                   <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                    <span>Proficiency</span>
-                    <span>Expert</span>
+                    <span>Expertise Level</span>
+                    <span>Advanced</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <motion.div
                       initial={{ width: 0 }}
-                      whileInView={{ width: "90%" }}
+                      whileInView={{ width: "88%" }}
                       viewport={{ once: true }}
                       transition={{ duration: 1, delay: index * 0.1 }}
                       className={`h-2 rounded-full bg-gradient-to-r ${category.color}`}

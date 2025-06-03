@@ -1,15 +1,15 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Award, Users, Clock, Code } from "lucide-react";
+import { ArrowRight, Award, Users, Clock, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const AboutPreview: React.FC = () => {
   const stats = [
-    { icon: Code, label: "Projects Completed", value: "10+" },
+    { icon: Eye, label: "Design Projects", value: "7+" },
     { icon: Users, label: "Happy Clients", value: "8+" },
     { icon: Clock, label: "Years Experience", value: "5+" },
-    { icon: Award, label: "Technologies", value: "15+" },
+    { icon: Award, label: "Design Tools", value: "10+" },
   ];
 
   const scrollToAbout = () => {
@@ -34,22 +34,21 @@ const AboutPreview: React.FC = () => {
           >
             <div>
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-                About Me
+                About My Design Process
               </h2>
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  I'm a passionate full-stack developer and product designer based in New York, 
-                  specializing in creating digital experiences that make a real impact.
+                  I'm a UX/UI designer and frontend developer based in New York, 
+                  passionate about creating digital experiences that solve real user problems.
                 </p>
                 <p>
-                  With expertise spanning from user research and design systems to full-stack 
-                  development and deployment, I help startups and teams build products that 
-                  users love and businesses depend on.
+                  My approach combines user research, iterative design, and technical 
+                  implementation to deliver solutions that users love and businesses depend on. 
+                  From wireframes to working prototypes, I bridge the gap between design and development.
                 </p>
                 <p>
-                  My approach combines technical excellence with user-centered design, 
-                  ensuring every project not only functions flawlessly but delivers 
-                  exceptional user experiences.
+                  I specialize in user-centered design methodology, ensuring every interface 
+                  decision is backed by research insights and usability testing results.
                 </p>
               </div>
             </div>
@@ -59,7 +58,7 @@ const AboutPreview: React.FC = () => {
               size="lg"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold"
             >
-              Learn More About Me
+              Learn More About My Process
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </motion.div>
@@ -77,7 +76,7 @@ const AboutPreview: React.FC = () => {
               <div className="aspect-square w-80 mx-auto rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
-                  alt="Hiram Barsky - Product Designer"
+                  alt="Hiram Barsky - UX/UI Designer"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

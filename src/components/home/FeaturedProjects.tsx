@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, Figma } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,12 +25,12 @@ const FeaturedProjects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Featured Projects
+            Featured Design Projects
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Showcasing my latest work in product design, full-stack development, 
-            and user experience design. Each project represents a unique challenge 
-            and innovative solution.
+            Showcasing my latest work in UX/UI design, user research, and frontend 
+            development. Each project demonstrates a user-centered design approach 
+            from research to implementation.
           </p>
         </motion.div>
 
@@ -63,7 +63,7 @@ const FeaturedProjects: React.FC = () => {
                         to={`/project/${project.id}`}
                         className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors"
                       >
-                        View Details
+                        View Case Study
                       </Link>
                       {project.link && (
                         <a
@@ -72,7 +72,7 @@ const FeaturedProjects: React.FC = () => {
                           rel="noopener noreferrer"
                           className="bg-blue-600/90 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center"
                         >
-                          <ExternalLink className="h-4 w-4 mr-1" />
+                          <Figma className="h-4 w-4 mr-1" />
                           Live Demo
                         </a>
                       )}
@@ -91,7 +91,7 @@ const FeaturedProjects: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Technology Tags */}
+                  {/* Technology Tags - Focus on Design/UX */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.slice(0, 3).map((tag) => (
                       <Badge 
@@ -117,13 +117,13 @@ const FeaturedProjects: React.FC = () => {
                     <div className="flex items-center space-x-4 text-sm text-gray-500">
                       <span>2024</span>
                       <span>•</span>
-                      <span>Web App</span>
+                      <span>UX/UI Design</span>
                     </div>
                     <Link 
                       to={`/project/${project.id}`}
                       className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center group"
                     >
-                      Learn More
+                      View Case Study
                       <ArrowRight className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </div>
@@ -147,7 +147,7 @@ const FeaturedProjects: React.FC = () => {
               variant="outline"
               className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold"
             >
-              View All Projects
+              View All Design Projects
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
