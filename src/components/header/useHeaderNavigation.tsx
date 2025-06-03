@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -108,10 +109,12 @@ export const useHeaderNavigation = () => {
         return;
       }
       
-      // For homepage, use scroll-based logic
-      setIsScrolledPastHero(scrollPosition > heroHeight * 0.9);
+      // For homepage, show navigation only after scrolling past the name section
+      // This corresponds to roughly 50-60% of hero height where the name is positioned
+      const nameScrollThreshold = heroHeight * 0.6;
+      setIsScrolledPastHero(scrollPosition > nameScrollThreshold);
 
-      console.log('Scroll position:', scrollPosition, 'Hero height:', heroHeight, 'Threshold:', heroHeight * 0.9, 'Show logo:', scrollPosition > heroHeight * 0.9);
+      console.log('Scroll position:', scrollPosition, 'Hero height:', heroHeight, 'Name threshold:', nameScrollThreshold, 'Show nav:', scrollPosition > nameScrollThreshold);
 
       // Home section logic - set as active when near the top of the page
       if (location.pathname === '/' && scrollPosition < 200) {
