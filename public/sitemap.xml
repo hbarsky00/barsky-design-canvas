@@ -3,237 +3,171 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
         http://www.google.com/schemas/sitemap-image/1.1
         http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
-        
-  <!-- Homepage - Highest Priority for SEO -->
+
+  <!-- Homepage - Highest Priority -->
   <url>
-    <loc>https://hirambarsky.com/</loc>
-    <lastmod>2025-05-27</lastmod>
+    <loc>https://barskydesign.pro/</loc>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
-      <image:title>Hiram Barsky - Product Designer & Developer Portfolio</image:title>
-      <image:caption>Professional product design services including UX audits, MVP design, mobile/web app development, and design systems</image:caption>
+      <image:loc>https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png</image:loc>
+      <image:title>Hiram Barsky - UX/UI Designer & Frontend Developer</image:title>
+      <image:caption>Creating user-centered digital experiences through UX/UI design and frontend development</image:caption>
     </image:image>
   </url>
-  
-  <!-- Projects List Page - High Priority for Portfolio SEO -->
+
+  <!-- Main Navigation Pages -->
   <url>
-    <loc>https://hirambarsky.com/projects</loc>
-    <lastmod>2025-05-27</lastmod>
+    <loc>https://barskydesign.pro/projects</loc>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png</image:loc>
-      <image:title>Product Design Portfolio Projects by Hiram Barsky</image:title>
-      <image:caption>Featured portfolio showcasing rapid, high-quality product design and development projects across fintech, healthcare, and consumer apps</image:caption>
-    </image:image>
   </url>
-  
-  <!-- Services Page - High Priority for Business SEO -->
+
   <url>
-    <loc>https://hirambarsky.com/services</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
-      <image:title>Professional Product Design Services - Hiram Barsky</image:title>
-      <image:caption>UX audits, MVP design, mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting</image:caption>
-    </image:image>
-  </url>
-  
-  <!-- Service Category Pages - Important for Service-specific SEO -->
-  <url>
-    <loc>https://hirambarsky.com/design-services/ux-ui-design</loc>
-    <lastmod>2025-05-27</lastmod>
+    <loc>https://barskydesign.pro/services</loc>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
-      <image:title>UX/UI Design Services - Hiram Barsky</image:title>
-      <image:caption>Professional UX/UI design services including user research, wireframing, prototyping, and visual design systems</image:caption>
-    </image:image>
   </url>
+
   <url>
-    <loc>https://hirambarsky.com/design-services/web-development</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
-      <image:title>Web Development Services - Hiram Barsky</image:title>
-      <image:caption>Custom web development services using React, TypeScript, and modern frameworks for scalable applications</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://hirambarsky.com/design-services/mobile-app-design</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
-      <image:title>Mobile App Design Services - Hiram Barsky</image:title>
-      <image:caption>iOS and Android app design services including native and cross-platform mobile application development</image:caption>
-    </image:image>
-  </url>
-  
-  <!-- Store and Blog Pages -->
-  <url>
-    <loc>https://hirambarsky.com/store</loc>
-    <lastmod>2025-05-27</lastmod>
+    <loc>https://barskydesign.pro/store</loc>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
-      <image:title>Design Resources Store - Hiram Barsky</image:title>
-      <image:caption>Premium design templates, UI kits, and digital products for designers and developers</image:caption>
-    </image:image>
   </url>
-  
+
   <url>
-    <loc>https://hirambarsky.com/blog</loc>
-    <lastmod>2025-05-27</lastmod>
+    <loc>https://barskydesign.pro/blog</loc>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Design Services Pages -->
+  <url>
+    <loc>https://barskydesign.pro/design-services/ux-ui-design</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://barskydesign.pro/design-services/web-development</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://barskydesign.pro/design-services/mobile-app-design</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Featured Projects -->
+  <url>
+    <loc>https://barskydesign.pro/project/investor-loan-app</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9</image:loc>
-      <image:title>Product Design Blog - Hiram Barsky</image:title>
-      <image:caption>Insights on product design, UX strategy, and development best practices from industry experience</image:caption>
+      <image:loc>https://barskydesign.pro/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png</image:loc>
+      <image:title>Investor Loan App - Fintech Platform Design</image:title>
+      <image:caption>UX/UI design for financial platform managing investment deals and loan orders</image:caption>
     </image:image>
   </url>
-  
-  <!-- Blog Posts with Enhanced SEO -->
+
   <url>
-    <loc>https://hirambarsky.com/blog/built-product-without-real-data</loc>
-    <lastmod>2025-05-27</lastmod>
+    <loc>https://barskydesign.pro/project/splittime</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://barskydesign.pro/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png</image:loc>
+      <image:title>SplitTime - Co-Parenting App Design</image:title>
+      <image:caption>Mobile UX/UI design for separated parents coordinating childcare</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://barskydesign.pro/project/herbalink</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://barskydesign.pro/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png</image:loc>
+      <image:title>Herbalink - Healthcare Platform Design</image:title>
+      <image:caption>Healthcare platform UX/UI connecting patients with herbalists</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://barskydesign.pro/project/dae-search</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://barskydesign.pro/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png</image:loc>
+      <image:title>DAE Search - Data Asset Management Platform</image:title>
+      <image:caption>UX research and interface design for medical asset data access</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://barskydesign.pro/project/gold2crypto</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://barskydesign.pro/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png</image:loc>
+      <image:title>Gold2Crypto - Trading Platform Design</image:title>
+      <image:caption>Trading platform UI/UX bridging traditional investments with crypto</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://barskydesign.pro/project/barskyjoint</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://barskydesign.pro/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png</image:loc>
+      <image:title>Barsky Joint - Food Truck App Design</image:title>
+      <image:caption>Mobile ordering app UX/UI with location tracking and customization</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://barskydesign.pro/project/spectrum</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://barskydesign.pro/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png</image:loc>
+      <image:title>Spectrum Apparel - Inclusive Brand Design</image:title>
+      <image:caption>E-commerce accessibility-focused design for autism awareness apparel</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://barskydesign.pro/blog/built-product-without-real-data</loc>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png</image:loc>
-      <image:title>Building Products Without Real Data - Product Design Case Study</image:title>
-      <image:caption>Learn how to ship successful products using placeholder data and no marketing budget - practical product design insights and strategies</image:caption>
+      <image:loc>https://barskydesign.pro/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png</image:loc>
+      <image:title>Building Products Without Real Data - UX Case Study</image:title>
+      <image:caption>Product design insights and strategies for shipping successful products</image:caption>
     </image:image>
   </url>
-  
-  <!-- Individual Project Pages with Enhanced SEO and Analytics Tracking -->
-  <url>
-    <loc>https://hirambarsky.com/project/investor-loan-app</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png</image:loc>
-      <image:title>Investor Loan App - Fintech Platform Design Case Study</image:title>
-      <image:caption>Comprehensive fintech platform design for managing investment deals, loan orderbooks, and real-time financial data with advanced search and automation</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png</image:loc>
-      <image:title>Design Thinking Process for Financial Platform</image:title>
-      <image:caption>User-centered design process including empathy mapping, problem definition, ideation, prototyping, and testing for fintech solutions</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://hirambarsky.com/project/dae-search</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png</image:loc>
-      <image:title>DAE Search - Data Asset Management Platform Design</image:title>
-      <image:caption>Enterprise data catalog interface design for efficient medical data asset discovery and management with advanced filtering capabilities</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png</image:loc>
-      <image:title>Digital Asset Explorer Interface Design</image:title>
-      <image:caption>Clean, user-friendly interface for browsing and searching medical data assets with improved navigation and search functionality</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://hirambarsky.com/project/splittime</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/84649878-fe81-4d9a-8e4f-59dd99ab25f5.png</image:loc>
-      <image:title>SplitTime - Co-Parenting App Design Case Study</image:title>
-      <image:caption>MVP design and development for separated parents to manage schedules, communication, and co-parenting coordination</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/cb589912-0dc5-44e5-bd32-f5d177296cc3.png</image:loc>
-      <image:title>Co-Parenting App Impact Metrics</image:title>
-      <image:caption>Demonstrated 60% reduction in court visits and $25K annual savings through improved co-parent communication and scheduling</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://hirambarsky.com/project/herbalink</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png</image:loc>
-      <image:title>Herbalink - Healthcare Platform Mobile App Design</image:title>
-      <image:caption>Mobile application design connecting patients with herbal medicine practitioners for virtual consultations and wellness tracking</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png</image:loc>
-      <image:title>Healthcare App User Journey Mapping</image:title>
-      <image:caption>Comprehensive user journey mapping and persona development for healthcare application design process</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://hirambarsky.com/project/gold2crypto</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png</image:loc>
-      <image:title>Gold2Crypto - Trading Platform Interface Design</image:title>
-      <image:caption>Web application design bridging traditional gold investments with cryptocurrency trading for modern investors</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://hirambarsky.com/project/barskyjoint</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png</image:loc>
-      <image:title>Barsky Joint - Food Truck Mobile App Design</image:title>
-      <image:caption>Mobile ordering application design for gourmet food truck business with customizable menu and order tracking</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png</image:loc>
-      <image:title>Food Truck App Testing Results</image:title>
-      <image:caption>User testing results showing 60% faster ordering and 90% usability score for mobile food ordering experience</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://hirambarsky.com/project/spectrum</loc>
-    <lastmod>2025-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png</image:loc>
-      <image:title>Spectrum Apparel - Inclusive Brand Design</image:title>
-      <image:caption>Inclusive clothing brand design focused on autism awareness and acceptance with custom shirt designer functionality</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hirambarsky.com/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png</image:loc>
-      <image:title>Accessibility Testing for Inclusive Design</image:title>
-      <image:caption>User accessibility testing process ensuring inclusive design practices for autism awareness clothing brand</image:caption>
-    </image:image>
-  </url>
+
 </urlset>
