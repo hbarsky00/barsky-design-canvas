@@ -6,7 +6,7 @@ import { projectsData } from "@/data/projects/projectsList";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ProjectDetailLoading from "@/components/project/ProjectDetailLoading";
 import ProjectDetailSeo from "@/components/project/ProjectDetailSeo";
-import ProjectDetailContent from "@/components/project/ProjectDetailContent";
+import EnhancedProjectDetail from "@/components/project/EnhancedProjectDetail";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
 import { investorLoanImageCaptions } from "@/data/investorLoanData";
 
@@ -22,7 +22,6 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
   },
   "dae-search": {
     "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "Data catalog interface",
-    "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png": "Old filtering interface",
     "/lovable-uploads/78d6fb56-e0b4-4632-a262-deba85415e1d.png": "Search process flow",
     "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png": "Design system guide",
     "/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png": "Final explorer interface",
@@ -124,7 +123,7 @@ const ProjectDetail: React.FC = () => {
         
         <Header />
         <main className="flex-grow pt-20">
-          <ProjectDetailContent 
+          <EnhancedProjectDetail 
             project={project}
             details={details}
             projectId={projectId || ""}
