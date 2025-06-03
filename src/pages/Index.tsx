@@ -27,28 +27,28 @@ const Index = () => {
     }
     
     // Track homepage view with additional details
-    trackPageView('/', 'Homepage - Hiram Barsky Product Design Services');
+    trackPageView('/', 'Homepage - Hiram Barsky UX/UI Designer & Frontend Developer');
   }, [location.state]);
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Helmet>
-        <title>Hiram Barsky | Rapid, High-Quality Product Design Services | UX Audits, MVP Design, Design Systems</title>
-        <meta name="description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting. Professional Product Designer & Developer based in New York." />
-        <meta name="keywords" content="Hiram Barsky, design, Product Design Services, UX Audits, MVP Design, Mobile App Design, Web App Design, Design Systems, Figma Design, Developer-ready UI Files, UX Strategy Consulting, Rapid Design Services, High-Quality Design, Product Designer New York, UX/UI Designer, Professional Design Services" />
+        <title>Hiram Barsky - UX/UI Designer & Frontend Developer | User-Centered Digital Experiences</title>
+        <meta name="description" content="Hiram Barsky is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development." />
+        <meta name="keywords" content="Hiram Barsky, UX/UI Designer, Frontend Developer, User Research, Wireframing, Prototyping, Visual Design, Figma, React, TypeScript, Responsive Design, Design Systems, Usability Testing" />
         <meta name="author" content="Hiram Barsky" />
-        <meta property="og:title" content="Hiram Barsky | Rapid, High-Quality Product Design Services" />
-        <meta property="og:description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting." />
-        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
-        <meta property="og:url" content="https://hirambarsky.com/" />
+        <meta property="og:title" content="Hiram Barsky - UX/UI Designer & Frontend Developer" />
+        <meta property="og:description" content="Creating User-Centered Digital Experiences through user research, wireframing, prototyping, and responsive frontend development." />
+        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta property="og:url" content="https://barskydesign.pro/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Hiram Barsky - Product Design Services" />
+        <meta property="og:site_name" content="Hiram Barsky - UX/UI Designer & Frontend Developer" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content="Hiram Barsky | Rapid, High-Quality Product Design Services" />
-        <meta name="twitter:description" content="Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting." />
-        <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
-        <link rel="canonical" href="https://hirambarsky.com/" />
+        <meta name="twitter:title" content="Hiram Barsky - UX/UI Designer & Frontend Developer" />
+        <meta name="twitter:description" content="Creating User-Centered Digital Experiences through user research, wireframing, prototyping, and responsive frontend development." />
+        <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <link rel="canonical" href="https://barskydesign.pro/" />
         
         {/* Enhanced structured data */}
         <script type="application/ld+json">
@@ -59,12 +59,12 @@ const Index = () => {
               "name": "Hiram Barsky",
               "givenName": "Hiram",
               "familyName": "Barsky",
-              "alternateName": ["Hiram Barsky Product Design", "Hiram Barsky UX Designer", "Hiram Barsky Design Services"],
-              "description": "Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting. Professional Product Designer & Developer based in New York.",
-              "jobTitle": "Product Designer & Developer",
-              "image": "https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
-              "url": "https://hirambarsky.com",
-              "mainEntityOfPage": "https://hirambarsky.com",
+              "alternateName": ["Hiram Barsky UX Designer", "Hiram Barsky Frontend Developer", "Hiram Barsky Designer"],
+              "description": "Hiram Barsky is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
+              "jobTitle": "UX/UI Designer & Frontend Developer",
+              "image": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+              "url": "https://barskydesign.pro",
+              "mainEntityOfPage": "https://barskydesign.pro",
               "telephone": "+1-201-668-4754",
               "email": "hello@hirambarsky.com",
               "address": {
@@ -97,24 +97,26 @@ const Index = () => {
               ],
               "priceRange": "$$",
               "knowsAbout": [
-                "UX Audits",
-                "MVP Design",
-                "Mobile App Design",
-                "Web App Design", 
+                "User Research",
+                "Wireframing",
+                "Prototyping",
+                "Visual Design",
+                "Figma",
+                "React",
+                "TypeScript",
+                "Responsive Design",
                 "Design Systems",
-                "Figma Design",
-                "Developer-ready UI Files",
-                "UX Strategy Consulting"
+                "Usability Testing"
               ],
               "hasCredential": {
                 "@type": "EducationalOccupationalCredential",
-                "name": "Professional Product Designer & Developer",
-                "description": "Hiram Barsky specializes in rapid, high-quality product design services with expertise in UX audits and strategy consulting"
+                "name": "UX/UI Designer & Frontend Developer",
+                "description": "Hiram Barsky specializes in creating user-centered digital experiences through comprehensive design and development expertise"
               },
               "worksFor": {
                 "@type": "Organization",
-                "name": "Hiram Barsky Product Design Services",
-                "url": "https://hirambarsky.com",
+                "name": "Hiram Barsky Design Services",
+                "url": "https://barskydesign.pro",
                 "founder": {
                   "@type": "Person",
                   "name": "Hiram Barsky"
@@ -125,8 +127,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "UX Audits",
-                    "description": "Comprehensive UX audits to identify usability issues and optimization opportunities by Hiram Barsky.",
+                    "name": "User Research",
+                    "description": "Comprehensive user research to understand user needs and behaviors by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -137,8 +139,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "MVP & Mobile/Web App Design",
-                    "description": "Complete MVP and application design for mobile and web platforms by Hiram Barsky.",
+                    "name": "Wireframing & Prototyping",
+                    "description": "Strategic wireframing and interactive prototyping for optimal user experience by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -149,8 +151,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Design Systems in Figma",
-                    "description": "Comprehensive design systems and component libraries in Figma by Hiram Barsky.",
+                    "name": "Visual Design & Design Systems",
+                    "description": "Beautiful visual design and scalable design systems by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -161,8 +163,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Developer-ready UI Files",
-                    "description": "Production-ready UI files optimized for developer handoff by Hiram Barsky.",
+                    "name": "React Development",
+                    "description": "Modern React applications with TypeScript by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -173,8 +175,8 @@ const Index = () => {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "UX Strategy Consulting",
-                    "description": "Strategic UX consulting to align design decisions with business goals by Hiram Barsky.",
+                    "name": "Responsive Design Implementation",
+                    "description": "Mobile-first responsive web development by Hiram Barsky.",
                     "provider": {
                       "@type": "Person",
                       "name": "Hiram Barsky"
@@ -184,9 +186,9 @@ const Index = () => {
               ],
               "owns": {
                 "@type": "WebSite",
-                "name": "Hiram Barsky Product Design Services",
-                "url": "https://hirambarsky.com",
-                "about": "Professional product design services including UX audits, MVP design, and consulting"
+                "name": "Hiram Barsky Design Services",
+                "url": "https://barskydesign.pro",
+                "about": "UX/UI design and frontend development services"
               }
             }
           `}
@@ -198,10 +200,10 @@ const Index = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Hiram Barsky - Product Design Services",
+              "name": "Hiram Barsky - UX/UI Designer & Frontend Developer",
               "alternateName": "Hiram Barsky Designer Portfolio",
-              "url": "https://hirambarsky.com",
-              "description": "Hiram Barsky provides rapid, high-quality product design services including UX audits, MVP & mobile/web app design, design systems in Figma, developer-ready UI files, and UX strategy consulting.",
+              "url": "https://barskydesign.pro",
+              "description": "Hiram Barsky is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
               "author": {
                 "@type": "Person",
                 "name": "Hiram Barsky",
@@ -226,7 +228,7 @@ const Index = () => {
               },
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://hirambarsky.com/search?q={search_term_string}",
+                "target": "https://barskydesign.pro/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             }
