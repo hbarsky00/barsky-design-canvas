@@ -63,10 +63,11 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
       {/* Main Content Sections */}
       <div className="case-study-container space-y-16 py-16">
         
-        {/* Challenge & Solution Overview */}
+        {/* Challenge & Solution Overview with Images */}
         <ChallengeSolutionSection
           challenge={details.challenge}
           result={details.result}
+          projectId={projectId}
         />
 
         {/* Process Timeline */}

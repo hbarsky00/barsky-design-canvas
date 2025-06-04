@@ -1,19 +1,40 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { generateProjectImages } from "@/utils/projectImageGenerator";
 
 interface ChallengeSolutionSectionProps {
   challenge: string;
   result: string;
+  projectId: string;
 }
 
 const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
   challenge,
-  result
+  result,
+  projectId
 }) => {
+  const { challengeImage, solutionImage } = generateProjectImages(projectId);
+
   return (
     <section className="case-study-section">
+      {/* Challenge Image - Above Challenge Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mb-8"
+      >
+        <img
+          src={challengeImage}
+          alt="Challenge illustration"
+          className="w-full max-w-4xl mx-auto h-64 object-cover rounded-lg shadow-lg"
+        />
+      </motion.div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Challenge Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -27,6 +48,7 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
           </p>
         </motion.div>
         
+        {/* Solution Section with integrated image */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,6 +57,16 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
           className="process-card"
         >
           <h2 className="text-heading-2 text-navy-primary mb-6">The Solution</h2>
+          
+          {/* Solution Image - Integrated within solution section */}
+          <div className="mb-6">
+            <img
+              src={solutionImage}
+              alt="Solution illustration"
+              className="w-full h-48 object-cover rounded-lg shadow-md"
+            />
+          </div>
+          
           <p className="text-body text-neutral-500 leading-relaxed">
             {result}
           </p>
