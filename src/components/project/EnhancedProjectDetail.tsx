@@ -13,7 +13,6 @@ import TechnicalImplementationSection from "./enhanced/TechnicalImplementationSe
 import { organizeProjectImages } from "./enhanced/ImageOrganizer";
 import { generateProcessSteps } from "./enhanced/ProcessStepsGenerator";
 import { generateKeyMetrics } from "./enhanced/KeyMetricsGenerator";
-import { generateChallengeImages, generateSolutionImages } from "./enhanced/ProjectImageGenerator";
 
 interface EnhancedProjectDetailProps {
   project: ProjectProps;
@@ -42,10 +41,6 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
   const keyMetrics = generateKeyMetrics();
   const processSteps = generateProcessSteps({ details });
 
-  // Generate contextual images for challenge and solution sections
-  const challengeImages = generateChallengeImages(projectId);
-  const solutionImages = generateSolutionImages(projectId);
-
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -72,8 +67,6 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
         <ChallengeSolutionSection
           challenge={details.challenge}
           result={details.result}
-          challengeImages={challengeImages}
-          solutionImages={solutionImages}
         />
 
         {/* Process Timeline */}
