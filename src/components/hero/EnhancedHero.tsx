@@ -66,6 +66,21 @@ const EnhancedHero: React.FC = () => {
               </Badge>
             </motion.div>
 
+            {/* Logo above name */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="flex justify-center md:justify-start"
+            >
+              <img
+                src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
+                alt="Barsky Design Logo"
+                className="h-16 w-16 md:h-20 md:w-20 object-contain"
+                loading="eager"
+              />
+            </motion.div>
+
             {/* Main Heading */}
             <div className="space-y-4">
               <motion.h1
@@ -231,7 +246,7 @@ const EnhancedHero: React.FC = () => {
               >
                 <div className="flex items-center space-x-2">
                   <Figma className="h-4 w-4" />
-                  <span className="text-sm font-medium">Interactive Prototypes</span>
+                  <span className="text-sm font-medium">Live Web Apps</span>
                 </div>
               </motion.div>
             </div>
