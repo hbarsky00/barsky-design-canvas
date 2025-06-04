@@ -8,7 +8,7 @@ const AboutPreview: React.FC = () => {
   const stats = [
     { icon: Eye, label: "Design Projects", value: "7+" },
     { icon: Users, label: "Happy Clients", value: "8+" },
-    { icon: Clock, label: "Years Experience", value: "12+" },
+    { icon: Clock, label: "Years Experience", value: "5+" },
     { icon: Award, label: "Design Tools", value: "10+" },
   ];
 
@@ -84,7 +84,7 @@ const AboutPreview: React.FC = () => {
               {/* Floating Accent */}
               <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white rounded-xl p-4 shadow-lg">
                 <div className="text-center">
-                  <div className="text-2xl font-bold">12+</div>
+                  <div className="text-2xl font-bold">5+</div>
                   <div className="text-sm">Years</div>
                 </div>
               </div>
