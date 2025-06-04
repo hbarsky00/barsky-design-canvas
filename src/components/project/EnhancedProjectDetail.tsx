@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -7,6 +8,11 @@ import InteractiveImageGallery from "./enhanced/InteractiveImageGallery";
 import BeforeAfterComparison from "./enhanced/BeforeAfterComparison";
 import ProcessTimeline from "./enhanced/ProcessTimeline";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import ChallengeSolutionSection from "./enhanced/ChallengeSolutionSection";
+import TechnicalImplementationSection from "./enhanced/TechnicalImplementationSection";
+import { organizeProjectImages } from "./enhanced/ImageOrganizer";
+import { generateProcessSteps } from "./enhanced/ProcessStepsGenerator";
+import { generateKeyMetrics } from "./enhanced/KeyMetricsGenerator";
 
 interface EnhancedProjectDetailProps {
   project: ProjectProps;
@@ -29,58 +35,11 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
 }) => {
   
   // Organize images by category for better structure
-  const organizedImages = {
-    hero: project.image,
-    gallery: [
-      ...(details.challengeGalleryImages || []),
-      ...(details.resultGalleryImages || []),
-      ...(details.galleryImages || []),
-      ...(details.extraImages || [])
-    ].filter(Boolean),
-    process: [
-      ...(details.processImage ? [details.processImage] : []),
-      ...(details.processBottomImage ? [details.processBottomImage] : []),
-      ...(details.challengeImage ? [details.challengeImage] : []),
-      ...(details.challengeBottomImage ? [details.challengeBottomImage] : [])
-    ].filter(Boolean),
-    technical: [
-      ...(details.servicesGalleryImages || [])
-    ].filter(Boolean)
-  };
+  const organizedImages = organizeProjectImages({ project, details });
 
-  // Sample key metrics - you can customize these based on project data
-  const keyMetrics = [
-    { value: "2x", label: "User Engagement" },
-    { value: "45%", label: "Task Completion" },
-    { value: "95%", label: "User Satisfaction" },
-    { value: "30%", label: "Time Saved" }
-  ];
-
-  // Sample process steps - customize based on actual project process
-  const processSteps = [
-    {
-      title: "Research & Discovery",
-      description: "Conducted user interviews, surveys, and competitive analysis to understand user needs and pain points.",
-      image: details.processImage,
-      completed: true
-    },
-    {
-      title: "Ideation & Strategy",
-      description: "Brainstormed solutions, created user personas, and defined the design strategy and goals.",
-      completed: true
-    },
-    {
-      title: "Design & Prototyping",
-      description: "Developed wireframes, created high-fidelity designs, and built interactive prototypes for testing.",
-      image: details.processBottomImage,
-      completed: true
-    },
-    {
-      title: "Testing & Iteration",
-      description: "Conducted usability testing, gathered feedback, and iterated on the design based on user insights.",
-      completed: true
-    }
-  ];
+  // Generate key metrics and process steps
+  const keyMetrics = generateKeyMetrics();
+  const processSteps = generateProcessSteps({ details });
 
   return (
     <motion.div 
@@ -105,35 +64,10 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
       <div className="case-study-container space-y-16 py-16">
         
         {/* Challenge & Solution Overview */}
-        <section className="case-study-section">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="process-card"
-            >
-              <h2 className="text-heading-2 text-navy-primary mb-6">The Challenge</h2>
-              <p className="text-body text-neutral-500 leading-relaxed">
-                {details.challenge}
-              </p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="process-card"
-            >
-              <h2 className="text-heading-2 text-navy-primary mb-6">The Solution</h2>
-              <p className="text-body text-neutral-500 leading-relaxed">
-                {details.result}
-              </p>
-            </motion.div>
-          </div>
-        </section>
+        <ChallengeSolutionSection
+          challenge={details.challenge}
+          result={details.result}
+        />
 
         {/* Process Timeline */}
         <section className="case-study-section">
@@ -165,31 +99,11 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
         )}
 
         {/* Technical Implementation */}
-        {organizedImages.technical.length > 0 && (
-          <section className="case-study-section">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="process-card"
-            >
-              <h2 className="text-heading-2 text-navy-primary mb-6">Technical Implementation</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                {details.technologies.map((tech) => (
-                  <div key={tech} className="text-center p-3 bg-neutral-100 rounded-lg">
-                    <span className="text-sm font-medium text-navy-primary">{tech}</span>
-                  </div>
-                ))}
-              </div>
-              <InteractiveImageGallery
-                images={organizedImages.technical}
-                captions={imageCaptions}
-                columns={2}
-              />
-            </motion.div>
-          </section>
-        )}
+        <TechnicalImplementationSection
+          technologies={details.technologies}
+          technicalImages={organizedImages.technical}
+          imageCaptions={imageCaptions}
+        />
 
         {/* Project Navigation */}
         <section className="case-study-section">
