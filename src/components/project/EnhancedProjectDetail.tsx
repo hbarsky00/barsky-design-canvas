@@ -3,10 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
-import EnhancedProjectHeader from "./enhanced/EnhancedProjectHeader";
-import ProjectImageGallery from "./enhanced/ProjectImageGallery";
-import ProjectProcessSection from "./enhanced/ProjectProcessSection";
-import ProjectTechnicalSection from "./enhanced/ProjectTechnicalSection";
+import CaseStudyHero from "./enhanced/CaseStudyHero";
+import InteractiveImageGallery from "./enhanced/InteractiveImageGallery";
+import BeforeAfterComparison from "./enhanced/BeforeAfterComparison";
+import ProcessTimeline from "./enhanced/ProcessTimeline";
 import ProjectNavigation from "@/components/ProjectNavigation";
 
 interface EnhancedProjectDetailProps {
@@ -49,119 +49,156 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
     ].filter(Boolean)
   };
 
+  // Sample key metrics - you can customize these based on project data
+  const keyMetrics = [
+    { value: "2x", label: "User Engagement" },
+    { value: "45%", label: "Task Completion" },
+    { value: "95%", label: "User Satisfaction" },
+    { value: "30%", label: "Time Saved" }
+  ];
+
+  // Sample process steps - customize based on actual project process
+  const processSteps = [
+    {
+      title: "Research & Discovery",
+      description: "Conducted user interviews, surveys, and competitive analysis to understand user needs and pain points.",
+      image: details.processImage,
+      completed: true
+    },
+    {
+      title: "Ideation & Strategy",
+      description: "Brainstormed solutions, created user personas, and defined the design strategy and goals.",
+      completed: true
+    },
+    {
+      title: "Design & Prototyping",
+      description: "Developed wireframes, created high-fidelity designs, and built interactive prototypes for testing.",
+      image: details.processBottomImage,
+      completed: true
+    },
+    {
+      title: "Testing & Iteration",
+      description: "Conducted usability testing, gathered feedback, and iterated on the design based on user insights.",
+      completed: true
+    }
+  ];
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-neutral-50"
     >
       {/* Enhanced Hero Section */}
-      <EnhancedProjectHeader
-        project={project}
-        details={details}
-        imageCaptions={imageCaptions}
+      <CaseStudyHero
+        title={project.title}
+        description={project.description}
+        heroImage={project.image}
+        tags={project.tags}
+        duration={details.duration}
+        role={details.role}
+        client={details.client}
+        keyMetrics={keyMetrics}
       />
 
-      {/* Main Content Container */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      {/* Main Content Sections */}
+      <div className="case-study-container space-y-16 py-16">
         
-        {/* Project Overview Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-          <div className="lg:col-span-2">
+        {/* Challenge & Solution Overview */}
+        <section className="case-study-section">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="prose prose-lg max-w-none"
+              className="process-card"
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Project Overview</h2>
-              <div className="bg-white rounded-lg p-8 shadow-sm">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">The Challenge</h3>
-                <p className="text-gray-600 mb-6">{details.challenge}</p>
-                
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">The Solution</h3>
-                <p className="text-gray-600 mb-6">{details.result}</p>
-              </div>
+              <h2 className="text-heading-2 text-navy-primary mb-6">The Challenge</h2>
+              <p className="text-body text-neutral-500 leading-relaxed">
+                {details.challenge}
+              </p>
             </motion.div>
-          </div>
-          
-          {/* Project Metadata Sidebar */}
-          <div className="lg:col-span-1">
+            
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-lg p-6 shadow-sm sticky top-8"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="process-card"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Project Details</h3>
-              <div className="space-y-4">
-                <div>
-                  <span className="text-sm font-medium text-gray-500">Duration</span>
-                  <p className="text-gray-900">{details.duration}</p>
-                </div>
-                <div>
-                  <span className="text-sm font-medium text-gray-500">Client</span>
-                  <p className="text-gray-900">{details.client}</p>
-                </div>
-                <div>
-                  <span className="text-sm font-medium text-gray-500">Role</span>
-                  <p className="text-gray-900">{details.role}</p>
-                </div>
-                <div>
-                  <span className="text-sm font-medium text-gray-500">Technologies</span>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {details.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <h2 className="text-heading-2 text-navy-primary mb-6">The Solution</h2>
+              <p className="text-body text-neutral-500 leading-relaxed">
+                {details.result}
+              </p>
             </motion.div>
           </div>
-        </div>
+        </section>
 
-        {/* Image Gallery Section */}
+        {/* Process Timeline */}
+        <section className="case-study-section">
+          <ProcessTimeline steps={processSteps} />
+        </section>
+
+        {/* Image Gallery */}
         {organizedImages.gallery.length > 0 && (
-          <ProjectImageGallery
-            images={organizedImages.gallery}
-            imageCaptions={imageCaptions}
-            title="Project Gallery"
-          />
+          <section className="case-study-section">
+            <InteractiveImageGallery
+              images={organizedImages.gallery}
+              imageCaptions={imageCaptions}
+              title="Project Gallery"
+              columns={3}
+            />
+          </section>
         )}
 
-        {/* Process Documentation */}
-        {organizedImages.process.length > 0 && (
-          <ProjectProcessSection
-            images={organizedImages.process}
-            processDescription={details.process}
-            imageCaptions={imageCaptions}
-          />
+        {/* Before/After Comparison (if applicable) */}
+        {details.challengeImage && details.resultImage && (
+          <section className="case-study-section">
+            <BeforeAfterComparison
+              beforeImage={details.challengeImage}
+              afterImage={details.resultImage}
+              title="Design Evolution"
+              description="See how the design evolved from initial concept to final solution"
+            />
+          </section>
         )}
 
         {/* Technical Implementation */}
         {organizedImages.technical.length > 0 && (
-          <ProjectTechnicalSection
-            images={organizedImages.technical}
-            imageCaptions={imageCaptions}
-            projectLink={details.projectLink}
-          />
+          <section className="case-study-section">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="process-card"
+            >
+              <h2 className="text-heading-2 text-navy-primary mb-6">Technical Implementation</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                {details.technologies.map((tech) => (
+                  <div key={tech} className="text-center p-3 bg-neutral-100 rounded-lg">
+                    <span className="text-sm font-medium text-navy-primary">{tech}</span>
+                  </div>
+                ))}
+              </div>
+              <InteractiveImageGallery
+                images={organizedImages.technical}
+                imageCaptions={imageCaptions}
+                columns={2}
+              />
+            </motion.div>
+          </section>
         )}
 
         {/* Project Navigation */}
-        <div className="mt-16">
+        <section className="case-study-section">
           <ProjectNavigation
             currentProjectId={projectId}
             projectsData={projectsData}
           />
-        </div>
+        </section>
       </div>
     </motion.div>
   );

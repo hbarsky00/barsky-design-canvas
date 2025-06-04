@@ -45,6 +45,18 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Modern Design System Colors */
+    --navy-primary: 210 65% 15%;
+    --navy-secondary: 220 39% 11%;
+    --blue-accent: 231 48% 48%;
+    --blue-vibrant: 217 91% 60%;
+    --success-green: 142 76% 36%;
+    --neutral-50: 210 40% 98%;
+    --neutral-100: 210 40% 96%;
+    --neutral-200: 214 32% 91%;
+    --neutral-500: 215 16% 47%;
+    --neutral-900: 222 84% 5%;
   }
 
   .dark {
@@ -106,12 +118,12 @@
   }
   
   .section-title {
-    @apply text-4xl sm:text-5xl font-bold mb-12 relative inline-block dark:text-white;
+    @apply text-4xl sm:text-5xl font-bold mb-12 relative inline-block text-[hsl(var(--navy-primary))];
   }
   
   .section-title::after {
     content: '';
-    @apply absolute -bottom-3 left-0 w-1/4 h-1 bg-barsky-blue rounded-full;
+    @apply absolute -bottom-3 left-0 w-1/4 h-1 bg-[hsl(var(--blue-vibrant))] rounded-full;
   }
   
   .text-reveal-container {
@@ -124,12 +136,12 @@
   }
   
   .nav-link {
-    @apply relative text-barsky-text hover:text-barsky-blue transition-colors duration-300 dark:text-gray-300 dark:hover:text-white;
+    @apply relative text-[hsl(var(--neutral-500))] hover:text-[hsl(var(--blue-accent))] transition-colors duration-300;
   }
   
   .nav-link::after {
     content: '';
-    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-barsky-blue transition-all duration-300 ease-in-out;
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out;
   }
   
   .nav-link:hover::after {
@@ -137,7 +149,7 @@
   }
   
   .nav-link.active {
-    @apply text-barsky-blue dark:text-white;
+    @apply text-[hsl(var(--blue-accent))];
   }
   
   .nav-link.active::after {
@@ -145,14 +157,80 @@
   }
   
   .btn-primary {
-    @apply bg-barsky-blue hover:bg-barsky-blue-dark text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300 inline-block;
+    @apply bg-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-accent))] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 inline-block shadow-lg;
   }
   
   .btn-outline {
-    @apply border-2 border-barsky-blue text-barsky-blue hover:bg-barsky-blue hover:text-white font-semibold py-3 px-6 rounded-md transition-colors duration-300 inline-block dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-gray-900;
+    @apply border-2 border-[hsl(var(--blue-vibrant))] text-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-vibrant))] hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 inline-block;
   }
 
   .color-swatch {
     @apply h-24 rounded-md shadow-md transition-all duration-300 hover:scale-105 cursor-pointer;
   }
+
+  /* Case Study Layout Components */
+  .case-study-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .case-study-hero {
+    @apply bg-gradient-to-br from-[hsl(var(--neutral-50))] to-white py-16 border-b border-[hsl(var(--neutral-200))];
+  }
+
+  .case-study-section {
+    @apply py-12 border-b border-[hsl(var(--neutral-100))] last:border-b-0;
+  }
+
+  .process-card {
+    @apply bg-white rounded-xl border border-[hsl(var(--neutral-200))] p-6 shadow-sm hover:shadow-lg transition-all duration-300;
+  }
+
+  .metric-card {
+    @apply bg-white rounded-lg p-6 text-center shadow-sm border border-[hsl(var(--neutral-200))];
+  }
+
+  .metric-number {
+    @apply text-3xl font-bold text-[hsl(var(--success-green))] mb-2;
+  }
+
+  .metric-label {
+    @apply text-sm text-[hsl(var(--neutral-500))] uppercase tracking-wide;
+  }
+
+  .image-gallery-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .gallery-image {
+    @apply rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden;
+  }
+
+  .before-after-container {
+    @apply relative bg-white rounded-xl p-6 shadow-sm border border-[hsl(var(--neutral-200))];
+  }
+}
+
+/* Typography Scale */
+.text-display {
+  @apply text-5xl sm:text-6xl font-bold leading-tight;
+}
+
+.text-heading-1 {
+  @apply text-4xl sm:text-5xl font-bold leading-tight;
+}
+
+.text-heading-2 {
+  @apply text-2xl sm:text-3xl font-semibold leading-tight;
+}
+
+.text-heading-3 {
+  @apply text-xl sm:text-2xl font-semibold leading-tight;
+}
+
+.text-body-large {
+  @apply text-lg leading-relaxed;
+}
+
+.text-body {
+  @apply text-base leading-relaxed;
 }
