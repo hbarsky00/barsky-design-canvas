@@ -59,7 +59,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ isVisible }) => {
           className="flex flex-col gap-6"
         >
           <div className="w-full flex justify-center lg:justify-start">
-            <div className="w-full max-w-xs lg:max-w-sm rounded-full overflow-hidden shadow-lg">
+            <div className="w-1/2 max-w-xs lg:w-full lg:max-w-sm rounded-full overflow-hidden shadow-lg">
               <img
                 src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
                 alt="Barsky Design Logo"
