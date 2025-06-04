@@ -77,7 +77,7 @@ const EnhancedHero: React.FC = () => {
                 <img
                   src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
                   alt="Barsky Design Logo"
-                  className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 object-contain flex-shrink-0 rounded-[30px]"
+                  className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 object-contain flex-shrink-0 rounded-[60px]"
                   loading="eager"
                 />
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
