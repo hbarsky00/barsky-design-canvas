@@ -66,32 +66,25 @@ const EnhancedHero: React.FC = () => {
               </Badge>
             </motion.div>
 
-            {/* Logo above name */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="flex justify-center md:justify-start"
-            >
-              <img
-                src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
-                alt="Barsky Design Logo"
-                className="h-16 w-16 md:h-20 md:w-20 object-contain"
-                loading="eager"
-              />
-            </motion.div>
-
-            {/* Main Heading */}
+            {/* Main Heading with Logo */}
             <div className="space-y-4">
-              <motion.h1
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight"
+                className="flex items-center gap-6"
               >
-                Hiram
-                <span className="block text-blue-600">Barsky</span>
-              </motion.h1>
+                <img
+                  src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
+                  alt="Barsky Design Logo"
+                  className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 object-contain flex-shrink-0"
+                  loading="eager"
+                />
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+                  Hiram
+                  <span className="block text-blue-600">Barsky</span>
+                </h1>
+              </motion.div>
               
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
