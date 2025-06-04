@@ -74,11 +74,11 @@ const EnhancedHero: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="flex items-center gap-6"
               >
-                <div className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 rounded-full overflow-hidden bg-white shadow-lg flex-shrink-0 p-2">
+                <div className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 rounded-full overflow-hidden shadow-lg flex-shrink-0">
                   <img
                     src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
                     alt="Barsky Design Logo"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     loading="eager"
                   />
                 </div>
