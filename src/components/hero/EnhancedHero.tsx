@@ -168,7 +168,7 @@ const EnhancedHero: React.FC = () => {
               <span className="text-sm text-gray-500">Connect with me:</span>
               <div className="flex space-x-3">
                 <a 
-                  href="https://linkedin.com/in/hirambarsky" 
+                  href="https://www.linkedin.com/in/hiram-barsky" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="p-2 bg-gray-100 hover:bg-blue-100 rounded-lg transition-colors"

@@ -71,7 +71,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                 "addressCountry": "US"
               },
               "sameAs": [
-                "https://linkedin.com/in/hirambarsky",
+                "https://www.linkedin.com/in/hiram-barsky",
                 "https://twitter.com/hirambarsky",
                 "https://instagram.com/hirambarsky"
               ],

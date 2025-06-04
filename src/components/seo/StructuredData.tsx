@@ -42,7 +42,7 @@ const StructuredData: React.FC = () => {
     },
     "sameAs": [
       "https://twitter.com/hirambarsky",
-      "https://linkedin.com/in/hirambarsky",
+      "https://www.linkedin.com/in/hiram-barsky",
       "https://instagram.com/hirambarsky"
     ],
     "priceRange": "$$",
