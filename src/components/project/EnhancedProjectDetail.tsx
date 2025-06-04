@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -146,7 +145,7 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
           <section className="case-study-section">
             <InteractiveImageGallery
               images={organizedImages.gallery}
-              imageCaptions={imageCaptions}
+              captions={imageCaptions}
               title="Project Gallery"
               columns={3}
             />
@@ -185,7 +184,7 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
               </div>
               <InteractiveImageGallery
                 images={organizedImages.technical}
-                imageCaptions={imageCaptions}
+                captions={imageCaptions}
                 columns={2}
               />
             </motion.div>
