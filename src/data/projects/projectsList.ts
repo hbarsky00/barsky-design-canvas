@@ -5,55 +5,57 @@ export const projectsData: ProjectProps[] = [
   {
     id: "investor-loan-app",
     title: "Investor Loan App",
-    description: "Comprehensive UX/UI design for a financial platform managing investment deals and loan orders. User research, wireframing, and high-fidelity prototypes for complex data visualization.",
-    image: "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
-    tags: ["UX Research", "UI Design", "Financial Technology", "Data Visualization", "User Journey Mapping", "Prototyping", "Design Systems"]
+    description: "Modernizing Excel-based loan management for a private banking institution with automated workflows and AI-powered search capabilities.",
+    image: "/lovable-uploads/e9e3caf3-dcd1-49ed-a465-44657fb60850.png",
+    tags: ["UX Research", "UI Design", "Banking", "Excel Automation", "Financial Technology"],
+    featured: true
   },
   {
     id: "dae-search",
-    title: "Data Assets Advanced Search",
-    description: "UX research and interface design for optimizing access to complex medical asset data. User journey mapping, wireframing, and usability testing for healthcare professionals.",
-    image: "/lovable-uploads/7eee77ca-af16-4cd4-a7a3-51d55894ba3c.png",
-    tags: ["UX Research", "User Journey Mapping", "Healthcare UX", "Information Architecture", "Usability Testing", "Medical Interface Design"]
+    title: "DAE Search Platform",
+    description: "Building a comprehensive data exploration platform with advanced search capabilities and user-friendly interface design.",
+    image: "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png",
+    tags: ["Data Platform", "Search Design", "UX Research", "Information Architecture"],
+    featured: true
   },
   {
     id: "splittime",
-    title: "Co-Parenting Coordination App",
-    description: "Mobile UX/UI design for separated parents coordinating childcare. User research, persona development, wireframing, and responsive design for sensitive user needs.",
-    image: "/lovable-uploads/ae80b9f9-03aa-452c-8e24-ac5474b42350.png",
-    tags: ["Mobile UX", "User Research", "Persona Development", "Wireframing", "Responsive Design", "Social Impact Design", "React Native"],
-    link: "http://splittime.pro"
+    title: "SplitTime Co-Parenting App",
+    description: "Designing a comprehensive co-parenting platform that simplifies custody scheduling, communication, and child welfare tracking.",
+    image: "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
+    tags: ["Mobile App", "UX Research", "Family Tech", "Communication Design"],
+    featured: true
   },
   {
     id: "herbalink",
-    title: "Herbalink",
-    description: "Healthcare platform UX/UI connecting patients with herbalists. User research, service design, prototyping, and accessibility-focused interface design for telehealth.",
+    title: "HerbaLink Wellness Platform",
+    description: "Creating a comprehensive herbal medicine platform connecting users with certified practitioners and personalized wellness tracking.",
     image: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
-    tags: ["Healthcare UX", "Service Design", "Accessibility Design", "Telehealth UI", "User Research", "Prototyping", "Medical Platform Design"],
-    link: "http://herbalink.live"
+    tags: ["Healthcare", "Wellness", "Mobile Design", "Telemedicine", "User Experience"],
+    featured: false
   },
   {
     id: "gold2crypto",
-    title: "Gold 2 Crypto Services",
-    description: "Trading platform UI/UX bridging traditional investments with crypto. User flow design, interface prototyping, and financial dashboard optimization.",
+    title: "Gold2Crypto Trading Platform",
+    description: "Designing an intuitive cryptocurrency trading interface with advanced market analysis and security-focused user experience.",
     image: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-    tags: ["Financial UI", "Trading Interface", "User Flow Design", "Dashboard Design", "Cryptocurrency UX", "Investment Platform"],
-    link: "https://gold2.gold/"
+    tags: ["Fintech", "Trading", "Crypto", "Security Design", "Data Visualization"],
+    featured: false
   },
   {
     id: "barskyjoint",
-    title: "Barsky Joint Food Truck",
-    description: "Mobile ordering app UX/UI with location tracking and customization. User journey mapping, mobile-first design, and real-time interaction design.",
+    title: "Barsky Joint Restaurant App",
+    description: "Developing a food truck location app and restaurant website with integrated ordering and social features.",
     image: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-    tags: ["Mobile UX", "Location-based UI", "Real-time Design", "Food Service UX", "Mobile Ordering", "User Journey Mapping"],
-    link: "http://Barskyjoint.biz"
+    tags: ["Food Tech", "Mobile App", "Restaurant", "Location Services", "Social Features"],
+    featured: false
   },
   {
     id: "spectrum",
-    title: "Spectrum Apparel Co.",
-    description: "E-commerce accessibility-focused design for autism awareness apparel. Inclusive UX research, accessible interface design, and custom product configurator.",
+    title: "Spectrum Apparel Store",
+    description: "Building an accessible e-commerce platform for custom apparel with inclusive design principles and seamless user experience.",
     image: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
-    tags: ["Accessibility Design", "Inclusive UX", "E-commerce UI", "Product Configurator", "Social Impact Design", "WCAG Compliance"],
-    link: "https://supersha.store"
+    tags: ["E-commerce", "Accessibility", "Custom Design", "Inclusive UX", "Retail"],
+    featured: false
   }
 ];
