@@ -24,34 +24,37 @@ export const medicationAppDetails: ProjectDetails = {
   client: "Healthcare Technology Startup",
   role: "Lead UX/UI Designer",
 
-  challengeImage: "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png",
+  challengeImage: "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
   
   challengeGalleryImages: [
-    "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png",
-    "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png"
+    "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
+    "/lovable-uploads/759f7954-5048-407d-9dca-e1d4a4cd954f.png"
   ],
 
-  processImage: "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
+  processImage: "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
   
-  processBottomImage: "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png",
+  processBottomImage: "/lovable-uploads/46b1b74d-cba7-4b37-95e7-17f113a89041.png",
 
-  resultImage: "/lovable-uploads/110d7af6-b9ec-4d66-91f1-039414b5a7bc.png",
+  resultImage: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
 
   resultGalleryImages: [
-    "/lovable-uploads/110d7af6-b9ec-4d66-91f1-039414b5a7bc.png",
-    "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png",
-    "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png",
-    "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png"
+    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
+    "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
+    "/lovable-uploads/73d25798-547e-49a0-ad44-a79540285bff.png",
+    "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
+    "/lovable-uploads/593ace1d-0082-49d1-aacf-debe109e5235.png"
   ],
 
   galleryImages: [
-    "/lovable-uploads/110d7af6-b9ec-4d66-91f1-039414b5a7bc.png",
-    "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png",
-    "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png",
-    "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png",
-    "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png",
-    "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png",
-    "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png",
-    "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png"
+    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
+    "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
+    "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
+    "/lovable-uploads/46b1b74d-cba7-4b37-95e7-17f113a89041.png",
+    "/lovable-uploads/73d25798-547e-49a0-ad44-a79540285bff.png",
+    "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
+    "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
+    "/lovable-uploads/593ace1d-0082-49d1-aacf-debe109e5235.png",
+    "/lovable-uploads/9de388e2-d7b4-4265-816c-08384411503a.png",
+    "/lovable-uploads/759f7954-5048-407d-9dca-e1d4a4cd954f.png"
   ]
 };
