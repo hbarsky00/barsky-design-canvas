@@ -6,7 +6,7 @@ import { projectsData } from "@/data/projects/projectsList";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ProjectDetailLoading from "@/components/project/ProjectDetailLoading";
 import ProjectDetailSeo from "@/components/project/ProjectDetailSeo";
-import EnhancedProjectDetail from "@/components/project/EnhancedProjectDetail";
+import ModernProjectDetail from "@/components/project/enhanced/ModernProjectDetail";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
 import { investorLoanImageCaptions } from "@/data/investorLoanData";
 
@@ -135,7 +135,7 @@ const ProjectDetail: React.FC = () => {
         
         <Header />
         <main className="flex-grow pt-20">
-          <EnhancedProjectDetail 
+          <ModernProjectDetail 
             project={project}
             details={details}
             projectId={projectId || ""}
