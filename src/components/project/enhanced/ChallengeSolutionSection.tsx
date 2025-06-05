@@ -2,6 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { generateProjectImages } from "@/utils/projectImageGenerator";
+import { projectDetails } from "@/data/project-details";
+import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
 
 interface ChallengeSolutionSectionProps {
   challenge: string;
@@ -15,6 +17,9 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
   projectId
 }) => {
   const { challengeImage, solutionImage } = generateProjectImages(projectId);
+  const details = projectDetails[projectId];
+  const challengeGalleryImages = details?.challengeGalleryImages || [];
+  const resultGalleryImages = details?.resultGalleryImages || [];
 
   return (
     <section className="case-study-section">
@@ -45,9 +50,19 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
           className="process-card"
         >
           <h2 className="text-heading-2 text-navy-primary mb-6">The Challenge</h2>
-          <p className="text-body text-neutral-500 leading-relaxed">
+          <p className="text-body text-neutral-500 leading-relaxed mb-6">
             {challenge}
           </p>
+          
+          {/* Challenge Gallery Images */}
+          {challengeGalleryImages && challengeGalleryImages.length > 0 && (
+            <div className="mt-6">
+              <ProjectMultiImageGallery 
+                images={challengeGalleryImages}
+                captions={{}}
+              />
+            </div>
+          )}
         </motion.div>
         
         {/* Solution Section */}
@@ -71,9 +86,19 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
             </div>
           )}
           
-          <p className="text-body text-neutral-500 leading-relaxed">
+          <p className="text-body text-neutral-500 leading-relaxed mb-6">
             {result}
           </p>
+
+          {/* Result Gallery Images */}
+          {resultGalleryImages && resultGalleryImages.length > 0 && (
+            <div className="mt-6">
+              <ProjectMultiImageGallery 
+                images={resultGalleryImages}
+                captions={{}}
+              />
+            </div>
+          )}
         </motion.div>
       </div>
     </section>

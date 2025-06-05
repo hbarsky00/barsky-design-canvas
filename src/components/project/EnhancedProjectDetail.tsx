@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import CaseStudyHero from "./enhanced/CaseStudyHero";
-import InteractiveImageGallery from "./enhanced/InteractiveImageGallery";
 import ProcessTimeline from "./enhanced/ProcessTimeline";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import ChallengeSolutionSection from "./enhanced/ChallengeSolutionSection";
