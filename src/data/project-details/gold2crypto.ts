@@ -9,7 +9,7 @@ export const gold2cryptoDetails: ProjectDetails = {
   result: "Gold2Crypto successfully onboarded over 2,000 traditional gold investors into cryptocurrency trading within six months. The platform achieved a 95% user satisfaction rate and helped users feel confident in their crypto investments. The educational approach reduced investment anxiety by 60%, and the familiar interface design led to higher engagement rates compared to traditional crypto platforms. The platform has become a trusted gateway for precious metals investors entering the digital asset space.",
 
   technologies: ["React", "Node.js", "Cryptocurrency APIs", "Real-time Trading", "Security Protocols", "Educational Content Management", "Investment Tracking", "Mobile Trading"],
-  duration: "5 months",
+  duration: "1.5 years",
   client: "Financial Technology Company",
   role: "Senior Product Designer",
 

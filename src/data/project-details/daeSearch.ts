@@ -9,7 +9,7 @@ export const daeSearchDetails: ProjectDetails = {
   result: "The enhanced search system dramatically improved data discovery efficiency, with users finding relevant datasets 60% faster than the previous system. The implementation included intelligent search suggestions, contextual filtering, and a clean, Bloomberg-inspired interface that data professionals found intuitive. User satisfaction scores increased by 45%, and the system now handles complex enterprise data queries with improved accuracy and relevance ranking.",
   
   technologies: ["Enterprise Search", "Data Catalog Systems", "Predictive AI", "React", "TypeScript", "Advanced Filtering", "User Experience Design", "Information Architecture"],
-  duration: "4 months",
+  duration: "1.5 years",
   client: "Enterprise Data Platform",
   role: "Senior UX/UI Designer",
   

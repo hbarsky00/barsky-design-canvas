@@ -9,7 +9,7 @@ export const spectrumDetails: ProjectDetails = {
   result: "The Spectrum Apparel platform launched successfully with both basic customization and advanced design tools, resulting in a 60% increase in custom orders and 40% improvement in customer satisfaction. The accessibility-focused design ensured the platform was usable by customers with visual impairments and other disabilities. The integrated blog and design showcase helped establish Spectrum as a thought leader in custom apparel, leading to partnerships with local sports teams and organizations.",
 
   technologies: ["E-commerce Platform", "Custom Design Tools", "Accessibility Standards", "Content Management", "Manufacturing Integration", "Real-time Preview", "Blog Platform", "SEO Optimization"],
-  duration: "3 months",
+  duration: "1.5 years",
   client: "Spectrum Apparel",
   role: "UX/UI Designer & Accessibility Specialist",
 

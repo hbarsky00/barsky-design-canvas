@@ -20,7 +20,7 @@ export const medicationAppDetails: ProjectDetails = {
     "Accessibility Tools"
   ],
 
-  duration: "4 months",
+  duration: "1.5 years",
   client: "Healthcare Technology Startup",
   role: "Lead UX/UI Designer",
 

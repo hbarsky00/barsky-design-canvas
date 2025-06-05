@@ -9,7 +9,7 @@ export const splittimeDetails: ProjectDetails = {
   result: "SplitTime successfully launched as a comprehensive co-parenting platform that improved family communication and reduced scheduling conflicts by 70%. The platform features secure messaging, shared calendars, expense tracking, and child-focused features like school integration. Users reported decreased stress levels and improved co-parenting relationships. The platform now serves over 10,000 families and has received recognition from family law professionals for its positive impact on post-divorce family dynamics.",
 
   technologies: ["React Native", "Node.js", "MongoDB", "Socket.io", "Push Notifications", "Calendar APIs", "Secure Messaging", "Payment Integration", "Family Safety Features"],
-  duration: "8 months",
+  duration: "1 year to present",
   client: "Family Technology Startup",
   role: "Lead Product Designer & UX Researcher",
 

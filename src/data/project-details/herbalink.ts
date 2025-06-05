@@ -9,7 +9,7 @@ export const herbalinkDetails: ProjectDetails = {
   result: "Herbalink successfully launched as the leading digital platform connecting herbalists with patients, facilitating over 5,000 consultations in its first year. The platform features practitioner profiles, video consultations, treatment tracking, herb library, and community forums. Patient satisfaction scores averaged 4.8/5, and practitioners reported a 40% increase in practice efficiency. The platform has become a trusted resource for herbal medicine education and has helped standardize treatment documentation while preserving traditional knowledge.",
 
   technologies: ["React", "Node.js", "MongoDB", "Video Conferencing API", "Payment Processing", "Content Management", "Mobile Responsive Design", "Healthcare Compliance"],
-  duration: "6 months",
+  duration: "1 year to present",
   client: "Alternative Medicine Startup",
   role: "Lead UX/UI Designer & Product Strategist",
 

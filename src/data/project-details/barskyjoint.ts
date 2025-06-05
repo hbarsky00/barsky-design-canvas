@@ -9,7 +9,7 @@ export const barskyjointDetails: ProjectDetails = {
   result: "The Barsky Joint platform successfully launched with both mobile and web applications, resulting in a 45% increase in food truck orders and 30% improvement in restaurant reservations. The unified brand experience helped establish stronger customer loyalty across both business formats. Real-time food truck location tracking reduced customer wait times and improved operational efficiency. The platform has become a model for other multi-format food service businesses.",
 
   technologies: ["React Native", "Web App", "GPS Tracking", "Mobile Ordering", "Reservation System", "Payment Integration", "Real-time Updates", "Restaurant Management"],
-  duration: "4 months",
+  duration: "1.5 years",
   client: "Barsky Joint Restaurant Group",
   role: "Lead UX/UI Designer",
 
