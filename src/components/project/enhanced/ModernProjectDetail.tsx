@@ -9,6 +9,7 @@ import ModernProjectChallenge from "./ModernProjectChallenge";
 import ModernProjectProcess from "./ModernProjectProcess";
 import ModernProjectResults from "./ModernProjectResults";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import { getEmbedUrl } from "@/utils/videoUtils";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -51,6 +52,32 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           details={details}
           tags={project.tags}
         />
+
+        {/* YouTube Video Section - Only for medication app */}
+        {projectId === "medication-app" && (
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+                Project Demo Video
+              </h2>
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl">
+                <iframe
+                  src={getEmbedUrl("https://youtu.be/iDbqHuz6d2A?si=d7YH6RWXhH7gIoqA")}
+                  title="Medication App Demo Video"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </motion.section>
+        )}
 
         {/* Challenge Section */}
         <ModernProjectChallenge
