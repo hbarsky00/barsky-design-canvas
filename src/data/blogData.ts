@@ -30,17 +30,21 @@ export const blogPosts: BlogPost[] = [
       
       <p>That was me. And if you're reading this, it might be you too.</p>
       
+      <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop" alt="Solo designer working on laptop" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Here's the good news: even without marketing experience or live data, you can share your work in a way that gets attention, starts conversations, and builds momentum.</p>
       
       <p>This post is for solo designers who want to take that next step—without pretending to be a marketing guru.</p>
       
-      <h2>1. Own the "Solo Designer" Story</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">1. Own the "Solo Designer" Story</h2>
       
       <p>People connect with people. You're not a faceless brand—you're a designer who built something from scratch. That's a story in itself.</p>
       
+      <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop" alt="Laptop with design work" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What to do:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>Write 2-3 sentences about why you built it.</li>
         <li>Be honest about the current state (e.g., "It's functional but uses placeholder data").</li>
         <li>Frame it as a work-in-progress, not a final product.</li>
@@ -49,13 +53,15 @@ export const blogPosts: BlogPost[] = [
       <p><strong>Example intro you could use on Twitter or LinkedIn:</strong><br>
       "Built this solo in nights and weekends—wanted to solve a real problem I kept seeing. It's not live yet (mock data only), but I'd love your feedback."</p>
       
-      <h2>2. Create a "Tour" Instead of a Launch</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">2. Create a "Tour" Instead of a Launch</h2>
       
       <p>If there's no real data or users, make your marketing about the experience—not the stats.</p>
       
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop" alt="Circuit board technology" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What to do:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>Record a quick walkthrough (Loom, ScreenStudio, or Figma prototype video).</li>
         <li>Narrate your thinking: why each screen exists, how you simplified flows, what tradeoffs you made.</li>
         <li>Post the tour on your site or share the video on social.</li>
@@ -63,13 +69,15 @@ export const blogPosts: BlogPost[] = [
       
       <p><strong>Pro tip:</strong> Designers LOVE seeing other designers' behind-the-scenes thinking. That's the real value.</p>
       
-      <h2>3. Package Your Work as a Case Study</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">3. Package Your Work as a Case Study</h2>
       
       <p>Think of it as a product design portfolio piece—not a product you're "selling."</p>
       
+      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop" alt="Code on monitor screen" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What to include:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>Problem you tried to solve</li>
         <li>User type and use case (even if fictional)</li>
         <li>Screens or flows with commentary</li>
@@ -79,18 +87,20 @@ export const blogPosts: BlogPost[] = [
       
       <p><strong>Post it on:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>Your personal site or blog</li>
         <li>Medium / UX Collective</li>
         <li>Notion (people love public Notion docs)</li>
         <li>LinkedIn articles</li>
       </ul>
       
-      <h2>4. Find the "Designer Corners" of the Internet</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">4. Find the "Designer Corners" of the Internet</h2>
       
       <p>There's no need to blast ads or beg for signups. Instead, share your work where product designers hang out:</p>
       
-      <ul>
+      <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop" alt="Person using MacBook Pro" class="w-full h-auto rounded-lg my-6" />
+      
+      <ul class="list-disc pl-6 mb-4">
         <li>Reddit: r/userexperience, r/web_design, r/design_critiques</li>
         <li>Twitter/X: Share a thread that breaks down the build</li>
         <li>LinkedIn: Post your walkthrough + invite design feedback</li>
@@ -98,13 +108,13 @@ export const blogPosts: BlogPost[] = [
         <li>UX Discords / Slack groups: Ask if anyone's solving a similar problem</li>
       </ul>
       
-      <h2>5. Ask for Feedback, Not Fame</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">5. Ask for Feedback, Not Fame</h2>
       
       <p>Instead of aiming for 100 likes, aim for 5 conversations with other designers.</p>
       
       <p><strong>What to ask:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>"Would you approach this problem differently?"</li>
         <li>"Is there a smoother way to solve this use case?"</li>
         <li>"Do you think this has potential in the real world?"</li>
@@ -112,11 +122,13 @@ export const blogPosts: BlogPost[] = [
       
       <p>This is still design work. Sharing and improving is part of the job—not just shipping.</p>
       
-      <h2>6. Turn It Into a Series</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">6. Turn It Into a Series</h2>
       
       <p>Instead of one big post, break your experience into smaller bits of content over a few weeks:</p>
       
-      <ul>
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=400&fit=crop" alt="Woman using laptop computer" class="w-full h-auto rounded-lg my-6" />
+      
+      <ul class="list-disc pl-6 mb-4">
         <li>"Why I built this"</li>
         <li>"Sketching out the core flow"</li>
         <li>"Simplifying the onboarding experience"</li>
@@ -125,7 +137,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>You'll stay top of mind, build credibility, and show growth over time.</p>
       
-      <h2>Final Thoughts</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Final Thoughts</h2>
       
       <p>You don't need real users to be a real designer.<br>
       You don't need metrics to talk about your process.<br>
@@ -145,7 +157,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "April 28, 2025",
     readTime: "6 min read",
-    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop",
     tags: ["Product Development", "Lessons Learned", "Side Projects", "Design Process"],
     slug: "building-products-nobody-asked-for",
     content: `
@@ -153,59 +165,71 @@ export const blogPosts: BlogPost[] = [
       
       <p>But here's the thing—building products nobody asked for taught me more about design than any course, certification, or "best practices" guide ever could.</p>
       
+      <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop" alt="Matrix code visualization" class="w-full h-auto rounded-lg my-6" />
+      
       <p>If you're a designer who builds things, this post is for you.</p>
       
-      <h2>1. Your First Idea Will Always Be Wrong</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">1. Your First Idea Will Always Be Wrong</h2>
       
       <p>I used to spend weeks perfecting the "perfect" concept before building anything. Sketching wireframes, researching competitors, writing detailed PRDs.</p>
       
       <p>Then I'd build it, launch it, and... nothing.</p>
       
+      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop" alt="Laptop computer on surface" class="w-full h-auto rounded-lg my-6" />
+      
       <p>The problem wasn't execution—it was assumption. I was solving problems that existed only in my head.</p>
       
       <p><strong>What I learned:</strong> Start building sooner. Your first idea is a hypothesis, not a solution. The faster you can test it with real users (even if it's just 3 people), the faster you can iterate toward something that actually matters.</p>
       
-      <h2>2. Features Don't Create Value—Workflows Do</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">2. Features Don't Create Value—Workflows Do</h2>
       
       <p>I used to think users wanted more features. More customization. More options. More power.</p>
       
       <p>So I'd add feature after feature, making my apps more "powerful" but infinitely more complex.</p>
       
+      <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=400&fit=crop" alt="Colorful code on computer monitor" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Users didn't care about my 47 customization options. They cared about completing their task quickly and moving on with their day.</p>
       
       <p><strong>What I learned:</strong> Design workflows, not features. Ask "How does this help someone get from point A to point B faster?" If you can't answer that clearly, you're probably building the wrong thing.</p>
       
-      <h2>3. Marketing Starts at the First Pixel</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">3. Marketing Starts at the First Pixel</h2>
       
       <p>I used to think marketing was something you do after you build the product. Write some copy, make some ads, post on social media.</p>
       
       <p>Wrong.</p>
       
+      <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=400&fit=crop" alt="People around video displays" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Marketing starts the moment you decide what problem to solve. Every design decision is a marketing decision. Every user interaction is a marketing moment.</p>
       
       <p><strong>What I learned:</strong> If you can't explain your product in one sentence, you haven't designed it clearly enough. If users need a tutorial to understand your main value proposition, you've over-designed it.</p>
       
-      <h2>4. Perfect Is the Enemy of Launched</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">4. Perfect Is the Enemy of Launched</h2>
       
       <p>I have a folder full of "almost ready" projects. Beautiful designs. Polished interactions. Comprehensive feature sets.</p>
       
       <p>All of them are worth exactly $0 because none of them ever saw a real user.</p>
       
+      <img src="https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=800&h=400&fit=crop" alt="Stylus pen and tablet computer" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Meanwhile, my most successful projects were the ones I was slightly embarrassed to share. They were rough around the edges but solved a real problem for real people.</p>
       
       <p><strong>What I learned:</strong> Ship the minimum viable version of your idea. Real user feedback on an imperfect product is infinitely more valuable than imaginary feedback on a perfect one.</p>
       
-      <h2>5. Users Don't Want to Learn Your System</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">5. Users Don't Want to Learn Your System</h2>
       
       <p>As designers, we love elegant, consistent systems. We create style guides, interaction patterns, and interface languages.</p>
       
       <p>But users don't care about your system. They care about their goals.</p>
       
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=400&fit=crop" alt="People with laptops at table" class="w-full h-auto rounded-lg my-6" />
+      
       <p>If your beautifully consistent interface makes their task harder, they'll abandon it for something that "just works"—even if it's uglier.</p>
       
       <p><strong>What I learned:</strong> Optimize for user success, not design consistency. Sometimes the right answer is the "wrong" answer according to your style guide.</p>
       
-      <h2>6. The Best Ideas Come from Personal Frustration</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">6. The Best Ideas Come from Personal Frustration</h2>
       
       <p>My most successful projects all started the same way: I was annoyed by something in my own life and built a solution for myself.</p>
       
@@ -215,7 +239,7 @@ export const blogPosts: BlogPost[] = [
       
       <p><strong>What I learned:</strong> Start with problems you personally experience. You'll build better solutions and spot bad ideas faster.</p>
       
-      <h2>The Meta-Lesson</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Meta-Lesson</h2>
       
       <p>The biggest thing I learned from building products nobody asked for? How to ask better questions.</p>
       
@@ -237,7 +261,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "April 15, 2025",
     readTime: "7 min read",
-    coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=400&fit=crop",
     tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
     slug: "design-system-that-gets-used",
     content: `
@@ -245,13 +269,17 @@ export const blogPosts: BlogPost[] = [
       
       <p>The third one actually worked. Not because it was more complete or more beautiful, but because I approached it completely differently.</p>
       
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=400&fit=crop" alt="MacBook with code on busy desk" class="w-full h-auto rounded-lg my-6" />
+      
       <p>If you're building a design system (or rebuilding one that's been ignored), this post is for you.</p>
       
-      <h2>Start with Pain, Not Perfection</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Start with Pain, Not Perfection</h2>
       
       <p>My first design system started with a comprehensive audit. I documented every color, every font size, every border radius across our entire product.</p>
       
       <p>The result? A beautiful Figma file with 47 unique shades of blue and 23 different button styles.</p>
+      
+      <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&h=400&fit=crop" alt="Person using Apple Watch" class="w-full h-auto rounded-lg my-6" />
       
       <p>Nobody used it because it didn't solve anyone's immediate problem.</p>
       
@@ -261,11 +289,13 @@ export const blogPosts: BlogPost[] = [
       
       <p>The team adopted them immediately because they made everyone's life easier.</p>
       
-      <h2>Build Components, Not Documentation</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Build Components, Not Documentation</h2>
       
       <p>My second design system was a masterpiece of documentation. Detailed usage guidelines. Accessibility specs. Do's and don'ts for every component.</p>
       
       <p>It was also completely ignored.</p>
+      
+      <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&h=400&fit=crop" alt="Man in checkered shirt on office chair" class="w-full h-auto rounded-lg my-6" />
       
       <p>Why? Because every time someone needed a component, they had to read a manual, understand the guidelines, and then build it from scratch.</p>
       
@@ -275,9 +305,11 @@ export const blogPosts: BlogPost[] = [
       
       <p>People use tools that make their job easier, not style guides that make their job harder.</p>
       
-      <h2>Solve Real Problems, Not Hypothetical Ones</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Solve Real Problems, Not Hypothetical Ones</h2>
       
       <p>I used to build components based on what I thought the team might need someday. Card layouts, complex data visualizations, elaborate onboarding flows.</p>
+      
+      <img src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=400&fit=crop" alt="Silver iMac with keyboard in room" class="w-full h-auto rounded-lg my-6" />
       
       <p>Meanwhile, our team was struggling with basic things like consistent spacing, readable typography, and accessible color contrast.</p>
       
@@ -285,17 +317,19 @@ export const blogPosts: BlogPost[] = [
       
       <p>The design system grew organically, solving real problems as they emerged.</p>
       
-      <h2>Make It Impossible to Do the Wrong Thing</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Make It Impossible to Do the Wrong Thing</h2>
       
       <p>Guidelines don't prevent bad design—constraints do.</p>
       
       <p>Instead of writing "Use 16px margins for cards," I built a Card component with 16px margins baked in. Instead of documenting "Use these three button sizes," I created three button components with fixed sizes.</p>
       
+      <img src="https://images.unsplash.com/photo-1487887235947-a955ef187fcc?w=800&h=400&fit=crop" alt="White DJI drone in mid air" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>The principle:</strong> If there's a right way and a wrong way to do something, remove the ability to do it the wrong way.</p>
       
       <p>This isn't about controlling your team—it's about removing cognitive load so they can focus on solving user problems instead of remembering style guidelines.</p>
       
-      <h2>Start Small and Earn Trust</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Start Small and Earn Trust</h2>
       
       <p>Nobody trusts a design system that tries to solve everything on day one. It feels too abstract, too theoretical.</p>
       
@@ -303,7 +337,7 @@ export const blogPosts: BlogPost[] = [
       
       <p><strong>My approach:</strong></p>
       
-      <ol>
+      <ol class="list-decimal pl-6 mb-4">
         <li><strong>Week 1:</strong> Ship five button components that replace the chaos of custom buttons</li>
         <li><strong>Week 2:</strong> Add a typography scale that eliminates random font sizes</li>
         <li><strong>Week 3:</strong> Create a spacing system that makes layouts more consistent</li>
@@ -312,15 +346,17 @@ export const blogPosts: BlogPost[] = [
       
       <p>Each week, the team saw immediate value. By month two, they were asking me for the next components instead of me pushing them.</p>
       
-      <h2>Measure Adoption, Not Completion</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Measure Adoption, Not Completion</h2>
       
       <p>Most design systems measure the wrong thing—how many components they've built, how comprehensive their documentation is, how beautiful their Storybook looks.</p>
       
       <p>The only metric that matters is adoption: Are people actually using it?</p>
       
+      <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=400&fit=crop" alt="Brown deer beside trees and mountain" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What I track:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>How many projects use system components vs. custom components</li>
         <li>How often people ask "How should I design this?" vs. just using existing components</li>
         <li>How much time designers spend on visual decisions vs. user experience decisions</li>
@@ -329,20 +365,20 @@ export const blogPosts: BlogPost[] = [
       
       <p>A design system with five heavily-used components is infinitely more valuable than one with fifty ignored components.</p>
       
-      <h2>Make It Living, Not Perfect</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Make It Living, Not Perfect</h2>
       
       <p>The best design systems are never "done." They evolve with your product, your team, and your users' needs.</p>
       
       <p>Instead of trying to design the perfect system upfront, I built one that could change easily:</p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Version everything:</strong> When we need to change a component, we create a new version instead of breaking existing usage</li>
         <li><strong>Deprecate gradually:</strong> Old components get warning labels but don't disappear overnight</li>
         <li><strong>Listen to complaints:</strong> When people work around the system, that's data about what needs to change</li>
         <li><strong>Update regularly:</strong> Small, frequent updates are better than big, disruptive overhauls</li>
       </ul>
       
-      <h2>The Real Goal</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Real Goal</h2>
       
       <p>A design system isn't about creating consistency for consistency's sake. It's about freeing your team to focus on what matters: solving user problems.</p>
       
@@ -358,7 +394,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "March 30, 2025",
     readTime: "9 min read",
-    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=400&fit=crop",
     tags: ["Conversion Optimization", "UX Design", "User Psychology", "Interface Design"],
     slug: "beautiful-interface-doesnt-convert",
     content: `
@@ -366,42 +402,48 @@ export const blogPosts: BlogPost[] = [
       
       <p>The conversion rate dropped by 23%.</p>
       
+      <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=400&fit=crop" alt="Orange flowers in bloom" class="w-full h-auto rounded-lg my-6" />
+      
       <p>That's when I learned the hard truth: beautiful and effective are not the same thing.</p>
       
       <p>If you're designing interfaces that need to drive action—signups, purchases, downloads, anything—this post will save you from my expensive mistakes.</p>
       
-      <h2>Pretty Doesn't Mean Persuasive</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Pretty Doesn't Mean Persuasive</h2>
       
       <p>The most beautiful interface in the world is worthless if users don't take the action you need them to take.</p>
       
       <p>I used to think conversion optimization was about making things "look more trustworthy" or "feel more premium." So I'd add more white space, choose more sophisticated colors, create more elegant layouts.</p>
       
+      <img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&h=400&fit=crop" alt="River between mountains under clouds" class="w-full h-auto rounded-lg my-6" />
+      
       <p>But conversion isn't about aesthetic appeal—it's about removing friction and reducing anxiety.</p>
       
       <p><strong>The shift in thinking:</strong> Instead of asking "Does this look good?" start asking "Does this help users move forward confidently?"</p>
       
-      <h2>Users Don't Want to Think</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Users Don't Want to Think</h2>
       
       <p>As designers, we love subtle interfaces that require users to discover functionality. Hidden navigation that appears on hover. Minimalist buttons that blend seamlessly into the design. Clever interactions that surprise and delight.</p>
       
       <p>But users in conversion flows aren't tourists admiring your craft—they're people trying to complete a task as quickly and painlessly as possible.</p>
       
+      <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=400&fit=crop" alt="Pine trees in nature" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What I learned:</strong> Every moment of confusion is a moment where users might abandon your flow. Obvious is better than clever. Clear is better than cool.</p>
       
       <p><strong>Examples that work:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>Big, obvious buttons that scream "click here"</li>
         <li>Form labels that clearly explain what information you need</li>
         <li>Progress indicators that show exactly how much more work is required</li>
         <li>Error messages that tell users exactly how to fix problems</li>
       </ul>
       
-      <h2>Anxiety Kills Conversion</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Anxiety Kills Conversion</h2>
       
       <p>The biggest conversion killer isn't bad design—it's user anxiety. People abandon flows because they're worried about:</p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Security:</strong> "Is this site going to steal my credit card?"</li>
         <li><strong>Commitment:</strong> "What am I actually signing up for?"</li>
         <li><strong>Complexity:</strong> "How long is this going to take?"</li>
@@ -409,11 +451,13 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Mistakes:</strong> "What if I mess this up?"</li>
       </ul>
       
+      <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&h=400&fit=crop" alt="Low angle view of trees" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Your beautiful design means nothing if users are paralyzed by these concerns.</p>
       
       <p><strong>How to reduce anxiety:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Show security badges and guarantees prominently</strong></li>
         <li><strong>Be explicit about what users are committing to</strong></li>
         <li><strong>Tell users exactly how long the process will take</strong></li>
@@ -421,13 +465,15 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Make it easy to correct mistakes without starting over</strong></li>
       </ul>
       
-      <h2>Test Your Assumptions, Not Your Taste</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Test Your Assumptions, Not Your Taste</h2>
       
       <p>I used to A/B test different color schemes and layout options—essentially testing my design preferences against each other.</p>
       
       <p>But the real insights came when I started testing different approaches to user psychology:</p>
       
-      <ul>
+      <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&h=400&fit=crop" alt="Sunlight through green trees" class="w-full h-auto rounded-lg my-6" />
+      
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Social proof vs. logical benefits</strong></li>
         <li><strong>Single-step vs. multi-step forms</strong></li>
         <li><strong>Feature lists vs. outcome descriptions</strong></li>
@@ -437,13 +483,13 @@ export const blogPosts: BlogPost[] = [
       
       <p>The winners weren't always the ones I thought looked better—they were the ones that better matched how users actually think and behave.</p>
       
-      <h2>Words Matter More Than Visuals</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Words Matter More Than Visuals</h2>
       
       <p>This one hurt my designer ego, but it's true: In conversion flows, copy is often more important than visual design.</p>
       
       <p>Users scan interfaces looking for specific information:</p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>"What does this cost?"</li>
         <li>"What am I getting?"</li>
         <li>"How long does this take?"</li>
@@ -451,11 +497,13 @@ export const blogPosts: BlogPost[] = [
         <li>"Is this secure?"</li>
       </ul>
       
+      <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop" alt="Mountain landscape with sun rays" class="w-full h-auto rounded-lg my-6" />
+      
       <p>If your visual design makes it harder to find these answers, your conversion rate will suffer—no matter how beautiful the interface looks.</p>
       
       <p><strong>What works:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Scannable headlines that answer key questions</strong></li>
         <li><strong>Bullet points instead of paragraphs</strong></li>
         <li><strong>Specific details instead of vague promises</strong></li>
@@ -463,22 +511,24 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Clear value propositions at every step</strong></li>
       </ul>
       
-      <h2>Mobile Changes Everything</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Mobile Changes Everything</h2>
       
       <p>Conversion flows that work perfectly on desktop often fall apart on mobile—not because of responsive design issues, but because of context differences.</p>
       
       <p>Mobile users are:</p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>More distracted</strong> (multitasking, on the go)</li>
         <li><strong>More impatient</strong> (expect instant gratification)</li>
         <li><strong>More cautious</strong> (harder to see security indicators)</li>
         <li><strong>More error-prone</strong> (smaller touch targets, autocorrect issues)</li>
       </ul>
       
+      <img src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800&h=400&fit=crop" alt="Blue starry night sky" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>Mobile conversion design principles:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Larger touch targets</strong> (especially for primary actions)</li>
         <li><strong>Fewer form fields per screen</strong></li>
         <li><strong>More prominent security indicators</strong></li>
@@ -486,11 +536,11 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Faster loading times</strong> (every second costs conversions)</li>
       </ul>
       
-      <h2>The Conversion Design Framework</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Conversion Design Framework</h2>
       
       <p>Instead of starting with visual concepts, I now start every conversion-focused design with these questions:</p>
       
-      <ol>
+      <ol class="list-decimal pl-6 mb-4">
         <li><strong>What's the primary action I need users to take?</strong></li>
         <li><strong>What might prevent them from taking that action?</strong></li>
         <li><strong>What information do they need to feel confident?</strong></li>
@@ -500,13 +550,15 @@ export const blogPosts: BlogPost[] = [
       
       <p>Only after answering these questions do I start thinking about visual design.</p>
       
-      <h2>Measure What Matters</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Measure What Matters</h2>
       
       <p>Awards and design blog features don't pay the bills—conversions do.</p>
       
+      <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=400&fit=crop" alt="Foggy mountain summit" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Track these metrics relentlessly:</p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Conversion rate</strong> (obviously)</li>
         <li><strong>Drop-off points</strong> (where do users abandon the flow?)</li>
         <li><strong>Time to convert</strong> (longer usually means more friction)</li>
@@ -516,7 +568,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>If your beautiful design doesn't move these numbers in the right direction, it's not doing its job.</p>
       
-      <h2>The Ugly Truth</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Ugly Truth</h2>
       
       <p>Some of the highest-converting interfaces I've built were also some of the ugliest. Big orange buttons. Aggressive headlines. Obvious social proof. Repetitive value propositions.</p>
       
@@ -536,7 +588,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "March 18, 2025",
     readTime: "8 min read",
-    coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=800&h=400&fit=crop",
     tags: ["User Research", "Product Development", "Validation", "Design Process"],
     slug: "research-without-users",
     content: `
@@ -544,25 +596,29 @@ export const blogPosts: BlogPost[] = [
       
       <p>This chicken-and-egg problem stops a lot of great ideas before they start. How do you research something that doesn't exist for people who don't exist yet?</p>
       
+      <img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&h=400&fit=crop" alt="River surrounded by rock formation" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Here's how I've learned to do meaningful user research in the earliest stages of product development.</p>
       
-      <h2>Start with the Problem, Not the Solution</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Start with the Problem, Not the Solution</h2>
       
       <p>Most people research their solution: "Would you use an app that does X?" or "What do you think of this feature?"</p>
       
       <p>But solutions are hypothetical. Problems are real.</p>
       
+      <img src="https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?w=800&h=400&fit=crop" alt="Desert sand landscape" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Instead of asking people to imagine using your non-existent product, ask them about their existing struggle with the problem you're trying to solve.</p>
       
       <p><strong>Bad questions:</strong></p>
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>"Would you use a meal planning app with AI recommendations?"</li>
         <li>"How much would you pay for automated expense tracking?"</li>
         <li>"What features would you want in a project management tool?"</li>
       </ul>
       
       <p><strong>Good questions:</strong></p>
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li>"How do you currently decide what to cook for dinner?"</li>
         <li>"Walk me through how you track business expenses now."</li>
         <li>"What's the most frustrating part of managing projects at your company?"</li>
@@ -570,15 +626,17 @@ export const blogPosts: BlogPost[] = [
       
       <p>People can tell you exactly how they currently struggle. They can't tell you how they'd use a solution they've never tried.</p>
       
-      <h2>Find Your Proto-Users</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Find Your Proto-Users</h2>
       
       <p>You might not have users of your product, but you can find people who experience the problem you're trying to solve.</p>
       
       <p>I call these "proto-users"—people who represent your eventual user base, even though they've never heard of your product.</p>
       
+      <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=400&fit=crop" alt="Trees near rocky mountain under blue sky" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>Where to find proto-users:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Reddit communities</strong> where people discuss the problem</li>
         <li><strong>LinkedIn groups</strong> related to your target industry</li>
         <li><strong>Facebook groups</strong> for people in your target demographic</li>
@@ -589,15 +647,17 @@ export const blogPosts: BlogPost[] = [
       
       <p>The key is finding places where your target users are already talking about the problem you want to solve.</p>
       
-      <h2>Study Their Current Workflow</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Study Their Current Workflow</h2>
       
       <p>Instead of asking people what they want, observe what they currently do.</p>
       
       <p>Every product replaces or improves an existing workflow. Understanding that current workflow is your roadmap to a better solution.</p>
       
+      <img src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&h=400&fit=crop" alt="Forest illuminated by sunbeam" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What to document:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>What triggers them to start the task?</strong></li>
         <li><strong>What tools do they currently use?</strong></li>
         <li><strong>Where do they get stuck or frustrated?</strong></li>
@@ -608,15 +668,17 @@ export const blogPosts: BlogPost[] = [
       
       <p>The gaps and friction points in their current process are your product opportunities.</p>
       
-      <h2>Listen to Their Language</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Listen to Their Language</h2>
       
       <p>Pay attention to the exact words people use to describe their problems and current solutions.</p>
       
       <p>This isn't just for marketing copy—it's for understanding how they think about the problem space.</p>
       
+      <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=400&fit=crop" alt="Yellow lights between trees" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What to capture:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>What do they call the problem?</strong> ("managing projects" vs. "keeping track of tasks")</li>
         <li><strong>How do they describe pain points?</strong> ("it's a nightmare" vs. "it's inefficient")</li>
         <li><strong>What words do they use for current solutions?</strong> ("tool" vs. "platform" vs. "system")</li>
@@ -625,13 +687,15 @@ export const blogPosts: BlogPost[] = [
       
       <p>When you use their language in your product, it feels familiar instead of foreign.</p>
       
-      <h2>Validate with Paper Prototypes</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Validate with Paper Prototypes</h2>
       
       <p>You don't need a working product to test core concepts. Paper prototypes and wireframes can validate your biggest assumptions.</p>
       
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=400&fit=crop" alt="Body of water surrounded by trees" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>What you can test with low-fidelity prototypes:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>Does your mental model match theirs?</strong> (Do they understand your information architecture?)</li>
         <li><strong>Are you solving the right problem?</strong> (Do they care about the outcomes your product promises?)</li>
         <li><strong>Is your solution approach viable?</strong> (Can they complete key tasks with your proposed workflow?)</li>
@@ -640,13 +704,13 @@ export const blogPosts: BlogPost[] = [
       
       <p>I've killed bad ideas and improved good ones using nothing but sketches and conversations.</p>
       
-      <h2>Analyze Competitor Reviews</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Analyze Competitor Reviews</h2>
       
       <p>Your competitors' users are your potential users. Their reviews are a goldmine of research data.</p>
       
       <p><strong>What to look for in reviews:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>What do people love?</strong> (These are table stakes for your product)</li>
         <li><strong>What do they consistently complain about?</strong> (These are your opportunities)</li>
         <li><strong>What workarounds do they mention?</strong> (These reveal unmet needs)</li>
@@ -654,15 +718,17 @@ export const blogPosts: BlogPost[] = [
         <li><strong>What do they wish existed?</strong> (These are potential features)</li>
       </ul>
       
+      <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=400&fit=crop" alt="Bird's eye view of green mountains" class="w-full h-auto rounded-lg my-6" />
+      
       <p>Read reviews on App Store, Google Play, G2, Capterra, Amazon—anywhere your target users might leave feedback about existing solutions.</p>
       
-      <h2>Run Assumption Mapping Workshops</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Run Assumption Mapping Workshops</h2>
       
       <p>List out every assumption you're making about users, their problems, and your solution. Then prioritize which assumptions are riskiest to be wrong about.</p>
       
       <p><strong>Categories of assumptions:</strong></p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>User assumptions:</strong> Who they are, what they do, how they behave</li>
         <li><strong>Problem assumptions:</strong> What problems they have, how painful those problems are</li>
         <li><strong>Solution assumptions:</strong> What kind of solution they want, how they'd use it</li>
@@ -671,13 +737,15 @@ export const blogPosts: BlogPost[] = [
       
       <p>Test your riskiest assumptions first. If you're wrong about who your users are, nothing else matters.</p>
       
-      <h2>Create Lean Research Plans</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Create Lean Research Plans</h2>
       
       <p>You don't need a PhD in user research to ask good questions. You just need a plan.</p>
       
+      <img src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&h=400&fit=crop" alt="Green grass and rocky mountain" class="w-full h-auto rounded-lg my-6" />
+      
       <p><strong>My simple research session structure:</strong></p>
       
-      <ol>
+      <ol class="list-decimal pl-6 mb-4">
         <li><strong>Background (5 minutes):</strong> Who are they and what's their context?</li>
         <li><strong>Current state (15 minutes):</strong> How do they currently handle the problem?</li>
         <li><strong>Pain points (10 minutes):</strong> What's frustrating about their current approach?</li>
@@ -688,11 +756,11 @@ export const blogPosts: BlogPost[] = [
       
       <p>Keep sessions conversational, not interrogational. You're trying to understand their world, not validate your ideas.</p>
       
-      <h2>Start Small, Iterate Fast</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Start Small, Iterate Fast</h2>
       
       <p>You don't need to talk to 100 people. Start with 5-8 conversations. Look for patterns in their responses:</p>
       
-      <ul>
+      <ul class="list-disc pl-6 mb-4">
         <li><strong>What problems do they all mention?</strong></li>
         <li><strong>What solutions do they all currently use?</strong></li>
         <li><strong>What outcomes do they all want?</strong></li>
@@ -701,7 +769,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Use those patterns to refine your concept, then test with another small group. Iterate your way to clarity.</p>
       
-      <h2>The Real Goal</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Real Goal</h2>
       
       <p>The goal of early-stage user research isn't to validate that people will love your product. It's to understand the problem space well enough to build something people actually need.</p>
       
