@@ -5,7 +5,6 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import CaseStudyHero from "./enhanced/CaseStudyHero";
 import InteractiveImageGallery from "./enhanced/InteractiveImageGallery";
-import BeforeAfterComparison from "./enhanced/BeforeAfterComparison";
 import ProcessTimeline from "./enhanced/ProcessTimeline";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import ChallengeSolutionSection from "./enhanced/ChallengeSolutionSection";
@@ -74,30 +73,6 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
         <section className="case-study-section">
           <ProcessTimeline steps={processSteps} />
         </section>
-
-        {/* Image Gallery */}
-        {organizedImages.gallery.length > 0 && (
-          <section className="case-study-section">
-            <InteractiveImageGallery
-              images={organizedImages.gallery}
-              captions={imageCaptions}
-              title="Project Gallery"
-              columns={3}
-            />
-          </section>
-        )}
-
-        {/* Before/After Comparison (if applicable) */}
-        {details.challengeImage && details.resultImage && (
-          <section className="case-study-section">
-            <BeforeAfterComparison
-              beforeImage={details.challengeImage}
-              afterImage={details.resultImage}
-              title="Design Evolution"
-              description="See how the design evolved from initial concept to final solution"
-            />
-          </section>
-        )}
 
         {/* Technical Implementation */}
         <TechnicalImplementationSection
