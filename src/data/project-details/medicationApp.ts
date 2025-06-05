@@ -46,6 +46,6 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/593ace1d-0082-49d1-aacf-debe109e5235.png"
   ],
 
-  // Empty gallery images to prevent duplicates in the bottom gallery
+  // Remove separate gallery to prevent duplicates
   galleryImages: []
 };
