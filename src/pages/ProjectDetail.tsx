@@ -12,6 +12,16 @@ import { investorLoanImageCaptions } from "@/data/investorLoanData";
 
 // Image captions for each project
 const projectImageCaptions: Record<string, Record<string, string>> = {
+  "medication-app": {
+    "/lovable-uploads/110d7af6-b9ec-4d66-91f1-039414b5a7bc.png": "Mobile app dashboard showing medication tracking interface",
+    "/lovable-uploads/1aff7c3f-ce98-47e7-bc9d-fa69de522425.png": "User journey mapping and design process documentation",
+    "/lovable-uploads/29c909f0-96bf-47e7-a65b-2ccfc46f125c.png": "Competitive analysis of existing healthcare apps",
+    "/lovable-uploads/2a322354-503a-4e82-baec-f3ebf3e8f097.png": "User research findings and pain point analysis",
+    "/lovable-uploads/2d1a328c-29eb-4d8a-97d5-3d6d9977a4f3.png": "High-fidelity mobile app screens and interactions",
+    "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png": "Initial sketches and wireframe concepts",
+    "/lovable-uploads/3a40d97f-0ac6-4fca-92ce-0615c9e6ae92.png": "Calendar integration and appointment scheduling",
+    "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png": "Digital signature process and healthcare compliance features"
+  },
   "investor-loan-app": {
     "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png": "Loans orderbook interface",
     "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png": "Design thinking process",

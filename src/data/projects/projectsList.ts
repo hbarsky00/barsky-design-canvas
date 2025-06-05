@@ -1,7 +1,9 @@
 
 import { ProjectProps } from "@/components/ProjectCard";
+import { medicationAppProject } from "./medicationApp";
 
 export const projectsData: ProjectProps[] = [
+  medicationAppProject,
   {
     id: "investor-loan-app",
     title: "Investor Loan App",

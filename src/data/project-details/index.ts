@@ -7,8 +7,10 @@ import { herbalinkDetails } from "./herbalink";
 import { gold2cryptoDetails } from "./gold2crypto";
 import { barskyjointDetails } from "./barskyjoint";
 import { spectrumDetails } from "./spectrum";
+import { medicationAppDetails } from "./medicationApp";
 
 export const projectDetails: Record<string, ProjectDetails> = {
+  "medication-app": medicationAppDetails,
   "investor-loan-app": investorLoanAppDetails,
   "dae-search": daeSearchDetails,
   "splittime": splittimeDetails,
