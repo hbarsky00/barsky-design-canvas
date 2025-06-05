@@ -12,14 +12,15 @@ export interface ProjectProps {
   image: string;
   tags: string[];
   featured?: boolean;
+  link?: string;
 }
 
 interface ProjectCardProps {
   project: ProjectProps;
-  index: number;
+  index?: number;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

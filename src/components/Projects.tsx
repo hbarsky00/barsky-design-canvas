@@ -27,7 +27,7 @@ const Projects: React.FC = () => {
                 className="opacity-0 animate-fade-in"
                 style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards' }}
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} index={index} />
               </div>
             ))}
           </div>
