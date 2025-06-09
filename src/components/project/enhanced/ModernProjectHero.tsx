@@ -35,7 +35,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   
   return (
     <div className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="max-w-4xl mx-auto px-6 py-16">
         {/* Back Navigation */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -52,100 +52,97 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           </Link>
         </motion.div>
 
-        {/* Project Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Project Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            {/* Project Meta */}
-            <div className="flex items-center space-x-3 text-sm">
-              <span className="font-medium text-blue-600">{details.client}</span>
-              <span className="text-gray-400">•</span>
-              <span className="text-gray-600">{details.duration}</span>
-              <span className="text-gray-400">•</span>
-              <span className="text-gray-600">{details.role}</span>
-            </div>
-            
-            {/* Project Title */}
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-              {project.title}
-            </h1>
-            
-            {/* Challenge Image - Below Project Name */}
-            {challengeImage && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="my-8"
+        {/* Project Header - Single Column */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center space-y-6"
+        >
+          {/* Project Meta */}
+          <div className="flex items-center justify-center space-x-3 text-sm">
+            <span className="font-medium text-blue-600">{details.client}</span>
+            <span className="text-gray-400">•</span>
+            <span className="text-gray-600">{details.duration}</span>
+            <span className="text-gray-400">•</span>
+            <span className="text-gray-600">{details.role}</span>
+          </div>
+          
+          {/* Project Title */}
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            {project.title}
+          </h1>
+          
+          {/* Project Description */}
+          <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            {project.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {project.tags.map((tag) => (
+              <Badge 
+                key={tag}
+                variant="secondary" 
+                className="px-3 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100"
               >
-                <MaximizableImage
-                  src={challengeImage}
-                  alt={`${project.title} - Challenge Overview`}
-                  caption={imageCaptions[challengeImage] || `${project.title} - Key challenges and problem identification`}
-                  imageList={[challengeImage]}
-                  currentIndex={0}
-                  className="rounded-lg shadow-lg"
-                />
-              </motion.div>
-            )}
-            
-            {/* Project Description */}
-            <p className="text-xl text-gray-600 leading-relaxed">
-              {project.description}
-            </p>
+                {tag}
+              </Badge>
+            ))}
+          </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <Badge 
-                  key={tag}
-                  variant="secondary" 
-                  className="px-3 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100"
-                >
-                  {tag}
-                </Badge>
-              ))}
+          {/* Project Links */}
+          {details.projectLink && (
+            <div className="flex justify-center pt-4">
+              <a
+                href={details.projectLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+              >
+                View Live Project
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
             </div>
+          )}
+        </motion.div>
 
-            {/* Project Links */}
-            {details.projectLink && (
-              <div className="flex items-center space-x-4 pt-4">
-                <a
-                  href={details.projectLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
-                >
-                  View Live Project
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </div>
-            )}
-          </motion.div>
+        {/* Hero Image - Full Width */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-12"
+        >
+          <MaximizableImage
+            src={project.image}
+            alt={project.title}
+            caption={imageCaptions[project.image] || project.title}
+            imageList={[project.image]}
+            currentIndex={0}
+            priority={true}
+            className="rounded-xl shadow-2xl w-full"
+          />
+        </motion.div>
 
-          {/* Hero Image */}
+        {/* Challenge Image - Below Hero */}
+        {challengeImage && (
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mt-8"
           >
             <MaximizableImage
-              src={project.image}
-              alt={project.title}
-              caption={imageCaptions[project.image] || project.title}
-              imageList={[project.image]}
+              src={challengeImage}
+              alt={`${project.title} - Challenge Overview`}
+              caption={imageCaptions[challengeImage] || `${project.title} - Key challenges and problem identification`}
+              imageList={[challengeImage]}
               currentIndex={0}
-              priority={true}
-              className="rounded-xl shadow-2xl"
+              className="rounded-lg shadow-lg w-full"
             />
           </motion.div>
-        </div>
+        )}
       </div>
     </div>
   );

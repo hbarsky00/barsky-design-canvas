@@ -4,12 +4,10 @@ import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import ModernProjectHero from "./ModernProjectHero";
-import ModernProjectOverview from "./ModernProjectOverview";
-import ModernProjectChallenge from "./ModernProjectChallenge";
-import ModernProjectProcess from "./ModernProjectProcess";
-import ModernProjectResults from "./ModernProjectResults";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { getEmbedUrl } from "@/utils/videoUtils";
+import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
+import { removeDuplicateImages } from "@/utils/imageUtils";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -44,15 +42,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         imageCaptions={imageCaptions}
       />
 
-      {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-6 py-16 space-y-20">
+      {/* Main Content - Single Column Layout */}
+      <div className="max-w-4xl mx-auto px-6 py-16 space-y-16">
         
-        {/* Project Overview */}
-        <ModernProjectOverview
-          details={details}
-          tags={project.tags}
-        />
-
         {/* YouTube Video Section - Only for medication app */}
         {projectId === "medication-app" && (
           <motion.section
@@ -79,26 +71,103 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           </motion.section>
         )}
 
-        {/* Challenge Section */}
-        <ModernProjectChallenge
-          challenge={details.challenge}
-          challengeGalleryImages={details.challengeGalleryImages}
-          imageCaptions={imageCaptions}
-        />
+        {/* The Challenge Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-8"
+        >
+          <h2 className="text-3xl font-bold text-gray-900">
+            The Challenge
+          </h2>
+          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+            {details.challenge.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
-        {/* Process Section */}
-        <ModernProjectProcess
-          process={details.process}
-          processImage={details.processImage}
-          imageCaptions={imageCaptions}
-        />
+          {/* Challenge Images */}
+          {details.challengeGalleryImages && details.challengeGalleryImages.length > 0 && (
+            <div className="mt-8">
+              <ProjectMultiImageGallery 
+                images={removeDuplicateImages(details.challengeGalleryImages)}
+                captions={imageCaptions}
+              />
+            </div>
+          )}
+        </motion.section>
 
-        {/* Results Section */}
-        <ModernProjectResults
-          result={details.result}
-          resultGalleryImages={details.resultGalleryImages}
-          imageCaptions={imageCaptions}
-        />
+        {/* What I Did Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-8"
+        >
+          <h2 className="text-3xl font-bold text-gray-900">
+            What I Did
+          </h2>
+          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+            {details.process.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          {/* Process Image */}
+          {details.processImage && (
+            <div className="mt-8">
+              <div className="relative rounded-lg overflow-hidden shadow-lg">
+                <img
+                  src={details.processImage}
+                  alt={imageCaptions[details.processImage] || "Design process"}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              {imageCaptions[details.processImage] && (
+                <p className="text-sm text-gray-500 text-center mt-3">
+                  {imageCaptions[details.processImage]}
+                </p>
+              )}
+            </div>
+          )}
+        </motion.section>
+
+        {/* The Result Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-8"
+        >
+          <h2 className="text-3xl font-bold text-gray-900">
+            The Result
+          </h2>
+          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+            {details.result.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          {/* Result Images */}
+          {details.resultGalleryImages && details.resultGalleryImages.length > 0 && (
+            <div className="mt-8">
+              <ProjectMultiImageGallery 
+                images={removeDuplicateImages(details.resultGalleryImages)}
+                captions={imageCaptions}
+              />
+            </div>
+          )}
+        </motion.section>
 
         {/* Project Navigation */}
         <ProjectNavigation
