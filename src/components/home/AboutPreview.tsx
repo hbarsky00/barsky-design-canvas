@@ -1,17 +1,10 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Award, Users, Clock, Eye } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const AboutPreview: React.FC = () => {
-  const stats = [
-    { icon: Eye, label: "Design Projects", value: "7+" },
-    { icon: Users, label: "Happy Clients", value: "8+" },
-    { icon: Clock, label: "Years Experience", value: "5+" },
-    { icon: Award, label: "Design Tools", value: "10+" },
-  ];
-
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -63,7 +56,7 @@ const AboutPreview: React.FC = () => {
             </Button>
           </motion.div>
 
-          {/* Right Side - Stats & Visual */}
+          {/* Right Side - Professional Photo */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -88,24 +81,6 @@ const AboutPreview: React.FC = () => {
                   <div className="text-sm">Years</div>
                 </div>
               </div>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center"
-                >
-                  <stat.icon className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-                  <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </motion.div>
-              ))}
             </div>
           </motion.div>
         </div>
