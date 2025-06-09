@@ -147,7 +147,7 @@ const EnhancedHero: React.FC = () => {
               <Button 
                 size="lg" 
                 onClick={scrollToProjects}
-                className="glass-accent border-blue-300/30 text-blue-800 hover:bg-blue-500/30 hover:text-blue-900 px-8 py-4 text-lg font-semibold shadow-elevated backdrop-blur-md transition-all duration-300"
+                className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-8 py-4 text-lg font-semibold shadow-elevated backdrop-blur-md transition-all duration-300"
               >
                 View My Design Work
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -157,7 +157,7 @@ const EnhancedHero: React.FC = () => {
                 variant="outline" 
                 size="lg"
                 onClick={scrollToContact}
-                className="glass-button border-2 border-blue-600/50 text-blue-600 hover:bg-blue-600/20 hover:text-blue-700 px-8 py-4 text-lg font-semibold backdrop-blur-md transition-all duration-300"
+                className="glass-button border-2 border-blue-600/50 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold backdrop-blur-md transition-all duration-300"
               >
                 Let's Collaborate
                 <Mail className="ml-2 h-5 w-5" />
