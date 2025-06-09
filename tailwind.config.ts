@@ -93,7 +93,24 @@ export default {
 					'dark': '#333644',
 					'text': '#4F5D75',
 					'text-light': '#8A94A7',
+				},
+				// Glass morphism colors
+				glass: {
+					light: 'rgba(255, 255, 255, 0.1)',
+					medium: 'rgba(255, 255, 255, 0.2)',
+					dark: 'rgba(0, 0, 0, 0.1)',
+					blue: 'rgba(96, 165, 250, 0.1)',
+					accent: 'rgba(139, 92, 246, 0.1)'
 				}
+			},
+			backdropBlur: {
+				xs: '2px',
+			},
+			boxShadow: {
+				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+				'glass-inset': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+				'elevated': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+				'elevated-lg': '0 35px 60px -12px rgba(0, 0, 0, 0.3)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -206,6 +223,10 @@ export default {
 						opacity: '1', 
 						transform: 'scale(1)' 
 					}
+				},
+				'glass-shimmer': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100%)' }
 				}
 			},
 			animation: {
@@ -220,7 +241,8 @@ export default {
 				'tada': 'tada 1s ease-in-out',
 				'character-bounce': 'character-bounce 0.5s ease-in-out',
 				'slide-in': 'slide-in 0.6s ease-out forwards',
-				'scale-in': 'scale-in 0.6s ease-out forwards'
+				'scale-in': 'scale-in 0.6s ease-out forwards',
+				'glass-shimmer': 'glass-shimmer 2s ease-in-out infinite'
 			}
 		}
 	},
