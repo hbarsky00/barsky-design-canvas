@@ -45,12 +45,12 @@ const EnhancedHero: React.FC = () => {
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-4xl mx-auto text-center">
           
-          {/* Left Side - Content */}
+          {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
@@ -72,7 +72,7 @@ const EnhancedHero: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex items-center gap-6"
+                className="flex items-center justify-center gap-6"
               >
                 <img
                   src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
@@ -106,7 +106,7 @@ const EnhancedHero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="text-lg text-gray-600 leading-relaxed max-w-xl"
+              className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto"
             >
               I help startups and teams design intuitive digital experiences through user research, 
               wireframing, prototyping, and responsive frontend development. From concept to 
@@ -118,7 +118,7 @@ const EnhancedHero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="flex flex-wrap gap-2 max-w-xl"
+              className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto"
             >
               {designSkills.map((skill, index) => (
                 <Badge 
@@ -136,7 +136,7 @@ const EnhancedHero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.1 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row justify-center gap-4"
             >
               <Button 
                 size="lg" 
@@ -163,7 +163,7 @@ const EnhancedHero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.3 }}
-              className="flex items-center space-x-4 pt-4"
+              className="flex items-center justify-center space-x-4 pt-4"
             >
               <span className="text-sm text-gray-500">Connect with me:</span>
               <div className="flex space-x-3">
@@ -193,26 +193,6 @@ const EnhancedHero: React.FC = () => {
                 </a>
               </div>
             </motion.div>
-          </motion.div>
-
-          {/* Right Side - Visual Element */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
-            <div className="relative">
-              {/* Main Project Showcase */}
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                <img
-                  src="/lovable-uploads/fc79b2eb-c9ff-47eb-b5a9-f5db1a7857c1.png"
-                  alt="Featured UX/UI design project showcase - Mobile app designs"
-                  className="w-full h-auto object-cover"
-                  loading="eager"
-                />
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
