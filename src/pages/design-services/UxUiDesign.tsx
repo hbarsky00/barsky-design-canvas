@@ -1,9 +1,7 @@
-
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Check, PenLine, Users, Eye, Lightbulb, Layout } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -61,9 +59,14 @@ const UxUiDesign = () => {
       </Helmet>
       
       <Header />
-      <main className="flex-grow pt-24">
+      <main className="flex-grow pt-24 relative overflow-hidden">
+        {/* Background Layer */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
+        <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
+        
         {/* Breadcrumb */}
-        <div className="bg-slate-50 py-4">
+        <div className="relative bg-white/10 backdrop-blur-sm py-4 z-10">
           <div className="container px-4 mx-auto max-w-6xl">
             <div className="flex items-center gap-2 text-sm text-slate-600">
               <Link to="/" className="hover:text-barsky-blue">Home</Link>
@@ -76,344 +79,215 @@ const UxUiDesign = () => {
         </div>
         
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
+        <section className="py-20 relative z-10">
           <div className="container px-4 mx-auto max-w-6xl">
-            <Button variant="outline" size="sm" asChild className="mb-8">
+            <Button variant="outline" size="sm" asChild className="mb-8 glass-button">
               <Link to="/services" className="flex items-center gap-2">
                 <ArrowLeft className="w-4 h-4" /> Back to All Services
               </Link>
             </Button>
             
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">UX/UI Design Services</h1>
-                <p className="text-lg text-slate-600 mb-8">
-                  Creating intuitive, engaging digital experiences that delight users and drive business results through research-driven design.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-green-50 p-1 rounded-full">
-                      <Check className="w-5 h-5 text-green-600" />
+            <div className="glass-card-elevated p-12 layered-depth floating-element">
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">UX/UI Design Services</h1>
+                  <p className="text-lg text-slate-600 mb-8">
+                    Creating intuitive, engaging digital experiences that delight users and drive business results through research-driven design.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="bg-green-50 p-1 rounded-full">
+                        <Check className="w-5 h-5 text-green-600" />
+                      </div>
+                      <p className="text-slate-700">User-centered design approach</p>
                     </div>
-                    <p className="text-slate-700">User-centered design approach</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-green-50 p-1 rounded-full">
-                      <Check className="w-5 h-5 text-green-600" />
+                    <div className="flex items-start gap-3">
+                      <div className="bg-green-50 p-1 rounded-full">
+                        <Check className="w-5 h-5 text-green-600" />
+                      </div>
+                      <p className="text-slate-700">Data-informed decision making</p>
                     </div>
-                    <p className="text-slate-700">Data-informed decision making</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-green-50 p-1 rounded-full">
-                      <Check className="w-5 h-5 text-green-600" />
+                    <div className="flex items-start gap-3">
+                      <div className="bg-green-50 p-1 rounded-full">
+                        <Check className="w-5 h-5 text-green-600" />
+                      </div>
+                      <p className="text-slate-700">Iterative design and testing</p>
                     </div>
-                    <p className="text-slate-700">Iterative design and testing</p>
                   </div>
+                  <Button onClick={openCalendly} size="lg" className="mt-8 glass-accent">
+                    <Calendar className="mr-2" />
+                    Book a Free UX Consultation
+                  </Button>
                 </div>
-                <Button onClick={openCalendly} size="lg" className="mt-8">
-                  <Calendar className="mr-2" />
-                  Book a Free UX Consultation
-                </Button>
-              </div>
-              <div className="bg-slate-50 p-6 rounded-lg shadow-lg">
-                <img 
-                  src="/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png" 
-                  alt="UX/UI Design Services" 
-                  className="w-full h-auto rounded-lg" 
-                />
+                <div className="glass-card p-6 layered-depth">
+                  <img 
+                    src="/lovable-uploads/14e4f7c9-8f3f-49a6-b459-858623183f1c.png" 
+                    alt="UX/UI Design Services" 
+                    className="w-full h-auto rounded-lg shadow-elevated" 
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
         
         {/* Services Breakdown Section */}
-        <section className="py-20 bg-white" id="user-research">
+        <section className="py-20 relative z-10" id="user-research">
           <div className="container px-4 mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold text-center mb-16">My UX/UI Design Services</h2>
             
-            <div className="grid md:grid-cols-2 gap-20 mb-20">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-barsky-blue/10 p-2 rounded-full">
+            <div className="space-y-12">
+              {/* User Research */}
+              <div className="glass-card-elevated p-8 layered-depth floating-element">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-barsky-blue/10 p-3 rounded-full">
                     <Eye className="w-6 h-6 text-barsky-blue" />
                   </div>
                   <h3 className="text-2xl font-bold">User Research</h3>
                 </div>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-600 mb-8">
                   Understanding your users is the foundation of effective design. I employ a range of research methods to uncover insights that drive design decisions.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="bg-barsky-blue/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-barsky-blue" />
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { title: "User Interviews & Surveys", desc: "Gathering qualitative and quantitative data directly from your target audience" },
+                    { title: "Persona Development", desc: "Creating research-based representations of your key user groups" },
+                    { title: "Competitive Analysis", desc: "Evaluating competitors to identify opportunities and industry standards" },
+                    { title: "Usability Testing", desc: "Observing users interacting with your product to identify pain points" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="bg-barsky-blue/10 p-1 rounded-full mt-1 flex-shrink-0">
+                        <Check className="w-4 h-4 text-barsky-blue" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-barsky-dark">{item.title}</span>
+                        <p className="text-sm text-slate-600">{item.desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">User Interviews & Surveys</span>
-                      <p className="text-sm text-slate-600">Gathering qualitative and quantitative data directly from your target audience</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-barsky-blue/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-barsky-blue" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Persona Development</span>
-                      <p className="text-sm text-slate-600">Creating research-based representations of your key user groups</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-barsky-blue/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-barsky-blue" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Competitive Analysis</span>
-                      <p className="text-sm text-slate-600">Evaluating competitors to identify opportunities and industry standards</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-barsky-blue/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-barsky-blue" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Usability Testing</span>
-                      <p className="text-sm text-slate-600">Observing users interacting with your product to identify pain points</p>
-                    </div>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </div>
-              
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-purple-500/10 p-2 rounded-full">
+
+              {/* UX Strategy */}
+              <div className="glass-card-elevated p-8 layered-depth floating-element">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-purple-500/10 p-3 rounded-full">
                     <Lightbulb className="w-6 h-6 text-purple-500" />
                   </div>
                   <h3 className="text-2xl font-bold">UX Strategy</h3>
                 </div>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-600 mb-8">
                   Aligning user needs with business goals to create a strategic foundation for your digital product.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="bg-purple-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-purple-500" />
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { title: "Journey Mapping", desc: "Visualizing the complete user experience from first contact to long-term engagement" },
+                    { title: "Information Architecture", desc: "Organizing and structuring content for optimal user navigation" },
+                    { title: "User Flows", desc: "Mapping the optimal paths users take to accomplish key tasks" },
+                    { title: "Content Strategy", desc: "Planning content that guides users and supports their goals" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="bg-purple-500/10 p-1 rounded-full mt-1 flex-shrink-0">
+                        <Check className="w-4 h-4 text-purple-500" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-barsky-dark">{item.title}</span>
+                        <p className="text-sm text-slate-600">{item.desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Journey Mapping</span>
-                      <p className="text-sm text-slate-600">Visualizing the complete user experience from first contact to long-term engagement</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-purple-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-purple-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Information Architecture</span>
-                      <p className="text-sm text-slate-600">Organizing and structuring content for optimal user navigation</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-purple-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-purple-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">User Flows</span>
-                      <p className="text-sm text-slate-600">Mapping the optimal paths users take to accomplish key tasks</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-purple-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-purple-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Content Strategy</span>
-                      <p className="text-sm text-slate-600">Planning content that guides users and supports their goals</p>
-                    </div>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </div>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-20" id="interaction-design">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-orange-500/10 p-2 rounded-full">
+
+              {/* Wireframing & Prototyping */}
+              <div className="glass-card-elevated p-8 layered-depth floating-element" id="interaction-design">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-orange-500/10 p-3 rounded-full">
                     <PenLine className="w-6 h-6 text-orange-500" />
                   </div>
                   <h3 className="text-2xl font-bold">Wireframing & Prototyping</h3>
                 </div>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-600 mb-8">
                   Translating research insights into tangible design solutions through iterative wireframing and prototyping.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="bg-orange-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-orange-500" />
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { title: "Low-Fidelity Wireframing", desc: "Creating initial layout concepts to establish information hierarchy" },
+                    { title: "Interactive Prototyping", desc: "Building functional prototypes to test user flows and interactions" },
+                    { title: "Usability Testing", desc: "Validating designs with real users to identify improvement opportunities" },
+                    { title: "Interaction Design", desc: "Crafting intuitive interactions that guide users through your product" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="bg-orange-500/10 p-1 rounded-full mt-1 flex-shrink-0">
+                        <Check className="w-4 h-4 text-orange-500" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-barsky-dark">{item.title}</span>
+                        <p className="text-sm text-slate-600">{item.desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Low-Fidelity Wireframing</span>
-                      <p className="text-sm text-slate-600">Creating initial layout concepts to establish information hierarchy</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-orange-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-orange-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Interactive Prototyping</span>
-                      <p className="text-sm text-slate-600">Building functional prototypes to test user flows and interactions</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-orange-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-orange-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Usability Testing</span>
-                      <p className="text-sm text-slate-600">Validating designs with real users to identify improvement opportunities</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-orange-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-orange-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Interaction Design</span>
-                      <p className="text-sm text-slate-600">Crafting intuitive interactions that guide users through your product</p>
-                    </div>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </div>
-              
-              <div id="prototyping">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-green-500/10 p-2 rounded-full">
+
+              {/* UI Design & Visual Systems */}
+              <div className="glass-card-elevated p-8 layered-depth floating-element" id="prototyping">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-green-500/10 p-3 rounded-full">
                     <Layout className="w-6 h-6 text-green-500" />
                   </div>
                   <h3 className="text-2xl font-bold">UI Design & Visual Systems</h3>
                 </div>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-600 mb-8">
                   Creating visually appealing interfaces that reinforce your brand and enhance usability.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="bg-green-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-green-500" />
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { title: "Visual Design", desc: "Creating pixel-perfect interfaces with attention to detail and aesthetics" },
+                    { title: "Design Systems", desc: "Building scalable component libraries for consistent user experiences" },
+                    { title: "Responsive Design", desc: "Ensuring optimal experiences across all device sizes and types" },
+                    { title: "Micro-interactions & Animation", desc: "Adding delight through thoughtful motion and feedback" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="bg-green-500/10 p-1 rounded-full mt-1 flex-shrink-0">
+                        <Check className="w-4 h-4 text-green-500" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-barsky-dark">{item.title}</span>
+                        <p className="text-sm text-slate-600">{item.desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Visual Design</span>
-                      <p className="text-sm text-slate-600">Creating pixel-perfect interfaces with attention to detail and aesthetics</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-green-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-green-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Design Systems</span>
-                      <p className="text-sm text-slate-600">Building scalable component libraries for consistent user experiences</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-green-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-green-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Responsive Design</span>
-                      <p className="text-sm text-slate-600">Ensuring optimal experiences across all device sizes and types</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="bg-green-500/10 p-1 rounded-full mt-1">
-                      <Check className="w-4 h-4 text-green-500" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-barsky-dark">Micro-interactions & Animation</span>
-                      <p className="text-sm text-slate-600">Adding delight through thoughtful motion and feedback</p>
-                    </div>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
         
-        {/* Process Section */}
-        <section className="py-20 bg-slate-50">
+        {/* Process Section - Refined Layout */}
+        <section className="py-20 relative z-10">
           <div className="container px-4 mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold text-center mb-16">My Design Process</h2>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="bg-white shadow-md">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-barsky-blue/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-barsky-blue">01</span>
+            <div className="glass-card-elevated p-12 layered-depth">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  { num: "01", title: "Discovery", desc: "I begin by understanding your business goals, user needs, and project requirements through stakeholder interviews and research planning. This critical foundation ensures all design decisions support your objectives.", color: "barsky-blue" },
+                  { num: "02", title: "Research", desc: "Through user interviews, surveys, competitive analysis, and other research methods, I gather insights about your users' behaviors, motivations, and pain points to inform design decisions.", color: "purple-500" },
+                  { num: "03", title: "Strategy", desc: "Based on research findings, I develop user personas, journey maps, information architecture, and content strategy to create a strategic framework for the design solution.", color: "orange-500" },
+                  { num: "04", title: "Wireframing", desc: "I create low-fidelity wireframes to establish layout, hierarchy, and functionality without the distraction of visual design elements, focusing on structure and user flows.", color: "green-500" },
+                  { num: "05", title: "Visual Design", desc: "With approved wireframes, I create high-fidelity visual designs that incorporate your brand identity while optimizing for usability and accessibility.", color: "cyan-500" },
+                  { num: "06", title: "Testing & Iteration", desc: "I validate designs through usability testing with real users, gathering feedback to refine and improve the experience before final implementation.", color: "rose-500" }
+                ].map((step, index) => (
+                  <div key={index} className="floating-element">
+                    <div className={`w-12 h-12 bg-${step.color}/10 rounded-full flex items-center justify-center mb-4`}>
+                      <span className={`text-xl font-bold text-${step.color}`}>{step.num}</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                    <p className="text-slate-600">{step.desc}</p>
                   </div>
-                  <h3 className="text-xl font-bold mb-3">Discovery</h3>
-                  <p className="text-slate-600">
-                    I begin by understanding your business goals, user needs, and project requirements through stakeholder interviews and research planning. This critical foundation ensures all design decisions support your objectives.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white shadow-md">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-purple-500">02</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Research</h3>
-                  <p className="text-slate-600">
-                    Through user interviews, surveys, competitive analysis, and other research methods, I gather insights about your users' behaviors, motivations, and pain points to inform design decisions.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white shadow-md">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-orange-500">03</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Strategy</h3>
-                  <p className="text-slate-600">
-                    Based on research findings, I develop user personas, journey maps, information architecture, and content strategy to create a strategic framework for the design solution.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white shadow-md">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-green-500">04</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Wireframing</h3>
-                  <p className="text-slate-600">
-                    I create low-fidelity wireframes to establish layout, hierarchy, and functionality without the distraction of visual design elements, focusing on structure and user flows.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white shadow-md">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-cyan-500">05</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Visual Design</h3>
-                  <p className="text-slate-600">
-                    With approved wireframes, I create high-fidelity visual designs that incorporate your brand identity while optimizing for usability and accessibility.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white shadow-md">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-rose-500/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-rose-500">06</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">Testing & Iteration</h3>
-                  <p className="text-slate-600">
-                    I validate designs through usability testing with real users, gathering feedback to refine and improve the experience before final implementation.
-                  </p>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
             </div>
           </div>
         </section>
