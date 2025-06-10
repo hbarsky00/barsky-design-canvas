@@ -114,9 +114,7 @@ const EnhancedHero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto"
             >
-              I help startups and teams design intuitive digital experiences through user research, 
-              wireframing, prototyping, and responsive frontend development. From concept to 
-              implementation, I bridge the gap between user needs and business goals.
+              With over 15 years of experience in the design industry as a UX / UI Design Specialist, I help growing businesses and startups with product branding and web/mobile design. I specialize in scalable solutions for responsive applications, utilizing user research and data for actionable insights. A collaborative team player, I'm dedicated to mentorship and delivering high-impact, innovative design solutions.
             </motion.p>
 
             {/* Design Skills Tags */}
