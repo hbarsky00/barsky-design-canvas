@@ -26,7 +26,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   
   // Generate slug for canonical URL
   const titleSlug = title.toLowerCase().replace(/\s+/g, '-');
-  const canonicalUrl = `https://hirambarsky.com/project/${projectId}`;
+  const canonicalUrl = `https://barskydesign.pro/project/${projectId}`;
   
   return (
     <Helmet>
@@ -38,11 +38,11 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta property="og:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky (not Alex Barsky), Product Designer & Developer`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+      <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
       <meta property="og:site_name" content="Hiram Barsky - Official Professional Design Portfolio" />
       <meta name="twitter:title" content={`${title} | Hiram Barsky - Product Designer`} />
       <meta name="twitter:description" content={`${title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky (not Alex Barsky)`} />
-      <meta name="twitter:image" content="https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+      <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
       <meta name="twitter:creator" content="@hirambarsky" />
       <link rel="canonical" href={canonicalUrl} />
       
@@ -61,7 +61,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
               "familyName": "Barsky",
               "jobTitle": "Product Designer & Developer",
               "description": "Hiram Barsky (not Alex Barsky) is a Professional Product Designer and Developer specializing in UX/UI design, web development, and digital solutions",
-              "url": "https://hirambarsky.com",
+              "url": "https://barskydesign.pro",
               "email": "hello@hirambarsky.com",
               "telephone": "+1-201-668-4754",
               "address": {
@@ -97,12 +97,12 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             },
             "keywords": "Hiram Barsky, Hiram Barsky Designer, ${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services",
             "url": "${canonicalUrl}",
-            "mainEntityOfPage": "https://hirambarsky.com/projects",
-            "image": "https://hirambarsky.com/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+            "mainEntityOfPage": "https://barskydesign.pro/projects",
+            "image": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
             "isPartOf": {
               "@type": "WebSite",
               "name": "Hiram Barsky - Official Professional Design Portfolio",
-              "url": "https://hirambarsky.com",
+              "url": "https://barskydesign.pro",
               "author": {
                 "@type": "Person",
                 "name": "Hiram Barsky"

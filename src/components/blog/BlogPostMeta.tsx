@@ -15,13 +15,13 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
       <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, UX/UI Design Services"} />
       <meta property="og:title" content={`${post.title} | Hiram Barsky Blog`} />
       <meta property="og:description" content={post.excerpt} />
-      <meta property="og:image" content={post.coverImage ? `https://hirambarsky.com${post.coverImage}` : "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"} />
-      <meta property="og:url" content={`https://hirambarsky.com/blog/${post.slug}`} />
+      <meta property="og:image" content={post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"} />
+      <meta property="og:url" content={`https://barskydesign.pro/blog/${post.slug}`} />
       <meta property="og:type" content="article" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={post.title} />
       <meta name="twitter:description" content={post.excerpt} />
-      <link rel="canonical" href={`https://hirambarsky.com/blog/${post.slug}`} />
+      <link rel="canonical" href={`https://barskydesign.pro/blog/${post.slug}`} />
       
       {/* Structured data for blog post */}
       <script type="application/ld+json">
@@ -31,7 +31,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
             "@type": "BlogPosting",
             "headline": "${post.title}",
             "description": "${post.excerpt}",
-            "image": "${post.coverImage ? `https://hirambarsky.com${post.coverImage}` : "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"}",
+            "image": "${post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"}",
             "author": {
               "@type": "Person",
               "name": "${post.author}"
@@ -41,13 +41,13 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
               "name": "Hiram Barsky Design Services",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"
+                "url": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
               }
             },
             "datePublished": "${post.date}",
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://hirambarsky.com/blog/${post.slug}"
+              "@id": "https://barskydesign.pro/blog/${post.slug}"
             },
             "keywords": "${post.tags.join(', ')}, Website Design Services, App Design Services, AI Driven Design Services, Product Design Services",
             "articleBody": "${post.content.replace(/<[^>]*>/g, ' ').substring(0, 500)}..."
