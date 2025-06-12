@@ -13,6 +13,7 @@ export interface ProjectProps {
   tags: string[];
   featured?: boolean;
   link?: string;
+  category?: string;
 }
 
 interface ProjectCardProps {
