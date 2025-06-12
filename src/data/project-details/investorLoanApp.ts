@@ -10,25 +10,17 @@ export const investorLoanAppDetails: ProjectDetails = {
   client: "Private Banking Institution",
   role: "Lead UX/UI Designer & Product Strategist",
   challengeGalleryImages: [
-    "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
-    "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png",
-    "/lovable-uploads/19954f9e-0643-434e-aab0-2f9eb992fabe.png",
-    "/lovable-uploads/d182275b-452b-4699-a81a-2bf1e846f871.png",
-    "/lovable-uploads/14a16e01-623e-4712-b39b-16f61c682a11.png"
+    "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
   ],
-  processImage: "/lovable-uploads/3d945ece-29bb-4ae6-9c18-5d1f701b6eeb.png",
-  processBottomImage: "/lovable-uploads/8fc09332-ecb4-4b31-b014-5534bf5c3a29.png",
+  processImage: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
+  processBottomImage: "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png",
   resultGalleryImages: [
-    "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png",
-    "/lovable-uploads/f654a945-4117-4ab7-bf21-da26130d1394.png",
-    "/lovable-uploads/ddbba1ba-2c8a-48d9-b367-c3ae2bdbcafc.png",
-    "/lovable-uploads/dd8dfb1f-3217-48c3-a4f0-66065be6cca0.png",
-    "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png",
-    "/lovable-uploads/edf8d9fe-bf18-446d-9ba1-82abdbc74f71.png",
-    "/lovable-uploads/110d7af6-b9ec-4d66-91f1-039414b5a7bc.png",
-    "/lovable-uploads/ac9c09b0-cb4b-42b8-a7d4-9d813cdf882d.png",
-    "/lovable-uploads/64cdd602-9356-4938-a1d1-3e2e08443d9c.png",
-    "/lovable-uploads/775861dc-e0e5-4f64-a1df-30d8d74fbcf3.png"
+    "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
+    "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png",
+    "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
+    "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png",
+    "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
+    "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
   ],
   videoUrl: "https://youtu.be/iUT_tUwJeD8?si=adGE7dhq6a4Q6BCZ"
 };

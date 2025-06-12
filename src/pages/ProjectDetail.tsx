@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
@@ -26,12 +25,15 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/759f7954-5048-407d-9dca-e1d4a4cd954f.png": "Early conceptual sketches and brainstorming session outputs documenting feature ideation and functionality planning"
   },
   "investor-loan-app": {
-    "/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png": "Advanced loans orderbook interface featuring real-time market data, sophisticated filtering options, and institutional-grade trading tools",
-    "/lovable-uploads/74f89ce6-f4fd-44d9-a8ea-e5573014208c.png": "Design thinking methodology applied to financial services, showcasing user-centered approach to complex banking workflows",
-    "/lovable-uploads/19954f9e-0643-434e-aab0-2f9eb992fabe.png": "Comprehensive investor participation dashboard with portfolio analytics, risk assessment tools, and performance tracking capabilities",
-    "/lovable-uploads/d182275b-452b-4699-a81a-2bf1e846f871.png": "Professional typography system designed for financial applications ensuring readability and trust in high-stakes environments",
-    "/lovable-uploads/14a16e01-623e-4712-b39b-16f61c682a11.png": "Deal management card interface featuring intuitive layout for complex financial data presentation and quick decision-making",
-    ...investorLoanImageCaptions
+    "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png": "Advanced loans orderbook interface featuring real-time market data, sophisticated filtering options, and institutional-grade trading tools with predictive search capabilities",
+    "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png": "Comprehensive advanced search functionality with category-based filtering, date ranges, and saved search preferences for efficient deal discovery",
+    "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png": "Key features and solutions overview highlighting AI-powered search, dynamic order book, advanced filtering, and flexible deal management capabilities",
+    "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png": "Project lessons learned showcasing successful user adoption, iterative design improvements, and future enhancement roadmap for mobile platforms",
+    "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png": "Deal Central dashboard featuring card-based interface for managing multiple loan deals with status tracking and progress indicators",
+    "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png": "Collaborative deal management interface with grid view, real-time team collaboration tools, and integrated communication features",
+    "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png": "Loan limit management system with comprehensive utilization tracking, credit monitoring, and automated compliance reporting",
+    "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png": "Enhanced orderbook interface with integrated comments system, team collaboration features, and real-time communication tools",
+    "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png": "User workflow diagram illustrating the complete loan management process from deal selection through order management and collaboration"
   },
   "dae-search": {
     "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "Enterprise data catalog interface featuring advanced search capabilities, intelligent filtering, and Bloomberg-inspired professional design",
