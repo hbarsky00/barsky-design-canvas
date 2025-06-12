@@ -26,7 +26,7 @@ const Store: React.FC = () => {
       <Helmet>
         <title>Store | Hiram Barsky | Design Resources</title>
         <meta name="description" content="Shop for design resources, templates, UI kits, and guides to enhance your design workflow." />
-        <link rel="canonical" href="https://hirambarsky.com/store" />
+        <link rel="canonical" href="https://barskydesign.pro/store" />
       </Helmet>
       
       <Header />

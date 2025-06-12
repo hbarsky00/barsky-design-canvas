@@ -25,7 +25,7 @@ const MobileAppDesign = () => {
         <title>Mobile App Design Services | iOS & Android | Hiram Barsky</title>
         <meta name="description" content="Professional mobile app design services for iOS and Android platforms. Creating user-centered, intuitive mobile experiences that engage users and drive business results." />
         <meta name="keywords" content="mobile app design, iOS app design, Android app design, mobile UX, app UI design, cross-platform design, UX research, prototyping, UI design, mobile development" />
-        <link rel="canonical" href="https://hirambarsky.com/design-services/mobile-app-design" />
+        <link rel="canonical" href="https://barskydesign.pro/design-services/mobile-app-design" />
         
         {/* Structured data for Mobile App Design Service */}
         <script type="application/ld+json">

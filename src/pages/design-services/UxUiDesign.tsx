@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -24,7 +25,7 @@ const UxUiDesign = () => {
         <title>UX/UI Design Services | User Experience Design | Hiram Barsky</title>
         <meta name="description" content="Professional UX/UI design services including user research, wireframing, prototyping, and visual design. Create intuitive digital experiences that users love." />
         <meta name="keywords" content="UX design, UI design, user experience design, user interface design, UX research, wireframing, prototyping, visual design, design systems, usability testing" />
-        <link rel="canonical" href="https://hirambarsky.com/design-services/ux-ui-design" />
+        <link rel="canonical" href="https://barskydesign.pro/design-services/ux-ui-design" />
         
         {/* Structured data for UX/UI Design Service */}
         <script type="application/ld+json">

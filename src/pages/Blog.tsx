@@ -23,10 +23,10 @@ const Blog: React.FC = () => {
         <meta name="keywords" content="Website Design Services Blog, App Design Services Blog, AI Driven Design Blog, Product Design Blog, UX/UI Design Blog, Design Case Studies, Design Process, Professional Designer Blog" />
         <meta property="og:title" content="Blog | Hiram Barsky | Professional Design Services" />
         <meta property="og:description" content="Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design from Hiram Barsky." />
-        <meta property="og:image" content="https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9" />
-        <meta property="og:url" content="https://hirambarsky.com/blog" />
+        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta property="og:url" content="https://barskydesign.pro/blog" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://hirambarsky.com/blog" />
+        <link rel="canonical" href="https://barskydesign.pro/blog" />
         
         {/* Structured data for blog */}
         <script type="application/ld+json">
@@ -36,7 +36,7 @@ const Blog: React.FC = () => {
               "@type": "Blog",
               "name": "Hiram Barsky Design Services Blog",
               "description": "Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design",
-              "url": "https://hirambarsky.com/blog",
+              "url": "https://barskydesign.pro/blog",
               "author": {
                 "@type": "Person",
                 "name": "Hiram Barsky"
@@ -46,7 +46,7 @@ const Blog: React.FC = () => {
                 "name": "Hiram Barsky Design Services",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://hirambarsky.com/lovable-uploads/file-c4fc0432-7896-442d-980d-133d9c7442e9"
+                  "url": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
                 }
               },
               "blogPost": [
@@ -61,7 +61,7 @@ const Blog: React.FC = () => {
                   "datePublished": "${post.date}",
                   "mainEntityOfPage": {
                     "@type": "WebPage",
-                    "@id": "https://hirambarsky.com/blog/${post.slug}"
+                    "@id": "https://barskydesign.pro/blog/${post.slug}"
                   },
                   "keywords": "${post.tags.join(', ')}, Website Design Services, App Design Services, AI Driven Design Services"
                 }`).join(',')}

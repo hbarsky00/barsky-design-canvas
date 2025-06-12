@@ -32,7 +32,7 @@ const ProductDetailsPage: React.FC = () => {
       <Helmet>
         <title>{product.name} | Hiram Barsky | Design Resources</title>
         <meta name="description" content={product.description} />
-        <link rel="canonical" href={`https://hirambarsky.com/store/product/${product.id}`} />
+        <link rel="canonical" href={`https://barskydesign.pro/store/product/${product.id}`} />
       </Helmet>
       
       <Header />
