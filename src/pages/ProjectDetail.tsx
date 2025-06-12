@@ -31,6 +31,7 @@ const projectImageCaptions: Record<string, Record<string, string>> = {
     "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png": "Comprehensive advanced search functionality with category-based filtering, date ranges, and saved search preferences for efficient deal discovery",
     "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png": "Key features and solutions overview highlighting AI-powered search, dynamic order book, advanced filtering, and flexible deal management capabilities",
     "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png": "Project lessons learned showcasing successful user adoption, iterative design improvements, and future enhancement roadmap for mobile platforms",
+    "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png": "Lessons learned from the project implementation showing what worked well, challenges overcome, and future enhancements",
     "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png": "Deal Central dashboard featuring card-based interface for managing multiple loan deals with status tracking and progress indicators",
     "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png": "Collaborative deal management interface with grid view, real-time team collaboration tools, and integrated communication features",
     "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png": "Loan limit management system with comprehensive utilization tracking, credit monitoring, and automated compliance reporting",
