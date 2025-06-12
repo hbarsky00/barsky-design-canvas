@@ -12,6 +12,7 @@ export const barskyjointDetails: ProjectDetails = {
   duration: "1.5 years",
   client: "Barsky Joint Restaurant Group",
   role: "Lead UX/UI Designer",
+  projectLink: "https://barskyjoint.biz",
 
   challengeGalleryImages: [
     "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png",
