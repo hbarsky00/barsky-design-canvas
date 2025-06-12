@@ -7,6 +7,7 @@ export const investorLoanImageCaptions: Record<string, string> = {
   "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png": "Key features and solutions overview showcasing AI-powered search and dynamic order book capabilities",
   "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png": "Lessons learned from the project implementation and future enhancement roadmap",
   "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png": "Lessons learned from the project implementation showing what worked well, challenges overcome, and future enhancements",
+  "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png": "Loan limit management system with comprehensive utilization tracking, credit monitoring, and automated compliance reporting",
   "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png": "Deal Central dashboard with card-based interface for managing multiple loan deals",
   "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png": "Collaborative deal management interface with grid view and real-time team collaboration tools",
   "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png": "Loan limit management system with utilization tracking and credit monitoring",
