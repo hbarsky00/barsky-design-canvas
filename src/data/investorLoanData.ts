@@ -1,5 +1,7 @@
 
 export const investorLoanImageCaptions: Record<string, string> = {
+  "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Comprehensive loan deals dashboard with card-based interface showing multiple projects with real-time collaboration tools and progress tracking",
+  "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Advanced orderbook interface showing all tranches with comprehensive deal management, comments system, and real-time collaboration features",
   "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png": "Advanced loans orderbook interface with predictive search and real-time market data visualization",
   "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png": "Comprehensive advanced search functionality with filtering and saved search preferences",
   "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png": "Key features and solutions overview showcasing AI-powered search and dynamic order book capabilities",
