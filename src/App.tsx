@@ -1,3 +1,4 @@
+
 import React, { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -40,6 +41,20 @@ const AnalyticsTracker = () => {
   return null;
 };
 
+// Component to handle static file redirects
+const StaticFileHandler = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    // If user tries to access sitemap.xml through React Router, redirect to actual file
+    if (location.pathname === '/sitemap.xml') {
+      window.location.href = '/sitemap.xml';
+    }
+  }, [location.pathname]);
+  
+  return null;
+};
+
 const queryClient = new QueryClient();
 
 import { ImageMaximizerProvider } from "./context/ImageMaximizerContext";
@@ -53,6 +68,7 @@ const App = () => {
             <BrowserRouter>
               <ScrollToTop />
               <AnalyticsTracker />
+              <StaticFileHandler />
               <ImageMaximizerProvider>
                 {/* Routes */}
                 <Routes>
