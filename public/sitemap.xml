@@ -1,23 +1,11 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-        http://www.google.com/schemas/sitemap-image/1.1
-        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://barskydesign.pro/</loc>
     <lastmod>2025-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png</image:loc>
-      <image:title>Hiram Barsky - UX/UI Designer & Frontend Developer</image:title>
-      <image:caption>Creating user-centered digital experiences through UX/UI design and frontend development</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -74,11 +62,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png</image:loc>
-      <image:title>Medication Management App - Healthcare UX/UI Design</image:title>
-      <image:caption>Mobile app design for medication tracking and healthcare management</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -86,11 +69,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/2d19b9e1-cbd1-4c7f-b733-6b20049f070e.png</image:loc>
-      <image:title>Investor Loan App - Fintech Platform Design</image:title>
-      <image:caption>UX/UI design for financial platform managing investment deals and loan orders</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -98,11 +76,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png</image:loc>
-      <image:title>SplitTime - Co-Parenting App Design</image:title>
-      <image:caption>Mobile UX/UI design for separated parents coordinating childcare</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -110,11 +83,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png</image:loc>
-      <image:title>Herbalink - Healthcare Platform Design</image:title>
-      <image:caption>Healthcare platform UX/UI connecting patients with herbalists</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -122,11 +90,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png</image:loc>
-      <image:title>DAE Search - Data Asset Management Platform</image:title>
-      <image:caption>UX research and interface design for medical asset data access</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -134,11 +97,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png</image:loc>
-      <image:title>Barsky Joint - Food Truck App Design</image:title>
-      <image:caption>Mobile ordering app UX/UI with location tracking and customization</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -146,11 +104,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png</image:loc>
-      <image:title>Gold2Crypto - Investment Platform Design</image:title>
-      <image:caption>Trading platform UI/UX bridging traditional investments with cryptocurrency</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -158,11 +111,6 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png</image:loc>
-      <image:title>Spectrum Apparel - Accessible E-commerce Design</image:title>
-      <image:caption>E-commerce accessibility-focused design for custom apparel with inclusive features</image:caption>
-    </image:image>
   </url>
 
   <url>
@@ -170,11 +118,5 @@
     <lastmod>2025-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://barskydesign.pro/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png</image:loc>
-      <image:title>Building Products Without Real Data - UX Case Study</image:title>
-      <image:caption>Product design insights and strategies for shipping successful products</image:caption>
-    </image:image>
   </url>
-
 </urlset>
