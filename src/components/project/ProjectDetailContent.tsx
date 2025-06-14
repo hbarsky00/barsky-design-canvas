@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
@@ -102,7 +103,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       {/* Only show bottom gallery if it's not DAE Search project and has gallery images */}
       {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (
         <ProjectGallery
-          images={removeDuplicateImages(details.galleryImages)}
+          images={Array.from(new Set(details.galleryImages))}
           allImages={allImages}
           imageCaptions={imageCaptions}
         />
