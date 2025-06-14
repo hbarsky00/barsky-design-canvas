@@ -48,15 +48,15 @@ const EnhancedHero: React.FC = () => {
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl gentle-float opacity-40" style={{ animationDelay: '2s' }} />
       <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-blue-400/5 rounded-full blur-2xl gentle-float" style={{ animationDelay: '4s' }} />
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="relative w-full px-4 sm:px-6 lg:px-8 py-20 z-10">
+        <div className="w-full text-center">
           
           {/* Glass Container */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="glass-card-elevated p-12 space-y-8 layered-depth"
+            className="glass-card-elevated p-12 space-y-8 layered-depth max-w-6xl mx-auto"
           >
             {/* Status Badge */}
             <motion.div
@@ -112,7 +112,7 @@ const EnhancedHero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto"
+              className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto"
             >
               With over 15 years of experience in the design industry as a UX / UI Design Specialist, I help growing businesses and startups with product branding and web/mobile design. I specialize in scalable solutions for responsive applications, utilizing user research and data for actionable insights. A collaborative team player, I'm dedicated to mentorship and delivering high-impact, innovative design solutions.
             </motion.p>
@@ -122,7 +122,7 @@ const EnhancedHero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto"
+              className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto"
             >
               {designSkills.map((skill, index) => (
                 <Badge 
