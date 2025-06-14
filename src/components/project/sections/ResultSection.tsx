@@ -3,7 +3,6 @@ import React from "react";
 import { Award } from "lucide-react";
 import ProjectSection from "../ProjectSection";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
-import { removeDuplicateImages } from "@/utils/imageUtils";
 import { getEmbedUrl } from "@/utils/videoUtils";
 
 interface ResultSectionProps {
@@ -21,6 +20,9 @@ const ResultSection: React.FC<ResultSectionProps> = ({
   videoUrl,
   imageCaptions
 }) => {
+  // Remove duplicates by converting to Set and back to array
+  const uniqueResultGalleryImages = resultGalleryImages ? Array.from(new Set(resultGalleryImages)) : [];
+  
   return (
     <div className="mb-12">
       <div className="flex items-center mb-4 space-x-2">
@@ -41,7 +43,7 @@ const ResultSection: React.FC<ResultSectionProps> = ({
       {resultGalleryImages && resultGalleryImages.length > 0 ? (
         <div className="mt-4">
           <ProjectMultiImageGallery 
-            images={removeDuplicateImages(resultGalleryImages)}
+            images={uniqueResultGalleryImages}
             captions={imageCaptions}
           />
         </div>

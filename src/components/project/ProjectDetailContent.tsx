@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
@@ -6,7 +5,7 @@ import ProjectHeader from "./ProjectHeader";
 import ProjectOverview from "./ProjectOverview";
 import ProjectSidebar from "./ProjectSidebar";
 import ProjectGallery from "./ProjectGallery";
-import { removeDuplicateImages } from "@/utils/imageUtils";
+import { getImageAssignments } from "@/utils/imageConfigUtils";
 
 interface ProjectDetailContentProps {
   project: ProjectProps;
@@ -28,8 +27,13 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   imageCaptions = {}
 }) => {
   
-  // Collect all unique images for navigation
-  const allImages = removeDuplicateImages([
+  // Get all unique images from the new image configuration and legacy properties
+  const imageAssignments = getImageAssignments(details.imageConfig);
+  const configImages = imageAssignments.map(assignment => assignment.imagePath);
+  
+  // Remove duplicates by converting to Set and back to array
+  const allImages = Array.from(new Set([
+    ...configImages,
     ...(details.challengeGalleryImages || []),
     ...(details.processImage ? [details.processImage] : []),
     ...(details.processBottomImage ? [details.processBottomImage] : []),
@@ -40,7 +44,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
     ...(details.resultImage ? [details.resultImage] : []),
     ...(details.challengeBottomImage ? [details.challengeBottomImage] : []),
     ...(details.servicesGalleryImages || [])
-  ]);
+  ]));
 
   // Find current image index
   const currentImageIndex = allImages.indexOf(project.image);

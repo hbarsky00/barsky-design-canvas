@@ -1,9 +1,7 @@
-
 import React from "react";
 import { List } from "lucide-react";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
 import MaximizableImage from "../MaximizableImage";
-import { removeDuplicateImages } from "@/utils/imageUtils";
 
 interface ProcessSectionProps {
   processBeforeGallery: string;
@@ -32,6 +30,9 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
   processBottomImage,
   imageCaptions
 }) => {
+  // Remove duplicates by converting to Set and back to array
+  const uniqueServicesGalleryImages = Array.from(new Set(servicesGalleryImages));
+  
   return (
     <div className="mb-12">
       <div className="flex items-center mb-4 space-x-2">
@@ -62,7 +63,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         <div className="mb-6">
           <h3 className="text-xl font-semibold mb-4 text-barsky-dark">Services Provided</h3>
           <ProjectMultiImageGallery 
-            images={removeDuplicateImages(servicesGalleryImages)}
+            images={uniqueServicesGalleryImages}
             captions={servicesCaptions}
           />
         </div>

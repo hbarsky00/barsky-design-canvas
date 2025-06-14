@@ -1,9 +1,7 @@
-
 import React from "react";
 import { FileText } from "lucide-react";
 import ProjectSection from "../ProjectSection";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
-import { removeDuplicateImages } from "@/utils/imageUtils";
 
 interface ChallengeSectionProps {
   challenge: string;
@@ -20,6 +18,9 @@ const ChallengeSection: React.FC<ChallengeSectionProps> = ({
   challengeGalleryImages = [],
   imageCaptions
 }) => {
+  // Remove duplicates by converting to Set and back to array
+  const uniqueChallengeGalleryImages = Array.from(new Set(challengeGalleryImages));
+  
   return (
     <>
       <ProjectSection
@@ -35,7 +36,7 @@ const ChallengeSection: React.FC<ChallengeSectionProps> = ({
       {challengeGalleryImages && challengeGalleryImages.length > 0 && (
         <div className="mb-8">
           <ProjectMultiImageGallery 
-            images={removeDuplicateImages(challengeGalleryImages)}
+            images={uniqueChallengeGalleryImages}
             captions={imageCaptions}
           />
         </div>
