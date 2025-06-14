@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import ModernProjectHero from "./ModernProjectHero";
+import ModernProjectVideoSection from "./ModernProjectVideoSection";
+import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
-import { getEmbedUrl } from "@/utils/videoUtils";
-import MaximizableImage from "../MaximizableImage";
 import { selectUniqueImages } from "@/utils/imageUtils";
 
 interface ModernProjectDetailProps {
@@ -58,172 +58,35 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       {/* Main Content - Single Column Layout with Glass Effects */}
       <div className="relative max-w-4xl mx-auto px-6 py-16 space-y-16 z-10">
         
-        {/* YouTube Video Section - Only for medication app */}
-        {projectId === "medication-app" && (
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="glass-card-elevated p-8 layered-depth">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-                Project Demo Video
-              </h2>
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-elevated-lg glass-card p-2">
-                <iframe
-                  src={getEmbedUrl("https://youtu.be/iDbqHuz6d2A?si=d7YH6RWXhH7gIoqA")}
-                  title="Medication App Demo Video"
-                  className="w-full h-full rounded-lg"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          </motion.section>
-        )}
+        {/* YouTube Video Section */}
+        <ModernProjectVideoSection projectId={projectId} />
 
         {/* The Challenge Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
-        >
-          {/* Image Before Header */}
-          {uniqueImages.challenge.beforeHeader && (
-            <div className="glass-card p-4 layered-depth floating-element">
-              <MaximizableImage
-                src={uniqueImages.challenge.beforeHeader}
-                alt={imageCaptions[uniqueImages.challenge.beforeHeader] || "Challenge overview"}
-                caption={imageCaptions[uniqueImages.challenge.beforeHeader]}
-                className="rounded-lg shadow-elevated w-full"
-              />
-            </div>
-          )}
-
-          {/* Header */}
-          <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
-            The Challenge
-          </h2>
-
-          {/* Image After Header */}
-          {uniqueImages.challenge.afterHeader && (
-            <div className="glass-card p-4 layered-depth floating-element">
-              <MaximizableImage
-                src={uniqueImages.challenge.afterHeader}
-                alt={imageCaptions[uniqueImages.challenge.afterHeader] || "Challenge details"}
-                caption={imageCaptions[uniqueImages.challenge.afterHeader]}
-                className="rounded-lg shadow-elevated w-full"
-              />
-            </div>
-          )}
-
-          {/* Content */}
-          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-            {details.challenge.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </motion.section>
+        <ModernProjectContentSection
+          title="The Challenge"
+          content={details.challenge}
+          beforeHeaderImage={uniqueImages.challenge.beforeHeader}
+          afterHeaderImage={uniqueImages.challenge.afterHeader}
+          imageCaptions={imageCaptions}
+        />
 
         {/* What I Did Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
-        >
-          {/* Image Before Header */}
-          {uniqueImages.process.beforeHeader && (
-            <div className="glass-card p-4 layered-depth floating-element">
-              <MaximizableImage
-                src={uniqueImages.process.beforeHeader}
-                alt={imageCaptions[uniqueImages.process.beforeHeader] || "Design process"}
-                caption={imageCaptions[uniqueImages.process.beforeHeader]}
-                className="rounded-lg shadow-elevated w-full"
-              />
-            </div>
-          )}
-
-          {/* Header */}
-          <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
-            What I Did
-          </h2>
-
-          {/* Image After Header */}
-          {uniqueImages.process.afterHeader && (
-            <div className="glass-card p-4 layered-depth floating-element">
-              <MaximizableImage
-                src={uniqueImages.process.afterHeader}
-                alt={imageCaptions[uniqueImages.process.afterHeader] || "Process details"}
-                caption={imageCaptions[uniqueImages.process.afterHeader]}
-                className="rounded-lg shadow-elevated w-full"
-              />
-            </div>
-          )}
-
-          {/* Content */}
-          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-            {details.process.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </motion.section>
+        <ModernProjectContentSection
+          title="What I Did"
+          content={details.process}
+          beforeHeaderImage={uniqueImages.process.beforeHeader}
+          afterHeaderImage={uniqueImages.process.afterHeader}
+          imageCaptions={imageCaptions}
+        />
 
         {/* The Result Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
-        >
-          {/* Image Before Header */}
-          {uniqueImages.result.beforeHeader && (
-            <div className="glass-card p-4 layered-depth floating-element">
-              <MaximizableImage
-                src={uniqueImages.result.beforeHeader}
-                alt={imageCaptions[uniqueImages.result.beforeHeader] || "Final result"}
-                caption={imageCaptions[uniqueImages.result.beforeHeader]}
-                className="rounded-lg shadow-elevated w-full"
-              />
-            </div>
-          )}
-
-          {/* Header */}
-          <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
-            The Result
-          </h2>
-
-          {/* Image After Header */}
-          {uniqueImages.result.afterHeader && (
-            <div className="glass-card p-4 layered-depth floating-element">
-              <MaximizableImage
-                src={uniqueImages.result.afterHeader}
-                alt={imageCaptions[uniqueImages.result.afterHeader] || "Result showcase"}
-                caption={imageCaptions[uniqueImages.result.afterHeader]}
-                className="rounded-lg shadow-elevated w-full"
-              />
-            </div>
-          )}
-
-          {/* Content */}
-          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-            {details.result.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </motion.section>
+        <ModernProjectContentSection
+          title="The Result"
+          content={details.result}
+          beforeHeaderImage={uniqueImages.result.beforeHeader}
+          afterHeaderImage={uniqueImages.result.afterHeader}
+          imageCaptions={imageCaptions}
+        />
 
         {/* Project Navigation */}
         <div className="glass-card p-6 layered-depth">
