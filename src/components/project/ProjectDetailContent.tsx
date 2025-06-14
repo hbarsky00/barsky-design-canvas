@@ -82,7 +82,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             imageCaptions={imageCaptions}
             galleryImages={details.galleryImages}
             showTechnologies={false}
-            videoUrl={details.videoUrl}
             challengeBottomImage={details.challengeBottomImage}
             challengeGalleryImages={details.challengeGalleryImages}
             allImages={allImages}
