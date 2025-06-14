@@ -4,7 +4,7 @@ import { projectsData } from "@/data/projects/projectsList";
 import { ProjectProps } from "@/components/ProjectCard";
 
 // IDs of the featured projects to display on homepage
-const featuredProjectIds = ["medication-app", "splittime", "herbalink", "dae-search"];
+const featuredProjectIds = ["investor-loan-app", "herbalink", "dae-search"];
 
 // IDs of hidden projects that won't appear in listings
 const hiddenProjectIds = ["gold2crypto", "spectrum"];
