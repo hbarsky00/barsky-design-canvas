@@ -54,8 +54,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   const {
     isInvestorProject,
     isDaeSearchProject,
-    bloombergSearchImages,
-    bloombergCaptions,
+    inspirationImages,
+    inspirationCaptions,
     servicesCaptions,
     processBreakpoint
   } = useProjectConfiguration(projectId);
@@ -81,8 +81,8 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         processAfterGallery={processAfterGallery}
         isInvestorProject={isInvestorProject}
         isDaeSearchProject={isDaeSearchProject}
-        bloombergSearchImages={bloombergSearchImages}
-        bloombergCaptions={bloombergCaptions}
+        inspirationImages={inspirationImages}
+        inspirationCaptions={inspirationCaptions}
         servicesGalleryImages={servicesGalleryImages}
         servicesCaptions={servicesCaptions}
         processImage={processImage}

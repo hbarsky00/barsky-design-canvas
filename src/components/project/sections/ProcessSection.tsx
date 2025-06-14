@@ -1,3 +1,4 @@
+
 import React from "react";
 import { List } from "lucide-react";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
@@ -8,8 +9,8 @@ interface ProcessSectionProps {
   processAfterGallery: string;
   isInvestorProject: boolean;
   isDaeSearchProject: boolean;
-  bloombergSearchImages: string[];
-  bloombergCaptions: Record<string, string>;
+  inspirationImages: string[];
+  inspirationCaptions: Record<string, string>;
   servicesGalleryImages: string[];
   servicesCaptions: Record<string, string>;
   processImage?: string;
@@ -22,8 +23,8 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
   processAfterGallery,
   isInvestorProject,
   isDaeSearchProject,
-  bloombergSearchImages,
-  bloombergCaptions,
+  inspirationImages,
+  inspirationCaptions,
   servicesGalleryImages,
   servicesCaptions,
   processImage,
@@ -48,12 +49,12 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         </div>
       )}
 
-      {/* Bloomberg Search Interface Gallery - Only for investor project */}
+      {/* Professional Search Interface Gallery - Only for investor project */}
       {isInvestorProject && processBeforeGallery && (
         <div className="mb-6">
           <ProjectMultiImageGallery 
-            images={bloombergSearchImages}
-            captions={bloombergCaptions}
+            images={inspirationImages}
+            captions={inspirationCaptions}
           />
         </div>
       )}
