@@ -1,76 +1,69 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
     id: "medication-app",
-    title: "Medication Management App",
-    description: "A comprehensive mobile solution for patient medication adherence and healthcare provider coordination.",
+    title: "MediTrack Pro",
+    description: "Comprehensive medication management mobile app designed to help patients track medications, set reminders, and maintain adherence to treatment plans.",
     image: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
-    tags: ["Mobile App Design", "Healthcare", "User Research", "Prototyping"],
-    featured: true,
-    category: "mobile"
+    tags: ["Mobile App Design", "Healthcare", "User Experience"],
+    featured: true
   },
   {
     id: "investor-loan-app",
-    title: "Investor Loan Management Platform",
-    description: "Enterprise-grade financial platform transforming Excel-based workflows into automated digital solutions for private banking.",
+    title: "InvestorConnect",
+    description: "Professional trading platform enabling institutional investors to discover, evaluate, and manage loan opportunities with advanced search and collaboration tools.",
     image: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-    tags: ["Financial Technology", "Enterprise Software", "User Experience", "Banking Solutions"],
-    featured: true,
-    category: "web"
+    tags: ["Web Development", "Financial Technology", "Enterprise Design"],
+    featured: true
   },
   {
     id: "dae-search",
-    title: "Enterprise Data Catalog",
-    description: "AI-powered enterprise data catalog design inspired by Bloomberg, enhancing data discovery and accessibility.",
+    title: "DataCatalog Pro",
+    description: "AI-powered enterprise data catalog design enhancing data discovery and accessibility for enterprise teams.",
     image: "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png",
-    tags: ["Data Visualization", "Enterprise Solutions", "AI", "Information Architecture"],
-    featured: true,
-    category: "web"
+    tags: ["Enterprise Search", "Data Management", "User Experience"],
+    featured: true
   },
   {
     id: "splittime",
-    title: "Co-Parenting App",
-    description: "Mobile app designed to streamline communication, scheduling, and financial management for divorced or separated parents.",
+    title: "SplitTime",
+    description: "Co-parenting coordination platform designed to help divorced parents manage custody schedules, expenses, and communication in a child-focused environment.",
     image: "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
-    tags: ["Mobile App Design", "Family Tech", "UX Research", "Telehealth"],
-    featured: true,
-    category: "mobile"
+    tags: ["Mobile App Design", "Family Tech", "Social Impact"],
+    featured: false
   },
   {
     id: "herbalink",
-    title: "Herbalist Connection Platform",
-    description: "Telemedicine platform connecting users with qualified herbalists for personalized consultations and traditional medicine.",
+    title: "HerbaLink",
+    description: "Digital platform connecting patients with qualified herbalists and naturopaths for personalized herbal medicine consultations and treatment plans.",
     image: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
-    tags: ["Telemedicine", "Alternative Medicine", "Mobile App Design", "Healthcare"],
-    featured: true,
-    category: "mobile"
+    tags: ["Healthcare", "Mobile App Design", "Telemedicine"],
+    featured: false
   },
   {
     id: "gold2crypto",
-    title: "Gold to Crypto Investment Platform",
-    description: "Web platform designed to help traditional gold investors transition into cryptocurrency investments.",
+    title: "Gold2Crypto",
+    description: "Investment platform designed to help traditional gold investors transition to cryptocurrency markets with familiar interfaces and educational resources.",
     image: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-    tags: ["FinTech", "Investment Platform", "Cryptocurrency", "UX Design"],
-    featured: true,
-    category: "web"
+    tags: ["Financial Technology", "Web Development", "Investment"],
+    featured: false
   },
   {
     id: "barskyjoint",
-    title: "Food Truck Mobile App",
-    description: "Mobile app for a restaurant chain with a food truck division, focusing on real-time location tracking and mobile ordering.",
+    title: "Barsky Joint",
+    description: "Unified digital experience for a dual-format restaurant featuring both traditional dining and mobile food truck operations with integrated ordering systems.",
     image: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-    tags: ["Mobile App Design", "Restaurant Tech", "Location Services", "E-commerce"],
-    featured: true,
-    category: "mobile"
+    tags: ["Restaurant Technology", "Mobile App Design", "E-commerce"],
+    featured: false
   },
   {
     id: "spectrum",
-    title: "Custom Apparel Website",
-    description: "E-commerce website for custom apparel, emphasizing accessibility and inclusive design for users with disabilities.",
+    title: "Spectrum Apparel",
+    description: "Accessible custom apparel e-commerce platform featuring advanced design tools and inclusive shopping experience for users of all abilities.",
     image: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
-    tags: ["E-commerce", "Accessibility", "Web Design", "Inclusive Design"],
-    featured: true,
-    category: "web"
+    tags: ["E-commerce", "Accessibility", "Web Development"],
+    featured: false
   }
 ];
