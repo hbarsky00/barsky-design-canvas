@@ -3,13 +3,11 @@ import React from "react";
 import { Award } from "lucide-react";
 import ProjectSection from "../ProjectSection";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
-import { getEmbedUrl } from "@/utils/videoUtils";
 
 interface ResultSectionProps {
   result: string;
   resultGalleryImages?: string[];
   resultImage?: string;
-  videoUrl?: string;
   imageCaptions: Record<string, string>;
 }
 
@@ -17,7 +15,6 @@ const ResultSection: React.FC<ResultSectionProps> = ({
   result,
   resultGalleryImages,
   resultImage,
-  videoUrl,
   imageCaptions
 }) => {
   // Remove duplicates by converting to Set and back to array
@@ -56,21 +53,6 @@ const ResultSection: React.FC<ResultSectionProps> = ({
           imageCaption={resultImage && imageCaptions[resultImage]}
         />
       ) : null}
-
-      {/* Video Section - Show in result section if videoUrl exists */}
-      {videoUrl && (
-        <div className="mt-6">
-          <div className="aspect-video w-full rounded-lg overflow-hidden">
-            <iframe
-              src={getEmbedUrl(videoUrl)}
-              title="Project Demo Video"
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 };

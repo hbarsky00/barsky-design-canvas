@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import ModernProjectHero from "./ModernProjectHero";
-import ModernProjectVideoSection from "./ModernProjectVideoSection";
+import ProjectHeroImageSection from "./ProjectHeroImageSection";
 import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
 
@@ -47,8 +47,11 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       {/* Main Content - Single Column Layout with Glass Effects */}
       <div className="relative max-w-4xl mx-auto px-6 py-16 space-y-16 z-10">
         
-        {/* YouTube Video Section */}
-        <ModernProjectVideoSection projectId={projectId} />
+        {/* Hero Image Section */}
+        <ProjectHeroImageSection 
+          projectId={projectId} 
+          imageCaptions={imageCaptions}
+        />
 
         {/* The Challenge Section */}
         <ModernProjectContentSection

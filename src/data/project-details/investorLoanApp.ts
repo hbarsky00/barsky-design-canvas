@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const investorLoanAppDetails: ProjectDetails = {
@@ -59,6 +58,5 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png",
     "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
     "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
-  ],
-  videoUrl: "https://youtu.be/iUT_tUwJeD8?si=adGE7dhq6a4Q6BCZ"
+  ]
 };

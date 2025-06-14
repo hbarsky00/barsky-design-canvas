@@ -24,7 +24,6 @@ interface ProjectOverviewProps {
   imageCaptions?: Record<string, string>;
   galleryImages?: string[];
   showTechnologies?: boolean;
-  videoUrl?: string;
   challengeBottomImage?: string;
   challengeGalleryImages?: string[];
   allImages: string[];
@@ -45,7 +44,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   resultGalleryImages,
   imageCaptions = {},
   showTechnologies = false,
-  videoUrl,
   challengeBottomImage,
   challengeGalleryImages = [],
   projectId,
@@ -94,7 +92,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         result={result}
         resultGalleryImages={resultGalleryImages}
         resultImage={resultImage}
-        videoUrl={videoUrl}
         imageCaptions={imageCaptions}
       />
       
