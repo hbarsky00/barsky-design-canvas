@@ -6,8 +6,8 @@ import { ProjectDetails } from "@/data/types/project";
 import ModernProjectHero from "./ModernProjectHero";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { getEmbedUrl } from "@/utils/videoUtils";
-import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
 import { removeDuplicateImages } from "@/utils/imageUtils";
+import MaximizableImage from "../MaximizableImage";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -28,6 +28,29 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
+  // Helper function to get images for each section
+  const getChallengeImages = () => {
+    const beforeHeader = details.challengeGalleryImages?.[0] || details.challengeImage;
+    const afterHeader = details.challengeBottomImage || details.challengeGalleryImages?.[1] || details.challengeImage;
+    return { beforeHeader, afterHeader };
+  };
+
+  const getProcessImages = () => {
+    const beforeHeader = details.processImage;
+    const afterHeader = details.processBottomImage;
+    return { beforeHeader, afterHeader };
+  };
+
+  const getResultImages = () => {
+    const beforeHeader = details.resultGalleryImages?.[0] || details.resultImage;
+    const afterHeader = details.resultGalleryImages?.[1] || details.resultImage;
+    return { beforeHeader, afterHeader };
+  };
+
+  const challengeImages = getChallengeImages();
+  const processImages = getProcessImages();
+  const resultImages = getResultImages();
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -82,9 +105,36 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           transition={{ duration: 0.8 }}
           className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
         >
+          {/* Image Before Header */}
+          {challengeImages.beforeHeader && (
+            <div className="glass-card p-4 layered-depth floating-element">
+              <MaximizableImage
+                src={challengeImages.beforeHeader}
+                alt="Challenge overview"
+                caption={imageCaptions[challengeImages.beforeHeader]}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {/* Header */}
           <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
             The Challenge
           </h2>
+
+          {/* Image After Header */}
+          {challengeImages.afterHeader && challengeImages.afterHeader !== challengeImages.beforeHeader && (
+            <div className="glass-card p-4 layered-depth floating-element">
+              <MaximizableImage
+                src={challengeImages.afterHeader}
+                alt="Challenge details"
+                caption={imageCaptions[challengeImages.afterHeader]}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {/* Content */}
           <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
             {details.challenge.split('\n\n').map((paragraph, index) => (
               <p key={index} className="mb-4">
@@ -92,16 +142,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
               </p>
             ))}
           </div>
-
-          {/* Challenge Images */}
-          {details.challengeGalleryImages && details.challengeGalleryImages.length > 0 && (
-            <div className="mt-8">
-              <ProjectMultiImageGallery 
-                images={removeDuplicateImages(details.challengeGalleryImages)}
-                captions={imageCaptions}
-              />
-            </div>
-          )}
         </motion.section>
 
         {/* What I Did Section */}
@@ -112,9 +152,36 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           transition={{ duration: 0.8 }}
           className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
         >
+          {/* Image Before Header */}
+          {processImages.beforeHeader && (
+            <div className="glass-card p-4 layered-depth floating-element">
+              <MaximizableImage
+                src={processImages.beforeHeader}
+                alt="Process overview"
+                caption={imageCaptions[processImages.beforeHeader]}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {/* Header */}
           <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
             What I Did
           </h2>
+
+          {/* Image After Header */}
+          {processImages.afterHeader && processImages.afterHeader !== processImages.beforeHeader && (
+            <div className="glass-card p-4 layered-depth floating-element">
+              <MaximizableImage
+                src={processImages.afterHeader}
+                alt="Process details"
+                caption={imageCaptions[processImages.afterHeader]}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {/* Content */}
           <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
             {details.process.split('\n\n').map((paragraph, index) => (
               <p key={index} className="mb-4">
@@ -122,24 +189,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
               </p>
             ))}
           </div>
-
-          {/* Process Image */}
-          {details.processImage && (
-            <div className="mt-8">
-              <div className="glass-card p-4 layered-depth floating-element">
-                <img
-                  src={details.processImage}
-                  alt={imageCaptions[details.processImage] || "Design process"}
-                  className="w-full h-auto object-cover rounded-lg shadow-elevated"
-                />
-              </div>
-              {imageCaptions[details.processImage] && (
-                <p className="text-sm text-gray-500 text-center mt-3">
-                  {imageCaptions[details.processImage]}
-                </p>
-              )}
-            </div>
-          )}
         </motion.section>
 
         {/* The Result Section */}
@@ -150,9 +199,36 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           transition={{ duration: 0.8 }}
           className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
         >
+          {/* Image Before Header */}
+          {resultImages.beforeHeader && (
+            <div className="glass-card p-4 layered-depth floating-element">
+              <MaximizableImage
+                src={resultImages.beforeHeader}
+                alt="Result overview"
+                caption={imageCaptions[resultImages.beforeHeader]}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {/* Header */}
           <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
             The Result
           </h2>
+
+          {/* Image After Header */}
+          {resultImages.afterHeader && resultImages.afterHeader !== resultImages.beforeHeader && (
+            <div className="glass-card p-4 layered-depth floating-element">
+              <MaximizableImage
+                src={resultImages.afterHeader}
+                alt="Result details"
+                caption={imageCaptions[resultImages.afterHeader]}
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {/* Content */}
           <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
             {details.result.split('\n\n').map((paragraph, index) => (
               <p key={index} className="mb-4">
@@ -160,16 +236,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
               </p>
             ))}
           </div>
-
-          {/* Result Images */}
-          {details.resultGalleryImages && details.resultGalleryImages.length > 0 && (
-            <div className="mt-8">
-              <ProjectMultiImageGallery 
-                images={removeDuplicateImages(details.resultGalleryImages)}
-                captions={imageCaptions}
-              />
-            </div>
-          )}
         </motion.section>
 
         {/* Project Navigation */}
