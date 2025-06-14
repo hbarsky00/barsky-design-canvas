@@ -7,7 +7,6 @@ import ModernProjectHero from "./ModernProjectHero";
 import ModernProjectVideoSection from "./ModernProjectVideoSection";
 import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
-import { selectUniqueImages } from "@/utils/imageUtils";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -28,16 +27,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
-  // Get unique images for each section
-  const uniqueImages = selectUniqueImages(
-    details.challengeImage,
-    details.challengeGalleryImages,
-    details.processImage,
-    details.processBottomImage,
-    details.resultImage,
-    details.resultGalleryImages
-  );
-
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -65,8 +54,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         <ModernProjectContentSection
           title="The Challenge"
           content={details.challenge}
-          beforeHeaderImage={uniqueImages.challenge.beforeHeader}
-          afterHeaderImage={uniqueImages.challenge.afterHeader}
+          sectionKey="challenge"
+          imageConfig={details.imageConfig}
           imageCaptions={imageCaptions}
         />
 
@@ -74,8 +63,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         <ModernProjectContentSection
           title="What I Did"
           content={details.process}
-          beforeHeaderImage={uniqueImages.process.beforeHeader}
-          afterHeaderImage={uniqueImages.process.afterHeader}
+          sectionKey="process"
+          imageConfig={details.imageConfig}
           imageCaptions={imageCaptions}
         />
 
@@ -83,8 +72,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         <ModernProjectContentSection
           title="The Result"
           content={details.result}
-          beforeHeaderImage={uniqueImages.result.beforeHeader}
-          afterHeaderImage={uniqueImages.result.afterHeader}
+          sectionKey="result"
+          imageConfig={details.imageConfig}
           imageCaptions={imageCaptions}
         />
 

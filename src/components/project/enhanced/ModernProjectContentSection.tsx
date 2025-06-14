@@ -2,22 +2,28 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
+import { ProjectImageConfig } from "@/data/types/project";
 
 interface ModernProjectContentSectionProps {
   title: string;
   content: string;
-  beforeHeaderImage?: string;
-  afterHeaderImage?: string;
+  sectionKey: keyof ProjectImageConfig; // 'challenge', 'process', or 'result'
+  imageConfig?: ProjectImageConfig;
   imageCaptions: Record<string, string>;
 }
 
 const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = ({
   title,
   content,
-  beforeHeaderImage,
-  afterHeaderImage,
+  sectionKey,
+  imageConfig,
   imageCaptions
 }) => {
+  // Get images for this section from the new configuration
+  const sectionImages = imageConfig?.[sectionKey];
+  const beforeHeaderImage = sectionImages?.beforeHeader;
+  const afterHeaderImage = sectionImages?.afterHeader;
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
