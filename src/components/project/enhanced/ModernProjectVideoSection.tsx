@@ -10,8 +10,22 @@ interface ModernProjectVideoSectionProps {
 const ModernProjectVideoSection: React.FC<ModernProjectVideoSectionProps> = ({
   projectId
 }) => {
-  // Only show video section for medication app
-  if (projectId !== "medication-app") {
+  // Define which projects have videos and their URLs
+  const projectVideos: Record<string, { url: string; title: string }> = {
+    "medication-app": {
+      url: "https://youtu.be/iDbqHuz6d2A?si=d7YH6RWXhH7gIoqA",
+      title: "Medication App Demo Video"
+    },
+    "investor-loan-app": {
+      url: "https://youtu.be/iUT_tUwJeD8?si=adGE7dhq6a4Q6BCZ",
+      title: "Investor Loan App Demo Video"
+    }
+  };
+
+  const videoData = projectVideos[projectId];
+
+  // Only show video section if project has a video
+  if (!videoData) {
     return null;
   }
 
@@ -29,8 +43,8 @@ const ModernProjectVideoSection: React.FC<ModernProjectVideoSectionProps> = ({
         </h2>
         <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-elevated-lg glass-card p-2">
           <iframe
-            src={getEmbedUrl("https://youtu.be/iDbqHuz6d2A?si=d7YH6RWXhH7gIoqA")}
-            title="Medication App Demo Video"
+            src={getEmbedUrl(videoData.url)}
+            title={videoData.title}
             className="w-full h-full rounded-lg"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
