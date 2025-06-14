@@ -7,6 +7,7 @@ import ModernProjectHero from "./ModernProjectHero";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { getEmbedUrl } from "@/utils/videoUtils";
 import MaximizableImage from "../MaximizableImage";
+import { selectUniqueImages } from "@/utils/imageUtils";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -27,6 +28,16 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
+  // Get unique images for each section
+  const uniqueImages = selectUniqueImages(
+    details.challengeImage,
+    details.challengeGalleryImages,
+    details.processImage,
+    details.processBottomImage,
+    details.resultImage,
+    details.resultGalleryImages
+  );
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -81,13 +92,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           transition={{ duration: 0.8 }}
           className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
         >
-          {/* First Image - Before Header */}
-          {details.challengeImage && (
+          {/* Image Before Header */}
+          {uniqueImages.challenge.beforeHeader && (
             <div className="glass-card p-4 layered-depth floating-element">
               <MaximizableImage
-                src={details.challengeImage}
-                alt={imageCaptions[details.challengeImage] || "Challenge overview"}
-                caption={imageCaptions[details.challengeImage]}
+                src={uniqueImages.challenge.beforeHeader}
+                alt={imageCaptions[uniqueImages.challenge.beforeHeader] || "Challenge overview"}
+                caption={imageCaptions[uniqueImages.challenge.beforeHeader]}
                 className="rounded-lg shadow-elevated w-full"
               />
             </div>
@@ -98,13 +109,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             The Challenge
           </h2>
 
-          {/* Second Image - After Header */}
-          {details.challengeGalleryImages && details.challengeGalleryImages[0] && (
+          {/* Image After Header */}
+          {uniqueImages.challenge.afterHeader && (
             <div className="glass-card p-4 layered-depth floating-element">
               <MaximizableImage
-                src={details.challengeGalleryImages[0]}
-                alt={imageCaptions[details.challengeGalleryImages[0]] || "Challenge details"}
-                caption={imageCaptions[details.challengeGalleryImages[0]]}
+                src={uniqueImages.challenge.afterHeader}
+                alt={imageCaptions[uniqueImages.challenge.afterHeader] || "Challenge details"}
+                caption={imageCaptions[uniqueImages.challenge.afterHeader]}
                 className="rounded-lg shadow-elevated w-full"
               />
             </div>
@@ -128,13 +139,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           transition={{ duration: 0.8 }}
           className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
         >
-          {/* First Image - Before Header */}
-          {details.processImage && (
+          {/* Image Before Header */}
+          {uniqueImages.process.beforeHeader && (
             <div className="glass-card p-4 layered-depth floating-element">
               <MaximizableImage
-                src={details.processImage}
-                alt={imageCaptions[details.processImage] || "Design process"}
-                caption={imageCaptions[details.processImage]}
+                src={uniqueImages.process.beforeHeader}
+                alt={imageCaptions[uniqueImages.process.beforeHeader] || "Design process"}
+                caption={imageCaptions[uniqueImages.process.beforeHeader]}
                 className="rounded-lg shadow-elevated w-full"
               />
             </div>
@@ -145,13 +156,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             What I Did
           </h2>
 
-          {/* Second Image - After Header */}
-          {details.processBottomImage && (
+          {/* Image After Header */}
+          {uniqueImages.process.afterHeader && (
             <div className="glass-card p-4 layered-depth floating-element">
               <MaximizableImage
-                src={details.processBottomImage}
-                alt={imageCaptions[details.processBottomImage] || "Process details"}
-                caption={imageCaptions[details.processBottomImage]}
+                src={uniqueImages.process.afterHeader}
+                alt={imageCaptions[uniqueImages.process.afterHeader] || "Process details"}
+                caption={imageCaptions[uniqueImages.process.afterHeader]}
                 className="rounded-lg shadow-elevated w-full"
               />
             </div>
@@ -175,13 +186,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           transition={{ duration: 0.8 }}
           className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
         >
-          {/* First Image - Before Header */}
-          {details.resultImage && (
+          {/* Image Before Header */}
+          {uniqueImages.result.beforeHeader && (
             <div className="glass-card p-4 layered-depth floating-element">
               <MaximizableImage
-                src={details.resultImage}
-                alt={imageCaptions[details.resultImage] || "Final result"}
-                caption={imageCaptions[details.resultImage]}
+                src={uniqueImages.result.beforeHeader}
+                alt={imageCaptions[uniqueImages.result.beforeHeader] || "Final result"}
+                caption={imageCaptions[uniqueImages.result.beforeHeader]}
                 className="rounded-lg shadow-elevated w-full"
               />
             </div>
@@ -192,13 +203,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             The Result
           </h2>
 
-          {/* Second Image - After Header */}
-          {details.resultGalleryImages && details.resultGalleryImages[0] && (
+          {/* Image After Header */}
+          {uniqueImages.result.afterHeader && (
             <div className="glass-card p-4 layered-depth floating-element">
               <MaximizableImage
-                src={details.resultGalleryImages[0]}
-                alt={imageCaptions[details.resultGalleryImages[0]] || "Result showcase"}
-                caption={imageCaptions[details.resultGalleryImages[0]]}
+                src={uniqueImages.result.afterHeader}
+                alt={imageCaptions[uniqueImages.result.afterHeader] || "Result showcase"}
+                caption={imageCaptions[uniqueImages.result.afterHeader]}
                 className="rounded-lg shadow-elevated w-full"
               />
             </div>

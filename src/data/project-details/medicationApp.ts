@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const medicationAppDetails: ProjectDetails = {
@@ -27,7 +26,6 @@ export const medicationAppDetails: ProjectDetails = {
   challengeImage: "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
   
   challengeGalleryImages: [
-    "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
     "/lovable-uploads/759f7954-5048-407d-9dca-e1d4a4cd954f.png",
     "/lovable-uploads/9de388e2-d7b4-4265-816c-08384411503a.png"
   ],
@@ -39,7 +37,6 @@ export const medicationAppDetails: ProjectDetails = {
   resultImage: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
 
   resultGalleryImages: [
-    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
     "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
     "/lovable-uploads/73d25798-547e-49a0-ad44-a79540285bff.png",
     "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
