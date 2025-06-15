@@ -25,7 +25,9 @@ export const DevModeProvider = ({ children }: { children: ReactNode }) => {
 export const useDevMode = () => {
   const context = useContext(DevModeContext);
   if (context === undefined) {
-    throw new Error('useDevMode must be used within a DevModeProvider');
+    // If no provider is found, default to dev mode being off.
+    // This prevents crashes on pages that don't have the provider but contain components using this hook.
+    return { isDevMode: false, toggleDevMode: () => {} };
   }
   return context;
 };
