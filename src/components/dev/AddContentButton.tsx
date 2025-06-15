@@ -4,6 +4,7 @@ import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Plus, Image, Text } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface AddContentButtonProps {
   onAdd: (type: 'text' | 'image') => void;
@@ -23,14 +24,14 @@ const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
   };
 
   return (
-    <div className="absolute top-4 right-4 z-30 opacity-30 group-hover:opacity-100 transition-opacity">
+    <div className="absolute top-4 right-4 z-30 opacity-50 group-hover:opacity-100 transition-opacity">
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             size="icon"
-            className="h-7 w-7 rounded-full shadow-md bg-background/80 backdrop-blur-sm hover:bg-background"
-            title="Add content"
+            className="h-7 w-7 rounded-full shadow-md bg-background/80 backdrop-blur-sm hover:bg-background border-blue-300 hover:border-blue-500"
+            title="Add content to this section"
           >
             <Plus className="h-4 w-4" />
           </Button>
@@ -53,4 +54,3 @@ const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
 };
 
 export default AddContentButton;
-

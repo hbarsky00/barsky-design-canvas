@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -6,6 +7,7 @@ import ModernProjectHero from "./ModernProjectHero";
 import ProjectHeroImageSection from "./ProjectHeroImageSection";
 import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import AddSectionButton from "@/components/dev/AddSectionButton";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -52,6 +54,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           imageCaptions={imageCaptions}
         />
 
+        {/* Add section button after hero */}
+        <AddSectionButton projectId={projectId} insertAfter="hero" />
+
         {/* The Challenge Section */}
         <ModernProjectContentSection
           title="The Challenge"
@@ -61,6 +66,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
+
+        {/* Add section button after challenge */}
+        <AddSectionButton projectId={projectId} insertAfter="challenge" />
 
         {/* What I Did Section */}
         <ModernProjectContentSection
@@ -72,6 +80,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           projectId={projectId}
         />
 
+        {/* Add section button after process */}
+        <AddSectionButton projectId={projectId} insertAfter="process" />
+
         {/* The Result Section */}
         <ModernProjectContentSection
           title="The Result"
@@ -82,6 +93,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           projectId={projectId}
         />
 
+        {/* Add section button after result */}
+        <AddSectionButton projectId={projectId} insertAfter="result" />
+
         {/* Project Navigation */}
         <div className="glass-card p-6 layered-depth">
           <ProjectNavigation
@@ -89,6 +103,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             projectsData={projectsData}
           />
         </div>
+
+        {/* Final add section button */}
+        <AddSectionButton projectId={projectId} />
       </div>
     </motion.div>
   );
