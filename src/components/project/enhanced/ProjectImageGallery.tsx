@@ -1,8 +1,9 @@
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import EditImageButton from "@/components/dev/EditImageButton";
-import EditTextButton from "@/components/dev/EditTextButton";
+import EditableText from "@/components/dev/EditableText";
 
 interface ProjectImageGalleryProps {
   images: string[];
@@ -43,10 +44,11 @@ const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div className="relative group">
-          <EditTextButton text={title} />
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">{title}</h2>
-        </div>
+        <EditableText initialText={title}>
+          {(text) => (
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 pr-8">{text}</h2>
+          )}
+        </EditableText>
         
         {/* Masonry Grid */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
@@ -77,10 +79,9 @@ const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
                 {/* Caption */}
                 {imageCaptions[image] && (
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="relative group">
-                      <EditTextButton text={imageCaptions[image]} />
-                      <p className="text-white text-sm">{imageCaptions[image]}</p>
-                    </div>
+                    <EditableText initialText={imageCaptions[image]}>
+                      {(text) => <p className="text-white text-sm pr-8">{text}</p>}
+                    </EditableText>
                   </div>
                 )}
               </div>
@@ -150,9 +151,12 @@ const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
             {/* Caption in Lightbox */}
             {imageCaptions[images[selectedImage]] && (
               <div className="absolute bottom-4 left-4 right-4 text-center">
-                <div className="relative group inline-block">
-                  <EditTextButton text={imageCaptions[images[selectedImage]]}/>
-                  <p className="text-white text-lg">{imageCaptions[images[selectedImage]]}</p>
+                <div className="inline-block">
+                  <EditableText initialText={imageCaptions[images[selectedImage]]}>
+                    {(text) => (
+                      <p className="text-white text-lg pr-8">{text}</p>
+                    )}
+                  </EditableText>
                 </div>
               </div>
             )}
