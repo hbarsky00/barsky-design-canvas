@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from "react";
 import { 
   Carousel, 
@@ -11,6 +10,7 @@ import {
 import { Maximize } from "lucide-react";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import EditImageButton from "@/components/dev/EditImageButton";
 
 interface ProjectMultiImageGalleryProps {
   images: string[];
@@ -97,6 +97,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
             <CarouselItem key={index} className="basis-full">
               <div className="p-1 w-full">
                 <div className="overflow-hidden rounded-lg border border-gray-100 shadow-sm group relative w-full min-h-[400px] flex items-center justify-center bg-gray-50">
+                  <EditImageButton src={image} />
                   <div className="w-full h-full flex items-center justify-center p-4">
                     <img
                       src={image}

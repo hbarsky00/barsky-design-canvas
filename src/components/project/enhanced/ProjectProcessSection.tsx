@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Settings } from "lucide-react";
+import EditImageButton from "@/components/dev/EditImageButton";
 
 interface ProjectProcessSectionProps {
   images: string[];
@@ -45,7 +46,8 @@ const ProjectProcessSection: React.FC<ProjectProcessSectionProps> = ({
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative"
               >
-                <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md group relative">
+                  <EditImageButton src={image} />
                   <img
                     src={image}
                     alt={imageCaptions[image] || `Process step ${index + 1}`}

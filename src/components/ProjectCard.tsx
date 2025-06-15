@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import EditImageButton from "@/components/dev/EditImageButton";
 
 export interface ProjectProps {
   id: string;
@@ -32,7 +33,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
     >
       <Link to={`/projects/${project.id}`} className="block h-full">
         <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group">
-          <div className="aspect-video overflow-hidden">
+          <div className="aspect-video overflow-hidden relative">
+            <EditImageButton src={project.image} />
             <img
               src={project.image}
               alt={project.title}

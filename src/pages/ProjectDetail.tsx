@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
@@ -9,6 +10,9 @@ import ProjectDetailSeo from "@/components/project/ProjectDetailSeo";
 import ModernProjectDetail from "@/components/project/enhanced/ModernProjectDetail";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
 import { investorLoanImageCaptions } from "@/data/investorLoanData";
+import { DevModeProvider } from "@/context/DevModeContext";
+import DevModeToggle from "@/components/dev/DevModeToggle";
+import { Toaster } from "@/components/ui/sonner";
 
 // Enhanced image captions for each project with more descriptive and professional descriptions
 const projectImageCaptions: Record<string, Record<string, string>> = {
@@ -131,32 +135,36 @@ const ProjectDetail: React.FC = () => {
   const currentProjectCaptions = projectImageCaptions[projectId || ""] || {};
   
   return (
-    <ImageMaximizerProvider>
-      <div className="flex flex-col min-h-screen">
-        <ProjectDetailSeo 
-          title={project.title}
-          description={`${project.title} - ${project.tags.join(', ')}`}
-          tags={project.tags}
-          projectId={projectId || ""}
-        />
-        
-        <Header />
-        <main className="flex-grow pt-20">
-          <ModernProjectDetail 
-            project={project}
-            details={details}
+    <DevModeProvider>
+      <ImageMaximizerProvider>
+        <div className="flex flex-col min-h-screen">
+          <ProjectDetailSeo 
+            title={project.title}
+            description={`${project.title} - ${project.tags.join(', ')}`}
+            tags={project.tags}
             projectId={projectId || ""}
-            projectsData={projectsData.map(p => ({
-              id: p.id,
-              title: p.title,
-              image: p.image
-            }))}
-            imageCaptions={currentProjectCaptions}
           />
-        </main>
-        <Footer />
-      </div>
-    </ImageMaximizerProvider>
+          
+          <Header />
+          <main className="flex-grow pt-20">
+            <ModernProjectDetail 
+              project={project}
+              details={details}
+              projectId={projectId || ""}
+              projectsData={projectsData.map(p => ({
+                id: p.id,
+                title: p.title,
+                image: p.image
+              }))}
+              imageCaptions={currentProjectCaptions}
+            />
+          </main>
+          <Footer />
+        </div>
+        <DevModeToggle />
+        <Toaster />
+      </ImageMaximizerProvider>
+    </DevModeProvider>
   );
 };
 

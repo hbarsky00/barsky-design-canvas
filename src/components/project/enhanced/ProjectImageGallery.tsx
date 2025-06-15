@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import EditImageButton from "@/components/dev/EditImageButton";
 
 interface ProjectImageGalleryProps {
   images: string[];
@@ -59,6 +60,7 @@ const ProjectImageGallery: React.FC<ProjectImageGalleryProps> = ({
                 className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
                 onClick={() => openLightbox(index)}
               >
+                <EditImageButton src={image} />
                 <img
                   src={image}
                   alt={imageCaptions[image] || `Project image ${index + 1}`}

@@ -4,6 +4,7 @@ import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import EditImageButton from "@/components/dev/EditImageButton";
 
 interface ProjectImageProps {
   image: string;
@@ -32,6 +33,7 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
+        <EditImageButton src={image} />
         <AspectRatio ratio={16 / 9} className="bg-gray-100">
           <img 
             src={image} 

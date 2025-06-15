@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, ExternalLink } from "lucide-react";
+import EditImageButton from "@/components/dev/EditImageButton";
 
 interface ProjectTechnicalSectionProps {
   images: string[];
@@ -53,7 +54,8 @@ const ProjectTechnicalSection: React.FC<ProjectTechnicalSectionProps> = ({
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative group"
             >
-              <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md bg-white p-4">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-md bg-white p-4 relative group">
+                <EditImageButton src={image} />
                 <img
                   src={image}
                   alt={imageCaptions[image] || `Technical diagram ${index + 1}`}

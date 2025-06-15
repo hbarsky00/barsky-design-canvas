@@ -1,8 +1,10 @@
+
 import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import EditImageButton from "@/components/dev/EditImageButton";
 interface MaximizableImageProps {
   src: string;
   alt: string;
@@ -55,6 +57,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }} transition={{
       duration: 0.5
     }}>
+        <EditImageButton src={src} />
         {aspectRatio ? <AspectRatio ratio={aspectRatio} className="bg-gray-100">
             <img src={src} alt={imageAltText} className="object-contain w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95" loading={priority ? "eager" : "lazy"} onClick={handleImageClick} />
             <button onClick={handleImageClick} className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Maximize image">

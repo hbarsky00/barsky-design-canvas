@@ -4,6 +4,7 @@ import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import EditImageButton from "@/components/dev/EditImageButton";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -32,6 +33,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
+        <EditImageButton src={mainImage} />
         <AspectRatio ratio={16 / 9} className="bg-gray-100">
           <img
             src={mainImage}
