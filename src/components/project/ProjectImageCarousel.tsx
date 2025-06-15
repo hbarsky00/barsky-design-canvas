@@ -4,7 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
-import EditTextButton from "@/components/dev/EditTextButton";
+import EditableText from "@/components/dev/EditableText";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -49,15 +49,20 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           </div>
         </AspectRatio>
         {captions && captions[mainImage] && (
-          <motion.div 
-            className="relative group mt-2 text-sm text-gray-600 italic text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <EditTextButton text={captions[mainImage]} />
-            <span className="pr-8">{captions[mainImage]}</span>
-          </motion.div>
+          <div className="mt-2 text-sm text-gray-600 italic text-center">
+            <EditableText initialText={captions[mainImage]}>
+              {(text) => (
+                <motion.div
+                  className="pr-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  {text}
+                </motion.div>
+              )}
+            </EditableText>
+          </div>
         )}
       </motion.div>
     </div>

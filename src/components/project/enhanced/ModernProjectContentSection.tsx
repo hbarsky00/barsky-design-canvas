@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
 import { ProjectImageConfig } from "@/data/types/project";
-import EditTextButton from "@/components/dev/EditTextButton";
+import EditableText from "@/components/dev/EditableText";
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -45,12 +45,13 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       )}
 
       {/* Header */}
-      <div className="relative group">
-        <EditTextButton text={title} />
-        <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text pr-8">
-          {title}
-        </h2>
-      </div>
+      <EditableText initialText={title}>
+        {(text) => (
+          <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text pr-8">
+            {text}
+          </h2>
+        )}
+      </EditableText>
 
       {/* Image After Header */}
       {afterHeaderImage && (
@@ -65,16 +66,17 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       )}
 
       {/* Content */}
-      <div className="relative group prose prose-lg text-gray-600 leading-relaxed max-w-none">
-        <EditTextButton text={content} />
-        <div className="pr-8">
-          {content.split('\n\n').map((paragraph, index) => (
-            <p key={index} className="mb-4">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      </div>
+      <EditableText initialText={content} multiline>
+        {(text) => (
+          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none pr-8">
+            {text.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        )}
+      </EditableText>
     </motion.section>
   );
 };

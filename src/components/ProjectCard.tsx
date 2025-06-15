@@ -1,11 +1,10 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import EditImageButton from "@/components/dev/EditImageButton";
-import EditTextButton from "@/components/dev/EditTextButton";
+import EditableText from "@/components/dev/EditableText";
 
 export interface ProjectProps {
   id: string;
@@ -44,18 +43,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
           </div>
           <CardContent className="p-6 flex flex-col h-full">
             <div className="flex-grow">
-              <div className="relative group">
-                <EditTextButton text={project.title} />
-                <h3 className="text-xl font-bold mb-3 group-hover:text-barsky-blue transition-colors pr-8">
-                  {project.title}
-                </h3>
-              </div>
-              <div className="relative group">
-                <EditTextButton text={project.description} />
-                <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed pr-8">
-                  {project.description}
-                </p>
-              </div>
+              <EditableText initialText={project.title}>
+                {(text) => (
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-barsky-blue transition-colors pr-8">
+                    {text}
+                  </h3>
+                )}
+              </EditableText>
+              <EditableText initialText={project.description} multiline>
+                {(text) => (
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed pr-8">
+                    {text}
+                  </p>
+                )}
+              </EditableText>
             </div>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, tagIndex) => (
