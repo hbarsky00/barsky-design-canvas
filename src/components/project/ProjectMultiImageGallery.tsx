@@ -11,6 +11,7 @@ import { Maximize } from "lucide-react";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 interface ProjectMultiImageGalleryProps {
   images: string[];
@@ -131,8 +132,9 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                   )}
                 </div>
                 {captions[image] && (
-                  <div className="mt-3 text-sm text-gray-600 italic text-center px-2">
-                    {captions[image]}
+                  <div className="relative group mt-3 text-sm text-gray-600 italic text-center px-2">
+                    <EditTextButton text={captions[image]} />
+                    <span className="pr-8">{captions[image]}</span>
                   </div>
                 )}
               </div>

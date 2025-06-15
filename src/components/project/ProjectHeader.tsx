@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -5,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
 import MaximizableImage from "./MaximizableImage";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 interface ProjectHeaderProps {
   title: string;
@@ -48,13 +50,19 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              {title}
-            </h1>
+            <div className="relative group">
+              <EditTextButton text={title} />
+              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 pr-8">
+                {title}
+              </h1>
+            </div>
             
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              {description}
-            </p>
+            <div className="relative group">
+              <EditTextButton text={description} />
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed pr-8">
+                {description}
+              </p>
+            </div>
             
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (

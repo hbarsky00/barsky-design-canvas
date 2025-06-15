@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Settings } from "lucide-react";
@@ -34,7 +35,7 @@ const ProjectProcessSection: React.FC<ProjectProcessSectionProps> = ({
           <div className="space-y-6">
             <div className="relative group">
               <EditTextButton text={processDescription} />
-              <p className="text-gray-600 leading-relaxed">{processDescription}</p>
+              <p className="text-gray-600 leading-relaxed pr-8">{processDescription}</p>
             </div>
           </div>
           
@@ -61,7 +62,7 @@ const ProjectProcessSection: React.FC<ProjectProcessSectionProps> = ({
                 {imageCaptions[image] && (
                   <div className="relative group">
                     <EditTextButton text={imageCaptions[image]} />
-                    <p className="text-sm text-gray-500 mt-2 italic">
+                    <p className="text-sm text-gray-500 mt-2 italic pr-8">
                       {imageCaptions[image]}
                     </p>
                   </div>

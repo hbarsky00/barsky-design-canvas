@@ -66,7 +66,7 @@ const ProjectTechnicalSection: React.FC<ProjectTechnicalSectionProps> = ({
               {imageCaptions[image] && (
                 <div className="relative group">
                   <EditTextButton text={imageCaptions[image]} />
-                  <p className="text-sm text-gray-600 mt-3 font-medium">
+                  <p className="text-sm text-gray-600 mt-3 font-medium pr-8">
                     {imageCaptions[image]}
                   </p>
                 </div>

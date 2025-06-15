@@ -4,6 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 interface MaximizableImageProps {
   src: string;
@@ -74,7 +75,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             </button>
           </div>}
       </motion.div>
-      {caption && <motion.div className="mt-2 text-sm text-gray-600 italic text-center" initial={{
+      {caption && <motion.div className="relative group mt-2 text-sm text-gray-600 italic text-center" initial={{
       opacity: 0
     }} whileInView={{
       opacity: 1
@@ -84,7 +85,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       duration: 0.5,
       delay: 0.2
     }}>
-          {caption}
+          <EditTextButton text={caption} />
+          <span className="pr-8">{caption}</span>
         </motion.div>}
     </div>;
 };

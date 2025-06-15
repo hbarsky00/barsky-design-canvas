@@ -1,9 +1,11 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import EditImageButton from "@/components/dev/EditImageButton";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 export interface ProjectProps {
   id: string;
@@ -42,12 +44,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
           </div>
           <CardContent className="p-6 flex flex-col h-full">
             <div className="flex-grow">
-              <h3 className="text-xl font-bold mb-3 group-hover:text-barsky-blue transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                {project.description}
-              </p>
+              <div className="relative group">
+                <EditTextButton text={project.title} />
+                <h3 className="text-xl font-bold mb-3 group-hover:text-barsky-blue transition-colors pr-8">
+                  {project.title}
+                </h3>
+              </div>
+              <div className="relative group">
+                <EditTextButton text={project.description} />
+                <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed pr-8">
+                  {project.description}
+                </p>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, tagIndex) => (
