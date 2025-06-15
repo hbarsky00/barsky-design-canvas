@@ -1,10 +1,10 @@
-
 import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
+import EditTextButton from "@/components/dev/EditTextButton";
 interface MaximizableImageProps {
   src: string;
   alt: string;
@@ -84,7 +84,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       duration: 0.5,
       delay: 0.2
     }}>
-          {caption}
+          <div className="relative group inline-block">
+            <EditTextButton text={caption} />
+            {caption}
+          </div>
         </motion.div>}
     </div>;
 };

@@ -1,10 +1,10 @@
-
 import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 interface ProjectImageCarouselProps {
   mainImage: string;
@@ -55,7 +55,10 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            {captions[mainImage]}
+            <div className="relative group inline-block">
+              <EditTextButton text={captions[mainImage]} />
+              {captions[mainImage]}
+            </div>
           </motion.div>
         )}
       </motion.div>

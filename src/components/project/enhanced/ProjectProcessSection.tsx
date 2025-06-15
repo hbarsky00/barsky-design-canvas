@@ -1,8 +1,8 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Settings } from "lucide-react";
 import EditImageButton from "@/components/dev/EditImageButton";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 interface ProjectProcessSectionProps {
   images: string[];
@@ -32,7 +32,10 @@ const ProjectProcessSection: React.FC<ProjectProcessSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Process Description */}
           <div className="space-y-6">
-            <p className="text-gray-600 leading-relaxed">{processDescription}</p>
+            <div className="relative group">
+              <EditTextButton text={processDescription} />
+              <p className="text-gray-600 leading-relaxed">{processDescription}</p>
+            </div>
           </div>
           
           {/* Process Images */}
@@ -56,9 +59,12 @@ const ProjectProcessSection: React.FC<ProjectProcessSectionProps> = ({
                   />
                 </div>
                 {imageCaptions[image] && (
-                  <p className="text-sm text-gray-500 mt-2 italic">
-                    {imageCaptions[image]}
-                  </p>
+                  <div className="relative group">
+                    <EditTextButton text={imageCaptions[image]} />
+                    <p className="text-sm text-gray-500 mt-2 italic">
+                      {imageCaptions[image]}
+                    </p>
+                  </div>
                 )}
               </motion.div>
             ))}

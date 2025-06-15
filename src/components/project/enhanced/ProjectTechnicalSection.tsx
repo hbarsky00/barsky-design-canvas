@@ -1,8 +1,8 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, ExternalLink } from "lucide-react";
 import EditImageButton from "@/components/dev/EditImageButton";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 interface ProjectTechnicalSectionProps {
   images: string[];
@@ -64,9 +64,12 @@ const ProjectTechnicalSection: React.FC<ProjectTechnicalSectionProps> = ({
                 />
               </div>
               {imageCaptions[image] && (
-                <p className="text-sm text-gray-600 mt-3 font-medium">
-                  {imageCaptions[image]}
-                </p>
+                <div className="relative group">
+                  <EditTextButton text={imageCaptions[image]} />
+                  <p className="text-sm text-gray-600 mt-3 font-medium">
+                    {imageCaptions[image]}
+                  </p>
+                </div>
               )}
             </motion.div>
           ))}

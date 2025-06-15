@@ -1,8 +1,8 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
 import { ProjectImageConfig } from "@/data/types/project";
+import EditTextButton from "@/components/dev/EditTextButton";
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -45,9 +45,12 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       )}
 
       {/* Header */}
-      <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
-        {title}
-      </h2>
+      <div className="relative group">
+        <EditTextButton text={title} />
+        <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
+          {title}
+        </h2>
+      </div>
 
       {/* Image After Header */}
       {afterHeaderImage && (
@@ -64,9 +67,12 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       {/* Content */}
       <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
         {content.split('\n\n').map((paragraph, index) => (
-          <p key={index} className="mb-4">
-            {paragraph}
-          </p>
+          <div key={index} className="relative group">
+            <EditTextButton text={paragraph} />
+            <p className="mb-4">
+              {paragraph}
+            </p>
+          </div>
         ))}
       </div>
     </motion.section>
