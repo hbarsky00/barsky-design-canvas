@@ -23,7 +23,7 @@ const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
   };
 
   return (
-    <div className="absolute top-2 right-10 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
+    <div className="absolute top-4 right-4 z-30 opacity-30 group-hover:opacity-100 transition-opacity">
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -53,3 +53,4 @@ const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
 };
 
 export default AddContentButton;
+
