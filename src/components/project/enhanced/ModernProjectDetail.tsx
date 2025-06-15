@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -60,6 +59,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           sectionKey="challenge"
           imageConfig={details.imageConfig}
           imageCaptions={imageCaptions}
+          projectId={projectId}
         />
 
         {/* What I Did Section */}
@@ -69,6 +69,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           sectionKey="process"
           imageConfig={details.imageConfig}
           imageCaptions={imageCaptions}
+          projectId={projectId}
         />
 
         {/* The Result Section */}
@@ -78,6 +79,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           sectionKey="result"
           imageConfig={details.imageConfig}
           imageCaptions={imageCaptions}
+          projectId={projectId}
         />
 
         {/* Project Navigation */}
