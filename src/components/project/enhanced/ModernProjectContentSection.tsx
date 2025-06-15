@@ -1,12 +1,12 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
 import { ProjectImageConfig } from "@/data/types/project";
 import EditableText from "@/components/dev/EditableText";
 import { useDevMode } from "@/context/DevModeContext";
 import AddContentButton from "@/components/dev/AddContentButton";
-import { toast } from "sonner";
+import DraggableContentBlock from "@/components/dev/DraggableContentBlock";
 
 // Define a flexible content block structure locally
 export type ContentBlock = 
@@ -31,72 +31,63 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   projectId
 }) => {
   const { isDevMode } = useDevMode();
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  
+  // Convert string content to array format for consistent handling
+  const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>(() => {
+    if (typeof content === 'string') {
+      return [{ type: 'text', value: content }];
+    }
+    return content;
+  });
 
   const handleAddContent = (type: 'text' | 'image') => {
-    let command = `For project ID '${projectId}', in the data file for its details, find the '${sectionKey}' property.`;
+    const newBlock: ContentBlock = type === 'text' 
+      ? { type: 'text', value: 'This is a new paragraph. Click to edit me.' }
+      : { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
+    
+    setContentBlocks(prev => [...prev, newBlock]);
+  };
 
-    if (typeof content === 'string') {
-      command += `\nIts current value is a string. Please convert it to an array of content blocks. The first block should be a 'text' block containing the original string.`;
+  const handleUpdateContent = (index: number, newValue: string) => {
+    setContentBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'text' 
+          ? { ...block, value: newValue }
+          : block
+      )
+    );
+  };
+
+  const handleDeleteContent = (index: number) => {
+    if (contentBlocks.length > 1) {
+      setContentBlocks(prev => prev.filter((_, i) => i !== index));
     }
+  };
 
-    if (type === 'text') {
-      command += `\nThen, add a new text block to the end of the array with the value: "This is a new paragraph. You can edit me."`;
-    } else {
-      command += `\nThen, add a new image block to the end of the array with src: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png" and caption: "A newly added image."`;
-    }
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+  };
 
-    navigator.clipboard.writeText(command);
-    toast.success("Command copied to clipboard!", {
-      description: "Paste the command into our chat to permanently add this content.",
-      duration: 8000,
-    });
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === dropIndex) return;
+
+    const newBlocks = [...contentBlocks];
+    const draggedBlock = newBlocks[draggedIndex];
+    newBlocks.splice(draggedIndex, 1);
+    newBlocks.splice(dropIndex, 0, draggedBlock);
+    
+    setContentBlocks(newBlocks);
+    setDraggedIndex(null);
   };
   
-  const renderContent = () => {
-    if (typeof content === 'string') {
-      return (
-        <EditableText initialText={content} multiline>
-          {(text) => (
-            <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none pr-8">
-              {text.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">{paragraph}</p>
-              ))}
-            </div>
-          )}
-        </EditableText>
-      );
-    }
-
-    return content.map((block, index) => {
-      if (block.type === 'text') {
-        return (
-          <EditableText key={index} initialText={block.value} multiline>
-            {(text) => (
-              <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none pr-8">
-                {text.split('\n\n').map((paragraph, pIndex) => (
-                  <p key={pIndex} className="mb-4">{paragraph}</p>
-                ))}
-              </div>
-            )}
-          </EditableText>
-        );
-      }
-      if (block.type === 'image') {
-        return (
-          <div key={index} className="my-8">
-            <MaximizableImage
-              src={block.src}
-              alt={block.caption || `${title} content image`}
-              caption={block.caption}
-              className="w-full"
-            />
-          </div>
-        );
-      }
-      return null;
-    });
-  };
-
   const sectionImages = imageConfig?.[sectionKey];
   const beforeHeaderImage = sectionImages?.beforeHeader;
   const afterHeaderImage = sectionImages?.afterHeader;
@@ -141,7 +132,21 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         </div>
       )}
 
-      {renderContent()}
+      <div className="space-y-4">
+        {contentBlocks.map((block, index) => (
+          <DraggableContentBlock
+            key={`${block.type}-${index}`}
+            block={block}
+            index={index}
+            onUpdate={handleUpdateContent}
+            onDelete={handleDeleteContent}
+            onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            isDragging={draggedIndex === index}
+          />
+        ))}
+      </div>
     </motion.section>
   );
 };

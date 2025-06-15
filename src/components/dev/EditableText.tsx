@@ -1,92 +1,139 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Edit, Check } from 'lucide-react';
-import { toast } from 'sonner';
+import { Edit, Check, X } from 'lucide-react';
 
 interface EditableTextProps {
   initialText: string;
-  children: (currentText: string) => React.ReactNode;
+  children: (text: string) => React.ReactNode;
   multiline?: boolean;
+  onSave?: (newText: string) => void;
 }
 
-const EditableText: React.FC<EditableTextProps> = ({ initialText, children, multiline = false }) => {
+const EditableText: React.FC<EditableTextProps> = ({ 
+  initialText, 
+  children, 
+  multiline = false,
+  onSave 
+}) => {
   const { isDevMode } = useDevMode();
   const [isEditing, setIsEditing] = useState(false);
-  const [currentText, setCurrentText] = useState(initialText);
+  const [text, setText] = useState(initialText);
+  const [editingText, setEditingText] = useState(initialText);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isEditing) {
+      const ref = multiline ? textareaRef : inputRef;
+      if (ref.current) {
+        ref.current.focus();
+        ref.current.select();
+      }
+    }
+  }, [isEditing, multiline]);
+
+  const handleEdit = () => {
+    setEditingText(text);
+    setIsEditing(true);
+  };
 
   const handleSave = () => {
+    setText(editingText);
     setIsEditing(false);
-    // Only show toast if text has changed
-    if (currentText.trim() !== initialText.trim()) {
-      const command = `Please replace the following text:\n--- ORIGINAL ---\n${initialText}\n--- WITH ---\n${currentText}`;
-      
-      navigator.clipboard.writeText(command);
-      toast.success("Text updated on screen. Command copied!", {
-        description: "To make this change permanent, just paste the command into our chat.",
-        duration: 8000,
-      });
+    if (onSave) {
+      onSave(editingText);
     }
+  };
+
+  const handleCancel = () => {
+    setEditingText(text);
+    setIsEditing(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !multiline && !e.nativeEvent.isComposing) {
+    if (e.key === 'Enter' && !multiline) {
       e.preventDefault();
       handleSave();
-    }
-    if (e.key === 'Escape') {
-      setIsEditing(false);
-      setCurrentText(initialText);
+    } else if (e.key === 'Enter' && e.ctrlKey && multiline) {
+      e.preventDefault();
+      handleSave();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      handleCancel();
     }
   };
 
-  if (!isDevMode || !initialText) {
-    return <>{children(initialText)}</>;
+  if (!isDevMode) {
+    return <>{children(text)}</>;
   }
 
-  // When not editing, we show the updated text for immediate feedback.
-  // The original text is preserved in `initialText` for comparison on save.
-  const displayedText = isEditing ? currentText : (currentText !== initialText && !isEditing ? currentText : initialText);
-
   return (
-    <div className="relative group w-full">
+    <div className="relative group">
+      {!isEditing && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute -top-2 -right-2 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity z-10 bg-background/80 backdrop-blur-sm"
+          onClick={handleEdit}
+          title="Edit text"
+        >
+          <Edit className="h-3 w-3" />
+        </Button>
+      )}
+      
       {isEditing ? (
-        <div className='w-full pr-10'>
+        <div className="relative">
           {multiline ? (
-            <Textarea
-              value={currentText}
-              onChange={(e) => setCurrentText(e.target.value)}
+            <textarea
+              ref={textareaRef}
+              value={editingText}
+              onChange={(e) => setEditingText(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="h-auto text-inherit"
-              autoFocus
+              className="w-full min-h-[100px] p-3 border border-blue-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your text here..."
             />
           ) : (
-            <Input
+            <input
+              ref={inputRef}
               type="text"
-              value={currentText}
-              onChange={(e) => setCurrentText(e.target.value)}
+              value={editingText}
+              onChange={(e) => setEditingText(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="text-inherit"
-              autoFocus
+              className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your text here..."
             />
+          )}
+          <div className="absolute top-2 right-2 flex gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 bg-green-500 hover:bg-green-600 text-white"
+              onClick={handleSave}
+              title="Save changes"
+            >
+              <Check className="h-3 w-3" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 bg-red-500 hover:bg-red-600 text-white"
+              onClick={handleCancel}
+              title="Cancel editing"
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          </div>
+          {multiline && (
+            <p className="text-xs text-gray-500 mt-1">
+              Press Ctrl+Enter to save, Escape to cancel
+            </p>
           )}
         </div>
       ) : (
-        children(displayedText)
+        children(text)
       )}
-      
-      <Button
-        onClick={() => isEditing ? handleSave() : setIsEditing(true)}
-        variant="outline"
-        size="icon"
-        className="absolute top-2 right-2 z-20 h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm hover:bg-background"
-        title={isEditing ? "Save changes" : "Edit text"}
-      >
-        {isEditing ? <Check className="h-4 w-4" /> : <Edit className="h-4 w-4" />}
-      </Button>
     </div>
   );
 };
