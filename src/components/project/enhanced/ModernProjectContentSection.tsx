@@ -41,6 +41,14 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     return content;
   });
 
+  // State for before header content blocks
+  const [beforeHeaderBlocks, setBeforeHeaderBlocks] = useState<ContentBlock[]>([]);
+  const [beforeHeaderDraggedIndex, setBeforeHeaderDraggedIndex] = useState<number | null>(null);
+
+  // State for after header content blocks  
+  const [afterHeaderBlocks, setAfterHeaderBlocks] = useState<ContentBlock[]>([]);
+  const [afterHeaderDraggedIndex, setAfterHeaderDraggedIndex] = useState<number | null>(null);
+
   const handleAddContent = (type: 'text' | 'image') => {
     const newBlock: ContentBlock = type === 'text' 
       ? { type: 'text', value: 'This is a new paragraph. Click to edit me.' }
@@ -49,8 +57,44 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setContentBlocks(prev => [...prev, newBlock]);
   };
 
+  const handleAddBeforeHeaderContent = (type: 'text' | 'image') => {
+    const newBlock: ContentBlock = type === 'text' 
+      ? { type: 'text', value: 'This is a new paragraph. Click to edit me.' }
+      : { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
+    
+    setBeforeHeaderBlocks(prev => [...prev, newBlock]);
+  };
+
+  const handleAddAfterHeaderContent = (type: 'text' | 'image') => {
+    const newBlock: ContentBlock = type === 'text' 
+      ? { type: 'text', value: 'This is a new paragraph. Click to edit me.' }
+      : { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
+    
+    setAfterHeaderBlocks(prev => [...prev, newBlock]);
+  };
+
   const handleUpdateContent = (index: number, newValue: string) => {
     setContentBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'text' 
+          ? { ...block, value: newValue }
+          : block
+      )
+    );
+  };
+
+  const handleUpdateBeforeHeaderContent = (index: number, newValue: string) => {
+    setBeforeHeaderBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'text' 
+          ? { ...block, value: newValue }
+          : block
+      )
+    );
+  };
+
+  const handleUpdateAfterHeaderContent = (index: number, newValue: string) => {
+    setAfterHeaderBlocks(prev => 
       prev.map((block, i) => 
         i === index && block.type === 'text' 
           ? { ...block, value: newValue }
@@ -65,8 +109,26 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     }
   };
 
+  const handleDeleteBeforeHeaderContent = (index: number) => {
+    setBeforeHeaderBlocks(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleDeleteAfterHeaderContent = (index: number) => {
+    setAfterHeaderBlocks(prev => prev.filter((_, i) => i !== index));
+  };
+
   const handleDragStart = (e: React.DragEvent, index: number) => {
     setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleBeforeHeaderDragStart = (e: React.DragEvent, index: number) => {
+    setBeforeHeaderDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleAfterHeaderDragStart = (e: React.DragEvent, index: number) => {
+    setAfterHeaderDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
   };
 
@@ -87,6 +149,32 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setContentBlocks(newBlocks);
     setDraggedIndex(null);
   };
+
+  const handleBeforeHeaderDrop = (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    if (beforeHeaderDraggedIndex === null || beforeHeaderDraggedIndex === dropIndex) return;
+
+    const newBlocks = [...beforeHeaderBlocks];
+    const draggedBlock = newBlocks[beforeHeaderDraggedIndex];
+    newBlocks.splice(beforeHeaderDraggedIndex, 1);
+    newBlocks.splice(dropIndex, 0, draggedBlock);
+    
+    setBeforeHeaderBlocks(newBlocks);
+    setBeforeHeaderDraggedIndex(null);
+  };
+
+  const handleAfterHeaderDrop = (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    if (afterHeaderDraggedIndex === null || afterHeaderDraggedIndex === dropIndex) return;
+
+    const newBlocks = [...afterHeaderBlocks];
+    const draggedBlock = newBlocks[afterHeaderDraggedIndex];
+    newBlocks.splice(afterHeaderDraggedIndex, 1);
+    newBlocks.splice(dropIndex, 0, draggedBlock);
+    
+    setAfterHeaderBlocks(newBlocks);
+    setAfterHeaderDraggedIndex(null);
+  };
   
   const sectionImages = imageConfig?.[sectionKey];
   const beforeHeaderImage = sectionImages?.beforeHeader;
@@ -103,7 +191,32 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       {isDevMode && <AddContentButton onAdd={handleAddContent} />}
       
       {beforeHeaderImage && (
-        <div className="glass-card p-4 layered-depth floating-element">
+        <div className="glass-card p-4 layered-depth floating-element relative group">
+          {isDevMode && (
+            <div className="absolute top-2 left-2 z-20">
+              <AddContentButton onAdd={handleAddBeforeHeaderContent} />
+            </div>
+          )}
+          
+          {/* Content blocks before the image */}
+          {beforeHeaderBlocks.length > 0 && (
+            <div className="space-y-4 mb-6">
+              {beforeHeaderBlocks.map((block, index) => (
+                <DraggableContentBlock
+                  key={`before-header-${block.type}-${index}`}
+                  block={block}
+                  index={index}
+                  onUpdate={handleUpdateBeforeHeaderContent}
+                  onDelete={handleDeleteBeforeHeaderContent}
+                  onDragStart={handleBeforeHeaderDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleBeforeHeaderDrop}
+                  isDragging={beforeHeaderDraggedIndex === index}
+                />
+              ))}
+            </div>
+          )}
+          
           <MaximizableImage
             src={beforeHeaderImage}
             alt={imageCaptions[beforeHeaderImage] || `${title} overview`}
@@ -122,7 +235,32 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       </EditableText>
 
       {afterHeaderImage && (
-        <div className="glass-card p-4 layered-depth floating-element">
+        <div className="glass-card p-4 layered-depth floating-element relative group">
+          {isDevMode && (
+            <div className="absolute top-2 left-2 z-20">
+              <AddContentButton onAdd={handleAddAfterHeaderContent} />
+            </div>
+          )}
+          
+          {/* Content blocks before the image */}
+          {afterHeaderBlocks.length > 0 && (
+            <div className="space-y-4 mb-6">
+              {afterHeaderBlocks.map((block, index) => (
+                <DraggableContentBlock
+                  key={`after-header-${block.type}-${index}`}
+                  block={block}
+                  index={index}
+                  onUpdate={handleUpdateAfterHeaderContent}
+                  onDelete={handleDeleteAfterHeaderContent}
+                  onDragStart={handleAfterHeaderDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleAfterHeaderDrop}
+                  isDragging={afterHeaderDraggedIndex === index}
+                />
+              ))}
+            </div>
+          )}
+          
           <MaximizableImage
             src={afterHeaderImage}
             alt={imageCaptions[afterHeaderImage] || `${title} details`}
