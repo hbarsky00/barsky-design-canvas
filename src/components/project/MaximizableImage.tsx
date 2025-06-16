@@ -38,7 +38,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
   
-  const { displayedImage, refreshKey, forceRefresh, updateDisplayedImage } = useImageState({
+  const { displayedImage, refreshKey, forceRefresh, updateDisplayedImage, hasDevModeChanges } = useImageState({
     src,
     projectId: currentProjectId
   });
@@ -92,7 +92,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   return (
     <div className="w-full">
       <motion.div 
-        className={`rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative ${className}`}
+        className={`rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative ${className} ${hasDevModeChanges ? 'ring-2 ring-blue-400 ring-opacity-50' : ''}`}
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}

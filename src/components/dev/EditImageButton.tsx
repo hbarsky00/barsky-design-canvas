@@ -4,7 +4,7 @@ import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
-import { useProjectPersistence } from '@/hooks/useProjectPersistence';
+import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 
 interface EditImageButtonProps {
@@ -17,7 +17,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
   const { isDevMode } = useDevMode();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
-  const { saveImageReplacement } = useProjectPersistence(currentProjectId);
+  const { saveChange } = useDevModeDatabase(currentProjectId);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleEditClick = (e: React.MouseEvent) => {
@@ -51,27 +51,31 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         
         // Save the image replacement to dev mode database FIRST
         console.log('💾 Saving image replacement to dev mode database:', src, '->', dataUrl.substring(0, 50) + '...');
-        await saveImageReplacement(src, dataUrl);
+        const success = await saveChange('image', src, dataUrl);
         
-        // Then call the callback if provided for immediate UI update
-        if (onImageReplace) {
-          console.log('📞 Calling onImageReplace callback for immediate UI update');
-          onImageReplace(dataUrl);
+        if (success) {
+          // Then call the callback if provided for immediate UI update
+          if (onImageReplace) {
+            console.log('📞 Calling onImageReplace callback for immediate UI update');
+            onImageReplace(dataUrl);
+          }
+          
+          // Trigger a project data update event to refresh all components
+          window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+            detail: { projectId: currentProjectId, imageReplaced: true, immediate: true }
+          }));
+          
+          toast.success("Image replaced!", {
+            description: `Replaced with "${file.name}". Click "Publish Changes" to make it permanent.`,
+            duration: 5000,
+          });
+        } else {
+          throw new Error('Failed to save image replacement to database');
         }
-        
-        // Trigger a project data update event to refresh all components
-        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { projectId: currentProjectId, imageReplaced: true, immediate: true }
-        }));
-        
-        toast.success("Image replaced!", {
-          description: `Replaced with "${file.name}". Image is now showing in dev mode. Click "Publish Changes" to make it permanent.`,
-          duration: 5000,
-        });
       } catch (error) {
-        console.error('❌ Error converting file to data URL:', error);
-        toast.error("Failed to process image", {
-          description: "There was an error processing the uploaded image."
+        console.error('❌ Error replacing image:', error);
+        toast.error("Failed to replace image", {
+          description: "There was an error saving the image replacement."
         });
       }
     }
