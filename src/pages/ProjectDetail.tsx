@@ -24,7 +24,12 @@ const ProjectDetail = () => {
 
   return (
     <>
-      <ProjectDetailSeo project={project} details={details} />
+      <ProjectDetailSeo 
+        title={project.title}
+        description={project.description}
+        tags={project.tags}
+        projectId={projectId}
+      />
       <ModernProjectDetail
         project={project}
         details={details}

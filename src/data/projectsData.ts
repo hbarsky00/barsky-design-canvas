@@ -10,8 +10,7 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
     tags: ["Mobile App Design", "Healthcare", "UX/UI Design", "Accessibility"],
     featured: true,
-    category: "mobile",
-    year: 2023
+    category: "mobile"
   },
   {
     id: "investor-loan-app",
@@ -20,8 +19,7 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png",
     tags: ["Web Development", "Financial Technology", "UX/UI Design", "Data Visualization"],
     featured: true,
-    category: "web",
-    year: 2023
+    category: "web"
   },
   {
     id: "dae-search",
@@ -30,8 +28,7 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
     tags: ["Web Development", "Data Analytics", "Enterprise Software", "AI/ML Integration"],
     featured: true,
-    category: "web",
-    year: 2022
+    category: "web"
   },
   {
     id: "splittime",
@@ -40,8 +37,7 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
     tags: ["Mobile App Design", "Social Platform", "UX/UI Design", "Family Technology"],
     featured: false,
-    category: "mobile",
-    year: 2022
+    category: "mobile"
   },
   {
     id: "herbalink",
@@ -50,8 +46,7 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png",
     tags: ["Web Development", "Healthcare", "Marketplace Design", "Traditional Medicine"],
     featured: false,
-    category: "web",
-    year: 2022
+    category: "web"
   },
   {
     id: "gold2crypto",
@@ -60,8 +55,7 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png",
     tags: ["Web Development", "Financial Technology", "Trading Platform", "Cryptocurrency"],
     featured: false,
-    category: "web",
-    year: 2021
+    category: "web"
   },
   {
     id: "barskyjoint",
@@ -70,8 +64,7 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png",
     tags: ["Mobile App Design", "Food & Beverage", "Location Services", "E-commerce"],
     featured: false,
-    category: "mobile",
-    year: 2021
+    category: "mobile"
   },
   {
     id: "spectrum",
@@ -80,10 +73,13 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
     tags: ["Web Development", "E-commerce", "Accessibility", "Custom Design Tools"],
     featured: false,
-    category: "web",
-    year: 2021
+    category: "web"
   }
 ];
 
 // Export image captions for use across the application
 export { imageCaptions };
+
+// Export project details - import from the project-details index
+export { projectDetails } from "./project-details";
+export type { ProjectDetails } from "./types/project";

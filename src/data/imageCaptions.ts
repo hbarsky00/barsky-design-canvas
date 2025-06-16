@@ -21,7 +21,6 @@ export const imageCaptions: Record<string, string> = {
 
   // DAE Search Project
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Enterprise data catalog with Bloomberg-inspired design",
-  "/lovable-uploads/cc4f7ae2-b1df-4a12-a623-9c123456abcd.png": "AI-powered data discovery and intelligent search capabilities",
   "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png": "Comprehensive filtering system for complex enterprise datasets",
   "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png": "Data visualization and analytics dashboard",
 
@@ -29,7 +28,6 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png": "Co-parenting communication platform with secure messaging",
   "/lovable-uploads/593ace1d-0082-49d1-aacf-debe109e5235.png": "Calendar coordination system for children's activities",
   "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png": "Family interaction interface promoting positive communication",
-  "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png": "Scheduling and appointment management for co-parents",
 
   // HerbaLink Project
   "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png": "Herbalist connection platform bridging traditional and modern medicine",
