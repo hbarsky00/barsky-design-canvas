@@ -10,11 +10,12 @@ interface DevModeContextType {
 const DevModeContext = createContext<DevModeContextType | undefined>(undefined);
 
 export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Check if we're in Lovable environment (staging domain) vs published site
+  // Check if we're in Lovable environment (staging domain) vs published site (barskydesign.pro)
   const isLovableEnvironment = window.location.hostname.includes('lovable.app') || 
                                window.location.hostname === 'localhost' ||
                                window.location.hostname.includes('127.0.0.1') ||
-                               window.location.port === '5173'; // Vite dev server
+                               window.location.port === '5173' || // Vite dev server
+                               !window.location.hostname.includes('barskydesign.pro'); // Not the published domain
 
   const [isDevMode, setIsDevMode] = useState(() => {
     // Only allow dev mode in Lovable environment
@@ -45,7 +46,7 @@ export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ child
   useEffect(() => {
     if (isLovableEnvironment) {
       localStorage.setItem('devMode', isDevMode.toString());
-      console.log('Dev mode state:', isDevMode, 'Environment:', isLovableEnvironment ? 'Lovable' : 'Published');
+      console.log('Dev mode state:', isDevMode, 'Environment:', isLovableEnvironment ? 'Lovable' : 'Published (barskydesign.pro)');
     }
   }, [isDevMode, isLovableEnvironment]);
 
