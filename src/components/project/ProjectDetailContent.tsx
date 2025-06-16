@@ -65,8 +65,18 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
         currentIndex={currentImageIndex >= 0 ? currentImageIndex : 0}
       />
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-8">
+        {/* Project Sidebar - Shows first on mobile, last on desktop */}
+        <div className="lg:col-span-1 order-first lg:order-last">
+          <ProjectSidebar
+            duration={details.duration}
+            client={details.client}
+            role={details.role}
+          />
+        </div>
+        
+        {/* Main Content - Shows second on mobile, first on desktop */}
+        <div className="lg:col-span-2 order-last lg:order-first">
           <ProjectOverview
             challenge={details.challenge}
             process={details.process}
@@ -87,14 +97,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             allImages={allImages}
             projectId={projectId}
             servicesGalleryImages={details.servicesGalleryImages}
-          />
-        </div>
-        
-        <div className="lg:col-span-1">
-          <ProjectSidebar
-            duration={details.duration}
-            client={details.client}
-            role={details.role}
           />
         </div>
       </div>
