@@ -24,6 +24,7 @@ const EditableText: React.FC<EditableTextProps> = ({
   const [text, setText] = useState(initialText);
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   // Load saved text from database on mount and when dependencies change
@@ -34,10 +35,10 @@ const EditableText: React.FC<EditableTextProps> = ({
           setIsLoading(true);
           const changes = await getChanges();
           const savedText = changes.textContent[textKey] || initialText;
-          console.log('EditableText loading:', textKey, 'saved:', savedText, 'initial:', initialText);
+          console.log('🔄 EditableText loading:', textKey, 'saved:', savedText, 'initial:', initialText);
           setText(savedText);
         } catch (error) {
-          console.error('EditableText: Error loading text:', error);
+          console.error('❌ EditableText: Error loading text:', error);
           setText(initialText);
         } finally {
           setIsLoading(false);
@@ -76,7 +77,7 @@ const EditableText: React.FC<EditableTextProps> = ({
           const savedText = changes.textContent[textKey] || initialText;
           setText(savedText);
         } catch (error) {
-          console.error('EditableText: Error reloading text:', error);
+          console.error('❌ EditableText: Error reloading text:', error);
         }
       }
     };
@@ -89,28 +90,36 @@ const EditableText: React.FC<EditableTextProps> = ({
   }, [textKey, projectId, getChanges, initialText]);
 
   const handleClick = () => {
-    if (isDevMode && !isLoading) {
+    if (isDevMode && !isLoading && !isSaving) {
       setIsEditing(true);
     }
   };
 
   const handleSave = async () => {
-    setIsEditing(false);
-    if (textKey && projectId) {
-      console.log('EditableText saving:', textKey, 'text:', text);
-      try {
-        const success = await saveChange('text', textKey, text);
-        if (success) {
-          // Dispatch event to notify other components
-          window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-            detail: { projectId, textChanged: true }
-          }));
-        } else {
-          console.error('EditableText: Failed to save text');
-        }
-      } catch (error) {
-        console.error('EditableText: Error saving text:', error);
+    if (!textKey || !projectId || isSaving) {
+      setIsEditing(false);
+      return;
+    }
+
+    console.log('💾 EditableText saving:', textKey, 'text:', text);
+    setIsSaving(true);
+    
+    try {
+      const success = await saveChange('text', textKey, text);
+      if (success) {
+        console.log('✅ EditableText: Successfully saved text to database');
+        // Dispatch event to notify other components
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { projectId, textChanged: true, immediate: true }
+        }));
+      } else {
+        console.error('❌ EditableText: Failed to save text to database');
       }
+    } catch (error) {
+      console.error('❌ EditableText: Error saving text:', error);
+    } finally {
+      setIsSaving(false);
+      setIsEditing(false);
     }
   };
 
@@ -157,9 +166,10 @@ const EditableText: React.FC<EditableTextProps> = ({
         onChange={(e) => setText(e.target.value)}
         onBlur={handleSave}
         onKeyDown={handleKeyDown}
+        disabled={isSaving}
         className={`w-full bg-white border-2 border-blue-500 p-2 rounded ${
           multiline ? 'min-h-[100px] resize-vertical' : ''
-        }`}
+        } ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
         style={{ 
           fontSize: 'inherit', 
           fontFamily: 'inherit', 
@@ -178,8 +188,8 @@ const EditableText: React.FC<EditableTextProps> = ({
         isDevMode 
           ? 'cursor-pointer hover:bg-blue-50 hover:outline hover:outline-2 hover:outline-blue-300 rounded p-1 -m-1 transition-all duration-200' 
           : ''
-      }`}
-      title={isDevMode ? 'Click to edit' : undefined}
+      } ${isSaving ? 'opacity-50' : ''}`}
+      title={isDevMode ? (isSaving ? 'Saving...' : 'Click to edit') : undefined}
     >
       {children(text)}
     </div>

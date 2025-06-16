@@ -22,17 +22,39 @@ export const useDevModeDatabase = (projectId: string) => {
   }
 
   const saveChange = useCallback(async (changeType: ChangeType, changeKey: string, changeValue: any): Promise<boolean> => {
+    if (!projectId) {
+      console.error('❌ useDevModeDatabase: No projectId provided for saveChange');
+      return false;
+    }
+
+    console.log('💾 useDevModeDatabase: Saving change:', { projectId, changeType, changeKey, changeValue });
+    
     setIsLoading(true);
     setError(null);
 
     try {
       const success = await saveChangeToDatabase(projectId, changeType, changeKey, changeValue);
-      if (!success) {
+      if (success) {
+        console.log('✅ useDevModeDatabase: Successfully saved change to database');
+        
+        // Dispatch immediate update event
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { 
+            projectId, 
+            changeType, 
+            changeKey, 
+            immediate: true,
+            timestamp: Date.now()
+          }
+        }));
+      } else {
+        console.error('❌ useDevModeDatabase: Failed to save change to database');
         setError('Failed to save change');
       }
       return success;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('❌ useDevModeDatabase: Error saving change:', errorMessage);
       setError(errorMessage);
       return false;
     } finally {
@@ -55,6 +77,7 @@ export const useDevModeDatabase = (projectId: string) => {
       const processedData = processChangesData(data);
 
       console.log('📋 useDevModeDatabase: Processed changes:', {
+        projectId,
         textCount: Object.keys(processedData.textContent).length,
         imageCount: Object.keys(processedData.imageReplacements).length,
         contentBlockSections: Object.keys(processedData.contentBlocks).length,
@@ -73,13 +96,35 @@ export const useDevModeDatabase = (projectId: string) => {
   }, [projectId]);
 
   const hasChanges = useCallback(async (): Promise<boolean> => {
-    if (!projectId) return false;
-    return await checkHasChangesInDatabase(projectId);
+    if (!projectId) {
+      console.log('⚠️ useDevModeDatabase: No projectId for hasChanges check');
+      return false;
+    }
+    
+    try {
+      const result = await checkHasChangesInDatabase(projectId);
+      console.log('🔍 useDevModeDatabase: hasChanges result for', projectId, ':', result);
+      return result;
+    } catch (error) {
+      console.error('❌ useDevModeDatabase: Error checking for changes:', error);
+      return false;
+    }
   }, [projectId]);
 
   const clearChanges = useCallback(async (): Promise<boolean> => {
-    if (!projectId) return false;
-    return await clearChangesFromDatabase(projectId);
+    if (!projectId) {
+      console.log('⚠️ useDevModeDatabase: No projectId for clearChanges');
+      return false;
+    }
+    
+    try {
+      const result = await clearChangesFromDatabase(projectId);
+      console.log('🗑️ useDevModeDatabase: clearChanges result for', projectId, ':', result);
+      return result;
+    } catch (error) {
+      console.error('❌ useDevModeDatabase: Error clearing changes:', error);
+      return false;
+    }
   }, [projectId]);
 
   return {

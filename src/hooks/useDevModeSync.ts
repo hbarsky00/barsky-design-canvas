@@ -19,7 +19,7 @@ export const useDevModeSync = (projectId: string) => {
     const checkChanges = async () => {
       try {
         const result = await checkHasChanges();
-        console.log('🔍 useDevModeSync: Database changes check result:', result);
+        console.log('🔍 useDevModeSync: Database changes check result for', projectId, ':', result);
         setHasChangesToSync(result);
       } catch (error) {
         console.error('❌ useDevModeSync: Error checking for changes:', error);
@@ -32,7 +32,20 @@ export const useDevModeSync = (projectId: string) => {
     // Set up periodic checking
     const interval = setInterval(checkChanges, 2000);
     
-    return () => clearInterval(interval);
+    // Listen for immediate project data updates
+    const handleProjectDataUpdate = (e: CustomEvent) => {
+      if (e.detail?.projectId === projectId || e.detail?.immediate) {
+        console.log('🔄 useDevModeSync: Project data updated, checking for changes immediately');
+        setTimeout(checkChanges, 100); // Small delay to ensure database is updated
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
+    
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
+    };
   }, [projectId, checkHasChanges]);
 
   const syncChangesToFiles = useCallback(async () => {

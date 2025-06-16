@@ -24,19 +24,24 @@ export const useProjectPersistence = (projectId: string) => {
 
   // Load data from database on mount and when projectId changes
   useEffect(() => {
-    if (!projectId || initializedRef.current) return;
+    if (!projectId) return;
     
     const loadData = async () => {
       try {
-        initializedRef.current = true;
+        console.log('🔄 useProjectPersistence: Loading data for project:', projectId);
         const changes = await getChanges();
-        setCachedData({
+        
+        const newCachedData = {
           textContent: changes.textContent,
           imageReplacements: normalizeImageReplacements(changes.imageReplacements),
           contentBlocks: changes.contentBlocks
-        });
+        };
+        
+        console.log('📦 useProjectPersistence: Loaded data:', newCachedData);
+        setCachedData(newCachedData);
+        initializedRef.current = true;
       } catch (error) {
-        console.error('useProjectPersistence: Error loading data:', error);
+        console.error('❌ useProjectPersistence: Error loading data:', error);
       }
     };
 
@@ -65,8 +70,8 @@ export const useProjectPersistence = (projectId: string) => {
   // Force refresh when published overrides change
   useEffect(() => {
     const handleProjectUpdate = async (e: CustomEvent) => {
-      if (e.detail?.projectId === projectId) {
-        console.log('useProjectPersistence: Project data updated, reloading from database');
+      if (e.detail?.projectId === projectId || e.detail?.immediate) {
+        console.log('🔄 useProjectPersistence: Project data updated, reloading from database');
         try {
           const changes = await getChanges();
           setCachedData({
@@ -76,7 +81,7 @@ export const useProjectPersistence = (projectId: string) => {
           });
           setForceUpdate(prev => prev + 1);
         } catch (error) {
-          console.error('useProjectPersistence: Error reloading data:', error);
+          console.error('❌ useProjectPersistence: Error reloading data:', error);
         }
       }
     };
@@ -89,7 +94,7 @@ export const useProjectPersistence = (projectId: string) => {
   }, [projectId, getChanges, normalizeImageReplacements]);
 
   const getProjectData = useCallback((): ProjectData => {
-    console.log('useProjectPersistence: getProjectData called, returning cached data:', cachedData);
+    console.log('📋 useProjectPersistence: getProjectData called, returning cached data:', cachedData);
     return cachedData;
   }, [cachedData]);
 
@@ -104,23 +109,22 @@ export const useProjectPersistence = (projectId: string) => {
       }));
       setLastSaved(new Date());
       
-      // Dispatch event to notify other components
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, textChanged: true }
-      }));
+      console.log('✅ useProjectPersistence: Text content saved successfully');
+    } else {
+      console.error('❌ useProjectPersistence: Failed to save text content');
     }
-  }, [saveChange, projectId]);
+  }, [saveChange]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
     console.log('💾 useProjectPersistence: Saving image replacement to database:', originalSrc, '->', newSrc);
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
-      console.log('Skipping blob URL replacement save:', originalSrc, '->', newSrc);
+      console.log('⚠️ Skipping blob URL replacement save:', originalSrc, '->', newSrc);
       return;
     }
     
     if (!newSrc.startsWith('data:') && !newSrc.startsWith('/') && !newSrc.startsWith('http')) {
-      console.log('Skipping invalid URL replacement save:', originalSrc, '->', newSrc);
+      console.log('⚠️ Skipping invalid URL replacement save:', originalSrc, '->', newSrc);
       return;
     }
     
@@ -133,12 +137,11 @@ export const useProjectPersistence = (projectId: string) => {
       }));
       setLastSaved(new Date());
       
-      // Dispatch event to notify other components
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, imageReplaced: true }
-      }));
+      console.log('✅ useProjectPersistence: Image replacement saved successfully');
+    } else {
+      console.error('❌ useProjectPersistence: Failed to save image replacement');
     }
-  }, [saveChange, projectId]);
+  }, [saveChange]);
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
     console.log('💾 useProjectPersistence: Saving content blocks to database:', sectionKey, blocks);
@@ -151,22 +154,21 @@ export const useProjectPersistence = (projectId: string) => {
       }));
       setLastSaved(new Date());
       
-      // Dispatch event to notify other components
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, contentBlocksChanged: true }
-      }));
+      console.log('✅ useProjectPersistence: Content blocks saved successfully');
+    } else {
+      console.error('❌ useProjectPersistence: Failed to save content blocks');
     }
-  }, [saveChange, projectId]);
+  }, [saveChange]);
 
   const getTextContent = useCallback((key: string, fallback: string = '') => {
     const text = cachedData.textContent[key] || fallback;
-    console.log('useProjectPersistence: getTextContent for key:', key, 'returning:', text);
+    console.log('📖 useProjectPersistence: getTextContent for key:', key, 'returning:', text);
     return text;
   }, [cachedData.textContent]);
 
   const getImageSrc = useCallback((originalSrc: string) => {
     const replacementSrc = cachedData.imageReplacements[originalSrc] || originalSrc;
-    console.log('useProjectPersistence: getImageSrc for:', originalSrc, 'returning:', replacementSrc);
+    console.log('🖼️ useProjectPersistence: getImageSrc for:', originalSrc, 'returning:', replacementSrc);
     return replacementSrc;
   }, [cachedData.imageReplacements]);
 
@@ -177,7 +179,7 @@ export const useProjectPersistence = (projectId: string) => {
       contentBlocks: {}
     });
     setLastSaved(null);
-    console.log('useProjectPersistence: Cleared project data for', projectId);
+    console.log('🗑️ useProjectPersistence: Cleared project data for', projectId);
   }, [projectId]);
 
   return {
