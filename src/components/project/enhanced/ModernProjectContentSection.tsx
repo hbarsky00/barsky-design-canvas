@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
@@ -142,6 +143,40 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setAfterHeaderBlocks(prev => prev.filter((_, i) => i !== index));
   };
 
+  // Image replacement handlers
+  const handleImageReplace = (index: number, newSrc: string) => {
+    console.log('ModernProjectContentSection: Replacing image at index', index, 'with', newSrc);
+    setContentBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'image'
+          ? { ...block, src: newSrc }
+          : block
+      )
+    );
+  };
+
+  const handleBeforeHeaderImageReplace = (index: number, newSrc: string) => {
+    console.log('ModernProjectContentSection: Replacing before header image at index', index, 'with', newSrc);
+    setBeforeHeaderBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'image'
+          ? { ...block, src: newSrc }
+          : block
+      )
+    );
+  };
+
+  const handleAfterHeaderImageReplace = (index: number, newSrc: string) => {
+    console.log('ModernProjectContentSection: Replacing after header image at index', index, 'with', newSrc);
+    setAfterHeaderBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'image'
+          ? { ...block, src: newSrc }
+          : block
+      )
+    );
+  };
+
   const handleDragStart = (e: React.DragEvent, index: number) => {
     setDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
@@ -227,6 +262,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
               index={index}
               onUpdate={handleUpdateBeforeHeaderContent}
               onDelete={handleDeleteBeforeHeaderContent}
+              onImageReplace={handleBeforeHeaderImageReplace}
               onDragStart={handleBeforeHeaderDragStart}
               onDragOver={handleDragOver}
               onDrop={handleBeforeHeaderDrop}
@@ -260,6 +296,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
               index={index}
               onUpdate={handleUpdateAfterHeaderContent}
               onDelete={handleDeleteAfterHeaderContent}
+              onImageReplace={handleAfterHeaderImageReplace}
               onDragStart={handleAfterHeaderDragStart}
               onDragOver={handleDragOver}
               onDrop={handleAfterHeaderDrop}
@@ -278,6 +315,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
             index={index}
             onUpdate={handleUpdateContent}
             onDelete={handleDeleteContent}
+            onImageReplace={handleImageReplace}
             onDragStart={handleDragStart}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
