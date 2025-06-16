@@ -11,7 +11,7 @@ const DevModeSyncButton: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const { syncChangesToFiles, isSyncing, hasChangesToSync } = useDevModeSync(projectId || '');
 
-  if (!isDevMode || !hasChangesToSync) {
+  if (!isDevMode || !hasChangesToSync || !projectId) {
     return null;
   }
 
@@ -25,7 +25,7 @@ const DevModeSyncButton: React.FC = () => {
         {isSyncing ? (
           <>
             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-            Preparing...
+            Publishing...
           </>
         ) : (
           <>
