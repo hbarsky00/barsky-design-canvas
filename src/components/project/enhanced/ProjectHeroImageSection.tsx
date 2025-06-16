@@ -60,9 +60,29 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
 
   const handleImageReplace = (index: number, newSrc: string) => {
     console.log('ProjectHeroImageSection: Replacing image at index', index, 'with', newSrc);
-    setHeroImages(prev => prev.map((img, i) => 
-      i === index ? { ...img, url: newSrc } : img
-    ));
+    
+    // If index is beyond current heroImages length, we need to add new images
+    if (index >= heroImages.length) {
+      const newImages = [...heroImages];
+      // Fill gaps with placeholder images if needed
+      while (newImages.length <= index) {
+        newImages.push({
+          url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+          title: "New showcase image"
+        });
+      }
+      // Replace the image at the specific index
+      newImages[index] = {
+        url: newSrc,
+        title: `Showcase image ${index + 1}`
+      };
+      setHeroImages(newImages);
+    } else {
+      // Normal replacement for existing images
+      setHeroImages(prev => prev.map((img, i) => 
+        i === index ? { ...img, url: newSrc } : img
+      ));
+    }
   };
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -101,16 +121,16 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
     setDraggedIndex(null);
   };
 
-  // Create empty slots to fill up to 2 images in dev mode
-  const displayImages = [...heroImages];
-  if (isDevMode) {
-    while (displayImages.length < 2) {
-      displayImages.push({
-        url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-        title: "Empty slot - click to add image"
-      });
+  // Always show exactly 2 slots, filling with existing images or placeholders
+  const displaySlots = Array.from({ length: 2 }, (_, index) => {
+    if (index < heroImages.length) {
+      return heroImages[index];
     }
-  }
+    return {
+      url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+      title: "Empty slot - click to add image"
+    };
+  });
 
   return (
     <motion.section
@@ -157,56 +177,60 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         <div className="floating-element">
           <div className="glass-card p-4 layered-depth">
             <div className="grid grid-cols-2 gap-4">
-              {displayImages.slice(0, 2).map((imageData, index) => (
-                <div 
-                  key={`${imageData.url}-${index}`} 
-                  className={`relative group/image ${
-                    draggedIndex === index ? 'opacity-50' : ''
-                  } ${index >= heroImages.length && isDevMode ? 'opacity-30' : ''}`}
-                  draggable={isDevMode && index < heroImages.length}
-                  onDragStart={(e) => handleDragStart(e, index)}
-                  onDragOver={handleDragOver}
-                  onDrop={(e) => handleDrop(e, index)}
-                  onDragEnd={handleDragEnd}
-                >
-                  {isDevMode && index < heroImages.length && (
-                    <div className="absolute top-2 right-2 z-30 flex gap-1">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
-                        title="Drag to reorder"
-                      >
-                        <GripVertical className="h-3 w-3" />
-                      </Button>
-                      <Button
-                        onClick={() => handleRemoveImage(index)}
-                        variant="destructive"
-                        size="icon"
-                        className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity"
-                        title="Remove image"
-                      >
-                        <X className="h-3 w-3" />
-                      </Button>
-                    </div>
-                  )}
-                  
-                  <MaximizableImage
-                    src={imageData.url}
-                    alt={imageData.title}
-                    caption={imageCaptions[imageData.url] || imageData.title}
-                    imageList={heroImages.map(img => img.url)}
-                    currentIndex={index}
-                    priority={index === 0}
-                    className={`rounded-xl shadow-elevated-lg w-full overflow-hidden ${
-                      index >= heroImages.length && isDevMode 
-                        ? 'border-2 border-dashed border-gray-300' 
-                        : ''
-                    }`}
-                    onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
-                  />
-                </div>
-              ))}
+              {displaySlots.map((imageData, index) => {
+                const isEmptySlot = index >= heroImages.length;
+                
+                return (
+                  <div 
+                    key={`${imageData.url}-${index}`} 
+                    className={`relative group/image ${
+                      draggedIndex === index ? 'opacity-50' : ''
+                    } ${isEmptySlot && isDevMode ? 'opacity-60' : ''}`}
+                    draggable={isDevMode && !isEmptySlot}
+                    onDragStart={(e) => handleDragStart(e, index)}
+                    onDragOver={handleDragOver}
+                    onDrop={(e) => handleDrop(e, index)}
+                    onDragEnd={handleDragEnd}
+                  >
+                    {isDevMode && !isEmptySlot && (
+                      <div className="absolute top-2 right-2 z-30 flex gap-1">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
+                          title="Drag to reorder"
+                        >
+                          <GripVertical className="h-3 w-3" />
+                        </Button>
+                        <Button
+                          onClick={() => handleRemoveImage(index)}
+                          variant="destructive"
+                          size="icon"
+                          className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity"
+                          title="Remove image"
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    )}
+                    
+                    <MaximizableImage
+                      src={imageData.url}
+                      alt={imageData.title}
+                      caption={imageCaptions[imageData.url] || imageData.title}
+                      imageList={heroImages.map(img => img.url)}
+                      currentIndex={index}
+                      priority={index === 0}
+                      className={`rounded-xl shadow-elevated-lg w-full overflow-hidden ${
+                        isEmptySlot && isDevMode 
+                          ? 'border-2 border-dashed border-gray-300' 
+                          : ''
+                      }`}
+                      onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
