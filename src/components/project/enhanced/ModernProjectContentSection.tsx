@@ -11,6 +11,7 @@ import { useDevMode } from "@/context/DevModeContext";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 import { useDevModeDatabase } from "@/hooks/useDevModeDatabase";
+import { PublishingService } from "@/services/publishingService";
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -50,17 +51,27 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   const [contentBlocks, setContentBlocks] = React.useState<ContentBlock[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  // Load content blocks from database on mount and when projectId changes
+  // Load content blocks from both dev mode and published data
   React.useEffect(() => {
     const loadContentBlocks = async () => {
       console.log('🔄 ModernProjectContentSection: Loading content blocks for section:', sectionKey);
       setIsLoading(true);
       
       try {
+        // First check for dev mode changes
         const changes = await getChanges();
-        const savedBlocks = changes.contentBlocks[sectionKey] || [];
-        console.log('📦 ModernProjectContentSection: Loaded content blocks for', sectionKey, ':', savedBlocks);
-        setContentBlocks(savedBlocks);
+        const devBlocks = changes.contentBlocks[sectionKey] || [];
+        
+        if (devBlocks.length > 0) {
+          console.log('📦 ModernProjectContentSection: Using dev mode blocks for', sectionKey, ':', devBlocks);
+          setContentBlocks(devBlocks);
+        } else {
+          // Fallback to published data if no dev mode changes
+          const publishedData = await PublishingService.loadPublishedData(projectId);
+          const publishedBlocks = publishedData?.content_blocks?.[sectionKey] || [];
+          console.log('📖 ModernProjectContentSection: Using published blocks for', sectionKey, ':', publishedBlocks);
+          setContentBlocks(publishedBlocks);
+        }
       } catch (error) {
         console.error('❌ ModernProjectContentSection: Error loading content blocks:', error);
         setContentBlocks([]);
@@ -76,18 +87,27 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
 
   const [draggedImageIndex, setDraggedImageIndex] = React.useState<number | null>(null);
 
-  // Listen for live content block updates
+  // Listen for live content block updates and published updates
   React.useEffect(() => {
     const handleLiveContentBlockUpdate = (event: CustomEvent) => {
       if (event.detail?.sectionKey === sectionKey) {
-        console.log('📦 ModernProjectContentSection: Received live content block update for:', sectionKey);
+        console.log('📦 ModernProjectContentSection: Received live content block update for:', sectionKey, event.detail.blocks);
         setContentBlocks(event.detail.blocks || []);
       }
     };
 
     const handleProjectDataUpdate = async (event: any) => {
-      if (event.detail?.contentBlocksChanged) {
-        console.log('🔄 ModernProjectContentSection: Content blocks changed, reloading');
+      const detail = event.detail || {};
+      console.log('🔄 ModernProjectContentSection: Project data update received:', detail);
+      
+      if (detail.published && detail.contentBlocks) {
+        // Update with published content blocks
+        const publishedBlocks = detail.contentBlocks[sectionKey] || [];
+        console.log('📖 ModernProjectContentSection: Updating with published blocks for', sectionKey, ':', publishedBlocks);
+        setContentBlocks(publishedBlocks);
+      } else if (detail.contentBlocksChanged || detail.immediate) {
+        // Reload from database for other changes
+        console.log('🔄 ModernProjectContentSection: Reloading content blocks from database');
         try {
           const changes = await getChanges();
           const savedBlocks = changes.contentBlocks[sectionKey] || [];
@@ -147,7 +167,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         console.log('✅ ModernProjectContentSection: Successfully saved content blocks to database');
         // Dispatch event to notify other components
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { projectId, contentBlocksChanged: true }
+          detail: { projectId, contentBlocksChanged: true, immediate: true }
         }));
       } else {
         console.error('❌ ModernProjectContentSection: Failed to save content blocks to database');

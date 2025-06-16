@@ -28,7 +28,8 @@ export class PublishingService {
       console.log('📊 Publishing changes:', {
         textKeys: Object.keys(changes.textContent).length,
         imageKeys: Object.keys(changes.imageReplacements).length,
-        contentBlockKeys: Object.keys(changes.contentBlocks).length
+        contentBlockKeys: Object.keys(changes.contentBlocks).length,
+        contentBlockDetails: changes.contentBlocks
       });
 
       // Step 1: Handle image replacements by uploading to permanent storage
@@ -62,14 +63,48 @@ export class PublishingService {
         }
       }
 
-      // Step 2: Store published state in the published_projects table
+      // Step 2: Process content blocks and handle any images in them
+      const processedContentBlocks: Record<string, any[]> = {};
+      
+      for (const [sectionKey, blocks] of Object.entries(changes.contentBlocks)) {
+        console.log('🔄 Processing content blocks for section:', sectionKey, 'blocks:', blocks);
+        
+        const processedBlocks = await Promise.all(
+          blocks.map(async (block: any) => {
+            if (block.type === 'image' && block.src && block.src.startsWith('data:')) {
+              try {
+                console.log('📤 Uploading content block image for section:', sectionKey);
+                const response = await fetch(block.src);
+                const blob = await response.blob();
+                const file = new File([blob], 'content-image.png', { type: blob.type });
+                
+                const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, `content-${sectionKey}-${Date.now()}`);
+                if (uploadedUrl) {
+                  console.log('✅ Uploaded content block image:', block.src.substring(0, 50) + '...', '->', uploadedUrl);
+                  return { ...block, src: uploadedUrl };
+                }
+              } catch (error) {
+                console.error('❌ Error uploading content block image:', error);
+              }
+            }
+            return block;
+          })
+        );
+        
+        processedContentBlocks[sectionKey] = processedBlocks;
+        console.log('✅ Processed content blocks for section:', sectionKey, 'result:', processedBlocks);
+      }
+
+      // Step 3: Store published state in the published_projects table
       const publishedData = {
         project_id: projectId,
-        text_content: changes.textContent as any, // Cast to Json type
-        image_replacements: publishedImageMappings as any, // Cast to Json type
-        content_blocks: changes.contentBlocks as any, // Cast to Json type
+        text_content: changes.textContent as any,
+        image_replacements: publishedImageMappings as any,
+        content_blocks: processedContentBlocks as any,
         published_at: new Date().toISOString()
       };
+
+      console.log('💾 Saving published data:', publishedData);
 
       const { error: publishError } = await supabase
         .from('published_projects')
@@ -82,36 +117,34 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 3: Apply changes to the live DOM immediately (NO PAGE RELOAD)
-      this.applyChangesToDOM(publishedImageMappings, changes.textContent, changes.contentBlocks);
+      // Step 4: Apply changes to the live DOM immediately (NO PAGE RELOAD)
+      this.applyChangesToDOM(publishedImageMappings, changes.textContent, processedContentBlocks);
 
-      // Step 4: Store in localStorage as fallback
+      // Step 5: Store in localStorage as fallback
       try {
         localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
       } catch (error) {
         console.warn('⚠️ Could not store to localStorage:', error);
-        // Continue anyway as this is just a fallback
       }
 
-      // Step 5: Clean up dev mode changes
+      // Step 6: Clean up dev mode changes
       const clearSuccess = await clearChangesFromDatabase(projectId);
       if (!clearSuccess) {
         console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
       }
 
-      // Step 6: Clean up old images
+      // Step 7: Clean up old images
       try {
         await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
       } catch (error) {
         console.warn('⚠️ Image cleanup failed:', error);
-        // Continue anyway as this doesn't affect the main functionality
       }
 
       console.log('✅ Project published successfully - NO RELOAD NEEDED');
       return true;
     } catch (error) {
       console.error('❌ Error publishing project:', error);
-      throw error; // Re-throw to let the caller handle it
+      throw error;
     }
   }
 
@@ -121,6 +154,7 @@ export class PublishingService {
     contentBlocks: Record<string, any[]>
   ) {
     console.log('🎨 Applying changes to DOM WITHOUT page reload');
+    console.log('📦 Content blocks to apply:', contentBlocks);
 
     // Apply image changes immediately to all matching images
     Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
@@ -159,6 +193,7 @@ export class PublishingService {
     });
 
     Object.entries(contentBlocks).forEach(([sectionKey, blocks]) => {
+      console.log('📡 Dispatching content block update for:', sectionKey, 'blocks:', blocks);
       window.dispatchEvent(new CustomEvent('liveContentBlockUpdate', {
         detail: { sectionKey, blocks }
       }));
@@ -177,7 +212,7 @@ export class PublishingService {
         .single();
 
       if (!error && data) {
-        console.log('📖 Loaded published data from database');
+        console.log('📖 Loaded published data from database:', data);
         return data;
       }
 
