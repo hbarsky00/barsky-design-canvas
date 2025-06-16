@@ -39,6 +39,36 @@ export type Database = {
         }
         Relationships: []
       }
+      published_projects: {
+        Row: {
+          content_blocks: Json
+          id: string
+          image_replacements: Json
+          project_id: string
+          published_at: string
+          text_content: Json
+          updated_at: string
+        }
+        Insert: {
+          content_blocks?: Json
+          id?: string
+          image_replacements?: Json
+          project_id: string
+          published_at?: string
+          text_content?: Json
+          updated_at?: string
+        }
+        Update: {
+          content_blocks?: Json
+          id?: string
+          image_replacements?: Json
+          project_id?: string
+          published_at?: string
+          text_content?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

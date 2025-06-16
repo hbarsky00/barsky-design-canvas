@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
@@ -37,7 +38,7 @@ export class PublishingService {
         }
       }
 
-      // Step 2: Store published state in a dedicated table
+      // Step 2: Store published state in the published_projects table
       const publishedData = {
         project_id: projectId,
         text_content: changes.textContent,
@@ -46,7 +47,8 @@ export class PublishingService {
         published_at: new Date().toISOString()
       };
 
-      const { error: publishError } = await supabase
+      // Use type assertion since the types haven't been regenerated yet
+      const { error: publishError } = await (supabase as any)
         .from('published_projects')
         .upsert(publishedData, {
           onConflict: 'project_id'
@@ -117,8 +119,8 @@ export class PublishingService {
 
   static async loadPublishedData(projectId: string): Promise<any> {
     try {
-      // Try to load from database first
-      const { data, error } = await supabase
+      // Try to load from database first using type assertion
+      const { data, error } = await (supabase as any)
         .from('published_projects')
         .select('*')
         .eq('project_id', projectId)
