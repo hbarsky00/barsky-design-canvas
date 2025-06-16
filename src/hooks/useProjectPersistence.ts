@@ -40,17 +40,6 @@ export const useProjectPersistence = (projectId: string) => {
 
   // Force refresh when published overrides change
   useEffect(() => {
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key?.includes(`imageOverrides_${projectId}`) || 
-          e.key?.includes(`textOverrides_${projectId}`) || 
-          e.key?.includes(`contentBlockOverrides_${projectId}`)) {
-        console.log('Published overrides changed, forcing refresh');
-        setForceUpdate(prev => prev + 1);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    
     const handleProjectUpdate = (e: CustomEvent) => {
       if (e.detail?.projectId === projectId && e.detail?.published) {
         console.log('Published data updated, forcing refresh');
@@ -61,58 +50,21 @@ export const useProjectPersistence = (projectId: string) => {
     window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
     
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
     };
   }, [projectId]);
 
-  const loadPublishedOverrides = useCallback((): ProjectData => {
-    const publishedImages = localStorage.getItem(`imageOverrides_${projectId}`);
-    const publishedText = localStorage.getItem(`textOverrides_${projectId}`);
-    const publishedBlocks = localStorage.getItem(`contentBlockOverrides_${projectId}`);
-
-    const overrides: ProjectData = {
-      textContent: {},
-      imageReplacements: {},
-      contentBlocks: {},
-    };
-
-    try {
-      if (publishedImages) {
-        const parsed = JSON.parse(publishedImages);
-        overrides.imageReplacements = normalizeImageReplacements(parsed);
-        console.log('Loaded published image overrides:', overrides.imageReplacements);
-      }
-      if (publishedText) {
-        overrides.textContent = JSON.parse(publishedText);
-        console.log('Loaded published text overrides:', overrides.textContent);
-      }
-      if (publishedBlocks) {
-        overrides.contentBlocks = JSON.parse(publishedBlocks);
-        console.log('Loaded published content block overrides:', overrides.contentBlocks);
-      }
-    } catch (error) {
-      console.error('Error loading published overrides:', error);
-    }
-
-    return overrides;
-  }, [projectId, normalizeImageReplacements]);
-
   const getProjectData = useCallback((): ProjectData => {
     try {
-      // Always prioritize published overrides
-      const publishedOverrides = loadPublishedOverrides();
-      
-      // For dev changes, we'll fetch them from database when needed
-      // For now, return published overrides as the main data
+      // Return empty data structure - all data now comes from database
       const mergedData = {
-        textContent: { ...publishedOverrides.textContent },
-        imageReplacements: { ...publishedOverrides.imageReplacements },
-        contentBlocks: { ...publishedOverrides.contentBlocks },
+        textContent: {},
+        imageReplacements: {},
+        contentBlocks: {},
         lastSaved: undefined
       };
       
-      console.log('Loaded project data for', projectId, 'with published overrides:', mergedData);
+      console.log('Loaded project data for', projectId, '- all data now managed via database');
       return mergedData;
     } catch (error) {
       console.error('Failed to load project data:', error);
@@ -122,7 +74,7 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
     }
-  }, [projectId, loadPublishedOverrides, forceUpdate]);
+  }, [projectId, forceUpdate]);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
     console.log('💾 Saving text content to database:', key, content);
@@ -175,26 +127,19 @@ export const useProjectPersistence = (projectId: string) => {
   }, [saveChange, projectId]);
 
   const getTextContent = useCallback((key: string, fallback: string = '') => {
-    const data = getProjectData();
-    const value = data.textContent[key] || fallback;
-    console.log('Getting text content for key:', key, 'value:', value);
-    return value;
-  }, [getProjectData]);
+    // Text content is now managed via database and EditableText component
+    console.log('Getting text content for key:', key, 'fallback:', fallback);
+    return fallback;
+  }, []);
 
   const getImageSrc = useCallback((originalSrc: string) => {
-    const data = getProjectData();
-    const replacementSrc = data.imageReplacements[originalSrc];
-    const finalSrc = replacementSrc || originalSrc;
-    
-    if (replacementSrc) {
-      console.log('Using replacement image:', originalSrc, '->', finalSrc.substring(0, 50) + '...');
-    }
-    
-    return finalSrc;
-  }, [getProjectData]);
+    // Image replacements are now managed via database and useImageState hook
+    console.log('Getting image src for:', originalSrc);
+    return originalSrc;
+  }, []);
 
   const clearProjectData = useCallback(() => {
-    // For dev mode data, we'll clear from database in the sync hook
+    // Data is now cleared via database operations in sync hook
     setLastSaved(null);
     console.log('Cleared project data for', projectId);
   }, [projectId]);

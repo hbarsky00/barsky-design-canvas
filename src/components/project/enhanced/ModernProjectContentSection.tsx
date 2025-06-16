@@ -76,8 +76,15 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
 
   const [draggedImageIndex, setDraggedImageIndex] = React.useState<number | null>(null);
 
-  // Force re-render when project data updates (including published changes)
+  // Listen for live content block updates
   React.useEffect(() => {
+    const handleLiveContentBlockUpdate = (event: CustomEvent) => {
+      if (event.detail?.sectionKey === sectionKey) {
+        console.log('📦 ModernProjectContentSection: Received live content block update for:', sectionKey);
+        setContentBlocks(event.detail.blocks || []);
+      }
+    };
+
     const handleProjectDataUpdate = async (event: any) => {
       if (event.detail?.contentBlocksChanged) {
         console.log('🔄 ModernProjectContentSection: Content blocks changed, reloading');
@@ -92,9 +99,11 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       }
     };
 
+    window.addEventListener('liveContentBlockUpdate', handleLiveContentBlockUpdate as EventListener);
     window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
     
     return () => {
+      window.removeEventListener('liveContentBlockUpdate', handleLiveContentBlockUpdate as EventListener);
       window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
     };
   }, [projectId, sectionKey, getChanges]);

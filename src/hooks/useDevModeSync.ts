@@ -34,8 +34,8 @@ export const useDevModeSync = (projectId: string) => {
     return () => clearInterval(interval);
   }, [projectId, checkHasChanges]);
 
-  const publishChangesToLive = useCallback(async () => {
-    console.log('🚀 useDevModeSync: Publishing changes to live mode');
+  const applyChangesLive = useCallback(async () => {
+    console.log('🚀 useDevModeSync: Applying changes live');
     
     try {
       const projectData = await getChanges();
@@ -43,27 +43,9 @@ export const useDevModeSync = (projectId: string) => {
         textKeys: Object.keys(projectData.textContent || {}),
         imageKeys: Object.keys(projectData.imageReplacements || {}),
         blockKeys: Object.keys(projectData.contentBlocks || {}),
-        projectData
       });
-      
-      // Store changes in localStorage as published overrides
-      if (Object.keys(projectData.imageReplacements).length > 0) {
-        localStorage.setItem(`imageOverrides_${projectId}`, JSON.stringify(projectData.imageReplacements));
-        console.log('💾 Saved image overrides to localStorage');
-      }
-      
-      if (Object.keys(projectData.textContent).length > 0) {
-        localStorage.setItem(`textOverrides_${projectId}`, JSON.stringify(projectData.textContent));
-        console.log('💾 Saved text overrides to localStorage');
-      }
-      
-      if (Object.keys(projectData.contentBlocks).length > 0) {
-        localStorage.setItem(`contentBlockOverrides_${projectId}`, JSON.stringify(projectData.contentBlocks));
-        console.log('💾 Saved content block overrides to localStorage');
-      }
 
-      // Apply changes immediately to the current page
-      // Update images
+      // Apply image changes immediately to the current page
       Object.entries(projectData.imageReplacements).forEach(([oldSrc, newSrc]) => {
         const images = document.querySelectorAll(`img[src="${oldSrc}"]`);
         images.forEach((img) => {
@@ -72,23 +54,31 @@ export const useDevModeSync = (projectId: string) => {
         });
       });
 
-      // Update text content via custom events
+      // Apply text changes via custom events
       Object.entries(projectData.textContent).forEach(([textKey, newText]) => {
         window.dispatchEvent(new CustomEvent('liveTextUpdate', {
           detail: { textKey, newText }
         }));
-        console.log('📝 Live updated text:', textKey, '->', newText.substring(0, 50) + '...');
+        console.log('📝 Live updated text:', textKey);
       });
 
-      // Trigger a complete refresh of all components with published flag
+      // Apply content block changes via custom events
+      Object.entries(projectData.contentBlocks).forEach(([sectionKey, blocks]) => {
+        window.dispatchEvent(new CustomEvent('liveContentBlockUpdate', {
+          detail: { sectionKey, blocks }
+        }));
+        console.log('📦 Live updated content blocks for section:', sectionKey);
+      });
+
+      // Trigger a complete refresh of all components
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { projectId, published: true, immediate: true }
       }));
 
-      console.log('✅ useDevModeSync: Changes published successfully');
+      console.log('✅ useDevModeSync: Changes applied successfully');
       return true;
     } catch (error) {
-      console.error('❌ useDevModeSync: Error publishing changes:', error);
+      console.error('❌ useDevModeSync: Error applying changes:', error);
       throw error;
     }
   }, [getChanges, projectId]);
@@ -113,8 +103,8 @@ export const useDevModeSync = (projectId: string) => {
 
       console.log('📤 useDevModeSync: Publishing changes');
 
-      // Publish changes to live mode
-      await publishChangesToLive();
+      // Apply changes live immediately
+      await applyChangesLive();
       
       // Clear the database changes since they're now published
       console.log('🗑️ useDevModeSync: Clearing database changes after successful publish');
@@ -136,7 +126,7 @@ export const useDevModeSync = (projectId: string) => {
     } finally {
       setIsSyncing(false);
     }
-  }, [checkHasChanges, publishChangesToLive, clearChanges]);
+  }, [checkHasChanges, applyChangesLive, clearChanges]);
 
   return {
     syncChangesToFiles,
