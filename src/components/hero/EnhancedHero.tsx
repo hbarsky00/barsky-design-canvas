@@ -86,7 +86,7 @@ const EnhancedHero: React.FC = () => {
                     loading="eager"
                   />
                 </div>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-relaxed font-script pb-4">
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 font-script pb-8" style={{ lineHeight: '1.4' }}>
                   Hiram
                   <span className="block text-blue-600 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Barsky</span>
                 </h1>
