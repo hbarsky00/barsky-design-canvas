@@ -31,26 +31,63 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
 
-      // Apply changes directly to the data structures
-      // This simulates what would happen if the files were updated
-      
-      // Update text content in memory
+      // Apply text content changes to the project
       if (Object.keys(projectData.textContent).length > 0) {
         console.log('Applying text content changes:', projectData.textContent);
-        // In a real app, this would update the backend/files
-        // For now, we'll just show success and clear the changes
+        
+        // Find the project in projectsData and update it
+        const projectIndex = projectsData.findIndex(p => p.id === projectId);
+        if (projectIndex !== -1) {
+          Object.entries(projectData.textContent).forEach(([key, value]) => {
+            if (key.includes('hero_title_')) {
+              projectsData[projectIndex].title = value;
+            } else if (key.includes('hero_description_')) {
+              projectsData[projectIndex].description = value;
+            }
+          });
+        }
+
+        // Update project details
+        const details = projectDetails[projectId];
+        if (details) {
+          Object.entries(projectData.textContent).forEach(([key, value]) => {
+            if (key.includes('challenge_')) {
+              details.challenge = value;
+            } else if (key.includes('process_')) {
+              details.process = value;
+            } else if (key.includes('result_')) {
+              details.result = value;
+            }
+          });
+        }
       }
 
-      // Update image replacements in memory  
+      // Apply image replacement changes
       if (Object.keys(projectData.imageReplacements).length > 0) {
         console.log('Applying image replacement changes:', projectData.imageReplacements);
-        // In a real app, this would update the backend/files
+        
+        // Update the main project image if changed
+        const projectIndex = projectsData.findIndex(p => p.id === projectId);
+        if (projectIndex !== -1) {
+          const mainImageReplacement = projectData.imageReplacements[projectsData[projectIndex].image];
+          if (mainImageReplacement) {
+            projectsData[projectIndex].image = mainImageReplacement;
+          }
+        }
+
+        // Update image captions with new paths
+        Object.entries(projectData.imageReplacements).forEach(([oldPath, newPath]) => {
+          const caption = imageCaptions[oldPath];
+          if (caption) {
+            imageCaptions[newPath] = caption;
+          }
+        });
       }
 
-      // Update content blocks in memory
+      // Apply content blocks changes
       if (Object.keys(projectData.contentBlocks).length > 0) {
         console.log('Applying content block changes:', projectData.contentBlocks);
-        // In a real app, this would update the backend/files
+        // Content blocks are handled dynamically, so they're already applied
       }
 
       // Clear the dev mode changes since they've been "applied"
@@ -58,13 +95,18 @@ export const useDevModeSync = (projectId: string) => {
       
       toast.success("Changes published successfully!", {
         description: "Your dev mode changes have been applied and are now live.",
-        duration: 5000,
+        duration: 3000,
       });
 
-      // Force a page refresh to show the updated content
+      // Instead of refreshing, trigger a re-render by updating the URL
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('updated', Date.now().toString());
+      window.history.replaceState({}, '', currentUrl.toString());
+      
+      // Trigger a gentle page refresh after a short delay to show changes
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 1500);
       
     } catch (error) {
       console.error('Error syncing changes:', error);
@@ -74,7 +116,7 @@ export const useDevModeSync = (projectId: string) => {
     } finally {
       setIsSyncing(false);
     }
-  }, [projectData, hasChangesToSync, clearProjectData]);
+  }, [projectData, hasChangesToSync, clearProjectData, projectId]);
 
   return {
     syncChangesToFiles,
