@@ -22,13 +22,13 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
 
   console.log('🎯 EditImageButton render:', { 
     isDevMode, 
-    src, 
+    src: src?.substring(0, 50) + '...', 
     currentProjectId, 
     hasOnImageReplace: !!onImageReplace 
   });
 
   const handleEditClick = (e: React.MouseEvent) => {
-    console.log('🖱️ Edit button clicked for image:', src);
+    console.log('🖱️ Edit button clicked for image:', src?.substring(0, 50) + '...');
     e.preventDefault();
     e.stopPropagation();
     fileInputRef.current?.click();
@@ -40,22 +40,22 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       hasFile: !!file, 
       fileName: file?.name, 
       fileSize: file?.size,
-      currentSrc: src, 
+      currentSrc: src?.substring(0, 50) + '...', 
       projectId: currentProjectId 
     });
     
     if (file && src && currentProjectId) {
       try {
-        console.log('🔄 Starting image replacement process...');
+        console.log('🔄 Starting image replacement process for:', src.substring(0, 50) + '...');
         
         const reader = new FileReader();
         reader.onload = async () => {
           const dataUrl = reader.result as string;
-          console.log('✅ File converted to data URL, saving to database for src:', src);
+          console.log('✅ File converted to data URL, saving to database for src:', src.substring(0, 50) + '...');
           
           // Save the image replacement to dev mode database
           const success = await saveChange('image', src, dataUrl);
-          console.log('💾 Database save result for', src, ':', success);
+          console.log('💾 Database save result for', src.substring(0, 50) + '...', ':', success);
           
           if (success) {
             console.log('✅ Successfully saved image replacement to database');
@@ -66,24 +66,39 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
               onImageReplace(dataUrl);
             }
             
-            // Dispatch update events for all listeners
-            window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+            // Dispatch comprehensive update events for all listeners
+            const updateEvent = new CustomEvent('projectDataUpdated', {
               detail: { 
                 projectId: currentProjectId, 
                 imageReplaced: true, 
                 immediate: true,
                 src: src,
                 newSrc: dataUrl,
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                changeType: 'image'
               }
-            }));
+            });
+            
+            console.log('📡 Dispatching project update event for:', src.substring(0, 50) + '...');
+            window.dispatchEvent(updateEvent);
+            
+            // Also dispatch a more general event
+            setTimeout(() => {
+              window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+                detail: { 
+                  projectId: currentProjectId, 
+                  immediate: true,
+                  timestamp: Date.now() + 1
+                }
+              }));
+            }, 50);
             
             toast.success("Image replaced!", {
               description: `Replaced with "${file.name}". Click "Publish Changes" to make it permanent.`,
               duration: 5000,
             });
             
-            console.log('🎉 Image replacement process completed successfully for:', src);
+            console.log('🎉 Image replacement process completed successfully for:', src.substring(0, 50) + '...');
           } else {
             throw new Error('Failed to save image replacement to database');
           }
@@ -101,7 +116,11 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         });
       }
     } else {
-      console.error('❌ Missing required data for image replacement:', { file: !!file, src, currentProjectId });
+      console.error('❌ Missing required data for image replacement:', { 
+        file: !!file, 
+        src: src?.substring(0, 50) + '...', 
+        currentProjectId 
+      });
       toast.error("Cannot replace image", {
         description: "Missing required information for image replacement."
       });

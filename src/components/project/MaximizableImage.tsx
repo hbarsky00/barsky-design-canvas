@@ -40,7 +40,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
   
-  console.log('🖼️ MaximizableImage render:', { src: src.substring(0, 50), currentProjectId, hideEditButton });
+  console.log('🖼️ MaximizableImage render:', { 
+    src: src.substring(0, 50) + '...', 
+    currentProjectId, 
+    hideEditButton 
+  });
   
   const { displayedImage, refreshKey, forceRefresh, updateDisplayedImage, hasDevModeChanges } = useImageState({
     src,
@@ -64,7 +68,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   const handleImageReplace = (newSrc: string) => {
     console.log('🔄 MaximizableImage: Image replacement requested', { 
-      oldSrc: src, 
+      oldSrc: src.substring(0, 50) + '...', 
       newSrc: newSrc.substring(0, 50) + '...', 
       projectId: currentProjectId 
     });
@@ -80,16 +84,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     
     // Force refresh after a short delay to ensure all data is updated
     setTimeout(() => {
-      console.log('🔄 Forcing refresh after image replacement');
+      console.log('🔄 Forcing refresh after image replacement for:', src.substring(0, 50) + '...');
       forceRefresh();
-    }, 100);
+    }, 200);
   };
 
   const handleImageError = () => {
-    console.error('❌ Image failed to load:', displayedImage);
+    console.error('❌ Image failed to load:', displayedImage.substring(0, 50) + '...');
     // Try fallback to original source
     if (displayedImage !== src) {
-      console.log('🔄 Falling back to original source:', src);
+      console.log('🔄 Falling back to original source:', src.substring(0, 50) + '...');
       updateDisplayedImage(src);
     }
   };
