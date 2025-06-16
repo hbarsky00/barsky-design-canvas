@@ -30,6 +30,29 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
 }) => {
   console.log('ModernProjectDetail: projectId received:', projectId, typeof projectId);
   
+  // Convert ProjectImageConfig to the expected format for ModernProjectContentSection
+  const convertImageConfig = (imageConfig?: any): Record<string, string[]> => {
+    if (!imageConfig) return {};
+    
+    const converted: Record<string, string[]> = {};
+    
+    // Convert each section's beforeHeader and afterHeader to arrays
+    Object.entries(imageConfig).forEach(([sectionKey, sectionConfig]: [string, any]) => {
+      if (sectionConfig) {
+        const images: string[] = [];
+        if (sectionConfig.beforeHeader) images.push(sectionConfig.beforeHeader);
+        if (sectionConfig.afterHeader) images.push(sectionConfig.afterHeader);
+        if (images.length > 0) {
+          converted[sectionKey] = images;
+        }
+      }
+    });
+    
+    return converted;
+  };
+
+  const convertedImageConfig = convertImageConfig(details.imageConfig);
+  
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -64,7 +87,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           title="The Challenge"
           content={details.challenge}
           sectionKey="challenge"
-          imageConfig={details.imageConfig}
+          imageConfig={convertedImageConfig}
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
@@ -77,7 +100,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           title="What I Did"
           content={details.process}
           sectionKey="process"
-          imageConfig={details.imageConfig}
+          imageConfig={convertedImageConfig}
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
@@ -90,7 +113,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           title="The Result"
           content={details.result}
           sectionKey="result"
-          imageConfig={details.imageConfig}
+          imageConfig={convertedImageConfig}
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
