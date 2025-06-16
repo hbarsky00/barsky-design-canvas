@@ -63,6 +63,10 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       {/* Background Layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/50 to-purple-50/10" />
       
+      {/* Dev Mode Components */}
+      <DevModeStatus />
+      <DevModeSyncButton />
+      
       {/* Hero Section */}
       <ModernProjectHero
         project={project}
@@ -135,5 +139,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
     </motion.div>
   );
 };
+
+// Add imports for new components
+import DevModeStatus from '@/components/dev/DevModeStatus';
+import DevModeSyncButton from '@/components/dev/DevModeSyncButton';
 
 export default ModernProjectDetail;

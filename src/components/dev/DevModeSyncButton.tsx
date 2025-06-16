@@ -1,0 +1,41 @@
+
+import React from 'react';
+import { useDevMode } from '@/context/DevModeContext';
+import { Button } from '@/components/ui/button';
+import { Upload, Loader2 } from 'lucide-react';
+import { useDevModeSync } from '@/hooks/useDevModeSync';
+import { useParams } from 'react-router-dom';
+
+const DevModeSyncButton: React.FC = () => {
+  const { isDevMode } = useDevMode();
+  const { projectId } = useParams<{ projectId: string }>();
+  const { syncChangesToFiles, isSyncing, hasChangesToSync } = useDevModeSync(projectId || '');
+
+  if (!isDevMode || !hasChangesToSync) {
+    return null;
+  }
+
+  return (
+    <div className="fixed bottom-4 left-4 z-50">
+      <Button
+        onClick={syncChangesToFiles}
+        disabled={isSyncing}
+        className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
+      >
+        {isSyncing ? (
+          <>
+            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+            Preparing...
+          </>
+        ) : (
+          <>
+            <Upload className="h-4 w-4 mr-2" />
+            Publish Changes
+          </>
+        )}
+      </Button>
+    </div>
+  );
+};
+
+export default DevModeSyncButton;
