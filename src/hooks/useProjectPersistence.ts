@@ -11,6 +11,7 @@ interface ProjectData {
 export const useProjectPersistence = (projectId: string) => {
   const [isSaving, setIsSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [forceUpdate, setForceUpdate] = useState(0);
 
   const getStorageKey = useCallback((key: string) => {
     return `project_${projectId}_${key}`;
@@ -76,6 +77,35 @@ export const useProjectPersistence = (projectId: string) => {
     return normalized;
   }, []);
 
+  // Force refresh when published overrides change
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key?.includes(`imageOverrides_${projectId}`) || 
+          e.key?.includes(`textOverrides_${projectId}`) || 
+          e.key?.includes(`contentBlockOverrides_${projectId}`)) {
+        console.log('Published overrides changed, forcing refresh');
+        setForceUpdate(prev => prev + 1);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for manual refresh events
+    const handleProjectUpdate = (e: CustomEvent) => {
+      if (e.detail?.projectId === projectId && e.detail?.published) {
+        console.log('Published data updated, forcing refresh');
+        setForceUpdate(prev => prev + 1);
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    };
+  }, [projectId]);
+
   const loadPublishedOverrides = useCallback((): ProjectData => {
     const publishedImages = localStorage.getItem(`imageOverrides_${projectId}`);
     const publishedText = localStorage.getItem(`textOverrides_${projectId}`);
@@ -89,7 +119,8 @@ export const useProjectPersistence = (projectId: string) => {
 
     try {
       if (publishedImages) {
-        overrides.imageReplacements = JSON.parse(publishedImages);
+        const parsed = JSON.parse(publishedImages);
+        overrides.imageReplacements = normalizeImageReplacements(parsed);
         console.log('Loaded published image overrides:', overrides.imageReplacements);
       }
       if (publishedText) {
@@ -105,14 +136,14 @@ export const useProjectPersistence = (projectId: string) => {
     }
 
     return overrides;
-  }, [projectId]);
+  }, [projectId, normalizeImageReplacements]);
 
   const getProjectData = useCallback((): ProjectData => {
     try {
-      // First load published overrides
+      // Always prioritize published overrides
       const publishedOverrides = loadPublishedOverrides();
       
-      // Then load dev mode changes
+      // Load dev mode changes
       const stored = localStorage.getItem(getStorageKey('data'));
       const devData = stored ? JSON.parse(stored) : {
         textContent: {},
@@ -120,18 +151,18 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
       
-      // Merge published overrides with dev data (published takes precedence)
+      // Merge with published taking precedence
       const mergedData = {
         textContent: { ...devData.textContent, ...publishedOverrides.textContent },
         imageReplacements: { 
           ...normalizeImageReplacements(devData.imageReplacements), 
-          ...normalizeImageReplacements(publishedOverrides.imageReplacements) 
+          ...publishedOverrides.imageReplacements 
         },
         contentBlocks: { ...devData.contentBlocks, ...publishedOverrides.contentBlocks },
         lastSaved: devData.lastSaved
       };
       
-      console.log('Loaded merged project data for', projectId, mergedData);
+      console.log('Loaded merged project data for', projectId, 'with published overrides:', mergedData);
       return mergedData;
     } catch (error) {
       console.error('Failed to load project data:', error);
@@ -141,7 +172,7 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
     }
-  }, [projectId, getStorageKey, normalizeImageReplacements, loadPublishedOverrides]);
+  }, [projectId, getStorageKey, normalizeImageReplacements, loadPublishedOverrides, forceUpdate]);
 
   const saveProjectData = useCallback((data: ProjectData) => {
     try {

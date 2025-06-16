@@ -54,6 +54,7 @@ export const useDevModeSync = (projectId: string) => {
   const safeSetItem = useCallback((key: string, value: string) => {
     try {
       localStorage.setItem(key, value);
+      console.log(`Successfully saved ${key} to localStorage`);
       return true;
     } catch (error) {
       if (error instanceof DOMException && error.name === 'QuotaExceededError') {
@@ -85,6 +86,7 @@ export const useDevModeSync = (projectId: string) => {
         // Try again after cleanup
         try {
           localStorage.setItem(key, value);
+          console.log(`Successfully saved ${key} to localStorage after cleanup`);
           return true;
         } catch (retryError) {
           console.error('Still failed after cleanup:', retryError);
@@ -110,6 +112,7 @@ export const useDevModeSync = (projectId: string) => {
       
       if (safeSetItem(`imageOverrides_${projectId}`, imageOverrides)) {
         successCount++;
+        console.log('Successfully saved image overrides');
       } else {
         throw new Error('Failed to save image changes due to storage limitations');
       }
@@ -123,6 +126,7 @@ export const useDevModeSync = (projectId: string) => {
       
       if (safeSetItem(`textOverrides_${projectId}`, textOverrides)) {
         successCount++;
+        console.log('Successfully saved text overrides');
       } else {
         throw new Error('Failed to save text changes due to storage limitations');
       }
@@ -136,6 +140,7 @@ export const useDevModeSync = (projectId: string) => {
       
       if (safeSetItem(`contentBlockOverrides_${projectId}`, blockOverrides)) {
         successCount++;
+        console.log('Successfully saved content block overrides');
       } else {
         throw new Error('Failed to save content block changes due to storage limitations');
       }
@@ -144,6 +149,14 @@ export const useDevModeSync = (projectId: string) => {
     if (successCount === totalAttempts && totalAttempts > 0) {
       // Clear the temporary dev mode data since it's now "published"
       clearProjectData();
+      
+      // Force a storage event to notify all components
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: `imageOverrides_${projectId}`,
+        newValue: JSON.stringify(projectData.imageReplacements || {}),
+        url: window.location.href
+      }));
+      
       return true;
     } else if (totalAttempts === 0) {
       throw new Error('No changes found to publish');
@@ -170,7 +183,7 @@ export const useDevModeSync = (projectId: string) => {
       await writeChangesToFiles();
       
       toast.success("Changes published successfully!", {
-        description: "Your changes have been applied. The page will refresh to show your published changes.",
+        description: "Your changes have been applied and will be visible immediately.",
         duration: 3000,
       });
 
@@ -179,10 +192,11 @@ export const useDevModeSync = (projectId: string) => {
         detail: { projectId, published: true }
       }));
 
-      // Delay the reload slightly to allow toast to show
+      // Force a page refresh to ensure changes are visible
       setTimeout(() => {
+        console.log('Refreshing page to show published changes');
         window.location.reload();
-      }, 1500);
+      }, 1000);
       
     } catch (error) {
       console.error('Error syncing changes:', error);
