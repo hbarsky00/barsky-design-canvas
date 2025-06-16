@@ -42,9 +42,9 @@ export class PublishingService {
       // Step 2: Store published state in the published_projects table
       const publishedData = {
         project_id: projectId,
-        text_content: changes.textContent,
-        image_replacements: publishedImageMappings,
-        content_blocks: changes.contentBlocks,
+        text_content: changes.textContent as any, // Cast to Json type
+        image_replacements: publishedImageMappings as any, // Cast to Json type
+        content_blocks: changes.contentBlocks as any, // Cast to Json type
         published_at: new Date().toISOString()
       };
 
