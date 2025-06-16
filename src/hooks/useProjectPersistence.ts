@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useEffect } from 'react';
 
 interface ProjectData {
@@ -29,11 +30,12 @@ export const useProjectPersistence = (projectId: string) => {
       Object.entries(data.imageReplacements || {}).forEach(([key, value]) => {
         // Only keep replacements where both key and value are valid URLs
         if (typeof key === 'string' && typeof value === 'string') {
-          // Skip blob URLs entirely as they're temporary
-          if (!key.startsWith('blob:') && !value.startsWith('blob:')) {
+          // Filter out any blob URLs or invalid URLs
+          if (!key.startsWith('blob:') && !value.startsWith('blob:') && 
+              (value.startsWith('/') || value.startsWith('http'))) {
             cleanedImageReplacements[key] = value;
           } else {
-            console.log('Removing invalid blob URL mapping:', key, '->', value);
+            console.log('Removing invalid URL mapping:', key, '->', value);
           }
         }
       });
@@ -65,6 +67,11 @@ export const useProjectPersistence = (projectId: string) => {
       localStorage.setItem(getStorageKey('data'), JSON.stringify(dataToSave));
       setLastSaved(new Date());
       console.log('Saved project data for', projectId, dataToSave);
+      
+      // Dispatch event to notify other components of the change
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { projectId, data: dataToSave }
+      }));
     } catch (error) {
       console.error('Failed to save project data:', error);
     } finally {
@@ -85,9 +92,10 @@ export const useProjectPersistence = (projectId: string) => {
   }, [getProjectData, saveProjectData]);
 
   const saveImageReplacement = useCallback((originalSrc: string, newSrc: string) => {
-    // Don't save blob URL replacements
-    if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
-      console.log('Skipping blob URL replacement save:', originalSrc, '->', newSrc);
+    // Don't save blob URL replacements or invalid URLs
+    if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:') ||
+        (!newSrc.startsWith('/') && !newSrc.startsWith('http'))) {
+      console.log('Skipping invalid URL replacement save:', originalSrc, '->', newSrc);
       return;
     }
     

@@ -1,9 +1,5 @@
-
 import { useState, useCallback, useMemo } from 'react';
 import { useProjectPersistence } from './useProjectPersistence';
-import { projectsData } from '@/data/projectsData';
-import { projectDetails } from '@/data/project-details';
-import { imageCaptions } from '@/data/imageCaptions';
 import { toast } from 'sonner';
 
 export const useDevModeSync = (projectId: string) => {
@@ -31,82 +27,34 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
 
-      // Apply text content changes to the project
-      if (Object.keys(projectData.textContent).length > 0) {
-        console.log('Applying text content changes:', projectData.textContent);
-        
-        // Find the project in projectsData and update it
-        const projectIndex = projectsData.findIndex(p => p.id === projectId);
-        if (projectIndex !== -1) {
-          Object.entries(projectData.textContent).forEach(([key, value]) => {
-            if (key.includes('hero_title_')) {
-              projectsData[projectIndex].title = value;
-            } else if (key.includes('hero_description_')) {
-              projectsData[projectIndex].description = value;
-            }
-          });
-        }
+      console.log('Publishing changes:', projectData);
 
-        // Update project details
-        const details = projectDetails[projectId];
-        if (details) {
-          Object.entries(projectData.textContent).forEach(([key, value]) => {
-            if (key.includes('challenge_')) {
-              details.challenge = value;
-            } else if (key.includes('process_')) {
-              details.process = value;
-            } else if (key.includes('result_')) {
-              details.result = value;
-            }
-          });
-        }
-      }
-
-      // Apply image replacement changes
-      if (Object.keys(projectData.imageReplacements).length > 0) {
-        console.log('Applying image replacement changes:', projectData.imageReplacements);
-        
-        // Update the main project image if changed
-        const projectIndex = projectsData.findIndex(p => p.id === projectId);
-        if (projectIndex !== -1) {
-          const mainImageReplacement = projectData.imageReplacements[projectsData[projectIndex].image];
-          if (mainImageReplacement) {
-            projectsData[projectIndex].image = mainImageReplacement;
-          }
-        }
-
-        // Update image captions with new paths
-        Object.entries(projectData.imageReplacements).forEach(([oldPath, newPath]) => {
-          const caption = imageCaptions[oldPath];
-          if (caption) {
-            imageCaptions[newPath] = caption;
-          }
-        });
-      }
-
-      // Apply content blocks changes
-      if (Object.keys(projectData.contentBlocks).length > 0) {
-        console.log('Applying content block changes:', projectData.contentBlocks);
-        // Content blocks are handled dynamically, so they're already applied
-      }
-
-      // Clear the dev mode changes since they've been "applied"
-      clearProjectData();
+      // Instead of trying to modify static imports and refreshing,
+      // we'll keep the changes in localStorage and apply them dynamically
+      // The components already read from useProjectPersistence, so changes
+      // should be visible immediately without a refresh
       
       toast.success("Changes published successfully!", {
-        description: "Your dev mode changes have been applied and are now live.",
+        description: "Your dev mode changes are now live and will persist.",
         duration: 3000,
       });
 
-      // Instead of refreshing, trigger a re-render by updating the URL
+      // Force a re-render by updating the URL timestamp
       const currentUrl = new URL(window.location.href);
-      currentUrl.searchParams.set('updated', Date.now().toString());
-      window.history.replaceState({}, '', currentUrl.toString());
+      const currentTimestamp = currentUrl.searchParams.get('updated');
+      const newTimestamp = Date.now().toString();
       
-      // Trigger a gentle page refresh after a short delay to show changes
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
+      // Only update if the timestamp is different to avoid unnecessary updates
+      if (currentTimestamp !== newTimestamp) {
+        currentUrl.searchParams.set('updated', newTimestamp);
+        window.history.replaceState({}, '', currentUrl.toString());
+      }
+
+      // Trigger a gentle component re-render without full page refresh
+      // by dispatching a custom event that components can listen to
+      window.dispatchEvent(new CustomEvent('devModeChangesPublished', {
+        detail: { projectId, timestamp: newTimestamp }
+      }));
       
     } catch (error) {
       console.error('Error syncing changes:', error);
@@ -116,7 +64,7 @@ export const useDevModeSync = (projectId: string) => {
     } finally {
       setIsSyncing(false);
     }
-  }, [projectData, hasChangesToSync, clearProjectData, projectId]);
+  }, [projectData, hasChangesToSync, projectId]);
 
   return {
     syncChangesToFiles,
