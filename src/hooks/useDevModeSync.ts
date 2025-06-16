@@ -51,35 +51,106 @@ export const useDevModeSync = (projectId: string) => {
     return totalChanges;
   }, [projectData]);
 
+  const safeSetItem = useCallback((key: string, value: string) => {
+    try {
+      localStorage.setItem(key, value);
+      return true;
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'QuotaExceededError') {
+        console.warn(`Storage quota exceeded for ${key}, attempting cleanup...`);
+        
+        // Try to free up space by removing old data
+        const keysToRemove = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const storageKey = localStorage.key(i);
+          if (storageKey && (
+            storageKey.startsWith('project_') || 
+            storageKey.startsWith('imageOverrides_') ||
+            storageKey.startsWith('textOverrides_') ||
+            storageKey.startsWith('contentBlockOverrides_')
+          ) && storageKey !== key) {
+            keysToRemove.push(storageKey);
+          }
+        }
+        
+        // Remove old project data to free up space
+        keysToRemove.forEach(keyToRemove => {
+          try {
+            localStorage.removeItem(keyToRemove);
+          } catch (e) {
+            console.warn('Failed to remove key:', keyToRemove);
+          }
+        });
+        
+        // Try again after cleanup
+        try {
+          localStorage.setItem(key, value);
+          return true;
+        } catch (retryError) {
+          console.error('Still failed after cleanup:', retryError);
+          return false;
+        }
+      }
+      console.error('Storage error:', error);
+      return false;
+    }
+  }, []);
+
   const writeChangesToFiles = useCallback(async () => {
     console.log('Writing changes to project files:', projectData);
     
+    let successCount = 0;
+    let totalAttempts = 0;
+    
     // For image replacements, store them persistently
     if (Object.keys(projectData.imageReplacements || {}).length > 0) {
+      totalAttempts++;
       const imageOverrides = JSON.stringify(projectData.imageReplacements, null, 2);
       console.log('Image overrides to apply:', imageOverrides);
-      localStorage.setItem(`imageOverrides_${projectId}`, imageOverrides);
+      
+      if (safeSetItem(`imageOverrides_${projectId}`, imageOverrides)) {
+        successCount++;
+      } else {
+        throw new Error('Failed to save image changes due to storage limitations');
+      }
     }
 
     // For text content, store them persistently
     if (Object.keys(projectData.textContent || {}).length > 0) {
+      totalAttempts++;
       const textOverrides = JSON.stringify(projectData.textContent, null, 2);
       console.log('Text overrides to apply:', textOverrides);
-      localStorage.setItem(`textOverrides_${projectId}`, textOverrides);
+      
+      if (safeSetItem(`textOverrides_${projectId}`, textOverrides)) {
+        successCount++;
+      } else {
+        throw new Error('Failed to save text changes due to storage limitations');
+      }
     }
 
     // For content blocks, store them persistently
     if (Object.keys(projectData.contentBlocks || {}).length > 0) {
+      totalAttempts++;
       const blockOverrides = JSON.stringify(projectData.contentBlocks, null, 2);
       console.log('Content block overrides to apply:', blockOverrides);
-      localStorage.setItem(`contentBlockOverrides_${projectId}`, blockOverrides);
+      
+      if (safeSetItem(`contentBlockOverrides_${projectId}`, blockOverrides)) {
+        successCount++;
+      } else {
+        throw new Error('Failed to save content block changes due to storage limitations');
+      }
     }
 
-    // Clear the temporary dev mode data since it's now "published"
-    clearProjectData();
-    
-    return true;
-  }, [projectData, projectId, clearProjectData]);
+    if (successCount === totalAttempts && totalAttempts > 0) {
+      // Clear the temporary dev mode data since it's now "published"
+      clearProjectData();
+      return true;
+    } else if (totalAttempts === 0) {
+      throw new Error('No changes found to publish');
+    } else {
+      throw new Error(`Only ${successCount} out of ${totalAttempts} changes could be saved`);
+    }
+  }, [projectData, projectId, clearProjectData, safeSetItem]);
 
   const syncChangesToFiles = useCallback(async () => {
     setIsSyncing(true);
@@ -111,7 +182,7 @@ export const useDevModeSync = (projectId: string) => {
     } catch (error) {
       console.error('Error syncing changes:', error);
       toast.error("Failed to publish changes", {
-        description: "There was an error applying your changes to the project files."
+        description: error instanceof Error ? error.message : "There was an error applying your changes to the project files."
       });
     } finally {
       setIsSyncing(false);

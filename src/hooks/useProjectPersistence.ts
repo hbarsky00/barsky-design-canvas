@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useEffect } from 'react';
 
 interface ProjectData {
@@ -16,6 +15,40 @@ export const useProjectPersistence = (projectId: string) => {
     return `project_${projectId}_${key}`;
   }, [projectId]);
 
+  const safeSetItem = useCallback((key: string, value: string) => {
+    try {
+      localStorage.setItem(key, value);
+      return true;
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'QuotaExceededError') {
+        console.warn(`Storage quota exceeded for ${key}, data may be truncated`);
+        
+        // Try to save a simplified version without large images
+        try {
+          const data = JSON.parse(value);
+          if (data.imageReplacements) {
+            // Filter out data URLs that are too large
+            const filteredImages: Record<string, string> = {};
+            Object.entries(data.imageReplacements).forEach(([k, v]) => {
+              if (typeof v === 'string' && !v.startsWith('data:')) {
+                filteredImages[k] = v;
+              }
+            });
+            data.imageReplacements = filteredImages;
+            
+            const simplifiedValue = JSON.stringify(data);
+            localStorage.setItem(key, simplifiedValue);
+            return true;
+          }
+        } catch (simplifyError) {
+          console.error('Failed to simplify data:', simplifyError);
+        }
+      }
+      console.error('Storage error:', error);
+      return false;
+    }
+  }, []);
+
   const normalizeImageReplacements = useCallback((imageReplacements: any): Record<string, string> => {
     const normalized: Record<string, string> = {};
     
@@ -23,7 +56,7 @@ export const useProjectPersistence = (projectId: string) => {
       if (typeof key === 'string' && value) {
         // Handle both object format {_type: "String", value: "..."} and direct string values
         const stringValue = typeof value === 'object' && value !== null && 
-          '_type' in value && '_type' in value && value._type === 'String' && 'value' in value
+          '_type' in value && (value as any)._type === 'String' && 'value' in value
           ? (value as { _type: string; value: string }).value 
           : typeof value === 'string' 
             ? value 
@@ -82,20 +115,28 @@ export const useProjectPersistence = (projectId: string) => {
         lastSaved: new Date().toISOString()
       };
       
-      localStorage.setItem(getStorageKey('data'), JSON.stringify(normalizedData));
-      setLastSaved(new Date());
-      console.log('Saved project data for', projectId, normalizedData);
+      const success = safeSetItem(getStorageKey('data'), JSON.stringify(normalizedData));
       
-      // Dispatch event to notify other components of the change
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, data: normalizedData }
-      }));
+      if (success) {
+        setLastSaved(new Date());
+        console.log('Saved project data for', projectId, normalizedData);
+        
+        // Dispatch event to notify other components of the change
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { projectId, data: normalizedData }
+        }));
+      } else {
+        console.warn('Failed to save project data due to storage limitations');
+        toast.error("Storage limit reached", {
+          description: "Unable to save changes due to browser storage limitations. Try publishing your changes to free up space."
+        });
+      }
     } catch (error) {
       console.error('Failed to save project data:', error);
     } finally {
       setIsSaving(false);
     }
-  }, [projectId, getStorageKey, normalizeImageReplacements]);
+  }, [projectId, getStorageKey, normalizeImageReplacements, safeSetItem]);
 
   const saveTextContent = useCallback((key: string, content: string) => {
     const currentData = getProjectData();
