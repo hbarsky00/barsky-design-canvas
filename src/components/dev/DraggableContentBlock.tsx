@@ -42,16 +42,24 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   const { isDevMode } = useDevMode();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  console.log('🎯 DraggableContentBlock render:', { 
+    index, 
+    blockType: block.type, 
+    blockSrc: block.src,
+    hasOnImageReplace: !!onImageReplace 
+  });
+
   const handleImageReplace = (newSrc: string) => {
+    console.log('🖼️ DraggableContentBlock: Calling onImageReplace for index', index, 'with', newSrc);
     if (onImageReplace) {
-      console.log('DraggableContentBlock: Calling onImageReplace for index', index, 'with', newSrc);
       onImageReplace(index, newSrc);
     } else {
-      console.log('DraggableContentBlock: No onImageReplace callback provided for index', index);
+      console.log('❌ DraggableContentBlock: No onImageReplace callback provided for index', index);
     }
   };
 
   const handleImageUploadClick = () => {
+    console.log('📁 Upload button clicked for content block:', index);
     fileInputRef.current?.click();
   };
 
@@ -66,10 +74,16 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    console.log('📁 File selected for content block:', { 
+      hasFile: !!file, 
+      fileName: file?.name, 
+      index 
+    });
+    
     if (file && onImageReplace) {
       try {
         const dataUrl = await convertFileToDataUrl(file);
-        console.log('📁 File converted to data URL for content block:', index);
+        console.log('✅ File converted to data URL for content block:', index);
         handleImageReplace(dataUrl);
       } catch (error) {
         console.error('❌ Error converting file:', error);
@@ -116,8 +130,17 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         );
 
       case 'image':
-        // If no src is provided, show upload placeholder
-        if (!block.src || block.src === '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png') {
+        // Show upload placeholder only if no src is provided OR if it's the specific placeholder image
+        const isPlaceholder = !block.src || block.src === '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+        
+        console.log('🖼️ Rendering image block:', { 
+          index, 
+          src: block.src, 
+          isPlaceholder,
+          caption: block.caption 
+        });
+
+        if (isPlaceholder) {
           return (
             <div className="glass-card p-8 layered-depth floating-element">
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">

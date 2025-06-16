@@ -77,29 +77,37 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   };
 
   const createNewBlock = (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): ContentBlock => {
+    console.log('🆕 Creating new block of type:', type);
+    
     switch (type) {
       case 'text':
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
       case 'image':
-        return { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
+        // Create image block without any src - this will show the upload placeholder
+        return { type: 'image', caption: 'A newly added image.' };
       case 'header':
         return { type: 'header', value: 'New Header', level: 2 };
       case 'video':
-        return { type: 'video', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added video.' };
+        return { type: 'video', caption: 'A newly added video.' };
       case 'pdf':
-        return { type: 'pdf', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added PDF document.' };
+        return { type: 'pdf', caption: 'A newly added PDF document.' };
       default:
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
     }
   };
 
   const handleAddContent = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
+    console.log('➕ Adding new content of type:', type);
     const newBlock = createNewBlock(type);
+    console.log('📦 New block created:', newBlock);
+    
     const updatedBlocks = [...contentBlocks, newBlock];
     setContentBlocks(updatedBlocks);
     
     // Save content blocks persistently
     saveContentBlocks(sectionKey, updatedBlocks);
+    
+    console.log('✅ Content blocks updated:', updatedBlocks);
   };
 
   const handleUpdateContent = (index: number, newValue: string) => {
@@ -123,7 +131,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   };
 
   const handleContentImageReplace = (index: number, newSrc: string) => {
-    console.log('ModernProjectContentSection: Replacing content image at index', index, 'with', newSrc, 'for project', projectId);
+    console.log('🔄 ModernProjectContentSection: Replacing content image at index', index, 'with', newSrc, 'for project', projectId);
     
     const oldBlock = contentBlocks[index];
     const updatedBlocks = contentBlocks.map((block, i) => 
