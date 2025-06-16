@@ -209,6 +209,7 @@ export const useProjectPersistence = (projectId: string) => {
   }, [projectId, getStorageKey, normalizeImageReplacements, safeSetItem]);
 
   const saveTextContent = useCallback((key: string, content: string) => {
+    console.log('Saving text content:', key, content);
     const currentData = getProjectData();
     const updatedData = {
       ...currentData,
@@ -221,6 +222,8 @@ export const useProjectPersistence = (projectId: string) => {
   }, [getProjectData, saveProjectData]);
 
   const saveImageReplacement = useCallback((originalSrc: string, newSrc: string) => {
+    console.log('Saving image replacement:', originalSrc, '->', newSrc);
+    
     // Accept data URLs (base64 encoded images) and regular URLs, reject blob URLs
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('Skipping blob URL replacement save:', originalSrc, '->', newSrc);

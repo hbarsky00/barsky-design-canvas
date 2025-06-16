@@ -9,7 +9,9 @@ export const useDevModeSync = (projectId: string) => {
 
   const projectData = useMemo(() => {
     if (!projectId) return { textContent: {}, imageReplacements: {}, contentBlocks: {} };
-    return getProjectData();
+    const data = getProjectData();
+    console.log('useDevModeSync: Current project data:', data);
+    return data;
   }, [getProjectData, projectId]);
 
   const hasChangesToSync = useMemo(() => {
@@ -24,12 +26,9 @@ export const useDevModeSync = (projectId: string) => {
       return value && value.trim() !== '';
     });
     
-    // Check for image replacement changes
+    // Check for image replacement changes - be more lenient with detection
     const imageKeys = Object.keys(projectData.imageReplacements || {});
-    const hasImageChanges = imageKeys.length > 0 && imageKeys.some(key => {
-      const value = projectData.imageReplacements[key];
-      return value && value !== key; // Changed if replacement is different from original
-    });
+    const hasImageChanges = imageKeys.length > 0;
     
     // Check for content block changes
     const blockKeys = Object.keys(projectData.contentBlocks || {});
@@ -49,13 +48,13 @@ export const useDevModeSync = (projectId: string) => {
     
     console.log('Changes detected:', {
       textChanges: hasTextChanges,
+      textKeys,
       imageChanges: hasImageChanges,
+      imageKeys,
       contentBlockChanges: hasContentBlockChanges,
+      blockKeys,
       publishedChanges: hasPublishedChanges,
       totalChanges,
-      textContentKeys: textKeys,
-      imageReplacementKeys: imageKeys,
-      contentBlockKeys: blockKeys,
       projectData
     });
     
@@ -115,10 +114,11 @@ export const useDevModeSync = (projectId: string) => {
     let successCount = 0;
     let totalAttempts = 0;
     
-    // For image replacements, store them persistently
-    if (Object.keys(projectData.imageReplacements || {}).length > 0) {
+    // For image replacements, store them persistently if there are any
+    const imageReplacements = projectData.imageReplacements || {};
+    if (Object.keys(imageReplacements).length > 0) {
       totalAttempts++;
-      const imageOverrides = JSON.stringify(projectData.imageReplacements, null, 2);
+      const imageOverrides = JSON.stringify(imageReplacements, null, 2);
       console.log('Image overrides to apply:', imageOverrides);
       
       if (safeSetItem(`imageOverrides_${projectId}`, imageOverrides)) {
@@ -129,10 +129,11 @@ export const useDevModeSync = (projectId: string) => {
       }
     }
 
-    // For text content, store them persistently
-    if (Object.keys(projectData.textContent || {}).length > 0) {
+    // For text content, store them persistently if there are any
+    const textContent = projectData.textContent || {};
+    if (Object.keys(textContent).length > 0) {
       totalAttempts++;
-      const textOverrides = JSON.stringify(projectData.textContent, null, 2);
+      const textOverrides = JSON.stringify(textContent, null, 2);
       console.log('Text overrides to apply:', textOverrides);
       
       if (safeSetItem(`textOverrides_${projectId}`, textOverrides)) {
@@ -143,10 +144,11 @@ export const useDevModeSync = (projectId: string) => {
       }
     }
 
-    // For content blocks, store them persistently
-    if (Object.keys(projectData.contentBlocks || {}).length > 0) {
+    // For content blocks, store them persistently if there are any
+    const contentBlocks = projectData.contentBlocks || {};
+    if (Object.keys(contentBlocks).length > 0) {
       totalAttempts++;
-      const blockOverrides = JSON.stringify(projectData.contentBlocks, null, 2);
+      const blockOverrides = JSON.stringify(contentBlocks, null, 2);
       console.log('Content block overrides to apply:', blockOverrides);
       
       if (safeSetItem(`contentBlockOverrides_${projectId}`, blockOverrides)) {
@@ -168,7 +170,7 @@ export const useDevModeSync = (projectId: string) => {
       
       window.dispatchEvent(new StorageEvent('storage', {
         key: `imageOverrides_${projectId}`,
-        newValue: JSON.stringify(projectData.imageReplacements || {}),
+        newValue: JSON.stringify(imageReplacements),
         url: window.location.href
       }));
       
@@ -181,10 +183,14 @@ export const useDevModeSync = (projectId: string) => {
   }, [projectData, projectId, clearProjectData, safeSetItem]);
 
   const syncChangesToFiles = useCallback(async () => {
+    console.log('syncChangesToFiles called, hasChangesToSync:', hasChangesToSync);
+    console.log('Current project data:', projectData);
+    
     setIsSyncing(true);
     
     try {
       if (!hasChangesToSync) {
+        console.log('No changes detected for sync');
         toast.info("No changes to sync", {
           description: "No dev mode changes found to publish."
         });
