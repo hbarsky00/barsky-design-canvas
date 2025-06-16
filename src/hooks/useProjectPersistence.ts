@@ -15,6 +15,31 @@ export const useProjectPersistence = (projectId: string) => {
     return `project_${projectId}_${key}`;
   }, [projectId]);
 
+  const normalizeImageReplacements = useCallback((imageReplacements: any): Record<string, string> => {
+    const normalized: Record<string, string> = {};
+    
+    Object.entries(imageReplacements || {}).forEach(([key, value]) => {
+      if (typeof key === 'string' && value) {
+        // Handle both object format {_type: "String", value: "..."} and direct string values
+        const stringValue = typeof value === 'object' && value._type === 'String' 
+          ? value.value 
+          : typeof value === 'string' 
+            ? value 
+            : null;
+            
+        if (stringValue && typeof stringValue === 'string') {
+          // Keep data URLs and regular URLs, filter out blob URLs
+          if (!key.startsWith('blob:') && !stringValue.startsWith('blob:') && 
+              (stringValue.startsWith('data:') || stringValue.startsWith('/') || stringValue.startsWith('http'))) {
+            normalized[key] = stringValue;
+          }
+        }
+      }
+    });
+    
+    return normalized;
+  }, []);
+
   const getProjectData = useCallback((): ProjectData => {
     try {
       const stored = localStorage.getItem(getStorageKey('data'));
@@ -24,20 +49,8 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
       
-      // Clean up invalid blob URLs from imageReplacements but keep data URLs
-      const cleanedImageReplacements: Record<string, string> = {};
-      Object.entries(data.imageReplacements || {}).forEach(([key, value]) => {
-        // Only keep replacements where both key and value are valid
-        if (typeof key === 'string' && typeof value === 'string') {
-          // Keep data URLs (base64 encoded images) and regular URLs, filter out blob URLs
-          if (!key.startsWith('blob:') && !value.startsWith('blob:') && 
-              (value.startsWith('data:') || value.startsWith('/') || value.startsWith('http'))) {
-            cleanedImageReplacements[key] = value;
-          } else if (value.startsWith('blob:')) {
-            console.log('Removing blob URL mapping:', key, '->', value);
-          }
-        }
-      });
+      // Normalize the image replacements to handle both formats
+      const cleanedImageReplacements = normalizeImageReplacements(data.imageReplacements);
       
       const cleanedData = {
         ...data,
@@ -54,29 +67,33 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
     }
-  }, [projectId, getStorageKey]);
+  }, [projectId, getStorageKey, normalizeImageReplacements]);
 
   const saveProjectData = useCallback((data: ProjectData) => {
     try {
       setIsSaving(true);
-      const dataToSave = {
+      
+      // Normalize image replacements before saving
+      const normalizedData = {
         ...data,
+        imageReplacements: normalizeImageReplacements(data.imageReplacements),
         lastSaved: new Date().toISOString()
       };
-      localStorage.setItem(getStorageKey('data'), JSON.stringify(dataToSave));
+      
+      localStorage.setItem(getStorageKey('data'), JSON.stringify(normalizedData));
       setLastSaved(new Date());
-      console.log('Saved project data for', projectId, dataToSave);
+      console.log('Saved project data for', projectId, normalizedData);
       
       // Dispatch event to notify other components of the change
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, data: dataToSave }
+        detail: { projectId, data: normalizedData }
       }));
     } catch (error) {
       console.error('Failed to save project data:', error);
     } finally {
       setIsSaving(false);
     }
-  }, [projectId, getStorageKey]);
+  }, [projectId, getStorageKey, normalizeImageReplacements]);
 
   const saveTextContent = useCallback((key: string, content: string) => {
     const currentData = getProjectData();

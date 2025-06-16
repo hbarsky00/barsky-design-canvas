@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useMemo } from 'react';
 import { useProjectPersistence } from './useProjectPersistence';
 import { toast } from 'sonner';
@@ -11,9 +12,25 @@ export const useDevModeSync = (projectId: string) => {
   }, [getProjectData]);
 
   const hasChangesToSync = useMemo(() => {
-    return Object.keys(projectData.textContent).length > 0 || 
-           Object.keys(projectData.imageReplacements).length > 0 || 
-           Object.keys(projectData.contentBlocks).length > 0;
+    console.log('Checking for changes to sync:', projectData);
+    
+    const hasTextChanges = Object.keys(projectData.textContent).length > 0;
+    const hasImageChanges = Object.keys(projectData.imageReplacements).length > 0;
+    const hasContentBlockChanges = Object.keys(projectData.contentBlocks).length > 0;
+    
+    const totalChanges = hasTextChanges || hasImageChanges || hasContentBlockChanges;
+    
+    console.log('Changes detected:', {
+      textChanges: hasTextChanges,
+      imageChanges: hasImageChanges,
+      contentBlockChanges: hasContentBlockChanges,
+      totalChanges,
+      textContentKeys: Object.keys(projectData.textContent),
+      imageReplacementKeys: Object.keys(projectData.imageReplacements),
+      contentBlockKeys: Object.keys(projectData.contentBlocks)
+    });
+    
+    return totalChanges;
   }, [projectData]);
 
   const syncChangesToFiles = useCallback(async () => {

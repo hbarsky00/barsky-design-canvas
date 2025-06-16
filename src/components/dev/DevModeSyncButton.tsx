@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Upload, Loader2 } from 'lucide-react';
@@ -10,8 +10,24 @@ const DevModeSyncButton: React.FC = () => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
   const { syncChangesToFiles, isSyncing, hasChangesToSync } = useDevModeSync(projectId || '');
+  const [forceUpdate, setForceUpdate] = useState(0);
 
-  console.log('DevModeSyncButton render:', { isDevMode, hasChangesToSync, projectId });
+  // Listen for project data updates to force re-render
+  useEffect(() => {
+    const handleProjectDataUpdate = () => {
+      setForceUpdate(prev => prev + 1);
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
+    return () => window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
+  }, []);
+
+  console.log('DevModeSyncButton render:', { 
+    isDevMode, 
+    hasChangesToSync, 
+    projectId,
+    forceUpdate
+  });
 
   if (!isDevMode || !projectId) {
     console.log('DevModeSyncButton: Not showing - devMode or projectId missing');
