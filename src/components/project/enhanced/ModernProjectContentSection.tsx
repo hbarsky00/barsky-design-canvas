@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectImageConfig } from "@/data/types/project";
@@ -30,7 +29,9 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   projectId
 }) => {
   const { isDevMode } = useDevMode();
-  const { updateImageInProjectData } = useProjectDataUpdater();
+  const { updateImageInProjectData, getUpdatedImagePath } = useProjectDataUpdater();
+  
+  console.log('ModernProjectContentSection rendered with projectId:', projectId);
   
   const {
     contentBlocks,
@@ -42,8 +43,25 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     createNewBlock
   } = useContentBlocks({ content, sectionKey, imageConfig, imageCaptions });
 
+  // Apply any existing image updates to the content blocks
+  React.useEffect(() => {
+    const updateBlocksWithLatestImages = (blocks: ContentBlock[]) => {
+      return blocks.map(block => {
+        if (block.type === 'image' && block.src) {
+          const updatedSrc = getUpdatedImagePath(projectId, block.src);
+          return updatedSrc !== block.src ? { ...block, src: updatedSrc } : block;
+        }
+        return block;
+      });
+    };
+
+    setContentBlocks(prev => updateBlocksWithLatestImages(prev));
+    setBeforeHeaderBlocks(prev => updateBlocksWithLatestImages(prev));
+    setAfterHeaderBlocks(prev => updateBlocksWithLatestImages(prev));
+  }, [projectId, getUpdatedImagePath]);
+
   const handleImageReplaceWithDataUpdate = (index: number, newSrc: string) => {
-    console.log('ModernProjectContentSection: Replacing image at index', index, 'with', newSrc);
+    console.log('ModernProjectContentSection: Replacing image at index', index, 'with', newSrc, 'for project', projectId);
     
     // Update the content blocks state immediately for UI feedback
     setContentBlocks(prev => 
@@ -62,7 +80,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   };
 
   const handleBeforeHeaderImageReplaceWithDataUpdate = (index: number, newSrc: string) => {
-    console.log('ModernProjectContentSection: Replacing before header image at index', index, 'with', newSrc);
+    console.log('ModernProjectContentSection: Replacing before header image at index', index, 'with', newSrc, 'for project', projectId);
     
     setBeforeHeaderBlocks(prev => 
       prev.map((block, i) => 
@@ -79,7 +97,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   };
 
   const handleAfterHeaderImageReplaceWithDataUpdate = (index: number, newSrc: string) => {
-    console.log('ModernProjectContentSection: Replacing after header image at index', index, 'with', newSrc);
+    console.log('ModernProjectContentSection: Replacing after header image at index', index, 'with', newSrc, 'for project', projectId);
     
     setAfterHeaderBlocks(prev => 
       prev.map((block, i) => 
@@ -158,6 +176,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         onAdd={handleAddBeforeHeaderContent}
         keyPrefix="before-header"
         className="space-y-4 mb-6"
+        projectId={projectId}
       />
 
       <EditableText initialText={title}>
@@ -181,6 +200,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         onAdd={handleAddAfterHeaderContent}
         keyPrefix="after-header"
         className="space-y-4 mb-6"
+        projectId={projectId}
       />
 
       {/* Main content blocks with drag and drop capability */}

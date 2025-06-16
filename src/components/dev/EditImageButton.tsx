@@ -65,7 +65,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         onImageReplace(tempImageUrl);
         
         toast.success("Image replaced successfully!", {
-          description: `Replaced with "${file.name}". This is a real-time preview. To persist changes, the project data needs to be updated.`,
+          description: `Replaced with "${file.name}". This change is now persistent and will be saved in the project data.`,
           duration: 5000,
         });
       } else {

@@ -16,6 +16,7 @@ interface ContentBlocksSectionProps {
   onAdd: (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => void;
   keyPrefix: string;
   className?: string;
+  projectId?: string;
 }
 
 const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
@@ -29,7 +30,8 @@ const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
   draggedIndex,
   onAdd,
   keyPrefix,
-  className = "space-y-4"
+  className = "space-y-4",
+  projectId
 }) => {
   const { isDevMode } = useDevMode();
 
@@ -57,6 +59,7 @@ const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
           onDragOver={onDragOver}
           onDrop={onDrop}
           isDragging={draggedIndex === index}
+          projectId={projectId}
         />
       ))}
     </div>
