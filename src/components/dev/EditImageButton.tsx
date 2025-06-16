@@ -38,7 +38,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && src) {
-      console.log('File selected for replacement:', { 
+      console.log('🖼️ File selected for replacement:', { 
         fileName: file.name, 
         currentSrc: src, 
         projectId: currentProjectId 
@@ -47,22 +47,32 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       try {
         // Convert file to data URL for persistent storage
         const dataUrl = await convertFileToDataUrl(file);
-        console.log('Converted file to data URL, length:', dataUrl.length);
+        console.log('✅ Converted file to data URL, length:', dataUrl.length);
         
+        // Save the image replacement persistently FIRST
+        console.log('💾 Saving image replacement to persistence:', src, '->', dataUrl.substring(0, 50) + '...');
+        saveImageReplacement(src, dataUrl);
+        
+        // Then call the callback if provided
         if (onImageReplace) {
-          console.log('Calling onImageReplace with data URL');
+          console.log('📞 Calling onImageReplace callback');
           onImageReplace(dataUrl);
         }
         
-        // Save the image replacement persistently with data URL
-        saveImageReplacement(src, dataUrl);
+        // Force a small delay to ensure data is saved
+        setTimeout(() => {
+          // Trigger a project data update event to refresh components
+          window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+            detail: { projectId: currentProjectId, imageReplaced: true }
+          }));
+        }, 100);
         
         toast.success("Image replaced and saved!", {
           description: `Replaced with "${file.name}". Click "Publish Changes" to apply your edits.`,
           duration: 5000,
         });
       } catch (error) {
-        console.error('Error converting file to data URL:', error);
+        console.error('❌ Error converting file to data URL:', error);
         toast.error("Failed to process image", {
           description: "There was an error processing the uploaded image."
         });

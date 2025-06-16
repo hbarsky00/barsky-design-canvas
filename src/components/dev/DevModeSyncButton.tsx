@@ -15,12 +15,12 @@ const DevModeSyncButton: React.FC = () => {
   // Listen for project data updates to force re-render
   useEffect(() => {
     const handleProjectDataUpdate = () => {
-      console.log('DevModeSyncButton: Project data updated, forcing re-render');
+      console.log('🔄 DevModeSyncButton: Project data updated, forcing re-render');
       setForceUpdate(prev => prev + 1);
     };
 
     const handleStorageChange = () => {
-      console.log('DevModeSyncButton: Storage changed, forcing re-render');
+      console.log('🔄 DevModeSyncButton: Storage changed, forcing re-render');
       setForceUpdate(prev => prev + 1);
     };
 
@@ -42,7 +42,7 @@ const DevModeSyncButton: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  console.log('DevModeSyncButton render:', { 
+  console.log('🎯 DevModeSyncButton render:', { 
     isDevMode, 
     hasChangesToSync, 
     projectId,
@@ -51,20 +51,25 @@ const DevModeSyncButton: React.FC = () => {
   });
 
   if (!projectId) {
-    console.log('DevModeSyncButton: Not showing - no projectId');
+    console.log('❌ DevModeSyncButton: Not showing - no projectId');
     return null;
   }
 
   // Show the button if we're in dev mode OR if there are changes to sync
   if (!isDevMode && !hasChangesToSync) {
-    console.log('DevModeSyncButton: Not showing - not in dev mode and no changes');
+    console.log('❌ DevModeSyncButton: Not showing - not in dev mode and no changes');
     return null;
   }
+
+  const handlePublishClick = () => {
+    console.log('🚀 Publish button clicked, hasChangesToSync:', hasChangesToSync);
+    syncChangesToFiles();
+  };
 
   return (
     <div className="fixed bottom-4 left-4 z-[99999]">
       <Button
-        onClick={syncChangesToFiles}
+        onClick={handlePublishClick}
         disabled={isSyncing}
         className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
       >
