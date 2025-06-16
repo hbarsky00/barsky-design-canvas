@@ -22,7 +22,11 @@ export const clearProjectCache = (projectId: string) => {
   console.log(`Cleared ${keysToRemove.length} cached items for project ${projectId}`);
 };
 
-// Auto-clear cache on load for medication-app
-if (window.location.pathname.includes('/project/medication-app')) {
-  clearProjectCache('medication-app');
+// Auto-clear cache on load for all projects
+const pathname = window.location.pathname;
+const projectMatch = pathname.match(/\/project\/([^/?]+)/);
+if (projectMatch) {
+  const projectId = projectMatch[1];
+  clearProjectCache(projectId);
+  console.log(`Auto-cleared cache for project: ${projectId}`);
 }

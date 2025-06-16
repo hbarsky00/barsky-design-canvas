@@ -1,7 +1,8 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { projectsData, imageCaptions } from "@/data/projectsData";
+import { projectsData } from "@/data/projects/projectsList";
+import { imageCaptions } from "@/data/projectsData";
 import { projectDetails } from "@/data/project-details";
 import ModernProjectDetail from "@/components/project/enhanced/ModernProjectDetail";
 import ProjectDetailLoading from "@/components/project/ProjectDetailLoading";
