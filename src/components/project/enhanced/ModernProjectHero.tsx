@@ -1,7 +1,6 @@
-
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
@@ -13,6 +12,8 @@ import AddContentButton from "@/components/dev/AddContentButton";
 import DraggableContentBlock, { ContentBlock } from "@/components/dev/DraggableContentBlock";
 import { useDevMode } from "@/context/DevModeContext";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
+import { useProjectPersistence } from "@/hooks/useProjectPersistence";
+import SaveIndicator from "@/components/dev/SaveIndicator";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -28,17 +29,37 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   projectId
 }) => {
   const { isDevMode } = useDevMode();
+  const { projectId: routeProjectId } = useParams<{ projectId: string }>();
+  const currentProjectId = projectId || routeProjectId || '';
   const { updateImageInProjectData } = useProjectDataUpdater();
+  const { 
+    saveImageReplacement, 
+    saveContentBlocks, 
+    getProjectData, 
+    isSaving, 
+    lastSaved 
+  } = useProjectPersistence(currentProjectId);
   
-  const [heroImage, setHeroImage] = React.useState(project.image);
-  const [contentBlocks, setContentBlocks] = React.useState<ContentBlock[]>([]);
+  // Load saved data on mount
+  const [heroImage, setHeroImage] = React.useState(() => {
+    const savedData = getProjectData();
+    return savedData.imageReplacements[project.image] || project.image;
+  });
+  
+  const [contentBlocks, setContentBlocks] = React.useState<ContentBlock[]>(() => {
+    const savedData = getProjectData();
+    return savedData.contentBlocks['hero'] || [];
+  });
 
   const handleImageReplace = (newSrc: string) => {
-    console.log('ModernProjectHero: Replacing image with', newSrc, 'for project', projectId);
+    console.log('ModernProjectHero: Replacing image with', newSrc, 'for project', currentProjectId);
     setHeroImage(newSrc);
     
-    if (projectId) {
-      updateImageInProjectData(projectId, project.image, newSrc);
+    // Save the replacement persistently
+    saveImageReplacement(project.image, newSrc);
+    
+    if (currentProjectId) {
+      updateImageInProjectData(currentProjectId, project.image, newSrc);
     }
   };
 
@@ -61,38 +82,50 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
 
   const handleAddContent = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
     const newBlock = createNewBlock(type);
-    setContentBlocks(prev => [...prev, newBlock]);
+    const updatedBlocks = [...contentBlocks, newBlock];
+    setContentBlocks(updatedBlocks);
+    
+    // Save content blocks persistently
+    saveContentBlocks('hero', updatedBlocks);
   };
 
   const handleUpdateContent = (index: number, newValue: string) => {
-    setContentBlocks(prev => 
-      prev.map((block, i) => 
-        i === index && (block.type === 'text' || block.type === 'header') 
-          ? { ...block, value: newValue }
-          : block
-      )
+    const updatedBlocks = contentBlocks.map((block, i) => 
+      i === index && (block.type === 'text' || block.type === 'header') 
+        ? { ...block, value: newValue }
+        : block
     );
+    setContentBlocks(updatedBlocks);
+    
+    // Save content blocks persistently
+    saveContentBlocks('hero', updatedBlocks);
   };
 
   const handleDeleteContent = (index: number) => {
-    setContentBlocks(prev => prev.filter((_, i) => i !== index));
+    const updatedBlocks = contentBlocks.filter((_, i) => i !== index);
+    setContentBlocks(updatedBlocks);
+    
+    // Save content blocks persistently
+    saveContentBlocks('hero', updatedBlocks);
   };
 
   const handleContentImageReplace = (index: number, newSrc: string) => {
-    console.log('ModernProjectHero: Replacing content image at index', index, 'with', newSrc, 'for project', projectId);
-    setContentBlocks(prev => 
-      prev.map((block, i) => 
-        i === index && block.type === 'image'
-          ? { ...block, src: newSrc }
-          : block
-      )
-    );
+    console.log('ModernProjectHero: Replacing content image at index', index, 'with', newSrc, 'for project', currentProjectId);
     
-    if (projectId) {
-      const oldBlock = contentBlocks[index];
-      if (oldBlock && oldBlock.type === 'image' && oldBlock.src) {
-        updateImageInProjectData(projectId, oldBlock.src, newSrc);
-      }
+    const oldBlock = contentBlocks[index];
+    const updatedBlocks = contentBlocks.map((block, i) => 
+      i === index && block.type === 'image'
+        ? { ...block, src: newSrc }
+        : block
+    );
+    setContentBlocks(updatedBlocks);
+    
+    // Save content blocks persistently
+    saveContentBlocks('hero', updatedBlocks);
+    
+    if (currentProjectId && oldBlock && oldBlock.type === 'image' && oldBlock.src) {
+      saveImageReplacement(oldBlock.src, newSrc);
+      updateImageInProjectData(currentProjectId, oldBlock.src, newSrc);
     }
   };
 
@@ -120,10 +153,16 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     newBlocks.splice(insertIndex, 0, draggedBlock);
     
     setContentBlocks(newBlocks);
+    
+    // Save reordered content blocks persistently
+    saveContentBlocks('hero', newBlocks);
   };
 
   return (
     <div className="relative overflow-hidden">
+      {/* Save Indicator */}
+      {isDevMode && <SaveIndicator isSaving={isSaving} lastSaved={lastSaved} />}
+      
       {/* Layered Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
@@ -165,7 +204,10 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           </div>
           
           {/* Project Title */}
-          <EditableText initialText={project.title}>
+          <EditableText 
+            initialText={project.title}
+            textKey={`hero_title_${currentProjectId}`}
+          >
             {(text) => (
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight pr-8">
                 {text}
@@ -174,7 +216,11 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           </EditableText>
           
           {/* Project Description */}
-          <EditableText initialText={project.description} multiline>
+          <EditableText 
+            initialText={project.description} 
+            multiline
+            textKey={`hero_description_${currentProjectId}`}
+          >
             {(text) => (
               <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto pr-8">
                 {text}
@@ -197,7 +243,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
                   isDragging={false}
-                  projectId={projectId}
+                  projectId={currentProjectId}
                 />
               ))}
             </div>
@@ -243,7 +289,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             <EditImageButton
               src={heroImage}
               onImageReplace={handleImageReplace}
-              projectId={projectId}
+              projectId={currentProjectId}
             />
             <MaximizableImage
               src={heroImage}
@@ -254,7 +300,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               priority={true}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
               onImageReplace={handleImageReplace}
-              projectId={projectId}
+              projectId={currentProjectId}
             />
           </div>
         </motion.div>

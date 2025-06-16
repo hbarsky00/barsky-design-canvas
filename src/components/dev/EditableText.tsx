@@ -3,24 +3,39 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Edit, Check, X } from 'lucide-react';
+import { useProjectPersistence } from '@/hooks/useProjectPersistence';
+import { useParams } from 'react-router-dom';
 
 interface EditableTextProps {
   initialText: string;
   children: (text: string) => React.ReactNode;
   multiline?: boolean;
   onSave?: (newText: string) => void;
+  textKey?: string; // Unique key to identify this text content
 }
 
 const EditableText: React.FC<EditableTextProps> = ({ 
   initialText, 
   children, 
   multiline = false,
-  onSave 
+  onSave,
+  textKey
 }) => {
   const { isDevMode } = useDevMode();
+  const { projectId } = useParams<{ projectId: string }>();
+  const { saveTextContent, getProjectData } = useProjectPersistence(projectId || '');
+  
+  // Load saved text content on mount
+  const [text, setText] = useState(() => {
+    if (textKey && projectId) {
+      const savedData = getProjectData();
+      return savedData.textContent[textKey] || initialText;
+    }
+    return initialText;
+  });
+  
   const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState(initialText);
-  const [editingText, setEditingText] = useState(initialText);
+  const [editingText, setEditingText] = useState(text);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -42,6 +57,12 @@ const EditableText: React.FC<EditableTextProps> = ({
   const handleSave = () => {
     setText(editingText);
     setIsEditing(false);
+    
+    // Save to localStorage with persistence
+    if (textKey && projectId) {
+      saveTextContent(textKey, editingText);
+    }
+    
     if (onSave) {
       onSave(editingText);
     }
