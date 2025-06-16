@@ -1,25 +1,37 @@
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDevModeDatabase } from './useDevModeDatabase';
 import { toast } from 'sonner';
 
 export const useDevModeSync = (projectId: string) => {
   const [isSyncing, setIsSyncing] = useState(false);
+  const [hasChangesToSync, setHasChangesToSync] = useState(false);
   const { getChanges, clearChanges, hasChanges: checkHasChanges } = useDevModeDatabase(projectId);
 
   // Check for changes in the database
-  const hasChangesToSync = useMemo(() => {
-    const [hasChanges, setHasChanges] = useState(false);
+  useEffect(() => {
+    if (!projectId) {
+      setHasChangesToSync(false);
+      return;
+    }
     
-    if (!projectId) return false;
+    const checkChanges = async () => {
+      try {
+        const result = await checkHasChanges();
+        console.log('🔍 Database changes check result:', result);
+        setHasChangesToSync(result);
+      } catch (error) {
+        console.error('Error checking for changes:', error);
+        setHasChangesToSync(false);
+      }
+    };
     
-    // Check changes asynchronously
-    checkHasChanges().then(result => {
-      console.log('🔍 Database changes check result:', result);
-      setHasChanges(result);
-    });
+    checkChanges();
     
-    return hasChanges;
+    // Set up periodic checking
+    const interval = setInterval(checkChanges, 2000);
+    
+    return () => clearInterval(interval);
   }, [projectId, checkHasChanges]);
 
   const safeSetItem = useCallback((key: string, value: string) => {
