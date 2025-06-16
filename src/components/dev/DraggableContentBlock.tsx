@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { GripVertical, X } from 'lucide-react';
+import React, { useRef } from 'react';
+import { GripVertical, X, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from './EditableText';
@@ -40,6 +40,7 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   projectId
 }) => {
   const { isDevMode } = useDevMode();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageReplace = (newSrc: string) => {
     if (onImageReplace) {
@@ -47,6 +48,37 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       onImageReplace(index, newSrc);
     } else {
       console.log('DraggableContentBlock: No onImageReplace callback provided for index', index);
+    }
+  };
+
+  const handleImageUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const convertFileToDataUrl = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && onImageReplace) {
+      try {
+        const dataUrl = await convertFileToDataUrl(file);
+        console.log('📁 File converted to data URL for content block:', index);
+        handleImageReplace(dataUrl);
+      } catch (error) {
+        console.error('❌ Error converting file:', error);
+      }
+    }
+    
+    // Reset file input
+    if (e.target) {
+      e.target.value = '';
     }
   };
 
@@ -84,10 +116,32 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         );
 
       case 'image':
+        // If no src is provided, show upload placeholder
+        if (!block.src || block.src === '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png') {
+          return (
+            <div className="glass-card p-8 layered-depth floating-element">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                <Upload className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-500 mb-4">Click to upload an image</p>
+                <Button onClick={handleImageUploadClick} variant="outline">
+                  Choose Image
+                </Button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept="image/*"
+                />
+              </div>
+            </div>
+          );
+        }
+
         return (
           <div className="glass-card p-4 layered-depth floating-element">
             <MaximizableImage
-              src={block.src || ''}
+              src={block.src}
               alt={block.caption || 'Content image'}
               caption={block.caption}
               className="rounded-lg shadow-elevated w-full"

@@ -49,20 +49,36 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         const dataUrl = await convertFileToDataUrl(file);
         console.log('✅ Converted file to data URL, length:', dataUrl.length);
         
-        // Save the image replacement to dev mode database FIRST
+        // Save the image replacement to dev mode database
         console.log('💾 Saving image replacement to dev mode database:', src, '->', dataUrl.substring(0, 50) + '...');
         const success = await saveChange('image', src, dataUrl);
         
         if (success) {
-          // Then call the callback if provided for immediate UI update
+          console.log('✅ Successfully saved image replacement to database');
+          
+          // Call the callback immediately for instant UI feedback
           if (onImageReplace) {
             console.log('📞 Calling onImageReplace callback for immediate UI update');
             onImageReplace(dataUrl);
           }
           
-          // Trigger a project data update event to refresh all components
+          // Dispatch multiple events to ensure all components update
+          console.log('📡 Dispatching update events');
           window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-            detail: { projectId: currentProjectId, imageReplaced: true, immediate: true }
+            detail: { 
+              projectId: currentProjectId, 
+              imageReplaced: true, 
+              immediate: true,
+              src: src,
+              newSrc: dataUrl
+            }
+          }));
+          
+          // Also dispatch a storage event to trigger useImageState refresh
+          window.dispatchEvent(new StorageEvent('storage', {
+            key: `imageOverrides_${currentProjectId}`,
+            newValue: JSON.stringify({ [src]: dataUrl }),
+            url: window.location.href
           }));
           
           toast.success("Image replaced!", {
@@ -86,7 +102,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     }
   };
 
-  if (!isDevMode) {
+  if (!isDevMode || !src) {
     return null;
   }
 
