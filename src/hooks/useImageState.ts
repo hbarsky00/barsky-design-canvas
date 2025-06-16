@@ -35,12 +35,12 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           return;
         }
         
-        // If no dev mode replacement, check published data
-        const publishedData = getProjectData();
-        const publishedReplacement = publishedData.imageReplacements[src];
+        // If no dev mode replacement, check published data from localStorage
+        const publishedOverrides = JSON.parse(localStorage.getItem(`imageOverrides_${projectId}`) || '{}');
+        const publishedReplacement = publishedOverrides[src];
         
         if (publishedReplacement) {
-          console.log('📄 Using published replacement:', src, '->', publishedReplacement.substring(0, 50) + '...');
+          console.log('📄 Using published replacement from localStorage:', src, '->', publishedReplacement.substring(0, 50) + '...');
           setDisplayedImage(publishedReplacement);
           setHasDevModeChanges(false);
         } else {
@@ -51,8 +51,8 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
       } catch (error) {
         console.error('❌ Error loading image changes:', error);
         // Fallback to published or original
-        const publishedData = getProjectData();
-        const finalSrc = publishedData.imageReplacements[src] || src;
+        const publishedOverrides = JSON.parse(localStorage.getItem(`imageOverrides_${projectId}`) || '{}');
+        const finalSrc = publishedOverrides[src] || src;
         setDisplayedImage(finalSrc);
         setHasDevModeChanges(false);
       } finally {
@@ -61,7 +61,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     };
     
     loadImage();
-  }, [src, getChanges, getProjectData, refreshKey]);
+  }, [src, getChanges, projectId, refreshKey]);
 
   // Listen for project data updates
   useEffect(() => {

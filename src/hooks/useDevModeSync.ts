@@ -34,6 +34,29 @@ export const useDevModeSync = (projectId: string) => {
     return () => clearInterval(interval);
   }, [projectId, checkHasChanges]);
 
+  const cleanupRemovedImages = useCallback((currentImageReplacements: Record<string, string>) => {
+    console.log('🧹 useDevModeSync: Cleaning up removed images');
+    
+    // Get existing published images from localStorage
+    const existingOverrides = JSON.parse(localStorage.getItem(`imageOverrides_${projectId}`) || '{}');
+    
+    // Find images that were removed (exist in localStorage but not in current changes)
+    const removedImages = Object.keys(existingOverrides).filter(
+      originalSrc => !currentImageReplacements.hasOwnProperty(originalSrc)
+    );
+    
+    // Reset removed images back to their original sources in the DOM
+    removedImages.forEach(originalSrc => {
+      const images = document.querySelectorAll(`img[src="${existingOverrides[originalSrc]}"]`);
+      images.forEach((img) => {
+        (img as HTMLImageElement).src = originalSrc;
+        console.log('🔄 Reset removed image back to original:', existingOverrides[originalSrc], '->', originalSrc);
+      });
+    });
+    
+    console.log('🧹 Removed images cleaned up:', removedImages);
+  }, [projectId]);
+
   const applyChangesLive = useCallback(async () => {
     console.log('🚀 useDevModeSync: Applying changes live');
     
@@ -45,7 +68,10 @@ export const useDevModeSync = (projectId: string) => {
         blockKeys: Object.keys(projectData.contentBlocks || {}),
       });
 
-      // Apply image changes immediately to the current page
+      // Clean up removed images first
+      cleanupRemovedImages(projectData.imageReplacements);
+
+      // Apply current image changes to the DOM
       Object.entries(projectData.imageReplacements).forEach(([oldSrc, newSrc]) => {
         const images = document.querySelectorAll(`img[src="${oldSrc}"]`);
         images.forEach((img) => {
@@ -53,6 +79,15 @@ export const useDevModeSync = (projectId: string) => {
           console.log('🖼️ Live updated image:', oldSrc, '->', newSrc);
         });
       });
+
+      // Store published image overrides in localStorage (replacing previous ones)
+      localStorage.setItem(`imageOverrides_${projectId}`, JSON.stringify(projectData.imageReplacements));
+
+      // Store published text content in localStorage (replacing previous ones)
+      localStorage.setItem(`textContent_${projectId}`, JSON.stringify(projectData.textContent));
+
+      // Store published content blocks in localStorage (replacing previous ones)
+      localStorage.setItem(`contentBlocks_${projectId}`, JSON.stringify(projectData.contentBlocks));
 
       // Apply text changes via custom events
       Object.entries(projectData.textContent).forEach(([textKey, newText]) => {
@@ -81,7 +116,7 @@ export const useDevModeSync = (projectId: string) => {
       console.error('❌ useDevModeSync: Error applying changes:', error);
       throw error;
     }
-  }, [getChanges, projectId]);
+  }, [getChanges, projectId, cleanupRemovedImages]);
 
   const syncChangesToFiles = useCallback(async () => {
     console.log('🚀 useDevModeSync: syncChangesToFiles called');
@@ -111,7 +146,7 @@ export const useDevModeSync = (projectId: string) => {
       await clearChanges();
       
       toast.success("Changes published successfully!", {
-        description: "Your changes are now live and visible.",
+        description: "Your changes are now live and visible. Old images have been cleaned up.",
         duration: 3000,
       });
 

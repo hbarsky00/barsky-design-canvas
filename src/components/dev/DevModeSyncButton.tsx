@@ -10,17 +10,22 @@ import { useParams } from 'react-router-dom';
 const DevModeSyncButton: React.FC = () => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
-  const { syncChangesToFiles, isSyncing } = useDevModeSync(projectId || '');
+  const { syncChangesToFiles, isSyncing, hasChangesToSync: syncHasChanges } = useDevModeSync(projectId || '');
   const { hasChanges } = useDevModeDatabase(projectId || '');
-  const [hasChangesToSync, setHasChangesToSync] = useState(false);
+  const [localHasChanges, setLocalHasChanges] = useState(false);
 
   // Check for changes in database
   useEffect(() => {
     const checkChanges = async () => {
       if (projectId) {
-        const result = await hasChanges();
-        console.log('🎯 DevModeSyncButton: Database changes check:', result);
-        setHasChangesToSync(result);
+        try {
+          const result = await hasChanges();
+          console.log('🎯 DevModeSyncButton: Database changes check:', result);
+          setLocalHasChanges(result);
+        } catch (error) {
+          console.error('❌ DevModeSyncButton: Error checking changes:', error);
+          setLocalHasChanges(false);
+        }
       }
     };
     
@@ -43,10 +48,16 @@ const DevModeSyncButton: React.FC = () => {
     };
   }, [projectId, hasChanges]);
 
+  // Use both sync and local state for determining if there are changes
+  const finalHasChanges = syncHasChanges || localHasChanges;
+
   console.log('🎯 DevModeSyncButton render:', { 
     isDevMode, 
-    hasChangesToSync, 
+    finalHasChanges, 
+    syncHasChanges,
+    localHasChanges,
     projectId,
+    isSyncing,
     timestamp: new Date().toISOString()
   });
 
@@ -56,22 +67,32 @@ const DevModeSyncButton: React.FC = () => {
   }
 
   // Show the button if we're in dev mode OR if there are changes to sync
-  if (!isDevMode && !hasChangesToSync) {
+  if (!isDevMode && !finalHasChanges) {
     console.log('❌ DevModeSyncButton: Not showing - not in dev mode and no changes');
     return null;
   }
 
-  const handlePublishClick = () => {
-    console.log('🚀 Publish button clicked, hasChangesToSync:', hasChangesToSync);
-    syncChangesToFiles();
+  const handlePublishClick = async () => {
+    console.log('🚀 Publish button clicked, finalHasChanges:', finalHasChanges);
+    if (finalHasChanges && !isSyncing) {
+      try {
+        await syncChangesToFiles();
+      } catch (error) {
+        console.error('❌ DevModeSyncButton: Error during sync:', error);
+      }
+    }
   };
 
   return (
     <div className="fixed bottom-4 left-4 z-[99999]">
       <Button
         onClick={handlePublishClick}
-        disabled={isSyncing}
-        className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
+        disabled={isSyncing || !finalHasChanges}
+        className={`${
+          finalHasChanges 
+            ? 'bg-green-600 hover:bg-green-700' 
+            : 'bg-gray-400 cursor-not-allowed'
+        } text-white shadow-lg transition-all duration-200`}
       >
         {isSyncing ? (
           <>
@@ -81,7 +102,7 @@ const DevModeSyncButton: React.FC = () => {
         ) : (
           <>
             <Upload className="h-4 w-4 mr-2" />
-            Publish Changes {hasChangesToSync ? '(*)' : ''}
+            Publish Changes {finalHasChanges ? '(*)' : ''}
           </>
         )}
       </Button>
