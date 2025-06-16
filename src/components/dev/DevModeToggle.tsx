@@ -6,8 +6,11 @@ import { Edit } from 'lucide-react';
 
 const isLovableEditor = () => {
   if (typeof window === 'undefined') return false;
-  // This check ensures dev mode is only available within the Lovable editor
-  return window.location.hostname.includes('lovableproject.com');
+  // Show dev mode in Lovable editor, localhost, or development environment
+  return window.location.hostname.includes('lovableproject.com') || 
+         window.location.hostname === 'localhost' ||
+         window.location.hostname.includes('127.0.0.1') ||
+         import.meta.env.DEV;
 };
 
 const DevModeToggle: React.FC = () => {

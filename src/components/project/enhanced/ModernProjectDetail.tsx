@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -8,6 +7,9 @@ import ProjectHeroImageSection from "./ProjectHeroImageSection";
 import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import AddSectionButton from "@/components/dev/AddSectionButton";
+import DevModeStatus from '@/components/dev/DevModeStatus';
+import DevModeSyncButton from '@/components/dev/DevModeSyncButton';
+import DevModeToggle from '@/components/dev/DevModeToggle';
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -66,6 +68,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       {/* Dev Mode Components */}
       <DevModeStatus />
       <DevModeSyncButton />
+      <DevModeToggle />
       
       {/* Hero Section */}
       <ModernProjectHero
@@ -139,9 +142,5 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
     </motion.div>
   );
 };
-
-// Add imports for new components
-import DevModeStatus from '@/components/dev/DevModeStatus';
-import DevModeSyncButton from '@/components/dev/DevModeSyncButton';
 
 export default ModernProjectDetail;
