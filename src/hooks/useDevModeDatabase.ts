@@ -1,4 +1,3 @@
-
 import { useState, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
@@ -56,6 +55,13 @@ export const useDevModeDatabase = (projectId: string) => {
     }
   }, [projectId]);
 
+  const isValidContentBlock = (obj: any): obj is ContentBlock => {
+    return obj && 
+           typeof obj === 'object' && 
+           typeof obj.type === 'string' && 
+           ['text', 'image', 'header', 'video', 'pdf'].includes(obj.type);
+  };
+
   const getChanges = useCallback(async () => {
     if (!projectId) {
       console.log('⚠️ useDevModeDatabase: No projectId, returning empty data');
@@ -108,7 +114,14 @@ export const useDevModeDatabase = (projectId: string) => {
               break;
             case 'content_block':
               if (Array.isArray(change.change_value)) {
-                result.contentBlocks[change.change_key] = change.change_value as ContentBlock[];
+                // Validate that all items in the array are valid ContentBlocks
+                const blocks = change.change_value.filter(isValidContentBlock);
+                if (blocks.length === change.change_value.length) {
+                  result.contentBlocks[change.change_key] = blocks as ContentBlock[];
+                } else {
+                  console.warn('⚠️ useDevModeDatabase: Invalid content blocks found, filtering out invalid ones');
+                  result.contentBlocks[change.change_key] = blocks as ContentBlock[];
+                }
               }
               break;
             default:
