@@ -24,6 +24,7 @@ interface DraggableContentBlockProps {
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent, index: number) => void;
   isDragging: boolean;
+  projectId?: string;
 }
 
 const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
@@ -35,7 +36,8 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   onDragStart,
   onDragOver,
   onDrop,
-  isDragging
+  isDragging,
+  projectId
 }) => {
   const { isDevMode } = useDevMode();
 
@@ -90,6 +92,7 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
               caption={block.caption}
               className="rounded-lg shadow-elevated w-full"
               onImageReplace={handleImageReplace}
+              projectId={projectId}
             />
           </div>
         );

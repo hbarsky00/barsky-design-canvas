@@ -17,6 +17,7 @@ interface MaximizableImageProps {
   imageList?: string[];
   currentIndex?: number;
   onImageReplace?: (newSrc: string) => void;
+  projectId?: string;
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -28,7 +29,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   priority = false,
   imageList,
   currentIndex,
-  onImageReplace
+  onImageReplace,
+  projectId
 }) => {
   const { maximizeImage } = useImageMaximizer();
   
@@ -47,6 +49,14 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
   };
 
+  const handleImageReplace = (newSrc: string) => {
+    console.log('MaximizableImage: Image replacement requested', { oldSrc: src, newSrc, projectId });
+    
+    if (onImageReplace) {
+      onImageReplace(newSrc);
+    }
+  };
+
   // Use caption as alt text if available, otherwise use the provided alt text
   const imageAltText = caption || alt;
   
@@ -59,7 +69,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <EditImageButton src={src} onImageReplace={onImageReplace} />
+        <EditImageButton 
+          src={src} 
+          onImageReplace={handleImageReplace}
+          projectId={projectId}
+        />
         
         {aspectRatio ? (
           <AspectRatio ratio={aspectRatio} className="bg-gray-100">

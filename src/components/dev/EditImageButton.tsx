@@ -8,9 +8,10 @@ import { toast } from 'sonner';
 interface EditImageButtonProps {
   src?: string;
   onImageReplace?: (newSrc: string) => void;
+  projectId?: string;
 }
 
-const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace }) => {
+const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, projectId }) => {
   const { isDevMode } = useDevMode();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -50,22 +51,24 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace }
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Create a temporary URL for the uploaded file
-      const newImageUrl = URL.createObjectURL(file);
+      console.log('File selected for replacement:', { 
+        fileName: file.name, 
+        currentSrc: src, 
+        projectId 
+      });
       
-      console.log('Creating new image URL:', newImageUrl);
-      console.log('File selected:', file.name);
-      
-      // Call the callback to replace the image
       if (onImageReplace) {
-        console.log('Calling onImageReplace with:', newImageUrl);
-        onImageReplace(newImageUrl);
+        // Create a temporary URL for immediate preview
+        const tempImageUrl = URL.createObjectURL(file);
+        
+        console.log('Calling onImageReplace with temp URL:', tempImageUrl);
+        onImageReplace(tempImageUrl);
+        
         toast.success("Image replaced successfully!", {
-          description: `Replaced with "${file.name}". This is a real-time preview of your uploaded image.`,
+          description: `Replaced with "${file.name}". This is a real-time preview. To persist changes, the project data needs to be updated.`,
           duration: 5000,
         });
       } else {
-        console.log('No onImageReplace callback provided');
         // Fallback behavior - copy original path to clipboard if available
         if (src) {
           const copied = await copyToClipboard(src);

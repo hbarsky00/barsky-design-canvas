@@ -10,6 +10,7 @@ import ContentBlocksSection from "./ContentBlocksSection";
 import { useContentBlocks } from "@/hooks/useContentBlocks";
 import { useContentHandlers } from "@/hooks/useContentHandlers";
 import { useDragAndDrop } from "@/hooks/useDragAndDrop";
+import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -29,6 +30,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   projectId
 }) => {
   const { isDevMode } = useDevMode();
+  const { updateImageInProjectData } = useProjectDataUpdater();
   
   const {
     contentBlocks,
@@ -40,19 +42,69 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     createNewBlock
   } = useContentBlocks({ content, sectionKey, imageConfig, imageCaptions });
 
+  const handleImageReplaceWithDataUpdate = (index: number, newSrc: string) => {
+    console.log('ModernProjectContentSection: Replacing image at index', index, 'with', newSrc);
+    
+    // Update the content blocks state immediately for UI feedback
+    setContentBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'image'
+          ? { ...block, src: newSrc }
+          : block
+      )
+    );
+    
+    // Also update the project data
+    const oldBlock = contentBlocks[index];
+    if (oldBlock && oldBlock.type === 'image' && oldBlock.src) {
+      updateImageInProjectData(projectId, oldBlock.src, newSrc);
+    }
+  };
+
+  const handleBeforeHeaderImageReplaceWithDataUpdate = (index: number, newSrc: string) => {
+    console.log('ModernProjectContentSection: Replacing before header image at index', index, 'with', newSrc);
+    
+    setBeforeHeaderBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'image'
+          ? { ...block, src: newSrc }
+          : block
+      )
+    );
+    
+    const oldBlock = beforeHeaderBlocks[index];
+    if (oldBlock && oldBlock.type === 'image' && oldBlock.src) {
+      updateImageInProjectData(projectId, oldBlock.src, newSrc);
+    }
+  };
+
+  const handleAfterHeaderImageReplaceWithDataUpdate = (index: number, newSrc: string) => {
+    console.log('ModernProjectContentSection: Replacing after header image at index', index, 'with', newSrc);
+    
+    setAfterHeaderBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'image'
+          ? { ...block, src: newSrc }
+          : block
+      )
+    );
+    
+    const oldBlock = afterHeaderBlocks[index];
+    if (oldBlock && oldBlock.type === 'image' && oldBlock.src) {
+      updateImageInProjectData(projectId, oldBlock.src, newSrc);
+    }
+  };
+
   const {
     handleAddContent,
     handleUpdateContent,
     handleDeleteContent,
-    handleImageReplace,
     handleAddBeforeHeaderContent,
     handleUpdateBeforeHeaderContent,
     handleDeleteBeforeHeaderContent,
-    handleBeforeHeaderImageReplace,
     handleAddAfterHeaderContent,
     handleUpdateAfterHeaderContent,
-    handleDeleteAfterHeaderContent,
-    handleAfterHeaderImageReplace
+    handleDeleteAfterHeaderContent
   } = useContentHandlers(
     contentBlocks,
     setContentBlocks,
@@ -98,7 +150,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         blocks={beforeHeaderBlocks}
         onUpdate={handleUpdateBeforeHeaderContent}
         onDelete={handleDeleteBeforeHeaderContent}
-        onImageReplace={handleBeforeHeaderImageReplace}
+        onImageReplace={handleBeforeHeaderImageReplaceWithDataUpdate}
         onDragStart={handleBeforeHeaderDragStart}
         onDragOver={handleDragOver}
         onDrop={handleBeforeHeaderDrop}
@@ -121,7 +173,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         blocks={afterHeaderBlocks}
         onUpdate={handleUpdateAfterHeaderContent}
         onDelete={handleDeleteAfterHeaderContent}
-        onImageReplace={handleAfterHeaderImageReplace}
+        onImageReplace={handleAfterHeaderImageReplaceWithDataUpdate}
         onDragStart={handleAfterHeaderDragStart}
         onDragOver={handleDragOver}
         onDrop={handleAfterHeaderDrop}
@@ -140,11 +192,12 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
             index={index}
             onUpdate={handleUpdateContent}
             onDelete={handleDeleteContent}
-            onImageReplace={handleImageReplace}
+            onImageReplace={handleImageReplaceWithDataUpdate}
             onDragStart={handleDragStart}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
             isDragging={draggedIndex === index}
+            projectId={projectId}
           />
         ))}
       </div>
