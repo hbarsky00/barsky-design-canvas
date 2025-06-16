@@ -22,6 +22,7 @@ export const useHeaderNavigation = () => {
 
   // Check if we're on the homepage
   const isHomepage = location.pathname === '/';
+  const isProjectPage = location.pathname.startsWith('/project/');
 
   const scrollToSection = (sectionId: string) => {
     // First check if we're on the homepage
@@ -103,6 +104,12 @@ export const useHeaderNavigation = () => {
       // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
       
+      // For project pages, always show the navigation
+      if (isProjectPage) {
+        setIsScrolledPastHero(true);
+        return;
+      }
+      
       // For non-homepage routes, always show the logo
       if (!isHomepage) {
         setIsScrolledPastHero(true);
@@ -113,8 +120,6 @@ export const useHeaderNavigation = () => {
       // This corresponds to roughly 50-60% of hero height where the name is positioned
       const nameScrollThreshold = heroHeight * 0.6;
       setIsScrolledPastHero(scrollPosition > nameScrollThreshold);
-
-      console.log('Scroll position:', scrollPosition, 'Hero height:', heroHeight, 'Name threshold:', nameScrollThreshold, 'Show nav:', scrollPosition > nameScrollThreshold);
 
       // Home section logic - set as active when near the top of the page
       if (location.pathname === '/' && scrollPosition < 200) {
@@ -165,7 +170,7 @@ export const useHeaderNavigation = () => {
     // Trigger once to set initial state
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navLinks, location.pathname, isHomepage]);
+  }, [navLinks, location.pathname, isHomepage, isProjectPage]);
 
   useEffect(() => {
     if (location.pathname === '/') {
