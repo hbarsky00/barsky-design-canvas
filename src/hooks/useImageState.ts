@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { useProjectPersistence } from '@/hooks/useProjectPersistence';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
+import { PublishingService } from '@/services/publishingService';
 
 interface UseImageStateProps {
   src: string;
@@ -9,14 +9,13 @@ interface UseImageStateProps {
 }
 
 export const useImageState = ({ src, projectId }: UseImageStateProps) => {
-  const { getProjectData } = useProjectPersistence(projectId);
   const { getChanges } = useDevModeDatabase(projectId);
   const [refreshKey, setRefreshKey] = useState(0);
   const [displayedImage, setDisplayedImage] = useState(src);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Load image with priority: dev mode > published (localStorage) > original
+  // Load image with priority: dev mode > published > original
   useEffect(() => {
     const loadImage = async () => {
       setIsLoading(true);
@@ -35,12 +34,12 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           return;
         }
         
-        // If no dev mode replacement, check published data from localStorage
-        const publishedOverrides = JSON.parse(localStorage.getItem(`imageOverrides_${projectId}`) || '{}');
-        const publishedReplacement = publishedOverrides[src];
+        // If no dev mode replacement, check published data
+        const publishedData = await PublishingService.loadPublishedData(projectId);
+        const publishedReplacement = publishedData?.image_replacements?.[src];
         
         if (publishedReplacement) {
-          console.log('📄 Using published replacement from localStorage:', src, '->', publishedReplacement.substring(0, 50) + '...');
+          console.log('📄 Using published replacement:', src, '->', publishedReplacement.substring(0, 50) + '...');
           setDisplayedImage(publishedReplacement);
           setHasDevModeChanges(false);
         } else {
@@ -50,10 +49,8 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         }
       } catch (error) {
         console.error('❌ Error loading image changes:', error);
-        // Fallback to published or original
-        const publishedOverrides = JSON.parse(localStorage.getItem(`imageOverrides_${projectId}`) || '{}');
-        const finalSrc = publishedOverrides[src] || src;
-        setDisplayedImage(finalSrc);
+        // Fallback to original
+        setDisplayedImage(src);
         setHasDevModeChanges(false);
       } finally {
         setIsLoading(false);
@@ -63,35 +60,19 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     loadImage();
   }, [src, getChanges, projectId, refreshKey]);
 
-  // Listen for project data updates and published changes
+  // Listen for project data updates
   useEffect(() => {
     const handleProjectUpdate = (e: CustomEvent) => {
-      if (e.detail?.projectId === projectId) {
+      if (e.detail?.projectId === projectId || e.detail?.published) {
         console.log('🔄 Project data updated, refreshing image state for:', src);
         setRefreshKey(prev => prev + 1);
       }
     };
 
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key?.includes(`imageOverrides_${projectId}`) && e.newValue) {
-        console.log('💾 Storage changed for project, refreshing image:', projectId);
-        setRefreshKey(prev => prev + 1);
-      }
-    };
-
-    // Listen for page refresh events after publishing
-    const handleBeforeUnload = () => {
-      console.log('🔄 Page refreshing, preserving image state');
-    };
-
     window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('beforeunload', handleBeforeUnload);
     
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [src, projectId]);
 
