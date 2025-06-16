@@ -16,7 +16,10 @@ export const useProjectPersistence = (projectId: string) => {
   const getStorageKey = (key: string) => `project_${projectId}_${key}`;
 
   const saveProjectData = useCallback(async (data: Partial<ProjectData>) => {
-    if (!projectId) return;
+    if (!projectId) {
+      console.warn('No projectId provided for saving data');
+      return;
+    }
 
     setIsSaving(true);
     try {
@@ -29,13 +32,28 @@ export const useProjectPersistence = (projectId: string) => {
 
       // Save each data type separately for better organization
       if (data.textContent) {
-        localStorage.setItem(getStorageKey('textContent'), JSON.stringify(data.textContent));
+        const mergedTextContent = {
+          ...currentData.textContent,
+          ...data.textContent
+        };
+        localStorage.setItem(getStorageKey('textContent'), JSON.stringify(mergedTextContent));
+        console.log('Saved text content:', mergedTextContent);
       }
       if (data.imageReplacements) {
-        localStorage.setItem(getStorageKey('imageReplacements'), JSON.stringify(data.imageReplacements));
+        const mergedImageReplacements = {
+          ...currentData.imageReplacements,
+          ...data.imageReplacements
+        };
+        localStorage.setItem(getStorageKey('imageReplacements'), JSON.stringify(mergedImageReplacements));
+        console.log('Saved image replacements:', mergedImageReplacements);
       }
       if (data.contentBlocks) {
-        localStorage.setItem(getStorageKey('contentBlocks'), JSON.stringify(data.contentBlocks));
+        const mergedContentBlocks = {
+          ...currentData.contentBlocks,
+          ...data.contentBlocks
+        };
+        localStorage.setItem(getStorageKey('contentBlocks'), JSON.stringify(mergedContentBlocks));
+        console.log('Saved content blocks:', mergedContentBlocks);
       }
 
       localStorage.setItem(getStorageKey('lastSaved'), updatedData.lastSaved);
@@ -57,11 +75,28 @@ export const useProjectPersistence = (projectId: string) => {
   }, [projectId]);
 
   const getProjectData = useCallback((): ProjectData => {
+    if (!projectId) {
+      console.warn('No projectId provided for loading data');
+      return {
+        textContent: {},
+        imageReplacements: {},
+        contentBlocks: {},
+        lastSaved: ''
+      };
+    }
+
     try {
       const textContent = JSON.parse(localStorage.getItem(getStorageKey('textContent')) || '{}');
       const imageReplacements = JSON.parse(localStorage.getItem(getStorageKey('imageReplacements')) || '{}');
       const contentBlocks = JSON.parse(localStorage.getItem(getStorageKey('contentBlocks')) || '{}');
       const lastSaved = localStorage.getItem(getStorageKey('lastSaved')) || '';
+
+      console.log('Loaded project data for', projectId, {
+        textContent,
+        imageReplacements,
+        contentBlocks,
+        lastSaved
+      });
 
       return {
         textContent,
@@ -81,6 +116,7 @@ export const useProjectPersistence = (projectId: string) => {
   }, [projectId]);
 
   const saveTextContent = useCallback((key: string, value: string) => {
+    console.log('Saving text content with key:', key, 'value:', value);
     const currentData = getProjectData();
     const updatedTextContent = {
       ...currentData.textContent,
@@ -90,7 +126,15 @@ export const useProjectPersistence = (projectId: string) => {
     saveProjectData({ textContent: updatedTextContent });
   }, [saveProjectData, getProjectData]);
 
+  const getTextContent = useCallback((key: string, fallback: string = '') => {
+    const data = getProjectData();
+    const value = data.textContent[key] || fallback;
+    console.log('Getting text content for key:', key, 'value:', value);
+    return value;
+  }, [getProjectData]);
+
   const saveImageReplacement = useCallback((oldSrc: string, newSrc: string) => {
+    console.log('Saving image replacement:', oldSrc, '->', newSrc);
     const currentData = getProjectData();
     const updatedImageReplacements = {
       ...currentData.imageReplacements,
@@ -101,6 +145,7 @@ export const useProjectPersistence = (projectId: string) => {
   }, [saveProjectData, getProjectData]);
 
   const saveContentBlocks = useCallback((sectionKey: string, blocks: any[]) => {
+    console.log('Saving content blocks for section:', sectionKey, 'blocks:', blocks);
     const currentData = getProjectData();
     const updatedContentBlocks = {
       ...currentData.contentBlocks,
@@ -114,6 +159,7 @@ export const useProjectPersistence = (projectId: string) => {
     saveProjectData,
     getProjectData,
     saveTextContent,
+    getTextContent,
     saveImageReplacement,
     saveContentBlocks,
     isSaving,
