@@ -8,18 +8,120 @@ import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "../MaximizableImage";
 import EditableText from "@/components/dev/EditableText";
+import EditImageButton from "@/components/dev/EditImageButton";
+import AddContentButton from "@/components/dev/AddContentButton";
+import DraggableContentBlock, { ContentBlock } from "@/components/dev/DraggableContentBlock";
+import { useDevMode } from "@/context/DevModeContext";
+import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
   details: ProjectDetails;
   imageCaptions: Record<string, string>;
+  projectId?: string;
 }
 
 const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   project,
   details,
-  imageCaptions
+  imageCaptions,
+  projectId
 }) => {
+  const { isDevMode } = useDevMode();
+  const { updateImageInProjectData } = useProjectDataUpdater();
+  
+  const [heroImage, setHeroImage] = React.useState(project.image);
+  const [contentBlocks, setContentBlocks] = React.useState<ContentBlock[]>([]);
+
+  const handleImageReplace = (newSrc: string) => {
+    console.log('ModernProjectHero: Replacing image with', newSrc, 'for project', projectId);
+    setHeroImage(newSrc);
+    
+    if (projectId) {
+      updateImageInProjectData(projectId, project.image, newSrc);
+    }
+  };
+
+  const createNewBlock = (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): ContentBlock => {
+    switch (type) {
+      case 'text':
+        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
+      case 'image':
+        return { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
+      case 'header':
+        return { type: 'header', value: 'New Header', level: 2 };
+      case 'video':
+        return { type: 'video', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added video.' };
+      case 'pdf':
+        return { type: 'pdf', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added PDF document.' };
+      default:
+        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
+    }
+  };
+
+  const handleAddContent = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
+    const newBlock = createNewBlock(type);
+    setContentBlocks(prev => [...prev, newBlock]);
+  };
+
+  const handleUpdateContent = (index: number, newValue: string) => {
+    setContentBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && (block.type === 'text' || block.type === 'header') 
+          ? { ...block, value: newValue }
+          : block
+      )
+    );
+  };
+
+  const handleDeleteContent = (index: number) => {
+    setContentBlocks(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleContentImageReplace = (index: number, newSrc: string) => {
+    console.log('ModernProjectHero: Replacing content image at index', index, 'with', newSrc, 'for project', projectId);
+    setContentBlocks(prev => 
+      prev.map((block, i) => 
+        i === index && block.type === 'image'
+          ? { ...block, src: newSrc }
+          : block
+      )
+    );
+    
+    if (projectId) {
+      const oldBlock = contentBlocks[index];
+      if (oldBlock && oldBlock.type === 'image' && oldBlock.src) {
+        updateImageInProjectData(projectId, oldBlock.src, newSrc);
+      }
+    }
+  };
+
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    e.dataTransfer.setData('text/plain', index.toString());
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    const dragIndex = parseInt(e.dataTransfer.getData('text/plain'));
+    
+    if (dragIndex === dropIndex) return;
+
+    const newBlocks = [...contentBlocks];
+    const draggedBlock = newBlocks[dragIndex];
+    
+    newBlocks.splice(dragIndex, 1);
+    const insertIndex = dragIndex < dropIndex ? dropIndex - 1 : dropIndex;
+    newBlocks.splice(insertIndex, 0, draggedBlock);
+    
+    setContentBlocks(newBlocks);
+  };
+
   return (
     <div className="relative overflow-hidden">
       {/* Layered Background */}
@@ -49,8 +151,10 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="glass-card-elevated p-8 text-center space-y-6 layered-depth mb-12"
+          className="glass-card-elevated p-8 text-center space-y-6 layered-depth mb-12 relative group"
         >
+          {isDevMode && <AddContentButton onAdd={handleAddContent} />}
+          
           {/* Project Meta */}
           <div className="flex items-center justify-center space-x-3 text-sm">
             <span className="font-medium text-blue-600 glass-button px-3 py-1 rounded-full">{details.client}</span>
@@ -77,6 +181,27 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               </p>
             )}
           </EditableText>
+
+          {/* Additional Content Blocks */}
+          {contentBlocks.length > 0 && (
+            <div className="space-y-4">
+              {contentBlocks.map((block, index) => (
+                <DraggableContentBlock
+                  key={`hero-${block.type}-${index}`}
+                  block={block}
+                  index={index}
+                  onUpdate={handleUpdateContent}
+                  onDelete={handleDeleteContent}
+                  onImageReplace={handleContentImageReplace}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  isDragging={false}
+                  projectId={projectId}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Tags */}
           <div className="flex flex-wrap justify-center gap-2">
@@ -114,15 +239,22 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           transition={{ duration: 0.8, delay: 0.3 }}
           className="floating-element"
         >
-          <div className="glass-card p-4 layered-depth">
+          <div className="glass-card p-4 layered-depth relative group">
+            <EditImageButton
+              src={heroImage}
+              onImageReplace={handleImageReplace}
+              projectId={projectId}
+            />
             <MaximizableImage
-              src={project.image}
+              src={heroImage}
               alt={project.title}
-              caption={imageCaptions[project.image] || project.title}
-              imageList={[project.image]}
+              caption={imageCaptions[heroImage] || project.title}
+              imageList={[heroImage]}
               currentIndex={0}
               priority={true}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              onImageReplace={handleImageReplace}
+              projectId={projectId}
             />
           </div>
         </motion.div>
