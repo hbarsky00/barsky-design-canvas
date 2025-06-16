@@ -1,16 +1,17 @@
 
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
-import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
+import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
+import { processChangesData } from '@/hooks/database/dataProcessor';
 
 export class PublishingService {
   static async publishProject(projectId: string): Promise<boolean> {
     try {
       console.log('🚀 Starting project publishing for:', projectId);
       
-      // Get all dev mode changes
-      const { getChanges, clearChanges } = useDevModeDatabase(projectId);
-      const changes = await getChanges();
+      // Get all dev mode changes using direct database operations
+      const rawChanges = await fetchChangesFromDatabase(projectId);
+      const changes = processChangesData(rawChanges);
       
       console.log('📊 Publishing changes:', {
         textKeys: Object.keys(changes.textContent).length,
@@ -47,8 +48,7 @@ export class PublishingService {
         published_at: new Date().toISOString()
       };
 
-      // Use type assertion since the types haven't been regenerated yet
-      const { error: publishError } = await (supabase as any)
+      const { error: publishError } = await supabase
         .from('published_projects')
         .upsert(publishedData, {
           onConflict: 'project_id'
@@ -66,7 +66,7 @@ export class PublishingService {
       localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
 
       // Step 5: Clean up dev mode changes
-      await clearChanges();
+      await clearChangesFromDatabase(projectId);
 
       // Step 6: Clean up old images
       await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
@@ -119,8 +119,8 @@ export class PublishingService {
 
   static async loadPublishedData(projectId: string): Promise<any> {
     try {
-      // Try to load from database first using type assertion
-      const { data, error } = await (supabase as any)
+      // Try to load from database first
+      const { data, error } = await supabase
         .from('published_projects')
         .select('*')
         .eq('project_id', projectId)
