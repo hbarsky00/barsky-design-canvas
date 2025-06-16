@@ -20,6 +20,11 @@ export const clearProjectCache = (projectId: string) => {
   });
   
   console.log(`Cleared ${keysToRemove.length} cached items for project ${projectId}`);
+  
+  // Dispatch event to notify components
+  window.dispatchEvent(new CustomEvent('projectCacheCleared', {
+    detail: { projectId }
+  }));
 };
 
 // Auto-clear cache on load for all projects

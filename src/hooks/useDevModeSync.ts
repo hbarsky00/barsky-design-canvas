@@ -150,7 +150,11 @@ export const useDevModeSync = (projectId: string) => {
       // Clear the temporary dev mode data since it's now "published"
       clearProjectData();
       
-      // Force a storage event to notify all components
+      // Dispatch events to notify all components immediately
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { projectId, published: true }
+      }));
+      
       window.dispatchEvent(new StorageEvent('storage', {
         key: `imageOverrides_${projectId}`,
         newValue: JSON.stringify(projectData.imageReplacements || {}),
@@ -183,20 +187,15 @@ export const useDevModeSync = (projectId: string) => {
       await writeChangesToFiles();
       
       toast.success("Changes published successfully!", {
-        description: "Your changes have been applied and will be visible immediately.",
+        description: "Your changes have been applied and are now visible.",
         duration: 3000,
       });
 
-      // Trigger a re-render by dispatching an event
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, published: true }
-      }));
-
-      // Force a page refresh to ensure changes are visible
+      // Force immediate refresh of all components
       setTimeout(() => {
-        console.log('Refreshing page to show published changes');
+        console.log('Forcing page refresh to ensure changes are visible');
         window.location.reload();
-      }, 1000);
+      }, 500);
       
     } catch (error) {
       console.error('Error syncing changes:', error);

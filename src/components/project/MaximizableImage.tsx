@@ -39,8 +39,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const currentProjectId = projectId || routeProjectId || '';
   const { getProjectData } = useProjectPersistence(currentProjectId);
   
-  // Get the actual image source from merged data (includes published overrides)
-  // Use a ref to track the latest data and force re-renders when published data changes
+  // Force re-renders when published data changes
   const [refreshKey, setRefreshKey] = React.useState(0);
   
   const actualImageSrc = React.useMemo(() => {
@@ -55,53 +54,46 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     return replacedSrc;
   }, [src, getProjectData, refreshKey]);
   
-  // Listen for published data updates
+  // Listen for all types of project data updates
   React.useEffect(() => {
-    const handleProjectUpdate = (e: CustomEvent | Event) => {
-      const detail = (e as CustomEvent).detail;
-      if (detail?.projectId === currentProjectId && detail?.published) {
-        console.log('MaximizableImage: Published data updated, refreshing');
-        setRefreshKey(prev => prev + 1);
-      }
+    const handleProjectUpdate = (e: Event) => {
+      console.log('MaximizableImage: Project data updated, refreshing');
+      setRefreshKey(prev => prev + 1);
     };
 
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key?.includes(`imageOverrides_${currentProjectId}`) || 
-          e.key?.includes(`textOverrides_${currentProjectId}`)) {
+          e.key?.includes(`textOverrides_${currentProjectId}`) ||
+          e.key?.includes(`project_${currentProjectId}`)) {
         console.log('MaximizableImage: Storage changed, refreshing');
         setRefreshKey(prev => prev + 1);
       }
     };
 
-    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    const handleCacheCleared = (e: Event) => {
+      console.log('MaximizableImage: Cache cleared, refreshing');
+      setRefreshKey(prev => prev + 1);
+    };
+
+    // Listen for multiple event types
+    window.addEventListener('projectDataUpdated', handleProjectUpdate);
     window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('projectCacheCleared', handleCacheCleared);
     
     return () => {
-      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate);
       window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('projectCacheCleared', handleCacheCleared);
     };
   }, [currentProjectId]);
   
-  console.log('MaximizableImage rendering:', {
-    originalSrc: src,
-    actualSrc: actualImageSrc,
-    hasReplacement: actualImageSrc !== src,
-    projectId: currentProjectId,
-    refreshKey
-  });
-  
   const handleImageClick = () => {
-    // Use caption for the title if available, otherwise use alt text
     const imageTitle = caption || alt || "Image";
 
-    // If we have an image list and current index, pass them for navigation
     if (imageList && currentIndex !== undefined) {
       maximizeImage(actualImageSrc, imageTitle, imageList, currentIndex);
-      console.log("Image clicked with gallery:", actualImageSrc, "Index:", currentIndex, "Total:", imageList.length);
     } else {
-      // Single image mode
       maximizeImage(actualImageSrc, imageTitle);
-      console.log("Image clicked (single):", actualImageSrc);
     }
   };
 
@@ -112,11 +104,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       onImageReplace(newSrc);
     }
     
-    // Force refresh to show the new image immediately
+    // Force immediate refresh
     setRefreshKey(prev => prev + 1);
   };
 
-  // Use caption as alt text if available, otherwise use the provided alt text
   const imageAltText = caption || alt;
   
   return (
@@ -127,7 +118,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        key={refreshKey} // Force re-render when data changes
+        key={`${actualImageSrc}-${refreshKey}`}
       >
         <EditImageButton 
           src={src} 
@@ -145,10 +136,9 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
               onClick={handleImageClick}
               onError={(e) => {
                 console.error('Image failed to load:', actualImageSrc);
-                console.log('Falling back to original src:', src);
                 e.currentTarget.src = src;
               }}
-              key={actualImageSrc} // Force reload when src changes
+              key={`img-${actualImageSrc}-${refreshKey}`}
             />
             <button 
               onClick={handleImageClick}
@@ -170,10 +160,9 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
               className="max-w-full max-h-full cursor-pointer transition-all duration-300 group-hover:scale-105 object-cover"
               onError={(e) => {
                 console.error('Image failed to load:', actualImageSrc);
-                console.log('Falling back to original src:', src);
                 e.currentTarget.src = src;
               }}
-              key={actualImageSrc} // Force reload when src changes
+              key={`img-${actualImageSrc}-${refreshKey}`}
             />
             <button 
               onClick={handleImageClick}
