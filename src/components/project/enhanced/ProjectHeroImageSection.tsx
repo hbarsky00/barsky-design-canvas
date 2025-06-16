@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
@@ -5,6 +6,7 @@ import { useDevMode } from "@/context/DevModeContext";
 import { Button } from "@/components/ui/button";
 import { Plus, X, GripVertical } from "lucide-react";
 import EditableText from "@/components/dev/EditableText";
+import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 
 interface ProjectHeroImageSectionProps {
   projectId: string;
@@ -17,6 +19,9 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
 }) => {
   const { isDevMode } = useDevMode();
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const { updateImageInProjectData, getUpdatedImagePath } = useProjectDataUpdater();
+
+  console.log('ProjectHeroImageSection: projectId received:', projectId, typeof projectId);
 
   // Define which projects have hero images and their URLs
   const projectHeroImages: Record<string, { url: string; title: string }[]> = {
@@ -41,6 +46,18 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
   const initialImages = projectHeroImages[projectId] || [];
   const [heroImages, setHeroImages] = useState(initialImages);
 
+  // Apply any existing image updates from localStorage
+  React.useEffect(() => {
+    const updateImagesWithLatestPaths = () => {
+      return heroImages.map(img => {
+        const updatedUrl = getUpdatedImagePath(projectId, img.url);
+        return updatedUrl !== img.url ? { ...img, url: updatedUrl } : img;
+      });
+    };
+
+    setHeroImages(prev => updateImagesWithLatestPaths());
+  }, [projectId, getUpdatedImagePath]);
+
   // Only show hero image section if project has images
   if (heroImages.length === 0 && !isDevMode) {
     return null;
@@ -59,9 +76,9 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
   };
 
   const handleImageReplace = (index: number, newSrc: string) => {
-    console.log('ProjectHeroImageSection: Replacing image at index', index, 'with', newSrc);
+    console.log('ProjectHeroImageSection: Replacing image at index', index, 'with', newSrc, 'for project', projectId);
     
-    // If index is beyond current heroImages length, we need to add new images
+    // Update the hero images state immediately for UI feedback
     if (index >= heroImages.length) {
       const newImages = [...heroImages];
       // Fill gaps with placeholder images if needed
@@ -79,9 +96,15 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
       setHeroImages(newImages);
     } else {
       // Normal replacement for existing images
+      const oldImage = heroImages[index];
       setHeroImages(prev => prev.map((img, i) => 
         i === index ? { ...img, url: newSrc } : img
       ));
+      
+      // Also update the project data
+      if (oldImage) {
+        updateImageInProjectData(projectId, oldImage.url, newSrc);
+      }
     }
   };
 
@@ -227,6 +250,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
                           : ''
                       }`}
                       onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
+                      projectId={projectId}
                     />
                   </div>
                 );
