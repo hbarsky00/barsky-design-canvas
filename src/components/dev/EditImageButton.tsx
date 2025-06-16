@@ -16,7 +16,8 @@ interface EditImageButtonProps {
 const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, projectId }) => {
   const { isDevMode } = useDevMode();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
-  const { saveImageReplacement } = useProjectPersistence(projectId || routeProjectId || '');
+  const currentProjectId = projectId || routeProjectId || '';
+  const { saveImageReplacement } = useProjectPersistence(currentProjectId);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleEditClick = (e: React.MouseEvent) => {
@@ -40,7 +41,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       console.log('File selected for replacement:', { 
         fileName: file.name, 
         currentSrc: src, 
-        projectId: projectId || routeProjectId 
+        projectId: currentProjectId 
       });
       
       try {

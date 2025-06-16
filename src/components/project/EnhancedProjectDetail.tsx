@@ -11,6 +11,7 @@ import TechnicalImplementationSection from "./enhanced/TechnicalImplementationSe
 import { organizeProjectImages } from "./enhanced/ImageOrganizer";
 import { generateProcessSteps } from "./enhanced/ProcessStepsGenerator";
 import { generateKeyMetrics } from "./enhanced/KeyMetricsGenerator";
+import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 
 interface EnhancedProjectDetailProps {
   project: ProjectProps;
@@ -31,9 +32,33 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
+  const { getProjectData } = useProjectPersistence(projectId);
   
-  // Organize images by category for better structure
-  const organizedImages = organizeProjectImages({ project, details });
+  // Get published image replacements
+  const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
+    const savedData = getProjectData();
+    return savedData.imageReplacements[originalSrc] || originalSrc;
+  }, [getProjectData]);
+
+  // Apply image replacements to project data
+  const updatedProject = React.useMemo(() => ({
+    ...project,
+    image: getReplacedImageSrc(project.image)
+  }), [project, getReplacedImageSrc]);
+  
+  // Organize images by category for better structure with replacements applied
+  const organizedImages = organizeProjectImages({ 
+    project: updatedProject, 
+    details: {
+      ...details,
+      challengeImage: details.challengeImage ? getReplacedImageSrc(details.challengeImage) : undefined,
+      processImage: details.processImage ? getReplacedImageSrc(details.processImage) : undefined,
+      resultImage: details.resultImage ? getReplacedImageSrc(details.resultImage) : undefined,
+      challengeGalleryImages: details.challengeGalleryImages?.map(getReplacedImageSrc),
+      resultGalleryImages: details.resultGalleryImages?.map(getReplacedImageSrc),
+      galleryImages: details.galleryImages?.map(getReplacedImageSrc)
+    }
+  });
 
   // Generate key metrics and process steps
   const keyMetrics = generateKeyMetrics();
@@ -48,10 +73,10 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
     >
       {/* Enhanced Hero Section */}
       <CaseStudyHero
-        title={project.title}
-        description={project.description}
-        heroImage={project.image}
-        tags={project.tags}
+        title={updatedProject.title}
+        description={updatedProject.description}
+        heroImage={updatedProject.image}
+        tags={updatedProject.tags}
         duration={details.duration}
         role={details.role}
         client={details.client}

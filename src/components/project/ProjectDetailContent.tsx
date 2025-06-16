@@ -7,6 +7,7 @@ import ProjectOverview from "./ProjectOverview";
 import ProjectSidebar from "./ProjectSidebar";
 import ProjectGallery from "./ProjectGallery";
 import { getImageAssignments } from "@/utils/imageConfigUtils";
+import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 
 interface ProjectDetailContentProps {
   project: ProjectProps;
@@ -27,6 +28,19 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
+  const { getProjectData } = useProjectPersistence(projectId);
+  
+  // Get published image replacements
+  const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
+    const savedData = getProjectData();
+    return savedData.imageReplacements[originalSrc] || originalSrc;
+  }, [getProjectData]);
+
+  // Apply image replacements to project data
+  const updatedProject = React.useMemo(() => ({
+    ...project,
+    image: getReplacedImageSrc(project.image)
+  }), [project, getReplacedImageSrc]);
   
   // Get all unique images from the new image configuration and legacy properties
   const imageAssignments = getImageAssignments(details.imageConfig);
@@ -45,10 +59,10 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
     ...(details.resultImage ? [details.resultImage] : []),
     ...(details.challengeBottomImage ? [details.challengeBottomImage] : []),
     ...(details.servicesGalleryImages || [])
-  ]));
+  ])).map(getReplacedImageSrc);
 
   // Find current image index
-  const currentImageIndex = allImages.indexOf(project.image);
+  const currentImageIndex = allImages.indexOf(updatedProject.image);
 
   // Check if this is DAE Search project to conditionally hide bottom gallery
   const isDaeSearchProject = projectId === "dae-search";
@@ -56,10 +70,10 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <ProjectHeader
-        title={project.title}
-        description={project.description}
-        image={project.image}
-        tags={project.tags}
+        title={updatedProject.title}
+        description={updatedProject.description}
+        image={updatedProject.image}
+        tags={updatedProject.tags}
         imageCaptions={imageCaptions}
         imageList={allImages}
         currentIndex={currentImageIndex >= 0 ? currentImageIndex : 0}
@@ -84,19 +98,19 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             technologies={details.technologies}
             projectLink={details.projectLink}
             caseStudyLink={details.caseStudyLink}
-            challengeImage={details.challengeImage}
-            processImage={details.processImage}
-            processBottomImage={details.processBottomImage}
-            resultImage={details.resultImage}
-            resultGalleryImages={details.resultGalleryImages}
+            challengeImage={getReplacedImageSrc(details.challengeImage || '')}
+            processImage={getReplacedImageSrc(details.processImage || '')}
+            processBottomImage={getReplacedImageSrc(details.processBottomImage || '')}
+            resultImage={getReplacedImageSrc(details.resultImage || '')}
+            resultGalleryImages={details.resultGalleryImages?.map(getReplacedImageSrc)}
             imageCaptions={imageCaptions}
-            galleryImages={details.galleryImages}
+            galleryImages={details.galleryImages?.map(getReplacedImageSrc)}
             showTechnologies={false}
-            challengeBottomImage={details.challengeBottomImage}
-            challengeGalleryImages={details.challengeGalleryImages}
+            challengeBottomImage={getReplacedImageSrc(details.challengeBottomImage || '')}
+            challengeGalleryImages={details.challengeGalleryImages?.map(getReplacedImageSrc)}
             allImages={allImages}
             projectId={projectId}
-            servicesGalleryImages={details.servicesGalleryImages}
+            servicesGalleryImages={details.servicesGalleryImages?.map(getReplacedImageSrc)}
           />
         </div>
       </div>
@@ -104,7 +118,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       {/* Only show bottom gallery if it's not DAE Search project and has gallery images */}
       {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (
         <ProjectGallery
-          images={Array.from(new Set(details.galleryImages))}
+          images={Array.from(new Set(details.galleryImages.map(getReplacedImageSrc)))}
           allImages={allImages}
           imageCaptions={imageCaptions}
         />
