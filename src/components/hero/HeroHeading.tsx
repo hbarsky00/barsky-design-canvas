@@ -13,7 +13,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         initial={{ opacity: 0, y: 30 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="flex items-center justify-center gap-6"
+        className="flex flex-col items-center justify-center space-y-4"
       >
         <div className="floating-element">
           <img
@@ -23,9 +23,8 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
             loading="eager"
           />
         </div>
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 font-script pb-8" style={{ lineHeight: '1.1' }}>
-          Hiram
-          <span className="block text-blue-600 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Barsky</span>
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 font-script" style={{ lineHeight: '1.1' }}>
+          Hiram <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Barsky</span>
         </h1>
       </motion.div>
       
