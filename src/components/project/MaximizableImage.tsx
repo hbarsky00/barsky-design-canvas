@@ -37,10 +37,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
-  const { getImageSrc } = useProjectPersistence(currentProjectId);
+  const { getProjectData } = useProjectPersistence(currentProjectId);
   
-  // Get the actual image source, checking for any saved replacements
-  const actualImageSrc = getImageSrc(src);
+  // Get the actual image source from merged data (includes published overrides)
+  const actualImageSrc = React.useMemo(() => {
+    const data = getProjectData();
+    return data.imageReplacements[src] || src;
+  }, [src, getProjectData]);
   
   console.log('MaximizableImage rendering:', {
     originalSrc: src,
