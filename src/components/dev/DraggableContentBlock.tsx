@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GripVertical, X } from 'lucide-react';
+import { GripVertical, X, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from './EditableText';

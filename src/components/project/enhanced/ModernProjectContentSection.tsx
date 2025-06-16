@@ -7,11 +7,6 @@ import { useDevMode } from "@/context/DevModeContext";
 import AddContentButton from "@/components/dev/AddContentButton";
 import DraggableContentBlock, { ContentBlock } from "@/components/dev/DraggableContentBlock";
 
-// Define a flexible content block structure locally
-export type ContentBlock = 
-  | { type: 'text'; value: string }
-  | { type: 'image'; src: string; caption?: string };
-
 interface ModernProjectContentSectionProps {
   title: string;
   content: string | ContentBlock[];
