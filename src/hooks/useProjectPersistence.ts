@@ -13,7 +13,7 @@ interface ProjectData {
 export const useProjectPersistence = (projectId: string) => {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [forceUpdate, setForceUpdate] = useState(0);
-  const { saveChange, getChanges, isSaving } = useDevModeDatabase(projectId);
+  const { saveChange, getChanges, isLoading } = useDevModeDatabase(projectId);
 
   const getStorageKey = useCallback((key: string) => {
     return `project_${projectId}_${key}`;
@@ -207,7 +207,7 @@ export const useProjectPersistence = (projectId: string) => {
     getTextContent,
     getImageSrc,
     clearProjectData,
-    isSaving,
+    isSaving: isLoading,
     lastSaved
   };
 };

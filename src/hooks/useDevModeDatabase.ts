@@ -97,13 +97,19 @@ export const useDevModeDatabase = (projectId: string) => {
 
           switch (change.change_type) {
             case 'text':
-              result.textContent[change.change_key] = change.change_value;
+              if (typeof change.change_value === 'string') {
+                result.textContent[change.change_key] = change.change_value;
+              }
               break;
             case 'image':
-              result.imageReplacements[change.change_key] = change.change_value;
+              if (typeof change.change_value === 'string') {
+                result.imageReplacements[change.change_key] = change.change_value;
+              }
               break;
             case 'content_block':
-              result.contentBlocks[change.change_key] = change.change_value;
+              if (Array.isArray(change.change_value)) {
+                result.contentBlocks[change.change_key] = change.change_value as ContentBlock[];
+              }
               break;
             default:
               console.warn('⚠️ useDevModeDatabase: Unknown change type:', change.change_type);
