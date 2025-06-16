@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
 import EditableText from "@/components/dev/EditableText";
+import { useProjectPersistence } from "@/hooks/useProjectPersistence";
+import { useParams } from "react-router-dom";
 
 interface MaximizableImageProps {
   src: string;
@@ -33,6 +35,19 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   projectId
 }) => {
   const { maximizeImage } = useImageMaximizer();
+  const { projectId: routeProjectId } = useParams<{ projectId: string }>();
+  const currentProjectId = projectId || routeProjectId || '';
+  const { getImageSrc } = useProjectPersistence(currentProjectId);
+  
+  // Get the actual image source, checking for any saved replacements
+  const actualImageSrc = getImageSrc(src);
+  
+  console.log('MaximizableImage rendering:', {
+    originalSrc: src,
+    actualSrc: actualImageSrc,
+    hasReplacement: actualImageSrc !== src,
+    projectId: currentProjectId
+  });
   
   const handleImageClick = () => {
     // Use caption for the title if available, otherwise use alt text
@@ -40,17 +55,17 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
     // If we have an image list and current index, pass them for navigation
     if (imageList && currentIndex !== undefined) {
-      maximizeImage(src, imageTitle, imageList, currentIndex);
-      console.log("Image clicked with gallery:", src, "Index:", currentIndex, "Total:", imageList.length);
+      maximizeImage(actualImageSrc, imageTitle, imageList, currentIndex);
+      console.log("Image clicked with gallery:", actualImageSrc, "Index:", currentIndex, "Total:", imageList.length);
     } else {
       // Single image mode
-      maximizeImage(src, imageTitle);
-      console.log("Image clicked (single):", src);
+      maximizeImage(actualImageSrc, imageTitle);
+      console.log("Image clicked (single):", actualImageSrc);
     }
   };
 
   const handleImageReplace = (newSrc: string) => {
-    console.log('MaximizableImage: Image replacement requested', { oldSrc: src, newSrc, projectId });
+    console.log('MaximizableImage: Image replacement requested', { oldSrc: src, newSrc, projectId: currentProjectId });
     
     if (onImageReplace) {
       onImageReplace(newSrc);
@@ -72,17 +87,22 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         <EditImageButton 
           src={src} 
           onImageReplace={handleImageReplace}
-          projectId={projectId}
+          projectId={currentProjectId}
         />
         
         {aspectRatio ? (
           <AspectRatio ratio={aspectRatio} className="bg-gray-100">
             <img 
-              src={src} 
+              src={actualImageSrc} 
               alt={imageAltText} 
               className="object-contain w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95" 
               loading={priority ? "eager" : "lazy"}
               onClick={handleImageClick}
+              onError={(e) => {
+                console.error('Image failed to load:', actualImageSrc);
+                console.log('Falling back to original src:', src);
+                e.currentTarget.src = src;
+              }}
             />
             <button 
               onClick={handleImageClick}
@@ -97,11 +117,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         ) : (
           <div className="bg-gray-100 flex items-center justify-center min-h-[200px] p-4">
             <img 
-              src={src} 
+              src={actualImageSrc} 
               alt={imageAltText} 
               loading={priority ? "eager" : "lazy"}
               onClick={handleImageClick}
               className="max-w-full max-h-full cursor-pointer transition-all duration-300 group-hover:scale-105 object-cover"
+              onError={(e) => {
+                console.error('Image failed to load:', actualImageSrc);
+                console.log('Falling back to original src:', src);
+                e.currentTarget.src = src;
+              }}
             />
             <button 
               onClick={handleImageClick}
