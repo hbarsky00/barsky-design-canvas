@@ -42,7 +42,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
   const getProjectShowcaseDescription = (projectId: string) => {
     switch (projectId) {
       case 'medication-app':
-        return "These key screens showcase the intuitive medication management interface designed for diabetic patients. The task completion flow demonstrates how users can easily track their medication schedules, while the comprehensive dashboard provides a clear overview of health data and appointment management.";
+        return "This key screen showcases the intuitive task completion interface designed for diabetic patients. The clean, accessible design demonstrates how users can easily track their daily medication schedules and manage their health appointments in a simple, stress-free way.";
       case 'investor-loan-app':
         return "These key screens showcase the transformation from complex Excel workflows to an intuitive banking interface. The advanced search functionality demonstrates AI-powered predictive search capabilities, while the orderbook interface reveals the sophisticated deal management system that revolutionized how loan officers track and manage millions in transactions.";
       case 'dae-search':
@@ -85,7 +85,10 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
           </div>
         )}
 
-        <EditableText initialText="Project Showcase">
+        <EditableText 
+          initialText="Project Showcase"
+          textKey={`hero_showcase_title_${projectId}`}
+        >
           {(text) => (
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 text-center px-2 pr-8 sm:pr-12">
               {text}
@@ -96,6 +99,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         <EditableText 
           initialText={getProjectShowcaseDescription(projectId)}
           multiline
+          textKey={`hero_showcase_description_${projectId}`}
         >
           {(text) => (
             <p className="text-sm sm:text-base text-gray-600 text-center mb-3 sm:mb-4 lg:mb-6 max-w-3xl mx-auto leading-relaxed px-2 pr-8 sm:pr-12">
