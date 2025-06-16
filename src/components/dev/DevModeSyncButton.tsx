@@ -15,18 +15,39 @@ const DevModeSyncButton: React.FC = () => {
   // Listen for project data updates to force re-render
   useEffect(() => {
     const handleProjectDataUpdate = () => {
+      console.log('DevModeSyncButton: Project data updated, forcing re-render');
+      setForceUpdate(prev => prev + 1);
+    };
+
+    const handleStorageChange = () => {
+      console.log('DevModeSyncButton: Storage changed, forcing re-render');
       setForceUpdate(prev => prev + 1);
     };
 
     window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
-    return () => window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  // Also listen for any changes in localStorage that might affect our project
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setForceUpdate(prev => prev + 1);
+    }, 2000); // Check every 2 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   console.log('DevModeSyncButton render:', { 
     isDevMode, 
     hasChangesToSync, 
     projectId,
-    forceUpdate
+    forceUpdate,
+    timestamp: new Date().toISOString()
   });
 
   if (!isDevMode || !projectId) {
