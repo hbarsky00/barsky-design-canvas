@@ -34,14 +34,6 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
       {
         url: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
         title: "Advanced Loans Orderbook Interface"
-      },
-      {
-        url: "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png",
-        title: "Deal Central Dashboard"
-      },
-      {
-        url: "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
-        title: "Collaborative Deal Management"
       }
     ]
   };
@@ -109,10 +101,10 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
     setDraggedIndex(null);
   };
 
-  // Create empty slots to fill up to 4 images in dev mode
+  // Create empty slots to fill up to 2 images in dev mode
   const displayImages = [...heroImages];
   if (isDevMode) {
-    while (displayImages.length < 4) {
+    while (displayImages.length < 2) {
       displayImages.push({
         url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
         title: "Empty slot - click to add image"
@@ -129,7 +121,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
       className="space-y-8"
     >
       <div className="glass-card-elevated p-8 layered-depth relative group">
-        {isDevMode && heroImages.length < 4 && (
+        {isDevMode && heroImages.length < 2 && (
           <div className="absolute top-4 right-4 z-20">
             <Button
               onClick={handleAddImage}
@@ -152,7 +144,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         </EditableText>
 
         <EditableText 
-          initialText="Explore the key features and interfaces that make this project stand out. Each image showcases different aspects of the user experience and functionality."
+          initialText="These key screens showcase the transformation from complex Excel workflows to an intuitive banking interface. The advanced search functionality demonstrates AI-powered predictive search capabilities, while the orderbook interface reveals the sophisticated deal management system that revolutionized how loan officers track and manage millions in transactions."
           multiline
         >
           {(text) => (
@@ -165,7 +157,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         <div className="floating-element">
           <div className="glass-card p-4 layered-depth">
             <div className="grid grid-cols-2 gap-4">
-              {displayImages.slice(0, 4).map((imageData, index) => (
+              {displayImages.slice(0, 2).map((imageData, index) => (
                 <div 
                   key={`${imageData.url}-${index}`} 
                   className={`relative group/image ${
