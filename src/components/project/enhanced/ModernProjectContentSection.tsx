@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -135,13 +136,13 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     try {
       const success = await saveChange('content_block', sectionKey, blocks);
       if (success) {
-        console.log('✅ ModernProjectContentSection: Successfully saved content blocks');
+        console.log('✅ ModernProjectContentSection: Successfully saved content blocks to database');
         // Dispatch event to notify other components
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { projectId, contentBlocksChanged: true }
         }));
       } else {
-        console.error('❌ ModernProjectContentSection: Failed to save content blocks');
+        console.error('❌ ModernProjectContentSection: Failed to save content blocks to database');
       }
     } catch (error) {
       console.error('❌ ModernProjectContentSection: Error saving content blocks:', error);
@@ -149,15 +150,17 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   };
 
   const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
-    console.log('➕ ModernProjectContentSection: Adding new content of type:', type);
+    console.log('➕ ModernProjectContentSection: Adding new content of type:', type, 'to section:', sectionKey);
     const newBlock = createNewBlock(type);
     console.log('📦 ModernProjectContentSection: New block created:', newBlock);
     
     const updatedBlocks = [...contentBlocks, newBlock];
     console.log('📋 ModernProjectContentSection: Updated blocks list:', updatedBlocks);
+    
+    // Update state immediately for instant UI feedback
     setContentBlocks(updatedBlocks);
     
-    // Save content blocks persistently
+    // Save content blocks to database
     await saveContentBlocks(updatedBlocks);
     
     console.log('✅ ModernProjectContentSection: Content blocks updated and saved');

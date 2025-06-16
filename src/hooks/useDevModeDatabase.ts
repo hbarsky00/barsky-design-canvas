@@ -1,40 +1,33 @@
 
 import { useState, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from 'sonner';
-
-interface DevModeChange {
-  id: string;
-  project_id: string;
-  change_type: string;
-  change_key: string;
-  change_value: any;
-  created_at: string;
-  updated_at: string;
-}
+import { ContentBlock } from '@/components/dev/DraggableContentBlock';
 
 export const useDevModeDatabase = (projectId: string) => {
-  const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const saveChange = useCallback(async (changeType: string, changeKey: string, changeValue: any) => {
-    console.log('🔵 useDevModeDatabase.saveChange called:', { 
-      projectId, 
-      changeType, 
-      changeKey, 
-      changeValueType: typeof changeValue,
-      changeValueLength: typeof changeValue === 'string' ? changeValue.length : 'N/A'
-    });
+  console.log('🎯 useDevModeDatabase: Initialized for project:', projectId);
 
+  const saveChange = useCallback(async (changeType: 'text' | 'image' | 'content_block', changeKey: string, changeValue: any): Promise<boolean> => {
     if (!projectId) {
-      console.error('❌ No project ID provided to saveChange');
+      console.error('❌ useDevModeDatabase: No projectId provided');
       return false;
     }
 
-    try {
-      setIsSaving(true);
-      console.log('💾 Attempting to save to Supabase database...');
+    console.log('💾 useDevModeDatabase: Saving change:', {
+      projectId,
+      changeType,
+      changeKey,
+      changeValueType: typeof changeValue,
+      changeValueLength: Array.isArray(changeValue) ? changeValue.length : typeof changeValue === 'string' ? changeValue.length : 'unknown'
+    });
 
-      const { data, error } = await supabase
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const { error: upsertError } = await supabase
         .from('dev_mode_changes')
         .upsert({
           project_id: projectId,
@@ -44,132 +37,154 @@ export const useDevModeDatabase = (projectId: string) => {
           updated_at: new Date().toISOString()
         }, {
           onConflict: 'project_id,change_type,change_key'
-        })
-        .select();
-
-      if (error) {
-        console.error('❌ Supabase error:', error);
-        toast.error('Failed to save changes', {
-          description: error.message
         });
+
+      if (upsertError) {
+        console.error('❌ useDevModeDatabase: Database error:', upsertError);
+        setError(upsertError.message);
         return false;
       }
 
-      console.log('✅ Successfully saved to database:', data);
+      console.log('✅ useDevModeDatabase: Successfully saved change to database');
       return true;
     } catch (error) {
-      console.error('❌ Unexpected error saving to database:', error);
+      console.error('❌ useDevModeDatabase: Unexpected error:', error);
+      setError(error instanceof Error ? error.message : 'Unknown error');
       return false;
     } finally {
-      setIsSaving(false);
+      setIsLoading(false);
     }
   }, [projectId]);
 
-  const getChanges = useCallback(async (): Promise<{
-    textContent: Record<string, string>;
-    imageReplacements: Record<string, string>;
-    contentBlocks: Record<string, any[]>;
-  }> => {
-    console.log('🔍 getChanges called for projectId:', projectId);
-
+  const getChanges = useCallback(async () => {
     if (!projectId) {
-      console.log('❌ No projectId provided to getChanges');
-      return { textContent: {}, imageReplacements: {}, contentBlocks: {} };
+      console.log('⚠️ useDevModeDatabase: No projectId, returning empty data');
+      return {
+        textContent: {},
+        imageReplacements: {},
+        contentBlocks: {}
+      };
     }
 
+    console.log('📤 useDevModeDatabase: Fetching changes for project:', projectId);
+
     try {
-      const { data, error } = await supabase
+      const { data, error: fetchError } = await supabase
         .from('dev_mode_changes')
         .select('*')
         .eq('project_id', projectId);
 
-      if (error) {
-        console.error('❌ Error fetching changes:', error);
-        return { textContent: {}, imageReplacements: {}, contentBlocks: {} };
+      if (fetchError) {
+        console.error('❌ useDevModeDatabase: Error fetching changes:', fetchError);
+        throw fetchError;
       }
 
-      console.log('📤 Raw data from database:', data);
+      console.log('📊 useDevModeDatabase: Raw data from database:', data);
 
       const result = {
         textContent: {} as Record<string, string>,
         imageReplacements: {} as Record<string, string>,
-        contentBlocks: {} as Record<string, any[]>
+        contentBlocks: {} as Record<string, ContentBlock[]>
       };
 
-      data?.forEach((change: DevModeChange) => {
-        console.log('🔍 Processing change:', { 
-          type: change.change_type, 
-          key: change.change_key,
-          hasValue: !!change.change_value 
+      if (data && data.length > 0) {
+        data.forEach(change => {
+          console.log('🔍 useDevModeDatabase: Processing change:', {
+            type: change.change_type,
+            key: change.change_key,
+            value: change.change_value
+          });
+
+          switch (change.change_type) {
+            case 'text':
+              result.textContent[change.change_key] = change.change_value;
+              break;
+            case 'image':
+              result.imageReplacements[change.change_key] = change.change_value;
+              break;
+            case 'content_block':
+              result.contentBlocks[change.change_key] = change.change_value;
+              break;
+            default:
+              console.warn('⚠️ useDevModeDatabase: Unknown change type:', change.change_type);
+          }
         });
+      }
 
-        if (change.change_type === 'text') {
-          result.textContent[change.change_key] = change.change_value;
-        } else if (change.change_type === 'image') {
-          result.imageReplacements[change.change_key] = change.change_value;
-        } else if (change.change_type === 'content_block') {
-          result.contentBlocks[change.change_key] = change.change_value;
-        }
-      });
-
-      console.log('📤 Processed changes result:', {
+      console.log('📋 useDevModeDatabase: Processed changes:', {
         textCount: Object.keys(result.textContent).length,
         imageCount: Object.keys(result.imageReplacements).length,
-        blockCount: Object.keys(result.contentBlocks).length
+        contentBlockSections: Object.keys(result.contentBlocks).length,
+        contentBlocks: result.contentBlocks
       });
 
       return result;
     } catch (error) {
-      console.error('❌ Unexpected error fetching changes:', error);
-      return { textContent: {}, imageReplacements: {}, contentBlocks: {} };
-    }
-  }, [projectId]);
-
-  const clearChanges = useCallback(async () => {
-    console.log('🗑️ clearChanges called for projectId:', projectId);
-
-    if (!projectId) return false;
-
-    try {
-      const { error } = await supabase
-        .from('dev_mode_changes')
-        .delete()
-        .eq('project_id', projectId);
-
-      if (error) {
-        console.error('❌ Error clearing changes:', error);
-        return false;
-      }
-
-      console.log('✅ Cleared all changes from database');
-      return true;
-    } catch (error) {
-      console.error('❌ Unexpected error clearing changes:', error);
-      return false;
+      console.error('❌ useDevModeDatabase: Error in getChanges:', error);
+      return {
+        textContent: {},
+        imageReplacements: {},
+        contentBlocks: {}
+      };
     }
   }, [projectId]);
 
   const hasChanges = useCallback(async (): Promise<boolean> => {
-    console.log('🔍 hasChanges called for projectId:', projectId);
+    if (!projectId) {
+      console.log('⚠️ useDevModeDatabase: No projectId for hasChanges check');
+      return false;
+    }
 
-    if (!projectId) return false;
+    console.log('🔍 useDevModeDatabase: Checking for changes for project:', projectId);
 
     try {
-      const { count, error } = await supabase
+      const { data, error: fetchError } = await supabase
         .from('dev_mode_changes')
-        .select('*', { count: 'exact', head: true })
-        .eq('project_id', projectId);
+        .select('id')
+        .eq('project_id', projectId)
+        .limit(1);
 
-      if (error) {
-        console.error('❌ Error checking for changes:', error);
+      if (fetchError) {
+        console.error('❌ useDevModeDatabase: Error checking changes:', fetchError);
         return false;
       }
 
-      const hasAny = (count || 0) > 0;
-      console.log('🔍 hasChanges result:', { count, hasAny });
-      return hasAny;
+      const hasData = data && data.length > 0;
+      console.log('🔍 useDevModeDatabase: hasChanges result:', {
+        hasData,
+        dataLength: data?.length || 0
+      });
+
+      return hasData;
     } catch (error) {
-      console.error('❌ Unexpected error checking for changes:', error);
+      console.error('❌ useDevModeDatabase: Error in hasChanges:', error);
+      return false;
+    }
+  }, [projectId]);
+
+  const clearChanges = useCallback(async (): Promise<boolean> => {
+    if (!projectId) {
+      console.error('❌ useDevModeDatabase: No projectId for clearChanges');
+      return false;
+    }
+
+    console.log('🗑️ useDevModeDatabase: Clearing changes for project:', projectId);
+
+    try {
+      const { error: deleteError } = await supabase
+        .from('dev_mode_changes')
+        .delete()
+        .eq('project_id', projectId);
+
+      if (deleteError) {
+        console.error('❌ useDevModeDatabase: Error clearing changes:', deleteError);
+        return false;
+      }
+
+      console.log('✅ useDevModeDatabase: Successfully cleared changes');
+      return true;
+    } catch (error) {
+      console.error('❌ useDevModeDatabase: Error in clearChanges:', error);
       return false;
     }
   }, [projectId]);
@@ -177,8 +192,9 @@ export const useDevModeDatabase = (projectId: string) => {
   return {
     saveChange,
     getChanges,
-    clearChanges,
     hasChanges,
-    isSaving
+    clearChanges,
+    isLoading,
+    error
   };
 };
