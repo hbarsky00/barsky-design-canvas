@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -50,6 +49,19 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   });
 
   const [draggedImageIndex, setDraggedImageIndex] = React.useState<number | null>(null);
+
+  // Load published overrides if they exist
+  React.useEffect(() => {
+    const imageOverrides = localStorage.getItem(`imageOverrides_${projectId}`);
+    const textOverrides = localStorage.getItem(`textOverrides_${projectId}`);
+    const blockOverrides = localStorage.getItem(`contentBlockOverrides_${projectId}`);
+    
+    if (imageOverrides || textOverrides || blockOverrides) {
+      console.log('Loading published overrides for project:', projectId);
+      // Force a re-render to apply published changes
+      setContentBlocks(prev => [...prev]);
+    }
+  }, [projectId]);
 
   const handleImageReplace = (imageSrc: string, newSrc: string) => {
     console.log('ModernProjectContentSection: Replacing image', imageSrc, 'with', newSrc, 'for project', projectId);
@@ -163,9 +175,22 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setDraggedImageIndex(null);
   };
 
-  // Get saved image replacements
-  const savedData = getProjectData();
+  // Get saved image replacements with published overrides
   const getReplacedImageSrc = (originalSrc: string) => {
+    const savedData = getProjectData();
+    const publishedOverrides = localStorage.getItem(`imageOverrides_${projectId}`);
+    
+    if (publishedOverrides) {
+      try {
+        const overrides = JSON.parse(publishedOverrides);
+        if (overrides[originalSrc]) {
+          return overrides[originalSrc];
+        }
+      } catch (error) {
+        console.error('Error parsing published image overrides:', error);
+      }
+    }
+    
     return savedData.imageReplacements[originalSrc] || originalSrc;
   };
 

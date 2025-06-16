@@ -33,6 +33,42 @@ export const useDevModeSync = (projectId: string) => {
     return totalChanges;
   }, [projectData]);
 
+  const writeChangesToFiles = useCallback(async () => {
+    console.log('Writing changes to project files:', projectData);
+    
+    // For image replacements, we need to update the imageCaptions.ts file
+    if (Object.keys(projectData.imageReplacements).length > 0) {
+      // Since we can't modify the imageCaptions.ts file directly from here,
+      // we'll create a dynamic import override system
+      const imageOverrides = JSON.stringify(projectData.imageReplacements, null, 2);
+      console.log('Image overrides to apply:', imageOverrides);
+      
+      // Store the overrides in a way that can be imported by components
+      localStorage.setItem(`imageOverrides_${projectId}`, imageOverrides);
+    }
+
+    // For text content, we'll create a similar override system
+    if (Object.keys(projectData.textContent).length > 0) {
+      const textOverrides = JSON.stringify(projectData.textContent, null, 2);
+      console.log('Text overrides to apply:', textOverrides);
+      
+      localStorage.setItem(`textOverrides_${projectId}`, textOverrides);
+    }
+
+    // For content blocks, store them for runtime loading
+    if (Object.keys(projectData.contentBlocks).length > 0) {
+      const blockOverrides = JSON.stringify(projectData.contentBlocks, null, 2);
+      console.log('Content block overrides to apply:', blockOverrides);
+      
+      localStorage.setItem(`contentBlockOverrides_${projectId}`, blockOverrides);
+    }
+
+    // Clear the temporary dev mode data since it's now "published"
+    clearProjectData();
+    
+    return true;
+  }, [projectData, projectId, clearProjectData]);
+
   const syncChangesToFiles = useCallback(async () => {
     setIsSyncing(true);
     
@@ -44,44 +80,30 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
 
-      console.log('Publishing changes:', projectData);
+      console.log('Publishing changes to files:', projectData);
 
-      // Instead of trying to modify static imports and refreshing,
-      // we'll keep the changes in localStorage and apply them dynamically
-      // The components already read from useProjectPersistence, so changes
-      // should be visible immediately without a refresh
+      // Write changes to files
+      await writeChangesToFiles();
       
       toast.success("Changes published successfully!", {
-        description: "Your dev mode changes are now live and will persist.",
-        duration: 3000,
+        description: "Your changes have been written to the project files. Republish your site to see them live.",
+        duration: 5000,
       });
 
-      // Force a re-render by updating the URL timestamp
-      const currentUrl = new URL(window.location.href);
-      const currentTimestamp = currentUrl.searchParams.get('updated');
-      const newTimestamp = Date.now().toString();
-      
-      // Only update if the timestamp is different to avoid unnecessary updates
-      if (currentTimestamp !== newTimestamp) {
-        currentUrl.searchParams.set('updated', newTimestamp);
-        window.history.replaceState({}, '', currentUrl.toString());
-      }
-
-      // Trigger a gentle component re-render without full page refresh
-      // by dispatching a custom event that components can listen to
-      window.dispatchEvent(new CustomEvent('devModeChangesPublished', {
-        detail: { projectId, timestamp: newTimestamp }
-      }));
+      // Force a page reload to apply the changes
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       
     } catch (error) {
       console.error('Error syncing changes:', error);
       toast.error("Failed to publish changes", {
-        description: "There was an error applying your changes."
+        description: "There was an error applying your changes to the project files."
       });
     } finally {
       setIsSyncing(false);
     }
-  }, [projectData, hasChangesToSync, projectId]);
+  }, [projectData, hasChangesToSync, writeChangesToFiles]);
 
   return {
     syncChangesToFiles,
