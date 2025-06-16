@@ -1,5 +1,7 @@
+
 import { useState, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
+import { useDevModeDatabase } from './useDevModeDatabase';
 
 interface ProjectData {
   textContent: Record<string, string>;
@@ -9,58 +11,22 @@ interface ProjectData {
 }
 
 export const useProjectPersistence = (projectId: string) => {
-  const [isSaving, setIsSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [forceUpdate, setForceUpdate] = useState(0);
+  const { saveChange, getChanges, isSaving } = useDevModeDatabase(projectId);
 
   const getStorageKey = useCallback((key: string) => {
     return `project_${projectId}_${key}`;
   }, [projectId]);
-
-  const safeSetItem = useCallback((key: string, value: string) => {
-    try {
-      localStorage.setItem(key, value);
-      return true;
-    } catch (error) {
-      if (error instanceof DOMException && error.name === 'QuotaExceededError') {
-        console.warn(`Storage quota exceeded for ${key}, data may be truncated`);
-        
-        // Try to save a simplified version without large images
-        try {
-          const data = JSON.parse(value);
-          if (data.imageReplacements) {
-            // Filter out data URLs that are too large
-            const filteredImages: Record<string, string> = {};
-            Object.entries(data.imageReplacements).forEach(([k, v]) => {
-              if (typeof v === 'string' && !v.startsWith('data:')) {
-                filteredImages[k] = v;
-              }
-            });
-            data.imageReplacements = filteredImages;
-            
-            const simplifiedValue = JSON.stringify(data);
-            localStorage.setItem(key, simplifiedValue);
-            return true;
-          }
-        } catch (simplifyError) {
-          console.error('Failed to simplify data:', simplifyError);
-        }
-      }
-      console.error('Storage error:', error);
-      return false;
-    }
-  }, []);
 
   const normalizeImageReplacements = useCallback((imageReplacements: any): Record<string, string> => {
     const normalized: Record<string, string> = {};
     
     Object.entries(imageReplacements || {}).forEach(([key, value]) => {
       if (typeof key === 'string' && value) {
-        // Handle both object format {_type: "String", value: "..."} and direct string values
         const stringValue = typeof value === 'string' ? value : null;
             
         if (stringValue && typeof stringValue === 'string') {
-          // Keep data URLs and regular URLs, filter out blob URLs
           if (!key.startsWith('blob:') && !stringValue.startsWith('blob:') && 
               (stringValue.startsWith('data:') || stringValue.startsWith('/') || stringValue.startsWith('http'))) {
             normalized[key] = stringValue;
@@ -85,7 +51,6 @@ export const useProjectPersistence = (projectId: string) => {
 
     window.addEventListener('storage', handleStorageChange);
     
-    // Also listen for manual refresh events
     const handleProjectUpdate = (e: CustomEvent) => {
       if (e.detail?.projectId === projectId && e.detail?.published) {
         console.log('Published data updated, forcing refresh');
@@ -138,26 +103,16 @@ export const useProjectPersistence = (projectId: string) => {
       // Always prioritize published overrides
       const publishedOverrides = loadPublishedOverrides();
       
-      // Load dev mode changes
-      const stored = localStorage.getItem(getStorageKey('data'));
-      const devData = stored ? JSON.parse(stored) : {
-        textContent: {},
-        imageReplacements: {},
-        contentBlocks: {},
-      };
-      
-      // Merge with published taking precedence
+      // For dev changes, we'll fetch them from database when needed
+      // For now, return published overrides as the main data
       const mergedData = {
-        textContent: { ...devData.textContent, ...publishedOverrides.textContent },
-        imageReplacements: { 
-          ...normalizeImageReplacements(devData.imageReplacements), 
-          ...publishedOverrides.imageReplacements 
-        },
-        contentBlocks: { ...devData.contentBlocks, ...publishedOverrides.contentBlocks },
-        lastSaved: devData.lastSaved && typeof devData.lastSaved === 'string' ? devData.lastSaved : undefined
+        textContent: { ...publishedOverrides.textContent },
+        imageReplacements: { ...publishedOverrides.imageReplacements },
+        contentBlocks: { ...publishedOverrides.contentBlocks },
+        lastSaved: undefined
       };
       
-      console.log('Loaded merged project data for', projectId, 'with published overrides:', mergedData);
+      console.log('Loaded project data for', projectId, 'with published overrides:', mergedData);
       return mergedData;
     } catch (error) {
       console.error('Failed to load project data:', error);
@@ -167,59 +122,24 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
     }
-  }, [projectId, getStorageKey, normalizeImageReplacements, loadPublishedOverrides, forceUpdate]);
+  }, [projectId, loadPublishedOverrides, forceUpdate]);
 
-  const saveProjectData = useCallback((data: ProjectData) => {
-    try {
-      setIsSaving(true);
+  const saveTextContent = useCallback(async (key: string, content: string) => {
+    console.log('💾 Saving text content to database:', key, content);
+    const success = await saveChange('text', key, content);
+    if (success) {
+      setLastSaved(new Date());
       
-      // Normalize image replacements before saving
-      const normalizedData = {
-        ...data,
-        imageReplacements: normalizeImageReplacements(data.imageReplacements),
-        lastSaved: new Date().toISOString()
-      };
-      
-      const success = safeSetItem(getStorageKey('data'), JSON.stringify(normalizedData));
-      
-      if (success) {
-        setLastSaved(new Date());
-        console.log('Saved project data for', projectId, normalizedData);
-        
-        // Dispatch event to notify other components of the change
-        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { projectId, data: normalizedData }
-        }));
-      } else {
-        console.warn('Failed to save project data due to storage limitations');
-        toast.error("Storage limit reached", {
-          description: "Unable to save changes due to browser storage limitations. Try publishing your changes to free up space."
-        });
-      }
-    } catch (error) {
-      console.error('Failed to save project data:', error);
-    } finally {
-      setIsSaving(false);
+      // Dispatch event to notify other components
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { projectId, textChanged: true }
+      }));
     }
-  }, [projectId, getStorageKey, normalizeImageReplacements, safeSetItem]);
+  }, [saveChange, projectId]);
 
-  const saveTextContent = useCallback((key: string, content: string) => {
-    console.log('Saving text content:', key, content);
-    const currentData = getProjectData();
-    const updatedData = {
-      ...currentData,
-      textContent: {
-        ...currentData.textContent,
-        [key]: content
-      }
-    };
-    saveProjectData(updatedData);
-  }, [getProjectData, saveProjectData]);
-
-  const saveImageReplacement = useCallback((originalSrc: string, newSrc: string) => {
-    console.log('Saving image replacement:', originalSrc, '->', newSrc);
+  const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
+    console.log('💾 Saving image replacement to database:', originalSrc, '->', newSrc);
     
-    // Accept data URLs (base64 encoded images) and regular URLs, reject blob URLs
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('Skipping blob URL replacement save:', originalSrc, '->', newSrc);
       return;
@@ -230,29 +150,29 @@ export const useProjectPersistence = (projectId: string) => {
       return;
     }
     
-    const currentData = getProjectData();
-    const updatedData = {
-      ...currentData,
-      imageReplacements: {
-        ...currentData.imageReplacements,
-        [originalSrc]: newSrc
-      }
-    };
-    saveProjectData(updatedData);
-    console.log('Saved image replacement:', originalSrc, '->', newSrc.substring(0, 50) + '...');
-  }, [getProjectData, saveProjectData]);
+    const success = await saveChange('image', originalSrc, newSrc);
+    if (success) {
+      setLastSaved(new Date());
+      
+      // Dispatch event to notify other components
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { projectId, imageReplaced: true }
+      }));
+    }
+  }, [saveChange, projectId]);
 
-  const saveContentBlocks = useCallback((sectionKey: string, blocks: any[]) => {
-    const currentData = getProjectData();
-    const updatedData = {
-      ...currentData,
-      contentBlocks: {
-        ...currentData.contentBlocks,
-        [sectionKey]: blocks
-      }
-    };
-    saveProjectData(updatedData);
-  }, [getProjectData, saveProjectData]);
+  const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
+    console.log('💾 Saving content blocks to database:', sectionKey, blocks);
+    const success = await saveChange('content_block', sectionKey, blocks);
+    if (success) {
+      setLastSaved(new Date());
+      
+      // Dispatch event to notify other components
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { projectId, contentBlocksChanged: true }
+      }));
+    }
+  }, [saveChange, projectId]);
 
   const getTextContent = useCallback((key: string, fallback: string = '') => {
     const data = getProjectData();
@@ -274,22 +194,10 @@ export const useProjectPersistence = (projectId: string) => {
   }, [getProjectData]);
 
   const clearProjectData = useCallback(() => {
-    try {
-      localStorage.removeItem(getStorageKey('data'));
-      setLastSaved(null);
-      console.log('Cleared project data for', projectId);
-    } catch (error) {
-      console.error('Failed to clear project data:', error);
-    }
-  }, [projectId, getStorageKey]);
-
-  // Load last saved timestamp on mount
-  useEffect(() => {
-    const data = getProjectData();
-    if (data.lastSaved && typeof data.lastSaved === 'string') {
-      setLastSaved(new Date(data.lastSaved));
-    }
-  }, [getProjectData]);
+    // For dev mode data, we'll clear from database in the sync hook
+    setLastSaved(null);
+    console.log('Cleared project data for', projectId);
+  }, [projectId]);
 
   return {
     saveTextContent,

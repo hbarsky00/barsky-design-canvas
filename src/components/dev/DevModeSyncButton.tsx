@@ -4,49 +4,49 @@ import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Upload, Loader2 } from 'lucide-react';
 import { useDevModeSync } from '@/hooks/useDevModeSync';
+import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 
 const DevModeSyncButton: React.FC = () => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
-  const { syncChangesToFiles, isSyncing, hasChangesToSync } = useDevModeSync(projectId || '');
-  const [forceUpdate, setForceUpdate] = useState(0);
+  const { syncChangesToFiles, isSyncing } = useDevModeSync(projectId || '');
+  const { hasChanges } = useDevModeDatabase(projectId || '');
+  const [hasChangesToSync, setHasChangesToSync] = useState(false);
 
-  // Listen for project data updates to force re-render
+  // Check for changes in database
   useEffect(() => {
-    const handleProjectDataUpdate = () => {
-      console.log('🔄 DevModeSyncButton: Project data updated, forcing re-render');
-      setForceUpdate(prev => prev + 1);
+    const checkChanges = async () => {
+      if (projectId) {
+        const result = await hasChanges();
+        console.log('🎯 DevModeSyncButton: Database changes check:', result);
+        setHasChangesToSync(result);
+      }
     };
-
-    const handleStorageChange = () => {
-      console.log('🔄 DevModeSyncButton: Storage changed, forcing re-render');
-      setForceUpdate(prev => prev + 1);
+    
+    checkChanges();
+    
+    // Check for changes periodically
+    const interval = setInterval(checkChanges, 2000);
+    
+    // Listen for project data updates
+    const handleProjectDataUpdate = () => {
+      console.log('🔄 DevModeSyncButton: Project data updated, checking for changes');
+      checkChanges();
     };
 
     window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
-    window.addEventListener('storage', handleStorageChange);
     
     return () => {
+      clearInterval(interval);
       window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
-      window.removeEventListener('storage', handleStorageChange);
     };
-  }, []);
-
-  // Force refresh every few seconds to check for changes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setForceUpdate(prev => prev + 1);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
+  }, [projectId, hasChanges]);
 
   console.log('🎯 DevModeSyncButton render:', { 
     isDevMode, 
     hasChangesToSync, 
     projectId,
-    forceUpdate,
     timestamp: new Date().toISOString()
   });
 
