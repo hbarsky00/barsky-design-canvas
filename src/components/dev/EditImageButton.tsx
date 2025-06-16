@@ -7,9 +7,10 @@ import { toast } from 'sonner';
 
 interface EditImageButtonProps {
   src?: string;
+  onImageReplace?: (newSrc: string) => void;
 }
 
-const EditImageButton: React.FC<EditImageButtonProps> = ({ src }) => {
+const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace }) => {
   const { isDevMode } = useDevMode();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -21,12 +22,34 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src }) => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file && src) {
-      navigator.clipboard.writeText(src);
-      toast.success("Original image path copied.", {
-        description: `Now, upload "${file.name}" to the project and ask me to replace the copied path with the new one.`,
-        duration: 10000,
-      });
+    if (file) {
+      // Create a temporary URL for the uploaded file
+      const newImageUrl = URL.createObjectURL(file);
+      
+      // Call the callback to replace the image
+      if (onImageReplace) {
+        onImageReplace(newImageUrl);
+        toast.success("Image replaced successfully!", {
+          description: `Replaced with "${file.name}". Note: This is a temporary preview.`,
+          duration: 5000,
+        });
+      } else {
+        // Fallback behavior - copy original path to clipboard if available
+        if (src) {
+          try {
+            navigator.clipboard.writeText(src);
+            toast.success("Original image path copied.", {
+              description: `Now, upload "${file.name}" to the project and ask me to replace the copied path with the new one.`,
+              duration: 10000,
+            });
+          } catch (error) {
+            toast.error("Could not copy to clipboard.", {
+              description: `Please manually note the path: ${src}`,
+              duration: 5000,
+            });
+          }
+        }
+      }
     }
     // Reset file input to allow selecting the same file again
     if (e.target) {

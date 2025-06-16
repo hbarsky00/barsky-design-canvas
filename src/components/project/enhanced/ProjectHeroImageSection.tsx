@@ -65,6 +65,12 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
     setHeroImages(prev => prev.filter((_, i) => i !== index));
   };
 
+  const handleImageReplace = (index: number, newSrc: string) => {
+    setHeroImages(prev => prev.map((img, i) => 
+      i === index ? { ...img, url: newSrc } : img
+    ));
+  };
+
   // Create empty slots to fill up to 4 images in dev mode
   const displayImages = [...heroImages];
   if (isDevMode) {
@@ -132,6 +138,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
                         ? 'opacity-30 border-2 border-dashed border-gray-300' 
                         : ''
                     }`}
+                    onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
                   />
                 </div>
               ))}

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Maximize } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -15,7 +16,9 @@ interface MaximizableImageProps {
   priority?: boolean;
   imageList?: string[];
   currentIndex?: number;
+  onImageReplace?: (newSrc: string) => void;
 }
+
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
   src,
   alt,
@@ -24,11 +27,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   className = "",
   priority = false,
   imageList,
-  currentIndex
+  currentIndex,
+  onImageReplace
 }) => {
-  const {
-    maximizeImage
-  } = useImageMaximizer();
+  const { maximizeImage } = useImageMaximizer();
+  
   const handleImageClick = () => {
     // Use caption for the title if available, otherwise use alt text
     const imageTitle = caption || alt || "Image";
@@ -46,36 +49,61 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   // Use caption as alt text if available, otherwise use the provided alt text
   const imageAltText = caption || alt;
-  return <div className="w-full">
-      <motion.div className={`rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative ${className}`} initial={{
-      opacity: 0,
-      scale: 0.95
-    }} whileInView={{
-      opacity: 1,
-      scale: 1
-    }} viewport={{
-      once: true
-    }} transition={{
-      duration: 0.5
-    }}>
-        <EditImageButton src={src} />
-        {aspectRatio ? <AspectRatio ratio={aspectRatio} className="bg-gray-100">
-            <img src={src} alt={imageAltText} className="object-contain w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95" loading={priority ? "eager" : "lazy"} onClick={handleImageClick} />
-            <button onClick={handleImageClick} className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Maximize image">
+  
+  return (
+    <div className="w-full">
+      <motion.div 
+        className={`rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative ${className}`}
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <EditImageButton src={src} onImageReplace={onImageReplace} />
+        
+        {aspectRatio ? (
+          <AspectRatio ratio={aspectRatio} className="bg-gray-100">
+            <img 
+              src={src} 
+              alt={imageAltText} 
+              className="object-contain w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95" 
+              loading={priority ? "eager" : "lazy"}
+              onClick={handleImageClick}
+            />
+            <button 
+              onClick={handleImageClick}
+              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-label="Maximize image"
+            >
               <div className="bg-black/50 p-2 rounded-full">
                 <Maximize className="h-6 w-6 text-white" />
               </div>
             </button>
-          </AspectRatio> : <div className="bg-gray-100 flex items-center justify-center min-h-[200px] p-4">
-            <img src={src} alt={imageAltText} loading={priority ? "eager" : "lazy"} onClick={handleImageClick} className="max-w-full max-h-full cursor-pointer transition-all duration-300 group-hover:scale-105 object-cover" />
-            <button onClick={handleImageClick} className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Maximize image">
+          </AspectRatio>
+        ) : (
+          <div className="bg-gray-100 flex items-center justify-center min-h-[200px] p-4">
+            <img 
+              src={src} 
+              alt={imageAltText} 
+              loading={priority ? "eager" : "lazy"}
+              onClick={handleImageClick}
+              className="max-w-full max-h-full cursor-pointer transition-all duration-300 group-hover:scale-105 object-cover"
+            />
+            <button 
+              onClick={handleImageClick}
+              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-label="Maximize image"
+            >
               <div className="bg-black/50 p-2 rounded-full">
                 <Maximize className="h-6 w-6 text-white" />
               </div>
             </button>
-          </div>}
+          </div>
+        )}
       </motion.div>
-      {caption && <div className="mt-2 text-sm text-gray-600 italic text-center">
+      
+      {caption && (
+        <div className="mt-2 text-sm text-gray-600 italic text-center">
           <EditableText initialText={caption}>
             {(text) => (
               <motion.div
@@ -89,7 +117,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
               </motion.div>
             )}
           </EditableText>
-        </div>}
-    </div>;
+        </div>
+      )}
+    </div>
+  );
 };
+
 export default MaximizableImage;
