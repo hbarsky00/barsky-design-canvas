@@ -33,13 +33,13 @@ const ChallengeSection: React.FC<ChallengeSectionProps> = ({
         transition={{ duration: 0.8 }}
         className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
       >
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center justify-center gap-3 mb-6">
           <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg">
             <FileText className="h-6 w-6 text-white" />
           </div>
           <EditableText initialText="The Challenge">
             {(text) => (
-              <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
+              <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-center">
                 {text}
               </h2>
             )}

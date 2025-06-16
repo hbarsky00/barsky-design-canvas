@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
@@ -239,7 +238,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
 
       <EditableText initialText={title}>
         {(text) => (
-          <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text pr-8">
+          <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text pr-8 text-center">
             {text}
           </h2>
         )}

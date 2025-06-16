@@ -60,12 +60,12 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       case 'header':
         const HeaderTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements;
         const headerClasses = {
-          1: "text-4xl font-bold text-gray-900 mb-6",
-          2: "text-3xl font-bold text-gray-900 mb-5",
-          3: "text-2xl font-semibold text-gray-900 mb-4",
-          4: "text-xl font-semibold text-gray-900 mb-3",
-          5: "text-lg font-medium text-gray-900 mb-3",
-          6: "text-base font-medium text-gray-900 mb-2"
+          1: "text-4xl font-bold text-gray-900 mb-6 text-center",
+          2: "text-3xl font-bold text-gray-900 mb-5 text-center",
+          3: "text-2xl font-semibold text-gray-900 mb-4 text-center",
+          4: "text-xl font-semibold text-gray-900 mb-3 text-center",
+          5: "text-lg font-medium text-gray-900 mb-3 text-center",
+          6: "text-base font-medium text-gray-900 mb-2 text-center"
         };
 
         return (
