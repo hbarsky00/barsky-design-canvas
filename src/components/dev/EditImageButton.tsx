@@ -25,6 +25,15 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     fileInputRef.current?.click();
   };
 
+  const convertFileToDataUrl = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && src) {
@@ -34,21 +43,29 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         projectId: projectId || routeProjectId 
       });
       
-      // Create a temporary URL for immediate preview
-      const tempImageUrl = URL.createObjectURL(file);
-      
-      if (onImageReplace) {
-        console.log('Calling onImageReplace with temp URL:', tempImageUrl);
-        onImageReplace(tempImageUrl);
+      try {
+        // Convert file to data URL for persistent storage
+        const dataUrl = await convertFileToDataUrl(file);
+        console.log('Converted file to data URL, length:', dataUrl.length);
+        
+        if (onImageReplace) {
+          console.log('Calling onImageReplace with data URL');
+          onImageReplace(dataUrl);
+        }
+        
+        // Save the image replacement persistently with data URL
+        saveImageReplacement(src, dataUrl);
+        
+        toast.success("Image replaced and saved!", {
+          description: `Replaced with "${file.name}". Click "Publish Changes" to apply your edits.`,
+          duration: 5000,
+        });
+      } catch (error) {
+        console.error('Error converting file to data URL:', error);
+        toast.error("Failed to process image", {
+          description: "There was an error processing the uploaded image."
+        });
       }
-      
-      // Save the image replacement persistently
-      saveImageReplacement(src, tempImageUrl);
-      
-      toast.success("Image replaced and saved!", {
-        description: `Replaced with "${file.name}". This change is now persistent and will be saved across page refreshes.`,
-        duration: 5000,
-      });
     }
     
     // Reset file input to allow selecting the same file again

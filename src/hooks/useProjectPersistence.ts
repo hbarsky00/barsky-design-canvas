@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useEffect } from 'react';
 
 interface ProjectData {
@@ -25,17 +24,17 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
       
-      // Clean up invalid blob URLs from imageReplacements
+      // Clean up invalid blob URLs from imageReplacements but keep data URLs
       const cleanedImageReplacements: Record<string, string> = {};
       Object.entries(data.imageReplacements || {}).forEach(([key, value]) => {
-        // Only keep replacements where both key and value are valid URLs
+        // Only keep replacements where both key and value are valid
         if (typeof key === 'string' && typeof value === 'string') {
-          // Filter out any blob URLs or invalid URLs
+          // Keep data URLs (base64 encoded images) and regular URLs, filter out blob URLs
           if (!key.startsWith('blob:') && !value.startsWith('blob:') && 
-              (value.startsWith('/') || value.startsWith('http'))) {
+              (value.startsWith('data:') || value.startsWith('/') || value.startsWith('http'))) {
             cleanedImageReplacements[key] = value;
-          } else {
-            console.log('Removing invalid URL mapping:', key, '->', value);
+          } else if (value.startsWith('blob:')) {
+            console.log('Removing blob URL mapping:', key, '->', value);
           }
         }
       });
@@ -92,9 +91,13 @@ export const useProjectPersistence = (projectId: string) => {
   }, [getProjectData, saveProjectData]);
 
   const saveImageReplacement = useCallback((originalSrc: string, newSrc: string) => {
-    // Don't save blob URL replacements or invalid URLs
-    if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:') ||
-        (!newSrc.startsWith('/') && !newSrc.startsWith('http'))) {
+    // Accept data URLs (base64 encoded images) and regular URLs, reject blob URLs
+    if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
+      console.log('Skipping blob URL replacement save:', originalSrc, '->', newSrc);
+      return;
+    }
+    
+    if (!newSrc.startsWith('data:') && !newSrc.startsWith('/') && !newSrc.startsWith('http')) {
       console.log('Skipping invalid URL replacement save:', originalSrc, '->', newSrc);
       return;
     }
@@ -108,7 +111,7 @@ export const useProjectPersistence = (projectId: string) => {
       }
     };
     saveProjectData(updatedData);
-    console.log('Saved image replacement:', originalSrc, '->', newSrc);
+    console.log('Saved image replacement:', originalSrc, '->', newSrc.substring(0, 50) + '...');
   }, [getProjectData, saveProjectData]);
 
   const saveContentBlocks = useCallback((sectionKey: string, blocks: any[]) => {
@@ -136,7 +139,7 @@ export const useProjectPersistence = (projectId: string) => {
     const finalSrc = replacementSrc || originalSrc;
     
     if (replacementSrc) {
-      console.log('Using replacement image:', originalSrc, '->', finalSrc);
+      console.log('Using replacement image:', originalSrc, '->', finalSrc.substring(0, 50) + '...');
     }
     
     return finalSrc;
