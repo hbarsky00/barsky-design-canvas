@@ -20,7 +20,34 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace }
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const copyToClipboard = async (text: string): Promise<boolean> => {
+    try {
+      // Modern clipboard API
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+      
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      return successful;
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error);
+      return false;
+    }
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       // Create a temporary URL for the uploaded file
@@ -41,24 +68,25 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace }
         console.log('No onImageReplace callback provided');
         // Fallback behavior - copy original path to clipboard if available
         if (src) {
-          try {
-            navigator.clipboard.writeText(src).then(() => {
-              toast.success("Original image path copied.", {
-                description: `Now, upload "${file.name}" to the project and ask me to replace the copied path with the new one.`,
-                duration: 10000,
-              });
-            }).catch(() => {
-              toast.error("Could not copy to clipboard.", {
-                description: `Please manually note the path: ${src}`,
-                duration: 5000,
-              });
+          const copied = await copyToClipboard(src);
+          if (copied) {
+            toast.success("Original image path copied to clipboard!", {
+              description: `Path: ${src}\nNow upload "${file.name}" to the project and ask me to replace the copied path with the new one.`,
+              duration: 10000,
             });
-          } catch (error) {
-            toast.error("Could not copy to clipboard.", {
-              description: `Please manually note the path: ${src}`,
-              duration: 5000,
+          } else {
+            // Show the path in a way the user can manually copy
+            toast.info("Please manually copy this path:", {
+              description: `${src}\nThen upload "${file.name}" to the project and ask me to replace this path with the new one.`,
+              duration: 15000,
             });
+            console.log('Image path for manual copying:', src);
           }
+        } else {
+          toast.info("Image selected for upload", {
+            description: `"${file.name}" is ready. Please upload it to the project and ask me to use it.`,
+            duration: 8000,
+          });
         }
       }
     }
