@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
@@ -27,12 +28,35 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   const { isDevMode } = useDevMode();
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   
-  // Convert string content to array format for consistent handling
+  // Convert string content to array format and include images from imageConfig
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>(() => {
+    const blocks: ContentBlock[] = [];
+    
+    // Add text content
     if (typeof content === 'string') {
-      return [{ type: 'text', value: content }];
+      blocks.push({ type: 'text', value: content });
+    } else {
+      blocks.push(...content);
     }
-    return content;
+    
+    // Add images from imageConfig if they exist
+    const sectionImages = imageConfig?.[sectionKey];
+    if (sectionImages?.beforeHeader) {
+      blocks.push({ 
+        type: 'image', 
+        src: sectionImages.beforeHeader, 
+        caption: imageCaptions[sectionImages.beforeHeader] 
+      });
+    }
+    if (sectionImages?.afterHeader) {
+      blocks.push({ 
+        type: 'image', 
+        src: sectionImages.afterHeader, 
+        caption: imageCaptions[sectionImages.afterHeader] 
+      });
+    }
+    
+    return blocks;
   });
 
   // State for before header content blocks
@@ -177,10 +201,6 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setAfterHeaderBlocks(newBlocks);
     setAfterHeaderDraggedIndex(null);
   };
-  
-  const sectionImages = imageConfig?.[sectionKey];
-  const beforeHeaderImage = sectionImages?.beforeHeader;
-  const afterHeaderImage = sectionImages?.afterHeader;
 
   return (
     <motion.section
@@ -192,39 +212,28 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     >
       {isDevMode && <AddContentButton onAdd={handleAddContent} />}
       
-      {beforeHeaderImage && (
-        <div className="glass-card p-4 layered-depth floating-element relative group">
+      {/* Content blocks before the header */}
+      {beforeHeaderBlocks.length > 0 && (
+        <div className="space-y-4 mb-6 relative group">
           {isDevMode && (
             <div className="absolute top-2 left-2 z-20">
               <AddContentButton onAdd={handleAddBeforeHeaderContent} />
             </div>
           )}
           
-          {/* Content blocks before the image */}
-          {beforeHeaderBlocks.length > 0 && (
-            <div className="space-y-4 mb-6">
-              {beforeHeaderBlocks.map((block, index) => (
-                <DraggableContentBlock
-                  key={`before-header-${block.type}-${index}`}
-                  block={block}
-                  index={index}
-                  onUpdate={handleUpdateBeforeHeaderContent}
-                  onDelete={handleDeleteBeforeHeaderContent}
-                  onDragStart={handleBeforeHeaderDragStart}
-                  onDragOver={handleDragOver}
-                  onDrop={handleBeforeHeaderDrop}
-                  isDragging={beforeHeaderDraggedIndex === index}
-                />
-              ))}
-            </div>
-          )}
-          
-          <MaximizableImage
-            src={beforeHeaderImage}
-            alt={imageCaptions[beforeHeaderImage] || `${title} overview`}
-            caption={imageCaptions[beforeHeaderImage]}
-            className="rounded-lg shadow-elevated w-full"
-          />
+          {beforeHeaderBlocks.map((block, index) => (
+            <DraggableContentBlock
+              key={`before-header-${block.type}-${index}`}
+              block={block}
+              index={index}
+              onUpdate={handleUpdateBeforeHeaderContent}
+              onDelete={handleDeleteBeforeHeaderContent}
+              onDragStart={handleBeforeHeaderDragStart}
+              onDragOver={handleDragOver}
+              onDrop={handleBeforeHeaderDrop}
+              isDragging={beforeHeaderDraggedIndex === index}
+            />
+          ))}
         </div>
       )}
 
@@ -236,42 +245,32 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         )}
       </EditableText>
 
-      {afterHeaderImage && (
-        <div className="glass-card p-4 layered-depth floating-element relative group">
+      {/* Content blocks after the header */}
+      {afterHeaderBlocks.length > 0 && (
+        <div className="space-y-4 mb-6 relative group">
           {isDevMode && (
             <div className="absolute top-2 left-2 z-20">
               <AddContentButton onAdd={handleAddAfterHeaderContent} />
             </div>
           )}
           
-          {/* Content blocks before the image */}
-          {afterHeaderBlocks.length > 0 && (
-            <div className="space-y-4 mb-6">
-              {afterHeaderBlocks.map((block, index) => (
-                <DraggableContentBlock
-                  key={`after-header-${block.type}-${index}`}
-                  block={block}
-                  index={index}
-                  onUpdate={handleUpdateAfterHeaderContent}
-                  onDelete={handleDeleteAfterHeaderContent}
-                  onDragStart={handleAfterHeaderDragStart}
-                  onDragOver={handleDragOver}
-                  onDrop={handleAfterHeaderDrop}
-                  isDragging={afterHeaderDraggedIndex === index}
-                />
-              ))}
-            </div>
-          )}
-          
-          <MaximizableImage
-            src={afterHeaderImage}
-            alt={imageCaptions[afterHeaderImage] || `${title} details`}
-            caption={imageCaptions[afterHeaderImage]}
-            className="rounded-lg shadow-elevated w-full"
-          />
+          {afterHeaderBlocks.map((block, index) => (
+            <DraggableContentBlock
+              key={`after-header-${block.type}-${index}`}
+              block={block}
+              index={index}
+              onUpdate={handleUpdateAfterHeaderContent}
+              onDelete={handleDeleteAfterHeaderContent}
+              onDragStart={handleAfterHeaderDragStart}
+              onDragOver={handleDragOver}
+              onDrop={handleAfterHeaderDrop}
+              isDragging={afterHeaderDraggedIndex === index}
+            />
+          ))}
         </div>
       )}
 
+      {/* Main content blocks with drag and drop capability */}
       <div className="space-y-4">
         {contentBlocks.map((block, index) => (
           <DraggableContentBlock

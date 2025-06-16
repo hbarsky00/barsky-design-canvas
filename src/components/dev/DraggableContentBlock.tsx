@@ -84,12 +84,14 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       case 'image':
         return (
           <div className="my-8">
-            <MaximizableImage
-              src={block.src}
-              alt={block.caption || `Content image`}
-              caption={block.caption}
-              className="w-full"
-            />
+            <div className="glass-card p-4 layered-depth floating-element">
+              <MaximizableImage
+                src={block.src}
+                alt={block.caption || `Content image`}
+                caption={block.caption}
+                className="w-full rounded-lg shadow-elevated"
+              />
+            </div>
           </div>
         );
 
@@ -151,7 +153,7 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   return (
     <motion.div
       layout
-      className={`relative group ${isDragging ? 'opacity-50' : ''}`}
+      className={`relative group ${isDragging ? 'opacity-50 scale-95' : ''} transition-all duration-200`}
       draggable={isDevMode}
       onDragStart={(e) => onDragStart(e as any, index)}
       onDragOver={onDragOver}
@@ -162,15 +164,15 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
           <Button
             variant="ghost"
             size="icon"
-            className="h-6 w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
+            className="h-6 w-6 bg-background/90 backdrop-blur-sm cursor-grab active:cursor-grabbing border border-blue-200 hover:border-blue-400"
             title="Drag to reorder"
           >
-            <GripVertical className="h-3 w-3" />
+            <GripVertical className="h-3 w-3 text-blue-600" />
           </Button>
           <Button
             variant="ghost"
             size="icon"
-            className="h-6 w-6 bg-background/80 backdrop-blur-sm text-red-500 hover:text-red-700"
+            className="h-6 w-6 bg-background/90 backdrop-blur-sm text-red-500 hover:text-red-700 border border-red-200 hover:border-red-400"
             onClick={() => onDelete(index)}
             title="Delete content"
           >
@@ -179,9 +181,14 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         </div>
       )}
 
-      <div className={isDevMode ? 'ml-8' : ''}>
+      <div className={`${isDevMode ? 'ml-8' : ''} ${isDragging ? 'pointer-events-none' : ''}`}>
         {renderContent()}
       </div>
+
+      {/* Drop zone indicator */}
+      {isDevMode && (
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-blue-100 border-2 border-dashed border-blue-300 rounded-lg pointer-events-none transition-opacity" />
+      )}
     </motion.div>
   );
 };
