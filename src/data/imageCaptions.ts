@@ -58,12 +58,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png": "Design process and user experience workflow",
   "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "Technical implementation and development approach",
   "/lovable-uploads/06c3b4e6-b260-4c9d-90d3-201371ff7381.png": "User interface design and visual hierarchy",
-  "/lovable-uploads/0937ca2e-b4b7-493a-963e-441f9fdafb2f.png": "Project results and impact metrics",
-
-  // Dev mode replacements
-  "blob:https://0fd089db-a4e5-4e17-ab5f-74878fb2d656.lovableproject.com/39d469e3-fed8-45c2-8dc9-d4881e4d6e9d": "Task completion interface with clean, accessible design for medication tracking",
-  "blob:https://0fd089db-a4e5-4e17-ab5f-74878fb2d656.lovableproject.com/3d81d9da-c425-4b04-957b-14922af3bd82": "Project showcase image demonstrating key features and functionality",
-  "blob:https://0fd089db-a4e5-4e17-ab5f-74878fb2d656.lovableproject.com/29b8404d-a281-400e-b521-4abfc19fd9ad": "Medication scheduling interface showing daily tasks and reminders for diabetic patients"
+  "/lovable-uploads/0937ca2e-b4b7-493a-963e-441f9fdafb2f.png": "Project results and impact metrics"
 };
 
 // Helper function to get caption for an image
