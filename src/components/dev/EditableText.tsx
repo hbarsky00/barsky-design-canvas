@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 
 interface EditableTextProps {
   children: (text: string) => React.ReactNode;
@@ -27,7 +28,7 @@ const EditableText: React.FC<EditableTextProps> = ({
   const [isSaving, setIsSaving] = useState(false);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
-  // Load saved text from database on mount and when dependencies change
+  // Load saved text from database on mount
   useEffect(() => {
     const loadSavedText = async () => {
       if (textKey && projectId) {
@@ -35,7 +36,7 @@ const EditableText: React.FC<EditableTextProps> = ({
           setIsLoading(true);
           const changes = await getChanges();
           const savedText = changes.textContent[textKey] || initialText;
-          console.log('🔄 EditableText loading:', textKey, 'saved:', savedText, 'initial:', initialText);
+          console.log('📖 EditableText loading for key:', textKey, 'saved text:', savedText);
           setText(savedText);
         } catch (error) {
           console.error('❌ EditableText: Error loading text:', error);
@@ -52,71 +53,45 @@ const EditableText: React.FC<EditableTextProps> = ({
     loadSavedText();
   }, [textKey, projectId, initialText, getChanges]);
 
-  // Listen for live text updates from published changes
-  useEffect(() => {
-    const handleLiveTextUpdate = (event: CustomEvent) => {
-      if (event.detail?.textKey === textKey) {
-        console.log('📝 EditableText: Received live text update for:', textKey, '->', event.detail.newText);
-        setText(event.detail.newText);
-      }
-    };
-
-    window.addEventListener('liveTextUpdate', handleLiveTextUpdate as EventListener);
-    
-    return () => {
-      window.removeEventListener('liveTextUpdate', handleLiveTextUpdate as EventListener);
-    };
-  }, [textKey]);
-
-  // Listen for project data updates to refresh text content
-  useEffect(() => {
-    const handleProjectUpdate = async () => {
-      if (textKey && projectId) {
-        try {
-          const changes = await getChanges();
-          const savedText = changes.textContent[textKey] || initialText;
-          setText(savedText);
-        } catch (error) {
-          console.error('❌ EditableText: Error reloading text:', error);
-        }
-      }
-    };
-
-    window.addEventListener('projectDataUpdated', handleProjectUpdate);
-    
-    return () => {
-      window.removeEventListener('projectDataUpdated', handleProjectUpdate);
-    };
-  }, [textKey, projectId, getChanges, initialText]);
-
   const handleClick = () => {
-    if (isDevMode && !isLoading && !isSaving) {
+    if (isDevMode && !isLoading && !isSaving && textKey) {
+      console.log('🖱️ EditableText clicked for editing:', textKey);
       setIsEditing(true);
     }
   };
 
   const handleSave = async () => {
     if (!textKey || !projectId || isSaving) {
+      console.log('⚠️ EditableText: Cannot save - missing requirements:', { textKey, projectId, isSaving });
       setIsEditing(false);
       return;
     }
 
-    console.log('💾 EditableText saving:', textKey, 'text:', text);
+    console.log('💾 EditableText: Starting save for key:', textKey, 'text:', text);
     setIsSaving(true);
     
     try {
       const success = await saveChange('text', textKey, text);
       if (success) {
         console.log('✅ EditableText: Successfully saved text to database');
-        // Dispatch event to notify other components
+        toast.success('Text saved!', { duration: 2000 });
+        
+        // Dispatch immediate update event
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { projectId, textChanged: true, immediate: true }
+          detail: { 
+            projectId, 
+            textChanged: true, 
+            immediate: true,
+            timestamp: Date.now()
+          }
         }));
       } else {
         console.error('❌ EditableText: Failed to save text to database');
+        toast.error('Failed to save text');
       }
     } catch (error) {
       console.error('❌ EditableText: Error saving text:', error);
+      toast.error('Error saving text');
     } finally {
       setIsSaving(false);
       setIsEditing(false);
@@ -128,8 +103,9 @@ const EditableText: React.FC<EditableTextProps> = ({
       e.preventDefault();
       handleSave();
     } else if (e.key === 'Escape') {
+      console.log('⏪ EditableText: Reverting changes');
       setIsEditing(false);
-      // Reset to saved value
+      // Reset to original saved value
       if (textKey && projectId) {
         getChanges().then(changes => {
           setText(changes.textContent[textKey] || initialText);
@@ -151,33 +127,41 @@ const EditableText: React.FC<EditableTextProps> = ({
 
   if (isLoading) {
     return (
-      <div className="animate-pulse">
+      <div className="animate-pulse bg-gray-200 rounded">
         {children(initialText)}
       </div>
     );
   }
 
-  if (isEditing && isDevMode) {
+  if (isEditing && isDevMode && textKey) {
     const InputComponent = multiline ? 'textarea' : 'input';
     return (
-      <InputComponent
-        ref={inputRef as any}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        onBlur={handleSave}
-        onKeyDown={handleKeyDown}
-        disabled={isSaving}
-        className={`w-full bg-white border-2 border-blue-500 p-2 rounded ${
-          multiline ? 'min-h-[100px] resize-vertical' : ''
-        } ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
-        style={{ 
-          fontSize: 'inherit', 
-          fontFamily: 'inherit', 
-          fontWeight: 'inherit',
-          color: 'inherit',
-          lineHeight: 'inherit'
-        }}
-      />
+      <div className="relative">
+        <InputComponent
+          ref={inputRef as any}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onBlur={handleSave}
+          onKeyDown={handleKeyDown}
+          disabled={isSaving}
+          className={`w-full bg-white border-2 border-blue-500 p-2 rounded focus:outline-none focus:border-blue-600 ${
+            multiline ? 'min-h-[100px] resize-vertical' : ''
+          } ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
+          style={{ 
+            fontSize: 'inherit', 
+            fontFamily: 'inherit', 
+            fontWeight: 'inherit',
+            color: 'inherit',
+            lineHeight: 'inherit'
+          }}
+          placeholder={isSaving ? 'Saving...' : 'Click to edit'}
+        />
+        {isSaving && (
+          <div className="absolute top-2 right-2 text-xs text-blue-600">
+            Saving...
+          </div>
+        )}
+      </div>
     );
   }
 
@@ -185,13 +169,18 @@ const EditableText: React.FC<EditableTextProps> = ({
     <div
       onClick={handleClick}
       className={`${
-        isDevMode 
+        isDevMode && textKey
           ? 'cursor-pointer hover:bg-blue-50 hover:outline hover:outline-2 hover:outline-blue-300 rounded p-1 -m-1 transition-all duration-200' 
           : ''
       } ${isSaving ? 'opacity-50' : ''}`}
-      title={isDevMode ? (isSaving ? 'Saving...' : 'Click to edit') : undefined}
+      title={isDevMode && textKey ? (isSaving ? 'Saving...' : 'Click to edit') : undefined}
     >
       {children(text)}
+      {isSaving && (
+        <span className="ml-2 text-xs text-blue-600">
+          Saving...
+        </span>
+      )}
     </div>
   );
 };

@@ -7,9 +7,10 @@ import { toast } from 'sonner';
 export const useDevModeSync = (projectId: string) => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [hasChangesToSync, setHasChangesToSync] = useState(false);
+  const [lastChecked, setLastChecked] = useState<number>(0);
   const { hasChanges: checkHasChanges } = useDevModeDatabase(projectId);
 
-  // Check for changes in the database
+  // More aggressive change detection
   useEffect(() => {
     if (!projectId) {
       setHasChangesToSync(false);
@@ -18,25 +19,31 @@ export const useDevModeSync = (projectId: string) => {
     
     const checkChanges = async () => {
       try {
+        console.log('🔍 useDevModeSync: Checking for changes at', new Date().toISOString());
         const result = await checkHasChanges();
         console.log('🔍 useDevModeSync: Database changes check result for', projectId, ':', result);
         setHasChangesToSync(result);
+        setLastChecked(Date.now());
       } catch (error) {
         console.error('❌ useDevModeSync: Error checking for changes:', error);
         setHasChangesToSync(false);
       }
     };
     
+    // Initial check
     checkChanges();
     
-    // Set up periodic checking
-    const interval = setInterval(checkChanges, 2000);
+    // More frequent checking
+    const interval = setInterval(checkChanges, 1000);
     
     // Listen for immediate project data updates
     const handleProjectDataUpdate = (e: CustomEvent) => {
+      console.log('🔄 useDevModeSync: Project data updated event received:', e.detail);
+      
       if (e.detail?.projectId === projectId || e.detail?.immediate) {
-        console.log('🔄 useDevModeSync: Project data updated, checking for changes immediately');
-        setTimeout(checkChanges, 100); // Small delay to ensure database is updated
+        console.log('🔄 useDevModeSync: Relevant update detected, checking changes immediately');
+        // Small delay to ensure database is updated
+        setTimeout(checkChanges, 50);
       }
     };
 
@@ -54,24 +61,24 @@ export const useDevModeSync = (projectId: string) => {
       return;
     }
 
-    console.log('🚀 useDevModeSync: Publishing project with new publishing service');
+    console.log('🚀 useDevModeSync: Starting publish process for project:', projectId);
     
     setIsSyncing(true);
     
     try {
+      // Double-check we have changes before publishing
       const hasDbChanges = await checkHasChanges();
-      console.log('🔍 useDevModeSync: Database has changes:', hasDbChanges);
+      console.log('🔍 useDevModeSync: Final changes check before publish:', hasDbChanges);
       
       if (!hasDbChanges) {
-        console.log('❌ useDevModeSync: No changes detected in database');
+        console.log('❌ useDevModeSync: No changes detected in database at publish time');
         toast.info("No changes to publish", {
           description: "No dev mode changes found to publish."
         });
         return;
       }
 
-      console.log('📤 useDevModeSync: Publishing changes using new service');
-
+      console.log('📤 useDevModeSync: Publishing changes using PublishingService');
       await PublishingService.publishProject(projectId);
       
       toast.success("Changes published successfully!", {
@@ -82,7 +89,7 @@ export const useDevModeSync = (projectId: string) => {
       // Update state to reflect no pending changes
       setHasChangesToSync(false);
       
-      // Force a page refresh after a short delay to ensure all changes are visible
+      // Force a page refresh after a short delay
       setTimeout(() => {
         console.log('🔄 Forcing page refresh to show published changes');
         window.location.reload();
@@ -102,6 +109,7 @@ export const useDevModeSync = (projectId: string) => {
   return {
     syncChangesToFiles,
     isSyncing,
-    hasChangesToSync
+    hasChangesToSync,
+    lastChecked
   };
 };
