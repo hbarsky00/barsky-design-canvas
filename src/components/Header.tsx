@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import AnimatedLogo from "./AnimatedLogo";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
-import Navigation from "./header/Navigation";
 import ProfileAvatar from "./header/ProfileAvatar";
 import ThemeToggle from "./ThemeToggle";
 import { motion } from "framer-motion";
@@ -45,16 +44,6 @@ const Header: React.FC = () => {
               </motion.div>
             )}
           </div>
-
-          {/* Desktop Navigation - show when scrolled past hero */}
-          {isScrolledPastHero && (
-            <Navigation 
-              links={navLinks}
-              activeSection={activeSection}
-              handleLinkClick={handleLinkClick}
-              isLinkActive={isLinkActive}
-            />
-          )}
 
           <div className="flex items-center space-x-2">
             {!isScrolledPastHero && <ThemeToggle />}
