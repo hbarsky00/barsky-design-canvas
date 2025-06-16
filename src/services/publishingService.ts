@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -9,8 +8,20 @@ export class PublishingService {
     try {
       console.log('🚀 Starting project publishing for:', projectId);
       
+      // Validate project ID
+      if (!projectId || typeof projectId !== 'string') {
+        console.error('❌ Invalid project ID provided:', projectId);
+        throw new Error('Invalid project ID');
+      }
+      
       // Get all dev mode changes using direct database operations
       const rawChanges = await fetchChangesFromDatabase(projectId);
+      
+      if (!rawChanges || rawChanges.length === 0) {
+        console.log('❌ No changes found in database for project:', projectId);
+        throw new Error('No changes found to publish');
+      }
+      
       const changes = processChangesData(rawChanges);
       
       console.log('📊 Publishing changes:', {
@@ -23,19 +34,30 @@ export class PublishingService {
       const publishedImageMappings: Record<string, string> = {};
       
       for (const [originalSrc, newSrc] of Object.entries(changes.imageReplacements)) {
-        if (newSrc.startsWith('data:')) {
-          // Convert data URL to blob and upload
-          const blob = await fetch(newSrc).then(r => r.blob());
-          const file = new File([blob], 'image.png', { type: blob.type });
-          
-          const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
-          if (uploadedUrl) {
-            publishedImageMappings[originalSrc] = uploadedUrl;
-            console.log('📤 Uploaded image:', originalSrc, '->', uploadedUrl);
+        try {
+          if (newSrc.startsWith('data:')) {
+            // Convert data URL to blob and upload
+            const response = await fetch(newSrc);
+            if (!response.ok) {
+              console.error('Failed to fetch image data for:', originalSrc);
+              continue;
+            }
+            
+            const blob = await response.blob();
+            const file = new File([blob], 'image.png', { type: blob.type });
+            
+            const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
+            if (uploadedUrl) {
+              publishedImageMappings[originalSrc] = uploadedUrl;
+              console.log('📤 Uploaded image:', originalSrc, '->', uploadedUrl);
+            }
+          } else {
+            // Keep existing URL
+            publishedImageMappings[originalSrc] = newSrc;
           }
-        } else {
-          // Keep existing URL
-          publishedImageMappings[originalSrc] = newSrc;
+        } catch (error) {
+          console.error('❌ Error processing image:', originalSrc, error);
+          // Continue with other images
         }
       }
 
@@ -56,26 +78,39 @@ export class PublishingService {
 
       if (publishError) {
         console.error('❌ Error storing published data:', publishError);
-        return false;
+        throw new Error(`Database error: ${publishError.message}`);
       }
 
       // Step 3: Apply changes to the live DOM immediately
       this.applyChangesToDOM(publishedImageMappings, changes.textContent, changes.contentBlocks);
 
       // Step 4: Store in localStorage as fallback
-      localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
+      try {
+        localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
+      } catch (error) {
+        console.warn('⚠️ Could not store to localStorage:', error);
+        // Continue anyway as this is just a fallback
+      }
 
       // Step 5: Clean up dev mode changes
-      await clearChangesFromDatabase(projectId);
+      const clearSuccess = await clearChangesFromDatabase(projectId);
+      if (!clearSuccess) {
+        console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
+      }
 
       // Step 6: Clean up old images
-      await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
+      try {
+        await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
+      } catch (error) {
+        console.warn('⚠️ Image cleanup failed:', error);
+        // Continue anyway as this doesn't affect the main functionality
+      }
 
       console.log('✅ Project published successfully');
       return true;
     } catch (error) {
       console.error('❌ Error publishing project:', error);
-      return false;
+      throw error; // Re-throw to let the caller handle it
     }
   }
 

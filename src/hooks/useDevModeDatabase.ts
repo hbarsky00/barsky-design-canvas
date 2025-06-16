@@ -1,5 +1,5 @@
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { DatabaseChanges, ChangeType } from './database/types';
 import { processChangesData } from './database/dataProcessor';
 import { 
@@ -12,8 +12,14 @@ import {
 export const useDevModeDatabase = (projectId: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const initializedRef = useRef(false);
 
   console.log('🎯 useDevModeDatabase: Initialized for project:', projectId);
+
+  // Ensure we only initialize once to prevent React state issues
+  if (!initializedRef.current) {
+    initializedRef.current = true;
+  }
 
   const saveChange = useCallback(async (changeType: ChangeType, changeKey: string, changeValue: any): Promise<boolean> => {
     setIsLoading(true);
@@ -67,10 +73,12 @@ export const useDevModeDatabase = (projectId: string) => {
   }, [projectId]);
 
   const hasChanges = useCallback(async (): Promise<boolean> => {
+    if (!projectId) return false;
     return await checkHasChangesInDatabase(projectId);
   }, [projectId]);
 
   const clearChanges = useCallback(async (): Promise<boolean> => {
+    if (!projectId) return false;
     return await clearChangesFromDatabase(projectId);
   }, [projectId]);
 

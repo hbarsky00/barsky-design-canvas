@@ -1,5 +1,5 @@
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from './useDevModeDatabase';
 
@@ -13,27 +13,30 @@ interface ProjectData {
 export const useProjectPersistence = (projectId: string) => {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [forceUpdate, setForceUpdate] = useState(0);
-  const [cachedData, setCachedData] = useState<ProjectData>({
+  const initializedRef = useRef(false);
+  const [cachedData, setCachedData] = useState<ProjectData>(() => ({
     textContent: {},
     imageReplacements: {},
     contentBlocks: {}
-  });
+  }));
+  
   const { saveChange, getChanges, isLoading } = useDevModeDatabase(projectId);
 
   // Load data from database on mount and when projectId changes
   useEffect(() => {
+    if (!projectId || initializedRef.current) return;
+    
     const loadData = async () => {
-      if (projectId) {
-        try {
-          const changes = await getChanges();
-          setCachedData({
-            textContent: changes.textContent,
-            imageReplacements: normalizeImageReplacements(changes.imageReplacements),
-            contentBlocks: changes.contentBlocks
-          });
-        } catch (error) {
-          console.error('useProjectPersistence: Error loading data:', error);
-        }
+      try {
+        initializedRef.current = true;
+        const changes = await getChanges();
+        setCachedData({
+          textContent: changes.textContent,
+          imageReplacements: normalizeImageReplacements(changes.imageReplacements),
+          contentBlocks: changes.contentBlocks
+        });
+      } catch (error) {
+        console.error('useProjectPersistence: Error loading data:', error);
       }
     };
 
