@@ -34,6 +34,59 @@ export const useDevModeSync = (projectId: string) => {
     return () => clearInterval(interval);
   }, [projectId, checkHasChanges]);
 
+  const cleanupOldStorage = useCallback(() => {
+    console.log('🧹 Cleaning up old localStorage data to free space');
+    
+    const keysToRemove = [];
+    const currentTime = Date.now();
+    const oneWeekAgo = currentTime - (7 * 24 * 60 * 60 * 1000); // 7 days
+    
+    // Remove old project data and overrides (except current project)
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key !== `imageOverrides_${projectId}` && key !== `textOverrides_${projectId}` && key !== `contentBlockOverrides_${projectId}`) {
+        if (
+          key.startsWith('project_') || 
+          key.startsWith('imageOverrides_') ||
+          key.startsWith('textOverrides_') ||
+          key.startsWith('contentBlockOverrides_')
+        ) {
+          keysToRemove.push(key);
+        }
+      }
+    }
+    
+    // Remove old keys
+    keysToRemove.forEach(key => {
+      try {
+        localStorage.removeItem(key);
+        console.log(`🗑️ Removed old storage key: ${key}`);
+      } catch (e) {
+        console.warn('Failed to remove key:', key);
+      }
+    });
+    
+    console.log(`🧹 Cleaned up ${keysToRemove.length} old storage items`);
+  }, [projectId]);
+
+  const compressImageData = useCallback((imageData: Record<string, string>): Record<string, string> => {
+    const compressed: Record<string, string> = {};
+    
+    Object.entries(imageData).forEach(([key, value]) => {
+      // Only store data URLs, skip blob URLs and external URLs
+      if (value && value.startsWith('data:image/')) {
+        // For very large images, we might want to skip them or compress them
+        if (value.length > 500000) { // 500KB limit
+          console.warn(`⚠️ Skipping large image (${value.length} bytes) for key: ${key}`);
+          return;
+        }
+        compressed[key] = value;
+      }
+    });
+    
+    return compressed;
+  }, []);
+
   const safeSetItem = useCallback((key: string, value: string) => {
     try {
       localStorage.setItem(key, value);
@@ -43,41 +96,38 @@ export const useDevModeSync = (projectId: string) => {
       if (error instanceof DOMException && error.name === 'QuotaExceededError') {
         console.warn(`⚠️ Storage quota exceeded for ${key}, attempting cleanup...`);
         
-        // Try to free up space by removing old data
-        const keysToRemove = [];
-        for (let i = 0; i < localStorage.length; i++) {
-          const storageKey = localStorage.key(i);
-          if (storageKey && (
-            storageKey.startsWith('project_') || 
-            storageKey.startsWith('imageOverrides_') ||
-            storageKey.startsWith('textOverrides_') ||
-            storageKey.startsWith('contentBlockOverrides_')
-          ) && storageKey !== key) {
-            keysToRemove.push(storageKey);
-          }
-        }
-        
-        keysToRemove.forEach(keyToRemove => {
-          try {
-            localStorage.removeItem(keyToRemove);
-          } catch (e) {
-            console.warn('Failed to remove key:', keyToRemove);
-          }
-        });
+        // First cleanup attempt
+        cleanupOldStorage();
         
         try {
           localStorage.setItem(key, value);
           console.log(`✅ Successfully saved ${key} to localStorage after cleanup`);
           return true;
         } catch (retryError) {
-          console.error('❌ Still failed after cleanup:', retryError);
+          console.error('❌ Still failed after cleanup, trying compression:', retryError);
+          
+          // If it's image data, try to compress it
+          if (key.includes('imageOverrides_')) {
+            try {
+              const parsedValue = JSON.parse(value);
+              const compressedData = compressImageData(parsedValue);
+              const compressedValue = JSON.stringify(compressedData, null, 2);
+              
+              localStorage.setItem(key, compressedValue);
+              console.log(`✅ Successfully saved compressed ${key} to localStorage`);
+              return true;
+            } catch (compressionError) {
+              console.error('❌ Compression failed:', compressionError);
+            }
+          }
+          
           return false;
         }
       }
       console.error('❌ Storage error:', error);
       return false;
     }
-  }, []);
+  }, [cleanupOldStorage, compressImageData]);
 
   const writeChangesToFiles = useCallback(async () => {
     console.log('📤 Publishing changes from database to localStorage overrides');
@@ -93,14 +143,17 @@ export const useDevModeSync = (projectId: string) => {
       const imageReplacements = projectData.imageReplacements || {};
       if (Object.keys(imageReplacements).length > 0) {
         totalAttempts++;
-        const imageOverrides = JSON.stringify(imageReplacements, null, 2);
-        console.log('🖼️ Publishing image overrides:', imageOverrides);
+        
+        // Compress image data before saving
+        const compressedImages = compressImageData(imageReplacements);
+        const imageOverrides = JSON.stringify(compressedImages, null, 2);
+        console.log('🖼️ Publishing compressed image overrides:', Object.keys(compressedImages).length, 'images');
         
         if (safeSetItem(`imageOverrides_${projectId}`, imageOverrides)) {
           successCount++;
           console.log('✅ Successfully published image overrides');
         } else {
-          throw new Error('Failed to publish image changes due to storage limitations');
+          throw new Error('Failed to publish image changes due to storage limitations. Try removing some old images or clearing browser data.');
         }
       }
 
@@ -145,7 +198,7 @@ export const useDevModeSync = (projectId: string) => {
         
         window.dispatchEvent(new StorageEvent('storage', {
           key: `imageOverrides_${projectId}`,
-          newValue: JSON.stringify(imageReplacements),
+          newValue: JSON.stringify(compressedImages || imageReplacements),
           url: window.location.href
         }));
         
@@ -159,7 +212,7 @@ export const useDevModeSync = (projectId: string) => {
       console.error('❌ Error in writeChangesToFiles:', error);
       throw error;
     }
-  }, [getChanges, projectId, clearChanges, safeSetItem]);
+  }, [getChanges, projectId, clearChanges, safeSetItem, compressImageData]);
 
   const syncChangesToFiles = useCallback(async () => {
     console.log('🚀 syncChangesToFiles called, checking database for changes');
