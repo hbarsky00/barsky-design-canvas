@@ -138,6 +138,7 @@ export const useDevModeSync = (projectId: string) => {
       
       let successCount = 0;
       let totalAttempts = 0;
+      let publishedImages: Record<string, string> = {};
       
       // For image replacements, store them persistently if there are any
       const imageReplacements = projectData.imageReplacements || {};
@@ -146,6 +147,7 @@ export const useDevModeSync = (projectId: string) => {
         
         // Compress image data before saving
         const compressedImages = compressImageData(imageReplacements);
+        publishedImages = compressedImages;
         const imageOverrides = JSON.stringify(compressedImages, null, 2);
         console.log('🖼️ Publishing compressed image overrides:', Object.keys(compressedImages).length, 'images');
         
@@ -198,7 +200,7 @@ export const useDevModeSync = (projectId: string) => {
         
         window.dispatchEvent(new StorageEvent('storage', {
           key: `imageOverrides_${projectId}`,
-          newValue: JSON.stringify(compressedImages || imageReplacements),
+          newValue: JSON.stringify(publishedImages),
           url: window.location.href
         }));
         
