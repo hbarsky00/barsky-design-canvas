@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
@@ -145,7 +144,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         </EditableText>
 
         <EditableText 
-          initialText="Explore the key features and interfaces that make this project stand out. Each image showcases different aspects of the user experience and functionality."
+          initialText="These key screens showcase the transformation from complex Excel workflows to an intuitive banking interface. The advanced search functionality demonstrates AI-powered predictive search capabilities, while the orderbook interface reveals the sophisticated deal management system that revolutionized how loan officers track and manage millions in transactions."
           multiline
         >
           {(text) => (
