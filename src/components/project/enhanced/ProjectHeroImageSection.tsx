@@ -5,6 +5,7 @@ import MaximizableImage from "../MaximizableImage";
 import { useDevMode } from "@/context/DevModeContext";
 import { Button } from "@/components/ui/button";
 import { Plus, X, GripVertical } from "lucide-react";
+import EditableText from "@/components/dev/EditableText";
 
 interface ProjectHeroImageSectionProps {
   projectId: string;
@@ -143,9 +144,24 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
           </div>
         )}
 
-        <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-          Project Showcase
-        </h2>
+        <EditableText initialText="Project Showcase">
+          {(text) => (
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center pr-8">
+              {text}
+            </h2>
+          )}
+        </EditableText>
+
+        <EditableText 
+          initialText="Explore the key features and interfaces that make this project stand out. Each image showcases different aspects of the user experience and functionality."
+          multiline
+        >
+          {(text) => (
+            <p className="text-gray-600 text-center mb-6 max-w-3xl mx-auto leading-relaxed pr-8">
+              {text}
+            </p>
+          )}
+        </EditableText>
         
         <div className="floating-element">
           <div className="glass-card p-4 layered-depth">
