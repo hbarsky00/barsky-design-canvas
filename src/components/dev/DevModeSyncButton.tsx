@@ -33,11 +33,11 @@ const DevModeSyncButton: React.FC = () => {
     };
   }, []);
 
-  // Also listen for any changes in localStorage that might affect our project
+  // Force refresh every few seconds to check for changes
   useEffect(() => {
     const interval = setInterval(() => {
       setForceUpdate(prev => prev + 1);
-    }, 2000); // Check every 2 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -50,13 +50,14 @@ const DevModeSyncButton: React.FC = () => {
     timestamp: new Date().toISOString()
   });
 
-  if (!isDevMode || !projectId) {
-    console.log('DevModeSyncButton: Not showing - devMode or projectId missing');
+  if (!projectId) {
+    console.log('DevModeSyncButton: Not showing - no projectId');
     return null;
   }
 
-  if (!hasChangesToSync) {
-    console.log('DevModeSyncButton: Not showing - no changes to sync');
+  // Show the button if we're in dev mode OR if there are changes to sync
+  if (!isDevMode && !hasChangesToSync) {
+    console.log('DevModeSyncButton: Not showing - not in dev mode and no changes');
     return null;
   }
 
@@ -75,7 +76,7 @@ const DevModeSyncButton: React.FC = () => {
         ) : (
           <>
             <Upload className="h-4 w-4 mr-2" />
-            Publish Changes
+            Publish Changes {hasChangesToSync ? '(*)' : ''}
           </>
         )}
       </Button>

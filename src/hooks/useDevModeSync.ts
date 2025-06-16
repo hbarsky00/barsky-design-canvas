@@ -8,10 +8,13 @@ export const useDevModeSync = (projectId: string) => {
   const { getProjectData, clearProjectData } = useProjectPersistence(projectId);
 
   const projectData = useMemo(() => {
+    if (!projectId) return { textContent: {}, imageReplacements: {}, contentBlocks: {} };
     return getProjectData();
-  }, [getProjectData]);
+  }, [getProjectData, projectId]);
 
   const hasChangesToSync = useMemo(() => {
+    if (!projectId) return false;
+    
     console.log('Checking for changes to sync:', projectData);
     
     // Check for text content changes
@@ -35,12 +38,20 @@ export const useDevModeSync = (projectId: string) => {
       return blocks && Array.isArray(blocks) && blocks.length > 0;
     });
     
-    const totalChanges = hasTextChanges || hasImageChanges || hasContentBlockChanges;
+    // Also check for published overrides that might exist
+    const publishedImages = localStorage.getItem(`imageOverrides_${projectId}`);
+    const publishedText = localStorage.getItem(`textOverrides_${projectId}`);
+    const publishedBlocks = localStorage.getItem(`contentBlockOverrides_${projectId}`);
+    
+    const hasPublishedChanges = publishedImages || publishedText || publishedBlocks;
+    
+    const totalChanges = hasTextChanges || hasImageChanges || hasContentBlockChanges || hasPublishedChanges;
     
     console.log('Changes detected:', {
       textChanges: hasTextChanges,
       imageChanges: hasImageChanges,
       contentBlockChanges: hasContentBlockChanges,
+      publishedChanges: hasPublishedChanges,
       totalChanges,
       textContentKeys: textKeys,
       imageReplacementKeys: imageKeys,
@@ -49,7 +60,7 @@ export const useDevModeSync = (projectId: string) => {
     });
     
     return totalChanges;
-  }, [projectData]);
+  }, [projectData, projectId]);
 
   const safeSetItem = useCallback((key: string, value: string) => {
     try {

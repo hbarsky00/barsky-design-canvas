@@ -1,5 +1,5 @@
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface DevModeContextType {
   isDevMode: boolean;
@@ -8,12 +8,27 @@ interface DevModeContextType {
 
 const DevModeContext = createContext<DevModeContextType | undefined>(undefined);
 
-export const DevModeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDevMode, setIsDevMode] = useState(false);
+export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isDevMode, setIsDevMode] = useState(() => {
+    // Initialize from localStorage
+    const saved = localStorage.getItem('devMode');
+    return saved === 'true';
+  });
 
   const toggleDevMode = () => {
-    setIsDevMode(prev => !prev);
+    setIsDevMode(prev => {
+      const newValue = !prev;
+      localStorage.setItem('devMode', newValue.toString());
+      console.log('Dev mode toggled to:', newValue);
+      return newValue;
+    });
   };
+
+  // Save to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('devMode', isDevMode.toString());
+    console.log('Dev mode state:', isDevMode);
+  }, [isDevMode]);
 
   return (
     <DevModeContext.Provider value={{ isDevMode, toggleDevMode }}>
@@ -25,9 +40,7 @@ export const DevModeProvider = ({ children }: { children: ReactNode }) => {
 export const useDevMode = () => {
   const context = useContext(DevModeContext);
   if (context === undefined) {
-    // If no provider is found, default to dev mode being off.
-    // This prevents crashes on pages that don't have the provider but contain components using this hook.
-    return { isDevMode: false, toggleDevMode: () => {} };
+    throw new Error('useDevMode must be used within a DevModeProvider');
   }
   return context;
 };
