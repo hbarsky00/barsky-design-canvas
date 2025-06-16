@@ -1,6 +1,6 @@
 
 import { supabase } from '@/integrations/supabase/client';
-import { ChangeType } from './types';
+import { ChangeType, DevModeChange } from './types';
 
 export const saveChangeToDatabase = async (
   projectId: string, 
@@ -47,7 +47,7 @@ export const saveChangeToDatabase = async (
   }
 };
 
-export const fetchChangesFromDatabase = async (projectId: string) => {
+export const fetchChangesFromDatabase = async (projectId: string): Promise<DevModeChange[] | null> => {
   if (!projectId) {
     console.log('⚠️ fetchChangesFromDatabase: No projectId, returning null');
     return null;
@@ -67,7 +67,19 @@ export const fetchChangesFromDatabase = async (projectId: string) => {
     }
 
     console.log('📊 fetchChangesFromDatabase: Raw data from database:', data);
-    return data;
+    
+    // Transform the data to match our DevModeChange type
+    const transformedData: DevModeChange[] = (data || []).map(item => ({
+      id: item.id,
+      project_id: item.project_id,
+      change_type: item.change_type as ChangeType, // Type assertion since we know these are valid
+      change_key: item.change_key,
+      change_value: item.change_value,
+      created_at: item.created_at,
+      updated_at: item.updated_at
+    }));
+    
+    return transformedData;
   } catch (error) {
     console.error('❌ fetchChangesFromDatabase: Error in fetchChangesFromDatabase:', error);
     return null;

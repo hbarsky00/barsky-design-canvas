@@ -317,6 +317,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
               onImageReplace={handleImageReplace}
               projectId={currentProjectId}
+              hideEditButton={true}
             />
           </div>
         </motion.div>

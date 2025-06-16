@@ -20,6 +20,7 @@ interface MaximizableImageProps {
   currentIndex?: number;
   onImageReplace?: (newSrc: string) => void;
   projectId?: string;
+  hideEditButton?: boolean; // New prop to control edit button visibility
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -32,7 +33,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   imageList,
   currentIndex,
   onImageReplace,
-  projectId
+  projectId,
+  hideEditButton = false
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
@@ -99,11 +101,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         transition={{ duration: 0.5 }}
         key={`${displayedImage}-${refreshKey}`}
       >
-        <EditImageButton 
-          src={src} 
-          onImageReplace={handleImageReplace}
-          projectId={currentProjectId}
-        />
+        {!hideEditButton && (
+          <EditImageButton 
+            src={src} 
+            onImageReplace={handleImageReplace}
+            projectId={currentProjectId}
+          />
+        )}
         
         <ImageDisplay
           displayedImage={displayedImage}

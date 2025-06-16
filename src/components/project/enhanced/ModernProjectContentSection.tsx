@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -349,6 +348,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
                     className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
                     onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
                     projectId={projectId}
+                    hideEditButton={true}
                   />
                 </div>
               );
