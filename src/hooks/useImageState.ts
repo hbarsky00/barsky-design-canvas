@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from 'react';
+
+import { useState, useEffect } from 'react';
 import { useProjectPersistence } from '@/hooks/useProjectPersistence';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 
@@ -12,22 +13,24 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const { getChanges } = useDevModeDatabase(projectId);
   const [refreshKey, setRefreshKey] = useState(0);
   const [displayedImage, setDisplayedImage] = useState(src);
-  const [devModeImage, setDevModeImage] = useState<string | null>(null);
+  const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Check for dev mode changes asynchronously and prioritize them
+  // Load image with priority: dev mode > published > original
   useEffect(() => {
-    const checkDevModeChanges = async () => {
+    const loadImage = async () => {
       setIsLoading(true);
       try {
-        console.log('🔍 Checking dev mode changes for:', src);
+        console.log('🔍 Loading image state for:', src);
+        
+        // First check dev mode changes
         const devData = await getChanges();
         const devReplacement = devData.imageReplacements[src];
         
         if (devReplacement) {
           console.log('✅ Using dev mode replacement:', src, '->', devReplacement.substring(0, 50) + '...');
-          setDevModeImage(devReplacement);
           setDisplayedImage(devReplacement);
+          setHasDevModeChanges(true);
           setIsLoading(false);
           return;
         }
@@ -39,43 +42,33 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         if (publishedReplacement) {
           console.log('📄 Using published replacement:', src, '->', publishedReplacement.substring(0, 50) + '...');
           setDisplayedImage(publishedReplacement);
+          setHasDevModeChanges(false);
         } else {
           console.log('🖼️ Using original image:', src);
           setDisplayedImage(src);
+          setHasDevModeChanges(false);
         }
-        
-        setDevModeImage(null);
       } catch (error) {
         console.error('❌ Error loading image changes:', error);
         // Fallback to published or original
         const publishedData = getProjectData();
         const finalSrc = publishedData.imageReplacements[src] || src;
         setDisplayedImage(finalSrc);
-        setDevModeImage(null);
+        setHasDevModeChanges(false);
       } finally {
         setIsLoading(false);
       }
     };
     
-    checkDevModeChanges();
+    loadImage();
   }, [src, getChanges, getProjectData, refreshKey]);
 
   // Listen for project data updates
   useEffect(() => {
     const handleProjectUpdate = (e: CustomEvent) => {
-      if (e.detail?.projectId === projectId && 
-          (e.detail?.imageReplaced || e.detail?.immediate)) {
+      if (e.detail?.projectId === projectId) {
         console.log('🔄 Project data updated, refreshing image state for:', src);
-        
-        // If this specific image was updated, use the new source immediately
-        if (e.detail?.src === src && e.detail?.newSrc) {
-          console.log('⚡ Immediate update for specific image:', src, '->', e.detail.newSrc);
-          setDisplayedImage(e.detail.newSrc);
-          setDevModeImage(e.detail.newSrc);
-        } else {
-          // Otherwise, trigger a general refresh
-          setRefreshKey(prev => prev + 1);
-        }
+        setRefreshKey(prev => prev + 1);
       }
     };
 
@@ -103,7 +96,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const updateDisplayedImage = (newSrc: string) => {
     console.log('⚡ Immediately updating displayed image to:', newSrc.substring(0, 50) + '...');
     setDisplayedImage(newSrc);
-    setDevModeImage(newSrc);
+    setHasDevModeChanges(true);
   };
 
   return {
@@ -111,7 +104,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     refreshKey,
     forceRefresh,
     updateDisplayedImage,
-    hasDevModeChanges: devModeImage !== null,
+    hasDevModeChanges,
     isLoading
   };
 };

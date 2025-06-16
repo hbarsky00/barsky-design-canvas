@@ -34,8 +34,8 @@ export const useDevModeSync = (projectId: string) => {
     return () => clearInterval(interval);
   }, [projectId, checkHasChanges]);
 
-  const applyChangesLive = useCallback(async () => {
-    console.log('🚀 useDevModeSync: Applying changes live from database');
+  const publishChangesToLive = useCallback(async () => {
+    console.log('🚀 useDevModeSync: Publishing changes to live mode');
     
     try {
       const projectData = await getChanges();
@@ -46,10 +46,25 @@ export const useDevModeSync = (projectId: string) => {
         projectData
       });
       
-      // Apply image replacements live
-      const imageReplacements = projectData.imageReplacements || {};
-      Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
-        // Find all img elements with the old src and update them
+      // Store changes in localStorage as published overrides
+      if (Object.keys(projectData.imageReplacements).length > 0) {
+        localStorage.setItem(`imageOverrides_${projectId}`, JSON.stringify(projectData.imageReplacements));
+        console.log('💾 Saved image overrides to localStorage');
+      }
+      
+      if (Object.keys(projectData.textContent).length > 0) {
+        localStorage.setItem(`textOverrides_${projectId}`, JSON.stringify(projectData.textContent));
+        console.log('💾 Saved text overrides to localStorage');
+      }
+      
+      if (Object.keys(projectData.contentBlocks).length > 0) {
+        localStorage.setItem(`contentBlockOverrides_${projectId}`, JSON.stringify(projectData.contentBlocks));
+        console.log('💾 Saved content block overrides to localStorage');
+      }
+
+      // Apply changes immediately to the current page
+      // Update images
+      Object.entries(projectData.imageReplacements).forEach(([oldSrc, newSrc]) => {
         const images = document.querySelectorAll(`img[src="${oldSrc}"]`);
         images.forEach((img) => {
           (img as HTMLImageElement).src = newSrc;
@@ -57,31 +72,29 @@ export const useDevModeSync = (projectId: string) => {
         });
       });
 
-      // Apply text content changes live
-      const textContent = projectData.textContent || {};
-      Object.entries(textContent).forEach(([textKey, newText]) => {
-        // Dispatch a custom event that EditableText components can listen to
+      // Update text content via custom events
+      Object.entries(projectData.textContent).forEach(([textKey, newText]) => {
         window.dispatchEvent(new CustomEvent('liveTextUpdate', {
           detail: { textKey, newText }
         }));
         console.log('📝 Live updated text:', textKey, '->', newText.substring(0, 50) + '...');
       });
 
-      // Trigger a complete refresh of all components
+      // Trigger a complete refresh of all components with published flag
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, liveUpdate: true, immediate: true }
+        detail: { projectId, published: true, immediate: true }
       }));
 
-      console.log('✅ useDevModeSync: Live changes applied successfully');
+      console.log('✅ useDevModeSync: Changes published successfully');
       return true;
     } catch (error) {
-      console.error('❌ useDevModeSync: Error applying live changes:', error);
+      console.error('❌ useDevModeSync: Error publishing changes:', error);
       throw error;
     }
   }, [getChanges, projectId]);
 
   const syncChangesToFiles = useCallback(async () => {
-    console.log('🚀 useDevModeSync: syncChangesToFiles called, applying changes live');
+    console.log('🚀 useDevModeSync: syncChangesToFiles called');
     
     setIsSyncing(true);
     
@@ -98,12 +111,12 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
 
-      console.log('📤 useDevModeSync: Applying changes live');
+      console.log('📤 useDevModeSync: Publishing changes');
 
-      // Apply changes live instead of using localStorage
-      await applyChangesLive();
+      // Publish changes to live mode
+      await publishChangesToLive();
       
-      // Clear the database changes since they're now "published"
+      // Clear the database changes since they're now published
       console.log('🗑️ useDevModeSync: Clearing database changes after successful publish');
       await clearChanges();
       
@@ -112,11 +125,8 @@ export const useDevModeSync = (projectId: string) => {
         duration: 3000,
       });
 
-      // Force a complete page refresh to ensure all components are updated
-      setTimeout(() => {
-        console.log('🔄 useDevModeSync: Forcing page refresh to ensure changes are visible');
-        window.location.reload();
-      }, 1000);
+      // Update state to reflect no pending changes
+      setHasChangesToSync(false);
       
     } catch (error) {
       console.error('❌ useDevModeSync: Error syncing changes:', error);
@@ -126,7 +136,7 @@ export const useDevModeSync = (projectId: string) => {
     } finally {
       setIsSyncing(false);
     }
-  }, [checkHasChanges, applyChangesLive, clearChanges, projectId]);
+  }, [checkHasChanges, publishChangesToLive, clearChanges]);
 
   return {
     syncChangesToFiles,

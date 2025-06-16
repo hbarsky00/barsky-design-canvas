@@ -42,6 +42,38 @@ const EditableText: React.FC<EditableTextProps> = ({
     }
   }, [textKey, projectId, getTextContent, initialText]);
 
+  // Listen for live text updates from published changes
+  useEffect(() => {
+    const handleLiveTextUpdate = (event: CustomEvent) => {
+      if (event.detail?.textKey === textKey) {
+        console.log('📝 EditableText: Received live text update for:', textKey, '->', event.detail.newText);
+        setText(event.detail.newText);
+      }
+    };
+
+    window.addEventListener('liveTextUpdate', handleLiveTextUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('liveTextUpdate', handleLiveTextUpdate as EventListener);
+    };
+  }, [textKey]);
+
+  // Listen for project data updates to refresh text content
+  useEffect(() => {
+    const handleProjectUpdate = () => {
+      if (textKey && projectId) {
+        const savedText = getTextContent(textKey, initialText);
+        setText(savedText);
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectUpdate);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate);
+    };
+  }, [textKey, projectId, getTextContent, initialText]);
+
   const handleClick = () => {
     if (isDevMode) {
       setIsEditing(true);
