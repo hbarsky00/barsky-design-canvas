@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
@@ -127,12 +126,17 @@ const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const { project, details, isLoading } = useProjectDetail(projectId);
   
+  console.log('ProjectDetail: projectId from params:', projectId, typeof projectId);
+  
   if (isLoading || !project || !details) {
     return <ProjectDetailLoading />;
   }
 
   // Get captions for current project
   const currentProjectCaptions = projectImageCaptions[projectId || ""] || {};
+  
+  // Ensure projectId is a string
+  const safeProjectId = projectId || "";
   
   return (
     <DevModeProvider>
@@ -142,7 +146,7 @@ const ProjectDetail: React.FC = () => {
             title={project.title}
             description={`${project.title} - ${project.tags.join(', ')}`}
             tags={project.tags}
-            projectId={projectId || ""}
+            projectId={safeProjectId}
           />
           
           <Header />
@@ -150,7 +154,7 @@ const ProjectDetail: React.FC = () => {
             <ModernProjectDetail 
               project={project}
               details={details}
-              projectId={projectId || ""}
+              projectId={safeProjectId}
               projectsData={projectsData.map(p => ({
                 id: p.id,
                 title: p.title,

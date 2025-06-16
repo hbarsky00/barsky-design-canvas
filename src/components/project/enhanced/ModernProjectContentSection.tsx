@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectImageConfig } from "@/data/types/project";
@@ -31,7 +32,8 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   const { isDevMode } = useDevMode();
   const { updateImageInProjectData, getUpdatedImagePath } = useProjectDataUpdater();
   
-  console.log('ModernProjectContentSection rendered with projectId:', projectId);
+  console.log('ModernProjectContentSection: projectId received:', projectId, typeof projectId);
+  console.log('ModernProjectContentSection: title:', title);
   
   const {
     contentBlocks,

@@ -28,6 +28,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
+  console.log('ModernProjectDetail: projectId received:', projectId, typeof projectId);
+  
   return (
     <motion.div 
       initial={{ opacity: 0 }}
