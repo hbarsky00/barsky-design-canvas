@@ -6,7 +6,6 @@ import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
-import { ImageStorageService } from '@/services/imageStorage';
 
 interface EditImageButtonProps {
   src?: string;
@@ -45,22 +44,18 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       projectId: currentProjectId 
     });
     
-    if (file && src) {
+    if (file && src && currentProjectId) {
       try {
         console.log('🔄 Starting image replacement process...');
         
-        // For dev mode, we'll still use data URLs for immediate feedback
-        // but also prepare for publishing by uploading to storage
         const reader = new FileReader();
         reader.onload = async () => {
           const dataUrl = reader.result as string;
-          console.log('✅ File converted to data URL, length:', dataUrl.length);
+          console.log('✅ File converted to data URL, saving to database for src:', src);
           
-          // Save the image replacement to dev mode database with data URL
-          console.log('💾 Attempting to save to database...');
-          
+          // Save the image replacement to dev mode database
           const success = await saveChange('image', src, dataUrl);
-          console.log('💾 Database save result:', success);
+          console.log('💾 Database save result for', src, ':', success);
           
           if (success) {
             console.log('✅ Successfully saved image replacement to database');
@@ -71,24 +66,24 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
               onImageReplace(dataUrl);
             }
             
-            // Dispatch update events
-            const updateEvent = new CustomEvent('projectDataUpdated', {
+            // Dispatch update events for all listeners
+            window.dispatchEvent(new CustomEvent('projectDataUpdated', {
               detail: { 
                 projectId: currentProjectId, 
                 imageReplaced: true, 
                 immediate: true,
                 src: src,
-                newSrc: dataUrl
+                newSrc: dataUrl,
+                timestamp: Date.now()
               }
-            });
-            window.dispatchEvent(updateEvent);
+            }));
             
             toast.success("Image replaced!", {
               description: `Replaced with "${file.name}". Click "Publish Changes" to make it permanent.`,
               duration: 5000,
             });
             
-            console.log('🎉 Image replacement process completed successfully');
+            console.log('🎉 Image replacement process completed successfully for:', src);
           } else {
             throw new Error('Failed to save image replacement to database');
           }
@@ -105,6 +100,11 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           description: "There was an error saving the image replacement."
         });
       }
+    } else {
+      console.error('❌ Missing required data for image replacement:', { file: !!file, src, currentProjectId });
+      toast.error("Cannot replace image", {
+        description: "Missing required information for image replacement."
+      });
     }
     
     // Reset file input

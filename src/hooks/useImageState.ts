@@ -15,19 +15,30 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
+  console.log('🔍 useImageState initialized for:', { src, projectId });
+  
   // Load image with priority: dev mode > published > original
   useEffect(() => {
     const loadImage = async () => {
+      if (!src || !projectId) {
+        console.log('⚠️ useImageState: Missing src or projectId, using original:', src);
+        setDisplayedImage(src);
+        setHasDevModeChanges(false);
+        return;
+      }
+
       setIsLoading(true);
       try {
-        console.log('🔍 Loading image state for:', src);
+        console.log('🔍 Loading image state for:', src, 'in project:', projectId);
         
         // First check dev mode changes
         const devData = await getChanges();
+        console.log('📦 Dev mode data for', src, ':', devData.imageReplacements[src] ? 'FOUND' : 'NOT FOUND');
+        
         const devReplacement = devData.imageReplacements[src];
         
         if (devReplacement) {
-          console.log('✅ Using dev mode replacement:', src, '->', devReplacement.substring(0, 50) + '...');
+          console.log('✅ Using dev mode replacement for', src);
           setDisplayedImage(devReplacement);
           setHasDevModeChanges(true);
           setIsLoading(false);
@@ -39,7 +50,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         const publishedReplacement = publishedData?.image_replacements?.[src];
         
         if (publishedReplacement) {
-          console.log('📄 Using published replacement:', src, '->', publishedReplacement.substring(0, 50) + '...');
+          console.log('📄 Using published replacement for', src);
           setDisplayedImage(publishedReplacement);
           setHasDevModeChanges(false);
         } else {
@@ -48,7 +59,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           setHasDevModeChanges(false);
         }
       } catch (error) {
-        console.error('❌ Error loading image changes:', error);
+        console.error('❌ Error loading image changes for', src, ':', error);
         // Fallback to original
         setDisplayedImage(src);
         setHasDevModeChanges(false);
@@ -60,11 +71,20 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     loadImage();
   }, [src, getChanges, projectId, refreshKey]);
 
-  // Listen for project data updates
+  // Listen for project data updates with more specific handling
   useEffect(() => {
     const handleProjectUpdate = (e: CustomEvent) => {
-      if (e.detail?.projectId === projectId || e.detail?.published) {
-        console.log('🔄 Project data updated, refreshing image state for:', src);
+      console.log('🔄 Project data update event received:', e.detail);
+      
+      // Check if this update is relevant to our image
+      const isRelevant = 
+        e.detail?.projectId === projectId || 
+        e.detail?.published || 
+        e.detail?.immediate ||
+        e.detail?.src === src;
+        
+      if (isRelevant) {
+        console.log('🔄 Relevant update detected for image:', src, 'refreshing...');
         setRefreshKey(prev => prev + 1);
       }
     };

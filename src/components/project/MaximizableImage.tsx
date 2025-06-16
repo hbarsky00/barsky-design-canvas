@@ -20,7 +20,7 @@ interface MaximizableImageProps {
   currentIndex?: number;
   onImageReplace?: (newSrc: string) => void;
   projectId?: string;
-  hideEditButton?: boolean; // New prop to control edit button visibility
+  hideEditButton?: boolean;
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -39,6 +39,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
+  
+  console.log('🖼️ MaximizableImage render:', { src: src.substring(0, 50), currentProjectId, hideEditButton });
   
   const { displayedImage, refreshKey, forceRefresh, updateDisplayedImage, hasDevModeChanges } = useImageState({
     src,
@@ -61,30 +63,33 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageReplace = (newSrc: string) => {
-    console.log('MaximizableImage: Image replacement requested', { 
+    console.log('🔄 MaximizableImage: Image replacement requested', { 
       oldSrc: src, 
-      newSrc, 
+      newSrc: newSrc.substring(0, 50) + '...', 
       projectId: currentProjectId 
     });
     
     // Immediately update the displayed image for instant feedback
     updateDisplayedImage(newSrc);
     
+    // Call the parent callback if provided
     if (onImageReplace) {
+      console.log('📞 Calling parent onImageReplace callback');
       onImageReplace(newSrc);
     }
     
     // Force refresh after a short delay to ensure all data is updated
     setTimeout(() => {
+      console.log('🔄 Forcing refresh after image replacement');
       forceRefresh();
     }, 100);
   };
 
   const handleImageError = () => {
-    console.error('Image failed to load:', displayedImage);
+    console.error('❌ Image failed to load:', displayedImage);
     // Try fallback to original source
     if (displayedImage !== src) {
-      console.log('Falling back to original source:', src);
+      console.log('🔄 Falling back to original source:', src);
       updateDisplayedImage(src);
     }
   };
