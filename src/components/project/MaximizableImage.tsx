@@ -72,7 +72,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       onImageReplace(newSrc);
     }
     
-    // Force refresh to ensure all data is updated
+    // Force refresh after a short delay to ensure all data is updated
     setTimeout(() => {
       forceRefresh();
     }, 100);

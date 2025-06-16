@@ -49,26 +49,23 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         const dataUrl = await convertFileToDataUrl(file);
         console.log('✅ Converted file to data URL, length:', dataUrl.length);
         
-        // Save the image replacement persistently FIRST
-        console.log('💾 Saving image replacement to persistence:', src, '->', dataUrl.substring(0, 50) + '...');
-        saveImageReplacement(src, dataUrl);
+        // Save the image replacement to dev mode database FIRST
+        console.log('💾 Saving image replacement to dev mode database:', src, '->', dataUrl.substring(0, 50) + '...');
+        await saveImageReplacement(src, dataUrl);
         
-        // Then call the callback if provided
+        // Then call the callback if provided for immediate UI update
         if (onImageReplace) {
-          console.log('📞 Calling onImageReplace callback');
+          console.log('📞 Calling onImageReplace callback for immediate UI update');
           onImageReplace(dataUrl);
         }
         
-        // Force a small delay to ensure data is saved
-        setTimeout(() => {
-          // Trigger a project data update event to refresh components
-          window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-            detail: { projectId: currentProjectId, imageReplaced: true }
-          }));
-        }, 100);
+        // Trigger a project data update event to refresh all components
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { projectId: currentProjectId, imageReplaced: true, immediate: true }
+        }));
         
-        toast.success("Image replaced and saved!", {
-          description: `Replaced with "${file.name}". Click "Publish Changes" to apply your edits.`,
+        toast.success("Image replaced!", {
+          description: `Replaced with "${file.name}". Image is now showing in dev mode. Click "Publish Changes" to make it permanent.`,
           duration: 5000,
         });
       } catch (error) {
