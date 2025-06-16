@@ -17,16 +17,24 @@ export const useDevModeDatabase = (projectId: string) => {
   const [isSaving, setIsSaving] = useState(false);
 
   const saveChange = useCallback(async (changeType: string, changeKey: string, changeValue: any) => {
+    console.log('🔵 useDevModeDatabase.saveChange called:', { 
+      projectId, 
+      changeType, 
+      changeKey, 
+      changeValueType: typeof changeValue,
+      changeValueLength: typeof changeValue === 'string' ? changeValue.length : 'N/A'
+    });
+
     if (!projectId) {
-      console.error('No project ID provided');
+      console.error('❌ No project ID provided to saveChange');
       return false;
     }
 
     try {
       setIsSaving(true);
-      console.log('💾 Saving to database:', { projectId, changeType, changeKey, changeValue });
+      console.log('💾 Attempting to save to Supabase database...');
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('dev_mode_changes')
         .upsert({
           project_id: projectId,
@@ -36,17 +44,18 @@ export const useDevModeDatabase = (projectId: string) => {
           updated_at: new Date().toISOString()
         }, {
           onConflict: 'project_id,change_type,change_key'
-        });
+        })
+        .select();
 
       if (error) {
-        console.error('❌ Database save error:', error);
+        console.error('❌ Supabase error:', error);
         toast.error('Failed to save changes', {
           description: error.message
         });
         return false;
       }
 
-      console.log('✅ Successfully saved to database');
+      console.log('✅ Successfully saved to database:', data);
       return true;
     } catch (error) {
       console.error('❌ Unexpected error saving to database:', error);
@@ -61,7 +70,10 @@ export const useDevModeDatabase = (projectId: string) => {
     imageReplacements: Record<string, string>;
     contentBlocks: Record<string, any[]>;
   }> => {
+    console.log('🔍 getChanges called for projectId:', projectId);
+
     if (!projectId) {
+      console.log('❌ No projectId provided to getChanges');
       return { textContent: {}, imageReplacements: {}, contentBlocks: {} };
     }
 
@@ -76,6 +88,8 @@ export const useDevModeDatabase = (projectId: string) => {
         return { textContent: {}, imageReplacements: {}, contentBlocks: {} };
       }
 
+      console.log('📤 Raw data from database:', data);
+
       const result = {
         textContent: {} as Record<string, string>,
         imageReplacements: {} as Record<string, string>,
@@ -83,6 +97,12 @@ export const useDevModeDatabase = (projectId: string) => {
       };
 
       data?.forEach((change: DevModeChange) => {
+        console.log('🔍 Processing change:', { 
+          type: change.change_type, 
+          key: change.change_key,
+          hasValue: !!change.change_value 
+        });
+
         if (change.change_type === 'text') {
           result.textContent[change.change_key] = change.change_value;
         } else if (change.change_type === 'image') {
@@ -92,7 +112,12 @@ export const useDevModeDatabase = (projectId: string) => {
         }
       });
 
-      console.log('📤 Loaded changes from database:', result);
+      console.log('📤 Processed changes result:', {
+        textCount: Object.keys(result.textContent).length,
+        imageCount: Object.keys(result.imageReplacements).length,
+        blockCount: Object.keys(result.contentBlocks).length
+      });
+
       return result;
     } catch (error) {
       console.error('❌ Unexpected error fetching changes:', error);
@@ -101,6 +126,8 @@ export const useDevModeDatabase = (projectId: string) => {
   }, [projectId]);
 
   const clearChanges = useCallback(async () => {
+    console.log('🗑️ clearChanges called for projectId:', projectId);
+
     if (!projectId) return false;
 
     try {
@@ -123,6 +150,8 @@ export const useDevModeDatabase = (projectId: string) => {
   }, [projectId]);
 
   const hasChanges = useCallback(async (): Promise<boolean> => {
+    console.log('🔍 hasChanges called for projectId:', projectId);
+
     if (!projectId) return false;
 
     try {
@@ -136,7 +165,9 @@ export const useDevModeDatabase = (projectId: string) => {
         return false;
       }
 
-      return (count || 0) > 0;
+      const hasAny = (count || 0) > 0;
+      console.log('🔍 hasChanges result:', { count, hasAny });
+      return hasAny;
     } catch (error) {
       console.error('❌ Unexpected error checking for changes:', error);
       return false;
