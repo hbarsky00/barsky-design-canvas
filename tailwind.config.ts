@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
+				script: ['Dancing Script', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -150,8 +150,8 @@ export default {
 						opacity: '0'
 					},
 					'100%': {
-						transform: 'translateY(0)',
-						opacity: '1'
+						opacity: '1',
+						transform: 'translateY(0)'
 					}
 				},
 				'float': {
