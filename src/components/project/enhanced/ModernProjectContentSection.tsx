@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -30,38 +29,40 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   imageCaptions = {},
   projectId
 }) => {
-  console.log('ModernProjectContentSection: projectId received:', projectId, typeof projectId);
-  console.log('ModernProjectContentSection: title:', title);
+  console.log('🎯 ModernProjectContentSection: Rendering section:', {
+    sectionKey,
+    projectId,
+    timestamp: new Date().toISOString()
+  });
   
   const { isDevMode } = useDevMode();
   const { updateImageInProjectData } = useProjectDataUpdater();
-  const { getChanges } = useDevModeDatabase(projectId);
+  const { getChanges, saveChange } = useDevModeDatabase(projectId);
   const { 
     saveImageReplacement, 
-    saveContentBlocks, 
     getProjectData 
   } = useProjectPersistence(projectId);
   
   // Get images for this section
   const sectionImages = imageConfig[sectionKey] || [];
   
-  // Load saved content blocks from database
+  // State management for content blocks
   const [contentBlocks, setContentBlocks] = React.useState<ContentBlock[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   // Load content blocks from database on mount and when projectId changes
   React.useEffect(() => {
     const loadContentBlocks = async () => {
-      console.log('🔄 Loading content blocks for section:', sectionKey);
+      console.log('🔄 ModernProjectContentSection: Loading content blocks for section:', sectionKey);
       setIsLoading(true);
       
       try {
         const changes = await getChanges();
         const savedBlocks = changes.contentBlocks[sectionKey] || [];
-        console.log('📦 Loaded content blocks for', sectionKey, ':', savedBlocks);
+        console.log('📦 ModernProjectContentSection: Loaded content blocks for', sectionKey, ':', savedBlocks);
         setContentBlocks(savedBlocks);
       } catch (error) {
-        console.error('❌ Error loading content blocks:', error);
+        console.error('❌ ModernProjectContentSection: Error loading content blocks:', error);
         setContentBlocks([]);
       } finally {
         setIsLoading(false);
@@ -79,14 +80,14 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   React.useEffect(() => {
     const handleProjectDataUpdate = async (event: any) => {
       if (event.detail?.contentBlocksChanged) {
-        console.log('ModernProjectContentSection: Content blocks changed, reloading');
+        console.log('🔄 ModernProjectContentSection: Content blocks changed, reloading');
         try {
           const changes = await getChanges();
           const savedBlocks = changes.contentBlocks[sectionKey] || [];
-          console.log('📦 Reloaded content blocks for', sectionKey, ':', savedBlocks);
+          console.log('📦 ModernProjectContentSection: Reloaded content blocks for', sectionKey, ':', savedBlocks);
           setContentBlocks(savedBlocks);
         } catch (error) {
-          console.error('❌ Error reloading content blocks:', error);
+          console.error('❌ ModernProjectContentSection: Error reloading content blocks:', error);
         }
       }
     };
@@ -99,7 +100,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   }, [projectId, sectionKey, getChanges]);
 
   const handleImageReplace = (imageSrc: string, newSrc: string) => {
-    console.log('ModernProjectContentSection: Replacing image', imageSrc, 'with', newSrc, 'for project', projectId);
+    console.log('🖼️ ModernProjectContentSection: Replacing image', imageSrc, 'with', newSrc, 'for project', projectId);
     
     // Save the replacement persistently
     saveImageReplacement(imageSrc, newSrc);
@@ -110,7 +111,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   };
 
   const createNewBlock = (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): ContentBlock => {
-    console.log('🆕 Creating new block of type:', type);
+    console.log('🆕 ModernProjectContentSection: Creating new block of type:', type);
     
     switch (type) {
       case 'text':
@@ -129,21 +130,41 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     }
   };
 
+  const saveContentBlocks = async (blocks: ContentBlock[]) => {
+    console.log('💾 ModernProjectContentSection: Saving content blocks for section:', sectionKey, blocks);
+    try {
+      const success = await saveChange('content_block', sectionKey, blocks);
+      if (success) {
+        console.log('✅ ModernProjectContentSection: Successfully saved content blocks');
+        // Dispatch event to notify other components
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { projectId, contentBlocksChanged: true }
+        }));
+      } else {
+        console.error('❌ ModernProjectContentSection: Failed to save content blocks');
+      }
+    } catch (error) {
+      console.error('❌ ModernProjectContentSection: Error saving content blocks:', error);
+    }
+  };
+
   const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
-    console.log('➕ Adding new content of type:', type);
+    console.log('➕ ModernProjectContentSection: Adding new content of type:', type);
     const newBlock = createNewBlock(type);
-    console.log('📦 New block created:', newBlock);
+    console.log('📦 ModernProjectContentSection: New block created:', newBlock);
     
     const updatedBlocks = [...contentBlocks, newBlock];
+    console.log('📋 ModernProjectContentSection: Updated blocks list:', updatedBlocks);
     setContentBlocks(updatedBlocks);
     
     // Save content blocks persistently
-    await saveContentBlocks(sectionKey, updatedBlocks);
+    await saveContentBlocks(updatedBlocks);
     
-    console.log('✅ Content blocks updated:', updatedBlocks);
+    console.log('✅ ModernProjectContentSection: Content blocks updated and saved');
   };
 
   const handleUpdateContent = async (index: number, newValue: string) => {
+    console.log('✏️ ModernProjectContentSection: Updating content at index:', index, 'with value:', newValue);
     const updatedBlocks = contentBlocks.map((block, i) => 
       i === index && (block.type === 'text' || block.type === 'header') 
         ? { ...block, value: newValue }
@@ -152,15 +173,16 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setContentBlocks(updatedBlocks);
     
     // Save content blocks persistently
-    await saveContentBlocks(sectionKey, updatedBlocks);
+    await saveContentBlocks(updatedBlocks);
   };
 
   const handleDeleteContent = async (index: number) => {
+    console.log('🗑️ ModernProjectContentSection: Deleting content at index:', index);
     const updatedBlocks = contentBlocks.filter((_, i) => i !== index);
     setContentBlocks(updatedBlocks);
     
     // Save content blocks persistently
-    await saveContentBlocks(sectionKey, updatedBlocks);
+    await saveContentBlocks(updatedBlocks);
   };
 
   const handleContentImageReplace = async (index: number, newSrc: string) => {
@@ -175,7 +197,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setContentBlocks(updatedBlocks);
     
     // Save content blocks persistently
-    await saveContentBlocks(sectionKey, updatedBlocks);
+    await saveContentBlocks(updatedBlocks);
     
     if (projectId && oldBlock && oldBlock.type === 'image' && oldBlock.src) {
       saveImageReplacement(oldBlock.src, newSrc);
@@ -211,7 +233,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setDraggedImageIndex(null);
     
     // Save reordered content blocks persistently
-    saveContentBlocks(sectionKey, newBlocks);
+    saveContentBlocks(newBlocks);
   };
 
   const handleDragEnd = () => {
@@ -281,20 +303,22 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         {/* Additional Content Blocks */}
         {contentBlocks.length > 0 && (
           <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-800">Additional Content ({contentBlocks.length} items):</h3>
             {contentBlocks.map((block, index) => (
-              <DraggableContentBlock
-                key={`${sectionKey}-${block.type}-${index}-${block.src || 'no-src'}`}
-                block={block}
-                index={index}
-                onUpdate={handleUpdateContent}
-                onDelete={handleDeleteContent}
-                onImageReplace={handleContentImageReplace}
-                onDragStart={handleDragStart}
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
-                isDragging={draggedImageIndex === index}
-                projectId={projectId}
-              />
+              <div key={`${sectionKey}-${block.type}-${index}-${block.src || 'no-src'}`} className="border-l-4 border-blue-200 pl-4">
+                <DraggableContentBlock
+                  block={block}
+                  index={index}
+                  onUpdate={handleUpdateContent}
+                  onDelete={handleDeleteContent}
+                  onImageReplace={handleContentImageReplace}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  isDragging={draggedImageIndex === index}
+                  projectId={projectId}
+                />
+              </div>
             ))}
           </div>
         )}

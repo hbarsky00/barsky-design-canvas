@@ -18,10 +18,10 @@ export const useDevModeSync = (projectId: string) => {
     const checkChanges = async () => {
       try {
         const result = await checkHasChanges();
-        console.log('🔍 Database changes check result:', result);
+        console.log('🔍 useDevModeSync: Database changes check result:', result);
         setHasChangesToSync(result);
       } catch (error) {
-        console.error('Error checking for changes:', error);
+        console.error('❌ useDevModeSync: Error checking for changes:', error);
         setHasChangesToSync(false);
       }
     };
@@ -88,6 +88,7 @@ export const useDevModeSync = (projectId: string) => {
   }, []);
 
   const safeSetItem = useCallback((key: string, value: string) => {
+    console.log(`💾 useDevModeSync: Attempting to save ${key} to localStorage (${value.length} bytes)`);
     try {
       localStorage.setItem(key, value);
       console.log(`✅ Successfully saved ${key} to localStorage`);
@@ -130,11 +131,16 @@ export const useDevModeSync = (projectId: string) => {
   }, [cleanupOldStorage, compressImageData]);
 
   const writeChangesToFiles = useCallback(async () => {
-    console.log('📤 Publishing changes from database to localStorage overrides');
+    console.log('📤 useDevModeSync: Publishing changes from database to localStorage overrides');
     
     try {
       const projectData = await getChanges();
-      console.log('📊 Retrieved changes from database:', projectData);
+      console.log('📊 useDevModeSync: Retrieved changes from database:', {
+        textKeys: Object.keys(projectData.textContent || {}),
+        imageKeys: Object.keys(projectData.imageReplacements || {}),
+        blockKeys: Object.keys(projectData.contentBlocks || {}),
+        projectData
+      });
       
       let successCount = 0;
       let totalAttempts = 0;
@@ -149,7 +155,7 @@ export const useDevModeSync = (projectId: string) => {
         const compressedImages = compressImageData(imageReplacements);
         publishedImages = compressedImages;
         const imageOverrides = JSON.stringify(compressedImages, null, 2);
-        console.log('🖼️ Publishing compressed image overrides:', Object.keys(compressedImages).length, 'images');
+        console.log('🖼️ useDevModeSync: Publishing compressed image overrides:', Object.keys(compressedImages).length, 'images');
         
         if (safeSetItem(`imageOverrides_${projectId}`, imageOverrides)) {
           successCount++;
@@ -164,7 +170,10 @@ export const useDevModeSync = (projectId: string) => {
       if (Object.keys(textContent).length > 0) {
         totalAttempts++;
         const textOverrides = JSON.stringify(textContent, null, 2);
-        console.log('📝 Publishing text overrides:', textOverrides);
+        console.log('📝 useDevModeSync: Publishing text overrides:', {
+          keys: Object.keys(textContent),
+          content: textContent
+        });
         
         if (safeSetItem(`textOverrides_${projectId}`, textOverrides)) {
           successCount++;
@@ -179,7 +188,10 @@ export const useDevModeSync = (projectId: string) => {
       if (Object.keys(contentBlocks).length > 0) {
         totalAttempts++;
         const blockOverrides = JSON.stringify(contentBlocks, null, 2);
-        console.log('📦 Publishing content block overrides:', blockOverrides);
+        console.log('📦 useDevModeSync: Publishing content block overrides:', {
+          keys: Object.keys(contentBlocks),
+          blocks: contentBlocks
+        });
         
         if (safeSetItem(`contentBlockOverrides_${projectId}`, blockOverrides)) {
           successCount++;
@@ -189,11 +201,15 @@ export const useDevModeSync = (projectId: string) => {
         }
       }
 
+      console.log(`📈 useDevModeSync: Publishing summary: ${successCount}/${totalAttempts} operations succeeded`);
+
       if (successCount === totalAttempts && totalAttempts > 0) {
         // Clear the database dev mode data since it's now "published"
+        console.log('🗑️ useDevModeSync: Clearing database changes after successful publish');
         await clearChanges();
         
         // Dispatch events to notify all components immediately
+        console.log('📡 useDevModeSync: Dispatching update events');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { projectId, published: true }
         }));
@@ -204,6 +220,7 @@ export const useDevModeSync = (projectId: string) => {
           url: window.location.href
         }));
         
+        console.log('🎉 useDevModeSync: Publishing completed successfully');
         return true;
       } else if (totalAttempts === 0) {
         throw new Error('No changes found to publish');
@@ -211,22 +228,22 @@ export const useDevModeSync = (projectId: string) => {
         throw new Error(`Only ${successCount} out of ${totalAttempts} changes could be published`);
       }
     } catch (error) {
-      console.error('❌ Error in writeChangesToFiles:', error);
+      console.error('❌ useDevModeSync: Error in writeChangesToFiles:', error);
       throw error;
     }
   }, [getChanges, projectId, clearChanges, safeSetItem, compressImageData]);
 
   const syncChangesToFiles = useCallback(async () => {
-    console.log('🚀 syncChangesToFiles called, checking database for changes');
+    console.log('🚀 useDevModeSync: syncChangesToFiles called, checking database for changes');
     
     setIsSyncing(true);
     
     try {
       const hasDbChanges = await checkHasChanges();
-      console.log('🔍 Database has changes:', hasDbChanges);
+      console.log('🔍 useDevModeSync: Database has changes:', hasDbChanges);
       
       if (!hasDbChanges) {
-        console.log('❌ No changes detected in database');
+        console.log('❌ useDevModeSync: No changes detected in database');
         toast.info("No changes to publish", {
           description: "No dev mode changes found to publish."
         });
@@ -234,7 +251,7 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
 
-      console.log('📤 Publishing changes from database to files');
+      console.log('📤 useDevModeSync: Publishing changes from database to files');
 
       // Write changes to files
       await writeChangesToFiles();
@@ -246,12 +263,12 @@ export const useDevModeSync = (projectId: string) => {
 
       // Force immediate refresh of all components
       setTimeout(() => {
-        console.log('🔄 Forcing page refresh to ensure changes are visible');
+        console.log('🔄 useDevModeSync: Forcing page refresh to ensure changes are visible');
         window.location.reload();
       }, 500);
       
     } catch (error) {
-      console.error('❌ Error syncing changes:', error);
+      console.error('❌ useDevModeSync: Error syncing changes:', error);
       toast.error("Failed to publish changes", {
         description: error instanceof Error ? error.message : "There was an error applying your changes to the project files."
       });
