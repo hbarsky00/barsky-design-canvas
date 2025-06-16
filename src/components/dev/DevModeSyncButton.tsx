@@ -8,7 +8,7 @@ import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 
 const DevModeSyncButton: React.FC = () => {
-  const { isDevMode } = useDevMode();
+  const { isDevMode, isLovableEnvironment } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
   const { syncChangesToFiles, isSyncing, hasChangesToSync: syncHasChanges } = useDevModeSync(projectId || '');
   const { hasChanges } = useDevModeDatabase(projectId || '');
@@ -17,7 +17,7 @@ const DevModeSyncButton: React.FC = () => {
   // Check for changes in database
   useEffect(() => {
     const checkChanges = async () => {
-      if (projectId) {
+      if (projectId && isLovableEnvironment) {
         try {
           const result = await hasChanges();
           console.log('🎯 DevModeSyncButton: Database changes check:', result);
@@ -31,28 +31,31 @@ const DevModeSyncButton: React.FC = () => {
     
     checkChanges();
     
-    // Check for changes periodically
-    const interval = setInterval(checkChanges, 2000);
-    
-    // Listen for project data updates
-    const handleProjectDataUpdate = () => {
-      console.log('🔄 DevModeSyncButton: Project data updated, checking for changes');
-      checkChanges();
-    };
+    // Check for changes periodically only in Lovable environment
+    if (isLovableEnvironment) {
+      const interval = setInterval(checkChanges, 2000);
+      
+      // Listen for project data updates
+      const handleProjectDataUpdate = () => {
+        console.log('🔄 DevModeSyncButton: Project data updated, checking for changes');
+        checkChanges();
+      };
 
-    window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
-    
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
-    };
-  }, [projectId, hasChanges]);
+      window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
+      
+      return () => {
+        clearInterval(interval);
+        window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
+      };
+    }
+  }, [projectId, hasChanges, isLovableEnvironment]);
 
   // Use both sync and local state for determining if there are changes
   const finalHasChanges = syncHasChanges || localHasChanges;
 
   console.log('🎯 DevModeSyncButton render:', { 
     isDevMode, 
+    isLovableEnvironment,
     finalHasChanges, 
     syncHasChanges,
     localHasChanges,
@@ -61,12 +64,12 @@ const DevModeSyncButton: React.FC = () => {
     timestamp: new Date().toISOString()
   });
 
-  if (!projectId) {
-    console.log('❌ DevModeSyncButton: Not showing - no projectId');
+  if (!projectId || !isLovableEnvironment) {
+    console.log('❌ DevModeSyncButton: Not showing - no projectId or not in Lovable environment');
     return null;
   }
 
-  // Show the button if we're in dev mode OR if there are changes to sync
+  // Show the button if we're in dev mode OR if there are changes to sync (only in Lovable environment)
   if (!isDevMode && !finalHasChanges) {
     console.log('❌ DevModeSyncButton: Not showing - not in dev mode and no changes');
     return null;

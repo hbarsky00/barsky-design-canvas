@@ -5,7 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Settings, Eye } from 'lucide-react';
 
 const DevModeToggle: React.FC = () => {
-  const { isDevMode, toggleDevMode } = useDevMode();
+  const { isDevMode, toggleDevMode, isLovableEnvironment } = useDevMode();
+
+  // Don't render anything if not in Lovable environment
+  if (!isLovableEnvironment) {
+    return null;
+  }
 
   return (
     <div className="fixed top-4 left-4 z-50">

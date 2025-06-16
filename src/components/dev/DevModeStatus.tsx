@@ -7,11 +7,12 @@ import { Edit, CheckCircle } from 'lucide-react';
 import { useDevModeSync } from '@/hooks/useDevModeSync';
 
 const DevModeStatus: React.FC = () => {
-  const { isDevMode } = useDevMode();
+  const { isDevMode, isLovableEnvironment } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
   const { hasChangesToSync } = useDevModeSync(projectId || '');
 
-  if (!isDevMode || !projectId) {
+  // Don't render anything if not in Lovable environment or dev mode is off
+  if (!isLovableEnvironment || !isDevMode || !projectId) {
     return null;
   }
 
