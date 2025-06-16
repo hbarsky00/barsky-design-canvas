@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
 import { useDevMode } from "@/context/DevModeContext";
 import { Button } from "@/components/ui/button";
-import { Plus, X, GripVertical, Edit } from "lucide-react";
+import { Plus, X, GripVertical } from "lucide-react";
 import EditableText from "@/components/dev/EditableText";
 
 interface ProjectHeroImageSectionProps {
@@ -20,24 +19,29 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   // Define which projects have hero images and their URLs
-  const projectHeroImages: Record<string, { url: string; title: string; description?: string }[]> = {
+  const projectHeroImages: Record<string, { url: string; title: string }[]> = {
     "medication-app": [
       {
         url: "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
-        title: "Medication App Task Completion Interface",
-        description: "Streamlined task management for medication tracking"
+        title: "Medication App Task Completion Interface"
       }
     ],
     "investor-loan-app": [
       {
         url: "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png",
-        title: "Advanced Search Functionality",
-        description: "AI-powered predictive search with real-time filtering and categorized results"
+        title: "Advanced Search Functionality"
       },
       {
         url: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
-        title: "Advanced Loans Orderbook Interface",
-        description: "Sophisticated deal management system for tracking millions in loan transactions"
+        title: "Advanced Loans Orderbook Interface"
+      },
+      {
+        url: "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png",
+        title: "Deal Central Dashboard"
+      },
+      {
+        url: "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
+        title: "Collaborative Deal Management"
       }
     ]
   };
@@ -53,8 +57,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
   const handleAddImage = () => {
     const newImage = {
       url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-      title: "New showcase image",
-      description: "Description for the new showcase feature"
+      title: "New showcase image"
     };
     setHeroImages(prev => [...prev, newImage]);
   };
@@ -67,18 +70,6 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
     console.log('ProjectHeroImageSection: Replacing image at index', index, 'with', newSrc);
     setHeroImages(prev => prev.map((img, i) => 
       i === index ? { ...img, url: newSrc } : img
-    ));
-  };
-
-  const handleUpdateImageTitle = (index: number, newTitle: string) => {
-    setHeroImages(prev => prev.map((img, i) => 
-      i === index ? { ...img, title: newTitle } : img
-    ));
-  };
-
-  const handleUpdateImageDescription = (index: number, newDescription: string) => {
-    setHeroImages(prev => prev.map((img, i) => 
-      i === index ? { ...img, description: newDescription } : img
     ));
   };
 
@@ -118,14 +109,13 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
     setDraggedIndex(null);
   };
 
-  // Create empty slots to fill up to 2 images in dev mode
+  // Create empty slots to fill up to 4 images in dev mode
   const displayImages = [...heroImages];
   if (isDevMode) {
-    while (displayImages.length < 2) {
+    while (displayImages.length < 4) {
       displayImages.push({
         url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-        title: "Empty slot - click to add image",
-        description: "Add description for this showcase feature"
+        title: "Empty slot - click to add image"
       });
     }
   }
@@ -139,7 +129,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
       className="space-y-8"
     >
       <div className="glass-card-elevated p-8 layered-depth relative group">
-        {isDevMode && heroImages.length < 2 && (
+        {isDevMode && heroImages.length < 4 && (
           <div className="absolute top-4 right-4 z-20">
             <Button
               onClick={handleAddImage}
@@ -162,7 +152,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         </EditableText>
 
         <EditableText 
-          initialText="These key screens showcase the transformation from complex Excel workflows to an intuitive banking interface. The advanced search functionality demonstrates AI-powered predictive search capabilities, while the orderbook interface reveals the sophisticated deal management system that revolutionized how loan officers track and manage millions in transactions."
+          initialText="Explore the key features and interfaces that make this project stand out. Each image showcases different aspects of the user experience and functionality."
           multiline
         >
           {(text) => (
@@ -174,8 +164,8 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         
         <div className="floating-element">
           <div className="glass-card p-4 layered-depth">
-            <div className="grid grid-cols-2 gap-6">
-              {displayImages.slice(0, 2).map((imageData, index) => (
+            <div className="grid grid-cols-2 gap-4">
+              {displayImages.slice(0, 4).map((imageData, index) => (
                 <div 
                   key={`${imageData.url}-${index}`} 
                   className={`relative group/image ${
@@ -209,63 +199,20 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
                     </div>
                   )}
                   
-                  <div className="bg-white rounded-xl shadow-elevated-lg overflow-hidden border border-gray-100">
-                    <MaximizableImage
-                      src={imageData.url}
-                      alt={imageData.title}
-                      caption={imageCaptions[imageData.url] || imageData.title}
-                      imageList={heroImages.map(img => img.url)}
-                      currentIndex={index}
-                      priority={index === 0}
-                      className={`w-full overflow-hidden ${
-                        index >= heroImages.length && isDevMode 
-                          ? 'border-2 border-dashed border-gray-300' 
-                          : ''
-                      }`}
-                      onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
-                    />
-                    
-                    {/* Card content section */}
-                    <div className="p-4 space-y-3">
-                      <EditableText 
-                        initialText={imageData.title}
-                        onSave={(newTitle) => handleUpdateImageTitle(index, newTitle)}
-                      >
-                        {(text) => (
-                          <h3 className="text-lg font-semibold text-gray-900 pr-8">
-                            {text}
-                          </h3>
-                        )}
-                      </EditableText>
-                      
-                      {imageData.description && (
-                        <EditableText 
-                          initialText={imageData.description}
-                          multiline
-                          onSave={(newDescription) => handleUpdateImageDescription(index, newDescription)}
-                        >
-                          {(text) => (
-                            <p className="text-sm text-gray-600 leading-relaxed pr-8">
-                              {text}
-                            </p>
-                          )}
-                        </EditableText>
-                      )}
-                      
-                      {/* Add description if it doesn't exist in dev mode */}
-                      {!imageData.description && isDevMode && index < heroImages.length && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleUpdateImageDescription(index, "Add description for this feature")}
-                          className="text-xs"
-                        >
-                          <Edit className="h-3 w-3 mr-1" />
-                          Add Description
-                        </Button>
-                      )}
-                    </div>
-                  </div>
+                  <MaximizableImage
+                    src={imageData.url}
+                    alt={imageData.title}
+                    caption={imageCaptions[imageData.url] || imageData.title}
+                    imageList={heroImages.map(img => img.url)}
+                    currentIndex={index}
+                    priority={index === 0}
+                    className={`rounded-xl shadow-elevated-lg w-full overflow-hidden ${
+                      index >= heroImages.length && isDevMode 
+                        ? 'border-2 border-dashed border-gray-300' 
+                        : ''
+                    }`}
+                    onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
+                  />
                 </div>
               ))}
             </div>
