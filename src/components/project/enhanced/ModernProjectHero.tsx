@@ -7,6 +7,7 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "../MaximizableImage";
+import EditableText from "@/components/dev/EditableText";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -60,14 +61,22 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           </div>
           
           {/* Project Title */}
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            {project.title}
-          </h1>
+          <EditableText initialText={project.title}>
+            {(text) => (
+              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight pr-8">
+                {text}
+              </h1>
+            )}
+          </EditableText>
           
           {/* Project Description */}
-          <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            {project.description}
-          </p>
+          <EditableText initialText={project.description} multiline>
+            {(text) => (
+              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto pr-8">
+                {text}
+              </p>
+            )}
+          </EditableText>
 
           {/* Tags */}
           <div className="flex flex-wrap justify-center gap-2">
