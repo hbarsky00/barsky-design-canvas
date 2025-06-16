@@ -170,14 +170,19 @@ export const useDevModeSync = (projectId: string) => {
       await writeChangesToFiles();
       
       toast.success("Changes published successfully!", {
-        description: "Your changes have been saved. Use the main Publish button (top right) to deploy your site.",
-        duration: 5000,
+        description: "Your changes have been applied. The page will refresh to show your published changes.",
+        duration: 3000,
       });
 
-      // Force a page reload to apply the changes
+      // Trigger a re-render by dispatching an event
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { projectId, published: true }
+      }));
+
+      // Delay the reload slightly to allow toast to show
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 1500);
       
     } catch (error) {
       console.error('Error syncing changes:', error);
@@ -187,7 +192,7 @@ export const useDevModeSync = (projectId: string) => {
     } finally {
       setIsSyncing(false);
     }
-  }, [projectData, hasChangesToSync, writeChangesToFiles]);
+  }, [projectData, hasChangesToSync, writeChangesToFiles, projectId]);
 
   return {
     syncChangesToFiles,

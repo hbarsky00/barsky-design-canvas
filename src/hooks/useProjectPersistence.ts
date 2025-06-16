@@ -76,25 +76,63 @@ export const useProjectPersistence = (projectId: string) => {
     return normalized;
   }, []);
 
+  const loadPublishedOverrides = useCallback((): ProjectData => {
+    const publishedImages = localStorage.getItem(`imageOverrides_${projectId}`);
+    const publishedText = localStorage.getItem(`textOverrides_${projectId}`);
+    const publishedBlocks = localStorage.getItem(`contentBlockOverrides_${projectId}`);
+
+    const overrides: ProjectData = {
+      textContent: {},
+      imageReplacements: {},
+      contentBlocks: {},
+    };
+
+    try {
+      if (publishedImages) {
+        overrides.imageReplacements = JSON.parse(publishedImages);
+        console.log('Loaded published image overrides:', overrides.imageReplacements);
+      }
+      if (publishedText) {
+        overrides.textContent = JSON.parse(publishedText);
+        console.log('Loaded published text overrides:', overrides.textContent);
+      }
+      if (publishedBlocks) {
+        overrides.contentBlocks = JSON.parse(publishedBlocks);
+        console.log('Loaded published content block overrides:', overrides.contentBlocks);
+      }
+    } catch (error) {
+      console.error('Error loading published overrides:', error);
+    }
+
+    return overrides;
+  }, [projectId]);
+
   const getProjectData = useCallback((): ProjectData => {
     try {
+      // First load published overrides
+      const publishedOverrides = loadPublishedOverrides();
+      
+      // Then load dev mode changes
       const stored = localStorage.getItem(getStorageKey('data'));
-      const data = stored ? JSON.parse(stored) : {
+      const devData = stored ? JSON.parse(stored) : {
         textContent: {},
         imageReplacements: {},
         contentBlocks: {},
       };
       
-      // Normalize the image replacements to handle both formats
-      const cleanedImageReplacements = normalizeImageReplacements(data.imageReplacements);
-      
-      const cleanedData = {
-        ...data,
-        imageReplacements: cleanedImageReplacements
+      // Merge published overrides with dev data (published takes precedence)
+      const mergedData = {
+        textContent: { ...devData.textContent, ...publishedOverrides.textContent },
+        imageReplacements: { 
+          ...normalizeImageReplacements(devData.imageReplacements), 
+          ...normalizeImageReplacements(publishedOverrides.imageReplacements) 
+        },
+        contentBlocks: { ...devData.contentBlocks, ...publishedOverrides.contentBlocks },
+        lastSaved: devData.lastSaved
       };
       
-      console.log('Loaded project data for', projectId, cleanedData);
-      return cleanedData;
+      console.log('Loaded merged project data for', projectId, mergedData);
+      return mergedData;
     } catch (error) {
       console.error('Failed to load project data:', error);
       return {
@@ -103,7 +141,7 @@ export const useProjectPersistence = (projectId: string) => {
         contentBlocks: {},
       };
     }
-  }, [projectId, getStorageKey, normalizeImageReplacements]);
+  }, [projectId, getStorageKey, normalizeImageReplacements, loadPublishedOverrides]);
 
   const saveProjectData = useCallback((data: ProjectData) => {
     try {
