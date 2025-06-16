@@ -11,12 +11,20 @@ const DevModeSyncButton: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const { syncChangesToFiles, isSyncing, hasChangesToSync } = useDevModeSync(projectId || '');
 
-  if (!isDevMode || !hasChangesToSync || !projectId) {
+  console.log('DevModeSyncButton render:', { isDevMode, hasChangesToSync, projectId });
+
+  if (!isDevMode || !projectId) {
+    console.log('DevModeSyncButton: Not showing - devMode or projectId missing');
+    return null;
+  }
+
+  if (!hasChangesToSync) {
+    console.log('DevModeSyncButton: Not showing - no changes to sync');
     return null;
   }
 
   return (
-    <div className="fixed bottom-4 left-4 z-[9999]">
+    <div className="fixed bottom-4 left-4 z-[99999]">
       <Button
         onClick={syncChangesToFiles}
         disabled={isSyncing}

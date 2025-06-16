@@ -4,21 +4,16 @@ import { useDevMode } from '@/context/DevModeContext';
 import { useParams } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Edit, CheckCircle } from 'lucide-react';
-import { useProjectPersistence } from '@/hooks/useProjectPersistence';
+import { useDevModeSync } from '@/hooks/useDevModeSync';
 
 const DevModeStatus: React.FC = () => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
-  const { getProjectData } = useProjectPersistence(projectId || '');
+  const { hasChangesToSync } = useDevModeSync(projectId || '');
 
   if (!isDevMode || !projectId) {
     return null;
   }
-
-  const projectData = getProjectData();
-  const hasChangesToSync = Object.keys(projectData.textContent).length > 0 || 
-                          Object.keys(projectData.imageReplacements).length > 0 || 
-                          Object.keys(projectData.contentBlocks).length > 0;
 
   return (
     <div className="fixed top-4 right-4 z-50">
