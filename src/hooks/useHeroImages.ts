@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 
 interface HeroImage {
-  url: string;
-  title: string;
+  id: string;
+  src: string;
+  position: number;
 }
 
 interface UseHeroImagesProps {
@@ -15,7 +16,7 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   const { updateImageInProjectData, getUpdatedImagePath } = useProjectDataUpdater();
 
   // Define which projects have hero images and their URLs
-  const projectHeroImages: Record<string, HeroImage[]> = {
+  const projectHeroImagesData: Record<string, { url: string; title: string }[]> = {
     "medication-app": [
       {
         url: "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
@@ -34,7 +35,13 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
     ]
   };
 
-  const initialImages = projectHeroImages[projectId] || [];
+  const initialImagesData = projectHeroImagesData[projectId] || [];
+  const initialImages: HeroImage[] = initialImagesData.map((img, index) => ({
+    id: `hero-${index}`,
+    src: img.url,
+    position: index
+  }));
+
   const [heroImages, setHeroImages] = useState<HeroImage[]>(initialImages);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
@@ -42,8 +49,8 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   useEffect(() => {
     const updateImagesWithLatestPaths = () => {
       return heroImages.map(img => {
-        const updatedUrl = getUpdatedImagePath(projectId, img.url);
-        return updatedUrl !== img.url ? { ...img, url: updatedUrl } : img;
+        const updatedSrc = getUpdatedImagePath(projectId, img.src);
+        return updatedSrc !== img.src ? { ...img, src: updatedSrc } : img;
       });
     };
 
@@ -52,52 +59,33 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
 
   const handleAddImage = () => {
     const newImage: HeroImage = {
-      url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-      title: "New showcase image"
+      id: `hero-${heroImages.length}`,
+      src: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+      position: heroImages.length
     };
     setHeroImages(prev => [...prev, newImage]);
   };
 
-  const handleRemoveImage = (index: number) => {
-    setHeroImages(prev => prev.filter((_, i) => i !== index));
+  const handleRemoveImage = (id: string) => {
+    setHeroImages(prev => prev.filter(img => img.id !== id));
   };
 
-  const handleImageReplace = (index: number, newSrc: string) => {
-    console.log('useHeroImages: Replacing image at index', index, 'with', newSrc, 'for project', projectId);
+  const handleImageReplace = (id: string, newSrc: string) => {
+    console.log('useHeroImages: Replacing image with id', id, 'with', newSrc, 'for project', projectId);
     
-    // Update the hero images state immediately for UI feedback
-    if (index >= heroImages.length) {
-      const newImages = [...heroImages];
-      // Fill gaps with placeholder images if needed
-      while (newImages.length <= index) {
-        newImages.push({
-          url: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-          title: "New showcase image"
-        });
-      }
-      // Replace the image at the specific index
-      newImages[index] = {
-        url: newSrc,
-        title: `Showcase image ${index + 1}`
-      };
-      setHeroImages(newImages);
-    } else {
-      // Normal replacement for existing images
-      const oldImage = heroImages[index];
-      setHeroImages(prev => prev.map((img, i) => 
-        i === index ? { ...img, url: newSrc } : img
-      ));
-      
-      // Also update the project data
-      if (oldImage) {
-        updateImageInProjectData(projectId, oldImage.url, newSrc);
-      }
+    const oldImage = heroImages.find(img => img.id === id);
+    setHeroImages(prev => prev.map(img => 
+      img.id === id ? { ...img, src: newSrc } : img
+    ));
+    
+    // Also update the project data
+    if (oldImage) {
+      updateImageInProjectData(projectId, oldImage.src, newSrc);
     }
   };
 
-  const handleDragStart = (e: React.DragEvent, index: number) => {
+  const handleDragStart = (index: number) => {
     setDraggedIndex(index);
-    e.dataTransfer.effectAllowed = 'move';
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -105,9 +93,7 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
     e.dataTransfer.dropEffect = 'move';
   };
 
-  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
-    e.preventDefault();
-    
+  const handleDrop = (dropIndex: number) => {
     if (draggedIndex === null || draggedIndex === dropIndex) {
       setDraggedIndex(null);
       return;
@@ -123,7 +109,13 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
     const insertIndex = draggedIndex < dropIndex ? dropIndex - 1 : dropIndex;
     newImages.splice(insertIndex, 0, draggedImage);
     
-    setHeroImages(newImages);
+    // Update positions
+    const updatedImages = newImages.map((img, index) => ({
+      ...img,
+      position: index
+    }));
+    
+    setHeroImages(updatedImages);
     setDraggedIndex(null);
   };
 

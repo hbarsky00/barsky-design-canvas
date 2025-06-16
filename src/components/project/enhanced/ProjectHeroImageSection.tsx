@@ -44,11 +44,11 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="space-y-6 sm:space-y-8"
+      className="space-y-4 sm:space-y-6"
     >
-      <div className="glass-card-elevated p-4 sm:p-6 lg:p-8 layered-depth relative group">
+      <div className="glass-card-elevated p-3 sm:p-6 lg:p-8 layered-depth relative group">
         {isDevMode && heroImages.length < 2 && (
-          <div className="absolute top-4 right-4 z-20">
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
             <Button
               onClick={handleAddImage}
               variant="outline"
@@ -63,7 +63,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
 
         <EditableText initialText="Project Showcase">
           {(text) => (
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 text-center px-2 sm:pr-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 text-center px-2 pr-8 sm:pr-12">
               {text}
             </h2>
           )}
@@ -74,7 +74,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
           multiline
         >
           {(text) => (
-            <p className="text-sm sm:text-base text-gray-600 text-center mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed px-2 sm:pr-8">
+            <p className="text-sm sm:text-base text-gray-600 text-center mb-3 sm:mb-4 lg:mb-6 max-w-3xl mx-auto leading-relaxed px-2 pr-8 sm:pr-12">
               {text}
             </p>
           )}

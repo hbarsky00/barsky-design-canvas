@@ -6,29 +6,29 @@ import MaximizableImage from "../MaximizableImage";
 import { useDevMode } from "@/context/DevModeContext";
 
 interface HeroImageSlotProps {
-  imageData: { url: string; title: string };
-  index: number;
-  isEmptySlot: boolean;
-  isDragging: boolean;
-  imageCaptions: Record<string, string>;
-  heroImages: { url: string; title: string }[];
+  image: {
+    id: string;
+    src: string;
+    position: number;
+  };
+  caption?: string;
   projectId: string;
-  onImageReplace: (index: number, newSrc: string) => void;
-  onRemoveImage: (index: number) => void;
-  onDragStart: (e: React.DragEvent, index: number) => void;
+  index: number;
+  isDragged: boolean;
+  onImageReplace: (id: string, newSrc: string) => void;
+  onRemoveImage: (id: string) => void;
+  onDragStart: (index: number) => void;
   onDragOver: (e: React.DragEvent) => void;
-  onDrop: (e: React.DragEvent, index: number) => void;
+  onDrop: (index: number) => void;
   onDragEnd: () => void;
 }
 
 const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
-  imageData,
-  index,
-  isEmptySlot,
-  isDragging,
-  imageCaptions,
-  heroImages,
+  image,
+  caption,
   projectId,
+  index,
+  isDragged,
   onImageReplace,
   onRemoveImage,
   onDragStart,
@@ -41,15 +41,15 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
   return (
     <div 
       className={`relative group/image ${
-        isDragging ? 'opacity-50' : ''
-      } ${isEmptySlot && isDevMode ? 'opacity-60' : ''}`}
-      draggable={isDevMode && !isEmptySlot}
-      onDragStart={(e) => onDragStart(e, index)}
+        isDragged ? 'opacity-50' : ''
+      }`}
+      draggable={isDevMode}
+      onDragStart={() => onDragStart(index)}
       onDragOver={onDragOver}
-      onDrop={(e) => onDrop(e, index)}
+      onDrop={() => onDrop(index)}
       onDragEnd={onDragEnd}
     >
-      {isDevMode && !isEmptySlot && (
+      {isDevMode && (
         <div className="absolute top-2 right-2 z-30 flex gap-1">
           <Button
             variant="ghost"
@@ -60,7 +60,7 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
             <GripVertical className="h-3 w-3" />
           </Button>
           <Button
-            onClick={() => onRemoveImage(index)}
+            onClick={() => onRemoveImage(image.id)}
             variant="destructive"
             size="icon"
             className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity"
@@ -72,18 +72,14 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
       )}
       
       <MaximizableImage
-        src={imageData.url}
-        alt={imageData.title}
-        caption={imageCaptions[imageData.url] || imageData.title}
-        imageList={heroImages.map(img => img.url)}
-        currentIndex={index}
+        src={image.src}
+        alt={caption || `Showcase image ${index + 1}`}
+        caption={caption}
+        imageList={[image.src]}
+        currentIndex={0}
         priority={index === 0}
-        className={`rounded-xl shadow-elevated-lg w-full overflow-hidden ${
-          isEmptySlot && isDevMode 
-            ? 'border-2 border-dashed border-gray-300' 
-            : ''
-        }`}
-        onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
+        className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+        onImageReplace={(newSrc) => onImageReplace(image.id, newSrc)}
         projectId={projectId}
       />
     </div>

@@ -45,7 +45,7 @@ const HeroImageGrid: React.FC<HeroImageGridProps> = ({
 
   if (heroImages.length === 1) {
     return (
-      <div className="w-full max-w-4xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto px-2 sm:px-0">
         <HeroImageSlot
           image={heroImages[0]}
           caption={imageCaptions[heroImages[0].src]}
@@ -64,9 +64,9 @@ const HeroImageGrid: React.FC<HeroImageGridProps> = ({
   }
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto px-2 sm:px-0">
       {/* Mobile: Stack images vertically with full width */}
-      <div className="grid grid-cols-1 gap-6 md:hidden">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 md:hidden">
         {heroImages.map((image, index) => (
           <motion.div
             key={image.id}
@@ -94,7 +94,7 @@ const HeroImageGrid: React.FC<HeroImageGridProps> = ({
       </div>
 
       {/* Desktop: Side by side layout */}
-      <div className="hidden md:grid md:grid-cols-2 gap-8">
+      <div className="hidden md:grid md:grid-cols-2 gap-6 lg:gap-8">
         {heroImages.map((image, index) => (
           <motion.div
             key={image.id}
