@@ -41,18 +41,31 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   
   // Force re-renders when published data changes
   const [refreshKey, setRefreshKey] = React.useState(0);
+  const [displayedImage, setDisplayedImage] = React.useState(src);
   
+  // Get the actual image source with replacements
   const actualImageSrc = React.useMemo(() => {
     const data = getProjectData();
     const replacedSrc = data.imageReplacements[src] || src;
-    console.log('MaximizableImage: Loading image', { 
+    console.log('MaximizableImage: Computing image source', { 
       originalSrc: src, 
       replacedSrc, 
       hasReplacement: replacedSrc !== src,
-      refreshKey
+      refreshKey,
+      projectId: currentProjectId
     });
     return replacedSrc;
-  }, [src, getProjectData, refreshKey]);
+  }, [src, getProjectData, refreshKey, currentProjectId]);
+  
+  // Update displayed image when actual source changes
+  React.useEffect(() => {
+    console.log('MaximizableImage: Updating displayed image', { 
+      actualImageSrc, 
+      displayedImage,
+      changed: actualImageSrc !== displayedImage 
+    });
+    setDisplayedImage(actualImageSrc);
+  }, [actualImageSrc]);
   
   // Listen for all types of project data updates
   React.useEffect(() => {
@@ -91,21 +104,30 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     const imageTitle = caption || alt || "Image";
 
     if (imageList && currentIndex !== undefined) {
-      maximizeImage(actualImageSrc, imageTitle, imageList, currentIndex);
+      maximizeImage(displayedImage, imageTitle, imageList, currentIndex);
     } else {
-      maximizeImage(actualImageSrc, imageTitle);
+      maximizeImage(displayedImage, imageTitle);
     }
   };
 
   const handleImageReplace = (newSrc: string) => {
-    console.log('MaximizableImage: Image replacement requested', { oldSrc: src, newSrc, projectId: currentProjectId });
+    console.log('MaximizableImage: Image replacement requested', { 
+      oldSrc: src, 
+      newSrc, 
+      projectId: currentProjectId 
+    });
+    
+    // Immediately update the displayed image for instant feedback
+    setDisplayedImage(newSrc);
     
     if (onImageReplace) {
       onImageReplace(newSrc);
     }
     
-    // Force immediate refresh
-    setRefreshKey(prev => prev + 1);
+    // Force refresh to ensure all data is updated
+    setTimeout(() => {
+      setRefreshKey(prev => prev + 1);
+    }, 100);
   };
 
   const imageAltText = caption || alt;
@@ -118,7 +140,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        key={`${actualImageSrc}-${refreshKey}`}
+        key={`${displayedImage}-${refreshKey}`}
       >
         <EditImageButton 
           src={src} 
@@ -129,16 +151,20 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         {aspectRatio ? (
           <AspectRatio ratio={aspectRatio} className="bg-gray-100">
             <img 
-              src={actualImageSrc} 
+              src={displayedImage} 
               alt={imageAltText} 
               className="object-contain w-full h-full cursor-pointer transition-all duration-300 group-hover:scale-105 group-hover:brightness-95" 
               loading={priority ? "eager" : "lazy"}
               onClick={handleImageClick}
               onError={(e) => {
-                console.error('Image failed to load:', actualImageSrc);
-                e.currentTarget.src = src;
+                console.error('Image failed to load:', displayedImage);
+                // Try fallback to original source
+                if (displayedImage !== src) {
+                  console.log('Falling back to original source:', src);
+                  setDisplayedImage(src);
+                }
               }}
-              key={`img-${actualImageSrc}-${refreshKey}`}
+              key={`img-${displayedImage}-${refreshKey}`}
             />
             <button 
               onClick={handleImageClick}
@@ -153,16 +179,20 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         ) : (
           <div className="bg-gray-100 flex items-center justify-center min-h-[200px] p-4">
             <img 
-              src={actualImageSrc} 
+              src={displayedImage} 
               alt={imageAltText} 
               loading={priority ? "eager" : "lazy"}
               onClick={handleImageClick}
               className="max-w-full max-h-full cursor-pointer transition-all duration-300 group-hover:scale-105 object-cover"
               onError={(e) => {
-                console.error('Image failed to load:', actualImageSrc);
-                e.currentTarget.src = src;
+                console.error('Image failed to load:', displayedImage);
+                // Try fallback to original source
+                if (displayedImage !== src) {
+                  console.log('Falling back to original source:', src);
+                  setDisplayedImage(src);
+                }
               }}
-              key={`img-${actualImageSrc}-${refreshKey}`}
+              key={`img-${displayedImage}-${refreshKey}`}
             />
             <button 
               onClick={handleImageClick}
