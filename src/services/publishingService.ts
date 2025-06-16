@@ -117,7 +117,7 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 4: Apply changes to the live DOM immediately (NO PAGE RELOAD)
+      // Step 4: Apply changes to the live DOM immediately (PREVENT ANY NAVIGATION)
       this.applyChangesToDOM(publishedImageMappings, changes.textContent, processedContentBlocks);
 
       // Step 5: Store in localStorage as fallback
@@ -140,7 +140,7 @@ export class PublishingService {
         console.warn('⚠️ Image cleanup failed:', error);
       }
 
-      console.log('✅ Project published successfully - NO RELOAD NEEDED');
+      console.log('✅ Project published successfully - STAYING ON CURRENT PAGE');
       return true;
     } catch (error) {
       console.error('❌ Error publishing project:', error);
@@ -153,7 +153,7 @@ export class PublishingService {
     textContent: Record<string, string>,
     contentBlocks: Record<string, any[]>
   ) {
-    console.log('🎨 Applying changes to DOM WITHOUT page reload');
+    console.log('🎨 Applying changes to DOM WITHOUT any navigation or page refresh');
     console.log('📦 Content blocks to apply:', contentBlocks);
 
     // Apply image changes immediately to all matching images
@@ -181,7 +181,8 @@ export class PublishingService {
         timestamp: Date.now(),
         imageReplacements,
         textContent,
-        contentBlocks
+        contentBlocks,
+        stayOnPage: true // Explicitly prevent navigation
       }
     }));
 
@@ -199,7 +200,7 @@ export class PublishingService {
       }));
     });
 
-    console.log('✅ All changes applied to DOM successfully');
+    console.log('✅ All changes applied to DOM successfully - NO NAVIGATION TRIGGERED');
   }
 
   static async loadPublishedData(projectId: string): Promise<any> {

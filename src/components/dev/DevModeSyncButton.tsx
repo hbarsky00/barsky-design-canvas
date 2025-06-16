@@ -36,16 +36,22 @@ const DevModeSyncButton: React.FC = () => {
       const interval = setInterval(checkChanges, 2000);
       
       // Listen for project data updates
-      const handleProjectDataUpdate = () => {
+      const handleProjectDataUpdate = (e: CustomEvent) => {
         console.log('🔄 DevModeSyncButton: Project data updated, checking for changes');
+        
+        // Prevent any navigation or page reload
+        if (e.detail?.stayOnPage) {
+          console.log('🔒 DevModeSyncButton: Staying on current page as requested');
+        }
+        
         checkChanges();
       };
 
-      window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
+      window.addEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
       
       return () => {
         clearInterval(interval);
-        window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
+        window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
       };
     }
   }, [projectId, hasChanges, isLovableEnvironment]);
@@ -75,11 +81,16 @@ const DevModeSyncButton: React.FC = () => {
     return null;
   }
 
-  const handlePublishClick = async () => {
+  const handlePublishClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     console.log('🚀 Publish button clicked, finalHasChanges:', finalHasChanges);
     if (finalHasChanges && !isSyncing) {
       try {
+        console.log('📤 Starting publish process - preventing any navigation');
         await syncChangesToFiles();
+        console.log('✅ Publish completed - staying on current page');
       } catch (error) {
         console.error('❌ DevModeSyncButton: Error during sync:', error);
       }

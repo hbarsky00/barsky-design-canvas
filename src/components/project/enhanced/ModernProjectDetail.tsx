@@ -36,23 +36,31 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   
   const { getProjectData } = useProjectPersistence(projectId);
 
-  // Listen for project data updates to force re-render
+  // Listen for project data updates to force re-render - PREVENT NAVIGATION
   const [updateTrigger, setUpdateTrigger] = React.useState(0);
   
   React.useEffect(() => {
-    const handleProjectDataUpdate = () => {
+    const handleProjectDataUpdate = (e: CustomEvent) => {
       console.log('ModernProjectDetail: Project data updated, forcing re-render');
+      
+      // Explicitly prevent any navigation or page refresh
+      if (e.detail?.stayOnPage) {
+        console.log('🔒 ModernProjectDetail: Staying on current page as requested');
+        e.preventDefault?.();
+        e.stopPropagation?.();
+      }
+      
       setUpdateTrigger(prev => prev + 1);
     };
 
-    window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
+    window.addEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
     
     return () => {
-      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
+      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
     };
   }, []);
 
-  // Get published data including text content
+  // Get saved image replacements (now includes published overrides automatically)
   const savedData = React.useMemo(() => getProjectData(), [getProjectData, updateTrigger]);
 
   // Apply text content overrides

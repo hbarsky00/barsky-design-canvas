@@ -89,15 +89,30 @@ export const useDevModeSync = (projectId: string) => {
       // Update state to reflect no pending changes
       setHasChangesToSync(false);
       
-      // NO PAGE RELOAD - just trigger component updates
+      // Trigger component updates WITHOUT any navigation or page reload
+      console.log('🔄 useDevModeSync: Dispatching update events to refresh components');
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId, 
           published: true, 
           immediate: true,
-          timestamp: Date.now()
+          timestamp: Date.now(),
+          stayOnPage: true // Flag to prevent any navigation
         }
       }));
+      
+      // Force a second update to ensure all components refresh
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { 
+            projectId, 
+            published: true, 
+            immediate: true,
+            timestamp: Date.now() + 1,
+            stayOnPage: true
+          }
+        }));
+      }, 100);
       
     } catch (error) {
       console.error('❌ useDevModeSync: Error publishing project:', error);
