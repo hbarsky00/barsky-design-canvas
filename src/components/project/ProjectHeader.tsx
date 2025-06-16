@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -51,7 +52,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           >
             <EditableText initialText={title}>
               {(text) => (
-                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 pr-8">
+                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center lg:text-left">
                   {text}
                 </h1>
               )}
@@ -59,13 +60,13 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             
             <EditableText initialText={description} multiline>
               {(text) => (
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed pr-8">
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed text-center lg:text-left">
                   {text}
                 </p>
               )}
             </EditableText>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {tags.map((tag) => (
                 <Link
                   key={tag}

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
@@ -210,7 +209,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             textKey={`hero_title_${currentProjectId}`}
           >
             {(text) => (
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight pr-8">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight text-center">
                 {text}
               </h1>
             )}
@@ -223,7 +222,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             textKey={`hero_description_${currentProjectId}`}
           >
             {(text) => (
-              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto pr-8">
+              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto text-center">
                 {text}
               </p>
             )}
