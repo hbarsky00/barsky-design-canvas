@@ -6,7 +6,14 @@ import { Button } from '@/components/ui/button';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from './EditableText';
 import MaximizableImage from '../project/MaximizableImage';
-import { ContentBlock } from '../project/enhanced/ModernProjectContentSection';
+
+// Updated ContentBlock type to include new content types
+export type ContentBlock = 
+  | { type: 'text'; value: string }
+  | { type: 'image'; src: string; caption?: string }
+  | { type: 'header'; value: string; level?: 1 | 2 | 3 | 4 | 5 | 6 }
+  | { type: 'video'; src: string; caption?: string }
+  | { type: 'pdf'; src: string; caption?: string };
 
 interface DraggableContentBlockProps {
   block: ContentBlock;
@@ -30,6 +37,116 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   isDragging
 }) => {
   const { isDevMode } = useDevMode();
+
+  const renderContent = () => {
+    switch (block.type) {
+      case 'text':
+        return (
+          <EditableText 
+            initialText={block.value} 
+            multiline
+            onSave={(newText) => onUpdate(index, newText)}
+          >
+            {(text) => (
+              <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none pr-8">
+                {text.split('\n\n').map((paragraph, pIndex) => (
+                  <p key={pIndex} className="mb-4">{paragraph}</p>
+                ))}
+              </div>
+            )}
+          </EditableText>
+        );
+
+      case 'header':
+        const HeaderTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements;
+        const headerClasses = {
+          1: "text-4xl font-bold text-gray-900 mb-6",
+          2: "text-3xl font-bold text-gray-900 mb-5",
+          3: "text-2xl font-semibold text-gray-900 mb-4",
+          4: "text-xl font-semibold text-gray-900 mb-3",
+          5: "text-lg font-medium text-gray-900 mb-3",
+          6: "text-base font-medium text-gray-900 mb-2"
+        };
+
+        return (
+          <EditableText 
+            initialText={block.value}
+            onSave={(newText) => onUpdate(index, newText)}
+          >
+            {(text) => (
+              <HeaderTag className={`${headerClasses[block.level || 2]} pr-8`}>
+                {text}
+              </HeaderTag>
+            )}
+          </EditableText>
+        );
+
+      case 'image':
+        return (
+          <div className="my-8">
+            <MaximizableImage
+              src={block.src}
+              alt={block.caption || `Content image`}
+              caption={block.caption}
+              className="w-full"
+            />
+          </div>
+        );
+
+      case 'video':
+        return (
+          <div className="my-8">
+            <div className="glass-card p-4 layered-depth">
+              <video 
+                src={block.src} 
+                controls 
+                className="w-full rounded-lg"
+                poster="/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png"
+              >
+                Your browser does not support the video tag.
+              </video>
+              {block.caption && (
+                <div className="mt-2 text-sm text-gray-600 italic text-center">
+                  <EditableText initialText={block.caption}>
+                    {(text) => <span className="pr-8">{text}</span>}
+                  </EditableText>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+
+      case 'pdf':
+        return (
+          <div className="my-8">
+            <div className="glass-card p-4 layered-depth">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                <FileText className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+                <p className="text-gray-600 mb-4">PDF Document</p>
+                <a 
+                  href={block.src} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  View PDF
+                </a>
+              </div>
+              {block.caption && (
+                <div className="mt-2 text-sm text-gray-600 italic text-center">
+                  <EditableText initialText={block.caption}>
+                    {(text) => <span className="pr-8">{text}</span>}
+                  </EditableText>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <motion.div
@@ -63,30 +180,7 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       )}
 
       <div className={isDevMode ? 'ml-8' : ''}>
-        {block.type === 'text' ? (
-          <EditableText 
-            initialText={block.value} 
-            multiline
-            onSave={(newText) => onUpdate(index, newText)}
-          >
-            {(text) => (
-              <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none pr-8">
-                {text.split('\n\n').map((paragraph, pIndex) => (
-                  <p key={pIndex} className="mb-4">{paragraph}</p>
-                ))}
-              </div>
-            )}
-          </EditableText>
-        ) : (
-          <div className="my-8">
-            <MaximizableImage
-              src={block.src}
-              alt={block.caption || `Content image`}
-              caption={block.caption}
-              className="w-full"
-            />
-          </div>
-        )}
+        {renderContent()}
       </div>
     </motion.div>
   );

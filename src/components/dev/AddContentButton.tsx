@@ -3,10 +3,10 @@ import React from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Plus, Image, Text } from 'lucide-react';
+import { Plus, Image, Text, Heading, Video, FileText } from 'lucide-react';
 
 interface AddContentButtonProps {
-  onAdd: (type: 'text' | 'image') => void;
+  onAdd: (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => void;
 }
 
 const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
@@ -17,7 +17,7 @@ const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
     return null;
   }
 
-  const handleSelect = (type: 'text' | 'image') => {
+  const handleSelect = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
     onAdd(type);
     setIsOpen(false);
   };
@@ -37,6 +37,10 @@ const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
         </PopoverTrigger>
         <PopoverContent className="w-auto p-1">
           <div className="flex flex-col gap-1">
+            <Button variant="ghost" size="sm" onClick={() => handleSelect('header')} className="justify-start">
+              <Heading className="h-4 w-4 mr-2" />
+              Add Header
+            </Button>
             <Button variant="ghost" size="sm" onClick={() => handleSelect('text')} className="justify-start">
               <Text className="h-4 w-4 mr-2" />
               Add Paragraph
@@ -44,6 +48,14 @@ const AddContentButton: React.FC<AddContentButtonProps> = ({ onAdd }) => {
             <Button variant="ghost" size="sm" onClick={() => handleSelect('image')} className="justify-start">
               <Image className="h-4 w-4 mr-2" />
               Add Image
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => handleSelect('video')} className="justify-start">
+              <Video className="h-4 w-4 mr-2" />
+              Add Video
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => handleSelect('pdf')} className="justify-start">
+              <FileText className="h-4 w-4 mr-2" />
+              Add PDF
             </Button>
           </div>
         </PopoverContent>

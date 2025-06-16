@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
@@ -6,7 +5,7 @@ import { ProjectImageConfig } from "@/data/types/project";
 import EditableText from "@/components/dev/EditableText";
 import { useDevMode } from "@/context/DevModeContext";
 import AddContentButton from "@/components/dev/AddContentButton";
-import DraggableContentBlock from "@/components/dev/DraggableContentBlock";
+import DraggableContentBlock, { ContentBlock } from "@/components/dev/DraggableContentBlock";
 
 // Define a flexible content block structure locally
 export type ContentBlock = 
@@ -49,34 +48,42 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   const [afterHeaderBlocks, setAfterHeaderBlocks] = useState<ContentBlock[]>([]);
   const [afterHeaderDraggedIndex, setAfterHeaderDraggedIndex] = useState<number | null>(null);
 
-  const handleAddContent = (type: 'text' | 'image') => {
-    const newBlock: ContentBlock = type === 'text' 
-      ? { type: 'text', value: 'This is a new paragraph. Click to edit me.' }
-      : { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
-    
+  const createNewBlock = (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): ContentBlock => {
+    switch (type) {
+      case 'text':
+        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
+      case 'image':
+        return { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
+      case 'header':
+        return { type: 'header', value: 'New Header', level: 2 };
+      case 'video':
+        return { type: 'video', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added video.' };
+      case 'pdf':
+        return { type: 'pdf', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added PDF document.' };
+      default:
+        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
+    }
+  };
+
+  const handleAddContent = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
+    const newBlock = createNewBlock(type);
     setContentBlocks(prev => [...prev, newBlock]);
   };
 
-  const handleAddBeforeHeaderContent = (type: 'text' | 'image') => {
-    const newBlock: ContentBlock = type === 'text' 
-      ? { type: 'text', value: 'This is a new paragraph. Click to edit me.' }
-      : { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
-    
+  const handleAddBeforeHeaderContent = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
+    const newBlock = createNewBlock(type);
     setBeforeHeaderBlocks(prev => [...prev, newBlock]);
   };
 
-  const handleAddAfterHeaderContent = (type: 'text' | 'image') => {
-    const newBlock: ContentBlock = type === 'text' 
-      ? { type: 'text', value: 'This is a new paragraph. Click to edit me.' }
-      : { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
-    
+  const handleAddAfterHeaderContent = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
+    const newBlock = createNewBlock(type);
     setAfterHeaderBlocks(prev => [...prev, newBlock]);
   };
 
   const handleUpdateContent = (index: number, newValue: string) => {
     setContentBlocks(prev => 
       prev.map((block, i) => 
-        i === index && block.type === 'text' 
+        i === index && (block.type === 'text' || block.type === 'header') 
           ? { ...block, value: newValue }
           : block
       )
@@ -86,7 +93,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   const handleUpdateBeforeHeaderContent = (index: number, newValue: string) => {
     setBeforeHeaderBlocks(prev => 
       prev.map((block, i) => 
-        i === index && block.type === 'text' 
+        i === index && (block.type === 'text' || block.type === 'header') 
           ? { ...block, value: newValue }
           : block
       )
@@ -96,7 +103,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   const handleUpdateAfterHeaderContent = (index: number, newValue: string) => {
     setAfterHeaderBlocks(prev => 
       prev.map((block, i) => 
-        i === index && block.type === 'text' 
+        i === index && (block.type === 'text' || block.type === 'header') 
           ? { ...block, value: newValue }
           : block
       )
