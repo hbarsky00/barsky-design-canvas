@@ -40,7 +40,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     lastSaved 
   } = useProjectPersistence(currentProjectId);
   
-  // Load saved data on mount
+  // Load saved data on mount and when project data updates
   const [heroImage, setHeroImage] = React.useState(() => {
     const savedData = getProjectData();
     return savedData.imageReplacements[project.image] || project.image;
@@ -50,6 +50,22 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     const savedData = getProjectData();
     return savedData.contentBlocks['hero'] || [];
   });
+
+  // Listen for project data updates to reload published changes
+  React.useEffect(() => {
+    const handleProjectDataUpdate = () => {
+      console.log('ModernProjectHero: Project data updated, reloading');
+      const savedData = getProjectData();
+      setHeroImage(savedData.imageReplacements[project.image] || project.image);
+      setContentBlocks(savedData.contentBlocks['hero'] || []);
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
+    };
+  }, [project.image, getProjectData]);
 
   const handleImageReplace = (newSrc: string) => {
     console.log('ModernProjectHero: Replacing image with', newSrc, 'for project', currentProjectId);
