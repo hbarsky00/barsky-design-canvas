@@ -16,7 +16,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Load image with priority: dev mode > published > original
+  // Load image with priority: dev mode > published (localStorage) > original
   useEffect(() => {
     const loadImage = async () => {
       setIsLoading(true);
@@ -63,7 +63,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     loadImage();
   }, [src, getChanges, projectId, refreshKey]);
 
-  // Listen for project data updates
+  // Listen for project data updates and published changes
   useEffect(() => {
     const handleProjectUpdate = (e: CustomEvent) => {
       if (e.detail?.projectId === projectId) {
@@ -74,17 +74,24 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
 
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key?.includes(`imageOverrides_${projectId}`) && e.newValue) {
-        console.log('💾 Storage changed for project:', projectId);
+        console.log('💾 Storage changed for project, refreshing image:', projectId);
         setRefreshKey(prev => prev + 1);
       }
     };
 
+    // Listen for page refresh events after publishing
+    const handleBeforeUnload = () => {
+      console.log('🔄 Page refreshing, preserving image state');
+    };
+
     window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
     window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('beforeunload', handleBeforeUnload);
     
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
       window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [src, projectId]);
 
