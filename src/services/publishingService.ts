@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -81,7 +82,7 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 3: Apply changes to the live DOM immediately
+      // Step 3: Apply changes to the live DOM immediately (NO PAGE RELOAD)
       this.applyChangesToDOM(publishedImageMappings, changes.textContent, changes.contentBlocks);
 
       // Step 4: Store in localStorage as fallback
@@ -106,7 +107,7 @@ export class PublishingService {
         // Continue anyway as this doesn't affect the main functionality
       }
 
-      console.log('✅ Project published successfully');
+      console.log('✅ Project published successfully - NO RELOAD NEEDED');
       return true;
     } catch (error) {
       console.error('❌ Error publishing project:', error);
@@ -119,17 +120,38 @@ export class PublishingService {
     textContent: Record<string, string>,
     contentBlocks: Record<string, any[]>
   ) {
-    console.log('🎨 Applying changes to DOM');
+    console.log('🎨 Applying changes to DOM WITHOUT page reload');
 
-    // Apply image changes
+    // Apply image changes immediately to all matching images
     Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
-      document.querySelectorAll(`img[src="${oldSrc}"]`).forEach((img) => {
+      document.querySelectorAll(`img[src*="${oldSrc}"]`).forEach((img) => {
         (img as HTMLImageElement).src = newSrc;
         console.log('🖼️ Updated image in DOM:', oldSrc, '->', newSrc);
       });
+      
+      // Also update any background images
+      document.querySelectorAll(`[style*="background-image"]`).forEach((element) => {
+        const style = (element as HTMLElement).style;
+        if (style.backgroundImage && style.backgroundImage.includes(oldSrc)) {
+          style.backgroundImage = style.backgroundImage.replace(oldSrc, newSrc);
+          console.log('🎨 Updated background image in DOM:', oldSrc, '->', newSrc);
+        }
+      });
     });
 
-    // Dispatch events for text and content block updates
+    // Dispatch comprehensive update events for all components to refresh
+    window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+      detail: { 
+        published: true, 
+        immediate: true,
+        timestamp: Date.now(),
+        imageReplacements,
+        textContent,
+        contentBlocks
+      }
+    }));
+
+    // Dispatch specific events for text and content block updates
     Object.entries(textContent).forEach(([textKey, newText]) => {
       window.dispatchEvent(new CustomEvent('liveTextUpdate', {
         detail: { textKey, newText }
@@ -142,14 +164,7 @@ export class PublishingService {
       }));
     });
 
-    // Force a complete refresh
-    window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-      detail: { 
-        published: true, 
-        immediate: true,
-        timestamp: Date.now()
-      }
-    }));
+    console.log('✅ All changes applied to DOM successfully');
   }
 
   static async loadPublishedData(projectId: string): Promise<any> {

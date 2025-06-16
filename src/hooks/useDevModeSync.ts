@@ -82,18 +82,22 @@ export const useDevModeSync = (projectId: string) => {
       await PublishingService.publishProject(projectId);
       
       toast.success("Changes published successfully!", {
-        description: "Your changes are now permanently saved and visible. Page will refresh to show updates.",
-        duration: 5000,
+        description: "Your changes are now live and visible. No page reload needed!",
+        duration: 4000,
       });
 
       // Update state to reflect no pending changes
       setHasChangesToSync(false);
       
-      // Force a page refresh after a short delay
-      setTimeout(() => {
-        console.log('🔄 Forcing page refresh to show published changes');
-        window.location.reload();
-      }, 2000);
+      // NO PAGE RELOAD - just trigger component updates
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId, 
+          published: true, 
+          immediate: true,
+          timestamp: Date.now()
+        }
+      }));
       
     } catch (error) {
       console.error('❌ useDevModeSync: Error publishing project:', error);
