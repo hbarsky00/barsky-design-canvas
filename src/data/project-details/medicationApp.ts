@@ -39,7 +39,6 @@ export const medicationAppDetails: ProjectDetails = {
     }
   },
 
-  // Cleaned available images - removed duplicates
   availableImages: [
     "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
     "/lovable-uploads/759f7954-5048-407d-9dca-e1d4a4cd954f.png",
@@ -50,7 +49,6 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/73d25798-547e-49a0-ad44-a79540285bff.png"
   ],
 
-  // Legacy properties
   challengeImage: "/lovable-uploads/5faa6be9-9602-4fd5-8dff-4f95864e7142.png",
   challengeGalleryImages: [
     "/lovable-uploads/759f7954-5048-407d-9dca-e1d4a4cd954f.png"
