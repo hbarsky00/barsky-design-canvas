@@ -12,6 +12,7 @@ interface ImageOrganizerProps {
     processBottomImage?: string;
     challengeImage?: string;
     challengeBottomImage?: string;
+    resultImage?: string;
     servicesGalleryImages?: string[];
   };
 }
@@ -33,6 +34,9 @@ export const organizeProjectImages = ({ project, details }: ImageOrganizerProps)
     ].filter(Boolean),
     technical: [
       ...(details.servicesGalleryImages || [])
+    ].filter(Boolean),
+    result: [
+      ...(details.resultImage ? [details.resultImage] : [])
     ].filter(Boolean)
   };
 };
