@@ -257,6 +257,27 @@
   .before-after-container {
     @apply glass-card p-6 layered-depth;
   }
+
+  /* Project Text Styles - Center aligned paragraphs */
+  .prose p {
+    @apply text-center;
+  }
+
+  .prose.prose-lg p {
+    @apply text-center;
+  }
+
+  .prose.prose-slate p {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none p {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none.dark\:prose-invert p {
+    @apply text-center;
+  }
 }
 
 /* Typography Scale */
