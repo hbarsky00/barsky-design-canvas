@@ -35,7 +35,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
       <Button 
         size="lg" 
         onClick={scrollToProjects}
-        className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-8 py-4 text-lg font-semibold shadow-elevated backdrop-blur-md transition-all duration-300"
+        className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-6 sm:px-8 py-4 text-base sm:text-lg font-semibold shadow-elevated backdrop-blur-md transition-all duration-300 w-full sm:w-auto"
       >
         View My Design Work
         <ArrowRight className="ml-2 h-5 w-5" />
@@ -45,7 +45,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         variant="outline" 
         size="lg"
         onClick={scrollToContact}
-        className="glass-button border-2 border-blue-600/50 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold backdrop-blur-md transition-all duration-300"
+        className="glass-button border-2 border-blue-600/50 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 py-4 text-base sm:text-lg font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto"
       >
         Let's Collaborate
         <Mail className="ml-2 h-5 w-5" />
