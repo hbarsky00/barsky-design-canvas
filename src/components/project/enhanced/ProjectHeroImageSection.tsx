@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
 import { useDevMode } from "@/context/DevModeContext";
 import { Button } from "@/components/ui/button";
-import { Plus, X } from "lucide-react";
+import { Plus, X, GripVertical } from "lucide-react";
 
 interface ProjectHeroImageSectionProps {
   projectId: string;
@@ -16,6 +16,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
   imageCaptions
 }) => {
   const { isDevMode } = useDevMode();
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   // Define which projects have hero images and their URLs
   const projectHeroImages: Record<string, { url: string; title: string }[]> = {
@@ -72,6 +73,42 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
     ));
   };
 
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+    e.preventDefault();
+    
+    if (draggedIndex === null || draggedIndex === dropIndex) {
+      setDraggedIndex(null);
+      return;
+    }
+
+    const newImages = [...heroImages];
+    const draggedImage = newImages[draggedIndex];
+    
+    // Remove the dragged image
+    newImages.splice(draggedIndex, 1);
+    
+    // Insert at new position
+    const insertIndex = draggedIndex < dropIndex ? dropIndex - 1 : dropIndex;
+    newImages.splice(insertIndex, 0, draggedImage);
+    
+    setHeroImages(newImages);
+    setDraggedIndex(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
+
   // Create empty slots to fill up to 4 images in dev mode
   const displayImages = [...heroImages];
   if (isDevMode) {
@@ -114,17 +151,37 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
           <div className="glass-card p-4 layered-depth">
             <div className="grid grid-cols-2 gap-4">
               {displayImages.slice(0, 4).map((imageData, index) => (
-                <div key={`${imageData.url}-${index}`} className="relative group/image">
+                <div 
+                  key={`${imageData.url}-${index}`} 
+                  className={`relative group/image ${
+                    draggedIndex === index ? 'opacity-50' : ''
+                  } ${index >= heroImages.length && isDevMode ? 'opacity-30' : ''}`}
+                  draggable={isDevMode && index < heroImages.length}
+                  onDragStart={(e) => handleDragStart(e, index)}
+                  onDragOver={handleDragOver}
+                  onDrop={(e) => handleDrop(e, index)}
+                  onDragEnd={handleDragEnd}
+                >
                   {isDevMode && index < heroImages.length && (
-                    <Button
-                      onClick={() => handleRemoveImage(index)}
-                      variant="destructive"
-                      size="icon"
-                      className="absolute top-2 right-2 z-30 h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity"
-                      title="Remove image"
-                    >
-                      <X className="h-3 w-3" />
-                    </Button>
+                    <div className="absolute top-2 right-2 z-30 flex gap-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
+                        title="Drag to reorder"
+                      >
+                        <GripVertical className="h-3 w-3" />
+                      </Button>
+                      <Button
+                        onClick={() => handleRemoveImage(index)}
+                        variant="destructive"
+                        size="icon"
+                        className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity"
+                        title="Remove image"
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                    </div>
                   )}
                   
                   <MaximizableImage
@@ -136,7 +193,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
                     priority={index === 0}
                     className={`rounded-xl shadow-elevated-lg w-full overflow-hidden ${
                       index >= heroImages.length && isDevMode 
-                        ? 'opacity-30 border-2 border-dashed border-gray-300' 
+                        ? 'border-2 border-dashed border-gray-300' 
                         : ''
                     }`}
                     onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
