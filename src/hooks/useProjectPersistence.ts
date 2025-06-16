@@ -57,12 +57,7 @@ export const useProjectPersistence = (projectId: string) => {
     Object.entries(imageReplacements || {}).forEach(([key, value]) => {
       if (typeof key === 'string' && value) {
         // Handle both object format {_type: "String", value: "..."} and direct string values
-        const stringValue = typeof value === 'object' && value !== null && 
-          '_type' in value && (value as any)._type === 'String' && 'value' in value
-          ? (value as { _type: string; value: string }).value 
-          : typeof value === 'string' 
-            ? value 
-            : null;
+        const stringValue = typeof value === 'string' ? value : null;
             
         if (stringValue && typeof stringValue === 'string') {
           // Keep data URLs and regular URLs, filter out blob URLs
@@ -159,7 +154,7 @@ export const useProjectPersistence = (projectId: string) => {
           ...publishedOverrides.imageReplacements 
         },
         contentBlocks: { ...devData.contentBlocks, ...publishedOverrides.contentBlocks },
-        lastSaved: devData.lastSaved
+        lastSaved: devData.lastSaved && typeof devData.lastSaved === 'string' ? devData.lastSaved : undefined
       };
       
       console.log('Loaded merged project data for', projectId, 'with published overrides:', mergedData);
@@ -291,7 +286,7 @@ export const useProjectPersistence = (projectId: string) => {
   // Load last saved timestamp on mount
   useEffect(() => {
     const data = getProjectData();
-    if (data.lastSaved) {
+    if (data.lastSaved && typeof data.lastSaved === 'string') {
       setLastSaved(new Date(data.lastSaved));
     }
   }, [getProjectData]);

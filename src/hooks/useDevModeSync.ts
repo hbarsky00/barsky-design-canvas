@@ -19,32 +19,19 @@ export const useDevModeSync = (projectId: string) => {
     
     console.log('Checking for changes to sync:', projectData);
     
-    // Check for text content changes
+    // Check for text content changes - any non-empty text counts as a change
     const textKeys = Object.keys(projectData.textContent || {});
-    const hasTextChanges = textKeys.length > 0 && textKeys.some(key => {
-      const value = projectData.textContent[key];
-      return value && value.trim() !== '';
-    });
+    const hasTextChanges = textKeys.length > 0;
     
-    // Check for image replacement changes - be more lenient with detection
+    // Check for image replacement changes - any replacement counts as a change
     const imageKeys = Object.keys(projectData.imageReplacements || {});
     const hasImageChanges = imageKeys.length > 0;
     
-    // Check for content block changes
+    // Check for content block changes - any blocks count as a change
     const blockKeys = Object.keys(projectData.contentBlocks || {});
-    const hasContentBlockChanges = blockKeys.length > 0 && blockKeys.some(key => {
-      const blocks = projectData.contentBlocks[key];
-      return blocks && Array.isArray(blocks) && blocks.length > 0;
-    });
+    const hasContentBlockChanges = blockKeys.length > 0;
     
-    // Also check for published overrides that might exist
-    const publishedImages = localStorage.getItem(`imageOverrides_${projectId}`);
-    const publishedText = localStorage.getItem(`textOverrides_${projectId}`);
-    const publishedBlocks = localStorage.getItem(`contentBlockOverrides_${projectId}`);
-    
-    const hasPublishedChanges = publishedImages || publishedText || publishedBlocks;
-    
-    const totalChanges = hasTextChanges || hasImageChanges || hasContentBlockChanges || hasPublishedChanges;
+    const totalChanges = hasTextChanges || hasImageChanges || hasContentBlockChanges;
     
     console.log('Changes detected:', {
       textChanges: hasTextChanges,
@@ -53,7 +40,6 @@ export const useDevModeSync = (projectId: string) => {
       imageKeys,
       contentBlockChanges: hasContentBlockChanges,
       blockKeys,
-      publishedChanges: hasPublishedChanges,
       totalChanges,
       projectData
     });
