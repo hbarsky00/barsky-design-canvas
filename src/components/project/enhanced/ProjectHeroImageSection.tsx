@@ -162,15 +162,37 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
         </EditableText>
 
         <EditableText 
-          initialText="These key screens showcase the transformation from complex Excel workflows to an intuitive banking interface. The advanced search functionality demonstrates AI-powered predictive search capabilities, while the orderbook interface reveals the sophisticated deal management system that revolutionized how loan officers track and manage millions in transactions."
+          initialText="These interfaces showcase the comprehensive loan deals dashboard that transformed how investment teams manage their portfolios. The advanced search functionality demonstrates AI-powered predictive search capabilities, while the sophisticated orderbook interface reveals the deal management system that revolutionized how loan officers track and manage millions in transactions with real-time collaboration tools."
           multiline
         >
           {(text) => (
-            <p className="text-gray-600 text-center mb-6 max-w-3xl mx-auto leading-relaxed pr-8">
+            <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto leading-relaxed pr-8">
               {text}
             </p>
           )}
         </EditableText>
+
+        {/* New text section above the images */}
+        <div className="mb-8">
+          <EditableText initialText="Dashboard Overview">
+            {(text) => (
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 pr-8">
+                {text}
+              </h3>
+            )}
+          </EditableText>
+          
+          <EditableText 
+            initialText="The loan management platform features a comprehensive card-based interface that displays multiple loan projects simultaneously. Each project card shows critical information including total amount, borrower details, last update timestamp, participant count, and real-time progress tracking. The collaborative tools enable team members to work together in real-time on loan deals, with integrated communication features and progress indicators that keep all stakeholders informed throughout the deal lifecycle."
+            multiline
+          >
+            {(text) => (
+              <p className="text-gray-600 leading-relaxed max-w-4xl pr-8">
+                {text}
+              </p>
+            )}
+          </EditableText>
+        </div>
         
         <div className="floating-element">
           <div className="glass-card p-4 layered-depth">
