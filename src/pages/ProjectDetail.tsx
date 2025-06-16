@@ -7,6 +7,7 @@ import ModernProjectDetail from "@/components/project/enhanced/ModernProjectDeta
 import ProjectDetailLoading from "@/components/project/ProjectDetailLoading";
 import NotFound from "./NotFound";
 import ProjectDetailSeo from "@/components/project/ProjectDetailSeo";
+import { DevModeProvider } from "@/context/DevModeContext";
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -23,7 +24,7 @@ const ProjectDetail = () => {
   }
 
   return (
-    <>
+    <DevModeProvider>
       <ProjectDetailSeo 
         title={project.title}
         description={project.description}
@@ -41,7 +42,7 @@ const ProjectDetail = () => {
         }))}
         imageCaptions={imageCaptions}
       />
-    </>
+    </DevModeProvider>
   );
 };
 
