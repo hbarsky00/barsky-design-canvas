@@ -66,6 +66,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
   };
 
   const handleImageReplace = (index: number, newSrc: string) => {
+    console.log('ProjectHeroImageSection: Replacing image at index', index, 'with', newSrc);
     setHeroImages(prev => prev.map((img, i) => 
       i === index ? { ...img, url: newSrc } : img
     ));
@@ -113,7 +114,7 @@ const ProjectHeroImageSection: React.FC<ProjectHeroImageSectionProps> = ({
           <div className="glass-card p-4 layered-depth">
             <div className="grid grid-cols-2 gap-4">
               {displayImages.slice(0, 4).map((imageData, index) => (
-                <div key={index} className="relative group/image">
+                <div key={`${imageData.url}-${index}`} className="relative group/image">
                   {isDevMode && index < heroImages.length && (
                     <Button
                       onClick={() => handleRemoveImage(index)}

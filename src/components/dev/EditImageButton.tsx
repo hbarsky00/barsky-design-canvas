@@ -26,21 +26,32 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace }
       // Create a temporary URL for the uploaded file
       const newImageUrl = URL.createObjectURL(file);
       
+      console.log('Creating new image URL:', newImageUrl);
+      console.log('File selected:', file.name);
+      
       // Call the callback to replace the image
       if (onImageReplace) {
+        console.log('Calling onImageReplace with:', newImageUrl);
         onImageReplace(newImageUrl);
         toast.success("Image replaced successfully!", {
-          description: `Replaced with "${file.name}". Note: This is a temporary preview.`,
+          description: `Replaced with "${file.name}". This is a real-time preview of your uploaded image.`,
           duration: 5000,
         });
       } else {
+        console.log('No onImageReplace callback provided');
         // Fallback behavior - copy original path to clipboard if available
         if (src) {
           try {
-            navigator.clipboard.writeText(src);
-            toast.success("Original image path copied.", {
-              description: `Now, upload "${file.name}" to the project and ask me to replace the copied path with the new one.`,
-              duration: 10000,
+            navigator.clipboard.writeText(src).then(() => {
+              toast.success("Original image path copied.", {
+                description: `Now, upload "${file.name}" to the project and ask me to replace the copied path with the new one.`,
+                duration: 10000,
+              });
+            }).catch(() => {
+              toast.error("Could not copy to clipboard.", {
+                description: `Please manually note the path: ${src}`,
+                duration: 5000,
+              });
             });
           } catch (error) {
             toast.error("Could not copy to clipboard.", {
