@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useEffect } from 'react';
 
 interface ProjectData {
@@ -21,8 +22,9 @@ export const useProjectPersistence = (projectId: string) => {
     Object.entries(imageReplacements || {}).forEach(([key, value]) => {
       if (typeof key === 'string' && value) {
         // Handle both object format {_type: "String", value: "..."} and direct string values
-        const stringValue = typeof value === 'object' && value._type === 'String' 
-          ? value.value 
+        const stringValue = typeof value === 'object' && value !== null && 
+          '_type' in value && '_type' in value && value._type === 'String' && 'value' in value
+          ? (value as { _type: string; value: string }).value 
           : typeof value === 'string' 
             ? value 
             : null;
