@@ -13,11 +13,32 @@ interface ProjectData {
 export const useProjectPersistence = (projectId: string) => {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [forceUpdate, setForceUpdate] = useState(0);
+  const [cachedData, setCachedData] = useState<ProjectData>({
+    textContent: {},
+    imageReplacements: {},
+    contentBlocks: {}
+  });
   const { saveChange, getChanges, isLoading } = useDevModeDatabase(projectId);
 
-  const getStorageKey = useCallback((key: string) => {
-    return `project_${projectId}_${key}`;
-  }, [projectId]);
+  // Load data from database on mount and when projectId changes
+  useEffect(() => {
+    const loadData = async () => {
+      if (projectId) {
+        try {
+          const changes = await getChanges();
+          setCachedData({
+            textContent: changes.textContent,
+            imageReplacements: normalizeImageReplacements(changes.imageReplacements),
+            contentBlocks: changes.contentBlocks
+          });
+        } catch (error) {
+          console.error('useProjectPersistence: Error loading data:', error);
+        }
+      }
+    };
+
+    loadData();
+  }, [projectId, getChanges]);
 
   const normalizeImageReplacements = useCallback((imageReplacements: any): Record<string, string> => {
     const normalized: Record<string, string> = {};
@@ -40,10 +61,20 @@ export const useProjectPersistence = (projectId: string) => {
 
   // Force refresh when published overrides change
   useEffect(() => {
-    const handleProjectUpdate = (e: CustomEvent) => {
-      if (e.detail?.projectId === projectId && e.detail?.published) {
-        console.log('Published data updated, forcing refresh');
-        setForceUpdate(prev => prev + 1);
+    const handleProjectUpdate = async (e: CustomEvent) => {
+      if (e.detail?.projectId === projectId) {
+        console.log('useProjectPersistence: Project data updated, reloading from database');
+        try {
+          const changes = await getChanges();
+          setCachedData({
+            textContent: changes.textContent,
+            imageReplacements: normalizeImageReplacements(changes.imageReplacements),
+            contentBlocks: changes.contentBlocks
+          });
+          setForceUpdate(prev => prev + 1);
+        } catch (error) {
+          console.error('useProjectPersistence: Error reloading data:', error);
+        }
       }
     };
 
@@ -52,34 +83,22 @@ export const useProjectPersistence = (projectId: string) => {
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
     };
-  }, [projectId]);
+  }, [projectId, getChanges, normalizeImageReplacements]);
 
   const getProjectData = useCallback((): ProjectData => {
-    try {
-      // Return empty data structure - all data now comes from database
-      const mergedData = {
-        textContent: {},
-        imageReplacements: {},
-        contentBlocks: {},
-        lastSaved: undefined
-      };
-      
-      console.log('Loaded project data for', projectId, '- all data now managed via database');
-      return mergedData;
-    } catch (error) {
-      console.error('Failed to load project data:', error);
-      return {
-        textContent: {},
-        imageReplacements: {},
-        contentBlocks: {},
-      };
-    }
-  }, [projectId, forceUpdate]);
+    console.log('useProjectPersistence: getProjectData called, returning cached data:', cachedData);
+    return cachedData;
+  }, [cachedData]);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
-    console.log('💾 Saving text content to database:', key, content);
+    console.log('💾 useProjectPersistence: Saving text content to database:', key, content);
     const success = await saveChange('text', key, content);
     if (success) {
+      // Update cached data immediately
+      setCachedData(prev => ({
+        ...prev,
+        textContent: { ...prev.textContent, [key]: content }
+      }));
       setLastSaved(new Date());
       
       // Dispatch event to notify other components
@@ -90,7 +109,7 @@ export const useProjectPersistence = (projectId: string) => {
   }, [saveChange, projectId]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('💾 Saving image replacement to database:', originalSrc, '->', newSrc);
+    console.log('💾 useProjectPersistence: Saving image replacement to database:', originalSrc, '->', newSrc);
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('Skipping blob URL replacement save:', originalSrc, '->', newSrc);
@@ -104,6 +123,11 @@ export const useProjectPersistence = (projectId: string) => {
     
     const success = await saveChange('image', originalSrc, newSrc);
     if (success) {
+      // Update cached data immediately
+      setCachedData(prev => ({
+        ...prev,
+        imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
+      }));
       setLastSaved(new Date());
       
       // Dispatch event to notify other components
@@ -114,9 +138,14 @@ export const useProjectPersistence = (projectId: string) => {
   }, [saveChange, projectId]);
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
-    console.log('💾 Saving content blocks to database:', sectionKey, blocks);
+    console.log('💾 useProjectPersistence: Saving content blocks to database:', sectionKey, blocks);
     const success = await saveChange('content_block', sectionKey, blocks);
     if (success) {
+      // Update cached data immediately
+      setCachedData(prev => ({
+        ...prev,
+        contentBlocks: { ...prev.contentBlocks, [sectionKey]: blocks }
+      }));
       setLastSaved(new Date());
       
       // Dispatch event to notify other components
@@ -127,21 +156,25 @@ export const useProjectPersistence = (projectId: string) => {
   }, [saveChange, projectId]);
 
   const getTextContent = useCallback((key: string, fallback: string = '') => {
-    // Text content is now managed via database and EditableText component
-    console.log('Getting text content for key:', key, 'fallback:', fallback);
-    return fallback;
-  }, []);
+    const text = cachedData.textContent[key] || fallback;
+    console.log('useProjectPersistence: getTextContent for key:', key, 'returning:', text);
+    return text;
+  }, [cachedData.textContent]);
 
   const getImageSrc = useCallback((originalSrc: string) => {
-    // Image replacements are now managed via database and useImageState hook
-    console.log('Getting image src for:', originalSrc);
-    return originalSrc;
-  }, []);
+    const replacementSrc = cachedData.imageReplacements[originalSrc] || originalSrc;
+    console.log('useProjectPersistence: getImageSrc for:', originalSrc, 'returning:', replacementSrc);
+    return replacementSrc;
+  }, [cachedData.imageReplacements]);
 
   const clearProjectData = useCallback(() => {
-    // Data is now cleared via database operations in sync hook
+    setCachedData({
+      textContent: {},
+      imageReplacements: {},
+      contentBlocks: {}
+    });
     setLastSaved(null);
-    console.log('Cleared project data for', projectId);
+    console.log('useProjectPersistence: Cleared project data for', projectId);
   }, [projectId]);
 
   return {

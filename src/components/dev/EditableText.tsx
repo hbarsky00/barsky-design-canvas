@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
-import { useProjectPersistence } from '@/hooks/useProjectPersistence';
+import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 
 interface EditableTextProps {
@@ -19,28 +19,37 @@ const EditableText: React.FC<EditableTextProps> = ({
 }) => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
-  const { saveTextContent, getTextContent } = useProjectPersistence(projectId || '');
+  const { saveChange, getChanges } = useDevModeDatabase(projectId || '');
   
-  // Load saved text or use initial text
-  const [text, setText] = useState(() => {
-    if (textKey && projectId) {
-      const savedText = getTextContent(textKey, initialText);
-      console.log('EditableText loading:', textKey, 'saved:', savedText, 'initial:', initialText);
-      return savedText;
-    }
-    return initialText;
-  });
-  
+  const [text, setText] = useState(initialText);
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
-  // Update text when projectId or textKey changes
+  // Load saved text from database on mount and when dependencies change
   useEffect(() => {
-    if (textKey && projectId) {
-      const savedText = getTextContent(textKey, initialText);
-      setText(savedText);
-    }
-  }, [textKey, projectId, getTextContent, initialText]);
+    const loadSavedText = async () => {
+      if (textKey && projectId) {
+        try {
+          setIsLoading(true);
+          const changes = await getChanges();
+          const savedText = changes.textContent[textKey] || initialText;
+          console.log('EditableText loading:', textKey, 'saved:', savedText, 'initial:', initialText);
+          setText(savedText);
+        } catch (error) {
+          console.error('EditableText: Error loading text:', error);
+          setText(initialText);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setText(initialText);
+        setIsLoading(false);
+      }
+    };
+
+    loadSavedText();
+  }, [textKey, projectId, initialText, getChanges]);
 
   // Listen for live text updates from published changes
   useEffect(() => {
@@ -60,10 +69,15 @@ const EditableText: React.FC<EditableTextProps> = ({
 
   // Listen for project data updates to refresh text content
   useEffect(() => {
-    const handleProjectUpdate = () => {
+    const handleProjectUpdate = async () => {
       if (textKey && projectId) {
-        const savedText = getTextContent(textKey, initialText);
-        setText(savedText);
+        try {
+          const changes = await getChanges();
+          const savedText = changes.textContent[textKey] || initialText;
+          setText(savedText);
+        } catch (error) {
+          console.error('EditableText: Error reloading text:', error);
+        }
       }
     };
 
@@ -72,19 +86,31 @@ const EditableText: React.FC<EditableTextProps> = ({
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate);
     };
-  }, [textKey, projectId, getTextContent, initialText]);
+  }, [textKey, projectId, getChanges, initialText]);
 
   const handleClick = () => {
-    if (isDevMode) {
+    if (isDevMode && !isLoading) {
       setIsEditing(true);
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setIsEditing(false);
     if (textKey && projectId) {
       console.log('EditableText saving:', textKey, 'text:', text);
-      saveTextContent(textKey, text);
+      try {
+        const success = await saveChange('text', textKey, text);
+        if (success) {
+          // Dispatch event to notify other components
+          window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+            detail: { projectId, textChanged: true }
+          }));
+        } else {
+          console.error('EditableText: Failed to save text');
+        }
+      } catch (error) {
+        console.error('EditableText: Error saving text:', error);
+      }
     }
   };
 
@@ -96,7 +122,11 @@ const EditableText: React.FC<EditableTextProps> = ({
       setIsEditing(false);
       // Reset to saved value
       if (textKey && projectId) {
-        setText(getTextContent(textKey, initialText));
+        getChanges().then(changes => {
+          setText(changes.textContent[textKey] || initialText);
+        }).catch(() => {
+          setText(initialText);
+        });
       } else {
         setText(initialText);
       }
@@ -109,6 +139,14 @@ const EditableText: React.FC<EditableTextProps> = ({
       inputRef.current.select();
     }
   }, [isEditing]);
+
+  if (isLoading) {
+    return (
+      <div className="animate-pulse">
+        {children(initialText)}
+      </div>
+    );
+  }
 
   if (isEditing && isDevMode) {
     const InputComponent = multiline ? 'textarea' : 'input';
