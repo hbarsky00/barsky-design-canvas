@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import { toast } from "sonner";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";

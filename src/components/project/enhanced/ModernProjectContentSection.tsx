@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import EditableText from "@/components/dev/EditableText";
 import AddContentButton from "@/components/dev/AddContentButton";
 import DraggableContentBlock from "@/components/dev/DraggableContentBlock";
