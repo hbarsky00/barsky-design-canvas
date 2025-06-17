@@ -17,22 +17,16 @@ export const useImageLoader = (projectId: string, isValidImageUrl: (url: string)
     setIsLoading: (loading: boolean) => void,
     setHasError: (error: boolean) => void
   ) => {
-    if (!mountedRef.current || !src || !projectId) {
-      console.log('🔍 Skipping load - component unmounted or missing data');
+    if (!mountedRef.current || !src || !projectId || loadingRef.current) {
+      console.log('🔍 Skipping load - component unmounted, missing data, or already loading');
       if (mountedRef.current) {
         setIsLoading(false);
-        setDisplayedImage(src);
       }
       return;
     }
 
-    if (loadingRef.current) {
-      console.log('🔍 Skipping load - already loading');
-      return;
-    }
-
-    // If we already have a published replacement, skip loading unless it's a dev mode check
-    if (imageReplacements?.[src] && displayedImage === imageReplacements[src]) {
+    // If we already have a published replacement, only check for dev mode overrides
+    if (imageReplacements?.[src]) {
       console.log('🔍 Already have published replacement, checking for dev mode changes only');
       
       try {
@@ -59,7 +53,7 @@ export const useImageLoader = (projectId: string, isValidImageUrl: (url: string)
     try {
       console.log('🔍 Loading image state for:', src.substring(0, 50) + '...');
       
-      // First check dev mode changes
+      // Check dev mode changes first
       const devData = await getChanges();
       const devReplacement = devData?.imageReplacements?.[src];
       
@@ -72,37 +66,30 @@ export const useImageLoader = (projectId: string, isValidImageUrl: (url: string)
         return;
       }
       
-      // If no dev mode replacement, check published data (only if not already provided)
-      if (!imageReplacements?.[src]) {
-        const publishedData = await PublishingService.loadPublishedData(projectId);
-        const publishedReplacement = publishedData?.image_replacements?.[src];
-        
-        if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
-          // Strict validation for published URLs - reject data URLs
-          if (publishedReplacement.startsWith('data:')) {
-            console.warn('⚠️ Found data: URL in published content, using original:', publishedReplacement.substring(0, 50) + '...');
-            setDisplayedImage(src);
-            setHasDevModeChanges(false);
-            setIsLoading(false);
-          } else if (isValidPublishedUrl(publishedReplacement)) {
-            console.log('📄 Using published replacement:', publishedReplacement.substring(0, 50) + '...');
-            setDisplayedImage(publishedReplacement);
-            setHasDevModeChanges(false);
-            setIsLoading(false);
-          } else {
-            console.warn('⚠️ Invalid published URL format:', publishedReplacement);
-            setDisplayedImage(src);
-            setHasDevModeChanges(false);
-            setIsLoading(false);
-          }
-        } else if (mountedRef.current) {
-          console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
+      // Check published data as fallback
+      const publishedData = await PublishingService.loadPublishedData(projectId);
+      const publishedReplacement = publishedData?.image_replacements?.[src];
+      
+      if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
+        if (publishedReplacement.startsWith('data:')) {
+          console.warn('⚠️ Found data: URL in published content, using original:', publishedReplacement.substring(0, 50) + '...');
+          setDisplayedImage(src);
+          setHasDevModeChanges(false);
+          setIsLoading(false);
+        } else if (isValidPublishedUrl(publishedReplacement)) {
+          console.log('📄 Using published replacement:', publishedReplacement.substring(0, 50) + '...');
+          setDisplayedImage(publishedReplacement);
+          setHasDevModeChanges(false);
+          setIsLoading(false);
+        } else {
+          console.warn('⚠️ Invalid published URL format:', publishedReplacement);
           setDisplayedImage(src);
           setHasDevModeChanges(false);
           setIsLoading(false);
         }
-      } else {
-        // We already have published replacement, just finish loading
+      } else if (mountedRef.current) {
+        console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
+        setDisplayedImage(src);
         setHasDevModeChanges(false);
         setIsLoading(false);
       }

@@ -1,14 +1,17 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { UseImageStateManagerProps, ImageStateManagerReturn } from './image-state/types';
 import { useImageValidation } from './image-state/validation';
 import { useImageLoader } from './image-state/imageLoader';
 import { useImageEventHandlers } from './image-state/eventHandlers';
 
 export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps): ImageStateManagerReturn => {
-  // Immediately resolve the image using published replacements if available
-  const initialResolvedImage = imageReplacements?.[src] || src;
-  const [displayedImage, setDisplayedImage] = useState(initialResolvedImage);
+  // Stable initial state calculation
+  const initialImage = useMemo(() => {
+    return imageReplacements?.[src] || src;
+  }, [src, imageReplacements]);
+
+  const [displayedImage, setDisplayedImage] = useState(initialImage);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -29,8 +32,10 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   const { isValidImageUrl, isValidPublishedUrl } = useImageValidation();
   const { loadImageState } = useImageLoader(projectId, isValidImageUrl, isValidPublishedUrl);
   
-  // Wrap loadImageState with current state
-  const wrappedLoadImageState = () => {
+  // Stable callback for loading image state
+  const handleLoadImageState = useCallback(() => {
+    if (!mountedRef.current) return;
+    
     loadImageState(
       src,
       imageReplacements,
@@ -42,13 +47,13 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       setIsLoading,
       setHasError
     );
-  };
+  }, [src, projectId, loadImageState]);
 
   const { updateDisplayedImage, forceRefresh } = useImageEventHandlers(
     projectId,
     src,
     displayedImage,
-    wrappedLoadImageState,
+    handleLoadImageState,
     isValidPublishedUrl,
     mountedRef,
     loadingRef,
@@ -58,43 +63,39 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     setIsLoading
   );
 
-  // Initial load with timeout fallback
+  // Handle published replacement updates
   useEffect(() => {
-    // If we have a published replacement, we can skip the loading state entirely
-    if (imageReplacements?.[src]) {
-      console.log('🚀 Using provided published replacement:', imageReplacements[src].substring(0, 50) + '...');
-      setDisplayedImage(imageReplacements[src]);
-      setIsLoading(false);
+    const publishedReplacement = imageReplacements?.[src];
+    if (publishedReplacement && publishedReplacement !== displayedImage) {
+      console.log('🚀 Applying published replacement:', publishedReplacement.substring(0, 50) + '...');
+      setDisplayedImage(publishedReplacement);
       setHasDevModeChanges(false);
-      
-      // Still check for dev mode overrides but don't show loading
-      setTimeout(() => {
-        if (mountedRef.current && !loadingRef.current) {
-          wrappedLoadImageState();
-        }
-      }, 100);
-      
+      setIsLoading(false);
+      setHasError(false);
+      return;
+    }
+  }, [src, imageReplacements]);
+
+  // Initial load effect - simplified
+  useEffect(() => {
+    if (!src || !projectId) return;
+    
+    // If we already have a published replacement, don't load
+    if (imageReplacements?.[src]) {
+      console.log('✅ Using published replacement, skipping load');
       return;
     }
 
-    // For images without published replacements, start loading immediately
-    setIsLoading(true);
+    // Only load dev mode changes if we don't have a published replacement
     const timeoutId = setTimeout(() => {
-      if (mountedRef.current && loadingRef.current) {
-        console.warn('⚠️ Image loading timeout, falling back to original');
-        setDisplayedImage(src);
-        setIsLoading(false);
-        setHasError(false);
-        loadingRef.current = false;
+      if (mountedRef.current && !loadingRef.current) {
+        setIsLoading(true);
+        handleLoadImageState();
       }
-    }, 3000);
+    }, 100);
 
-    wrappedLoadImageState();
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [src, projectId, imageReplacements]);
+    return () => clearTimeout(timeoutId);
+  }, [src, projectId]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -103,9 +104,10 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     };
   }, []);
 
-  const wrappedUpdateDisplayedImage = (newSrc: string) => {
+  const wrappedUpdateDisplayedImage = useCallback((newSrc: string) => {
+    if (!mountedRef.current) return;
     updateDisplayedImage(newSrc, isValidImageUrl);
-  };
+  }, [updateDisplayedImage, isValidImageUrl]);
 
   return {
     displayedImage,
