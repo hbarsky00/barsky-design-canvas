@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -16,22 +17,9 @@ export class PublishingService {
       // Store current navigation state and prevent any navigation
       const originalUrl = window.location.href;
       const originalPath = window.location.pathname;
-      const originalState = window.history.state;
       
-      console.log('🔒 PublishingService: Locking navigation at:', originalPath);
-      
-      // Set up navigation prevention
-      const preventNavigation = (e: Event) => {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        console.log('🚫 Navigation prevented during publishing');
-        return false;
-      };
-      
-      // Add multiple navigation prevention listeners
-      window.addEventListener('beforeunload', preventNavigation, true);
-      window.addEventListener('popstate', preventNavigation, true);
-      
+      console.log('🔒 PublishingService: Preserving navigation at:', originalPath);
+
       try {
         // Get all dev mode changes using direct database operations
         const rawChanges = await fetchChangesFromDatabase(projectId);
@@ -194,12 +182,15 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        // Step 6: Apply changes to DOM immediately - but PREVENT ANY NAVIGATION
+        // Step 6: Apply changes to DOM immediately and preserve page state
         this.applyChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks, originalPath);
 
-        // Step 7: Store in localStorage as fallback
+        // Step 7: Store in localStorage as fallback and force component updates
         try {
           localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
+          // Force clear any dev mode cache to ensure published data takes precedence
+          localStorage.removeItem(`imageOverrides_${projectId}`);
+          localStorage.removeItem(`textOverrides_${projectId}`);
         } catch (error) {
           console.warn('⚠️ Could not store to localStorage:', error);
         }
@@ -222,25 +213,33 @@ export class PublishingService {
           console.warn('⚠️ Image cleanup failed:', error);
         }
 
+        // Step 10: Ensure we stay on the current page and force refresh
+        if (window.location.href !== originalUrl) {
+          console.log('🔒 PublishingService: Restoring original URL:', originalUrl);
+          window.history.replaceState(null, '', originalUrl);
+        }
+
+        // Force a complete component refresh to show published changes
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { 
+            projectId,
+            published: true, 
+            immediate: true,
+            timestamp: Date.now(),
+            imageReplacements: validImageReplacements,
+            textContent: changes.textContent,
+            contentBlocks: processedContentBlocks,
+            forceRefresh: true,
+            preventNavigation: true
+          }
+        }));
+
         console.log('✅ Project published successfully with', Object.keys(validImageReplacements).length, 'validated images');
         return true;
         
-      } finally {
-        // Remove navigation prevention listeners
-        window.removeEventListener('beforeunload', preventNavigation, true);
-        window.removeEventListener('popstate', preventNavigation, true);
-        
-        // Aggressively restore original navigation state
-        if (window.location.href !== originalUrl) {
-          console.log('🔒 PublishingService: Force restoring original URL:', originalUrl);
-          window.history.replaceState(originalState, '', originalUrl);
-        }
-        
-        // Double-check path
-        if (window.location.pathname !== originalPath) {
-          console.log('🔒 PublishingService: Force restoring original path:', originalPath);
-          window.history.replaceState(originalState, '', originalPath);
-        }
+      } catch (error) {
+        console.error('❌ Error publishing project:', error);
+        throw error;
       }
       
     } catch (error) {
@@ -257,78 +256,46 @@ export class PublishingService {
   ) {
     console.log('🎨 Applying published changes to DOM immediately');
 
-    // Apply image changes with cache busting
+    // Apply image changes with cache busting and immediate DOM updates
     Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
       const timestamp = Date.now();
       const cacheBustedNewSrc = newSrc.includes('?') 
         ? `${newSrc}&v=${timestamp}` 
         : `${newSrc}?v=${timestamp}`;
       
-      // Update all matching images
+      // Update all matching images immediately
       document.querySelectorAll('img').forEach((img) => {
-        const imgSrc = img.src;
-        
-        // Handle both exact matches and data URLs
-        if (imgSrc === oldSrc || imgSrc.includes(oldSrc) || 
-            (oldSrc.startsWith('data:') && imgSrc.startsWith('data:'))) {
+        if (img.src === oldSrc || img.src.includes(oldSrc.substring(0, 30))) {
+          console.log('🖼️ Updating image in DOM:', oldSrc.substring(0, 50) + '...', '->', cacheBustedNewSrc.substring(0, 50) + '...');
           img.src = cacheBustedNewSrc;
-          console.log('🖼️ Updated image in DOM:', oldSrc.substring(0, 50) + '...', '->', cacheBustedNewSrc.substring(0, 50) + '...');
+          img.style.opacity = '0';
+          img.onload = () => {
+            img.style.opacity = '1';
+          };
         }
       });
       
       // Update background images
       document.querySelectorAll('[style*="background-image"]').forEach((element) => {
         const style = (element as HTMLElement).style;
-        if (style.backgroundImage && (style.backgroundImage.includes(oldSrc) || 
-            (oldSrc.startsWith('data:') && style.backgroundImage.includes('data:')))) {
+        if (style.backgroundImage && style.backgroundImage.includes(oldSrc.substring(0, 30))) {
           style.backgroundImage = style.backgroundImage.replace(/url\(['"]?[^'"]*['"]?\)/, `url("${cacheBustedNewSrc}")`);
         }
       });
     });
 
-    // Dispatch comprehensive update events with STRICT navigation prevention
-    window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-      detail: { 
-        published: true, 
-        immediate: true,
-        timestamp: Date.now(),
-        imageReplacements,
-        textContent,
-        contentBlocks,
-        stayOnPage: true,
-        preventNavigation: true,
-        lockNavigation: true,
-        cacheClear: true,
-        originalPath: originalPath
-      }
-    }));
+    // Apply text content changes immediately
+    Object.entries(textContent).forEach(([key, value]) => {
+      const elements = document.querySelectorAll(`[data-text-key="${key}"]`);
+      elements.forEach((element) => {
+        if (element.textContent !== value) {
+          console.log('📝 Updating text in DOM:', key, '->', value.substring(0, 50) + '...');
+          element.textContent = value;
+        }
+      });
+    });
 
-    // Force a component refresh without navigation
-    setTimeout(() => {
-      // Ensure we're still on the right page before dispatching
-      if (window.location.pathname === originalPath) {
-        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { 
-            published: true, 
-            immediate: true,
-            timestamp: Date.now() + 1,
-            imageReplacements,
-            textContent,
-            contentBlocks,
-            stayOnPage: true,
-            preventNavigation: true,
-            lockNavigation: true,
-            forceRefresh: true,
-            originalPath: originalPath
-          }
-        }));
-      } else {
-        console.log('🚫 Path changed during publish, forcing back to:', originalPath);
-        window.history.replaceState(null, '', originalPath);
-      }
-    }, 100);
-
-    console.log('✅ All published changes applied to DOM - locked on page:', originalPath);
+    console.log('✅ All published changes applied to DOM - staying on page:', originalPath);
   }
 
   static async loadPublishedData(projectId: string): Promise<any> {

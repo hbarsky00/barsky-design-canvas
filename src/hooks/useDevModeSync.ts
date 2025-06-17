@@ -59,16 +59,25 @@ export const useDevModeSync = (projectId: string) => {
     checkChanges();
     
     // Set up new interval
-    intervalRef.current = setInterval(checkChanges, 2000); // Increased interval to reduce load
+    intervalRef.current = setInterval(checkChanges, 3000); // Increased interval to reduce load
     
     // Listen for project data updates
     const handleProjectDataUpdate = (e: CustomEvent) => {
       console.log('🔄 useDevModeSync: Project data updated event received:', e.detail);
       
+      // If this is a publish event, don't check for changes immediately
+      if (e.detail?.published) {
+        console.log('🚀 useDevModeSync: Published event detected, marking no changes to sync');
+        if (mountedRef.current) {
+          setHasChangesToSync(false);
+        }
+        return;
+      }
+      
       if (e.detail?.projectId === projectId || e.detail?.immediate) {
-        console.log('🔄 useDevModeSync: Relevant update detected, checking changes immediately');
+        console.log('🔄 useDevModeSync: Relevant update detected, checking changes');
         // Use setTimeout to prevent blocking the event
-        setTimeout(() => checkChanges(), 100);
+        setTimeout(() => checkChanges(), 300);
       }
     };
 
@@ -102,7 +111,7 @@ export const useDevModeSync = (projectId: string) => {
 
     console.log('🚀 useDevModeSync: Starting publish process for project:', projectId);
     
-    // Store current URL to prevent navigation
+    // Store current state to prevent any unwanted navigation
     const currentUrl = window.location.href;
     const currentPath = window.location.pathname;
     
@@ -124,14 +133,14 @@ export const useDevModeSync = (projectId: string) => {
       console.log('📤 useDevModeSync: Publishing changes using PublishingService');
       await PublishingService.publishProject(projectId);
       
-      // Ensure we're still on the same page
+      // Ensure we stayed on the same page after publishing
       if (window.location.href !== currentUrl) {
         console.log('🔒 useDevModeSync: Restoring original URL after publish');
         window.history.replaceState(null, '', currentUrl);
       }
       
       toast.success("Changes published successfully!", {
-        description: "Your changes are now live and visible!",
+        description: "Your changes are now live and preserved on this page!",
         duration: 4000,
       });
 
@@ -139,21 +148,6 @@ export const useDevModeSync = (projectId: string) => {
       if (mountedRef.current) {
         setHasChangesToSync(false);
       }
-      
-      // Trigger component updates WITHOUT navigation
-      console.log('🔄 useDevModeSync: Dispatching update events to refresh components');
-      
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          projectId, 
-          published: true, 
-          immediate: true,
-          timestamp: Date.now(),
-          stayOnPage: true,
-          currentPath: currentPath,
-          preventNavigation: true
-        }
-      }));
       
     } catch (error) {
       console.error('❌ useDevModeSync: Error publishing project:', error);
