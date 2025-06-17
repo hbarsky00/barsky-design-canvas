@@ -216,6 +216,23 @@
     transform: translateZ(-1px);
   }
 
+  /* Mobile-Optimized Components */
+  .mobile-optimized-padding {
+    @apply p-3 md:p-6 lg:p-8;
+  }
+
+  .mobile-image-container {
+    @apply p-1 sm:p-2 md:p-4;
+  }
+
+  .mobile-gallery-grid {
+    @apply gap-2 sm:gap-3 md:gap-6;
+  }
+
+  .mobile-section-spacing {
+    @apply space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8;
+  }
+
   /* Case Study Layout Components */
   .case-study-container {
     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -231,11 +248,11 @@
   }
 
   .process-card {
-    @apply glass-card p-6 floating-element layered-depth;
+    @apply glass-card mobile-optimized-padding floating-element layered-depth;
   }
 
   .metric-card {
-    @apply glass-card p-6 text-center floating-element;
+    @apply glass-card mobile-optimized-padding text-center floating-element;
   }
 
   .metric-number {
@@ -247,7 +264,7 @@
   }
 
   .image-gallery-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mobile-gallery-grid;
   }
 
   .gallery-image {
@@ -255,7 +272,7 @@
   }
 
   .before-after-container {
-    @apply glass-card p-6 layered-depth;
+    @apply glass-card mobile-optimized-padding layered-depth;
   }
 
   /* Project Text Styles - Center aligned paragraphs */
@@ -313,4 +330,23 @@
 
 .gentle-float {
   animation: gentle-float 6s ease-in-out infinite;
+}
+
+/* Mobile-specific image optimizations */
+@media (max-width: 768px) {
+  .glass-card-elevated {
+    @apply p-3 sm:p-4;
+  }
+  
+  .gallery-image {
+    @apply rounded-md;
+  }
+  
+  .layered-depth {
+    transform: none;
+  }
+  
+  .floating-element:hover {
+    @apply scale-100 translate-y-0;
+  }
 }

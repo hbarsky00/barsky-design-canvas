@@ -104,7 +104,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="glass-card-elevated p-8 layered-depth relative group"
+        className="glass-card-elevated mobile-optimized-padding layered-depth relative group"
       >
         <div className="animate-pulse">Loading content...</div>
       </motion.section>
@@ -117,18 +117,18 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="glass-card-elevated p-8 layered-depth relative group"
+      className="glass-card-elevated mobile-optimized-padding layered-depth relative group"
     >
       {isDevMode && <AddContentButton onAdd={handleAddContent} />}
       
-      <div className="space-y-8">
+      <div className="mobile-section-spacing">
         {/* Section Title */}
         <EditableText 
           initialText={title}
           textKey={`${sectionKey}_title_${projectId}`}
         >
           {(text) => (
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center">
               {text}
             </h2>
           )}
@@ -143,7 +143,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
           {(text) => (
             <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
               {text.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">
+                <p key={index} className="mb-3 sm:mb-4">
                   {paragraph}
                 </p>
               ))}
@@ -153,10 +153,10 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
 
         {/* Additional Content Blocks */}
         {contentBlocks.length > 0 && (
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800">Additional Content ({contentBlocks.length} items):</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800">Additional Content ({contentBlocks.length} items):</h3>
             {contentBlocks.map((block, index) => (
-              <div key={`${sectionKey}-${block.type}-${index}-${block.src || 'no-src'}`} className="border-l-4 border-blue-200 pl-4">
+              <div key={`${sectionKey}-${block.type}-${index}-${block.src || 'no-src'}`} className="border-l-4 border-blue-200 pl-3 sm:pl-4">
                 <DraggableContentBlock
                   block={block}
                   index={index}

@@ -68,7 +68,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="mobile-section-spacing">
       {sectionImages.map((imageSrc, index) => {
         const replacedSrc = getReplacedImageSrc(imageSrc);
         const caption = imageCaptions[imageSrc] || imageCaptions[replacedSrc] || `${title} illustration ${index + 1}`;
@@ -78,7 +78,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
         return (
           <div 
             key={`${sectionKey}-image-${index}`} 
-            className={`glass-card p-4 layered-depth relative group ${
+            className={`glass-card mobile-image-container layered-depth relative group ${
               draggedImageIndex === index ? 'opacity-50' : ''
             }`}
             draggable={isDevMode}
@@ -88,14 +88,14 @@ const SectionImages: React.FC<SectionImagesProps> = ({
             onDragEnd={handleDragEnd}
           >
             {isDevMode && (
-              <div className="absolute top-2 left-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-6 w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
+                  className="h-5 w-5 sm:h-6 sm:w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
                   title="Drag to reorder"
                 >
-                  <GripVertical className="h-3 w-3" />
+                  <GripVertical className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                 </Button>
               </div>
             )}
@@ -113,7 +113,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               caption={caption}
               imageList={sectionImages.map(getReplacedImageSrc)}
               currentIndex={index}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              className="rounded-lg sm:rounded-xl shadow-md sm:shadow-elevated-lg w-full overflow-hidden"
               onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
               onImageRemove={handleRemove}
               projectId={projectId}

@@ -54,7 +54,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mobile-gallery-grid">
       {images.map((image, index) => {
         const caption = imageCaptions[image] || `Gallery image ${index + 1}`;
         const imageIndex = allImages.indexOf(image);
@@ -77,14 +77,14 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               className="w-full h-full"
             >
               {isDevMode && (
-                <div className="absolute top-2 left-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-6 w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
+                    className="h-5 w-5 sm:h-6 sm:w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
                     title="Drag to reorder"
                   >
-                    <GripVertical className="h-3 w-3" />
+                    <GripVertical className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                   </Button>
                 </div>
               )}
