@@ -6,7 +6,7 @@ const DevModeSyncButton: React.FC = () => {
   const { isDevMode, isLovableEnvironment, useExternalDeployment } = useDevMode();
 
   // Don't render the button if using external deployment (GitHub → Vercel)
-  if (!projectId || !isLovableEnvironment || useExternalDeployment) {
+  if (!isLovableEnvironment || useExternalDeployment) {
     console.log('❌ DevModeSyncButton: Hidden - using external deployment workflow');
     return null;
   }
