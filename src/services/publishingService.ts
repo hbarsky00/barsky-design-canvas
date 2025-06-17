@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -13,6 +12,10 @@ export class PublishingService {
         console.error('❌ Invalid project ID provided:', projectId);
         throw new Error('Invalid project ID');
       }
+      
+      // Store current path to prevent navigation
+      const currentPath = window.location.pathname;
+      console.log('🔒 PublishingService: Current path stored:', currentPath);
       
       // Get all dev mode changes using direct database operations
       const rawChanges = await fetchChangesFromDatabase(projectId);
@@ -175,8 +178,8 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 6: Apply changes to DOM immediately with cache busting
-      this.applyChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks);
+      // Step 6: Apply changes to DOM immediately with cache busting - but prevent navigation
+      this.applyChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks, currentPath);
 
       // Step 7: Store in localStorage as fallback
       try {
@@ -203,6 +206,12 @@ export class PublishingService {
         console.warn('⚠️ Image cleanup failed:', error);
       }
 
+      // Final check to ensure we haven't navigated away
+      if (window.location.pathname !== currentPath) {
+        console.log('🔒 PublishingService: Restoring original path:', currentPath);
+        window.history.pushState(null, '', currentPath);
+      }
+
       console.log('✅ Project published successfully with', Object.keys(validImageReplacements).length, 'validated images');
       return true;
     } catch (error) {
@@ -214,7 +223,8 @@ export class PublishingService {
   private static applyChangesToDOM(
     imageReplacements: Record<string, string>,
     textContent: Record<string, string>,
-    contentBlocks: Record<string, any[]>
+    contentBlocks: Record<string, any[]>,
+    originalPath: string
   ) {
     console.log('🎨 Applying published changes to DOM immediately');
 
@@ -247,7 +257,7 @@ export class PublishingService {
       });
     });
 
-    // Dispatch comprehensive update events
+    // Dispatch comprehensive update events with navigation prevention
     window.dispatchEvent(new CustomEvent('projectDataUpdated', {
       detail: { 
         published: true, 
@@ -257,27 +267,32 @@ export class PublishingService {
         textContent,
         contentBlocks,
         stayOnPage: true,
-        cacheClear: true
+        cacheClear: true,
+        originalPath: originalPath
       }
     }));
 
     // Force a page refresh for components to pick up published changes
     setTimeout(() => {
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          published: true, 
-          immediate: true,
-          timestamp: Date.now() + 1,
-          imageReplacements,
-          textContent,
-          contentBlocks,
-          stayOnPage: true,
-          forceRefresh: true
-        }
-      }));
+      // Ensure we're still on the right page before dispatching
+      if (window.location.pathname === originalPath) {
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { 
+            published: true, 
+            immediate: true,
+            timestamp: Date.now() + 1,
+            imageReplacements,
+            textContent,
+            contentBlocks,
+            stayOnPage: true,
+            forceRefresh: true,
+            originalPath: originalPath
+          }
+        }));
+      }
     }, 200);
 
-    console.log('✅ All published changes applied to DOM - no navigation triggered');
+    console.log('✅ All published changes applied to DOM - staying on page:', originalPath);
   }
 
   static async loadPublishedData(projectId: string): Promise<any> {

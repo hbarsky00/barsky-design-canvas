@@ -6,12 +6,12 @@ import { useImageLoader } from './image-state/imageLoader';
 import { useImageEventHandlers } from './image-state/eventHandlers';
 
 export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps): ImageStateManagerReturn => {
-  // Stable initial state calculation
-  const initialImage = useMemo(() => {
+  // Initialize state with proper fallbacks to prevent React errors
+  const [displayedImage, setDisplayedImage] = useState<string>(() => {
+    if (!src) return '';
     return imageReplacements?.[src] || src;
-  }, [src, imageReplacements]);
-
-  const [displayedImage, setDisplayedImage] = useState(initialImage);
+  });
+  
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -20,8 +20,8 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   
   // Debug logging
   console.log('🎯 useImageStateManager:', {
-    src: src.substring(0, 50) + '...',
-    displayedImage: displayedImage.substring(0, 50) + '...',
+    src: src?.substring(0, 50) + '...' || 'no-src',
+    displayedImage: displayedImage?.substring(0, 50) + '...' || 'no-displayed',
     projectId,
     hasDevModeChanges,
     isLoading,
@@ -34,7 +34,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   
   // Stable callback for loading image state
   const handleLoadImageState = useCallback(() => {
-    if (!mountedRef.current) return;
+    if (!mountedRef.current || !src || !projectId) return;
     
     loadImageState(
       src,
@@ -47,7 +47,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       setIsLoading,
       setHasError
     );
-  }, [src, projectId, loadImageState]);
+  }, [src, projectId, loadImageState, displayedImage, imageReplacements]);
 
   const { updateDisplayedImage, forceRefresh } = useImageEventHandlers(
     projectId,
@@ -63,39 +63,35 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     setIsLoading
   );
 
-  // Handle published replacement updates
+  // Handle published replacement updates - simplified to prevent loops
   useEffect(() => {
-    const publishedReplacement = imageReplacements?.[src];
+    if (!src || !imageReplacements) return;
+    
+    const publishedReplacement = imageReplacements[src];
     if (publishedReplacement && publishedReplacement !== displayedImage) {
       console.log('🚀 Applying published replacement:', publishedReplacement.substring(0, 50) + '...');
       setDisplayedImage(publishedReplacement);
       setHasDevModeChanges(false);
       setIsLoading(false);
       setHasError(false);
-      return;
     }
-  }, [src, imageReplacements]);
+  }, [src, imageReplacements?.[src]]); // Only depend on the specific replacement
 
-  // Initial load effect - simplified
+  // Initial load effect - only when necessary
   useEffect(() => {
-    if (!src || !projectId) return;
+    if (!src || !projectId || imageReplacements?.[src]) return;
     
-    // If we already have a published replacement, don't load
-    if (imageReplacements?.[src]) {
-      console.log('✅ Using published replacement, skipping load');
-      return;
-    }
+    // Prevent immediate loading if we're already loading
+    if (loadingRef.current || isLoading) return;
 
-    // Only load dev mode changes if we don't have a published replacement
     const timeoutId = setTimeout(() => {
       if (mountedRef.current && !loadingRef.current) {
-        setIsLoading(true);
         handleLoadImageState();
       }
     }, 100);
 
     return () => clearTimeout(timeoutId);
-  }, [src, projectId]);
+  }, [src, projectId]); // Minimal dependencies
 
   // Cleanup on unmount
   useEffect(() => {
@@ -105,17 +101,17 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   }, []);
 
   const wrappedUpdateDisplayedImage = useCallback((newSrc: string) => {
-    if (!mountedRef.current) return;
+    if (!mountedRef.current || !newSrc) return;
     updateDisplayedImage(newSrc, isValidImageUrl);
   }, [updateDisplayedImage, isValidImageUrl]);
 
   return {
-    displayedImage,
+    displayedImage: displayedImage || src || '',
     updateDisplayedImage: wrappedUpdateDisplayedImage,
     forceRefresh,
     hasDevModeChanges,
     isLoading,
     hasError,
-    isValidUrl: isValidImageUrl(displayedImage)
+    isValidUrl: isValidImageUrl(displayedImage || src || '')
   };
 };

@@ -10,7 +10,7 @@ export const useDevModeSync = (projectId: string) => {
   const [lastChecked, setLastChecked] = useState<number>(0);
   const { hasChanges: checkHasChanges } = useDevModeDatabase(projectId);
 
-  // More aggressive change detection
+  // Change detection
   useEffect(() => {
     if (!projectId) {
       setHasChangesToSync(false);
@@ -33,16 +33,15 @@ export const useDevModeSync = (projectId: string) => {
     // Initial check
     checkChanges();
     
-    // More frequent checking
+    // Periodic checking
     const interval = setInterval(checkChanges, 1000);
     
-    // Listen for immediate project data updates
+    // Listen for project data updates
     const handleProjectDataUpdate = (e: CustomEvent) => {
       console.log('🔄 useDevModeSync: Project data updated event received:', e.detail);
       
       if (e.detail?.projectId === projectId || e.detail?.immediate) {
         console.log('🔄 useDevModeSync: Relevant update detected, checking changes immediately');
-        // Small delay to ensure database is updated
         setTimeout(checkChanges, 50);
       }
     };
@@ -82,37 +81,35 @@ export const useDevModeSync = (projectId: string) => {
       await PublishingService.publishProject(projectId);
       
       toast.success("Changes published successfully!", {
-        description: "Your changes are now live and visible. No page reload needed!",
+        description: "Your changes are now live and visible!",
         duration: 4000,
       });
 
       // Update state to reflect no pending changes
       setHasChangesToSync(false);
       
-      // Trigger component updates WITHOUT any navigation or page reload
+      // Trigger component updates WITHOUT navigation
       console.log('🔄 useDevModeSync: Dispatching update events to refresh components');
+      
+      // Prevent any potential navigation by explicitly staying on current page
+      const currentPath = window.location.pathname;
+      
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId, 
           published: true, 
           immediate: true,
           timestamp: Date.now(),
-          stayOnPage: true // Flag to prevent any navigation
+          stayOnPage: true,
+          currentPath: currentPath
         }
       }));
       
-      // Force a second update to ensure all components refresh
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { 
-            projectId, 
-            published: true, 
-            immediate: true,
-            timestamp: Date.now() + 1,
-            stayOnPage: true
-          }
-        }));
-      }, 100);
+      // Ensure we stay on the current page
+      if (window.location.pathname !== currentPath) {
+        console.log('🔒 Preventing unwanted navigation, staying on:', currentPath);
+        window.history.pushState(null, '', currentPath);
+      }
       
     } catch (error) {
       console.error('❌ useDevModeSync: Error publishing project:', error);
