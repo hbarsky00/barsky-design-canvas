@@ -18,8 +18,10 @@ interface MaximizableImageProps {
   imageList?: string[];
   currentIndex?: number;
   onImageReplace?: (newSrc: string) => void;
+  onImageRemove?: () => void;
   projectId?: string;
   hideEditButton?: boolean;
+  allowRemove?: boolean;
   imageReplacements?: Record<string, string>;
 }
 
@@ -33,8 +35,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   imageList,
   currentIndex,
   onImageReplace,
+  onImageRemove,
   projectId,
   hideEditButton = false,
+  allowRemove = true,
   imageReplacements
 }) => {
   const { maximizeImage } = useImageMaximizer();
@@ -80,6 +84,18 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       onImageReplace(newSrc);
     }
   }, [src, currentProjectId, updateDisplayedImage, onImageReplace]);
+
+  const handleImageRemove = useCallback(() => {
+    console.log('🗑️ MaximizableImage: Image remove triggered:', {
+      originalSrc: src.substring(0, 30) + '...',
+      projectId: currentProjectId
+    });
+    
+    // Call parent callback if provided
+    if (onImageRemove) {
+      onImageRemove();
+    }
+  }, [src, currentProjectId, onImageRemove]);
 
   const handleImageError = () => {
     console.error('❌ Image failed to load:', {
@@ -151,7 +167,9 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <EditImageButton 
             src={src} 
             onImageReplace={handleImageReplace}
+            onImageRemove={allowRemove ? handleImageRemove : undefined}
             projectId={currentProjectId}
+            allowRemove={allowRemove}
           />
         )}
         

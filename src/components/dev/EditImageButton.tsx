@@ -1,8 +1,7 @@
-
 import React, { useRef, useState, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
-import { Upload } from 'lucide-react';
+import { Upload, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useParams } from 'react-router-dom';
 import { compressImageFile, validateImageSize, getOptimalCompressionSettings } from '@/utils/imageCompression';
@@ -11,10 +10,18 @@ import { ImageStorageService } from '@/services/imageStorage';
 interface EditImageButtonProps {
   src?: string;
   onImageReplace?: (newSrc: string) => void;
+  onImageRemove?: () => void;
   projectId?: string;
+  allowRemove?: boolean;
 }
 
-const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, projectId }) => {
+const EditImageButton: React.FC<EditImageButtonProps> = ({ 
+  src, 
+  onImageReplace, 
+  onImageRemove,
+  projectId,
+  allowRemove = true 
+}) => {
   const { isDevMode } = useDevMode();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
@@ -42,6 +49,19 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     console.log('🎯 EditImageButton: Starting image replacement for:', src.substring(0, 50) + '...');
     fileInputRef.current?.click();
   }, [src]);
+
+  const handleRemoveClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (processingRef.current || !onImageRemove) {
+      return;
+    }
+    
+    console.log('🗑️ EditImageButton: Removing image:', src?.substring(0, 50) + '...');
+    onImageRemove();
+    toast.success('Image removed successfully');
+  }, [src, onImageRemove]);
 
   const handleFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -146,7 +166,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
 
   return (
     <>
-      <div className="absolute top-2 left-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute top-2 left-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
         <Button
           onClick={handleEditClick}
           variant="secondary"
@@ -157,6 +177,17 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           <Upload className="h-4 w-4 mr-2" />
           {isProcessing ? 'Uploading...' : 'Replace'}
         </Button>
+        {allowRemove && onImageRemove && (
+          <Button
+            onClick={handleRemoveClick}
+            variant="destructive"
+            size="sm"
+            className="shadow-md"
+            disabled={isProcessing}
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        )}
       </div>
       <input
         type="file"

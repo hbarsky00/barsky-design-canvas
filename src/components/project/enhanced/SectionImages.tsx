@@ -11,6 +11,7 @@ interface SectionImagesProps {
   projectId: string;
   getReplacedImageSrc: (originalSrc: string) => string;
   handleImageReplace: (imageSrc: string, newSrc: string) => void;
+  handleImageRemove?: (imageSrc: string) => void;
 }
 
 const SectionImages: React.FC<SectionImagesProps> = ({
@@ -20,7 +21,8 @@ const SectionImages: React.FC<SectionImagesProps> = ({
   sectionKey,
   projectId,
   getReplacedImageSrc,
-  handleImageReplace
+  handleImageReplace,
+  handleImageRemove
 }) => {
   if (sectionImages.length === 0) {
     return null;
@@ -32,12 +34,16 @@ const SectionImages: React.FC<SectionImagesProps> = ({
         const replacedSrc = getReplacedImageSrc(imageSrc);
         const caption = imageCaptions[imageSrc] || imageCaptions[replacedSrc] || `${title} illustration ${index + 1}`;
         
+        const handleRemove = handleImageRemove ? () => handleImageRemove(imageSrc) : undefined;
+        
         return (
           <div key={`${sectionKey}-image-${index}`} className="glass-card p-4 layered-depth relative group">
             <EditImageButton
               src={replacedSrc}
               onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
+              onImageRemove={handleRemove}
               projectId={projectId}
+              allowRemove={!!handleImageRemove}
             />
             <MaximizableImage
               src={replacedSrc}
@@ -47,8 +53,10 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               currentIndex={index}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
               onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
+              onImageRemove={handleRemove}
               projectId={projectId}
               hideEditButton={true}
+              allowRemove={!!handleImageRemove}
             />
           </div>
         );

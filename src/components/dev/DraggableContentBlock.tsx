@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { GripVertical, X, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,6 +21,7 @@ interface DraggableContentBlockProps {
   onUpdate: (index: number, newValue: string) => void;
   onDelete: (index: number) => void;
   onImageReplace?: (index: number, newSrc: string) => void;
+  onImageRemove?: (index: number) => void;
   onDragStart: (e: React.DragEvent, index: number) => void;
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent, index: number) => void;
@@ -35,6 +35,7 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   onUpdate,
   onDelete,
   onImageReplace,
+  onImageRemove,
   onDragStart,
   onDragOver,
   onDrop,
@@ -48,7 +49,8 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     index, 
     blockType: block.type, 
     blockSrc: block.src,
-    hasOnImageReplace: !!onImageReplace 
+    hasOnImageReplace: !!onImageReplace,
+    hasOnImageRemove: !!onImageRemove
   });
 
   const handleImageReplace = async (newSrc: string) => {
@@ -93,6 +95,16 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
           description: 'Please try again with a smaller image'
         });
       }
+    }
+  };
+
+  const handleImageRemove = () => {
+    console.log('🗑️ DraggableContentBlock: Removing image for index', index);
+    if (onImageRemove) {
+      onImageRemove(index);
+    } else {
+      // Fallback: delete the entire block
+      onDelete(index);
     }
   };
 
@@ -229,7 +241,9 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
               caption={block.caption}
               className="rounded-lg shadow-elevated w-full"
               onImageReplace={handleImageReplace}
+              onImageRemove={handleImageRemove}
               projectId={projectId}
+              allowRemove={true}
             />
           </div>
         );

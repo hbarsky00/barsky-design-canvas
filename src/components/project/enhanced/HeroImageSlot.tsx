@@ -38,6 +38,11 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
 }) => {
   const { isDevMode } = useDevMode();
 
+  const handleImageRemove = () => {
+    console.log('🗑️ HeroImageSlot: Removing image:', image.id);
+    onRemoveImage(image.id);
+  };
+
   return (
     <div 
       className={`relative group/image ${
@@ -60,7 +65,7 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
             <GripVertical className="h-3 w-3" />
           </Button>
           <Button
-            onClick={() => onRemoveImage(image.id)}
+            onClick={handleImageRemove}
             variant="destructive"
             size="icon"
             className="h-6 w-6 opacity-0 group-hover/image:opacity-100 transition-opacity"
@@ -80,7 +85,9 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
         priority={index === 0}
         className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
         onImageReplace={(newSrc) => onImageReplace(image.id, newSrc)}
+        onImageRemove={handleImageRemove}
         projectId={projectId}
+        allowRemove={true}
       />
     </div>
   );
