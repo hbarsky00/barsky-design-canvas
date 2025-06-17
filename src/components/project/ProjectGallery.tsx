@@ -67,33 +67,37 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className={`relative group ${draggedIndex === index ? 'opacity-50' : ''}`}
-            draggable={isDevMode}
-            onDragStart={(e) => handleDragStart(e, index)}
-            onDragOver={handleDragOver}
-            onDrop={(e) => handleDrop(e, index)}
-            onDragEnd={handleDragEnd}
           >
-            {isDevMode && (
-              <div className="absolute top-2 left-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-6 w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
-                  title="Drag to reorder"
-                >
-                  <GripVertical className="h-3 w-3" />
-                </Button>
-              </div>
-            )}
-            
-            <MaximizableImage
-              src={image}
-              alt={caption}
-              caption={caption}
-              aspectRatio={4/3}
-              imageList={allImages}
-              currentIndex={imageIndex >= 0 ? imageIndex : 0}
-            />
+            <div
+              draggable={isDevMode}
+              onDragStart={(e) => handleDragStart(e, index)}
+              onDragOver={handleDragOver}
+              onDrop={(e) => handleDrop(e, index)}
+              onDragEnd={handleDragEnd}
+              className="w-full h-full"
+            >
+              {isDevMode && (
+                <div className="absolute top-2 left-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-6 w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
+                    title="Drag to reorder"
+                  >
+                    <GripVertical className="h-3 w-3" />
+                  </Button>
+                </div>
+              )}
+              
+              <MaximizableImage
+                src={image}
+                alt={caption}
+                caption={caption}
+                aspectRatio={4/3}
+                imageList={allImages}
+                currentIndex={imageIndex >= 0 ? imageIndex : 0}
+              />
+            </div>
           </motion.div>
         );
       })}
