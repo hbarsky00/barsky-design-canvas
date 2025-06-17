@@ -1,17 +1,11 @@
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
-import { PublishingService } from '@/services/publishingService';
+import { useState, useEffect, useRef } from 'react';
+import { UseImageStateManagerProps, ImageStateManagerReturn } from './image-state/types';
+import { useImageValidation } from './image-state/validation';
+import { useImageLoader } from './image-state/imageLoader';
+import { useImageEventHandlers } from './image-state/eventHandlers';
 
-interface UseImageStateManagerProps {
-  src: string;
-  projectId: string;
-  imageReplacements?: Record<string, string>;
-}
-
-export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps) => {
-  const { getChanges } = useDevModeDatabase(projectId);
-  
+export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps): ImageStateManagerReturn => {
   // Immediately resolve the image using published replacements if available
   const initialResolvedImage = imageReplacements?.[src] || src;
   const [displayedImage, setDisplayedImage] = useState(initialResolvedImage);
@@ -32,131 +26,37 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     hasPublishedReplacement: !!imageReplacements?.[src]
   });
   
-  // Validate URL helper - more strict for published content
-  const isValidImageUrl = useCallback((url: string): boolean => {
-    if (!url || typeof url !== 'string') return false;
-    
-    // Allow data URLs, blob URLs, and HTTP(S) URLs
-    return url.startsWith('data:') || 
-           url.startsWith('blob:') || 
-           url.startsWith('http://') || 
-           url.startsWith('https://') ||
-           url.startsWith('/');
-  }, []);
-
-  // Validate URL for published content (stricter)
-  const isValidPublishedUrl = useCallback((url: string): boolean => {
-    if (!url || typeof url !== 'string') return false;
-    
-    // Only allow HTTP(S) URLs and absolute paths for published content
-    return url.startsWith('http://') || 
-           url.startsWith('https://') ||
-           url.startsWith('/');
-  }, []);
+  const { isValidImageUrl, isValidPublishedUrl } = useImageValidation();
+  const { loadImageState } = useImageLoader(projectId, isValidImageUrl, isValidPublishedUrl);
   
-  // Stable callback for loading image state
-  const loadImageState = useCallback(async () => {
-    if (!mountedRef.current || !src || !projectId) {
-      console.log('🔍 Skipping load - component unmounted or missing data');
-      if (mountedRef.current) {
-        setIsLoading(false);
-        setDisplayedImage(src);
-      }
-      return;
-    }
+  // Wrap loadImageState with current state
+  const wrappedLoadImageState = () => {
+    loadImageState(
+      src,
+      imageReplacements,
+      displayedImage,
+      mountedRef,
+      loadingRef,
+      setDisplayedImage,
+      setHasDevModeChanges,
+      setIsLoading,
+      setHasError
+    );
+  };
 
-    if (loadingRef.current) {
-      console.log('🔍 Skipping load - already loading');
-      return;
-    }
-
-    // If we already have a published replacement, skip loading unless it's a dev mode check
-    if (imageReplacements?.[src] && displayedImage === imageReplacements[src]) {
-      console.log('🔍 Already have published replacement, checking for dev mode changes only');
-      
-      try {
-        const devData = await getChanges();
-        const devReplacement = devData?.imageReplacements?.[src];
-        
-        if (devReplacement && devReplacement !== src && isValidImageUrl(devReplacement) && mountedRef.current) {
-          console.log('✅ Found dev mode override for published image:', devReplacement.substring(0, 50) + '...');
-          setDisplayedImage(devReplacement);
-          setHasDevModeChanges(true);
-        }
-      } catch (error) {
-        console.warn('⚠️ Error checking dev mode changes:', error);
-      }
-      
-      setIsLoading(false);
-      return;
-    }
-
-    loadingRef.current = true;
-    setIsLoading(true);
-    setHasError(false);
-    
-    try {
-      console.log('🔍 Loading image state for:', src.substring(0, 50) + '...');
-      
-      // First check dev mode changes
-      const devData = await getChanges();
-      const devReplacement = devData?.imageReplacements?.[src];
-      
-      if (devReplacement && devReplacement !== src && isValidImageUrl(devReplacement) && mountedRef.current) {
-        console.log('✅ Using dev mode replacement:', devReplacement.substring(0, 50) + '...');
-        setDisplayedImage(devReplacement);
-        setHasDevModeChanges(true);
-        setIsLoading(false);
-        loadingRef.current = false;
-        return;
-      }
-      
-      // If no dev mode replacement, check published data (only if not already provided)
-      if (!imageReplacements?.[src]) {
-        const publishedData = await PublishingService.loadPublishedData(projectId);
-        const publishedReplacement = publishedData?.image_replacements?.[src];
-        
-        if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
-          // Strict validation for published URLs - reject data URLs
-          if (publishedReplacement.startsWith('data:')) {
-            console.warn('⚠️ Found data: URL in published content, using original:', publishedReplacement.substring(0, 50) + '...');
-            setDisplayedImage(src);
-            setHasDevModeChanges(false);
-            setIsLoading(false);
-          } else if (isValidPublishedUrl(publishedReplacement)) {
-            console.log('📄 Using published replacement:', publishedReplacement.substring(0, 50) + '...');
-            setDisplayedImage(publishedReplacement);
-            setHasDevModeChanges(false);
-            setIsLoading(false);
-          } else {
-            console.warn('⚠️ Invalid published URL format:', publishedReplacement);
-            setDisplayedImage(src);
-            setHasDevModeChanges(false);
-            setIsLoading(false);
-          }
-        } else if (mountedRef.current) {
-          console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
-          setDisplayedImage(src);
-          setHasDevModeChanges(false);
-          setIsLoading(false);
-        }
-      } else {
-        // We already have published replacement, just finish loading
-        setHasDevModeChanges(false);
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.error('❌ Error loading image state:', error);
-      if (mountedRef.current) {
-        setDisplayedImage(src);
-        setHasDevModeChanges(false);
-        setHasError(true);
-        setIsLoading(false);
-      }
-    } finally {
-      loadingRef.current = false;
-    }
-  }, [src, projectId, getChanges, isValidImageUrl, isValidPublishedUrl, imageReplacements, displayedImage]);
+  const { updateDisplayedImage, forceRefresh } = useImageEventHandlers(
+    projectId,
+    src,
+    displayedImage,
+    wrappedLoadImageState,
+    isValidPublishedUrl,
+    mountedRef,
+    loadingRef,
+    setDisplayedImage,
+    setHasDevModeChanges,
+    setHasError,
+    setIsLoading
+  );
 
   // Initial load with timeout fallback
   useEffect(() => {
@@ -170,7 +70,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       // Still check for dev mode overrides but don't show loading
       setTimeout(() => {
         if (mountedRef.current && !loadingRef.current) {
-          loadImageState();
+          wrappedLoadImageState();
         }
       }, 100);
       
@@ -189,67 +89,12 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       }
     }, 3000);
 
-    loadImageState();
+    wrappedLoadImageState();
 
     return () => {
       clearTimeout(timeoutId);
     };
   }, [src, projectId, imageReplacements]);
-
-  // Listen for updates
-  useEffect(() => {
-    if (!mountedRef.current) return;
-    
-    const handleProjectUpdate = (e: CustomEvent) => {
-      if (!mountedRef.current) return;
-      
-      const detail = e.detail || {};
-      console.log('🔄 Project update event:', detail);
-      
-      // Handle published changes immediately
-      if (detail.published && detail.imageReplacements) {
-        const newImageSrc = detail.imageReplacements[src];
-        if (newImageSrc && newImageSrc !== displayedImage && mountedRef.current) {
-          // Validate published URL
-          if (newImageSrc.startsWith('data:')) {
-            console.warn('⚠️ Received data: URL in published update, ignoring');
-            return;
-          }
-          
-          if (isValidPublishedUrl(newImageSrc)) {
-            console.log('📄 Immediately applying published change:', newImageSrc.substring(0, 50) + '...');
-            setDisplayedImage(newImageSrc);
-            setHasDevModeChanges(false);
-            setHasError(false);
-            setIsLoading(false);
-            return;
-          }
-        }
-      }
-      
-      // Handle other updates
-      const isRelevant = 
-        detail.projectId === projectId || 
-        detail.immediate ||
-        detail.src === src ||
-        detail.imageReplaced;
-        
-      if (isRelevant && !loadingRef.current) {
-        setHasError(false);
-        setTimeout(() => {
-          if (mountedRef.current && !loadingRef.current) {
-            loadImageState();
-          }
-        }, 100);
-      }
-    };
-
-    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
-    
-    return () => {
-      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
-    };
-  }, [src, projectId, displayedImage, loadImageState, isValidPublishedUrl]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -258,44 +103,13 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     };
   }, []);
 
-  const updateDisplayedImage = useCallback((newSrc: string) => {
-    if (!mountedRef.current) return;
-    
-    console.log('⚡ Immediately updating displayed image:', {
-      from: src.substring(0, 30) + '...',
-      to: newSrc.substring(0, 30) + '...',
-      isValid: isValidImageUrl(newSrc)
-    });
-    
-    if (isValidImageUrl(newSrc)) {
-      setDisplayedImage(newSrc);
-      setHasDevModeChanges(true);
-      setHasError(false);
-      setIsLoading(false);
-    } else {
-      console.error('❌ Invalid image URL provided:', newSrc);
-      setHasError(true);
-      setIsLoading(false);
-    }
-  }, [src, isValidImageUrl]);
-
-  const forceRefresh = useCallback(() => {
-    if (!mountedRef.current || loadingRef.current) return;
-    
-    console.log('🔄 Force refresh triggered for:', src.substring(0, 50) + '...');
-    setHasError(false);
-    setIsLoading(true);
-    
-    setTimeout(() => {
-      if (mountedRef.current && !loadingRef.current) {
-        loadImageState();
-      }
-    }, 100);
-  }, [loadImageState, src]);
+  const wrappedUpdateDisplayedImage = (newSrc: string) => {
+    updateDisplayedImage(newSrc, isValidImageUrl);
+  };
 
   return {
     displayedImage,
-    updateDisplayedImage,
+    updateDisplayedImage: wrappedUpdateDisplayedImage,
     forceRefresh,
     hasDevModeChanges,
     isLoading,
