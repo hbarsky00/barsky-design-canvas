@@ -23,6 +23,7 @@ interface MaximizableImageProps {
   hideEditButton?: boolean;
   allowRemove?: boolean;
   imageReplacements?: Record<string, string>;
+  onCaptionUpdate?: (newCaption: string) => void;
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -39,7 +40,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   projectId,
   hideEditButton = false,
   allowRemove = true,
-  imageReplacements
+  imageReplacements,
+  onCaptionUpdate
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
@@ -186,7 +188,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       
       {caption && (
         <div className="mt-2 text-sm text-gray-600 italic text-center">
-          <EditableText initialText={caption}>
+          <EditableText 
+            initialText={caption}
+            textKey={`image_caption_${src}_${currentProjectId}`}
+            onTextChange={onCaptionUpdate}
+          >
             {(text) => (
               <motion.div
                 className="pr-8"

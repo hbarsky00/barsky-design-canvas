@@ -16,6 +16,7 @@ interface SectionImagesProps {
   handleImageReplace: (imageSrc: string, newSrc: string) => void;
   handleImageRemove?: (imageSrc: string) => void;
   onImageReorder?: (oldIndex: number, newIndex: number) => void;
+  onCaptionUpdate?: (imageSrc: string, newCaption: string) => void;
 }
 
 const SectionImages: React.FC<SectionImagesProps> = ({
@@ -27,7 +28,8 @@ const SectionImages: React.FC<SectionImagesProps> = ({
   getReplacedImageSrc,
   handleImageReplace,
   handleImageRemove,
-  onImageReorder
+  onImageReorder,
+  onCaptionUpdate
 }) => {
   const { isDevMode } = useDevMode();
   const [draggedImageIndex, setDraggedImageIndex] = React.useState<number | null>(null);
@@ -74,6 +76,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
         const caption = imageCaptions[imageSrc] || imageCaptions[replacedSrc] || `${title} illustration ${index + 1}`;
         
         const handleRemove = handleImageRemove ? () => handleImageRemove(imageSrc) : undefined;
+        const handleCaptionChange = onCaptionUpdate ? (newCaption: string) => onCaptionUpdate(imageSrc, newCaption) : undefined;
         
         return (
           <div 
@@ -119,6 +122,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               projectId={projectId}
               hideEditButton={true}
               allowRemove={!!handleImageRemove}
+              onCaptionUpdate={handleCaptionChange}
             />
           </div>
         );

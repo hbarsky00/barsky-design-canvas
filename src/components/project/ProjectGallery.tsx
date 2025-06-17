@@ -11,13 +11,17 @@ interface ProjectGalleryProps {
   imageCaptions: Record<string, string>;
   allImages: string[];
   onImageReorder?: (oldIndex: number, newIndex: number) => void;
+  onCaptionUpdate?: (imageSrc: string, newCaption: string) => void;
+  projectId?: string;
 }
 
 const ProjectGallery: React.FC<ProjectGalleryProps> = ({ 
   images, 
   imageCaptions,
   allImages,
-  onImageReorder
+  onImageReorder,
+  onCaptionUpdate,
+  projectId
 }) => {
   const { isDevMode } = useDevMode();
   const [draggedIndex, setDraggedIndex] = React.useState<number | null>(null);
@@ -58,6 +62,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
       {images.map((image, index) => {
         const caption = imageCaptions[image] || `Gallery image ${index + 1}`;
         const imageIndex = allImages.indexOf(image);
+        const handleCaptionChange = onCaptionUpdate ? (newCaption: string) => onCaptionUpdate(image, newCaption) : undefined;
         
         return (
           <motion.div
@@ -96,6 +101,8 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 aspectRatio={4/3}
                 imageList={allImages}
                 currentIndex={imageIndex >= 0 ? imageIndex : 0}
+                projectId={projectId}
+                onCaptionUpdate={handleCaptionChange}
               />
             </div>
           </motion.div>
