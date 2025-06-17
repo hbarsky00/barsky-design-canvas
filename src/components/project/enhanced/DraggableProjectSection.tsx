@@ -36,10 +36,8 @@ const DraggableProjectSection: React.FC<DraggableProjectSectionProps> = ({
   const { isDevMode } = useDevMode();
   const [draggedItem, setDraggedItem] = useState<string | null>(null);
 
-  const handleDragStart = (e: React.DragEvent, itemId: string) => {
+  const handleDragStart = (itemId: string) => {
     setDraggedItem(itemId);
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', itemId);
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -49,7 +47,7 @@ const DraggableProjectSection: React.FC<DraggableProjectSectionProps> = ({
 
   const handleDrop = (e: React.DragEvent, targetIndex: number) => {
     e.preventDefault();
-    const draggedItemId = e.dataTransfer.getData('text/plain');
+    const draggedItemId = draggedItem;
     
     if (!draggedItemId || draggedItemId === items[targetIndex]?.id) {
       setDraggedItem(null);
@@ -118,7 +116,7 @@ const DraggableProjectSection: React.FC<DraggableProjectSectionProps> = ({
             draggedItem === item.id ? 'opacity-50' : ''
           }`}
           draggable={isDevMode}
-          onDragStart={(e) => handleDragStart(e, item.id)}
+          onDragStart={() => handleDragStart(item.id)}
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, index)}
           onDragEnd={handleDragEnd}
