@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
+import { useAiImageCaptions } from '@/hooks/useAiImageCaptions';
 
 interface ContentBlockActionsProps {
   onAdd: (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => void;
@@ -14,20 +14,44 @@ export const useContentBlockActions = (
   setContentBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>,
   saveContentBlocks: (blocks: ContentBlock[]) => Promise<void>
 ) => {
-  const createNewBlock = (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): ContentBlock => {
+  const { generateCaption, isGenerating } = useAiImageCaptions();
+
+  const createNewBlock = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): Promise<ContentBlock> => {
     console.log('🆕 ContentBlockActions: Creating new block of type:', type);
     
     switch (type) {
       case 'text':
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
-      case 'image':
-        return { type: 'image', caption: 'Professional interface design showcasing modern UI elements and user experience principles' };
+      case 'image': {
+        const defaultImageSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+        // Generate AI caption for the default image
+        const aiCaption = await generateCaption(defaultImageSrc);
+        return { 
+          type: 'image', 
+          src: defaultImageSrc,
+          caption: aiCaption.caption
+        };
+      }
       case 'header':
         return { type: 'header', value: 'New Header', level: 2 };
-      case 'video':
-        return { type: 'video', caption: 'Interactive demonstration video highlighting key features and user workflow processes' };
-      case 'pdf':
-        return { type: 'pdf', caption: 'Comprehensive documentation outlining project specifications and technical requirements' };
+      case 'video': {
+        const defaultVideoSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+        const aiCaption = await generateCaption(defaultVideoSrc);
+        return { 
+          type: 'video', 
+          src: defaultVideoSrc,
+          caption: aiCaption.caption || 'Interactive demonstration video highlighting key features and user workflow processes'
+        };
+      }
+      case 'pdf': {
+        const defaultPdfSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+        const aiCaption = await generateCaption(defaultPdfSrc);
+        return { 
+          type: 'pdf', 
+          src: defaultPdfSrc,
+          caption: aiCaption.caption || 'Comprehensive documentation outlining project specifications and technical requirements'
+        };
+      }
       default:
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
     }
@@ -35,7 +59,7 @@ export const useContentBlockActions = (
 
   const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
     console.log('➕ ContentBlockActions: Adding new content of type:', type);
-    const newBlock = createNewBlock(type);
+    const newBlock = await createNewBlock(type);
     console.log('📦 ContentBlockActions: New block created:', newBlock);
     
     const updatedBlocks = [...contentBlocks, newBlock];
@@ -76,9 +100,13 @@ export const useContentBlockActions = (
     console.log('🔄 ContentBlockActions: Replacing content image at index', index, 'with', newSrc, 'for project', projectId);
     
     const oldBlock = contentBlocks[index];
+    
+    // Generate AI caption for the new image
+    const aiCaption = await generateCaption(newSrc);
+    
     const updatedBlocks = contentBlocks.map((block, i) => 
       i === index && block.type === 'image'
-        ? { ...block, src: newSrc }
+        ? { ...block, src: newSrc, caption: aiCaption.caption }
         : block
     );
     setContentBlocks(updatedBlocks);
@@ -96,6 +124,7 @@ export const useContentBlockActions = (
     handleAddContent,
     handleUpdateContent,
     handleDeleteContent,
-    handleContentImageReplace
+    handleContentImageReplace,
+    isGeneratingCaption: isGenerating
   };
 };

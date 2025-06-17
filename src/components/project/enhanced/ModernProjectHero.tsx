@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
@@ -13,6 +12,7 @@ import DraggableContentBlock, { ContentBlock } from "@/components/dev/DraggableC
 import { useDevMode } from "@/context/DevModeContext";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
+import { useAiImageCaptions } from "@/hooks/useAiImageCaptions";
 import SaveIndicator from "@/components/dev/SaveIndicator";
 import { PublishingService } from "@/services/publishingService";
 
@@ -33,6 +33,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
   const { updateImageInProjectData } = useProjectDataUpdater();
+  const { generateCaption } = useAiImageCaptions();
   const { 
     saveImageReplacement, 
     saveContentBlocks, 
@@ -82,25 +83,46 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     };
   }, [getProjectData]);
 
-  const createNewBlock = (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): ContentBlock => {
+  const createNewBlock = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): Promise<ContentBlock> => {
     switch (type) {
       case 'text':
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
-      case 'image':
-        return { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'Professional project showcase demonstrating innovative design solutions and user-centered approach' };
+      case 'image': {
+        const defaultImageSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+        const aiCaption = await generateCaption(defaultImageSrc);
+        return { 
+          type: 'image', 
+          src: defaultImageSrc, 
+          caption: aiCaption.caption
+        };
+      }
       case 'header':
         return { type: 'header', value: 'New Header', level: 2 };
-      case 'video':
-        return { type: 'video', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'Interactive demonstration showcasing key features and user experience workflow' };
-      case 'pdf':
-        return { type: 'pdf', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'Comprehensive project documentation and technical specifications' };
+      case 'video': {
+        const defaultVideoSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+        const aiCaption = await generateCaption(defaultVideoSrc);
+        return { 
+          type: 'video', 
+          src: defaultVideoSrc, 
+          caption: aiCaption.caption || 'Interactive demonstration showcasing key features and user experience workflow'
+        };
+      }
+      case 'pdf': {
+        const defaultPdfSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+        const aiCaption = await generateCaption(defaultPdfSrc);
+        return { 
+          type: 'pdf', 
+          src: defaultPdfSrc, 
+          caption: aiCaption.caption || 'Comprehensive project documentation and technical specifications'
+        };
+      }
       default:
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
     }
   };
 
-  const handleAddContent = (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
-    const newBlock = createNewBlock(type);
+  const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
+    const newBlock = await createNewBlock(type);
     const updatedBlocks = [...contentBlocks, newBlock];
     setContentBlocks(updatedBlocks);
     
@@ -128,13 +150,17 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     saveContentBlocks('hero', updatedBlocks);
   };
 
-  const handleContentImageReplace = (index: number, newSrc: string) => {
+  const handleContentImageReplace = async (index: number, newSrc: string) => {
     console.log('ModernProjectHero: Replacing content image at index', index, 'with', newSrc, 'for project', currentProjectId);
     
     const oldBlock = contentBlocks[index];
+    
+    // Generate AI caption for the new image
+    const aiCaption = await generateCaption(newSrc);
+    
     const updatedBlocks = contentBlocks.map((block, i) => 
       i === index && block.type === 'image'
-        ? { ...block, src: newSrc }
+        ? { ...block, src: newSrc, caption: aiCaption.caption }
         : block
     );
     setContentBlocks(updatedBlocks);
