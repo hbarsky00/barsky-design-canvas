@@ -6,17 +6,39 @@ import { useImageReplacement } from '@/context/ImageReplacementContext';
 
 export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps): ImageStateManagerReturn => {
   const mountedRef = useRef(true);
-  const { getReplacedSrc, replaceImage, isReplacing } = useImageReplacement();
+  
+  // Make image replacement context optional to prevent crashes
+  let getReplacedSrc: (src: string) => string;
+  let replaceImage: (originalSrc: string, newSrc: string, projectId: string) => void;
+  let isReplacing: boolean;
+
+  try {
+    const imageReplacementContext = useImageReplacement();
+    getReplacedSrc = imageReplacementContext.getReplacedSrc;
+    replaceImage = imageReplacementContext.replaceImage;
+    isReplacing = imageReplacementContext.isReplacing;
+  } catch (error) {
+    // Fallback when ImageReplacementProvider is not available
+    console.warn('ImageReplacementProvider not available, using fallback behavior');
+    getReplacedSrc = (src: string) => src;
+    replaceImage = () => {};
+    isReplacing = false;
+  }
+
   const { isValidImageUrl } = useImageValidation();
   
-  // Get the current displayed image from context
+  // Get the current displayed image
   const displayedImage = useMemo(() => {
     if (!src) return '';
     
-    // Priority 1: Context replacements (dev mode changes)
-    const contextReplacement = getReplacedSrc(src);
-    if (contextReplacement !== src) {
-      return contextReplacement;
+    try {
+      // Priority 1: Context replacements (dev mode changes)
+      const contextReplacement = getReplacedSrc(src);
+      if (contextReplacement !== src) {
+        return contextReplacement;
+      }
+    } catch (error) {
+      console.warn('Error getting context replacement:', error);
     }
     
     // Priority 2: Published replacements (passed as props)
@@ -34,8 +56,12 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
 
   // Update dev mode changes flag when replacement changes
   useEffect(() => {
-    const contextReplacement = getReplacedSrc(src);
-    setHasDevModeChanges(contextReplacement !== src);
+    try {
+      const contextReplacement = getReplacedSrc(src);
+      setHasDevModeChanges(contextReplacement !== src);
+    } catch (error) {
+      setHasDevModeChanges(false);
+    }
   }, [src, getReplacedSrc]);
 
   const updateDisplayedImage = useCallback((newSrc: string) => {
@@ -46,7 +72,11 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       newSrc: newSrc.substring(0, 30) + '...'
     });
     
-    replaceImage(src, newSrc, projectId);
+    try {
+      replaceImage(src, newSrc, projectId);
+    } catch (error) {
+      console.warn('Error replacing image:', error);
+    }
   }, [src, projectId, replaceImage]);
 
   const forceRefresh = useCallback(() => {
