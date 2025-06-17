@@ -16,7 +16,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   const initialResolvedImage = imageReplacements?.[src] || src;
   const [displayedImage, setDisplayedImage] = useState(initialResolvedImage);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Start with false if we have replacements
+  const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const mountedRef = useRef(true);
   const loadingRef = useRef(false);
@@ -107,6 +107,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
         setDisplayedImage(devReplacement);
         setHasDevModeChanges(true);
         setIsLoading(false);
+        loadingRef.current = false;
         return;
       }
       
@@ -159,14 +160,14 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
 
   // Initial load with timeout fallback
   useEffect(() => {
-    // If we have a published replacement, we can skip the timeout
+    // If we have a published replacement, we can skip the loading state entirely
     if (imageReplacements?.[src]) {
       console.log('🚀 Using provided published replacement:', imageReplacements[src].substring(0, 50) + '...');
       setDisplayedImage(imageReplacements[src]);
       setIsLoading(false);
       setHasDevModeChanges(false);
       
-      // Still check for dev mode overrides
+      // Still check for dev mode overrides but don't show loading
       setTimeout(() => {
         if (mountedRef.current && !loadingRef.current) {
           loadImageState();
@@ -176,22 +177,24 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       return;
     }
 
-    // For images without published replacements, set a much shorter timeout
+    // For images without published replacements, start loading immediately
+    setIsLoading(true);
     const timeoutId = setTimeout(() => {
-      if (isLoading && mountedRef.current) {
+      if (mountedRef.current && loadingRef.current) {
         console.warn('⚠️ Image loading timeout, falling back to original');
         setDisplayedImage(src);
         setIsLoading(false);
         setHasError(false);
+        loadingRef.current = false;
       }
-    }, 2000); // Reduced from 5 seconds to 2 seconds
+    }, 3000);
 
     loadImageState();
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [loadImageState, imageReplacements, src, isLoading]);
+  }, [src, projectId, imageReplacements]);
 
   // Listen for updates
   useEffect(() => {
