@@ -1,7 +1,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { toast } from "sonner";
 import EditableText from "@/components/dev/EditableText";
 import AddContentButton from "@/components/dev/AddContentButton";
 import DraggableContentBlock from "@/components/dev/DraggableContentBlock";
@@ -102,22 +101,6 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
 
   const wrappedHandleContentImageReplace = async (index: number, newSrc: string) => {
     await handleContentImageReplace(index, newSrc, projectId, saveImageReplacement, updateImageInProjectData);
-  };
-
-  const handleSectionImageRemove = (imageSrc: string, index: number) => {
-    console.log('🗑️ ModernProjectContentSection: Removing section image:', imageSrc, 'at index:', index);
-    
-    // Replace the removed image with a transparent placeholder to effectively "remove" it
-    const transparentPlaceholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+';
-    
-    // Save the replacement to effectively hide the image
-    saveImageReplacement(imageSrc, transparentPlaceholder);
-    
-    if (projectId) {
-      updateImageInProjectData(projectId, imageSrc, transparentPlaceholder);
-    }
-    
-    toast.success('Image removed successfully');
   };
 
   if (isLoading) {
@@ -227,7 +210,6 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
           getReplacedImageSrc={getReplacedImageSrc}
           handleImageReplace={handleImageReplace}
           onImageReorder={handleImageReorder}
-          onImageRemove={handleSectionImageRemove}
         />
       </div>
     </motion.section>
