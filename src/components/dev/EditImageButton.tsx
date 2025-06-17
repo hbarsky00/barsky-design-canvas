@@ -4,7 +4,6 @@ import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
-import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 import { compressImageFile, validateImageSize, getOptimalCompressionSettings } from '@/utils/imageCompression';
 import { ImageStorageService } from '@/services/imageStorage';
@@ -19,7 +18,6 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
   const { isDevMode } = useDevMode();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
-  const { saveChange } = useDevModeDatabase(currentProjectId);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const processingRef = useRef(false);
@@ -38,10 +36,6 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     e.stopPropagation();
     
     if (processingRef.current || !src) {
-      console.log('⚠️ EditImageButton: Click ignored - processing or no src:', {
-        processing: processingRef.current,
-        hasSrc: !!src
-      });
       return;
     }
     
@@ -114,56 +108,12 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         onImageReplace(publicUrl);
       }
       
-      // Dispatch IMMEDIATE visual update event FIRST
-      const immediateEventDetail = { 
-        projectId: currentProjectId, 
-        imageReplaced: true, 
-        immediate: true,
-        src: src,
-        newSrc: publicUrl,
-        timestamp: Date.now(),
-        changeType: 'image',
-        isValidUrl: validateImageUrl(publicUrl),
-        source: 'EditImageButton-immediate'
-      };
-      
-      console.log('📡 EditImageButton: Dispatching IMMEDIATE visual update event:', immediateEventDetail);
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: immediateEventDetail
-      }));
-      
-      console.log('💾 EditImageButton: Saving image URL reference to database...');
-      const success = await saveChange('image', src, publicUrl);
-      
-      if (success) {
-        console.log('✅ EditImageButton: Image uploaded and reference saved successfully');
-        
-        // Dispatch database update confirmation event
-        const dbEventDetail = { 
-          projectId: currentProjectId, 
-          imageReplaced: true, 
-          databaseSaved: true,
-          src: src,
-          newSrc: publicUrl,
-          timestamp: Date.now(),
-          changeType: 'image',
-          source: 'EditImageButton-database'
-        };
-        
-        console.log('📡 EditImageButton: Dispatching database save confirmation event:', dbEventDetail);
-        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: dbEventDetail
-        }));
-        
-        const finalSizeKB = (compressedFile.size / 1024).toFixed(2);
-        toast.success("Image uploaded successfully!", {
-          id: 'image-upload',
-          description: `Uploaded ${finalSizeKB}KB to cloud storage.`,
-          duration: 3000,
-        });
-      } else {
-        throw new Error('Failed to save image reference to database');
-      }
+      const finalSizeKB = (compressedFile.size / 1024).toFixed(2);
+      toast.success("Image uploaded successfully!", {
+        id: 'image-upload',
+        description: `Uploaded ${finalSizeKB}KB to cloud storage.`,
+        duration: 3000,
+      });
     } catch (error) {
       console.error('❌ EditImageButton: Error uploading image:', error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
@@ -188,7 +138,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       processingRef.current = false;
       if (e.target) e.target.value = '';
     }
-  }, [src, currentProjectId, saveChange, onImageReplace]);
+  }, [src, currentProjectId, onImageReplace]);
 
   if (!isDevMode || !src) {
     return null;

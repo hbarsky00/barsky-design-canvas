@@ -6,7 +6,6 @@ import EditImageButton from "@/components/dev/EditImageButton";
 import EditableText from "@/components/dev/EditableText";
 import { useParams } from "react-router-dom";
 import { useImageStateManager } from "@/hooks/useImageStateManager";
-import { useProjectDataSync } from "@/hooks/useProjectDataSync";
 import ImageDisplay from "./ImageDisplay";
 
 interface MaximizableImageProps {
@@ -55,23 +54,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     projectId: currentProjectId,
     imageReplacements
   });
-
-  useProjectDataSync({
-    projectId: currentProjectId,
-    onRefresh: forceRefresh
-  });
-  
-  // Debug info
-  console.log('🖼️ MaximizableImage render:', {
-    src: src.substring(0, 30) + '...',
-    displayedImage: displayedImage.substring(0, 30) + '...',
-    isValidUrl,
-    hasError,
-    isLoading,
-    hasDevModeChanges,
-    hasPublishedReplacement: !!imageReplacements?.[src],
-    hideEditButton
-  });
   
   const handleImageClick = () => {
     const imageTitle = caption || alt || "Image";
@@ -90,12 +72,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       projectId: currentProjectId
     });
     
-    // IMMEDIATE UI update for instant visual feedback
+    // Use centralized replacement system
     updateDisplayedImage(newSrc);
     
-    // Call the parent callback if provided
+    // Call parent callback if provided
     if (onImageReplace) {
-      console.log('📞 MaximizableImage: Calling parent onImageReplace callback');
       onImageReplace(newSrc);
     }
   }, [src, currentProjectId, updateDisplayedImage, onImageReplace]);
@@ -106,12 +87,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       isValidUrl,
       originalSrc: src.substring(0, 50) + '...'
     });
-    
-    // Only attempt fallback if we haven't already had an error and it's not the original source
-    if (!hasError && displayedImage !== src) {
-      console.log('🔄 Attempting fallback to original source');
-      updateDisplayedImage(src);
-    }
   };
 
   const imageAltText = caption || alt;
@@ -137,7 +112,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   }
   
   // Show error state for invalid URLs or failed loads
-  if (!isValidUrl || (hasError && displayedImage === src)) {
+  if (!isValidUrl || hasError) {
     return (
       <div className={`w-full ${className}`}>
         <motion.div 
@@ -158,23 +133,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             </button>
           </div>
         </motion.div>
-        {caption && (
-          <div className="mt-2 text-sm text-gray-600 italic text-center">
-            <EditableText initialText={caption}>
-              {(text) => (
-                <motion.div
-                  className="pr-8"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  {text}
-                </motion.div>
-              )}
-            </EditableText>
-          </div>
-        )}
       </div>
     );
   }
