@@ -13,7 +13,7 @@ export const useAiImageCaptions = () => {
     setIsGenerating(true);
     
     try {
-      console.log('🤖 Requesting AI caption for:', imageSrc);
+      console.log('🔍 Analyzing image content for:', imageSrc.substring(0, 50) + '...');
       
       const response = await fetch('/api/generate-image-caption', {
         method: 'POST',
@@ -24,17 +24,17 @@ export const useAiImageCaptions = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to generate caption');
+        throw new Error(`Failed to analyze image: ${response.status}`);
       }
 
       const data = await response.json();
-      console.log('✅ AI caption received:', data.caption);
+      console.log('✅ AI image analysis complete:', data.caption);
       
       return { caption: data.caption };
     } catch (error) {
-      console.error('❌ Error generating AI caption:', error);
+      console.error('❌ Error analyzing image content:', error);
       return { 
-        caption: 'Professional design showcase demonstrating innovative solutions and user-centered approach',
+        caption: 'Unable to analyze image content - please add a custom description',
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     } finally {
@@ -43,31 +43,51 @@ export const useAiImageCaptions = () => {
   };
 
   const updateGenericCaptions = async (contentBlocks: any[], updateCallback: (index: number, newCaption: string) => void) => {
-    console.log('🔍 Checking for generic captions to update...');
+    console.log('🔍 Scanning for images that need AI analysis...');
     
-    for (let i = 0; i < contentBlocks.length; i++) {
-      const block = contentBlocks[i];
-      
-      // Check if this block has a generic caption that needs updating
-      if (block.type === 'image' && block.src && 
-          (block.caption === 'A newly added image.' || 
-           block.caption === 'This is a new image. Click to edit me.' ||
-           !block.caption || 
-           block.caption.includes('newly added'))) {
+    const blocksToUpdate = contentBlocks
+      .map((block, index) => ({ block, index }))
+      .filter(({ block }) => 
+        (block.type === 'image' || block.type === 'video' || block.type === 'pdf') && 
+        block.src && 
+        (block.caption === 'A newly added image.' || 
+         block.caption === 'This is a new image. Click to edit me.' ||
+         block.caption?.includes('newly added') ||
+         block.caption?.includes('Professional design showcase') ||
+         !block.caption || 
+         block.caption.length < 10)
+      );
+
+    if (blocksToUpdate.length === 0) {
+      console.log('✅ No images found that need AI analysis');
+      return;
+    }
+
+    console.log(`🚀 Starting AI analysis for ${blocksToUpdate.length} images...`);
+    
+    for (const { block, index } of blocksToUpdate) {
+      try {
+        console.log(`🖼️ Analyzing image ${index + 1}/${blocksToUpdate.length}:`, block.src.substring(0, 50) + '...');
         
-        console.log(`🖼️ Updating generic caption for image block ${i}:`, block.src);
+        const aiCaption = await generateCaption(block.src);
         
-        try {
-          const aiCaption = await generateCaption(block.src);
-          updateCallback(i, aiCaption.caption);
-          
-          // Add a small delay to avoid overwhelming the API
-          await new Promise(resolve => setTimeout(resolve, 500));
-        } catch (error) {
-          console.error(`❌ Failed to update caption for block ${i}:`, error);
+        if (aiCaption.caption && !aiCaption.error) {
+          console.log(`📝 Updating caption for image ${index}:`, aiCaption.caption);
+          updateCallback(index, aiCaption.caption);
+        } else {
+          console.warn(`⚠️ Skipping update for image ${index} due to analysis error`);
         }
+        
+        // Add delay to avoid overwhelming the API
+        if (blocksToUpdate.length > 1) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      } catch (error) {
+        console.error(`❌ Failed to analyze image at index ${index}:`, error);
       }
     }
+    
+    console.log('✅ AI image analysis batch complete');
   };
 
   return {

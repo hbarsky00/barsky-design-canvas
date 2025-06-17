@@ -30,7 +30,7 @@ serve(async (req) => {
       ? imageSrc 
       : `${req.headers.get('origin') || 'https://your-domain.lovable.app'}${imageSrc}`;
 
-    console.log('🤖 Generating AI caption for image:', fullImageUrl);
+    console.log('🤖 Analyzing image content for:', fullImageUrl);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -43,26 +43,27 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You are an expert at describing user interface designs and digital project images. Create professional, descriptive captions for portfolio images that highlight design elements, user experience, functionality, and technical aspects. Keep captions concise but informative, around 15-25 words, focusing on what makes the design notable and the specific features or workflows shown.'
+            content: 'You are an expert at analyzing images and describing them accurately and professionally. Look at the image carefully and describe exactly what you see - whether it\'s a user interface, design mockup, screenshot, process diagram, workflow, data visualization, mobile app screen, website layout, etc. Be specific about what the interface shows, what functionality is visible, what type of process or workflow is depicted, and any notable design elements or features. Keep descriptions concise but informative (15-30 words), focusing on the actual content and purpose shown in the image.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Please provide a professional, detailed caption for this portfolio image, describing the key design elements, functionality, user interface components, or user experience aspects shown in the image.'
+                text: 'Please analyze this image and provide a specific, accurate description of what it shows. Focus on the actual content, interface elements, process steps, or functionality that is visible in the image.'
               },
               {
                 type: 'image_url',
                 image_url: {
-                  url: fullImageUrl
+                  url: fullImageUrl,
+                  detail: 'high'
                 }
               }
             ]
           }
         ],
-        max_tokens: 150,
-        temperature: 0.7
+        max_tokens: 200,
+        temperature: 0.3
       }),
     });
 
@@ -73,10 +74,13 @@ serve(async (req) => {
     }
 
     const data = await response.json();
-    const caption = data.choices[0]?.message?.content?.trim() || 
-                   'Professional design showcase demonstrating innovative solutions and user-centered approach';
+    const caption = data.choices[0]?.message?.content?.trim();
 
-    console.log('✅ AI caption generated successfully:', caption);
+    if (!caption) {
+      throw new Error('No caption generated from OpenAI');
+    }
+
+    console.log('✅ AI analyzed image content:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -85,7 +89,7 @@ serve(async (req) => {
     console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'Professional design showcase demonstrating innovative solutions and user-centered approach'
+      caption: 'Image content analysis unavailable - please add a custom description'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
