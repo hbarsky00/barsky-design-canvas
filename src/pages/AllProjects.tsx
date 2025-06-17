@@ -3,6 +3,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import DevModeToggle from "@/components/dev/DevModeToggle";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
@@ -19,6 +20,7 @@ const AllProjects: React.FC = () => {
         <meta name="keywords" content="Hiram Barsky projects, UX UI design portfolio, full stack development, mobile app design, web development, design systems" />
       </Helmet>
       
+      <DevModeToggle />
       <Header />
       <main className="flex-grow bg-gray-50">
         <section className="py-20">
