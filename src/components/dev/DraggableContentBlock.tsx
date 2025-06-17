@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from './EditableText';
 import MaximizableImage from '@/components/project/MaximizableImage';
+import InsertContentButton from './InsertContentButton';
 import { toast } from 'sonner';
 import { ImageStorageService } from '@/services/imageStorage';
 
@@ -27,6 +28,7 @@ interface DraggableContentBlockProps {
   onDrop: (e: React.DragEvent, index: number) => void;
   isDragging: boolean;
   projectId?: string;
+  onAddContent?: (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => void;
 }
 
 const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
@@ -40,7 +42,8 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   onDragOver,
   onDrop,
   isDragging,
-  projectId
+  projectId,
+  onAddContent
 }) => {
   const { isDevMode } = useDevMode();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -172,33 +175,58 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     switch (block.type) {
       case 'text':
         return (
-          <EditableText initialText={block.value || ''} multiline>
-            {(text) => (
-              <div className="prose prose-slate max-w-none dark:prose-invert pr-8">
-                {text.split('\n').map((paragraph, pIndex) => (
-                  <p key={pIndex} className="mb-4">
-                    {paragraph}
-                  </p>
-                ))}
+          <>
+            <EditableText initialText={block.value || ''} multiline>
+              {(text) => (
+                <div className="prose prose-slate max-w-none dark:prose-invert pr-8">
+                  {text.split('\n').map((paragraph, pIndex) => (
+                    <p key={pIndex} className="mb-4">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              )}
+            </EditableText>
+            {/* Add insertion point after text blocks */}
+            {onAddContent && (
+              <div className="group">
+                <InsertContentButton 
+                  onAdd={(type) => onAddContent(type, index + 1)}
+                  position={index + 1}
+                  className="mt-2"
+                />
               </div>
             )}
-          </EditableText>
+          </>
         );
 
       case 'header':
         const HeaderTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements;
         return (
-          <EditableText initialText={block.value || ''}>
-            {(text) => (
-              <HeaderTag className={`font-bold text-gray-900 pr-8 ${
-                block.level === 1 ? 'text-4xl' : 
-                block.level === 2 ? 'text-3xl' : 
-                block.level === 3 ? 'text-2xl' : 'text-xl'
-              }`}>
-                {text}
-              </HeaderTag>
+          <>
+            <EditableText initialText={block.value || ''}>
+              {(text) => (
+                <HeaderTag className={`font-bold text-gray-900 pr-8 ${
+                  block.level === 1 ? 'text-4xl' : 
+                  block.level === 2 ? 'text-3xl' : 
+                  block.level === 3 ? 'text-2xl' : 'text-xl'
+                }`}>
+                  {text}
+                </HeaderTag>
+              )}
+            </EditableText>
+            {/* Add insertion point right after headers */}
+            {onAddContent && (
+              <div className="group">
+                <InsertContentButton 
+                  onAdd={(type) => onAddContent(type, index + 1)}
+                  position={index + 1}
+                  label="Add content under this header"
+                  className="mt-2 mb-2"
+                />
+              </div>
             )}
-          </EditableText>
+          </>
         );
 
       case 'image':

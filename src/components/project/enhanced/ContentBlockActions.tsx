@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
 import { useAiImageCaptions } from '@/hooks/useAiImageCaptions';
 
 interface ContentBlockActionsProps {
-  onAdd: (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => void;
+  onAdd: (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => void;
   onUpdate: (index: number, newValue: string) => void;
   onDelete: (index: number) => void;
   onImageReplace: (index: number, newSrc: string) => void;
@@ -86,12 +85,22 @@ export const useContentBlockActions = (
     }
   };
 
-  const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
-    console.log('➕ ContentBlockActions: Adding new content of type:', type);
+  const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => {
+    console.log('➕ ContentBlockActions: Adding new content of type:', type, 'at position:', position);
     const newBlock = await createNewBlock(type);
     console.log('📦 ContentBlockActions: New block created:', newBlock);
     
-    const updatedBlocks = [...contentBlocks, newBlock];
+    let updatedBlocks: ContentBlock[];
+    
+    if (position !== undefined) {
+      // Insert at specific position
+      updatedBlocks = [...contentBlocks];
+      updatedBlocks.splice(position, 0, newBlock);
+    } else {
+      // Add at end
+      updatedBlocks = [...contentBlocks, newBlock];
+    }
+    
     console.log('📋 ContentBlockActions: Updated blocks list:', updatedBlocks);
     
     // Update state immediately for instant UI feedback

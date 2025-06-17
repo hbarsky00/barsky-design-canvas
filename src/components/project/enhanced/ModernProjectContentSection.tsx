@@ -162,6 +162,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
                   onDrop={handleDrop}
                   isDragging={draggedImageIndex === index}
                   projectId={projectId}
+                  onAddContent={handleAddContent}
                 />
               </div>
             ))}
