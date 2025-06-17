@@ -1,8 +1,9 @@
 
 import React from "react";
 import { List } from "lucide-react";
+import DraggableProjectSection, { ProjectContentItem } from "../enhanced/DraggableProjectSection";
+import { useDraggableContent } from "@/hooks/useDraggableContent";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
-import MaximizableImage from "../MaximizableImage";
 
 interface ProcessSectionProps {
   processBeforeGallery: string;
@@ -16,6 +17,7 @@ interface ProcessSectionProps {
   processImage?: string;
   processBottomImage?: string;
   imageCaptions: Record<string, string>;
+  projectId?: string;
 }
 
 const ProcessSection: React.FC<ProcessSectionProps> = ({
@@ -29,8 +31,65 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
   servicesCaptions,
   processImage,
   processBottomImage,
-  imageCaptions
+  imageCaptions,
+  projectId
 }) => {
+  // Convert existing content to draggable items format
+  const initialItems: ProjectContentItem[] = React.useMemo(() => {
+    const items: ProjectContentItem[] = [];
+    let order = 0;
+
+    // Add before gallery text
+    if (processBeforeGallery) {
+      items.push({
+        id: 'process-text-before',
+        type: 'text',
+        content: processBeforeGallery,
+        order: order++
+      });
+    }
+
+    // Add process image
+    if (processImage) {
+      items.push({
+        id: 'process-image-main',
+        type: 'image',
+        content: processImage,
+        order: order++
+      });
+    }
+
+    // Add after gallery text
+    if (processAfterGallery) {
+      items.push({
+        id: 'process-text-after',
+        type: 'text',
+        content: processAfterGallery,
+        order: order++
+      });
+    }
+
+    // Add bottom image
+    if (processBottomImage) {
+      items.push({
+        id: 'process-image-bottom',
+        type: 'image',
+        content: processBottomImage,
+        order: order++
+      });
+    }
+
+    return items;
+  }, [processBeforeGallery, processAfterGallery, processImage, processBottomImage]);
+
+  const {
+    items,
+    handleItemsReorder,
+    handleItemUpdate,
+    handleItemDelete,
+    handleItemAdd
+  } = useDraggableContent(initialItems);
+
   // Remove duplicates by converting to Set and back to array
   const uniqueServicesGalleryImages = Array.from(new Set(servicesGalleryImages));
   
@@ -41,17 +100,18 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         <h2 className="text-2xl font-bold">What I Did</h2>
       </div>
       
-      {processBeforeGallery && (
-        <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
-          {processBeforeGallery.split('\n').map((paragraph, index) => (
-            paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
-          ))}
-        </div>
-      )}
+      <DraggableProjectSection
+        items={items}
+        onItemsReorder={handleItemsReorder}
+        onItemUpdate={handleItemUpdate}
+        onItemDelete={handleItemDelete}
+        onItemAdd={handleItemAdd}
+        projectId={projectId}
+      />
 
       {/* Professional Search Interface Gallery - Only for investor project */}
-      {isInvestorProject && processBeforeGallery && (
-        <div className="mb-6">
+      {isInvestorProject && inspirationImages.length > 0 && (
+        <div className="mt-6">
           <ProjectMultiImageGallery 
             images={inspirationImages}
             captions={inspirationCaptions}
@@ -60,38 +120,12 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
       )}
 
       {/* Services Gallery - Only for DAE Search project */}
-      {isDaeSearchProject && servicesGalleryImages.length > 0 && (
-        <div className="mb-6">
+      {isDaeSearchProject && uniqueServicesGalleryImages.length > 0 && (
+        <div className="mt-6">
           <h3 className="text-xl font-semibold mb-4 text-barsky-dark">Services Provided</h3>
           <ProjectMultiImageGallery 
             images={uniqueServicesGalleryImages}
             captions={servicesCaptions}
-          />
-        </div>
-      )}
-
-      <div className="prose prose-slate max-w-none dark:prose-invert mb-4">
-        {processAfterGallery.split('\n').map((paragraph, index) => (
-          paragraph ? <p key={index}>{paragraph}</p> : <br key={index} />
-        ))}
-      </div>
-
-      {processImage && (
-        <div className="mt-4">
-          <MaximizableImage
-            src={processImage}
-            alt="What I Did"
-            caption={processImage && imageCaptions[processImage]}
-          />
-        </div>
-      )}
-
-      {processBottomImage && (
-        <div className="mt-4">
-          <MaximizableImage
-            src={processBottomImage}
-            alt="What I Did"
-            caption={processBottomImage && imageCaptions[processBottomImage]}
           />
         </div>
       )}

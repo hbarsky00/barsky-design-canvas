@@ -72,6 +72,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         challengeBottomImage={challengeBottomImage}
         challengeGalleryImages={challengeGalleryImages}
         imageCaptions={imageCaptions}
+        projectId={projectId}
       />
       
       <ProcessSection
@@ -86,6 +87,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         processImage={processImage}
         processBottomImage={processBottomImage}
         imageCaptions={imageCaptions}
+        projectId={projectId}
       />
       
       <ResultSection
@@ -93,6 +95,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         resultGalleryImages={resultGalleryImages}
         resultImage={resultImage}
         imageCaptions={imageCaptions}
+        projectId={projectId}
       />
       
       {/* Technologies Section - Only show if showTechnologies is true */}

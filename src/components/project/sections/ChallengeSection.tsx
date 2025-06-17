@@ -1,17 +1,18 @@
 
 import React from "react";
-import { FileText } from "lucide-react";
-import { motion } from "framer-motion";
-import MaximizableImage from "../MaximizableImage";
-import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
+import { Lightbulb } from "lucide-react";
+import DraggableProjectSection, { ProjectContentItem } from "../enhanced/DraggableProjectSection";
+import { useDraggableContent } from "@/hooks/useDraggableContent";
 import EditableText from "@/components/dev/EditableText";
+import MaximizableImage from "../MaximizableImage";
 
 interface ChallengeSectionProps {
   challenge: string;
   challengeImage?: string;
   challengeBottomImage?: string;
   challengeGalleryImages?: string[];
-  imageCaptions: Record<string, string>;
+  imageCaptions?: Record<string, string>;
+  projectId?: string;
 }
 
 const ChallengeSection: React.FC<ChallengeSectionProps> = ({
@@ -19,75 +20,81 @@ const ChallengeSection: React.FC<ChallengeSectionProps> = ({
   challengeImage,
   challengeBottomImage,
   challengeGalleryImages = [],
-  imageCaptions
+  imageCaptions = {},
+  projectId
 }) => {
-  // Remove duplicates by converting to Set and back to array
-  const uniqueChallengeGalleryImages = Array.from(new Set(challengeGalleryImages));
-  
+  // Convert existing content to draggable items format
+  const initialItems: ProjectContentItem[] = React.useMemo(() => {
+    const items: ProjectContentItem[] = [];
+    let order = 0;
+
+    // Add main challenge text
+    if (challenge) {
+      items.push({
+        id: 'challenge-text-main',
+        type: 'text',
+        content: challenge,
+        order: order++
+      });
+    }
+
+    // Add challenge image
+    if (challengeImage) {
+      items.push({
+        id: 'challenge-image-main',
+        type: 'image',
+        content: challengeImage,
+        order: order++
+      });
+    }
+
+    // Add gallery images
+    challengeGalleryImages.forEach((image, index) => {
+      items.push({
+        id: `challenge-gallery-${index}`,
+        type: 'image',
+        content: image,
+        order: order++
+      });
+    });
+
+    // Add bottom image
+    if (challengeBottomImage) {
+      items.push({
+        id: 'challenge-image-bottom',
+        type: 'image',
+        content: challengeBottomImage,
+        order: order++
+      });
+    }
+
+    return items;
+  }, [challenge, challengeImage, challengeBottomImage, challengeGalleryImages]);
+
+  const {
+    items,
+    handleItemsReorder,
+    handleItemUpdate,
+    handleItemDelete,
+    handleItemAdd
+  } = useDraggableContent(initialItems);
+
   return (
-    <>
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="glass-card-elevated p-8 space-y-8 layered-depth floating-element"
-      >
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg">
-            <FileText className="h-6 w-6 text-white" />
-          </div>
-          <EditableText initialText="The Challenge">
-            {(text) => (
-              <h2 className="text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-center">
-                {text}
-              </h2>
-            )}
-          </EditableText>
-        </div>
-
-        <EditableText initialText={challenge} multiline>
-          {(text) => (
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-600 leading-relaxed mb-6">
-                {text}
-              </p>
-            </div>
-          )}
-        </EditableText>
-
-        {challengeImage && (
-          <div className="glass-card p-4 layered-depth floating-element">
-            <MaximizableImage
-              src={challengeImage}
-              alt={imageCaptions[challengeImage] || "Challenge overview"}
-              caption={imageCaptions[challengeImage]}
-              className="rounded-lg shadow-elevated w-full"
-            />
-          </div>
-        )}
-
-        {challengeBottomImage && (
-          <div className="glass-card p-4 layered-depth floating-element">
-            <MaximizableImage
-              src={challengeBottomImage}
-              alt={imageCaptions[challengeBottomImage] || "Additional challenge details"}
-              caption={imageCaptions[challengeBottomImage]}
-              className="rounded-lg shadow-elevated w-full"
-            />
-          </div>
-        )}
-      </motion.section>
+    <div className="mb-12">
+      <div className="flex items-center mb-4 space-x-2">
+        <Lightbulb className="h-5 w-5 text-barsky-blue" />
+        <h2 className="text-2xl font-bold">The Challenge</h2>
+      </div>
       
-      {challengeGalleryImages && challengeGalleryImages.length > 0 && (
-        <div className="mb-8">
-          <ProjectMultiImageGallery 
-            images={uniqueChallengeGalleryImages}
-            captions={imageCaptions}
-          />
-        </div>
-      )}
-    </>
+      <DraggableProjectSection
+        items={items}
+        onItemsReorder={handleItemsReorder}
+        onItemUpdate={handleItemUpdate}
+        onItemDelete={handleItemDelete}
+        onItemAdd={handleItemAdd}
+        projectId={projectId}
+      />
+    </div>
   );
 };
 
