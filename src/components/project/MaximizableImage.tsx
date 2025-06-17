@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
@@ -183,7 +184,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        key={displayedImage}
+        key={`${displayedImage}-${hasDevModeChanges}`}
       >
         {!hideEditButton && (
           <EditImageButton 
@@ -198,7 +199,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           imageAltText={imageAltText}
           aspectRatio={aspectRatio}
           priority={priority}
-          refreshKey={0}
+          refreshKey={hasDevModeChanges ? Date.now() : 0}
           onImageClick={handleImageClick}
           onImageError={handleImageError}
         />

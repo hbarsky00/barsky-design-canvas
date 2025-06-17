@@ -4,12 +4,16 @@ import { UseImageStateManagerProps, ImageStateManagerReturn } from './image-stat
 import { useImageValidation } from './image-state/validation';
 import { useImageLoader } from './image-state/imageLoader';
 import { useImageEventHandlers } from './image-state/eventHandlers';
+import { useDevModeDatabase } from './useDevModeDatabase';
 
 export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps): ImageStateManagerReturn => {
   // Prevent re-initialization by using refs to track if we're already initialized
   const initializedRef = useRef(false);
   const mountedRef = useRef(true);
   const loadingRef = useRef(false);
+  
+  // Get dev mode database access for real-time updates
+  const { getChanges } = useDevModeDatabase(projectId);
   
   // Stable initial state calculation
   const initialDisplayedImage = useMemo(() => {
@@ -38,12 +42,40 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   const { isValidImageUrl, isValidPublishedUrl } = useImageValidation();
   const { loadImageState } = useImageLoader(projectId, isValidImageUrl, isValidPublishedUrl);
   
+  // Check for dev mode changes immediately when component mounts
+  const checkDevModeChanges = useCallback(async () => {
+    if (!src || !projectId || !mountedRef.current) return;
+    
+    try {
+      const devChanges = await getChanges();
+      const devReplacement = devChanges?.imageReplacements?.[src];
+      
+      if (devReplacement && devReplacement !== src && isValidImageUrl(devReplacement)) {
+        console.log('🔄 Found dev mode replacement:', devReplacement.substring(0, 50) + '...');
+        setDisplayedImage(devReplacement);
+        setHasDevModeChanges(true);
+        setIsLoading(false);
+        setHasError(false);
+        return true;
+      }
+    } catch (error) {
+      console.warn('⚠️ Error checking dev mode changes:', error);
+    }
+    
+    return false;
+  }, [src, projectId, getChanges, isValidImageUrl]);
+  
   // Stable callback for loading image state - memoized to prevent re-creation
-  const handleLoadImageState = useCallback(() => {
+  const handleLoadImageState = useCallback(async () => {
     if (!mountedRef.current || !src || !projectId || loadingRef.current) {
       return;
     }
     
+    // First check for dev mode changes
+    const hasDevChanges = await checkDevModeChanges();
+    if (hasDevChanges) return;
+    
+    // If no dev changes, proceed with normal loading
     loadImageState(
       src,
       imageReplacements,
@@ -55,7 +87,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       setIsLoading,
       setHasError
     );
-  }, [src, projectId, loadImageState, imageReplacements]); // Removed displayedImage from deps
+  }, [src, projectId, loadImageState, imageReplacements, checkDevModeChanges, displayedImage]);
 
   const { updateDisplayedImage, forceRefresh } = useImageEventHandlers(
     projectId,
@@ -85,28 +117,50 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     }
   }, [imageReplacements?.[src]]); // Only the specific replacement, not displayedImage
 
-  // Initial load effect - only run once when absolutely necessary
+  // Initial load effect - check dev mode changes first, then load other data
   useEffect(() => {
-    if (!src || !projectId || imageReplacements?.[src] || initializedRef.current) {
+    if (!src || !projectId || initializedRef.current) {
       return;
     }
     
     // Mark as initialized to prevent multiple runs
     initializedRef.current = true;
     
-    // Prevent immediate loading if we're already loading
-    if (loadingRef.current || isLoading) return;
-
-    const timeoutId = setTimeout(() => {
-      if (mountedRef.current && !loadingRef.current) {
-        handleLoadImageState();
+    // Immediate check for dev mode changes
+    checkDevModeChanges().then((hasDevChanges) => {
+      if (!hasDevChanges && mountedRef.current && !loadingRef.current) {
+        // Only do full load if no dev changes found
+        const timeoutId = setTimeout(() => {
+          if (mountedRef.current && !loadingRef.current) {
+            handleLoadImageState();
+          }
+        }, 100);
+        
+        return () => clearTimeout(timeoutId);
       }
-    }, 100);
+    });
+  }, [src, projectId, checkDevModeChanges, handleLoadImageState]);
 
-    return () => {
-      clearTimeout(timeoutId);
+  // Listen for real-time dev mode updates
+  useEffect(() => {
+    const handleProjectUpdate = async (e: CustomEvent) => {
+      if (!mountedRef.current) return;
+      
+      const detail = e.detail || {};
+      
+      // If this is an image replacement for our specific image, check immediately
+      if (detail.src === src || detail.imageReplaced) {
+        console.log('🔄 Image replacement event for our image, checking dev mode changes');
+        await checkDevModeChanges();
+      }
     };
-  }, [src, projectId]); // Minimal dependencies, no handleLoadImageState
+
+    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    };
+  }, [src, checkDevModeChanges]);
 
   // Cleanup on unmount
   useEffect(() => {
