@@ -22,6 +22,15 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
   const [isProcessing, setIsProcessing] = useState(false);
   const processingRef = useRef(false);
 
+  const validateImageUrl = (url: string): boolean => {
+    if (!url || typeof url !== 'string') return false;
+    return url.startsWith('data:') || 
+           url.startsWith('blob:') || 
+           url.startsWith('http://') || 
+           url.startsWith('https://') ||
+           url.startsWith('/');
+  };
+
   const handleEditClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -45,27 +54,49 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     processingRef.current = true;
     
     try {
+      console.log('🖼️ Starting image upload process:', {
+        fileName: file.name,
+        fileSize: file.size,
+        originalSrc: src.substring(0, 50) + '...',
+        projectId: currentProjectId
+      });
+      
       // Show immediate loading feedback
       toast.loading("Processing image...", { id: 'image-upload' });
       
       // Convert file to data URL
       const reader = new FileReader();
       const dataUrl = await new Promise<string>((resolve, reject) => {
-        reader.onload = () => resolve(reader.result as string);
-        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.onload = () => {
+          const result = reader.result as string;
+          console.log('✅ File converted to data URL:', result.substring(0, 50) + '...');
+          resolve(result);
+        };
+        reader.onerror = () => {
+          console.error('❌ Failed to read file');
+          reject(new Error('Failed to read file'));
+        };
         reader.readAsDataURL(file);
       });
       
+      // Validate the data URL
+      if (!validateImageUrl(dataUrl)) {
+        throw new Error('Invalid image data URL generated');
+      }
+      
       // Save to database and wait for completion
+      console.log('💾 Saving image change to database...');
       const success = await saveChange('image', src, dataUrl);
       
       if (success) {
+        console.log('✅ Image saved successfully, triggering UI updates');
+        
         // Call callback immediately for instant UI feedback
         if (onImageReplace) {
           onImageReplace(dataUrl);
         }
         
-        // Dispatch update event
+        // Dispatch update event with detailed info
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId: currentProjectId, 
@@ -74,7 +105,8 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
             src: src,
             newSrc: dataUrl,
             timestamp: Date.now(),
-            changeType: 'image'
+            changeType: 'image',
+            isValidUrl: validateImageUrl(dataUrl)
           }
         }));
         
@@ -84,13 +116,13 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           duration: 3000,
         });
       } else {
-        throw new Error('Failed to save image replacement');
+        throw new Error('Failed to save image replacement to database');
       }
     } catch (error) {
-      console.error('Error replacing image:', error);
+      console.error('❌ Error replacing image:', error);
       toast.error("Failed to replace image", {
         id: 'image-upload',
-        description: "There was an error processing the image file."
+        description: error instanceof Error ? error.message : "There was an error processing the image file."
       });
     } finally {
       setIsProcessing(false);

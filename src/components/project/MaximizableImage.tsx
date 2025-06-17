@@ -46,7 +46,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     forceRefresh, 
     hasDevModeChanges, 
     hasError,
-    isLoading 
+    isLoading,
+    isValidUrl
   } = useImageStateManager({
     src,
     projectId: currentProjectId
@@ -55,6 +56,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   useProjectDataSync({
     projectId: currentProjectId,
     onRefresh: forceRefresh
+  });
+  
+  // Debug info
+  console.log('🖼️ MaximizableImage render:', {
+    src: src.substring(0, 30) + '...',
+    displayedImage: displayedImage.substring(0, 30) + '...',
+    isValidUrl,
+    hasError,
+    isLoading,
+    hasDevModeChanges
   });
   
   const handleImageClick = () => {
@@ -68,6 +79,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageReplace = (newSrc: string) => {
+    console.log('🔄 Image replace triggered:', {
+      originalSrc: src.substring(0, 30) + '...',
+      newSrc: newSrc.substring(0, 30) + '...'
+    });
+    
     // Immediately update the displayed image for instant feedback
     updateDisplayedImage(newSrc);
     
@@ -78,10 +94,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageError = () => {
-    console.error('Image failed to load:', displayedImage.substring(0, 50) + '...');
+    console.error('❌ Image failed to load:', {
+      displayedImage: displayedImage.substring(0, 50) + '...',
+      isValidUrl,
+      originalSrc: src.substring(0, 50) + '...'
+    });
     
     // Only attempt fallback if we haven't already had an error and it's not the original source
     if (!hasError && displayedImage !== src) {
+      console.log('🔄 Attempting fallback to original source');
       updateDisplayedImage(src);
     }
   };
@@ -108,24 +129,25 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     );
   }
   
-  // Show error state only if we have an error with the original image
-  if (hasError && displayedImage === src) {
+  // Show error state for invalid URLs or failed loads
+  if (!isValidUrl || (hasError && displayedImage === src)) {
     return (
       <div className={`w-full ${className}`}>
         <motion.div 
-          className="rounded-lg overflow-hidden border border-gray-200 bg-gray-100 flex items-center justify-center min-h-[200px]"
+          className="rounded-lg overflow-hidden border border-red-200 bg-red-50 flex items-center justify-center min-h-[200px]"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-gray-500 text-center p-4">
-            <p>Image failed to load</p>
+          <div className="text-red-600 text-center p-4">
+            <p className="font-medium">⚠️ Image failed to load</p>
+            <p className="text-sm mt-1">URL: {displayedImage.substring(0, 50)}...</p>
             <button 
               onClick={forceRefresh}
-              className="mt-2 px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+              className="mt-3 px-4 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600 transition-colors"
             >
-              Retry
+              Retry Loading
             </button>
           </div>
         </motion.div>
