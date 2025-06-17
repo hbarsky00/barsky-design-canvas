@@ -46,7 +46,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     hideEditButton 
   });
   
-  const { displayedImage, refreshKey, forceRefresh, updateDisplayedImage, hasDevModeChanges, hasError } = useImageState({
+  const { 
+    displayedImage, 
+    refreshKey, 
+    forceRefresh, 
+    updateDisplayedImage, 
+    hasDevModeChanges, 
+    hasError,
+    isLoading 
+  } = useImageState({
     src,
     projectId: currentProjectId
   });
@@ -81,12 +89,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       console.log('📞 Calling parent onImageReplace callback');
       onImageReplace(newSrc);
     }
-    
-    // Force refresh after a short delay to ensure all data is updated
-    setTimeout(() => {
-      console.log('🔄 Forcing refresh after image replacement for:', src.substring(0, 50) + '...');
-      forceRefresh();
-    }, 250);
   };
 
   const handleImageError = () => {
@@ -100,6 +102,26 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const imageAltText = caption || alt;
+  
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className={`w-full ${className}`}>
+        <motion.div 
+          className="rounded-lg overflow-hidden border border-gray-200 bg-gray-100 flex items-center justify-center min-h-[200px]"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-gray-500 text-center p-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
+            <p>Loading image...</p>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
   
   // Show a placeholder if we have an error with the original image
   if (hasError && displayedImage === src) {

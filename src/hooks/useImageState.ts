@@ -15,6 +15,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [lastPublishedState, setLastPublishedState] = useState<string | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
   const loadingRef = useRef(false);
   const mountedRef = useRef(true);
   
@@ -22,13 +23,11 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   
   // Load image with priority: dev mode > published > original
   useEffect(() => {
-    if (!mountedRef.current) return;
-    
-    const loadImage = async () => {
-      if (!src || !projectId || loadingRef.current) {
-        return;
-      }
+    if (!mountedRef.current || !src || !projectId || loadingRef.current) {
+      return;
+    }
 
+    const loadImage = async () => {
       loadingRef.current = true;
       setIsLoading(true);
       setHasError(false);
@@ -45,6 +44,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           if (mountedRef.current) {
             setDisplayedImage(devReplacement);
             setHasDevModeChanges(true);
+            setRefreshKey(prev => prev + 1);
           }
           return;
         }
@@ -59,6 +59,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
             setDisplayedImage(publishedReplacement);
             setHasDevModeChanges(false);
             setLastPublishedState(publishedReplacement);
+            setRefreshKey(prev => prev + 1);
           }
         } else {
           console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
@@ -66,6 +67,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
             setDisplayedImage(src);
             setHasDevModeChanges(false);
             setLastPublishedState(src);
+            setRefreshKey(prev => prev + 1);
           }
         }
       } catch (error) {
@@ -74,6 +76,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           setDisplayedImage(src);
           setHasDevModeChanges(false);
           setHasError(true);
+          setRefreshKey(prev => prev + 1);
         }
       } finally {
         loadingRef.current = false;
@@ -84,11 +87,13 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     };
     
     loadImage();
-  }, [src, projectId]); // Removed getChanges from dependencies to prevent infinite loops
+  }, [src, projectId]); // Stable dependencies to prevent infinite loops
 
-  // Listen for project data updates
+  // Listen for project data updates with debouncing
   useEffect(() => {
     if (!mountedRef.current) return;
+    
+    let updateTimeout: NodeJS.Timeout;
     
     const handleProjectUpdate = (e: CustomEvent) => {
       if (!mountedRef.current) return;
@@ -105,11 +110,12 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           setHasDevModeChanges(false);
           setLastPublishedState(newImageSrc);
           setHasError(false);
+          setRefreshKey(prev => prev + 1);
           return;
         }
       }
       
-      // Handle other updates with appropriate delays
+      // Handle other updates with debouncing to prevent queue overflow
       const isRelevant = 
         detail.projectId === projectId || 
         detail.immediate ||
@@ -117,11 +123,16 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         detail.imageReplaced;
         
       if (isRelevant && !loadingRef.current) {
-        console.log('🔄 Relevant update detected for image:', src.substring(0, 50) + '...', 'refreshing...');
+        console.log('🔄 Relevant update detected for image:', src.substring(0, 50) + '...', 'scheduling refresh...');
         setHasError(false);
         
-        // Trigger a reload of image state
-        setTimeout(async () => {
+        // Clear existing timeout to debounce updates
+        if (updateTimeout) {
+          clearTimeout(updateTimeout);
+        }
+        
+        // Debounced update to prevent queue overflow
+        updateTimeout = setTimeout(async () => {
           if (!mountedRef.current || loadingRef.current) return;
           
           try {
@@ -129,12 +140,16 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
             const devData = await getChanges();
             const devReplacement = devData.imageReplacements[src];
             
-            if (devReplacement && devReplacement !== src) {
+            if (devReplacement && devReplacement !== src && mountedRef.current) {
               setDisplayedImage(devReplacement);
               setHasDevModeChanges(true);
+              setRefreshKey(prev => prev + 1);
             }
           } catch (error) {
             console.error('Error updating image:', error);
+            if (mountedRef.current) {
+              setHasError(true);
+            }
           } finally {
             loadingRef.current = false;
           }
@@ -146,8 +161,11 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+      if (updateTimeout) {
+        clearTimeout(updateTimeout);
+      }
     };
-  }, [src, projectId, displayedImage, getChanges]);
+  }, [src, projectId, displayedImage]); // Include displayedImage to prevent stale closures
 
   // Cleanup on unmount
   useEffect(() => {
@@ -161,35 +179,38 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     
     console.log('🔄 Force refresh triggered for:', src.substring(0, 50) + '...');
     setHasError(false);
+    setRefreshKey(prev => prev + 1);
     
-    // Reset to original and reload
+    // Reset to original and reload with debouncing
     setTimeout(async () => {
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || loadingRef.current) return;
       
       try {
         loadingRef.current = true;
         const devData = await getChanges();
         const devReplacement = devData.imageReplacements[src];
         
-        if (devReplacement && devReplacement !== src) {
+        if (devReplacement && devReplacement !== src && mountedRef.current) {
           setDisplayedImage(devReplacement);
           setHasDevModeChanges(true);
         } else {
           const publishedData = await PublishingService.loadPublishedData(projectId);
           const publishedReplacement = publishedData?.image_replacements?.[src];
           
-          if (publishedReplacement && publishedReplacement !== src) {
+          if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
             setDisplayedImage(publishedReplacement);
             setHasDevModeChanges(false);
-          } else {
+          } else if (mountedRef.current) {
             setDisplayedImage(src);
             setHasDevModeChanges(false);
           }
         }
       } catch (error) {
         console.error('Error during force refresh:', error);
-        setDisplayedImage(src);
-        setHasError(true);
+        if (mountedRef.current) {
+          setDisplayedImage(src);
+          setHasError(true);
+        }
       } finally {
         loadingRef.current = false;
       }
@@ -203,6 +224,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     setDisplayedImage(newSrc);
     setHasDevModeChanges(true);
     setHasError(false);
+    setRefreshKey(prev => prev + 1);
   };
 
   return {
@@ -212,6 +234,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     hasDevModeChanges,
     isLoading,
     hasError,
-    lastPublishedState
+    lastPublishedState,
+    refreshKey // Added missing refreshKey property
   };
 };
