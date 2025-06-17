@@ -15,6 +15,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [lastPublishedState, setLastPublishedState] = useState<string | null>(null);
   
   console.log('🔍 useImageState initialized for:', { src: src.substring(0, 50) + '...', projectId });
   
@@ -37,8 +38,6 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         
         // First check dev mode changes
         const devData = await getChanges();
-        console.log('📦 Dev mode data for', src.substring(0, 50) + '...', ':', devData.imageReplacements[src] ? 'FOUND' : 'NOT FOUND');
-        
         const devReplacement = devData.imageReplacements[src];
         
         if (devReplacement && devReplacement !== src) {
@@ -57,14 +56,15 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           console.log('📄 Using published replacement for', src.substring(0, 30) + '...');
           setDisplayedImage(publishedReplacement);
           setHasDevModeChanges(false);
+          setLastPublishedState(publishedReplacement);
         } else {
           console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
           setDisplayedImage(src);
           setHasDevModeChanges(false);
+          setLastPublishedState(src);
         }
       } catch (error) {
         console.error('❌ Error loading image changes for', src.substring(0, 50) + '...', ':', error);
-        // Fallback to original without infinite loops
         setDisplayedImage(src);
         setHasDevModeChanges(false);
         setHasError(true);
@@ -76,28 +76,38 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     loadImage();
   }, [src, getChanges, projectId, refreshKey]);
 
-  // Listen for project data updates with more specific handling
+  // Listen for project data updates with specific handling for published changes
   useEffect(() => {
     const handleProjectUpdate = (e: CustomEvent) => {
-      console.log('🔄 Project data update event received for image:', src.substring(0, 50) + '...', e.detail);
+      const detail = e.detail || {};
+      console.log('🔄 Project data update event received for image:', src.substring(0, 50) + '...', detail);
       
-      // Check if this update is relevant to our image or is a general update
+      // Handle published changes immediately without delay
+      if (detail.published && detail.imageReplacements) {
+        const newImageSrc = detail.imageReplacements[src];
+        if (newImageSrc && newImageSrc !== displayedImage) {
+          console.log('📄 Immediately applying published image change:', src.substring(0, 30) + '...', '->', newImageSrc.substring(0, 30) + '...');
+          setDisplayedImage(newImageSrc);
+          setHasDevModeChanges(false);
+          setLastPublishedState(newImageSrc);
+          setHasError(false);
+          return;
+        }
+      }
+      
+      // Handle other updates with appropriate delays
       const isRelevant = 
-        e.detail?.projectId === projectId || 
-        e.detail?.published || 
-        e.detail?.immediate ||
-        e.detail?.src === src ||
-        e.detail?.imageReplaced ||
-        e.detail?.cacheClear;
+        detail.projectId === projectId || 
+        detail.immediate ||
+        detail.src === src ||
+        detail.imageReplaced ||
+        detail.cacheClear;
         
       if (isRelevant) {
         console.log('🔄 Relevant update detected for image:', src.substring(0, 50) + '...', 'refreshing...');
-        
-        // Reset error state on updates
         setHasError(false);
         
-        // If cache clear is requested, force refresh with longer delay
-        const delay = e.detail?.cacheClear ? 300 : 150;
+        const delay = detail.cacheClear ? 200 : 100;
         setTimeout(() => {
           setRefreshKey(prev => prev + 1);
         }, delay);
@@ -109,7 +119,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
     };
-  }, [src, projectId]);
+  }, [src, projectId, displayedImage]);
 
   const forceRefresh = () => {
     console.log('🔄 Force refresh triggered for:', src.substring(0, 50) + '...');
@@ -131,6 +141,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     updateDisplayedImage,
     hasDevModeChanges,
     isLoading,
-    hasError
+    hasError,
+    lastPublishedState
   };
 };

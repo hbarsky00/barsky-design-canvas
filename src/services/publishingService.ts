@@ -9,7 +9,6 @@ export class PublishingService {
     try {
       console.log('🚀 Starting project publishing for:', projectId);
       
-      // Validate project ID
       if (!projectId || typeof projectId !== 'string') {
         console.error('❌ Invalid project ID provided:', projectId);
         throw new Error('Invalid project ID');
@@ -28,27 +27,26 @@ export class PublishingService {
       console.log('📊 Publishing changes:', {
         textKeys: Object.keys(changes.textContent).length,
         imageKeys: Object.keys(changes.imageReplacements).length,
-        contentBlockKeys: Object.keys(changes.contentBlocks).length,
-        contentBlockDetails: changes.contentBlocks
+        contentBlockKeys: Object.keys(changes.contentBlocks).length
       });
 
-      // Step 1: Get current published data to identify old images for cleanup
+      // Step 1: Get current published data for cleanup
       const currentPublishedData = await this.loadPublishedData(projectId);
       const oldImageReplacements = currentPublishedData?.image_replacements || {};
 
-      // Step 2: Handle image replacements by uploading to permanent storage
+      // Step 2: Process images - upload new ones and track old ones for cleanup
       const publishedImageMappings: Record<string, string> = {};
       const oldImagesToCleanup: string[] = [];
       
       for (const [originalSrc, newSrc] of Object.entries(changes.imageReplacements)) {
         try {
-          // Track old image for cleanup if it exists
+          // Track old image for cleanup
           if (oldImageReplacements[originalSrc] && oldImageReplacements[originalSrc] !== originalSrc) {
             oldImagesToCleanup.push(oldImageReplacements[originalSrc]);
           }
 
           if (newSrc.startsWith('data:')) {
-            // Convert data URL to blob and upload
+            // Upload data URL images to permanent storage
             const response = await fetch(newSrc);
             if (!response.ok) {
               console.error('Failed to fetch image data for:', originalSrc);
@@ -61,15 +59,17 @@ export class PublishingService {
             const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
             if (uploadedUrl) {
               publishedImageMappings[originalSrc] = uploadedUrl;
-              console.log('📤 Uploaded image:', originalSrc, '->', uploadedUrl);
+              console.log('📤 Uploaded image:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
+            } else {
+              console.error('❌ Failed to upload image for:', originalSrc);
+              publishedImageMappings[originalSrc] = newSrc; // Keep data URL as fallback
             }
           } else {
-            // Keep existing URL
             publishedImageMappings[originalSrc] = newSrc;
           }
         } catch (error) {
           console.error('❌ Error processing image:', originalSrc, error);
-          // Continue with other images
+          publishedImageMappings[originalSrc] = newSrc; // Keep original change as fallback
         }
       }
 
@@ -77,20 +77,16 @@ export class PublishingService {
       const processedContentBlocks: Record<string, any[]> = {};
       
       for (const [sectionKey, blocks] of Object.entries(changes.contentBlocks)) {
-        console.log('🔄 Processing content blocks for section:', sectionKey, 'blocks:', blocks);
-        
         const processedBlocks = await Promise.all(
           blocks.map(async (block: any) => {
             if (block.type === 'image' && block.src && block.src.startsWith('data:')) {
               try {
-                console.log('📤 Uploading content block image for section:', sectionKey);
                 const response = await fetch(block.src);
                 const blob = await response.blob();
                 const file = new File([blob], 'content-image.png', { type: blob.type });
                 
                 const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, `content-${sectionKey}-${Date.now()}`);
                 if (uploadedUrl) {
-                  console.log('✅ Uploaded content block image:', block.src.substring(0, 50) + '...', '->', uploadedUrl);
                   return { ...block, src: uploadedUrl };
                 }
               } catch (error) {
@@ -102,10 +98,9 @@ export class PublishingService {
         );
         
         processedContentBlocks[sectionKey] = processedBlocks;
-        console.log('✅ Processed content blocks for section:', sectionKey, 'result:', processedBlocks);
       }
 
-      // Step 4: Store published state in the published_projects table
+      // Step 4: Store published state in the database
       const publishedData = {
         project_id: projectId,
         text_content: changes.textContent as any,
@@ -114,7 +109,7 @@ export class PublishingService {
         published_at: new Date().toISOString()
       };
 
-      console.log('💾 Saving published data:', publishedData);
+      console.log('💾 Saving published data to database');
 
       const { error: publishError } = await supabase
         .from('published_projects')
@@ -127,32 +122,32 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 5: Clear cache for old images and apply changes to DOM
+      // Step 5: Clear browser cache for old images
       if (oldImagesToCleanup.length > 0) {
-        console.log('🧹 Clearing cache for old images:', oldImagesToCleanup);
+        console.log('🧹 Clearing cache for old images');
         ImageStorageService.clearImageCache(oldImagesToCleanup);
       }
 
-      // Apply changes to the live DOM immediately (PREVENT ANY NAVIGATION)
+      // Step 6: Apply changes to DOM immediately with enhanced cache busting
       this.applyChangesToDOM(publishedImageMappings, changes.textContent, processedContentBlocks);
 
-      // Step 6: Store in localStorage as fallback
+      // Step 7: Store in localStorage as fallback
       try {
         localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
       } catch (error) {
         console.warn('⚠️ Could not store to localStorage:', error);
       }
 
-      // Step 7: Clean up dev mode changes
+      // Step 8: Clear dev mode changes AFTER successful publish
+      console.log('🗑️ Clearing dev mode changes after successful publish');
       const clearSuccess = await clearChangesFromDatabase(projectId);
       if (!clearSuccess) {
         console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
       }
 
-      // Step 8: Clean up old images from storage
+      // Step 9: Clean up old images from storage
       try {
         if (oldImagesToCleanup.length > 0) {
-          console.log('🗑️ Deleting old images from storage:', oldImagesToCleanup);
           await Promise.all(oldImagesToCleanup.map(ImageStorageService.deleteImage));
         }
         await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
@@ -160,7 +155,7 @@ export class PublishingService {
         console.warn('⚠️ Image cleanup failed:', error);
       }
 
-      console.log('✅ Project published successfully - STAYING ON CURRENT PAGE');
+      console.log('✅ Project published successfully - staying on current page');
       return true;
     } catch (error) {
       console.error('❌ Error publishing project:', error);
@@ -173,29 +168,33 @@ export class PublishingService {
     textContent: Record<string, string>,
     contentBlocks: Record<string, any[]>
   ) {
-    console.log('🎨 Applying changes to DOM WITHOUT any navigation or page refresh');
-    console.log('📦 Content blocks to apply:', contentBlocks);
+    console.log('🎨 Applying published changes to DOM immediately');
 
-    // Apply image changes immediately to all matching images with cache busting
+    // Apply image changes with aggressive cache busting
     Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
-      const cacheBustedNewSrc = newSrc + '?v=' + Date.now();
+      const timestamp = Date.now();
+      const cacheBustedNewSrc = newSrc.includes('?') 
+        ? `${newSrc}&v=${timestamp}` 
+        : `${newSrc}?v=${timestamp}`;
       
-      document.querySelectorAll(`img[src*="${oldSrc}"]`).forEach((img) => {
-        (img as HTMLImageElement).src = cacheBustedNewSrc;
-        console.log('🖼️ Updated image in DOM:', oldSrc, '->', cacheBustedNewSrc);
+      // Update all matching images
+      document.querySelectorAll('img').forEach((img) => {
+        if (img.src === oldSrc || img.src.includes(oldSrc)) {
+          img.src = cacheBustedNewSrc;
+          console.log('🖼️ Updated image in DOM:', oldSrc.substring(0, 50) + '...', '->', cacheBustedNewSrc.substring(0, 50) + '...');
+        }
       });
       
-      // Also update any background images
-      document.querySelectorAll(`[style*="background-image"]`).forEach((element) => {
+      // Update background images
+      document.querySelectorAll('[style*="background-image"]').forEach((element) => {
         const style = (element as HTMLElement).style;
         if (style.backgroundImage && style.backgroundImage.includes(oldSrc)) {
           style.backgroundImage = style.backgroundImage.replace(oldSrc, cacheBustedNewSrc);
-          console.log('🎨 Updated background image in DOM:', oldSrc, '->', cacheBustedNewSrc);
         }
       });
     });
 
-    // Dispatch comprehensive update events for all components to refresh
+    // Dispatch comprehensive update events
     window.dispatchEvent(new CustomEvent('projectDataUpdated', {
       detail: { 
         published: true, 
@@ -204,12 +203,12 @@ export class PublishingService {
         imageReplacements,
         textContent,
         contentBlocks,
-        stayOnPage: true, // Explicitly prevent navigation
-        cacheClear: true // Flag to indicate cache should be cleared
+        stayOnPage: true,
+        cacheClear: true
       }
     }));
 
-    // Dispatch specific events for text and content block updates
+    // Dispatch specific update events
     Object.entries(textContent).forEach(([textKey, newText]) => {
       window.dispatchEvent(new CustomEvent('liveTextUpdate', {
         detail: { textKey, newText }
@@ -217,18 +216,17 @@ export class PublishingService {
     });
 
     Object.entries(contentBlocks).forEach(([sectionKey, blocks]) => {
-      console.log('📡 Dispatching content block update for:', sectionKey, 'blocks:', blocks);
       window.dispatchEvent(new CustomEvent('liveContentBlockUpdate', {
         detail: { sectionKey, blocks }
       }));
     });
 
-    console.log('✅ All changes applied to DOM successfully - NO NAVIGATION TRIGGERED');
+    console.log('✅ All published changes applied to DOM - no navigation triggered');
   }
 
   static async loadPublishedData(projectId: string): Promise<any> {
     try {
-      // Try to load from database first
+      // Try database first
       const { data, error } = await supabase
         .from('published_projects')
         .select('*')
@@ -236,7 +234,7 @@ export class PublishingService {
         .single();
 
       if (!error && data) {
-        console.log('📖 Loaded published data from database:', data);
+        console.log('📖 Loaded published data from database');
         return data;
       }
 
@@ -247,6 +245,7 @@ export class PublishingService {
         return JSON.parse(localData);
       }
 
+      console.log('📖 No published data found for project:', projectId);
       return null;
     } catch (error) {
       console.error('❌ Error loading published data:', error);

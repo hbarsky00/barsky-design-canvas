@@ -13,7 +13,8 @@ import { toast } from 'sonner';
 export const useDevModeDatabase = (projectId: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const initializedRef = useRef(false);
+  const [lastSaveTime, setLastSaveTime] = useState<number>(0);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   console.log('🎯 useDevModeDatabase: Initialized for project:', projectId);
 
@@ -30,6 +31,23 @@ export const useDevModeDatabase = (projectId: string) => {
       return false;
     }
 
+    // Prevent rapid-fire saves
+    const now = Date.now();
+    if (now - lastSaveTime < 100) {
+      console.log('⏳ useDevModeDatabase: Debouncing save operation');
+      
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+      
+      return new Promise((resolve) => {
+        saveTimeoutRef.current = setTimeout(async () => {
+          const result = await saveChange(changeType, changeKey, changeValue);
+          resolve(result);
+        }, 150);
+      });
+    }
+
     console.log('💾 useDevModeDatabase: Starting save operation:', { 
       projectId, 
       changeType, 
@@ -40,6 +58,7 @@ export const useDevModeDatabase = (projectId: string) => {
     
     setIsLoading(true);
     setError(null);
+    setLastSaveTime(now);
 
     try {
       const success = await saveChangeToDatabase(projectId, changeType, changeKey, changeValue);
@@ -47,14 +66,14 @@ export const useDevModeDatabase = (projectId: string) => {
       if (success) {
         console.log('✅ useDevModeDatabase: Successfully saved change to database');
         
-        // Dispatch immediate update event with more details
+        // Dispatch immediate update event
         const updateEvent = new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId, 
             changeType, 
             changeKey, 
             immediate: true,
-            timestamp: Date.now(),
+            timestamp: now,
             action: 'save'
           }
         });
@@ -78,7 +97,7 @@ export const useDevModeDatabase = (projectId: string) => {
     } finally {
       setIsLoading(false);
     }
-  }, [projectId]);
+  }, [projectId, lastSaveTime]);
 
   const getChanges = useCallback(async (): Promise<DatabaseChanges> => {
     if (!projectId) {
@@ -138,6 +157,7 @@ export const useDevModeDatabase = (projectId: string) => {
     }
     
     try {
+      console.log('🗑️ useDevModeDatabase: Clearing changes for project:', projectId);
       const result = await clearChangesFromDatabase(projectId);
       console.log('🗑️ useDevModeDatabase: clearChanges result for', projectId, ':', result);
       

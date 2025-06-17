@@ -7,32 +7,43 @@ import { PublishingService } from '@/services/publishingService';
 export const useContentBlocksManager = (projectId: string, sectionKey: string) => {
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [lastLoadedState, setLastLoadedState] = useState<'dev' | 'published' | 'empty'>('empty');
   const { getChanges, saveChange } = useDevModeDatabase(projectId);
 
-  // Load content blocks from both dev mode and published data
+  // Load content blocks with proper state management
   useEffect(() => {
     const loadContentBlocks = async () => {
       console.log('🔄 useContentBlocksManager: Loading content blocks for section:', sectionKey);
       setIsLoading(true);
       
       try {
-        // First check for dev mode changes
+        // Check dev mode changes first
         const changes = await getChanges();
         const devBlocks = changes.contentBlocks[sectionKey] || [];
         
         if (devBlocks.length > 0) {
           console.log('📦 useContentBlocksManager: Using dev mode blocks for', sectionKey, ':', devBlocks);
           setContentBlocks(devBlocks);
+          setLastLoadedState('dev');
         } else {
-          // Fallback to published data if no dev mode changes
+          // Check published data
           const publishedData = await PublishingService.loadPublishedData(projectId);
           const publishedBlocks = publishedData?.content_blocks?.[sectionKey] || [];
-          console.log('📖 useContentBlocksManager: Using published blocks for', sectionKey, ':', publishedBlocks);
-          setContentBlocks(publishedBlocks);
+          
+          if (publishedBlocks.length > 0) {
+            console.log('📖 useContentBlocksManager: Using published blocks for', sectionKey, ':', publishedBlocks);
+            setContentBlocks(publishedBlocks);
+            setLastLoadedState('published');
+          } else {
+            console.log('📄 useContentBlocksManager: No blocks found for', sectionKey);
+            setContentBlocks([]);
+            setLastLoadedState('empty');
+          }
         }
       } catch (error) {
         console.error('❌ useContentBlocksManager: Error loading content blocks:', error);
         setContentBlocks([]);
+        setLastLoadedState('empty');
       } finally {
         setIsLoading(false);
       }
@@ -43,12 +54,13 @@ export const useContentBlocksManager = (projectId: string, sectionKey: string) =
     }
   }, [projectId, sectionKey, getChanges]);
 
-  // Listen for live content block updates and published updates
+  // Listen for updates with proper state transition handling
   useEffect(() => {
     const handleLiveContentBlockUpdate = (event: CustomEvent) => {
       if (event.detail?.sectionKey === sectionKey) {
         console.log('📦 useContentBlocksManager: Received live content block update for:', sectionKey, event.detail.blocks);
         setContentBlocks(event.detail.blocks || []);
+        setLastLoadedState('published');
       }
     };
 
@@ -56,21 +68,39 @@ export const useContentBlocksManager = (projectId: string, sectionKey: string) =
       const detail = event.detail || {};
       console.log('🔄 useContentBlocksManager: Project data update received:', detail);
       
-      if (detail.published && detail.contentBlocks) {
-        // Update with published content blocks
+      // Handle published changes immediately
+      if (detail.published && detail.contentBlocks && detail.contentBlocks[sectionKey]) {
         const publishedBlocks = detail.contentBlocks[sectionKey] || [];
-        console.log('📖 useContentBlocksManager: Updating with published blocks for', sectionKey, ':', publishedBlocks);
+        console.log('📖 useContentBlocksManager: Applying published blocks for', sectionKey, ':', publishedBlocks);
         setContentBlocks(publishedBlocks);
-      } else if (detail.contentBlocksChanged || detail.immediate) {
-        // Reload from database for other changes
-        console.log('🔄 useContentBlocksManager: Reloading content blocks from database');
+        setLastLoadedState('published');
+        return;
+      }
+      
+      // Handle dev mode changes
+      if (detail.contentBlocksChanged || (detail.immediate && lastLoadedState === 'dev')) {
+        console.log('🔄 useContentBlocksManager: Reloading from dev mode');
         try {
           const changes = await getChanges();
           const savedBlocks = changes.contentBlocks[sectionKey] || [];
-          console.log('📦 useContentBlocksManager: Reloaded content blocks for', sectionKey, ':', savedBlocks);
+          console.log('📦 useContentBlocksManager: Reloaded dev blocks for', sectionKey, ':', savedBlocks);
           setContentBlocks(savedBlocks);
+          setLastLoadedState('dev');
         } catch (error) {
           console.error('❌ useContentBlocksManager: Error reloading content blocks:', error);
+        }
+      }
+      
+      // Handle clearing of changes
+      if (detail.cleared) {
+        console.log('🗑️ useContentBlocksManager: Changes cleared, loading published state');
+        try {
+          const publishedData = await PublishingService.loadPublishedData(projectId);
+          const publishedBlocks = publishedData?.content_blocks?.[sectionKey] || [];
+          setContentBlocks(publishedBlocks);
+          setLastLoadedState(publishedBlocks.length > 0 ? 'published' : 'empty');
+        } catch (error) {
+          console.error('❌ useContentBlocksManager: Error loading published state after clear:', error);
         }
       }
     };
@@ -82,7 +112,7 @@ export const useContentBlocksManager = (projectId: string, sectionKey: string) =
       window.removeEventListener('liveContentBlockUpdate', handleLiveContentBlockUpdate as EventListener);
       window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
     };
-  }, [projectId, sectionKey, getChanges]);
+  }, [projectId, sectionKey, getChanges, lastLoadedState]);
 
   const saveContentBlocks = useCallback(async (blocks: ContentBlock[]) => {
     console.log('💾 useContentBlocksManager: Saving content blocks for section:', sectionKey, blocks);
@@ -90,6 +120,8 @@ export const useContentBlocksManager = (projectId: string, sectionKey: string) =
       const success = await saveChange('content_block', sectionKey, blocks);
       if (success) {
         console.log('✅ useContentBlocksManager: Successfully saved content blocks to database');
+        setLastLoadedState('dev');
+        
         // Dispatch event to notify other components
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { projectId, contentBlocksChanged: true, immediate: true }
@@ -106,6 +138,7 @@ export const useContentBlocksManager = (projectId: string, sectionKey: string) =
     contentBlocks,
     setContentBlocks,
     isLoading,
-    saveContentBlocks
+    saveContentBlocks,
+    currentState: lastLoadedState
   };
 };
