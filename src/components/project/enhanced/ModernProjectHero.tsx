@@ -14,6 +14,7 @@ import { useDevMode } from "@/context/DevModeContext";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 import SaveIndicator from "@/components/dev/SaveIndicator";
+import PublishingService from "@/services/PublishingService";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -40,7 +41,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     lastSaved 
   } = useProjectPersistence(currentProjectId);
   
-  // Load saved data on mount and when project data updates
+  // Load saved data and published replacements
   const [heroImage, setHeroImage] = React.useState(() => {
     const savedData = getProjectData();
     return savedData.imageReplacements[project.image] || project.image;
@@ -50,6 +51,27 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     const savedData = getProjectData();
     return savedData.contentBlocks['hero'] || [];
   });
+
+  const [publishedReplacements, setPublishedReplacements] = React.useState<Record<string, string>>({});
+
+  // Load published data on mount
+  React.useEffect(() => {
+    const loadPublishedData = async () => {
+      try {
+        const publishedData = await PublishingService.loadPublishedData(currentProjectId);
+        if (publishedData?.image_replacements) {
+          setPublishedReplacements(publishedData.image_replacements);
+          console.log('📄 Loaded published image replacements:', Object.keys(publishedData.image_replacements).length);
+        }
+      } catch (error) {
+        console.warn('⚠️ Failed to load published data:', error);
+      }
+    };
+
+    if (currentProjectId) {
+      loadPublishedData();
+    }
+  }, [currentProjectId]);
 
   // Listen for project data updates to reload published changes
   React.useEffect(() => {
@@ -318,6 +340,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               onImageReplace={handleImageReplace}
               projectId={currentProjectId}
               hideEditButton={true}
+              imageReplacements={publishedReplacements}
             />
           </div>
         </motion.div>

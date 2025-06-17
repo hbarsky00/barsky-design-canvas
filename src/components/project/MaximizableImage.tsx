@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
@@ -21,6 +20,7 @@ interface MaximizableImageProps {
   onImageReplace?: (newSrc: string) => void;
   projectId?: string;
   hideEditButton?: boolean;
+  imageReplacements?: Record<string, string>;
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -34,7 +34,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   currentIndex,
   onImageReplace,
   projectId,
-  hideEditButton = false
+  hideEditButton = false,
+  imageReplacements
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
@@ -50,7 +51,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     isValidUrl
   } = useImageStateManager({
     src,
-    projectId: currentProjectId
+    projectId: currentProjectId,
+    imageReplacements
   });
 
   useProjectDataSync({
@@ -65,7 +67,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     isValidUrl,
     hasError,
     isLoading,
-    hasDevModeChanges
+    hasDevModeChanges,
+    hasPublishedReplacement: !!imageReplacements?.[src]
   });
   
   const handleImageClick = () => {

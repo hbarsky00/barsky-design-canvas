@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { PublishingService } from '@/services/publishingService';
@@ -6,13 +5,17 @@ import { PublishingService } from '@/services/publishingService';
 interface UseImageStateManagerProps {
   src: string;
   projectId: string;
+  imageReplacements?: Record<string, string>;
 }
 
-export const useImageStateManager = ({ src, projectId }: UseImageStateManagerProps) => {
+export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps) => {
   const { getChanges } = useDevModeDatabase(projectId);
-  const [displayedImage, setDisplayedImage] = useState(src);
+  
+  // Immediately resolve the image using published replacements if available
+  const initialResolvedImage = imageReplacements?.[src] || src;
+  const [displayedImage, setDisplayedImage] = useState(initialResolvedImage);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Start as loading
+  const [isLoading, setIsLoading] = useState(!imageReplacements?.[src]); // Don't load if we already have replacement
   const [hasError, setHasError] = useState(false);
   const mountedRef = useRef(true);
   const loadingRef = useRef(false);
@@ -24,7 +27,8 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
     projectId,
     hasDevModeChanges,
     isLoading,
-    hasError
+    hasError,
+    hasPublishedReplacement: !!imageReplacements?.[src]
   });
   
   // Validate URL helper - more strict for published content
@@ -65,6 +69,27 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
       return;
     }
 
+    // If we already have a published replacement, skip loading unless it's a dev mode check
+    if (imageReplacements?.[src] && displayedImage === imageReplacements[src]) {
+      console.log('🔍 Already have published replacement, checking for dev mode changes only');
+      
+      try {
+        const devData = await getChanges();
+        const devReplacement = devData?.imageReplacements?.[src];
+        
+        if (devReplacement && devReplacement !== src && isValidImageUrl(devReplacement) && mountedRef.current) {
+          console.log('✅ Found dev mode override for published image:', devReplacement.substring(0, 50) + '...');
+          setDisplayedImage(devReplacement);
+          setHasDevModeChanges(true);
+        }
+      } catch (error) {
+        console.warn('⚠️ Error checking dev mode changes:', error);
+      }
+      
+      setIsLoading(false);
+      return;
+    }
+
     loadingRef.current = true;
     setIsLoading(true);
     setHasError(false);
@@ -84,31 +109,37 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
         return;
       }
       
-      // If no dev mode replacement, check published data
-      const publishedData = await PublishingService.loadPublishedData(projectId);
-      const publishedReplacement = publishedData?.image_replacements?.[src];
-      
-      if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
-        // Strict validation for published URLs - reject data URLs
-        if (publishedReplacement.startsWith('data:')) {
-          console.warn('⚠️ Found data: URL in published content, using original:', publishedReplacement.substring(0, 50) + '...');
-          setDisplayedImage(src);
-          setHasDevModeChanges(false);
-          setIsLoading(false);
-        } else if (isValidPublishedUrl(publishedReplacement)) {
-          console.log('📄 Using published replacement:', publishedReplacement.substring(0, 50) + '...');
-          setDisplayedImage(publishedReplacement);
-          setHasDevModeChanges(false);
-          setIsLoading(false);
-        } else {
-          console.warn('⚠️ Invalid published URL format:', publishedReplacement);
+      // If no dev mode replacement, check published data (only if not already provided)
+      if (!imageReplacements?.[src]) {
+        const publishedData = await PublishingService.loadPublishedData(projectId);
+        const publishedReplacement = publishedData?.image_replacements?.[src];
+        
+        if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
+          // Strict validation for published URLs - reject data URLs
+          if (publishedReplacement.startsWith('data:')) {
+            console.warn('⚠️ Found data: URL in published content, using original:', publishedReplacement.substring(0, 50) + '...');
+            setDisplayedImage(src);
+            setHasDevModeChanges(false);
+            setIsLoading(false);
+          } else if (isValidPublishedUrl(publishedReplacement)) {
+            console.log('📄 Using published replacement:', publishedReplacement.substring(0, 50) + '...');
+            setDisplayedImage(publishedReplacement);
+            setHasDevModeChanges(false);
+            setIsLoading(false);
+          } else {
+            console.warn('⚠️ Invalid published URL format:', publishedReplacement);
+            setDisplayedImage(src);
+            setHasDevModeChanges(false);
+            setIsLoading(false);
+          }
+        } else if (mountedRef.current) {
+          console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
           setDisplayedImage(src);
           setHasDevModeChanges(false);
           setIsLoading(false);
         }
-      } else if (mountedRef.current) {
-        console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
-        setDisplayedImage(src);
+      } else {
+        // We already have published replacement, just finish loading
         setHasDevModeChanges(false);
         setIsLoading(false);
       }
@@ -123,10 +154,27 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
     } finally {
       loadingRef.current = false;
     }
-  }, [src, projectId, getChanges, isValidImageUrl, isValidPublishedUrl]);
+  }, [src, projectId, getChanges, isValidImageUrl, isValidPublishedUrl, imageReplacements, displayedImage]);
 
   // Initial load with timeout fallback
   useEffect(() => {
+    // If we have a published replacement, we can skip the timeout
+    if (imageReplacements?.[src]) {
+      console.log('🚀 Using provided published replacement:', imageReplacements[src].substring(0, 50) + '...');
+      setDisplayedImage(imageReplacements[src]);
+      setIsLoading(false);
+      setHasDevModeChanges(false);
+      
+      // Still check for dev mode overrides
+      setTimeout(() => {
+        if (mountedRef.current && !loadingRef.current) {
+          loadImageState();
+        }
+      }, 100);
+      
+      return;
+    }
+
     const timeoutId = setTimeout(() => {
       if (isLoading && mountedRef.current) {
         console.warn('⚠️ Image loading timeout, falling back to original');
@@ -141,7 +189,7 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [loadImageState]);
+  }, [loadImageState, imageReplacements, src]);
 
   // Listen for updates
   useEffect(() => {
