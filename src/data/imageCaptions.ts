@@ -1,4 +1,3 @@
-
 // Comprehensive image captions for all projects
 export const imageCaptions: Record<string, string> = {
   // Medication App Project
@@ -62,14 +61,14 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/c35498f2-e657-4982-9b9b-8945aaf817d5.png": "Comprehensive accessibility features including screen reader support, keyboard navigation, and high contrast options for inclusive design",
   "/lovable-uploads/41442407-7956-48f5-88bd-f68b4d0ce485.png": "Universal design principles implementation creating an inclusive shopping experience accessible to users of all abilities",
 
-  // Generic/Fallback images with descriptive captions
+  // Default images with descriptive captions
   "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png": "MediTrack Pro - Comprehensive medication management platform with advanced tracking and reminder features",
   "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "DataCatalog Pro - AI-powered data discovery platform with enterprise-grade search and analytics capabilities",
   "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "HerbaLink - Digital herbalist consultation platform connecting patients with traditional medicine practitioners",
   "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png": "Gold2Crypto - Investment transition platform designed for precious metals investors entering cryptocurrency markets",
   "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Barsky Joint - Dual-format restaurant experience supporting both mobile food truck and traditional dining operations",
   "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png": "Spectrum Apparel - Accessible custom apparel platform with inclusive design principles and universal usability features",
-  "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png": "Professional project showcase image demonstrating key features and functionality with clean modern design",
+  "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png": "High-fidelity design mockup showcasing modern interface elements with clean typography and structured layout",
   "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png": "Design process documentation showing user experience workflow and iterative development methodology",
   "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "Technical implementation overview highlighting development approach and architectural decisions",
   "/lovable-uploads/06c3b4e6-b260-4c9d-90d3-201371ff7381.png": "User interface design showcase featuring visual hierarchy, typography, and modern design principles",
