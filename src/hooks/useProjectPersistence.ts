@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from './useDevModeDatabase';
 import { PublishingService } from '@/services/publishingService';
+import { validateContentBlockSize } from './database/contentBlockValidation';
 
 interface ProjectData {
   textContent: Record<string, string>;
@@ -231,18 +232,39 @@ export const useProjectPersistence = (projectId: string) => {
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
     console.log('💾 useProjectPersistence: Saving content blocks to database:', sectionKey, blocks);
-    const success = await saveChange('content_block', sectionKey, blocks);
-    if (success) {
-      // Update cached data immediately
-      setCachedData(prev => ({
-        ...prev,
-        contentBlocks: { ...prev.contentBlocks, [sectionKey]: blocks }
-      }));
-      setLastSaved(new Date());
+    
+    try {
+      // Validate content blocks before saving
+      const validation = validateContentBlockSize(blocks);
+      if (!validation.isValid) {
+        console.error('❌ Content blocks validation failed:', validation.error);
+        toast.error('Content too large', {
+          description: validation.error
+        });
+        return;
+      }
       
-      console.log('✅ useProjectPersistence: Content blocks saved successfully');
-    } else {
-      console.error('❌ useProjectPersistence: Failed to save content blocks');
+      const success = await saveChange('content_block', sectionKey, blocks);
+      if (success) {
+        // Update cached data immediately
+        setCachedData(prev => ({
+          ...prev,
+          contentBlocks: { ...prev.contentBlocks, [sectionKey]: blocks }
+        }));
+        setLastSaved(new Date());
+        
+        console.log('✅ useProjectPersistence: Content blocks saved successfully');
+        toast.success('Content saved successfully');
+      } else {
+        console.error('❌ useProjectPersistence: Failed to save content blocks');
+        toast.error('Failed to save content');
+      }
+    } catch (error) {
+      console.error('❌ useProjectPersistence: Error saving content blocks:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to save content blocks';
+      toast.error('Save failed', {
+        description: errorMessage
+      });
     }
   }, [saveChange]);
 

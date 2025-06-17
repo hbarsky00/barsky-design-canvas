@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from './EditableText';
 import MaximizableImage from '@/components/project/MaximizableImage';
+import { toast } from 'sonner';
+import { ImageStorageService } from '@/services/imageStorage';
 
 export interface ContentBlock {
   type: 'text' | 'image' | 'header' | 'video' | 'pdf';
@@ -49,12 +51,48 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     hasOnImageReplace: !!onImageReplace 
   });
 
-  const handleImageReplace = (newSrc: string) => {
-    console.log('🖼️ DraggableContentBlock: Calling onImageReplace for index', index, 'with', newSrc);
-    if (onImageReplace) {
-      onImageReplace(index, newSrc);
-    } else {
-      console.log('❌ DraggableContentBlock: No onImageReplace callback provided for index', index);
+  const handleImageReplace = async (newSrc: string) => {
+    console.log('🖼️ DraggableContentBlock: Processing image replacement for index', index, 'with', newSrc);
+    
+    // If it's a storage URL, use it directly
+    if (newSrc.startsWith('http') || newSrc.startsWith('/')) {
+      if (onImageReplace) {
+        onImageReplace(index, newSrc);
+      }
+      return;
+    }
+    
+    // If it's base64 data, we need to upload it to storage first
+    if (newSrc.startsWith('data:')) {
+      if (!projectId) {
+        toast.error('Cannot upload image: No project ID');
+        return;
+      }
+      
+      try {
+        toast.loading('Uploading image to storage...', { id: 'content-image-upload' });
+        
+        // Convert data URL to File
+        const response = await fetch(newSrc);
+        const blob = await response.blob();
+        const file = new File([blob], `content-image-${index}.jpg`, { type: 'image/jpeg' });
+        
+        // Upload to storage
+        const storageUrl = await ImageStorageService.uploadImage(file, projectId, `content-block-${index}`);
+        
+        if (storageUrl && onImageReplace) {
+          onImageReplace(index, storageUrl);
+          toast.success('Image uploaded successfully', { id: 'content-image-upload' });
+        } else {
+          throw new Error('Failed to upload image to storage');
+        }
+      } catch (error) {
+        console.error('❌ Failed to upload content block image:', error);
+        toast.error('Failed to upload image', { 
+          id: 'content-image-upload',
+          description: 'Please try again with a smaller image'
+        });
+      }
     }
   };
 
@@ -80,13 +118,35 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       index 
     });
     
-    if (file && onImageReplace) {
+    if (file && projectId) {
+      try {
+        // Upload directly to storage instead of converting to data URL
+        toast.loading('Uploading image...', { id: 'content-upload' });
+        
+        const storageUrl = await ImageStorageService.uploadImage(file, projectId, `content-block-${index}`);
+        
+        if (storageUrl) {
+          handleImageReplace(storageUrl);
+          toast.success('Image uploaded successfully', { id: 'content-upload' });
+        } else {
+          throw new Error('Failed to upload image');
+        }
+      } catch (error) {
+        console.error('❌ Error uploading file:', error);
+        toast.error('Failed to upload image', { 
+          id: 'content-upload',
+          description: 'Please try again with a smaller image'
+        });
+      }
+    } else if (file && onImageReplace) {
+      // Fallback to data URL if no project ID (should be rare)
       try {
         const dataUrl = await convertFileToDataUrl(file);
         console.log('✅ File converted to data URL for content block:', index);
         handleImageReplace(dataUrl);
       } catch (error) {
         console.error('❌ Error converting file:', error);
+        toast.error('Failed to process image');
       }
     }
     

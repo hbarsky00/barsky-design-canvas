@@ -3,6 +3,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { PublishingService } from '@/services/publishingService';
+import { validateContentBlockSize } from '@/hooks/database/contentBlockValidation';
+import { toast } from 'sonner';
 
 export const useContentBlocksManager = (projectId: string, sectionKey: string) => {
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
@@ -116,7 +118,18 @@ export const useContentBlocksManager = (projectId: string, sectionKey: string) =
 
   const saveContentBlocks = useCallback(async (blocks: ContentBlock[]) => {
     console.log('💾 useContentBlocksManager: Saving content blocks for section:', sectionKey, blocks);
+    
     try {
+      // Validate content blocks before saving
+      const validation = validateContentBlockSize(blocks);
+      if (!validation.isValid) {
+        console.error('❌ Content blocks validation failed:', validation.error);
+        toast.error('Content too large', {
+          description: validation.error
+        });
+        return;
+      }
+      
       const success = await saveChange('content_block', sectionKey, blocks);
       if (success) {
         console.log('✅ useContentBlocksManager: Successfully saved content blocks to database');
@@ -126,11 +139,18 @@ export const useContentBlocksManager = (projectId: string, sectionKey: string) =
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { projectId, contentBlocksChanged: true, immediate: true }
         }));
+        
+        toast.success('Content saved successfully');
       } else {
         console.error('❌ useContentBlocksManager: Failed to save content blocks to database');
+        toast.error('Failed to save content');
       }
     } catch (error) {
       console.error('❌ useContentBlocksManager: Error saving content blocks:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to save content blocks';
+      toast.error('Save failed', {
+        description: errorMessage
+      });
     }
   }, [saveChange, sectionKey, projectId]);
 

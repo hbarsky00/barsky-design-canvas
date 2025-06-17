@@ -1,5 +1,7 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ChangeType, DevModeChange } from './types';
+import { validateContentBlockSize, sanitizeContentBlocks } from './contentBlockValidation';
 
 export const saveChangeToDatabase = async (
   projectId: string, 
@@ -10,6 +12,21 @@ export const saveChangeToDatabase = async (
   if (!projectId) {
     console.error('❌ saveChangeToDatabase: No projectId provided');
     return false;
+  }
+
+  // Special handling for content blocks
+  if (changeType === 'content_block' && Array.isArray(changeValue)) {
+    console.log('🔍 Validating content blocks before save...');
+    
+    const validation = validateContentBlockSize(changeValue);
+    if (!validation.isValid) {
+      console.error('❌ Content blocks validation failed:', validation.error);
+      throw new Error(validation.error || 'Content blocks are too large for database storage.');
+    }
+    
+    // Sanitize content blocks to ensure no base64 images
+    changeValue = sanitizeContentBlocks(changeValue);
+    console.log('✅ Content blocks validated and sanitized');
   }
 
   // For image changes, we now expect storage URLs instead of base64 data
