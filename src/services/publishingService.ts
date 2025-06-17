@@ -32,11 +32,21 @@ export class PublishingService {
         contentBlockDetails: changes.contentBlocks
       });
 
-      // Step 1: Handle image replacements by uploading to permanent storage
+      // Step 1: Get current published data to identify old images for cleanup
+      const currentPublishedData = await this.loadPublishedData(projectId);
+      const oldImageReplacements = currentPublishedData?.image_replacements || {};
+
+      // Step 2: Handle image replacements by uploading to permanent storage
       const publishedImageMappings: Record<string, string> = {};
+      const oldImagesToCleanup: string[] = [];
       
       for (const [originalSrc, newSrc] of Object.entries(changes.imageReplacements)) {
         try {
+          // Track old image for cleanup if it exists
+          if (oldImageReplacements[originalSrc] && oldImageReplacements[originalSrc] !== originalSrc) {
+            oldImagesToCleanup.push(oldImageReplacements[originalSrc]);
+          }
+
           if (newSrc.startsWith('data:')) {
             // Convert data URL to blob and upload
             const response = await fetch(newSrc);
@@ -63,7 +73,7 @@ export class PublishingService {
         }
       }
 
-      // Step 2: Process content blocks and handle any images in them
+      // Step 3: Process content blocks and handle any images in them
       const processedContentBlocks: Record<string, any[]> = {};
       
       for (const [sectionKey, blocks] of Object.entries(changes.contentBlocks)) {
@@ -95,7 +105,7 @@ export class PublishingService {
         console.log('✅ Processed content blocks for section:', sectionKey, 'result:', processedBlocks);
       }
 
-      // Step 3: Store published state in the published_projects table
+      // Step 4: Store published state in the published_projects table
       const publishedData = {
         project_id: projectId,
         text_content: changes.textContent as any,
@@ -117,24 +127,34 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 4: Apply changes to the live DOM immediately (PREVENT ANY NAVIGATION)
+      // Step 5: Clear cache for old images and apply changes to DOM
+      if (oldImagesToCleanup.length > 0) {
+        console.log('🧹 Clearing cache for old images:', oldImagesToCleanup);
+        ImageStorageService.clearImageCache(oldImagesToCleanup);
+      }
+
+      // Apply changes to the live DOM immediately (PREVENT ANY NAVIGATION)
       this.applyChangesToDOM(publishedImageMappings, changes.textContent, processedContentBlocks);
 
-      // Step 5: Store in localStorage as fallback
+      // Step 6: Store in localStorage as fallback
       try {
         localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
       } catch (error) {
         console.warn('⚠️ Could not store to localStorage:', error);
       }
 
-      // Step 6: Clean up dev mode changes
+      // Step 7: Clean up dev mode changes
       const clearSuccess = await clearChangesFromDatabase(projectId);
       if (!clearSuccess) {
         console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
       }
 
-      // Step 7: Clean up old images
+      // Step 8: Clean up old images from storage
       try {
+        if (oldImagesToCleanup.length > 0) {
+          console.log('🗑️ Deleting old images from storage:', oldImagesToCleanup);
+          await Promise.all(oldImagesToCleanup.map(ImageStorageService.deleteImage));
+        }
         await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
       } catch (error) {
         console.warn('⚠️ Image cleanup failed:', error);
@@ -156,19 +176,21 @@ export class PublishingService {
     console.log('🎨 Applying changes to DOM WITHOUT any navigation or page refresh');
     console.log('📦 Content blocks to apply:', contentBlocks);
 
-    // Apply image changes immediately to all matching images
+    // Apply image changes immediately to all matching images with cache busting
     Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
+      const cacheBustedNewSrc = newSrc + '?v=' + Date.now();
+      
       document.querySelectorAll(`img[src*="${oldSrc}"]`).forEach((img) => {
-        (img as HTMLImageElement).src = newSrc;
-        console.log('🖼️ Updated image in DOM:', oldSrc, '->', newSrc);
+        (img as HTMLImageElement).src = cacheBustedNewSrc;
+        console.log('🖼️ Updated image in DOM:', oldSrc, '->', cacheBustedNewSrc);
       });
       
       // Also update any background images
       document.querySelectorAll(`[style*="background-image"]`).forEach((element) => {
         const style = (element as HTMLElement).style;
         if (style.backgroundImage && style.backgroundImage.includes(oldSrc)) {
-          style.backgroundImage = style.backgroundImage.replace(oldSrc, newSrc);
-          console.log('🎨 Updated background image in DOM:', oldSrc, '->', newSrc);
+          style.backgroundImage = style.backgroundImage.replace(oldSrc, cacheBustedNewSrc);
+          console.log('🎨 Updated background image in DOM:', oldSrc, '->', cacheBustedNewSrc);
         }
       });
     });
@@ -182,7 +204,8 @@ export class PublishingService {
         imageReplacements,
         textContent,
         contentBlocks,
-        stayOnPage: true // Explicitly prevent navigation
+        stayOnPage: true, // Explicitly prevent navigation
+        cacheClear: true // Flag to indicate cache should be cleared
       }
     }));
 

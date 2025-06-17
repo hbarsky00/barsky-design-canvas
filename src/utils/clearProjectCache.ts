@@ -21,10 +21,41 @@ export const clearProjectCache = (projectId: string) => {
   
   console.log(`Cleared ${keysToRemove.length} cached items for project ${projectId}`);
   
+  // Clear browser image cache for all images
+  clearImageCache();
+  
   // Dispatch event to notify components
   window.dispatchEvent(new CustomEvent('projectCacheCleared', {
     detail: { projectId }
   }));
+};
+
+// Clear browser image cache by forcing reload of all images
+const clearImageCache = () => {
+  console.log('🧹 Clearing browser image cache');
+  
+  // Force reload all images on the page
+  document.querySelectorAll('img').forEach((img) => {
+    const originalSrc = img.src;
+    if (originalSrc && !originalSrc.includes('?v=')) {
+      img.src = '';
+      setTimeout(() => {
+        img.src = originalSrc + '?v=' + Date.now();
+      }, 50);
+    }
+  });
+  
+  // Clear any cached background images
+  document.querySelectorAll('[style*="background-image"]').forEach((element) => {
+    const style = (element as HTMLElement).style;
+    if (style.backgroundImage) {
+      const match = style.backgroundImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+      if (match && match[1] && !match[1].includes('?v=')) {
+        const newUrl = match[1] + '?v=' + Date.now();
+        style.backgroundImage = style.backgroundImage.replace(match[1], newUrl);
+      }
+    }
+  });
 };
 
 // Auto-clear cache on load for all projects

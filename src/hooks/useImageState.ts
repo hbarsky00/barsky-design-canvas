@@ -39,7 +39,8 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         
         if (devReplacement && devReplacement !== src) {
           console.log('✅ Using dev mode replacement for', src.substring(0, 30) + '...');
-          setDisplayedImage(devReplacement);
+          const cacheBustedSrc = devReplacement + '?v=' + Date.now();
+          setDisplayedImage(cacheBustedSrc);
           setHasDevModeChanges(true);
           setIsLoading(false);
           return;
@@ -51,17 +52,20 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         
         if (publishedReplacement && publishedReplacement !== src) {
           console.log('📄 Using published replacement for', src.substring(0, 30) + '...');
-          setDisplayedImage(publishedReplacement);
+          const cacheBustedSrc = publishedReplacement + '?v=' + Date.now();
+          setDisplayedImage(cacheBustedSrc);
           setHasDevModeChanges(false);
         } else {
           console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
-          setDisplayedImage(src);
+          const cacheBustedSrc = src + '?v=' + Date.now();
+          setDisplayedImage(cacheBustedSrc);
           setHasDevModeChanges(false);
         }
       } catch (error) {
         console.error('❌ Error loading image changes for', src.substring(0, 50) + '...', ':', error);
-        // Fallback to original
-        setDisplayedImage(src);
+        // Fallback to original with cache busting
+        const cacheBustedSrc = src + '?v=' + Date.now();
+        setDisplayedImage(cacheBustedSrc);
         setHasDevModeChanges(false);
       } finally {
         setIsLoading(false);
@@ -82,14 +86,17 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         e.detail?.published || 
         e.detail?.immediate ||
         e.detail?.src === src ||
-        e.detail?.imageReplaced; // Added this check
+        e.detail?.imageReplaced ||
+        e.detail?.cacheClear; // Added cache clear handling
         
       if (isRelevant) {
         console.log('🔄 Relevant update detected for image:', src.substring(0, 50) + '...', 'refreshing...');
-        // Add a small delay to ensure database is updated
+        
+        // If cache clear is requested, force refresh with longer delay
+        const delay = e.detail?.cacheClear ? 200 : 100;
         setTimeout(() => {
           setRefreshKey(prev => prev + 1);
-        }, 100);
+        }, delay);
       }
     };
 
@@ -107,7 +114,8 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
 
   const updateDisplayedImage = (newSrc: string) => {
     console.log('⚡ Immediately updating displayed image from:', src.substring(0, 30) + '...', 'to:', newSrc.substring(0, 30) + '...');
-    setDisplayedImage(newSrc);
+    const cacheBustedNewSrc = newSrc + '?v=' + Date.now();
+    setDisplayedImage(cacheBustedNewSrc);
     setHasDevModeChanges(true);
   };
 

@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 
 export class ImageStorageService {
@@ -110,5 +111,31 @@ export class ImageStorageService {
     } catch (error) {
       console.error('❌ Error during cleanup:', error);
     }
+  }
+
+  // Clear image cache for specific images
+  static clearImageCache(imagePaths: string[]): void {
+    imagePaths.forEach(imagePath => {
+      console.log('🧹 Clearing cache for image:', imagePath);
+      
+      // Force reload images by updating their src with cache busting
+      document.querySelectorAll(`img[src="${imagePath}"]`).forEach((img) => {
+        const htmlImg = img as HTMLImageElement;
+        const originalSrc = htmlImg.src;
+        htmlImg.src = '';
+        setTimeout(() => {
+          htmlImg.src = originalSrc + '?v=' + Date.now();
+        }, 100);
+      });
+
+      // Clear any background images
+      document.querySelectorAll(`[style*="background-image"]`).forEach((element) => {
+        const style = (element as HTMLElement).style;
+        if (style.backgroundImage && style.backgroundImage.includes(imagePath)) {
+          const newUrl = imagePath + '?v=' + Date.now();
+          style.backgroundImage = style.backgroundImage.replace(imagePath, newUrl);
+        }
+      });
+    });
   }
 }
