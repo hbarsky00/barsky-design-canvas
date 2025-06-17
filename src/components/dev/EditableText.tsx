@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
@@ -27,78 +27,103 @@ const EditableText: React.FC<EditableTextProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const savingRef = useRef(false);
+  const mountedRef = useRef(true);
+
+  // Stable callback for loading saved text
+  const loadSavedText = useCallback(async () => {
+    if (textKey && projectId && mountedRef.current) {
+      try {
+        setIsLoading(true);
+        const changes = await getChanges();
+        const savedText = changes.textContent[textKey] || initialText;
+        console.log('📖 EditableText loading for key:', textKey, 'saved text:', savedText);
+        if (mountedRef.current) {
+          setText(savedText);
+        }
+      } catch (error) {
+        console.error('❌ EditableText: Error loading text:', error);
+        if (mountedRef.current) {
+          setText(initialText);
+        }
+      } finally {
+        if (mountedRef.current) {
+          setIsLoading(false);
+        }
+      }
+    } else {
+      setText(initialText);
+      setIsLoading(false);
+    }
+  }, [textKey, projectId, initialText, getChanges]);
 
   // Load saved text from database on mount
   useEffect(() => {
-    const loadSavedText = async () => {
-      if (textKey && projectId) {
-        try {
-          setIsLoading(true);
-          const changes = await getChanges();
-          const savedText = changes.textContent[textKey] || initialText;
-          console.log('📖 EditableText loading for key:', textKey, 'saved text:', savedText);
-          setText(savedText);
-        } catch (error) {
-          console.error('❌ EditableText: Error loading text:', error);
-          setText(initialText);
-        } finally {
-          setIsLoading(false);
-        }
-      } else {
-        setText(initialText);
-        setIsLoading(false);
-      }
-    };
-
     loadSavedText();
-  }, [textKey, projectId, initialText, getChanges]);
+    
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [loadSavedText]);
 
-  const handleClick = () => {
-    if (isDevMode && !isLoading && !isSaving && textKey) {
+  const handleClick = useCallback(() => {
+    if (isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current) {
       console.log('🖱️ EditableText clicked for editing:', textKey);
       setIsEditing(true);
     }
-  };
+  }, [isDevMode, isLoading, textKey]);
 
-  const handleSave = async () => {
-    if (!textKey || !projectId || isSaving) {
-      console.log('⚠️ EditableText: Cannot save - missing requirements:', { textKey, projectId, isSaving });
+  const handleSave = useCallback(async () => {
+    if (!textKey || !projectId || savingRef.current || !mountedRef.current) {
+      console.log('⚠️ EditableText: Cannot save - missing requirements:', { textKey, projectId, saving: savingRef.current });
       setIsEditing(false);
       return;
     }
 
     console.log('💾 EditableText: Starting save for key:', textKey, 'text:', text);
     setIsSaving(true);
+    savingRef.current = true;
     
     try {
       const success = await saveChange('text', textKey, text);
-      if (success) {
+      if (success && mountedRef.current) {
         console.log('✅ EditableText: Successfully saved text to database');
         toast.success('Text saved!', { duration: 2000 });
         
-        // Dispatch immediate update event
-        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { 
-            projectId, 
-            textChanged: true, 
-            immediate: true,
-            timestamp: Date.now()
+        // Dispatch update event with debouncing
+        setTimeout(() => {
+          if (mountedRef.current) {
+            window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+              detail: { 
+                projectId, 
+                textChanged: true, 
+                immediate: true,
+                timestamp: Date.now()
+              }
+            }));
           }
-        }));
+        }, 100);
       } else {
         console.error('❌ EditableText: Failed to save text to database');
-        toast.error('Failed to save text');
+        if (mountedRef.current) {
+          toast.error('Failed to save text');
+        }
       }
     } catch (error) {
       console.error('❌ EditableText: Error saving text:', error);
-      toast.error('Error saving text');
+      if (mountedRef.current) {
+        toast.error('Error saving text');
+      }
     } finally {
-      setIsSaving(false);
-      setIsEditing(false);
+      savingRef.current = false;
+      if (mountedRef.current) {
+        setIsSaving(false);
+        setIsEditing(false);
+      }
     }
-  };
+  }, [textKey, projectId, text, saveChange]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !multiline) {
       e.preventDefault();
       handleSave();
@@ -106,20 +131,24 @@ const EditableText: React.FC<EditableTextProps> = ({
       console.log('⏪ EditableText: Reverting changes');
       setIsEditing(false);
       // Reset to original saved value
-      if (textKey && projectId) {
+      if (textKey && projectId && mountedRef.current) {
         getChanges().then(changes => {
-          setText(changes.textContent[textKey] || initialText);
+          if (mountedRef.current) {
+            setText(changes.textContent[textKey] || initialText);
+          }
         }).catch(() => {
-          setText(initialText);
+          if (mountedRef.current) {
+            setText(initialText);
+          }
         });
       } else {
         setText(initialText);
       }
     }
-  };
+  }, [handleSave, multiline, textKey, projectId, getChanges, initialText]);
 
   useEffect(() => {
-    if (isEditing && inputRef.current) {
+    if (isEditing && inputRef.current && mountedRef.current) {
       inputRef.current.focus();
       inputRef.current.select();
     }
@@ -133,7 +162,7 @@ const EditableText: React.FC<EditableTextProps> = ({
     );
   }
 
-  if (isEditing && isDevMode && textKey) {
+  if (isEditing && isDevMode && textKey && mountedRef.current) {
     const InputComponent = multiline ? 'textarea' : 'input';
     return (
       <div className="relative">

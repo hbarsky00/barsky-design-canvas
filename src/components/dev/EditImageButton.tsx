@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
 import { Upload } from 'lucide-react';
@@ -20,6 +20,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
   const { saveChange } = useDevModeDatabase(currentProjectId);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const processingRef = useRef(false);
 
   console.log('🎯 EditImageButton render:', { 
     isDevMode, 
@@ -28,20 +29,20 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     hasOnImageReplace: !!onImageReplace 
   });
 
-  const handleEditClick = (e: React.MouseEvent) => {
+  const handleEditClick = useCallback((e: React.MouseEvent) => {
     console.log('🖱️ Edit button clicked for image:', src?.substring(0, 50) + '...');
     e.preventDefault();
     e.stopPropagation();
     
-    if (isProcessing) {
+    if (processingRef.current) {
       console.log('⏳ Already processing, ignoring click');
       return;
     }
     
     fileInputRef.current?.click();
-  };
+  }, [src]);
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     console.log('📁 File selected:', { 
       hasFile: !!file, 
@@ -51,83 +52,74 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       projectId: currentProjectId 
     });
     
-    if (file && src && currentProjectId && !isProcessing) {
+    if (file && src && currentProjectId && !processingRef.current) {
       setIsProcessing(true);
+      processingRef.current = true;
       
       try {
         console.log('🔄 Starting image replacement process for:', src.substring(0, 50) + '...');
         
         const reader = new FileReader();
-        reader.onload = async () => {
-          try {
-            const dataUrl = reader.result as string;
-            console.log('✅ File converted to data URL, saving to database for src:', src.substring(0, 50) + '...');
-            
-            // Save the image replacement to dev mode database
-            const success = await saveChange('image', src, dataUrl);
-            console.log('💾 Database save result for', src.substring(0, 50) + '...', ':', success);
-            
-            if (success) {
-              console.log('✅ Successfully saved image replacement to database');
-              
-              // Call the callback immediately for instant UI feedback
-              if (onImageReplace) {
-                console.log('📞 Calling onImageReplace callback for immediate UI update');
-                onImageReplace(dataUrl);
-              }
-              
-              // Dispatch comprehensive update events for all listeners
-              const updateEvent = new CustomEvent('projectDataUpdated', {
-                detail: { 
-                  projectId: currentProjectId, 
-                  imageReplaced: true, 
-                  immediate: true,
-                  src: src,
-                  newSrc: dataUrl,
-                  timestamp: Date.now(),
-                  changeType: 'image'
-                }
-              });
-              
-              console.log('📡 Dispatching project update event for:', src.substring(0, 50) + '...');
-              window.dispatchEvent(updateEvent);
-              
-              toast.success("Image replaced!", {
-                description: `Replaced with "${file.name}". Click "Publish Changes" to make it permanent.`,
-                duration: 3000,
-              });
-              
-              console.log('🎉 Image replacement process completed successfully for:', src.substring(0, 50) + '...');
-            } else {
-              throw new Error('Failed to save image replacement to database');
-            }
-          } catch (error) {
-            console.error('❌ Error in file reader onload:', error);
-            toast.error("Failed to replace image", {
-              description: "There was an error processing the image file."
-            });
-          } finally {
-            setIsProcessing(false);
-          }
-        };
         
-        reader.onerror = () => {
-          console.error('❌ FileReader error');
-          toast.error("Failed to read file", {
-            description: "There was an error reading the image file."
-          });
-          setIsProcessing(false);
-        };
-        
-        reader.readAsDataURL(file);
-      } catch (error) {
-        console.error('❌ Error replacing image:', error);
-        toast.error("Failed to replace image", {
-          description: "There was an error saving the image replacement."
+        const readFile = new Promise<string>((resolve, reject) => {
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = () => reject(new Error('Failed to read file'));
+          reader.readAsDataURL(file);
         });
+
+        const dataUrl = await readFile;
+        console.log('✅ File converted to data URL, saving to database for src:', src.substring(0, 50) + '...');
+        
+        // Save the image replacement to dev mode database
+        const success = await saveChange('image', src, dataUrl);
+        console.log('💾 Database save result for', src.substring(0, 50) + '...', ':', success);
+        
+        if (success) {
+          console.log('✅ Successfully saved image replacement to database');
+          
+          // Call the callback immediately for instant UI feedback
+          if (onImageReplace) {
+            console.log('📞 Calling onImageReplace callback for immediate UI update');
+            onImageReplace(dataUrl);
+          }
+          
+          // Dispatch update event with debouncing
+          setTimeout(() => {
+            const updateEvent = new CustomEvent('projectDataUpdated', {
+              detail: { 
+                projectId: currentProjectId, 
+                imageReplaced: true, 
+                immediate: true,
+                src: src,
+                newSrc: dataUrl,
+                timestamp: Date.now(),
+                changeType: 'image'
+              }
+            });
+            
+            console.log('📡 Dispatching project update event for:', src.substring(0, 50) + '...');
+            window.dispatchEvent(updateEvent);
+          }, 100);
+          
+          toast.success("Image replaced!", {
+            description: `Replaced with "${file.name}". Click "Publish Changes" to make it permanent.`,
+            duration: 3000,
+          });
+          
+          console.log('🎉 Image replacement process completed successfully for:', src.substring(0, 50) + '...');
+        } else {
+          throw new Error('Failed to save image replacement to database');
+        }
+      } catch (error) {
+        console.error('❌ Error in image replacement:', error);
+        toast.error("Failed to replace image", {
+          description: "There was an error processing the image file."
+        });
+      } finally {
         setIsProcessing(false);
+        processingRef.current = false;
       }
-    } else if (isProcessing) {
+    } else if (processingRef.current) {
       console.log('⏳ Already processing, ignoring file change');
     } else {
       console.error('❌ Missing required data for image replacement:', { 
@@ -144,7 +136,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     if (e.target) {
       e.target.value = '';
     }
-  };
+  }, [src, currentProjectId, saveChange, onImageReplace]);
 
   if (!isDevMode || !src) {
     return null;

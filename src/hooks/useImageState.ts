@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { PublishingService } from '@/services/publishingService';
 
@@ -12,90 +12,99 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const { getChanges } = useDevModeDatabase(projectId);
   const [displayedImage, setDisplayedImage] = useState(src);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Start with loading true
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [lastPublishedState, setLastPublishedState] = useState<string | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const loadingRef = useRef(false);
   const mountedRef = useRef(true);
+  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   console.log('🔍 useImageState initialized for:', { src: src.substring(0, 50) + '...', projectId });
   
-  // Load image with priority: dev mode > published > original
+  // Stable callback for loading image state
+  const loadImageState = useCallback(async () => {
+    if (!mountedRef.current || !src || !projectId || loadingRef.current) {
+      return;
+    }
+
+    loadingRef.current = true;
+    setIsLoading(true);
+    setHasError(false);
+    
+    try {
+      console.log('🔍 Loading image state for:', src.substring(0, 50) + '...', 'in project:', projectId);
+      
+      // First check dev mode changes
+      const devData = await getChanges();
+      const devReplacement = devData.imageReplacements[src];
+      
+      if (devReplacement && devReplacement !== src && mountedRef.current) {
+        console.log('✅ Using dev mode replacement for', src.substring(0, 30) + '...');
+        setDisplayedImage(devReplacement);
+        setHasDevModeChanges(true);
+        setRefreshKey(prev => prev + 1);
+        return;
+      }
+      
+      // If no dev mode replacement, check published data
+      const publishedData = await PublishingService.loadPublishedData(projectId);
+      const publishedReplacement = publishedData?.image_replacements?.[src];
+      
+      if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
+        console.log('📄 Using published replacement for', src.substring(0, 30) + '...');
+        setDisplayedImage(publishedReplacement);
+        setHasDevModeChanges(false);
+        setLastPublishedState(publishedReplacement);
+        setRefreshKey(prev => prev + 1);
+      } else if (mountedRef.current) {
+        console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
+        setDisplayedImage(src);
+        setHasDevModeChanges(false);
+        setLastPublishedState(src);
+        setRefreshKey(prev => prev + 1);
+      }
+    } catch (error) {
+      console.error('❌ Error loading image changes for', src.substring(0, 50) + '...', ':', error);
+      if (mountedRef.current) {
+        setDisplayedImage(src);
+        setHasDevModeChanges(false);
+        setHasError(true);
+        setRefreshKey(prev => prev + 1);
+      }
+    } finally {
+      loadingRef.current = false;
+      if (mountedRef.current) {
+        setIsLoading(false);
+      }
+    }
+  }, [src, projectId, getChanges]);
+
+  // Load image with debouncing to prevent queue overflow
   useEffect(() => {
     if (!mountedRef.current || !src || !projectId) {
       setIsLoading(false);
       return;
     }
 
-    // Prevent concurrent loads
-    if (loadingRef.current) {
-      return;
+    // Clear any existing timeout
+    if (loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
     }
 
-    const loadImage = async () => {
-      loadingRef.current = true;
-      setIsLoading(true);
-      setHasError(false);
-      
-      try {
-        console.log('🔍 Loading image state for:', src.substring(0, 50) + '...', 'in project:', projectId);
-        
-        // First check dev mode changes
-        const devData = await getChanges();
-        const devReplacement = devData.imageReplacements[src];
-        
-        if (devReplacement && devReplacement !== src) {
-          console.log('✅ Using dev mode replacement for', src.substring(0, 30) + '...');
-          if (mountedRef.current) {
-            setDisplayedImage(devReplacement);
-            setHasDevModeChanges(true);
-            setRefreshKey(prev => prev + 1);
-          }
-          return;
-        }
-        
-        // If no dev mode replacement, check published data
-        const publishedData = await PublishingService.loadPublishedData(projectId);
-        const publishedReplacement = publishedData?.image_replacements?.[src];
-        
-        if (publishedReplacement && publishedReplacement !== src) {
-          console.log('📄 Using published replacement for', src.substring(0, 30) + '...');
-          if (mountedRef.current) {
-            setDisplayedImage(publishedReplacement);
-            setHasDevModeChanges(false);
-            setLastPublishedState(publishedReplacement);
-            setRefreshKey(prev => prev + 1);
-          }
-        } else {
-          console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
-          if (mountedRef.current) {
-            setDisplayedImage(src);
-            setHasDevModeChanges(false);
-            setLastPublishedState(src);
-            setRefreshKey(prev => prev + 1);
-          }
-        }
-      } catch (error) {
-        console.error('❌ Error loading image changes for', src.substring(0, 50) + '...', ':', error);
-        if (mountedRef.current) {
-          setDisplayedImage(src);
-          setHasDevModeChanges(false);
-          setHasError(true);
-          setRefreshKey(prev => prev + 1);
-        }
-      } finally {
-        loadingRef.current = false;
-        if (mountedRef.current) {
-          setIsLoading(false);
-        }
+    // Debounce the load operation
+    loadTimeoutRef.current = setTimeout(() => {
+      loadImageState();
+    }, 50);
+
+    return () => {
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
       }
     };
-    
-    loadImage();
-  }, [src, projectId, getChanges]); // Added getChanges to dependencies
+  }, [loadImageState]);
 
-  // Listen for project data updates with debouncing
+  // Listen for project data updates with proper debouncing
   useEffect(() => {
     if (!mountedRef.current) return;
     
@@ -110,19 +119,19 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
       // Handle published changes immediately
       if (detail.published && detail.imageReplacements) {
         const newImageSrc = detail.imageReplacements[src];
-        if (newImageSrc && newImageSrc !== displayedImage) {
+        if (newImageSrc && newImageSrc !== displayedImage && mountedRef.current) {
           console.log('📄 Immediately applying published image change:', src.substring(0, 30) + '...', '->', newImageSrc.substring(0, 30) + '...');
           setDisplayedImage(newImageSrc);
           setHasDevModeChanges(false);
           setLastPublishedState(newImageSrc);
           setHasError(false);
-          setIsLoading(false); // Ensure loading is cleared
+          setIsLoading(false);
           setRefreshKey(prev => prev + 1);
           return;
         }
       }
       
-      // Handle other updates with debouncing to prevent queue overflow
+      // Handle other updates with debouncing
       const isRelevant = 
         detail.projectId === projectId || 
         detail.immediate ||
@@ -133,38 +142,17 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         console.log('🔄 Relevant update detected for image:', src.substring(0, 50) + '...', 'scheduling refresh...');
         setHasError(false);
         
-        // Clear existing timeout to debounce updates
+        // Clear existing timeout
         if (updateTimeout) {
           clearTimeout(updateTimeout);
         }
         
         // Debounced update to prevent queue overflow
-        updateTimeout = setTimeout(async () => {
-          if (!mountedRef.current || loadingRef.current) return;
-          
-          try {
-            loadingRef.current = true;
-            const devData = await getChanges();
-            const devReplacement = devData.imageReplacements[src];
-            
-            if (devReplacement && devReplacement !== src && mountedRef.current) {
-              setDisplayedImage(devReplacement);
-              setHasDevModeChanges(true);
-              setRefreshKey(prev => prev + 1);
-            }
-          } catch (error) {
-            console.error('Error updating image:', error);
-            if (mountedRef.current) {
-              setHasError(true);
-            }
-          } finally {
-            loadingRef.current = false;
-            // Always clear loading state
-            if (mountedRef.current) {
-              setIsLoading(false);
-            }
+        updateTimeout = setTimeout(() => {
+          if (mountedRef.current && !loadingRef.current) {
+            loadImageState();
           }
-        }, 100);
+        }, 150);
       }
     };
 
@@ -176,72 +164,44 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         clearTimeout(updateTimeout);
       }
     };
-  }, [src, projectId, displayedImage, getChanges]);
+  }, [src, projectId, displayedImage, loadImageState]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       mountedRef.current = false;
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
     };
   }, []);
 
-  const forceRefresh = () => {
+  const forceRefresh = useCallback(() => {
     if (!mountedRef.current || loadingRef.current) return;
     
     console.log('🔄 Force refresh triggered for:', src.substring(0, 50) + '...');
     setHasError(false);
-    setIsLoading(true); // Set loading when refreshing
+    setIsLoading(true);
     setRefreshKey(prev => prev + 1);
     
-    // Reset to original and reload with debouncing
-    setTimeout(async () => {
-      if (!mountedRef.current || loadingRef.current) return;
-      
-      try {
-        loadingRef.current = true;
-        const devData = await getChanges();
-        const devReplacement = devData.imageReplacements[src];
-        
-        if (devReplacement && devReplacement !== src && mountedRef.current) {
-          setDisplayedImage(devReplacement);
-          setHasDevModeChanges(true);
-        } else {
-          const publishedData = await PublishingService.loadPublishedData(projectId);
-          const publishedReplacement = publishedData?.image_replacements?.[src];
-          
-          if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
-            setDisplayedImage(publishedReplacement);
-            setHasDevModeChanges(false);
-          } else if (mountedRef.current) {
-            setDisplayedImage(src);
-            setHasDevModeChanges(false);
-          }
-        }
-      } catch (error) {
-        console.error('Error during force refresh:', error);
-        if (mountedRef.current) {
-          setDisplayedImage(src);
-          setHasError(true);
-        }
-      } finally {
-        loadingRef.current = false;
-        if (mountedRef.current) {
-          setIsLoading(false);
-        }
+    // Debounced refresh
+    setTimeout(() => {
+      if (mountedRef.current && !loadingRef.current) {
+        loadImageState();
       }
-    }, 50);
-  };
+    }, 100);
+  }, [src, loadImageState]);
 
-  const updateDisplayedImage = (newSrc: string) => {
+  const updateDisplayedImage = useCallback((newSrc: string) => {
     if (!mountedRef.current) return;
     
     console.log('⚡ Immediately updating displayed image from:', src.substring(0, 30) + '...', 'to:', newSrc.substring(0, 30) + '...');
     setDisplayedImage(newSrc);
     setHasDevModeChanges(true);
     setHasError(false);
-    setIsLoading(false); // Clear loading when updating image
+    setIsLoading(false);
     setRefreshKey(prev => prev + 1);
-  };
+  }, [src]);
 
   return {
     displayedImage,
