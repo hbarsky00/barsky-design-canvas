@@ -108,34 +108,51 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         throw new Error('Invalid image URL received from storage');
       }
       
+      console.log('⚡ EditImageButton: IMMEDIATE callback for instant UI update');
+      // Call callback IMMEDIATELY for instant visual feedback
+      if (onImageReplace) {
+        onImageReplace(publicUrl);
+      }
+      
+      // Dispatch IMMEDIATE visual update event FIRST
+      const immediateEventDetail = { 
+        projectId: currentProjectId, 
+        imageReplaced: true, 
+        immediate: true,
+        src: src,
+        newSrc: publicUrl,
+        timestamp: Date.now(),
+        changeType: 'image',
+        isValidUrl: validateImageUrl(publicUrl),
+        source: 'EditImageButton-immediate'
+      };
+      
+      console.log('📡 EditImageButton: Dispatching IMMEDIATE visual update event:', immediateEventDetail);
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: immediateEventDetail
+      }));
+      
       console.log('💾 EditImageButton: Saving image URL reference to database...');
       const success = await saveChange('image', src, publicUrl);
       
       if (success) {
         console.log('✅ EditImageButton: Image uploaded and reference saved successfully');
         
-        // Call callback immediately for instant UI feedback
-        if (onImageReplace) {
-          console.log('📞 EditImageButton: Calling onImageReplace callback');
-          onImageReplace(publicUrl);
-        }
-        
-        // Dispatch immediate update event with comprehensive information
-        const eventDetail = { 
+        // Dispatch database update confirmation event
+        const dbEventDetail = { 
           projectId: currentProjectId, 
           imageReplaced: true, 
-          immediate: true,
+          databaseSaved: true,
           src: src,
           newSrc: publicUrl,
           timestamp: Date.now(),
           changeType: 'image',
-          isValidUrl: validateImageUrl(publicUrl),
-          source: 'EditImageButton'
+          source: 'EditImageButton-database'
         };
         
-        console.log('📡 EditImageButton: Dispatching projectDataUpdated event:', eventDetail);
+        console.log('📡 EditImageButton: Dispatching database save confirmation event:', dbEventDetail);
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: eventDetail
+          detail: dbEventDetail
         }));
         
         const finalSizeKB = (compressedFile.size / 1024).toFixed(2);

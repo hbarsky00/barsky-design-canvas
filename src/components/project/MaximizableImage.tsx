@@ -83,21 +83,22 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
   };
 
-  const handleImageReplace = (newSrc: string) => {
+  const handleImageReplace = useCallback((newSrc: string) => {
     console.log('🔄 MaximizableImage: Image replace triggered:', {
       originalSrc: src.substring(0, 30) + '...',
       newSrc: newSrc.substring(0, 30) + '...',
       projectId: currentProjectId
     });
     
-    // Immediately update the displayed image for instant feedback
+    // IMMEDIATE UI update for instant visual feedback
     updateDisplayedImage(newSrc);
     
     // Call the parent callback if provided
     if (onImageReplace) {
+      console.log('📞 MaximizableImage: Calling parent onImageReplace callback');
       onImageReplace(newSrc);
     }
-  };
+  }, [src, currentProjectId, updateDisplayedImage, onImageReplace]);
 
   const handleImageError = () => {
     console.error('❌ Image failed to load:', {
@@ -186,7 +187,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        key={`${displayedImage}-${hasDevModeChanges}`}
+        key={`${displayedImage}-${hasDevModeChanges}-${Date.now()}`}
       >
         {!hideEditButton && (
           <EditImageButton 

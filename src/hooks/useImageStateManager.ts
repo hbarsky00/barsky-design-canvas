@@ -205,9 +205,18 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       
       const detail = e.detail || {};
       
-      // PRIORITY 1: Handle immediate dev mode image replacements (HIGHEST PRIORITY)
-      if (detail.src === src && detail.newSrc && detail.immediate && detail.changeType === 'image') {
-        console.log('⚡ IMMEDIATE dev mode image update for:', src.substring(0, 30) + '...', '->', detail.newSrc.substring(0, 30) + '...');
+      console.log('🔄 Project update event received:', {
+        src: src.substring(0, 30) + '...',
+        detailSrc: detail.src?.substring(0, 30) + '...',
+        newSrc: detail.newSrc?.substring(0, 30) + '...',
+        immediate: detail.immediate,
+        changeType: detail.changeType,
+        source: detail.source
+      });
+      
+      // PRIORITY 1: Handle IMMEDIATE visual updates for our specific image (HIGHEST PRIORITY)
+      if (detail.immediate && detail.src === src && detail.newSrc && detail.changeType === 'image') {
+        console.log('⚡ IMMEDIATE visual update for our image - applying instantly!');
         setDisplayedImage(detail.newSrc);
         setHasDevModeChanges(true);
         setHasError(false);
@@ -228,9 +237,14 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       }
       
       // PRIORITY 3: Handle general image update events
-      if (detail.src === src || detail.imageReplaced || (detail.immediate && detail.changeType === 'image')) {
-        console.log('🔄 Image update event for our image, reloading state');
-        await handleLoadImageState();
+      if (detail.imageReplaced || (detail.immediate && detail.changeType === 'image')) {
+        console.log('🔄 General image update event, checking if relevant to our image');
+        // Add small delay to prevent racing with immediate updates
+        setTimeout(async () => {
+          if (mountedRef.current && !loadingRef.current) {
+            await handleLoadImageState();
+          }
+        }, 100);
       }
     };
 
