@@ -12,15 +12,27 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png": "Clean and accessible medication tracking interface with simplified navigation and clear visual hierarchy for improved user experience",
 
   // Investor Loan App Project
-  "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png": "Sophisticated AI-powered search interface with predictive capabilities, real-time suggestions, and advanced filtering for efficient loan discovery",
-  "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png": "Professional financial orderbook interface inspired by Bloomberg terminals, featuring real-time market data and sophisticated transaction management",
+  "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Modern loan management dashboard featuring a clean card-based interface for tracking multiple investment deals with real-time status updates and team collaboration tools",
+  "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Advanced financial orderbook interface displaying loan tranches with sophisticated filtering, real-time market data, and integrated communication features for seamless deal execution",
+  "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png": "AI-powered predictive search interface for loan management, featuring intelligent auto-complete suggestions and advanced filtering capabilities that streamline deal discovery",
+  "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png": "Comprehensive advanced search functionality with multi-criteria filtering, saved search preferences, and real-time results for efficient loan portfolio management",
+  "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png": "Feature overview dashboard showcasing key platform capabilities including AI-powered search, dynamic orderbook management, and collaborative deal tracking tools",
+  "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png": "Project lessons learned documentation highlighting successful implementation strategies, user adoption metrics, and future enhancement roadmap for continuous improvement",
+  "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png": "Implementation results showing significant efficiency gains, reduced processing time, and improved collaboration metrics from the digital transformation initiative",
+  "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png": "Advanced loan limit management system with real-time utilization tracking, automated compliance monitoring, and comprehensive credit exposure reporting",
+  "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png": "Deal Central hub with intuitive card-based layout for managing multiple loan transactions, featuring quick status updates and collaborative workflow management",
+  "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png": "Grid view interface for collaborative deal management showing team assignments, progress tracking, and real-time communication features for enhanced productivity",
+  "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png": "Comprehensive loan limit dashboard with visual utilization indicators, credit monitoring alerts, and automated compliance reporting for risk management",
+  "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png": "Enhanced orderbook with integrated comments system and team communication features, enabling seamless collaboration throughout the deal lifecycle",
+  "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png": "User workflow diagram illustrating the complete loan management process from initial deal discovery through final execution and ongoing monitoring",
+
+  // Legacy workflow images
   "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png": "Analysis of complex Excel-based workflow transformation showing inefficiencies and manual processes that were automated in the new system",
   "/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png": "Modern banking interface design featuring clean navigation, intuitive information architecture, and professional visual design language",
   "/lovable-uploads/90cbccae-4660-4e76-8218-1164bbeb0883.png": "High-value deal management system capable of tracking million-dollar transactions with comprehensive audit trails and compliance features",
   "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "User workflow optimization analysis demonstrating significant efficiency improvements and reduced processing time achievements",
 
   // DAE Search Project
-  "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Enterprise data catalog platform featuring Bloomberg-inspired design with advanced search capabilities and comprehensive data governance tools",
   "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png": "Sophisticated filtering and faceted search system for enterprise datasets with real-time filtering and advanced query capabilities",
   "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png": "Interactive data visualization dashboard with analytics capabilities and comprehensive reporting features for enterprise data insights",
 
@@ -32,8 +44,6 @@ export const imageCaptions: Record<string, string> = {
   // HerbaLink Project
   "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png": "Digital platform connecting patients with qualified herbalists, bridging traditional medicine practices with modern healthcare accessibility",
   "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png": "Location-based practitioner discovery interface with detailed professional profiles, specializations, and patient review systems",
-  "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Comprehensive herbal medicine consultation system with virtual appointment scheduling and treatment plan management capabilities",
-  "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png": "Traditional medicine practice management tools designed for herbalists to organize patient records and treatment protocols",
 
   // Gold2Crypto Project
   "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png": "Familiar trading platform interface designed specifically for traditional gold investors transitioning to cryptocurrency markets",
@@ -44,7 +54,6 @@ export const imageCaptions: Record<string, string> = {
   // BarskyJoint Project
   "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png": "Innovative dual-format food service application supporting both mobile food truck operations and traditional restaurant service",
   "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png": "Real-time food truck location tracking system with GPS integration and customer notification features for mobile dining",
-  "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png": "Streamlined mobile commerce platform with integrated ordering system and payment processing for efficient food service operations",
   "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png": "Restaurant management interface with menu customization, inventory tracking, and operational efficiency tools",
 
   // Spectrum Project
@@ -53,19 +62,13 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/c35498f2-e657-4982-9b9b-8945aaf817d5.png": "Comprehensive accessibility features including screen reader support, keyboard navigation, and high contrast options for inclusive design",
   "/lovable-uploads/41442407-7956-48f5-88bd-f68b4d0ce485.png": "Universal design principles implementation creating an inclusive shopping experience accessible to users of all abilities",
 
-  // Investor Loan App Specific Images (with enhanced captions)
-  "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Modern loan management dashboard featuring a clean card-based interface for tracking multiple investment deals with real-time status updates",
-  "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Advanced financial orderbook interface displaying loan tranches with sophisticated filtering and real-time market data visualization",
-  "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png": "Advanced loan limit management system with real-time utilization tracking and automated compliance monitoring features",
-  "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png": "Deal Central hub with intuitive card-based layout for managing multiple loan transactions and collaborative workflows",
-  "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png": "Grid view interface for collaborative deal management with team assignments and real-time communication features",
-  "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png": "Comprehensive loan limit dashboard with visual utilization indicators and automated compliance reporting",
-  "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png": "User workflow diagram illustrating the complete loan management process from discovery through execution",
-  "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png": "Project lessons learned documentation with implementation strategies and future enhancement roadmap",
-  "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png": "Implementation results showing efficiency gains and improved collaboration metrics from digital transformation",
-  "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png": "Feature overview dashboard showcasing AI-powered search and dynamic orderbook management capabilities",
-
   // Generic/Fallback images with descriptive captions
+  "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png": "MediTrack Pro - Comprehensive medication management platform with advanced tracking and reminder features",
+  "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "DataCatalog Pro - AI-powered data discovery platform with enterprise-grade search and analytics capabilities",
+  "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "HerbaLink - Digital herbalist consultation platform connecting patients with traditional medicine practitioners",
+  "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png": "Gold2Crypto - Investment transition platform designed for precious metals investors entering cryptocurrency markets",
+  "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Barsky Joint - Dual-format restaurant experience supporting both mobile food truck and traditional dining operations",
+  "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png": "Spectrum Apparel - Accessible custom apparel platform with inclusive design principles and universal usability features",
   "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png": "Professional project showcase image demonstrating key features and functionality with clean modern design",
   "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png": "Design process documentation showing user experience workflow and iterative development methodology",
   "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png": "Technical implementation overview highlighting development approach and architectural decisions",
