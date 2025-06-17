@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { PublishingService } from '@/services/publishingService';
@@ -15,7 +16,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   const initialResolvedImage = imageReplacements?.[src] || src;
   const [displayedImage, setDisplayedImage] = useState(initialResolvedImage);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
-  const [isLoading, setIsLoading] = useState(!imageReplacements?.[src]); // Don't load if we already have replacement
+  const [isLoading, setIsLoading] = useState(false); // Start with false if we have replacements
   const [hasError, setHasError] = useState(false);
   const mountedRef = useRef(true);
   const loadingRef = useRef(false);
@@ -175,6 +176,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       return;
     }
 
+    // For images without published replacements, set a much shorter timeout
     const timeoutId = setTimeout(() => {
       if (isLoading && mountedRef.current) {
         console.warn('⚠️ Image loading timeout, falling back to original');
@@ -182,14 +184,14 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
         setIsLoading(false);
         setHasError(false);
       }
-    }, 5000); // 5 second timeout
+    }, 2000); // Reduced from 5 seconds to 2 seconds
 
     loadImageState();
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [loadImageState, imageReplacements, src]);
+  }, [loadImageState, imageReplacements, src, isLoading]);
 
   // Listen for updates
   useEffect(() => {
