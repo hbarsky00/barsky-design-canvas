@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import MaximizableImage from '../MaximizableImage';
 import EditImageButton from '@/components/dev/EditImageButton';
 import { useDevMode } from '@/context/DevModeContext';
+import { toast } from 'sonner';
 
 interface SectionImagesProps {
   sectionImages: string[];
@@ -15,6 +16,7 @@ interface SectionImagesProps {
   handleImageReplace: (imageSrc: string, newSrc: string) => void;
   onImageReorder?: (oldIndex: number, newIndex: number) => void;
   onCaptionUpdate?: (imageSrc: string, newCaption: string) => void;
+  onImageRemove?: (imageSrc: string, index: number) => void;
 }
 
 const SectionImages: React.FC<SectionImagesProps> = ({
@@ -26,7 +28,8 @@ const SectionImages: React.FC<SectionImagesProps> = ({
   getReplacedImageSrc,
   handleImageReplace,
   onImageReorder,
-  onCaptionUpdate
+  onCaptionUpdate,
+  onImageRemove
 }) => {
   const { isDevMode } = useDevMode();
   const [draggedImageIndex, setDraggedImageIndex] = React.useState<number | null>(null);
@@ -37,9 +40,14 @@ const SectionImages: React.FC<SectionImagesProps> = ({
 
   const handleImageRemove = (imageSrc: string, index: number) => {
     console.log('🗑️ SectionImages: Removing image:', imageSrc, 'at index:', index);
-    // For now, we'll just show a message - this would need to be implemented
-    // to actually remove the image from the section's image configuration
-    console.warn('⚠️ SectionImages: Image removal not yet implemented for section images');
+    
+    if (onImageRemove) {
+      onImageRemove(imageSrc, index);
+      toast.success('Image removed successfully');
+    } else {
+      console.warn('⚠️ SectionImages: Image removal not implemented for this section');
+      toast.error('Image removal not available for this section');
+    }
   };
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -110,9 +118,9 @@ const SectionImages: React.FC<SectionImagesProps> = ({
             <EditImageButton
               src={replacedSrc}
               onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
-              onImageRemove={handleRemove}
+              onImageRemove={onImageRemove ? handleRemove : undefined}
               projectId={projectId}
-              allowRemove={true}
+              allowRemove={!!onImageRemove}
             />
             <MaximizableImage
               src={replacedSrc}
@@ -122,10 +130,10 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               currentIndex={index}
               className="rounded-lg sm:rounded-xl shadow-md sm:shadow-elevated-lg w-full overflow-hidden"
               onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
-              onImageRemove={handleRemove}
+              onImageRemove={onImageRemove ? handleRemove : undefined}
               projectId={projectId}
               hideEditButton={true}
-              allowRemove={true}
+              allowRemove={!!onImageRemove}
               onCaptionUpdate={handleCaptionChange}
             />
           </div>

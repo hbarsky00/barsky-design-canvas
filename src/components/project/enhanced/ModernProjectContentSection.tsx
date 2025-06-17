@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import EditableText from "@/components/dev/EditableText";
@@ -101,6 +100,13 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
 
   const wrappedHandleContentImageReplace = async (index: number, newSrc: string) => {
     await handleContentImageReplace(index, newSrc, projectId, saveImageReplacement, updateImageInProjectData);
+  };
+
+  const handleSectionImageRemove = (imageSrc: string, index: number) => {
+    console.log('🗑️ ModernProjectContentSection: Removing section image:', imageSrc, 'at index:', index);
+    // For now, just show a message that section image removal would need to be implemented
+    // in the parent component that manages the imageConfig
+    toast.error('Section image removal requires updating the project configuration. This feature is not yet fully implemented.');
   };
 
   if (isLoading) {
@@ -210,6 +216,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
           getReplacedImageSrc={getReplacedImageSrc}
           handleImageReplace={handleImageReplace}
           onImageReorder={handleImageReorder}
+          onImageRemove={handleSectionImageRemove}
         />
       </div>
     </motion.section>

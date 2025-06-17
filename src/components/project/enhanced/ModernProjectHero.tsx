@@ -256,6 +256,16 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     }
   }, [project.image, currentProjectId, saveImageReplacement, updateImageInProjectData]);
 
+  // Add hero image removal handler
+  const handleHeroImageRemove = React.useCallback(() => {
+    console.log('🗑️ ModernProjectHero: Removing hero image:', project.image);
+    
+    // For hero images, we can replace with a default placeholder
+    const defaultImage = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
+    handleHeroImageReplace(defaultImage);
+    toast.success('Hero image removed and replaced with default image');
+  }, [project.image, handleHeroImageReplace]);
+
   return (
     <div className="relative overflow-hidden">
       {/* Save Indicator */}
@@ -397,6 +407,8 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               hideEditButton={false}
               imageReplacements={publishedReplacements}
               onImageReplace={handleHeroImageReplace}
+              onImageRemove={handleHeroImageRemove}
+              allowRemove={true}
             />
           </div>
         </motion.div>
