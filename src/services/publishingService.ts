@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -7,7 +6,7 @@ import { processChangesData } from '@/hooks/database/dataProcessor';
 export class PublishingService {
   static async publishProject(projectId: string): Promise<boolean> {
     try {
-      console.log('🚀 Starting project publishing for:', projectId);
+      console.log('🚀 Starting comprehensive project publishing for:', projectId);
       
       if (!projectId || typeof projectId !== 'string') {
         console.error('❌ Invalid project ID provided:', projectId);
@@ -31,7 +30,7 @@ export class PublishingService {
         
         const changes = processChangesData(rawChanges);
         
-        console.log('📊 Publishing changes:', {
+        console.log('📊 Publishing comprehensive changes:', {
           textKeys: Object.keys(changes.textContent).length,
           imageKeys: Object.keys(changes.imageReplacements).length,
           contentBlockKeys: Object.keys(changes.contentBlocks).length
@@ -158,7 +157,11 @@ export class PublishingService {
           })
         );
 
-        console.log('✅ Final validated image mappings:', Object.keys(validImageReplacements).length, 'images');
+        console.log('✅ Final validated data for publishing:', {
+          imageCount: Object.keys(validImageReplacements).length,
+          textCount: Object.keys(changes.textContent).length,
+          contentBlockCount: Object.keys(processedContentBlocks).length
+        });
 
         // Step 5: Store published state in the database
         const publishedData = {
@@ -182,8 +185,8 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        // Step 6: Apply changes to DOM immediately and preserve page state
-        this.applyChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks, originalPath);
+        // Step 6: Apply ALL changes to DOM immediately and comprehensively
+        this.applyAllChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks, originalPath);
 
         // Step 7: Store in localStorage as fallback and force component updates
         try {
@@ -213,13 +216,13 @@ export class PublishingService {
           console.warn('⚠️ Image cleanup failed:', error);
         }
 
-        // Step 10: Ensure we stay on the current page and force refresh
+        // Step 10: Ensure we stay on the current page and force comprehensive refresh
         if (window.location.href !== originalUrl) {
           console.log('🔒 PublishingService: Restoring original URL:', originalUrl);
           window.history.replaceState(null, '', originalUrl);
         }
 
-        // Force a complete component refresh to show published changes
+        // Force a complete component refresh to show ALL published changes
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -230,11 +233,17 @@ export class PublishingService {
             textContent: changes.textContent,
             contentBlocks: processedContentBlocks,
             forceRefresh: true,
-            preventNavigation: true
+            preventNavigation: true,
+            allChangesApplied: true,
+            stayOnPage: true
           }
         }));
 
-        console.log('✅ Project published successfully with', Object.keys(validImageReplacements).length, 'validated images');
+        console.log('✅ Project published successfully with comprehensive updates:', {
+          images: Object.keys(validImageReplacements).length,
+          texts: Object.keys(changes.textContent).length,
+          contentBlocks: Object.keys(processedContentBlocks).length
+        });
         return true;
         
       } catch (error) {
@@ -248,26 +257,51 @@ export class PublishingService {
     }
   }
 
-  private static applyChangesToDOM(
+  private static applyAllChangesToDOM(
     imageReplacements: Record<string, string>,
     textContent: Record<string, string>,
     contentBlocks: Record<string, any[]>,
     originalPath: string
   ) {
-    console.log('🎨 Applying published changes to DOM immediately');
+    console.log('🎨 Applying ALL published changes to DOM immediately and comprehensively');
 
-    // Apply image changes with cache busting and immediate DOM updates
+    // Apply ALL image changes with cache busting and immediate DOM updates
     Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
       const timestamp = Date.now();
       const cacheBustedNewSrc = newSrc.includes('?') 
         ? `${newSrc}&v=${timestamp}` 
         : `${newSrc}?v=${timestamp}`;
       
-      // Update all matching images immediately
+      console.log('🖼️ Updating ALL images in DOM for:', oldSrc.substring(0, 30) + '...', '->', cacheBustedNewSrc.substring(0, 30) + '...');
+      
+      // Update ALL matching images immediately with multiple selection strategies
+      const selectors = [
+        `img[src="${oldSrc}"]`,
+        `img[src*="${oldSrc.substring(0, 50)}"]`,
+        `img[data-original-src="${oldSrc}"]`
+      ];
+      
+      selectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach((img) => {
+          console.log('📸 Updating specific image element:', selector);
+          (img as HTMLImageElement).src = cacheBustedNewSrc;
+          img.setAttribute('data-updated', 'true');
+          (img as HTMLElement).style.opacity = '0';
+          (img as HTMLImageElement).onload = () => {
+            (img as HTMLElement).style.opacity = '1';
+          };
+        });
+      });
+      
+      // Also update any img elements that might have partial matches
       document.querySelectorAll('img').forEach((img) => {
-        if (img.src === oldSrc || img.src.includes(oldSrc.substring(0, 30))) {
-          console.log('🖼️ Updating image in DOM:', oldSrc.substring(0, 50) + '...', '->', cacheBustedNewSrc.substring(0, 50) + '...');
+        const imgSrc = img.src || img.getAttribute('src') || '';
+        if (imgSrc.includes(oldSrc.substring(oldSrc.lastIndexOf('/') + 1)) || 
+            imgSrc === oldSrc ||
+            img.getAttribute('data-original-src') === oldSrc) {
+          console.log('🔄 Updating image by partial match:', imgSrc);
           img.src = cacheBustedNewSrc;
+          img.setAttribute('data-updated', 'true');
           img.style.opacity = '0';
           img.onload = () => {
             img.style.opacity = '1';
@@ -278,24 +312,67 @@ export class PublishingService {
       // Update background images
       document.querySelectorAll('[style*="background-image"]').forEach((element) => {
         const style = (element as HTMLElement).style;
-        if (style.backgroundImage && style.backgroundImage.includes(oldSrc.substring(0, 30))) {
+        if (style.backgroundImage && (style.backgroundImage.includes(oldSrc) || style.backgroundImage.includes(oldSrc.substring(0, 30)))) {
+          console.log('🎨 Updating background image:', style.backgroundImage);
           style.backgroundImage = style.backgroundImage.replace(/url\(['"]?[^'"]*['"]?\)/, `url("${cacheBustedNewSrc}")`);
         }
       });
     });
 
-    // Apply text content changes immediately
+    // Apply ALL text content changes immediately with comprehensive selection
     Object.entries(textContent).forEach(([key, value]) => {
-      const elements = document.querySelectorAll(`[data-text-key="${key}"]`);
-      elements.forEach((element) => {
-        if (element.textContent !== value) {
-          console.log('📝 Updating text in DOM:', key, '->', value.substring(0, 50) + '...');
-          element.textContent = value;
-        }
+      console.log('📝 Updating ALL text in DOM for key:', key, 'with value:', value.substring(0, 50) + '...');
+      
+      // Multiple selection strategies for text elements
+      const selectors = [
+        `[data-text-key="${key}"]`,
+        `[data-editable-text="${key}"]`,
+        `[data-content-key="${key}"]`
+      ];
+      
+      let elementsFound = 0;
+      selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((element) => {
+          if (element.textContent !== value) {
+            console.log('📄 Updating text element:', selector, element.textContent?.substring(0, 30), '->', value.substring(0, 30));
+            element.textContent = value;
+            element.setAttribute('data-updated', 'true');
+            elementsFound++;
+          }
+        });
+      });
+      
+      if (elementsFound === 0) {
+        console.warn('⚠️ No text elements found for key:', key);
+      }
+    });
+
+    // Apply content block changes
+    Object.entries(contentBlocks).forEach(([sectionKey, blocks]) => {
+      console.log('📦 Updating content blocks for section:', sectionKey, 'with', blocks.length, 'blocks');
+      
+      const sectionElements = document.querySelectorAll(`[data-section="${sectionKey}"]`);
+      sectionElements.forEach((element) => {
+        element.setAttribute('data-updated', 'true');
+        console.log('📦 Marked content block section for update:', sectionKey);
       });
     });
 
-    console.log('✅ All published changes applied to DOM - staying on page:', originalPath);
+    // Force re-render of all React components by dispatching a comprehensive refresh event
+    setTimeout(() => {
+      console.log('🔄 Triggering comprehensive component refresh after DOM updates');
+      window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
+        detail: { 
+          allUpdated: true,
+          timestamp: Date.now(),
+          imageCount: Object.keys(imageReplacements).length,
+          textCount: Object.keys(textContent).length
+        }
+      }));
+    }, 100);
+
+    console.log('✅ ALL published changes applied to DOM comprehensively - staying on page:', originalPath);
   }
 
   static async loadPublishedData(projectId: string): Promise<any> {

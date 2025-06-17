@@ -22,13 +22,13 @@ export const useProjectPersistence = (projectId: string) => {
   
   const { saveChange, getChanges, isLoading } = useDevModeDatabase(projectId);
 
-  // Load both dev mode and published data
+  // Load both dev mode and published data with priority to published
   useEffect(() => {
     if (!projectId) return;
     
     const loadData = async () => {
       try {
-        console.log('🔄 useProjectPersistence: Loading data for project:', projectId);
+        console.log('🔄 useProjectPersistence: Loading comprehensive data for project:', projectId);
         
         // Load both dev mode changes and published data
         const [devChanges, publishedData] = await Promise.all([
@@ -36,20 +36,22 @@ export const useProjectPersistence = (projectId: string) => {
           PublishingService.loadPublishedData(projectId)
         ]);
         
-        // Merge published data with dev mode changes (dev mode takes precedence)
+        // Prioritize published data over dev mode for images (published is more stable)
         const mergedImageReplacements = {
-          ...(publishedData?.image_replacements || {}),
-          ...normalizeImageReplacements(devChanges.imageReplacements)
+          ...normalizeImageReplacements(devChanges.imageReplacements),
+          ...(publishedData?.image_replacements || {}) // Published takes precedence
         };
         
+        // For text content, published data also takes precedence
         const mergedTextContent = {
-          ...(publishedData?.text_content || {}),
-          ...devChanges.textContent
+          ...devChanges.textContent,
+          ...(publishedData?.text_content || {}) // Published takes precedence
         };
         
+        // For content blocks, merge with published taking precedence
         const mergedContentBlocks = {
-          ...(publishedData?.content_blocks || {}),
-          ...devChanges.contentBlocks
+          ...devChanges.contentBlocks,
+          ...(publishedData?.content_blocks || {}) // Published takes precedence
         };
         
         const newCachedData = {
@@ -58,13 +60,14 @@ export const useProjectPersistence = (projectId: string) => {
           contentBlocks: mergedContentBlocks
         };
         
-        console.log('📦 useProjectPersistence: Loaded merged data:', {
+        console.log('📦 useProjectPersistence: Loaded comprehensive merged data:', {
           devImages: Object.keys(devChanges.imageReplacements).length,
           publishedImages: Object.keys(publishedData?.image_replacements || {}).length,
           totalImages: Object.keys(mergedImageReplacements).length,
           devText: Object.keys(devChanges.textContent).length,
           publishedText: Object.keys(publishedData?.text_content || {}).length,
-          totalText: Object.keys(mergedTextContent).length
+          totalText: Object.keys(mergedTextContent).length,
+          prioritySource: 'published-first'
         });
         
         setCachedData(newCachedData);
@@ -96,30 +99,39 @@ export const useProjectPersistence = (projectId: string) => {
     return normalized;
   }, []);
 
-  // Handle project updates including published changes
+  // Handle project updates with comprehensive refresh handling
   useEffect(() => {
     const handleProjectUpdate = async (e: CustomEvent) => {
-      if (e.detail?.projectId === projectId || e.detail?.immediate) {
-        console.log('🔄 useProjectPersistence: Project data updated, reloading:', e.detail);
+      if (e.detail?.projectId === projectId || e.detail?.immediate || e.detail?.allChangesApplied) {
+        console.log('🔄 useProjectPersistence: Comprehensive project data updated, reloading:', e.detail);
         
         try {
-          // If this is a published update, prioritize published data
-          if (e.detail?.published) {
-            console.log('🚀 useProjectPersistence: Published update detected, loading published data');
+          // If this is a published update, prioritize published data completely
+          if (e.detail?.published || e.detail?.allChangesApplied) {
+            console.log('🚀 useProjectPersistence: Published/comprehensive update detected, loading published data with priority');
             const publishedData = await PublishingService.loadPublishedData(projectId);
             
             if (publishedData) {
-              setCachedData({
+              // For published updates, use published data as the primary source
+              const newCachedData = {
                 textContent: publishedData.text_content || {},
                 imageReplacements: normalizeImageReplacements(publishedData.image_replacements || {}),
                 contentBlocks: publishedData.content_blocks || {}
+              };
+              
+              console.log('📄 useProjectPersistence: Using published data as primary source:', {
+                images: Object.keys(newCachedData.imageReplacements).length,
+                texts: Object.keys(newCachedData.textContent).length,
+                contentBlocks: Object.keys(newCachedData.contentBlocks).length
               });
+              
+              setCachedData(newCachedData);
               setForceUpdate(prev => prev + 1);
               return;
             }
           }
           
-          // Regular dev mode update
+          // Regular dev mode update - merge with published as base
           const changes = await getChanges();
           const publishedData = await PublishingService.loadPublishedData(projectId);
           
@@ -139,6 +151,7 @@ export const useProjectPersistence = (projectId: string) => {
             }
           };
           
+          console.log('🔄 useProjectPersistence: Updated with dev mode changes on published base');
           setCachedData(mergedData);
           setForceUpdate(prev => prev + 1);
         } catch (error) {
@@ -147,10 +160,17 @@ export const useProjectPersistence = (projectId: string) => {
       }
     };
 
+    const handleForceRefresh = (e: CustomEvent) => {
+      console.log('🔄 useProjectPersistence: Force refresh triggered:', e.detail);
+      setForceUpdate(prev => prev + 1);
+    };
+
     window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    window.addEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
     
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+      window.removeEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
     };
   }, [projectId, getChanges, normalizeImageReplacements]);
 
@@ -158,10 +178,11 @@ export const useProjectPersistence = (projectId: string) => {
     console.log('📋 useProjectPersistence: getProjectData called, returning cached data with', {
       textKeys: Object.keys(cachedData.textContent).length,
       imageKeys: Object.keys(cachedData.imageReplacements).length,
-      contentKeys: Object.keys(cachedData.contentBlocks).length
+      contentKeys: Object.keys(cachedData.contentBlocks).length,
+      forceUpdateCount: forceUpdate
     });
     return cachedData;
-  }, [cachedData]);
+  }, [cachedData, forceUpdate]); // Include forceUpdate to ensure fresh data
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
     console.log('💾 useProjectPersistence: Saving text content to database:', key, content);
