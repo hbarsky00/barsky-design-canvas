@@ -58,7 +58,8 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     handleAddContent,
     handleUpdateContent,
     handleDeleteContent,
-    handleContentImageReplace
+    handleContentImageReplace,
+    handleVideoUrlUpdate
   } = useContentBlockActions(contentBlocks, setContentBlocks, saveContentBlocks);
 
   // Use drag and drop hook
@@ -156,13 +157,14 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-base sm:text-lg font-semibold text-gray-800">Additional Content ({contentBlocks.length} items):</h3>
             {contentBlocks.map((block, index) => (
-              <div key={`${sectionKey}-${block.type}-${index}-${block.src || 'no-src'}`} className="border-l-4 border-blue-200 pl-3 sm:pl-4">
+              <div key={`${sectionKey}-${block.type}-${index}-${block.src || block.embedUrl || 'no-src'}`} className="border-l-4 border-blue-200 pl-3 sm:pl-4">
                 <DraggableContentBlock
                   block={block}
                   index={index}
                   onUpdate={handleUpdateContent}
                   onDelete={handleDeleteContent}
                   onImageReplace={wrappedHandleContentImageReplace}
+                  onVideoUrlUpdate={handleVideoUrlUpdate}
                   onDragStart={handleDragStart}
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}

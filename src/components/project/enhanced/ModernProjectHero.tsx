@@ -126,12 +126,10 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       case 'header':
         return { type: 'header', value: 'New Header', level: 2 };
       case 'video': {
-        const defaultVideoSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
-        const aiCaption = await generateCaption(defaultVideoSrc);
         return { 
           type: 'video', 
-          src: defaultVideoSrc, 
-          caption: aiCaption.caption || 'Interactive demonstration showcasing key features and user experience workflow'
+          embedUrl: 'placeholder', 
+          caption: 'Embedded video content'
         };
       }
       case 'pdf': {
@@ -199,6 +197,20 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       saveImageReplacement(oldBlock.src, newSrc);
       updateImageInProjectData(currentProjectId, oldBlock.src, newSrc);
     }
+  };
+
+  const handleVideoUrlUpdate = (index: number, newUrl: string) => {
+    console.log('ModernProjectHero: Updating video URL at index', index, 'with', newUrl);
+    
+    const updatedBlocks = contentBlocks.map((block, i) => 
+      i === index && block.type === 'video'
+        ? { ...block, embedUrl: newUrl }
+        : block
+    );
+    setContentBlocks(updatedBlocks);
+    
+    // Save content blocks persistently
+    saveContentBlocks('hero', updatedBlocks);
   };
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -311,6 +323,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
                   onUpdate={handleUpdateContent}
                   onDelete={handleDeleteContent}
                   onImageReplace={handleContentImageReplace}
+                  onVideoUrlUpdate={handleVideoUrlUpdate}
                   onDragStart={handleDragStart}
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}

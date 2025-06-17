@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { GripVertical, X, Upload } from 'lucide-react';
+import { GripVertical, X, Upload, Edit3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from './EditableText';
 import MaximizableImage from '@/components/project/MaximizableImage';
@@ -12,6 +13,7 @@ export interface ContentBlock {
   type: 'text' | 'image' | 'header' | 'video' | 'pdf';
   value?: string;
   src?: string;
+  embedUrl?: string; // New property for video embeds
   caption?: string;
   level?: number; // for header levels
 }
@@ -23,6 +25,7 @@ interface DraggableContentBlockProps {
   onDelete: (index: number) => void;
   onImageReplace?: (index: number, newSrc: string) => void;
   onImageRemove?: (index: number) => void;
+  onVideoUrlUpdate?: (index: number, newUrl: string) => void;
   onDragStart: (e: React.DragEvent, index: number) => void;
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent, index: number) => void;
@@ -38,6 +41,7 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   onDelete,
   onImageReplace,
   onImageRemove,
+  onVideoUrlUpdate,
   onDragStart,
   onDragOver,
   onDrop,
@@ -47,6 +51,46 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
 }) => {
   const { isDevMode } = useDevMode();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isEditingVideoUrl, setIsEditingVideoUrl] = React.useState(false);
+  const [videoUrlInput, setVideoUrlInput] = React.useState(block.embedUrl || '');
+
+  // Utility function to convert video URLs to embeddable format
+  const convertToEmbedUrl = (url: string): string => {
+    if (!url) return '';
+    
+    // YouTube conversions
+    if (url.includes('youtube.com/watch')) {
+      const videoId = url.split('v=')[1]?.split('&')[0];
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    }
+    
+    if (url.includes('youtu.be/')) {
+      const videoId = url.split('youtu.be/')[1]?.split('?')[0];
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    }
+    
+    // Vimeo conversions
+    if (url.includes('vimeo.com/') && !url.includes('player.vimeo.com')) {
+      const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
+      return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
+    }
+    
+    // If it's already an embed URL or iframe, return as is
+    return url;
+  };
+
+  const handleVideoUrlSave = () => {
+    if (videoUrlInput.trim()) {
+      const embedUrl = convertToEmbedUrl(videoUrlInput.trim());
+      if (onVideoUrlUpdate) {
+        onVideoUrlUpdate(index, embedUrl);
+      }
+      setIsEditingVideoUrl(false);
+      toast.success('Video URL updated successfully');
+    } else {
+      toast.error('Please enter a valid video URL');
+    }
+  };
 
   console.log('🎯 DraggableContentBlock render:', { 
     index, 
@@ -277,16 +321,73 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         );
 
       case 'video':
+        // Check if we need to show URL input interface
+        const needsVideoUrl = !block.embedUrl || block.embedUrl === 'placeholder';
+        
+        if (needsVideoUrl || isEditingVideoUrl) {
+          return (
+            <div className="glass-card p-8 layered-depth floating-element">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center space-y-4">
+                <div className="text-gray-600">
+                  <h3 className="font-medium mb-2">Add Video Embed</h3>
+                  <p className="text-sm text-gray-500 mb-4">
+                    Paste a YouTube, Vimeo, or other video URL
+                  </p>
+                </div>
+                <div className="max-w-md mx-auto space-y-3">
+                  <Input
+                    type="url"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                    value={videoUrlInput}
+                    onChange={(e) => setVideoUrlInput(e.target.value)}
+                    className="w-full"
+                  />
+                  <div className="flex gap-2 justify-center">
+                    <Button onClick={handleVideoUrlSave} size="sm">
+                      {needsVideoUrl ? 'Add Video' : 'Update Video'}
+                    </Button>
+                    {!needsVideoUrl && (
+                      <Button 
+                        onClick={() => setIsEditingVideoUrl(false)} 
+                        variant="outline" 
+                        size="sm"
+                      >
+                        Cancel
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
         return (
-          <div className="glass-card p-4 layered-depth floating-element">
-            <video 
-              src={block.src} 
-              controls 
-              className="w-full rounded-lg shadow-elevated"
-              poster={block.src}
-            >
-              Your browser does not support the video tag.
-            </video>
+          <div className="glass-card p-4 layered-depth floating-element relative group">
+            {isDevMode && (
+              <Button
+                onClick={() => {
+                  setVideoUrlInput(block.embedUrl || '');
+                  setIsEditingVideoUrl(true);
+                }}
+                variant="ghost"
+                size="icon"
+                className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity"
+                title="Edit video URL"
+              >
+                <Edit3 className="h-4 w-4" />
+              </Button>
+            )}
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe 
+                src={block.embedUrl}
+                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-elevated"
+                allowFullScreen
+                title={block.caption || 'Embedded video'}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+            </div>
             {block.caption && (
               <EditableText initialText={block.caption}>
                 {(text) => (

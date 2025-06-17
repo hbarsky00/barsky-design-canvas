@@ -8,6 +8,7 @@ interface ContentBlockActionsProps {
   onUpdate: (index: number, newValue: string) => void;
   onDelete: (index: number) => void;
   onImageReplace: (index: number, newSrc: string) => void;
+  onVideoUrlUpdate?: (index: number, newUrl: string) => void;
 }
 
 export const useContentBlockActions = (
@@ -68,13 +69,11 @@ export const useContentBlockActions = (
         return Promise.resolve({ type: 'header', value: 'New Header', level: 2 });
       case 'video': {
         console.log('🎥 Creating video block');
-        const defaultVideoSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
-        const aiCaption = await generateCaption(defaultVideoSrc);
-        return { 
+        return Promise.resolve({ 
           type: 'video', 
-          src: defaultVideoSrc,
-          caption: aiCaption.caption || 'Interactive demonstration video highlighting key features and user workflow processes'
-        };
+          embedUrl: 'placeholder',
+          caption: 'Embedded video content'
+        });
       }
       case 'pdf': {
         console.log('📄 Creating PDF block');
@@ -170,11 +169,26 @@ export const useContentBlockActions = (
     }
   };
 
+  const handleVideoUrlUpdate = async (index: number, newUrl: string) => {
+    console.log('🎥 ContentBlockActions: Updating video URL at index', index, 'with', newUrl);
+    
+    const updatedBlocks = contentBlocks.map((block, i) => 
+      i === index && block.type === 'video'
+        ? { ...block, embedUrl: newUrl }
+        : block
+    );
+    setContentBlocks(updatedBlocks);
+    
+    // Save content blocks persistently
+    await saveContentBlocks(updatedBlocks);
+  };
+
   return {
     handleAddContent,
     handleUpdateContent,
     handleDeleteContent,
     handleContentImageReplace,
+    handleVideoUrlUpdate,
     updateGenericCaptions: () => updateGenericCaptions(contentBlocks, updateBlockCaption),
     isGeneratingCaption: isGenerating
   };
