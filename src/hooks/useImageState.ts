@@ -14,6 +14,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const [displayedImage, setDisplayedImage] = useState(src);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
   
   console.log('🔍 useImageState initialized for:', { src: src.substring(0, 50) + '...', projectId });
   
@@ -24,10 +25,13 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         console.log('⚠️ useImageState: Missing src or projectId, using original:', src);
         setDisplayedImage(src);
         setHasDevModeChanges(false);
+        setHasError(false);
         return;
       }
 
       setIsLoading(true);
+      setHasError(false);
+      
       try {
         console.log('🔍 Loading image state for:', src.substring(0, 50) + '...', 'in project:', projectId);
         
@@ -39,8 +43,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         
         if (devReplacement && devReplacement !== src) {
           console.log('✅ Using dev mode replacement for', src.substring(0, 30) + '...');
-          const cacheBustedSrc = devReplacement + '?v=' + Date.now();
-          setDisplayedImage(cacheBustedSrc);
+          setDisplayedImage(devReplacement);
           setHasDevModeChanges(true);
           setIsLoading(false);
           return;
@@ -52,21 +55,19 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         
         if (publishedReplacement && publishedReplacement !== src) {
           console.log('📄 Using published replacement for', src.substring(0, 30) + '...');
-          const cacheBustedSrc = publishedReplacement + '?v=' + Date.now();
-          setDisplayedImage(cacheBustedSrc);
+          setDisplayedImage(publishedReplacement);
           setHasDevModeChanges(false);
         } else {
           console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
-          const cacheBustedSrc = src + '?v=' + Date.now();
-          setDisplayedImage(cacheBustedSrc);
+          setDisplayedImage(src);
           setHasDevModeChanges(false);
         }
       } catch (error) {
         console.error('❌ Error loading image changes for', src.substring(0, 50) + '...', ':', error);
-        // Fallback to original with cache busting
-        const cacheBustedSrc = src + '?v=' + Date.now();
-        setDisplayedImage(cacheBustedSrc);
+        // Fallback to original without infinite loops
+        setDisplayedImage(src);
         setHasDevModeChanges(false);
+        setHasError(true);
       } finally {
         setIsLoading(false);
       }
@@ -87,13 +88,16 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         e.detail?.immediate ||
         e.detail?.src === src ||
         e.detail?.imageReplaced ||
-        e.detail?.cacheClear; // Added cache clear handling
+        e.detail?.cacheClear;
         
       if (isRelevant) {
         console.log('🔄 Relevant update detected for image:', src.substring(0, 50) + '...', 'refreshing...');
         
+        // Reset error state on updates
+        setHasError(false);
+        
         // If cache clear is requested, force refresh with longer delay
-        const delay = e.detail?.cacheClear ? 200 : 100;
+        const delay = e.detail?.cacheClear ? 300 : 150;
         setTimeout(() => {
           setRefreshKey(prev => prev + 1);
         }, delay);
@@ -109,14 +113,15 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
 
   const forceRefresh = () => {
     console.log('🔄 Force refresh triggered for:', src.substring(0, 50) + '...');
+    setHasError(false);
     setRefreshKey(prev => prev + 1);
   };
 
   const updateDisplayedImage = (newSrc: string) => {
     console.log('⚡ Immediately updating displayed image from:', src.substring(0, 30) + '...', 'to:', newSrc.substring(0, 30) + '...');
-    const cacheBustedNewSrc = newSrc + '?v=' + Date.now();
-    setDisplayedImage(cacheBustedNewSrc);
+    setDisplayedImage(newSrc);
     setHasDevModeChanges(true);
+    setHasError(false);
   };
 
   return {
@@ -125,6 +130,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     forceRefresh,
     updateDisplayedImage,
     hasDevModeChanges,
-    isLoading
+    isLoading,
+    hasError
   };
 };

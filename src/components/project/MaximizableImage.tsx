@@ -46,7 +46,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     hideEditButton 
   });
   
-  const { displayedImage, refreshKey, forceRefresh, updateDisplayedImage, hasDevModeChanges } = useImageState({
+  const { displayedImage, refreshKey, forceRefresh, updateDisplayedImage, hasDevModeChanges, hasError } = useImageState({
     src,
     projectId: currentProjectId
   });
@@ -86,19 +86,62 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setTimeout(() => {
       console.log('🔄 Forcing refresh after image replacement for:', src.substring(0, 50) + '...');
       forceRefresh();
-    }, 200);
+    }, 250);
   };
 
   const handleImageError = () => {
     console.error('❌ Image failed to load:', displayedImage.substring(0, 50) + '...');
-    // Try fallback to original source
-    if (displayedImage !== src) {
+    
+    // Only attempt fallback if we haven't already had an error and it's not the original source
+    if (!hasError && displayedImage !== src) {
       console.log('🔄 Falling back to original source:', src.substring(0, 50) + '...');
       updateDisplayedImage(src);
     }
   };
 
   const imageAltText = caption || alt;
+  
+  // Show a placeholder if we have an error with the original image
+  if (hasError && displayedImage === src) {
+    return (
+      <div className={`w-full ${className}`}>
+        <motion.div 
+          className="rounded-lg overflow-hidden border border-gray-200 bg-gray-100 flex items-center justify-center min-h-[200px]"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-gray-500 text-center p-4">
+            <p>Image failed to load</p>
+            <button 
+              onClick={forceRefresh}
+              className="mt-2 px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+            >
+              Retry
+            </button>
+          </div>
+        </motion.div>
+        {caption && (
+          <div className="mt-2 text-sm text-gray-600 italic text-center">
+            <EditableText initialText={caption}>
+              {(text) => (
+                <motion.div
+                  className="pr-8"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  {text}
+                </motion.div>
+              )}
+            </EditableText>
+          </div>
+        )}
+      </div>
+    );
+  }
   
   return (
     <div className="w-full">
