@@ -6,7 +6,7 @@ import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
-import { compressImageFile, validateImageSize } from '@/utils/imageCompression';
+import { compressImageFile, validateImageSize, getOptimalCompressionSettings } from '@/utils/imageCompression';
 
 interface EditImageButtonProps {
   src?: string;
@@ -55,42 +55,46 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     processingRef.current = true;
     
     try {
-      console.log('🖼️ Starting image upload process:', {
+      console.log('🖼️ Starting image optimization process:', {
         fileName: file.name,
-        fileSize: file.size,
+        originalSize: `${(file.size / 1024).toFixed(2)}KB`,
         originalSrc: src.substring(0, 50) + '...',
         projectId: currentProjectId
       });
       
       // Show immediate loading feedback
-      toast.loading("Processing and compressing image...", { id: 'image-upload' });
+      toast.loading("Optimizing and compressing image...", { id: 'image-upload' });
       
-      // Compress the image to ensure it fits in database
-      const compressedDataUrl = await compressImageFile(file, 400); // 400KB limit
+      // Get optimal settings based on file size
+      const { maxSizeKB, quality } = getOptimalCompressionSettings(file);
+      console.log(`📐 Using compression settings: maxSize=${maxSizeKB}KB, quality=${quality}`);
+      
+      // Compress the image with optimal settings
+      const compressedDataUrl = await compressImageFile(file, maxSizeKB);
       
       // Validate the compressed image size
-      if (!validateImageSize(compressedDataUrl)) {
-        throw new Error('Image is still too large after compression. Please use a smaller image.');
+      if (!validateImageSize(compressedDataUrl, maxSizeKB)) {
+        throw new Error(`Image is still too large after compression. Please use a smaller image or try a different format.`);
       }
       
       // Validate the data URL
       if (!validateImageUrl(compressedDataUrl)) {
-        throw new Error('Invalid image data URL generated');
+        throw new Error('Invalid image data URL generated during compression');
       }
       
-      // Save to database and wait for completion
-      console.log('💾 Saving compressed image change to database...');
+      // Save to database
+      console.log('💾 Saving optimized image change to database...');
       const success = await saveChange('image', src, compressedDataUrl);
       
       if (success) {
-        console.log('✅ Image saved successfully, triggering UI updates');
+        console.log('✅ Image optimized and saved successfully');
         
         // Call callback immediately for instant UI feedback
         if (onImageReplace) {
           onImageReplace(compressedDataUrl);
         }
         
-        // Dispatch update event with detailed info
+        // Dispatch update event
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId: currentProjectId, 
@@ -104,21 +108,22 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           }
         }));
         
-        toast.success("Image replaced and compressed!", {
+        const finalSizeKB = (compressedDataUrl.length * 0.75 / 1024).toFixed(2);
+        toast.success("Image optimized and replaced!", {
           id: 'image-upload',
-          description: `Replaced with compressed "${file.name}". Click "Publish Changes" to make it permanent.`,
+          description: `Compressed to ${finalSizeKB}KB. Click "Publish Changes" to make it permanent.`,
           duration: 3000,
         });
       } else {
-        throw new Error('Failed to save image replacement to database');
+        throw new Error('Failed to save optimized image to database');
       }
     } catch (error) {
-      console.error('❌ Error replacing image:', error);
-      const errorMessage = error instanceof Error ? error.message : "There was an error processing the image file.";
+      console.error('❌ Error optimizing image:', error);
+      const errorMessage = error instanceof Error ? error.message : "There was an error optimizing the image file.";
       
-      toast.error("Failed to replace image", {
+      toast.error("Failed to optimize image", {
         id: 'image-upload',
-        description: errorMessage
+        description: errorMessage + " Try using a smaller image or different format (JPG/PNG)."
       });
     } finally {
       setIsProcessing(false);
@@ -142,7 +147,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           disabled={isProcessing}
         >
           <Upload className="h-4 w-4 mr-2" />
-          {isProcessing ? 'Compressing...' : 'Replace'}
+          {isProcessing ? 'Optimizing...' : 'Replace'}
         </Button>
       </div>
       <input
@@ -150,7 +155,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         ref={fileInputRef}
         onChange={handleFileChange}
         className="hidden"
-        accept="image/*"
+        accept="image/jpeg,image/jpg,image/png,image/webp"
         disabled={isProcessing}
       />
     </>

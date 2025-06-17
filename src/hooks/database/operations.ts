@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ChangeType, DevModeChange } from './types';
 
@@ -12,15 +13,19 @@ export const saveChangeToDatabase = async (
     return false;
   }
 
-  // Validate image size for image changes
+  // Enhanced image size validation for image changes
   if (changeType === 'image' && typeof changeValue === 'string' && changeValue.startsWith('data:')) {
     const sizeInBytes = changeValue.length * 0.75;
     const sizeInKB = sizeInBytes / 1024;
     
-    if (sizeInKB > 500) {
+    // More strict size limit for database storage
+    const maxSizeKB = 300;
+    if (sizeInKB > maxSizeKB) {
       console.error('❌ saveChangeToDatabase: Image too large:', sizeInKB.toFixed(2) + 'KB');
-      throw new Error(`Image is too large (${sizeInKB.toFixed(2)}KB). Please use a smaller image or compress it.`);
+      throw new Error(`Image is too large (${sizeInKB.toFixed(2)}KB). Maximum allowed size is ${maxSizeKB}KB. Please use the image optimizer to compress your image.`);
     }
+    
+    console.log(`✅ Image size validation passed: ${sizeInKB.toFixed(2)}KB`);
   }
 
   console.log('💾 saveChangeToDatabase: Saving change:', {
@@ -28,7 +33,7 @@ export const saveChangeToDatabase = async (
     changeType,
     changeKey,
     changeValueType: typeof changeValue,
-    changeValueLength: Array.isArray(changeValue) ? changeValue.length : typeof changeValue === 'string' ? changeValue.length : 'unknown'
+    changeValueSize: typeof changeValue === 'string' ? `${(changeValue.length / 1024).toFixed(2)}KB` : 'N/A'
   });
 
   try {
@@ -47,9 +52,15 @@ export const saveChangeToDatabase = async (
     if (upsertError) {
       console.error('❌ saveChangeToDatabase: Database error:', upsertError);
       
-      // Provide more specific error messages
-      if (upsertError.message.includes('index row requires') || upsertError.message.includes('maximum size')) {
-        throw new Error('Image is too large for database storage. Please use a smaller image.');
+      // Provide more specific error messages for common issues
+      if (upsertError.message.includes('index row requires') || 
+          upsertError.message.includes('maximum size') ||
+          upsertError.message.includes('row size')) {
+        throw new Error('Image is too large for database storage. Please use a smaller image or try the built-in image optimizer.');
+      }
+      
+      if (upsertError.message.includes('payload too large')) {
+        throw new Error('Image data is too large. Please compress your image before uploading.');
       }
       
       throw new Error(`Database error: ${upsertError.message}`);
