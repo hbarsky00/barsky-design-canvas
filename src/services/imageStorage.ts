@@ -4,8 +4,48 @@ import { supabase } from '@/integrations/supabase/client';
 export class ImageStorageService {
   private static BUCKET_NAME = 'published-images';
 
+  // Ensure bucket exists before using it
+  private static async ensureBucketExists(): Promise<boolean> {
+    try {
+      const { data: buckets, error } = await supabase.storage.listBuckets();
+      
+      if (error) {
+        console.error('Error listing buckets:', error);
+        return false;
+      }
+
+      const bucketExists = buckets?.some(bucket => bucket.name === this.BUCKET_NAME);
+      
+      if (!bucketExists) {
+        console.log('Creating storage bucket:', this.BUCKET_NAME);
+        const { error: createError } = await supabase.storage.createBucket(this.BUCKET_NAME, {
+          public: true
+        });
+        
+        if (createError) {
+          console.error('Error creating bucket:', createError);
+          return false;
+        }
+        
+        console.log('✅ Storage bucket created successfully');
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('Error ensuring bucket exists:', error);
+      return false;
+    }
+  }
+
   static async uploadImage(file: File, projectId: string, originalPath: string): Promise<string | null> {
     try {
+      // Ensure bucket exists first
+      const bucketReady = await this.ensureBucketExists();
+      if (!bucketReady) {
+        console.error('Storage bucket is not ready');
+        return null;
+      }
+
       // Create a unique filename based on project and original path
       const fileExt = file.name.split('.').pop();
       const fileName = `${projectId}/${originalPath.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}.${fileExt}`;

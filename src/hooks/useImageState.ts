@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { PublishingService } from '@/services/publishingService';
 
@@ -10,26 +10,26 @@ interface UseImageStateProps {
 
 export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const { getChanges } = useDevModeDatabase(projectId);
-  const [refreshKey, setRefreshKey] = useState(0);
   const [displayedImage, setDisplayedImage] = useState(src);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [lastPublishedState, setLastPublishedState] = useState<string | null>(null);
+  const loadingRef = useRef(false);
+  const mountedRef = useRef(true);
   
   console.log('🔍 useImageState initialized for:', { src: src.substring(0, 50) + '...', projectId });
   
   // Load image with priority: dev mode > published > original
   useEffect(() => {
+    if (!mountedRef.current) return;
+    
     const loadImage = async () => {
-      if (!src || !projectId) {
-        console.log('⚠️ useImageState: Missing src or projectId, using original:', src);
-        setDisplayedImage(src);
-        setHasDevModeChanges(false);
-        setHasError(false);
+      if (!src || !projectId || loadingRef.current) {
         return;
       }
 
+      loadingRef.current = true;
       setIsLoading(true);
       setHasError(false);
       
@@ -42,9 +42,10 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         
         if (devReplacement && devReplacement !== src) {
           console.log('✅ Using dev mode replacement for', src.substring(0, 30) + '...');
-          setDisplayedImage(devReplacement);
-          setHasDevModeChanges(true);
-          setIsLoading(false);
+          if (mountedRef.current) {
+            setDisplayedImage(devReplacement);
+            setHasDevModeChanges(true);
+          }
           return;
         }
         
@@ -54,35 +55,48 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         
         if (publishedReplacement && publishedReplacement !== src) {
           console.log('📄 Using published replacement for', src.substring(0, 30) + '...');
-          setDisplayedImage(publishedReplacement);
-          setHasDevModeChanges(false);
-          setLastPublishedState(publishedReplacement);
+          if (mountedRef.current) {
+            setDisplayedImage(publishedReplacement);
+            setHasDevModeChanges(false);
+            setLastPublishedState(publishedReplacement);
+          }
         } else {
           console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
-          setDisplayedImage(src);
-          setHasDevModeChanges(false);
-          setLastPublishedState(src);
+          if (mountedRef.current) {
+            setDisplayedImage(src);
+            setHasDevModeChanges(false);
+            setLastPublishedState(src);
+          }
         }
       } catch (error) {
         console.error('❌ Error loading image changes for', src.substring(0, 50) + '...', ':', error);
-        setDisplayedImage(src);
-        setHasDevModeChanges(false);
-        setHasError(true);
+        if (mountedRef.current) {
+          setDisplayedImage(src);
+          setHasDevModeChanges(false);
+          setHasError(true);
+        }
       } finally {
-        setIsLoading(false);
+        loadingRef.current = false;
+        if (mountedRef.current) {
+          setIsLoading(false);
+        }
       }
     };
     
     loadImage();
-  }, [src, getChanges, projectId, refreshKey]);
+  }, [src, projectId]); // Removed getChanges from dependencies to prevent infinite loops
 
-  // Listen for project data updates with specific handling for published changes
+  // Listen for project data updates
   useEffect(() => {
+    if (!mountedRef.current) return;
+    
     const handleProjectUpdate = (e: CustomEvent) => {
+      if (!mountedRef.current) return;
+      
       const detail = e.detail || {};
       console.log('🔄 Project data update event received for image:', src.substring(0, 50) + '...', detail);
       
-      // Handle published changes immediately without delay
+      // Handle published changes immediately
       if (detail.published && detail.imageReplacements) {
         const newImageSrc = detail.imageReplacements[src];
         if (newImageSrc && newImageSrc !== displayedImage) {
@@ -100,17 +114,31 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         detail.projectId === projectId || 
         detail.immediate ||
         detail.src === src ||
-        detail.imageReplaced ||
-        detail.cacheClear;
+        detail.imageReplaced;
         
-      if (isRelevant) {
+      if (isRelevant && !loadingRef.current) {
         console.log('🔄 Relevant update detected for image:', src.substring(0, 50) + '...', 'refreshing...');
         setHasError(false);
         
-        const delay = detail.cacheClear ? 200 : 100;
-        setTimeout(() => {
-          setRefreshKey(prev => prev + 1);
-        }, delay);
+        // Trigger a reload of image state
+        setTimeout(async () => {
+          if (!mountedRef.current || loadingRef.current) return;
+          
+          try {
+            loadingRef.current = true;
+            const devData = await getChanges();
+            const devReplacement = devData.imageReplacements[src];
+            
+            if (devReplacement && devReplacement !== src) {
+              setDisplayedImage(devReplacement);
+              setHasDevModeChanges(true);
+            }
+          } catch (error) {
+            console.error('Error updating image:', error);
+          } finally {
+            loadingRef.current = false;
+          }
+        }, 100);
       }
     };
 
@@ -119,15 +147,58 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
     };
-  }, [src, projectId, displayedImage]);
+  }, [src, projectId, displayedImage, getChanges]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   const forceRefresh = () => {
+    if (!mountedRef.current || loadingRef.current) return;
+    
     console.log('🔄 Force refresh triggered for:', src.substring(0, 50) + '...');
     setHasError(false);
-    setRefreshKey(prev => prev + 1);
+    
+    // Reset to original and reload
+    setTimeout(async () => {
+      if (!mountedRef.current) return;
+      
+      try {
+        loadingRef.current = true;
+        const devData = await getChanges();
+        const devReplacement = devData.imageReplacements[src];
+        
+        if (devReplacement && devReplacement !== src) {
+          setDisplayedImage(devReplacement);
+          setHasDevModeChanges(true);
+        } else {
+          const publishedData = await PublishingService.loadPublishedData(projectId);
+          const publishedReplacement = publishedData?.image_replacements?.[src];
+          
+          if (publishedReplacement && publishedReplacement !== src) {
+            setDisplayedImage(publishedReplacement);
+            setHasDevModeChanges(false);
+          } else {
+            setDisplayedImage(src);
+            setHasDevModeChanges(false);
+          }
+        }
+      } catch (error) {
+        console.error('Error during force refresh:', error);
+        setDisplayedImage(src);
+        setHasError(true);
+      } finally {
+        loadingRef.current = false;
+      }
+    }, 50);
   };
 
   const updateDisplayedImage = (newSrc: string) => {
+    if (!mountedRef.current) return;
+    
     console.log('⚡ Immediately updating displayed image from:', src.substring(0, 30) + '...', 'to:', newSrc.substring(0, 30) + '...');
     setDisplayedImage(newSrc);
     setHasDevModeChanges(true);
@@ -136,7 +207,6 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
 
   return {
     displayedImage,
-    refreshKey,
     forceRefresh,
     updateDisplayedImage,
     hasDevModeChanges,

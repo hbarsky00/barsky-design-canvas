@@ -47,21 +47,27 @@ export class PublishingService {
 
           if (newSrc.startsWith('data:')) {
             // Upload data URL images to permanent storage
-            const response = await fetch(newSrc);
-            if (!response.ok) {
-              console.error('Failed to fetch image data for:', originalSrc);
-              continue;
-            }
-            
-            const blob = await response.blob();
-            const file = new File([blob], 'image.png', { type: blob.type });
-            
-            const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
-            if (uploadedUrl) {
-              publishedImageMappings[originalSrc] = uploadedUrl;
-              console.log('📤 Uploaded image:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
-            } else {
-              console.error('❌ Failed to upload image for:', originalSrc);
+            try {
+              const response = await fetch(newSrc);
+              if (!response.ok) {
+                console.error('Failed to fetch image data for:', originalSrc);
+                publishedImageMappings[originalSrc] = newSrc; // Keep data URL as fallback
+                continue;
+              }
+              
+              const blob = await response.blob();
+              const file = new File([blob], 'image.png', { type: blob.type });
+              
+              const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
+              if (uploadedUrl) {
+                publishedImageMappings[originalSrc] = uploadedUrl;
+                console.log('📤 Uploaded image:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
+              } else {
+                console.error('❌ Failed to upload image for:', originalSrc);
+                publishedImageMappings[originalSrc] = newSrc; // Keep data URL as fallback
+              }
+            } catch (uploadError) {
+              console.error('❌ Error uploading image:', originalSrc, uploadError);
               publishedImageMappings[originalSrc] = newSrc; // Keep data URL as fallback
             }
           } else {
@@ -122,33 +128,28 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 5: Clear browser cache for old images
-      if (oldImagesToCleanup.length > 0) {
-        console.log('🧹 Clearing cache for old images');
-        ImageStorageService.clearImageCache(oldImagesToCleanup);
-      }
-
-      // Step 6: Apply changes to DOM immediately with enhanced cache busting
+      // Step 5: Apply changes to DOM immediately with enhanced cache busting
       this.applyChangesToDOM(publishedImageMappings, changes.textContent, processedContentBlocks);
 
-      // Step 7: Store in localStorage as fallback
+      // Step 6: Store in localStorage as fallback
       try {
         localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
       } catch (error) {
         console.warn('⚠️ Could not store to localStorage:', error);
       }
 
-      // Step 8: Clear dev mode changes AFTER successful publish
+      // Step 7: Clear dev mode changes AFTER successful publish
       console.log('🗑️ Clearing dev mode changes after successful publish');
       const clearSuccess = await clearChangesFromDatabase(projectId);
       if (!clearSuccess) {
         console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
       }
 
-      // Step 9: Clean up old images from storage
+      // Step 8: Clean up old images from storage and cache
       try {
         if (oldImagesToCleanup.length > 0) {
           await Promise.all(oldImagesToCleanup.map(ImageStorageService.deleteImage));
+          ImageStorageService.clearImageCache(oldImagesToCleanup);
         }
         await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
       } catch (error) {
@@ -179,7 +180,11 @@ export class PublishingService {
       
       // Update all matching images
       document.querySelectorAll('img').forEach((img) => {
-        if (img.src === oldSrc || img.src.includes(oldSrc)) {
+        const imgSrc = img.src;
+        
+        // Handle both exact matches and data URLs
+        if (imgSrc === oldSrc || imgSrc.includes(oldSrc) || 
+            (oldSrc.startsWith('data:') && imgSrc.startsWith('data:'))) {
           img.src = cacheBustedNewSrc;
           console.log('🖼️ Updated image in DOM:', oldSrc.substring(0, 50) + '...', '->', cacheBustedNewSrc.substring(0, 50) + '...');
         }
@@ -188,8 +193,9 @@ export class PublishingService {
       // Update background images
       document.querySelectorAll('[style*="background-image"]').forEach((element) => {
         const style = (element as HTMLElement).style;
-        if (style.backgroundImage && style.backgroundImage.includes(oldSrc)) {
-          style.backgroundImage = style.backgroundImage.replace(oldSrc, cacheBustedNewSrc);
+        if (style.backgroundImage && (style.backgroundImage.includes(oldSrc) || 
+            (oldSrc.startsWith('data:') && style.backgroundImage.includes('data:')))) {
+          style.backgroundImage = style.backgroundImage.replace(/url\(['"]?[^'"]*['"]?\)/, `url("${cacheBustedNewSrc}")`);
         }
       });
     });
