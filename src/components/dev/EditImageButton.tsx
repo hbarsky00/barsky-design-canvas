@@ -59,14 +59,26 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       console.log('🖼️ Starting image upload process:', {
         fileName: file.name,
         originalSize: `${(file.size / 1024).toFixed(2)}KB`,
-        originalSrc: src.substring(0, 50) + '...',
+        fileType: file.type,
         projectId: currentProjectId
       });
       
-      // Show immediate loading feedback
+      // Validate file type first
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        throw new Error(`Invalid file type: ${file.type}. Please use JPG, PNG, or WebP format.`);
+      }
+      
+      // Check initial file size
+      const maxInitialSize = 50 * 1024 * 1024; // 50MB
+      if (file.size > maxInitialSize) {
+        throw new Error(`File is too large (${(file.size / 1024 / 1024).toFixed(2)}MB). Maximum allowed size is 50MB.`);
+      }
+      
+      // Show loading feedback
       toast.loading("Compressing and uploading image...", { id: 'image-upload' });
       
-      // Get optimal settings based on file size
+      // Get optimal compression settings
       const { maxSizeKB } = getOptimalCompressionSettings(file);
       console.log(`📐 Using compression settings: maxSize=${maxSizeKB}KB`);
       
@@ -78,12 +90,11 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         throw new Error(`Image is still too large after compression. Please use a smaller image.`);
       }
       
-      // Upload to Supabase Storage
       console.log('☁️ Uploading to Supabase Storage...');
       const publicUrl = await ImageStorageService.uploadImage(compressedFile, currentProjectId, src);
       
       if (!publicUrl) {
-        throw new Error('Failed to upload image to storage');
+        throw new Error('Failed to upload image to storage. Please try again or use a different image.');
       }
       
       // Validate the storage URL
@@ -91,7 +102,6 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         throw new Error('Invalid image URL received from storage');
       }
       
-      // Save the storage URL reference to database (much smaller than base64)
       console.log('💾 Saving image URL reference to database...');
       const success = await saveChange('image', src, publicUrl);
       
@@ -120,7 +130,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         const finalSizeKB = (compressedFile.size / 1024).toFixed(2);
         toast.success("Image uploaded successfully!", {
           id: 'image-upload',
-          description: `Uploaded ${finalSizeKB}KB to cloud storage. Image will sync automatically.`,
+          description: `Uploaded ${finalSizeKB}KB to cloud storage.`,
           duration: 3000,
         });
       } else {
@@ -128,11 +138,22 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       }
     } catch (error) {
       console.error('❌ Error uploading image:', error);
-      const errorMessage = error instanceof Error ? error.message : "There was an error uploading the image file.";
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      
+      // Provide specific error guidance
+      let description = "Try using a smaller image or different format (JPG/PNG).";
+      
+      if (errorMessage.includes('file type') || errorMessage.includes('format')) {
+        description = "Please use JPG, PNG, or WebP format.";
+      } else if (errorMessage.includes('too large') || errorMessage.includes('size')) {
+        description = "Please use a smaller image (under 50MB).";
+      } else if (errorMessage.includes('storage') || errorMessage.includes('upload')) {
+        description = "Storage service temporarily unavailable. Please try again.";
+      }
       
       toast.error("Failed to upload image", {
         id: 'image-upload',
-        description: errorMessage + " Try using a smaller image or different format (JPG/PNG)."
+        description: `${errorMessage} ${description}`
       });
     } finally {
       setIsProcessing(false);

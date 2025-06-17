@@ -1,78 +1,105 @@
-
 import { supabase } from '@/integrations/supabase/client';
 
 export class ImageStorageService {
   private static BUCKET_NAME = 'published-images';
 
-  // Ensure bucket exists before using it
-  private static async ensureBucketExists(): Promise<boolean> {
+  // Check if bucket exists and is accessible
+  private static async checkBucketHealth(): Promise<boolean> {
     try {
-      const { data: buckets, error } = await supabase.storage.listBuckets();
+      const { data, error } = await supabase.storage.from(this.BUCKET_NAME).list('', {
+        limit: 1
+      });
       
       if (error) {
-        console.error('Error listing buckets:', error);
+        console.error('❌ Bucket health check failed:', error);
         return false;
       }
-
-      const bucketExists = buckets?.some(bucket => bucket.name === this.BUCKET_NAME);
       
-      if (!bucketExists) {
-        console.log('Creating storage bucket:', this.BUCKET_NAME);
-        const { error: createError } = await supabase.storage.createBucket(this.BUCKET_NAME, {
-          public: true
-        });
-        
-        if (createError) {
-          console.error('Error creating bucket:', createError);
-          return false;
-        }
-        
-        console.log('✅ Storage bucket created successfully');
-      }
-      
+      console.log('✅ Storage bucket is healthy and accessible');
       return true;
     } catch (error) {
-      console.error('Error ensuring bucket exists:', error);
+      console.error('❌ Bucket health check error:', error);
       return false;
     }
   }
 
   static async uploadImage(file: File, projectId: string, originalPath: string): Promise<string | null> {
     try {
-      // Ensure bucket exists first
-      const bucketReady = await this.ensureBucketExists();
-      if (!bucketReady) {
-        console.error('Storage bucket is not ready');
+      console.log('📤 Starting image upload:', {
+        fileName: file.name,
+        fileSize: `${(file.size / 1024).toFixed(2)}KB`,
+        fileType: file.type,
+        projectId: projectId.substring(0, 20) + '...'
+      });
+
+      // Check bucket health first
+      const bucketHealthy = await this.checkBucketHealth();
+      if (!bucketHealthy) {
+        console.error('❌ Storage bucket is not accessible');
         return null;
       }
 
-      // Create a unique filename based on project and original path
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${projectId}/${originalPath.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}.${fileExt}`;
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        console.error('❌ Invalid file type:', file.type);
+        return null;
+      }
+
+      // Validate file size (50MB limit)
+      const maxSize = 50 * 1024 * 1024; // 50MB
+      if (file.size > maxSize) {
+        console.error('❌ File too large:', `${(file.size / 1024 / 1024).toFixed(2)}MB`);
+        return null;
+      }
+
+      // Create a unique filename
+      const fileExt = file.name.split('.').pop() || 'jpg';
+      const sanitizedPath = originalPath.replace(/[^a-zA-Z0-9]/g, '_');
+      const fileName = `${projectId}/${sanitizedPath}_${Date.now()}.${fileExt}`;
       
-      console.log('📤 Uploading image to storage:', fileName);
+      console.log('📁 Upload path:', fileName);
       
       const { data, error } = await supabase.storage
         .from(this.BUCKET_NAME)
         .upload(fileName, file, {
           cacheControl: '3600',
-          upsert: true
+          upsert: true,
+          contentType: file.type
         });
 
       if (error) {
-        console.error('❌ Storage upload error:', error);
+        console.error('❌ Storage upload error:', {
+          message: error.message,
+          statusCode: error.statusCode,
+          error: error
+        });
+        return null;
+      }
+
+      if (!data?.path) {
+        console.error('❌ Upload succeeded but no path returned');
         return null;
       }
 
       // Get the public URL
       const { data: { publicUrl } } = supabase.storage
         .from(this.BUCKET_NAME)
-        .getPublicUrl(fileName);
+        .getPublicUrl(data.path);
 
-      console.log('✅ Image uploaded successfully:', publicUrl);
+      if (!publicUrl) {
+        console.error('❌ Failed to get public URL for uploaded file');
+        return null;
+      }
+
+      console.log('✅ Image uploaded successfully:', {
+        path: data.path,
+        publicUrl: publicUrl.substring(0, 50) + '...'
+      });
+      
       return publicUrl;
     } catch (error) {
-      console.error('❌ Error uploading image:', error);
+      console.error('❌ Unexpected error during image upload:', error);
       return null;
     }
   }
