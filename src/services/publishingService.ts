@@ -128,7 +128,7 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 5: Apply changes to DOM immediately with enhanced cache busting
+      // Step 5: Apply changes to DOM immediately with cache busting
       this.applyChangesToDOM(publishedImageMappings, changes.textContent, processedContentBlocks);
 
       // Step 6: Store in localStorage as fallback
@@ -171,7 +171,7 @@ export class PublishingService {
   ) {
     console.log('🎨 Applying published changes to DOM immediately');
 
-    // Apply image changes with aggressive cache busting
+    // Apply image changes with cache busting
     Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
       const timestamp = Date.now();
       const cacheBustedNewSrc = newSrc.includes('?') 
@@ -214,18 +214,21 @@ export class PublishingService {
       }
     }));
 
-    // Dispatch specific update events
-    Object.entries(textContent).forEach(([textKey, newText]) => {
-      window.dispatchEvent(new CustomEvent('liveTextUpdate', {
-        detail: { textKey, newText }
+    // Force a page refresh for components to pick up published changes
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          published: true, 
+          immediate: true,
+          timestamp: Date.now() + 1,
+          imageReplacements,
+          textContent,
+          contentBlocks,
+          stayOnPage: true,
+          forceRefresh: true
+        }
       }));
-    });
-
-    Object.entries(contentBlocks).forEach(([sectionKey, blocks]) => {
-      window.dispatchEvent(new CustomEvent('liveContentBlockUpdate', {
-        detail: { sectionKey, blocks }
-      }));
-    });
+    }, 200);
 
     console.log('✅ All published changes applied to DOM - no navigation triggered');
   }

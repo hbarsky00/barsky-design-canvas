@@ -5,7 +5,7 @@ import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
 import EditableText from "@/components/dev/EditableText";
 import { useParams } from "react-router-dom";
-import { useImageState } from "@/hooks/useImageState";
+import { useImageStateManager } from "@/hooks/useImageStateManager";
 import { useProjectDataSync } from "@/hooks/useProjectDataSync";
 import ImageDisplay from "./ImageDisplay";
 
@@ -40,21 +40,14 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
   
-  console.log('🖼️ MaximizableImage render:', { 
-    src: src.substring(0, 50) + '...', 
-    currentProjectId, 
-    hideEditButton 
-  });
-  
   const { 
     displayedImage, 
-    refreshKey, 
-    forceRefresh, 
     updateDisplayedImage, 
+    forceRefresh, 
     hasDevModeChanges, 
     hasError,
     isLoading 
-  } = useImageState({
+  } = useImageStateManager({
     src,
     projectId: currentProjectId
   });
@@ -75,28 +68,20 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageReplace = (newSrc: string) => {
-    console.log('🔄 MaximizableImage: Image replacement requested', { 
-      oldSrc: src.substring(0, 50) + '...', 
-      newSrc: newSrc.substring(0, 50) + '...', 
-      projectId: currentProjectId 
-    });
-    
     // Immediately update the displayed image for instant feedback
     updateDisplayedImage(newSrc);
     
     // Call the parent callback if provided
     if (onImageReplace) {
-      console.log('📞 Calling parent onImageReplace callback');
       onImageReplace(newSrc);
     }
   };
 
   const handleImageError = () => {
-    console.error('❌ Image failed to load:', displayedImage.substring(0, 50) + '...');
+    console.error('Image failed to load:', displayedImage.substring(0, 50) + '...');
     
     // Only attempt fallback if we haven't already had an error and it's not the original source
     if (!hasError && displayedImage !== src) {
-      console.log('🔄 Falling back to original source:', src.substring(0, 50) + '...');
       updateDisplayedImage(src);
     }
   };
@@ -123,7 +108,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     );
   }
   
-  // Show a placeholder if we have an error with the original image
+  // Show error state only if we have an error with the original image
   if (hasError && displayedImage === src) {
     return (
       <div className={`w-full ${className}`}>
@@ -173,7 +158,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        key={`${displayedImage}-${refreshKey}`}
+        key={displayedImage}
       >
         {!hideEditButton && (
           <EditImageButton 
@@ -188,7 +173,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           imageAltText={imageAltText}
           aspectRatio={aspectRatio}
           priority={priority}
-          refreshKey={refreshKey}
+          refreshKey={0}
           onImageClick={handleImageClick}
           onImageError={handleImageError}
         />

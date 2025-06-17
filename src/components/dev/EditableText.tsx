@@ -29,68 +29,84 @@ const EditableText: React.FC<EditableTextProps> = ({
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const savingRef = useRef(false);
   const mountedRef = useRef(true);
+  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Stable callback for loading saved text
   const loadSavedText = useCallback(async () => {
-    if (textKey && projectId && mountedRef.current) {
-      try {
-        setIsLoading(true);
-        const changes = await getChanges();
-        const savedText = changes.textContent[textKey] || initialText;
-        console.log('📖 EditableText loading for key:', textKey, 'saved text:', savedText);
-        if (mountedRef.current) {
-          setText(savedText);
-        }
-      } catch (error) {
-        console.error('❌ EditableText: Error loading text:', error);
-        if (mountedRef.current) {
-          setText(initialText);
-        }
-      } finally {
-        if (mountedRef.current) {
-          setIsLoading(false);
-        }
-      }
-    } else {
+    if (!textKey || !projectId || !mountedRef.current) {
       setText(initialText);
       setIsLoading(false);
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const changes = await getChanges();
+      const savedText = changes.textContent[textKey] || initialText;
+      
+      if (mountedRef.current) {
+        setText(savedText);
+      }
+    } catch (error) {
+      console.error('Error loading text:', error);
+      if (mountedRef.current) {
+        setText(initialText);
+      }
+    } finally {
+      if (mountedRef.current) {
+        setIsLoading(false);
+      }
     }
   }, [textKey, projectId, initialText, getChanges]);
 
-  // Load saved text from database on mount
+  // Load saved text with debouncing
   useEffect(() => {
-    loadSavedText();
-    
+    if (loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
+    }
+
+    loadTimeoutRef.current = setTimeout(() => {
+      loadSavedText();
+    }, 50);
+
     return () => {
-      mountedRef.current = false;
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
     };
   }, [loadSavedText]);
 
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
   const handleClick = useCallback(() => {
     if (isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current) {
-      console.log('🖱️ EditableText clicked for editing:', textKey);
       setIsEditing(true);
     }
   }, [isDevMode, isLoading, textKey]);
 
   const handleSave = useCallback(async () => {
     if (!textKey || !projectId || savingRef.current || !mountedRef.current) {
-      console.log('⚠️ EditableText: Cannot save - missing requirements:', { textKey, projectId, saving: savingRef.current });
       setIsEditing(false);
       return;
     }
 
-    console.log('💾 EditableText: Starting save for key:', textKey, 'text:', text);
     setIsSaving(true);
     savingRef.current = true;
     
     try {
+      const toastId = toast.loading('Saving text...');
+      
       const success = await saveChange('text', textKey, text);
+      
       if (success && mountedRef.current) {
-        console.log('✅ EditableText: Successfully saved text to database');
-        toast.success('Text saved!', { duration: 2000 });
+        toast.success('Text saved!', { id: toastId, duration: 2000 });
         
-        // Dispatch update event with debouncing
+        // Dispatch update event
         setTimeout(() => {
           if (mountedRef.current) {
             window.dispatchEvent(new CustomEvent('projectDataUpdated', {
@@ -104,13 +120,12 @@ const EditableText: React.FC<EditableTextProps> = ({
           }
         }, 100);
       } else {
-        console.error('❌ EditableText: Failed to save text to database');
         if (mountedRef.current) {
-          toast.error('Failed to save text');
+          toast.error('Failed to save text', { id: toastId });
         }
       }
     } catch (error) {
-      console.error('❌ EditableText: Error saving text:', error);
+      console.error('Error saving text:', error);
       if (mountedRef.current) {
         toast.error('Error saving text');
       }
@@ -128,9 +143,8 @@ const EditableText: React.FC<EditableTextProps> = ({
       e.preventDefault();
       handleSave();
     } else if (e.key === 'Escape') {
-      console.log('⏪ EditableText: Reverting changes');
       setIsEditing(false);
-      // Reset to original saved value
+      // Reset to saved value
       if (textKey && projectId && mountedRef.current) {
         getChanges().then(changes => {
           if (mountedRef.current) {
@@ -156,7 +170,7 @@ const EditableText: React.FC<EditableTextProps> = ({
 
   if (isLoading) {
     return (
-      <div className="animate-pulse bg-gray-200 rounded">
+      <div className="animate-pulse bg-gray-200 rounded min-h-[1.5rem]">
         {children(initialText)}
       </div>
     );
