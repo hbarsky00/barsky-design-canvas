@@ -47,26 +47,32 @@ export class PublishingService {
           }
 
           if (newSrc.startsWith('data:')) {
-            // Upload data URL images to permanent storage
+            // Upload data URL images to permanent storage with validation
             try {
               const response = await fetch(newSrc);
               if (!response.ok) {
-                console.error('Failed to fetch image data for:', originalSrc);
+                console.error('❌ Failed to fetch image data for:', originalSrc);
                 failedUploads.push(originalSrc);
                 continue;
               }
               
               const blob = await response.blob();
+              if (blob.size === 0) {
+                console.error('❌ Empty blob received for:', originalSrc);
+                failedUploads.push(originalSrc);
+                continue;
+              }
+              
               const file = new File([blob], 'image.png', { type: blob.type });
               
               const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
               
-              // Only accept valid HTTP(S) URLs
+              // Strict validation: only accept valid HTTP(S) URLs
               if (uploadedUrl && (uploadedUrl.startsWith('https://') || uploadedUrl.startsWith('http://'))) {
                 publishedImageMappings[originalSrc] = uploadedUrl;
                 console.log('📤 Uploaded image:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
               } else {
-                console.error('❌ Upload failed or returned invalid URL for:', originalSrc);
+                console.warn('❌ Upload failed or returned invalid URL for:', originalSrc, 'Got:', uploadedUrl);
                 failedUploads.push(originalSrc);
               }
             } catch (uploadError) {
@@ -74,11 +80,16 @@ export class PublishingService {
               failedUploads.push(originalSrc);
             }
           } else if (newSrc.startsWith('https://') || newSrc.startsWith('http://') || newSrc.startsWith('/')) {
-            // Accept already valid URLs
-            publishedImageMappings[originalSrc] = newSrc;
-            console.log('✅ Using existing valid URL:', originalSrc.substring(0, 50) + '...', '->', newSrc);
+            // Accept already valid URLs, but validate they're not data URLs disguised
+            if (newSrc.includes('data:')) {
+              console.warn('⚠️ Suspicious URL contains data: prefix, skipping:', newSrc);
+              failedUploads.push(originalSrc);
+            } else {
+              publishedImageMappings[originalSrc] = newSrc;
+              console.log('✅ Using existing valid URL:', originalSrc.substring(0, 50) + '...', '->', newSrc);
+            }
           } else {
-            console.warn('⚠️ Skipping invalid image URL:', newSrc);
+            console.warn('⚠️ Skipping invalid image URL format:', originalSrc, '->', newSrc);
             failedUploads.push(originalSrc);
           }
         } catch (error) {
@@ -87,9 +98,9 @@ export class PublishingService {
         }
       }
 
-      // Log any failed uploads
+      // Log any failed uploads with details
       if (failedUploads.length > 0) {
-        console.warn('⚠️ Some images failed to upload and will not be published:', failedUploads);
+        console.warn('⚠️ Failed to process images (will not be published):', failedUploads);
       }
 
       // Step 3: Process content blocks and handle any images in them
@@ -101,6 +112,11 @@ export class PublishingService {
             if (block.type === 'image' && block.src && block.src.startsWith('data:')) {
               try {
                 const response = await fetch(block.src);
+                if (!response.ok) {
+                  console.warn('⚠️ Content block image fetch failed, removing from content');
+                  return null;
+                }
+                
                 const blob = await response.blob();
                 const file = new File([blob], 'content-image.png', { type: blob.type });
                 
@@ -124,11 +140,24 @@ export class PublishingService {
         processedContentBlocks[sectionKey] = processedBlocks.filter(block => block !== null);
       }
 
-      // Step 4: Store published state in the database
+      // Step 4: Final validation before storing
+      const validImageReplacements = Object.fromEntries(
+        Object.entries(publishedImageMappings).filter(([key, value]) => {
+          const isValid = value && (value.startsWith('https://') || value.startsWith('http://') || value.startsWith('/'));
+          if (!isValid) {
+            console.warn('⚠️ Filtering out invalid image replacement:', key, '->', value);
+          }
+          return isValid;
+        })
+      );
+
+      console.log('✅ Final validated image mappings:', Object.keys(validImageReplacements).length, 'images');
+
+      // Step 5: Store published state in the database
       const publishedData = {
         project_id: projectId,
         text_content: changes.textContent as any,
-        image_replacements: publishedImageMappings as any,
+        image_replacements: validImageReplacements as any,
         content_blocks: processedContentBlocks as any,
         published_at: new Date().toISOString()
       };
@@ -146,35 +175,35 @@ export class PublishingService {
         throw new Error(`Database error: ${publishError.message}`);
       }
 
-      // Step 5: Apply changes to DOM immediately with cache busting
-      this.applyChangesToDOM(publishedImageMappings, changes.textContent, processedContentBlocks);
+      // Step 6: Apply changes to DOM immediately with cache busting
+      this.applyChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks);
 
-      // Step 6: Store in localStorage as fallback
+      // Step 7: Store in localStorage as fallback
       try {
         localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
       } catch (error) {
         console.warn('⚠️ Could not store to localStorage:', error);
       }
 
-      // Step 7: Clear dev mode changes AFTER successful publish
+      // Step 8: Clear dev mode changes AFTER successful publish
       console.log('🗑️ Clearing dev mode changes after successful publish');
       const clearSuccess = await clearChangesFromDatabase(projectId);
       if (!clearSuccess) {
         console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
       }
 
-      // Step 8: Clean up old images from storage and cache
+      // Step 9: Clean up old images from storage and cache
       try {
         if (oldImagesToCleanup.length > 0) {
           await Promise.all(oldImagesToCleanup.map(ImageStorageService.deleteImage));
           ImageStorageService.clearImageCache(oldImagesToCleanup);
         }
-        await ImageStorageService.cleanupProjectImages(projectId, Object.values(publishedImageMappings));
+        await ImageStorageService.cleanupProjectImages(projectId, Object.values(validImageReplacements));
       } catch (error) {
         console.warn('⚠️ Image cleanup failed:', error);
       }
 
-      console.log('✅ Project published successfully - staying on current page');
+      console.log('✅ Project published successfully with', Object.keys(validImageReplacements).length, 'validated images');
       return true;
     } catch (error) {
       console.error('❌ Error publishing project:', error);
