@@ -14,7 +14,7 @@ import { useDevMode } from "@/context/DevModeContext";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 import SaveIndicator from "@/components/dev/SaveIndicator";
-import PublishingService from "@/services/PublishingService";
+import { PublishingService } from "@/services/publishingService";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
