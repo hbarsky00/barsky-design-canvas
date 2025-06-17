@@ -1,40 +1,48 @@
 
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { UseImageStateManagerProps, ImageStateManagerReturn } from './image-state/types';
 import { useImageValidation } from './image-state/validation';
 import { useImageLoader } from './image-state/imageLoader';
 import { useImageEventHandlers } from './image-state/eventHandlers';
 
 export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps): ImageStateManagerReturn => {
-  // Initialize state with proper fallbacks to prevent React errors
-  const [displayedImage, setDisplayedImage] = useState<string>(() => {
-    if (!src) return '';
-    return imageReplacements?.[src] || src;
-  });
-  
-  const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  // Prevent re-initialization by using refs to track if we're already initialized
+  const initializedRef = useRef(false);
   const mountedRef = useRef(true);
   const loadingRef = useRef(false);
   
-  // Debug logging
-  console.log('🎯 useImageStateManager:', {
-    src: src?.substring(0, 50) + '...' || 'no-src',
-    displayedImage: displayedImage?.substring(0, 50) + '...' || 'no-displayed',
-    projectId,
-    hasDevModeChanges,
-    isLoading,
-    hasError,
-    hasPublishedReplacement: !!imageReplacements?.[src]
-  });
+  // Stable initial state calculation
+  const initialDisplayedImage = useMemo(() => {
+    if (!src) return '';
+    return imageReplacements?.[src] || src;
+  }, [src, imageReplacements?.[src]]); // Only depend on the specific replacement
+  
+  // State with stable initialization
+  const [displayedImage, setDisplayedImage] = useState(initialDisplayedImage);
+  const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  
+  // Prevent duplicate logging and processing
+  const shouldLog = useRef(true);
+  if (shouldLog.current) {
+    console.log('🎯 useImageStateManager initialized:', {
+      src: src?.substring(0, 50) + '...' || 'no-src',
+      projectId,
+      hasPublishedReplacement: !!imageReplacements?.[src],
+      initializedRef: initializedRef.current
+    });
+    shouldLog.current = false;
+  }
   
   const { isValidImageUrl, isValidPublishedUrl } = useImageValidation();
   const { loadImageState } = useImageLoader(projectId, isValidImageUrl, isValidPublishedUrl);
   
-  // Stable callback for loading image state
+  // Stable callback for loading image state - memoized to prevent re-creation
   const handleLoadImageState = useCallback(() => {
-    if (!mountedRef.current || !src || !projectId) return;
+    if (!mountedRef.current || !src || !projectId || loadingRef.current) {
+      return;
+    }
     
     loadImageState(
       src,
@@ -47,7 +55,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       setIsLoading,
       setHasError
     );
-  }, [src, projectId, loadImageState, displayedImage, imageReplacements]);
+  }, [src, projectId, loadImageState, imageReplacements]); // Removed displayedImage from deps
 
   const { updateDisplayedImage, forceRefresh } = useImageEventHandlers(
     projectId,
@@ -63,7 +71,7 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     setIsLoading
   );
 
-  // Handle published replacement updates - simplified to prevent loops
+  // Handle published replacement updates - only when the specific replacement changes
   useEffect(() => {
     if (!src || !imageReplacements) return;
     
@@ -75,11 +83,16 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       setIsLoading(false);
       setHasError(false);
     }
-  }, [src, imageReplacements?.[src]]); // Only depend on the specific replacement
+  }, [imageReplacements?.[src]]); // Only the specific replacement, not displayedImage
 
-  // Initial load effect - only when necessary
+  // Initial load effect - only run once when absolutely necessary
   useEffect(() => {
-    if (!src || !projectId || imageReplacements?.[src]) return;
+    if (!src || !projectId || imageReplacements?.[src] || initializedRef.current) {
+      return;
+    }
+    
+    // Mark as initialized to prevent multiple runs
+    initializedRef.current = true;
     
     // Prevent immediate loading if we're already loading
     if (loadingRef.current || isLoading) return;
@@ -90,22 +103,28 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
       }
     }, 100);
 
-    return () => clearTimeout(timeoutId);
-  }, [src, projectId]); // Minimal dependencies
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [src, projectId]); // Minimal dependencies, no handleLoadImageState
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       mountedRef.current = false;
+      initializedRef.current = false;
+      shouldLog.current = true;
     };
   }, []);
 
+  // Stable wrapped update function
   const wrappedUpdateDisplayedImage = useCallback((newSrc: string) => {
     if (!mountedRef.current || !newSrc) return;
     updateDisplayedImage(newSrc, isValidImageUrl);
   }, [updateDisplayedImage, isValidImageUrl]);
 
-  return {
+  // Stable return object
+  return useMemo(() => ({
     displayedImage: displayedImage || src || '',
     updateDisplayedImage: wrappedUpdateDisplayedImage,
     forceRefresh,
@@ -113,5 +132,5 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     isLoading,
     hasError,
     isValidUrl: isValidImageUrl(displayedImage || src || '')
-  };
+  }), [displayedImage, src, wrappedUpdateDisplayedImage, forceRefresh, hasDevModeChanges, isLoading, hasError, isValidImageUrl]);
 };
