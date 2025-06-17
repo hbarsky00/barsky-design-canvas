@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
 import { useAiImageCaptions } from '@/hooks/useAiImageCaptions';
@@ -49,8 +50,10 @@ export const useContentBlockActions = (
     
     switch (type) {
       case 'text':
-        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
+        console.log('📝 Creating text block');
+        return Promise.resolve({ type: 'text', value: 'This is a new paragraph. Click to edit me.' });
       case 'image': {
+        console.log('🖼️ Creating image block');
         const defaultImageSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
         // Generate AI caption for the default image
         const aiCaption = await generateCaption(defaultImageSrc);
@@ -61,8 +64,10 @@ export const useContentBlockActions = (
         };
       }
       case 'header':
-        return { type: 'header', value: 'New Header', level: 2 };
+        console.log('📋 Creating header block');
+        return Promise.resolve({ type: 'header', value: 'New Header', level: 2 });
       case 'video': {
+        console.log('🎥 Creating video block');
         const defaultVideoSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
         const aiCaption = await generateCaption(defaultVideoSrc);
         return { 
@@ -72,6 +77,7 @@ export const useContentBlockActions = (
         };
       }
       case 'pdf': {
+        console.log('📄 Creating PDF block');
         const defaultPdfSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
         const aiCaption = await generateCaption(defaultPdfSrc);
         return { 
@@ -81,35 +87,41 @@ export const useContentBlockActions = (
         };
       }
       default:
-        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
+        console.log('❓ Creating default text block');
+        return Promise.resolve({ type: 'text', value: 'This is a new paragraph. Click to edit me.' });
     }
   };
 
   const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => {
     console.log('➕ ContentBlockActions: Adding new content of type:', type, 'at position:', position);
-    const newBlock = await createNewBlock(type);
-    console.log('📦 ContentBlockActions: New block created:', newBlock);
     
-    let updatedBlocks: ContentBlock[];
-    
-    if (position !== undefined) {
-      // Insert at specific position
-      updatedBlocks = [...contentBlocks];
-      updatedBlocks.splice(position, 0, newBlock);
-    } else {
-      // Add at end
-      updatedBlocks = [...contentBlocks, newBlock];
+    try {
+      const newBlock = await createNewBlock(type);
+      console.log('📦 ContentBlockActions: New block created:', newBlock);
+      
+      let updatedBlocks: ContentBlock[];
+      
+      if (position !== undefined) {
+        // Insert at specific position
+        updatedBlocks = [...contentBlocks];
+        updatedBlocks.splice(position, 0, newBlock);
+      } else {
+        // Add at end
+        updatedBlocks = [...contentBlocks, newBlock];
+      }
+      
+      console.log('📋 ContentBlockActions: Updated blocks list:', updatedBlocks);
+      
+      // Update state immediately for instant UI feedback
+      setContentBlocks(updatedBlocks);
+      
+      // Save content blocks to database
+      await saveContentBlocks(updatedBlocks);
+      
+      console.log('✅ ContentBlockActions: Content blocks updated and saved');
+    } catch (error) {
+      console.error('❌ ContentBlockActions: Error adding content:', error);
     }
-    
-    console.log('📋 ContentBlockActions: Updated blocks list:', updatedBlocks);
-    
-    // Update state immediately for instant UI feedback
-    setContentBlocks(updatedBlocks);
-    
-    // Save content blocks to database
-    await saveContentBlocks(updatedBlocks);
-    
-    console.log('✅ ContentBlockActions: Content blocks updated and saved');
   };
 
   const handleUpdateContent = async (index: number, newValue: string) => {
