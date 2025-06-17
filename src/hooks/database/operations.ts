@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ChangeType, DevModeChange } from './types';
 
@@ -11,6 +10,17 @@ export const saveChangeToDatabase = async (
   if (!projectId) {
     console.error('❌ saveChangeToDatabase: No projectId provided');
     return false;
+  }
+
+  // Validate image size for image changes
+  if (changeType === 'image' && typeof changeValue === 'string' && changeValue.startsWith('data:')) {
+    const sizeInBytes = changeValue.length * 0.75;
+    const sizeInKB = sizeInBytes / 1024;
+    
+    if (sizeInKB > 500) {
+      console.error('❌ saveChangeToDatabase: Image too large:', sizeInKB.toFixed(2) + 'KB');
+      throw new Error(`Image is too large (${sizeInKB.toFixed(2)}KB). Please use a smaller image or compress it.`);
+    }
   }
 
   console.log('💾 saveChangeToDatabase: Saving change:', {
@@ -36,14 +46,20 @@ export const saveChangeToDatabase = async (
 
     if (upsertError) {
       console.error('❌ saveChangeToDatabase: Database error:', upsertError);
-      return false;
+      
+      // Provide more specific error messages
+      if (upsertError.message.includes('index row requires') || upsertError.message.includes('maximum size')) {
+        throw new Error('Image is too large for database storage. Please use a smaller image.');
+      }
+      
+      throw new Error(`Database error: ${upsertError.message}`);
     }
 
     console.log('✅ saveChangeToDatabase: Successfully saved change to database');
     return true;
   } catch (error) {
     console.error('❌ saveChangeToDatabase: Unexpected error:', error);
-    return false;
+    throw error;
   }
 };
 

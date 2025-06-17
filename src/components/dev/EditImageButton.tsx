@@ -6,6 +6,7 @@ import { Upload } from 'lucide-react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
+import { compressImageFile, validateImageSize } from '@/utils/imageCompression';
 
 interface EditImageButtonProps {
   src?: string;
@@ -62,38 +63,31 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       });
       
       // Show immediate loading feedback
-      toast.loading("Processing image...", { id: 'image-upload' });
+      toast.loading("Processing and compressing image...", { id: 'image-upload' });
       
-      // Convert file to data URL
-      const reader = new FileReader();
-      const dataUrl = await new Promise<string>((resolve, reject) => {
-        reader.onload = () => {
-          const result = reader.result as string;
-          console.log('✅ File converted to data URL:', result.substring(0, 50) + '...');
-          resolve(result);
-        };
-        reader.onerror = () => {
-          console.error('❌ Failed to read file');
-          reject(new Error('Failed to read file'));
-        };
-        reader.readAsDataURL(file);
-      });
+      // Compress the image to ensure it fits in database
+      const compressedDataUrl = await compressImageFile(file, 400); // 400KB limit
+      
+      // Validate the compressed image size
+      if (!validateImageSize(compressedDataUrl)) {
+        throw new Error('Image is still too large after compression. Please use a smaller image.');
+      }
       
       // Validate the data URL
-      if (!validateImageUrl(dataUrl)) {
+      if (!validateImageUrl(compressedDataUrl)) {
         throw new Error('Invalid image data URL generated');
       }
       
       // Save to database and wait for completion
-      console.log('💾 Saving image change to database...');
-      const success = await saveChange('image', src, dataUrl);
+      console.log('💾 Saving compressed image change to database...');
+      const success = await saveChange('image', src, compressedDataUrl);
       
       if (success) {
         console.log('✅ Image saved successfully, triggering UI updates');
         
         // Call callback immediately for instant UI feedback
         if (onImageReplace) {
-          onImageReplace(dataUrl);
+          onImageReplace(compressedDataUrl);
         }
         
         // Dispatch update event with detailed info
@@ -103,16 +97,16 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
             imageReplaced: true, 
             immediate: true,
             src: src,
-            newSrc: dataUrl,
+            newSrc: compressedDataUrl,
             timestamp: Date.now(),
             changeType: 'image',
-            isValidUrl: validateImageUrl(dataUrl)
+            isValidUrl: validateImageUrl(compressedDataUrl)
           }
         }));
         
-        toast.success("Image replaced!", {
+        toast.success("Image replaced and compressed!", {
           id: 'image-upload',
-          description: `Replaced with "${file.name}". Click "Publish Changes" to make it permanent.`,
+          description: `Replaced with compressed "${file.name}". Click "Publish Changes" to make it permanent.`,
           duration: 3000,
         });
       } else {
@@ -120,9 +114,11 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       }
     } catch (error) {
       console.error('❌ Error replacing image:', error);
+      const errorMessage = error instanceof Error ? error.message : "There was an error processing the image file.";
+      
       toast.error("Failed to replace image", {
         id: 'image-upload',
-        description: error instanceof Error ? error.message : "There was an error processing the image file."
+        description: errorMessage
       });
     } finally {
       setIsProcessing(false);
@@ -146,7 +142,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           disabled={isProcessing}
         >
           <Upload className="h-4 w-4 mr-2" />
-          {isProcessing ? 'Processing...' : 'Replace'}
+          {isProcessing ? 'Compressing...' : 'Replace'}
         </Button>
       </div>
       <input
