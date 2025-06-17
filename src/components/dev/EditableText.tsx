@@ -34,6 +34,17 @@ const EditableText: React.FC<EditableTextProps> = ({
   const mountedRef = useRef(true);
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Set mounted to true on mount
+  useEffect(() => {
+    mountedRef.current = true;
+    console.log('✅ EditableText: Component mounted for', textKey);
+    
+    return () => {
+      console.log('🚪 EditableText: Component unmounting for', textKey);
+      mountedRef.current = false;
+    };
+  }, [textKey]);
+
   // COMPREHENSIVE DEBUGGING
   console.log('🔍 EditableText DEBUG:', { 
     isDevMode, 
@@ -45,7 +56,7 @@ const EditableText: React.FC<EditableTextProps> = ({
     isEditing,
     isLoading,
     isSaving,
-    canEdit: isDevMode && !isLoading && !savingRef.current && textKey,
+    canEdit: isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current,
     mounted: mountedRef.current
   });
 
@@ -110,14 +121,6 @@ const EditableText: React.FC<EditableTextProps> = ({
     };
   }, [loadSavedText]);
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      console.log('🚪 EditableText: Component unmounting for', textKey);
-      mountedRef.current = false;
-    };
-  }, [textKey]);
-
   const handleClick = useCallback(() => {
     const canEdit = isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current;
     
@@ -152,6 +155,8 @@ const EditableText: React.FC<EditableTextProps> = ({
         toast.error('Still loading, please wait');
       } else if (savingRef.current) {
         toast.error('Currently saving, please wait');
+      } else if (!mountedRef.current) {
+        toast.error('Component not properly mounted');
       }
     }
   }, [isDevMode, isLoading, textKey]);
@@ -294,7 +299,7 @@ const EditableText: React.FC<EditableTextProps> = ({
     );
   }
 
-  const canClick = isDevMode && textKey;
+  const canClick = isDevMode && textKey && mountedRef.current;
   console.log('👁️ EditableText: Rendering view mode for', textKey, 'canClick:', canClick);
 
   return (

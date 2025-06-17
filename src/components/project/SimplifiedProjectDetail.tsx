@@ -1,7 +1,5 @@
 
 import React from "react";
-import { DevModeProvider } from "@/context/DevModeContext";
-import { ImageReplacementProvider } from "@/context/ImageReplacementContext";
 import { useParams } from "react-router-dom";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
 import ProjectDetailLoading from "./ProjectDetailLoading";

@@ -80,6 +80,7 @@ export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const contextValue = { isDevMode, toggleDevMode, isLovableEnvironment, useExternalDeployment };
   
   console.log('📤 DevModeContext: Providing context value:', contextValue);
+  console.log('🏗️ DevModeContext: Provider is rendering with children');
 
   return (
     <DevModeContext.Provider value={contextValue}>
@@ -92,6 +93,7 @@ export const useDevMode = () => {
   const context = useContext(DevModeContext);
   if (context === undefined) {
     console.error('❌ useDevMode: Hook called outside of DevModeProvider');
+    console.error('❌ useDevMode: Current component tree might not be wrapped with DevModeProvider');
     throw new Error('useDevMode must be used within a DevModeProvider');
   }
   console.log('🔍 useDevMode: Returning context:', context);
