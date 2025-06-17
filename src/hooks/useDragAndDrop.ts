@@ -8,7 +8,8 @@ export const useDragAndDrop = (
   beforeHeaderBlocks: ContentBlock[],
   setBeforeHeaderBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>,
   afterHeaderBlocks: ContentBlock[],
-  setAfterHeaderBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>
+  setAfterHeaderBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>,
+  saveContentBlocks?: (blocks: ContentBlock[]) => Promise<void>
 ) => {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [beforeHeaderDraggedIndex, setBeforeHeaderDraggedIndex] = useState<number | null>(null);
@@ -17,16 +18,19 @@ export const useDragAndDrop = (
   const handleDragStart = (e: React.DragEvent, index: number) => {
     setDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', index.toString());
   };
 
   const handleBeforeHeaderDragStart = (e: React.DragEvent, index: number) => {
     setBeforeHeaderDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', index.toString());
   };
 
   const handleAfterHeaderDragStart = (e: React.DragEvent, index: number) => {
     setAfterHeaderDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', index.toString());
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -34,42 +38,69 @@ export const useDragAndDrop = (
     e.dataTransfer.dropEffect = 'move';
   };
 
-  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+  const handleDrop = async (e: React.DragEvent, dropIndex: number) => {
     e.preventDefault();
-    if (draggedIndex === null || draggedIndex === dropIndex) return;
+    if (draggedIndex === null || draggedIndex === dropIndex) {
+      setDraggedIndex(null);
+      return;
+    }
 
     const newBlocks = [...contentBlocks];
     const draggedBlock = newBlocks[draggedIndex];
     newBlocks.splice(draggedIndex, 1);
-    newBlocks.splice(dropIndex, 0, draggedBlock);
+    
+    // Adjust drop index if dragging from before the drop position
+    const adjustedDropIndex = draggedIndex < dropIndex ? dropIndex - 1 : dropIndex;
+    newBlocks.splice(adjustedDropIndex, 0, draggedBlock);
     
     setContentBlocks(newBlocks);
     setDraggedIndex(null);
+    
+    // Save changes if function provided
+    if (saveContentBlocks) {
+      await saveContentBlocks(newBlocks);
+    }
   };
 
-  const handleBeforeHeaderDrop = (e: React.DragEvent, dropIndex: number) => {
+  const handleBeforeHeaderDrop = async (e: React.DragEvent, dropIndex: number) => {
     e.preventDefault();
-    if (beforeHeaderDraggedIndex === null || beforeHeaderDraggedIndex === dropIndex) return;
+    if (beforeHeaderDraggedIndex === null || beforeHeaderDraggedIndex === dropIndex) {
+      setBeforeHeaderDraggedIndex(null);
+      return;
+    }
 
     const newBlocks = [...beforeHeaderBlocks];
     const draggedBlock = newBlocks[beforeHeaderDraggedIndex];
     newBlocks.splice(beforeHeaderDraggedIndex, 1);
-    newBlocks.splice(dropIndex, 0, draggedBlock);
+    
+    const adjustedDropIndex = beforeHeaderDraggedIndex < dropIndex ? dropIndex - 1 : dropIndex;
+    newBlocks.splice(adjustedDropIndex, 0, draggedBlock);
     
     setBeforeHeaderBlocks(newBlocks);
     setBeforeHeaderDraggedIndex(null);
   };
 
-  const handleAfterHeaderDrop = (e: React.DragEvent, dropIndex: number) => {
+  const handleAfterHeaderDrop = async (e: React.DragEvent, dropIndex: number) => {
     e.preventDefault();
-    if (afterHeaderDraggedIndex === null || afterHeaderDraggedIndex === dropIndex) return;
+    if (afterHeaderDraggedIndex === null || afterHeaderDraggedIndex === dropIndex) {
+      setAfterHeaderDraggedIndex(null);
+      return;
+    }
 
     const newBlocks = [...afterHeaderBlocks];
     const draggedBlock = newBlocks[afterHeaderDraggedIndex];
     newBlocks.splice(afterHeaderDraggedIndex, 1);
-    newBlocks.splice(dropIndex, 0, draggedBlock);
+    
+    const adjustedDropIndex = afterHeaderDraggedIndex < dropIndex ? dropIndex - 1 : dropIndex;
+    newBlocks.splice(adjustedDropIndex, 0, draggedBlock);
     
     setAfterHeaderBlocks(newBlocks);
+    setAfterHeaderDraggedIndex(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+    setBeforeHeaderDraggedIndex(null);
     setAfterHeaderDraggedIndex(null);
   };
 
@@ -83,6 +114,7 @@ export const useDragAndDrop = (
     handleDragOver,
     handleDrop,
     handleBeforeHeaderDrop,
-    handleAfterHeaderDrop
+    handleAfterHeaderDrop,
+    handleDragEnd
   };
 };

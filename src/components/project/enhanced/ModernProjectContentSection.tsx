@@ -81,6 +81,12 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     }
   };
 
+  const handleImageReorder = (oldIndex: number, newIndex: number) => {
+    console.log('🔄 ModernProjectContentSection: Reordering images from', oldIndex, 'to', newIndex);
+    // This would need to be implemented to update the imageConfig order
+    // For now, we'll just log the action
+  };
+
   // Get saved image replacements (now includes published overrides automatically)
   const getReplacedImageSrc = (originalSrc: string) => {
     const savedData = getProjectData();
@@ -178,6 +184,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
           projectId={projectId}
           getReplacedImageSrc={getReplacedImageSrc}
           handleImageReplace={handleImageReplace}
+          onImageReorder={handleImageReorder}
         />
       </div>
     </motion.section>
