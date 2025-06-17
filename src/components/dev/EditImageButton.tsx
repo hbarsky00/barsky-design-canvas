@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
@@ -54,13 +55,19 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
     e.preventDefault();
     e.stopPropagation();
     
-    if (processingRef.current || !onImageRemove) {
+    if (processingRef.current) {
       return;
     }
     
     console.log('🗑️ EditImageButton: Removing image:', src?.substring(0, 50) + '...');
-    onImageRemove();
-    toast.success('Image removed successfully');
+    
+    if (onImageRemove) {
+      onImageRemove();
+      toast.success('Image removed successfully');
+    } else {
+      console.warn('⚠️ EditImageButton: No onImageRemove callback provided');
+      toast.error('Remove functionality not available for this image');
+    }
   }, [src, onImageRemove]);
 
   const handleFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -171,19 +178,20 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
           onClick={handleEditClick}
           variant="secondary"
           size="sm"
-          className="shadow-md"
+          className="shadow-md bg-white/90 hover:bg-white text-gray-700"
           disabled={isProcessing}
         >
-          <Upload className="h-4 w-4 mr-2" />
+          <Upload className="h-4 w-4 mr-1" />
           {isProcessing ? 'Uploading...' : 'Replace'}
         </Button>
-        {allowRemove && onImageRemove && (
+        {allowRemove && (
           <Button
             onClick={handleRemoveClick}
             variant="destructive"
             size="sm"
-            className="shadow-md"
+            className="shadow-md bg-red-500/90 hover:bg-red-600 text-white"
             disabled={isProcessing}
+            title="Remove this image"
           >
             <Trash2 className="h-4 w-4" />
           </Button>
