@@ -71,7 +71,6 @@ export class ImageStorageService {
       if (error) {
         console.error('❌ Storage upload error:', {
           message: error.message,
-          statusCode: error.statusCode,
           error: error
         });
         return null;
