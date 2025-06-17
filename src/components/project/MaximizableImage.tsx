@@ -191,7 +191,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <EditableText 
             initialText={caption}
             textKey={`image_caption_${src}_${currentProjectId}`}
-            onTextChange={onCaptionUpdate}
           >
             {(text) => (
               <motion.div
