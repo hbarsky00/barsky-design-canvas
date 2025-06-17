@@ -150,7 +150,7 @@ const DraggableProjectSection: React.FC<DraggableProjectSectionProps> = ({
               <EditableText
                 initialText={item.content}
                 multiline
-                onTextChange={(newText) => onItemUpdate(item.id, newText)}
+                textKey={`draggable-item-${item.id}`}
               >
                 {(text) => (
                   <div className="pr-8">

@@ -1,9 +1,43 @@
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { ProjectContentItem } from '@/components/project/enhanced/DraggableProjectSection';
+import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
+import { useParams } from 'react-router-dom';
 
 export const useDraggableContent = (initialItems: ProjectContentItem[] = []) => {
+  const { projectId } = useParams<{ projectId: string }>();
+  const safeProjectId = projectId || '';
+  const { getChanges } = useDevModeDatabase(safeProjectId);
   const [items, setItems] = useState<ProjectContentItem[]>(initialItems);
+
+  // Listen for text updates from EditableText components
+  useEffect(() => {
+    const handleProjectDataUpdated = async (event: CustomEvent) => {
+      if (event.detail.textChanged && event.detail.projectId === safeProjectId) {
+        try {
+          const changes = await getChanges();
+          setItems(prev => prev.map(item => {
+            if (item.type === 'text') {
+              const textKey = `draggable-item-${item.id}`;
+              const updatedContent = changes.textContent[textKey];
+              if (updatedContent !== undefined) {
+                return { ...item, content: updatedContent };
+              }
+            }
+            return item;
+          }));
+        } catch (error) {
+          console.error('Error updating draggable content from text changes:', error);
+        }
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectDataUpdated as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectDataUpdated as EventListener);
+    };
+  }, [safeProjectId, getChanges]);
 
   const handleItemsReorder = useCallback((newItems: ProjectContentItem[]) => {
     setItems(newItems);
