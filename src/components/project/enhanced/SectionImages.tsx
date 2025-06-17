@@ -75,12 +75,22 @@ const SectionImages: React.FC<SectionImagesProps> = ({
         const replacedSrc = getReplacedImageSrc(imageSrc);
         const caption = imageCaptions[imageSrc] || imageCaptions[replacedSrc] || `${title} illustration ${index + 1}`;
         
-        const handleRemove = handleImageRemove ? () => handleImageRemove(imageSrc) : undefined;
+        // Create unique handlers for each image
+        const handleRemoveThisImage = handleImageRemove ? () => {
+          console.log(`🗑️ SectionImages: Removing image at index ${index}:`, imageSrc);
+          handleImageRemove(imageSrc);
+        } : undefined;
+        
+        const handleReplaceThisImage = (newSrc: string) => {
+          console.log(`🔄 SectionImages: Replacing image at index ${index}:`, imageSrc, 'with', newSrc);
+          handleImageReplace(imageSrc, newSrc);
+        };
+        
         const handleCaptionChange = onCaptionUpdate ? (newCaption: string) => onCaptionUpdate(imageSrc, newCaption) : undefined;
         
         return (
           <div 
-            key={`${sectionKey}-image-${index}`} 
+            key={`${sectionKey}-image-${index}-${imageSrc.slice(-10)}`} 
             className={`glass-card mobile-image-container layered-depth relative group ${
               draggedImageIndex === index ? 'opacity-50' : ''
             }`}
@@ -103,13 +113,17 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               </div>
             )}
             
-            <EditImageButton
-              src={replacedSrc}
-              onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
-              onImageRemove={handleRemove}
-              projectId={projectId}
-              allowRemove={!!handleImageRemove}
-            />
+            {/* Ensure EditImageButton is always rendered for each image when in dev mode */}
+            {isDevMode && (
+              <EditImageButton
+                src={replacedSrc}
+                onImageReplace={handleReplaceThisImage}
+                onImageRemove={handleRemoveThisImage}
+                projectId={projectId}
+                allowRemove={!!handleImageRemove}
+              />
+            )}
+            
             <MaximizableImage
               src={replacedSrc}
               alt={caption}
@@ -117,8 +131,8 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               imageList={sectionImages.map(getReplacedImageSrc)}
               currentIndex={index}
               className="rounded-lg sm:rounded-xl shadow-md sm:shadow-elevated-lg w-full overflow-hidden"
-              onImageReplace={(newSrc) => handleImageReplace(imageSrc, newSrc)}
-              onImageRemove={handleRemove}
+              onImageReplace={handleReplaceThisImage}
+              onImageRemove={handleRemoveThisImage}
               projectId={projectId}
               hideEditButton={true}
               allowRemove={!!handleImageRemove}
