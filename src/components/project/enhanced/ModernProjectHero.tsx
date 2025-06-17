@@ -242,6 +242,20 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     saveContentBlocks('hero', newBlocks);
   };
 
+  // Add hero image replacement handler
+  const handleHeroImageReplace = React.useCallback(async (newSrc: string) => {
+    console.log('🔄 ModernProjectHero: Replacing hero image:', {
+      originalSrc: project.image.substring(0, 30) + '...',
+      newSrc: newSrc.substring(0, 30) + '...',
+      projectId: currentProjectId
+    });
+    
+    if (currentProjectId) {
+      saveImageReplacement(project.image, newSrc);
+      updateImageInProjectData(currentProjectId, project.image, newSrc);
+    }
+  }, [project.image, currentProjectId, saveImageReplacement, updateImageInProjectData]);
+
   return (
     <div className="relative overflow-hidden">
       {/* Save Indicator */}
@@ -382,6 +396,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               projectId={currentProjectId}
               hideEditButton={false}
               imageReplacements={publishedReplacements}
+              onImageReplace={handleHeroImageReplace}
             />
           </div>
         </motion.div>
