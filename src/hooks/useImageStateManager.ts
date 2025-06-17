@@ -12,7 +12,7 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
   const { getChanges } = useDevModeDatabase(projectId);
   const [displayedImage, setDisplayedImage] = useState(src);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Start as loading
   const [hasError, setHasError] = useState(false);
   const mountedRef = useRef(true);
   const loadingRef = useRef(false);
@@ -51,7 +51,17 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
   
   // Stable callback for loading image state
   const loadImageState = useCallback(async () => {
-    if (!mountedRef.current || !src || !projectId || loadingRef.current) {
+    if (!mountedRef.current || !src || !projectId) {
+      console.log('🔍 Skipping load - component unmounted or missing data');
+      if (mountedRef.current) {
+        setIsLoading(false);
+        setDisplayedImage(src);
+      }
+      return;
+    }
+
+    if (loadingRef.current) {
+      console.log('🔍 Skipping load - already loading');
       return;
     }
 
@@ -64,12 +74,13 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
       
       // First check dev mode changes
       const devData = await getChanges();
-      const devReplacement = devData.imageReplacements[src];
+      const devReplacement = devData?.imageReplacements?.[src];
       
       if (devReplacement && devReplacement !== src && isValidImageUrl(devReplacement) && mountedRef.current) {
         console.log('✅ Using dev mode replacement:', devReplacement.substring(0, 50) + '...');
         setDisplayedImage(devReplacement);
         setHasDevModeChanges(true);
+        setIsLoading(false);
         return;
       }
       
@@ -80,22 +91,26 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
       if (publishedReplacement && publishedReplacement !== src && mountedRef.current) {
         // Strict validation for published URLs - reject data URLs
         if (publishedReplacement.startsWith('data:')) {
-          console.warn('⚠️ Found data: URL in published content, ignoring:', publishedReplacement.substring(0, 50) + '...');
+          console.warn('⚠️ Found data: URL in published content, using original:', publishedReplacement.substring(0, 50) + '...');
           setDisplayedImage(src);
           setHasDevModeChanges(false);
+          setIsLoading(false);
         } else if (isValidPublishedUrl(publishedReplacement)) {
           console.log('📄 Using published replacement:', publishedReplacement.substring(0, 50) + '...');
           setDisplayedImage(publishedReplacement);
           setHasDevModeChanges(false);
+          setIsLoading(false);
         } else {
           console.warn('⚠️ Invalid published URL format:', publishedReplacement);
           setDisplayedImage(src);
           setHasDevModeChanges(false);
+          setIsLoading(false);
         }
       } else if (mountedRef.current) {
         console.log('🖼️ Using original image:', src.substring(0, 50) + '...');
         setDisplayedImage(src);
         setHasDevModeChanges(false);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('❌ Error loading image state:', error);
@@ -103,18 +118,29 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
         setDisplayedImage(src);
         setHasDevModeChanges(false);
         setHasError(true);
+        setIsLoading(false);
       }
     } finally {
       loadingRef.current = false;
-      if (mountedRef.current) {
-        setIsLoading(false);
-      }
     }
   }, [src, projectId, getChanges, isValidImageUrl, isValidPublishedUrl]);
 
-  // Initial load
+  // Initial load with timeout fallback
   useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (isLoading && mountedRef.current) {
+        console.warn('⚠️ Image loading timeout, falling back to original');
+        setDisplayedImage(src);
+        setIsLoading(false);
+        setHasError(false);
+      }
+    }, 5000); // 5 second timeout
+
     loadImageState();
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [loadImageState]);
 
   // Listen for updates
@@ -196,6 +222,7 @@ export const useImageStateManager = ({ src, projectId }: UseImageStateManagerPro
     } else {
       console.error('❌ Invalid image URL provided:', newSrc);
       setHasError(true);
+      setIsLoading(false);
     }
   }, [src, isValidImageUrl]);
 
