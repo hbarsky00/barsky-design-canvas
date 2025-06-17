@@ -11,6 +11,7 @@ import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 import { useContentBlocksManager } from "@/hooks/useContentBlocksManager";
 import { useContentBlockActions } from "./ContentBlockActions";
 import { useContentBlockDragDrop } from "./ContentBlockDragDrop";
+import { generateContentHeader, generateContentBreakdown } from "@/utils/contentHeaderGenerator";
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -52,6 +53,10 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     isLoading,
     saveContentBlocks
   } = useContentBlocksManager(projectId, sectionKey);
+
+  // Generate smart header and breakdown
+  const contentHeader = generateContentHeader(contentBlocks);
+  const contentBreakdown = generateContentBreakdown(contentBlocks);
 
   // Use content block actions hook
   const {
@@ -152,10 +157,28 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
           )}
         </EditableText>
 
-        {/* Additional Content Blocks */}
+        {/* Dynamic Additional Content Blocks */}
         {contentBlocks.length > 0 && (
           <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-800">Additional Content ({contentBlocks.length} items):</h3>
+            <div className="space-y-1">
+              <EditableText 
+                initialText={contentHeader}
+                textKey={`${sectionKey}_content_header_${projectId}`}
+              >
+                {(text) => (
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800">
+                    {text}
+                  </h3>
+                )}
+              </EditableText>
+              
+              {contentBreakdown && (
+                <p className="text-sm text-gray-500">
+                  {contentBreakdown}
+                </p>
+              )}
+            </div>
+            
             {contentBlocks.map((block, index) => (
               <div key={`${sectionKey}-${block.type}-${index}-${block.src || block.embedUrl || 'no-src'}`} className="border-l-4 border-blue-200 pl-3 sm:pl-4">
                 <DraggableContentBlock
