@@ -12,7 +12,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   const { getChanges } = useDevModeDatabase(projectId);
   const [displayedImage, setDisplayedImage] = useState(src);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Start with loading true
   const [hasError, setHasError] = useState(false);
   const [lastPublishedState, setLastPublishedState] = useState<string | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -23,7 +23,13 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
   
   // Load image with priority: dev mode > published > original
   useEffect(() => {
-    if (!mountedRef.current || !src || !projectId || loadingRef.current) {
+    if (!mountedRef.current || !src || !projectId) {
+      setIsLoading(false);
+      return;
+    }
+
+    // Prevent concurrent loads
+    if (loadingRef.current) {
       return;
     }
 
@@ -87,7 +93,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     };
     
     loadImage();
-  }, [src, projectId]); // Stable dependencies to prevent infinite loops
+  }, [src, projectId, getChanges]); // Added getChanges to dependencies
 
   // Listen for project data updates with debouncing
   useEffect(() => {
@@ -110,6 +116,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
           setHasDevModeChanges(false);
           setLastPublishedState(newImageSrc);
           setHasError(false);
+          setIsLoading(false); // Ensure loading is cleared
           setRefreshKey(prev => prev + 1);
           return;
         }
@@ -152,6 +159,10 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
             }
           } finally {
             loadingRef.current = false;
+            // Always clear loading state
+            if (mountedRef.current) {
+              setIsLoading(false);
+            }
           }
         }, 100);
       }
@@ -165,7 +176,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         clearTimeout(updateTimeout);
       }
     };
-  }, [src, projectId, displayedImage]); // Include displayedImage to prevent stale closures
+  }, [src, projectId, displayedImage, getChanges]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -179,6 +190,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     
     console.log('🔄 Force refresh triggered for:', src.substring(0, 50) + '...');
     setHasError(false);
+    setIsLoading(true); // Set loading when refreshing
     setRefreshKey(prev => prev + 1);
     
     // Reset to original and reload with debouncing
@@ -213,6 +225,9 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
         }
       } finally {
         loadingRef.current = false;
+        if (mountedRef.current) {
+          setIsLoading(false);
+        }
       }
     }, 50);
   };
@@ -224,6 +239,7 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     setDisplayedImage(newSrc);
     setHasDevModeChanges(true);
     setHasError(false);
+    setIsLoading(false); // Clear loading when updating image
     setRefreshKey(prev => prev + 1);
   };
 
@@ -235,6 +251,6 @@ export const useImageState = ({ src, projectId }: UseImageStateProps) => {
     isLoading,
     hasError,
     lastPublishedState,
-    refreshKey // Added missing refreshKey property
+    refreshKey
   };
 };
