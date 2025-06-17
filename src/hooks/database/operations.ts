@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ChangeType, DevModeChange } from './types';
 
@@ -13,19 +12,20 @@ export const saveChangeToDatabase = async (
     return false;
   }
 
-  // Enhanced image size validation for image changes
-  if (changeType === 'image' && typeof changeValue === 'string' && changeValue.startsWith('data:')) {
-    const sizeInBytes = changeValue.length * 0.75;
-    const sizeInKB = sizeInBytes / 1024;
-    
-    // More strict size limit for database storage
-    const maxSizeKB = 300;
-    if (sizeInKB > maxSizeKB) {
-      console.error('❌ saveChangeToDatabase: Image too large:', sizeInKB.toFixed(2) + 'KB');
-      throw new Error(`Image is too large (${sizeInKB.toFixed(2)}KB). Maximum allowed size is ${maxSizeKB}KB. Please use the image optimizer to compress your image.`);
+  // For image changes, we now expect storage URLs instead of base64 data
+  if (changeType === 'image' && typeof changeValue === 'string') {
+    if (changeValue.startsWith('data:')) {
+      console.error('❌ saveChangeToDatabase: Base64 images no longer supported. Use storage URLs instead.');
+      throw new Error('Large image data should be uploaded to storage, not saved directly to database. Please use the image upload functionality.');
     }
     
-    console.log(`✅ Image size validation passed: ${sizeInKB.toFixed(2)}KB`);
+    // Validate that it's a proper URL
+    if (!changeValue.startsWith('http') && !changeValue.startsWith('/')) {
+      console.error('❌ saveChangeToDatabase: Invalid image URL format:', changeValue);
+      throw new Error('Invalid image URL format. Expected storage URL or valid path.');
+    }
+    
+    console.log(`✅ Image URL validation passed: ${changeValue.substring(0, 100)}...`);
   }
 
   console.log('💾 saveChangeToDatabase: Saving change:', {
@@ -33,7 +33,7 @@ export const saveChangeToDatabase = async (
     changeType,
     changeKey,
     changeValueType: typeof changeValue,
-    changeValueSize: typeof changeValue === 'string' ? `${(changeValue.length / 1024).toFixed(2)}KB` : 'N/A'
+    changeValuePreview: typeof changeValue === 'string' ? changeValue.substring(0, 100) + '...' : changeValue
   });
 
   try {
@@ -52,15 +52,15 @@ export const saveChangeToDatabase = async (
     if (upsertError) {
       console.error('❌ saveChangeToDatabase: Database error:', upsertError);
       
-      // Provide more specific error messages for common issues
+      // Provide specific error messages
       if (upsertError.message.includes('index row requires') || 
           upsertError.message.includes('maximum size') ||
           upsertError.message.includes('row size')) {
-        throw new Error('Image is too large for database storage. Please use a smaller image or try the built-in image optimizer.');
+        throw new Error('Data is too large for database storage. For images, please use the image upload functionality which stores files in cloud storage.');
       }
       
       if (upsertError.message.includes('payload too large')) {
-        throw new Error('Image data is too large. Please compress your image before uploading.');
+        throw new Error('Data payload is too large. Please use storage for large files instead of direct database storage.');
       }
       
       throw new Error(`Database error: ${upsertError.message}`);

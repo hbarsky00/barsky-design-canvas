@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 import { compressImageFile, validateImageSize, getOptimalCompressionSettings } from '@/utils/imageCompression';
+import { ImageStorageService } from '@/services/imageStorage';
 
 interface EditImageButtonProps {
   src?: string;
@@ -55,7 +56,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     processingRef.current = true;
     
     try {
-      console.log('🖼️ Starting image optimization process:', {
+      console.log('🖼️ Starting image upload process:', {
         fileName: file.name,
         originalSize: `${(file.size / 1024).toFixed(2)}KB`,
         originalSrc: src.substring(0, 50) + '...',
@@ -63,35 +64,43 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
       });
       
       // Show immediate loading feedback
-      toast.loading("Optimizing and compressing image...", { id: 'image-upload' });
+      toast.loading("Compressing and uploading image...", { id: 'image-upload' });
       
       // Get optimal settings based on file size
-      const { maxSizeKB, quality } = getOptimalCompressionSettings(file);
-      console.log(`📐 Using compression settings: maxSize=${maxSizeKB}KB, quality=${quality}`);
+      const { maxSizeKB } = getOptimalCompressionSettings(file);
+      console.log(`📐 Using compression settings: maxSize=${maxSizeKB}KB`);
       
-      // Compress the image with optimal settings
-      const compressedDataUrl = await compressImageFile(file, maxSizeKB);
+      // Compress the image
+      const compressedFile = await compressImageFile(file, maxSizeKB);
       
-      // Validate the compressed image size
-      if (!validateImageSize(compressedDataUrl, maxSizeKB)) {
-        throw new Error(`Image is still too large after compression. Please use a smaller image or try a different format.`);
+      // Validate the compressed file size
+      if (!validateImageSize(compressedFile, maxSizeKB)) {
+        throw new Error(`Image is still too large after compression. Please use a smaller image.`);
       }
       
-      // Validate the data URL
-      if (!validateImageUrl(compressedDataUrl)) {
-        throw new Error('Invalid image data URL generated during compression');
+      // Upload to Supabase Storage
+      console.log('☁️ Uploading to Supabase Storage...');
+      const publicUrl = await ImageStorageService.uploadImage(compressedFile, currentProjectId, src);
+      
+      if (!publicUrl) {
+        throw new Error('Failed to upload image to storage');
       }
       
-      // Save to database
-      console.log('💾 Saving optimized image change to database...');
-      const success = await saveChange('image', src, compressedDataUrl);
+      // Validate the storage URL
+      if (!validateImageUrl(publicUrl)) {
+        throw new Error('Invalid image URL received from storage');
+      }
+      
+      // Save the storage URL reference to database (much smaller than base64)
+      console.log('💾 Saving image URL reference to database...');
+      const success = await saveChange('image', src, publicUrl);
       
       if (success) {
-        console.log('✅ Image optimized and saved successfully');
+        console.log('✅ Image uploaded and reference saved successfully');
         
         // Call callback immediately for instant UI feedback
         if (onImageReplace) {
-          onImageReplace(compressedDataUrl);
+          onImageReplace(publicUrl);
         }
         
         // Dispatch update event
@@ -101,27 +110,27 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
             imageReplaced: true, 
             immediate: true,
             src: src,
-            newSrc: compressedDataUrl,
+            newSrc: publicUrl,
             timestamp: Date.now(),
             changeType: 'image',
-            isValidUrl: validateImageUrl(compressedDataUrl)
+            isValidUrl: validateImageUrl(publicUrl)
           }
         }));
         
-        const finalSizeKB = (compressedDataUrl.length * 0.75 / 1024).toFixed(2);
-        toast.success("Image optimized and replaced!", {
+        const finalSizeKB = (compressedFile.size / 1024).toFixed(2);
+        toast.success("Image uploaded successfully!", {
           id: 'image-upload',
-          description: `Compressed to ${finalSizeKB}KB. Click "Publish Changes" to make it permanent.`,
+          description: `Uploaded ${finalSizeKB}KB to cloud storage. Image will sync automatically.`,
           duration: 3000,
         });
       } else {
-        throw new Error('Failed to save optimized image to database');
+        throw new Error('Failed to save image reference to database');
       }
     } catch (error) {
-      console.error('❌ Error optimizing image:', error);
-      const errorMessage = error instanceof Error ? error.message : "There was an error optimizing the image file.";
+      console.error('❌ Error uploading image:', error);
+      const errorMessage = error instanceof Error ? error.message : "There was an error uploading the image file.";
       
-      toast.error("Failed to optimize image", {
+      toast.error("Failed to upload image", {
         id: 'image-upload',
         description: errorMessage + " Try using a smaller image or different format (JPG/PNG)."
       });
@@ -147,7 +156,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           disabled={isProcessing}
         >
           <Upload className="h-4 w-4 mr-2" />
-          {isProcessing ? 'Optimizing...' : 'Replace'}
+          {isProcessing ? 'Uploading...' : 'Replace'}
         </Button>
       </div>
       <input
