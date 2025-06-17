@@ -113,7 +113,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
           onImageReplace(publicUrl);
         }
         
-        // Dispatch update event
+        // Dispatch immediate update event with detailed information
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId: currentProjectId, 

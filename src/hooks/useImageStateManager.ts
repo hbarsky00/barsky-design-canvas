@@ -16,11 +16,11 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
   // Get dev mode database access for real-time updates
   const { getChanges } = useDevModeDatabase(projectId);
   
-  // Stable initial state calculation - prioritize published data over props
+  // Stable initial state calculation - prioritize dev mode changes over published data
   const initialDisplayedImage = useMemo(() => {
     if (!src) return '';
-    return imageReplacements?.[src] || src;
-  }, [src, imageReplacements?.[src]]); // Only depend on the specific replacement
+    return src; // Start with original, let effects handle replacements
+  }, [src]);
   
   // State with stable initialization
   const [displayedImage, setDisplayedImage] = useState(initialDisplayedImage);
@@ -165,36 +165,18 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     setIsLoading
   );
 
-  // Handle published replacement updates - immediate priority over prop changes
+  // Handle immediate prop changes - prioritize published data over props
   useEffect(() => {
     if (!src) return;
     
-    // Prioritize published data over props
-    const checkPublishedFirst = async () => {
-      const publishedReplacement = await loadPublishedData();
-      
-      if (publishedReplacement && publishedReplacement !== displayedImage) {
-        console.log('🚀 Applying immediate published replacement:', publishedReplacement.substring(0, 50) + '...');
-        setDisplayedImage(publishedReplacement);
-        setHasDevModeChanges(false);
-        setIsLoading(false);
-        setHasError(false);
-        return;
-      }
-      
-      // If no published data, check prop replacements
-      const propReplacement = imageReplacements?.[src];
-      if (propReplacement && propReplacement !== displayedImage && !publishedImageSrc) {
-        console.log('🔧 Applying prop replacement:', propReplacement.substring(0, 50) + '...');
-        setDisplayedImage(propReplacement);
-        setHasDevModeChanges(false);
-        setIsLoading(false);
-        setHasError(false);
-      }
-    };
-    
-    checkPublishedFirst();
-  }, [imageReplacements?.[src], publishedImageSrc, loadPublishedData]); // React to specific changes
+    const propReplacement = imageReplacements?.[src];
+    if (propReplacement && propReplacement !== displayedImage && !hasDevModeChanges) {
+      console.log('🔧 Applying immediate prop replacement:', propReplacement.substring(0, 50) + '...');
+      setDisplayedImage(propReplacement);
+      setIsLoading(false);
+      setHasError(false);
+    }
+  }, [imageReplacements?.[src], hasDevModeChanges]);
 
   // Initial load effect - comprehensive loading
   useEffect(() => {
@@ -215,14 +197,24 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     return () => clearTimeout(timeoutId);
   }, [src, projectId, handleLoadImageState]);
 
-  // Listen for real-time updates with proper priority handling
+  // Listen for real-time updates with immediate response for dev mode changes
   useEffect(() => {
     const handleProjectUpdate = async (e: CustomEvent) => {
       if (!mountedRef.current) return;
       
       const detail = e.detail || {};
       
-      // Handle published changes immediately (highest priority)
+      // Handle immediate dev mode image replacements (highest priority)
+      if (detail.src === src && detail.newSrc && detail.immediate) {
+        console.log('⚡ Immediate dev mode image update for:', src.substring(0, 30) + '...', '->', detail.newSrc.substring(0, 30) + '...');
+        setDisplayedImage(detail.newSrc);
+        setHasDevModeChanges(true);
+        setHasError(false);
+        setIsLoading(false);
+        return;
+      }
+      
+      // Handle published changes immediately (high priority)
       if (detail.published && detail.imageReplacements?.[src]) {
         const newImageSrc = detail.imageReplacements[src];
         console.log('📄 Immediately applying published image change:', newImageSrc.substring(0, 50) + '...');
@@ -234,8 +226,8 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
         return;
       }
       
-      // Handle dev mode changes
-      if (detail.src === src || detail.imageReplaced || detail.immediate) {
+      // Handle general dev mode changes or image replaced events
+      if (detail.src === src || detail.imageReplaced || (detail.immediate && detail.changeType === 'image')) {
         console.log('🔄 Image update event for our image, reloading state');
         await handleLoadImageState();
       }
@@ -257,11 +249,23 @@ export const useImageStateManager = ({ src, projectId, imageReplacements }: UseI
     };
   }, []);
 
-  // Stable wrapped update function
+  // Stable wrapped update function with immediate UI response
   const wrappedUpdateDisplayedImage = useCallback((newSrc: string) => {
     if (!mountedRef.current || !newSrc) return;
+    
+    console.log('⚡ Immediate image update triggered:', {
+      originalSrc: src.substring(0, 30) + '...',
+      newSrc: newSrc.substring(0, 30) + '...'
+    });
+    
+    // Immediate UI update
+    setDisplayedImage(newSrc);
+    setHasDevModeChanges(true);
+    setHasError(false);
+    setIsLoading(false);
+    
     updateDisplayedImage(newSrc, isValidImageUrl);
-  }, [updateDisplayedImage, isValidImageUrl]);
+  }, [updateDisplayedImage, isValidImageUrl, src]);
 
   // Stable return object with proper image prioritization
   return useMemo(() => ({
