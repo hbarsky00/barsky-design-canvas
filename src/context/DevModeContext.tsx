@@ -31,6 +31,12 @@ export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return saved === 'true';
   });
 
+  console.log('DevModeContext: Initialized with', { 
+    isLovableEnvironment, 
+    isDevMode, 
+    hostname: window.location.hostname 
+  });
+
   const toggleDevMode = () => {
     // Only allow toggling in Lovable environment
     if (!isLovableEnvironment) {
@@ -41,7 +47,7 @@ export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setIsDevMode(prev => {
       const newValue = !prev;
       localStorage.setItem('devMode', newValue.toString());
-      console.log('Dev mode toggled to:', newValue);
+      console.log('DevModeContext: Dev mode toggled to:', newValue);
       return newValue;
     });
   };
@@ -50,13 +56,17 @@ export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ child
   useEffect(() => {
     if (isLovableEnvironment) {
       localStorage.setItem('devMode', isDevMode.toString());
-      console.log('Dev mode state:', isDevMode, 'Environment:', isLovableEnvironment ? 'Lovable' : 'Published (barskydesign.pro)');
+      console.log('DevModeContext: Dev mode state updated:', { 
+        isDevMode, 
+        environment: isLovableEnvironment ? 'Lovable' : 'Published (barskydesign.pro)' 
+      });
     }
   }, [isDevMode, isLovableEnvironment]);
 
   // Force dev mode off if not in Lovable environment
   useEffect(() => {
     if (!isLovableEnvironment && isDevMode) {
+      console.log('DevModeContext: Forcing dev mode off (not in Lovable environment)');
       setIsDevMode(false);
     }
   }, [isLovableEnvironment, isDevMode]);

@@ -20,7 +20,10 @@ const EditableText: React.FC<EditableTextProps> = ({
 }) => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
-  const { saveChange, getChanges } = useDevModeDatabase(projectId || '');
+  
+  // Add safety check for projectId
+  const safeProjectId = projectId || '';
+  const { saveChange, getChanges } = useDevModeDatabase(safeProjectId);
   
   const [text, setText] = useState(initialText);
   const [isEditing, setIsEditing] = useState(false);
@@ -31,9 +34,16 @@ const EditableText: React.FC<EditableTextProps> = ({
   const mountedRef = useRef(true);
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  console.log('EditableText: Rendering with', { 
+    isDevMode, 
+    projectId: safeProjectId, 
+    textKey, 
+    hasTextKey: !!textKey 
+  });
+
   // Stable callback for loading saved text
   const loadSavedText = useCallback(async () => {
-    if (!textKey || !projectId || !mountedRef.current) {
+    if (!textKey || !safeProjectId || !mountedRef.current) {
       setText(initialText);
       setIsLoading(false);
       return;
@@ -46,9 +56,10 @@ const EditableText: React.FC<EditableTextProps> = ({
       
       if (mountedRef.current) {
         setText(savedText);
+        console.log('EditableText: Loaded saved text for', textKey, ':', savedText.substring(0, 50) + '...');
       }
     } catch (error) {
-      console.error('Error loading text:', error);
+      console.error('EditableText: Error loading text:', error);
       if (mountedRef.current) {
         setText(initialText);
       }
@@ -57,7 +68,7 @@ const EditableText: React.FC<EditableTextProps> = ({
         setIsLoading(false);
       }
     }
-  }, [textKey, projectId, initialText, getChanges]);
+  }, [textKey, safeProjectId, initialText, getChanges]);
 
   // Load saved text with debouncing
   useEffect(() => {
@@ -84,17 +95,27 @@ const EditableText: React.FC<EditableTextProps> = ({
   }, []);
 
   const handleClick = useCallback(() => {
+    console.log('EditableText: Click detected', { 
+      isDevMode, 
+      isLoading, 
+      isSaving: savingRef.current, 
+      textKey,
+      canEdit: isDevMode && !isLoading && !savingRef.current && textKey 
+    });
+    
     if (isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current) {
+      console.log('EditableText: Starting edit mode for', textKey);
       setIsEditing(true);
     }
   }, [isDevMode, isLoading, textKey]);
 
   const handleSave = useCallback(async () => {
-    if (!textKey || !projectId || savingRef.current || !mountedRef.current) {
+    if (!textKey || !safeProjectId || savingRef.current || !mountedRef.current) {
       setIsEditing(false);
       return;
     }
 
+    console.log('EditableText: Saving text for', textKey, ':', text.substring(0, 50) + '...');
     setIsSaving(true);
     savingRef.current = true;
     
@@ -111,7 +132,7 @@ const EditableText: React.FC<EditableTextProps> = ({
           if (mountedRef.current) {
             window.dispatchEvent(new CustomEvent('projectDataUpdated', {
               detail: { 
-                projectId, 
+                projectId: safeProjectId, 
                 textChanged: true, 
                 immediate: true,
                 timestamp: Date.now()
@@ -125,7 +146,7 @@ const EditableText: React.FC<EditableTextProps> = ({
         }
       }
     } catch (error) {
-      console.error('Error saving text:', error);
+      console.error('EditableText: Error saving text:', error);
       if (mountedRef.current) {
         toast.error('Error saving text');
       }
@@ -136,7 +157,7 @@ const EditableText: React.FC<EditableTextProps> = ({
         setIsEditing(false);
       }
     }
-  }, [textKey, projectId, text, saveChange]);
+  }, [textKey, safeProjectId, text, saveChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !multiline) {
@@ -145,7 +166,7 @@ const EditableText: React.FC<EditableTextProps> = ({
     } else if (e.key === 'Escape') {
       setIsEditing(false);
       // Reset to saved value
-      if (textKey && projectId && mountedRef.current) {
+      if (textKey && safeProjectId && mountedRef.current) {
         getChanges().then(changes => {
           if (mountedRef.current) {
             setText(changes.textContent[textKey] || initialText);
@@ -159,7 +180,7 @@ const EditableText: React.FC<EditableTextProps> = ({
         setText(initialText);
       }
     }
-  }, [handleSave, multiline, textKey, projectId, getChanges, initialText]);
+  }, [handleSave, multiline, textKey, safeProjectId, getChanges, initialText]);
 
   useEffect(() => {
     if (isEditing && inputRef.current && mountedRef.current) {
