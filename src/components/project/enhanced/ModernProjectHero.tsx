@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
@@ -7,7 +8,6 @@ import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "../MaximizableImage";
 import EditableText from "@/components/dev/EditableText";
-import EditImageButton from "@/components/dev/EditImageButton";
 import AddContentButton from "@/components/dev/AddContentButton";
 import DraggableContentBlock, { ContentBlock } from "@/components/dev/DraggableContentBlock";
 import { useDevMode } from "@/context/DevModeContext";
@@ -41,12 +41,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     lastSaved 
   } = useProjectPersistence(currentProjectId);
   
-  // Load saved data and published replacements
-  const [heroImage, setHeroImage] = React.useState(() => {
-    const savedData = getProjectData();
-    return savedData.imageReplacements[project.image] || project.image;
-  });
-  
   const [contentBlocks, setContentBlocks] = React.useState<ContentBlock[]>(() => {
     const savedData = getProjectData();
     return savedData.contentBlocks['hero'] || [];
@@ -73,12 +67,11 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     }
   }, [currentProjectId]);
 
-  // Listen for project data updates to reload published changes
+  // Listen for project data updates to reload content blocks
   React.useEffect(() => {
     const handleProjectDataUpdate = () => {
-      console.log('ModernProjectHero: Project data updated, reloading');
+      console.log('ModernProjectHero: Project data updated, reloading content blocks');
       const savedData = getProjectData();
-      setHeroImage(savedData.imageReplacements[project.image] || project.image);
       setContentBlocks(savedData.contentBlocks['hero'] || []);
     };
 
@@ -87,19 +80,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
     };
-  }, [project.image, getProjectData]);
-
-  const handleImageReplace = (newSrc: string) => {
-    console.log('ModernProjectHero: Replacing image with', newSrc, 'for project', currentProjectId);
-    setHeroImage(newSrc);
-    
-    // Save the replacement persistently
-    saveImageReplacement(project.image, newSrc);
-    
-    if (currentProjectId) {
-      updateImageInProjectData(currentProjectId, project.image, newSrc);
-    }
-  };
+  }, [getProjectData]);
 
   const createNewBlock = (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): ContentBlock => {
     switch (type) {
@@ -324,22 +305,16 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           className="floating-element"
         >
           <div className="glass-card p-4 layered-depth relative group">
-            <EditImageButton
-              src={heroImage}
-              onImageReplace={handleImageReplace}
-              projectId={currentProjectId}
-            />
             <MaximizableImage
-              src={heroImage}
+              src={project.image}
               alt={project.title}
-              caption={imageCaptions[heroImage] || project.title}
-              imageList={[heroImage]}
+              caption={imageCaptions[project.image] || project.title}
+              imageList={[project.image]}
               currentIndex={0}
               priority={true}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-              onImageReplace={handleImageReplace}
               projectId={currentProjectId}
-              hideEditButton={true}
+              hideEditButton={false}
               imageReplacements={publishedReplacements}
             />
           </div>

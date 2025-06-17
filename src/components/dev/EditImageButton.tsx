@@ -38,9 +38,14 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     e.stopPropagation();
     
     if (processingRef.current || !src) {
+      console.log('⚠️ EditImageButton: Click ignored - processing or no src:', {
+        processing: processingRef.current,
+        hasSrc: !!src
+      });
       return;
     }
     
+    console.log('🎯 EditImageButton: Starting image replacement for:', src.substring(0, 50) + '...');
     fileInputRef.current?.click();
   }, [src]);
 
@@ -56,10 +61,11 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
     processingRef.current = true;
     
     try {
-      console.log('🖼️ Starting image upload process:', {
+      console.log('🖼️ EditImageButton: Starting image upload process:', {
         fileName: file.name,
         originalSize: `${(file.size / 1024).toFixed(2)}KB`,
         fileType: file.type,
+        originalSrc: src.substring(0, 50) + '...',
         projectId: currentProjectId
       });
       
@@ -102,29 +108,34 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         throw new Error('Invalid image URL received from storage');
       }
       
-      console.log('💾 Saving image URL reference to database...');
+      console.log('💾 EditImageButton: Saving image URL reference to database...');
       const success = await saveChange('image', src, publicUrl);
       
       if (success) {
-        console.log('✅ Image uploaded and reference saved successfully');
+        console.log('✅ EditImageButton: Image uploaded and reference saved successfully');
         
         // Call callback immediately for instant UI feedback
         if (onImageReplace) {
+          console.log('📞 EditImageButton: Calling onImageReplace callback');
           onImageReplace(publicUrl);
         }
         
-        // Dispatch immediate update event with detailed information
+        // Dispatch immediate update event with comprehensive information
+        const eventDetail = { 
+          projectId: currentProjectId, 
+          imageReplaced: true, 
+          immediate: true,
+          src: src,
+          newSrc: publicUrl,
+          timestamp: Date.now(),
+          changeType: 'image',
+          isValidUrl: validateImageUrl(publicUrl),
+          source: 'EditImageButton'
+        };
+        
+        console.log('📡 EditImageButton: Dispatching projectDataUpdated event:', eventDetail);
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { 
-            projectId: currentProjectId, 
-            imageReplaced: true, 
-            immediate: true,
-            src: src,
-            newSrc: publicUrl,
-            timestamp: Date.now(),
-            changeType: 'image',
-            isValidUrl: validateImageUrl(publicUrl)
-          }
+          detail: eventDetail
         }));
         
         const finalSizeKB = (compressedFile.size / 1024).toFixed(2);
@@ -137,7 +148,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({ src, onImageReplace, 
         throw new Error('Failed to save image reference to database');
       }
     } catch (error) {
-      console.error('❌ Error uploading image:', error);
+      console.error('❌ EditImageButton: Error uploading image:', error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
       
       // Provide specific error guidance

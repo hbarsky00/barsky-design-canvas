@@ -69,7 +69,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     hasError,
     isLoading,
     hasDevModeChanges,
-    hasPublishedReplacement: !!imageReplacements?.[src]
+    hasPublishedReplacement: !!imageReplacements?.[src],
+    hideEditButton
   });
   
   const handleImageClick = () => {
@@ -83,9 +84,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageReplace = (newSrc: string) => {
-    console.log('🔄 Image replace triggered:', {
+    console.log('🔄 MaximizableImage: Image replace triggered:', {
       originalSrc: src.substring(0, 30) + '...',
-      newSrc: newSrc.substring(0, 30) + '...'
+      newSrc: newSrc.substring(0, 30) + '...',
+      projectId: currentProjectId
     });
     
     // Immediately update the displayed image for instant feedback
