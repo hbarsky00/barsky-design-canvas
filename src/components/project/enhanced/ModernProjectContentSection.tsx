@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
@@ -105,9 +106,18 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
 
   const handleSectionImageRemove = (imageSrc: string, index: number) => {
     console.log('🗑️ ModernProjectContentSection: Removing section image:', imageSrc, 'at index:', index);
-    // For now, just show a message that section image removal would need to be implemented
-    // in the parent component that manages the imageConfig
-    toast.error('Section image removal requires updating the project configuration. This feature is not yet fully implemented.');
+    
+    // Replace the removed image with a transparent placeholder to effectively "remove" it
+    const transparentPlaceholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+';
+    
+    // Save the replacement to effectively hide the image
+    saveImageReplacement(imageSrc, transparentPlaceholder);
+    
+    if (projectId) {
+      updateImageInProjectData(projectId, imageSrc, transparentPlaceholder);
+    }
+    
+    toast.success('Image removed successfully');
   };
 
   if (isLoading) {
