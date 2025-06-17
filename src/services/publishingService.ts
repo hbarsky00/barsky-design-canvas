@@ -37,6 +37,7 @@ export class PublishingService {
       // Step 2: Process images - upload new ones and track old ones for cleanup
       const publishedImageMappings: Record<string, string> = {};
       const oldImagesToCleanup: string[] = [];
+      const failedUploads: string[] = [];
       
       for (const [originalSrc, newSrc] of Object.entries(changes.imageReplacements)) {
         try {
@@ -51,7 +52,7 @@ export class PublishingService {
               const response = await fetch(newSrc);
               if (!response.ok) {
                 console.error('Failed to fetch image data for:', originalSrc);
-                publishedImageMappings[originalSrc] = newSrc; // Keep data URL as fallback
+                failedUploads.push(originalSrc);
                 continue;
               }
               
@@ -59,24 +60,36 @@ export class PublishingService {
               const file = new File([blob], 'image.png', { type: blob.type });
               
               const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
-              if (uploadedUrl) {
+              
+              // Only accept valid HTTP(S) URLs
+              if (uploadedUrl && (uploadedUrl.startsWith('https://') || uploadedUrl.startsWith('http://'))) {
                 publishedImageMappings[originalSrc] = uploadedUrl;
                 console.log('📤 Uploaded image:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
               } else {
-                console.error('❌ Failed to upload image for:', originalSrc);
-                publishedImageMappings[originalSrc] = newSrc; // Keep data URL as fallback
+                console.error('❌ Upload failed or returned invalid URL for:', originalSrc);
+                failedUploads.push(originalSrc);
               }
             } catch (uploadError) {
               console.error('❌ Error uploading image:', originalSrc, uploadError);
-              publishedImageMappings[originalSrc] = newSrc; // Keep data URL as fallback
+              failedUploads.push(originalSrc);
             }
-          } else {
+          } else if (newSrc.startsWith('https://') || newSrc.startsWith('http://') || newSrc.startsWith('/')) {
+            // Accept already valid URLs
             publishedImageMappings[originalSrc] = newSrc;
+            console.log('✅ Using existing valid URL:', originalSrc.substring(0, 50) + '...', '->', newSrc);
+          } else {
+            console.warn('⚠️ Skipping invalid image URL:', newSrc);
+            failedUploads.push(originalSrc);
           }
         } catch (error) {
           console.error('❌ Error processing image:', originalSrc, error);
-          publishedImageMappings[originalSrc] = newSrc; // Keep original change as fallback
+          failedUploads.push(originalSrc);
         }
+      }
+
+      // Log any failed uploads
+      if (failedUploads.length > 0) {
+        console.warn('⚠️ Some images failed to upload and will not be published:', failedUploads);
       }
 
       // Step 3: Process content blocks and handle any images in them
@@ -92,18 +105,23 @@ export class PublishingService {
                 const file = new File([blob], 'content-image.png', { type: blob.type });
                 
                 const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, `content-${sectionKey}-${Date.now()}`);
-                if (uploadedUrl) {
+                if (uploadedUrl && (uploadedUrl.startsWith('https://') || uploadedUrl.startsWith('http://'))) {
                   return { ...block, src: uploadedUrl };
+                } else {
+                  console.warn('⚠️ Content block image upload failed, removing from content');
+                  return null;
                 }
               } catch (error) {
                 console.error('❌ Error uploading content block image:', error);
+                return null;
               }
             }
             return block;
           })
         );
         
-        processedContentBlocks[sectionKey] = processedBlocks;
+        // Filter out null blocks (failed uploads)
+        processedContentBlocks[sectionKey] = processedBlocks.filter(block => block !== null);
       }
 
       // Step 4: Store published state in the database
