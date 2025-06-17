@@ -33,7 +33,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
   const { updateImageInProjectData } = useProjectDataUpdater();
-  const { generateCaption } = useAiImageCaptions();
+  const { generateCaption, updateGenericCaptions } = useAiImageCaptions();
   const { 
     saveImageReplacement, 
     saveContentBlocks, 
@@ -67,6 +67,33 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       loadPublishedData();
     }
   }, [currentProjectId]);
+
+  // Auto-update generic captions when content blocks load
+  React.useEffect(() => {
+    const updateBlockCaption = async (index: number, newCaption: string) => {
+      const updatedBlocks = contentBlocks.map((block, i) => 
+        i === index && (block.type === 'image' || block.type === 'video' || block.type === 'pdf')
+          ? { ...block, caption: newCaption }
+          : block
+      );
+      setContentBlocks(updatedBlocks);
+      await saveContentBlocks('hero', updatedBlocks);
+    };
+
+    const hasGenericCaptions = contentBlocks.some(block => 
+      (block.type === 'image' || block.type === 'video' || block.type === 'pdf') && 
+      block.src &&
+      (block.caption === 'A newly added image.' || 
+       block.caption === 'This is a new image. Click to edit me.' ||
+       !block.caption || 
+       block.caption.includes('newly added'))
+    );
+
+    if (hasGenericCaptions && contentBlocks.length > 0) {
+      console.log('🚀 Auto-updating generic captions in hero section...');
+      updateGenericCaptions(contentBlocks, updateBlockCaption);
+    }
+  }, [contentBlocks.length]);
 
   // Listen for project data updates to reload content blocks
   React.useEffect(() => {

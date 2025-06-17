@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
 import { useAiImageCaptions } from '@/hooks/useAiImageCaptions';
@@ -14,7 +15,35 @@ export const useContentBlockActions = (
   setContentBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>,
   saveContentBlocks: (blocks: ContentBlock[]) => Promise<void>
 ) => {
-  const { generateCaption, isGenerating } = useAiImageCaptions();
+  const { generateCaption, updateGenericCaptions, isGenerating } = useAiImageCaptions();
+
+  // Function to update a caption for a specific block
+  const updateBlockCaption = async (index: number, newCaption: string) => {
+    const updatedBlocks = contentBlocks.map((block, i) => 
+      i === index && (block.type === 'image' || block.type === 'video' || block.type === 'pdf')
+        ? { ...block, caption: newCaption }
+        : block
+    );
+    setContentBlocks(updatedBlocks);
+    await saveContentBlocks(updatedBlocks);
+  };
+
+  // Auto-update generic captions on component mount or when blocks change
+  React.useEffect(() => {
+    const hasGenericCaptions = contentBlocks.some(block => 
+      (block.type === 'image' || block.type === 'video' || block.type === 'pdf') && 
+      block.src &&
+      (block.caption === 'A newly added image.' || 
+       block.caption === 'This is a new image. Click to edit me.' ||
+       !block.caption || 
+       block.caption.includes('newly added'))
+    );
+
+    if (hasGenericCaptions && !isGenerating) {
+      console.log('🚀 Auto-updating generic captions...');
+      updateGenericCaptions(contentBlocks, updateBlockCaption);
+    }
+  }, [contentBlocks.length]); // Only run when blocks are added/removed
 
   const createNewBlock = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): Promise<ContentBlock> => {
     console.log('🆕 ContentBlockActions: Creating new block of type:', type);
@@ -125,6 +154,7 @@ export const useContentBlockActions = (
     handleUpdateContent,
     handleDeleteContent,
     handleContentImageReplace,
+    updateGenericCaptions: () => updateGenericCaptions(contentBlocks, updateBlockCaption),
     isGeneratingCaption: isGenerating
   };
 };

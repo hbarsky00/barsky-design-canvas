@@ -42,8 +42,37 @@ export const useAiImageCaptions = () => {
     }
   };
 
+  const updateGenericCaptions = async (contentBlocks: any[], updateCallback: (index: number, newCaption: string) => void) => {
+    console.log('🔍 Checking for generic captions to update...');
+    
+    for (let i = 0; i < contentBlocks.length; i++) {
+      const block = contentBlocks[i];
+      
+      // Check if this block has a generic caption that needs updating
+      if (block.type === 'image' && block.src && 
+          (block.caption === 'A newly added image.' || 
+           block.caption === 'This is a new image. Click to edit me.' ||
+           !block.caption || 
+           block.caption.includes('newly added'))) {
+        
+        console.log(`🖼️ Updating generic caption for image block ${i}:`, block.src);
+        
+        try {
+          const aiCaption = await generateCaption(block.src);
+          updateCallback(i, aiCaption.caption);
+          
+          // Add a small delay to avoid overwhelming the API
+          await new Promise(resolve => setTimeout(resolve, 500));
+        } catch (error) {
+          console.error(`❌ Failed to update caption for block ${i}:`, error);
+        }
+      }
+    }
+  };
+
   return {
     generateCaption,
+    updateGenericCaptions,
     isGenerating
   };
 };
