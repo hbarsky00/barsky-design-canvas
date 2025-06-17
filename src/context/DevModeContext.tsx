@@ -5,6 +5,7 @@ interface DevModeContextType {
   isDevMode: boolean;
   toggleDevMode: () => void;
   isLovableEnvironment: boolean;
+  useExternalDeployment: boolean;
 }
 
 const DevModeContext = createContext<DevModeContextType | undefined>(undefined);
@@ -16,6 +17,9 @@ export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ child
                                window.location.hostname.includes('127.0.0.1') ||
                                window.location.port === '5173' || // Vite dev server
                                !window.location.hostname.includes('barskydesign.pro'); // Not the published domain
+
+  // Since user has GitHub → Vercel setup, we'll use external deployment
+  const useExternalDeployment = true;
 
   const [isDevMode, setIsDevMode] = useState(() => {
     // Only allow dev mode in Lovable environment
@@ -58,7 +62,7 @@ export const DevModeProvider: React.FC<{ children: React.ReactNode }> = ({ child
   }, [isLovableEnvironment, isDevMode]);
 
   return (
-    <DevModeContext.Provider value={{ isDevMode, toggleDevMode, isLovableEnvironment }}>
+    <DevModeContext.Provider value={{ isDevMode, toggleDevMode, isLovableEnvironment, useExternalDeployment }}>
       {children}
     </DevModeContext.Provider>
   );

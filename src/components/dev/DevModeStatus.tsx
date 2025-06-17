@@ -3,13 +3,11 @@ import React from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useParams } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
-import { Edit, CheckCircle } from 'lucide-react';
-import { useDevModeSync } from '@/hooks/useDevModeSync';
+import { GitBranch, CheckCircle } from 'lucide-react';
 
 const DevModeStatus: React.FC = () => {
-  const { isDevMode, isLovableEnvironment } = useDevMode();
+  const { isDevMode, isLovableEnvironment, useExternalDeployment } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
-  const { hasChangesToSync } = useDevModeSync(projectId || '');
 
   // Don't render anything if not in Lovable environment or dev mode is off
   if (!isLovableEnvironment || !isDevMode || !projectId) {
@@ -19,13 +17,13 @@ const DevModeStatus: React.FC = () => {
   return (
     <div className="fixed top-4 right-4 z-50">
       <Badge 
-        variant={hasChangesToSync ? "destructive" : "secondary"}
+        variant="secondary"
         className="shadow-lg backdrop-blur-sm"
       >
-        {hasChangesToSync ? (
+        {useExternalDeployment ? (
           <>
-            <Edit className="h-3 w-3 mr-1" />
-            Unsaved Changes
+            <GitBranch className="h-3 w-3 mr-1" />
+            Auto-sync to GitHub
           </>
         ) : (
           <>
