@@ -30,6 +30,8 @@ serve(async (req) => {
       ? imageSrc 
       : `${req.headers.get('origin') || 'https://your-domain.lovable.app'}${imageSrc}`;
 
+    console.log('🤖 Generating AI caption for image:', fullImageUrl);
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -41,14 +43,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You are an expert at describing user interface designs and digital project images. Create professional, descriptive captions for portfolio images that highlight design elements, user experience, functionality, and technical aspects. Keep captions concise but informative, around 10-20 words, focusing on what makes the design notable.'
+            content: 'You are an expert at describing user interface designs and digital project images. Create professional, descriptive captions for portfolio images that highlight design elements, user experience, functionality, and technical aspects. Keep captions concise but informative, around 15-25 words, focusing on what makes the design notable and the specific features or workflows shown.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Please provide a professional caption for this portfolio image, describing the key design elements, functionality, or user experience aspects shown.'
+                text: 'Please provide a professional, detailed caption for this portfolio image, describing the key design elements, functionality, user interface components, or user experience aspects shown in the image.'
               },
               {
                 type: 'image_url',
@@ -59,13 +61,14 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 100,
+        max_tokens: 150,
         temperature: 0.7
       }),
     });
 
     if (!response.ok) {
       const errorData = await response.text();
+      console.error('❌ OpenAI API error:', response.status, errorData);
       throw new Error(`OpenAI API error: ${response.status} - ${errorData}`);
     }
 
@@ -73,11 +76,13 @@ serve(async (req) => {
     const caption = data.choices[0]?.message?.content?.trim() || 
                    'Professional design showcase demonstrating innovative solutions and user-centered approach';
 
+    console.log('✅ AI caption generated successfully:', caption);
+
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Error in generate-image-caption function:', error);
+    console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
       caption: 'Professional design showcase demonstrating innovative solutions and user-centered approach'
