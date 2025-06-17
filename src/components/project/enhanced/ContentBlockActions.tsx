@@ -21,13 +21,13 @@ export const useContentBlockActions = (
       case 'text':
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
       case 'image':
-        return { type: 'image', caption: 'A newly added image.' };
+        return { type: 'image', caption: 'Professional interface design showcasing modern UI elements and user experience principles' };
       case 'header':
         return { type: 'header', value: 'New Header', level: 2 };
       case 'video':
-        return { type: 'video', caption: 'A newly added video.' };
+        return { type: 'video', caption: 'Interactive demonstration video highlighting key features and user workflow processes' };
       case 'pdf':
-        return { type: 'pdf', caption: 'A newly added PDF document.' };
+        return { type: 'pdf', caption: 'Comprehensive documentation outlining project specifications and technical requirements' };
       default:
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
     }

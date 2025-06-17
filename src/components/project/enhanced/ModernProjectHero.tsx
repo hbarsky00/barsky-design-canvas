@@ -87,13 +87,13 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       case 'text':
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
       case 'image':
-        return { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added image.' };
+        return { type: 'image', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'Professional project showcase demonstrating innovative design solutions and user-centered approach' };
       case 'header':
         return { type: 'header', value: 'New Header', level: 2 };
       case 'video':
-        return { type: 'video', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added video.' };
+        return { type: 'video', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'Interactive demonstration showcasing key features and user experience workflow' };
       case 'pdf':
-        return { type: 'pdf', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'A newly added PDF document.' };
+        return { type: 'pdf', src: '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png', caption: 'Comprehensive project documentation and technical specifications' };
       default:
         return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
     }
