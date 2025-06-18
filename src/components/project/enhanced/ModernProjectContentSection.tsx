@@ -1,11 +1,10 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Columns2 } from "lucide-react";
-import EditableText from "@/components/dev/EditableText";
-import AddContentButton from "@/components/dev/AddContentButton";
-import DraggableContentBlock from "@/components/dev/DraggableContentBlock";
 import SectionImages from "./SectionImages";
+import SectionContent from "./SectionContent";
+import ContentBlocksRenderer from "./ContentBlocksRenderer";
+import LayoutControls from "./LayoutControls";
 import { useDevMode } from "@/context/DevModeContext";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
@@ -147,131 +146,38 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       transition={{ duration: 0.8 }}
       className="glass-card-elevated mobile-optimized-padding layered-depth relative group"
     >
-      {isDevMode && (
-        <div className="flex items-center gap-2 mb-4">
-          <AddContentButton onAdd={handleAddContent} />
-          <button
-            onClick={() => setIsColumnLayout(!isColumnLayout)}
-            className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md transition-colors ${
-              isColumnLayout 
-                ? 'bg-blue-100 text-blue-700 hover:bg-blue-200' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-            title={isColumnLayout ? 'Switch to 1 column' : 'Switch to 2 columns'}
-          >
-            <Columns2 className="h-4 w-4" />
-            {isColumnLayout ? '2 Columns' : '1 Column'}
-          </button>
-        </div>
-      )}
+      <LayoutControls
+        isColumnLayout={isColumnLayout}
+        setIsColumnLayout={setIsColumnLayout}
+        onAddContent={handleAddContent}
+      />
       
       <div className="mobile-section-spacing">
-        {/* Section Title */}
-        <EditableText 
-          initialText={title}
-          textKey={`${sectionKey}_title_${projectId}`}
-        >
-          {(text) => (
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center">
-              {text}
-            </h2>
-          )}
-        </EditableText>
-        
-        {/* Section Content */}
-        <EditableText 
-          initialText={content} 
-          multiline
-          textKey={`${sectionKey}_content_${projectId}`}
-        >
-          {(text) => (
-            <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-              {text.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-3 sm:mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
-        </EditableText>
+        <SectionContent
+          title={title}
+          content={content}
+          sectionKey={sectionKey}
+          projectId={projectId}
+        />
 
         {/* Dynamic Additional Content Blocks */}
-        {contentBlocks.length > 0 && (
-          <div className="space-y-3 sm:space-y-4">
-            <div className="space-y-1">
-              <EditableText 
-                initialText={contentHeader}
-                textKey={`${sectionKey}_content_header_${projectId}`}
-              >
-                {(text) => (
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-800">
-                    {text}
-                  </h3>
-                )}
-              </EditableText>
-              
-              {contentBreakdown && (
-                <p className="text-sm text-gray-500">
-                  {contentBreakdown}
-                </p>
-              )}
-            </div>
-            
-            <div className={`${
-              isColumnLayout 
-                ? 'grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6' 
-                : 'space-y-3 sm:space-y-4'
-            }`}>
-              {contentBlocks.map((block, index) => {
-                // Generate a unique key for each content block
-                const blockKey = `${sectionKey}-${block.type}-${index}-${block.src || block.embedUrl || block.value?.substring(0, 10) || 'no-content'}`;
-                
-                return (
-                  <div key={blockKey} className="border-l-4 border-blue-200 pl-3 sm:pl-4">
-                    {block.type === 'text' || block.type === 'header' ? (
-                      <EditableText
-                        initialText={block.value || ''}
-                        multiline={block.type === 'text'}
-                        textKey={`${sectionKey}_content_block_${index}_${projectId}`}
-                      >
-                        {(text) => (
-                          block.type === 'header' ? (
-                            <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                              {text}
-                            </h3>
-                          ) : (
-                            <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-                              {text.split('\n\n').map((paragraph, pIndex) => (
-                                <p key={pIndex} className="mb-3 sm:mb-4">
-                                  {paragraph}
-                                </p>
-                              ))}
-                            </div>
-                          )
-                        )}
-                      </EditableText>
-                    ) : (
-                      <DraggableContentBlock
-                        block={block}
-                        index={index}
-                        onUpdate={handleContentTextUpdate}
-                        onDelete={handleDeleteContent}
-                        onImageReplace={wrappedHandleContentImageReplace}
-                        onVideoUrlUpdate={handleVideoUrlUpdate}
-                        onDragStart={handleDragStart}
-                        onDragOver={handleDragOver}
-                        onDrop={handleDrop}
-                        isDragging={draggedImageIndex === index}
-                        projectId={projectId}
-                        onAddContent={handleAddContent}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        <ContentBlocksRenderer
+          contentBlocks={contentBlocks}
+          sectionKey={sectionKey}
+          projectId={projectId}
+          isColumnLayout={isColumnLayout}
+          contentHeader={contentHeader}
+          contentBreakdown={contentBreakdown}
+          onContentTextUpdate={handleContentTextUpdate}
+          onDeleteContent={handleDeleteContent}
+          onContentImageReplace={wrappedHandleContentImageReplace}
+          onVideoUrlUpdate={handleVideoUrlUpdate}
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+          onAddContent={handleAddContent}
+          draggedImageIndex={draggedImageIndex}
+        />
 
         {/* Section Images */}
         <SectionImages
