@@ -31,9 +31,9 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="space-y-1 sm:space-y-2 px-4 text-center"
       >
-        <h2 className="text-base sm:text-lg md:text-xl text-gray-600 text-center">
+        <h1 className="text-base sm:text-lg md:text-xl text-gray-600 text-center">
           Creating User-Centered Digital Experiences
-        </h2>
+        </h1>
       </motion.div>
     </div>
   );
