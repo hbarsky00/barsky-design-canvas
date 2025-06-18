@@ -24,15 +24,18 @@ const Header: React.FC = () => {
   // Check if we're on the homepage
   const isHomepage = window.location.pathname === '/';
 
+  // Don't show header at all until scrolled on homepage
+  if (isHomepage && !isScrolled) {
+    return null;
+  }
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-white shadow-md py-3 dark:bg-gray-900"
-          : "bg-transparent",
-        // Remove top padding when not scrolled on homepage
-        !isScrolled && isHomepage ? "py-0" : isScrolled ? "py-3" : "py-4"
+          : "bg-transparent py-4"
       )}
     >
       <div className={cn(
@@ -54,12 +57,13 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            {/* Show full navigation when scrolled past hero */}
+            {/* Show full navigation only when scrolled past hero AND we're not showing mobile menu */}
             {isScrolledPastHero && (
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
+                className="hidden md:block"
               >
                 <Navigation 
                   links={navLinks}
@@ -73,14 +77,22 @@ const Header: React.FC = () => {
             {/* Show theme toggle on homepage when not scrolled */}
             {isHomepage && !isScrolledPastHero && <ThemeToggle />}
             {!isScrolledPastHero && !isHomepage && <ThemeToggle />}
+            {isScrolledPastHero && (
+              <div className="hidden md:block">
+                <ThemeToggle />
+              </div>
+            )}
             
-            <MobileMenu 
-              links={navLinks}
-              isMobileMenuOpen={isMobileMenuOpen}
-              toggleMobileMenu={toggleMobileMenu}
-              handleLinkClick={handleLinkClick}
-              isLinkActive={isLinkActive}
-            />
+            {/* Mobile menu - only show when scrolled */}
+            {isScrolled && (
+              <MobileMenu 
+                links={navLinks}
+                isMobileMenuOpen={isMobileMenuOpen}
+                toggleMobileMenu={toggleMobileMenu}
+                handleLinkClick={handleLinkClick}
+                isLinkActive={isLinkActive}
+              />
+            )}
           </div>
         </div>
       </div>
