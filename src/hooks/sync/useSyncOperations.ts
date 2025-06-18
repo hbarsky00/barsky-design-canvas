@@ -57,7 +57,7 @@ export const useSyncOperations = (
     }, config.STUCK_TIMEOUT);
   }, [handleStuckDetection, config.STUCK_TIMEOUT, stuckTimeoutRef]);
 
-  // SIMPLIFIED: Process changes without aggressive clearing
+  // FIXED: Process changes and save them to database immediately
   const processQueuedChanges = useCallback(async (
     getBatch: (size: number) => ChangeQueue[],
     getQueueSize: () => number,
@@ -89,14 +89,17 @@ export const useSyncOperations = (
         pendingChanges: getQueueSize()
       });
 
-      // Process changes individually
+      // Process changes individually and save to database
       const results = await Promise.allSettled(
-        batch.map(change => saveChange(change.type, change.key, change.value))
+        batch.map(change => {
+          debugCache.log('💾 Processing queued change:', { type: change.type, key: change.key });
+          return saveChange(change.type, change.key, change.value);
+        })
       );
 
       const successCount = results.filter(r => r.status === 'fulfilled').length;
       
-      debugCache.log(`✅ Batch processed`, { successCount, total: batch.length });
+      debugCache.log(`✅ Batch processed and saved to database`, { successCount, total: batch.length });
 
       // Continue if more changes exist
       const remainingChanges = getQueueSize();
@@ -131,7 +134,7 @@ export const useSyncOperations = (
     }
   }, [projectId, saveChange, startStuckDetection, config.BATCH_SIZE, isProcessingRef, mountedRef]);
 
-  // SIMPLIFIED: Manual sync with better error handling
+  // FIXED: Manual sync now checks both queue and database
   const triggerManualSync = useCallback(async (
     getQueueSize: () => number,
     processQueuedChanges: any,
@@ -145,8 +148,9 @@ export const useSyncOperations = (
       return;
     }
     
+    const queueSize = getQueueSize();
     debugCache.log('🖱️ Manual sync triggered', { 
-      queueSize: getQueueSize(),
+      queueSize,
       isStuck: syncState.isStuck 
     });
     
@@ -166,26 +170,40 @@ export const useSyncOperations = (
       updateSyncState({ isSyncing: true });
       startStuckDetection();
 
-      // Process queued changes first
-      const initialQueueSize = getQueueSize();
-      if (initialQueueSize > 0) {
-        debugCache.log('📤 Processing queued changes', { count: initialQueueSize });
+      // First, process any queued changes
+      if (queueSize > 0) {
+        debugCache.log('📤 Processing queued changes first', { count: queueSize });
+        toast.info(`Processing ${queueSize} queued changes...`);
         await processQueuedChanges();
+        
+        // Wait a moment for database to update
+        await new Promise(resolve => setTimeout(resolve, 500));
       }
 
-      // Check for database changes
+      // Now check for database changes (including the ones we just saved)
       const hasDbChanges = await hasChanges();
       
       if (!hasDbChanges) {
-        toast.info('No changes to sync to live');
-        return;
+        // Check if there are still queued changes after processing
+        const remainingQueue = getQueueSize();
+        if (remainingQueue === 0) {
+          toast.info('No changes to sync to live');
+          return;
+        } else {
+          debugCache.log('⏳ Still processing changes, will check again');
+          toast.info('Still processing changes, please wait...');
+          return;
+        }
       }
 
       // Publish to live
       debugCache.log('📤 Publishing to live mode');
+      toast.loading('Publishing to live...', { id: 'publish-sync' });
+      
       await PublishingService.publishProject(projectId);
       
       toast.success('Successfully synced to live!', {
+        id: 'publish-sync',
         description: 'All your changes are now live',
         duration: 3000
       });
@@ -194,6 +212,7 @@ export const useSyncOperations = (
       debugCache.log('❌ Manual sync failed', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       toast.error('Failed to sync to live', {
+        id: 'publish-sync',
         description: errorMessage
       });
     } finally {

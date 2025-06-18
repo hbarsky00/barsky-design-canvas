@@ -52,12 +52,13 @@ const OptimizedDevModeSyncButton: React.FC = () => {
       };
     }
 
-    if (syncState.hasQueuedChanges) {
+    // Show as ready to sync if there are queued changes OR if we haven't checked recently
+    if (syncState.hasQueuedChanges || syncState.pendingChanges > 0) {
       return {
         variant: 'default' as const,
         className: 'bg-orange-600 hover:bg-orange-700 text-white animate-pulse',
         icon: <Clock className="h-4 w-4 mr-2" />,
-        text: `${syncState.pendingChanges} Changes Queued`,
+        text: `${syncState.pendingChanges} Changes Ready`,
         onClick: triggerManualSync
       };
     }
@@ -77,7 +78,7 @@ const OptimizedDevModeSyncButton: React.FC = () => {
     <div className="fixed bottom-4 right-4 z-50">
       <div className="flex flex-col items-end space-y-2">
         {/* Status indicator */}
-        {(syncState.hasQueuedChanges || syncState.isSyncing || syncState.isStuck) && (
+        {(syncState.hasQueuedChanges || syncState.pendingChanges > 0 || syncState.isSyncing || syncState.isStuck) && (
           <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border text-sm">
             <div className="flex items-center space-x-2 text-gray-700">
               {syncState.isStuck ? (
