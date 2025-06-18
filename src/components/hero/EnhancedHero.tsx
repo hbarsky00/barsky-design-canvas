@@ -21,18 +21,18 @@ const EnhancedHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center overflow-hidden pt-16 sm:pt-20">
+    <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center overflow-hidden pt-20 sm:pt-24">
       <HeroBackground />
       
       <div className="relative w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 z-10">
         <div className="w-full text-center">
           
-          {/* Glass Container */}
+          {/* Glass Container with better positioning */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="glass-card-elevated p-6 sm:p-8 lg:p-10 space-y-6 sm:space-y-8 layered-depth max-w-6xl mx-auto"
+            className="glass-card-elevated p-6 sm:p-8 lg:p-10 space-y-6 sm:space-y-8 layered-depth max-w-5xl mx-auto"
           >
             <HeroStatusBadge isVisible={isVisible} />
             <HeroHeading isVisible={isVisible} />

@@ -20,16 +20,25 @@ const Header: React.FC = () => {
     isScrolledPastHero
   } = useHeaderNavigation();
 
+  // Check if we're on the homepage
+  const isHomepage = window.location.pathname === '/';
+
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-white shadow-md py-3 dark:bg-gray-900"
-          : "bg-transparent"
+          : "bg-transparent py-4",
+        // On homepage, add some padding when not scrolled to move menu closer to content
+        isHomepage && !isScrolled ? "pt-8" : ""
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={cn(
+        "mx-auto px-4 sm:px-6 lg:px-8",
+        // On homepage, use smaller max-width to bring menu closer to content
+        isHomepage && !isScrolled ? "max-w-5xl" : "max-w-7xl"
+      )}>
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
             {isScrolledPastHero && (
@@ -45,8 +54,11 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
-            {!isScrolledPastHero && <ThemeToggle />}
+          <div className="flex items-center space-x-4">
+            {/* Show theme toggle on homepage when not scrolled */}
+            {isHomepage && !isScrolledPastHero && <ThemeToggle />}
+            {!isScrolledPastHero && !isHomepage && <ThemeToggle />}
+            
             <MobileMenu 
               links={navLinks}
               isMobileMenuOpen={isMobileMenuOpen}

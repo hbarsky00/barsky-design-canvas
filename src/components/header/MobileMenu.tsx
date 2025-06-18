@@ -23,21 +23,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
       case "home":
-        return <Home className="h-5 w-5 mr-2" />;
+        return <Home className="h-5 w-5 mr-3" />;
       case "projects":
-        return <Briefcase className="h-5 w-5 mr-2" />;
+        return <Briefcase className="h-5 w-5 mr-3" />;
       case "about":
-        return <User className="h-5 w-5 mr-2" />;
+        return <User className="h-5 w-5 mr-3" />;
       case "services":
-        return <Briefcase className="h-5 w-5 mr-2" />;
+        return <Briefcase className="h-5 w-5 mr-3" />;
       case "store":
-        return <Store className="h-5 w-5 mr-2" />;
+        return <Store className="h-5 w-5 mr-3" />;
       case "blog":
-        return <BookOpen className="h-5 w-5 mr-2" />;
+        return <BookOpen className="h-5 w-5 mr-3" />;
       case "resume":
-        return <FileText className="h-5 w-5 mr-2" />;
+        return <FileText className="h-5 w-5 mr-3" />;
       case "contact":
-        return <Mail className="h-5 w-5 mr-2" />;
+        return <Mail className="h-5 w-5 mr-3" />;
       default:
         return null;
     }
@@ -46,16 +46,20 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div>
       <button 
-        className="text-barsky-dark dark:text-white" 
+        className={cn(
+          "p-2 rounded-lg transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800",
+          "text-barsky-dark dark:text-white border border-gray-200 dark:border-gray-700",
+          "shadow-sm hover:shadow-md"
+        )}
         onClick={toggleMobileMenu}
         aria-label="Toggle menu"
       >
-        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
       </button>
 
       {isMobileMenuOpen && (
-        <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800 shadow-md z-50">
-          <nav className="flex flex-col space-y-4">
+        <div className="absolute left-0 right-0 top-full bg-white/95 backdrop-blur-md dark:bg-gray-900/95 w-full py-6 px-4 sm:px-6 border-t dark:border-gray-800 shadow-lg z-50">
+          <nav className="flex flex-col space-y-4 max-w-5xl mx-auto">
             {links.map((link) => {
               // For external links, use a regular anchor tag
               if (link.href.startsWith('http')) {
@@ -66,7 +70,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={toggleMobileMenu}
-                    className="nav-link text-lg flex items-center"
+                    className="nav-link text-lg flex items-center py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                   >
                     {getIcon(link.name)}
                     {link.name}
@@ -85,8 +89,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     toggleMobileMenu(); // Close menu when clicking a link
                   }}
                   className={cn(
-                    "nav-link text-lg flex items-center",
-                    isLinkActive(link.href) && "active"
+                    "nav-link text-lg flex items-center py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
+                    isLinkActive(link.href) && "active bg-blue-50 dark:bg-blue-900/20"
                   )}
                 >
                   {getIcon(link.name)}
