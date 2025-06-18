@@ -1,8 +1,8 @@
-
 import React, { useEffect, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
+import { useOptimizedSync } from '@/hooks/useOptimizedSync';
 import { useEditableTextState, useEditableTextLoad, useEditableTextSave } from './EditableTextHooks';
 import EditableTextInput from './EditableTextInput';
 import EditableTextDisplay from './EditableTextDisplay';
@@ -30,6 +30,7 @@ const EditableText: React.FC<EditableTextProps> = ({
   const { projectId } = useParams<{ projectId: string }>();
   
   const safeProjectId = projectId || '';
+  const { queueChange } = useOptimizedSync(safeProjectId);
   
   const {
     text,
@@ -57,6 +58,57 @@ const EditableText: React.FC<EditableTextProps> = ({
     };
   }, [textKey, mountedRef]);
 
+  // Load saved text
+  useEditableTextLoad(
+    textKey,
+    safeProjectId,
+    initialText,
+    setText,
+    setIsLoading,
+    mountedRef,
+    loadTimeoutRef,
+    lastLoadedTextRef
+  );
+
+  // Optimized save functionality with queuing
+  const handleSave = useCallback(async () => {
+    if (!textKey || !safeProjectId || savingRef.current || !mountedRef.current) {
+      setIsEditing(false);
+      return;
+    }
+
+    console.log('💾 EditableText: Queuing text change for optimized sync:', textKey);
+    setIsSaving(true);
+    savingRef.current = true;
+    
+    try {
+      // Queue the change for optimized processing
+      queueChange('text', textKey, text);
+      
+      // Update our cached state immediately for UI responsiveness
+      lastLoadedTextRef.current = text;
+      
+      toast.success('Text queued for sync!', { 
+        description: 'Changes will be synced automatically',
+        duration: 2000 
+      });
+      
+      console.log('✅ EditableText: Text change queued successfully for', textKey);
+      
+    } catch (error) {
+      console.error('❌ EditableText: Error queuing text change:', error);
+      if (mountedRef.current) {
+        toast.error('Failed to queue text change');
+      }
+    } finally {
+      savingRef.current = false;
+      if (mountedRef.current) {
+        setIsSaving(false);
+        setIsEditing(false);
+      }
+    }
+  }, [textKey, safeProjectId, text, queueChange, setIsSaving, setIsEditing, savingRef, mountedRef, lastLoadedTextRef]);
+
   // COMPREHENSIVE DEBUGGING
   console.log('🔍 EditableText DEBUG:', { 
     isDevMode, 
@@ -72,30 +124,6 @@ const EditableText: React.FC<EditableTextProps> = ({
     canEdit: isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current,
     mounted: mountedRef.current
   });
-
-  // Load saved text
-  useEditableTextLoad(
-    textKey,
-    safeProjectId,
-    initialText,
-    setText,
-    setIsLoading,
-    mountedRef,
-    loadTimeoutRef,
-    lastLoadedTextRef
-  );
-
-  // Save functionality
-  const { handleSave } = useEditableTextSave(
-    textKey,
-    safeProjectId,
-    text,
-    setIsSaving,
-    setIsEditing,
-    savingRef,
-    mountedRef,
-    lastLoadedTextRef
-  );
 
   const handleClick = useCallback(() => {
     const canEdit = isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current;
