@@ -1,24 +1,53 @@
 
 import React from 'react';
 import { useDevMode } from '@/context/DevModeContext';
+import { useDevModeSync } from '@/hooks/useDevModeSync';
+import { useParams } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Upload, Loader2 } from 'lucide-react';
 
 const DevModeSyncButton: React.FC = () => {
-  const { isDevMode, isLovableEnvironment, useExternalDeployment } = useDevMode();
+  const { isDevMode, isLovableEnvironment } = useDevMode();
+  const { projectId } = useParams<{ projectId: string }>();
+  const { syncChangesToFiles, isSyncing, hasChangesToSync } = useDevModeSync(projectId || '');
 
-  // Don't render the button if using external deployment (GitHub → Vercel)
-  if (!isLovableEnvironment || useExternalDeployment) {
-    console.log('❌ DevModeSyncButton: Hidden - using external deployment workflow');
+  // Only show if we're in dev mode and have a project ID
+  if (!isDevMode || !projectId) {
     return null;
   }
 
-  // Show the button if we're in dev mode (only for projects not using external deployment)
-  if (!isDevMode) {
-    console.log('❌ DevModeSyncButton: Not showing - not in dev mode');
+  // Don't show if no changes to sync
+  if (!hasChangesToSync && !isSyncing) {
     return null;
   }
 
-  // This component is now effectively disabled for external deployment workflows
-  return null;
+  const handlePublish = async () => {
+    console.log('🚀 DevModeSyncButton: Publishing changes...');
+    await syncChangesToFiles();
+  };
+
+  return (
+    <div className="fixed bottom-4 right-4 z-50">
+      <Button
+        onClick={handlePublish}
+        disabled={isSyncing || !hasChangesToSync}
+        className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+        size="sm"
+      >
+        {isSyncing ? (
+          <>
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            Publishing...
+          </>
+        ) : (
+          <>
+            <Upload className="w-4 h-4 mr-2" />
+            Publish Changes
+          </>
+        )}
+      </Button>
+    </div>
+  );
 };
 
 export default DevModeSyncButton;

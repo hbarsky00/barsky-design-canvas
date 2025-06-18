@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { DevModeProvider } from "@/context/DevModeContext";
 import { ImageReplacementProvider } from "@/context/ImageReplacementContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
+import DevModeSyncButton from "@/components/dev/DevModeSyncButton";
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -23,6 +24,7 @@ const ProjectDetail = () => {
     <DevModeProvider>
       <ImageReplacementProvider projectId={projectId}>
         <SimplifiedProjectDetail />
+        <DevModeSyncButton />
       </ImageReplacementProvider>
     </DevModeProvider>
   );
