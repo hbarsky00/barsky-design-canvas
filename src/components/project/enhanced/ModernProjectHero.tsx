@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
@@ -175,6 +176,24 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     saveContentBlocks('hero', updatedBlocks);
   };
 
+  const handleMoveUp = (index: number) => {
+    if (index > 0) {
+      const newBlocks = [...contentBlocks];
+      [newBlocks[index - 1], newBlocks[index]] = [newBlocks[index], newBlocks[index - 1]];
+      setContentBlocks(newBlocks);
+      saveContentBlocks('hero', newBlocks);
+    }
+  };
+
+  const handleMoveDown = (index: number) => {
+    if (index < contentBlocks.length - 1) {
+      const newBlocks = [...contentBlocks];
+      [newBlocks[index], newBlocks[index + 1]] = [newBlocks[index + 1], newBlocks[index]];
+      setContentBlocks(newBlocks);
+      saveContentBlocks('hero', newBlocks);
+    }
+  };
+
   const handleContentImageReplace = async (index: number, newSrc: string) => {
     console.log('ModernProjectHero: Replacing content image at index', index, 'with', newSrc, 'for project', currentProjectId);
     
@@ -211,35 +230,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     
     // Save content blocks persistently
     saveContentBlocks('hero', updatedBlocks);
-  };
-
-  const handleDragStart = (e: React.DragEvent, index: number) => {
-    e.dataTransfer.setData('text/plain', index.toString());
-    e.dataTransfer.effectAllowed = 'move';
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  };
-
-  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
-    e.preventDefault();
-    const dragIndex = parseInt(e.dataTransfer.getData('text/plain'));
-    
-    if (dragIndex === dropIndex) return;
-
-    const newBlocks = [...contentBlocks];
-    const draggedBlock = newBlocks[dragIndex];
-    
-    newBlocks.splice(dragIndex, 1);
-    const insertIndex = dragIndex < dropIndex ? dropIndex - 1 : dropIndex;
-    newBlocks.splice(insertIndex, 0, draggedBlock);
-    
-    setContentBlocks(newBlocks);
-    
-    // Save reordered content blocks persistently
-    saveContentBlocks('hero', newBlocks);
   };
 
   // Add hero image replacement handler
@@ -334,14 +324,13 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
                   key={`hero-${block.type}-${index}`}
                   block={block}
                   index={index}
+                  totalBlocks={contentBlocks.length}
                   onUpdate={handleUpdateContent}
                   onDelete={handleDeleteContent}
+                  onMoveUp={handleMoveUp}
+                  onMoveDown={handleMoveDown}
                   onImageReplace={handleContentImageReplace}
                   onVideoUrlUpdate={handleVideoUrlUpdate}
-                  onDragStart={handleDragStart}
-                  onDragOver={handleDragOver}
-                  onDrop={handleDrop}
-                  isDragging={false}
                   projectId={currentProjectId}
                 />
               ))}

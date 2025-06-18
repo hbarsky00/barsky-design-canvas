@@ -1,3 +1,4 @@
+
 import React from 'react';
 import EditableText from '@/components/dev/EditableText';
 import DraggableContentBlock from '@/components/dev/DraggableContentBlock';
@@ -14,11 +15,9 @@ interface ContentBlocksRendererProps {
   onDeleteContent: (index: number) => void;
   onContentImageReplace: (index: number, newSrc: string) => Promise<void>;
   onVideoUrlUpdate: (index: number, newUrl: string) => void;
-  onDragStart: (e: React.DragEvent, index: number) => void;
-  onDragOver: (e: React.DragEvent) => void;
-  onDrop: (e: React.DragEvent, dropIndex: number) => void;
+  onMoveUp: (index: number) => void;
+  onMoveDown: (index: number) => void;
   onAddContent: (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => void;
-  draggedImageIndex: number | null;
 }
 
 const ContentBlocksRenderer: React.FC<ContentBlocksRendererProps> = ({
@@ -32,11 +31,9 @@ const ContentBlocksRenderer: React.FC<ContentBlocksRendererProps> = ({
   onDeleteContent,
   onContentImageReplace,
   onVideoUrlUpdate,
-  onDragStart,
-  onDragOver,
-  onDrop,
-  onAddContent,
-  draggedImageIndex
+  onMoveUp,
+  onMoveDown,
+  onAddContent
 }) => {
   if (contentBlocks.length === 0) {
     return null;
@@ -96,14 +93,13 @@ const ContentBlocksRenderer: React.FC<ContentBlocksRendererProps> = ({
                 <DraggableContentBlock
                   block={block}
                   index={index}
+                  totalBlocks={contentBlocks.length}
                   onUpdate={onContentTextUpdate}
                   onDelete={onDeleteContent}
+                  onMoveUp={onMoveUp}
+                  onMoveDown={onMoveDown}
                   onImageReplace={onContentImageReplace}
                   onVideoUrlUpdate={onVideoUrlUpdate}
-                  onDragStart={onDragStart}
-                  onDragOver={onDragOver}
-                  onDrop={onDrop}
-                  isDragging={draggedImageIndex === index}
                   projectId={projectId}
                   onAddContent={onAddContent}
                 />
