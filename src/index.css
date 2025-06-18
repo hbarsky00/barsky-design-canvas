@@ -323,6 +323,34 @@
   .mobile-section-spacing h2 {
     @apply text-center;
   }
+
+  /* Project h3 elements - Center aligned */
+  .prose h3 {
+    @apply text-center;
+  }
+
+  .prose.prose-lg h3 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate h3 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none h3 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none.dark\:prose-invert h3 {
+    @apply text-center;
+  }
+
+  /* General h3 center alignment for project sections */
+  .glass-card-elevated h3,
+  .case-study-section h3,
+  .mobile-section-spacing h3 {
+    @apply text-center;
+  }
 }
 
 /* Typography Scale */
