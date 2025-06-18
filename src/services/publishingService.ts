@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -36,9 +37,12 @@ export class PublishingService {
           contentBlockKeys: Object.keys(changes.contentBlocks).length
         });
 
-        // Step 1: Get current published data for cleanup
+        // Step 1: Get current published data for baseline and cleanup
         const currentPublishedData = await this.loadPublishedData(projectId);
         const oldImageReplacements = currentPublishedData?.image_replacements || {};
+        const currentPublishedText = currentPublishedData?.text_content || {};
+
+        console.log('📄 Current published text content:', Object.keys(currentPublishedText).length, 'entries');
 
         // Step 2: Process images - upload new ones and track old ones for cleanup
         const publishedImageMappings: Record<string, string> = {};
@@ -109,7 +113,20 @@ export class PublishingService {
           console.warn('⚠️ Failed to process images (will not be published):', failedUploads);
         }
 
-        // Step 3: Process content blocks and handle any images in them
+        // Step 3: Merge text content - CRITICAL FIX
+        const finalTextContent = {
+          ...currentPublishedText,  // Start with current published text as base
+          ...changes.textContent    // Overlay dev changes on top
+        };
+
+        console.log('📝 Text content merge:', {
+          publishedCount: Object.keys(currentPublishedText).length,
+          devChangesCount: Object.keys(changes.textContent).length,
+          finalCount: Object.keys(finalTextContent).length,
+          devKeys: Object.keys(changes.textContent)
+        });
+
+        // Step 4: Process content blocks and handle any images in them
         const processedContentBlocks: Record<string, any[]> = {};
         
         for (const [sectionKey, blocks] of Object.entries(changes.contentBlocks)) {
@@ -146,7 +163,7 @@ export class PublishingService {
           processedContentBlocks[sectionKey] = processedBlocks.filter(block => block !== null);
         }
 
-        // Step 4: Final validation before storing
+        // Step 5: Final validation before storing
         const validImageReplacements = Object.fromEntries(
           Object.entries(publishedImageMappings).filter(([key, value]) => {
             const isValid = value && (value.startsWith('https://') || value.startsWith('http://') || value.startsWith('/'));
@@ -159,7 +176,7 @@ export class PublishingService {
 
         console.log('✅ Final validated data for publishing:', {
           imageCount: Object.keys(validImageReplacements).length,
-          textCount: Object.keys(changes.textContent).length,
+          textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(processedContentBlocks).length
         });
 
@@ -167,16 +184,23 @@ export class PublishingService {
           `${key.substring(0, 30)}... -> ${validImageReplacements[key].substring(0, 30)}...`
         ));
 
-        // Step 5: Store published state in the database
+        console.log('📝 Text content being published:', Object.keys(finalTextContent).map(key => 
+          `${key}: ${finalTextContent[key].substring(0, 30)}...`
+        ));
+
+        // Step 6: Store published state in the database
         const publishedData = {
           project_id: projectId,
-          text_content: changes.textContent as any,
+          text_content: finalTextContent as any,
           image_replacements: validImageReplacements as any,
           content_blocks: processedContentBlocks as any,
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving published data to database with image replacements:', Object.keys(validImageReplacements).length);
+        console.log('💾 Saving published data to database with:', {
+          textEntries: Object.keys(finalTextContent).length,
+          imageReplacements: Object.keys(validImageReplacements).length
+        });
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -191,10 +215,10 @@ export class PublishingService {
 
         console.log('✅ Published data stored successfully in database');
 
-        // Step 6: Apply ALL changes to DOM immediately and comprehensively
-        this.applyAllChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks, originalPath);
+        // Step 7: Apply ALL changes to DOM immediately and comprehensively
+        this.applyAllChangesToDOM(validImageReplacements, finalTextContent, processedContentBlocks, originalPath);
 
-        // Step 7: Store in localStorage as fallback and force component updates
+        // Step 8: Store in localStorage as fallback and force component updates
         try {
           localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
           console.log('💾 Published data stored in localStorage as backup');
@@ -202,14 +226,14 @@ export class PublishingService {
           console.warn('⚠️ Could not store to localStorage:', error);
         }
 
-        // Step 8: Clear dev mode changes AFTER successful publish and storage
+        // Step 9: Clear dev mode changes AFTER successful publish and storage
         console.log('🗑️ Clearing dev mode changes after successful publish and storage');
         const clearSuccess = await clearChangesFromDatabase(projectId);
         if (!clearSuccess) {
           console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
         }
 
-        // Step 9: Clean up old images from storage and cache
+        // Step 10: Clean up old images from storage and cache
         try {
           if (oldImagesToCleanup.length > 0) {
             await Promise.all(oldImagesToCleanup.map(ImageStorageService.deleteImage));
@@ -220,14 +244,14 @@ export class PublishingService {
           console.warn('⚠️ Image cleanup failed:', error);
         }
 
-        // Step 10: Ensure we stay on the current page and force comprehensive refresh
+        // Step 11: Ensure we stay on the current page and force comprehensive refresh
         if (window.location.href !== originalUrl) {
           console.log('🔒 PublishingService: Restoring original URL:', originalUrl);
           window.history.replaceState(null, '', originalUrl);
         }
 
         // Force a complete component refresh to show ALL published changes
-        console.log('🔄 Dispatching comprehensive update event with published image replacements');
+        console.log('🔄 Dispatching comprehensive update event with ALL published content');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -235,7 +259,7 @@ export class PublishingService {
             immediate: true,
             timestamp: Date.now(),
             imageReplacements: validImageReplacements,
-            textContent: changes.textContent,
+            textContent: finalTextContent,
             contentBlocks: processedContentBlocks,
             forceRefresh: true,
             preventNavigation: true,
@@ -244,9 +268,9 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully with image replacements preserved:', {
+        console.log('✅ Project published successfully with ALL content preserved:', {
           images: Object.keys(validImageReplacements).length,
-          texts: Object.keys(changes.textContent).length,
+          texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(processedContentBlocks).length
         });
         return true;

@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from './useDevModeDatabase';
@@ -59,7 +60,8 @@ export const useProjectPersistence = (projectId: string) => {
           console.log('📦 Published data loaded as base:', {
             textCount: Object.keys(publishedData?.text_content || {}).length,
             imageCount: Object.keys(publishedData?.image_replacements || {}).length,
-            contentCount: Object.keys(publishedData?.content_blocks || {}).length
+            contentCount: Object.keys(publishedData?.content_blocks || {}).length,
+            textKeys: Object.keys(publishedData?.text_content || {})
           });
         } catch (error) {
           console.warn('⚠️ Could not load published data, using empty base:', error);
@@ -70,7 +72,8 @@ export const useProjectPersistence = (projectId: string) => {
         console.log('🔧 Dev mode overlays loaded:', {
           textCount: Object.keys(devChanges.textContent).length,
           imageCount: Object.keys(devChanges.imageReplacements).length,
-          contentCount: Object.keys(devChanges.contentBlocks).length
+          contentCount: Object.keys(devChanges.contentBlocks).length,
+          textKeys: Object.keys(devChanges.textContent)
         });
         
         // PUBLISHED DATA AS BASE, dev changes as overlay
@@ -92,7 +95,10 @@ export const useProjectPersistence = (projectId: string) => {
         console.log('✅ Final data with published base + dev overlays:', {
           textKeys: Object.keys(finalData.textContent),
           imageKeys: Object.keys(finalData.imageReplacements),
-          contentKeys: Object.keys(finalData.contentBlocks)
+          contentKeys: Object.keys(finalData.contentBlocks),
+          sampleTextContent: Object.keys(finalData.textContent).slice(0, 3).map(key => 
+            `${key}: ${finalData.textContent[key].substring(0, 30)}...`
+          )
         });
         
         setCachedData(finalData);
@@ -125,7 +131,9 @@ export const useProjectPersistence = (projectId: string) => {
                   contentBlocks: freshPublished.content_blocks || {}
                 };
                 console.log('✅ Fresh published data loaded:', {
-                  images: Object.keys(publishedData.imageReplacements).length
+                  texts: Object.keys(publishedData.textContent).length,
+                  images: Object.keys(publishedData.imageReplacements).length,
+                  textKeys: Object.keys(publishedData.textContent)
                 });
               }
             } catch (error) {
@@ -136,6 +144,7 @@ export const useProjectPersistence = (projectId: string) => {
           // Load current dev changes (may be empty after publish)
           const devChanges = await getChanges();
           console.log('🔧 Current dev changes after update:', {
+            texts: Object.keys(devChanges.textContent).length,
             images: Object.keys(devChanges.imageReplacements).length
           });
           
@@ -155,7 +164,10 @@ export const useProjectPersistence = (projectId: string) => {
             }
           };
           
-          console.log('✅ Data updated - final image replacements:', Object.keys(updatedData.imageReplacements));
+          console.log('✅ Data updated - final content:', {
+            textCount: Object.keys(updatedData.textContent).length,
+            imageCount: Object.keys(updatedData.imageReplacements).length
+          });
           setCachedData(updatedData);
           setForceUpdate(prev => prev + 1);
         } catch (error) {
