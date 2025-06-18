@@ -1,11 +1,11 @@
 
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
 import EditableText from "@/components/dev/EditableText";
 import { useParams } from "react-router-dom";
-import { useImageStateManager } from "@/hooks/useImageStateManager";
+import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 import ImageDisplay from "./ImageDisplay";
 
 interface MaximizableImageProps {
@@ -46,20 +46,47 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
+  const { getImageSrc } = useProjectPersistence(currentProjectId);
   
-  const { 
-    displayedImage, 
-    updateDisplayedImage, 
-    forceRefresh, 
-    hasDevModeChanges, 
-    hasError,
-    isLoading,
-    isValidUrl
-  } = useImageStateManager({
-    src,
-    projectId: currentProjectId,
-    imageReplacements
+  // Simple state management - no complex hooks
+  const [displayedImage, setDisplayedImage] = useState(() => {
+    // Priority: imageReplacements prop > persistence > original
+    if (imageReplacements?.[src]) {
+      return imageReplacements[src];
+    }
+    return getImageSrc(src);
   });
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  
+  // Update displayed image when replacements change
+  useEffect(() => {
+    const newSrc = imageReplacements?.[src] || getImageSrc(src);
+    if (newSrc !== displayedImage) {
+      console.log('📸 MaximizableImage: Updating displayed image:', newSrc.substring(0, 50) + '...');
+      setDisplayedImage(newSrc);
+      setHasError(false);
+    }
+  }, [src, imageReplacements, getImageSrc, displayedImage]);
+  
+  // Listen for project updates - simplified
+  useEffect(() => {
+    const handleProjectUpdate = (e: CustomEvent) => {
+      const detail = e.detail || {};
+      if (detail.src === src && detail.newSrc) {
+        console.log('🔄 MaximizableImage: Project update for this image');
+        setDisplayedImage(detail.newSrc);
+        setHasError(false);
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    };
+  }, [src]);
   
   const handleImageClick = () => {
     const imageTitle = caption || alt || "Image";
@@ -78,14 +105,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       projectId: currentProjectId
     });
     
-    // Use centralized replacement system
-    updateDisplayedImage(newSrc);
+    // Immediate UI update
+    setDisplayedImage(newSrc);
+    setHasError(false);
     
     // Call parent callback if provided
     if (onImageReplace) {
       onImageReplace(newSrc);
     }
-  }, [src, currentProjectId, updateDisplayedImage, onImageReplace]);
+  }, [src, currentProjectId, onImageReplace]);
 
   const handleImageRemove = useCallback(() => {
     console.log('🗑️ MaximizableImage: Image remove triggered:', {
@@ -93,18 +121,19 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       projectId: currentProjectId
     });
     
-    // Call parent callback if provided
     if (onImageRemove) {
       onImageRemove();
     }
   }, [src, currentProjectId, onImageRemove]);
 
   const handleImageError = () => {
-    console.error('❌ Image failed to load:', {
-      displayedImage: displayedImage.substring(0, 50) + '...',
-      isValidUrl,
-      originalSrc: src.substring(0, 50) + '...'
-    });
+    console.error('❌ Image failed to load:', displayedImage.substring(0, 50) + '...');
+    setHasError(true);
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+    setHasError(false);
   };
 
   const imageAltText = caption || alt;
@@ -129,8 +158,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     );
   }
   
-  // Show error state for invalid URLs or failed loads
-  if (!isValidUrl || hasError) {
+  // Show error state
+  if (hasError) {
     return (
       <div className={`w-full ${className}`}>
         <motion.div 
@@ -144,7 +173,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             <p className="font-medium">⚠️ Image failed to load</p>
             <p className="text-sm mt-1">URL: {displayedImage.substring(0, 50)}...</p>
             <button 
-              onClick={forceRefresh}
+              onClick={() => {
+                setHasError(false);
+                setIsLoading(true);
+              }}
               className="mt-3 px-4 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600 transition-colors"
             >
               Retry Loading
@@ -158,12 +190,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   return (
     <div className="w-full">
       <motion.div 
-        className={`rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative ${className} ${hasDevModeChanges ? 'ring-2 ring-blue-400 ring-opacity-50' : ''}`}
+        className={`rounded-lg overflow-hidden border border-gray-100 shadow-sm group relative ${className}`}
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        key={`${displayedImage}-${hasDevModeChanges}-${Date.now()}`}
       >
         {!hideEditButton && (
           <EditImageButton 
@@ -180,13 +211,14 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           imageAltText={imageAltText}
           aspectRatio={aspectRatio}
           priority={priority}
-          refreshKey={hasDevModeChanges ? Date.now() : 0}
+          refreshKey={0}
           onImageClick={handleImageClick}
           onImageError={handleImageError}
+          onImageLoad={handleImageLoad}
         />
       </motion.div>
       
-      {/* Always show caption section in dev mode or if caption exists */}
+      {/* Caption section */}
       <div className="mt-2 text-sm text-gray-600 italic text-center">
         <EditableText 
           initialText={caption || 'Click to add a caption...'}

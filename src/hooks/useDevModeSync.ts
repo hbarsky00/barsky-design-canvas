@@ -14,15 +14,15 @@ export const useDevModeSync = (projectId: string) => {
   const mountedRef = useRef(true);
   const lastCheckRef = useRef<number>(0);
 
-  // Aggressive change detection - check every second
+  // Simplified change detection - check every 3 seconds
   const checkChanges = useCallback(async () => {
-    if (!projectId || !mountedRef.current) {
+    if (!projectId || !mountedRef.current || isSyncing) {
       return;
     }
     
     const now = Date.now();
-    if (now - lastCheckRef.current < 500) {
-      return; // Throttle to max 2 checks per second
+    if (now - lastCheckRef.current < 2000) {
+      return; // Throttle to max once per 2 seconds
     }
     lastCheckRef.current = now;
     
@@ -32,17 +32,16 @@ export const useDevModeSync = (projectId: string) => {
       if (mountedRef.current) {
         setHasChangesToSync(result);
         
-        // Auto-sync immediately when changes detected
+        // Auto-sync after 5 seconds if changes detected
         if (result && !isSyncing && !syncQueueRef.current) {
-          console.log('🚀 useDevModeSync: Changes detected, queuing immediate sync');
+          console.log('🚀 useDevModeSync: Changes detected, scheduling auto-sync');
           syncQueueRef.current = true;
           
-          // Sync after very short delay to batch rapid changes
           setTimeout(() => {
-            if (mountedRef.current && syncQueueRef.current) {
+            if (mountedRef.current && syncQueueRef.current && !isSyncing) {
               syncChangesToFiles();
             }
-          }, 500);
+          }, 5000);
         }
       }
     } catch (error) {
@@ -50,7 +49,7 @@ export const useDevModeSync = (projectId: string) => {
     }
   }, [projectId, checkHasChanges, isSyncing]);
 
-  // Set up aggressive monitoring
+  // Set up monitoring - less aggressive
   useEffect(() => {
     if (!projectId) {
       setHasChangesToSync(false);
@@ -64,10 +63,10 @@ export const useDevModeSync = (projectId: string) => {
     // Initial check
     checkChanges();
     
-    // Check every second for changes
-    intervalRef.current = setInterval(checkChanges, 1000);
+    // Check every 3 seconds instead of every second
+    intervalRef.current = setInterval(checkChanges, 3000);
     
-    // Listen for any project updates and sync immediately
+    // Listen for project updates - simplified
     const handleProjectDataUpdate = (e: CustomEvent) => {
       const detail = e.detail || {};
       
@@ -80,16 +79,10 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
       
-      // For any dev mode change, trigger immediate check and sync
-      if (detail.projectId === projectId || detail.immediate || detail.textChanged || detail.imageReplaced) {
-        console.log('⚡ useDevModeSync: Immediate sync triggered by update');
-        
-        // Force immediate check and sync
-        setTimeout(() => {
-          if (mountedRef.current) {
-            checkChanges();
-          }
-        }, 100);
+      // For dev mode changes, just mark that we have changes
+      if (detail.projectId === projectId || detail.immediate) {
+        console.log('⚡ useDevModeSync: Marking changes for sync');
+        setHasChangesToSync(true);
       }
     };
 
@@ -117,7 +110,7 @@ export const useDevModeSync = (projectId: string) => {
       return;
     }
 
-    console.log('🚀 useDevModeSync: Starting immediate sync to live mode for project:', projectId);
+    console.log('🚀 useDevModeSync: Starting sync to live mode for project:', projectId);
     
     setIsSyncing(true);
     syncQueueRef.current = false;
