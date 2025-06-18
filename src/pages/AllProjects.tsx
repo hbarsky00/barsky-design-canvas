@@ -1,6 +1,6 @@
 
 import React from "react";
-import { EnhancedProjectGrid } from "./projects/components/EnhancedProjectGrid";
+import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
 import GlobalSeo from "@/components/seo/GlobalSeo";
 
 const AllProjects = () => {
