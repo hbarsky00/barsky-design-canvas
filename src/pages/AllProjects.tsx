@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import Footer from "@/components/Footer";
 import { useProjectsData } from "./projects/hooks/useProjectsData";
 import { projectFaqs } from "@/data/seoFaqs";
 
@@ -16,7 +17,7 @@ const AllProjects = () => {
   ];
 
   return (
-    <div className="px-5">
+    <div className="flex flex-col min-h-screen px-5">
       <EnhancedGlobalSeo 
         title="UX/UI Design Portfolio | Hiram Barsky - Mobile App & Web Design Case Studies"
         description="Explore Hiram Barsky's professional UX/UI design portfolio featuring mobile app design, web application development, and startup MVP projects. See real case studies with measurable results and user-centered design solutions."
@@ -32,28 +33,32 @@ const AllProjects = () => {
       
       <Header />
       
-      {/* Projects Header Section */}
-      <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-16 sm:py-20 pt-24 sm:pt-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Design Portfolio
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Explore my collection of UX/UI design projects, from mobile apps to web applications. 
-            Each project showcases user-centered design principles, innovative solutions, and measurable results.
-          </p>
-        </div>
-      </section>
+      <main className="flex-grow">
+        {/* Projects Header Section */}
+        <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-16 sm:py-20 pt-24 sm:pt-28">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Design Portfolio
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Explore my collection of UX/UI design projects, from mobile apps to web applications. 
+              Each project showcases user-centered design principles, innovative solutions, and measurable results.
+            </p>
+          </div>
+        </section>
 
-      <EnhancedProjectGrid 
-        projects={currentProjects}
-        resetFilters={resetFilters}
-      />
-      <SeoFaqSection 
-        title="Project Portfolio Questions"
-        faqs={projectFaqs}
-        className="mt-16"
-      />
+        <EnhancedProjectGrid 
+          projects={currentProjects}
+          resetFilters={resetFilters}
+        />
+        <SeoFaqSection 
+          title="Project Portfolio Questions"
+          faqs={projectFaqs}
+          className="mt-16"
+        />
+      </main>
+      
+      <Footer />
     </div>
   );
 };
