@@ -7,16 +7,14 @@ import { toast } from 'sonner';
 export const useDevModeSync = (projectId: string) => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [hasChangesToSync, setHasChangesToSync] = useState(false);
-  const [lastChecked, setLastChecked] = useState<number>(0);
   const { hasChanges: checkHasChanges } = useDevModeDatabase(projectId);
   
-  // Prevent multiple instances and intervals
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isCheckingRef = useRef(false);
   const mountedRef = useRef(true);
   const lastSyncRef = useRef<number>(0);
 
-  // Stable change detection function
+  // Check for changes more frequently and reliably
   const checkChanges = useCallback(async () => {
     if (!projectId || isCheckingRef.current || !mountedRef.current) {
       return;
@@ -29,7 +27,14 @@ export const useDevModeSync = (projectId: string) => {
       
       if (mountedRef.current) {
         setHasChangesToSync(result);
-        setLastChecked(Date.now());
+        
+        // If we have changes, auto-sync immediately
+        if (result && !isSyncing) {
+          console.log('🚀 useDevModeSync: Auto-triggering sync for detected changes');
+          setTimeout(() => {
+            syncChangesToFiles();
+          }, 1000); // 1 second delay for immediate sync
+        }
       }
     } catch (error) {
       console.error('❌ useDevModeSync: Error checking for changes:', error);
@@ -39,56 +44,40 @@ export const useDevModeSync = (projectId: string) => {
     } finally {
       isCheckingRef.current = false;
     }
-  }, [projectId, checkHasChanges]);
+  }, [projectId, checkHasChanges, isSyncing]);
 
-  // Change detection with fast intervals for real-time sync
+  // Set up rapid change detection
   useEffect(() => {
     if (!projectId) {
       setHasChangesToSync(false);
       return;
     }
     
-    // Clear any existing interval
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
-      intervalRef.current = null;
     }
     
     // Initial check
     checkChanges();
     
-    // Set up new interval with fast checking for real-time sync
-    intervalRef.current = setInterval(checkChanges, 500); // Check every 500ms for near-instant sync
+    // Check every 2 seconds for changes
+    intervalRef.current = setInterval(checkChanges, 2000);
     
-    // Listen for project data updates with enhanced image handling
+    // Listen for immediate project updates
     const handleProjectDataUpdate = (e: CustomEvent) => {
       const detail = e.detail || {};
       
-      // If this is a publish event, don't check for changes immediately
       if (detail.published) {
-        console.log('🚀 useDevModeSync: Published event detected, marking no changes to sync');
-        if (mountedRef.current) {
-          setHasChangesToSync(false);
-        }
+        setHasChangesToSync(false);
         return;
       }
       
-      // Handle immediate updates (text, images, content blocks)
+      // For any dev mode change, check immediately
       if (detail.projectId === projectId || detail.immediate || detail.textChanged || detail.imageReplaced) {
-        console.log('🔄 useDevModeSync: Relevant update detected, triggering immediate sync check:', detail);
-        
-        // Use immediate timeout to prevent blocking the event
+        console.log('🔄 useDevModeSync: Immediate change detected, checking and syncing');
         setTimeout(() => {
-          if (mountedRef.current) {
-            checkChanges();
-            // Auto-trigger sync for immediate changes
-            setTimeout(() => {
-              if (mountedRef.current) {
-                syncChangesToFiles();
-              }
-            }, 200);
-          }
-        }, 50);
+          checkChanges();
+        }, 100);
       }
     };
 
@@ -97,19 +86,16 @@ export const useDevModeSync = (projectId: string) => {
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
-        intervalRef.current = null;
       }
       window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
     };
   }, [projectId, checkChanges]);
 
-  // Cleanup on unmount
   useEffect(() => {
     return () => {
       mountedRef.current = false;
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
-        intervalRef.current = null;
       }
     };
   }, []);
@@ -119,55 +105,43 @@ export const useDevModeSync = (projectId: string) => {
       return;
     }
 
-    // Prevent rapid successive syncs but allow more frequent syncs
+    // Prevent too rapid syncs but allow reasonable frequency
     const now = Date.now();
-    if (now - lastSyncRef.current < 2000) {
-      console.log('⏳ useDevModeSync: Throttling sync request (2s cooldown)');
+    if (now - lastSyncRef.current < 3000) {
+      console.log('⏳ useDevModeSync: Throttling sync request (3s cooldown)');
       return;
     }
 
-    console.log('🚀 useDevModeSync: Auto-syncing all changes (text + images) for project:', projectId);
-    
-    // Store current state to prevent any unwanted navigation
-    const currentUrl = window.location.href;
+    console.log('🚀 useDevModeSync: Starting sync to live mode for project:', projectId);
     
     setIsSyncing(true);
     lastSyncRef.current = now;
     
     try {
-      // Double-check we have changes before publishing
+      // Verify we have changes before publishing
       const hasDbChanges = await checkHasChanges();
       
       if (!hasDbChanges) {
-        console.log('ℹ️ useDevModeSync: No changes detected in database at sync time');
+        console.log('ℹ️ useDevModeSync: No changes detected in database');
+        setHasChangesToSync(false);
         return;
       }
 
-      console.log('📤 useDevModeSync: Auto-publishing all changes (text + images) using PublishingService');
+      console.log('📤 useDevModeSync: Publishing all changes to live mode');
       await PublishingService.publishProject(projectId);
       
-      // Ensure we stayed on the same page after publishing
-      if (window.location.href !== currentUrl) {
-        console.log('🔒 useDevModeSync: Restoring original URL after auto-sync');
-        window.history.replaceState(null, '', currentUrl);
-      }
-      
-      // Show success indication
-      console.log('✅ useDevModeSync: Auto-sync completed successfully');
-      toast.success("All changes synced to live!", {
-        description: "Your text and image changes are now live",
-        duration: 3000
+      console.log('✅ useDevModeSync: Successfully synced to live mode');
+      toast.success("Changes synced to live!", {
+        description: "Your updates are now visible in live mode",
+        duration: 4000
       });
 
-      // Update state to reflect no pending changes
-      if (mountedRef.current) {
-        setHasChangesToSync(false);
-      }
+      setHasChangesToSync(false);
       
     } catch (error) {
-      console.error('❌ useDevModeSync: Error auto-syncing project:', error);
-      toast.error("Auto-sync failed", {
-        description: "Changes couldn't be synced automatically. Please try manually refreshing."
+      console.error('❌ useDevModeSync: Error syncing to live:', error);
+      toast.error("Sync failed", {
+        description: "Could not sync changes to live mode. Please try again."
       });
     } finally {
       if (mountedRef.current) {
@@ -179,7 +153,6 @@ export const useDevModeSync = (projectId: string) => {
   return {
     syncChangesToFiles,
     isSyncing,
-    hasChangesToSync,
-    lastChecked
+    hasChangesToSync
   };
 };

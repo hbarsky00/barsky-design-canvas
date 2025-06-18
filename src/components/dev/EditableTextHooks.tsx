@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { toast } from 'sonner';
@@ -113,17 +112,12 @@ export const useEditableTextSave = (
 
   const handleSave = useCallback(async () => {
     if (!textKey || !projectId || savingRef.current || !mountedRef.current) {
-      console.log('⚠️ EditableText: Early return from handleSave:', {
-        hasTextKey: !!textKey,
-        hasProjectId: !!projectId,
-        saving: savingRef.current,
-        mounted: mountedRef.current
-      });
+      console.log('⚠️ EditableText: Early return from handleSave');
       setIsEditing(false);
       return;
     }
 
-    console.log('💾 EditableText: Saving text for', textKey, ':', text.substring(0, 50) + '...');
+    console.log('💾 EditableText: Saving text for', textKey);
     setIsSaving(true);
     savingRef.current = true;
     
@@ -133,24 +127,25 @@ export const useEditableTextSave = (
       const success = await saveChange('text', textKey, text);
       
       if (success && mountedRef.current) {
-        toast.success('Text saved!', { id: toastId, duration: 2000 });
+        toast.success('Text saved! Syncing to live...', { id: toastId, duration: 3000 });
         console.log('✅ EditableText: Text saved successfully for', textKey);
         
-        // Immediately trigger project data update for faster sync
+        // Trigger immediate project update for sync
         setTimeout(() => {
           if (mountedRef.current) {
-            console.log('🚀 EditableText: Dispatching immediate project update event');
+            console.log('🚀 EditableText: Dispatching project update for sync');
             window.dispatchEvent(new CustomEvent('projectDataUpdated', {
               detail: { 
                 projectId, 
                 textChanged: true, 
                 immediate: true,
                 timestamp: Date.now(),
-                source: 'editable-text'
+                source: 'editable-text',
+                requiresSync: true
               }
             }));
           }
-        }, 50); // Very fast trigger
+        }, 100);
       } else {
         if (mountedRef.current) {
           toast.error('Failed to save text', { id: toastId });
