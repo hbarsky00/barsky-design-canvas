@@ -1,11 +1,11 @@
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
-import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
-import RichTextToolbar from './RichTextToolbar';
-import RichTextRenderer from './RichTextRenderer';
+import { useEditableTextState, useEditableTextLoad, useEditableTextSave } from './EditableTextHooks';
+import EditableTextInput from './EditableTextInput';
+import EditableTextDisplay from './EditableTextDisplay';
 
 interface EditableTextProps {
   children: (text: string) => React.ReactNode;
@@ -29,18 +29,21 @@ const EditableText: React.FC<EditableTextProps> = ({
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
   
-  // Add safety check for projectId
   const safeProjectId = projectId || '';
-  const { saveChange, getChanges } = useDevModeDatabase(safeProjectId);
   
-  const [text, setText] = useState(initialText);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
-  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
-  const savingRef = useRef(false);
-  const mountedRef = useRef(true);
-  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const {
+    text,
+    setText,
+    isEditing,
+    setIsEditing,
+    isLoading,
+    setIsLoading,
+    isSaving,
+    setIsSaving,
+    savingRef,
+    mountedRef,
+    loadTimeoutRef
+  } = useEditableTextState(initialText, textKey, safeProjectId);
 
   // Set mounted to true on mount
   useEffect(() => {
@@ -51,7 +54,7 @@ const EditableText: React.FC<EditableTextProps> = ({
       console.log('🚪 EditableText: Component unmounting for', textKey);
       mountedRef.current = false;
     };
-  }, [textKey]);
+  }, [textKey, mountedRef]);
 
   // COMPREHENSIVE DEBUGGING
   console.log('🔍 EditableText DEBUG:', { 
@@ -69,114 +72,27 @@ const EditableText: React.FC<EditableTextProps> = ({
     mounted: mountedRef.current
   });
 
-  // Stable callback for loading saved text
-  const loadSavedText = useCallback(async () => {
-    console.log('🔄 EditableText: loadSavedText called with:', { textKey, safeProjectId, mounted: mountedRef.current });
-    
-    if (!textKey || !safeProjectId || !mountedRef.current) {
-      console.log('⚠️ EditableText: Early return from loadSavedText:', { 
-        hasTextKey: !!textKey, 
-        hasProjectId: !!safeProjectId, 
-        mounted: mountedRef.current 
-      });
-      setText(initialText);
-      setIsLoading(false);
-      return;
-    }
+  // Load saved text
+  useEditableTextLoad(
+    textKey,
+    safeProjectId,
+    initialText,
+    setText,
+    setIsLoading,
+    mountedRef,
+    loadTimeoutRef
+  );
 
-    try {
-      setIsLoading(true);
-      console.log('📤 EditableText: Calling getChanges...');
-      const changes = await getChanges();
-      console.log('📋 EditableText: Got changes:', changes);
-      
-      const savedText = changes.textContent[textKey] || initialText;
-      
-      if (mountedRef.current) {
-        setText(savedText);
-        console.log('✅ EditableText: Loaded saved text for', textKey, ':', savedText.substring(0, 50) + '...');
-      } else {
-        console.log('⚠️ EditableText: Component unmounted during load');
-      }
-    } catch (error) {
-      console.error('❌ EditableText: Error loading text:', error);
-      if (mountedRef.current) {
-        setText(initialText);
-      }
-    } finally {
-      if (mountedRef.current) {
-        setIsLoading(false);
-        console.log('✅ EditableText: Loading complete for', textKey);
-      }
-    }
-  }, [textKey, safeProjectId, initialText, getChanges]);
-
-  // Load saved text with debouncing
-  useEffect(() => {
-    console.log('🎯 EditableText: useEffect triggered for loadSavedText');
-    
-    if (loadTimeoutRef.current) {
-      clearTimeout(loadTimeoutRef.current);
-    }
-
-    loadTimeoutRef.current = setTimeout(() => {
-      loadSavedText();
-    }, 50);
-
-    return () => {
-      if (loadTimeoutRef.current) {
-        clearTimeout(loadTimeoutRef.current);
-      }
-    };
-  }, [loadSavedText]);
-
-  const handleFormat = useCallback((format: 'bold' | 'italic' | 'list' | 'ordered-list') => {
-    if (!inputRef.current) return;
-
-    const textarea = inputRef.current as HTMLTextAreaElement;
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const selectedText = text.substring(start, end);
-    
-    let formattedText = '';
-    let newCursorPos = start;
-
-    switch (format) {
-      case 'bold':
-        formattedText = `**${selectedText}**`;
-        newCursorPos = start + (selectedText ? 2 : 2);
-        break;
-      case 'italic':
-        formattedText = `*${selectedText}*`;
-        newCursorPos = start + (selectedText ? 1 : 1);
-        break;
-      case 'list':
-        const bulletList = selectedText.split('\n').map(line => 
-          line.trim() ? `• ${line.trim()}` : line
-        ).join('\n');
-        formattedText = bulletList;
-        newCursorPos = start + formattedText.length;
-        break;
-      case 'ordered-list':
-        const numberedList = selectedText.split('\n').map((line, index) => 
-          line.trim() ? `${index + 1}. ${line.trim()}` : line
-        ).join('\n');
-        formattedText = numberedList;
-        newCursorPos = start + formattedText.length;
-        break;
-    }
-
-    const newText = text.substring(0, start) + formattedText + text.substring(end);
-    setText(newText);
-
-    // Set cursor position after formatting
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-        inputRef.current.setSelectionRange(newCursorPos, newCursorPos);
-      }
-    }, 0);
-  }, [text]);
+  // Save functionality
+  const { handleSave } = useEditableTextSave(
+    textKey,
+    safeProjectId,
+    text,
+    setIsSaving,
+    setIsEditing,
+    savingRef,
+    mountedRef
+  );
 
   const handleClick = useCallback(() => {
     const canEdit = isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current;
@@ -203,7 +119,6 @@ const EditableText: React.FC<EditableTextProps> = ({
         mounted: mountedRef.current
       });
       
-      // Show helpful toast
       if (!isDevMode) {
         toast.error('Dev mode is not enabled');
       } else if (!textKey) {
@@ -216,100 +131,11 @@ const EditableText: React.FC<EditableTextProps> = ({
         toast.error('Component not properly mounted');
       }
     }
-  }, [isDevMode, isLoading, textKey]);
+  }, [isDevMode, isLoading, textKey, savingRef, mountedRef, setIsEditing]);
 
-  const handleSave = useCallback(async () => {
-    if (!textKey || !safeProjectId || savingRef.current || !mountedRef.current) {
-      console.log('⚠️ EditableText: Early return from handleSave:', {
-        hasTextKey: !!textKey,
-        hasProjectId: !!safeProjectId,
-        saving: savingRef.current,
-        mounted: mountedRef.current
-      });
-      setIsEditing(false);
-      return;
-    }
-
-    console.log('💾 EditableText: Saving text for', textKey, ':', text.substring(0, 50) + '...');
-    setIsSaving(true);
-    savingRef.current = true;
-    
-    try {
-      const toastId = toast.loading('Saving text...');
-      
-      const success = await saveChange('text', textKey, text);
-      
-      if (success && mountedRef.current) {
-        toast.success('Text saved!', { id: toastId, duration: 2000 });
-        console.log('✅ EditableText: Text saved successfully for', textKey);
-        
-        // Dispatch update event
-        setTimeout(() => {
-          if (mountedRef.current) {
-            window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-              detail: { 
-                projectId: safeProjectId, 
-                textChanged: true, 
-                immediate: true,
-                timestamp: Date.now()
-              }
-            }));
-          }
-        }, 100);
-      } else {
-        if (mountedRef.current) {
-          toast.error('Failed to save text', { id: toastId });
-          console.error('❌ EditableText: Failed to save text for', textKey);
-        }
-      }
-    } catch (error) {
-      console.error('❌ EditableText: Error saving text:', error);
-      if (mountedRef.current) {
-        toast.error('Error saving text');
-      }
-    } finally {
-      savingRef.current = false;
-      if (mountedRef.current) {
-        setIsSaving(false);
-        setIsEditing(false);
-        console.log('🏁 EditableText: Save operation complete for', textKey);
-      }
-    }
-  }, [textKey, safeProjectId, text, saveChange]);
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    console.log('⌨️ EditableText: Key pressed:', e.key, 'for', textKey);
-    
-    if (e.key === 'Enter' && !multiline) {
-      e.preventDefault();
-      handleSave();
-    } else if (e.key === 'Escape') {
-      console.log('🚫 EditableText: Escape pressed, canceling edit for', textKey);
-      setIsEditing(false);
-      // Reset to saved value
-      if (textKey && safeProjectId && mountedRef.current) {
-        getChanges().then(changes => {
-          if (mountedRef.current) {
-            setText(changes.textContent[textKey] || initialText);
-          }
-        }).catch(() => {
-          if (mountedRef.current) {
-            setText(initialText);
-          }
-        });
-      } else {
-        setText(initialText);
-      }
-    }
-  }, [handleSave, multiline, textKey, safeProjectId, getChanges, initialText]);
-
-  useEffect(() => {
-    if (isEditing && inputRef.current && mountedRef.current) {
-      console.log('🎯 EditableText: Focusing input for', textKey);
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
-  }, [isEditing, textKey]);
+  const handleCancel = useCallback(() => {
+    setIsEditing(false);
+  }, [setIsEditing]);
 
   if (isLoading) {
     console.log('⏳ EditableText: Rendering loading state for', textKey);
@@ -322,44 +148,21 @@ const EditableText: React.FC<EditableTextProps> = ({
 
   if (isEditing && isDevMode && textKey && mountedRef.current) {
     console.log('✏️ EditableText: Rendering edit mode for', textKey);
-    const InputComponent = multiline ? 'textarea' : 'input';
     return (
-      <div className="relative">
-        {enableRichText && multiline && (
-          <RichTextToolbar
-            onFormat={handleFormat}
-            onDelete={onDelete}
-            showDelete={showDeleteButton}
-          />
-        )}
-        <InputComponent
-          ref={inputRef as any}
-          value={text}
-          onChange={(e) => {
-            console.log('📝 EditableText: Text changed for', textKey);
-            setText(e.target.value);
-          }}
-          onBlur={handleSave}
-          onKeyDown={handleKeyDown}
-          disabled={isSaving}
-          className={`w-full bg-white border-2 border-blue-500 p-2 rounded focus:outline-none focus:border-blue-600 ${
-            multiline ? 'min-h-[100px] resize-vertical' : ''
-          } ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}`}
-          style={{ 
-            fontSize: 'inherit', 
-            fontFamily: 'inherit', 
-            fontWeight: 'inherit',
-            color: 'inherit',
-            lineHeight: 'inherit'
-          }}
-          placeholder={isSaving ? 'Saving...' : 'Click to edit'}
-        />
-        {isSaving && (
-          <div className="absolute top-2 right-2 text-xs text-blue-600">
-            Saving...
-          </div>
-        )}
-      </div>
+      <EditableTextInput
+        text={text}
+        setText={setText}
+        onSave={handleSave}
+        onCancel={handleCancel}
+        multiline={multiline}
+        enableRichText={enableRichText}
+        isSaving={isSaving}
+        textKey={textKey}
+        onDelete={onDelete}
+        showDeleteButton={showDeleteButton}
+        initialText={initialText}
+        projectId={safeProjectId}
+      />
     );
   }
 
@@ -367,26 +170,15 @@ const EditableText: React.FC<EditableTextProps> = ({
   console.log('👁️ EditableText: Rendering view mode for', textKey, 'canClick:', canClick);
 
   return (
-    <div
+    <EditableTextDisplay
+      text={text}
+      children={children}
+      enableRichText={enableRichText}
+      multiline={multiline}
+      canClick={canClick}
+      isSaving={isSaving}
       onClick={handleClick}
-      className={`${
-        canClick
-          ? 'cursor-pointer hover:bg-blue-50 hover:outline hover:outline-2 hover:outline-blue-300 rounded p-1 -m-1 transition-all duration-200' 
-          : ''
-      } ${isSaving ? 'opacity-50' : ''}`}
-      title={canClick ? (isSaving ? 'Saving...' : 'Click to edit') : undefined}
-    >
-      {enableRichText && multiline ? (
-        <RichTextRenderer text={text} />
-      ) : (
-        children(text)
-      )}
-      {isSaving && (
-        <span className="ml-2 text-xs text-blue-600">
-          Saving...
-        </span>
-      )}
-    </div>
+    />
   );
 };
 
