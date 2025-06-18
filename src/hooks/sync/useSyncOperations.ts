@@ -15,55 +15,49 @@ export const useSyncOperations = (
 ) => {
   const { hasChanges, saveChange } = useDevModeDatabase(projectId);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const throttleTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastProcessTimeRef = useRef<number>(0);
 
-  // FIXED: Enhanced stuck detection that PRESERVES dev mode work
+  // SIMPLIFIED: Reset sync state without aggressive cache clearing
   const handleStuckDetection = useCallback(() => {
-    debugCache.log('⚠️ SyncOperations: Stuck state detected, resetting sync only (PRESERVING dev work)');
+    debugCache.log('⚠️ SyncOperations: Resetting stuck sync (preserving dev work)');
     
-    // Clear all processing flags
+    // Clear processing flags
     isProcessingRef.current = false;
     
-    // Clear all timers
+    // Clear timers
     if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-    if (throttleTimerRef.current) clearTimeout(throttleTimerRef.current);
     
-    // CRITICAL FIX: Only clear published cache, NOT dev mode work
+    // MINIMAL cache clearing - only published cache
     debugCache.clearOnlyPublishedCache();
     
-    toast.error('Sync got stuck and was reset', {
-      description: 'Your dev mode work is preserved. Sync system reset.'
+    toast.error('Sync reset - your dev work is safe', {
+      description: 'Sync system reset. All your dev mode work is preserved.'
     });
     
-    // Force a refresh that preserves dev mode work
+    // Gentle refresh that preserves dev work
     setTimeout(() => {
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId, 
           syncReset: true, 
           preserveDevWork: true,
+          minimal: true,
           timestamp: Date.now() 
         }
       }));
     }, 100);
   }, [isProcessingRef, projectId]);
 
-  // Start stuck detection timer with better logging
   const startStuckDetection = useCallback(() => {
     if (stuckTimeoutRef.current) clearTimeout(stuckTimeoutRef.current);
     
-    const startTime = Date.now();
-    debugCache.log('⏰ Starting stuck detection timer', { timeout: config.STUCK_TIMEOUT });
-    
     stuckTimeoutRef.current = setTimeout(() => {
-      const elapsed = Date.now() - startTime;
-      debugCache.log('🚨 Stuck timeout triggered', { elapsed, expected: config.STUCK_TIMEOUT });
+      debugCache.log('🚨 Stuck timeout triggered');
       handleStuckDetection();
     }, config.STUCK_TIMEOUT);
   }, [handleStuckDetection, config.STUCK_TIMEOUT, stuckTimeoutRef]);
 
-  // Enhanced batch processing with better error handling and loop prevention
+  // SIMPLIFIED: Process changes without aggressive clearing
   const processQueuedChanges = useCallback(async (
     getBatch: (size: number) => ChangeQueue[],
     getQueueSize: () => number,
@@ -72,66 +66,41 @@ export const useSyncOperations = (
   ): Promise<boolean> => {
     const currentTime = Date.now();
     
-    // Prevent rapid-fire processing that could cause loops
+    // Prevent rapid processing
     if (currentTime - lastProcessTimeRef.current < 500) {
-      debugCache.log('⏳ Skipping rapid-fire processing attempt');
       return false;
     }
     lastProcessTimeRef.current = currentTime;
 
     if (!projectId || isProcessingRef.current || !mountedRef.current || getQueueSize() === 0) {
-      debugCache.log('⏭️ Skipping processing', {
-        hasProjectId: !!projectId,
-        isProcessing: isProcessingRef.current,
-        isMounted: mountedRef.current,
-        queueSize: getQueueSize()
-      });
       return false;
     }
 
     isProcessingRef.current = true;
-    debugCache.log('🚀 SyncOperations: Starting batch processing', { queueSize: getQueueSize() });
+    debugCache.log('🚀 Starting batch processing', { queueSize: getQueueSize() });
 
-    // Start stuck detection
     startStuckDetection();
 
     try {
-      // Take a batch of changes
       const batch = getBatch(config.BATCH_SIZE);
-      debugCache.log('📦 Processing batch', { batchSize: batch.length });
       
       updateSyncState({
         isSyncing: true,
         pendingChanges: getQueueSize()
       });
 
-      // Process batch with individual error handling
+      // Process changes individually
       const results = await Promise.allSettled(
-        batch.map(change => 
-          saveChange(change.type, change.key, change.value)
-            .catch(error => {
-              debugCache.log('❌ Individual change failed', { change, error });
-              return false;
-            })
-        )
+        batch.map(change => saveChange(change.type, change.key, change.value))
       );
 
-      const successCount = results.filter(r => r.status === 'fulfilled' && r.value === true).length;
-      const failCount = batch.length - successCount;
+      const successCount = results.filter(r => r.status === 'fulfilled').length;
+      
+      debugCache.log(`✅ Batch processed`, { successCount, total: batch.length });
 
-      if (failCount > 0) {
-        debugCache.log(`⚠️ Batch processing had failures`, { successCount, failCount });
-        toast.warning(`${failCount} changes failed to save`, {
-          description: 'Some changes may not be synced properly'
-        });
-      }
-
-      debugCache.log(`✅ Batch processed successfully`, { successCount, failCount });
-
-      // Continue processing if more changes exist (with safety check)
+      // Continue if more changes exist
       const remainingChanges = getQueueSize();
       if (remainingChanges > 0 && mountedRef.current) {
-        debugCache.log('🔄 More changes detected, scheduling next batch', { remaining: remainingChanges });
         setTimeout(() => {
           if (mountedRef.current && !isProcessingRef.current) {
             processQueuedChanges(getBatch, getQueueSize, updateSyncState, resetStuckState);
@@ -143,7 +112,7 @@ export const useSyncOperations = (
     } catch (error) {
       debugCache.log('❌ Batch processing error', error);
       toast.error('Sync error', {
-        description: 'Failed to process changes batch'
+        description: 'Failed to process changes. Your work is still saved locally.'
       });
       return false;
     } finally {
@@ -158,13 +127,11 @@ export const useSyncOperations = (
           pendingChanges: finalQueueSize,
           lastSyncTime: finalQueueSize === 0 ? Date.now() : undefined
         });
-        
-        debugCache.log('🏁 Batch processing completed', { finalQueueSize });
       }
     }
   }, [projectId, saveChange, startStuckDetection, config.BATCH_SIZE, isProcessingRef, mountedRef]);
 
-  // Enhanced manual sync with better state management
+  // SIMPLIFIED: Manual sync with better error handling
   const triggerManualSync = useCallback(async (
     getQueueSize: () => number,
     processQueuedChanges: any,
@@ -174,25 +141,24 @@ export const useSyncOperations = (
     forceReset: () => void
   ) => {
     if (!projectId) {
-      debugCache.log('❌ No projectId for manual sync');
+      toast.error('No project selected');
       return;
     }
     
     debugCache.log('🖱️ Manual sync triggered', { 
       queueSize: getQueueSize(),
-      isStuck: syncState.isStuck,
-      isSyncing: syncState.isSyncing 
+      isStuck: syncState.isStuck 
     });
     
-    // If stuck, force reset first
-    if (syncState.isStuck || (syncState.isSyncing && getQueueSize() === 0)) {
+    // If stuck, force reset
+    if (syncState.isStuck) {
       debugCache.log('🔄 Forcing reset due to stuck state');
       forceReset();
       return;
     }
     
     if (syncState.isSyncing) {
-      debugCache.log('⏳ Sync already in progress, skipping');
+      toast.info('Sync already in progress');
       return;
     }
 
@@ -200,20 +166,18 @@ export const useSyncOperations = (
       updateSyncState({ isSyncing: true });
       startStuckDetection();
 
-      // Process any pending changes first
+      // Process queued changes first
       const initialQueueSize = getQueueSize();
       if (initialQueueSize > 0) {
-        debugCache.log('📤 Processing queued changes first', { count: initialQueueSize });
+        debugCache.log('📤 Processing queued changes', { count: initialQueueSize });
         await processQueuedChanges();
       }
 
-      // Check for changes in database
+      // Check for database changes
       const hasDbChanges = await hasChanges();
-      debugCache.log('🔍 Database changes check', { hasChanges: hasDbChanges });
       
       if (!hasDbChanges) {
-        debugCache.log('ℹ️ No changes to publish');
-        toast.info('No changes to sync');
+        toast.info('No changes to sync to live');
         return;
       }
 
@@ -221,15 +185,16 @@ export const useSyncOperations = (
       debugCache.log('📤 Publishing to live mode');
       await PublishingService.publishProject(projectId);
       
-      toast.success('Changes synced successfully!', {
-        description: 'All updates are now live',
+      toast.success('Successfully synced to live!', {
+        description: 'All your changes are now live',
         duration: 3000
       });
 
     } catch (error) {
       debugCache.log('❌ Manual sync failed', error);
-      toast.error('Sync failed', {
-        description: error instanceof Error ? error.message : 'Unknown error occurred'
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      toast.error('Failed to sync to live', {
+        description: errorMessage
       });
     } finally {
       resetStuckState();
@@ -242,50 +207,24 @@ export const useSyncOperations = (
     }
   }, [projectId, hasChanges, startStuckDetection, mountedRef]);
 
-  // Enhanced scheduling with loop prevention
+  // SIMPLIFIED: Scheduling without complex throttling
   const scheduleProcessing = useCallback((
     processQueuedChanges: any,
     syncState: any
   ) => {
-    // Clear existing debounce timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
 
-    debugCache.log('⏰ Scheduling processing', { 
-      debounceDelay: config.DEBOUNCE_DELAY,
-      lastSyncTime: syncState.lastSyncTime 
-    });
-
-    // Debounce: wait for changes to stop
     debounceTimerRef.current = setTimeout(() => {
-      if (!mountedRef.current) return;
-
-      const now = Date.now();
-      const timeSinceLastSync = now - syncState.lastSyncTime;
-
-      // Throttle: ensure minimum time between syncs
-      if (timeSinceLastSync < config.THROTTLE_INTERVAL) {
-        const remainingThrottleTime = config.THROTTLE_INTERVAL - timeSinceLastSync;
-        debugCache.log(`⏳ Throttling sync`, { remaining: remainingThrottleTime });
-        
-        throttleTimerRef.current = setTimeout(() => {
-          if (mountedRef.current) {
-            debugCache.log('🚀 Executing throttled sync');
-            processQueuedChanges();
-          }
-        }, remainingThrottleTime);
-      } else {
-        debugCache.log('🚀 Executing immediate sync');
+      if (mountedRef.current) {
         processQueuedChanges();
       }
     }, config.DEBOUNCE_DELAY);
-  }, [config.DEBOUNCE_DELAY, config.THROTTLE_INTERVAL, mountedRef]);
+  }, [config.DEBOUNCE_DELAY, mountedRef]);
 
   const clearTimers = useCallback(() => {
-    debugCache.log('🧹 Clearing all sync timers');
     if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-    if (throttleTimerRef.current) clearTimeout(throttleTimerRef.current);
     if (stuckTimeoutRef.current) clearTimeout(stuckTimeoutRef.current);
   }, [stuckTimeoutRef]);
 
