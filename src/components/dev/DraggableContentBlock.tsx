@@ -1,23 +1,20 @@
 
-import React, { useRef } from 'react';
-import { Upload, Edit3 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useDevMode } from '@/context/DevModeContext';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronUp, ChevronDown, Trash2, Upload, Link, Edit3 } from 'lucide-react';
 import EditableText from './EditableText';
-import MaximizableImage from '@/components/project/MaximizableImage';
-import InsertContentButton from './InsertContentButton';
-import ContentOrderingControls from './ContentOrderingControls';
-import { toast } from 'sonner';
-import { ImageStorageService } from '@/services/imageStorage';
+import EditImageButton from './EditImageButton';
+import { useDevMode } from '@/context/DevModeContext';
+import AddContentButton from './AddContentButton';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export interface ContentBlock {
   type: 'text' | 'image' | 'header' | 'video' | 'pdf';
   value?: string;
   src?: string;
-  embedUrl?: string;
   caption?: string;
-  level?: number;
+  embedUrl?: string;
+  level?: 1 | 2 | 3;
 }
 
 interface DraggableContentBlockProps {
@@ -31,8 +28,9 @@ interface DraggableContentBlockProps {
   onImageReplace?: (index: number, newSrc: string) => void;
   onImageRemove?: (index: number) => void;
   onVideoUrlUpdate?: (index: number, newUrl: string) => void;
-  projectId?: string;
+  projectId: string;
   onAddContent?: (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => void;
+  onHeaderLevelChange?: (index: number, level: 1 | 2 | 3) => void;
 }
 
 const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
@@ -47,154 +45,16 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   onImageRemove,
   onVideoUrlUpdate,
   projectId,
-  onAddContent
+  onAddContent,
+  onHeaderLevelChange
 }) => {
   const { isDevMode } = useDevMode();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [isEditingVideoUrl, setIsEditingVideoUrl] = React.useState(false);
-  const [videoUrlInput, setVideoUrlInput] = React.useState(block.embedUrl || '');
+  const [isEditingVideoUrl, setIsEditingVideoUrl] = useState(false);
 
-  // Utility function to convert video URLs to embeddable format
-  const convertToEmbedUrl = (url: string): string => {
-    if (!url) return '';
-    
-    // YouTube conversions
-    if (url.includes('youtube.com/watch')) {
-      const videoId = url.split('v=')[1]?.split('&')[0];
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
-    }
-    
-    if (url.includes('youtu.be/')) {
-      const videoId = url.split('youtu.be/')[1]?.split('?')[0];
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
-    }
-    
-    // Vimeo conversions
-    if (url.includes('vimeo.com/') && !url.includes('player.vimeo.com')) {
-      const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
-      return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
-    }
-    
-    return url;
-  };
-
-  const handleVideoUrlSave = () => {
-    if (videoUrlInput.trim()) {
-      const embedUrl = convertToEmbedUrl(videoUrlInput.trim());
-      if (onVideoUrlUpdate) {
-        onVideoUrlUpdate(index, embedUrl);
-      }
-      setIsEditingVideoUrl(false);
-      toast.success('Video URL updated successfully');
-    } else {
-      toast.error('Please enter a valid video URL');
-    }
-  };
-
-  const handleImageReplace = async (newSrc: string) => {
-    console.log('🖼️ DraggableContentBlock: Processing image replacement for index', index, 'with', newSrc);
-    
-    if (newSrc.startsWith('http') || newSrc.startsWith('/')) {
-      if (onImageReplace) {
-        onImageReplace(index, newSrc);
-      }
-      return;
-    }
-    
-    if (newSrc.startsWith('data:')) {
-      if (!projectId) {
-        toast.error('Cannot upload image: No project ID');
-        return;
-      }
-      
-      try {
-        toast.loading('Uploading image to storage...', { id: 'content-image-upload' });
-        
-        const response = await fetch(newSrc);
-        const blob = await response.blob();
-        const file = new File([blob], `content-image-${index}.jpg`, { type: 'image/jpeg' });
-        
-        const storageUrl = await ImageStorageService.uploadImage(file, projectId, `content-block-${index}`);
-        
-        if (storageUrl && onImageReplace) {
-          onImageReplace(index, storageUrl);
-          toast.success('Image uploaded successfully', { id: 'content-image-upload' });
-        } else {
-          throw new Error('Failed to upload image to storage');
-        }
-      } catch (error) {
-        console.error('❌ Failed to upload content block image:', error);
-        toast.error('Failed to upload image', { 
-          id: 'content-image-upload',
-          description: 'Please try again with a smaller image'
-        });
-      }
-    }
-  };
-
-  const handleImageRemove = () => {
-    console.log('🗑️ DraggableContentBlock: Removing image for index', index);
-    if (onImageRemove) {
-      onImageRemove(index);
-    } else {
-      onDelete(index);
-    }
-  };
-
-  const handleImageUploadClick = () => {
-    console.log('📁 Upload button clicked for content block:', index);
-    fileInputRef.current?.click();
-  };
-
-  const convertFileToDataUrl = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    console.log('📁 File selected for content block:', { 
-      hasFile: !!file, 
-      fileName: file?.name, 
-      index 
-    });
-    
-    if (file && projectId) {
-      try {
-        toast.loading('Uploading image...', { id: 'content-upload' });
-        
-        const storageUrl = await ImageStorageService.uploadImage(file, projectId, `content-block-${index}`);
-        
-        if (storageUrl) {
-          handleImageReplace(storageUrl);
-          toast.success('Image uploaded successfully', { id: 'content-upload' });
-        } else {
-          throw new Error('Failed to upload image');
-        }
-      } catch (error) {
-        console.error('❌ Error uploading file:', error);
-        toast.error('Failed to upload image', { 
-          id: 'content-upload',
-          description: 'Please try again with a smaller image'
-        });
-      }
-    } else if (file && onImageReplace) {
-      try {
-        const dataUrl = await convertFileToDataUrl(file);
-        console.log('✅ File converted to data URL for content block:', index);
-        handleImageReplace(dataUrl);
-      } catch (error) {
-        console.error('❌ Error converting file:', error);
-        toast.error('Failed to process image');
-      }
-    }
-    
-    if (e.target) {
-      e.target.value = '';
+  const handleHeaderLevelChange = (newLevel: string) => {
+    const level = parseInt(newLevel) as 1 | 2 | 3;
+    if (onHeaderLevelChange) {
+      onHeaderLevelChange(index, level);
     }
   };
 
@@ -202,177 +62,174 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     switch (block.type) {
       case 'text':
         return (
-          <>
-            <EditableText initialText={block.value || ''} multiline>
-              {(text) => (
-                <div className="prose prose-slate max-w-none dark:prose-invert pr-8">
-                  {text.split('\n').map((paragraph, pIndex) => (
-                    <p key={pIndex} className="mb-4">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              )}
-            </EditableText>
-            {onAddContent && (
-              <div className="group">
-                <InsertContentButton 
-                  onAdd={(type) => onAddContent(type, index + 1)}
-                  position={index + 1}
-                  className="mt-2"
-                />
+          <EditableText
+            initialText={block.value || 'This is a new paragraph. Click to edit me.'}
+            textKey={`content_block_${index}_${projectId}`}
+            multiline
+            enableRichText
+          >
+            {(text) => (
+              <div className="prose prose-lg max-w-none">
+                <p className="text-gray-700 leading-relaxed">{text}</p>
               </div>
             )}
-          </>
+          </EditableText>
         );
 
       case 'header':
         const HeaderTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements;
+        const headerClasses = {
+          1: 'text-3xl font-bold text-gray-900',
+          2: 'text-2xl font-bold text-gray-800', 
+          3: 'text-xl font-semibold text-gray-800'
+        };
+
         return (
-          <>
-            <EditableText initialText={block.value || ''}>
+          <div className="space-y-2">
+            {isDevMode && (
+              <div className="flex items-center gap-2 mb-2">
+                <label className="text-sm font-medium text-gray-600">Header Level:</label>
+                <Select value={String(block.level || 2)} onValueChange={handleHeaderLevelChange}>
+                  <SelectTrigger className="w-20">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">H1</SelectItem>
+                    <SelectItem value="2">H2</SelectItem>
+                    <SelectItem value="3">H3</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+            <EditableText
+              initialText={block.value || 'New Header'}
+              textKey={`header_block_${index}_${projectId}`}
+              multiline={false}
+            >
               {(text) => (
-                <HeaderTag className={`font-bold text-gray-900 pr-8 ${
-                  block.level === 1 ? 'text-4xl' : 
-                  block.level === 2 ? 'text-3xl' : 
-                  block.level === 3 ? 'text-2xl' : 'text-xl'
-                }`}>
+                <HeaderTag className={headerClasses[block.level || 2]}>
                   {text}
                 </HeaderTag>
               )}
             </EditableText>
-            {onAddContent && (
-              <div className="group">
-                <InsertContentButton 
-                  onAdd={(type) => onAddContent(type, index + 1)}
-                  position={index + 1}
-                  label="Add content under this header"
-                  className="mt-2 mb-2"
-                />
-              </div>
-            )}
-          </>
+          </div>
         );
 
       case 'image':
-        const isPlaceholder = !block.src || block.src === '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
-        
-        console.log('🖼️ Rendering image block:', { 
-          index, 
-          src: block.src, 
-          isPlaceholder,
-          caption: block.caption 
-        });
-
-        if (isPlaceholder) {
-          return (
-            <div className="glass-card p-8 layered-depth floating-element">
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <Upload className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                <p className="text-gray-500 mb-4">Click to upload an image</p>
-                <Button onClick={handleImageUploadClick} variant="outline">
-                  Choose Image
-                </Button>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  className="hidden"
-                  accept="image/*"
-                />
-              </div>
-            </div>
-          );
-        }
-
         return (
-          <div className="glass-card p-4 layered-depth floating-element">
-            <MaximizableImage
-              src={block.src}
-              alt={block.caption || 'Content image'}
-              caption={block.caption}
-              className="rounded-lg shadow-elevated w-full"
-              onImageReplace={handleImageReplace}
-              onImageRemove={handleImageRemove}
-              projectId={projectId}
-              allowRemove={true}
-            />
+          <div className="space-y-2">
+            <div className="relative group">
+              <img
+                src={block.src}
+                alt={block.caption || 'Content image'}
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+              {isDevMode && onImageReplace && (
+                <EditImageButton
+                  imageSrc={block.src || ''}
+                  onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
+                  onImageRemove={() => onImageRemove?.(index)}
+                  className="absolute top-2 right-2"
+                />
+              )}
+            </div>
+            {block.caption && (
+              <EditableText
+                initialText={block.caption}
+                textKey={`image_caption_${index}_${projectId}`}
+                multiline
+              >
+                {(text) => (
+                  <p className="text-sm text-gray-600 italic text-center">{text}</p>
+                )}
+              </EditableText>
+            )}
           </div>
         );
 
       case 'video':
-        const needsVideoUrl = !block.embedUrl || block.embedUrl === 'placeholder';
-        
-        if (needsVideoUrl || isEditingVideoUrl) {
-          return (
-            <div className="glass-card p-8 layered-depth floating-element">
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center space-y-4">
-                <div className="text-gray-600">
-                  <h3 className="font-medium mb-2">Add Video Embed</h3>
-                  <p className="text-sm text-gray-500 mb-4">
-                    Paste a YouTube, Vimeo, or other video URL
-                  </p>
-                </div>
-                <div className="max-w-md mx-auto space-y-3">
-                  <Input
-                    type="url"
-                    placeholder="https://www.youtube.com/watch?v=..."
-                    value={videoUrlInput}
-                    onChange={(e) => setVideoUrlInput(e.target.value)}
-                    className="w-full"
+        return (
+          <div className="space-y-2">
+            {block.embedUrl && block.embedUrl !== 'placeholder' ? (
+              <div className="relative">
+                <div className="aspect-video">
+                  <iframe
+                    src={block.embedUrl}
+                    className="w-full h-full rounded-lg"
+                    allowFullScreen
+                    title="Embedded video"
                   />
-                  <div className="flex gap-2 justify-center">
-                    <Button onClick={handleVideoUrlSave} size="sm">
-                      {needsVideoUrl ? 'Add Video' : 'Update Video'}
-                    </Button>
-                    {!needsVideoUrl && (
-                      <Button 
-                        onClick={() => setIsEditingVideoUrl(false)} 
-                        variant="outline" 
-                        size="sm"
-                      >
-                        Cancel
-                      </Button>
-                    )}
-                  </div>
+                </div>
+                {isDevMode && (
+                  <button
+                    onClick={() => setIsEditingVideoUrl(true)}
+                    className="absolute top-2 right-2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition-colors"
+                  >
+                    <Edit3 className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                <Link className="h-8 w-8 mx-auto text-gray-400 mb-2" />
+                <p className="text-gray-500 mb-4">Add video embed URL</p>
+                {isDevMode && (
+                  <button
+                    onClick={() => setIsEditingVideoUrl(true)}
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                  >
+                    Add Video URL
+                  </button>
+                )}
+              </div>
+            )}
+            
+            {isEditingVideoUrl && (
+              <div className="bg-white border rounded-lg p-4 shadow-lg">
+                <input
+                  type="url"
+                  placeholder="Enter video embed URL (YouTube, Vimeo, etc.)"
+                  defaultValue={block.embedUrl === 'placeholder' ? '' : block.embedUrl}
+                  className="w-full p-2 border border-gray-300 rounded mb-2"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      const newUrl = (e.target as HTMLInputElement).value;
+                      onVideoUrlUpdate?.(index, newUrl);
+                      setIsEditingVideoUrl(false);
+                    }
+                  }}
+                  autoFocus
+                />
+                <div className="flex gap-2">
+                  <button
+                    onClick={(e) => {
+                      const input = e.currentTarget.parentElement?.previousElementSibling as HTMLInputElement;
+                      const newUrl = input?.value || '';
+                      onVideoUrlUpdate?.(index, newUrl);
+                      setIsEditingVideoUrl(false);
+                    }}
+                    className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setIsEditingVideoUrl(false)}
+                    className="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600"
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
-            </div>
-          );
-        }
-
-        return (
-          <div className="glass-card p-4 layered-depth floating-element relative group">
-            {isDevMode && (
-              <Button
-                onClick={() => {
-                  setVideoUrlInput(block.embedUrl || '');
-                  setIsEditingVideoUrl(true);
-                }}
-                variant="ghost"
-                size="icon"
-                className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity"
-                title="Edit video URL"
-              >
-                <Edit3 className="h-4 w-4" />
-              </Button>
             )}
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-              <iframe 
-                src={block.embedUrl}
-                className="absolute top-0 left-0 w-full h-full rounded-lg shadow-elevated"
-                allowFullScreen
-                title={block.caption || 'Embedded video'}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              />
-            </div>
+
             {block.caption && (
-              <EditableText initialText={block.caption}>
+              <EditableText
+                initialText={block.caption}
+                textKey={`video_caption_${index}_${projectId}`}
+                multiline
+              >
                 {(text) => (
-                  <p className="text-sm text-gray-600 mt-2 italic text-center pr-8">
-                    {text}
-                  </p>
+                  <p className="text-sm text-gray-600 italic text-center">{text}</p>
                 )}
               </EditableText>
             )}
@@ -381,18 +238,26 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
 
       case 'pdf':
         return (
-          <div className="glass-card p-4 layered-depth floating-element">
-            <embed 
-              src={block.src} 
-              type="application/pdf" 
-              className="w-full h-96 rounded-lg shadow-elevated"
-            />
+          <div className="space-y-2">
+            <div className="border rounded-lg p-4 bg-gray-50">
+              <div className="flex items-center gap-3">
+                <div className="bg-red-500 text-white p-2 rounded">
+                  PDF
+                </div>
+                <div>
+                  <p className="font-medium">Document Preview</p>
+                  <p className="text-sm text-gray-600">Click to view full document</p>
+                </div>
+              </div>
+            </div>
             {block.caption && (
-              <EditableText initialText={block.caption}>
+              <EditableText
+                initialText={block.caption}
+                textKey={`pdf_caption_${index}_${projectId}`}
+                multiline
+              >
                 {(text) => (
-                  <p className="text-sm text-gray-600 mt-2 italic text-center pr-8">
-                    {text}
-                  </p>
+                  <p className="text-sm text-gray-600 italic">{text}</p>
                 )}
               </EditableText>
             )}
@@ -400,22 +265,61 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         );
 
       default:
-        return null;
+        return <div>Unsupported content type</div>;
     }
   };
 
   return (
-    <div className="relative group">
-      <ContentOrderingControls
-        index={index}
-        totalItems={totalBlocks}
-        onMoveUp={onMoveUp}
-        onMoveDown={onMoveDown}
-        onDelete={onDelete}
-      />
-      
-      {renderContent()}
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="relative group"
+    >
+      <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow">
+        {renderContent()}
+        
+        {isDevMode && (
+          <>
+            {/* Controls */}
+            <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded-lg shadow-lg p-1">
+              <button
+                onClick={() => onMoveUp(index)}
+                disabled={index === 0}
+                className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Move up"
+              >
+                <ChevronUp className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => onMoveDown(index)}
+                disabled={index === totalBlocks - 1}
+                className="p-1 text-gray-600 hover:text-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Move down"
+              >
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => onDelete(index)}
+                className="p-1 text-gray-600 hover:text-red-600"
+                title="Delete"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Add content between blocks */}
+            {onAddContent && (
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <AddContentButton
+                  onAdd={(type) => onAddContent(type, index + 1)}
+                  compact
+                />
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </motion.div>
   );
 };
 

@@ -51,6 +51,13 @@ const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
     saveContentBlocks(newBlocks);
   };
 
+  const handleHeaderLevelChange = (index: number, level: 1 | 2 | 3) => {
+    const newBlocks = [...contentBlocks];
+    newBlocks[index] = { ...newBlocks[index], level };
+    setContentBlocks(newBlocks);
+    saveContentBlocks(newBlocks);
+  };
+
   const handleImageReplace = (index: number, newSrc: string) => {
     const newBlocks = [...contentBlocks];
     newBlocks[index] = { ...newBlocks[index], src: newSrc };
@@ -134,6 +141,7 @@ const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
             onImageReplace={handleImageReplace}
             onImageRemove={handleImageRemove}
             onVideoUrlUpdate={handleVideoUrlUpdate}
+            onHeaderLevelChange={handleHeaderLevelChange}
             projectId={projectId}
             onAddContent={handleAddContent}
           />
