@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useOptimizedSync } from '@/hooks/useOptimizedSync';
 import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Upload, Loader2, CheckCircle, Clock, AlertCircle, RotateCcw, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 import { debugCache } from '@/utils/debugUtils';
 
 const OptimizedDevModeSyncButton: React.FC = () => {
