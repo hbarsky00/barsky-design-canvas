@@ -120,7 +120,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen relative"
+      className="min-h-screen relative w-full"
     >
       {/* Background Layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/50 to-purple-50/10" />
@@ -137,8 +137,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         imageCaptions={imageCaptions}
       />
 
-      {/* Main Content - Single Column Layout with Glass Effects */}
-      <div className="relative max-w-4xl mx-auto px-6 py-16 space-y-16 z-10">
+      {/* Main Content - Full Width Layout */}
+      <div className="relative w-full px-4 py-8 space-y-8 z-10">
         
         {/* Hero Image Section */}
         <ProjectHeroImageSection 
@@ -189,7 +189,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         <AddSectionButton projectId={projectId} insertAfter="result" />
 
         {/* Project Navigation */}
-        <div className="glass-card p-6 layered-depth">
+        <div className="glass-card p-4 layered-depth">
           <ProjectNavigation
             currentProjectId={projectId}
             projectsData={projectsData}

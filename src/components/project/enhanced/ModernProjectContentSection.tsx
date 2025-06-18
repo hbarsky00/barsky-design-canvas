@@ -140,7 +140,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="glass-card-elevated mobile-optimized-padding layered-depth relative group"
+        className="glass-card p-4 relative group"
       >
         <div className="animate-pulse">Loading content...</div>
       </motion.section>
@@ -153,7 +153,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="glass-card-elevated mobile-optimized-padding layered-depth relative group"
+      className="glass-card p-4 relative group"
     >
       <LayoutControls
         isColumnLayout={isColumnLayout}
@@ -161,7 +161,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         onAddContent={handleAddContent}
       />
       
-      <div className="mobile-section-spacing">
+      <div className="space-y-4">
         <SectionContent
           title={title}
           content={content}
@@ -202,4 +202,4 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   );
 };
 
-export default ModernProjectContentSection;
+export default ModernProjectDetail;
