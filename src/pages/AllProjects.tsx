@@ -16,7 +16,7 @@ const AllProjects = () => {
   ];
 
   return (
-    <>
+    <div className="px-5">
       <EnhancedGlobalSeo 
         title="UX/UI Design Portfolio | Hiram Barsky - Mobile App & Web Design Case Studies"
         description="Explore Hiram Barsky's professional UX/UI design portfolio featuring mobile app design, web application development, and startup MVP projects. See real case studies with measurable results and user-centered design solutions."
@@ -54,7 +54,7 @@ const AllProjects = () => {
         faqs={projectFaqs}
         className="mt-16"
       />
-    </>
+    </div>
   );
 };
 
