@@ -42,7 +42,8 @@ const EditableText: React.FC<EditableTextProps> = ({
     setIsSaving,
     savingRef,
     mountedRef,
-    loadTimeoutRef
+    loadTimeoutRef,
+    lastLoadedTextRef
   } = useEditableTextState(initialText, textKey, safeProjectId);
 
   // Set mounted to true on mount
@@ -80,7 +81,8 @@ const EditableText: React.FC<EditableTextProps> = ({
     setText,
     setIsLoading,
     mountedRef,
-    loadTimeoutRef
+    loadTimeoutRef,
+    lastLoadedTextRef
   );
 
   // Save functionality
@@ -91,7 +93,8 @@ const EditableText: React.FC<EditableTextProps> = ({
     setIsSaving,
     setIsEditing,
     savingRef,
-    mountedRef
+    mountedRef,
+    lastLoadedTextRef
   );
 
   const handleClick = useCallback(() => {
