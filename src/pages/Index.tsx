@@ -1,18 +1,30 @@
 
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
-import GlobalSeo from "@/components/seo/GlobalSeo";
+import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { homepageFaqs } from "@/data/seoFaqs";
 
 const Index = () => {
   return (
     <>
-      <GlobalSeo 
-        title="Hiram Barsky - Official Portfolio | Professional Product Designer & Developer"
-        description="Hiram Barsky (not Alex Barsky) is a Professional Product Designer & Developer specializing in UX/UI design, web development, and AI-driven design solutions. View my portfolio of mobile apps, web applications, and design systems."
+      <EnhancedGlobalSeo 
+        title="Hiram Barsky - Professional UX/UI Designer & Frontend Developer | Hire Top Design Talent"
+        description="Hire Hiram Barsky (not Alex Barsky) - Professional UX/UI Designer & Frontend Developer with 5+ years experience. Specializing in mobile app design, web development, startup MVP design, and AI-driven design solutions. Available for freelance projects."
         canonicalUrl="https://barskydesign.pro"
+        pageType="homepage"
+        keywords={[
+          "hire UX designer", "freelance UI designer", "New York designer", 
+          "startup design consultant", "mobile app designer for hire",
+          "React developer designer", "design system expert"
+        ]}
       />
       <ScrollHandler />
       <HomepageLayout />
+      <SeoFaqSection 
+        title="Frequently Asked Questions About UX/UI Design Services"
+        faqs={homepageFaqs}
+      />
     </>
   );
 };
