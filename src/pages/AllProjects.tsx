@@ -1,5 +1,6 @@
 
 import React from "react";
+import Header from "@/components/Header";
 import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
@@ -28,6 +29,8 @@ const AllProjects = () => {
           "user experience portfolio", "product design examples"
         ]}
       />
+      
+      <Header />
       
       {/* Projects Header Section */}
       <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-16 sm:py-20">
