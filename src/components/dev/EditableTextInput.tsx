@@ -35,7 +35,7 @@ const EditableTextInput: React.FC<EditableTextInputProps> = ({
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const { getChanges } = useDevModeDatabase(projectId);
 
-  const handleFormat = useCallback((format: 'bold' | 'italic' | 'list' | 'ordered-list') => {
+  const handleFormat = useCallback((format: 'bold' | 'italic' | 'list' | 'ordered-list' | 'h1' | 'h2' | 'h3') => {
     if (!inputRef.current) return;
 
     const textarea = inputRef.current as HTMLTextAreaElement;
@@ -54,6 +54,18 @@ const EditableTextInput: React.FC<EditableTextInputProps> = ({
       case 'italic':
         formattedText = `*${selectedText}*`;
         newCursorPos = start + (selectedText ? 1 : 1);
+        break;
+      case 'h1':
+        formattedText = `# ${selectedText || 'Header 1'}`;
+        newCursorPos = start + (selectedText ? 2 : 10);
+        break;
+      case 'h2':
+        formattedText = `## ${selectedText || 'Header 2'}`;
+        newCursorPos = start + (selectedText ? 3 : 11);
+        break;
+      case 'h3':
+        formattedText = `### ${selectedText || 'Header 3'}`;
+        newCursorPos = start + (selectedText ? 4 : 12);
         break;
       case 'list':
         const bulletList = selectedText.split('\n').map(line => 

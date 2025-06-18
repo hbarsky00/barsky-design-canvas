@@ -12,6 +12,34 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
     const paragraphs = content.split('\n\n').filter(p => p.trim());
     
     return paragraphs.map((paragraph, pIndex) => {
+      // Check if paragraph is a header
+      if (paragraph.startsWith('### ')) {
+        const headerText = paragraph.replace(/^### /, '');
+        return (
+          <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mb-3 sm:mb-4">
+            {formatInlineText(headerText)}
+          </h3>
+        );
+      }
+      
+      if (paragraph.startsWith('## ')) {
+        const headerText = paragraph.replace(/^## /, '');
+        return (
+          <h2 key={pIndex} className="text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+            {formatInlineText(headerText)}
+          </h2>
+        );
+      }
+      
+      if (paragraph.startsWith('# ')) {
+        const headerText = paragraph.replace(/^# /, '');
+        return (
+          <h1 key={pIndex} className="text-3xl font-bold text-gray-800 mb-3 sm:mb-4">
+            {formatInlineText(headerText)}
+          </h1>
+        );
+      }
+      
       // Check if paragraph is a list
       if (paragraph.includes('• ') || paragraph.includes('- ')) {
         const listItems = paragraph.split('\n').filter(item => item.trim());

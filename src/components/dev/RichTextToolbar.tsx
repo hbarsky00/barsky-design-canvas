@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { Bold, Italic, List, ListOrdered, Trash2 } from 'lucide-react';
+import { Bold, Italic, List, ListOrdered, Trash2, Heading1, Heading2, Heading3 } from 'lucide-react';
 import { useDevMode } from '@/context/DevModeContext';
 
 interface RichTextToolbarProps {
-  onFormat: (format: 'bold' | 'italic' | 'list' | 'ordered-list') => void;
+  onFormat: (format: 'bold' | 'italic' | 'list' | 'ordered-list' | 'h1' | 'h2' | 'h3') => void;
   onDelete?: () => void;
   showDelete?: boolean;
 }
@@ -36,6 +36,35 @@ const RichTextToolbar: React.FC<RichTextToolbarProps> = ({
         type="button"
       >
         <Italic className="h-4 w-4" />
+      </button>
+      
+      <div className="w-px h-6 bg-gray-300 mx-1" />
+      
+      <button
+        onClick={() => onFormat('h1')}
+        className="p-1.5 hover:bg-gray-100 rounded transition-colors"
+        title="Header 1"
+        type="button"
+      >
+        <Heading1 className="h-4 w-4" />
+      </button>
+      
+      <button
+        onClick={() => onFormat('h2')}
+        className="p-1.5 hover:bg-gray-100 rounded transition-colors"
+        title="Header 2"
+        type="button"
+      >
+        <Heading2 className="h-4 w-4" />
+      </button>
+      
+      <button
+        onClick={() => onFormat('h3')}
+        className="p-1.5 hover:bg-gray-100 rounded transition-colors"
+        title="Header 3"
+        type="button"
+      >
+        <Heading3 className="h-4 w-4" />
       </button>
       
       <div className="w-px h-6 bg-gray-300 mx-1" />
