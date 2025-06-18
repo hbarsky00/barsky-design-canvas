@@ -32,7 +32,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         className="space-y-1 sm:space-y-2 px-4 text-center"
       >
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 text-center">
-          Creating User-Centered Digital Experiences
+          Creating User-Centered Digital Design Experiences
         </h1>
       </motion.div>
     </div>
