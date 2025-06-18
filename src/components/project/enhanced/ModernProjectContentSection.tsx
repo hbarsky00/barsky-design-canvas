@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import EditableText from '@/components/dev/EditableText';
 import SectionImages from './SectionImages';
 import { useDevMode } from '@/context/DevModeContext';
-import { useContentHandlers } from '@/hooks/useContentHandlers';
 import RichTextRenderer from '@/components/dev/RichTextRenderer';
 
 interface ModernProjectContentSectionProps {
@@ -25,12 +24,27 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   projectId
 }) => {
   const { isDevMode } = useDevMode();
-  const {
-    handleImageReplace,
-    handleImageRemove,
-    handleImageReorder,
-    getReplacedImageSrc
-  } = useContentHandlers(projectId, sectionKey);
+
+  // Create simple handlers for image operations
+  const handleImageReplace = (imageSrc: string, newSrc: string) => {
+    console.log('🔄 ModernProjectContentSection: Replacing image:', imageSrc, 'with', newSrc);
+    // Image replacement logic will be handled by the ImageReplacementContext
+  };
+
+  const handleImageRemove = (imageSrc: string) => {
+    console.log('🗑️ ModernProjectContentSection: Removing image:', imageSrc);
+    // Image removal logic can be implemented here if needed
+  };
+
+  const handleImageReorder = (oldIndex: number, newIndex: number) => {
+    console.log('📋 ModernProjectContentSection: Reordering images from', oldIndex, 'to', newIndex);
+    // Image reordering logic can be implemented here if needed
+  };
+
+  const getReplacedImageSrc = (originalSrc: string) => {
+    // This will be handled by the ImageReplacementContext
+    return originalSrc;
+  };
 
   const sectionImages = imageConfig[sectionKey] || [];
 
