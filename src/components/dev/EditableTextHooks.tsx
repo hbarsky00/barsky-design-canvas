@@ -136,18 +136,21 @@ export const useEditableTextSave = (
         toast.success('Text saved!', { id: toastId, duration: 2000 });
         console.log('✅ EditableText: Text saved successfully for', textKey);
         
+        // Immediately trigger project data update for faster sync
         setTimeout(() => {
           if (mountedRef.current) {
+            console.log('🚀 EditableText: Dispatching immediate project update event');
             window.dispatchEvent(new CustomEvent('projectDataUpdated', {
               detail: { 
                 projectId, 
                 textChanged: true, 
                 immediate: true,
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                source: 'editable-text'
               }
             }));
           }
-        }, 100);
+        }, 50); // Very fast trigger
       } else {
         if (mountedRef.current) {
           toast.error('Failed to save text', { id: toastId });
