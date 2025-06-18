@@ -295,6 +295,34 @@
   .prose.prose-slate.max-w-none.dark\:prose-invert p {
     @apply text-center;
   }
+
+  /* Project h2 elements - Center aligned */
+  .prose h2 {
+    @apply text-center;
+  }
+
+  .prose.prose-lg h2 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate h2 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none h2 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none.dark\:prose-invert h2 {
+    @apply text-center;
+  }
+
+  /* General h2 center alignment for project sections */
+  .glass-card-elevated h2,
+  .case-study-section h2,
+  .mobile-section-spacing h2 {
+    @apply text-center;
+  }
 }
 
 /* Typography Scale */
