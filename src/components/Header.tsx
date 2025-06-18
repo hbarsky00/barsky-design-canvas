@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import AnimatedLogo from "./AnimatedLogo";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import Navigation from "./header/Navigation";
+import MobileMenu from "./header/MobileMenu";
 import ProfileAvatar from "./header/ProfileAvatar";
 import ThemeToggle from "./ThemeToggle";
 import { motion } from "framer-motion";
@@ -13,7 +14,9 @@ const Header: React.FC = () => {
     isScrolled,
     navLinks,
     activeSection,
+    isMobileMenuOpen,
     handleLinkClick,
+    toggleMobileMenu,
     isLinkActive,
     isScrolledPastHero
   } = useHeaderNavigation();
@@ -70,6 +73,14 @@ const Header: React.FC = () => {
             {/* Show theme toggle on homepage when not scrolled */}
             {isHomepage && !isScrolledPastHero && <ThemeToggle />}
             {!isScrolledPastHero && !isHomepage && <ThemeToggle />}
+            
+            <MobileMenu 
+              links={navLinks}
+              isMobileMenuOpen={isMobileMenuOpen}
+              toggleMobileMenu={toggleMobileMenu}
+              handleLinkClick={handleLinkClick}
+              isLinkActive={isLinkActive}
+            />
           </div>
         </div>
       </div>
