@@ -19,6 +19,7 @@ export const useImageStateManager = ({
   const [isLoading, setIsLoading] = useState(true);
   const [forceRefreshKey, setForceRefreshKey] = useState(0);
   const mountedRef = useRef(true);
+  const lastLoadedStateRef = useRef<string>('');
   const { getChanges } = useDevModeDatabase(projectId);
 
   // Check if URL is valid
@@ -31,7 +32,7 @@ export const useImageStateManager = ({
            url.startsWith('/');
   }, []);
 
-  // Load dev mode image replacements with proper priority
+  // Load and maintain dev mode image state with persistence
   useEffect(() => {
     const loadImageState = async () => {
       if (!projectId || !src || !mountedRef.current) {
@@ -42,35 +43,49 @@ export const useImageStateManager = ({
       setIsLoading(true);
       
       try {
-        console.log('🖼️ useImageStateManager: Loading image state for:', src.substring(0, 50) + '...');
+        console.log('🖼️ useImageStateManager: Loading persistent image state for:', src.substring(0, 50) + '...');
         
-        // Check dev mode changes FIRST
+        // ALWAYS check dev mode changes FIRST and give them absolute priority
         const devChanges = await getChanges();
         const devReplacement = devChanges.imageReplacements[src];
         
         if (devReplacement && isValidUrl(devReplacement)) {
-          console.log('✅ Using dev mode image replacement:', devReplacement.substring(0, 50) + '...');
-          setDisplayedImage(devReplacement);
-          setHasDevModeChanges(true);
+          console.log('✅ DEV MODE PRIORITY: Using dev image replacement:', devReplacement.substring(0, 50) + '...');
+          
+          // Only update if this is actually different from current state
+          if (devReplacement !== lastLoadedStateRef.current) {
+            setDisplayedImage(devReplacement);
+            setHasDevModeChanges(true);
+            lastLoadedStateRef.current = devReplacement;
+          }
         } else {
-          // Fall back to passed imageReplacements or original
+          // Only fall back if we don't have a dev mode change
           const fallbackReplacement = imageReplacements[src];
           if (fallbackReplacement && isValidUrl(fallbackReplacement)) {
             console.log('📖 Using fallback image replacement:', fallbackReplacement.substring(0, 50) + '...');
-            setDisplayedImage(fallbackReplacement);
-            setHasDevModeChanges(false);
+            if (fallbackReplacement !== lastLoadedStateRef.current) {
+              setDisplayedImage(fallbackReplacement);
+              setHasDevModeChanges(false);
+              lastLoadedStateRef.current = fallbackReplacement;
+            }
           } else {
             console.log('🔄 Using original image:', src.substring(0, 50) + '...');
-            setDisplayedImage(src);
-            setHasDevModeChanges(false);
+            if (src !== lastLoadedStateRef.current) {
+              setDisplayedImage(src);
+              setHasDevModeChanges(false);
+              lastLoadedStateRef.current = src;
+            }
           }
         }
         
         setHasError(false);
       } catch (error) {
         console.error('❌ useImageStateManager: Error loading image state:', error);
-        setDisplayedImage(src);
-        setHasDevModeChanges(false);
+        if (src !== lastLoadedStateRef.current) {
+          setDisplayedImage(src);
+          setHasDevModeChanges(false);
+          lastLoadedStateRef.current = src;
+        }
         setHasError(false);
       } finally {
         if (mountedRef.current) {
@@ -82,11 +97,16 @@ export const useImageStateManager = ({
     loadImageState();
   }, [src, projectId, imageReplacements, getChanges, isValidUrl, forceRefreshKey]);
 
-  // Listen for project updates
+  // Listen for project updates but be selective about what triggers reloads
   useEffect(() => {
     const handleProjectUpdate = (e: CustomEvent) => {
-      if (e.detail?.imageReplaced || e.detail?.immediate) {
-        console.log('🔄 useImageStateManager: Project update detected, refreshing image state');
+      if (!mountedRef.current) return;
+      
+      const detail = e.detail || {};
+      
+      // Only refresh if this is specifically about images or immediate updates
+      if (detail.imageReplaced || detail.immediate || detail.forceRefresh) {
+        console.log('🔄 useImageStateManager: Selective refresh triggered by:', detail);
         setForceRefreshKey(prev => prev + 1);
       }
     };
@@ -98,21 +118,24 @@ export const useImageStateManager = ({
     };
   }, []);
 
-  // Update displayed image directly (for immediate feedback)
+  // Update displayed image directly for immediate feedback while preserving state
   const updateDisplayedImage = useCallback((newSrc: string) => {
-    if (isValidUrl(newSrc)) {
-      console.log('⚡ useImageStateManager: Updating displayed image immediately:', newSrc.substring(0, 50) + '...');
+    if (isValidUrl(newSrc) && mountedRef.current) {
+      console.log('⚡ useImageStateManager: Immediate image update with persistence:', newSrc.substring(0, 50) + '...');
       setDisplayedImage(newSrc);
       setHasDevModeChanges(true);
       setHasError(false);
+      lastLoadedStateRef.current = newSrc;
     }
   }, [isValidUrl]);
 
-  // Force refresh
+  // Force refresh while preserving current state
   const forceRefresh = useCallback(() => {
-    console.log('🔄 useImageStateManager: Force refreshing image state');
-    setForceRefreshKey(prev => prev + 1);
-    setHasError(false);
+    if (mountedRef.current) {
+      console.log('🔄 useImageStateManager: Force refresh while maintaining state');
+      setForceRefreshKey(prev => prev + 1);
+      setHasError(false);
+    }
   }, []);
 
   // Cleanup

@@ -4,43 +4,21 @@ import { useDevMode } from '@/context/DevModeContext';
 import { useDevModeSync } from '@/hooks/useDevModeSync';
 import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Upload, Loader2 } from 'lucide-react';
+import { Upload, Loader2, CheckCircle } from 'lucide-react';
 
 const DevModeSyncButton: React.FC = () => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
   const { syncChangesToFiles, hasChangesToSync, isSyncing } = useDevModeSync(projectId || '');
   
-  const syncTriggeredRef = useRef(false);
-
-  // Auto-sync when changes are detected
-  useEffect(() => {
-    if (hasChangesToSync && isDevMode && projectId && !syncTriggeredRef.current && !isSyncing) {
-      console.log('🔄 DevModeSyncButton: Auto-syncing detected changes');
-      syncTriggeredRef.current = true;
-      
-      const timeoutId = setTimeout(() => {
-        syncChangesToFiles().finally(() => {
-          syncTriggeredRef.current = false;
-        });
-      }, 2000); // 2 second delay for auto-sync
-
-      return () => {
-        clearTimeout(timeoutId);
-        syncTriggeredRef.current = false;
-      };
-    }
-    
-    if (!hasChangesToSync) {
-      syncTriggeredRef.current = false;
-    }
-  }, [hasChangesToSync, isDevMode, projectId, syncChangesToFiles, isSyncing]);
+  const lastSyncRef = useRef<number>(0);
 
   // Manual sync button
   const handleManualSync = () => {
     if (!isSyncing && projectId) {
       console.log('🖱️ DevModeSyncButton: Manual sync triggered');
       syncChangesToFiles();
+      lastSyncRef.current = Date.now();
     }
   };
 
@@ -49,32 +27,39 @@ const DevModeSyncButton: React.FC = () => {
     return null;
   }
 
-  // Show sync button when there are changes
-  if (hasChangesToSync || isSyncing) {
-    return (
-      <div className="fixed bottom-4 right-4 z-50">
-        <Button
-          onClick={handleManualSync}
-          disabled={isSyncing}
-          className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
-        >
-          {isSyncing ? (
-            <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              Syncing to Live...
-            </>
-          ) : (
-            <>
-              <Upload className="h-4 w-4 mr-2" />
-              Sync to Live ({hasChangesToSync ? 'Changes Ready' : 'No Changes'})
-            </>
-          )}
-        </Button>
-      </div>
-    );
-  }
-
-  return null;
+  // Always show the sync button for better visibility
+  return (
+    <div className="fixed bottom-4 right-4 z-50">
+      <Button
+        onClick={handleManualSync}
+        disabled={isSyncing}
+        className={`shadow-lg transition-all duration-200 ${
+          hasChangesToSync 
+            ? 'bg-orange-600 hover:bg-orange-700 text-white animate-pulse' 
+            : isSyncing
+            ? 'bg-blue-600 hover:bg-blue-700 text-white'
+            : 'bg-green-600 hover:bg-green-700 text-white'
+        }`}
+      >
+        {isSyncing ? (
+          <>
+            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+            Syncing...
+          </>
+        ) : hasChangesToSync ? (
+          <>
+            <Upload className="h-4 w-4 mr-2" />
+            Sync Changes to Live
+          </>
+        ) : (
+          <>
+            <CheckCircle className="h-4 w-4 mr-2" />
+            All Synced
+          </>
+        )}
+      </Button>
+    </div>
+  );
 };
 
 export default DevModeSyncButton;

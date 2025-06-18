@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { toast } from 'sonner';
@@ -10,6 +11,7 @@ export const useEditableTextState = (initialText: string, textKey?: string, proj
   const savingRef = useRef(false);
   const mountedRef = useRef(true);
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastLoadedTextRef = useRef<string>('');
 
   return {
     text,
@@ -22,7 +24,8 @@ export const useEditableTextState = (initialText: string, textKey?: string, proj
     setIsSaving,
     savingRef,
     mountedRef,
-    loadTimeoutRef
+    loadTimeoutRef,
+    lastLoadedTextRef
   };
 };
 
@@ -33,54 +36,45 @@ export const useEditableTextLoad = (
   setText: (text: string) => void,
   setIsLoading: (loading: boolean) => void,
   mountedRef: React.MutableRefObject<boolean>,
-  loadTimeoutRef: React.MutableRefObject<NodeJS.Timeout | null>
+  loadTimeoutRef: React.MutableRefObject<NodeJS.Timeout | null>,
+  lastLoadedTextRef: React.MutableRefObject<string>
 ) => {
   const { getChanges } = useDevModeDatabase(projectId);
 
   const loadSavedText = useCallback(async () => {
-    console.log('🔄 EditableText: loadSavedText called with:', { textKey, projectId, mounted: mountedRef.current });
-    
     if (!textKey || !projectId || !mountedRef.current) {
-      console.log('⚠️ EditableText: Early return from loadSavedText:', { 
-        hasTextKey: !!textKey, 
-        hasProjectId: !!projectId, 
-        mounted: mountedRef.current 
-      });
       setText(initialText);
       setIsLoading(false);
+      lastLoadedTextRef.current = initialText;
       return;
     }
 
     try {
       setIsLoading(true);
-      console.log('📤 EditableText: Calling getChanges...');
-      const changes = await getChanges();
-      console.log('📋 EditableText: Got changes:', changes);
+      console.log('📤 EditableText: Loading persistent text for:', textKey);
       
+      const changes = await getChanges();
       const savedText = changes.textContent[textKey] || initialText;
       
-      if (mountedRef.current) {
+      if (mountedRef.current && savedText !== lastLoadedTextRef.current) {
         setText(savedText);
-        console.log('✅ EditableText: Loaded saved text for', textKey, ':', savedText.substring(0, 50) + '...');
-      } else {
-        console.log('⚠️ EditableText: Component unmounted during load');
+        lastLoadedTextRef.current = savedText;
+        console.log('✅ EditableText: Loaded and cached text for', textKey, ':', savedText.substring(0, 50) + '...');
       }
     } catch (error) {
       console.error('❌ EditableText: Error loading text:', error);
       if (mountedRef.current) {
         setText(initialText);
+        lastLoadedTextRef.current = initialText;
       }
     } finally {
       if (mountedRef.current) {
         setIsLoading(false);
-        console.log('✅ EditableText: Loading complete for', textKey);
       }
     }
-  }, [textKey, projectId, initialText, getChanges, setText, setIsLoading, mountedRef]);
+  }, [textKey, projectId, initialText, getChanges, setText, setIsLoading, mountedRef, lastLoadedTextRef]);
 
   useEffect(() => {
-    console.log('🎯 EditableText: useEffect triggered for loadSavedText');
-    
     if (loadTimeoutRef.current) {
       clearTimeout(loadTimeoutRef.current);
     }
@@ -106,18 +100,18 @@ export const useEditableTextSave = (
   setIsSaving: (saving: boolean) => void,
   setIsEditing: (editing: boolean) => void,
   savingRef: React.MutableRefObject<boolean>,
-  mountedRef: React.MutableRefObject<boolean>
+  mountedRef: React.MutableRefObject<boolean>,
+  lastLoadedTextRef: React.MutableRefObject<string>
 ) => {
   const { saveChange } = useDevModeDatabase(projectId);
 
   const handleSave = useCallback(async () => {
     if (!textKey || !projectId || savingRef.current || !mountedRef.current) {
-      console.log('⚠️ EditableText: Early return from handleSave');
       setIsEditing(false);
       return;
     }
 
-    console.log('💾 EditableText: Saving text for', textKey);
+    console.log('💾 EditableText: Saving persistent text for', textKey);
     setIsSaving(true);
     savingRef.current = true;
     
@@ -127,13 +121,16 @@ export const useEditableTextSave = (
       const success = await saveChange('text', textKey, text);
       
       if (success && mountedRef.current) {
-        toast.success('Text saved! Syncing to live...', { id: toastId, duration: 3000 });
-        console.log('✅ EditableText: Text saved successfully for', textKey);
+        // Update our cached state immediately
+        lastLoadedTextRef.current = text;
         
-        // Trigger immediate project update for sync
+        toast.success('Text saved! Auto-syncing to live...', { id: toastId, duration: 2000 });
+        console.log('✅ EditableText: Text saved and cached for', textKey);
+        
+        // Trigger immediate sync
         setTimeout(() => {
           if (mountedRef.current) {
-            console.log('🚀 EditableText: Dispatching project update for sync');
+            console.log('🚀 EditableText: Triggering immediate sync');
             window.dispatchEvent(new CustomEvent('projectDataUpdated', {
               detail: { 
                 projectId, 
@@ -162,10 +159,9 @@ export const useEditableTextSave = (
       if (mountedRef.current) {
         setIsSaving(false);
         setIsEditing(false);
-        console.log('🏁 EditableText: Save operation complete for', textKey);
       }
     }
-  }, [textKey, projectId, text, saveChange, setIsSaving, setIsEditing, savingRef, mountedRef]);
+  }, [textKey, projectId, text, saveChange, setIsSaving, setIsEditing, savingRef, mountedRef, lastLoadedTextRef]);
 
   return { handleSave };
 };
