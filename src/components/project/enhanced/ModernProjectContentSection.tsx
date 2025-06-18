@@ -6,6 +6,8 @@ import SectionImages from './SectionImages';
 import { useDevMode } from '@/context/DevModeContext';
 import RichTextRenderer from '@/components/dev/RichTextRenderer';
 import { useProjectPersistence } from '@/hooks/useProjectPersistence';
+import ContentBlocksSection from './ContentBlocksSection';
+import AddContentButton from '@/components/dev/AddContentButton';
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -61,7 +63,17 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       transition={{ duration: 0.6 }}
       className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
     >
-      <div className="glass-card p-6 sm:p-8 lg:p-10 layered-depth floating-element">
+      <div className="glass-card p-6 sm:p-8 lg:p-10 layered-depth floating-element relative group">
+        {/* Add Content Button for Dev Mode */}
+        {isDevMode && (
+          <div className="absolute top-4 right-4 z-30 opacity-70 group-hover:opacity-100 transition-opacity">
+            <AddContentButton onAdd={(type) => {
+              console.log('Adding content type:', type, 'to section:', sectionKey);
+              // This will be handled by the ContentBlocksSection component
+            }} />
+          </div>
+        )}
+
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -111,6 +123,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-6 sm:mb-8"
           >
             <SectionImages
               sectionImages={sectionImages}
@@ -125,6 +138,20 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
             />
           </motion.div>
         )}
+
+        {/* Dynamic Content Blocks Section - This provides add/move/reorder functionality */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <ContentBlocksSection
+            projectId={projectId}
+            sectionKey={`${sectionKey}_dynamic_content`}
+            className="mt-6"
+          />
+        </motion.div>
       </div>
     </motion.section>
   );
