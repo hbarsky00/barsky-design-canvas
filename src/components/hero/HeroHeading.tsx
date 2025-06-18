@@ -32,9 +32,9 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="space-y-1 sm:space-y-2 px-4"
+        className="space-y-1 sm:space-y-2 px-4 text-center"
       >
-        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 text-center">
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 text-center !text-center">
           UX/UI Designer & Frontend Developer
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-gray-600 text-center">
