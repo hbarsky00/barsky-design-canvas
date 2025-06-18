@@ -78,6 +78,9 @@ const ContentBlocksRenderer: React.FC<ContentBlocksRendererProps> = ({
                 <EditableText
                   initialText={block.value || ''}
                   multiline={block.type === 'text'}
+                  enableRichText={block.type === 'text'}
+                  showDeleteButton={true}
+                  onDelete={() => onDeleteContent(index)}
                   textKey={`${sectionKey}_content_block_${index}_${projectId}`}
                 >
                   {(text) => (

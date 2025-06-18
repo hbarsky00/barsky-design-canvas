@@ -33,6 +33,7 @@ const SectionContent: React.FC<SectionContentProps> = ({
       <EditableText 
         initialText={content} 
         multiline
+        enableRichText={true}
         textKey={`${sectionKey}_content_${projectId}`}
       >
         {(text) => (

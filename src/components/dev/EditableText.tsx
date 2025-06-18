@@ -4,19 +4,27 @@ import { useDevMode } from '@/context/DevModeContext';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
+import RichTextToolbar from './RichTextToolbar';
+import RichTextRenderer from './RichTextRenderer';
 
 interface EditableTextProps {
   children: (text: string) => React.ReactNode;
   initialText: string;
   multiline?: boolean;
   textKey?: string;
+  enableRichText?: boolean;
+  onDelete?: () => void;
+  showDeleteButton?: boolean;
 }
 
 const EditableText: React.FC<EditableTextProps> = ({
   children,
   initialText,
   multiline = false,
-  textKey
+  textKey,
+  enableRichText = false,
+  onDelete,
+  showDeleteButton = false
 }) => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
@@ -56,6 +64,7 @@ const EditableText: React.FC<EditableTextProps> = ({
     isEditing,
     isLoading,
     isSaving,
+    enableRichText,
     canEdit: isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current,
     mounted: mountedRef.current
   });
@@ -120,6 +129,54 @@ const EditableText: React.FC<EditableTextProps> = ({
       }
     };
   }, [loadSavedText]);
+
+  const handleFormat = useCallback((format: 'bold' | 'italic' | 'list' | 'ordered-list') => {
+    if (!inputRef.current) return;
+
+    const textarea = inputRef.current as HTMLTextAreaElement;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = text.substring(start, end);
+    
+    let formattedText = '';
+    let newCursorPos = start;
+
+    switch (format) {
+      case 'bold':
+        formattedText = `**${selectedText}**`;
+        newCursorPos = start + (selectedText ? 2 : 2);
+        break;
+      case 'italic':
+        formattedText = `*${selectedText}*`;
+        newCursorPos = start + (selectedText ? 1 : 1);
+        break;
+      case 'list':
+        const bulletList = selectedText.split('\n').map(line => 
+          line.trim() ? `• ${line.trim()}` : line
+        ).join('\n');
+        formattedText = bulletList;
+        newCursorPos = start + formattedText.length;
+        break;
+      case 'ordered-list':
+        const numberedList = selectedText.split('\n').map((line, index) => 
+          line.trim() ? `${index + 1}. ${line.trim()}` : line
+        ).join('\n');
+        formattedText = numberedList;
+        newCursorPos = start + formattedText.length;
+        break;
+    }
+
+    const newText = text.substring(0, start) + formattedText + text.substring(end);
+    setText(newText);
+
+    // Set cursor position after formatting
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.setSelectionRange(newCursorPos, newCursorPos);
+      }
+    }, 0);
+  }, [text]);
 
   const handleClick = useCallback(() => {
     const canEdit = isDevMode && !isLoading && !savingRef.current && textKey && mountedRef.current;
@@ -268,6 +325,13 @@ const EditableText: React.FC<EditableTextProps> = ({
     const InputComponent = multiline ? 'textarea' : 'input';
     return (
       <div className="relative">
+        {enableRichText && multiline && (
+          <RichTextToolbar
+            onFormat={handleFormat}
+            onDelete={onDelete}
+            showDelete={showDeleteButton}
+          />
+        )}
         <InputComponent
           ref={inputRef as any}
           value={text}
@@ -312,7 +376,11 @@ const EditableText: React.FC<EditableTextProps> = ({
       } ${isSaving ? 'opacity-50' : ''}`}
       title={canClick ? (isSaving ? 'Saving...' : 'Click to edit') : undefined}
     >
-      {children(text)}
+      {enableRichText && multiline ? (
+        <RichTextRenderer text={text} />
+      ) : (
+        children(text)
+      )}
       {isSaving && (
         <span className="ml-2 text-xs text-blue-600">
           Saving...
