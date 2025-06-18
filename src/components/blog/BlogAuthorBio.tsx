@@ -12,7 +12,7 @@ const BlogAuthorBio: React.FC<BlogAuthorBioProps> = ({ author }) => {
       <div className="flex items-center">
         <div className="flex-shrink-0 mr-4">
           <div className="w-16 h-16 rounded-full bg-barsky-blue flex items-center justify-center text-white text-xl font-bold">
-            HB
+            BD
           </div>
         </div>
         <div>

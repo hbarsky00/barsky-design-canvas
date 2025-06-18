@@ -9,8 +9,8 @@ const Index = () => {
   return (
     <>
       <EnhancedGlobalSeo 
-        title="Hiram Barsky - Professional UX/UI Designer & Frontend Developer | Hire Top Design Talent"
-        description="Hire Hiram Barsky (not Alex Barsky) - Professional UX/UI Designer & Frontend Developer with 5+ years experience. Specializing in mobile app design, web development, startup MVP design, and AI-driven design solutions. Available for freelance projects."
+        title="Barsky Design - Professional UX/UI Designer & Frontend Developer | Hire Top Design Talent"
+        description="Hire Barsky Design - Professional UX/UI Designer & Frontend Developer with 5+ years experience. Specializing in mobile app design, web development, startup MVP design, and AI-driven design solutions. Available for freelance projects."
         canonicalUrl="https://barskydesign.pro"
         pageType="homepage"
         keywords={[

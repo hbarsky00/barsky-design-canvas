@@ -11,12 +11,12 @@ const Footer: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Hiram<span className="text-barsky-blue">Barsky</span></h3>
+            <h3 className="text-2xl font-bold mb-6">Barsky<span className="text-barsky-blue">Design</span></h3>
             <p className="text-gray-300 mb-6">
               Crafting innovative software solutions that drive technology forward.
             </p>
             <p className="text-gray-400 text-sm">
-              &copy; {currentYear} Hiram Barsky. All rights reserved.
+              &copy; {currentYear} Barsky Design. All rights reserved.
             </p>
           </div>
           

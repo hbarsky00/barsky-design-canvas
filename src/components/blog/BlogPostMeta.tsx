@@ -10,10 +10,10 @@ interface BlogPostMetaProps {
 const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
   return (
     <Helmet>
-      <title>{post.title} | Hiram Barsky Blog</title>
+      <title>{post.title} | Barsky Design Blog</title>
       <meta name="description" content={post.excerpt} />
       <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, UX/UI Design Services"} />
-      <meta property="og:title" content={`${post.title} | Hiram Barsky Blog`} />
+      <meta property="og:title" content={`${post.title} | Barsky Design Blog`} />
       <meta property="og:description" content={post.excerpt} />
       <meta property="og:image" content={post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"} />
       <meta property="og:url" content={`https://barskydesign.pro/blog/${post.slug}`} />
@@ -38,7 +38,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
             },
             "publisher": {
               "@type": "Organization",
-              "name": "Hiram Barsky Design Services",
+              "name": "Barsky Design Services",
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"

@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
                 staggerChildren={0.05}
               />
               <AnimatedText
-                text="Hiram Barsky"
+                text="Barsky Design"
                 tag="h1"
                 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
                 delay={1000}

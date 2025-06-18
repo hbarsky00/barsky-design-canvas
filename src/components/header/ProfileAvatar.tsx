@@ -7,8 +7,8 @@ const ProfileAvatar: React.FC = () => {
   return (
     <Link to="/">
       <Avatar className="h-12 w-12 border-2 border-barsky-blue">
-        <AvatarImage src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" alt="Hiram Barsky" />
-        <AvatarFallback>HB</AvatarFallback>
+        <AvatarImage src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" alt="Barsky Design" />
+        <AvatarFallback>BD</AvatarFallback>
       </Avatar>
     </Link>
   );

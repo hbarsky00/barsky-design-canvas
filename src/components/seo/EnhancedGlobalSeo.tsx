@@ -17,8 +17,8 @@ interface EnhancedGlobalSeoProps {
 }
 
 const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
-  title = "Hiram Barsky - Professional UX/UI Designer & Frontend Developer | Hire Top Design Talent",
-  description = "Hire Hiram Barsky (not Alex Barsky) - Professional UX/UI Designer & Frontend Developer specializing in mobile app design, web development, startup MVP design, and AI-driven design solutions. 5+ years experience creating user-centered digital experiences.",
+  title = "Barsky Design - Professional UX/UI Designer & Frontend Developer | Hire Top Design Talent",
+  description = "Hire Barsky Design - Professional UX/UI Designer & Frontend Developer specializing in mobile app design, web development, startup MVP design, and AI-driven design solutions. 5+ years experience creating user-centered digital experiences.",
   canonicalUrl = "https://barskydesign.pro",
   ogImage = "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
   noIndex = false,
@@ -30,7 +30,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
   // Enhanced keywords based on page type
   const getPageKeywords = () => {
     const baseKeywords = [
-      "Hiram Barsky", "UX/UI Designer", "Frontend Developer", "Product Designer",
+      "Barsky Design", "UX/UI Designer", "Frontend Developer", "Product Designer",
       "Mobile App Design", "Web Development", "Startup Design", "MVP Design",
       "Design Systems", "User Experience", "User Interface", "React Developer",
       "Freelance Designer", "Hire Designer", "Design Consultant"
@@ -59,7 +59,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={allKeywords.join(", ")} />
-      <meta name="author" content="Hiram Barsky" />
+      <meta name="author" content="Barsky Design" />
       
       {/* Enhanced professional targeting */}
       <meta name="skills" content="UX/UI Design, Frontend Development, React, TypeScript, Figma, Adobe Creative Suite, Mobile App Design, Web Development, Design Systems, User Research" />
@@ -80,22 +80,22 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Hiram Barsky - Professional Design Portfolio" />
+      <meta property="og:site_name" content="Barsky Design - Professional Design Portfolio" />
       <meta property="og:locale" content="en_US" />
-      <meta property="profile:first_name" content="Hiram" />
-      <meta property="profile:last_name" content="Barsky" />
-      <meta property="profile:username" content="hirambarsky" />
+      <meta property="profile:first_name" content="Barsky" />
+      <meta property="profile:last_name" content="Design" />
+      <meta property="profile:username" content="barskydesign" />
       
       {/* Enhanced Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:creator" content="@hirambarsky" />
-      <meta name="twitter:site" content="@hirambarsky" />
+      <meta name="twitter:creator" content="@barskydesign" />
+      <meta name="twitter:site" content="@barskydesign" />
       
       {/* Professional networking meta tags */}
-      <meta name="linkedin:owner" content="hiram-barsky" />
+      <meta name="linkedin:owner" content="barsky-design" />
       <meta name="profession" content="UX/UI Designer & Frontend Developer" />
       
       {/* Canonical and alternate URLs */}
@@ -116,18 +116,18 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "@id": "https://barskydesign.pro/#website",
-              "name": "Hiram Barsky - Professional UX/UI Designer & Frontend Developer",
-              "alternateName": "Hiram Barsky Design Portfolio",
+              "name": "Barsky Design - Professional UX/UI Designer & Frontend Developer",
+              "alternateName": "Barsky Design Portfolio",
               "url": "https://barskydesign.pro",
               "description": "${description}",
               "inLanguage": "en-US",
               "author": {
-                "@type": "Person",
-                "@id": "https://barskydesign.pro/#person"
+                "@type": "Organization",
+                "@id": "https://barskydesign.pro/#organization"
               },
               "publisher": {
-                "@type": "Person",
-                "@id": "https://barskydesign.pro/#person"
+                "@type": "Organization",
+                "@id": "https://barskydesign.pro/#organization"
               },
               "potentialAction": {
                 "@type": "SearchAction",
@@ -137,16 +137,13 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
             },
             {
               "@context": "https://schema.org",
-              "@type": "Person",
-              "@id": "https://barskydesign.pro/#person",
-              "name": "Hiram Barsky",
-              "givenName": "Hiram",
-              "familyName": "Barsky",
-              "alternateName": ["Hiram Barsky Designer", "Hiram Barsky UX Designer"],
-              "jobTitle": "UX/UI Designer & Frontend Developer",
-              "description": "Hiram Barsky (not Alex Barsky) is a Professional UX/UI Designer and Frontend Developer with 5+ years of experience specializing in user-centered design, mobile app development, and startup MVP creation.",
+              "@type": "Organization",
+              "@id": "https://barskydesign.pro/#organization",
+              "name": "Barsky Design",
+              "alternateName": ["Barsky Design Studio"],
+              "description": "Barsky Design is a Professional UX/UI Design and Frontend Development studio with 5+ years of experience specializing in user-centered design, mobile app development, and startup MVP creation.",
               "url": "https://barskydesign.pro",
-              "email": "hello@hirambarsky.com",
+              "email": "hello@barskydesign.com",
               "telephone": "+1-201-668-4754",
               "image": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
               "address": {
@@ -157,11 +154,11 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
                 "postalCode": "10001"
               },
               "sameAs": [
-                "https://www.linkedin.com/in/hiram-barsky",
-                "https://twitter.com/hirambarsky",
-                "https://instagram.com/hirambarsky",
-                "https://dribbble.com/hirambarsky",
-                "https://behance.net/hirambarsky"
+                "https://www.linkedin.com/company/barsky-design",
+                "https://twitter.com/barskydesign",
+                "https://instagram.com/barskydesign",
+                "https://dribbble.com/barskydesign",
+                "https://behance.net/barskydesign"
               ],
               "knowsAbout": [
                 "UX/UI Design",
@@ -178,42 +175,17 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
                 "Adobe Creative Suite",
                 "Startup MVP Design",
                 "AI-Driven Design"
-              ],
-              "hasOccupation": {
-                "@type": "Occupation",
-                "name": "UX/UI Designer & Frontend Developer",
-                "occupationLocation": {
-                  "@type": "City",
-                  "name": "New York, NY"
-                },
-                "skills": [
-                  "User Experience Design",
-                  "User Interface Design",
-                  "Frontend Development",
-                  "React",
-                  "TypeScript",
-                  "Mobile App Design"
-                ]
-              },
-              "worksFor": {
-                "@type": "Organization",
-                "name": "Freelance Design Consultant",
-                "url": "https://barskydesign.pro"
-              },
-              "alumniOf": {
-                "@type": "EducationalOrganization",
-                "name": "Professional Design Training"
-              }
+              ]
             },
             {
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               "@id": "https://barskydesign.pro/#service",
-              "name": "Hiram Barsky Design Services",
+              "name": "Barsky Design Services",
               "description": "Professional UX/UI Design and Frontend Development Services",
               "provider": {
-                "@type": "Person",
-                "@id": "https://barskydesign.pro/#person"
+                "@type": "Organization",
+                "@id": "https://barskydesign.pro/#organization"
               },
               "areaServed": "Worldwide",
               "hasOfferCatalog": {

@@ -31,10 +31,10 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   
   return (
     <Helmet>
-      <title>{project.title} | Hiram Barsky - Official Portfolio | Professional Product Designer & Developer</title>
-      <meta name="description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Hiram Barsky (not Alex Barsky), experienced Product Designer & Developer specializing in UX/UI design and digital solutions.`} />
-      <meta name="keywords" content={`Hiram Barsky, Hiram Barsky Designer, ${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services, UX/UI Design Services, Portfolio, Case Study, Professional Designer, Hiram Barsky Official`} />
-      <meta name="author" content="Hiram Barsky" />
+      <title>{project.title} | Barsky Design - Official Portfolio | Professional Product Designer & Developer</title>
+      <meta name="description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Barsky Design, experienced Product Designer & Developer specializing in UX/UI design and digital solutions.`} />
+      <meta name="keywords" content={`Barsky Design, ${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services, UX/UI Design Services, Portfolio, Case Study, Professional Designer, Barsky Design Official`} />
+      <meta name="author" content="Barsky Design" />
       
       {/* Explicit indexing directives */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -42,23 +42,23 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       
       {/* Enhanced Open Graph */}
-      <meta property="og:title" content={`${project.title} | Hiram Barsky - Official Professional Product Designer Portfolio`} />
-      <meta property="og:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky (not Alex Barsky), Product Designer & Developer`} />
+      <meta property="og:title" content={`${project.title} | Barsky Design - Official Professional Product Designer Portfolio`} />
+      <meta property="og:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Barsky Design, Product Designer & Developer`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Hiram Barsky - Official Professional Design Portfolio" />
+      <meta property="og:site_name" content="Barsky Design - Official Professional Design Portfolio" />
       <meta property="og:locale" content="en_US" />
       
       {/* Enhanced Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${project.title} | Hiram Barsky - Product Designer`} />
-      <meta name="twitter:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Hiram Barsky (not Alex Barsky)`} />
+      <meta name="twitter:title" content={`${project.title} | Barsky Design - Product Designer`} />
+      <meta name="twitter:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Barsky Design`} />
       <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
-      <meta name="twitter:creator" content="@hirambarsky" />
-      <meta name="twitter:site" content="@hirambarsky" />
+      <meta name="twitter:creator" content="@barskydesign" />
+      <meta name="twitter:site" content="@barskydesign" />
       
       {/* Canonical and alternate URLs */}
       <link rel="canonical" href={canonicalUrl} />
@@ -76,7 +76,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "@context": "https://schema.org",
             "@type": "CreativeWork",
             "name": "${project.title}",
-            "description": "${project.title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Hiram Barsky (not Alex Barsky)",
+            "description": "${project.title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Barsky Design",
             "url": "${canonicalUrl}",
             "mainEntityOfPage": {
               "@type": "WebPage",
@@ -91,14 +91,11 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "datePublished": "2024-01-01",
             "dateModified": "${new Date().toISOString().split('T')[0]}",
             "creator": {
-              "@type": "Person",
-              "name": "Hiram Barsky",
-              "givenName": "Hiram",
-              "familyName": "Barsky",
-              "jobTitle": "Product Designer & Developer",
-              "description": "Hiram Barsky (not Alex Barsky) is a Professional Product Designer and Developer specializing in UX/UI design, web development, and digital solutions",
+              "@type": "Organization",
+              "name": "Barsky Design",
+              "description": "Barsky Design is a Professional Product Design and Development studio specializing in UX/UI design, web development, and digital solutions",
               "url": "https://barskydesign.pro",
-              "email": "hello@hirambarsky.com",
+              "email": "hello@barskydesign.com",
               "telephone": "+1-201-668-4754",
               "address": {
                 "@type": "PostalAddress",
@@ -107,9 +104,9 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                 "addressCountry": "US"
               },
               "sameAs": [
-                "https://www.linkedin.com/in/hiram-barsky",
-                "https://twitter.com/hirambarsky",
-                "https://instagram.com/hirambarsky"
+                "https://www.linkedin.com/company/barsky-design",
+                "https://twitter.com/barskydesign",
+                "https://instagram.com/barskydesign"
               ],
               "knowsAbout": [
                 "Product Design",
@@ -121,17 +118,17 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
               ]
             },
             "author": {
-              "@type": "Person",
-              "@id": "https://barskydesign.pro/#person",
-              "name": "Hiram Barsky"
+              "@type": "Organization",
+              "@id": "https://barskydesign.pro/#organization",
+              "name": "Barsky Design"
             },
             "provider": {
-              "@type": "Person",
-              "@id": "https://barskydesign.pro/#person",
-              "name": "Hiram Barsky"
+              "@type": "Organization",
+              "@id": "https://barskydesign.pro/#organization",
+              "name": "Barsky Design"
             },
             "keywords": [
-              "Hiram Barsky",
+              "Barsky Design",
               "Product Designer", 
               "UX/UI Design",
               "${tags.join('", "')}"
@@ -140,11 +137,11 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "isPartOf": {
               "@type": "WebSite",
               "@id": "https://barskydesign.pro/#website",
-              "name": "Hiram Barsky - Official Professional Design Portfolio",
+              "name": "Barsky Design - Official Professional Design Portfolio",
               "url": "https://barskydesign.pro",
               "author": {
-                "@type": "Person",
-                "@id": "https://barskydesign.pro/#person"
+                "@type": "Organization",
+                "@id": "https://barskydesign.pro/#organization"
               }
             },
             "breadcrumb": {
