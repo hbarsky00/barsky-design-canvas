@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import { blogPosts, type BlogPost } from "@/data/blogData";
 import { trackPageView, trackContentEngagement } from "@/lib/analytics";
 import { useToast } from "@/components/ui/use-toast";
@@ -68,6 +69,7 @@ const BlogPost: React.FC = () => {
             <RelatedPosts posts={relatedPosts} />
           </div>
         </article>
+        <ServicesCallToAction />
       </main>
       
       <Footer />

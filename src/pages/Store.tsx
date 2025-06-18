@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { trackPageView } from "@/lib/analytics";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import ProductGrid from "@/components/store/ProductGrid";
 import StoreHeader from "@/components/store/StoreHeader";
 import { MobileCategoryFilters, DesktopCategoryFilters } from "@/components/store/CategoryFilters";
@@ -56,6 +57,7 @@ const Store: React.FC = () => {
             </div>
           </div>
         </section>
+        <ServicesCallToAction />
       </main>
       <Footer />
     </div>

@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { trackPageView } from "@/lib/analytics";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import ProductDetails from "@/components/store/ProductDetails";
 import { products } from "@/data/productsData";
 
@@ -42,6 +43,7 @@ const ProductDetailsPage: React.FC = () => {
             <ProductDetails product={product} />
           </div>
         </section>
+        <ServicesCallToAction />
       </main>
       <Footer />
     </div>

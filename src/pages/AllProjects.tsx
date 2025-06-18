@@ -5,6 +5,7 @@ import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
+import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import { useProjectsData } from "./projects/hooks/useProjectsData";
 import { projectFaqs } from "@/data/seoFaqs";
 
@@ -56,6 +57,7 @@ const AllProjects = () => {
           faqs={projectFaqs}
           className="mt-16"
         />
+        <ServicesCallToAction />
       </main>
       
       <Footer />
