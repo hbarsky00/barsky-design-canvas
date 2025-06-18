@@ -60,12 +60,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     }
   };
 
-  const handleCaptionUpdate = (newCaption: string) => {
-    if (onCaptionUpdate) {
-      onCaptionUpdate(index, newCaption);
-    }
-  };
-
   const renderContent = () => {
     switch (block.type) {
       case 'text':
@@ -140,13 +134,12 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                 />
               )}
             </div>
-            {/* Always show caption editing area in dev mode or if caption exists */}
+            {/* Caption editing */}
             <div className="text-sm text-gray-600 italic text-center">
               <EditableText
                 initialText={block.caption || 'Click to add a caption...'}
                 textKey={`image_caption_${index}_${projectId}`}
                 multiline
-                onUpdate={handleCaptionUpdate}
               >
                 {(text) => (
                   <p className="text-sm text-gray-600 italic text-center">
@@ -239,7 +232,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                 initialText={block.caption || 'Click to add a caption...'}
                 textKey={`video_caption_${index}_${projectId}`}
                 multiline
-                onUpdate={handleCaptionUpdate}
               >
                 {(text) => (
                   <p className="text-sm text-gray-600 italic text-center">
@@ -271,7 +263,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                 initialText={block.caption || 'Click to add a caption...'}
                 textKey={`pdf_caption_${index}_${projectId}`}
                 multiline
-                onUpdate={handleCaptionUpdate}
               >
                 {(text) => (
                   <p className="text-sm text-gray-600 italic">

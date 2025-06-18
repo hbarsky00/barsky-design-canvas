@@ -99,18 +99,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
   }, [src, currentProjectId, onImageRemove]);
 
-  const handleCaptionChange = useCallback((newCaption: string) => {
-    console.log('📝 MaximizableImage: Caption update triggered:', {
-      originalSrc: src.substring(0, 30) + '...',
-      newCaption,
-      projectId: currentProjectId
-    });
-    
-    if (onCaptionUpdate) {
-      onCaptionUpdate(newCaption);
-    }
-  }, [src, currentProjectId, onCaptionUpdate]);
-
   const handleImageError = () => {
     console.error('❌ Image failed to load:', {
       displayedImage: displayedImage.substring(0, 50) + '...',
@@ -204,7 +192,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           initialText={caption || 'Click to add a caption...'}
           textKey={`image_caption_${src}_${currentProjectId}`}
           multiline={true}
-          onUpdate={handleCaptionChange}
         >
           {(text) => (
             <motion.div
