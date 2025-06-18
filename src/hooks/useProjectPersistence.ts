@@ -23,7 +23,7 @@ export const useProjectPersistence = (projectId: string) => {
   
   const { saveChange, getChanges, isLoading } = useDevModeDatabase(projectId);
 
-  // Load both dev mode and published data with priority to published
+  // Load both dev mode and published data with priority to DEV MODE for better editing experience
   useEffect(() => {
     if (!projectId) return;
     
@@ -37,22 +37,20 @@ export const useProjectPersistence = (projectId: string) => {
           PublishingService.loadPublishedData(projectId)
         ]);
         
-        // Prioritize published data over dev mode for images (published is more stable)
-        const mergedImageReplacements = {
-          ...normalizeImageReplacements(devChanges.imageReplacements),
-          ...(publishedData?.image_replacements || {}) // Published takes precedence
-        };
-        
-        // For text content, published data also takes precedence
+        // FIXED: Prioritize DEV MODE changes over published data for better editing experience
         const mergedTextContent = {
-          ...devChanges.textContent,
-          ...(publishedData?.text_content || {}) // Published takes precedence
+          ...(publishedData?.text_content || {}), // Published as base
+          ...devChanges.textContent // Dev changes take precedence
         };
         
-        // For content blocks, merge with published taking precedence
+        const mergedImageReplacements = {
+          ...normalizeImageReplacements(publishedData?.image_replacements || {}), // Published as base
+          ...normalizeImageReplacements(devChanges.imageReplacements) // Dev changes take precedence
+        };
+        
         const mergedContentBlocks = {
-          ...devChanges.contentBlocks,
-          ...(publishedData?.content_blocks || {}) // Published takes precedence
+          ...(publishedData?.content_blocks || {}), // Published as base
+          ...devChanges.contentBlocks // Dev changes take precedence
         };
         
         const newCachedData = {
@@ -61,14 +59,14 @@ export const useProjectPersistence = (projectId: string) => {
           contentBlocks: mergedContentBlocks
         };
         
-        console.log('📦 useProjectPersistence: Loaded comprehensive merged data:', {
-          devImages: Object.keys(devChanges.imageReplacements).length,
-          publishedImages: Object.keys(publishedData?.image_replacements || {}).length,
-          totalImages: Object.keys(mergedImageReplacements).length,
+        console.log('📦 useProjectPersistence: Loaded comprehensive merged data with DEV PRIORITY:', {
           devText: Object.keys(devChanges.textContent).length,
           publishedText: Object.keys(publishedData?.text_content || {}).length,
           totalText: Object.keys(mergedTextContent).length,
-          prioritySource: 'published-first'
+          devImages: Object.keys(devChanges.imageReplacements).length,
+          publishedImages: Object.keys(publishedData?.image_replacements || {}).length,
+          totalImages: Object.keys(mergedImageReplacements).length,
+          prioritySource: 'dev-mode-first'
         });
         
         setCachedData(newCachedData);
@@ -100,31 +98,24 @@ export const useProjectPersistence = (projectId: string) => {
     return normalized;
   }, []);
 
-  // Handle project updates with comprehensive refresh handling
+  // Handle project updates with improved dev mode priority
   useEffect(() => {
     const handleProjectUpdate = async (e: CustomEvent) => {
       if (e.detail?.projectId === projectId || e.detail?.immediate || e.detail?.allChangesApplied) {
-        console.log('🔄 useProjectPersistence: Comprehensive project data updated, reloading:', e.detail);
+        console.log('🔄 useProjectPersistence: Project data updated, reloading with dev priority:', e.detail);
         
         try {
-          // If this is a published update, prioritize published data completely
+          // For published updates, still use published data as primary
           if (e.detail?.published || e.detail?.allChangesApplied) {
-            console.log('🚀 useProjectPersistence: Published/comprehensive update detected, loading published data with priority');
+            console.log('🚀 useProjectPersistence: Published update detected, using published data');
             const publishedData = await PublishingService.loadPublishedData(projectId);
             
             if (publishedData) {
-              // For published updates, use published data as the primary source
               const newCachedData = {
                 textContent: publishedData.text_content || {},
                 imageReplacements: normalizeImageReplacements(publishedData.image_replacements || {}),
                 contentBlocks: publishedData.content_blocks || {}
               };
-              
-              console.log('📄 useProjectPersistence: Using published data as primary source:', {
-                images: Object.keys(newCachedData.imageReplacements).length,
-                texts: Object.keys(newCachedData.textContent).length,
-                contentBlocks: Object.keys(newCachedData.contentBlocks).length
-              });
               
               setCachedData(newCachedData);
               setForceUpdate(prev => prev + 1);
@@ -132,27 +123,31 @@ export const useProjectPersistence = (projectId: string) => {
             }
           }
           
-          // Regular dev mode update - merge with published as base
+          // For dev mode updates, prioritize dev changes
           const changes = await getChanges();
           const publishedData = await PublishingService.loadPublishedData(projectId);
           
-          // Merge with published data as base
+          // FIXED: Dev changes take priority for immediate display
           const mergedData = {
             textContent: {
               ...(publishedData?.text_content || {}),
-              ...changes.textContent
+              ...changes.textContent // Dev takes precedence
             },
             imageReplacements: normalizeImageReplacements({
               ...(publishedData?.image_replacements || {}),
-              ...changes.imageReplacements
+              ...changes.imageReplacements // Dev takes precedence
             }),
             contentBlocks: {
               ...(publishedData?.content_blocks || {}),
-              ...changes.contentBlocks
+              ...changes.contentBlocks // Dev takes precedence
             }
           };
           
-          console.log('🔄 useProjectPersistence: Updated with dev mode changes on published base');
+          console.log('🔄 useProjectPersistence: Updated with dev mode priority:', {
+            textChanges: Object.keys(changes.textContent).length,
+            imageChanges: Object.keys(changes.imageReplacements).length,
+            contentChanges: Object.keys(changes.contentBlocks).length
+          });
           setCachedData(mergedData);
           setForceUpdate(prev => prev + 1);
         } catch (error) {
@@ -183,20 +178,20 @@ export const useProjectPersistence = (projectId: string) => {
       forceUpdateCount: forceUpdate
     });
     return cachedData;
-  }, [cachedData, forceUpdate]); // Include forceUpdate to ensure fresh data
+  }, [cachedData, forceUpdate]);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
     console.log('💾 useProjectPersistence: Saving text content to database:', key, content);
     const success = await saveChange('text', key, content);
     if (success) {
-      // Update cached data immediately
+      // Update cached data immediately for instant feedback
       setCachedData(prev => ({
         ...prev,
         textContent: { ...prev.textContent, [key]: content }
       }));
       setLastSaved(new Date());
       
-      console.log('✅ useProjectPersistence: Text content saved successfully');
+      console.log('✅ useProjectPersistence: Text content saved successfully and cache updated');
     } else {
       console.error('❌ useProjectPersistence: Failed to save text content');
     }
