@@ -21,9 +21,9 @@ const Header: React.FC = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2",
         isScrolled
-          ? "bg-white shadow-md py-3 dark:bg-gray-900"
+          ? "bg-white shadow-md py-2 dark:bg-gray-900"
           : "bg-transparent"
       )}
     >
