@@ -7,6 +7,8 @@ import AboutPreview from "@/components/home/AboutPreview";
 import About from "@/components/About";
 import InternalLinkingHub from "@/components/seo/InternalLinkingHub";
 import Contact from "@/components/Contact";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 
 const HomepageLayout: React.FC = () => {
@@ -20,6 +22,10 @@ const HomepageLayout: React.FC = () => {
         <AboutPreview />
         <About />
         <Contact />
+        <SeoFaqSection 
+          title="Frequently Asked Questions About UX/UI Design Services"
+          faqs={homepageFaqs}
+        />
       </main>
       <Footer />
     </div>

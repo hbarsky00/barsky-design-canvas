@@ -2,8 +2,6 @@
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
-import SeoFaqSection from "@/components/seo/SeoFaqSection";
-import { homepageFaqs } from "@/data/seoFaqs";
 
 const Index = () => {
   return (
@@ -21,10 +19,6 @@ const Index = () => {
       />
       <ScrollHandler />
       <HomepageLayout />
-      <SeoFaqSection 
-        title="Frequently Asked Questions About UX/UI Design Services"
-        faqs={homepageFaqs}
-      />
     </>
   );
 };
