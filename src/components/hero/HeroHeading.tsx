@@ -17,7 +17,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
       >
         <div className="floating-element">
           <img
-            src="/lovable-uploads/64bd5f41-d480-486a-a9f4-80d820b53519.png"
+            src="/lovable-uploads/dbb80825-868f-4eb2-bd39-ff480bcc5f2c.png"
             alt="Barsky Design Logo"
             className="h-16 w-16 sm:h-20 sm:w-20 lg:h-28 lg:w-28 object-contain flex-shrink-0 drop-shadow-lg"
             loading="eager"
