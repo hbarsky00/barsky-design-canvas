@@ -6,7 +6,6 @@ import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
 import ProfileAvatar from "./header/ProfileAvatar";
 import ThemeToggle from "./ThemeToggle";
-import { motion } from "framer-motion";
 
 const Header: React.FC = () => {
   const { 
@@ -16,8 +15,7 @@ const Header: React.FC = () => {
     isMobileMenuOpen,
     handleLinkClick,
     toggleMobileMenu,
-    isLinkActive,
-    isScrolledPastHero
+    isLinkActive
   } = useHeaderNavigation();
 
   return (
@@ -32,21 +30,12 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            {isScrolledPastHero && (
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                className="flex items-center space-x-3"
-              >
-                <ProfileAvatar />
-                <AnimatedLogo />
-              </motion.div>
-            )}
+            <ProfileAvatar />
+            <AnimatedLogo />
           </div>
 
           <div className="flex items-center space-x-2">
-            {!isScrolledPastHero && <ThemeToggle />}
+            <ThemeToggle />
             <MobileMenu 
               links={navLinks}
               isMobileMenuOpen={isMobileMenuOpen}
