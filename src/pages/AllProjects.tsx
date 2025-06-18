@@ -2,8 +2,11 @@
 import React from "react";
 import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
 import GlobalSeo from "@/components/seo/GlobalSeo";
+import { useProjectsData } from "./projects/hooks/useProjectsData";
 
 const AllProjects = () => {
+  const { currentProjects, resetFilters } = useProjectsData();
+  
   const breadcrumbs = [
     { name: "Home", url: "https://barskydesign.pro" },
     { name: "Projects", url: "https://barskydesign.pro/projects" }
@@ -17,7 +20,10 @@ const AllProjects = () => {
         canonicalUrl="https://barskydesign.pro/projects"
         breadcrumbs={breadcrumbs}
       />
-      <EnhancedProjectGrid />
+      <EnhancedProjectGrid 
+        projects={currentProjects}
+        resetFilters={resetFilters}
+      />
     </>
   );
 };
