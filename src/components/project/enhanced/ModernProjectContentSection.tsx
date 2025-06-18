@@ -7,7 +7,6 @@ import { useDevMode } from '@/context/DevModeContext';
 import RichTextRenderer from '@/components/dev/RichTextRenderer';
 import { useProjectPersistence } from '@/hooks/useProjectPersistence';
 import ContentBlocksSection from './ContentBlocksSection';
-import AddContentButton from '@/components/dev/AddContentButton';
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -26,7 +25,6 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   imageCaptions,
   projectId
 }) => {
-  const { isDevMode } = useDevMode();
   const { getProjectData, saveImageReplacement } = useProjectPersistence(projectId);
 
   // Get replaced image source
@@ -64,16 +62,6 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
       className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
     >
       <div className="glass-card p-6 sm:p-8 lg:p-10 layered-depth floating-element relative group">
-        {/* Add Content Button for Dev Mode */}
-        {isDevMode && (
-          <div className="absolute top-4 right-4 z-30 opacity-70 group-hover:opacity-100 transition-opacity">
-            <AddContentButton onAdd={(type) => {
-              console.log('Adding content type:', type, 'to section:', sectionKey);
-              // This will be handled by the ContentBlocksSection component
-            }} />
-          </div>
-        )}
-
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
