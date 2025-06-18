@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import EditableText from '@/components/dev/EditableText';
 import SectionImages from './SectionImages';
 import { useDevMode } from '@/context/DevModeContext';
-import { useContentHandlers } from '@/hooks/useContentHandlers';
 import RichTextRenderer from '@/components/dev/RichTextRenderer';
+import { useProjectPersistence } from '@/hooks/useProjectPersistence';
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -25,12 +25,31 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   projectId
 }) => {
   const { isDevMode } = useDevMode();
-  const {
-    handleImageReplace,
-    handleImageRemove,
-    handleImageReorder,
-    getReplacedImageSrc
-  } = useContentHandlers(projectId, sectionKey);
+  const { getProjectData, saveImageReplacement } = useProjectPersistence(projectId);
+
+  // Get replaced image source
+  const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
+    const savedData = getProjectData();
+    return savedData.imageReplacements[originalSrc] || originalSrc;
+  }, [getProjectData]);
+
+  // Handle image replacement
+  const handleImageReplace = React.useCallback((imageSrc: string, newSrc: string) => {
+    console.log('ModernProjectContentSection: Replacing image:', imageSrc, 'with', newSrc);
+    saveImageReplacement(imageSrc, newSrc);
+  }, [saveImageReplacement]);
+
+  // Handle image removal - for now just log, can be implemented later
+  const handleImageRemove = React.useCallback((imageSrc: string) => {
+    console.log('ModernProjectContentSection: Remove image:', imageSrc);
+    // This could remove the image from the imageConfig in the future
+  }, []);
+
+  // Handle image reordering - for now just log, can be implemented later  
+  const handleImageReorder = React.useCallback((oldIndex: number, newIndex: number) => {
+    console.log('ModernProjectContentSection: Reorder images from', oldIndex, 'to', newIndex);
+    // This could reorder images in the imageConfig in the future
+  }, []);
 
   const sectionImages = imageConfig[sectionKey] || [];
 
