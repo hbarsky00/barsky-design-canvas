@@ -17,6 +17,7 @@ interface SyncState {
   hasQueuedChanges: boolean;
   lastSyncTime: number;
   pendingChanges: number;
+  isStuck: boolean;
 }
 
 export const useOptimizedSync = (projectId: string) => {
@@ -24,7 +25,8 @@ export const useOptimizedSync = (projectId: string) => {
     isSyncing: false,
     hasQueuedChanges: false,
     lastSyncTime: 0,
-    pendingChanges: 0
+    pendingChanges: 0,
+    isStuck: false
   });
 
   const { hasChanges, saveChange } = useDevModeDatabase(projectId);
@@ -36,12 +38,14 @@ export const useOptimizedSync = (projectId: string) => {
   const lastChangeTimeRef = useRef<number>(0);
   const isProcessingRef = useRef<boolean>(false);
   const mountedRef = useRef(true);
+  const stuckTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Configuration
-  const DEBOUNCE_DELAY = 2500; // Wait 2.5 seconds after last change
-  const THROTTLE_INTERVAL = 5000; // Max one sync every 5 seconds
-  const BATCH_SIZE = 10; // Max changes per batch
-  const MAX_QUEUE_SIZE = 50; // Prevent memory issues
+  const DEBOUNCE_DELAY = 2500;
+  const THROTTLE_INTERVAL = 5000;
+  const BATCH_SIZE = 10;
+  const MAX_QUEUE_SIZE = 50;
+  const STUCK_TIMEOUT = 15000; // 15 seconds to detect stuck state
 
   // Cleanup on unmount
   useEffect(() => {
@@ -49,8 +53,56 @@ export const useOptimizedSync = (projectId: string) => {
       mountedRef.current = false;
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
       if (throttleTimerRef.current) clearTimeout(throttleTimerRef.current);
+      if (stuckTimeoutRef.current) clearTimeout(stuckTimeoutRef.current);
     };
   }, []);
+
+  // Reset stuck state when sync completes or queue becomes empty
+  const resetStuckState = useCallback(() => {
+    if (stuckTimeoutRef.current) {
+      clearTimeout(stuckTimeoutRef.current);
+      stuckTimeoutRef.current = null;
+    }
+    
+    setSyncState(prev => prev.isStuck ? { ...prev, isStuck: false } : prev);
+  }, []);
+
+  // Detect and handle stuck sync operations
+  const handleStuckDetection = useCallback(() => {
+    console.warn('⚠️ OptimizedSync: Stuck state detected, forcing reset');
+    
+    // Clear all processing flags
+    isProcessingRef.current = false;
+    changeQueueRef.current = [];
+    
+    // Clear all timers
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    if (throttleTimerRef.current) clearTimeout(throttleTimerRef.current);
+    
+    setSyncState({
+      isSyncing: false,
+      hasQueuedChanges: false,
+      lastSyncTime: Date.now(),
+      pendingChanges: 0,
+      isStuck: true
+    });
+    
+    toast.error('Sync got stuck and was reset', {
+      description: 'Please try your changes again'
+    });
+    
+    // Reset stuck flag after showing the message
+    setTimeout(() => {
+      setSyncState(prev => ({ ...prev, isStuck: false }));
+    }, 3000);
+  }, []);
+
+  // Start stuck detection timer
+  const startStuckDetection = useCallback(() => {
+    if (stuckTimeoutRef.current) clearTimeout(stuckTimeoutRef.current);
+    
+    stuckTimeoutRef.current = setTimeout(handleStuckDetection, STUCK_TIMEOUT);
+  }, [handleStuckDetection]);
 
   // Smart change detection - only meaningful changes
   const isMeaningfulChange = useCallback((newChange: ChangeQueue, existingChanges: ChangeQueue[]): boolean => {
@@ -70,7 +122,6 @@ export const useOptimizedSync = (projectId: string) => {
       return lengthDiff >= 3 || changeRatio >= 0.1;
     }
     
-    // For images and content blocks, any change is meaningful
     return existing.value !== newChange.value;
   }, []);
 
@@ -112,7 +163,8 @@ export const useOptimizedSync = (projectId: string) => {
     setSyncState(prev => ({
       ...prev,
       hasQueuedChanges: true,
-      pendingChanges: changeQueueRef.current.length
+      pendingChanges: changeQueueRef.current.length,
+      isStuck: false
     }));
 
     console.log('📝 OptimizedSync: Change queued, total pending:', changeQueueRef.current.length);
@@ -129,6 +181,9 @@ export const useOptimizedSync = (projectId: string) => {
 
     isProcessingRef.current = true;
     console.log('🚀 OptimizedSync: Processing batch of', changeQueueRef.current.length, 'changes');
+
+    // Start stuck detection
+    startStuckDetection();
 
     try {
       // Take a batch of changes
@@ -177,6 +232,7 @@ export const useOptimizedSync = (projectId: string) => {
       return false;
     } finally {
       isProcessingRef.current = false;
+      resetStuckState();
       
       if (mountedRef.current) {
         setSyncState(prev => ({
@@ -188,7 +244,7 @@ export const useOptimizedSync = (projectId: string) => {
         }));
       }
     }
-  }, [projectId, saveChange]);
+  }, [projectId, saveChange, startStuckDetection, resetStuckState]);
 
   // Debounced and throttled scheduling
   const scheduleProcessing = useCallback(() => {
@@ -218,14 +274,50 @@ export const useOptimizedSync = (projectId: string) => {
     }, DEBOUNCE_DELAY);
   }, [processQueuedChanges, syncState.lastSyncTime]);
 
+  // Force reset function for manual recovery
+  const forceReset = useCallback(() => {
+    console.log('🔄 OptimizedSync: Force reset triggered');
+    
+    // Clear all state
+    isProcessingRef.current = false;
+    changeQueueRef.current = [];
+    
+    // Clear all timers
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    if (throttleTimerRef.current) clearTimeout(throttleTimerRef.current);
+    if (stuckTimeoutRef.current) clearTimeout(stuckTimeoutRef.current);
+    
+    setSyncState({
+      isSyncing: false,
+      hasQueuedChanges: false,
+      lastSyncTime: Date.now(),
+      pendingChanges: 0,
+      isStuck: false
+    });
+    
+    toast.success('Sync system reset');
+  }, []);
+
   // Manual sync trigger with conflict resolution
   const triggerManualSync = useCallback(async () => {
-    if (!projectId || syncState.isSyncing) return;
+    if (!projectId) return;
+    
+    // If stuck, force reset first
+    if (syncState.isStuck || (syncState.isSyncing && changeQueueRef.current.length === 0)) {
+      forceReset();
+      return;
+    }
+    
+    if (syncState.isSyncing) {
+      console.log('⏳ OptimizedSync: Sync already in progress');
+      return;
+    }
 
     console.log('🖱️ OptimizedSync: Manual sync triggered');
     
     try {
       setSyncState(prev => ({ ...prev, isSyncing: true }));
+      startStuckDetection();
 
       // Process any pending changes first
       if (changeQueueRef.current.length > 0) {
@@ -255,6 +347,7 @@ export const useOptimizedSync = (projectId: string) => {
         description: error instanceof Error ? error.message : 'Unknown error occurred'
       });
     } finally {
+      resetStuckState();
       if (mountedRef.current) {
         setSyncState(prev => ({ 
           ...prev, 
@@ -263,24 +356,12 @@ export const useOptimizedSync = (projectId: string) => {
         }));
       }
     }
-  }, [projectId, syncState.isSyncing, processQueuedChanges, hasChanges]);
-
-  // Auto-sync when queue becomes empty after processing
-  useEffect(() => {
-    if (!syncState.hasQueuedChanges && !syncState.isSyncing && syncState.lastSyncTime > 0) {
-      const timeSinceLastChange = Date.now() - lastChangeTimeRef.current;
-      
-      // Auto-sync after successful batch processing if changes were recent
-      if (timeSinceLastChange < 10000) { // Within 10 seconds
-        console.log('🚀 OptimizedSync: Auto-syncing after batch completion');
-        setTimeout(triggerManualSync, 1000);
-      }
-    }
-  }, [syncState.hasQueuedChanges, syncState.isSyncing, triggerManualSync]);
+  }, [projectId, syncState.isSyncing, syncState.isStuck, processQueuedChanges, hasChanges, forceReset, startStuckDetection, resetStuckState]);
 
   return {
     queueChange,
     triggerManualSync,
+    forceReset,
     syncState,
     clearQueue: () => {
       changeQueueRef.current = [];
