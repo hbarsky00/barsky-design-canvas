@@ -10,7 +10,6 @@ import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 import { useContentBlocksManager } from "@/hooks/useContentBlocksManager";
 import { useContentBlockActions } from "./ContentBlockActions";
-import { useContentBlockDragDrop } from "./ContentBlockDragDrop";
 import { generateContentHeader, generateContentBreakdown } from "@/utils/contentHeaderGenerator";
 
 interface ModernProjectContentSectionProps {
@@ -70,14 +69,24 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     handleVideoUrlUpdate
   } = useContentBlockActions(contentBlocks, setContentBlocks, saveContentBlocks);
 
-  // Use drag and drop hook
-  const {
-    draggedImageIndex,
-    handleDragStart,
-    handleDragOver,
-    handleDrop,
-    handleDragEnd
-  } = useContentBlockDragDrop(contentBlocks, setContentBlocks, saveContentBlocks);
+  // Arrow-based reordering handlers
+  const handleMoveUp = (index: number) => {
+    if (index > 0) {
+      const newBlocks = [...contentBlocks];
+      [newBlocks[index - 1], newBlocks[index]] = [newBlocks[index], newBlocks[index - 1]];
+      setContentBlocks(newBlocks);
+      saveContentBlocks(newBlocks);
+    }
+  };
+
+  const handleMoveDown = (index: number) => {
+    if (index < contentBlocks.length - 1) {
+      const newBlocks = [...contentBlocks];
+      [newBlocks[index], newBlocks[index + 1]] = [newBlocks[index + 1], newBlocks[index]];
+      setContentBlocks(newBlocks);
+      saveContentBlocks(newBlocks);
+    }
+  };
 
   const handleImageReplace = (imageSrc: string, newSrc: string) => {
     console.log('🖼️ ModernProjectContentSection: Replacing image', imageSrc, 'with', newSrc, 'for project', projectId);
@@ -172,11 +181,9 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
           onDeleteContent={handleDeleteContent}
           onContentImageReplace={wrappedHandleContentImageReplace}
           onVideoUrlUpdate={handleVideoUrlUpdate}
-          onDragStart={handleDragStart}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
+          onMoveUp={handleMoveUp}
+          onMoveDown={handleMoveDown}
           onAddContent={handleAddContent}
-          draggedImageIndex={draggedImageIndex}
         />
 
         {/* Section Images */}
