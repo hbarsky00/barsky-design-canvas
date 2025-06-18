@@ -202,4 +202,4 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   );
 };
 
-export default ModernProjectDetail;
+export default ModernProjectContentSection;
