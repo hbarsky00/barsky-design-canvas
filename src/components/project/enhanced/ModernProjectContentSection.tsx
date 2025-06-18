@@ -103,6 +103,24 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     await handleContentImageReplace(index, newSrc, projectId, saveImageReplacement, updateImageInProjectData);
   };
 
+  // Enhanced text update handler that ensures proper saving
+  const handleContentTextUpdate = async (index: number, newValue: string) => {
+    console.log('📝 ModernProjectContentSection: Updating text at index', index, 'with value:', newValue);
+    
+    // Update the content block immediately
+    const updatedBlocks = contentBlocks.map((block, i) => 
+      i === index && (block.type === 'text' || block.type === 'header') 
+        ? { ...block, value: newValue }
+        : block
+    );
+    setContentBlocks(updatedBlocks);
+    
+    // Save content blocks persistently
+    await saveContentBlocks(updatedBlocks);
+    
+    console.log('✅ ModernProjectContentSection: Content blocks saved successfully');
+  };
+
   if (isLoading) {
     return (
       <motion.section
@@ -179,24 +197,53 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
               )}
             </div>
             
-            {contentBlocks.map((block, index) => (
-              <div key={`${sectionKey}-${block.type}-${index}-${block.src || block.embedUrl || 'no-src'}`} className="border-l-4 border-blue-200 pl-3 sm:pl-4">
-                <DraggableContentBlock
-                  block={block}
-                  index={index}
-                  onUpdate={handleUpdateContent}
-                  onDelete={handleDeleteContent}
-                  onImageReplace={wrappedHandleContentImageReplace}
-                  onVideoUrlUpdate={handleVideoUrlUpdate}
-                  onDragStart={handleDragStart}
-                  onDragOver={handleDragOver}
-                  onDrop={handleDrop}
-                  isDragging={draggedImageIndex === index}
-                  projectId={projectId}
-                  onAddContent={handleAddContent}
-                />
-              </div>
-            ))}
+            {contentBlocks.map((block, index) => {
+              // Generate a unique key for each content block
+              const blockKey = `${sectionKey}-${block.type}-${index}-${block.src || block.embedUrl || block.value?.substring(0, 10) || 'no-content'}`;
+              
+              return (
+                <div key={blockKey} className="border-l-4 border-blue-200 pl-3 sm:pl-4">
+                  {block.type === 'text' || block.type === 'header' ? (
+                    <EditableText
+                      initialText={block.value || ''}
+                      multiline={block.type === 'text'}
+                      textKey={`${sectionKey}_content_block_${index}_${projectId}`}
+                    >
+                      {(text) => (
+                        block.type === 'header' ? (
+                          <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                            {text}
+                          </h3>
+                        ) : (
+                          <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+                            {text.split('\n\n').map((paragraph, pIndex) => (
+                              <p key={pIndex} className="mb-3 sm:mb-4">
+                                {paragraph}
+                              </p>
+                            ))}
+                          </div>
+                        )
+                      )}
+                    </EditableText>
+                  ) : (
+                    <DraggableContentBlock
+                      block={block}
+                      index={index}
+                      onUpdate={handleContentTextUpdate}
+                      onDelete={handleDeleteContent}
+                      onImageReplace={wrappedHandleContentImageReplace}
+                      onVideoUrlUpdate={handleVideoUrlUpdate}
+                      onDragStart={handleDragStart}
+                      onDragOver={handleDragOver}
+                      onDrop={handleDrop}
+                      isDragging={draggedImageIndex === index}
+                      projectId={projectId}
+                      onAddContent={handleAddContent}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
 
