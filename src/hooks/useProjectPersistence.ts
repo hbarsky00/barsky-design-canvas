@@ -23,53 +23,49 @@ export const useProjectPersistence = (projectId: string) => {
   
   const { saveChange, getChanges, isLoading } = useDevModeDatabase(projectId);
 
-  // Load both dev mode and published data with priority to DEV MODE for better editing experience
+  // Load dev mode changes FIRST, then merge with published data as fallback
   useEffect(() => {
     if (!projectId) return;
     
     const loadData = async () => {
       try {
-        console.log('🔄 useProjectPersistence: Loading comprehensive data for project:', projectId);
+        console.log('🔄 useProjectPersistence: Loading data with DEV MODE PRIORITY for project:', projectId);
         
-        // Load both dev mode changes and published data
-        const [devChanges, publishedData] = await Promise.all([
-          getChanges(),
-          PublishingService.loadPublishedData(projectId)
-        ]);
-        
-        // FIXED: Prioritize DEV MODE changes over published data for better editing experience
-        const mergedTextContent = {
-          ...(publishedData?.text_content || {}), // Published as base
-          ...devChanges.textContent // Dev changes take precedence
-        };
-        
-        const mergedImageReplacements = {
-          ...normalizeImageReplacements(publishedData?.image_replacements || {}), // Published as base
-          ...normalizeImageReplacements(devChanges.imageReplacements) // Dev changes take precedence
-        };
-        
-        const mergedContentBlocks = {
-          ...(publishedData?.content_blocks || {}), // Published as base
-          ...devChanges.contentBlocks // Dev changes take precedence
-        };
-        
-        const newCachedData = {
-          textContent: mergedTextContent,
-          imageReplacements: mergedImageReplacements,
-          contentBlocks: mergedContentBlocks
-        };
-        
-        console.log('📦 useProjectPersistence: Loaded comprehensive merged data with DEV PRIORITY:', {
-          devText: Object.keys(devChanges.textContent).length,
-          publishedText: Object.keys(publishedData?.text_content || {}).length,
-          totalText: Object.keys(mergedTextContent).length,
-          devImages: Object.keys(devChanges.imageReplacements).length,
-          publishedImages: Object.keys(publishedData?.image_replacements || {}).length,
-          totalImages: Object.keys(mergedImageReplacements).length,
-          prioritySource: 'dev-mode-first'
+        // Load dev mode changes FIRST
+        const devChanges = await getChanges();
+        console.log('📦 Dev mode changes loaded:', {
+          textCount: Object.keys(devChanges.textContent).length,
+          imageCount: Object.keys(devChanges.imageReplacements).length,
+          contentCount: Object.keys(devChanges.contentBlocks).length
         });
         
-        setCachedData(newCachedData);
+        // Load published data as fallback only
+        const publishedData = await PublishingService.loadPublishedData(projectId);
+        console.log('📖 Published data loaded as fallback');
+        
+        // DEV MODE TAKES ABSOLUTE PRIORITY - published data only fills gaps
+        const finalData = {
+          textContent: {
+            ...(publishedData?.text_content || {}), // Fallback
+            ...devChanges.textContent // DEV PRIORITY
+          },
+          imageReplacements: normalizeImageReplacements({
+            ...(publishedData?.image_replacements || {}), // Fallback
+            ...devChanges.imageReplacements // DEV PRIORITY
+          }),
+          contentBlocks: {
+            ...(publishedData?.content_blocks || {}), // Fallback
+            ...devChanges.contentBlocks // DEV PRIORITY
+          }
+        };
+        
+        console.log('✅ Final merged data with DEV PRIORITY:', {
+          totalText: Object.keys(finalData.textContent).length,
+          totalImages: Object.keys(finalData.imageReplacements).length,
+          totalContent: Object.keys(finalData.contentBlocks).length
+        });
+        
+        setCachedData(finalData);
         initializedRef.current = true;
       } catch (error) {
         console.error('❌ useProjectPersistence: Error loading data:', error);
@@ -98,57 +94,44 @@ export const useProjectPersistence = (projectId: string) => {
     return normalized;
   }, []);
 
-  // Handle project updates with improved dev mode priority
+  // Handle project updates - ALWAYS prioritize dev mode
   useEffect(() => {
     const handleProjectUpdate = async (e: CustomEvent) => {
-      if (e.detail?.projectId === projectId || e.detail?.immediate || e.detail?.allChangesApplied) {
-        console.log('🔄 useProjectPersistence: Project data updated, reloading with dev priority:', e.detail);
+      if (e.detail?.projectId === projectId || e.detail?.immediate) {
+        console.log('🔄 useProjectPersistence: Project update detected, reloading DEV FIRST:', e.detail);
         
         try {
-          // For published updates, still use published data as primary
+          // For any update, reload dev mode changes first
+          const devChanges = await getChanges();
+          
+          // Only load published if this is specifically a published update
+          let publishedData = null;
           if (e.detail?.published || e.detail?.allChangesApplied) {
-            console.log('🚀 useProjectPersistence: Published update detected, using published data');
-            const publishedData = await PublishingService.loadPublishedData(projectId);
-            
-            if (publishedData) {
-              const newCachedData = {
-                textContent: publishedData.text_content || {},
-                imageReplacements: normalizeImageReplacements(publishedData.image_replacements || {}),
-                contentBlocks: publishedData.content_blocks || {}
-              };
-              
-              setCachedData(newCachedData);
-              setForceUpdate(prev => prev + 1);
-              return;
-            }
+            publishedData = await PublishingService.loadPublishedData(projectId);
           }
           
-          // For dev mode updates, prioritize dev changes
-          const changes = await getChanges();
-          const publishedData = await PublishingService.loadPublishedData(projectId);
-          
-          // FIXED: Dev changes take priority for immediate display
-          const mergedData = {
+          // Always prioritize dev mode changes
+          const updatedData = {
             textContent: {
-              ...(publishedData?.text_content || {}),
-              ...changes.textContent // Dev takes precedence
+              ...(publishedData?.text_content || cachedData.textContent),
+              ...devChanges.textContent // DEV ALWAYS WINS
             },
             imageReplacements: normalizeImageReplacements({
-              ...(publishedData?.image_replacements || {}),
-              ...changes.imageReplacements // Dev takes precedence
+              ...(publishedData?.image_replacements || cachedData.imageReplacements),
+              ...devChanges.imageReplacements // DEV ALWAYS WINS
             }),
             contentBlocks: {
-              ...(publishedData?.content_blocks || {}),
-              ...changes.contentBlocks // Dev takes precedence
+              ...(publishedData?.content_blocks || cachedData.contentBlocks),
+              ...devChanges.contentBlocks // DEV ALWAYS WINS
             }
           };
           
-          console.log('🔄 useProjectPersistence: Updated with dev mode priority:', {
-            textChanges: Object.keys(changes.textContent).length,
-            imageChanges: Object.keys(changes.imageReplacements).length,
-            contentChanges: Object.keys(changes.contentBlocks).length
+          console.log('✅ Updated data with DEV PRIORITY maintained:', {
+            devTextCount: Object.keys(devChanges.textContent).length,
+            devImageCount: Object.keys(devChanges.imageReplacements).length
           });
-          setCachedData(mergedData);
+          
+          setCachedData(updatedData);
           setForceUpdate(prev => prev + 1);
         } catch (error) {
           console.error('❌ useProjectPersistence: Error reloading data:', error);
@@ -168,20 +151,15 @@ export const useProjectPersistence = (projectId: string) => {
       window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
       window.removeEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
     };
-  }, [projectId, getChanges, normalizeImageReplacements]);
+  }, [projectId, getChanges, normalizeImageReplacements, cachedData]);
 
   const getProjectData = useCallback((): ProjectData => {
-    console.log('📋 useProjectPersistence: getProjectData called, returning cached data with', {
-      textKeys: Object.keys(cachedData.textContent).length,
-      imageKeys: Object.keys(cachedData.imageReplacements).length,
-      contentKeys: Object.keys(cachedData.contentBlocks).length,
-      forceUpdateCount: forceUpdate
-    });
+    console.log('📋 useProjectPersistence: getProjectData returning cached data with DEV PRIORITY');
     return cachedData;
   }, [cachedData, forceUpdate]);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
-    console.log('💾 useProjectPersistence: Saving text content to database:', key, content);
+    console.log('💾 useProjectPersistence: Saving text content:', key);
     const success = await saveChange('text', key, content);
     if (success) {
       // Update cached data immediately for instant feedback
@@ -190,23 +168,15 @@ export const useProjectPersistence = (projectId: string) => {
         textContent: { ...prev.textContent, [key]: content }
       }));
       setLastSaved(new Date());
-      
-      console.log('✅ useProjectPersistence: Text content saved successfully and cache updated');
-    } else {
-      console.error('❌ useProjectPersistence: Failed to save text content');
+      console.log('✅ Text content saved and cached');
     }
   }, [saveChange]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('💾 useProjectPersistence: Saving image replacement to database:', originalSrc, '->', newSrc);
+    console.log('💾 useProjectPersistence: Saving image replacement:', originalSrc, '->', newSrc);
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
-      console.log('⚠️ Skipping blob URL replacement save:', originalSrc, '->', newSrc);
-      return;
-    }
-    
-    if (!newSrc.startsWith('data:') && !newSrc.startsWith('/') && !newSrc.startsWith('http')) {
-      console.log('⚠️ Skipping invalid URL replacement save:', originalSrc, '->', newSrc);
+      console.log('⚠️ Skipping blob URL replacement save');
       return;
     }
     
@@ -218,18 +188,14 @@ export const useProjectPersistence = (projectId: string) => {
         imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
       }));
       setLastSaved(new Date());
-      
-      console.log('✅ useProjectPersistence: Image replacement saved successfully');
-    } else {
-      console.error('❌ useProjectPersistence: Failed to save image replacement');
+      console.log('✅ Image replacement saved and cached');
     }
   }, [saveChange]);
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
-    console.log('💾 useProjectPersistence: Saving content blocks to database:', sectionKey, blocks);
+    console.log('💾 useProjectPersistence: Saving content blocks:', sectionKey);
     
     try {
-      // Validate content blocks before saving
       const validation = validateContentBlockSize(blocks);
       if (!validation.isValid) {
         console.error('❌ Content blocks validation failed:', validation.error);
@@ -241,18 +207,13 @@ export const useProjectPersistence = (projectId: string) => {
       
       const success = await saveChange('content_block', sectionKey, blocks);
       if (success) {
-        // Update cached data immediately
         setCachedData(prev => ({
           ...prev,
           contentBlocks: { ...prev.contentBlocks, [sectionKey]: blocks }
         }));
         setLastSaved(new Date());
-        
-        console.log('✅ useProjectPersistence: Content blocks saved successfully');
+        console.log('✅ Content blocks saved successfully');
         toast.success('Content saved successfully');
-      } else {
-        console.error('❌ useProjectPersistence: Failed to save content blocks');
-        toast.error('Failed to save content');
       }
     } catch (error) {
       console.error('❌ useProjectPersistence: Error saving content blocks:', error);
@@ -265,13 +226,11 @@ export const useProjectPersistence = (projectId: string) => {
 
   const getTextContent = useCallback((key: string, fallback: string = '') => {
     const text = cachedData.textContent[key] || fallback;
-    console.log('📖 useProjectPersistence: getTextContent for key:', key, 'returning:', text);
     return text;
   }, [cachedData.textContent]);
 
   const getImageSrc = useCallback((originalSrc: string) => {
     const replacementSrc = cachedData.imageReplacements[originalSrc] || originalSrc;
-    console.log('🖼️ useProjectPersistence: getImageSrc for:', originalSrc, 'returning:', replacementSrc);
     return replacementSrc;
   }, [cachedData.imageReplacements]);
 
@@ -282,8 +241,8 @@ export const useProjectPersistence = (projectId: string) => {
       contentBlocks: {}
     });
     setLastSaved(null);
-    console.log('🗑️ useProjectPersistence: Cleared project data for', projectId);
-  }, [projectId]);
+    console.log('🗑️ useProjectPersistence: Cleared project data');
+  }, []);
 
   return {
     saveTextContent,

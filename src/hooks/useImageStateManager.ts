@@ -1,104 +1,134 @@
 
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { UseImageStateManagerProps, ImageStateManagerReturn } from './image-state/types';
-import { useImageValidation } from './image-state/validation';
-import { useImageReplacement } from '@/context/ImageReplacementContext';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useDevModeDatabase } from './useDevModeDatabase';
 
-export const useImageStateManager = ({ src, projectId, imageReplacements }: UseImageStateManagerProps): ImageStateManagerReturn => {
-  const mountedRef = useRef(true);
-  
-  // Make image replacement context optional to prevent crashes
-  let getReplacedSrc: (src: string) => string;
-  let replaceImage: (originalSrc: string, newSrc: string, projectId: string) => void;
-  let isReplacing: boolean;
+interface UseImageStateManagerProps {
+  src: string;
+  projectId: string;
+  imageReplacements?: Record<string, string>;
+}
 
-  try {
-    const imageReplacementContext = useImageReplacement();
-    getReplacedSrc = imageReplacementContext.getReplacedSrc;
-    replaceImage = imageReplacementContext.replaceImage;
-    isReplacing = imageReplacementContext.isReplacing;
-  } catch (error) {
-    // Fallback when ImageReplacementProvider is not available
-    console.warn('ImageReplacementProvider not available, using fallback behavior');
-    getReplacedSrc = (src: string) => src;
-    replaceImage = () => {};
-    isReplacing = false;
-  }
-
-  const { isValidImageUrl } = useImageValidation();
-  
-  // Get the current displayed image
-  const displayedImage = useMemo(() => {
-    if (!src) return '';
-    
-    try {
-      // Priority 1: Context replacements (dev mode changes)
-      const contextReplacement = getReplacedSrc(src);
-      if (contextReplacement !== src) {
-        return contextReplacement;
-      }
-    } catch (error) {
-      console.warn('Error getting context replacement:', error);
-    }
-    
-    // Priority 2: Published replacements (passed as props)
-    const publishedReplacement = imageReplacements?.[src];
-    if (publishedReplacement && publishedReplacement !== src) {
-      return publishedReplacement;
-    }
-    
-    // Priority 3: Original source
-    return src;
-  }, [src, getReplacedSrc, imageReplacements]);
-
-  const [hasError, setHasError] = useState(false);
+export const useImageStateManager = ({
+  src,
+  projectId,
+  imageReplacements = {}
+}: UseImageStateManagerProps) => {
+  const [displayedImage, setDisplayedImage] = useState(src);
   const [hasDevModeChanges, setHasDevModeChanges] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [forceRefreshKey, setForceRefreshKey] = useState(0);
+  const mountedRef = useRef(true);
+  const { getChanges } = useDevModeDatabase(projectId);
 
-  // Update dev mode changes flag when replacement changes
+  // Check if URL is valid
+  const isValidUrl = useCallback((url: string): boolean => {
+    if (!url || typeof url !== 'string') return false;
+    return url.startsWith('data:') || 
+           url.startsWith('blob:') || 
+           url.startsWith('http://') || 
+           url.startsWith('https://') ||
+           url.startsWith('/');
+  }, []);
+
+  // Load dev mode image replacements with proper priority
   useEffect(() => {
-    try {
-      const contextReplacement = getReplacedSrc(src);
-      setHasDevModeChanges(contextReplacement !== src);
-    } catch (error) {
-      setHasDevModeChanges(false);
-    }
-  }, [src, getReplacedSrc]);
+    const loadImageState = async () => {
+      if (!projectId || !src || !mountedRef.current) {
+        setIsLoading(false);
+        return;
+      }
 
+      setIsLoading(true);
+      
+      try {
+        console.log('🖼️ useImageStateManager: Loading image state for:', src.substring(0, 50) + '...');
+        
+        // Check dev mode changes FIRST
+        const devChanges = await getChanges();
+        const devReplacement = devChanges.imageReplacements[src];
+        
+        if (devReplacement && isValidUrl(devReplacement)) {
+          console.log('✅ Using dev mode image replacement:', devReplacement.substring(0, 50) + '...');
+          setDisplayedImage(devReplacement);
+          setHasDevModeChanges(true);
+        } else {
+          // Fall back to passed imageReplacements or original
+          const fallbackReplacement = imageReplacements[src];
+          if (fallbackReplacement && isValidUrl(fallbackReplacement)) {
+            console.log('📖 Using fallback image replacement:', fallbackReplacement.substring(0, 50) + '...');
+            setDisplayedImage(fallbackReplacement);
+            setHasDevModeChanges(false);
+          } else {
+            console.log('🔄 Using original image:', src.substring(0, 50) + '...');
+            setDisplayedImage(src);
+            setHasDevModeChanges(false);
+          }
+        }
+        
+        setHasError(false);
+      } catch (error) {
+        console.error('❌ useImageStateManager: Error loading image state:', error);
+        setDisplayedImage(src);
+        setHasDevModeChanges(false);
+        setHasError(false);
+      } finally {
+        if (mountedRef.current) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadImageState();
+  }, [src, projectId, imageReplacements, getChanges, isValidUrl, forceRefreshKey]);
+
+  // Listen for project updates
+  useEffect(() => {
+    const handleProjectUpdate = (e: CustomEvent) => {
+      if (e.detail?.imageReplaced || e.detail?.immediate) {
+        console.log('🔄 useImageStateManager: Project update detected, refreshing image state');
+        setForceRefreshKey(prev => prev + 1);
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    };
+  }, []);
+
+  // Update displayed image directly (for immediate feedback)
   const updateDisplayedImage = useCallback((newSrc: string) => {
-    if (!mountedRef.current || !newSrc || !src || !projectId) return;
-    
-    console.log('⚡ useImageStateManager: Immediate image replacement:', {
-      originalSrc: src.substring(0, 30) + '...',
-      newSrc: newSrc.substring(0, 30) + '...'
-    });
-    
-    try {
-      replaceImage(src, newSrc, projectId);
-    } catch (error) {
-      console.warn('Error replacing image:', error);
+    if (isValidUrl(newSrc)) {
+      console.log('⚡ useImageStateManager: Updating displayed image immediately:', newSrc.substring(0, 50) + '...');
+      setDisplayedImage(newSrc);
+      setHasDevModeChanges(true);
+      setHasError(false);
     }
-  }, [src, projectId, replaceImage]);
+  }, [isValidUrl]);
 
+  // Force refresh
   const forceRefresh = useCallback(() => {
-    if (!mountedRef.current) return;
-    console.log('🔄 useImageStateManager: Force refresh triggered for:', src.substring(0, 50) + '...');
+    console.log('🔄 useImageStateManager: Force refreshing image state');
+    setForceRefreshKey(prev => prev + 1);
     setHasError(false);
-  }, [src]);
+  }, []);
 
-  // Cleanup on unmount
+  // Cleanup
   useEffect(() => {
     return () => {
       mountedRef.current = false;
     };
   }, []);
 
-  return useMemo(() => ({
-    displayedImage: displayedImage || src || '',
+  return {
+    displayedImage,
     updateDisplayedImage,
     forceRefresh,
     hasDevModeChanges,
-    isLoading: isReplacing,
     hasError,
-    isValidUrl: isValidImageUrl(displayedImage || src || '')
-  }), [displayedImage, src, updateDisplayedImage, forceRefresh, hasDevModeChanges, isReplacing, hasError, isValidImageUrl]);
+    isLoading,
+    isValidUrl: isValidUrl(displayedImage)
+  };
 };
