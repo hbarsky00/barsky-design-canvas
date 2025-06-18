@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from './useDevModeDatabase';
@@ -45,47 +44,52 @@ export const useProjectPersistence = (projectId: string) => {
     return normalized;
   }, []);
 
-  // CRITICAL FIX: Load dev mode changes FIRST and PRIORITIZE them over published data
+  // CRITICAL FIX: Load published data FIRST, then overlay dev changes
   useEffect(() => {
     if (!projectId) return;
     
     const loadData = async () => {
       try {
-        console.log('🔄 useProjectPersistence: Loading data with DEV MODE ABSOLUTE PRIORITY for project:', projectId);
+        console.log('🔄 useProjectPersistence: Loading data with PUBLISHED FIRST approach for project:', projectId);
         
-        // Load dev changes FIRST - these are the user's current work
+        // Load published data FIRST as the base
+        let publishedData = null;
+        try {
+          publishedData = await PublishingService.loadPublishedData(projectId);
+          console.log('📦 Published data loaded as base:', {
+            textCount: Object.keys(publishedData?.text_content || {}).length,
+            imageCount: Object.keys(publishedData?.image_replacements || {}).length,
+            contentCount: Object.keys(publishedData?.content_blocks || {}).length
+          });
+        } catch (error) {
+          console.warn('⚠️ Could not load published data, using empty base:', error);
+        }
+        
+        // Load dev changes as overlays on top of published data
         const devChanges = await getChanges();
-        console.log('📦 Dev mode changes loaded (PRIORITY):', {
+        console.log('🔧 Dev mode overlays loaded:', {
           textCount: Object.keys(devChanges.textContent).length,
           imageCount: Object.keys(devChanges.imageReplacements).length,
           contentCount: Object.keys(devChanges.contentBlocks).length
         });
         
-        // Only load published data as FALLBACK for missing keys
-        let publishedData = null;
-        try {
-          publishedData = await PublishingService.loadPublishedData(projectId);
-        } catch (error) {
-          console.warn('⚠️ Could not load published data, using dev only:', error);
-        }
-        
-        // DEV MODE TAKES ABSOLUTE PRIORITY - published is only fallback
+        // PUBLISHED DATA AS BASE, dev changes as overlay
         const finalData = {
           textContent: {
             ...(publishedData?.text_content || {}),
-            ...devChanges.textContent  // Dev changes OVERRIDE published
+            ...devChanges.textContent  // Dev changes overlay on published
           },
           imageReplacements: normalizeImageReplacements({
             ...(publishedData?.image_replacements || {}),
-            ...devChanges.imageReplacements  // Dev changes OVERRIDE published
+            ...devChanges.imageReplacements  // Dev changes overlay on published
           }),
           contentBlocks: {
             ...(publishedData?.content_blocks || {}),
-            ...devChanges.contentBlocks  // Dev changes OVERRIDE published
+            ...devChanges.contentBlocks  // Dev changes overlay on published
           }
         };
         
-        console.log('✅ Final data loaded with dev priority:', {
+        console.log('✅ Final data with published base + dev overlays:', {
           textKeys: Object.keys(finalData.textContent),
           imageKeys: Object.keys(finalData.imageReplacements),
           contentKeys: Object.keys(finalData.contentBlocks)
@@ -101,19 +105,17 @@ export const useProjectPersistence = (projectId: string) => {
     loadData();
   }, [projectId, getChanges, normalizeImageReplacements]);
 
-  // Handle project updates but PRESERVE dev mode work
+  // Handle project updates with proper published/dev state management
   useEffect(() => {
     const handleProjectUpdate = async (e: CustomEvent) => {
       if (e.detail?.projectId === projectId || e.detail?.immediate) {
-        console.log('🔄 useProjectPersistence: Update detected, PRESERVING dev work:', e.detail);
+        console.log('🔄 useProjectPersistence: Update detected:', e.detail);
         
         try {
-          // ALWAYS load dev changes first
-          const devChanges = await getChanges();
-          
-          // Only reload published data if explicitly marked as published
+          // If this is a publish event, reload published data first
           let publishedData = cachedData;
           if (e.detail?.published) {
+            console.log('📤 This is a publish event - reloading published data');
             try {
               const freshPublished = await PublishingService.loadPublishedData(projectId);
               if (freshPublished) {
@@ -122,29 +124,38 @@ export const useProjectPersistence = (projectId: string) => {
                   imageReplacements: normalizeImageReplacements(freshPublished.image_replacements || {}),
                   contentBlocks: freshPublished.content_blocks || {}
                 };
+                console.log('✅ Fresh published data loaded:', {
+                  images: Object.keys(publishedData.imageReplacements).length
+                });
               }
             } catch (error) {
               console.warn('⚠️ Could not reload published data, keeping current');
             }
           }
           
-          // Dev changes ALWAYS take priority
+          // Load current dev changes (may be empty after publish)
+          const devChanges = await getChanges();
+          console.log('🔧 Current dev changes after update:', {
+            images: Object.keys(devChanges.imageReplacements).length
+          });
+          
+          // Combine published base + dev overlays
           const updatedData = {
             textContent: {
               ...publishedData.textContent,
-              ...devChanges.textContent  // Dev ALWAYS wins
+              ...devChanges.textContent
             },
             imageReplacements: normalizeImageReplacements({
               ...publishedData.imageReplacements,
-              ...devChanges.imageReplacements  // Dev ALWAYS wins
+              ...devChanges.imageReplacements
             }),
             contentBlocks: {
               ...publishedData.contentBlocks,
-              ...devChanges.contentBlocks  // Dev ALWAYS wins
+              ...devChanges.contentBlocks
             }
           };
           
-          console.log('✅ Data updated with dev priority maintained');
+          console.log('✅ Data updated - final image replacements:', Object.keys(updatedData.imageReplacements));
           setCachedData(updatedData);
           setForceUpdate(prev => prev + 1);
         } catch (error) {
@@ -186,7 +197,7 @@ export const useProjectPersistence = (projectId: string) => {
   }, [queueChange]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('💾 useProjectPersistence: Queuing image replacement:', originalSrc, '->', newSrc);
+    console.log('💾 useProjectPersistence: Queuing image replacement:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('⚠️ Skipping blob URL replacement save');
@@ -195,14 +206,14 @@ export const useProjectPersistence = (projectId: string) => {
     
     queueChange('image', originalSrc, newSrc);
     
-    // Update cached data immediately
+    // Update cached data immediately for UI responsiveness
     setCachedData(prev => ({
       ...prev,
       imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
     }));
     setLastSaved(new Date());
-    console.log('✅ Image replacement queued and cached');
-  }, [queueChange]);
+    console.log('✅ Image replacement queued and cached - total replacements:', Object.keys(cachedData.imageReplacements).length + 1);
+  }, [queueChange, cachedData.imageReplacements]);
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
     console.log('💾 useProjectPersistence: Queuing content blocks:', sectionKey);
@@ -240,7 +251,9 @@ export const useProjectPersistence = (projectId: string) => {
   }, [cachedData.textContent]);
 
   const getImageSrc = useCallback((originalSrc: string) => {
-    return cachedData.imageReplacements[originalSrc] || originalSrc;
+    const replacement = cachedData.imageReplacements[originalSrc];
+    console.log('🖼️ getImageSrc:', originalSrc.substring(0, 30) + '...', replacement ? '-> ' + replacement.substring(0, 30) + '...' : '(no replacement)');
+    return replacement || originalSrc;
   }, [cachedData.imageReplacements]);
 
   const clearProjectData = useCallback(() => {

@@ -163,6 +163,10 @@ export class PublishingService {
           contentBlockCount: Object.keys(processedContentBlocks).length
         });
 
+        console.log('🖼️ Image replacements being published:', Object.keys(validImageReplacements).map(key => 
+          `${key.substring(0, 30)}... -> ${validImageReplacements[key].substring(0, 30)}...`
+        ));
+
         // Step 5: Store published state in the database
         const publishedData = {
           project_id: projectId,
@@ -172,7 +176,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving published data to database');
+        console.log('💾 Saving published data to database with image replacements:', Object.keys(validImageReplacements).length);
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -185,21 +189,21 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
+        console.log('✅ Published data stored successfully in database');
+
         // Step 6: Apply ALL changes to DOM immediately and comprehensively
         this.applyAllChangesToDOM(validImageReplacements, changes.textContent, processedContentBlocks, originalPath);
 
         // Step 7: Store in localStorage as fallback and force component updates
         try {
           localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
-          // Force clear any dev mode cache to ensure published data takes precedence
-          localStorage.removeItem(`imageOverrides_${projectId}`);
-          localStorage.removeItem(`textOverrides_${projectId}`);
+          console.log('💾 Published data stored in localStorage as backup');
         } catch (error) {
           console.warn('⚠️ Could not store to localStorage:', error);
         }
 
-        // Step 8: Clear dev mode changes AFTER successful publish
-        console.log('🗑️ Clearing dev mode changes after successful publish');
+        // Step 8: Clear dev mode changes AFTER successful publish and storage
+        console.log('🗑️ Clearing dev mode changes after successful publish and storage');
         const clearSuccess = await clearChangesFromDatabase(projectId);
         if (!clearSuccess) {
           console.warn('⚠️ Failed to clear dev mode changes, but publishing succeeded');
@@ -223,6 +227,7 @@ export class PublishingService {
         }
 
         // Force a complete component refresh to show ALL published changes
+        console.log('🔄 Dispatching comprehensive update event with published image replacements');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -239,7 +244,7 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully with comprehensive updates:', {
+        console.log('✅ Project published successfully with image replacements preserved:', {
           images: Object.keys(validImageReplacements).length,
           texts: Object.keys(changes.textContent).length,
           contentBlocks: Object.keys(processedContentBlocks).length
@@ -385,15 +390,22 @@ export class PublishingService {
         .single();
 
       if (!error && data) {
-        console.log('📖 Loaded published data from database');
+        console.log('📖 Loaded published data from database:', {
+          images: Object.keys(data.image_replacements || {}).length,
+          texts: Object.keys(data.text_content || {}).length
+        });
         return data;
       }
 
       // Fallback to localStorage
       const localData = localStorage.getItem(`published_${projectId}`);
       if (localData) {
-        console.log('📖 Loaded published data from localStorage');
-        return JSON.parse(localData);
+        const parsed = JSON.parse(localData);
+        console.log('📖 Loaded published data from localStorage:', {
+          images: Object.keys(parsed.image_replacements || {}).length,
+          texts: Object.keys(parsed.text_content || {}).length
+        });
+        return parsed;
       }
 
       console.log('📖 No published data found for project:', projectId);
