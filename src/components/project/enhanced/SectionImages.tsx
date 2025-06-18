@@ -113,17 +113,6 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               </div>
             )}
             
-            {/* Ensure EditImageButton is always rendered for each image when in dev mode */}
-            {isDevMode && (
-              <EditImageButton
-                src={replacedSrc}
-                onImageReplace={handleReplaceThisImage}
-                onImageRemove={handleRemoveThisImage}
-                projectId={projectId}
-                allowRemove={!!handleImageRemove}
-              />
-            )}
-            
             <MaximizableImage
               src={replacedSrc}
               alt={caption}
@@ -134,7 +123,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               onImageReplace={handleReplaceThisImage}
               onImageRemove={handleRemoveThisImage}
               projectId={projectId}
-              hideEditButton={true}
+              hideEditButton={false}
               allowRemove={!!handleImageRemove}
               onCaptionUpdate={handleCaptionChange}
             />

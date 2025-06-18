@@ -43,6 +43,11 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
     onRemoveImage(image.id);
   };
 
+  const handleImageReplace = (newSrc: string) => {
+    console.log('🔄 HeroImageSlot: Replacing image:', image.id, 'with', newSrc);
+    onImageReplace(image.id, newSrc);
+  };
+
   return (
     <div 
       className={`relative group/image ${
@@ -84,9 +89,10 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
         currentIndex={0}
         priority={index === 0}
         className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-        onImageReplace={(newSrc) => onImageReplace(image.id, newSrc)}
+        onImageReplace={handleImageReplace}
         onImageRemove={handleImageRemove}
         projectId={projectId}
+        hideEditButton={false}
         allowRemove={true}
       />
     </div>
