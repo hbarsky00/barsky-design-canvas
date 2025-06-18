@@ -3,6 +3,7 @@ import React from 'react';
 import EditableText from '@/components/dev/EditableText';
 import DraggableContentBlock from '@/components/dev/DraggableContentBlock';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
+import { useDevMode } from '@/context/DevModeContext';
 
 interface ContentBlocksRendererProps {
   contentBlocks: ContentBlock[];
@@ -39,6 +40,8 @@ const ContentBlocksRenderer: React.FC<ContentBlocksRendererProps> = ({
   onAddContent,
   draggedImageIndex
 }) => {
+  const { isDevMode } = useDevMode();
+
   if (contentBlocks.length === 0) {
     return null;
   }
@@ -57,7 +60,7 @@ const ContentBlocksRenderer: React.FC<ContentBlocksRendererProps> = ({
           )}
         </EditableText>
         
-        {contentBreakdown && (
+        {contentBreakdown && isDevMode && (
           <p className="text-sm text-gray-500">
             {contentBreakdown}
           </p>
