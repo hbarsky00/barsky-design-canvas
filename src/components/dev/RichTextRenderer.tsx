@@ -16,7 +16,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (paragraph.startsWith('### ')) {
         const headerText = paragraph.replace(/^### /, '');
         return (
-          <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mb-2">
+          <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mb-1">
             {formatInlineText(headerText)}
           </h3>
         );
@@ -25,7 +25,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (paragraph.startsWith('## ')) {
         const headerText = paragraph.replace(/^## /, '');
         return (
-          <h2 key={pIndex} className="text-2xl font-bold text-gray-800 mb-2">
+          <h2 key={pIndex} className="text-2xl font-bold text-gray-800 mb-1">
             {formatInlineText(headerText)}
           </h2>
         );
@@ -34,7 +34,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (paragraph.startsWith('# ')) {
         const headerText = paragraph.replace(/^# /, '');
         return (
-          <h1 key={pIndex} className="text-3xl font-bold text-gray-800 mb-2">
+          <h1 key={pIndex} className="text-3xl font-bold text-gray-800 mb-1">
             {formatInlineText(headerText)}
           </h1>
         );
@@ -44,7 +44,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (paragraph.includes('• ') || paragraph.includes('- ')) {
         const listItems = paragraph.split('\n').filter(item => item.trim());
         return (
-          <ul key={pIndex} className="list-disc list-inside mb-3 sm:mb-4 space-y-1">
+          <ul key={pIndex} className="list-disc list-inside mb-2 space-y-1">
             {listItems.map((item, itemIndex) => (
               <li key={itemIndex} className="ml-2">
                 {formatInlineText(item.replace(/^[•\-]\s*/, ''))}
@@ -58,7 +58,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (/^\d+\.\s/.test(paragraph)) {
         const listItems = paragraph.split('\n').filter(item => item.trim());
         return (
-          <ol key={pIndex} className="list-decimal list-inside mb-3 sm:mb-4 space-y-1">
+          <ol key={pIndex} className="list-decimal list-inside mb-2 space-y-1">
             {listItems.map((item, itemIndex) => (
               <li key={itemIndex} className="ml-2">
                 {formatInlineText(item.replace(/^\d+\.\s*/, ''))}
@@ -70,7 +70,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       
       // Regular paragraph
       return (
-        <p key={pIndex} className="mb-3 sm:mb-4">
+        <p key={pIndex} className="mb-2">
           {formatInlineText(paragraph)}
         </p>
       );
