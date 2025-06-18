@@ -18,9 +18,9 @@ export const useSyncOperations = (
   const throttleTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastProcessTimeRef = useRef<number>(0);
 
-  // Enhanced stuck detection with cache clearing
+  // FIXED: Enhanced stuck detection that PRESERVES dev mode work
   const handleStuckDetection = useCallback(() => {
-    debugCache.log('⚠️ SyncOperations: Stuck state detected, forcing complete reset');
+    debugCache.log('⚠️ SyncOperations: Stuck state detected, resetting sync only (PRESERVING dev work)');
     
     // Clear all processing flags
     isProcessingRef.current = false;
@@ -29,17 +29,22 @@ export const useSyncOperations = (
     if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
     if (throttleTimerRef.current) clearTimeout(throttleTimerRef.current);
     
-    // Clear caches to prevent state persistence
-    debugCache.clearAllCaches();
+    // CRITICAL FIX: Only clear published cache, NOT dev mode work
+    debugCache.clearOnlyPublishedCache();
     
     toast.error('Sync got stuck and was reset', {
-      description: 'All caches cleared. Please try your changes again'
+      description: 'Your dev mode work is preserved. Sync system reset.'
     });
     
-    // Force a hard refresh of the sync state
+    // Force a refresh that preserves dev mode work
     setTimeout(() => {
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { projectId, forceReset: true, timestamp: Date.now() }
+        detail: { 
+          projectId, 
+          syncReset: true, 
+          preserveDevWork: true,
+          timestamp: Date.now() 
+        }
       }));
     }, 100);
   }, [isProcessingRef, projectId]);

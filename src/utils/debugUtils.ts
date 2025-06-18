@@ -8,35 +8,54 @@ export const debugCache = {
   clearAllCaches: () => {
     console.log('🧹 Clearing all caches...');
     
-    // Clear localStorage
+    // Clear localStorage but PRESERVE dev mode changes
     const localStorageKeys = Object.keys(localStorage);
+    const devModeKeys: string[] = [];
+    const otherKeys: string[] = [];
+    
     localStorageKeys.forEach(key => {
-      if (key.includes('project_') || key.includes('imageOverrides_') || 
-          key.includes('textOverrides_') || key.includes('contentBlockOverrides_')) {
-        localStorage.removeItem(key);
-        console.log(`Cleared localStorage: ${key}`);
+      // PRESERVE these keys - they contain dev mode work
+      if (key.includes('imageOverrides_') || 
+          key.includes('textOverrides_') || 
+          key.includes('contentBlockOverrides_') ||
+          key.includes('devMode') ||
+          key.startsWith('project_')) {
+        devModeKeys.push(key);
+        console.log(`🔒 PRESERVING dev mode key: ${key}`);
+      } else if (key.includes('published_') || key.includes('cache_')) {
+        otherKeys.push(key);
       }
     });
     
-    // Clear sessionStorage
+    // Only clear non-dev-mode keys
+    otherKeys.forEach(key => {
+      localStorage.removeItem(key);
+      console.log(`🗑️ Cleared cache key: ${key}`);
+    });
+    
+    // Clear sessionStorage more selectively
     const sessionStorageKeys = Object.keys(sessionStorage);
     sessionStorageKeys.forEach(key => {
-      if (key.includes('project_') || key.includes('dev_mode')) {
+      if (!key.includes('dev_mode') && !key.includes('project_')) {
         sessionStorage.removeItem(key);
-        console.log(`Cleared sessionStorage: ${key}`);
+        console.log(`🗑️ Cleared sessionStorage: ${key}`);
       }
     });
     
-    // Force reload all images
-    document.querySelectorAll('img').forEach(img => {
-      const src = img.src;
-      img.src = '';
-      setTimeout(() => {
-        img.src = src + (src.includes('?') ? '&' : '?') + `v=${Date.now()}`;
-      }, 10);
-    });
+    // DO NOT force reload images - this causes the revert issue
+    console.log('✅ Selective cache clearing completed - dev mode work preserved');
+  },
+  
+  clearOnlyPublishedCache: () => {
+    console.log('🧹 Clearing only published cache...');
     
-    console.log('✅ All caches cleared');
+    const localStorageKeys = Object.keys(localStorage);
+    localStorageKeys.forEach(key => {
+      if (key.includes('published_')) {
+        localStorage.removeItem(key);
+        console.log(`🗑️ Cleared published cache: ${key}`);
+      }
+    });
   },
   
   checkForLoops: () => {
@@ -71,5 +90,5 @@ export const debugCache = {
 // Auto-run on load
 if (typeof window !== 'undefined') {
   (window as any).debugCache = debugCache;
-  console.log('🛠️ Debug utilities loaded. Use debugCache.clearAllCaches() or debugCache.checkForLoops()');
+  console.log('🛠️ Debug utilities loaded. Use debugCache.clearOnlyPublishedCache() for safe clearing');
 }

@@ -17,8 +17,14 @@ const OptimizedDevModeSyncButton: React.FC = () => {
     return null;
   }
 
+  const handleSafeCacheClear = () => {
+    debugCache.clearOnlyPublishedCache();
+    toast.success('Published cache cleared - dev work preserved');
+  };
+
   const handleDebugCacheClear = () => {
-    debugCache.clearAllCaches();
+    // FIXED: Use the safer cache clearing method
+    debugCache.clearOnlyPublishedCache();
     forceReset();
   };
 
@@ -74,7 +80,7 @@ const OptimizedDevModeSyncButton: React.FC = () => {
               {syncState.isStuck ? (
                 <>
                   <AlertCircle className="h-3 w-3 text-red-600" />
-                  <span>Sync stuck - click to reset</span>
+                  <span>Sync stuck - dev work preserved</span>
                 </>
               ) : syncState.isSyncing ? (
                 <>
@@ -106,7 +112,7 @@ const OptimizedDevModeSyncButton: React.FC = () => {
           {buttonState.text}
         </Button>
 
-        {/* Enhanced debugging controls */}
+        {/* FIXED: Enhanced debugging controls that preserve dev work */}
         {syncState.isStuck && (
           <div className="flex gap-2">
             <Button
@@ -120,14 +126,14 @@ const OptimizedDevModeSyncButton: React.FC = () => {
             </Button>
             
             <Button
-              onClick={handleDebugCacheClear}
+              onClick={handleSafeCacheClear}
               variant="outline"
               size="sm"
-              className="bg-white/90 backdrop-blur-sm text-red-600 hover:text-red-700"
-              title="Clear all caches and reset completely"
+              className="bg-white/90 backdrop-blur-sm text-orange-600 hover:text-orange-700"
+              title="Clear published cache only - preserves dev work"
             >
               <Trash2 className="h-3 w-3 mr-1" />
-              Clear Cache
+              Safe Clear
             </Button>
           </div>
         )}
@@ -135,7 +141,7 @@ const OptimizedDevModeSyncButton: React.FC = () => {
         {/* Debug console helper - only show in dev mode */}
         {process.env.NODE_ENV === 'development' && (
           <div className="text-xs text-gray-500 bg-white/90 backdrop-blur-sm rounded px-2 py-1">
-            Debug: Use <code>debugCache.clearAllCaches()</code> in console
+            Debug: Use <code>debugCache.clearOnlyPublishedCache()</code> to safely clear cache
           </div>
         )}
       </div>

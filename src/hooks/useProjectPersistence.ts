@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import { useDevModeDatabase } from './useDevModeDatabase';
@@ -44,38 +45,51 @@ export const useProjectPersistence = (projectId: string) => {
     return normalized;
   }, []);
 
-  // Load dev mode changes FIRST, then merge with published data as fallback
+  // CRITICAL FIX: Load dev mode changes FIRST and PRIORITIZE them over published data
   useEffect(() => {
     if (!projectId) return;
     
     const loadData = async () => {
       try {
-        console.log('🔄 useProjectPersistence: Loading data with DEV MODE PRIORITY for project:', projectId);
+        console.log('🔄 useProjectPersistence: Loading data with DEV MODE ABSOLUTE PRIORITY for project:', projectId);
         
+        // Load dev changes FIRST - these are the user's current work
         const devChanges = await getChanges();
-        console.log('📦 Dev mode changes loaded:', {
+        console.log('📦 Dev mode changes loaded (PRIORITY):', {
           textCount: Object.keys(devChanges.textContent).length,
           imageCount: Object.keys(devChanges.imageReplacements).length,
           contentCount: Object.keys(devChanges.contentBlocks).length
         });
         
-        const publishedData = await PublishingService.loadPublishedData(projectId);
-        console.log('📖 Published data loaded as fallback');
+        // Only load published data as FALLBACK for missing keys
+        let publishedData = null;
+        try {
+          publishedData = await PublishingService.loadPublishedData(projectId);
+        } catch (error) {
+          console.warn('⚠️ Could not load published data, using dev only:', error);
+        }
         
+        // DEV MODE TAKES ABSOLUTE PRIORITY - published is only fallback
         const finalData = {
           textContent: {
             ...(publishedData?.text_content || {}),
-            ...devChanges.textContent
+            ...devChanges.textContent  // Dev changes OVERRIDE published
           },
           imageReplacements: normalizeImageReplacements({
             ...(publishedData?.image_replacements || {}),
-            ...devChanges.imageReplacements
+            ...devChanges.imageReplacements  // Dev changes OVERRIDE published
           }),
           contentBlocks: {
             ...(publishedData?.content_blocks || {}),
-            ...devChanges.contentBlocks
+            ...devChanges.contentBlocks  // Dev changes OVERRIDE published
           }
         };
+        
+        console.log('✅ Final data loaded with dev priority:', {
+          textKeys: Object.keys(finalData.textContent),
+          imageKeys: Object.keys(finalData.imageReplacements),
+          contentKeys: Object.keys(finalData.contentBlocks)
+        });
         
         setCachedData(finalData);
         initializedRef.current = true;
@@ -87,35 +101,50 @@ export const useProjectPersistence = (projectId: string) => {
     loadData();
   }, [projectId, getChanges, normalizeImageReplacements]);
 
-  // Handle project updates
+  // Handle project updates but PRESERVE dev mode work
   useEffect(() => {
     const handleProjectUpdate = async (e: CustomEvent) => {
       if (e.detail?.projectId === projectId || e.detail?.immediate) {
-        console.log('🔄 useProjectPersistence: Project update detected, reloading DEV FIRST:', e.detail);
+        console.log('🔄 useProjectPersistence: Update detected, PRESERVING dev work:', e.detail);
         
         try {
+          // ALWAYS load dev changes first
           const devChanges = await getChanges();
           
-          let publishedData = null;
-          if (e.detail?.published || e.detail?.allChangesApplied) {
-            publishedData = await PublishingService.loadPublishedData(projectId);
+          // Only reload published data if explicitly marked as published
+          let publishedData = cachedData;
+          if (e.detail?.published) {
+            try {
+              const freshPublished = await PublishingService.loadPublishedData(projectId);
+              if (freshPublished) {
+                publishedData = {
+                  textContent: freshPublished.text_content || {},
+                  imageReplacements: normalizeImageReplacements(freshPublished.image_replacements || {}),
+                  contentBlocks: freshPublished.content_blocks || {}
+                };
+              }
+            } catch (error) {
+              console.warn('⚠️ Could not reload published data, keeping current');
+            }
           }
           
+          // Dev changes ALWAYS take priority
           const updatedData = {
             textContent: {
-              ...(publishedData?.text_content || cachedData.textContent),
-              ...devChanges.textContent
+              ...publishedData.textContent,
+              ...devChanges.textContent  // Dev ALWAYS wins
             },
             imageReplacements: normalizeImageReplacements({
-              ...(publishedData?.image_replacements || cachedData.imageReplacements),
-              ...devChanges.imageReplacements
+              ...publishedData.imageReplacements,
+              ...devChanges.imageReplacements  // Dev ALWAYS wins
             }),
             contentBlocks: {
-              ...(publishedData?.content_blocks || cachedData.contentBlocks),
-              ...devChanges.contentBlocks
+              ...publishedData.contentBlocks,
+              ...devChanges.contentBlocks  // Dev ALWAYS wins
             }
           };
           
+          console.log('✅ Data updated with dev priority maintained');
           setCachedData(updatedData);
           setForceUpdate(prev => prev + 1);
         } catch (error) {
