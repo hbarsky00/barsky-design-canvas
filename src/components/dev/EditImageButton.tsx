@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { Button } from '@/components/ui/button';
@@ -6,6 +7,7 @@ import { toast } from 'sonner';
 import { useParams } from 'react-router-dom';
 import { compressImageFile, validateImageSize, getOptimalCompressionSettings } from '@/utils/imageCompression';
 import { ImageStorageService } from '@/services/imageStorage';
+import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
 
 interface EditImageButtonProps {
   src?: string;
@@ -28,6 +30,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const processingRef = useRef(false);
+  const { saveChange } = useDevModeDatabase(currentProjectId);
 
   const validateImageUrl = (url: string): boolean => {
     if (!url || typeof url !== 'string') return false;
@@ -122,16 +125,36 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
         throw new Error('Invalid image URL received from storage');
       }
       
+      console.log('💾 EditImageButton: Saving image replacement to database for persistence');
+      // Save to database for persistence
+      await saveChange('image', src, publicUrl);
+      
       console.log('⚡ EditImageButton: IMMEDIATE callback for instant UI update');
       // Call callback IMMEDIATELY for instant visual feedback
       if (onImageReplace) {
         onImageReplace(publicUrl);
       }
       
+      // Trigger immediate project data update event for sync
+      setTimeout(() => {
+        console.log('🚀 EditImageButton: Dispatching immediate project update event');
+        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+          detail: { 
+            projectId: currentProjectId, 
+            imageReplaced: true, 
+            immediate: true,
+            timestamp: Date.now(),
+            source: 'edit-image-button',
+            src: src,
+            newSrc: publicUrl
+          }
+        }));
+      }, 50); // Very fast trigger
+      
       const finalSizeKB = (compressedFile.size / 1024).toFixed(2);
-      toast.success("Image uploaded successfully!", {
+      toast.success("Image uploaded and saved!", {
         id: 'image-upload',
-        description: `Uploaded ${finalSizeKB}KB to cloud storage.`,
+        description: `Uploaded ${finalSizeKB}KB to cloud storage and saved to project.`,
         duration: 3000,
       });
     } catch (error) {
@@ -158,7 +181,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
       processingRef.current = false;
       if (e.target) e.target.value = '';
     }
-  }, [src, currentProjectId, onImageReplace]);
+  }, [src, currentProjectId, onImageReplace, saveChange]);
 
   if (!isDevMode || !src) {
     return null;

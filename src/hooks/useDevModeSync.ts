@@ -41,7 +41,7 @@ export const useDevModeSync = (projectId: string) => {
     }
   }, [projectId, checkHasChanges]);
 
-  // Change detection with much faster intervals for immediate dev mode to live sync
+  // Change detection with fast intervals for real-time sync
   useEffect(() => {
     if (!projectId) {
       setHasChangesToSync(false);
@@ -57,13 +57,15 @@ export const useDevModeSync = (projectId: string) => {
     // Initial check
     checkChanges();
     
-    // Set up new interval with very fast checking for immediate sync
+    // Set up new interval with fast checking for real-time sync
     intervalRef.current = setInterval(checkChanges, 500); // Check every 500ms for near-instant sync
     
-    // Listen for project data updates
+    // Listen for project data updates with enhanced image handling
     const handleProjectDataUpdate = (e: CustomEvent) => {
+      const detail = e.detail || {};
+      
       // If this is a publish event, don't check for changes immediately
-      if (e.detail?.published) {
+      if (detail.published) {
         console.log('🚀 useDevModeSync: Published event detected, marking no changes to sync');
         if (mountedRef.current) {
           setHasChangesToSync(false);
@@ -71,17 +73,21 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
       
-      if (e.detail?.projectId === projectId || e.detail?.immediate) {
-        console.log('🔄 useDevModeSync: Relevant update detected, triggering immediate sync check');
+      // Handle immediate updates (text, images, content blocks)
+      if (detail.projectId === projectId || detail.immediate || detail.textChanged || detail.imageReplaced) {
+        console.log('🔄 useDevModeSync: Relevant update detected, triggering immediate sync check:', detail);
+        
         // Use immediate timeout to prevent blocking the event
         setTimeout(() => {
-          checkChanges();
-          // Trigger sync if changes are detected
-          setTimeout(() => {
-            if (mountedRef.current && hasChangesToSync) {
-              syncChangesToFiles();
-            }
-          }, 200);
+          if (mountedRef.current) {
+            checkChanges();
+            // Auto-trigger sync for immediate changes
+            setTimeout(() => {
+              if (mountedRef.current) {
+                syncChangesToFiles();
+              }
+            }, 200);
+          }
         }, 50);
       }
     };
@@ -95,7 +101,7 @@ export const useDevModeSync = (projectId: string) => {
       }
       window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
     };
-  }, [projectId, checkChanges, hasChangesToSync]);
+  }, [projectId, checkChanges]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -107,18 +113,6 @@ export const useDevModeSync = (projectId: string) => {
       }
     };
   }, []);
-
-  // Enhanced auto-sync that triggers faster for immediate dev-to-live updates
-  useEffect(() => {
-    if (hasChangesToSync && !isSyncing && projectId) {
-      console.log('🚀 useDevModeSync: Changes detected, starting immediate auto-sync');
-      const timeoutId = setTimeout(() => {
-        syncChangesToFiles();
-      }, 1000); // Reduced delay to 1 second for faster sync
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [hasChangesToSync, isSyncing, projectId]);
 
   const syncChangesToFiles = useCallback(async () => {
     if (!projectId || isSyncing) {
@@ -132,7 +126,7 @@ export const useDevModeSync = (projectId: string) => {
       return;
     }
 
-    console.log('🚀 useDevModeSync: Auto-syncing changes for project:', projectId);
+    console.log('🚀 useDevModeSync: Auto-syncing all changes (text + images) for project:', projectId);
     
     // Store current state to prevent any unwanted navigation
     const currentUrl = window.location.href;
@@ -149,7 +143,7 @@ export const useDevModeSync = (projectId: string) => {
         return;
       }
 
-      console.log('📤 useDevModeSync: Auto-publishing changes using PublishingService');
+      console.log('📤 useDevModeSync: Auto-publishing all changes (text + images) using PublishingService');
       await PublishingService.publishProject(projectId);
       
       // Ensure we stayed on the same page after publishing
@@ -158,10 +152,10 @@ export const useDevModeSync = (projectId: string) => {
         window.history.replaceState(null, '', currentUrl);
       }
       
-      // Show subtle success indication
+      // Show success indication
       console.log('✅ useDevModeSync: Auto-sync completed successfully');
-      toast.success("Changes synced to live!", {
-        description: "Your dev mode changes are now live",
+      toast.success("All changes synced to live!", {
+        description: "Your text and image changes are now live",
         duration: 3000
       });
 
