@@ -4,7 +4,8 @@ import { useDevMode } from '@/context/DevModeContext';
 import { useOptimizedSync } from '@/hooks/useOptimizedSync';
 import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Upload, Loader2, CheckCircle, Clock, AlertCircle, RotateCcw } from 'lucide-react';
+import { Upload, Loader2, CheckCircle, Clock, AlertCircle, RotateCcw, Trash2 } from 'lucide-react';
+import { debugCache } from '@/utils/debugUtils';
 
 const OptimizedDevModeSyncButton: React.FC = () => {
   const { isDevMode } = useDevMode();
@@ -15,6 +16,11 @@ const OptimizedDevModeSyncButton: React.FC = () => {
   if (!isDevMode || !projectId) {
     return null;
   }
+
+  const handleDebugCacheClear = () => {
+    debugCache.clearAllCaches();
+    forceReset();
+  };
 
   const getButtonState = () => {
     if (syncState.isStuck) {
@@ -61,7 +67,7 @@ const OptimizedDevModeSyncButton: React.FC = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       <div className="flex flex-col items-end space-y-2">
-        {/* Status indicator */}
+        {/* Enhanced status indicator with debug info */}
         {(syncState.hasQueuedChanges || syncState.isSyncing || syncState.isStuck) && (
           <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg border text-sm">
             <div className="flex items-center space-x-2 text-gray-700">
@@ -82,6 +88,10 @@ const OptimizedDevModeSyncButton: React.FC = () => {
                 </>
               )}
             </div>
+            {/* Debug timestamp */}
+            <div className="text-xs text-gray-500 mt-1">
+              Last update: {new Date(syncState.lastSyncTime || Date.now()).toLocaleTimeString()}
+            </div>
           </div>
         )}
 
@@ -96,17 +106,37 @@ const OptimizedDevModeSyncButton: React.FC = () => {
           {buttonState.text}
         </Button>
 
-        {/* Force reset button when stuck */}
+        {/* Enhanced debugging controls */}
         {syncState.isStuck && (
-          <Button
-            onClick={forceReset}
-            variant="outline"
-            size="sm"
-            className="bg-white/90 backdrop-blur-sm"
-          >
-            <RotateCcw className="h-3 w-3 mr-1" />
-            Force Reset
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={forceReset}
+              variant="outline"
+              size="sm"
+              className="bg-white/90 backdrop-blur-sm"
+            >
+              <RotateCcw className="h-3 w-3 mr-1" />
+              Force Reset
+            </Button>
+            
+            <Button
+              onClick={handleDebugCacheClear}
+              variant="outline"
+              size="sm"
+              className="bg-white/90 backdrop-blur-sm text-red-600 hover:text-red-700"
+              title="Clear all caches and reset completely"
+            >
+              <Trash2 className="h-3 w-3 mr-1" />
+              Clear Cache
+            </Button>
+          </div>
+        )}
+
+        {/* Debug console helper - only show in dev mode */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="text-xs text-gray-500 bg-white/90 backdrop-blur-sm rounded px-2 py-1">
+            Debug: Use <code>debugCache.clearAllCaches()</code> in console
+          </div>
         )}
       </div>
     </div>
