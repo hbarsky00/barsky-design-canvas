@@ -1,32 +1,35 @@
 
 # Hiram Barsky Portfolio Website - Robots.txt
-# Last Updated: 2025-06-11
+# Last Updated: 2025-06-18
 
-# Allow all web crawlers
+# Allow all web crawlers to index all content
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://barskydesign.pro/sitemap.xml
-
-# Specific rules for major crawlers
+# Specific rules for major crawlers to ensure indexing
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
+Crawl-delay: 1
 
 User-agent: DuckDuckBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Baiduspider
 Allow: /
+Crawl-delay: 2
 
 User-agent: Yandex
 Allow: /
+Crawl-delay: 2
 
 # Social media crawlers
 User-agent: Twitterbot
@@ -41,17 +44,32 @@ Allow: /
 User-agent: PinterestBot
 Allow: /
 
-# Crawl delay suggestion for heavy crawlers
-User-agent: *
-Crawl-delay: 10
+User-agent: WhatsApp
+Allow: /
 
-# Additional important search paths
-Allow: /services/
+User-agent: Slackbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://barskydesign.pro/sitemap.xml
+
+# Priority paths for crawlers
 Allow: /projects/
 Allow: /project/
-Allow: /contact/
-Allow: /about/
-Allow: /portfolio/
+Allow: /services/
 Allow: /design-services/
 Allow: /blog/
 Allow: /store/
+Allow: /contact/
+Allow: /about/
+
+# Ensure no blocking of important resources
+Allow: /lovable-uploads/
+Allow: /_next/
+Allow: /static/
+Allow: /assets/
+
+# Request crawl delay for heavy crawlers only
+User-agent: *
+Crawl-delay: 1
+

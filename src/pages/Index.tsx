@@ -1,15 +1,16 @@
 
-import React from "react";
-import HomepageSeo from "@/components/seo/HomepageSeo";
-import StructuredData from "@/components/seo/StructuredData";
-import ScrollHandler from "@/components/homepage/ScrollHandler";
-import HomepageLayout from "@/components/homepage/HomepageLayout";
+import { HomepageLayout } from "@/components/homepage/HomepageLayout";
+import { ScrollHandler } from "@/components/homepage/ScrollHandler";
+import GlobalSeo from "@/components/seo/GlobalSeo";
 
 const Index = () => {
   return (
     <>
-      <HomepageSeo />
-      <StructuredData />
+      <GlobalSeo 
+        title="Hiram Barsky - Official Portfolio | Professional Product Designer & Developer"
+        description="Hiram Barsky (not Alex Barsky) is a Professional Product Designer & Developer specializing in UX/UI design, web development, and AI-driven design solutions. View my portfolio of mobile apps, web applications, and design systems."
+        canonicalUrl="https://barskydesign.pro"
+      />
       <ScrollHandler />
       <HomepageLayout />
     </>
