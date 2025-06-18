@@ -3,7 +3,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import AnimatedLogo from "./AnimatedLogo";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
-import MobileMenu from "./header/MobileMenu";
+import Navigation from "./header/Navigation";
 import ProfileAvatar from "./header/ProfileAvatar";
 import ThemeToggle from "./ThemeToggle";
 import { motion } from "framer-motion";
@@ -13,9 +13,7 @@ const Header: React.FC = () => {
     isScrolled,
     navLinks,
     activeSection,
-    isMobileMenuOpen,
     handleLinkClick,
-    toggleMobileMenu,
     isLinkActive,
     isScrolledPastHero
   } = useHeaderNavigation();
@@ -29,15 +27,13 @@ const Header: React.FC = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-white shadow-md py-3 dark:bg-gray-900"
-          : "bg-transparent py-4",
-        // On homepage, add some padding when not scrolled to move menu closer to content
-        isHomepage && !isScrolled ? "pt-8" : ""
+          : "bg-transparent",
+        // Remove top padding when not scrolled on homepage
+        !isScrolled && isHomepage ? "py-0" : isScrolled ? "py-3" : "py-4"
       )}
     >
       <div className={cn(
-        "mx-auto px-4 sm:px-6 lg:px-8",
-        // On homepage, use smaller max-width to bring menu closer to content
-        isHomepage && !isScrolled ? "max-w-5xl" : "max-w-7xl"
+        "mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"
       )}>
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -55,17 +51,25 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
+            {/* Show full navigation when scrolled past hero */}
+            {isScrolledPastHero && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Navigation 
+                  links={navLinks}
+                  activeSection={activeSection}
+                  handleLinkClick={handleLinkClick}
+                  isLinkActive={isLinkActive}
+                />
+              </motion.div>
+            )}
+            
             {/* Show theme toggle on homepage when not scrolled */}
             {isHomepage && !isScrolledPastHero && <ThemeToggle />}
             {!isScrolledPastHero && !isHomepage && <ThemeToggle />}
-            
-            <MobileMenu 
-              links={navLinks}
-              isMobileMenuOpen={isMobileMenuOpen}
-              toggleMobileMenu={toggleMobileMenu}
-              handleLinkClick={handleLinkClick}
-              isLinkActive={isLinkActive}
-            />
           </div>
         </div>
       </div>
