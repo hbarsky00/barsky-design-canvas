@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronUp, ChevronDown, Trash2, Upload, Link, Edit3 } from 'lucide-react';
@@ -126,7 +125,7 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
               />
               {isDevMode && onImageReplace && (
                 <EditImageButton
-                  imageSrc={block.src || ''}
+                  src={block.src || ''}
                   onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
                   onImageRemove={() => onImageRemove?.(index)}
                   className="absolute top-2 right-2"
@@ -312,7 +311,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
               <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <AddContentButton
                   onAdd={(type) => onAddContent(type, index + 1)}
-                  compact
                 />
               </div>
             )}
