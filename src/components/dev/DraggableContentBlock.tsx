@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronUp, ChevronDown, Trash2, Upload, Link, Edit3 } from 'lucide-react';
@@ -30,6 +31,7 @@ interface DraggableContentBlockProps {
   projectId: string;
   onAddContent?: (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => void;
   onHeaderLevelChange?: (index: number, level: 1 | 2 | 3) => void;
+  onCaptionUpdate?: (index: number, newCaption: string) => void;
 }
 
 const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
@@ -45,7 +47,8 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   onVideoUrlUpdate,
   projectId,
   onAddContent,
-  onHeaderLevelChange
+  onHeaderLevelChange,
+  onCaptionUpdate
 }) => {
   const { isDevMode } = useDevMode();
   const [isEditingVideoUrl, setIsEditingVideoUrl] = useState(false);
@@ -54,6 +57,12 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     const level = parseInt(newLevel) as 1 | 2 | 3;
     if (onHeaderLevelChange) {
       onHeaderLevelChange(index, level);
+    }
+  };
+
+  const handleCaptionUpdate = (newCaption: string) => {
+    if (onCaptionUpdate) {
+      onCaptionUpdate(index, newCaption);
     }
   };
 
@@ -131,17 +140,21 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                 />
               )}
             </div>
-            {block.caption && (
+            {/* Always show caption editing area in dev mode or if caption exists */}
+            <div className="text-sm text-gray-600 italic text-center">
               <EditableText
-                initialText={block.caption}
+                initialText={block.caption || 'Click to add a caption...'}
                 textKey={`image_caption_${index}_${projectId}`}
                 multiline
+                onUpdate={handleCaptionUpdate}
               >
                 {(text) => (
-                  <p className="text-sm text-gray-600 italic text-center">{text}</p>
+                  <p className="text-sm text-gray-600 italic text-center">
+                    {text === 'Click to add a caption...' && !isDevMode ? '' : text}
+                  </p>
                 )}
               </EditableText>
-            )}
+            </div>
           </div>
         );
 
@@ -220,17 +233,21 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
               </div>
             )}
 
-            {block.caption && (
+            {/* Caption for video */}
+            <div className="text-sm text-gray-600 italic text-center">
               <EditableText
-                initialText={block.caption}
+                initialText={block.caption || 'Click to add a caption...'}
                 textKey={`video_caption_${index}_${projectId}`}
                 multiline
+                onUpdate={handleCaptionUpdate}
               >
                 {(text) => (
-                  <p className="text-sm text-gray-600 italic text-center">{text}</p>
+                  <p className="text-sm text-gray-600 italic text-center">
+                    {text === 'Click to add a caption...' && !isDevMode ? '' : text}
+                  </p>
                 )}
               </EditableText>
-            )}
+            </div>
           </div>
         );
 
@@ -248,17 +265,21 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                 </div>
               </div>
             </div>
-            {block.caption && (
+            {/* Caption for PDF */}
+            <div className="text-sm text-gray-600 italic text-center">
               <EditableText
-                initialText={block.caption}
+                initialText={block.caption || 'Click to add a caption...'}
                 textKey={`pdf_caption_${index}_${projectId}`}
                 multiline
+                onUpdate={handleCaptionUpdate}
               >
                 {(text) => (
-                  <p className="text-sm text-gray-600 italic">{text}</p>
+                  <p className="text-sm text-gray-600 italic">
+                    {text === 'Click to add a caption...' && !isDevMode ? '' : text}
+                  </p>
                 )}
               </EditableText>
-            )}
+            </div>
           </div>
         );
 

@@ -51,6 +51,13 @@ const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
     saveContentBlocks(newBlocks);
   };
 
+  const handleCaptionUpdate = (index: number, newCaption: string) => {
+    const newBlocks = [...contentBlocks];
+    newBlocks[index] = { ...newBlocks[index], caption: newCaption };
+    setContentBlocks(newBlocks);
+    saveContentBlocks(newBlocks);
+  };
+
   const handleHeaderLevelChange = (index: number, level: 1 | 2 | 3) => {
     const newBlocks = [...contentBlocks];
     newBlocks[index] = { ...newBlocks[index], level };
@@ -90,7 +97,8 @@ const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
       value: type === 'text' ? 'New text content...' : type === 'header' ? 'New Header' : '',
       src: type === 'image' ? '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png' : type === 'pdf' ? '' : undefined,
       embedUrl: type === 'video' ? 'placeholder' : undefined,
-      level: type === 'header' ? 2 : undefined
+      level: type === 'header' ? 2 : undefined,
+      caption: (type === 'image' || type === 'video' || type === 'pdf') ? 'Click to add a caption...' : undefined
     };
 
     const newBlocks = [...contentBlocks];
@@ -142,6 +150,7 @@ const ContentBlocksSection: React.FC<ContentBlocksSectionProps> = ({
             onImageRemove={handleImageRemove}
             onVideoUrlUpdate={handleVideoUrlUpdate}
             onHeaderLevelChange={handleHeaderLevelChange}
+            onCaptionUpdate={handleCaptionUpdate}
             projectId={projectId}
             onAddContent={handleAddContent}
           />

@@ -99,6 +99,18 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
   }, [src, currentProjectId, onImageRemove]);
 
+  const handleCaptionChange = useCallback((newCaption: string) => {
+    console.log('📝 MaximizableImage: Caption update triggered:', {
+      originalSrc: src.substring(0, 30) + '...',
+      newCaption,
+      projectId: currentProjectId
+    });
+    
+    if (onCaptionUpdate) {
+      onCaptionUpdate(newCaption);
+    }
+  }, [src, currentProjectId, onCaptionUpdate]);
+
   const handleImageError = () => {
     console.error('❌ Image failed to load:', {
       displayedImage: displayedImage.substring(0, 50) + '...',
@@ -186,26 +198,27 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </motion.div>
       
-      {caption && (
-        <div className="mt-2 text-sm text-gray-600 italic text-center">
-          <EditableText 
-            initialText={caption}
-            textKey={`image_caption_${src}_${currentProjectId}`}
-          >
-            {(text) => (
-              <motion.div
-                className="pr-8"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                {text}
-              </motion.div>
-            )}
-          </EditableText>
-        </div>
-      )}
+      {/* Always show caption section in dev mode or if caption exists */}
+      <div className="mt-2 text-sm text-gray-600 italic text-center">
+        <EditableText 
+          initialText={caption || 'Click to add a caption...'}
+          textKey={`image_caption_${src}_${currentProjectId}`}
+          multiline={true}
+          onUpdate={handleCaptionChange}
+        >
+          {(text) => (
+            <motion.div
+              className="pr-8"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              {text}
+            </motion.div>
+          )}
+        </EditableText>
+      </div>
     </div>
   );
 };
