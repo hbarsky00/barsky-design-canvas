@@ -16,7 +16,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (paragraph.startsWith('### ')) {
         const headerText = paragraph.replace(/^### /, '');
         return (
-          <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mb-3 sm:mb-4">
+          <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mb-2">
             {formatInlineText(headerText)}
           </h3>
         );
@@ -25,7 +25,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (paragraph.startsWith('## ')) {
         const headerText = paragraph.replace(/^## /, '');
         return (
-          <h2 key={pIndex} className="text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+          <h2 key={pIndex} className="text-2xl font-bold text-gray-800 mb-2">
             {formatInlineText(headerText)}
           </h2>
         );
@@ -34,7 +34,7 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
       if (paragraph.startsWith('# ')) {
         const headerText = paragraph.replace(/^# /, '');
         return (
-          <h1 key={pIndex} className="text-3xl font-bold text-gray-800 mb-3 sm:mb-4">
+          <h1 key={pIndex} className="text-3xl font-bold text-gray-800 mb-2">
             {formatInlineText(headerText)}
           </h1>
         );
