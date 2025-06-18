@@ -33,7 +33,7 @@ const AllProjects = () => {
       <Header />
       
       {/* Projects Header Section */}
-      <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-16 sm:py-20">
+      <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-16 sm:py-20 pt-24 sm:pt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Design Portfolio
