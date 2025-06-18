@@ -1,11 +1,13 @@
+
 import React, { useRef } from 'react';
-import { GripVertical, X, Upload, Edit3 } from 'lucide-react';
+import { Upload, Edit3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from './EditableText';
 import MaximizableImage from '@/components/project/MaximizableImage';
 import InsertContentButton from './InsertContentButton';
+import ContentOrderingControls from './ContentOrderingControls';
 import { toast } from 'sonner';
 import { ImageStorageService } from '@/services/imageStorage';
 
@@ -13,23 +15,22 @@ export interface ContentBlock {
   type: 'text' | 'image' | 'header' | 'video' | 'pdf';
   value?: string;
   src?: string;
-  embedUrl?: string; // New property for video embeds
+  embedUrl?: string;
   caption?: string;
-  level?: number; // for header levels
+  level?: number;
 }
 
 interface DraggableContentBlockProps {
   block: ContentBlock;
   index: number;
+  totalBlocks: number;
   onUpdate: (index: number, newValue: string) => void;
   onDelete: (index: number) => void;
+  onMoveUp: (index: number) => void;
+  onMoveDown: (index: number) => void;
   onImageReplace?: (index: number, newSrc: string) => void;
   onImageRemove?: (index: number) => void;
   onVideoUrlUpdate?: (index: number, newUrl: string) => void;
-  onDragStart: (e: React.DragEvent, index: number) => void;
-  onDragOver: (e: React.DragEvent) => void;
-  onDrop: (e: React.DragEvent, index: number) => void;
-  isDragging: boolean;
   projectId?: string;
   onAddContent?: (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => void;
 }
@@ -37,15 +38,14 @@ interface DraggableContentBlockProps {
 const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   block,
   index,
+  totalBlocks,
   onUpdate,
   onDelete,
+  onMoveUp,
+  onMoveDown,
   onImageReplace,
   onImageRemove,
   onVideoUrlUpdate,
-  onDragStart,
-  onDragOver,
-  onDrop,
-  isDragging,
   projectId,
   onAddContent
 }) => {
@@ -75,7 +75,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
     }
     
-    // If it's already an embed URL or iframe, return as is
     return url;
   };
 
@@ -92,18 +91,9 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     }
   };
 
-  console.log('🎯 DraggableContentBlock render:', { 
-    index, 
-    blockType: block.type, 
-    blockSrc: block.src,
-    hasOnImageReplace: !!onImageReplace,
-    hasOnImageRemove: !!onImageRemove
-  });
-
   const handleImageReplace = async (newSrc: string) => {
     console.log('🖼️ DraggableContentBlock: Processing image replacement for index', index, 'with', newSrc);
     
-    // If it's a storage URL, use it directly
     if (newSrc.startsWith('http') || newSrc.startsWith('/')) {
       if (onImageReplace) {
         onImageReplace(index, newSrc);
@@ -111,7 +101,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       return;
     }
     
-    // If it's base64 data, we need to upload it to storage first
     if (newSrc.startsWith('data:')) {
       if (!projectId) {
         toast.error('Cannot upload image: No project ID');
@@ -121,12 +110,10 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       try {
         toast.loading('Uploading image to storage...', { id: 'content-image-upload' });
         
-        // Convert data URL to File
         const response = await fetch(newSrc);
         const blob = await response.blob();
         const file = new File([blob], `content-image-${index}.jpg`, { type: 'image/jpeg' });
         
-        // Upload to storage
         const storageUrl = await ImageStorageService.uploadImage(file, projectId, `content-block-${index}`);
         
         if (storageUrl && onImageReplace) {
@@ -150,7 +137,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     if (onImageRemove) {
       onImageRemove(index);
     } else {
-      // Fallback: delete the entire block
       onDelete(index);
     }
   };
@@ -179,7 +165,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
     
     if (file && projectId) {
       try {
-        // Upload directly to storage instead of converting to data URL
         toast.loading('Uploading image...', { id: 'content-upload' });
         
         const storageUrl = await ImageStorageService.uploadImage(file, projectId, `content-block-${index}`);
@@ -198,7 +183,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         });
       }
     } else if (file && onImageReplace) {
-      // Fallback to data URL if no project ID (should be rare)
       try {
         const dataUrl = await convertFileToDataUrl(file);
         console.log('✅ File converted to data URL for content block:', index);
@@ -209,7 +193,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
       }
     }
     
-    // Reset file input
     if (e.target) {
       e.target.value = '';
     }
@@ -231,7 +214,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                 </div>
               )}
             </EditableText>
-            {/* Add insertion point after text blocks */}
             {onAddContent && (
               <div className="group">
                 <InsertContentButton 
@@ -259,7 +241,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                 </HeaderTag>
               )}
             </EditableText>
-            {/* Add insertion point right after headers */}
             {onAddContent && (
               <div className="group">
                 <InsertContentButton 
@@ -274,7 +255,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         );
 
       case 'image':
-        // Show upload placeholder only if no src is provided OR if it's the specific placeholder image
         const isPlaceholder = !block.src || block.src === '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
         
         console.log('🖼️ Rendering image block:', { 
@@ -321,7 +301,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
         );
 
       case 'video':
-        // Check if we need to show URL input interface
         const needsVideoUrl = !block.embedUrl || block.embedUrl === 'placeholder';
         
         if (needsVideoUrl || isEditingVideoUrl) {
@@ -426,34 +405,14 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
   };
 
   return (
-    <div 
-      className={`relative group ${isDragging ? 'opacity-50' : ''}`}
-      draggable={isDevMode}
-      onDragStart={(e) => onDragStart(e, index)}
-      onDragOver={onDragOver}
-      onDrop={(e) => onDrop(e, index)}
-    >
-      {isDevMode && (
-        <div className="absolute top-2 right-2 z-30 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-6 w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
-            title="Drag to reorder"
-          >
-            <GripVertical className="h-3 w-3" />
-          </Button>
-          <Button
-            onClick={() => onDelete(index)}
-            variant="destructive"
-            size="icon"
-            className="h-6 w-6"
-            title="Delete content"
-          >
-            <X className="h-3 w-3" />
-          </Button>
-        </div>
-      )}
+    <div className="relative group">
+      <ContentOrderingControls
+        index={index}
+        totalItems={totalBlocks}
+        onMoveUp={onMoveUp}
+        onMoveDown={onMoveDown}
+        onDelete={onDelete}
+      />
       
       {renderContent()}
     </div>

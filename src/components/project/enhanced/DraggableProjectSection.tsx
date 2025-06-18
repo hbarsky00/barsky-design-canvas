@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { GripVertical, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useDevMode } from '@/context/DevModeContext';
 import EditableText from '@/components/dev/EditableText';
 import MaximizableImage from '@/components/project/MaximizableImage';
+import ContentOrderingControls from '@/components/dev/ContentOrderingControls';
 
 export interface ProjectContentItem {
   id: string;
@@ -34,48 +35,40 @@ const DraggableProjectSection: React.FC<DraggableProjectSectionProps> = ({
   projectId
 }) => {
   const { isDevMode } = useDevMode();
-  const [draggedItem, setDraggedItem] = useState<string | null>(null);
 
-  const handleDragStart = (itemId: string) => {
-    setDraggedItem(itemId);
-  };
+  const handleMoveUp = (index: number) => {
+    if (index > 0) {
+      const newItems = [...sortedItems];
+      [newItems[index - 1], newItems[index]] = [newItems[index], newItems[index - 1]];
+      
+      // Update order values
+      const reorderedItems = newItems.map((item, idx) => ({
+        ...item,
+        order: idx
+      }));
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  };
-
-  const handleDrop = (e: React.DragEvent, targetIndex: number) => {
-    e.preventDefault();
-    const draggedItemId = draggedItem;
-    
-    if (!draggedItemId || draggedItemId === items[targetIndex]?.id) {
-      setDraggedItem(null);
-      return;
+      onItemsReorder(reorderedItems);
     }
-
-    const draggedIndex = items.findIndex(item => item.id === draggedItemId);
-    if (draggedIndex === -1) return;
-
-    const newItems = [...items];
-    const [draggedItemData] = newItems.splice(draggedIndex, 1);
-    
-    // Insert at the target position
-    const insertIndex = draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
-    newItems.splice(insertIndex, 0, draggedItemData);
-    
-    // Update order values
-    const reorderedItems = newItems.map((item, index) => ({
-      ...item,
-      order: index
-    }));
-
-    onItemsReorder(reorderedItems);
-    setDraggedItem(null);
   };
 
-  const handleDragEnd = () => {
-    setDraggedItem(null);
+  const handleMoveDown = (index: number) => {
+    if (index < sortedItems.length - 1) {
+      const newItems = [...sortedItems];
+      [newItems[index], newItems[index + 1]] = [newItems[index + 1], newItems[index]];
+      
+      // Update order values
+      const reorderedItems = newItems.map((item, idx) => ({
+        ...item,
+        order: idx
+      }));
+
+      onItemsReorder(reorderedItems);
+    }
+  };
+
+  const handleDelete = (index: number) => {
+    const itemToDelete = sortedItems[index];
+    onItemDelete(itemToDelete.id);
   };
 
   const sortedItems = [...items].sort((a, b) => a.order - b.order);
@@ -112,36 +105,15 @@ const DraggableProjectSection: React.FC<DraggableProjectSectionProps> = ({
         <motion.div
           key={item.id}
           layout
-          className={`relative group ${
-            draggedItem === item.id ? 'opacity-50' : ''
-          }`}
-          draggable={isDevMode}
-          onDragStart={() => handleDragStart(item.id)}
-          onDragOver={handleDragOver}
-          onDrop={(e) => handleDrop(e, index)}
-          onDragEnd={handleDragEnd}
+          className="relative group"
         >
-          {isDevMode && (
-            <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-6 w-6 bg-background/80 backdrop-blur-sm cursor-grab active:cursor-grabbing"
-                title="Drag to reorder"
-              >
-                <GripVertical className="h-3 w-3" />
-              </Button>
-              <Button
-                onClick={() => onItemDelete(item.id)}
-                variant="destructive"
-                size="icon"
-                className="h-6 w-6"
-                title="Delete item"
-              >
-                ×
-              </Button>
-            </div>
-          )}
+          <ContentOrderingControls
+            index={index}
+            totalItems={sortedItems.length}
+            onMoveUp={handleMoveUp}
+            onMoveDown={handleMoveDown}
+            onDelete={handleDelete}
+          />
 
           {item.type === 'text' ? (
             <div className="prose prose-slate max-w-none dark:prose-invert">
