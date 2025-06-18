@@ -29,9 +29,9 @@ const HLetter = ({ isDarkMode, letterTransition }: HLetterProps) => {
         }}
         transition={letterTransition}
       >
-        <span className="relative z-10">H</span>
+        <span className="relative z-10">B</span>
         
-        {/* Animated dot for H */}
+        {/* Animated dot for B */}
         <motion.span
           className="absolute -top-2 -right-1 h-2 w-2 rounded-full bg-barsky-blue"
           variants={{

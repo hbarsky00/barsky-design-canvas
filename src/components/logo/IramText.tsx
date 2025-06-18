@@ -26,7 +26,7 @@ const IramText = ({ isDarkMode, letterTransition }: IramTextProps) => {
       }}
       transition={letterTransition}
     >
-      {["i", "r", "a", "m"].map((letter, index) => (
+      {["a", "r", "s", "k", "y"].map((letter, index) => (
         <motion.span
           key={index}
           variants={{

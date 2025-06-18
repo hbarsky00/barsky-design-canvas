@@ -23,7 +23,7 @@ const BarskyText = ({ letterTransition, isDarkMode }: BarskyTextProps) => {
         }
       }}
     >
-      {["B", "a", "r", "s", "k", "y"].map((letter, index) => (
+      {["D", "e", "s", "i", "g", "n"].map((letter, index) => (
         <AnimatedLetter 
           key={index}
           letter={letter} 
