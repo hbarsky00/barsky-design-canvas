@@ -128,7 +128,6 @@ const DraggableContentBlock: React.FC<DraggableContentBlockProps> = ({
                   src={block.src || ''}
                   onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
                   onImageRemove={() => onImageRemove?.(index)}
-                  className="absolute top-2 right-2"
                 />
               )}
             </div>
