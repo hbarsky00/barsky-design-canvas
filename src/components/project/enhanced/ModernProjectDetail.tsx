@@ -7,6 +7,7 @@ import ModernProjectHero from "./ModernProjectHero";
 import ProjectHeroImageSection from "./ProjectHeroImageSection";
 import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import ProjectCallToAction from "@/components/project/ProjectCallToAction";
 import AddSectionButton from "@/components/dev/AddSectionButton";
 import DevModeStatus from '@/components/dev/DevModeStatus';
 import DevModeSyncButton from '@/components/dev/DevModeSyncButton';
@@ -187,6 +188,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
 
         {/* Add section button after result */}
         <AddSectionButton projectId={projectId} insertAfter="result" />
+
+        {/* Call to Action Section */}
+        <ProjectCallToAction />
 
         {/* Project Navigation */}
         <div className="glass-card p-4 layered-depth">

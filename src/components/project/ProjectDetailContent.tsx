@@ -6,6 +6,7 @@ import ProjectHeader from "./ProjectHeader";
 import ProjectOverview from "./ProjectOverview";
 import ProjectSidebar from "./ProjectSidebar";
 import ProjectGallery from "./ProjectGallery";
+import ProjectCallToAction from "./ProjectCallToAction";
 import { getImageAssignments } from "@/utils/imageConfigUtils";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 
@@ -114,6 +115,9 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
           />
         </div>
       </div>
+      
+      {/* Call to Action Section */}
+      <ProjectCallToAction />
       
       {/* Only show bottom gallery if it's not DAE Search project and has gallery images */}
       {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (

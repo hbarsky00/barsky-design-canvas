@@ -6,6 +6,7 @@ import { ProjectDetails } from "@/data/types/project";
 import CaseStudyHero from "./enhanced/CaseStudyHero";
 import ProcessTimeline from "./enhanced/ProcessTimeline";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import ProjectCallToAction from "./ProjectCallToAction";
 import ChallengeSolutionSection from "./enhanced/ChallengeSolutionSection";
 import TechnicalImplementationSection from "./enhanced/TechnicalImplementationSection";
 import { organizeProjectImages } from "./enhanced/ImageOrganizer";
@@ -104,6 +105,9 @@ const EnhancedProjectDetail: React.FC<EnhancedProjectDetailProps> = ({
           technicalImages={organizedImages.technical}
           imageCaptions={imageCaptions}
         />
+
+        {/* Call to Action Section */}
+        <ProjectCallToAction />
 
         {/* Project Navigation */}
         <section className="case-study-section">
