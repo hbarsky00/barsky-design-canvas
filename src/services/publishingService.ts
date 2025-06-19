@@ -1,7 +1,11 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
 import { processChangesData } from '@/hooks/database/dataProcessor';
+import { ImageProcessor } from './publishing/imageProcessor';
+import { DOMUpdater } from './publishing/domUpdater';
+import { PublishedData } from './publishing/types';
 
 export class PublishingService {
   static async publishProject(projectId: string, preserveDevChanges: boolean = true): Promise<boolean> {
@@ -57,72 +61,12 @@ export class PublishingService {
           imageEntries: Object.keys(oldImageReplacements).length
         });
 
-        // Process images - upload new ones and track old ones for cleanup
-        const publishedImageMappings: Record<string, string> = {};
-        const oldImagesToCleanup: string[] = [];
-        const failedUploads: string[] = [];
-        
-        for (const [originalSrc, newSrc] of Object.entries(changes.imageReplacements)) {
-          try {
-            // Track old image for cleanup
-            if (oldImageReplacements[originalSrc] && oldImageReplacements[originalSrc] !== originalSrc) {
-              oldImagesToCleanup.push(oldImageReplacements[originalSrc]);
-            }
-
-            if (newSrc.startsWith('data:')) {
-              // Upload data URL images to permanent storage
-              try {
-                const response = await fetch(newSrc);
-                if (!response.ok) {
-                  console.error('❌ Failed to fetch image data for:', originalSrc);
-                  failedUploads.push(originalSrc);
-                  continue;
-                }
-                
-                const blob = await response.blob();
-                if (blob.size === 0) {
-                  console.error('❌ Empty blob received for:', originalSrc);
-                  failedUploads.push(originalSrc);
-                  continue;
-                }
-                
-                const file = new File([blob], 'image.png', { type: blob.type });
-                
-                const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
-                
-                if (uploadedUrl && (uploadedUrl.startsWith('https://') || uploadedUrl.startsWith('http://'))) {
-                  publishedImageMappings[originalSrc] = uploadedUrl;
-                  console.log('📤 Uploaded image:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
-                } else {
-                  console.warn('❌ Upload failed or returned invalid URL for:', originalSrc);
-                  failedUploads.push(originalSrc);
-                }
-              } catch (uploadError) {
-                console.error('❌ Error uploading image:', originalSrc, uploadError);
-                failedUploads.push(originalSrc);
-              }
-            } else if (newSrc.startsWith('https://') || newSrc.startsWith('http://') || newSrc.startsWith('/')) {
-              // Accept already valid URLs
-              if (newSrc.includes('data:')) {
-                console.warn('⚠️ Suspicious URL contains data: prefix, skipping:', newSrc);
-                failedUploads.push(originalSrc);
-              } else {
-                publishedImageMappings[originalSrc] = newSrc;
-                console.log('✅ Using existing valid URL:', originalSrc.substring(0, 50) + '...', '->', newSrc);
-              }
-            } else {
-              console.warn('⚠️ Skipping invalid image URL format:', originalSrc, '->', newSrc);
-              failedUploads.push(originalSrc);
-            }
-          } catch (error) {
-            console.error('❌ Error processing image:', originalSrc, error);
-            failedUploads.push(originalSrc);
-          }
-        }
-
-        if (failedUploads.length > 0) {
-          console.warn('⚠️ Failed to process images:', failedUploads);
-        }
+        // Process images
+        const { publishedImageMappings, oldImagesToCleanup, failedUploads } = await ImageProcessor.processImages(
+          changes.imageReplacements,
+          oldImageReplacements,
+          projectId
+        );
 
         // Merge text content - published base + dev changes
         const finalTextContent = {
@@ -137,40 +81,7 @@ export class PublishingService {
         });
 
         // Process content blocks
-        const processedContentBlocks: Record<string, any[]> = {};
-        
-        for (const [sectionKey, blocks] of Object.entries(changes.contentBlocks)) {
-          const processedBlocks = await Promise.all(
-            blocks.map(async (block: any) => {
-              if (block.type === 'image' && block.src && block.src.startsWith('data:')) {
-                try {
-                  const response = await fetch(block.src);
-                  if (!response.ok) {
-                    console.warn('⚠️ Content block image fetch failed, removing from content');
-                    return null;
-                  }
-                  
-                  const blob = await response.blob();
-                  const file = new File([blob], 'content-image.png', { type: blob.type });
-                  
-                  const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, `content-${sectionKey}-${Date.now()}`);
-                  if (uploadedUrl && (uploadedUrl.startsWith('https://') || uploadedUrl.startsWith('http://'))) {
-                    return { ...block, src: uploadedUrl };
-                  } else {
-                    console.warn('⚠️ Content block image upload failed, removing from content');
-                    return null;
-                  }
-                } catch (error) {
-                  console.error('❌ Error uploading content block image:', error);
-                  return null;
-                }
-              }
-              return block;
-            })
-          );
-          
-          processedContentBlocks[sectionKey] = processedBlocks.filter(block => block !== null);
-        }
+        const processedContentBlocks = await ImageProcessor.processContentBlocks(changes.contentBlocks, projectId);
 
         // Merge content blocks too
         const finalContentBlocks = {
@@ -203,7 +114,7 @@ export class PublishingService {
         });
 
         // Store published state in the database
-        const publishedData = {
+        const publishedData: PublishedData = {
           project_id: projectId,
           text_content: finalTextContent as any,
           image_replacements: finalImageReplacements as any,
@@ -227,7 +138,7 @@ export class PublishingService {
         console.log('✅ Published data stored successfully');
 
         // Apply changes to DOM immediately
-        this.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
+        DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
 
         // Store in localStorage as fallback
         try {
@@ -299,124 +210,6 @@ export class PublishingService {
       console.error('❌ Error publishing project:', error);
       throw error;
     }
-  }
-
-  private static applyAllChangesToDOM(
-    imageReplacements: Record<string, string>,
-    textContent: Record<string, string>,
-    contentBlocks: Record<string, any[]>,
-    originalPath: string
-  ) {
-    console.log('🎨 Applying ALL published changes to DOM immediately and comprehensively');
-
-    // Apply ALL image changes with cache busting and immediate DOM updates
-    Object.entries(imageReplacements).forEach(([oldSrc, newSrc]) => {
-      const timestamp = Date.now();
-      const cacheBustedNewSrc = newSrc.includes('?') 
-        ? `${newSrc}&v=${timestamp}` 
-        : `${newSrc}?v=${timestamp}`;
-      
-      console.log('🖼️ Updating ALL images in DOM for:', oldSrc.substring(0, 30) + '...', '->', cacheBustedNewSrc.substring(0, 30) + '...');
-      
-      // Update ALL matching images immediately with multiple selection strategies
-      const selectors = [
-        `img[src="${oldSrc}"]`,
-        `img[src*="${oldSrc.substring(0, 50)}"]`,
-        `img[data-original-src="${oldSrc}"]`
-      ];
-      
-      selectors.forEach(selector => {
-        document.querySelectorAll(selector).forEach((img) => {
-          console.log('📸 Updating specific image element:', selector);
-          (img as HTMLImageElement).src = cacheBustedNewSrc;
-          img.setAttribute('data-updated', 'true');
-          (img as HTMLElement).style.opacity = '0';
-          (img as HTMLImageElement).onload = () => {
-            (img as HTMLElement).style.opacity = '1';
-          };
-        });
-      });
-      
-      // Also update any img elements that might have partial matches
-      document.querySelectorAll('img').forEach((img) => {
-        const imgSrc = img.src || img.getAttribute('src') || '';
-        if (imgSrc.includes(oldSrc.substring(oldSrc.lastIndexOf('/') + 1)) || 
-            imgSrc === oldSrc ||
-            img.getAttribute('data-original-src') === oldSrc) {
-          console.log('🔄 Updating image by partial match:', imgSrc);
-          img.src = cacheBustedNewSrc;
-          img.setAttribute('data-updated', 'true');
-          img.style.opacity = '0';
-          img.onload = () => {
-            img.style.opacity = '1';
-          };
-        }
-      });
-      
-      // Update background images
-      document.querySelectorAll('[style*="background-image"]').forEach((element) => {
-        const style = (element as HTMLElement).style;
-        if (style.backgroundImage && (style.backgroundImage.includes(oldSrc) || style.backgroundImage.includes(oldSrc.substring(0, 30)))) {
-          console.log('🎨 Updating background image:', style.backgroundImage);
-          style.backgroundImage = style.backgroundImage.replace(/url\(['"]?[^'"]*['"]?\)/, `url("${cacheBustedNewSrc}")`);
-        }
-      });
-    });
-
-    // Apply ALL text content changes immediately with comprehensive selection
-    Object.entries(textContent).forEach(([key, value]) => {
-      console.log('📝 Updating ALL text in DOM for key:', key, 'with value:', value.substring(0, 50) + '...');
-      
-      // Multiple selection strategies for text elements
-      const selectors = [
-        `[data-text-key="${key}"]`,
-        `[data-editable-text="${key}"]`,
-        `[data-content-key="${key}"]`
-      ];
-      
-      let elementsFound = 0;
-      selectors.forEach(selector => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach((element) => {
-          if (element.textContent !== value) {
-            console.log('📄 Updating text element:', selector, element.textContent?.substring(0, 30), '->', value.substring(0, 30));
-            element.textContent = value;
-            element.setAttribute('data-updated', 'true');
-            elementsFound++;
-          }
-        });
-      });
-      
-      if (elementsFound === 0) {
-        console.warn('⚠️ No text elements found for key:', key);
-      }
-    });
-
-    // Apply content block changes
-    Object.entries(contentBlocks).forEach(([sectionKey, blocks]) => {
-      console.log('📦 Updating content blocks for section:', sectionKey, 'with', blocks.length, 'blocks');
-      
-      const sectionElements = document.querySelectorAll(`[data-section="${sectionKey}"]`);
-      sectionElements.forEach((element) => {
-        element.setAttribute('data-updated', 'true');
-        console.log('📦 Marked content block section for update:', sectionKey);
-      });
-    });
-
-    // Force re-render of all React components by dispatching a comprehensive refresh event
-    setTimeout(() => {
-      console.log('🔄 Triggering comprehensive component refresh after DOM updates');
-      window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
-        detail: { 
-          allUpdated: true,
-          timestamp: Date.now(),
-          imageCount: Object.keys(imageReplacements).length,
-          textCount: Object.keys(textContent).length
-        }
-      }));
-    }, 100);
-
-    console.log('✅ ALL published changes applied to DOM comprehensively - staying on page:', originalPath);
   }
 
   static async loadPublishedData(projectId: string): Promise<any> {

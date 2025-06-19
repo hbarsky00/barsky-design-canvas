@@ -1,10 +1,10 @@
 
 import { useCallback, useRef } from 'react';
 import { useDevModeDatabase } from '../useDevModeDatabase';
-import { PublishingService } from '@/services/publishingService';
-import { toast } from 'sonner';
-import { ChangeQueue, SyncConfig } from './types';
-import { debugCache } from '@/utils/debugUtils';
+import { SyncConfig } from './types';
+import { useStuckDetection } from './useStuckDetection';
+import { useQueueProcessor } from './useQueueProcessor';
+import { useManualSync } from './useManualSync';
 
 export const useSyncOperations = (
   projectId: string,
@@ -15,127 +15,47 @@ export const useSyncOperations = (
 ) => {
   const { hasChanges, saveChange } = useDevModeDatabase(projectId);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const lastProcessTimeRef = useRef<number>(0);
 
-  // SIMPLIFIED: Reset sync state without aggressive cache clearing
-  const handleStuckDetection = useCallback(() => {
-    debugCache.log('⚠️ SyncOperations: Resetting stuck sync (preserving dev work)');
-    
-    // Clear processing flags
-    isProcessingRef.current = false;
-    
-    // Clear timers
-    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-    
-    // MINIMAL cache clearing - only published cache
-    debugCache.clearOnlyPublishedCache();
-    
-    toast.error('Sync reset - your dev work is safe', {
-      description: 'Sync system reset. All your dev mode work is preserved.'
-    });
-    
-    // Gentle refresh that preserves dev work
-    setTimeout(() => {
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          projectId, 
-          syncReset: true, 
-          preserveDevWork: true,
-          minimal: true,
-          timestamp: Date.now() 
-        }
-      }));
-    }, 100);
-  }, [isProcessingRef, projectId]);
+  const { startStuckDetection } = useStuckDetection(
+    isProcessingRef,
+    projectId,
+    config.STUCK_TIMEOUT
+  );
 
-  const startStuckDetection = useCallback(() => {
-    if (stuckTimeoutRef.current) clearTimeout(stuckTimeoutRef.current);
-    
-    stuckTimeoutRef.current = setTimeout(() => {
-      debugCache.log('🚨 Stuck timeout triggered');
-      handleStuckDetection();
-    }, config.STUCK_TIMEOUT);
-  }, [handleStuckDetection, config.STUCK_TIMEOUT, stuckTimeoutRef]);
+  const { processQueuedChanges } = useQueueProcessor(
+    projectId,
+    config,
+    isProcessingRef,
+    mountedRef,
+    saveChange,
+    startStuckDetection
+  );
 
-  // FIXED: Process changes and save them to database immediately
-  const processQueuedChanges = useCallback(async (
-    getBatch: (size: number) => ChangeQueue[],
+  const { triggerManualSync } = useManualSync(
+    projectId,
+    hasChanges,
+    startStuckDetection,
+    mountedRef
+  );
+
+  // Enhanced processQueuedChanges with state management
+  const enhancedProcessQueuedChanges = useCallback(async (
+    getBatch: (size: number) => any[],
     getQueueSize: () => number,
     updateSyncState: (updates: any) => void,
     resetStuckState: () => void
   ): Promise<boolean> => {
-    const currentTime = Date.now();
-    
-    // Prevent rapid processing
-    if (currentTime - lastProcessTimeRef.current < 500) {
-      return false;
-    }
-    lastProcessTimeRef.current = currentTime;
+    return processQueuedChanges(
+      getBatch,
+      getQueueSize,
+      updateSyncState,
+      resetStuckState,
+      stuckTimeoutRef
+    );
+  }, [processQueuedChanges, stuckTimeoutRef]);
 
-    if (!projectId || isProcessingRef.current || !mountedRef.current || getQueueSize() === 0) {
-      return false;
-    }
-
-    isProcessingRef.current = true;
-    debugCache.log('🚀 Starting batch processing', { queueSize: getQueueSize() });
-
-    startStuckDetection();
-
-    try {
-      const batch = getBatch(config.BATCH_SIZE);
-      
-      updateSyncState({
-        isSyncing: true,
-        pendingChanges: getQueueSize()
-      });
-
-      // Process changes individually and save to database
-      const results = await Promise.allSettled(
-        batch.map(change => {
-          debugCache.log('💾 Processing queued change:', { type: change.type, key: change.key });
-          return saveChange(change.type, change.key, change.value);
-        })
-      );
-
-      const successCount = results.filter(r => r.status === 'fulfilled').length;
-      
-      debugCache.log(`✅ Batch processed and saved to database`, { successCount, total: batch.length });
-
-      // Continue if more changes exist
-      const remainingChanges = getQueueSize();
-      if (remainingChanges > 0 && mountedRef.current) {
-        setTimeout(() => {
-          if (mountedRef.current && !isProcessingRef.current) {
-            processQueuedChanges(getBatch, getQueueSize, updateSyncState, resetStuckState);
-          }
-        }, 100);
-      }
-
-      return successCount > 0;
-    } catch (error) {
-      debugCache.log('❌ Batch processing error', error);
-      toast.error('Sync error', {
-        description: 'Failed to process changes. Your work is still saved locally.'
-      });
-      return false;
-    } finally {
-      isProcessingRef.current = false;
-      resetStuckState();
-      
-      if (mountedRef.current) {
-        const finalQueueSize = getQueueSize();
-        updateSyncState({
-          isSyncing: finalQueueSize > 0,
-          hasQueuedChanges: finalQueueSize > 0,
-          pendingChanges: finalQueueSize,
-          lastSyncTime: finalQueueSize === 0 ? Date.now() : undefined
-        });
-      }
-    }
-  }, [projectId, saveChange, startStuckDetection, config.BATCH_SIZE, isProcessingRef, mountedRef]);
-
-  // FIXED: Manual sync now checks both queue and database
-  const triggerManualSync = useCallback(async (
+  // Enhanced triggerManualSync
+  const enhancedTriggerManualSync = useCallback(async (
     getQueueSize: () => number,
     processQueuedChanges: any,
     updateSyncState: (updates: any) => void,
@@ -143,88 +63,16 @@ export const useSyncOperations = (
     syncState: any,
     forceReset: () => void
   ) => {
-    if (!projectId) {
-      toast.error('No project selected');
-      return;
-    }
-    
-    const queueSize = getQueueSize();
-    debugCache.log('🖱️ Manual sync triggered', { 
-      queueSize,
-      isStuck: syncState.isStuck 
-    });
-    
-    // If stuck, force reset
-    if (syncState.isStuck) {
-      debugCache.log('🔄 Forcing reset due to stuck state');
-      forceReset();
-      return;
-    }
-    
-    if (syncState.isSyncing) {
-      toast.info('Sync already in progress');
-      return;
-    }
-
-    try {
-      updateSyncState({ isSyncing: true });
-      startStuckDetection();
-
-      // First, process any queued changes
-      if (queueSize > 0) {
-        debugCache.log('📤 Processing queued changes first', { count: queueSize });
-        toast.info(`Processing ${queueSize} queued changes...`);
-        await processQueuedChanges();
-        
-        // Wait a moment for database to update
-        await new Promise(resolve => setTimeout(resolve, 500));
-      }
-
-      // Now check for database changes (including the ones we just saved)
-      const hasDbChanges = await hasChanges();
-      
-      if (!hasDbChanges) {
-        // Check if there are still queued changes after processing
-        const remainingQueue = getQueueSize();
-        if (remainingQueue === 0) {
-          toast.info('No changes to sync to live');
-          return;
-        } else {
-          debugCache.log('⏳ Still processing changes, will check again');
-          toast.info('Still processing changes, please wait...');
-          return;
-        }
-      }
-
-      // Publish to live
-      debugCache.log('📤 Publishing to live mode');
-      toast.loading('Publishing to live...', { id: 'publish-sync' });
-      
-      await PublishingService.publishProject(projectId);
-      
-      toast.success('Successfully synced to live!', {
-        id: 'publish-sync',
-        description: 'All your changes are now live',
-        duration: 3000
-      });
-
-    } catch (error) {
-      debugCache.log('❌ Manual sync failed', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      toast.error('Failed to sync to live', {
-        id: 'publish-sync',
-        description: errorMessage
-      });
-    } finally {
-      resetStuckState();
-      if (mountedRef.current) {
-        updateSyncState({ 
-          isSyncing: false,
-          lastSyncTime: Date.now()
-        });
-      }
-    }
-  }, [projectId, hasChanges, startStuckDetection, mountedRef]);
+    return triggerManualSync(
+      getQueueSize,
+      processQueuedChanges,
+      updateSyncState,
+      resetStuckState,
+      syncState,
+      forceReset,
+      stuckTimeoutRef
+    );
+  }, [triggerManualSync, stuckTimeoutRef]);
 
   // SIMPLIFIED: Scheduling without complex throttling
   const scheduleProcessing = useCallback((
@@ -248,8 +96,8 @@ export const useSyncOperations = (
   }, [stuckTimeoutRef]);
 
   return {
-    processQueuedChanges,
-    triggerManualSync,
+    processQueuedChanges: enhancedProcessQueuedChanges,
+    triggerManualSync: enhancedTriggerManualSync,
     scheduleProcessing,
     clearTimers
   };
