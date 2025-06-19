@@ -21,6 +21,7 @@ interface HeroImageSlotProps {
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (index: number) => void;
   onDragEnd: () => void;
+  onCaptionUpdate?: (id: string, newCaption: string) => void;
 }
 
 const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
@@ -34,7 +35,8 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
   onDragStart,
   onDragOver,
   onDrop,
-  onDragEnd
+  onDragEnd,
+  onCaptionUpdate
 }) => {
   const { isDevMode } = useDevMode();
 
@@ -46,6 +48,17 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
   const handleImageReplace = (newSrc: string) => {
     console.log('🔄 HeroImageSlot: Replacing image:', image.id, 'with', newSrc);
     onImageReplace(image.id, newSrc);
+  };
+
+  const handleCaptionUpdate = (newCaption: string) => {
+    console.log('📝 HeroImageSlot: Updating caption for image:', {
+      imageId: image.id,
+      newCaption: newCaption.substring(0, 50) + '...'
+    });
+    
+    if (onCaptionUpdate) {
+      onCaptionUpdate(image.id, newCaption);
+    }
   };
 
   return (
@@ -91,6 +104,7 @@ const HeroImageSlot: React.FC<HeroImageSlotProps> = ({
         className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
         onImageReplace={handleImageReplace}
         onImageRemove={handleImageRemove}
+        onCaptionUpdate={handleCaptionUpdate}
         projectId={projectId}
         hideEditButton={false}
         allowRemove={true}

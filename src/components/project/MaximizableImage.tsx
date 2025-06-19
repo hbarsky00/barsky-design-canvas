@@ -46,7 +46,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
-  const { getImageSrc } = useProjectPersistence(currentProjectId);
+  const { getImageSrc, saveTextContent, getTextContent } = useProjectPersistence(currentProjectId);
   
   // Simple state management - no complex hooks
   const [displayedImage, setDisplayedImage] = useState(() => {
@@ -59,6 +59,18 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  
+  // Create a unique caption key based on the original image src and project
+  const createCaptionKey = (imageSrc: string, projectId: string) => {
+    // Create a hash of the image src to ensure uniqueness
+    const srcHash = imageSrc.split('/').pop()?.replace(/[^a-zA-Z0-9]/g, '_') || 'unknown';
+    return `image_caption_${srcHash}_${projectId}`;
+  };
+  
+  const captionKey = createCaptionKey(src, currentProjectId);
+  
+  // Get the saved caption or use the provided caption as fallback
+  const savedCaption = getTextContent(captionKey, caption || 'Click to add a caption...');
   
   // Update displayed image when replacements change
   useEffect(() => {
@@ -89,7 +101,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   }, [src]);
   
   const handleImageClick = () => {
-    const imageTitle = caption || alt || "Image";
+    const imageTitle = savedCaption || alt || "Image";
 
     if (imageList && currentIndex !== undefined) {
       maximizeImage(displayedImage, imageTitle, imageList, currentIndex);
@@ -126,6 +138,22 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
   }, [src, currentProjectId, onImageRemove]);
 
+  const handleCaptionUpdate = useCallback((newCaption: string) => {
+    console.log('📝 MaximizableImage: Updating caption for image:', {
+      src: src.substring(0, 30) + '...',
+      captionKey,
+      newCaption: newCaption.substring(0, 50) + '...'
+    });
+    
+    // Save the caption with the unique key
+    saveTextContent(captionKey, newCaption);
+    
+    // Call parent callback if provided
+    if (onCaptionUpdate) {
+      onCaptionUpdate(newCaption);
+    }
+  }, [captionKey, saveTextContent, onCaptionUpdate]);
+
   const handleImageError = () => {
     console.error('❌ Image failed to load:', displayedImage.substring(0, 50) + '...');
     setHasError(true);
@@ -136,7 +164,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setHasError(false);
   };
 
-  const imageAltText = caption || alt;
+  const imageAltText = savedCaption || alt;
   
   // Show loading state
   if (isLoading) {
@@ -218,12 +246,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </motion.div>
       
-      {/* Caption section */}
+      {/* Caption section with unique key */}
       <div className="mt-2 text-sm text-gray-600 italic text-center">
         <EditableText 
-          initialText={caption || 'Click to add a caption...'}
-          textKey={`image_caption_${src}_${currentProjectId}`}
+          initialText={savedCaption}
+          textKey={captionKey}
           multiline={true}
+          onUpdate={handleCaptionUpdate}
         >
           {(text) => (
             <motion.div

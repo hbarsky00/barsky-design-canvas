@@ -74,7 +74,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
         const replacedSrc = getReplacedImageSrc(imageSrc);
         const caption = imageCaptions[imageSrc] || imageCaptions[replacedSrc] || `${title} illustration ${index + 1}`;
         
-        // Create unique handlers for each image
+        // Create unique handlers for each image with proper caption handling
         const handleRemoveThisImage = handleImageRemove ? () => {
           console.log(`🗑️ SectionImages: Removing image at index ${index}:`, imageSrc);
           handleImageRemove(imageSrc);
@@ -85,7 +85,17 @@ const SectionImages: React.FC<SectionImagesProps> = ({
           handleImageReplace(imageSrc, newSrc);
         };
         
-        const handleCaptionChange = onCaptionUpdate ? (newCaption: string) => onCaptionUpdate(imageSrc, newCaption) : undefined;
+        const handleCaptionChange = (newCaption: string) => {
+          console.log(`📝 SectionImages: Updating caption for image:`, {
+            imageSrc: imageSrc.substring(0, 30) + '...',
+            newCaption: newCaption.substring(0, 50) + '...',
+            index
+          });
+          
+          if (onCaptionUpdate) {
+            onCaptionUpdate(imageSrc, newCaption);
+          }
+        };
         
         return (
           <div 
@@ -113,7 +123,7 @@ const SectionImages: React.FC<SectionImagesProps> = ({
             )}
             
             <MaximizableImage
-              src={replacedSrc}
+              src={imageSrc}
               alt={caption}
               caption={caption}
               imageList={sectionImages.map(getReplacedImageSrc)}
@@ -121,10 +131,10 @@ const SectionImages: React.FC<SectionImagesProps> = ({
               className="rounded-lg sm:rounded-xl shadow-md sm:shadow-elevated-lg w-full overflow-hidden"
               onImageReplace={handleReplaceThisImage}
               onImageRemove={handleRemoveThisImage}
+              onCaptionUpdate={handleCaptionChange}
               projectId={projectId}
               hideEditButton={false}
               allowRemove={!!handleImageRemove}
-              onCaptionUpdate={handleCaptionChange}
             />
           </div>
         );

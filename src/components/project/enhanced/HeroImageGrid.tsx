@@ -19,6 +19,7 @@ interface HeroImageGridProps {
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (index: number) => void;
   onDragEnd: () => void;
+  onCaptionUpdate?: (id: string, newCaption: string) => void;
 }
 
 const HeroImageGrid: React.FC<HeroImageGridProps> = ({
@@ -31,7 +32,8 @@ const HeroImageGrid: React.FC<HeroImageGridProps> = ({
   onDragStart,
   onDragOver,
   onDrop,
-  onDragEnd
+  onDragEnd,
+  onCaptionUpdate
 }) => {
   const { isDevMode } = useDevMode();
 
@@ -58,6 +60,7 @@ const HeroImageGrid: React.FC<HeroImageGridProps> = ({
           onDragOver={onDragOver}
           onDrop={onDrop}
           onDragEnd={onDragEnd}
+          onCaptionUpdate={onCaptionUpdate}
         />
       </div>
     );
@@ -88,6 +91,7 @@ const HeroImageGrid: React.FC<HeroImageGridProps> = ({
               onDragOver={onDragOver}
               onDrop={onDrop}
               onDragEnd={onDragEnd}
+              onCaptionUpdate={onCaptionUpdate}
             />
           </motion.div>
         ))}
@@ -116,6 +120,7 @@ const HeroImageGrid: React.FC<HeroImageGridProps> = ({
               onDragOver={onDragOver}
               onDrop={onDrop}
               onDragEnd={onDragEnd}
+              onCaptionUpdate={onCaptionUpdate}
             />
           </motion.div>
         ))}

@@ -15,7 +15,7 @@ interface UseHeroImagesProps {
 
 export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   const { updateImageInProjectData, getUpdatedImagePath } = useProjectDataUpdater();
-  const { saveContentBlocks } = useProjectPersistence(projectId);
+  const { saveContentBlocks, saveTextContent } = useProjectPersistence(projectId);
 
   // Define which projects have hero images and their URLs
   const projectHeroImagesData: Record<string, { url: string; title: string }[]> = {
@@ -92,7 +92,7 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   };
 
   const handleImageReplace = (id: string, newSrc: string) => {
-    console.log('useHeroImages: Replacing image with id', id, 'with', newSrc, 'for project', projectId);
+    console.log('🔄 useHeroImages: Replacing image with id', id, 'with', newSrc, 'for project', projectId);
     
     const oldImage = heroImages.find(img => img.id === id);
     setHeroImages(prev => prev.map(img => 
@@ -102,6 +102,21 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
     // Also update the project data
     if (oldImage) {
       updateImageInProjectData(projectId, oldImage.src, newSrc);
+    }
+  };
+
+  const handleCaptionUpdate = (id: string, newCaption: string) => {
+    console.log('📝 useHeroImages: Updating caption for image id:', id, 'with caption:', newCaption.substring(0, 50) + '...');
+    
+    // Find the image to get its src for creating unique caption key
+    const image = heroImages.find(img => img.id === id);
+    if (image) {
+      // Create a unique caption key based on the image src
+      const srcHash = image.src.split('/').pop()?.replace(/[^a-zA-Z0-9]/g, '_') || 'unknown';
+      const captionKey = `image_caption_${srcHash}_${projectId}`;
+      
+      console.log('💾 useHeroImages: Saving caption with key:', captionKey);
+      saveTextContent(captionKey, newCaption);
     }
   };
 
@@ -150,6 +165,7 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
     handleAddImage,
     handleRemoveImage,
     handleImageReplace,
+    handleCaptionUpdate,
     handleDragStart,
     handleDragOver,
     handleDrop,
