@@ -81,7 +81,13 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
     setHeroImages(prev => {
       const filtered = prev.filter(img => img.id !== id);
       // Reorder positions after removal
-      return filtered.map((img, index) => ({ ...img, position: index }));
+      const reordered = filtered.map((img, index) => ({ ...img, position: index }));
+      
+      // Immediately save the updated list to persist the removal
+      console.log('💾 useHeroImages: Saving updated hero images after removal');
+      saveContentBlocks('hero_images', reordered);
+      
+      return reordered;
     });
   };
 
