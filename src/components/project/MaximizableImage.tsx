@@ -54,25 +54,26 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   
-  // FIXED: Create stable caption key based on ORIGINAL image src only, never the replaced src
-  const createCaptionKey = (originalSrc: string, projectId: string) => {
-    // Use a consistent pattern that doesn't change when images are replaced
-    const srcIdentifier = originalSrc.split('/').pop()?.replace(/[^a-zA-Z0-9]/g, '_') || 'unknown';
-    return `image_caption_${srcIdentifier}_${projectId}`;
-  };
+  // Create ULTRA-STABLE caption key that never changes
+  const createStableCaptionKey = useCallback((originalSrc: string, projectId: string) => {
+    // Create a truly stable identifier from the original src
+    const cleanSrc = originalSrc.replace(/^.*\//, '').replace(/\.[^.]*$/, '').replace(/[^a-zA-Z0-9]/g, '_');
+    const srcHash = originalSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return `caption_${cleanSrc}_${srcHash}_${projectId}`;
+  }, []);
   
-  // ALWAYS use the original src for the caption key - this never changes
-  const captionKey = createCaptionKey(src, currentProjectId);
+  // ALWAYS use the original src for the caption key - this NEVER changes
+  const stableCaptionKey = createStableCaptionKey(src, currentProjectId);
   
-  // Get saved caption with fallback
-  const savedCaption = getTextContent(captionKey, caption || 'Click to add a caption...');
+  // Get saved caption with proper fallback
+  const savedCaption = getTextContent(stableCaptionKey, caption || 'Click to add a caption...');
 
-  console.log('🏷️ MaximizableImage caption setup (FIXED):', {
-    originalSrc: src.substring(0, 30) + '...',
-    displayedImage: displayedImage.substring(0, 30) + '...',
-    captionKey,
-    savedCaption: savedCaption.substring(0, 30) + '...',
-    usingOriginalSrcForKey: true
+  console.log('🏷️ MaximizableImage STABLE caption setup:', {
+    originalSrc: src.substring(0, 50) + '...',
+    displayedImage: displayedImage.substring(0, 50) + '...',
+    stableCaptionKey,
+    savedCaption: savedCaption.substring(0, 50) + '...',
+    keyBasedOnOriginalSrc: true
   });
 
   const handleImageClick = () => {
@@ -86,16 +87,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageReplace = useCallback((newSrc: string) => {
-    console.log('🔄 MaximizableImage: Image replace triggered (caption key stays same):', {
+    console.log('🔄 MaximizableImage: Image replace triggered (caption key STAYS STABLE):', {
       originalSrc: src.substring(0, 30) + '...',
       newSrc: newSrc.substring(0, 30) + '...',
-      captionKey
+      stableCaptionKey
     });
     
     if (onImageReplace) {
       onImageReplace(newSrc);
     }
-  }, [src, onImageReplace, captionKey]);
+  }, [src, onImageReplace, stableCaptionKey]);
 
   const handleImageRemove = useCallback(() => {
     console.log('🗑️ MaximizableImage: Image remove triggered:', {
@@ -199,11 +200,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </motion.div>
       
-      {/* Caption section with FIXED stable key based on original src only */}
+      {/* Caption section with ULTRA-STABLE key */}
       <div className="mt-2 text-sm text-gray-600 italic text-center">
         <SimpleEditableText 
           initialText={savedCaption}
-          textKey={captionKey}
+          textKey={stableCaptionKey}
           multiline={true}
         >
           {(text) => (

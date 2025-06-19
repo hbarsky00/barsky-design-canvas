@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -23,23 +23,54 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
   const safeProjectId = projectId || '';
   
   const { getTextContent, saveTextContent } = useProjectPersistence(safeProjectId);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Get saved text or use initial
+  // Get saved text or use initial - but ensure we have a stable key
   const savedText = textKey ? getTextContent(textKey, initialText) : initialText;
   
   const [text, setText] = useState(savedText);
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [lastSavedText, setLastSavedText] = useState(savedText);
 
-  // Update text when saved content changes
+  // Update text when saved content changes, but only if we're not editing
   useEffect(() => {
-    if (textKey) {
+    if (textKey && !isEditing) {
       const currentSaved = getTextContent(textKey, initialText);
-      if (currentSaved !== text && !isEditing) {
+      if (currentSaved !== lastSavedText) {
         setText(currentSaved);
+        setLastSavedText(currentSaved);
       }
     }
-  }, [textKey, getTextContent, initialText, text, isEditing]);
+  }, [textKey, getTextContent, initialText, isEditing, lastSavedText]);
+
+  const debouncedSave = useCallback(async (textToSave: string) => {
+    if (!textKey || !safeProjectId) return;
+
+    // Clear any existing timeout
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+
+    // Set a new timeout for debounced saving
+    saveTimeoutRef.current = setTimeout(async () => {
+      console.log('💾 SimpleEditableText: Debounced save for key:', textKey, 'text:', textToSave.substring(0, 30) + '...');
+      
+      setIsSaving(true);
+      
+      try {
+        await saveTextContent(textKey, textToSave);
+        setLastSavedText(textToSave);
+        console.log('✅ SimpleEditableText: Caption saved successfully');
+        toast.success('Caption saved!', { duration: 1000 });
+      } catch (error) {
+        console.error('❌ SimpleEditableText: Error saving text:', error);
+        toast.error('Failed to save caption');
+      } finally {
+        setIsSaving(false);
+      }
+    }, 1000); // 1 second debounce
+  }, [textKey, safeProjectId, saveTextContent]);
 
   const handleSave = useCallback(async () => {
     if (!textKey || !safeProjectId) {
@@ -47,18 +78,21 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       return;
     }
 
-    console.log('💾 SimpleEditableText: Saving text with key:', {
-      textKey,
-      text: text.substring(0, 50) + '...',
-      projectId: safeProjectId
-    });
+    // Only save if text has actually changed
+    if (text === lastSavedText) {
+      setIsEditing(false);
+      return;
+    }
+
+    console.log('💾 SimpleEditableText: Immediate save for key:', textKey);
     
     setIsSaving(true);
     
     try {
       await saveTextContent(textKey, text);
-      console.log('✅ SimpleEditableText: Text saved successfully to key:', textKey);
-      toast.success('Caption saved!', { duration: 1500 });
+      setLastSavedText(text);
+      console.log('✅ SimpleEditableText: Immediate save successful');
+      toast.success('Caption saved!', { duration: 1000 });
     } catch (error) {
       console.error('❌ SimpleEditableText: Error saving text:', error);
       toast.error('Failed to save caption');
@@ -66,12 +100,17 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       setIsSaving(false);
       setIsEditing(false);
     }
-  }, [textKey, safeProjectId, text, saveTextContent]);
+  }, [textKey, safeProjectId, text, lastSavedText, saveTextContent]);
 
   const handleCancel = useCallback(() => {
-    setText(savedText);
+    setText(lastSavedText);
     setIsEditing(false);
-  }, [savedText]);
+    
+    // Clear any pending save
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+  }, [lastSavedText]);
 
   const handleClick = useCallback(() => {
     if (isDevMode && textKey && !isSaving) {
@@ -79,6 +118,15 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       setIsEditing(true);
     }
   }, [isDevMode, textKey, isSaving]);
+
+  const handleTextChange = useCallback((newText: string) => {
+    setText(newText);
+    
+    // Trigger debounced save for auto-save behavior
+    if (textKey && newText !== lastSavedText) {
+      debouncedSave(newText);
+    }
+  }, [textKey, lastSavedText, debouncedSave]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !multiline) {
@@ -93,13 +141,22 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
     }
   }, [multiline, handleSave, handleCancel]);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, []);
+
   if (isEditing && isDevMode && textKey) {
     return (
       <div className="relative">
         {multiline ? (
           <textarea
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => handleTextChange(e.target.value)}
             onKeyDown={handleKeyDown}
             onBlur={handleSave}
             autoFocus
@@ -111,7 +168,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
           <input
             type="text"
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => handleTextChange(e.target.value)}
             onKeyDown={handleKeyDown}
             onBlur={handleSave}
             autoFocus
@@ -127,6 +184,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
         )}
         <div className="text-xs text-gray-500 mt-1">
           {multiline ? 'Ctrl+Enter to save, Escape to cancel' : 'Enter to save, Escape to cancel'}
+          {isSaving && ' • Saving...'}
         </div>
       </div>
     );
