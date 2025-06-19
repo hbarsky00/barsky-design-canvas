@@ -9,6 +9,8 @@ import ServicesNavMenu from "@/components/services/ServicesNavMenu";
 import ServicesTabs from "@/components/services/ServicesTabs";
 import ServicesFaq from "@/components/services/ServicesFaq";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { homepageFaqs } from "@/data/seoFaqs";
 
 const Services = () => {
   React.useEffect(() => {
@@ -35,6 +37,12 @@ const Services = () => {
         
         {/* FAQ Section */}
         <ServicesFaq />
+        
+        {/* Additional FAQ Section */}
+        <SeoFaqSection 
+          title="General UX/UI Design Questions"
+          faqs={homepageFaqs}
+        />
         
         {/* CTA Section */}
         <ServicesCallToAction />

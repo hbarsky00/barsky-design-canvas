@@ -7,6 +7,8 @@ import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import { blogPosts, type BlogPost } from "@/data/blogData";
 import { trackPageView, trackContentEngagement } from "@/lib/analytics";
 import { useToast } from "@/components/ui/use-toast";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { homepageFaqs } from "@/data/seoFaqs";
 
 // Import refactored components
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
@@ -69,6 +71,13 @@ const BlogPost: React.FC = () => {
             <RelatedPosts posts={relatedPosts} />
           </div>
         </article>
+        
+        {/* FAQ Section */}
+        <SeoFaqSection 
+          title="Design Blog & Content Questions"
+          faqs={homepageFaqs}
+        />
+        
         <ServicesCallToAction />
       </main>
       

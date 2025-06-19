@@ -7,6 +7,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import ProductDetails from "@/components/store/ProductDetails";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { homepageFaqs } from "@/data/seoFaqs";
 import { products } from "@/data/productsData";
 
 const ProductDetailsPage: React.FC = () => {
@@ -43,6 +45,13 @@ const ProductDetailsPage: React.FC = () => {
             <ProductDetails product={product} />
           </div>
         </section>
+        
+        {/* FAQ Section */}
+        <SeoFaqSection 
+          title="Product & Design Resource Questions"
+          faqs={homepageFaqs}
+        />
+        
         <ServicesCallToAction />
       </main>
       <Footer />

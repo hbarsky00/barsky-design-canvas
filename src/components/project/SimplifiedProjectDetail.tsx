@@ -7,6 +7,8 @@ import ModernProjectDetail from "./enhanced/ModernProjectDetail";
 import ProjectDetailSeo from "./ProjectDetailSeo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { projectFaqs } from "@/data/seoFaqs";
 
 const SimplifiedProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -50,6 +52,13 @@ const SimplifiedProjectDetail = () => {
           projectId={projectId}
           projectsData={projectsData}
           imageCaptions={imageCaptions}
+        />
+        
+        {/* FAQ Section */}
+        <SeoFaqSection 
+          title="Project Case Study Questions"
+          faqs={projectFaqs}
+          className="mt-16"
         />
       </main>
       <Footer />

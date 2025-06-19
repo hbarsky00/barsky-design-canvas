@@ -9,6 +9,8 @@ import { trackPageView } from "@/lib/analytics";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar, ChevronRight } from "lucide-react";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { homepageFaqs } from "@/data/seoFaqs";
 
 const Blog: React.FC = () => {
   useEffect(() => {
@@ -128,6 +130,12 @@ const Blog: React.FC = () => {
             </div>
           </div>
         </section>
+        
+        {/* FAQ Section */}
+        <SeoFaqSection 
+          title="Design Blog & Insights Questions"
+          faqs={homepageFaqs}
+        />
       </main>
       
       <Footer />

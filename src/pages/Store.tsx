@@ -8,6 +8,8 @@ import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import ProductGrid from "@/components/store/ProductGrid";
 import StoreHeader from "@/components/store/StoreHeader";
 import { MobileCategoryFilters, DesktopCategoryFilters } from "@/components/store/CategoryFilters";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import { homepageFaqs } from "@/data/seoFaqs";
 import { products, categories } from "@/data/productsData";
 
 const Store: React.FC = () => {
@@ -57,6 +59,13 @@ const Store: React.FC = () => {
             </div>
           </div>
         </section>
+        
+        {/* FAQ Section */}
+        <SeoFaqSection 
+          title="Design Resources & Store Questions"
+          faqs={homepageFaqs}
+        />
+        
         <ServicesCallToAction />
       </main>
       <Footer />
