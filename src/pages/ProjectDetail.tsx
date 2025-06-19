@@ -5,6 +5,7 @@ import { DevModeProvider } from "@/context/DevModeContext";
 import { ImageReplacementProvider } from "@/context/ImageReplacementContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 import DevModeSyncButton from "@/components/dev/DevModeSyncButton";
+import CaptionManager from "@/components/captions/CaptionManager";
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -25,6 +26,7 @@ const ProjectDetail = () => {
       <ImageReplacementProvider projectId={projectId}>
         <SimplifiedProjectDetail />
         <DevModeSyncButton />
+        <CaptionManager projectId={projectId} />
       </ImageReplacementProvider>
     </DevModeProvider>
   );

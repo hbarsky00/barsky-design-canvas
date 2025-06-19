@@ -3,7 +3,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import EditImageButton from "@/components/dev/EditImageButton";
-import SimpleEditableText from "@/components/dev/SimpleEditableText";
+import SimpleCaptionEditor from "@/components/captions/SimpleCaptionEditor";
 import { useParams } from "react-router-dom";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 import ImageDisplay from "./ImageDisplay";
@@ -46,57 +46,32 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
-  const { getImageSrc, getTextContent } = useProjectPersistence(currentProjectId);
+  const { getImageSrc } = useProjectPersistence(currentProjectId);
   
   // Get the displayed image (with replacements applied)
   const displayedImage = imageReplacements?.[src] || getImageSrc(src);
   
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-  
-  // Create ULTRA-STABLE caption key that never changes
-  const createStableCaptionKey = useCallback((originalSrc: string, projectId: string) => {
-    // Create a truly stable identifier from the original src
-    const cleanSrc = originalSrc.replace(/^.*\//, '').replace(/\.[^.]*$/, '').replace(/[^a-zA-Z0-9]/g, '_');
-    const srcHash = originalSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return `caption_${cleanSrc}_${srcHash}_${projectId}`;
-  }, []);
-  
-  // ALWAYS use the original src for the caption key - this NEVER changes
-  const stableCaptionKey = createStableCaptionKey(src, currentProjectId);
-  
-  // Get saved caption with proper fallback
-  const savedCaption = getTextContent(stableCaptionKey, caption || 'Click to add a caption...');
-
-  console.log('🏷️ MaximizableImage STABLE caption setup:', {
-    originalSrc: src.substring(0, 50) + '...',
-    displayedImage: displayedImage.substring(0, 50) + '...',
-    stableCaptionKey,
-    savedCaption: savedCaption.substring(0, 50) + '...',
-    keyBasedOnOriginalSrc: true
-  });
 
   const handleImageClick = () => {
-    const imageTitle = savedCaption || alt || "Image";
-
     if (imageList && currentIndex !== undefined) {
-      maximizeImage(displayedImage, imageTitle, imageList, currentIndex);
+      maximizeImage(displayedImage, alt, imageList, currentIndex);
     } else {
-      maximizeImage(displayedImage, imageTitle);
+      maximizeImage(displayedImage, alt);
     }
   };
 
   const handleImageReplace = useCallback((newSrc: string) => {
-    console.log('🔄 MaximizableImage: Image replace triggered (caption key STAYS STABLE):', {
+    console.log('🔄 MaximizableImage: Image replace triggered:', {
       originalSrc: src.substring(0, 30) + '...',
-      newSrc: newSrc.substring(0, 30) + '...',
-      stableCaptionKey
+      newSrc: newSrc.substring(0, 30) + '...'
     });
     
     if (onImageReplace) {
       onImageReplace(newSrc);
     }
-  }, [src, onImageReplace, stableCaptionKey]);
+  }, [src, onImageReplace]);
 
   const handleImageRemove = useCallback(() => {
     console.log('🗑️ MaximizableImage: Image remove triggered:', {
@@ -117,8 +92,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setIsLoading(false);
     setHasError(false);
   };
-
-  const imageAltText = savedCaption || alt;
   
   // Show loading state
   if (isLoading) {
@@ -190,7 +163,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         
         <ImageDisplay
           displayedImage={displayedImage}
-          imageAltText={imageAltText}
+          imageAltText={alt}
           aspectRatio={aspectRatio}
           priority={priority}
           refreshKey={0}
@@ -200,25 +173,24 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </motion.div>
       
-      {/* Caption section with ULTRA-STABLE key */}
+      {/* Simplified caption section */}
       <div className="mt-2 text-sm text-gray-600 italic text-center">
-        <SimpleEditableText 
-          initialText={savedCaption}
-          textKey={stableCaptionKey}
-          multiline={true}
+        <SimpleCaptionEditor 
+          imageSrc={src}
+          projectId={currentProjectId}
+          fallbackCaption={caption}
         >
-          {(text) => (
+          {(captionText) => (
             <motion.div
-              className="pr-8"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              {text}
+              {captionText}
             </motion.div>
           )}
-        </SimpleEditableText>
+        </SimpleCaptionEditor>
       </div>
     </div>
   );
