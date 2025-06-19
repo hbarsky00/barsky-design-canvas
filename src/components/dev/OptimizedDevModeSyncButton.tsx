@@ -4,7 +4,7 @@ import { useDevMode } from '@/context/DevModeContext';
 import { useOptimizedSync } from '@/hooks/useOptimizedSync';
 import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Upload, Loader2, CheckCircle, Clock, AlertCircle, RotateCcw, Trash2, Shield } from 'lucide-react';
+import { Upload, Loader2, CheckCircle, Clock, AlertCircle, RotateCcw, Trash2, Shield, Zap } from 'lucide-react';
 import { toast } from 'sonner';
 import { debugCache } from '@/utils/debugUtils';
 
@@ -47,18 +47,18 @@ const OptimizedDevModeSyncButton: React.FC = () => {
         variant: 'default' as const,
         className: 'bg-blue-600 hover:bg-blue-700 text-white',
         icon: <Loader2 className="h-4 w-4 mr-2 animate-spin" />,
-        text: `Syncing... (${syncState.pendingChanges} pending)`,
+        text: `Auto-syncing... (${syncState.pendingChanges} pending)`,
         onClick: triggerManualSync
       };
     }
 
-    // Show as ready to sync if there are queued changes OR if we haven't checked recently
+    // Show as auto-syncing ready if there are changes
     if (syncState.hasQueuedChanges || syncState.pendingChanges > 0) {
       return {
         variant: 'default' as const,
-        className: 'bg-orange-600 hover:bg-orange-700 text-white animate-pulse',
-        icon: <Clock className="h-4 w-4 mr-2" />,
-        text: `${syncState.pendingChanges} Changes Ready`,
+        className: 'bg-green-600 hover:bg-green-700 text-white animate-pulse',
+        icon: <Zap className="h-4 w-4 mr-2" />,
+        text: `Auto-sync Ready (${syncState.pendingChanges})`,
         onClick: triggerManualSync
       };
     }
@@ -67,7 +67,7 @@ const OptimizedDevModeSyncButton: React.FC = () => {
       variant: 'default' as const,
       className: 'bg-green-600 hover:bg-green-700 text-white',
       icon: <CheckCircle className="h-4 w-4 mr-2" />,
-      text: 'Sync to Live',
+      text: 'Auto-sync Active',
       onClick: triggerManualSync
     };
   };
@@ -89,12 +89,12 @@ const OptimizedDevModeSyncButton: React.FC = () => {
               ) : syncState.isSyncing ? (
                 <>
                   <Loader2 className="h-3 w-3 animate-spin text-blue-600" />
-                  <span>Syncing to live...</span>
+                  <span>Auto-syncing to live...</span>
                 </>
               ) : (
                 <>
-                  <Clock className="h-3 w-3 text-orange-600" />
-                  <span>Ready to sync to live</span>
+                  <Zap className="h-3 w-3 text-green-600" />
+                  <span>Auto-sync ready</span>
                 </>
               )}
             </div>
@@ -137,10 +137,10 @@ const OptimizedDevModeSyncButton: React.FC = () => {
           </div>
         )}
 
-        {/* Dev mode indicator */}
+        {/* Dev mode indicator with auto-sync status */}
         <div className="text-xs text-green-600 bg-green-50 backdrop-blur-sm rounded px-2 py-1 border border-green-200">
           <Shield className="h-3 w-3 inline mr-1" />
-          Dev Mode Active
+          Dev Mode • Auto-sync ON
         </div>
       </div>
     </div>
