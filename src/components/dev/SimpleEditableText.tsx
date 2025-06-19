@@ -3,7 +3,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
-import { useOptimizedSync } from '@/hooks/useOptimizedSync';
 import { useProjectPersistence } from '@/hooks/useProjectPersistence';
 
 interface SimpleEditableTextProps {
@@ -48,16 +47,21 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       return;
     }
 
-    console.log('💾 SimpleEditableText: Saving text:', textKey, text.substring(0, 50) + '...');
+    console.log('💾 SimpleEditableText: Saving text with key:', {
+      textKey,
+      text: text.substring(0, 50) + '...',
+      projectId: safeProjectId
+    });
+    
     setIsSaving(true);
     
     try {
       await saveTextContent(textKey, text);
-      toast.success('Text saved!', { duration: 1500 });
-      console.log('✅ SimpleEditableText: Text saved successfully');
+      console.log('✅ SimpleEditableText: Text saved successfully to key:', textKey);
+      toast.success('Caption saved!', { duration: 1500 });
     } catch (error) {
       console.error('❌ SimpleEditableText: Error saving text:', error);
-      toast.error('Failed to save text');
+      toast.error('Failed to save caption');
     } finally {
       setIsSaving(false);
       setIsEditing(false);
@@ -71,6 +75,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
 
   const handleClick = useCallback(() => {
     if (isDevMode && textKey && !isSaving) {
+      console.log('📝 SimpleEditableText: Starting edit for key:', textKey);
       setIsEditing(true);
     }
   }, [isDevMode, textKey, isSaving]);
@@ -99,7 +104,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
             onBlur={handleSave}
             autoFocus
             className="w-full p-2 border border-blue-300 rounded bg-white text-gray-900 min-h-[100px] resize-vertical"
-            placeholder="Enter text..."
+            placeholder="Enter caption..."
             disabled={isSaving}
           />
         ) : (
@@ -111,7 +116,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
             onBlur={handleSave}
             autoFocus
             className="w-full p-2 border border-blue-300 rounded bg-white text-gray-900"
-            placeholder="Enter text..."
+            placeholder="Enter caption..."
             disabled={isSaving}
           />
         )}
@@ -135,7 +140,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       className={`${canClick ? 'cursor-pointer hover:bg-blue-50/50 rounded p-1 -m-1 transition-colors' : ''} ${
         isSaving ? 'opacity-50' : ''
       }`}
-      title={canClick ? 'Click to edit' : undefined}
+      title={canClick ? 'Click to edit caption' : undefined}
     >
       {children(text)}
     </div>

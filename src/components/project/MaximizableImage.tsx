@@ -54,22 +54,25 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   
-  // Create stable caption key based on original image src
+  // FIXED: Create stable caption key based on ORIGINAL image src only, never the replaced src
   const createCaptionKey = (originalSrc: string, projectId: string) => {
+    // Use a consistent pattern that doesn't change when images are replaced
     const srcIdentifier = originalSrc.split('/').pop()?.replace(/[^a-zA-Z0-9]/g, '_') || 'unknown';
     return `image_caption_${srcIdentifier}_${projectId}`;
   };
   
+  // ALWAYS use the original src for the caption key - this never changes
   const captionKey = createCaptionKey(src, currentProjectId);
   
   // Get saved caption with fallback
   const savedCaption = getTextContent(captionKey, caption || 'Click to add a caption...');
 
-  console.log('🏷️ MaximizableImage caption setup:', {
+  console.log('🏷️ MaximizableImage caption setup (FIXED):', {
     originalSrc: src.substring(0, 30) + '...',
     displayedImage: displayedImage.substring(0, 30) + '...',
     captionKey,
-    savedCaption: savedCaption.substring(0, 30) + '...'
+    savedCaption: savedCaption.substring(0, 30) + '...',
+    usingOriginalSrcForKey: true
   });
 
   const handleImageClick = () => {
@@ -83,7 +86,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageReplace = useCallback((newSrc: string) => {
-    console.log('🔄 MaximizableImage: Image replace triggered:', {
+    console.log('🔄 MaximizableImage: Image replace triggered (caption key stays same):', {
       originalSrc: src.substring(0, 30) + '...',
       newSrc: newSrc.substring(0, 30) + '...',
       captionKey
@@ -196,7 +199,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </motion.div>
       
-      {/* Caption section with stable key based on original src */}
+      {/* Caption section with FIXED stable key based on original src only */}
       <div className="mt-2 text-sm text-gray-600 italic text-center">
         <SimpleEditableText 
           initialText={savedCaption}
