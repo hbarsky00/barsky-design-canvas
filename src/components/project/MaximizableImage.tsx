@@ -46,7 +46,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
-  const { getImageSrc, saveTextContent, getTextContent } = useProjectPersistence(currentProjectId);
+  const { getImageSrc, getTextContent } = useProjectPersistence(currentProjectId);
   
   // Simple state management - no complex hooks
   const [displayedImage, setDisplayedImage] = useState(() => {
@@ -137,22 +137,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       onImageRemove();
     }
   }, [src, currentProjectId, onImageRemove]);
-
-  const handleCaptionUpdate = useCallback((newCaption: string) => {
-    console.log('📝 MaximizableImage: Updating caption for image:', {
-      src: src.substring(0, 30) + '...',
-      captionKey,
-      newCaption: newCaption.substring(0, 50) + '...'
-    });
-    
-    // Save the caption with the unique key
-    saveTextContent(captionKey, newCaption);
-    
-    // Call parent callback if provided
-    if (onCaptionUpdate) {
-      onCaptionUpdate(newCaption);
-    }
-  }, [captionKey, saveTextContent, onCaptionUpdate]);
 
   const handleImageError = () => {
     console.error('❌ Image failed to load:', displayedImage.substring(0, 50) + '...');
@@ -252,7 +236,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           initialText={savedCaption}
           textKey={captionKey}
           multiline={true}
-          onUpdate={handleCaptionUpdate}
         >
           {(text) => (
             <motion.div
