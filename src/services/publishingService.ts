@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -27,11 +26,20 @@ export class PublishingService {
         // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
-        if (!rawChanges || rawChanges.length === 0) {
-          console.log('ℹ️ No changes found in database for project:', projectId);
+        // ALSO get simple captions from localStorage
+        const storageKey = `captions_${projectId}`;
+        const simpleCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
+        
+        console.log('📊 Found simple captions:', {
+          count: Object.keys(simpleCaptions).length,
+          keys: Object.keys(simpleCaptions)
+        });
+        
+        if ((!rawChanges || rawChanges.length === 0) && Object.keys(simpleCaptions).length === 0) {
+          console.log('ℹ️ No changes found for project:', projectId);
           
           if (preserveDevChanges) {
-            console.log('✅ Publishing current state without dev changes');
+            console.log('✅ Publishing current state without changes');
           } else {
             throw new Error('No changes found to publish');
           }
@@ -43,23 +51,20 @@ export class PublishingService {
           contentBlocks: {}
         };
         
-        console.log('📊 Dev changes to publish (PRIORITY - INCLUDING STABLE CAPTION KEYS):', {
+        console.log('📊 Dev changes to publish:', {
           textKeys: Object.keys(devChanges.textContent).length,
           imageKeys: Object.keys(devChanges.imageReplacements).length,
-          contentBlockKeys: Object.keys(devChanges.contentBlocks).length,
-          captionKeys: Object.keys(devChanges.textContent).filter(key => key.includes('image_caption_original_')),
-          textChanges: devChanges.textContent
+          contentBlockKeys: Object.keys(devChanges.contentBlocks).length
         });
 
-        // Get current published data for baseline (lower priority)
+        // Get current published data for baseline
         const currentPublishedData = await this.loadPublishedData(projectId);
         const oldImageReplacements = currentPublishedData?.image_replacements || {};
         const currentPublishedText = currentPublishedData?.text_content || {};
 
-        console.log('📄 Current published state (BASE):', {
+        console.log('📄 Current published state:', {
           textEntries: Object.keys(currentPublishedText).length,
-          imageEntries: Object.keys(oldImageReplacements).length,
-          publishedCaptionKeys: Object.keys(currentPublishedText).filter(key => key.includes('image_caption_original_'))
+          imageEntries: Object.keys(oldImageReplacements).length
         });
 
         // Process images
@@ -69,27 +74,25 @@ export class PublishingService {
           projectId
         );
 
-        // CRITICAL FIX: Dev changes ALWAYS override published data for text (INCLUDING CAPTIONS)
+        // MERGE: Dev changes + Simple captions override published data
         const finalTextContent = {
-          ...currentPublishedText,  // Base published text (lower priority)
-          ...devChanges.textContent  // Dev changes ALWAYS win (higher priority) - includes stable caption keys
+          ...currentPublishedText,  // Base published text
+          ...devChanges.textContent,  // Dev changes win
+          ...simpleCaptions  // Simple captions win over everything
         };
 
-        console.log('📝 FINAL Text content merge with STABLE CAPTION PRESERVATION:', {
+        console.log('📝 FINAL Text content merge (including simple captions):', {
           publishedCount: Object.keys(currentPublishedText).length,
           devChangesCount: Object.keys(devChanges.textContent).length,
-          finalCount: Object.keys(finalTextContent).length,
-          captionKeysPreserved: Object.keys(finalTextContent).filter(key => key.includes('image_caption_original_')).length,
-          devCaptionOverrides: Object.fromEntries(
-            Object.entries(devChanges.textContent).filter(([key]) => key.includes('image_caption_original_'))
-          )
+          simpleCaptionsCount: Object.keys(simpleCaptions).length,
+          finalCount: Object.keys(finalTextContent).length
         });
 
-        // Process content blocks - dev changes win here too
+        // Process content blocks - dev changes win
         const processedContentBlocks = await ImageProcessor.processContentBlocks(devChanges.contentBlocks, projectId);
         const finalContentBlocks = {
           ...(currentPublishedData?.content_blocks || {}),
-          ...processedContentBlocks  // Dev changes win
+          ...processedContentBlocks
         };
 
         // Final validation for images
@@ -109,15 +112,11 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing (STABLE CAPTIONS PRESERVED):', {
+        console.log('✅ FINAL data for publishing (with simple captions):', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
-          stableCaptionCount: Object.keys(finalTextContent).filter(key => key.includes('image_caption_original_')).length,
-          preserveDevChanges,
-          finalCaptionMappings: Object.fromEntries(
-            Object.entries(finalTextContent).filter(([key]) => key.includes('image_caption_original_'))
-          )
+          preserveDevChanges
         });
 
         // Store published state in the database
@@ -129,7 +128,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving published data to database with stable caption keys preserved');
+        console.log('💾 Saving published data to database');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -142,9 +141,9 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Published data stored successfully with stable caption keys preserved');
+        console.log('✅ Published data stored successfully');
 
-        // Apply changes to DOM immediately - PRIORITIZE dev changes including stable captions
+        // Apply changes to DOM immediately
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
 
         // Store in localStorage as fallback
@@ -162,6 +161,9 @@ export class PublishingService {
           if (!clearSuccess) {
             console.warn('⚠️ Failed to clear dev mode changes');
           }
+          
+          // Also clear simple captions if not preserving
+          localStorage.removeItem(storageKey);
         } else {
           console.log('🛡️ Preserving dev mode changes for continued editing');
         }
@@ -183,8 +185,8 @@ export class PublishingService {
           window.history.replaceState(null, '', originalUrl);
         }
 
-        // Force refresh to show published changes with stable caption preservation
-        console.log('🔄 Dispatching update event with published content (stable captions preserved)');
+        // Force refresh to show published changes
+        console.log('🔄 Dispatching update event with published content');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -199,11 +201,10 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully with stable caption keys preserved:', {
+        console.log('✅ Project published successfully:', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
-          stableCaptions: Object.keys(finalTextContent).filter(key => key.includes('image_caption_original_')).length,
           devChangesPreserved: preserveDevChanges
         });
         

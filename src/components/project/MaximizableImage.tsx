@@ -173,7 +173,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </motion.div>
       
-      {/* Simplified caption section */}
+      {/* Use ONLY the new SimpleCaptionEditor - no more duplicates */}
       <div className="mt-2 text-sm text-gray-600 italic text-center">
         <SimpleCaptionEditor 
           imageSrc={src}
