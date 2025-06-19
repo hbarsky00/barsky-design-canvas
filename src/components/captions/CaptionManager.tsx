@@ -26,7 +26,7 @@ const CaptionManager: React.FC<CaptionManagerProps> = ({ projectId }) => {
   ).length;
 
   return (
-    <div className="fixed bottom-20 right-4 z-40 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border">
+    <div className="fixed bottom-20 right-4 z-40 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border" style={{ marginBottom: '100px' }}>
       <div className="text-sm font-medium text-gray-700 mb-2">
         Image Caption Manager
       </div>
