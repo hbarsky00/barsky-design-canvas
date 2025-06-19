@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
+import { useProjectPersistence } from "@/hooks/useProjectPersistence";
 
 interface HeroImage {
   id: string;
@@ -14,6 +15,7 @@ interface UseHeroImagesProps {
 
 export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   const { updateImageInProjectData, getUpdatedImagePath } = useProjectDataUpdater();
+  const { saveContentBlocks } = useProjectPersistence(projectId);
 
   // Define which projects have hero images and their URLs
   const projectHeroImagesData: Record<string, { url: string; title: string }[]> = {
@@ -57,6 +59,14 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
     setHeroImages(prev => updateImagesWithLatestPaths());
   }, [projectId, getUpdatedImagePath]);
 
+  // Save hero images to content blocks whenever they change
+  useEffect(() => {
+    if (heroImages.length > 0) {
+      console.log('🔄 useHeroImages: Saving hero images to content blocks');
+      saveContentBlocks('hero_images', heroImages);
+    }
+  }, [heroImages, saveContentBlocks]);
+
   const handleAddImage = () => {
     const newImage: HeroImage = {
       id: `hero-${heroImages.length}`,
@@ -67,7 +77,12 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   };
 
   const handleRemoveImage = (id: string) => {
-    setHeroImages(prev => prev.filter(img => img.id !== id));
+    console.log('🗑️ useHeroImages: Removing hero image with id:', id);
+    setHeroImages(prev => {
+      const filtered = prev.filter(img => img.id !== id);
+      // Reorder positions after removal
+      return filtered.map((img, index) => ({ ...img, position: index }));
+    });
   };
 
   const handleImageReplace = (id: string, newSrc: string) => {

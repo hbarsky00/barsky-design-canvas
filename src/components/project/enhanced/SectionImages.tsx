@@ -3,7 +3,6 @@ import React from 'react';
 import { GripVertical } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MaximizableImage from '../MaximizableImage';
-import EditImageButton from '@/components/dev/EditImageButton';
 import { useDevMode } from '@/context/DevModeContext';
 
 interface SectionImagesProps {
