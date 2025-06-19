@@ -43,7 +43,7 @@ export const useProjectDetail = (projectId: string | undefined): UseProjectDetai
       }
       
       // Track page view
-      trackPageView(`/project/${projectId}`, `${foundProject.title} | Hiram Barsky Portfolio`);
+      trackPageView(`/project/${projectId}`, `${foundProject.title} | Barsky Design Portfolio`);
     } else {
       const errorMsg = `Project not found with ID: ${projectId}`;
       console.error(errorMsg);

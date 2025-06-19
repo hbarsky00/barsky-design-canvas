@@ -6,17 +6,15 @@ const StructuredData: React.FC = () => {
   const personStructuredData = {
     "@context": "https://schema.org",
     "@type": ["Person", "ProfessionalService"],
-    "name": "Hiram Barsky",
-    "givenName": "Hiram",
-    "familyName": "Barsky",
-    "alternateName": ["Hiram Barsky UX Designer", "Hiram Barsky Frontend Developer", "Hiram Barsky Designer"],
-    "description": "Hiram Barsky is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
+    "name": "Barsky Design",
+    "alternateName": ["Barsky Design UX Designer", "Barsky Design Frontend Developer", "Barsky Design Designer"],
+    "description": "Barsky Design is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
     "jobTitle": "UX/UI Designer & Frontend Developer",
     "image": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     "url": "https://barskydesign.pro",
     "mainEntityOfPage": "https://barskydesign.pro",
     "telephone": "+1-201-668-4754",
-    "email": "hello@hirambarsky.com",
+    "email": "hello@barskydesign.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "New York",
@@ -41,9 +39,9 @@ const StructuredData: React.FC = () => {
       "closes": "18:00"
     },
     "sameAs": [
-      "https://twitter.com/hirambarsky",
-      "https://www.linkedin.com/in/hiram-barsky",
-      "https://instagram.com/hirambarsky"
+      "https://twitter.com/barskydesign",
+      "https://www.linkedin.com/company/barsky-design",
+      "https://instagram.com/barskydesign"
     ],
     "priceRange": "$$",
     "knowsAbout": [
@@ -61,15 +59,15 @@ const StructuredData: React.FC = () => {
     "hasCredential": {
       "@type": "EducationalOccupationalCredential",
       "name": "UX/UI Designer & Frontend Developer",
-      "description": "Hiram Barsky specializes in creating user-centered digital experiences through comprehensive design and development expertise"
+      "description": "Barsky Design specializes in creating user-centered digital experiences through comprehensive design and development expertise"
     },
     "worksFor": {
       "@type": "Organization",
-      "name": "Hiram Barsky Design Services",
+      "name": "Barsky Design Services",
       "url": "https://barskydesign.pro",
       "founder": {
         "@type": "Person",
-        "name": "Hiram Barsky"
+        "name": "Barsky Design"
       }
     },
     "makesOffer": [
@@ -78,10 +76,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "User Research",
-          "description": "Comprehensive user research to understand user needs and behaviors by Hiram Barsky.",
+          "description": "Comprehensive user research to understand user needs and behaviors by Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Hiram Barsky"
+            "name": "Barsky Design"
           }
         }
       },
@@ -90,10 +88,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "Wireframing & Prototyping",
-          "description": "Strategic wireframing and interactive prototyping for optimal user experience by Hiram Barsky.",
+          "description": "Strategic wireframing and interactive prototyping for optimal user experience by Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Hiram Barsky"
+            "name": "Barsky Design"
           }
         }
       },
@@ -102,10 +100,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "Visual Design & Design Systems",
-          "description": "Beautiful visual design and scalable design systems by Hiram Barsky.",
+          "description": "Beautiful visual design and scalable design systems by Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Hiram Barsky"
+            "name": "Barsky Design"
           }
         }
       },
@@ -114,10 +112,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "React Development",
-          "description": "Modern React applications with TypeScript by Hiram Barsky.",
+          "description": "Modern React applications with TypeScript by Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Hiram Barsky"
+            "name": "Barsky Design"
           }
         }
       },
@@ -126,17 +124,17 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "Responsive Design Implementation",
-          "description": "Mobile-first responsive web development by Hiram Barsky.",
+          "description": "Mobile-first responsive web development by Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Hiram Barsky"
+            "name": "Barsky Design"
           }
         }
       }
     ],
     "owns": {
       "@type": "WebSite",
-      "name": "Hiram Barsky Design Services",
+      "name": "Barsky Design Services",
       "url": "https://barskydesign.pro",
       "about": "UX/UI design and frontend development services"
     }
@@ -145,31 +143,29 @@ const StructuredData: React.FC = () => {
   const websiteStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Hiram Barsky - UX/UI Designer & Frontend Developer",
-    "alternateName": "Hiram Barsky Designer Portfolio",
+    "name": "Barsky Design - UX/UI Designer & Frontend Developer",
+    "alternateName": "Barsky Design Portfolio",
     "url": "https://barskydesign.pro",
-    "description": "Hiram Barsky is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
+    "description": "Barsky Design is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
     "author": {
       "@type": "Person",
-      "name": "Hiram Barsky",
-      "givenName": "Hiram",
-      "familyName": "Barsky"
+      "name": "Barsky Design"
     },
     "creator": {
       "@type": "Person",
-      "name": "Hiram Barsky"
+      "name": "Barsky Design"
     },
     "publisher": {
       "@type": "Person",
-      "name": "Hiram Barsky"
+      "name": "Barsky Design"
     },
     "copyrightHolder": {
       "@type": "Person",
-      "name": "Hiram Barsky"
+      "name": "Barsky Design"
     },
     "mainEntity": {
       "@type": "Person",
-      "name": "Hiram Barsky"
+      "name": "Barsky Design"
     },
     "potentialAction": {
       "@type": "SearchAction",

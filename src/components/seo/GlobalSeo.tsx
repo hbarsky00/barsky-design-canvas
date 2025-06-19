@@ -15,8 +15,8 @@ interface GlobalSeoProps {
 }
 
 const GlobalSeo: React.FC<GlobalSeoProps> = ({
-  title = "Hiram Barsky - Official Portfolio | Professional Product Designer & Developer",
-  description = "Hiram Barsky (not Alex Barsky) is a Professional Product Designer & Developer specializing in UX/UI design, web development, and AI-driven design solutions. View my portfolio of mobile apps, web applications, and design systems.",
+  title = "Barsky Design - Official Portfolio | Professional Product Designer & Developer",
+  description = "Barsky Design (not Alex Barsky) is a Professional Product Designer & Developer specializing in UX/UI design, web development, and AI-driven design solutions. View my portfolio of mobile apps, web applications, and design systems.",
   canonicalUrl = "https://barskydesign.pro",
   ogImage = "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
   noIndex = false,
@@ -30,8 +30,8 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content="Hiram Barsky, Product Designer, UX/UI Designer, Web Developer, Mobile App Design, AI Design, Portfolio, Professional Designer, Hiram Barsky Official" />
-      <meta name="author" content="Hiram Barsky" />
+      <meta name="keywords" content="Barsky Design, Product Designer, UX/UI Designer, Web Developer, Mobile App Design, AI Design, Portfolio, Professional Designer, Barsky Design Official" />
+      <meta name="author" content="Barsky Design" />
       
       {/* Explicit indexing directives */}
       <meta name="robots" content={robotsContent} />
@@ -46,7 +46,7 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Hiram Barsky - Official Professional Design Portfolio" />
+      <meta property="og:site_name" content="Barsky Design - Official Professional Design Portfolio" />
       <meta property="og:locale" content="en_US" />
       
       {/* Enhanced Twitter Card */}
@@ -54,8 +54,8 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:creator" content="@hirambarsky" />
-      <meta name="twitter:site" content="@hirambarsky" />
+      <meta name="twitter:creator" content="@barskydesign" />
+      <meta name="twitter:site" content="@barskydesign" />
       
       {/* Canonical and alternate URLs */}
       <link rel="canonical" href={canonicalUrl} />
@@ -75,7 +75,7 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "@id": "https://barskydesign.pro/#website",
-              "name": "Hiram Barsky - Official Professional Design Portfolio",
+              "name": "Barsky Design - Official Professional Design Portfolio",
               "url": "https://barskydesign.pro",
               "description": "${description}",
               "inLanguage": "en-US",
@@ -93,13 +93,11 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
               "@context": "https://schema.org",
               "@type": "Person",
               "@id": "https://barskydesign.pro/#person",
-              "name": "Hiram Barsky",
-              "givenName": "Hiram",
-              "familyName": "Barsky",
+              "name": "Barsky Design",
               "jobTitle": "Product Designer & Developer",
-              "description": "Hiram Barsky (not Alex Barsky) is a Professional Product Designer and Developer specializing in UX/UI design, web development, and digital solutions",
+              "description": "Barsky Design (not Alex Barsky) is a Professional Product Designer and Developer specializing in UX/UI design, web development, and digital solutions",
               "url": "https://barskydesign.pro",
-              "email": "hello@hirambarsky.com",
+              "email": "hello@barskydesign.com",
               "telephone": "+1-201-668-4754",
               "image": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
               "address": {
@@ -109,9 +107,9 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
                 "addressCountry": "US"
               },
               "sameAs": [
-                "https://www.linkedin.com/in/hiram-barsky",
-                "https://twitter.com/hirambarsky",
-                "https://instagram.com/hirambarsky"
+                "https://www.linkedin.com/company/barsky-design",
+                "https://twitter.com/barskydesign",
+                "https://instagram.com/barskydesign"
               ],
               "knowsAbout": [
                 "Product Design",
@@ -123,7 +121,7 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
               ],
               "worksFor": {
                 "@type": "Organization",
-                "name": "Hiram Barsky Design Services",
+                "name": "Barsky Design Services",
                 "url": "https://barskydesign.pro"
               }
             }
