@@ -60,28 +60,37 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   
-  // Create a unique caption key based on the original image src and project
-  const createCaptionKey = (imageSrc: string, projectId: string) => {
-    // Create a hash of the image src to ensure uniqueness
-    const srcHash = imageSrc.split('/').pop()?.replace(/[^a-zA-Z0-9]/g, '_') || 'unknown';
-    return `image_caption_${srcHash}_${projectId}`;
+  // Create a stable caption key based on ORIGINAL image src and project
+  // This ensures captions stay with the original image slot, not the replaced image
+  const createStableCaptionKey = (originalSrc: string, projectId: string) => {
+    // Use the original image src for stable identification
+    const srcIdentifier = originalSrc.split('/').pop()?.replace(/[^a-zA-Z0-9]/g, '_') || 'unknown';
+    return `image_caption_original_${srcIdentifier}_${projectId}`;
   };
   
-  const captionKey = createCaptionKey(src, currentProjectId);
+  const captionKey = createStableCaptionKey(src, currentProjectId);
   
   // Get the saved caption or use the provided caption as fallback
   const savedCaption = getTextContent(captionKey, caption || 'Click to add a caption...');
 
-  // Listen for caption updates and save them
+  console.log('🏷️ MaximizableImage caption mapping:', {
+    originalSrc: src.substring(0, 30) + '...',
+    displayedImage: displayedImage.substring(0, 30) + '...',
+    captionKey,
+    savedCaption: savedCaption.substring(0, 30) + '...'
+  });
+
+  // Listen for caption updates and save them with stable key
   useEffect(() => {
     const handleCaptionSave = (e: CustomEvent) => {
       if (e.detail?.textKey === captionKey && e.detail?.content) {
-        console.log('📝 MaximizableImage: Saving caption via event:', {
+        console.log('📝 MaximizableImage: Saving caption with stable key:', {
           captionKey,
+          originalSrc: src.substring(0, 30) + '...',
           content: e.detail.content.substring(0, 50) + '...'
         });
         
-        // Save to persistence
+        // Save to persistence with stable key based on original src
         saveTextContent(captionKey, e.detail.content);
         
         // Call parent callback if provided
@@ -96,13 +105,17 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     return () => {
       window.removeEventListener('editableTextSaved', handleCaptionSave as EventListener);
     };
-  }, [captionKey, saveTextContent, onCaptionUpdate]);
+  }, [captionKey, saveTextContent, onCaptionUpdate, src]);
   
   // Update displayed image when replacements change
   useEffect(() => {
     const newSrc = imageReplacements?.[src] || getImageSrc(src);
     if (newSrc !== displayedImage) {
-      console.log('📸 MaximizableImage: Updating displayed image:', newSrc.substring(0, 50) + '...');
+      console.log('📸 MaximizableImage: Updating displayed image while keeping caption key stable:', {
+        originalSrc: src.substring(0, 30) + '...',
+        newDisplaySrc: newSrc.substring(0, 30) + '...',
+        captionKey
+      });
       setDisplayedImage(newSrc);
       setHasError(false);
     }
@@ -113,7 +126,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     const handleProjectUpdate = (e: CustomEvent) => {
       const detail = e.detail || {};
       if (detail.src === src && detail.newSrc) {
-        console.log('🔄 MaximizableImage: Project update for this image');
+        console.log('🔄 MaximizableImage: Project update for this image, maintaining stable caption key');
         setDisplayedImage(detail.newSrc);
         setHasError(false);
       }
@@ -137,9 +150,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageReplace = useCallback((newSrc: string) => {
-    console.log('🔄 MaximizableImage: Image replace triggered:', {
+    console.log('🔄 MaximizableImage: Image replace triggered - caption key remains stable:', {
       originalSrc: src.substring(0, 30) + '...',
       newSrc: newSrc.substring(0, 30) + '...',
+      captionKey,
       projectId: currentProjectId
     });
     
@@ -151,7 +165,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     if (onImageReplace) {
       onImageReplace(newSrc);
     }
-  }, [src, currentProjectId, onImageReplace]);
+  }, [src, currentProjectId, onImageReplace, captionKey]);
 
   const handleImageRemove = useCallback(() => {
     console.log('🗑️ MaximizableImage: Image remove triggered:', {
@@ -256,7 +270,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </motion.div>
       
-      {/* Caption section with unique key */}
+      {/* Caption section with stable key based on original src */}
       <div className="mt-2 text-sm text-gray-600 italic text-center">
         <EditableText 
           initialText={savedCaption}
