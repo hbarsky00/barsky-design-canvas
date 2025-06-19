@@ -10,11 +10,12 @@ export const useSimpleCaptions = (projectId: string) => {
   const [captions, setCaptions] = useState<CaptionData>({});
   const [isSaving, setIsSaving] = useState(false);
 
-  // Create a stable caption key from image src
+  // Create a stable caption key from image src - ENSURE NO CONFLICTS with image replacements
   const createCaptionKey = useCallback((imageSrc: string): string => {
-    // Extract filename and create a clean key
+    // Extract filename and create a clean key with CAPTION prefix to avoid conflicts
     const filename = imageSrc.split('/').pop() || 'unknown';
-    return filename.replace(/[^a-zA-Z0-9]/g, '_');
+    const cleanName = filename.replace(/[^a-zA-Z0-9]/g, '_');
+    return `caption_${cleanName}`; // PREFIX to prevent conflicts with image replacement keys
   }, []);
 
   // Get caption for an image
@@ -32,13 +33,13 @@ export const useSimpleCaptions = (projectId: string) => {
       // Update local state immediately
       setCaptions(prev => ({ ...prev, [key]: caption }));
       
-      // Save to localStorage for persistence
-      const storageKey = `captions_${projectId}`;
+      // Save to localStorage for persistence with ISOLATED storage key
+      const storageKey = `captions_only_${projectId}`; // Different from any other storage keys
       const existingCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
       const updatedCaptions = { ...existingCaptions, [key]: caption };
       localStorage.setItem(storageKey, JSON.stringify(updatedCaptions));
       
-      console.log('✅ Caption saved to localStorage:', key, caption.substring(0, 50) + '...');
+      console.log('✅ Caption saved to isolated storage:', key, caption.substring(0, 50) + '...');
       toast.success('Caption saved!', { duration: 1000 });
       
       return true;
@@ -54,12 +55,12 @@ export const useSimpleCaptions = (projectId: string) => {
   // Load captions from localStorage on init
   const loadCaptions = useCallback(() => {
     try {
-      const storageKey = `captions_${projectId}`;
+      const storageKey = `captions_only_${projectId}`; // Use isolated storage
       const saved = localStorage.getItem(storageKey);
       if (saved) {
         const parsedCaptions = JSON.parse(saved);
         setCaptions(parsedCaptions);
-        console.log('📖 Loaded captions from localStorage:', Object.keys(parsedCaptions).length);
+        console.log('📖 Loaded captions from isolated storage:', Object.keys(parsedCaptions).length);
       }
     } catch (error) {
       console.error('❌ Error loading captions:', error);

@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -27,11 +26,11 @@ export class PublishingService {
         // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
-        // Get simple captions from localStorage - these are SEPARATE from dev changes
-        const storageKey = `captions_${projectId}`;
+        // Get simple captions from ISOLATED localStorage - completely separate system
+        const storageKey = `captions_only_${projectId}`; // Updated to use isolated storage
         const simpleCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
         
-        console.log('📊 Found simple captions (SEPARATE from dev changes):', {
+        console.log('📊 Found simple captions (ISOLATED SYSTEM):', {
           count: Object.keys(simpleCaptions).length,
           keys: Object.keys(simpleCaptions),
           captions: simpleCaptions
@@ -76,39 +75,30 @@ export class PublishingService {
           projectId
         );
 
-        // CRITICAL FIX: Merge text content WITHOUT duplicating captions
-        // 1. Start with published text as base
-        // 2. Add dev changes (these override published)  
-        // 3. Add simple captions (these override everything but only for caption keys)
-        
+        // ISOLATED CAPTION MERGING - prevent ANY conflicts with image or text systems
         const baseTextContent = { ...currentPublishedText };
         const devTextContent = { ...devChanges.textContent };
         
-        // Apply dev changes first
+        // Apply dev changes first (these are actual text edits)
         Object.keys(devTextContent).forEach(key => {
           baseTextContent[key] = devTextContent[key];
         });
         
-        // Apply simple captions ONLY if they don't conflict with existing text keys
-        // Simple captions use cleaned filename keys, so they shouldn't conflict
+        // Apply simple captions ONLY - they have caption_ prefix so NO conflicts possible
         Object.keys(simpleCaptions).forEach(captionKey => {
-          // Only add if this key doesn't already exist in text content
-          // This prevents caption duplication
-          if (!baseTextContent[captionKey]) {
-            baseTextContent[captionKey] = simpleCaptions[captionKey];
-          } else {
-            console.log('⚠️ Skipping duplicate caption key:', captionKey, 'already exists in text content');
-          }
+          // Caption keys have 'caption_' prefix, so they will NEVER conflict
+          baseTextContent[captionKey] = simpleCaptions[captionKey];
+          console.log('✅ Added isolated caption:', captionKey, simpleCaptions[captionKey]);
         });
 
         const finalTextContent = baseTextContent;
 
-        console.log('📝 FINAL Text content merge (NO DUPLICATES):', {
+        console.log('📝 FINAL Text content merge (ISOLATED CAPTIONS):', {
           publishedCount: Object.keys(currentPublishedText).length,
           devChangesCount: Object.keys(devChanges.textContent).length,
           simpleCaptionsCount: Object.keys(simpleCaptions).length,
           finalCount: Object.keys(finalTextContent).length,
-          finalKeys: Object.keys(finalTextContent)
+          finalKeys: Object.keys(finalTextContent).slice(0, 10) // Show sample
         });
 
         // Process content blocks - dev changes win
@@ -135,7 +125,7 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing (NO CAPTION DUPLICATES):', {
+        console.log('✅ FINAL data for publishing (ISOLATED CAPTION SYSTEM):', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
@@ -224,7 +214,7 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully (NO DUPLICATES):', {
+        console.log('✅ Project published successfully (ISOLATED CAPTION SYSTEM):', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
