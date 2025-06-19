@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -24,13 +23,12 @@ export class PublishingService {
       console.log('🔒 PublishingService: Preserving navigation at:', originalPath);
 
       try {
-        // Get all dev mode changes
+        // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
         if (!rawChanges || rawChanges.length === 0) {
           console.log('ℹ️ No changes found in database for project:', projectId);
           
-          // If preserving dev changes, don't throw error - just publish current state
           if (preserveDevChanges) {
             console.log('✅ Publishing current state without dev changes');
           } else {
@@ -38,58 +36,57 @@ export class PublishingService {
           }
         }
         
-        const changes = rawChanges ? processChangesData(rawChanges) : {
+        const devChanges = rawChanges ? processChangesData(rawChanges) : {
           textContent: {},
           imageReplacements: {},
           contentBlocks: {}
         };
         
-        console.log('📊 Publishing changes:', {
-          textKeys: Object.keys(changes.textContent).length,
-          imageKeys: Object.keys(changes.imageReplacements).length,
-          contentBlockKeys: Object.keys(changes.contentBlocks).length,
-          preserveDevChanges
+        console.log('📊 Dev changes to publish (PRIORITY):', {
+          textKeys: Object.keys(devChanges.textContent).length,
+          imageKeys: Object.keys(devChanges.imageReplacements).length,
+          contentBlockKeys: Object.keys(devChanges.contentBlocks).length,
+          textChanges: devChanges.textContent
         });
 
-        // Get current published data for baseline
+        // Get current published data for baseline (lower priority)
         const currentPublishedData = await this.loadPublishedData(projectId);
         const oldImageReplacements = currentPublishedData?.image_replacements || {};
         const currentPublishedText = currentPublishedData?.text_content || {};
 
-        console.log('📄 Current published state:', {
+        console.log('📄 Current published state (BASE):', {
           textEntries: Object.keys(currentPublishedText).length,
           imageEntries: Object.keys(oldImageReplacements).length
         });
 
         // Process images
         const { publishedImageMappings, oldImagesToCleanup, failedUploads } = await ImageProcessor.processImages(
-          changes.imageReplacements,
+          devChanges.imageReplacements,
           oldImageReplacements,
           projectId
         );
 
-        // Merge text content - published base + dev changes
+        // CRITICAL FIX: Dev changes ALWAYS override published data for text
         const finalTextContent = {
-          ...currentPublishedText,
-          ...changes.textContent
+          ...currentPublishedText,  // Base published text (lower priority)
+          ...devChanges.textContent  // Dev changes ALWAYS win (higher priority)
         };
 
-        console.log('📝 Text content merge:', {
+        console.log('📝 FINAL Text content merge (DEV WINS):', {
           publishedCount: Object.keys(currentPublishedText).length,
-          devChangesCount: Object.keys(changes.textContent).length,
-          finalCount: Object.keys(finalTextContent).length
+          devChangesCount: Object.keys(devChanges.textContent).length,
+          finalCount: Object.keys(finalTextContent).length,
+          devOverrides: devChanges.textContent
         });
 
-        // Process content blocks
-        const processedContentBlocks = await ImageProcessor.processContentBlocks(changes.contentBlocks, projectId);
-
-        // Merge content blocks too
+        // Process content blocks - dev changes win here too
+        const processedContentBlocks = await ImageProcessor.processContentBlocks(devChanges.contentBlocks, projectId);
         const finalContentBlocks = {
           ...(currentPublishedData?.content_blocks || {}),
-          ...processedContentBlocks
+          ...processedContentBlocks  // Dev changes win
         };
 
-        // Final validation
+        // Final validation for images
         const validImageReplacements = Object.fromEntries(
           Object.entries(publishedImageMappings).filter(([key, value]) => {
             const isValid = value && (value.startsWith('https://') || value.startsWith('http://') || value.startsWith('/'));
@@ -106,11 +103,12 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ Final data for publishing:', {
+        console.log('✅ FINAL data for publishing (DEV CHANGES PRESERVED):', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
-          preserveDevChanges
+          preserveDevChanges,
+          finalTextChanges: finalTextContent
         });
 
         // Store published state in the database
@@ -122,7 +120,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving published data to database');
+        console.log('💾 Saving published data to database with dev changes preserved');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -135,9 +133,9 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Published data stored successfully');
+        console.log('✅ Published data stored successfully with dev changes preserved');
 
-        // Apply changes to DOM immediately
+        // Apply changes to DOM immediately - PRIORITIZE dev changes
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
 
         // Store in localStorage as fallback
@@ -176,8 +174,8 @@ export class PublishingService {
           window.history.replaceState(null, '', originalUrl);
         }
 
-        // Force refresh to show published changes
-        console.log('🔄 Dispatching update event with published content');
+        // Force refresh to show published changes with dev priority
+        console.log('🔄 Dispatching update event with published content (dev changes preserved)');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -192,7 +190,7 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully:', {
+        console.log('✅ Project published successfully with dev changes preserved:', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
