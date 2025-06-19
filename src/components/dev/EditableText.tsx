@@ -1,3 +1,4 @@
+
 import React, { useEffect, useCallback } from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import { useParams } from 'react-router-dom';
@@ -87,6 +88,15 @@ const EditableText: React.FC<EditableTextProps> = ({
       
       // Update our cached state immediately for UI responsiveness
       lastLoadedTextRef.current = text;
+      
+      // Dispatch save event for components that need to know about text updates
+      window.dispatchEvent(new CustomEvent('editableTextSaved', {
+        detail: { 
+          textKey, 
+          content: text,
+          projectId: safeProjectId
+        }
+      }));
       
       toast.success('Text queued for sync!', { 
         description: 'Changes will be synced automatically',

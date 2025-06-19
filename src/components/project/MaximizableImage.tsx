@@ -46,7 +46,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
-  const { getImageSrc, getTextContent } = useProjectPersistence(currentProjectId);
+  const { getImageSrc, getTextContent, saveTextContent } = useProjectPersistence(currentProjectId);
   
   // Simple state management - no complex hooks
   const [displayedImage, setDisplayedImage] = useState(() => {
@@ -71,6 +71,32 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   
   // Get the saved caption or use the provided caption as fallback
   const savedCaption = getTextContent(captionKey, caption || 'Click to add a caption...');
+
+  // Listen for caption updates and save them
+  useEffect(() => {
+    const handleCaptionSave = (e: CustomEvent) => {
+      if (e.detail?.textKey === captionKey && e.detail?.content) {
+        console.log('📝 MaximizableImage: Saving caption via event:', {
+          captionKey,
+          content: e.detail.content.substring(0, 50) + '...'
+        });
+        
+        // Save to persistence
+        saveTextContent(captionKey, e.detail.content);
+        
+        // Call parent callback if provided
+        if (onCaptionUpdate) {
+          onCaptionUpdate(e.detail.content);
+        }
+      }
+    };
+
+    window.addEventListener('editableTextSaved', handleCaptionSave as EventListener);
+    
+    return () => {
+      window.removeEventListener('editableTextSaved', handleCaptionSave as EventListener);
+    };
+  }, [captionKey, saveTextContent, onCaptionUpdate]);
   
   // Update displayed image when replacements change
   useEffect(() => {
