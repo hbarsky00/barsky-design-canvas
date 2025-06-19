@@ -1,14 +1,12 @@
 
 import { useCallback } from 'react';
 import { useDevModeDatabase } from './useDevModeDatabase';
-import { useSimplifiedSync } from './useSimplifiedSync';
 import { ProjectPersistenceHooks, ProjectData } from './persistence/types';
 import { useDataLoader } from './persistence/useDataLoader';
 import { useProjectUpdates } from './persistence/useProjectUpdates';
 
 export const useProjectPersistence = (projectId: string): ProjectPersistenceHooks => {
-  const { getChanges, isLoading } = useDevModeDatabase(projectId);
-  const { queueChange } = useSimplifiedSync(projectId);
+  const { getChanges, isLoading, saveChange } = useDevModeDatabase(projectId);
 
   const normalizeImageReplacements = useCallback((imageReplacements: any): Record<string, string> => {
     const normalized: Record<string, string> = {};
@@ -34,46 +32,46 @@ export const useProjectPersistence = (projectId: string): ProjectPersistenceHook
   useProjectUpdates(projectId, getChanges, normalizeImageReplacements, cachedData, updateCachedData);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
-    console.log('💾 SaveOperations: Queuing text content:', key);
-    queueChange('text', key, content);
+    console.log('💾 SaveOperations: Saving text content to database:', key);
+    await saveChange('text', key, content);
     
     // Update cached data immediately for UI responsiveness
     updateCachedData(prev => ({
       ...prev,
       textContent: { ...prev.textContent, [key]: content }
     }));
-    console.log('✅ Text content queued and cached');
-  }, [queueChange, updateCachedData]);
+    console.log('✅ Text content saved to database and cached');
+  }, [saveChange, updateCachedData]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('💾 SaveOperations: Queuing image replacement:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
+    console.log('💾 SaveOperations: Saving image replacement to database:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('⚠️ Skipping blob URL replacement save');
       return;
     }
     
-    queueChange('image', originalSrc, newSrc);
+    await saveChange('image', originalSrc, newSrc);
     
     // Update cached data immediately for UI responsiveness
     updateCachedData(prev => ({
       ...prev,
       imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
     }));
-    console.log('✅ Image replacement queued and cached');
-  }, [queueChange, updateCachedData]);
+    console.log('✅ Image replacement saved to database and cached');
+  }, [saveChange, updateCachedData]);
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
-    console.log('💾 SaveOperations: Queuing content blocks:', sectionKey);
+    console.log('💾 SaveOperations: Saving content blocks to database:', sectionKey);
     
-    queueChange('content_block', sectionKey, blocks);
+    await saveChange('content_block', sectionKey, blocks);
     
     updateCachedData(prev => ({
       ...prev,
       contentBlocks: { ...prev.contentBlocks, [sectionKey]: blocks }
     }));
-    console.log('✅ Content blocks queued successfully');
-  }, [queueChange, updateCachedData]);
+    console.log('✅ Content blocks saved to database and cached');
+  }, [saveChange, updateCachedData]);
 
   const getProjectData = useCallback((): ProjectData => {
     return cachedData;
