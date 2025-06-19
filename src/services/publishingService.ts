@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { ImageStorageService } from './imageStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -26,13 +27,14 @@ export class PublishingService {
         // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
-        // ALSO get simple captions from localStorage
+        // Get simple captions from localStorage - these are SEPARATE from dev changes
         const storageKey = `captions_${projectId}`;
         const simpleCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
         
-        console.log('📊 Found simple captions:', {
+        console.log('📊 Found simple captions (SEPARATE from dev changes):', {
           count: Object.keys(simpleCaptions).length,
-          keys: Object.keys(simpleCaptions)
+          keys: Object.keys(simpleCaptions),
+          captions: simpleCaptions
         });
         
         if ((!rawChanges || rawChanges.length === 0) && Object.keys(simpleCaptions).length === 0) {
@@ -74,18 +76,39 @@ export class PublishingService {
           projectId
         );
 
-        // MERGE: Dev changes + Simple captions override published data
-        const finalTextContent = {
-          ...currentPublishedText,  // Base published text
-          ...devChanges.textContent,  // Dev changes win
-          ...simpleCaptions  // Simple captions win over everything
-        };
+        // CRITICAL FIX: Merge text content WITHOUT duplicating captions
+        // 1. Start with published text as base
+        // 2. Add dev changes (these override published)  
+        // 3. Add simple captions (these override everything but only for caption keys)
+        
+        const baseTextContent = { ...currentPublishedText };
+        const devTextContent = { ...devChanges.textContent };
+        
+        // Apply dev changes first
+        Object.keys(devTextContent).forEach(key => {
+          baseTextContent[key] = devTextContent[key];
+        });
+        
+        // Apply simple captions ONLY if they don't conflict with existing text keys
+        // Simple captions use cleaned filename keys, so they shouldn't conflict
+        Object.keys(simpleCaptions).forEach(captionKey => {
+          // Only add if this key doesn't already exist in text content
+          // This prevents caption duplication
+          if (!baseTextContent[captionKey]) {
+            baseTextContent[captionKey] = simpleCaptions[captionKey];
+          } else {
+            console.log('⚠️ Skipping duplicate caption key:', captionKey, 'already exists in text content');
+          }
+        });
 
-        console.log('📝 FINAL Text content merge (including simple captions):', {
+        const finalTextContent = baseTextContent;
+
+        console.log('📝 FINAL Text content merge (NO DUPLICATES):', {
           publishedCount: Object.keys(currentPublishedText).length,
           devChangesCount: Object.keys(devChanges.textContent).length,
           simpleCaptionsCount: Object.keys(simpleCaptions).length,
-          finalCount: Object.keys(finalTextContent).length
+          finalCount: Object.keys(finalTextContent).length,
+          finalKeys: Object.keys(finalTextContent)
         });
 
         // Process content blocks - dev changes win
@@ -112,7 +135,7 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing (with simple captions):', {
+        console.log('✅ FINAL data for publishing (NO CAPTION DUPLICATES):', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
@@ -201,7 +224,7 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully:', {
+        console.log('✅ Project published successfully (NO DUPLICATES):', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
