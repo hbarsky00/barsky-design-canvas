@@ -26,17 +26,17 @@ export class PublishingService {
         // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
-        // Get simple captions from ISOLATED localStorage - completely separate system
-        const storageKey = `captions_only_${projectId}`; // Updated to use isolated storage
-        const simpleCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
+        // Get image captions from COMPLETELY ISOLATED localStorage - separate system
+        const imageCaptionStorageKey = `image_captions_${projectId}`;
+        const imageCaptions = JSON.parse(localStorage.getItem(imageCaptionStorageKey) || '{}');
         
-        console.log('📊 Found simple captions (ISOLATED SYSTEM):', {
-          count: Object.keys(simpleCaptions).length,
-          keys: Object.keys(simpleCaptions),
-          captions: simpleCaptions
+        console.log('📊 Found image captions (COMPLETELY ISOLATED SYSTEM):', {
+          count: Object.keys(imageCaptions).length,
+          keys: Object.keys(imageCaptions),
+          captions: imageCaptions
         });
         
-        if ((!rawChanges || rawChanges.length === 0) && Object.keys(simpleCaptions).length === 0) {
+        if ((!rawChanges || rawChanges.length === 0) && Object.keys(imageCaptions).length === 0) {
           console.log('ℹ️ No changes found for project:', projectId);
           
           if (preserveDevChanges) {
@@ -75,7 +75,7 @@ export class PublishingService {
           projectId
         );
 
-        // ISOLATED CAPTION MERGING - prevent ANY conflicts with image or text systems
+        // COMPLETELY SEPARATE CAPTION SYSTEM - prevent ALL conflicts
         const baseTextContent = { ...currentPublishedText };
         const devTextContent = { ...devChanges.textContent };
         
@@ -84,19 +84,29 @@ export class PublishingService {
           baseTextContent[key] = devTextContent[key];
         });
         
-        // Apply simple captions ONLY - they have caption_ prefix so NO conflicts possible
-        Object.keys(simpleCaptions).forEach(captionKey => {
-          // Caption keys have 'caption_' prefix, so they will NEVER conflict
-          baseTextContent[captionKey] = simpleCaptions[captionKey];
-          console.log('✅ Added isolated caption:', captionKey, simpleCaptions[captionKey]);
+        // Apply image captions SEPARATELY - they use img_caption_ prefix so NO conflicts possible
+        Object.keys(imageCaptions).forEach(captionKey => {
+          // ONLY add if it starts with img_caption_ to ensure complete separation
+          if (captionKey.startsWith('img_caption_')) {
+            baseTextContent[captionKey] = imageCaptions[captionKey];
+            console.log('✅ Added isolated image caption:', captionKey, imageCaptions[captionKey]);
+          }
+        });
+
+        // REMOVE any old caption_ keys to prevent duplicates
+        Object.keys(baseTextContent).forEach(key => {
+          if (key.startsWith('caption_') && !key.startsWith('img_caption_')) {
+            delete baseTextContent[key];
+            console.log('🗑️ Removed old caption key:', key);
+          }
         });
 
         const finalTextContent = baseTextContent;
 
-        console.log('📝 FINAL Text content merge (ISOLATED CAPTIONS):', {
+        console.log('📝 FINAL Text content merge (ISOLATED IMAGE CAPTIONS):', {
           publishedCount: Object.keys(currentPublishedText).length,
           devChangesCount: Object.keys(devChanges.textContent).length,
-          simpleCaptionsCount: Object.keys(simpleCaptions).length,
+          imageCaptionsCount: Object.keys(imageCaptions).length,
           finalCount: Object.keys(finalTextContent).length,
           finalKeys: Object.keys(finalTextContent).slice(0, 10) // Show sample
         });
@@ -125,7 +135,7 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing (ISOLATED CAPTION SYSTEM):', {
+        console.log('✅ FINAL data for publishing (ISOLATED IMAGE CAPTION SYSTEM):', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
@@ -175,8 +185,8 @@ export class PublishingService {
             console.warn('⚠️ Failed to clear dev mode changes');
           }
           
-          // Also clear simple captions if not preserving
-          localStorage.removeItem(storageKey);
+          // Also clear image captions if not preserving
+          localStorage.removeItem(imageCaptionStorageKey);
         } else {
           console.log('🛡️ Preserving dev mode changes for continued editing');
         }
@@ -214,7 +224,7 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully (ISOLATED CAPTION SYSTEM):', {
+        console.log('✅ Project published successfully (ISOLATED IMAGE CAPTION SYSTEM):', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,

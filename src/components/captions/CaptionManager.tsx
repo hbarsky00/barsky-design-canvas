@@ -22,16 +22,16 @@ const CaptionManager: React.FC<CaptionManagerProps> = ({ projectId }) => {
   const captionCount = Object.keys(captions).filter(key => 
     captions[key] && 
     captions[key] !== 'Click to add a caption...' &&
-    key.startsWith('caption_') // Only count actual caption keys
+    key.startsWith('img_caption_') // Only count actual image caption keys
   ).length;
 
   return (
     <div className="fixed bottom-20 right-4 z-40 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border">
       <div className="text-sm font-medium text-gray-700 mb-2">
-        Caption Manager (Isolated)
+        Image Caption Manager
       </div>
       <div className="text-xs text-gray-600 mb-3">
-        {captionCount} captions saved
+        {captionCount} image captions saved
       </div>
       <div className="flex gap-2">
         <Button
