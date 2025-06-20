@@ -26,9 +26,17 @@ const AutoCaptionScanner: React.FC = () => {
       if (fixedCount > 0) {
         console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically`);
         
+        // Dispatch event to update captions in the UI
         window.dispatchEvent(new CustomEvent('captionsUpdated', {
           detail: { fixedCount, timestamp: Date.now() }
         }));
+
+        // Trigger a gentle refresh to show updated captions
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
+            detail: { captionsUpdated: true, timestamp: Date.now() }
+          }));
+        }, 1000);
       }
 
     } catch (error) {
@@ -43,11 +51,11 @@ const AutoCaptionScanner: React.FC = () => {
     
     const initialTimeout = setTimeout(() => {
       performBackgroundScan();
-    }, 10000);
+    }, 15000); // Increased delay to avoid conflicts
 
     intervalRef.current = setInterval(() => {
       performBackgroundScan();
-    }, 45000);
+    }, 60000); // Increased interval to reduce conflicts
 
     return () => {
       if (initialTimeout) clearTimeout(initialTimeout);
