@@ -1,53 +1,168 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import RichTextRenderer from '@/components/dev/RichTextRenderer';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Edit3, Save, X, Plus, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import TinyMCEEditor from "@/components/editor/TinyMCEEditor";
+import MaximizableImage from "../MaximizableImage";
 
 interface ModernProjectContentSectionProps {
   title: string;
   content: string;
   sectionKey: string;
-  imageConfig: Record<string, string[]>;
+  imageConfig: any;
   imageCaptions: Record<string, string>;
-  projectId: string;
+  projectId?: string;
 }
 
 const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = ({
   title,
   content,
+  sectionKey,
+  imageConfig,
+  imageCaptions,
+  projectId
 }) => {
+  const [isEditingContent, setIsEditingContent] = useState(false);
+  const [editedContent, setEditedContent] = useState(content);
+  const [sectionImages, setSectionImages] = useState<string[]>([
+    "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+    "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
+  ]);
+
+  const handleSaveContent = () => {
+    console.log(`Saving ${sectionKey} content:`, editedContent);
+    setIsEditingContent(false);
+  };
+
+  const handleCancelEdit = () => {
+    setEditedContent(content);
+    setIsEditingContent(false);
+  };
+
+  const handleAddImage = () => {
+    if (sectionImages.length < 2) {
+      setSectionImages(prev => [...prev, "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png"]);
+    }
+  };
+
+  const handleRemoveImage = (index: number) => {
+    setSectionImages(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleImageReplace = (index: number, newSrc: string) => {
+    setSectionImages(prev => prev.map((src, i) => i === index ? newSrc : src));
+  };
+
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
+      transition={{ duration: 0.8 }}
+      className="glass-card-elevated p-8 layered-depth mb-12 relative group max-w-6xl mx-auto"
     >
-      <div className="glass-card p-6 sm:p-8 lg:p-10 layered-depth floating-element relative group">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 sm:mb-8"
-        >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
-            {title}
-          </h2>
-        </motion.div>
+      <div className="space-y-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+          {title}
+        </h2>
+        
+        <div className="relative">
+          {!isEditingContent ? (
+            <div className="group/content relative">
+              <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+                {editedContent.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="mb-4 text-center">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsEditingContent(true)}
+                className="absolute top-0 right-0 opacity-0 group-hover/content:opacity-100 transition-opacity duration-200"
+              >
+                <Edit3 className="h-4 w-4" />
+              </Button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <TinyMCEEditor
+                initialValue={editedContent}
+                onEditorChange={setEditedContent}
+                height={300}
+                placeholder={`Edit ${title.toLowerCase()} content...`}
+              />
+              <div className="flex justify-center space-x-2">
+                <Button
+                  onClick={handleSaveContent}
+                  size="sm"
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  <Save className="h-4 w-4 mr-2" />
+                  Save
+                </Button>
+                <Button
+                  onClick={handleCancelEdit}
+                  variant="outline"
+                  size="sm"
+                >
+                  <X className="h-4 w-4 mr-2" />
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-6 sm:mb-8"
-        >
-          <div>
-            <RichTextRenderer text={content} />
+        {/* Images Section */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-gray-800">Section Images</h3>
+            {sectionImages.length < 2 && (
+              <Button
+                onClick={handleAddImage}
+                variant="outline"
+                size="sm"
+                className="flex items-center space-x-2"
+              >
+                <Plus className="h-4 w-4" />
+                <span>Add Image</span>
+              </Button>
+            )}
           </div>
-        </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {sectionImages.map((imageSrc, index) => (
+              <div key={index} className="relative group/image">
+                <div className="glass-card p-4 layered-depth relative group">
+                  <MaximizableImage
+                    src={imageSrc}
+                    alt={`${title} image ${index + 1}`}
+                    caption={imageCaptions[imageSrc] || `${title} supporting image`}
+                    imageList={sectionImages}
+                    currentIndex={index}
+                    className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                    projectId={projectId}
+                    hideEditButton={false}
+                    allowRemove={true}
+                    onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
+                    onImageRemove={() => handleRemoveImage(index)}
+                  />
+                </div>
+                <Button
+                  onClick={() => handleRemoveImage(index)}
+                  variant="ghost"
+                  size="sm"
+                  className="absolute top-2 right-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-200 bg-red-500 hover:bg-red-600 text-white"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </motion.section>
   );
