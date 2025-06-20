@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Edit3, Save, X, Plus, Trash2 } from "lucide-react";
@@ -5,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import ReactQuillEditor from "@/components/editor/ReactQuillEditor";
 import MaximizableImage from "../MaximizableImage";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
-import { handleImageFileSelection } from "@/utils/fileHandling";
+import { VercelBlobStorageService } from "@/services/vercelBlobStorage";
 import { toast } from "sonner";
 
 interface ModernProjectContentSectionProps {
@@ -45,25 +46,78 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   };
 
   const handleAddImage = useCallback(async () => {
-    if (sectionImages.length >= 2 || isSelecting) return;
+    if (sectionImages.length >= 2 || isSelecting || !projectId) return;
     
     setIsSelecting(true);
     
     try {
       console.log('📁 Opening file picker for section image...');
-      const selectedImageSrc = await handleImageFileSelection();
+      
+      // Create file input
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.style.display = 'none';
+      
+      const selectedImageSrc = await new Promise<string>((resolve, reject) => {
+        input.onchange = async (event) => {
+          const file = (event.target as HTMLInputElement).files?.[0];
+          if (file) {
+            try {
+              // Validate file
+              if (!file.type.startsWith('image/')) {
+                toast.error('Please select an image file');
+                reject(new Error('Invalid file type'));
+                return;
+              }
+
+              if (file.size > 10 * 1024 * 1024) { // 10MB limit
+                toast.error('Image must be smaller than 10MB');
+                reject(new Error('File too large'));
+                return;
+              }
+
+              toast.info('Uploading image to Vercel Blob...');
+              console.log('📤 Uploading section image to Vercel Blob:', file.name);
+              
+              const uploadedUrl = await VercelBlobStorageService.uploadImage(file, projectId, `section-${sectionKey}-${Date.now()}`);
+              
+              if (uploadedUrl) {
+                resolve(uploadedUrl);
+              } else {
+                toast.error('Image upload failed. Please check your Vercel Blob configuration.');
+                reject(new Error('Upload failed'));
+              }
+            } catch (error) {
+              console.error('❌ Error uploading section image:', error);
+              toast.error('Image upload failed. Please try again.');
+              reject(error);
+            }
+          } else {
+            reject(new Error('No file selected'));
+          }
+        };
+        
+        input.oncancel = () => {
+          reject(new Error('File selection cancelled'));
+        };
+        
+        document.body.appendChild(input);
+        input.click();
+        document.body.removeChild(input);
+      });
       
       setSectionImages(prev => [...prev, selectedImageSrc]);
-      toast.success('Image added successfully');
+      toast.success('Image uploaded and added successfully!');
     } catch (error) {
-      console.log('❌ Image selection cancelled or failed:', error);
+      console.log('❌ Image upload cancelled or failed:', error);
       if (error instanceof Error && error.message !== 'File selection cancelled') {
         toast.error('Failed to add image');
       }
     } finally {
       setIsSelecting(false);
     }
-  }, [sectionImages.length, isSelecting]);
+  }, [sectionImages.length, isSelecting, projectId, sectionKey]);
 
   const handleRemoveImage = (index: number) => {
     setSectionImages(prev => prev.filter((_, i) => i !== index));
@@ -138,7 +192,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-semibold text-gray-800">Section Images</h3>
-            {showEditingControls && sectionImages.length < 2 && (
+            {showEditingControls && sectionImages.length < 2 && projectId && (
               <Button
                 onClick={handleAddImage}
                 variant="outline"
@@ -147,8 +201,11 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
                 disabled={isSelecting}
               >
                 <Plus className="h-4 w-4" />
-                <span>{isSelecting ? 'Selecting...' : 'Add Image'}</span>
+                <span>{isSelecting ? 'Uploading...' : 'Add Image'}</span>
               </Button>
+            )}
+            {showEditingControls && !projectId && (
+              <p className="text-xs text-gray-500">Project ID required for uploads</p>
             )}
           </div>
 

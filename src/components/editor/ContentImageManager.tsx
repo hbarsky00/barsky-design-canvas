@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MaximizableImage from '../project/MaximizableImage';
 import { shouldShowEditingControls } from '@/utils/devModeDetection';
-import { handleImageFileSelection } from '@/utils/fileHandling';
+import { VercelBlobStorageService } from '@/services/vercelBlobStorage';
 import { toast } from 'sonner';
 
 interface ContentImageManagerProps {
@@ -63,31 +64,84 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   }, []);
 
   const handleImageAdd = useCallback(async () => {
-    if (localImages.length >= maxImages || !onImageAdd || isSelecting) return;
+    if (localImages.length >= maxImages || !onImageAdd || isSelecting || !projectId) return;
     
     setIsSelecting(true);
     
     try {
       console.log('📁 Opening file picker for image selection...');
-      const selectedImageSrc = await handleImageFileSelection();
+      
+      // Create file input
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.style.display = 'none';
+      
+      const selectedImageSrc = await new Promise<string>((resolve, reject) => {
+        input.onchange = async (event) => {
+          const file = (event.target as HTMLInputElement).files?.[0];
+          if (file) {
+            try {
+              // Validate file
+              if (!file.type.startsWith('image/')) {
+                toast.error('Please select an image file');
+                reject(new Error('Invalid file type'));
+                return;
+              }
+
+              if (file.size > 10 * 1024 * 1024) { // 10MB limit
+                toast.error('Image must be smaller than 10MB');
+                reject(new Error('File too large'));
+                return;
+              }
+
+              toast.info('Uploading image to Vercel Blob...');
+              console.log('📤 Uploading image to Vercel Blob:', file.name);
+              
+              const uploadedUrl = await VercelBlobStorageService.uploadImage(file, projectId, `content-${Date.now()}`);
+              
+              if (uploadedUrl) {
+                resolve(uploadedUrl);
+              } else {
+                toast.error('Image upload failed. Please check your Vercel Blob configuration.');
+                reject(new Error('Upload failed'));
+              }
+            } catch (error) {
+              console.error('❌ Error uploading image:', error);
+              toast.error('Image upload failed. Please try again.');
+              reject(error);
+            }
+          } else {
+            reject(new Error('No file selected'));
+          }
+        };
+        
+        input.oncancel = () => {
+          reject(new Error('File selection cancelled'));
+        };
+        
+        document.body.appendChild(input);
+        input.click();
+        document.body.removeChild(input);
+      });
       
       const updatedImages = [...localImages, selectedImageSrc];
       
-      console.log('➕ ContentImageManager: Adding selected image:', selectedImageSrc.substring(0, 50) + '...');
+      console.log('➕ ContentImageManager: Adding uploaded image:', selectedImageSrc.substring(0, 50) + '...');
       setLocalImages(updatedImages);
       setComponentKey(Date.now());
       onImageAdd(selectedImageSrc);
       
-      toast.success('Image added successfully');
+      toast.success('Image uploaded and added successfully!');
     } catch (error) {
-      console.log('❌ Image selection cancelled or failed:', error);
+      console.log('❌ Image upload cancelled or failed:', error);
       if (error instanceof Error && error.message !== 'File selection cancelled') {
         toast.error('Failed to add image');
       }
     } finally {
       setIsSelecting(false);
     }
-  }, [localImages, maxImages, onImageAdd, isSelecting]);
+  }, [localImages, maxImages, onImageAdd, isSelecting, projectId]);
 
   const handleImageReplace = useCallback((index: number, newSrc: string) => {
     if (!onImageReplace) return;
@@ -129,11 +183,14 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
             variant="outline"
             size="sm"
             className="flex items-center space-x-2"
-            disabled={isSelecting}
+            disabled={isSelecting || !projectId}
           >
             <Plus className="h-4 w-4" />
-            <span>{isSelecting ? 'Selecting...' : 'Add Image'}</span>
+            <span>{isSelecting ? 'Uploading...' : 'Add Image'}</span>
           </Button>
+          {!projectId && (
+            <p className="text-xs text-gray-500 ml-2 mt-1">Project ID required for uploads</p>
+          )}
         </div>
       )}
 
