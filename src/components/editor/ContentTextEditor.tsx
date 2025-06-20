@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Edit3, Save, X } from 'lucide-react';
@@ -23,12 +22,18 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
   const [editedContent, setEditedContent] = useState(content);
   const showEditingControls = shouldShowEditingControls();
 
-  const handleSave = () => {
+  const handleSave = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('ContentTextEditor: Save button clicked');
     onSave(editedContent);
     setIsEditing(false);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('ContentTextEditor: Cancel button clicked');
     setEditedContent(content);
     setIsEditing(false);
   };
@@ -108,11 +113,12 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
             placeholder={getPlaceholder()}
           />
           
-          <div className="flex justify-center space-x-2">
+          <div className="flex justify-center space-x-2 relative z-10">
             <Button
               onClick={handleSave}
               size="sm"
-              className="bg-green-600 hover:bg-green-700"
+              className="bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-2 cursor-pointer"
+              type="button"
             >
               <Save className="h-4 w-4 mr-2" />
               Save
@@ -121,6 +127,8 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
               onClick={handleCancel}
               variant="outline"
               size="sm"
+              className="cursor-pointer"
+              type="button"
             >
               <X className="h-4 w-4 mr-2" />
               Cancel
