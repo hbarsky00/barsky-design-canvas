@@ -44,7 +44,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   };
 
   return (
-    <div className="md:hidden">
+    <div>
       <button 
         className="text-barsky-dark dark:text-white" 
         onClick={toggleMobileMenu}

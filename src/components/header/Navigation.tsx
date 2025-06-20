@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "../ThemeToggle";
 import { Home, Briefcase, Store, User, Mail, BookOpen, FileText } from "lucide-react";
 
 interface NavigationProps {
@@ -78,6 +79,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </Link>
         );
       })}
+      <ThemeToggle />
     </nav>
   );
 };
