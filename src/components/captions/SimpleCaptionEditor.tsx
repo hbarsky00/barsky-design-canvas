@@ -20,8 +20,14 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
   const { getCaption, setCaption } = useSimpleCaptions(projectId);
   const lastCaptionRef = useRef<string>('');
   const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [currentCaption, setCurrentCaption] = useState<string>('');
   
-  const currentCaption = getCaption(imageSrc, fallbackCaption);
+  // Initialize caption immediately to prevent resets
+  useEffect(() => {
+    const initialCaption = getCaption(imageSrc, fallbackCaption);
+    setCurrentCaption(initialCaption);
+    lastCaptionRef.current = initialCaption;
+  }, [imageSrc, getCaption, fallbackCaption]);
 
   // Debounced update handler to prevent rapid re-renders
   const handleCaptionUpdate = (event: CustomEvent) => {
@@ -35,7 +41,10 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
         clearTimeout(updateTimeoutRef.current);
       }
       
-      // Debounce the update to prevent rapid changes
+      // Immediately update the displayed caption to prevent resets
+      setCurrentCaption(newCaption);
+      
+      // Debounce the storage update to prevent rapid changes
       updateTimeoutRef.current = setTimeout(() => {
         setCaption(imageSrc, newCaption);
         lastCaptionRef.current = newCaption;
@@ -44,7 +53,7 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
         if (autoPublish && isLovableEnvironment) {
           console.log('📝 Caption saved to dev mode only - will not auto-publish to live site');
         }
-      }, 300); // 300ms debounce
+      }, 100); // Reduced to 100ms for faster response
     }
   };
 
@@ -52,7 +61,11 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
   useEffect(() => {
     const handleBatchComplete = () => {
       console.log('🔄 SimpleCaptionEditor: Batch complete for:', imageSrc.substring(0, 30) + '...');
-      // Just log, don't force re-render
+      // Update from storage to ensure we have the latest
+      const latestCaption = getCaption(imageSrc, fallbackCaption);
+      if (latestCaption !== currentCaption) {
+        setCurrentCaption(latestCaption);
+      }
     };
 
     window.addEventListener('aiCaptionGenerated', handleCaptionUpdate as EventListener);
@@ -69,14 +82,7 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
         clearTimeout(updateTimeoutRef.current);
       }
     };
-  }, [imageSrc, setCaption, projectId, isLovableEnvironment]);
-
-  // Update ref when caption changes naturally
-  useEffect(() => {
-    if (currentCaption !== lastCaptionRef.current) {
-      lastCaptionRef.current = currentCaption;
-    }
-  }, [currentCaption]);
+  }, [imageSrc, setCaption, projectId, isLovableEnvironment, getCaption, fallbackCaption, currentCaption]);
 
   // Simple display only - no editing functionality and no hover overlay
   return (

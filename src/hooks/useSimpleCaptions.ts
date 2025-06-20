@@ -56,13 +56,13 @@ export const useSimpleCaptions = (projectId: string) => {
   }, [projectId]);
 
   const getCaption = useCallback((imageSrc: string, fallback?: string): string => {
-    // ALWAYS prioritize AI-generated captions (highest priority) - these should persist
+    // CRITICAL: AI-generated captions MUST ALWAYS have highest priority
     if (captionCache[imageSrc]) {
-      console.log('🤖 useSimpleCaptions: Using AI caption for:', imageSrc.substring(0, 30) + '...');
+      console.log('🤖 useSimpleCaptions: Using AI caption (PRIORITY) for:', imageSrc.substring(0, 30) + '...');
       return captionCache[imageSrc];
     }
     
-    // Then check static captions (lower priority)
+    // Check static captions only if no AI caption exists
     const staticCaption = getImageCaption(imageSrc);
     if (staticCaption && staticCaption !== "Professional project showcase demonstrating innovative solutions and user-centered design") {
       console.log('📚 useSimpleCaptions: Using static caption for:', imageSrc.substring(0, 30) + '...');
