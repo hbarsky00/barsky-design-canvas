@@ -18,9 +18,17 @@ const AutoCaptionScanner: React.FC = () => {
     markScanStart();
     console.log('🔍 Global Caption Scanner: Starting automated scan...');
 
+    // Dispatch scan start event
+    window.dispatchEvent(new CustomEvent('captionScanStart'));
+
     try {
       const sortedIssues = await scanAllProjects();
       console.log(`🔍 Global scan complete: Found ${sortedIssues.length} caption issues`);
+
+      // Dispatch scan complete event
+      window.dispatchEvent(new CustomEvent('captionScanComplete', {
+        detail: { totalIssues: sortedIssues.length }
+      }));
 
       if (sortedIssues.length > 0) {
         console.log(`🚀 Starting to fix ${sortedIssues.length} caption issues...`);
@@ -36,6 +44,11 @@ const AutoCaptionScanner: React.FC = () => {
         }
       } else {
         console.log('✅ All captions are already up to date!');
+        
+        // Dispatch completion event even when no issues found
+        window.dispatchEvent(new CustomEvent('captionsUpdated', {
+          detail: { fixedCount: 0, timestamp: Date.now() }
+        }));
       }
 
     } catch (error) {
