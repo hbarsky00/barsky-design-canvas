@@ -17,7 +17,7 @@ export const useAutoFixer = () => {
     console.log(`🔧 AutoFixer: Starting to fix ${issues.length} caption issues...`);
     
     let fixedCount = 0;
-    const maxIssues = Math.min(issues.length, 15); // Increased to 15 at a time
+    const maxIssues = Math.min(issues.length, 10); // Reduced to 10 at a time to prevent overwhelming
     
     for (let i = 0; i < maxIssues; i++) {
       const issue = issues[i];
@@ -33,7 +33,7 @@ export const useAutoFixer = () => {
         );
         
         if (newCaption && newCaption.length > 10) {
-          // Dispatch multiple events to ensure UI updates
+          // Single event dispatch instead of multiple
           window.dispatchEvent(new CustomEvent('aiCaptionGenerated', {
             detail: {
               imageSrc: issue.imageSrc,
@@ -43,28 +43,12 @@ export const useAutoFixer = () => {
             }
           }));
           
-          window.dispatchEvent(new CustomEvent('aiCaptionUpdated', {
-            detail: {
-              imageSrc: issue.imageSrc,
-              caption: newCaption,
-              projectId: issue.projectId,
-              timestamp: Date.now()
-            }
-          }));
-          
-          // Also dispatch to SimpleCaptionEditor specifically
-          setTimeout(() => {
-            window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
-              detail: { captionsUpdated: true, timestamp: Date.now() }
-            }));
-          }, 200);
-          
           fixedCount++;
           console.log(`✅ AutoFixer: Fixed caption ${i + 1}/${maxIssues} - "${newCaption.substring(0, 50)}..."`);
           
-          // Reduced delay to process faster
+          // Increased delay to prevent rapid updates
           if (i < maxIssues - 1) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
           }
         } else {
           console.warn(`⚠️ AutoFixer: Generated caption was too short or empty for:`, issue.imageSrc.substring(0, 30) + '...');
