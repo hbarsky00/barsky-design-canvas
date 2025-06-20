@@ -6,13 +6,14 @@ export const useSimpleCaptions = (projectId: string) => {
   const [captionCache, setCaptionCache] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(true);
 
-  // Create a stable storage key for AI captions
-  const storageKey = `ai_captions_${projectId}`;
+  // Create stable storage keys for both AI captions and publishing system
+  const aiStorageKey = `ai_captions_${projectId}`;
+  const publishStorageKey = `image_captions_${projectId}`;
 
   // Load captions from localStorage on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(storageKey);
+      const stored = localStorage.getItem(aiStorageKey);
       if (stored) {
         const parsed = JSON.parse(stored);
         setCaptionCache(parsed);
@@ -23,19 +24,37 @@ export const useSimpleCaptions = (projectId: string) => {
     } finally {
       setIsLoading(false);
     }
-  }, [storageKey]);
+  }, [aiStorageKey]);
 
-  // Save captions to localStorage whenever cache changes
+  // Save captions to BOTH storage systems whenever cache changes
   useEffect(() => {
     if (!isLoading && Object.keys(captionCache).length > 0) {
       try {
-        localStorage.setItem(storageKey, JSON.stringify(captionCache));
-        console.log('💾 useSimpleCaptions: Saved AI captions to storage:', Object.keys(captionCache).length);
+        // Save to AI caption system
+        localStorage.setItem(aiStorageKey, JSON.stringify(captionCache));
+        
+        // ALSO save to publishing system with proper format
+        const publishingCaptions: Record<string, string> = {};
+        Object.entries(captionCache).forEach(([imageSrc, caption]) => {
+          // Create the key format expected by publishing system
+          const captionKey = `img_caption_${imageSrc.split('/').pop()?.split('.')[0] || Date.now()}`;
+          publishingCaptions[captionKey] = caption;
+        });
+        
+        // Merge with existing publishing captions
+        const existingPublishCaptions = JSON.parse(localStorage.getItem(publishStorageKey) || '{}');
+        const mergedPublishCaptions = { ...existingPublishCaptions, ...publishingCaptions };
+        localStorage.setItem(publishStorageKey, JSON.stringify(mergedPublishCaptions));
+        
+        console.log('💾 useSimpleCaptions: Saved captions to BOTH systems:', {
+          aiCaptions: Object.keys(captionCache).length,
+          publishCaptions: Object.keys(mergedPublishCaptions).length
+        });
       } catch (error) {
-        console.warn('⚠️ useSimpleCaptions: Failed to save AI captions to storage:', error);
+        console.warn('⚠️ useSimpleCaptions: Failed to save captions to storage:', error);
       }
     }
-  }, [captionCache, storageKey, isLoading]);
+  }, [captionCache, aiStorageKey, publishStorageKey, isLoading]);
 
   const setCaption = useCallback((imageSrc: string, caption: string) => {
     console.log('📝 useSimpleCaptions: Setting AI caption for:', imageSrc.substring(0, 30) + '...', 'to:', caption.substring(0, 50) + '...');
@@ -73,9 +92,10 @@ export const useSimpleCaptions = (projectId: string) => {
 
   const clearAllCaptions = useCallback(() => {
     setCaptionCache({});
-    localStorage.removeItem(storageKey);
-    console.log('🗑️ useSimpleCaptions: Cleared all AI captions');
-  }, [storageKey]);
+    localStorage.removeItem(aiStorageKey);
+    localStorage.removeItem(publishStorageKey);
+    console.log('🗑️ useSimpleCaptions: Cleared all captions from both systems');
+  }, [aiStorageKey, publishStorageKey]);
 
   const loadCaptions = useCallback(() => {
     return captionCache;
