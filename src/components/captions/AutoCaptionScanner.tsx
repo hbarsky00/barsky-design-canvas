@@ -2,33 +2,19 @@
 import React, { useEffect, useRef } from 'react';
 import { useImageScanner } from '@/hooks/useImageScanner';
 import { useAutoFixer } from '@/hooks/useAutoFixer';
+import { useDevMode } from '@/context/DevModeContext';
 
 const AutoCaptionScanner: React.FC = () => {
+  const { isLovableEnvironment } = useDevMode();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const hasRunInitialScan = useRef<boolean>(false);
   const { scanAllProjects, canScan, markScanStart, markScanEnd } = useImageScanner();
   const { autoFixIssues } = useAutoFixer();
 
-  const publishCaptionsToLive = async (projectIds: string[]) => {
-    try {
-      console.log('📤 Auto-publishing caption updates to live mode for projects:', projectIds);
-      const { PublishingService } = await import('@/services/publishingService');
-      
-      // Publish each project that had updates
-      for (const projectId of projectIds) {
-        try {
-          await PublishingService.publishProject(projectId, true); // Preserve dev changes
-          console.log(`✅ Caption updates published to live mode for project: ${projectId}`);
-        } catch (error) {
-          console.error(`❌ Failed to publish caption updates for project ${projectId}:`, error);
-        }
-      }
-      
-      console.log('✅ All caption updates published to live mode successfully');
-    } catch (error) {
-      console.error('❌ Failed to publish caption updates to live mode:', error);
-    }
-  };
+  // Only run caption scanning in Lovable environment, not on live site
+  if (!isLovableEnvironment) {
+    return null;
+  }
 
   const performBackgroundScan = async () => {
     if (!canScan()) {
@@ -37,7 +23,7 @@ const AutoCaptionScanner: React.FC = () => {
     }
 
     markScanStart();
-    console.log('🔍 Global Caption Scanner: Starting automated scan across ALL PROJECTS...');
+    console.log('🔍 Global Caption Scanner: Starting automated scan across ALL PROJECTS (DEV MODE ONLY)...');
 
     // Dispatch scan start event
     window.dispatchEvent(new CustomEvent('captionScanStart'));
@@ -52,22 +38,18 @@ const AutoCaptionScanner: React.FC = () => {
       }));
 
       if (sortedIssues.length > 0) {
-        console.log(`🚀 Starting to fix ${sortedIssues.length} caption issues across all projects...`);
+        console.log(`🚀 Starting to fix ${sortedIssues.length} caption issues across all projects (DEV MODE ONLY)...`);
         const fixedCount = await autoFixIssues(sortedIssues);
 
         if (fixedCount > 0) {
-          console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically across all projects`);
+          console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically across all projects (DEV MODE ONLY)`);
           
           // Single consolidated update event instead of multiple
           window.dispatchEvent(new CustomEvent('captionsUpdated', {
             detail: { fixedCount, timestamp: Date.now() }
           }));
 
-          // Get unique project IDs that had updates
-          const updatedProjectIds = [...new Set(sortedIssues.slice(0, fixedCount).map(issue => issue.projectId))];
-          
-          // Auto-publish caption updates to live mode for all affected projects
-          await publishCaptionsToLive(updatedProjectIds);
+          console.log('💾 Caption updates saved to dev mode only - will not auto-publish to live');
         }
       } else {
         console.log('✅ All captions are already up to date across all projects!');
@@ -86,7 +68,7 @@ const AutoCaptionScanner: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('🚀 Global Caption Scanner: Initialized and running automatically for ALL PROJECTS');
+    console.log('🚀 Global Caption Scanner: Initialized for DEV MODE ONLY - will not run on live site');
     
     // Run immediately on first load
     if (!hasRunInitialScan.current) {

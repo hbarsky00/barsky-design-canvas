@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { AnimatedProgress } from '@/components/ui/animated-progress';
 import { Loader2, CheckCircle } from 'lucide-react';
+import { useDevMode } from '@/context/DevModeContext';
 
 interface UpdateStatus {
   isScanning: boolean;
@@ -13,6 +14,7 @@ interface UpdateStatus {
 }
 
 const CaptionUpdateStatus: React.FC = () => {
+  const { isLovableEnvironment } = useDevMode();
   const [status, setStatus] = useState<UpdateStatus>({
     isScanning: false,
     isFixing: false,
@@ -22,6 +24,11 @@ const CaptionUpdateStatus: React.FC = () => {
   });
 
   const [showStatus, setShowStatus] = useState(false);
+
+  // Only show status in Lovable environment, not on live site
+  if (!isLovableEnvironment) {
+    return null;
+  }
 
   useEffect(() => {
     const handleScanStart = () => {

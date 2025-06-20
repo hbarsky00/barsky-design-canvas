@@ -14,7 +14,7 @@ export const useAutoFixer = () => {
   const { generateSingleCaption } = useEnhancedAiImageCaptions();
 
   const autoFixIssues = useCallback(async (issues: CaptionIssue[]): Promise<number> => {
-    console.log(`🔧 AutoFixer: Starting to fix ${issues.length} caption issues across ALL PROJECTS...`);
+    console.log(`🔧 AutoFixer: Starting to fix ${issues.length} caption issues across ALL PROJECTS (DEV MODE ONLY)...`);
     
     let fixedCount = 0;
     const maxIssues = Math.min(issues.length, 15); // Increased to 15 at a time for all projects
@@ -34,19 +34,19 @@ export const useAutoFixer = () => {
         );
         
         if (newCaption && newCaption.length > 10) {
-          // Single event dispatch for immediate UI update
+          // Single event dispatch for immediate UI update - NO auto-publishing
           window.dispatchEvent(new CustomEvent('aiCaptionGenerated', {
             detail: {
               imageSrc: issue.imageSrc,
               caption: newCaption,
               projectId: issue.projectId,
               timestamp: Date.now(),
-              autoPublish: true // Flag to indicate this should be auto-published
+              autoPublish: false // Changed to false - no auto-publishing
             }
           }));
           
           fixedCount++;
-          console.log(`✅ AutoFixer: Fixed caption ${i + 1}/${maxIssues} for project "${issue.projectId}" - "${newCaption.substring(0, 50)}..."`);
+          console.log(`✅ AutoFixer: Fixed caption ${i + 1}/${maxIssues} for project "${issue.projectId}" - "${newCaption.substring(0, 50)}..." (DEV MODE ONLY)`);
           
           // Increased delay to prevent rapid updates
           if (i < maxIssues - 1) {
@@ -61,7 +61,7 @@ export const useAutoFixer = () => {
       }
     }
     
-    console.log(`✅ AutoFixer: Completed fixing ${fixedCount}/${maxIssues} caption issues across ALL PROJECTS`);
+    console.log(`✅ AutoFixer: Completed fixing ${fixedCount}/${maxIssues} caption issues across ALL PROJECTS (DEV MODE ONLY)`);
     
     if (issues.length > maxIssues) {
       console.log(`📋 AutoFixer: ${issues.length - maxIssues} more issues will be processed in the next scan cycle`);

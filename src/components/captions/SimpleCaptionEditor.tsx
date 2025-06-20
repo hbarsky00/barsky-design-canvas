@@ -1,5 +1,7 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useSimpleCaptions } from '@/hooks/useSimpleCaptions';
+import { useDevMode } from '@/context/DevModeContext';
 
 interface SimpleCaptionEditorProps {
   imageSrc: string;
@@ -14,23 +16,12 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
   children,
   fallbackCaption
 }) => {
+  const { isLovableEnvironment } = useDevMode();
   const { getCaption, setCaption } = useSimpleCaptions(projectId);
   const lastCaptionRef = useRef<string>('');
   const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const publishTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   const currentCaption = getCaption(imageSrc, fallbackCaption);
-
-  const publishCaptionToLive = async () => {
-    try {
-      console.log('📤 SimpleCaptionEditor: Auto-publishing individual caption update to live mode...');
-      const { PublishingService } = await import('@/services/publishingService');
-      await PublishingService.publishProject(projectId, true); // Preserve dev changes
-      console.log('✅ Individual caption update published to live mode');
-    } catch (error) {
-      console.error('❌ Failed to publish individual caption update to live mode:', error);
-    }
-  };
 
   // Debounced update handler to prevent rapid re-renders
   const handleCaptionUpdate = (event: CustomEvent) => {
@@ -49,17 +40,9 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
         setCaption(imageSrc, newCaption);
         lastCaptionRef.current = newCaption;
         
-        // Auto-publish if this was an automated caption fix
-        if (autoPublish) {
-          // Clear any existing publish timeout
-          if (publishTimeoutRef.current) {
-            clearTimeout(publishTimeoutRef.current);
-          }
-          
-          // Debounce publishing to avoid too many publish calls
-          publishTimeoutRef.current = setTimeout(() => {
-            publishCaptionToLive();
-          }, 1000); // 1 second delay before publishing
+        // Only auto-publish if we're in Lovable environment and autoPublish is explicitly requested
+        if (autoPublish && isLovableEnvironment) {
+          console.log('📝 Caption saved to dev mode only - will not auto-publish to live site');
         }
       }, 300); // 300ms debounce
     }
@@ -85,11 +68,8 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
       if (updateTimeoutRef.current) {
         clearTimeout(updateTimeoutRef.current);
       }
-      if (publishTimeoutRef.current) {
-        clearTimeout(publishTimeoutRef.current);
-      }
     };
-  }, [imageSrc, setCaption, projectId]);
+  }, [imageSrc, setCaption, projectId, isLovableEnvironment]);
 
   // Update ref when caption changes naturally
   useEffect(() => {
