@@ -1,7 +1,6 @@
 
 import { useCallback, useState } from 'react';
 import { toast } from 'sonner';
-import { validateContentBlockSize } from '../database/contentBlockValidation';
 import { ProjectData } from './types';
 
 export const useSaveOperations = (
@@ -14,7 +13,6 @@ export const useSaveOperations = (
     console.log('💾 SaveOperations: Queuing text content:', key);
     queueChange('text', key, content);
     
-    // Update cached data immediately for UI responsiveness
     updateCachedData(prev => ({
       ...prev,
       textContent: { ...prev.textContent, [key]: content }
@@ -33,7 +31,6 @@ export const useSaveOperations = (
     
     queueChange('image', originalSrc, newSrc);
     
-    // Update cached data immediately for UI responsiveness
     updateCachedData(prev => ({
       ...prev,
       imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
@@ -46,15 +43,6 @@ export const useSaveOperations = (
     console.log('💾 SaveOperations: Queuing content blocks:', sectionKey);
     
     try {
-      const validation = validateContentBlockSize(blocks);
-      if (!validation.isValid) {
-        console.error('❌ Content blocks validation failed:', validation.error);
-        toast.error('Content too large', {
-          description: validation.error
-        });
-        return;
-      }
-      
       queueChange('content_block', sectionKey, blocks);
       
       updateCachedData(prev => ({

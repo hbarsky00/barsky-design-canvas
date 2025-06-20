@@ -1,7 +1,6 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ImageReplacementProvider } from "@/context/ImageReplacementContext";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
@@ -20,11 +19,9 @@ const ProjectDetail = () => {
   }
   
   return (
-    <ImageReplacementProvider projectId={projectId}>
-      <ImageMaximizerProvider>
-        <SimplifiedProjectDetail />
-      </ImageMaximizerProvider>
-    </ImageReplacementProvider>
+    <ImageMaximizerProvider>
+      <SimplifiedProjectDetail />
+    </ImageMaximizerProvider>
   );
 };
 

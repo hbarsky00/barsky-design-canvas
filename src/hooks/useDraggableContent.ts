@@ -1,77 +1,27 @@
 
-import { useState, useCallback, useEffect } from 'react';
-import { ProjectContentItem } from '@/components/project/enhanced/DraggableProjectSection';
-import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
-import { useParams } from 'react-router-dom';
+import { useState, useCallback } from 'react';
 
-export const useDraggableContent = (initialItems: ProjectContentItem[] = []) => {
-  const { projectId } = useParams<{ projectId: string }>();
-  const safeProjectId = projectId || '';
-  const { getChanges } = useDevModeDatabase(safeProjectId);
-  const [items, setItems] = useState<ProjectContentItem[]>(initialItems);
+export const useDraggableContent = (projectId: string) => {
+  const [contentBlocks, setContentBlocks] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Listen for text updates from EditableText components
-  useEffect(() => {
-    const handleProjectDataUpdated = async (event: CustomEvent) => {
-      if (event.detail.textChanged && event.detail.projectId === safeProjectId) {
-        try {
-          const changes = await getChanges();
-          setItems(prev => prev.map(item => {
-            if (item.type === 'text') {
-              const textKey = `draggable-item-${item.id}`;
-              const updatedContent = changes.textContent[textKey];
-              if (updatedContent !== undefined) {
-                return { ...item, content: updatedContent };
-              }
-            }
-            return item;
-          }));
-        } catch (error) {
-          console.error('Error updating draggable content from text changes:', error);
-        }
-      }
-    };
-
-    window.addEventListener('projectDataUpdated', handleProjectDataUpdated as EventListener);
-    
-    return () => {
-      window.removeEventListener('projectDataUpdated', handleProjectDataUpdated as EventListener);
-    };
-  }, [safeProjectId, getChanges]);
-
-  const handleItemsReorder = useCallback((newItems: ProjectContentItem[]) => {
-    setItems(newItems);
+  const addContentBlock = useCallback((type: string, content: any) => {
+    console.log('Adding content block:', type, content);
   }, []);
 
-  const handleItemUpdate = useCallback((id: string, newContent: string) => {
-    setItems(prev => prev.map(item => 
-      item.id === id ? { ...item, content: newContent } : item
-    ));
+  const removeContentBlock = useCallback((id: string) => {
+    console.log('Removing content block:', id);
   }, []);
 
-  const handleItemDelete = useCallback((id: string) => {
-    setItems(prev => prev.filter(item => item.id !== id));
+  const reorderContentBlocks = useCallback((newOrder: any[]) => {
+    console.log('Reordering content blocks:', newOrder);
   }, []);
-
-  const handleItemAdd = useCallback((type: 'text' | 'image') => {
-    const newItem: ProjectContentItem = {
-      id: `${type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      type,
-      content: type === 'text' 
-        ? 'This is a new paragraph. Click to edit me.' 
-        : '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png',
-      order: items.length
-    };
-    
-    setItems(prev => [...prev, newItem]);
-  }, [items.length]);
 
   return {
-    items,
-    setItems,
-    handleItemsReorder,
-    handleItemUpdate,
-    handleItemDelete,
-    handleItemAdd
+    contentBlocks,
+    isLoading,
+    addContentBlock,
+    removeContentBlock,
+    reorderContentBlocks
   };
 };

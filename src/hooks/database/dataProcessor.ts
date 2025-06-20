@@ -1,6 +1,15 @@
 
-import { DatabaseChanges, DevModeChange } from './types';
-import { validateAndFilterContentBlocks } from './validation';
+export interface DatabaseChanges {
+  textContent: Record<string, string>;
+  imageReplacements: Record<string, string>;
+  contentBlocks: Record<string, any[]>;
+}
+
+export interface DevModeChange {
+  change_type: 'text' | 'image' | 'content_block';
+  change_key: string;
+  change_value: any;
+}
 
 export const processChangesData = (data: DevModeChange[] | null): DatabaseChanges => {
   const result: DatabaseChanges = {
@@ -33,8 +42,7 @@ export const processChangesData = (data: DevModeChange[] | null): DatabaseChange
         break;
       case 'content_block':
         if (Array.isArray(change.change_value)) {
-          const validBlocks = validateAndFilterContentBlocks(change.change_value);
-          result.contentBlocks[change.change_key] = validBlocks;
+          result.contentBlocks[change.change_key] = change.change_value;
         }
         break;
       default:
