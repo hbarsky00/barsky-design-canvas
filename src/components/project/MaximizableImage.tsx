@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ZoomIn, Edit, X, Upload, Trash2 } from "lucide-react";
@@ -35,18 +34,12 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   onImageReplace,
   onImageRemove
 }) => {
-  const { openMaximizer } = useImageMaximizer();
+  const { maximizeImage } = useImageMaximizer();
   const [isHovered, setIsHovered] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
   const handleMaximize = () => {
-    openMaximizer({
-      src,
-      alt,
-      caption,
-      imageList,
-      currentIndex
-    });
+    maximizeImage(src, alt, imageList, currentIndex);
   };
 
   const handleImageReplace = async (event: React.ChangeEvent<HTMLInputElement>) => {
