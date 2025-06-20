@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ZoomIn, Edit, X, Upload, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -38,9 +38,19 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const [isHovered, setIsHovered] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [imageKey, setImageKey] = useState(0);
+
+  // Update current source when prop changes
+  useEffect(() => {
+    if (src !== currentSrc) {
+      setCurrentSrc(src);
+      setImageKey(prev => prev + 1);
+    }
+  }, [src, currentSrc]);
 
   const handleMaximize = () => {
-    maximizeImage(src, alt, imageList, currentIndex);
+    maximizeImage(currentSrc, alt, imageList, currentIndex);
   };
 
   const handleImageReplace = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,15 +59,24 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
     setIsUploading(true);
     try {
-      const newImageUrl = await ImageStorageService.uploadImage(file, projectId, src);
+      const newImageUrl = await ImageStorageService.uploadImage(file, projectId, currentSrc);
       if (newImageUrl) {
-        onImageReplace(newImageUrl);
-        console.log('Image replaced successfully:', newImageUrl);
+        // Add cache busting parameter
+        const cacheBustedUrl = newImageUrl.includes('?') 
+          ? `${newImageUrl}&v=${Date.now()}` 
+          : `${newImageUrl}?v=${Date.now()}`;
+        
+        setCurrentSrc(cacheBustedUrl);
+        setImageKey(prev => prev + 1);
+        onImageReplace(cacheBustedUrl);
+        console.log('Image replaced successfully:', cacheBustedUrl);
       }
     } catch (error) {
       console.error('Error replacing image:', error);
     } finally {
       setIsUploading(false);
+      // Clear the input value to allow re-selecting the same file
+      event.target.value = '';
     }
   };
 
@@ -65,6 +84,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     if (onImageRemove) {
       onImageRemove();
     }
+  };
+
+  const handleImageError = () => {
+    console.error('Image failed to load:', currentSrc);
+    // Force a reload with cache busting
+    setImageKey(prev => prev + 1);
+  };
+
+  const handleImageLoad = () => {
+    console.log('Image loaded successfully:', currentSrc);
   };
 
   return (
@@ -75,11 +104,14 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         onMouseLeave={() => setIsHovered(false)}
       >
         <img
-          src={src}
+          key={`${currentSrc}-${imageKey}`}
+          src={currentSrc}
           alt={alt}
           className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
           loading={priority ? "eager" : "lazy"}
           onClick={handleMaximize}
+          onError={handleImageError}
+          onLoad={handleImageLoad}
         />
         
         <AnimatePresence>
