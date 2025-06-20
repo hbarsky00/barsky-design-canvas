@@ -1,7 +1,7 @@
 
 import { useCallback, useRef } from 'react';
-import { useSimpleCaptions } from './useSimpleCaptions';
 import { getImageCaption } from '@/data/imageCaptions';
+import { projectsData } from '@/data/projects/projectsList';
 
 export interface CaptionIssue {
   imageSrc: string;
@@ -14,7 +14,7 @@ export interface CaptionIssue {
 export const useImageScanner = () => {
   const lastScanTime = useRef<number>(0);
   const isScanning = useRef<boolean>(false);
-  const SCAN_COOLDOWN = 30000; // 30 seconds between scans
+  const SCAN_COOLDOWN = 10000; // 10 seconds between scans
 
   const canScan = useCallback(() => {
     const now = Date.now();
@@ -38,25 +38,58 @@ export const useImageScanner = () => {
     
     // Get all image elements from the current page
     const imageElements = document.querySelectorAll('img[src*="/lovable-uploads/"]');
+    console.log(`🔍 Found ${imageElements.length} images on page to scan`);
     
-    imageElements.forEach((img) => {
+    imageElements.forEach((img, index) => {
       const imageSrc = (img as HTMLImageElement).src;
       const staticCaption = getImageCaption(imageSrc);
       
+      console.log(`📋 Scanning image ${index + 1}: ${imageSrc.substring(0, 50)}...`);
+      console.log(`📋 Current caption: "${staticCaption}"`);
+      
       // Check if this is a generic or poor quality caption that needs AI improvement
-      const isGeneric = staticCaption === "Professional project showcase demonstrating innovative solutions and user-centered design" ||
+      const isGeneric = !staticCaption || 
+                       staticCaption === "Professional project showcase demonstrating innovative solutions and user-centered design" ||
                        staticCaption.includes('Professional design showcase') ||
                        staticCaption.includes('newly added') ||
+                       staticCaption.includes('Image content analysis unavailable') ||
                        staticCaption.length < 20;
       
       if (isGeneric) {
-        issues.push({
+        const issue: CaptionIssue = {
           imageSrc,
           projectId: 'global', // Default project ID for now
-          currentCaption: staticCaption,
-          issueType: staticCaption.length < 10 ? 'missing' : 'generic',
-          priority: staticCaption.length < 10 ? 1 : 2
-        });
+          currentCaption: staticCaption || 'No caption',
+          issueType: (!staticCaption || staticCaption.length < 10) ? 'missing' : 'generic',
+          priority: (!staticCaption || staticCaption.length < 10) ? 1 : 2
+        };
+        
+        issues.push(issue);
+        console.log(`⚠️ Found caption issue for image ${index + 1}: ${issue.issueType}`);
+      } else {
+        console.log(`✅ Image ${index + 1} has good caption`);
+      }
+    });
+
+    // Also scan project data for additional images
+    projectsData.forEach((project) => {
+      if (project.image) {
+        const staticCaption = getImageCaption(project.image);
+        const isGeneric = !staticCaption || 
+                         staticCaption === "Professional project showcase demonstrating innovative solutions and user-centered design" ||
+                         staticCaption.includes('Professional design showcase') ||
+                         staticCaption.includes('newly added') ||
+                         staticCaption.length < 20;
+        
+        if (isGeneric) {
+          issues.push({
+            imageSrc: project.image,
+            projectId: project.id,
+            currentCaption: staticCaption || 'No caption',
+            issueType: (!staticCaption || staticCaption.length < 10) ? 'missing' : 'generic',
+            priority: (!staticCaption || staticCaption.length < 10) ? 1 : 2
+          });
+        }
       }
     });
     
@@ -64,6 +97,8 @@ export const useImageScanner = () => {
     const sortedIssues = issues.sort((a, b) => a.priority - b.priority);
     
     console.log(`🔍 ImageScanner: Found ${sortedIssues.length} caption issues to fix`);
+    console.log(`📊 Breakdown: ${sortedIssues.filter(i => i.issueType === 'missing').length} missing, ${sortedIssues.filter(i => i.issueType === 'generic').length} generic`);
+    
     return sortedIssues;
   }, []);
 

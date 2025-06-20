@@ -5,6 +5,7 @@ import { useAutoFixer } from '@/hooks/useAutoFixer';
 
 const AutoCaptionScanner: React.FC = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const hasRunInitialScan = useRef<boolean>(false);
   const { scanAllProjects, canScan, markScanStart, markScanEnd } = useImageScanner();
   const { autoFixIssues } = useAutoFixer();
 
@@ -21,22 +22,26 @@ const AutoCaptionScanner: React.FC = () => {
       const sortedIssues = await scanAllProjects();
       console.log(`🔍 Global scan complete: Found ${sortedIssues.length} caption issues`);
 
-      const fixedCount = await autoFixIssues(sortedIssues);
+      if (sortedIssues.length > 0) {
+        const fixedCount = await autoFixIssues(sortedIssues);
 
-      if (fixedCount > 0) {
-        console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically`);
-        
-        // Dispatch event to update captions in the UI
-        window.dispatchEvent(new CustomEvent('captionsUpdated', {
-          detail: { fixedCount, timestamp: Date.now() }
-        }));
-
-        // Trigger a gentle refresh to show updated captions
-        setTimeout(() => {
-          window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
-            detail: { captionsUpdated: true, timestamp: Date.now() }
+        if (fixedCount > 0) {
+          console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically`);
+          
+          // Dispatch event to update captions in the UI
+          window.dispatchEvent(new CustomEvent('captionsUpdated', {
+            detail: { fixedCount, timestamp: Date.now() }
           }));
-        }, 1000);
+
+          // Trigger a gentle refresh to show updated captions
+          setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
+              detail: { captionsUpdated: true, timestamp: Date.now() }
+            }));
+          }, 1000);
+        }
+      } else {
+        console.log('✅ All captions are already up to date!');
       }
 
     } catch (error) {
@@ -49,16 +54,20 @@ const AutoCaptionScanner: React.FC = () => {
   useEffect(() => {
     console.log('🚀 Global Caption Scanner: Initialized and running automatically');
     
-    const initialTimeout = setTimeout(() => {
-      performBackgroundScan();
-    }, 5000); // Start scanning after 5 seconds
+    // Run immediately on first load
+    if (!hasRunInitialScan.current) {
+      hasRunInitialScan.current = true;
+      const immediateTimeout = setTimeout(() => {
+        performBackgroundScan();
+      }, 2000); // Start scanning after 2 seconds
+    }
 
+    // Then run periodically
     intervalRef.current = setInterval(() => {
       performBackgroundScan();
-    }, 120000); // Scan every 2 minutes
+    }, 300000); // Scan every 5 minutes
 
     return () => {
-      if (initialTimeout) clearTimeout(initialTimeout);
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }

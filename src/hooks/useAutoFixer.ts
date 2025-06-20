@@ -17,10 +17,13 @@ export const useAutoFixer = () => {
     console.log(`🔧 AutoFixer: Starting to fix ${issues.length} caption issues...`);
     
     let fixedCount = 0;
+    const maxIssues = Math.min(issues.length, 10); // Limit to 10 at a time to avoid overwhelming API
     
-    for (const issue of issues) {
+    for (let i = 0; i < maxIssues; i++) {
+      const issue = issues[i];
+      
       try {
-        console.log(`🔄 AutoFixer: Fixing caption for:`, issue.imageSrc.substring(0, 30) + '...');
+        console.log(`🔄 AutoFixer: Fixing caption ${i + 1}/${maxIssues} for:`, issue.imageSrc.substring(0, 30) + '...');
         
         // Generate AI caption
         const newCaption = await generateSingleCaption(
@@ -40,11 +43,21 @@ export const useAutoFixer = () => {
             }
           }));
           
+          // Also update SimpleCaptionEditor
+          window.dispatchEvent(new CustomEvent('aiCaptionUpdated', {
+            detail: {
+              imageSrc: issue.imageSrc,
+              caption: newCaption,
+              projectId: issue.projectId,
+              timestamp: Date.now()
+            }
+          }));
+          
           fixedCount++;
-          console.log(`✅ AutoFixer: Fixed caption for image ${fixedCount}/${issues.length}`);
+          console.log(`✅ AutoFixer: Fixed caption ${i + 1}/${maxIssues} - "${newCaption.substring(0, 50)}..."`);
           
           // Add delay to avoid overwhelming the API
-          if (issues.length > 1) {
+          if (i < maxIssues - 1) {
             await new Promise(resolve => setTimeout(resolve, 2000));
           }
         } else {
@@ -56,7 +69,12 @@ export const useAutoFixer = () => {
       }
     }
     
-    console.log(`✅ AutoFixer: Completed fixing ${fixedCount}/${issues.length} caption issues`);
+    console.log(`✅ AutoFixer: Completed fixing ${fixedCount}/${maxIssues} caption issues`);
+    
+    if (issues.length > maxIssues) {
+      console.log(`📋 AutoFixer: ${issues.length - maxIssues} more issues will be processed in the next scan cycle`);
+    }
+    
     return fixedCount;
   }, [generateSingleCaption]);
 
