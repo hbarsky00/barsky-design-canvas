@@ -36,7 +36,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const handleImageClick = () => {
     // Use imageList if provided, otherwise create array with current image
     const imagesToShow = imageList.length > 0 ? imageList : [src];
-    maximizeImage(src, alt, caption, imagesToShow);
+    const indexToUse = imageList.length > 0 ? currentIndex : 0;
+    
+    // Call maximizeImage with the correct signature: (image, title, images, index)
+    maximizeImage(src, alt, imagesToShow, indexToUse);
   };
 
   return (
