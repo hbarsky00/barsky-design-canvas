@@ -49,15 +49,15 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center lg:text-left">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center">
               {title}
             </h1>
             
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed text-center lg:text-left">
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed text-center">
               {description}
             </p>
             
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-2 justify-center">
               {tags.map((tag) => (
                 <Link
                   key={tag}
