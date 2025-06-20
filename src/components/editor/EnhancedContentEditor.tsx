@@ -1,7 +1,6 @@
 
-import React, { useState } from 'react';
-import ContentTextEditor from './ContentTextEditor';
-import ContentImageManager from './ContentImageManager';
+import React from 'react';
+import ContentEditorContainer from './ContentEditorContainer';
 
 interface EnhancedContentEditorProps {
   content: string;
@@ -18,61 +17,12 @@ interface EnhancedContentEditorProps {
 }
 
 const EnhancedContentEditor: React.FC<EnhancedContentEditorProps> = ({
-  content,
-  contentType,
-  onSave,
-  images = [],
-  onImageAdd,
-  onImageReplace,
-  onImageRemove,
-  maxImages = 3,
   className = "",
-  projectId,
-  imageCaptions = {}
+  ...props
 }) => {
-  const [localImages, setLocalImages] = useState<string[]>(images);
-
-  const handleImageAdd = (imageSrc: string) => {
-    const newImages = [...localImages, imageSrc];
-    setLocalImages(newImages);
-    if (onImageAdd) {
-      onImageAdd(imageSrc);
-    }
-  };
-
-  const handleImageReplace = (index: number, newSrc: string) => {
-    const newImages = localImages.map((src, i) => i === index ? newSrc : src);
-    setLocalImages(newImages);
-    if (onImageReplace) {
-      onImageReplace(index, newSrc);
-    }
-  };
-
-  const handleImageRemove = (index: number) => {
-    const newImages = localImages.filter((_, i) => i !== index);
-    setLocalImages(newImages);
-    if (onImageRemove) {
-      onImageRemove(index);
-    }
-  };
-
   return (
     <div className={`relative group ${className}`}>
-      <ContentTextEditor
-        content={content}
-        contentType={contentType}
-        onSave={onSave}
-      />
-
-      <ContentImageManager
-        images={localImages}
-        onImageAdd={onImageAdd ? handleImageAdd : undefined}
-        onImageReplace={onImageReplace ? handleImageReplace : undefined}
-        onImageRemove={onImageRemove ? handleImageRemove : undefined}
-        maxImages={maxImages}
-        projectId={projectId}
-        imageCaptions={imageCaptions}
-      />
+      <ContentEditorContainer {...props} />
     </div>
   );
 };
