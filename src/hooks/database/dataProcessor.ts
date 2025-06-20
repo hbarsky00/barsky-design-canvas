@@ -2,7 +2,7 @@
 import { ProjectData } from '../persistence/types';
 
 interface DatabaseChange {
-  change_type: 'text' | 'image' | 'content_block';
+  change_type: string;
   change_key: string;
   change_value: string;
 }

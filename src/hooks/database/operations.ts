@@ -19,7 +19,7 @@ export const saveChangeToDatabase = async (
     };
 
     const { error } = await supabase
-      .from('project_changes')
+      .from('dev_mode_changes')
       .upsert(changeData, {
         onConflict: 'project_id,change_type,change_key'
       });
@@ -42,7 +42,7 @@ export const fetchChangesFromDatabase = async (projectId: string) => {
     console.log('📖 Fetching changes from database for project:', projectId);
 
     const { data, error } = await supabase
-      .from('project_changes')
+      .from('dev_mode_changes')
       .select('*')
       .eq('project_id', projectId);
 
@@ -64,7 +64,7 @@ export const clearChangesFromDatabase = async (projectId: string) => {
     console.log('🗑️ Clearing changes from database for project:', projectId);
 
     const { error } = await supabase
-      .from('project_changes')
+      .from('dev_mode_changes')
       .delete()
       .eq('project_id', projectId);
 
