@@ -8,9 +8,6 @@ import ProjectHeroImageSection from "./ProjectHeroImageSection";
 import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import ProjectCallToAction from "@/components/project/ProjectCallToAction";
-import AddSectionButton from "@/components/dev/AddSectionButton";
-import DevModeToggle from '@/components/dev/DevModeToggle';
-import { useProjectDataManager } from "@/hooks/useProjectDataManager";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -31,31 +28,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
-  console.log('ModernProjectDetail: projectId received:', projectId, typeof projectId);
-  
-  const { updatedProject, updatedDetails, getReplacedImageSrc } = useProjectDataManager(projectId, project, details);
-  
-  const convertImageConfig = (imageConfig?: any): Record<string, string[]> => {
-    if (!imageConfig) return {};
-    
-    const converted: Record<string, string[]> = {};
-    
-    Object.entries(imageConfig).forEach(([sectionKey, sectionConfig]: [string, any]) => {
-      if (sectionConfig) {
-        const images: string[] = [];
-        if (sectionConfig.beforeHeader) images.push(getReplacedImageSrc(sectionConfig.beforeHeader));
-        if (sectionConfig.afterHeader) images.push(getReplacedImageSrc(sectionConfig.afterHeader));
-        if (images.length > 0) {
-          converted[sectionKey] = images;
-        }
-      }
-    });
-    
-    return converted;
-  };
-
-  const convertedImageConfig = convertImageConfig(details.imageConfig);
-  
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -65,12 +37,11 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/50 to-purple-50/10" />
       
-      <DevModeToggle />
-      
       <ModernProjectHero
-        project={updatedProject}
-        details={updatedDetails}
+        project={project}
+        details={details}
         imageCaptions={imageCaptions}
+        projectId={projectId}
       />
 
       <div className="relative w-full px-4 py-8 space-y-8 z-10">
@@ -79,40 +50,32 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           imageCaptions={imageCaptions}
         />
 
-        <AddSectionButton projectId={projectId} insertAfter="hero" />
-
         <ModernProjectContentSection
           title="The Challenge"
-          content={updatedDetails.challenge}
+          content={details.challenge}
           sectionKey="challenge"
-          imageConfig={convertedImageConfig}
+          imageConfig={{}}
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
-
-        <AddSectionButton projectId={projectId} insertAfter="challenge" />
 
         <ModernProjectContentSection
           title="What I Did"
-          content={updatedDetails.process}
+          content={details.process}
           sectionKey="process"
-          imageConfig={convertedImageConfig}
+          imageConfig={{}}
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
-
-        <AddSectionButton projectId={projectId} insertAfter="process" />
 
         <ModernProjectContentSection
           title="The Result"
-          content={updatedDetails.result}
+          content={details.result}
           sectionKey="result"
-          imageConfig={convertedImageConfig}
+          imageConfig={{}}
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
-
-        <AddSectionButton projectId={projectId} insertAfter="result" />
 
         <ProjectCallToAction />
 
@@ -122,8 +85,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             projectsData={projectsData}
           />
         </div>
-
-        <AddSectionButton projectId={projectId} />
       </div>
     </motion.div>
   );
