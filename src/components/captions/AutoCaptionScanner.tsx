@@ -23,20 +23,27 @@ const AutoCaptionScanner: React.FC = () => {
       console.log(`🔍 Global scan complete: Found ${sortedIssues.length} caption issues`);
 
       if (sortedIssues.length > 0) {
+        console.log(`🚀 Starting to fix ${sortedIssues.length} caption issues...`);
         const fixedCount = await autoFixIssues(sortedIssues);
 
         if (fixedCount > 0) {
           console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically`);
           
-          // Dispatch event to update captions in the UI
+          // Force immediate UI refresh
           window.dispatchEvent(new CustomEvent('captionsUpdated', {
             detail: { fixedCount, timestamp: Date.now() }
           }));
 
-          // Trigger a gentle refresh to show updated captions
+          // Multiple refresh events to ensure UI updates
           setTimeout(() => {
             window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
               detail: { captionsUpdated: true, timestamp: Date.now() }
+            }));
+          }, 500);
+
+          setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('aiCaptionBatchComplete', {
+              detail: { fixedCount, timestamp: Date.now() }
             }));
           }, 1000);
         }
@@ -59,13 +66,13 @@ const AutoCaptionScanner: React.FC = () => {
       hasRunInitialScan.current = true;
       const immediateTimeout = setTimeout(() => {
         performBackgroundScan();
-      }, 2000); // Start scanning after 2 seconds
+      }, 1000); // Start scanning after 1 second
     }
 
     // Then run periodically
     intervalRef.current = setInterval(() => {
       performBackgroundScan();
-    }, 300000); // Scan every 5 minutes
+    }, 120000); // Scan every 2 minutes (more frequent)
 
     return () => {
       if (intervalRef.current) {

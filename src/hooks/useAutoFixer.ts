@@ -17,7 +17,7 @@ export const useAutoFixer = () => {
     console.log(`🔧 AutoFixer: Starting to fix ${issues.length} caption issues...`);
     
     let fixedCount = 0;
-    const maxIssues = Math.min(issues.length, 10); // Limit to 10 at a time to avoid overwhelming API
+    const maxIssues = Math.min(issues.length, 15); // Increased to 15 at a time
     
     for (let i = 0; i < maxIssues; i++) {
       const issue = issues[i];
@@ -33,7 +33,7 @@ export const useAutoFixer = () => {
         );
         
         if (newCaption && newCaption.length > 10) {
-          // Dispatch event to update the caption in the UI
+          // Dispatch multiple events to ensure UI updates
           window.dispatchEvent(new CustomEvent('aiCaptionGenerated', {
             detail: {
               imageSrc: issue.imageSrc,
@@ -43,7 +43,6 @@ export const useAutoFixer = () => {
             }
           }));
           
-          // Also update SimpleCaptionEditor
           window.dispatchEvent(new CustomEvent('aiCaptionUpdated', {
             detail: {
               imageSrc: issue.imageSrc,
@@ -53,12 +52,19 @@ export const useAutoFixer = () => {
             }
           }));
           
+          // Also dispatch to SimpleCaptionEditor specifically
+          setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
+              detail: { captionsUpdated: true, timestamp: Date.now() }
+            }));
+          }, 200);
+          
           fixedCount++;
           console.log(`✅ AutoFixer: Fixed caption ${i + 1}/${maxIssues} - "${newCaption.substring(0, 50)}..."`);
           
-          // Add delay to avoid overwhelming the API
+          // Reduced delay to process faster
           if (i < maxIssues - 1) {
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 1000));
           }
         } else {
           console.warn(`⚠️ AutoFixer: Generated caption was too short or empty for:`, issue.imageSrc.substring(0, 30) + '...');

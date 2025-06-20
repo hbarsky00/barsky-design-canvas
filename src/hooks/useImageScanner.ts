@@ -2,6 +2,7 @@
 import { useCallback, useRef } from 'react';
 import { getImageCaption } from '@/data/imageCaptions';
 import { projectsData } from '@/data/projects/projectsList';
+import { investorLoanAppDetails } from '@/data/project-details/investorLoanApp';
 
 export interface CaptionIssue {
   imageSrc: string;
@@ -14,7 +15,7 @@ export interface CaptionIssue {
 export const useImageScanner = () => {
   const lastScanTime = useRef<number>(0);
   const isScanning = useRef<boolean>(false);
-  const SCAN_COOLDOWN = 10000; // 10 seconds between scans
+  const SCAN_COOLDOWN = 5000; // 5 seconds between scans (more frequent)
 
   const canScan = useCallback(() => {
     const now = Date.now();
@@ -58,7 +59,7 @@ export const useImageScanner = () => {
       if (isGeneric) {
         const issue: CaptionIssue = {
           imageSrc,
-          projectId: 'global', // Default project ID for now
+          projectId: 'investor-loan-app', // Focus on investor project
           currentCaption: staticCaption || 'No caption',
           issueType: (!staticCaption || staticCaption.length < 10) ? 'missing' : 'generic',
           priority: (!staticCaption || staticCaption.length < 10) ? 1 : 2
@@ -71,7 +72,33 @@ export const useImageScanner = () => {
       }
     });
 
-    // Also scan project data for additional images
+    // Specifically scan investor loan app project data
+    if (investorLoanAppDetails.availableImages) {
+      console.log('🎯 Scanning investor loan app specific images...');
+      investorLoanAppDetails.availableImages.forEach((imagePath, index) => {
+        const staticCaption = getImageCaption(imagePath);
+        const isGeneric = !staticCaption || 
+                         staticCaption === "Professional project showcase demonstrating innovative solutions and user-centered design" ||
+                         staticCaption.includes('Professional design showcase') ||
+                         staticCaption.includes('newly added') ||
+                         staticCaption.length < 20;
+        
+        if (isGeneric) {
+          const issue: CaptionIssue = {
+            imageSrc: imagePath,
+            projectId: 'investor-loan-app',
+            currentCaption: staticCaption || 'No caption',
+            issueType: (!staticCaption || staticCaption.length < 10) ? 'missing' : 'generic',
+            priority: (!staticCaption || staticCaption.length < 10) ? 1 : 2
+          };
+          
+          issues.push(issue);
+          console.log(`⚠️ Found investor project caption issue ${index + 1}: ${issue.issueType} for ${imagePath.substring(0, 30)}...`);
+        }
+      });
+    }
+
+    // Also scan general project data
     projectsData.forEach((project) => {
       if (project.image) {
         const staticCaption = getImageCaption(project.image);
@@ -93,10 +120,14 @@ export const useImageScanner = () => {
       }
     });
     
-    // Sort by priority (missing captions first)
-    const sortedIssues = issues.sort((a, b) => a.priority - b.priority);
+    // Remove duplicates and sort by priority
+    const uniqueIssues = issues.filter((issue, index, self) => 
+      index === self.findIndex(i => i.imageSrc === issue.imageSrc)
+    );
     
-    console.log(`🔍 ImageScanner: Found ${sortedIssues.length} caption issues to fix`);
+    const sortedIssues = uniqueIssues.sort((a, b) => a.priority - b.priority);
+    
+    console.log(`🔍 ImageScanner: Found ${sortedIssues.length} unique caption issues to fix`);
     console.log(`📊 Breakdown: ${sortedIssues.filter(i => i.issueType === 'missing').length} missing, ${sortedIssues.filter(i => i.issueType === 'generic').length} generic`);
     
     return sortedIssues;
