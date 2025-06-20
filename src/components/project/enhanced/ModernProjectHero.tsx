@@ -1,12 +1,14 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Edit3, Save, X } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import MaximizableImage from "../MaximizableImage";
+import TinyMCEEditor from "@/components/editor/TinyMCEEditor";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -21,6 +23,21 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   imageCaptions,
   projectId
 }) => {
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
+  const [editedDescription, setEditedDescription] = useState(project.description);
+
+  const handleSaveDescription = () => {
+    // Here you would typically save to your backend or state management
+    console.log('Saving description:', editedDescription);
+    setIsEditingDescription(false);
+    // You could emit an event or call a save function here
+  };
+
+  const handleCancelEdit = () => {
+    setEditedDescription(project.description);
+    setIsEditingDescription(false);
+  };
+
   return (
     <div className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
@@ -61,9 +78,50 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             {project.title}
           </h1>
           
-          <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto text-center">
-            {project.description}
-          </p>
+          <div className="relative">
+            {!isEditingDescription ? (
+              <div className="group/description relative">
+                <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto text-center">
+                  {editedDescription}
+                </p>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsEditingDescription(true)}
+                  className="absolute top-0 right-0 opacity-0 group-hover/description:opacity-100 transition-opacity duration-200"
+                >
+                  <Edit3 className="h-4 w-4" />
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <TinyMCEEditor
+                  initialValue={editedDescription}
+                  onEditorChange={setEditedDescription}
+                  height={200}
+                  placeholder="Edit project description..."
+                />
+                <div className="flex justify-center space-x-2">
+                  <Button
+                    onClick={handleSaveDescription}
+                    size="sm"
+                    className="bg-green-600 hover:bg-green-700"
+                  >
+                    <Save className="h-4 w-4 mr-2" />
+                    Save
+                  </Button>
+                  <Button
+                    onClick={handleCancelEdit}
+                    variant="outline"
+                    size="sm"
+                  >
+                    <X className="h-4 w-4 mr-2" />
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
 
           <div className="flex flex-wrap justify-center gap-2">
             {project.tags.map((tag) => (
