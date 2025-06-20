@@ -4,7 +4,7 @@ import { ProjectData } from '../persistence/types';
 interface DatabaseChange {
   change_type: string;
   change_key: string;
-  change_value: string;
+  change_value: any; // Changed from string to any to handle Json type from Supabase
 }
 
 export const processChangesData = (rawChanges: DatabaseChange[]): ProjectData => {
@@ -18,16 +18,27 @@ export const processChangesData = (rawChanges: DatabaseChange[]): ProjectData =>
     try {
       switch (change.change_type) {
         case 'text':
-          processedData.textContent[change.change_key] = change.change_value;
+          // Convert to string if it's not already
+          processedData.textContent[change.change_key] = typeof change.change_value === 'string' 
+            ? change.change_value 
+            : String(change.change_value);
           break;
         
         case 'image':
-          processedData.imageReplacements[change.change_key] = change.change_value;
+          // Convert to string if it's not already
+          processedData.imageReplacements[change.change_key] = typeof change.change_value === 'string' 
+            ? change.change_value 
+            : String(change.change_value);
           break;
         
         case 'content_block':
           try {
-            processedData.contentBlocks[change.change_key] = JSON.parse(change.change_value);
+            // Handle both string JSON and already parsed objects
+            if (typeof change.change_value === 'string') {
+              processedData.contentBlocks[change.change_key] = JSON.parse(change.change_value);
+            } else {
+              processedData.contentBlocks[change.change_key] = change.change_value || [];
+            }
           } catch (parseError) {
             console.warn('⚠️ Failed to parse content block JSON:', change.change_key, parseError);
             processedData.contentBlocks[change.change_key] = [];
