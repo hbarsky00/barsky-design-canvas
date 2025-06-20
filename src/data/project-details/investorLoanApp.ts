@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const investorLoanAppDetails: ProjectDetails = {
@@ -12,17 +13,17 @@ export const investorLoanAppDetails: ProjectDetails = {
   client: "Private Banking Institution",
   role: "Lead UX/UI Designer & Product Strategist",
   
-  // New simplified image configuration
+  // Simplified image configuration without duplicates
   imageConfig: {
     challenge: {
       beforeHeader: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
     },
     process: {
       beforeHeader: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
-      afterHeader: "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png"
+      afterHeader: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png"
+      beforeHeader: "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png"
     }
   },
   
@@ -43,19 +44,16 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
   ],
   
-  // Keep legacy properties for backward compatibility
+  // Streamlined legacy properties - removed duplicates
   challengeGalleryImages: [
     "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
   ],
   processImage: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
-  processBottomImage: "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png",
-  resultImage: "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png",
+  processBottomImage: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
+  resultImage: "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png",
   resultGalleryImages: [
-    "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png",
-    "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
-    "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png",
-    "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
-    "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png",
+    "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png",
+    "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png",
     "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
     "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
   ]
