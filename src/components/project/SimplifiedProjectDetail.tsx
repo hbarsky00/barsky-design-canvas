@@ -28,13 +28,15 @@ const SimplifiedProjectDetail = () => {
 
   if (error || !project || !details || !projectId) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex flex-col">
         <Header />
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-          <p className="text-gray-600">
-            {error || "The requested project could not be found."}
-          </p>
+        <div className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
+            <p className="text-gray-600">
+              {error || "The requested project could not be found."}
+            </p>
+          </div>
         </div>
         <Footer />
       </div>

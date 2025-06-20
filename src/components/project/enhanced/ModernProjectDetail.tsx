@@ -3,10 +3,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
+import { useProjectDataManager } from "@/hooks/useProjectDataManager";
 import ModernProjectHero from "./ModernProjectHero";
-import ModernProjectContentSection from "./ModernProjectContentSection";
+import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import ProjectCallToAction from "../ProjectCallToAction";
 import ProjectNavigation from "@/components/ProjectNavigation";
-import ProjectCallToAction from "@/components/project/ProjectCallToAction";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -27,60 +28,140 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
+  const { updatedProject, updatedDetails } = useProjectDataManager(projectId, project, details);
+
+  const handleContentSave = (sectionKey: string, content: string) => {
+    console.log(`Saving ${sectionKey} content:`, content);
+    // In a real implementation, this would save to your backend or state management
+  };
+
+  const handleImageAdd = (sectionKey: string, imageSrc: string) => {
+    console.log(`Adding image to ${sectionKey}:`, imageSrc);
+    // Implementation for adding images to sections
+  };
+
+  const handleImageReplace = (sectionKey: string, index: number, newSrc: string) => {
+    console.log(`Replacing image in ${sectionKey} at index ${index}:`, newSrc);
+    // Implementation for replacing images in sections
+  };
+
+  const handleImageRemove = (sectionKey: string, index: number) => {
+    console.log(`Removing image from ${sectionKey} at index ${index}`);
+    // Implementation for removing images from sections
+  };
+
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="min-h-screen relative w-full"
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/50 to-purple-50/10" />
-      
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      {/* Hero Section */}
       <ModernProjectHero
-        project={project}
-        details={details}
+        project={updatedProject}
+        details={updatedDetails}
         imageCaptions={imageCaptions}
         projectId={projectId}
       />
 
-      <div className="relative w-full px-4 py-8 space-y-8 z-10">
-        <ModernProjectContentSection
-          title="The Challenge"
-          content={details.challenge}
-          sectionKey="challenge"
-          imageConfig={{}}
-          imageCaptions={imageCaptions}
-          projectId={projectId}
-        />
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
+        
+        {/* Challenge Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="glass-card-elevated p-8 layered-depth"
+        >
+          <EnhancedContentEditor
+            content="The Challenge"
+            contentType="header"
+            onSave={(content) => handleContentSave('challenge_title', content)}
+            className="mb-8"
+          />
+          
+          <EnhancedContentEditor
+            content={updatedDetails.challenge}
+            contentType="section"
+            onSave={(content) => handleContentSave('challenge_content', content)}
+            images={details.challengeGalleryImages || []}
+            onImageAdd={(imageSrc) => handleImageAdd('challenge', imageSrc)}
+            onImageReplace={(index, newSrc) => handleImageReplace('challenge', index, newSrc)}
+            onImageRemove={(index) => handleImageRemove('challenge', index)}
+            maxImages={3}
+            projectId={projectId}
+            imageCaptions={imageCaptions}
+          />
+        </motion.section>
 
-        <ModernProjectContentSection
-          title="What I Did"
-          content={details.process}
-          sectionKey="process"
-          imageConfig={{}}
-          imageCaptions={imageCaptions}
-          projectId={projectId}
-        />
+        {/* Process Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="glass-card-elevated p-8 layered-depth"
+        >
+          <EnhancedContentEditor
+            content="What I Did"
+            contentType="header"
+            onSave={(content) => handleContentSave('process_title', content)}
+            className="mb-8"
+          />
+          
+          <EnhancedContentEditor
+            content={updatedDetails.process}
+            contentType="section"
+            onSave={(content) => handleContentSave('process_content', content)}
+            images={details.processImage ? [details.processImage] : []}
+            onImageAdd={(imageSrc) => handleImageAdd('process', imageSrc)}
+            onImageReplace={(index, newSrc) => handleImageReplace('process', index, newSrc)}
+            onImageRemove={(index) => handleImageRemove('process', index)}
+            maxImages={2}
+            projectId={projectId}
+            imageCaptions={imageCaptions}
+          />
+        </motion.section>
 
-        <ModernProjectContentSection
-          title="The Result"
-          content={details.result}
-          sectionKey="result"
-          imageConfig={{}}
-          imageCaptions={imageCaptions}
-          projectId={projectId}
-        />
+        {/* Result Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="glass-card-elevated p-8 layered-depth"
+        >
+          <EnhancedContentEditor
+            content="The Result"
+            contentType="header"
+            onSave={(content) => handleContentSave('result_title', content)}
+            className="mb-8"
+          />
+          
+          <EnhancedContentEditor
+            content={updatedDetails.result}
+            contentType="section"
+            onSave={(content) => handleContentSave('result_content', content)}
+            images={details.resultGalleryImages || []}
+            onImageAdd={(imageSrc) => handleImageAdd('result', imageSrc)}
+            onImageReplace={(index, newSrc) => handleImageReplace('result', index, newSrc)}
+            onImageRemove={(index) => handleImageRemove('result', index)}
+            maxImages={4}
+            projectId={projectId}
+            imageCaptions={imageCaptions}
+          />
+        </motion.section>
 
+        {/* Call to Action */}
         <ProjectCallToAction />
 
-        <div className="glass-card p-4 layered-depth">
+        {/* Project Navigation */}
+        <section className="mt-16">
           <ProjectNavigation
             currentProjectId={projectId}
             projectsData={projectsData}
           />
-        </div>
+        </section>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
