@@ -1,14 +1,14 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Edit3, Save, X } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import MaximizableImage from "../MaximizableImage";
-import TinyMCEEditor from "@/components/editor/TinyMCEEditor";
+import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import { useContentEditor } from "@/hooks/useContentEditor";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -23,20 +23,9 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   imageCaptions,
   projectId
 }) => {
-  const [isEditingDescription, setIsEditingDescription] = useState(false);
-  const [editedDescription, setEditedDescription] = useState(project.description);
-
-  const handleSaveDescription = () => {
-    // Here you would typically save to your backend or state management
-    console.log('Saving description:', editedDescription);
-    setIsEditingDescription(false);
-    // You could emit an event or call a save function here
-  };
-
-  const handleCancelEdit = () => {
-    setEditedDescription(project.description);
-    setIsEditingDescription(false);
-  };
+  const { handleSectionContentSave, handleSectionImageUpdate } = useContentEditor({ 
+    projectId: projectId || '' 
+  });
 
   return (
     <div className="relative overflow-hidden">
@@ -74,54 +63,21 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             <span className="text-gray-600">{details.role}</span>
           </div>
           
-          <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight text-center">
-            {project.title}
-          </h1>
+          <EnhancedContentEditor
+            content={project.title}
+            contentType="header"
+            onSave={(content) => handleSectionContentSave('hero', 'title', content)}
+            projectId={projectId}
+            className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight text-center"
+          />
           
-          <div className="relative">
-            {!isEditingDescription ? (
-              <div className="group/description relative">
-                <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto text-center">
-                  {editedDescription}
-                </p>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsEditingDescription(true)}
-                  className="absolute top-0 right-0 opacity-0 group-hover/description:opacity-100 transition-opacity duration-200"
-                >
-                  <Edit3 className="h-4 w-4" />
-                </Button>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <TinyMCEEditor
-                  initialValue={editedDescription}
-                  onEditorChange={setEditedDescription}
-                  height={200}
-                  placeholder="Edit project description..."
-                />
-                <div className="flex justify-center space-x-2">
-                  <Button
-                    onClick={handleSaveDescription}
-                    size="sm"
-                    className="bg-green-600 hover:bg-green-700"
-                  >
-                    <Save className="h-4 w-4 mr-2" />
-                    Save
-                  </Button>
-                  <Button
-                    onClick={handleCancelEdit}
-                    variant="outline"
-                    size="sm"
-                  >
-                    <X className="h-4 w-4 mr-2" />
-                    Cancel
-                  </Button>
-                </div>
-              </div>
-            )}
-          </div>
+          <EnhancedContentEditor
+            content={project.description}
+            contentType="paragraph"
+            onSave={(content) => handleSectionContentSave('hero', 'description', content)}
+            projectId={projectId}
+            className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto text-center"
+          />
 
           <div className="flex flex-wrap justify-center gap-2">
             {project.tags.map((tag) => (
@@ -167,6 +123,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
               projectId={projectId}
               hideEditButton={false}
+              onImageReplace={(newSrc) => handleSectionImageUpdate('hero', project.image, newSrc)}
             />
           </div>
         </motion.div>

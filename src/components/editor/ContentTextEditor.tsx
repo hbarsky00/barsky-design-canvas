@@ -49,23 +49,40 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
     }
   };
 
+  const renderContent = () => {
+    if (contentType === 'header') {
+      return (
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          {editedContent}
+        </h2>
+      );
+    }
+    
+    if (contentType === 'paragraph') {
+      return (
+        <p className="text-xl text-gray-600 leading-relaxed">
+          {editedContent}
+        </p>
+      );
+    }
+    
+    // section type
+    return (
+      <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+        {editedContent.split('\n\n').map((paragraph, index) => (
+          <p key={index} className="mb-4">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className={`relative group ${className}`}>
       {!isEditing ? (
         <div className="group/content relative">
-          {contentType === 'header' ? (
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              {editedContent}
-            </h2>
-          ) : (
-            <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-              {editedContent.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
+          {renderContent()}
           
           <Button
             variant="ghost"
