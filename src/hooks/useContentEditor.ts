@@ -1,36 +1,34 @@
 
 import { useState, useCallback } from 'react';
 import { useProjectPersistence } from './useProjectPersistence';
+import { toast } from 'sonner';
 
 interface UseContentEditorProps {
   projectId: string;
 }
 
 export const useContentEditor = ({ projectId }: UseContentEditorProps) => {
-  const { saveTextContent, saveImageReplacement } = useProjectPersistence(projectId);
-  const [isSaving, setIsSaving] = useState(false);
+  const { saveTextContent, saveImageReplacement, isSaving } = useProjectPersistence(projectId);
 
   const saveContent = useCallback(async (key: string, content: string) => {
-    setIsSaving(true);
     try {
       await saveTextContent(key, content);
       console.log(`Content saved: ${key}`);
+      toast.success('Content saved successfully');
     } catch (error) {
       console.error('Error saving content:', error);
-    } finally {
-      setIsSaving(false);
+      toast.error('Failed to save content');
     }
   }, [saveTextContent]);
 
   const saveImageUpdate = useCallback(async (originalSrc: string, newSrc: string) => {
-    setIsSaving(true);
     try {
       await saveImageReplacement(originalSrc, newSrc);
       console.log(`Image updated: ${originalSrc} -> ${newSrc}`);
+      toast.success('Image updated successfully');
     } catch (error) {
       console.error('Error saving image update:', error);
-    } finally {
-      setIsSaving(false);
+      toast.error('Failed to save image update');
     }
   }, [saveImageReplacement]);
 

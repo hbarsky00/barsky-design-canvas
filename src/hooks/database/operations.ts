@@ -1,89 +1,82 @@
 
 import { supabase } from '@/integrations/supabase/client';
 
-export interface DevModeChange {
-  id?: string;
-  project_id: string;
-  change_type: 'text' | 'image' | 'content_block';
-  change_key: string;
-  change_value: any;
-  created_at?: string;
-}
-
-export const fetchProjectChanges = async (projectId: string): Promise<DevModeChange[] | null> => {
-  try {
-    const { data, error } = await supabase
-      .from('dev_mode_changes')
-      .select('*')
-      .eq('project_id', projectId)
-      .order('created_at', { ascending: true });
-
-    if (error) {
-      console.error('Error fetching project changes:', error);
-      return null;
-    }
-
-    // Type cast and filter to ensure only valid change_type values
-    return data?.map(item => ({
-      ...item,
-      change_type: item.change_type as 'text' | 'image' | 'content_block'
-    })).filter(item => 
-      ['text', 'image', 'content_block'].includes(item.change_type)
-    ) || [];
-  } catch (error) {
-    console.error('Error in fetchProjectChanges:', error);
-    return null;
-  }
-};
-
-// Alias for compatibility with publishingService
-export const fetchChangesFromDatabase = fetchProjectChanges;
-
-export const saveProjectChange = async (
+export const saveChangeToDatabase = async (
   projectId: string,
   changeType: 'text' | 'image' | 'content_block',
-  changeKey: string,
-  changeValue: any
-): Promise<boolean> => {
+  key: string,
+  value: any
+) => {
   try {
+    console.log(`💾 Saving ${changeType} change to database:`, { projectId, key });
+
+    const changeData = {
+      project_id: projectId,
+      change_type: changeType,
+      change_key: key,
+      change_value: typeof value === 'string' ? value : JSON.stringify(value),
+      created_at: new Date().toISOString()
+    };
+
     const { error } = await supabase
-      .from('dev_mode_changes')
-      .upsert({
-        project_id: projectId,
-        change_type: changeType,
-        change_key: changeKey,
-        change_value: changeValue
-      }, {
+      .from('project_changes')
+      .upsert(changeData, {
         onConflict: 'project_id,change_type,change_key'
       });
 
     if (error) {
-      console.error('Error saving project change:', error);
-      return false;
+      console.error('❌ Database save error:', error);
+      throw error;
     }
 
+    console.log('✅ Change saved to database successfully');
     return true;
   } catch (error) {
-    console.error('Error in saveProjectChange:', error);
-    return false;
+    console.error('❌ Error saving change to database:', error);
+    throw error;
   }
 };
 
-export const clearChangesFromDatabase = async (projectId: string): Promise<boolean> => {
+export const fetchChangesFromDatabase = async (projectId: string) => {
   try {
+    console.log('📖 Fetching changes from database for project:', projectId);
+
+    const { data, error } = await supabase
+      .from('project_changes')
+      .select('*')
+      .eq('project_id', projectId);
+
+    if (error) {
+      console.error('❌ Database fetch error:', error);
+      throw error;
+    }
+
+    console.log('✅ Changes fetched from database:', data?.length || 0, 'records');
+    return data || [];
+  } catch (error) {
+    console.error('❌ Error fetching changes from database:', error);
+    return [];
+  }
+};
+
+export const clearChangesFromDatabase = async (projectId: string) => {
+  try {
+    console.log('🗑️ Clearing changes from database for project:', projectId);
+
     const { error } = await supabase
-      .from('dev_mode_changes')
+      .from('project_changes')
       .delete()
       .eq('project_id', projectId);
 
     if (error) {
-      console.error('Error clearing project changes:', error);
+      console.error('❌ Database clear error:', error);
       return false;
     }
 
+    console.log('✅ Changes cleared from database successfully');
     return true;
   } catch (error) {
-    console.error('Error in clearChangesFromDatabase:', error);
+    console.error('❌ Error clearing changes from database:', error);
     return false;
   }
 };

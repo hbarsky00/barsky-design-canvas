@@ -1,54 +1,68 @@
 
-export interface DatabaseChanges {
-  textContent: Record<string, string>;
-  imageReplacements: Record<string, string>;
-  contentBlocks: Record<string, any[]>;
-}
+import { ProjectData } from '../persistence/types';
 
-export interface DevModeChange {
+interface DatabaseChange {
   change_type: 'text' | 'image' | 'content_block';
   change_key: string;
-  change_value: any;
+  change_value: string;
 }
 
-export const processChangesData = (data: DevModeChange[] | null): DatabaseChanges => {
-  const result: DatabaseChanges = {
+export const processChangesData = (rawChanges: DatabaseChange[]): ProjectData => {
+  const processedData: ProjectData = {
     textContent: {},
     imageReplacements: {},
     contentBlocks: {}
   };
 
-  if (!data || data.length === 0) {
-    return result;
-  }
-
-  data.forEach(change => {
-    console.log('🔍 processChangesData: Processing change:', {
-      type: change.change_type,
-      key: change.change_key,
-      value: change.change_value
-    });
-
-    switch (change.change_type) {
-      case 'text':
-        if (typeof change.change_value === 'string') {
-          result.textContent[change.change_key] = change.change_value;
-        }
-        break;
-      case 'image':
-        if (typeof change.change_value === 'string') {
-          result.imageReplacements[change.change_key] = change.change_value;
-        }
-        break;
-      case 'content_block':
-        if (Array.isArray(change.change_value)) {
-          result.contentBlocks[change.change_key] = change.change_value;
-        }
-        break;
-      default:
-        console.warn('⚠️ processChangesData: Unknown change type:', change.change_type);
+  rawChanges.forEach(change => {
+    try {
+      switch (change.change_type) {
+        case 'text':
+          processedData.textContent[change.change_key] = change.change_value;
+          break;
+        
+        case 'image':
+          processedData.imageReplacements[change.change_key] = change.change_value;
+          break;
+        
+        case 'content_block':
+          try {
+            processedData.contentBlocks[change.change_key] = JSON.parse(change.change_value);
+          } catch (parseError) {
+            console.warn('⚠️ Failed to parse content block JSON:', change.change_key, parseError);
+            processedData.contentBlocks[change.change_key] = [];
+          }
+          break;
+        
+        default:
+          console.warn('⚠️ Unknown change type:', change.change_type);
+      }
+    } catch (error) {
+      console.error('❌ Error processing change:', change, error);
     }
   });
 
-  return result;
+  console.log('✅ Processed changes data:', {
+    textCount: Object.keys(processedData.textContent).length,
+    imageCount: Object.keys(processedData.imageReplacements).length,
+    contentCount: Object.keys(processedData.contentBlocks).length
+  });
+
+  return processedData;
+};
+
+export const normalizeImageReplacements = (imageReplacements: any): Record<string, string> => {
+  if (!imageReplacements || typeof imageReplacements !== 'object') {
+    return {};
+  }
+
+  const normalized: Record<string, string> = {};
+  
+  Object.entries(imageReplacements).forEach(([key, value]) => {
+    if (typeof key === 'string' && typeof value === 'string') {
+      normalized[key] = value;
+    }
+  });
+
+  return normalized;
 };

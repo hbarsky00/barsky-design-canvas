@@ -5,6 +5,7 @@ import { ZoomIn, Edit, X, Upload, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { VercelBlobStorageService } from "@/services/vercelBlobStorage";
+import { toast } from "sonner";
 
 interface MaximizableImageProps {
   src: string;
@@ -76,18 +77,21 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     // Validate file
     if (!file.type.startsWith('image/')) {
       console.error('❌ Invalid file type');
+      toast.error('Please select an image file');
       event.target.value = '';
       return;
     }
 
     if (file.size > 10 * 1024 * 1024) { // 10MB limit
       console.error('❌ File too large');
+      toast.error('Image must be smaller than 10MB');
       event.target.value = '';
       return;
     }
 
     setIsUploading(true);
     setImageError(false);
+    toast.info('Uploading image to Vercel Blob...');
 
     try {
       console.log('📤 Starting image upload for replacement using Vercel Blob:', file.name);
@@ -134,16 +138,19 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           console.log('🔄 Triggered global image refresh');
         }, 100);
         
+        toast.success('Image uploaded successfully!');
         console.log('🎉 Image replacement completed successfully using Vercel Blob');
       } else {
         console.error('❌ Upload failed - no URL returned');
         setCurrentSrc(src); // Revert to original
         setImageError(true);
+        toast.error('Image upload failed. Please check your Vercel Blob configuration.');
       }
     } catch (error) {
       console.error('❌ Error uploading image to Vercel Blob:', error);
       setCurrentSrc(src); // Revert to original
       setImageError(true);
+      toast.error('Image upload failed. Please try again.');
     } finally {
       setIsUploading(false);
       event.target.value = '';
