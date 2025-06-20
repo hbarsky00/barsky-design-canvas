@@ -3,6 +3,8 @@ import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MaximizableImage from '../project/MaximizableImage';
 import { shouldShowEditingControls } from '@/utils/devModeDetection';
+import { handleImageFileSelection } from '@/utils/fileHandling';
+import { toast } from 'sonner';
 
 interface ContentImageManagerProps {
   images: string[];
@@ -25,6 +27,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
 }) => {
   const [localImages, setLocalImages] = useState<string[]>(images);
   const [componentKey, setComponentKey] = useState(Date.now());
+  const [isSelecting, setIsSelecting] = useState(false);
   const showEditingControls = shouldShowEditingControls();
 
   // Sync with parent images prop and force complete refresh
@@ -59,17 +62,32 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
     };
   }, []);
 
-  const handleImageAdd = useCallback(() => {
-    if (localImages.length >= maxImages || !onImageAdd) return;
+  const handleImageAdd = useCallback(async () => {
+    if (localImages.length >= maxImages || !onImageAdd || isSelecting) return;
     
-    const newImage = "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png";
-    const updatedImages = [...localImages, newImage];
+    setIsSelecting(true);
     
-    console.log('➕ ContentImageManager: Adding image:', newImage);
-    setLocalImages(updatedImages);
-    setComponentKey(Date.now());
-    onImageAdd(newImage);
-  }, [localImages, maxImages, onImageAdd]);
+    try {
+      console.log('📁 Opening file picker for image selection...');
+      const selectedImageSrc = await handleImageFileSelection();
+      
+      const updatedImages = [...localImages, selectedImageSrc];
+      
+      console.log('➕ ContentImageManager: Adding selected image:', selectedImageSrc.substring(0, 50) + '...');
+      setLocalImages(updatedImages);
+      setComponentKey(Date.now());
+      onImageAdd(selectedImageSrc);
+      
+      toast.success('Image added successfully');
+    } catch (error) {
+      console.log('❌ Image selection cancelled or failed:', error);
+      if (error instanceof Error && error.message !== 'File selection cancelled') {
+        toast.error('Failed to add image');
+      }
+    } finally {
+      setIsSelecting(false);
+    }
+  }, [localImages, maxImages, onImageAdd, isSelecting]);
 
   const handleImageReplace = useCallback((index: number, newSrc: string) => {
     if (!onImageReplace) return;
@@ -111,9 +129,10 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
             variant="outline"
             size="sm"
             className="flex items-center space-x-2"
+            disabled={isSelecting}
           >
             <Plus className="h-4 w-4" />
-            <span>Add Image</span>
+            <span>{isSelecting ? 'Selecting...' : 'Add Image'}</span>
           </Button>
         </div>
       )}

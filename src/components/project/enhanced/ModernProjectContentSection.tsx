@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Edit3, Save, X, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactQuillEditor from "@/components/editor/ReactQuillEditor";
 import MaximizableImage from "../MaximizableImage";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
+import { handleImageFileSelection } from "@/utils/fileHandling";
+import { toast } from "sonner";
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -29,6 +31,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
     "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
   ]);
+  const [isSelecting, setIsSelecting] = useState(false);
   const showEditingControls = shouldShowEditingControls();
 
   const handleSaveContent = () => {
@@ -41,11 +44,26 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     setIsEditingContent(false);
   };
 
-  const handleAddImage = () => {
-    if (sectionImages.length < 2) {
-      setSectionImages(prev => [...prev, "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png"]);
+  const handleAddImage = useCallback(async () => {
+    if (sectionImages.length >= 2 || isSelecting) return;
+    
+    setIsSelecting(true);
+    
+    try {
+      console.log('📁 Opening file picker for section image...');
+      const selectedImageSrc = await handleImageFileSelection();
+      
+      setSectionImages(prev => [...prev, selectedImageSrc]);
+      toast.success('Image added successfully');
+    } catch (error) {
+      console.log('❌ Image selection cancelled or failed:', error);
+      if (error instanceof Error && error.message !== 'File selection cancelled') {
+        toast.error('Failed to add image');
+      }
+    } finally {
+      setIsSelecting(false);
     }
-  };
+  }, [sectionImages.length, isSelecting]);
 
   const handleRemoveImage = (index: number) => {
     setSectionImages(prev => prev.filter((_, i) => i !== index));
@@ -126,9 +144,10 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
                 variant="outline"
                 size="sm"
                 className="flex items-center space-x-2"
+                disabled={isSelecting}
               >
                 <Plus className="h-4 w-4" />
-                <span>Add Image</span>
+                <span>{isSelecting ? 'Selecting...' : 'Add Image'}</span>
               </Button>
             )}
           </div>
