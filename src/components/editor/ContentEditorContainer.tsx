@@ -29,6 +29,7 @@ const ContentEditorContainer: React.FC<ContentEditorContainerProps> = ({
   projectId,
   imageCaptions = {}
 }) => {
+  // Always call the hook, but pass undefined handlers if not provided
   const {
     localImages,
     handleImageAdd,
@@ -41,6 +42,9 @@ const ContentEditorContainer: React.FC<ContentEditorContainerProps> = ({
     onImageRemove
   });
 
+  // Only show image manager if we have image-related functionality
+  const showImageManager = onImageAdd || onImageReplace || onImageRemove || images.length > 0;
+
   return (
     <>
       <ContentTextEditor
@@ -49,15 +53,17 @@ const ContentEditorContainer: React.FC<ContentEditorContainerProps> = ({
         onSave={onSave}
       />
 
-      <ContentImageManager
-        images={localImages}
-        onImageAdd={onImageAdd ? handleImageAdd : undefined}
-        onImageReplace={onImageReplace ? handleImageReplace : undefined}
-        onImageRemove={onImageRemove ? handleImageRemove : undefined}
-        maxImages={maxImages}
-        projectId={projectId}
-        imageCaptions={imageCaptions}
-      />
+      {showImageManager && (
+        <ContentImageManager
+          images={localImages}
+          onImageAdd={onImageAdd ? handleImageAdd : undefined}
+          onImageReplace={onImageReplace ? handleImageReplace : undefined}
+          onImageRemove={onImageRemove ? handleImageRemove : undefined}
+          maxImages={maxImages}
+          projectId={projectId}
+          imageCaptions={imageCaptions}
+        />
+      )}
     </>
   );
 };
