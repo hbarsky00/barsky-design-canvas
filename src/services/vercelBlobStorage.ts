@@ -1,12 +1,13 @@
+
 import { put, del, list } from '@vercel/blob';
 
 export class VercelBlobStorageService {
-  private static readonly BLOB_READ_WRITE_TOKEN = process.env.BLOB_READ_WRITE_TOKEN || '';
+  private static readonly BLOB_READ_WRITE_TOKEN = import.meta.env.VITE_BLOB_READ_WRITE_TOKEN || '';
 
   // Check if Vercel Blob is properly configured
   private static checkConfiguration(): boolean {
     if (!this.BLOB_READ_WRITE_TOKEN) {
-      console.error('❌ BLOB_READ_WRITE_TOKEN environment variable is not set');
+      console.error('❌ VITE_BLOB_READ_WRITE_TOKEN environment variable is not set');
       return false;
     }
     return true;
