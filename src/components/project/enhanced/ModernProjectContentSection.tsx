@@ -209,7 +209,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-6">
             {sectionImages.map((imageSrc, index) => (
               <div key={index} className="relative group/image">
                 <div className="glass-card p-4 layered-depth relative group">

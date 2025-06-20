@@ -195,10 +195,10 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
       )}
 
       {localImages.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="space-y-6">
           {localImages.map((imageSrc, index) => (
             <div key={`${imageSrc}-${index}-${componentKey}`} className="relative group/image">
-              <div className="glass-card p-3 layered-depth">
+              <div className="glass-card p-4 layered-depth">
                 <MaximizableImage
                   src={imageSrc}
                   alt={`Content image ${index + 1}`}
