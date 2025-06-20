@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MaximizableImage from '../project/MaximizableImage';
@@ -24,52 +24,66 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   imageCaptions = {}
 }) => {
   const [localImages, setLocalImages] = useState<string[]>(images);
-  const [refreshKey, setRefreshKey] = useState(0);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   // Sync with parent images prop
   useEffect(() => {
-    if (JSON.stringify(images) !== JSON.stringify(localImages)) {
+    if (!isUpdating && JSON.stringify(images) !== JSON.stringify(localImages)) {
+      console.log('Syncing images from parent:', images);
       setLocalImages(images);
-      setRefreshKey(prev => prev + 1);
     }
-  }, [images, localImages]);
+  }, [images, localImages, isUpdating]);
 
-  const handleImageAdd = () => {
-    if (localImages.length < maxImages && onImageAdd) {
-      const newImage = "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png";
-      const updatedImages = [...localImages, newImage];
-      setLocalImages(updatedImages);
-      setRefreshKey(prev => prev + 1);
-      onImageAdd(newImage);
-    }
-  };
-
-  const handleImageReplace = (index: number, newSrc: string) => {
-    const updatedImages = localImages.map((src, i) => i === index ? newSrc : src);
-    setLocalImages(updatedImages);
-    setRefreshKey(prev => prev + 1);
+  const handleImageAdd = useCallback(() => {
+    if (localImages.length >= maxImages || !onImageAdd) return;
     
-    if (onImageReplace) {
-      onImageReplace(index, newSrc);
-    }
-  };
+    setIsUpdating(true);
+    const newImage = "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png";
+    const updatedImages = [...localImages, newImage];
+    
+    console.log('Adding image:', newImage);
+    setLocalImages(updatedImages);
+    onImageAdd(newImage);
+    
+    // Allow parent to update
+    setTimeout(() => setIsUpdating(false), 100);
+  }, [localImages, maxImages, onImageAdd]);
 
-  const handleImageRemove = (index: number) => {
+  const handleImageReplace = useCallback((index: number, newSrc: string) => {
+    if (!onImageReplace) return;
+    
+    setIsUpdating(true);
+    const updatedImages = [...localImages];
+    updatedImages[index] = newSrc;
+    
+    console.log('Replacing image at index', index, 'with:', newSrc);
+    setLocalImages(updatedImages);
+    onImageReplace(index, newSrc);
+    
+    // Allow parent to update
+    setTimeout(() => setIsUpdating(false), 100);
+  }, [localImages, onImageReplace]);
+
+  const handleImageRemove = useCallback((index: number) => {
+    if (!onImageRemove) return;
+    
+    setIsUpdating(true);
     const updatedImages = localImages.filter((_, i) => i !== index);
-    setLocalImages(updatedImages);
-    setRefreshKey(prev => prev + 1);
     
-    if (onImageRemove) {
-      onImageRemove(index);
-    }
-  };
+    console.log('Removing image at index:', index);
+    setLocalImages(updatedImages);
+    onImageRemove(index);
+    
+    // Allow parent to update
+    setTimeout(() => setIsUpdating(false), 100);
+  }, [localImages, onImageRemove]);
 
   if (!onImageAdd && localImages.length === 0) {
     return null;
   }
 
   return (
-    <div className="mt-8 space-y-4" key={refreshKey}>
+    <div className="mt-8 space-y-4">
       {onImageAdd && localImages.length < maxImages && (
         <div className="flex justify-start">
           <Button
@@ -77,6 +91,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
             variant="outline"
             size="sm"
             className="flex items-center space-x-2"
+            disabled={isUpdating}
           >
             <Plus className="h-4 w-4" />
             <span>Add Image</span>
@@ -87,7 +102,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
       {localImages.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {localImages.map((imageSrc, index) => (
-            <div key={`${imageSrc}-${index}-${refreshKey}`} className="relative group/image">
+            <div key={`${imageSrc}-${index}`} className="relative group/image">
               <div className="glass-card p-3 layered-depth">
                 <MaximizableImage
                   src={imageSrc}

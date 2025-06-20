@@ -39,43 +39,82 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
-  const [imageKey, setImageKey] = useState(0);
+  const [imageError, setImageError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   // Update current source when prop changes
   useEffect(() => {
     if (src !== currentSrc) {
       setCurrentSrc(src);
-      setImageKey(prev => prev + 1);
+      setImageError(false);
+      setRetryCount(0);
     }
-  }, [src, currentSrc]);
+  }, [src]);
 
   const handleMaximize = () => {
-    maximizeImage(currentSrc, alt, imageList, currentIndex);
+    if (!imageError) {
+      maximizeImage(currentSrc, alt, imageList, currentIndex);
+    }
   };
 
   const handleImageReplace = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file || !projectId || !onImageReplace) return;
+    if (!file || !projectId || !onImageReplace) {
+      event.target.value = '';
+      return;
+    }
+
+    // Validate file
+    if (!file.type.startsWith('image/')) {
+      console.error('Invalid file type');
+      event.target.value = '';
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) { // 10MB limit
+      console.error('File too large');
+      event.target.value = '';
+      return;
+    }
 
     setIsUploading(true);
+    setImageError(false);
+
     try {
+      console.log('Starting image upload:', file.name);
+      
       const newImageUrl = await ImageStorageService.uploadImage(file, projectId, currentSrc);
+      
       if (newImageUrl) {
-        // Add cache busting parameter
+        // Create cache-busted URL
         const cacheBustedUrl = newImageUrl.includes('?') 
-          ? `${newImageUrl}&v=${Date.now()}` 
-          : `${newImageUrl}?v=${Date.now()}`;
+          ? `${newImageUrl}&cb=${Date.now()}` 
+          : `${newImageUrl}?cb=${Date.now()}`;
         
+        console.log('Image uploaded successfully:', cacheBustedUrl);
+        
+        // Update local state immediately
         setCurrentSrc(cacheBustedUrl);
-        setImageKey(prev => prev + 1);
+        setImageError(false);
+        setRetryCount(0);
+        
+        // Call parent callback
         onImageReplace(cacheBustedUrl);
-        console.log('Image replaced successfully:', cacheBustedUrl);
+        
+        // Force a small delay to ensure the new image is ready
+        setTimeout(() => {
+          setCurrentSrc(cacheBustedUrl);
+        }, 100);
+        
+      } else {
+        console.error('Upload failed - no URL returned');
+        setImageError(true);
       }
     } catch (error) {
-      console.error('Error replacing image:', error);
+      console.error('Error uploading image:', error);
+      setImageError(true);
     } finally {
       setIsUploading(false);
-      // Clear the input value to allow re-selecting the same file
       event.target.value = '';
     }
   };
@@ -88,12 +127,24 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   const handleImageError = () => {
     console.error('Image failed to load:', currentSrc);
-    // Force a reload with cache busting
-    setImageKey(prev => prev + 1);
+    setImageError(true);
+    
+    // Retry with cache busting if haven't tried too many times
+    if (retryCount < 2) {
+      setTimeout(() => {
+        const retryUrl = currentSrc.includes('?') 
+          ? `${currentSrc}&retry=${retryCount + 1}` 
+          : `${currentSrc}?retry=${retryCount + 1}`;
+        setCurrentSrc(retryUrl);
+        setRetryCount(prev => prev + 1);
+      }, 1000 * (retryCount + 1)); // Progressive delay
+    }
   };
 
   const handleImageLoad = () => {
     console.log('Image loaded successfully:', currentSrc);
+    setImageError(false);
+    setRetryCount(0);
   };
 
   return (
@@ -103,19 +154,27 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img
-          key={`${currentSrc}-${imageKey}`}
-          src={currentSrc}
-          alt={alt}
-          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-          loading={priority ? "eager" : "lazy"}
-          onClick={handleMaximize}
-          onError={handleImageError}
-          onLoad={handleImageLoad}
-        />
+        {imageError ? (
+          <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+            <div className="text-center">
+              <div className="text-sm">Failed to load image</div>
+              {retryCount < 2 && <div className="text-xs mt-1">Retrying...</div>}
+            </div>
+          </div>
+        ) : (
+          <img
+            src={currentSrc}
+            alt={alt}
+            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+            loading={priority ? "eager" : "lazy"}
+            onClick={handleMaximize}
+            onError={handleImageError}
+            onLoad={handleImageLoad}
+          />
+        )}
         
         <AnimatePresence>
-          {isHovered && (
+          {isHovered && !imageError && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
