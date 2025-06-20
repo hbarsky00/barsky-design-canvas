@@ -19,6 +19,7 @@ import DesignSystem from "@/pages/DesignSystem";
 import NotFound from "@/pages/NotFound";
 import GlobalCaptions from "@/pages/GlobalCaptions";
 import AutoCaptionScanner from "@/components/captions/AutoCaptionScanner";
+import AutoPublisher from "@/components/captions/AutoPublisher";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <AutoCaptionScanner />
+              <AutoPublisher />
             </div>
           </BrowserRouter>
         </DevModeProvider>
