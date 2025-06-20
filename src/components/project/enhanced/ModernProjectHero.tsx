@@ -74,7 +74,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           <EnhancedContentEditor
             content={project.description}
             contentType="paragraph"
-            onSave={(content) => handleSectionContentSave('hero', 'description', content)}
+            onSave={(content) => handleSectionContentSave('hero', 'content', content)}
             projectId={projectId}
             className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto text-center"
           />
