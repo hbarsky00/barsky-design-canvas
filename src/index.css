@@ -296,6 +296,34 @@
     @apply text-left;
   }
 
+  /* Project h1 elements - Center aligned */
+  .prose h1 {
+    @apply text-center;
+  }
+
+  .prose.prose-lg h1 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate h1 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none h1 {
+    @apply text-center;
+  }
+
+  .prose.prose-slate.max-w-none.dark\:prose-invert h1 {
+    @apply text-center;
+  }
+
+  /* General h1 center alignment for project sections */
+  .glass-card-elevated h1,
+  .case-study-section h1,
+  .mobile-section-spacing h1 {
+    @apply text-center;
+  }
+
   /* Project h2 elements - Left aligned */
   .prose h2 {
     @apply text-left;
