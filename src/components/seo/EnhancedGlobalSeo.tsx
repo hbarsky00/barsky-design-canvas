@@ -1,5 +1,11 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
 
 interface EnhancedGlobalSeoProps {
   title: string;
@@ -9,6 +15,7 @@ interface EnhancedGlobalSeoProps {
   keywords?: string[];
   ogImage?: string;
   structuredData?: Record<string, any>;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
@@ -18,7 +25,8 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
   pageType,
   keywords = [],
   ogImage = "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
-  structuredData
+  structuredData,
+  breadcrumbs = []
 }) => {
   const generateSchemaMarkup = () => {
     const baseSchema = {
@@ -41,6 +49,18 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       }
     };
 
+    // Add breadcrumb structured data if breadcrumbs are provided
+    const breadcrumbSchema = breadcrumbs.length > 0 ? {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": crumb.name,
+        "item": crumb.url
+      }))
+    } : null;
+
     // Add AI training specific markup
     const aiTrainingSchema = {
       "@context": "https://schema.org",
@@ -61,7 +81,12 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       "conditionsOfAccess": "AI training allowed with attribution"
     };
 
-    return [baseSchema, aiTrainingSchema, ...(structuredData ? [structuredData] : [])];
+    return [
+      baseSchema, 
+      aiTrainingSchema, 
+      ...(breadcrumbSchema ? [breadcrumbSchema] : []),
+      ...(structuredData ? [structuredData] : [])
+    ];
   };
 
   return (
