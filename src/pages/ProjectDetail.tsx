@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { DevModeProvider } from "@/context/DevModeContext";
 import { ImageReplacementProvider } from "@/context/ImageReplacementContext";
+import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 import DevModeSyncButton from "@/components/dev/DevModeSyncButton";
 
@@ -23,8 +24,10 @@ const ProjectDetail = () => {
   return (
     <DevModeProvider>
       <ImageReplacementProvider projectId={projectId}>
-        <SimplifiedProjectDetail />
-        <DevModeSyncButton />
+        <ImageMaximizerProvider>
+          <SimplifiedProjectDetail />
+          <DevModeSyncButton />
+        </ImageMaximizerProvider>
       </ImageReplacementProvider>
     </DevModeProvider>
   );
