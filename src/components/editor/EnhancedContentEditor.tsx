@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Edit3, Save, X, Image, Plus, Trash2 } from 'lucide-react';
+import { Edit3, Save, X, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import TinyMCEEditor from './TinyMCEEditor';
 import MaximizableImage from '../project/MaximizableImage';
@@ -153,12 +153,11 @@ const EnhancedContentEditor: React.FC<EnhancedContentEditorProps> = ({
         </motion.div>
       )}
 
-      {/* Images Section */}
+      {/* Images directly under content */}
       {(onImageAdd || localImages.length > 0) && (
         <div className="mt-8 space-y-4">
-          <div className="flex items-center justify-between">
-            <h4 className="text-lg font-semibold text-gray-800">Images</h4>
-            {onImageAdd && localImages.length < maxImages && (
+          {onImageAdd && localImages.length < maxImages && (
+            <div className="flex justify-start">
               <Button
                 onClick={handleImageAdd}
                 variant="outline"
@@ -168,8 +167,8 @@ const EnhancedContentEditor: React.FC<EnhancedContentEditorProps> = ({
                 <Plus className="h-4 w-4" />
                 <span>Add Image</span>
               </Button>
-            )}
-          </div>
+            </div>
+          )}
 
           {localImages.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -190,16 +189,6 @@ const EnhancedContentEditor: React.FC<EnhancedContentEditorProps> = ({
                       onImageRemove={() => handleImageRemove(index)}
                     />
                   </div>
-                  {onImageRemove && (
-                    <Button
-                      onClick={() => handleImageRemove(index)}
-                      variant="ghost"
-                      size="sm"
-                      className="absolute top-1 right-1 opacity-0 group-hover/image:opacity-100 transition-opacity duration-200 bg-red-500 hover:bg-red-600 text-white"
-                    >
-                      <Trash2 className="h-3 w-3" />
-                    </Button>
-                  )}
                 </div>
               ))}
             </div>
