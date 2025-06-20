@@ -46,7 +46,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta property="og:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Barsky Design, Product Designer & Developer`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+      <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/c6242fd2-6088-44ee-a5bd-2233fb68caef.png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content="Barsky Design - Official Professional Design Portfolio" />
@@ -56,7 +56,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={`${project.title} | Barsky Design - Product Designer`} />
       <meta name="twitter:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Barsky Design`} />
-      <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+      <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/c6242fd2-6088-44ee-a5bd-2233fb68caef.png" />
       <meta name="twitter:creator" content="@barskydesign" />
       <meta name="twitter:site" content="@barskydesign" />
       
@@ -84,7 +84,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             },
             "image": {
               "@type": "ImageObject",
-              "url": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
+              "url": "https://barskydesign.pro/lovable-uploads/c6242fd2-6088-44ee-a5bd-2233fb68caef.png",
               "width": 1200,
               "height": 630
             },
