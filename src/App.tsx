@@ -9,8 +9,6 @@ import Services from "@/pages/Services";
 import AllProjects from "@/pages/AllProjects";
 import NotFound from "@/pages/NotFound";
 import ProjectDetail from "@/pages/ProjectDetail";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import TermsOfService from "@/pages/TermsOfService";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { DevModeProvider } from "@/context/DevModeContext";
 import GlobalCaptions from "@/pages/GlobalCaptions";
@@ -28,8 +26,6 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/projects" element={<AllProjects />} />
               <Route path="/project/:projectId" element={<ProjectDetail />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
               
               {/* Dev Mode Tools */}
               <Route path="/dev/captions" element={<GlobalCaptions />} />
