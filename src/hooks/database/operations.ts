@@ -23,12 +23,21 @@ export const fetchProjectChanges = async (projectId: string): Promise<DevModeCha
       return null;
     }
 
-    return data;
+    // Type cast and filter to ensure only valid change_type values
+    return data?.map(item => ({
+      ...item,
+      change_type: item.change_type as 'text' | 'image' | 'content_block'
+    })).filter(item => 
+      ['text', 'image', 'content_block'].includes(item.change_type)
+    ) || [];
   } catch (error) {
     console.error('Error in fetchProjectChanges:', error);
     return null;
   }
 };
+
+// Alias for compatibility with publishingService
+export const fetchChangesFromDatabase = fetchProjectChanges;
 
 export const saveProjectChange = async (
   projectId: string,
@@ -56,6 +65,25 @@ export const saveProjectChange = async (
     return true;
   } catch (error) {
     console.error('Error in saveProjectChange:', error);
+    return false;
+  }
+};
+
+export const clearChangesFromDatabase = async (projectId: string): Promise<boolean> => {
+  try {
+    const { error } = await supabase
+      .from('dev_mode_changes')
+      .delete()
+      .eq('project_id', projectId);
+
+    if (error) {
+      console.error('Error clearing project changes:', error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error in clearChangesFromDatabase:', error);
     return false;
   }
 };
