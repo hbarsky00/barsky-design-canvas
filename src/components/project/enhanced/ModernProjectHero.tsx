@@ -8,7 +8,7 @@ import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "../MaximizableImage";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
-import { useContentEditor } from "@/hooks/useContentEditor";
+import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -23,9 +23,11 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   imageCaptions,
   projectId
 }) => {
-  const { handleSectionContentSave, handleSectionImageUpdate } = useContentEditor({ 
+  const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ 
     projectId: projectId || '' 
   });
+
+  console.log('🎬 ModernProjectHero: Rendering with project:', project.title);
 
   return (
     <div className="relative overflow-hidden">

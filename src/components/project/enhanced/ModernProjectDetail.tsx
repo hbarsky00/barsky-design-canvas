@@ -3,9 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
-import { useProjectDataManager } from "@/hooks/useProjectDataManager";
-import { useContentEditor } from "@/hooks/useContentEditor";
-import { useProjectDataSync } from "@/hooks/useProjectDataSync";
+import { useSimplifiedDataManager } from "@/hooks/useSimplifiedDataManager";
+import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import ModernProjectHero from "./ModernProjectHero";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import ProjectCallToAction from "../ProjectCallToAction";
@@ -30,26 +29,12 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
-  const { updatedProject, updatedDetails, refreshTrigger } = useProjectDataManager(projectId, project, details);
-  const { handleSectionContentSave, handleSectionImageUpdate } = useContentEditor({ projectId });
+  console.log('🎬 ModernProjectDetail: Rendering with projectId:', projectId);
   
-  // Force component refresh when data changes
-  const [componentKey, setComponentKey] = React.useState(0);
-  
-  // Enhanced data sync hook
-  useProjectDataSync({
-    projectId,
-    onRefresh: () => {
-      console.log('🔄 ModernProjectDetail: Forcing component refresh');
-      setComponentKey(prev => prev + 1);
-    }
-  });
+  const { updatedProject, updatedDetails, componentKey } = useSimplifiedDataManager(projectId, project, details);
+  const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });
 
-  // Update component when refresh trigger changes
-  React.useEffect(() => {
-    console.log('🔄 ModernProjectDetail: Refresh trigger changed, updating component');
-    setComponentKey(prev => prev + 1);
-  }, [refreshTrigger]);
+  console.log('🔄 ModernProjectDetail: Component key:', componentKey);
 
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
