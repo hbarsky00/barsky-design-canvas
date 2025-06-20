@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { ContentBlock } from '@/components/dev/DraggableContentBlock';
-import { useAiImageCaptions } from '@/hooks/useAiImageCaptions';
 
 interface ContentBlockActionsProps {
   onAdd: (type: 'text' | 'image' | 'header' | 'video' | 'pdf', position?: number) => void;
@@ -16,7 +15,41 @@ export const useContentBlockActions = (
   setContentBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>,
   saveContentBlocks: (blocks: ContentBlock[]) => Promise<void>
 ) => {
-  const { generateCaption, updateGenericCaptions, isGenerating } = useAiImageCaptions();
+  const [isGenerating, setIsGenerating] = React.useState(false);
+
+  const generateAiCaption = async (imageSrc: string): Promise<string> => {
+    try {
+      console.log('🤖 ContentBlockActions: Generating AI caption for:', imageSrc.substring(0, 30) + '...');
+      setIsGenerating(true);
+      
+      const response = await fetch('/functions/v1/generate-image-caption', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({ 
+          imageSrc,
+          contextType: 'project'
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`AI caption generation failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const caption = data.caption || 'Professional project showcase demonstrating innovative solutions and user-centered design';
+      
+      console.log('✅ ContentBlockActions: AI caption generated:', caption.substring(0, 50) + '...');
+      return caption;
+    } catch (error) {
+      console.warn('⚠️ ContentBlockActions: AI caption generation failed, using fallback:', error);
+      return 'Professional project showcase demonstrating innovative solutions and user-centered design';
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   // Function to update a caption for a specific block
   const updateBlockCaption = async (index: number, newCaption: string) => {
@@ -29,23 +62,6 @@ export const useContentBlockActions = (
     await saveContentBlocks(updatedBlocks);
   };
 
-  // Auto-update generic captions on component mount or when blocks change
-  React.useEffect(() => {
-    const hasGenericCaptions = contentBlocks.some(block => 
-      (block.type === 'image' || block.type === 'video' || block.type === 'pdf') && 
-      block.src &&
-      (block.caption === 'A newly added image.' || 
-       block.caption === 'This is a new image. Click to edit me.' ||
-       !block.caption || 
-       block.caption.includes('newly added'))
-    );
-
-    if (hasGenericCaptions && !isGenerating) {
-      console.log('🚀 Auto-updating generic captions...');
-      updateGenericCaptions(contentBlocks, updateBlockCaption);
-    }
-  }, [contentBlocks.length]); // Only run when blocks are added/removed
-
   const createNewBlock = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): Promise<ContentBlock> => {
     console.log('🆕 ContentBlockActions: Creating new block of type:', type);
     
@@ -54,14 +70,14 @@ export const useContentBlockActions = (
         console.log('📝 Creating text block');
         return Promise.resolve({ type: 'text', value: 'This is a new paragraph. Click to edit me.' });
       case 'image': {
-        console.log('🖼️ Creating image block');
+        console.log('🖼️ Creating image block with AI caption generation');
         const defaultImageSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
         // Generate AI caption for the default image
-        const aiCaption = await generateCaption(defaultImageSrc);
+        const aiCaption = await generateAiCaption(defaultImageSrc);
         return { 
           type: 'image', 
           src: defaultImageSrc,
-          caption: aiCaption.caption
+          caption: aiCaption
         };
       }
       case 'header':
@@ -72,17 +88,17 @@ export const useContentBlockActions = (
         return Promise.resolve({ 
           type: 'video', 
           embedUrl: 'placeholder',
-          caption: 'Embedded video content'
+          caption: 'Embedded video content showcasing project features and functionality'
         });
       }
       case 'pdf': {
-        console.log('📄 Creating PDF block');
+        console.log('📄 Creating PDF block with AI caption generation');
         const defaultPdfSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
-        const aiCaption = await generateCaption(defaultPdfSrc);
+        const aiCaption = await generateAiCaption(defaultPdfSrc);
         return { 
           type: 'pdf', 
           src: defaultPdfSrc,
-          caption: aiCaption.caption || 'Comprehensive documentation outlining project specifications and technical requirements'
+          caption: aiCaption || 'Comprehensive documentation outlining project specifications and technical requirements'
         };
       }
       default:
@@ -151,11 +167,11 @@ export const useContentBlockActions = (
     const oldBlock = contentBlocks[index];
     
     // Generate AI caption for the new image
-    const aiCaption = await generateCaption(newSrc);
+    const aiCaption = await generateAiCaption(newSrc);
     
     const updatedBlocks = contentBlocks.map((block, i) => 
       i === index && block.type === 'image'
-        ? { ...block, src: newSrc, caption: aiCaption.caption }
+        ? { ...block, src: newSrc, caption: aiCaption }
         : block
     );
     setContentBlocks(updatedBlocks);
@@ -181,6 +197,49 @@ export const useContentBlockActions = (
     
     // Save content blocks persistently
     await saveContentBlocks(updatedBlocks);
+  };
+
+  const updateGenericCaptions = async (blocks: ContentBlock[], updateCallback: (index: number, newCaption: string) => void) => {
+    console.log('🔍 Scanning for images that need AI caption generation...');
+    
+    const blocksToUpdate = blocks
+      .map((block, index) => ({ block, index }))
+      .filter(({ block }) => 
+        (block.type === 'image' || block.type === 'pdf') && 
+        block.src && 
+        (block.caption === 'A newly added image.' || 
+         block.caption === 'This is a new image. Click to edit me.' ||
+         block.caption?.includes('newly added') ||
+         !block.caption || 
+         block.caption.length < 10)
+      );
+
+    if (blocksToUpdate.length === 0) {
+      console.log('✅ No images found that need AI caption generation');
+      return;
+    }
+
+    console.log(`🚀 Starting AI caption generation for ${blocksToUpdate.length} images...`);
+    
+    for (const { block, index } of blocksToUpdate) {
+      try {
+        console.log(`🖼️ Generating caption for image ${index + 1}/${blocksToUpdate.length}:`, block.src.substring(0, 50) + '...');
+        
+        const aiCaption = await generateAiCaption(block.src);
+        
+        console.log(`📝 Updating caption for image ${index}:`, aiCaption);
+        updateCallback(index, aiCaption);
+        
+        // Add delay to avoid overwhelming the API
+        if (blocksToUpdate.length > 1) {
+          await new Promise(resolve => setTimeout(resolve, 1500));
+        }
+      } catch (error) {
+        console.error(`❌ Failed to generate caption for image at index ${index}:`, error);
+      }
+    }
+    
+    console.log('✅ AI caption generation batch complete');
   };
 
   return {

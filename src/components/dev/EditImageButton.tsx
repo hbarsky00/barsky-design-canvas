@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { compressImageFile, validateImageSize, getOptimalCompressionSettings } from '@/utils/imageCompression';
 import { ImageStorageService } from '@/services/imageStorage';
 import { useDevModeDatabase } from '@/hooks/useDevModeDatabase';
+import { useSimpleCaptions } from '@/hooks/useSimpleCaptions';
 
 interface EditImageButtonProps {
   src?: string;
@@ -31,6 +32,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
   const [isProcessing, setIsProcessing] = useState(false);
   const processingRef = useRef(false);
   const { saveChange } = useDevModeDatabase(currentProjectId);
+  const { setCaption } = useSimpleCaptions(currentProjectId);
 
   const validateImageUrl = (url: string): boolean => {
     if (!url || typeof url !== 'string') return false;
@@ -39,6 +41,37 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
            url.startsWith('http://') || 
            url.startsWith('https://') ||
            url.startsWith('/');
+  };
+
+  const generateAiCaption = async (imageSrc: string): Promise<string> => {
+    try {
+      console.log('🤖 EditImageButton: Generating AI caption for new image:', imageSrc.substring(0, 30) + '...');
+      
+      const response = await fetch('/functions/v1/generate-image-caption', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({ 
+          imageSrc,
+          contextType: 'project'
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`AI caption generation failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const caption = data.caption || 'Professional project showcase demonstrating innovative solutions and user-centered design';
+      
+      console.log('✅ EditImageButton: AI caption generated:', caption.substring(0, 50) + '...');
+      return caption;
+    } catch (error) {
+      console.warn('⚠️ EditImageButton: AI caption generation failed, using fallback:', error);
+      return 'Professional project showcase demonstrating innovative solutions and user-centered design';
+    }
   };
 
   const handleEditClick = useCallback((e: React.MouseEvent) => {
@@ -99,7 +132,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
       }
       
       // Show loading feedback
-      toast.loading("Compressing and uploading image...", { id: 'image-upload' });
+      toast.loading("Uploading image and generating AI caption...", { id: 'image-upload' });
       
       // Get optimal compression settings
       const { maxSizeKB } = getOptimalCompressionSettings(file);
@@ -135,7 +168,14 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
         onImageReplace(publicUrl);
       }
       
-      // Trigger immediate project data update event for sync
+      // Generate AI caption for the new image
+      console.log('🤖 EditImageButton: Generating AI caption for replaced image...');
+      const aiCaption = await generateAiCaption(publicUrl);
+      
+      // Set the AI-generated caption
+      setCaption(publicUrl, aiCaption);
+      
+      // Dispatch events for immediate updates
       setTimeout(() => {
         console.log('🚀 EditImageButton: Dispatching immediate project update event');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
@@ -149,12 +189,22 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
             newSrc: publicUrl
           }
         }));
-      }, 50); // Very fast trigger
+        
+        // Dispatch AI caption event
+        window.dispatchEvent(new CustomEvent('aiCaptionGenerated', {
+          detail: {
+            imageSrc: publicUrl,
+            caption: aiCaption,
+            projectId: currentProjectId,
+            autoPublish: false
+          }
+        }));
+      }, 50);
       
       const finalSizeKB = (compressedFile.size / 1024).toFixed(2);
-      toast.success("Image uploaded and saved!", {
+      toast.success("Image uploaded with AI caption!", {
         id: 'image-upload',
-        description: `Uploaded ${finalSizeKB}KB to cloud storage and saved to project.`,
+        description: `Uploaded ${finalSizeKB}KB and generated smart caption automatically.`,
         duration: 3000,
       });
     } catch (error) {
@@ -181,7 +231,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
       processingRef.current = false;
       if (e.target) e.target.value = '';
     }
-  }, [src, currentProjectId, onImageReplace, saveChange]);
+  }, [src, currentProjectId, onImageReplace, saveChange, setCaption]);
 
   if (!isDevMode || !src) {
     return null;
@@ -198,7 +248,7 @@ const EditImageButton: React.FC<EditImageButtonProps> = ({
           disabled={isProcessing}
         >
           <Upload className="h-4 w-4 mr-2" />
-          {isProcessing ? 'Uploading...' : 'Replace'}
+          {isProcessing ? 'Processing...' : 'Replace'}
         </Button>
         {allowRemove && onImageRemove && (
           <Button
