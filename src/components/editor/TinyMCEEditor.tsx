@@ -36,19 +36,30 @@ const TinyMCEEditor: React.FC<TinyMCEEditorProps> = ({
           height: height,
           menubar: false,
           plugins: [
-            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            'insertdatetime', 'table', 'help', 'wordcount'
           ],
           toolbar: 'undo redo | blocks | ' +
             'bold italic forecolor | alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | help',
-          content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px }',
+          content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; margin: 1rem; }',
           placeholder: placeholder,
           readonly: readonly,
           branding: false,
-          promotion: false
+          promotion: false,
+          setup: function (editor) {
+            editor.ui.registry.addButton('customSave', {
+              text: 'Save',
+              onAction: function () {
+                const content = editor.getContent();
+                if (onEditorChange) {
+                  onEditorChange(content);
+                }
+              }
+            });
+          }
         }}
         onEditorChange={handleEditorChange}
       />
