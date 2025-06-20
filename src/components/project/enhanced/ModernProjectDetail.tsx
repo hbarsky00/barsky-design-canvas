@@ -5,6 +5,7 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { useProjectDataManager } from "@/hooks/useProjectDataManager";
 import { useContentEditor } from "@/hooks/useContentEditor";
+import { useProjectDataSync } from "@/hooks/useProjectDataSync";
 import ModernProjectHero from "./ModernProjectHero";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import ProjectCallToAction from "../ProjectCallToAction";
@@ -29,11 +30,29 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   projectsData,
   imageCaptions = {}
 }) => {
-  const { updatedProject, updatedDetails } = useProjectDataManager(projectId, project, details);
+  const { updatedProject, updatedDetails, refreshTrigger } = useProjectDataManager(projectId, project, details);
   const { handleSectionContentSave, handleSectionImageUpdate } = useContentEditor({ projectId });
+  
+  // Force component refresh when data changes
+  const [componentKey, setComponentKey] = React.useState(0);
+  
+  // Enhanced data sync hook
+  useProjectDataSync({
+    projectId,
+    onRefresh: () => {
+      console.log('🔄 ModernProjectDetail: Forcing component refresh');
+      setComponentKey(prev => prev + 1);
+    }
+  });
+
+  // Update component when refresh trigger changes
+  React.useEffect(() => {
+    console.log('🔄 ModernProjectDetail: Refresh trigger changed, updating component');
+    setComponentKey(prev => prev + 1);
+  }, [refreshTrigger]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
       <ModernProjectHero
         project={updatedProject}
@@ -47,6 +66,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         
         {/* Challenge Section */}
         <motion.section
+          key={`challenge-${componentKey}`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -82,6 +102,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
 
         {/* Process Section */}
         <motion.section
+          key={`process-${componentKey}`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -117,6 +138,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
 
         {/* Result Section */}
         <motion.section
+          key={`result-${componentKey}`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

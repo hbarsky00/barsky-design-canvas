@@ -13,25 +13,60 @@ export const useProjectPersistence = (projectId: string) => {
   });
   const [isSaving, setIsSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  // Enhanced data loader that refreshes from database
+  const loadFreshDataFromDatabase = useCallback(async () => {
+    console.log('🔄 Loading fresh data from database for project:', projectId);
+    try {
+      const rawChanges = await fetchChangesFromDatabase(projectId);
+      if (rawChanges && rawChanges.length > 0) {
+        const processedData = processChangesData(rawChanges);
+        console.log('✅ Fresh data loaded:', {
+          textKeys: Object.keys(processedData.textContent),
+          imageKeys: Object.keys(processedData.imageReplacements),
+          contentKeys: Object.keys(processedData.contentBlocks)
+        });
+        setCachedData(processedData);
+      } else {
+        console.log('📭 No data found in database, keeping current state');
+      }
+    } catch (error) {
+      console.error('❌ Error loading fresh data:', error);
+    }
+  }, [projectId]);
 
   // Load initial data
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const rawChanges = await fetchChangesFromDatabase(projectId);
-        if (rawChanges && rawChanges.length > 0) {
-          const processedData = processChangesData(rawChanges);
-          setCachedData(processedData);
-        }
-      } catch (error) {
-        console.error('Error loading project data:', error);
+    if (projectId) {
+      loadFreshDataFromDatabase();
+    }
+  }, [projectId, loadFreshDataFromDatabase]);
+
+  // Listen for project data updates and force refresh from database
+  useEffect(() => {
+    const handleProjectDataUpdate = async (e: CustomEvent) => {
+      if (e.detail?.projectId === projectId || e.detail?.immediate) {
+        console.log('🔄 Project data updated event received, reloading from database');
+        await loadFreshDataFromDatabase();
+        setRefreshTrigger(prev => prev + 1);
       }
     };
 
-    if (projectId) {
-      loadData();
-    }
-  }, [projectId]);
+    const handleForceRefresh = async (e: CustomEvent) => {
+      console.log('🔄 Force refresh triggered, reloading from database');
+      await loadFreshDataFromDatabase();
+      setRefreshTrigger(prev => prev + 1);
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
+    window.addEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
+      window.removeEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
+    };
+  }, [projectId, loadFreshDataFromDatabase]);
 
   const getProjectData = useCallback((): ProjectData => {
     return cachedData;
@@ -46,13 +81,13 @@ export const useProjectPersistence = (projectId: string) => {
   }, [cachedData.imageReplacements]);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
-    console.log('SaveOperations: Saving text content:', key);
+    console.log('💾 SaveOperations: Saving text content:', key);
     setIsSaving(true);
     
     try {
       await saveChangeToDatabase(projectId, 'text', key, content);
       
-      // Update cached data
+      // Update cached data immediately
       setCachedData(prev => ({
         ...prev,
         textContent: { ...prev.textContent, [key]: content }
@@ -60,6 +95,17 @@ export const useProjectPersistence = (projectId: string) => {
       
       setLastSaved(new Date());
       console.log('✅ Text content saved successfully');
+      
+      // Trigger global update event for real-time sync
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId,
+          textUpdate: { key, content },
+          immediate: true,
+          stayOnPage: true,
+          timestamp: Date.now()
+        }
+      }));
     } catch (error) {
       console.error('❌ Error saving text content:', error);
     } finally {
@@ -68,7 +114,7 @@ export const useProjectPersistence = (projectId: string) => {
   }, [projectId]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('SaveOperations: Saving image replacement:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
+    console.log('💾 SaveOperations: Saving image replacement:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('⚠️ Skipping blob URL replacement save');
@@ -80,7 +126,7 @@ export const useProjectPersistence = (projectId: string) => {
     try {
       await saveChangeToDatabase(projectId, 'image', originalSrc, newSrc);
       
-      // Update cached data
+      // Update cached data immediately
       setCachedData(prev => ({
         ...prev,
         imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
@@ -89,12 +135,13 @@ export const useProjectPersistence = (projectId: string) => {
       setLastSaved(new Date());
       console.log('✅ Image replacement saved successfully');
       
-      // Trigger a global update event
+      // Trigger global update event for real-time sync
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId,
           imageReplacement: { originalSrc, newSrc },
           immediate: true,
+          stayOnPage: true,
           timestamp: Date.now()
         }
       }));
@@ -106,13 +153,13 @@ export const useProjectPersistence = (projectId: string) => {
   }, [projectId]);
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
-    console.log('SaveOperations: Saving content blocks:', sectionKey);
+    console.log('💾 SaveOperations: Saving content blocks:', sectionKey);
     setIsSaving(true);
     
     try {
       await saveChangeToDatabase(projectId, 'content_block', sectionKey, blocks);
       
-      // Update cached data
+      // Update cached data immediately
       setCachedData(prev => ({
         ...prev,
         contentBlocks: { ...prev.contentBlocks, [sectionKey]: blocks }
@@ -120,6 +167,17 @@ export const useProjectPersistence = (projectId: string) => {
       
       setLastSaved(new Date());
       console.log('✅ Content blocks saved successfully');
+      
+      // Trigger global update event for real-time sync
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId,
+          contentBlocks: { sectionKey, blocks },
+          immediate: true,
+          stayOnPage: true,
+          timestamp: Date.now()
+        }
+      }));
     } catch (error) {
       console.error('❌ Error saving content blocks:', error);
     } finally {
@@ -133,8 +191,13 @@ export const useProjectPersistence = (projectId: string) => {
       imageReplacements: {},
       contentBlocks: {}
     });
-    console.log('Cleared project data');
+    console.log('🗑️ Cleared project data');
   }, []);
+
+  const forceRefresh = useCallback(async () => {
+    console.log('🔄 Force refreshing data from database');
+    await loadFreshDataFromDatabase();
+  }, [loadFreshDataFromDatabase]);
 
   return {
     saveTextContent,
@@ -144,7 +207,9 @@ export const useProjectPersistence = (projectId: string) => {
     getTextContent,
     getImageSrc,
     clearProjectData,
+    forceRefresh,
     isSaving,
-    lastSaved
+    lastSaved,
+    refreshTrigger
   };
 };
