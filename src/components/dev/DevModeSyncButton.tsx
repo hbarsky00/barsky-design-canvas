@@ -1,10 +1,10 @@
 
 import React from 'react';
-import EnhancedSyncButton from './EnhancedSyncButton';
+import SimplifiedSyncButton from './SimplifiedSyncButton';
 
-// Replace with the enhanced sync button
+// Replace the complex sync button with the simplified one
 const DevModeSyncButton: React.FC = () => {
-  return <EnhancedSyncButton />;
+  return <SimplifiedSyncButton />;
 };
 
 export default DevModeSyncButton;

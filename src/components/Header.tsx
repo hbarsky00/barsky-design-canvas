@@ -1,36 +1,49 @@
 
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ThemeToggle } from "./ThemeToggle";
-import Navigation from "./header/Navigation";
-import ProfileAvatar from "./header/ProfileAvatar";
-import MobileMenu from "./header/MobileMenu";
+import { cn } from "@/lib/utils";
 import AnimatedLogo from "./AnimatedLogo";
-import CaptionNotificationIndicator from "./captions/CaptionNotificationIndicator";
+import { useHeaderNavigation } from "./header/useHeaderNavigation";
+import MobileMenu from "./header/MobileMenu";
+import ProfileAvatar from "./header/ProfileAvatar";
+import ThemeToggle from "./ThemeToggle";
 
-const Header = () => {
-  const location = useLocation();
-  const isProjectsPage = location.pathname === '/projects';
+const Header: React.FC = () => {
+  const { 
+    isScrolled,
+    navLinks,
+    activeSection,
+    isMobileMenuOpen,
+    handleLinkClick,
+    toggleMobileMenu,
+    isLinkActive
+  } = useHeaderNavigation();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <Link to="/" className="flex items-center space-x-2">
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2",
+        isScrolled
+          ? "bg-white shadow-md py-2 dark:bg-gray-900"
+          : "bg-transparent"
+      )}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <ProfileAvatar />
             <AnimatedLogo />
-          </Link>
-        </div>
+          </div>
 
-        <div className="flex items-center space-x-4">
-          {/* Global caption notification indicator */}
-          {!isProjectsPage && (
-            <CaptionNotificationIndicator className="hidden md:flex" />
-          )}
-          
-          <Navigation />
-          <ThemeToggle />
-          <ProfileAvatar />
-          <MobileMenu />
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
+            <MobileMenu 
+              links={navLinks}
+              isMobileMenuOpen={isMobileMenuOpen}
+              toggleMobileMenu={toggleMobileMenu}
+              handleLinkClick={handleLinkClick}
+              isLinkActive={isLinkActive}
+            />
+          </div>
         </div>
       </div>
     </header>
