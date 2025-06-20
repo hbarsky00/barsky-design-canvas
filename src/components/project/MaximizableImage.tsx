@@ -40,15 +40,23 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
-  const [imageKey, setImageKey] = useState(Date.now());
+  const [forceRefresh, setForceRefresh] = useState(0);
 
-  // Update current source when prop changes - force refresh
+  // Update current source when prop changes and force complete refresh
   useEffect(() => {
     if (src !== currentSrc) {
-      console.log('Image src changed, updating:', src);
+      console.log('🔄 Image src changed, forcing complete refresh:', src);
       setCurrentSrc(src);
       setImageError(false);
-      setImageKey(Date.now()); // Force image refresh
+      setForceRefresh(prev => prev + 1);
+      
+      // Force browser to reload the image by clearing cache
+      const img = new Image();
+      img.onload = () => {
+        console.log('✅ New image preloaded successfully');
+        setForceRefresh(prev => prev + 1);
+      };
+      img.src = src + '?refresh=' + Date.now();
     }
   }, [src]);
 
@@ -67,13 +75,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
     // Validate file
     if (!file.type.startsWith('image/')) {
-      console.error('Invalid file type');
+      console.error('❌ Invalid file type');
       event.target.value = '';
       return;
     }
 
     if (file.size > 10 * 1024 * 1024) { // 10MB limit
-      console.error('File too large');
+      console.error('❌ File too large');
       event.target.value = '';
       return;
     }
@@ -82,34 +90,59 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setImageError(false);
 
     try {
-      console.log('Starting image upload for replacement:', file.name);
+      console.log('📤 Starting image upload for replacement:', file.name);
+      
+      // Create immediate preview using FileReader for instant feedback
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const previewUrl = e.target?.result as string;
+        if (previewUrl) {
+          console.log('🖼️ Showing immediate preview while uploading');
+          setCurrentSrc(previewUrl);
+          setForceRefresh(prev => prev + 1);
+        }
+      };
+      reader.readAsDataURL(file);
       
       const newImageUrl = await ImageStorageService.uploadImage(file, projectId, currentSrc);
       
       if (newImageUrl) {
-        // Create cache-busted URL with timestamp
-        const timestamp = Date.now();
-        const cacheBustedUrl = newImageUrl.includes('?') 
-          ? `${newImageUrl}&cb=${timestamp}` 
-          : `${newImageUrl}?cb=${timestamp}`;
+        // Add timestamp for cache busting
+        const cacheBustedUrl = `${newImageUrl}?v=${Date.now()}`;
         
-        console.log('Image uploaded successfully, updating UI:', cacheBustedUrl);
+        console.log('✅ Image uploaded successfully, updating to final URL:', cacheBustedUrl);
         
-        // Update local state immediately for instant feedback
+        // Update to final uploaded URL
         setCurrentSrc(cacheBustedUrl);
-        setImageKey(timestamp);
+        setForceRefresh(prev => prev + 1);
         setImageError(false);
         
-        // Call parent callback to update parent state
+        // Call parent callback immediately
         onImageReplace(cacheBustedUrl);
         
-        console.log('Image replacement completed successfully');
+        // Force all images with this src to update in the DOM
+        setTimeout(() => {
+          document.querySelectorAll(`img[src*="${src}"]`).forEach((img) => {
+            (img as HTMLImageElement).src = cacheBustedUrl;
+          });
+          
+          // Trigger a global refresh event
+          window.dispatchEvent(new CustomEvent('imageReplaced', {
+            detail: { oldSrc: src, newSrc: cacheBustedUrl }
+          }));
+          
+          console.log('🔄 Triggered global image refresh');
+        }, 100);
+        
+        console.log('🎉 Image replacement completed successfully');
       } else {
-        console.error('Upload failed - no URL returned');
+        console.error('❌ Upload failed - no URL returned');
+        setCurrentSrc(src); // Revert to original
         setImageError(true);
       }
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error('❌ Error uploading image:', error);
+      setCurrentSrc(src); // Revert to original
       setImageError(true);
     } finally {
       setIsUploading(false);
@@ -119,28 +152,30 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   const handleImageRemove = () => {
     if (onImageRemove) {
-      console.log('Removing image:', currentSrc);
+      console.log('🗑️ Removing image:', currentSrc);
       onImageRemove();
     }
   };
 
   const handleImageError = () => {
-    console.error('Image failed to load:', currentSrc);
+    console.error('❌ Image failed to load:', currentSrc);
     setImageError(true);
   };
 
   const handleImageLoad = () => {
-    console.log('Image loaded successfully:', currentSrc);
+    console.log('✅ Image loaded successfully:', currentSrc);
     setImageError(false);
   };
 
-  // Create the final image URL with cache busting
-  const imageUrl = currentSrc.includes('?') 
-    ? `${currentSrc}&key=${imageKey}` 
-    : `${currentSrc}?key=${imageKey}`;
+  // Create final URL with aggressive cache busting
+  const displayUrl = React.useMemo(() => {
+    const baseUrl = currentSrc;
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    return `${baseUrl}${separator}refresh=${forceRefresh}&t=${Date.now()}`;
+  }, [currentSrc, forceRefresh]);
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} key={`image-${forceRefresh}`}>
       <div 
         className="relative group overflow-hidden cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
@@ -155,19 +190,33 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           </div>
         ) : (
           <img
-            key={imageKey} // Force re-render when key changes
-            src={imageUrl}
+            key={`img-${forceRefresh}-${Date.now()}`}
+            src={displayUrl}
             alt={alt}
             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
             onClick={handleMaximize}
             onError={handleImageError}
             onLoad={handleImageLoad}
+            style={{ 
+              opacity: isUploading ? 0.7 : 1,
+              transition: 'opacity 0.3s ease'
+            }}
           />
         )}
         
+        {/* Upload Progress Overlay */}
+        {isUploading && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <div className="text-white text-center">
+              <div className="animate-spin h-8 w-8 border-2 border-white border-t-transparent rounded-full mx-auto mb-2" />
+              <div className="text-sm">Uploading...</div>
+            </div>
+          </div>
+        )}
+        
         <AnimatePresence>
-          {isHovered && !imageError && (
+          {isHovered && !imageError && !isUploading && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -199,11 +248,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
                       className="bg-blue-500/90 hover:bg-blue-600 text-white"
                       disabled={isUploading}
                     >
-                      {isUploading ? (
-                        <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
-                      ) : (
-                        <Edit className="h-4 w-4" />
-                      )}
+                      <Edit className="h-4 w-4" />
                     </Button>
                   </div>
                 )}

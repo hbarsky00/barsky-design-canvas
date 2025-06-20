@@ -24,16 +24,39 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   imageCaptions = {}
 }) => {
   const [localImages, setLocalImages] = useState<string[]>(images);
-  const [refreshKey, setRefreshKey] = useState(Date.now());
+  const [componentKey, setComponentKey] = useState(Date.now());
 
-  // Sync with parent images prop and force refresh
+  // Sync with parent images prop and force complete refresh
   useEffect(() => {
     if (JSON.stringify(images) !== JSON.stringify(localImages)) {
-      console.log('ContentImageManager: Syncing with parent images:', images);
+      console.log('🔄 ContentImageManager: Images changed, forcing complete refresh');
+      console.log('Old images:', localImages);
+      console.log('New images:', images);
+      
       setLocalImages(images);
-      setRefreshKey(Date.now()); // Force refresh all images
+      setComponentKey(Date.now()); // Force complete re-render
     }
   }, [images]);
+
+  // Listen for global image replacement events
+  useEffect(() => {
+    const handleImageReplaced = (event: CustomEvent) => {
+      const { oldSrc, newSrc } = event.detail;
+      console.log('🔄 Global image replacement detected:', oldSrc, '->', newSrc);
+      
+      setLocalImages(prev => {
+        const updated = prev.map(img => img === oldSrc ? newSrc : img);
+        console.log('Updated local images:', updated);
+        return updated;
+      });
+      setComponentKey(Date.now());
+    };
+
+    window.addEventListener('imageReplaced', handleImageReplaced as EventListener);
+    return () => {
+      window.removeEventListener('imageReplaced', handleImageReplaced as EventListener);
+    };
+  }, []);
 
   const handleImageAdd = useCallback(() => {
     if (localImages.length >= maxImages || !onImageAdd) return;
@@ -41,32 +64,36 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
     const newImage = "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png";
     const updatedImages = [...localImages, newImage];
     
-    console.log('ContentImageManager: Adding image:', newImage);
+    console.log('➕ ContentImageManager: Adding image:', newImage);
     setLocalImages(updatedImages);
-    setRefreshKey(Date.now());
+    setComponentKey(Date.now());
     onImageAdd(newImage);
   }, [localImages, maxImages, onImageAdd]);
 
   const handleImageReplace = useCallback((index: number, newSrc: string) => {
     if (!onImageReplace) return;
     
-    const updatedImages = [...localImages];
-    updatedImages[index] = newSrc;
+    console.log('🔄 ContentImageManager: Replacing image at index', index, 'with:', newSrc);
     
-    console.log('ContentImageManager: Replacing image at index', index, 'with:', newSrc);
-    setLocalImages(updatedImages);
-    setRefreshKey(Date.now());
+    setLocalImages(prev => {
+      const updated = [...prev];
+      updated[index] = newSrc;
+      console.log('Updated images after replacement:', updated);
+      return updated;
+    });
+    
+    setComponentKey(Date.now());
     onImageReplace(index, newSrc);
-  }, [localImages, onImageReplace]);
+  }, [onImageReplace]);
 
   const handleImageRemove = useCallback((index: number) => {
     if (!onImageRemove) return;
     
     const updatedImages = localImages.filter((_, i) => i !== index);
     
-    console.log('ContentImageManager: Removing image at index:', index);
+    console.log('🗑️ ContentImageManager: Removing image at index:', index);
     setLocalImages(updatedImages);
-    setRefreshKey(Date.now());
+    setComponentKey(Date.now());
     onImageRemove(index);
   }, [localImages, onImageRemove]);
 
@@ -75,7 +102,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   }
 
   return (
-    <div className="mt-8 space-y-4">
+    <div className="mt-8 space-y-4" key={`manager-${componentKey}`}>
       {onImageAdd && localImages.length < maxImages && (
         <div className="flex justify-start">
           <Button
@@ -93,7 +120,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
       {localImages.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {localImages.map((imageSrc, index) => (
-            <div key={`${imageSrc}-${index}-${refreshKey}`} className="relative group/image">
+            <div key={`${imageSrc}-${index}-${componentKey}`} className="relative group/image">
               <div className="glass-card p-3 layered-depth">
                 <MaximizableImage
                   src={imageSrc}
