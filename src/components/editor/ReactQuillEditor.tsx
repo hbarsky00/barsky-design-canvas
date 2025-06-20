@@ -45,7 +45,38 @@ const ReactQuillEditor: React.FC<ReactQuillEditorProps> = ({
     }
   };
 
-  // Custom styles for the editor
+  // Apply custom styles via useEffect
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .ql-editor {
+        min-height: ${height - 42}px !important;
+        font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif !important;
+        font-size: 14px !important;
+      }
+      .ql-toolbar {
+        border-top: 1px solid #ccc !important;
+        border-left: 1px solid #ccc !important;
+        border-right: 1px solid #ccc !important;
+      }
+      .ql-container {
+        border-bottom: 1px solid #ccc !important;
+        border-left: 1px solid #ccc !important;
+        border-right: 1px solid #ccc !important;
+      }
+      .ql-editor.ql-blank::before {
+        color: #999 !important;
+        font-style: italic !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, [height]);
+
+  // Custom styles for the editor container
   const editorStyle = {
     height: `${height}px`,
     backgroundColor: 'white',
@@ -53,28 +84,6 @@ const ReactQuillEditor: React.FC<ReactQuillEditorProps> = ({
 
   return (
     <div className="w-full">
-      <style jsx global>{`
-        .ql-editor {
-          min-height: ${height - 42}px;
-          font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-          font-size: 14px;
-        }
-        .ql-toolbar {
-          border-top: 1px solid #ccc;
-          border-left: 1px solid #ccc;
-          border-right: 1px solid #ccc;
-        }
-        .ql-container {
-          border-bottom: 1px solid #ccc;
-          border-left: 1px solid #ccc;
-          border-right: 1px solid #ccc;
-        }
-        .ql-editor.ql-blank::before {
-          color: #999;
-          font-style: italic;
-        }
-      `}</style>
-      
       <ReactQuill
         ref={quillRef}
         theme="snow"
