@@ -78,30 +78,11 @@ export const useImageUpload = ({ projectId, onImageAdd }: UseImageUploadProps) =
       
       console.log('➕ Adding uploaded image to UI:', selectedImageSrc.substring(0, 50) + '...');
       
-      // Call the onImageAdd callback
+      // Call the onImageAdd callback immediately
       onImageAdd(selectedImageSrc);
       
-      // Dispatch events to trigger UI refresh across all components
-      console.log('📡 Dispatching image add events for UI refresh');
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          projectId,
-          imageAdded: selectedImageSrc,
-          immediate: true,
-          timestamp: Date.now()
-        }
-      }));
-      
-      window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
-        detail: { 
-          projectId,
-          reason: 'image-added',
-          timestamp: Date.now()
-        }
-      }));
-      
       toast.success('Image uploaded and added successfully!');
-      console.log('✅ Image upload complete and events dispatched');
+      console.log('✅ Image upload complete');
       
     } catch (error) {
       console.log('❌ Image upload cancelled or failed:', error);
