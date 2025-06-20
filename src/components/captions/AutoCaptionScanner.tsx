@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useEnhancedAiImageCaptions } from '@/hooks/useEnhancedAiImageCaptions';
 import { useSimpleCaptions } from '@/hooks/useSimpleCaptions';
@@ -78,14 +77,14 @@ const AutoCaptionScanner: React.FC = () => {
     const issues: ImageIssue[] = [];
     
     try {
-      // Create a fresh instance of the hook for each project
-      const captionHook = useSimpleCaptions(project.id);
-      await captionHook.loadCaptions();
-      const captions = captionHook.captions;
+      // Get captions for this project without using the hook inside the function
+      const storageKey = `image_captions_${project.id}`;
+      const savedCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
       // Scan main project image
       if (project.image) {
-        const caption = captions[`img_caption_${project.image}`];
+        const captionKey = `img_caption_${project.image}`;
+        const caption = savedCaptions[captionKey];
         const issue = analyzeCaption(caption, project.image);
         if (issue) {
           issues.push({
@@ -116,7 +115,8 @@ const AutoCaptionScanner: React.FC = () => {
           const uniqueImages = [...new Set(matches)];
 
           for (const imageSrc of uniqueImages) {
-            const caption = captions[`img_caption_${imageSrc}`];
+            const captionKey = `img_caption_${imageSrc}`;
+            const caption = savedCaptions[captionKey];
             const issue = analyzeCaption(caption, imageSrc);
             if (issue) {
               issues.push({
@@ -145,14 +145,14 @@ const AutoCaptionScanner: React.FC = () => {
     }
 
     const now = Date.now();
-    if (now - lastScanRef.current < 25000) { // Minimum 25 seconds between scans
+    if (now - lastScanRef.current < 30000) { // Minimum 30 seconds between scans
       return;
     }
 
     isProcessingRef.current = true;
     lastScanRef.current = now;
     
-    console.log('🔍 Background Caption Scanner: Starting silent scan...');
+    console.log('🔍 Global Caption Scanner: Starting automated scan...');
 
     try {
       const allIssues: ImageIssue[] = [];
@@ -169,20 +169,20 @@ const AutoCaptionScanner: React.FC = () => {
         return priorityOrder[b.priority] - priorityOrder[a.priority];
       });
 
-      console.log(`🔍 Background scan complete: Found ${sortedIssues.length} issues`);
+      console.log(`🔍 Global scan complete: Found ${sortedIssues.length} caption issues`);
 
       // Auto-fix high priority issues automatically
       const highPriorityIssues = sortedIssues.filter(issue => issue.priority === 'high');
       
       if (highPriorityIssues.length > 0) {
-        console.log(`🔧 Auto-fixing ${highPriorityIssues.length} high priority issues...`);
+        console.log(`🔧 Auto-fixing ${highPriorityIssues.length} high priority caption issues...`);
         
         let fixedCount = 0;
-        for (const issue of highPriorityIssues.slice(0, 3)) { // Limit to 3 per scan to avoid overwhelming
+        for (const issue of highPriorityIssues.slice(0, 2)) { // Limit to 2 per scan to avoid overwhelming
           try {
             const newCaption = await generateSingleCaption(issue.imageSrc, 'descriptive', 'project');
             
-            // Save the caption using the isolated caption system
+            // Save the caption directly to localStorage
             const captionKey = `img_caption_${issue.imageSrc}`;
             const storageKey = `image_captions_${issue.projectId}`;
             const existingCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
@@ -193,17 +193,14 @@ const AutoCaptionScanner: React.FC = () => {
             fixedCount++;
             
             // Small delay between fixes
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 2000));
           } catch (error) {
             console.error(`❌ Failed to auto-fix caption for ${issue.imageSrc}:`, error);
           }
         }
 
         if (fixedCount > 0) {
-          toast.success(`Auto-fixed ${fixedCount} caption issues`, {
-            description: 'Missing and poor quality captions have been updated',
-            duration: 3000
-          });
+          console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically`);
           
           // Trigger a refresh for updated content
           window.dispatchEvent(new CustomEvent('captionsUpdated', {
@@ -213,36 +210,36 @@ const AutoCaptionScanner: React.FC = () => {
       }
 
     } catch (error) {
-      console.error('❌ Background scan error:', error);
+      console.error('❌ Global caption scan error:', error);
     } finally {
       isProcessingRef.current = false;
     }
   };
 
-  // Set up background monitoring
+  // Set up global background monitoring
   useEffect(() => {
-    console.log('🚀 Background Caption Scanner: Initialized');
+    console.log('🚀 Global Caption Scanner: Initialized and running automatically');
     
     // Initial scan after a short delay
     const initialTimeout = setTimeout(() => {
       performBackgroundScan();
-    }, 5000);
+    }, 10000); // Wait 10 seconds after app load
 
     // Set up interval for continuous monitoring
     intervalRef.current = setInterval(() => {
       performBackgroundScan();
-    }, 30000); // Scan every 30 seconds
+    }, 45000); // Scan every 45 seconds
 
     return () => {
       if (initialTimeout) clearTimeout(initialTimeout);
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      console.log('🔇 Background Caption Scanner: Stopped');
+      console.log('🔇 Global Caption Scanner: Stopped');
     };
   }, []);
 
-  // This component renders nothing - it's completely invisible
+  // This component renders nothing - it's completely invisible and global
   return null;
 };
 

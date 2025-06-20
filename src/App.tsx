@@ -13,6 +13,7 @@ import ProjectDetail from "@/pages/ProjectDetail";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { DevModeProvider } from "@/context/DevModeContext";
 import GlobalCaptions from "@/pages/GlobalCaptions";
+import AutoCaptionScanner from "@/components/captions/AutoCaptionScanner";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,9 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <Toaster />
+              
+              {/* Global background caption scanner - runs on all pages */}
+              <AutoCaptionScanner />
             </Router>
           </ImageMaximizerProvider>
         </DevModeProvider>
