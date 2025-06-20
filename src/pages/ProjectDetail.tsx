@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import { ImageReplacementProvider } from "@/context/ImageReplacementContext";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
-import DevModeSyncButton from "@/components/dev/DevModeSyncButton";
-import CaptionUpdateStatus from "@/components/captions/CaptionUpdateStatus";
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -25,8 +23,6 @@ const ProjectDetail = () => {
     <ImageReplacementProvider projectId={projectId}>
       <ImageMaximizerProvider>
         <SimplifiedProjectDetail />
-        <DevModeSyncButton />
-        <CaptionUpdateStatus />
       </ImageMaximizerProvider>
     </ImageReplacementProvider>
   );
