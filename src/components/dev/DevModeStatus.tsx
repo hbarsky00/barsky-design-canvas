@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { useDevMode } from '@/context/DevModeContext';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
-import { GitBranch, CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Zap, Sparkles } from 'lucide-react';
 
 const DevModeStatus: React.FC = () => {
   const { isDevMode, isLovableEnvironment, useExternalDeployment } = useDevMode();
@@ -53,3 +54,6 @@ const DevModeStatus: React.FC = () => {
       </div>
     </div>
   );
+};
+
+export default DevModeStatus;
