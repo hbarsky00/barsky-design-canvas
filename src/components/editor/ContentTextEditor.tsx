@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Edit3, Save, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import TinyMCEEditor from './TinyMCEEditor';
+import ReactQuillEditor from './ReactQuillEditor';
 
 interface ContentTextEditorProps {
   content: string;
@@ -53,28 +53,26 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
     if (contentType === 'header') {
       return (
         <h2 className="text-3xl font-bold text-gray-900 mb-6">
-          {editedContent}
+          {editedContent.replace(/<[^>]*>/g, '')}
         </h2>
       );
     }
     
     if (contentType === 'paragraph') {
       return (
-        <p className="text-xl text-gray-600 leading-relaxed">
-          {editedContent}
-        </p>
+        <div 
+          className="text-xl text-gray-600 leading-relaxed prose prose-lg"
+          dangerouslySetInnerHTML={{ __html: editedContent }}
+        />
       );
     }
     
     // section type
     return (
-      <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-        {editedContent.split('\n\n').map((paragraph, index) => (
-          <p key={index} className="mb-4">
-            {paragraph}
-          </p>
-        ))}
-      </div>
+      <div 
+        className="prose prose-lg text-gray-600 leading-relaxed max-w-none"
+        dangerouslySetInnerHTML={{ __html: editedContent }}
+      />
     );
   };
 
@@ -99,7 +97,7 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
           animate={{ opacity: 1, y: 0 }}
           className="space-y-4"
         >
-          <TinyMCEEditor
+          <ReactQuillEditor
             initialValue={editedContent}
             onEditorChange={setEditedContent}
             height={getEditorHeight()}

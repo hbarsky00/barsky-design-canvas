@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TinyMCEEditor from './TinyMCEEditor';
+import ReactQuillEditor from './ReactQuillEditor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ContentEditorProps {
@@ -24,7 +24,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <TinyMCEEditor
+        <ReactQuillEditor
           initialValue={content}
           onEditorChange={onContentChange}
           placeholder={placeholder}

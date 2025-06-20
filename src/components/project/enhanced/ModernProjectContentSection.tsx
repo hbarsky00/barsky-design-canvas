@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Edit3, Save, X, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import TinyMCEEditor from "@/components/editor/TinyMCEEditor";
+import ReactQuillEditor from "@/components/editor/ReactQuillEditor";
 import MaximizableImage from "../MaximizableImage";
 
 interface ModernProjectContentSectionProps {
@@ -70,13 +70,10 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         <div className="relative">
           {!isEditingContent ? (
             <div className="group/content relative">
-              <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-                {editedContent.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4 text-center">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+              <div 
+                className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center"
+                dangerouslySetInnerHTML={{ __html: editedContent }}
+              />
               <Button
                 variant="ghost"
                 size="sm"
@@ -88,7 +85,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
             </div>
           ) : (
             <div className="space-y-4">
-              <TinyMCEEditor
+              <ReactQuillEditor
                 initialValue={editedContent}
                 onEditorChange={setEditedContent}
                 height={300}

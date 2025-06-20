@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import TinyMCEEditor from '@/components/editor/TinyMCEEditor';
+import ReactQuillEditor from '@/components/editor/ReactQuillEditor';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const TinyMCEDemo: React.FC = () => {
-  const [content, setContent] = useState('<p>Welcome to TinyMCE! Start editing this content...</p>');
+  const [content, setContent] = useState('<p>Welcome to ReactQuill! Start editing this content...</p>');
   const [savedContent, setSavedContent] = useState('');
 
   const handleSave = () => {
@@ -33,10 +33,10 @@ const TinyMCEDemo: React.FC = () => {
           >
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                TinyMCE Integration Demo
+                ReactQuill Integration Demo
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experience the power of TinyMCE rich text editor integrated into your Lovable application.
+                Experience the power of ReactQuill rich text editor integrated into your Lovable application.
               </p>
             </div>
 
@@ -44,11 +44,11 @@ const TinyMCEDemo: React.FC = () => {
               <CardHeader>
                 <CardTitle>Rich Text Editor</CardTitle>
                 <CardDescription>
-                  Use the editor below to create and format content with TinyMCE's powerful features.
+                  Use the editor below to create and format content with ReactQuill's powerful features.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <TinyMCEEditor
+                <ReactQuillEditor
                   initialValue={content}
                   onEditorChange={setContent}
                   height={500}
@@ -99,7 +99,7 @@ const TinyMCEDemo: React.FC = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle>TinyMCE Features</CardTitle>
+                <CardTitle>ReactQuill Features</CardTitle>
                 <CardDescription>
                   Key features available in this integration:
                 </CardDescription>
@@ -107,16 +107,16 @@ const TinyMCEDemo: React.FC = () => {
               <CardContent>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                   <li>• Rich text formatting (bold, italic, etc.)</li>
-                  <li>• Lists and indentation</li>
-                  <li>• Text alignment</li>
+                  <li>• Lists and bullet points</li>
+                  <li>• Text alignment options</li>
                   <li>• Link insertion</li>
                   <li>• Image embedding</li>
-                  <li>• Table creation</li>
+                  <li>• Color and background styling</li>
+                  <li>• Headers and text sizes</li>
                   <li>• Undo/Redo functionality</li>
-                  <li>• Full-screen editing</li>
-                  <li>• Search and replace</li>
-                  <li>• Character and word count</li>
-                  <li>• Custom styling options</li>
+                  <li>• Clean and simple interface</li>
+                  <li>• Better Lovable integration</li>
+                  <li>• No domain registration required</li>
                   <li>• Responsive design</li>
                 </ul>
               </CardContent>
