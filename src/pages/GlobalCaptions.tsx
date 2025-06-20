@@ -3,7 +3,7 @@ import React from 'react';
 import { useDevMode } from '@/context/DevModeContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import GlobalCaptionGenerator from '@/components/captions/GlobalCaptionGenerator';
+import AutoCaptionScanner from '@/components/captions/AutoCaptionScanner';
 import { Navigate } from 'react-router-dom';
 
 const GlobalCaptions: React.FC = () => {
@@ -21,25 +21,25 @@ const GlobalCaptions: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              AI Caption Generator
+              Automated Caption Monitor
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Generate high-quality AI captions for all images across your entire portfolio. 
-              This tool will scan all projects and create descriptive, SEO-optimized captions automatically.
+              Continuous monitoring system that automatically scans your portfolio for images with missing, 
+              poor quality, or outdated captions. Get real-time alerts and auto-fix suggestions.
             </p>
           </div>
           
-          <GlobalCaptionGenerator />
+          <AutoCaptionScanner />
           
           <div className="mt-12 p-6 bg-blue-50 rounded-lg">
-            <h2 className="font-semibold text-blue-900 mb-3">What this tool does:</h2>
+            <h2 className="font-semibold text-blue-900 mb-3">How the monitor works:</h2>
             <ul className="space-y-2 text-sm text-blue-800">
-              <li>• Scans all 8 project pages for images without quality captions</li>
-              <li>• Generates 4 caption styles: Alt-text, Descriptive, SEO-optimized, and Technical</li>
-              <li>• Uses OpenAI's GPT-4o-mini for intelligent image analysis</li>
-              <li>• Automatically saves captions to your project data</li>
-              <li>• Provides real-time progress tracking and error handling</li>
-              <li>• Exports results for backup and review</li>
+              <li>• <strong>Continuous Scanning:</strong> Automatically checks all project images every 30 seconds</li>
+              <li>• <strong>Smart Detection:</strong> Identifies missing captions, generic placeholders, and poor quality descriptions</li>
+              <li>• <strong>Priority Classification:</strong> Ranks issues by importance (High: missing captions, Medium: generic text, Low: minor improvements)</li>
+              <li>• <strong>Auto-fix Capability:</strong> Select issues and let AI generate quality captions automatically</li>
+              <li>• <strong>Real-time Alerts:</strong> Get notified when new caption issues are detected</li>
+              <li>• <strong>Progress Tracking:</strong> Monitor caption quality improvements over time</li>
             </ul>
           </div>
         </div>
