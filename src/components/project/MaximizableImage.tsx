@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ZoomIn, Edit, X, Upload, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
-import { ImageStorageService } from "@/services/imageStorage";
+import { VercelBlobStorageService } from "@/services/vercelBlobStorage";
 
 interface MaximizableImageProps {
   src: string;
@@ -90,7 +90,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setImageError(false);
 
     try {
-      console.log('📤 Starting image upload for replacement:', file.name);
+      console.log('📤 Starting image upload for replacement using Vercel Blob:', file.name);
       
       // Create immediate preview using FileReader for instant feedback
       const reader = new FileReader();
@@ -104,13 +104,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       };
       reader.readAsDataURL(file);
       
-      const newImageUrl = await ImageStorageService.uploadImage(file, projectId, currentSrc);
+      const newImageUrl = await VercelBlobStorageService.uploadImage(file, projectId, currentSrc);
       
       if (newImageUrl) {
         // Add timestamp for cache busting
         const cacheBustedUrl = `${newImageUrl}?v=${Date.now()}`;
         
-        console.log('✅ Image uploaded successfully, updating to final URL:', cacheBustedUrl);
+        console.log('✅ Image uploaded successfully to Vercel Blob, updating to final URL:', cacheBustedUrl);
         
         // Update to final uploaded URL
         setCurrentSrc(cacheBustedUrl);
@@ -134,14 +134,14 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           console.log('🔄 Triggered global image refresh');
         }, 100);
         
-        console.log('🎉 Image replacement completed successfully');
+        console.log('🎉 Image replacement completed successfully using Vercel Blob');
       } else {
         console.error('❌ Upload failed - no URL returned');
         setCurrentSrc(src); // Revert to original
         setImageError(true);
       }
     } catch (error) {
-      console.error('❌ Error uploading image:', error);
+      console.error('❌ Error uploading image to Vercel Blob:', error);
       setCurrentSrc(src); // Revert to original
       setImageError(true);
     } finally {
@@ -210,7 +210,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div className="text-white text-center">
               <div className="animate-spin h-8 w-8 border-2 border-white border-t-transparent rounded-full mx-auto mb-2" />
-              <div className="text-sm">Uploading...</div>
+              <div className="text-sm">Uploading to Vercel Blob...</div>
             </div>
           </div>
         )}

@@ -1,5 +1,5 @@
 
-import { ImageStorageService } from '../imageStorage';
+import { VercelBlobStorageService } from '../vercelBlobStorage';
 
 export class ImageProcessor {
   static async processImages(
@@ -19,7 +19,7 @@ export class ImageProcessor {
         }
 
         if (newSrc.startsWith('data:')) {
-          // Upload data URL images to permanent storage
+          // Upload data URL images to Vercel Blob
           try {
             const response = await fetch(newSrc);
             if (!response.ok) {
@@ -37,17 +37,17 @@ export class ImageProcessor {
             
             const file = new File([blob], 'image.png', { type: blob.type });
             
-            const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, originalSrc);
+            const uploadedUrl = await VercelBlobStorageService.uploadImage(file, projectId, originalSrc);
             
             if (uploadedUrl && (uploadedUrl.startsWith('https://') || uploadedUrl.startsWith('http://'))) {
               publishedImageMappings[originalSrc] = uploadedUrl;
-              console.log('📤 Uploaded image:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
+              console.log('📤 Uploaded image to Vercel Blob:', originalSrc.substring(0, 50) + '...', '->', uploadedUrl);
             } else {
               console.warn('❌ Upload failed or returned invalid URL for:', originalSrc);
               failedUploads.push(originalSrc);
             }
           } catch (uploadError) {
-            console.error('❌ Error uploading image:', originalSrc, uploadError);
+            console.error('❌ Error uploading image to Vercel Blob:', originalSrc, uploadError);
             failedUploads.push(originalSrc);
           }
         } else if (newSrc.startsWith('https://') || newSrc.startsWith('http://') || newSrc.startsWith('/')) {
@@ -96,7 +96,7 @@ export class ImageProcessor {
               const blob = await response.blob();
               const file = new File([blob], 'content-image.png', { type: blob.type });
               
-              const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, `content-${sectionKey}-${Date.now()}`);
+              const uploadedUrl = await VercelBlobStorageService.uploadImage(file, projectId, `content-${sectionKey}-${Date.now()}`);
               if (uploadedUrl && (uploadedUrl.startsWith('https://') || uploadedUrl.startsWith('http://'))) {
                 return { ...block, src: uploadedUrl };
               } else {
@@ -104,7 +104,7 @@ export class ImageProcessor {
                 return null;
               }
             } catch (error) {
-              console.error('❌ Error uploading content block image:', error);
+              console.error('❌ Error uploading content block image to Vercel Blob:', error);
               return null;
             }
           }
