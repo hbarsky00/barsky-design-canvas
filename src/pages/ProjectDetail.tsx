@@ -1,7 +1,6 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { DevModeProvider } from "@/context/DevModeContext";
 import { ImageReplacementProvider } from "@/context/ImageReplacementContext";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
@@ -23,15 +22,13 @@ const ProjectDetail = () => {
   }
   
   return (
-    <DevModeProvider>
-      <ImageReplacementProvider projectId={projectId}>
-        <ImageMaximizerProvider>
-          <SimplifiedProjectDetail />
-          <DevModeSyncButton />
-          <CaptionUpdateStatus />
-        </ImageMaximizerProvider>
-      </ImageReplacementProvider>
-    </DevModeProvider>
+    <ImageReplacementProvider projectId={projectId}>
+      <ImageMaximizerProvider>
+        <SimplifiedProjectDetail />
+        <DevModeSyncButton />
+        <CaptionUpdateStatus />
+      </ImageMaximizerProvider>
+    </ImageReplacementProvider>
   );
 };
 
