@@ -13,6 +13,8 @@ import { projectFaqs } from "@/data/seoFaqs";
 const SimplifiedProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
   
+  console.log('🎬 SimplifiedProjectDetail: Rendering with projectId:', projectId);
+  
   const {
     project,
     details,
@@ -22,11 +24,20 @@ const SimplifiedProjectDetail = () => {
     error
   } = useProjectDetail(projectId);
 
+  console.log('📊 SimplifiedProjectDetail: Hook data:', {
+    hasProject: !!project,
+    hasDetails: !!details,
+    isLoading,
+    error
+  });
+
   if (isLoading) {
+    console.log('⏳ SimplifiedProjectDetail: Showing loading state');
     return <ProjectDetailLoading />;
   }
 
   if (error || !project || !details || !projectId) {
+    console.log('❌ SimplifiedProjectDetail: Showing error state:', { error, hasProject: !!project, hasDetails: !!details, projectId });
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -42,6 +53,11 @@ const SimplifiedProjectDetail = () => {
       </div>
     );
   }
+
+  console.log('✅ SimplifiedProjectDetail: Rendering project detail with data:', {
+    projectTitle: project.title,
+    detailsChallenge: details.challenge.substring(0, 50) + '...'
+  });
 
   return (
     <div className="flex flex-col min-h-screen">

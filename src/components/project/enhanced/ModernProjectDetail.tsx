@@ -35,6 +35,10 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });
 
   console.log('🔄 ModernProjectDetail: Component key:', componentKey);
+  console.log('🔄 ModernProjectDetail: Updated project data:', {
+    title: updatedProject.title,
+    description: updatedProject.description.substring(0, 50) + '...'
+  });
 
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -71,14 +75,18 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             contentType="section"
             onSave={(content) => handleSectionContentSave('challenge', 'content', content)}
             images={details.challengeGalleryImages || []}
-            onImageAdd={(imageSrc) => console.log('Adding image to challenge:', imageSrc)}
+            onImageAdd={(imageSrc) => {
+              console.log('➕ Adding image to challenge section:', imageSrc);
+              // Image add will be handled by the ContentImageManager
+            }}
             onImageReplace={(index, newSrc) => {
               const originalSrc = details.challengeGalleryImages?.[index];
               if (originalSrc) {
+                console.log('🔄 Replacing challenge image:', originalSrc, '->', newSrc);
                 handleSectionImageUpdate('challenge', originalSrc, newSrc);
               }
             }}
-            onImageRemove={(index) => console.log('Removing image from challenge:', index)}
+            onImageRemove={(index) => console.log('🗑️ Removing image from challenge:', index)}
             maxImages={3}
             projectId={projectId}
             imageCaptions={imageCaptions}
@@ -107,14 +115,17 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             contentType="section"
             onSave={(content) => handleSectionContentSave('process', 'content', content)}
             images={details.processImage ? [details.processImage] : []}
-            onImageAdd={(imageSrc) => console.log('Adding image to process:', imageSrc)}
+            onImageAdd={(imageSrc) => {
+              console.log('➕ Adding image to process section:', imageSrc);
+            }}
             onImageReplace={(index, newSrc) => {
               const originalSrc = details.processImage;
               if (originalSrc && index === 0) {
+                console.log('🔄 Replacing process image:', originalSrc, '->', newSrc);
                 handleSectionImageUpdate('process', originalSrc, newSrc);
               }
             }}
-            onImageRemove={(index) => console.log('Removing image from process:', index)}
+            onImageRemove={(index) => console.log('🗑️ Removing image from process:', index)}
             maxImages={2}
             projectId={projectId}
             imageCaptions={imageCaptions}
@@ -143,14 +154,17 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             contentType="section"
             onSave={(content) => handleSectionContentSave('result', 'content', content)}
             images={details.resultGalleryImages || []}
-            onImageAdd={(imageSrc) => console.log('Adding image to result:', imageSrc)}
+            onImageAdd={(imageSrc) => {
+              console.log('➕ Adding image to result section:', imageSrc);
+            }}
             onImageReplace={(index, newSrc) => {
               const originalSrc = details.resultGalleryImages?.[index];
               if (originalSrc) {
+                console.log('🔄 Replacing result image:', originalSrc, '->', newSrc);
                 handleSectionImageUpdate('result', originalSrc, newSrc);
               }
             }}
-            onImageRemove={(index) => console.log('Removing image from result:', index)}
+            onImageRemove={(index) => console.log('🗑️ Removing image from result:', index)}
             maxImages={4}
             projectId={projectId}
             imageCaptions={imageCaptions}

@@ -28,20 +28,28 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   const [componentKey, setComponentKey] = useState(Date.now());
   const showEditingControls = shouldShowEditingControls();
   
+  console.log('🖼️ ContentImageManager: Rendering with images:', localImages.length, 'images');
+  
   const { isSelecting, handleImageAdd } = useImageUpload({ 
     projectId, 
     onImageAdd: (imageSrc) => {
+      console.log('📷 ContentImageManager: Image upload callback triggered:', imageSrc.substring(0, 50) + '...');
+      
       const updatedImages = [...localImages, imageSrc];
       setLocalImages(updatedImages);
       setComponentKey(Date.now());
+      
+      // Call parent callback
       onImageAdd?.(imageSrc);
+      
+      console.log('✅ ContentImageManager: Image added to local state, new count:', updatedImages.length);
     }
   });
 
   // Sync with parent images prop and force complete refresh
   useEffect(() => {
     if (JSON.stringify(images) !== JSON.stringify(localImages)) {
-      console.log('🔄 ContentImageManager: Images changed, forcing complete refresh');
+      console.log('🔄 ContentImageManager: Images prop changed, syncing local state');
       console.log('Old images:', localImages);
       console.log('New images:', images);
       
@@ -50,30 +58,49 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
     }
   }, [images]);
 
-  // Listen for global image replacement events
+  // Listen for global project data updates
   useEffect(() => {
+    const handleProjectUpdate = (event: CustomEvent) => {
+      console.log('🔄 ContentImageManager: Project data updated:', event.detail);
+      
+      if (event.detail?.projectId === projectId || event.detail?.immediate) {
+        console.log('🔄 ContentImageManager: Triggering component refresh');
+        setComponentKey(Date.now());
+      }
+    };
+
     const handleImageReplaced = (event: CustomEvent) => {
       const { oldSrc, newSrc } = event.detail;
-      console.log('🔄 Global image replacement detected:', oldSrc, '->', newSrc);
+      console.log('🔄 ContentImageManager: Global image replacement detected:', oldSrc, '->', newSrc);
       
       setLocalImages(prev => {
         const updated = prev.map(img => img === oldSrc ? newSrc : img);
-        console.log('Updated local images:', updated);
+        console.log('Updated local images after replacement:', updated);
         return updated;
       });
       setComponentKey(Date.now());
     };
 
-    window.addEventListener('imageReplaced', handleImageReplaced as EventListener);
-    return () => {
-      window.removeEventListener('imageReplaced', handleImageReplaced as EventListener);
+    const handleForceRefresh = (event: CustomEvent) => {
+      console.log('🔄 ContentImageManager: Force refresh triggered:', event.detail);
+      setComponentKey(Date.now());
     };
-  }, []);
+
+    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    window.addEventListener('imageReplaced', handleImageReplaced as EventListener);
+    window.addEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+      window.removeEventListener('imageReplaced', handleImageReplaced as EventListener);
+      window.removeEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
+    };
+  }, [projectId]);
 
   const handleImageReplace = useCallback((index: number, newSrc: string) => {
     if (!onImageReplace) return;
     
-    console.log('🔄 ContentImageManager: Replacing image at index', index, 'with:', newSrc);
+    console.log('🔄 ContentImageManager: Replacing image at index', index, 'with:', newSrc.substring(0, 50) + '...');
     
     setLocalImages(prev => {
       const updated = [...prev];
@@ -92,6 +119,8 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
     const updatedImages = localImages.filter((_, i) => i !== index);
     
     console.log('🗑️ ContentImageManager: Removing image at index:', index);
+    console.log('Images after removal:', updatedImages);
+    
     setLocalImages(updatedImages);
     setComponentKey(Date.now());
     onImageRemove(index);

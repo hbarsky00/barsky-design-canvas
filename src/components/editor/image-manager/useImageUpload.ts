@@ -12,7 +12,10 @@ export const useImageUpload = ({ projectId, onImageAdd }: UseImageUploadProps) =
   const [isSelecting, setIsSelecting] = useState(false);
 
   const handleImageAdd = useCallback(async () => {
-    if (!onImageAdd || isSelecting || !projectId) return;
+    if (!onImageAdd || isSelecting || !projectId) {
+      console.log('🚫 Image upload blocked:', { onImageAdd: !!onImageAdd, isSelecting, projectId });
+      return;
+    }
     
     setIsSelecting(true);
     
@@ -42,13 +45,15 @@ export const useImageUpload = ({ projectId, onImageAdd }: UseImageUploadProps) =
               }
 
               toast.info('Uploading image to Vercel Blob...');
-              console.log('📤 Uploading image to Vercel Blob:', file.name);
+              console.log('📤 Uploading image to Vercel Blob:', file.name, 'Size:', file.size);
               
               const uploadedUrl = await VercelBlobStorageService.uploadImage(file, projectId, `content-${Date.now()}`);
               
               if (uploadedUrl) {
+                console.log('✅ Image uploaded successfully:', uploadedUrl);
                 resolve(uploadedUrl);
               } else {
+                console.error('❌ Upload failed - no URL returned');
                 toast.error('Image upload failed. Please check your Vercel Blob configuration.');
                 reject(new Error('Upload failed'));
               }
@@ -71,12 +76,37 @@ export const useImageUpload = ({ projectId, onImageAdd }: UseImageUploadProps) =
         document.body.removeChild(input);
       });
       
-      console.log('➕ Adding uploaded image:', selectedImageSrc.substring(0, 50) + '...');
+      console.log('➕ Adding uploaded image to UI:', selectedImageSrc.substring(0, 50) + '...');
+      
+      // Call the onImageAdd callback
       onImageAdd(selectedImageSrc);
+      
+      // Dispatch events to trigger UI refresh across all components
+      console.log('📡 Dispatching image add events for UI refresh');
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId,
+          imageAdded: selectedImageSrc,
+          immediate: true,
+          timestamp: Date.now()
+        }
+      }));
+      
+      window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
+        detail: { 
+          projectId,
+          reason: 'image-added',
+          timestamp: Date.now()
+        }
+      }));
+      
       toast.success('Image uploaded and added successfully!');
+      console.log('✅ Image upload complete and events dispatched');
+      
     } catch (error) {
       console.log('❌ Image upload cancelled or failed:', error);
       if (error instanceof Error && error.message !== 'File selection cancelled') {
+        console.error('❌ Image upload error details:', error);
         toast.error('Failed to add image');
       }
     } finally {
