@@ -24,58 +24,50 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   imageCaptions = {}
 }) => {
   const [localImages, setLocalImages] = useState<string[]>(images);
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(Date.now());
 
-  // Sync with parent images prop
+  // Sync with parent images prop and force refresh
   useEffect(() => {
-    if (!isUpdating && JSON.stringify(images) !== JSON.stringify(localImages)) {
-      console.log('Syncing images from parent:', images);
+    if (JSON.stringify(images) !== JSON.stringify(localImages)) {
+      console.log('ContentImageManager: Syncing with parent images:', images);
       setLocalImages(images);
+      setRefreshKey(Date.now()); // Force refresh all images
     }
-  }, [images, localImages, isUpdating]);
+  }, [images]);
 
   const handleImageAdd = useCallback(() => {
     if (localImages.length >= maxImages || !onImageAdd) return;
     
-    setIsUpdating(true);
     const newImage = "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png";
     const updatedImages = [...localImages, newImage];
     
-    console.log('Adding image:', newImage);
+    console.log('ContentImageManager: Adding image:', newImage);
     setLocalImages(updatedImages);
+    setRefreshKey(Date.now());
     onImageAdd(newImage);
-    
-    // Allow parent to update
-    setTimeout(() => setIsUpdating(false), 100);
   }, [localImages, maxImages, onImageAdd]);
 
   const handleImageReplace = useCallback((index: number, newSrc: string) => {
     if (!onImageReplace) return;
     
-    setIsUpdating(true);
     const updatedImages = [...localImages];
     updatedImages[index] = newSrc;
     
-    console.log('Replacing image at index', index, 'with:', newSrc);
+    console.log('ContentImageManager: Replacing image at index', index, 'with:', newSrc);
     setLocalImages(updatedImages);
+    setRefreshKey(Date.now());
     onImageReplace(index, newSrc);
-    
-    // Allow parent to update
-    setTimeout(() => setIsUpdating(false), 100);
   }, [localImages, onImageReplace]);
 
   const handleImageRemove = useCallback((index: number) => {
     if (!onImageRemove) return;
     
-    setIsUpdating(true);
     const updatedImages = localImages.filter((_, i) => i !== index);
     
-    console.log('Removing image at index:', index);
+    console.log('ContentImageManager: Removing image at index:', index);
     setLocalImages(updatedImages);
+    setRefreshKey(Date.now());
     onImageRemove(index);
-    
-    // Allow parent to update
-    setTimeout(() => setIsUpdating(false), 100);
   }, [localImages, onImageRemove]);
 
   if (!onImageAdd && localImages.length === 0) {
@@ -91,7 +83,6 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
             variant="outline"
             size="sm"
             className="flex items-center space-x-2"
-            disabled={isUpdating}
           >
             <Plus className="h-4 w-4" />
             <span>Add Image</span>
@@ -102,7 +93,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
       {localImages.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {localImages.map((imageSrc, index) => (
-            <div key={`${imageSrc}-${index}`} className="relative group/image">
+            <div key={`${imageSrc}-${index}-${refreshKey}`} className="relative group/image">
               <div className="glass-card p-3 layered-depth">
                 <MaximizableImage
                   src={imageSrc}

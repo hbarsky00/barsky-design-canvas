@@ -40,14 +40,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
+  const [imageKey, setImageKey] = useState(Date.now());
 
-  // Update current source when prop changes
+  // Update current source when prop changes - force refresh
   useEffect(() => {
     if (src !== currentSrc) {
+      console.log('Image src changed, updating:', src);
       setCurrentSrc(src);
       setImageError(false);
-      setRetryCount(0);
+      setImageKey(Date.now()); // Force image refresh
     }
   }, [src]);
 
@@ -81,31 +82,28 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setImageError(false);
 
     try {
-      console.log('Starting image upload:', file.name);
+      console.log('Starting image upload for replacement:', file.name);
       
       const newImageUrl = await ImageStorageService.uploadImage(file, projectId, currentSrc);
       
       if (newImageUrl) {
-        // Create cache-busted URL
+        // Create cache-busted URL with timestamp
+        const timestamp = Date.now();
         const cacheBustedUrl = newImageUrl.includes('?') 
-          ? `${newImageUrl}&cb=${Date.now()}` 
-          : `${newImageUrl}?cb=${Date.now()}`;
+          ? `${newImageUrl}&cb=${timestamp}` 
+          : `${newImageUrl}?cb=${timestamp}`;
         
-        console.log('Image uploaded successfully:', cacheBustedUrl);
+        console.log('Image uploaded successfully, updating UI:', cacheBustedUrl);
         
-        // Update local state immediately
+        // Update local state immediately for instant feedback
         setCurrentSrc(cacheBustedUrl);
+        setImageKey(timestamp);
         setImageError(false);
-        setRetryCount(0);
         
-        // Call parent callback
+        // Call parent callback to update parent state
         onImageReplace(cacheBustedUrl);
         
-        // Force a small delay to ensure the new image is ready
-        setTimeout(() => {
-          setCurrentSrc(cacheBustedUrl);
-        }, 100);
-        
+        console.log('Image replacement completed successfully');
       } else {
         console.error('Upload failed - no URL returned');
         setImageError(true);
@@ -121,6 +119,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   const handleImageRemove = () => {
     if (onImageRemove) {
+      console.log('Removing image:', currentSrc);
       onImageRemove();
     }
   };
@@ -128,24 +127,17 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const handleImageError = () => {
     console.error('Image failed to load:', currentSrc);
     setImageError(true);
-    
-    // Retry with cache busting if haven't tried too many times
-    if (retryCount < 2) {
-      setTimeout(() => {
-        const retryUrl = currentSrc.includes('?') 
-          ? `${currentSrc}&retry=${retryCount + 1}` 
-          : `${currentSrc}?retry=${retryCount + 1}`;
-        setCurrentSrc(retryUrl);
-        setRetryCount(prev => prev + 1);
-      }, 1000 * (retryCount + 1)); // Progressive delay
-    }
   };
 
   const handleImageLoad = () => {
     console.log('Image loaded successfully:', currentSrc);
     setImageError(false);
-    setRetryCount(0);
   };
+
+  // Create the final image URL with cache busting
+  const imageUrl = currentSrc.includes('?') 
+    ? `${currentSrc}&key=${imageKey}` 
+    : `${currentSrc}?key=${imageKey}`;
 
   return (
     <div className={`relative ${className}`}>
@@ -158,12 +150,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
             <div className="text-center">
               <div className="text-sm">Failed to load image</div>
-              {retryCount < 2 && <div className="text-xs mt-1">Retrying...</div>}
+              <div className="text-xs mt-1">Try replacing with a new image</div>
             </div>
           </div>
         ) : (
           <img
-            src={currentSrc}
+            key={imageKey} // Force re-render when key changes
+            src={imageUrl}
             alt={alt}
             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
