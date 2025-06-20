@@ -18,12 +18,20 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import NotFound from "./pages/NotFound";
 import TinyMCEDemo from "@/pages/TinyMCEDemo";
 
-const queryClient = new QueryClient();
+// Create QueryClient with proper configuration
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    },
+  },
+});
 
 function App() {
   return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
         <TooltipProvider>
           <Toaster />
           <BrowserRouter>
@@ -43,8 +51,8 @@ function App() {
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
-      </QueryClientProvider>
-    </HelmetProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
   );
 }
 
