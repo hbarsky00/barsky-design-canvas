@@ -28,6 +28,7 @@ const TinyMCEEditor: React.FC<TinyMCEEditorProps> = ({
   return (
     <div className="w-full">
       <Editor
+        apiKey="n96w6o5vvrinqjhvz1f0bfec0w9hpla9km5xxhdtxkgrua5u"
         onInit={(evt, editor) => {
           editorRef.current = editor;
         }}
