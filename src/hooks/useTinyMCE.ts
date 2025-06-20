@@ -1,5 +1,5 @@
 
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 interface UseTinyMCEOptions {
   initialContent?: string;
