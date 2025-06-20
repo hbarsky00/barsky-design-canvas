@@ -40,7 +40,7 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
         <div className="mt-12">
           <ProjectMultiImageGallery 
             images={challengeGalleryImages}
-            captions={imageCaptions}
+            imageCaptions={imageCaptions}
           />
         </div>
       )}

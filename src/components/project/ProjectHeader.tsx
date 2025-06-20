@@ -6,7 +6,6 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
 import MaximizableImage from "./MaximizableImage";
-import EditableText from "@/components/dev/EditableText";
 
 interface ProjectHeaderProps {
   title: string;
@@ -50,21 +49,13 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <EditableText initialText={title}>
-              {(text) => (
-                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center lg:text-left">
-                  {text}
-                </h1>
-              )}
-            </EditableText>
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center lg:text-left">
+              {title}
+            </h1>
             
-            <EditableText initialText={description} multiline>
-              {(text) => (
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed text-center lg:text-left">
-                  {text}
-                </p>
-              )}
-            </EditableText>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed text-center lg:text-left">
+              {description}
+            </p>
             
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {tags.map((tag) => (

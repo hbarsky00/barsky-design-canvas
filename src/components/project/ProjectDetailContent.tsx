@@ -123,7 +123,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (
         <ProjectGallery
           images={Array.from(new Set(details.galleryImages.map(getReplacedImageSrc)))}
-          allImages={allImages}
           imageCaptions={imageCaptions}
         />
       )}

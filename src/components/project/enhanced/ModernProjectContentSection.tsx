@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import SectionImages from './SectionImages';
 import RichTextRenderer from '@/components/dev/RichTextRenderer';
 
 interface ModernProjectContentSectionProps {
@@ -16,13 +15,7 @@ interface ModernProjectContentSectionProps {
 const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = ({
   title,
   content,
-  sectionKey,
-  imageConfig,
-  imageCaptions,
-  projectId
 }) => {
-  const sectionImages = imageConfig[sectionKey] || [];
-
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -55,28 +48,6 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
             <RichTextRenderer text={content} />
           </div>
         </motion.div>
-
-        {sectionImages.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-6 sm:mb-8"
-          >
-            <SectionImages
-              sectionImages={sectionImages}
-              imageCaptions={imageCaptions}
-              title={title}
-              sectionKey={sectionKey}
-              projectId={projectId}
-              getReplacedImageSrc={(src) => src}
-              handleImageReplace={() => {}}
-              handleImageRemove={() => {}}
-              onImageReorder={() => {}}
-            />
-          </motion.div>
-        )}
       </div>
     </motion.section>
   );

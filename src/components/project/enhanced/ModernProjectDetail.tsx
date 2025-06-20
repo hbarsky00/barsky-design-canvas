@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import ModernProjectHero from "./ModernProjectHero";
-import ProjectHeroImageSection from "./ProjectHeroImageSection";
 import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import ProjectCallToAction from "@/components/project/ProjectCallToAction";
@@ -45,11 +44,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       />
 
       <div className="relative w-full px-4 py-8 space-y-8 z-10">
-        <ProjectHeroImageSection 
-          projectId={projectId} 
-          imageCaptions={imageCaptions}
-        />
-
         <ModernProjectContentSection
           title="The Challenge"
           content={details.challenge}

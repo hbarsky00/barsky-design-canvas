@@ -26,13 +26,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   src,
   alt,
   caption,
+  imageList,
+  currentIndex = 0,
   priority = false,
   className = "",
 }) => {
   const { maximizeImage } = useImageMaximizer();
 
   const handleImageClick = () => {
-    maximizeImage(src, alt, caption);
+    maximizeImage(src, alt, caption, imageList || [src], currentIndex);
   };
 
   return (

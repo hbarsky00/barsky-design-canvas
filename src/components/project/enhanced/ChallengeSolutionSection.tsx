@@ -59,7 +59,7 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
             <div className="mt-6">
               <ProjectMultiImageGallery 
                 images={challengeGalleryImages}
-                captions={{}}
+                imageCaptions={{}}
               />
             </div>
           )}
@@ -95,7 +95,7 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
             <div className="mt-6">
               <ProjectMultiImageGallery 
                 images={resultGalleryImages}
-                captions={{}}
+                imageCaptions={{}}
               />
             </div>
           )}

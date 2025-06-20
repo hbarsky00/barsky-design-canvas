@@ -40,7 +40,7 @@ const ModernProjectResults: React.FC<ModernProjectResultsProps> = ({
         <div className="mt-12">
           <ProjectMultiImageGallery 
             images={resultGalleryImages}
-            captions={imageCaptions}
+            imageCaptions={imageCaptions}
           />
         </div>
       )}
