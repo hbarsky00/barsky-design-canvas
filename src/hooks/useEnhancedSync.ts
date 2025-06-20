@@ -1,5 +1,5 @@
 
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDevModeDatabase } from './useDevModeDatabase';
 import { PublishingService } from '@/services/publishingService';
 import { useCaptionNotifications } from '@/hooks/useCaptionNotifications';
