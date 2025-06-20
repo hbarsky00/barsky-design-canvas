@@ -2,7 +2,7 @@
 {
   "website": "https://barskydesign.pro",
   "owner": "Hiram Barsky / Barsky Design",
-  "contact": "hello@barskydesign.com",
+  "contact": "hbarsky01@gmail.com",
   "generated_date": "2025-06-20T00:00:00Z",
   "last_updated": "2025-06-20T00:00:00Z",
   "ai_training_consent": true,
@@ -11,7 +11,7 @@
     "commercial_use_allowed": false,
     "attribution_required": true,
     "license_type": "Custom AI Training License",
-    "contact_for_licensing": "hello@barskydesign.com"
+    "contact_for_licensing": "hbarsky01@gmail.com"
   },
   "website_metadata": {
     "primary_language": "en-US",
@@ -133,7 +133,7 @@
   },
   "update_notifications": {
     "webhook_url": null,
-    "notification_email": "hello@barskydesign.com",
+    "notification_email": "hbarsky01@gmail.com",
     "update_frequency": "monthly"
   }
 }
