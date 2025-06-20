@@ -10,13 +10,15 @@ interface SimpleEditableTextProps {
   initialText: string;
   textKey?: string;
   multiline?: boolean;
+  disableEditing?: boolean;
 }
 
 const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
   children,
   initialText,
   textKey,
-  multiline = false
+  multiline = false,
+  disableEditing = false
 }) => {
   const { isDevMode } = useDevMode();
   const { projectId } = useParams<{ projectId: string }>();
@@ -61,11 +63,11 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       try {
         await saveTextContent(textKey, textToSave);
         setLastSavedText(textToSave);
-        console.log('✅ SimpleEditableText: Caption saved successfully');
-        toast.success('Caption saved!', { duration: 1000 });
+        console.log('✅ SimpleEditableText: Text saved successfully');
+        toast.success('Text saved!', { duration: 1000 });
       } catch (error) {
         console.error('❌ SimpleEditableText: Error saving text:', error);
-        toast.error('Failed to save caption');
+        toast.error('Failed to save text');
       } finally {
         setIsSaving(false);
       }
@@ -92,10 +94,10 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       await saveTextContent(textKey, text);
       setLastSavedText(text);
       console.log('✅ SimpleEditableText: Immediate save successful');
-      toast.success('Caption saved!', { duration: 1000 });
+      toast.success('Text saved!', { duration: 1000 });
     } catch (error) {
       console.error('❌ SimpleEditableText: Error saving text:', error);
-      toast.error('Failed to save caption');
+      toast.error('Failed to save text');
     } finally {
       setIsSaving(false);
       setIsEditing(false);
@@ -113,11 +115,11 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
   }, [lastSavedText]);
 
   const handleClick = useCallback(() => {
-    if (isDevMode && textKey && !isSaving) {
+    if (isDevMode && textKey && !isSaving && !disableEditing) {
       console.log('📝 SimpleEditableText: Starting edit for key:', textKey);
       setIsEditing(true);
     }
-  }, [isDevMode, textKey, isSaving]);
+  }, [isDevMode, textKey, isSaving, disableEditing]);
 
   const handleTextChange = useCallback((newText: string) => {
     setText(newText);
@@ -150,7 +152,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
     };
   }, []);
 
-  if (isEditing && isDevMode && textKey) {
+  if (isEditing && isDevMode && textKey && !disableEditing) {
     return (
       <div className="relative">
         {multiline ? (
@@ -161,7 +163,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
             onBlur={handleSave}
             autoFocus
             className="w-full p-2 border border-blue-300 rounded bg-white text-gray-900 min-h-[100px] resize-vertical"
-            placeholder="Enter caption..."
+            placeholder="Enter text..."
             disabled={isSaving}
           />
         ) : (
@@ -173,7 +175,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
             onBlur={handleSave}
             autoFocus
             className="w-full p-2 border border-blue-300 rounded bg-white text-gray-900"
-            placeholder="Enter caption..."
+            placeholder="Enter text..."
             disabled={isSaving}
           />
         )}
@@ -190,7 +192,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
     );
   }
 
-  const canClick = isDevMode && textKey;
+  const canClick = isDevMode && textKey && !disableEditing;
   
   return (
     <div
@@ -198,7 +200,7 @@ const SimpleEditableText: React.FC<SimpleEditableTextProps> = ({
       className={`${canClick ? 'cursor-pointer hover:bg-blue-50/50 rounded p-1 -m-1 transition-colors' : ''} ${
         isSaving ? 'opacity-50' : ''
       }`}
-      title={canClick ? 'Click to edit caption' : undefined}
+      title={canClick ? 'Click to edit text' : undefined}
     >
       {children(text)}
     </div>
