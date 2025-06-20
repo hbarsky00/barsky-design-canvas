@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MaximizableImage from '../project/MaximizableImage';
+import { shouldShowEditingControls } from '@/utils/devModeDetection';
 
 interface ContentImageManagerProps {
   images: string[];
@@ -25,6 +25,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
 }) => {
   const [localImages, setLocalImages] = useState<string[]>(images);
   const [componentKey, setComponentKey] = useState(Date.now());
+  const showEditingControls = shouldShowEditingControls();
 
   // Sync with parent images prop and force complete refresh
   useEffect(() => {
@@ -103,7 +104,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
 
   return (
     <div className="mt-8 space-y-4" key={`manager-${componentKey}`}>
-      {onImageAdd && localImages.length < maxImages && (
+      {showEditingControls && onImageAdd && localImages.length < maxImages && (
         <div className="flex justify-start">
           <Button
             onClick={handleImageAdd}
@@ -130,8 +131,8 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
                   currentIndex={index}
                   className="rounded-lg shadow-md w-full overflow-hidden"
                   projectId={projectId}
-                  hideEditButton={false}
-                  allowRemove={true}
+                  hideEditButton={!showEditingControls}
+                  allowRemove={showEditingControls}
                   onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
                   onImageRemove={() => handleImageRemove(index)}
                 />

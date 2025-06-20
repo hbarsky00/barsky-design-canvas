@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ZoomIn, Edit, X, Upload, Trash2 } from "lucide-react";
@@ -6,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { VercelBlobStorageService } from "@/services/vercelBlobStorage";
 import { toast } from "sonner";
+import { shouldShowEditingControls } from "@/utils/devModeDetection";
 
 interface MaximizableImageProps {
   src: string;
@@ -42,6 +42,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
   const [forceRefresh, setForceRefresh] = useState(0);
+  const showEditingControls = shouldShowEditingControls();
 
   // Update current source when prop changes and force complete refresh
   useEffect(() => {
@@ -92,7 +93,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setIsUploading(true);
     setImageError(false);
     toast.info('Uploading image to Vercel Blob...');
-
+    
     try {
       console.log('📤 Starting image upload for replacement using Vercel Blob:', file.name);
       
@@ -192,7 +193,9 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
             <div className="text-center">
               <div className="text-sm">Failed to load image</div>
-              <div className="text-xs mt-1">Try replacing with a new image</div>
+              {showEditingControls && (
+                <div className="text-xs mt-1">Try replacing with a new image</div>
+              )}
             </div>
           </div>
         ) : (
@@ -240,7 +243,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
                   <ZoomIn className="h-4 w-4" />
                 </Button>
                 
-                {!hideEditButton && onImageReplace && (
+                {showEditingControls && !hideEditButton && onImageReplace && (
                   <div className="relative">
                     <input
                       type="file"
@@ -260,7 +263,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
                   </div>
                 )}
                 
-                {allowRemove && onImageRemove && (
+                {showEditingControls && allowRemove && onImageRemove && (
                   <Button
                     size="sm"
                     variant="secondary"

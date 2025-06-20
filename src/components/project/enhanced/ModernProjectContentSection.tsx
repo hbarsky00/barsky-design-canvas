@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Edit3, Save, X, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReactQuillEditor from "@/components/editor/ReactQuillEditor";
 import MaximizableImage from "../MaximizableImage";
+import { shouldShowEditingControls } from "@/utils/devModeDetection";
 
 interface ModernProjectContentSectionProps {
   title: string;
@@ -29,6 +29,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
     "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
     "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
   ]);
+  const showEditingControls = shouldShowEditingControls();
 
   const handleSaveContent = () => {
     console.log(`Saving ${sectionKey} content:`, editedContent);
@@ -74,14 +75,16 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
                 className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center"
                 dangerouslySetInnerHTML={{ __html: editedContent }}
               />
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsEditingContent(true)}
-                className="absolute top-0 right-0 opacity-0 group-hover/content:opacity-100 transition-opacity duration-200"
-              >
-                <Edit3 className="h-4 w-4" />
-              </Button>
+              {showEditingControls && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsEditingContent(true)}
+                  className="absolute top-0 right-0 opacity-0 group-hover/content:opacity-100 transition-opacity duration-200"
+                >
+                  <Edit3 className="h-4 w-4" />
+                </Button>
+              )}
             </div>
           ) : (
             <div className="space-y-4">
@@ -117,7 +120,7 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-semibold text-gray-800">Section Images</h3>
-            {sectionImages.length < 2 && (
+            {showEditingControls && sectionImages.length < 2 && (
               <Button
                 onClick={handleAddImage}
                 variant="outline"
@@ -142,20 +145,22 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
                     currentIndex={index}
                     className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
                     projectId={projectId}
-                    hideEditButton={false}
-                    allowRemove={true}
+                    hideEditButton={!showEditingControls}
+                    allowRemove={showEditingControls}
                     onImageReplace={(newSrc) => handleImageReplace(index, newSrc)}
                     onImageRemove={() => handleRemoveImage(index)}
                   />
                 </div>
-                <Button
-                  onClick={() => handleRemoveImage(index)}
-                  variant="ghost"
-                  size="sm"
-                  className="absolute top-2 right-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-200 bg-red-500 hover:bg-red-600 text-white"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
+                {showEditingControls && (
+                  <Button
+                    onClick={() => handleRemoveImage(index)}
+                    variant="ghost"
+                    size="sm"
+                    className="absolute top-2 right-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-200 bg-red-500 hover:bg-red-600 text-white"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                )}
               </div>
             ))}
           </div>

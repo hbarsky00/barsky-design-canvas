@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Edit3, Save, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ReactQuillEditor from './ReactQuillEditor';
+import { shouldShowEditingControls } from '@/utils/devModeDetection';
 
 interface ContentTextEditorProps {
   content: string;
@@ -20,6 +21,7 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
+  const showEditingControls = shouldShowEditingControls();
 
   const handleSave = () => {
     onSave(editedContent);
@@ -82,14 +84,16 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
         <div className="group/content relative">
           {renderContent()}
           
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsEditing(true)}
-            className="absolute top-0 right-0 opacity-0 group-hover/content:opacity-100 transition-opacity duration-200"
-          >
-            <Edit3 className="h-4 w-4" />
-          </Button>
+          {showEditingControls && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsEditing(true)}
+              className="absolute top-0 right-0 opacity-0 group-hover/content:opacity-100 transition-opacity duration-200"
+            >
+              <Edit3 className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       ) : (
         <motion.div
