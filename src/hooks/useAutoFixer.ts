@@ -33,13 +33,14 @@ export const useAutoFixer = () => {
         );
         
         if (newCaption && newCaption.length > 10) {
-          // Single event dispatch instead of multiple
+          // Single event dispatch for immediate UI update
           window.dispatchEvent(new CustomEvent('aiCaptionGenerated', {
             detail: {
               imageSrc: issue.imageSrc,
               caption: newCaption,
               projectId: issue.projectId,
-              timestamp: Date.now()
+              timestamp: Date.now(),
+              autoPublish: true // Flag to indicate this should be auto-published
             }
           }));
           

@@ -9,6 +9,17 @@ const AutoCaptionScanner: React.FC = () => {
   const { scanAllProjects, canScan, markScanStart, markScanEnd } = useImageScanner();
   const { autoFixIssues } = useAutoFixer();
 
+  const publishCaptionsToLive = async (projectId: string) => {
+    try {
+      console.log('📤 Auto-publishing caption updates to live mode...');
+      const { PublishingService } = await import('@/services/publishingService');
+      await PublishingService.publishProject(projectId, true); // Preserve dev changes
+      console.log('✅ Caption updates published to live mode successfully');
+    } catch (error) {
+      console.error('❌ Failed to publish caption updates to live mode:', error);
+    }
+  };
+
   const performBackgroundScan = async () => {
     if (!canScan()) {
       console.log('🔄 Background scan already in progress or too soon, skipping...');
@@ -41,6 +52,9 @@ const AutoCaptionScanner: React.FC = () => {
           window.dispatchEvent(new CustomEvent('captionsUpdated', {
             detail: { fixedCount, timestamp: Date.now() }
           }));
+
+          // Auto-publish caption updates to live mode
+          await publishCaptionsToLive('investor-loan-app');
         }
       } else {
         console.log('✅ All captions are already up to date!');

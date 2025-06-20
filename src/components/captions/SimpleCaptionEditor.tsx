@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useSimpleCaptions } from '@/hooks/useSimpleCaptions';
 
@@ -18,12 +17,24 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
   const { getCaption, setCaption } = useSimpleCaptions(projectId);
   const lastCaptionRef = useRef<string>('');
   const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const publishTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   const currentCaption = getCaption(imageSrc, fallbackCaption);
 
+  const publishCaptionToLive = async () => {
+    try {
+      console.log('📤 SimpleCaptionEditor: Auto-publishing individual caption update to live mode...');
+      const { PublishingService } = await import('@/services/publishingService');
+      await PublishingService.publishProject(projectId, true); // Preserve dev changes
+      console.log('✅ Individual caption update published to live mode');
+    } catch (error) {
+      console.error('❌ Failed to publish individual caption update to live mode:', error);
+    }
+  };
+
   // Debounced update handler to prevent rapid re-renders
   const handleCaptionUpdate = (event: CustomEvent) => {
-    const { imageSrc: updatedImageSrc, caption: newCaption } = event.detail;
+    const { imageSrc: updatedImageSrc, caption: newCaption, autoPublish = false } = event.detail;
     
     if (updatedImageSrc === imageSrc && newCaption !== lastCaptionRef.current) {
       console.log('🔄 SimpleCaptionEditor: Received AI caption update for:', imageSrc.substring(0, 30) + '...', newCaption.substring(0, 50) + '...');
@@ -37,6 +48,19 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
       updateTimeoutRef.current = setTimeout(() => {
         setCaption(imageSrc, newCaption);
         lastCaptionRef.current = newCaption;
+        
+        // Auto-publish if this was an automated caption fix
+        if (autoPublish) {
+          // Clear any existing publish timeout
+          if (publishTimeoutRef.current) {
+            clearTimeout(publishTimeoutRef.current);
+          }
+          
+          // Debounce publishing to avoid too many publish calls
+          publishTimeoutRef.current = setTimeout(() => {
+            publishCaptionToLive();
+          }, 1000); // 1 second delay before publishing
+        }
       }, 300); // 300ms debounce
     }
   };
@@ -57,12 +81,15 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
       window.removeEventListener('aiCaptionUpdated', handleCaptionUpdate as EventListener);
       window.removeEventListener('captionsUpdated', handleBatchComplete as EventListener);
       
-      // Clean up timeout
+      // Clean up timeouts
       if (updateTimeoutRef.current) {
         clearTimeout(updateTimeoutRef.current);
       }
+      if (publishTimeoutRef.current) {
+        clearTimeout(publishTimeoutRef.current);
+      }
     };
-  }, [imageSrc, setCaption]);
+  }, [imageSrc, setCaption, projectId]);
 
   // Update ref when caption changes naturally
   useEffect(() => {
