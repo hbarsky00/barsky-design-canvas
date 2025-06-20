@@ -51,11 +51,11 @@ const AutoCaptionScanner: React.FC = () => {
     
     const initialTimeout = setTimeout(() => {
       performBackgroundScan();
-    }, 15000); // Increased delay to avoid conflicts
+    }, 5000); // Start scanning after 5 seconds
 
     intervalRef.current = setInterval(() => {
       performBackgroundScan();
-    }, 60000); // Increased interval to reduce conflicts
+    }, 120000); // Scan every 2 minutes
 
     return () => {
       if (initialTimeout) clearTimeout(initialTimeout);

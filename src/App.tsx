@@ -1,49 +1,50 @@
-
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { Toaster } from "sonner";
-
+import { QueryClient } from "@/context/QueryClient";
 import Index from "@/pages/Index";
-import Services from "@/pages/Services";
 import AllProjects from "@/pages/AllProjects";
-import NotFound from "@/pages/NotFound";
 import ProjectDetail from "@/pages/ProjectDetail";
-import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
-import { DevModeProvider } from "@/context/DevModeContext";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
+import Store from "@/pages/Store";
+import ProductDetailsPage from "@/pages/ProductDetailsPage";
+import Services from "@/pages/Services";
+import UxUiDesign from "@/pages/UxUiDesign";
+import MobileAppDesign from "@/pages/MobileAppDesign";
+import WebDevelopment from "@/pages/WebDevelopment";
+import DesignSystem from "@/pages/DesignSystem";
+import NotFound from "@/pages/NotFound";
 import GlobalCaptions from "@/pages/GlobalCaptions";
 import AutoCaptionScanner from "@/components/captions/AutoCaptionScanner";
 
-const queryClient = new QueryClient();
-
 function App() {
   return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <DevModeProvider>
-          <ImageMaximizerProvider>
-            <Router>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/projects" element={<AllProjects />} />
-                <Route path="/project/:projectId" element={<ProjectDetail />} />
-                
-                {/* Dev Mode Tools */}
-                <Route path="/dev/captions" element={<GlobalCaptions />} />
-                
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <Toaster />
-              
-              {/* Global background caption scanner - runs on all pages */}
-              <AutoCaptionScanner />
-            </Router>
-          </ImageMaximizerProvider>
-        </DevModeProvider>
-      </QueryClientProvider>
-    </HelmetProvider>
+    <QueryClient>
+      <HelmetProvider>
+        <BrowserRouter>
+          <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/projects" element={<AllProjects />} />
+              <Route path="/projects/:projectId" element={<ProjectDetail />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/store" element={<Store />} />
+              <Route path="/store/product/:id" element={<ProductDetailsPage />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/ux-ui-design" element={<UxUiDesign />} />
+              <Route path="/services/mobile-app-design" element={<MobileAppDesign />} />
+              <Route path="/services/web-development" element={<WebDevelopment />} />
+              <Route path="/design-system" element={<DesignSystem />} />
+              <Route path="/global-captions" element={<GlobalCaptions />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <AutoCaptionScanner />
+          </div>
+        </BrowserRouter>
+      </HelmetProvider>
+    </QueryClient>
   );
 }
 

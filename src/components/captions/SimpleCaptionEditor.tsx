@@ -39,9 +39,11 @@ const SimpleCaptionEditor: React.FC<SimpleCaptionEditorProps> = ({
     };
 
     window.addEventListener('aiCaptionGenerated', handleCaptionUpdate as EventListener);
+    window.addEventListener('aiCaptionUpdated', handleCaptionUpdate as EventListener);
     
     return () => {
       window.removeEventListener('aiCaptionGenerated', handleCaptionUpdate as EventListener);
+      window.removeEventListener('aiCaptionUpdated', handleCaptionUpdate as EventListener);
     };
   }, [imageSrc, setCaption]);
 

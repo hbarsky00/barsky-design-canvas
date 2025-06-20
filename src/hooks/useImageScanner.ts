@@ -1,165 +1,71 @@
 
-import { useRef } from 'react';
-import { projectsData } from '@/data/projects/projectsList';
+import { useCallback, useRef } from 'react';
+import { useSimpleCaptions } from './useSimpleCaptions';
+import { getImageCaption } from '@/data/imageCaptions';
 
-interface ImageIssue {
+export interface CaptionIssue {
   imageSrc: string;
   projectId: string;
-  projectTitle: string;
-  issueType: 'missing' | 'poor_quality' | 'generic' | 'needs_update';
-  currentCaption?: string;
-  reason: string;
-  priority: 'high' | 'medium' | 'low';
+  currentCaption: string;
+  issueType: 'missing' | 'generic' | 'poor_quality';
+  priority: number;
 }
 
 export const useImageScanner = () => {
-  const isProcessingRef = useRef(false);
-  const lastScanRef = useRef<number>(0);
+  const lastScanTime = useRef<number>(0);
+  const isScanning = useRef<boolean>(false);
+  const SCAN_COOLDOWN = 30000; // 30 seconds between scans
 
-  const analyzeCaption = (caption: string, imageSrc: string): ImageIssue | null => {
-    if (!caption || caption === 'Click to add a caption...') {
-      return {
-        imageSrc,
-        projectId: '',
-        projectTitle: '',
-        issueType: 'missing',
-        reason: 'No caption provided',
-        priority: 'high'
-      };
-    }
-
-    if (caption.length < 10) {
-      return {
-        imageSrc,
-        projectId: '',
-        projectTitle: '',
-        issueType: 'poor_quality',
-        currentCaption: caption,
-        reason: 'Caption too short (less than 10 characters)',
-        priority: 'high'
-      };
-    }
-
-    if (caption.includes('newly added') || caption.includes('This is a new image')) {
-      return {
-        imageSrc,
-        projectId: '',
-        projectTitle: '',
-        issueType: 'generic',
-        currentCaption: caption,
-        reason: 'Generic placeholder caption',
-        priority: 'medium'
-      };
-    }
-
-    const genericPhrases = ['image', 'picture', 'photo', 'screenshot'];
-    if (genericPhrases.some(phrase => caption.toLowerCase().includes(phrase)) && caption.length < 30) {
-      return {
-        imageSrc,
-        projectId: '',
-        projectTitle: '',
-        issueType: 'poor_quality',
-        currentCaption: caption,
-        reason: 'Too generic - needs more descriptive content',
-        priority: 'medium'
-      };
-    }
-
-    return null;
-  };
-
-  const scanProjectImages = async (project: any): Promise<ImageIssue[]> => {
-    const issues: ImageIssue[] = [];
-    
-    try {
-      const storageKey = `image_captions_${project.id}`;
-      const savedCaptions = JSON.parse(localStorage.getItem(storageKey) || '{}');
-
-      if (project.image) {
-        const captionKey = `img_caption_${project.image}`;
-        const caption = savedCaptions[captionKey];
-        const issue = analyzeCaption(caption, project.image);
-        if (issue) {
-          issues.push({
-            ...issue,
-            projectId: project.id,
-            projectTitle: project.title
-          });
-        }
-      }
-
-      try {
-        const projectDetailModule = await import(`@/data/project-details/${project.id}.ts`).catch(() => null);
-        if (projectDetailModule?.default) {
-          const details = projectDetailModule.default;
-          
-          const imageRegex = /\/lovable-uploads\/[a-f0-9-]+\.png/g;
-          const allContent = [
-            details.challenge || '',
-            details.process || '',
-            details.result || '',
-            JSON.stringify(details.imageConfig || {}),
-            JSON.stringify(details.galleryImages || [])
-          ].join(' ');
-
-          const matches = allContent.match(imageRegex) || [];
-          const uniqueImages = [...new Set(matches)];
-
-          for (const imageSrc of uniqueImages) {
-            const captionKey = `img_caption_${imageSrc}`;
-            const caption = savedCaptions[captionKey];
-            const issue = analyzeCaption(caption, imageSrc);
-            if (issue) {
-              issues.push({
-                ...issue,
-                projectId: project.id,
-                projectTitle: project.title
-              });
-            }
-          }
-        }
-      } catch (error) {
-        console.warn(`Could not scan detailed images for project ${project.id}:`, error);
-      }
-
-    } catch (error) {
-      console.error(`Error scanning project ${project.title}:`, error);
-    }
-
-    return issues;
-  };
-
-  const scanAllProjects = async (): Promise<ImageIssue[]> => {
-    const allIssues: ImageIssue[] = [];
-    
-    for (const project of projectsData) {
-      const projectIssues = await scanProjectImages(project);
-      allIssues.push(...projectIssues);
-    }
-
-    return allIssues.sort((a, b) => {
-      const priorityOrder = { high: 3, medium: 2, low: 1 };
-      return priorityOrder[b.priority] - priorityOrder[a.priority];
-    });
-  };
-
-  const canScan = (): boolean => {
-    if (isProcessingRef.current) {
-      return false;
-    }
-
+  const canScan = useCallback(() => {
     const now = Date.now();
-    return now - lastScanRef.current >= 30000;
-  };
+    const timeSinceLastScan = now - lastScanTime.current;
+    return !isScanning.current && timeSinceLastScan >= SCAN_COOLDOWN;
+  }, []);
 
-  const markScanStart = () => {
-    isProcessingRef.current = true;
-    lastScanRef.current = Date.now();
-  };
+  const markScanStart = useCallback(() => {
+    isScanning.current = true;
+    lastScanTime.current = Date.now();
+  }, []);
 
-  const markScanEnd = () => {
-    isProcessingRef.current = false;
-  };
+  const markScanEnd = useCallback(() => {
+    isScanning.current = false;
+  }, []);
+
+  const scanAllProjects = useCallback(async (): Promise<CaptionIssue[]> => {
+    console.log('🔍 ImageScanner: Starting comprehensive scan for caption issues...');
+    
+    const issues: CaptionIssue[] = [];
+    
+    // Get all image elements from the current page
+    const imageElements = document.querySelectorAll('img[src*="/lovable-uploads/"]');
+    
+    imageElements.forEach((img) => {
+      const imageSrc = (img as HTMLImageElement).src;
+      const staticCaption = getImageCaption(imageSrc);
+      
+      // Check if this is a generic or poor quality caption that needs AI improvement
+      const isGeneric = staticCaption === "Professional project showcase demonstrating innovative solutions and user-centered design" ||
+                       staticCaption.includes('Professional design showcase') ||
+                       staticCaption.includes('newly added') ||
+                       staticCaption.length < 20;
+      
+      if (isGeneric) {
+        issues.push({
+          imageSrc,
+          projectId: 'global', // Default project ID for now
+          currentCaption: staticCaption,
+          issueType: staticCaption.length < 10 ? 'missing' : 'generic',
+          priority: staticCaption.length < 10 ? 1 : 2
+        });
+      }
+    });
+    
+    // Sort by priority (missing captions first)
+    const sortedIssues = issues.sort((a, b) => a.priority - b.priority);
+    
+    console.log(`🔍 ImageScanner: Found ${sortedIssues.length} caption issues to fix`);
+    return sortedIssues;
+  }, []);
 
   return {
     scanAllProjects,
