@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
@@ -14,7 +15,7 @@ const Header = () => {
   const isProjectsPage = location.pathname === '/projects';
   
   const {
-    links,
+    navLinks,
     activeSection,
     isMobileMenuOpen,
     toggleMobileMenu,
@@ -38,7 +39,7 @@ const Header = () => {
           )}
           
           <Navigation 
-            links={links}
+            links={navLinks}
             activeSection={activeSection}
             handleLinkClick={handleLinkClick}
             isLinkActive={isLinkActive}
@@ -46,7 +47,7 @@ const Header = () => {
           <ThemeToggle />
           <ProfileAvatar />
           <MobileMenu 
-            links={links}
+            links={navLinks}
             isMobileMenuOpen={isMobileMenuOpen}
             toggleMobileMenu={toggleMobileMenu}
             handleLinkClick={handleLinkClick}
@@ -59,3 +60,4 @@ const Header = () => {
 };
 
 export default Header;
+
