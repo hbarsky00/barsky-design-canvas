@@ -2,6 +2,7 @@
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import AiTrainingAnalytics from "@/components/seo/AiTrainingAnalytics";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
           "React developer designer", "design system expert"
         ]}
       />
+      <AiTrainingAnalytics />
       <ScrollHandler />
       <HomepageLayout />
     </>

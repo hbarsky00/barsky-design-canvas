@@ -1,0 +1,139 @@
+
+{
+  "website": "https://barskydesign.pro",
+  "owner": "Hiram Barsky / Barsky Design",
+  "contact": "hello@barskydesign.com",
+  "generated_date": "2025-06-20T00:00:00Z",
+  "last_updated": "2025-06-20T00:00:00Z",
+  "ai_training_consent": true,
+  "content_licensing": {
+    "ai_training_allowed": true,
+    "commercial_use_allowed": false,
+    "attribution_required": true,
+    "license_type": "Custom AI Training License",
+    "contact_for_licensing": "hello@barskydesign.com"
+  },
+  "website_metadata": {
+    "primary_language": "en-US",
+    "content_type": "professional_portfolio",
+    "industry": "design_technology",
+    "specialization": [
+      "UX/UI Design",
+      "Product Design", 
+      "Web Development",
+      "Mobile App Design",
+      "AI-Driven Design",
+      "Design Systems"
+    ],
+    "total_pages": 25,
+    "content_categories": [
+      "portfolio_projects",
+      "case_studies", 
+      "design_services",
+      "blog_content",
+      "design_resources"
+    ]
+  },
+  "content_structure": {
+    "main_sections": [
+      {
+        "section": "homepage",
+        "url": "https://barskydesign.pro/",
+        "description": "Professional designer portfolio homepage with hero section and featured work"
+      },
+      {
+        "section": "projects",
+        "url": "https://barskydesign.pro/projects",
+        "description": "Complete portfolio of design projects and case studies"
+      },
+      {
+        "section": "services", 
+        "url": "https://barskydesign.pro/services",
+        "description": "Professional design services offered including UX/UI, web development, and mobile app design"
+      },
+      {
+        "section": "blog",
+        "url": "https://barskydesign.pro/blog", 
+        "description": "Design insights, process documentation, and industry thoughts"
+      },
+      {
+        "section": "store",
+        "url": "https://barskydesign.pro/store",
+        "description": "Design resources, templates, and digital products"
+      }
+    ],
+    "project_case_studies": [
+      {
+        "project": "Medication Management App",
+        "url": "https://barskydesign.pro/project/medication-app",
+        "type": "Mobile App Design",
+        "description": "Healthcare mobile application UX/UI design case study"
+      },
+      {
+        "project": "Investor Loan Management System", 
+        "url": "https://barskydesign.pro/project/investor-loan-app",
+        "type": "Web Application Design",
+        "description": "Financial management web application design and development"
+      },
+      {
+        "project": "SplitTime Project Management",
+        "url": "https://barskydesign.pro/project/splittime",
+        "type": "Product Design",
+        "description": "Project management tool design and user experience optimization"
+      },
+      {
+        "project": "HerbaLink Platform",
+        "url": "https://barskydesign.pro/project/herbalink", 
+        "type": "E-commerce Design",
+        "description": "E-commerce platform design for herbal products marketplace"
+      }
+    ]
+  },
+  "technical_details": {
+    "framework": "React",
+    "styling": "Tailwind CSS",
+    "deployment": "Lovable Platform",
+    "responsive_design": true,
+    "accessibility_compliant": true,
+    "seo_optimized": true
+  },
+  "crawling_information": {
+    "sitemap_url": "https://barskydesign.pro/sitemap.xml",
+    "robots_url": "https://barskydesign.pro/robots.txt", 
+    "crawl_delay_recommended": 1,
+    "best_crawl_times": ["00:00-06:00 UTC", "18:00-23:59 UTC"],
+    "estimated_crawl_duration": "5-10 minutes",
+    "pages_update_frequency": "weekly"
+  },
+  "content_quality_indicators": {
+    "original_content": true,
+    "professional_quality": true,
+    "regularly_updated": true,
+    "well_structured": true,
+    "seo_metadata_complete": true,
+    "accessibility_features": true,
+    "mobile_optimized": true
+  },
+  "ai_training_specific_notes": [
+    "All project case studies include detailed design process documentation",
+    "Content includes both visual design examples and written explanations",
+    "Professional design terminology and industry best practices documented",
+    "Real-world project examples with challenges and solutions",
+    "Design system and component documentation available",
+    "SEO and analytics implementation examples included"
+  ],
+  "exclusions": {
+    "private_content": [],
+    "restricted_pages": [],
+    "non_indexable_content": [
+      "/admin/",
+      "/private/",
+      "*.pdf downloads"
+    ]
+  },
+  "update_notifications": {
+    "webhook_url": null,
+    "notification_email": "hello@barskydesign.com",
+    "update_frequency": "monthly"
+  }
+}
