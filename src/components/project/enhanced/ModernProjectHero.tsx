@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
@@ -9,13 +8,14 @@ import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "../MaximizableImage";
 import EditableText from "@/components/dev/EditableText";
 import AddContentButton from "@/components/dev/AddContentButton";
-import DraggableContentBlock, { ContentBlock } from "@/components/dev/DraggableContentBlock";
+import DraggableContentBlock from "@/components/dev/DraggableContentBlock";
 import { useDevMode } from "@/context/DevModeContext";
 import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
 import { useProjectPersistence } from "@/hooks/useProjectPersistence";
-import { useAiImageCaptions } from "@/hooks/useAiImageCaptions";
 import SaveIndicator from "@/components/dev/SaveIndicator";
 import { PublishingService } from "@/services/publishingService";
+import { useContentBlockManager } from "@/hooks/useContentBlockManager";
+import { useAiImageCaptions } from "@/hooks/useAiImageCaptions";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -34,23 +34,18 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   const { projectId: routeProjectId } = useParams<{ projectId: string }>();
   const currentProjectId = projectId || routeProjectId || '';
   const { updateImageInProjectData } = useProjectDataUpdater();
-  const { generateCaption, updateGenericCaptions } = useAiImageCaptions();
-  const { 
-    saveImageReplacement, 
-    saveContentBlocks, 
-    getProjectData, 
-    isSaving, 
-    lastSaved 
-  } = useProjectPersistence(currentProjectId);
+  const { saveImageReplacement, isSaving, lastSaved } = useProjectPersistence(currentProjectId);
+  const { generateCaption } = useAiImageCaptions();
   
-  const [contentBlocks, setContentBlocks] = React.useState<ContentBlock[]>(() => {
-    const savedData = getProjectData();
-    return savedData.contentBlocks['hero'] || [];
-  });
+  const {
+    contentBlocks,
+    setContentBlocks,
+    createNewBlock,
+    saveContentBlocks
+  } = useContentBlockManager(currentProjectId, 'hero');
 
   const [publishedReplacements, setPublishedReplacements] = React.useState<Record<string, string>>({});
 
-  // Load published data on mount
   React.useEffect(() => {
     const loadPublishedData = async () => {
       try {
@@ -69,91 +64,11 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     }
   }, [currentProjectId]);
 
-  // Auto-update generic captions when content blocks load
-  React.useEffect(() => {
-    const updateBlockCaption = async (index: number, newCaption: string) => {
-      const updatedBlocks = contentBlocks.map((block, i) => 
-        i === index && (block.type === 'image' || block.type === 'video' || block.type === 'pdf')
-          ? { ...block, caption: newCaption }
-          : block
-      );
-      setContentBlocks(updatedBlocks);
-      await saveContentBlocks('hero', updatedBlocks);
-    };
-
-    const hasGenericCaptions = contentBlocks.some(block => 
-      (block.type === 'image' || block.type === 'video' || block.type === 'pdf') && 
-      block.src &&
-      (block.caption === 'A newly added image.' || 
-       block.caption === 'This is a new image. Click to edit me.' ||
-       !block.caption || 
-       block.caption.includes('newly added'))
-    );
-
-    if (hasGenericCaptions && contentBlocks.length > 0) {
-      console.log('🚀 Auto-updating generic captions in hero section...');
-      updateGenericCaptions(contentBlocks, updateBlockCaption);
-    }
-  }, [contentBlocks.length]);
-
-  // Listen for project data updates to reload content blocks
-  React.useEffect(() => {
-    const handleProjectDataUpdate = () => {
-      console.log('ModernProjectHero: Project data updated, reloading content blocks');
-      const savedData = getProjectData();
-      setContentBlocks(savedData.contentBlocks['hero'] || []);
-    };
-
-    window.addEventListener('projectDataUpdated', handleProjectDataUpdate);
-    
-    return () => {
-      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate);
-    };
-  }, [getProjectData]);
-
-  const createNewBlock = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf'): Promise<ContentBlock> => {
-    switch (type) {
-      case 'text':
-        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
-      case 'image': {
-        const defaultImageSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
-        const aiCaption = await generateCaption(defaultImageSrc);
-        return { 
-          type: 'image', 
-          src: defaultImageSrc, 
-          caption: aiCaption.caption
-        };
-      }
-      case 'header':
-        return { type: 'header', value: 'New Header', level: 2 };
-      case 'video': {
-        return { 
-          type: 'video', 
-          embedUrl: 'placeholder', 
-          caption: 'Embedded video content'
-        };
-      }
-      case 'pdf': {
-        const defaultPdfSrc = '/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png';
-        const aiCaption = await generateCaption(defaultPdfSrc);
-        return { 
-          type: 'pdf', 
-          src: defaultPdfSrc, 
-          caption: aiCaption.caption || 'Comprehensive project documentation and technical specifications'
-        };
-      }
-      default:
-        return { type: 'text', value: 'This is a new paragraph. Click to edit me.' };
-    }
-  };
-
   const handleAddContent = async (type: 'text' | 'image' | 'header' | 'video' | 'pdf') => {
     const newBlock = await createNewBlock(type);
     const updatedBlocks = [...contentBlocks, newBlock];
     setContentBlocks(updatedBlocks);
-    
-    // Save content blocks persistently
-    saveContentBlocks('hero', updatedBlocks);
+    saveContentBlocks(updatedBlocks);
   };
 
   const handleUpdateContent = (index: number, newValue: string) => {
@@ -163,17 +78,13 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
         : block
     );
     setContentBlocks(updatedBlocks);
-    
-    // Save content blocks persistently
-    saveContentBlocks('hero', updatedBlocks);
+    saveContentBlocks(updatedBlocks);
   };
 
   const handleDeleteContent = (index: number) => {
     const updatedBlocks = contentBlocks.filter((_, i) => i !== index);
     setContentBlocks(updatedBlocks);
-    
-    // Save content blocks persistently
-    saveContentBlocks('hero', updatedBlocks);
+    saveContentBlocks(updatedBlocks);
   };
 
   const handleMoveUp = (index: number) => {
@@ -181,7 +92,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       const newBlocks = [...contentBlocks];
       [newBlocks[index - 1], newBlocks[index]] = [newBlocks[index], newBlocks[index - 1]];
       setContentBlocks(newBlocks);
-      saveContentBlocks('hero', newBlocks);
+      saveContentBlocks(newBlocks);
     }
   };
 
@@ -190,7 +101,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       const newBlocks = [...contentBlocks];
       [newBlocks[index], newBlocks[index + 1]] = [newBlocks[index + 1], newBlocks[index]];
       setContentBlocks(newBlocks);
-      saveContentBlocks('hero', newBlocks);
+      saveContentBlocks(newBlocks);
     }
   };
 
@@ -199,18 +110,13 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     
     const oldBlock = contentBlocks[index];
     
-    // Generate AI caption for the new image
-    const aiCaption = await generateCaption(newSrc);
-    
     const updatedBlocks = contentBlocks.map((block, i) => 
       i === index && block.type === 'image'
-        ? { ...block, src: newSrc, caption: aiCaption.caption }
+        ? { ...block, src: newSrc }
         : block
     );
     setContentBlocks(updatedBlocks);
-    
-    // Save content blocks persistently
-    saveContentBlocks('hero', updatedBlocks);
+    saveContentBlocks(updatedBlocks);
     
     if (currentProjectId && oldBlock && oldBlock.type === 'image' && oldBlock.src) {
       saveImageReplacement(oldBlock.src, newSrc);
@@ -227,12 +133,9 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
         : block
     );
     setContentBlocks(updatedBlocks);
-    
-    // Save content blocks persistently
-    saveContentBlocks('hero', updatedBlocks);
+    saveContentBlocks(updatedBlocks);
   };
 
-  // Add hero image replacement handler
   const handleHeroImageReplace = React.useCallback(async (newSrc: string) => {
     console.log('🔄 ModernProjectHero: Replacing hero image:', {
       originalSrc: project.image.substring(0, 30) + '...',
@@ -248,16 +151,13 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
 
   return (
     <div className="relative overflow-hidden">
-      {/* Save Indicator */}
       {isDevMode && <SaveIndicator isSaving={isSaving} lastSaved={lastSaved} />}
       
-      {/* Layered Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
       <div className="relative max-w-4xl mx-auto px-6 py-16 z-10">
-        {/* Back Navigation */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -273,7 +173,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           </Link>
         </motion.div>
 
-        {/* Project Header - Glass Container */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -282,7 +181,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
         >
           {isDevMode && <AddContentButton onAdd={handleAddContent} />}
           
-          {/* Project Meta */}
           <div className="flex items-center justify-center space-x-3 text-sm">
             <span className="font-medium text-blue-600 glass-button px-3 py-1 rounded-full">{details.client}</span>
             <span className="text-gray-400">•</span>
@@ -291,7 +189,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             <span className="text-gray-600">{details.role}</span>
           </div>
           
-          {/* Project Title */}
           <EditableText 
             initialText={project.title}
             textKey={`hero_title_${currentProjectId}`}
@@ -303,7 +200,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             )}
           </EditableText>
           
-          {/* Project Description */}
           <EditableText 
             initialText={project.description} 
             multiline
@@ -316,7 +212,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             )}
           </EditableText>
 
-          {/* Additional Content Blocks */}
           {contentBlocks.length > 0 && (
             <div className="space-y-4">
               {contentBlocks.map((block, index) => (
@@ -337,7 +232,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             </div>
           )}
 
-          {/* Tags */}
           <div className="flex flex-wrap justify-center gap-2">
             {project.tags.map((tag) => (
               <Badge 
@@ -350,7 +244,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             ))}
           </div>
 
-          {/* Project Links */}
           {details.projectLink && (
             <div className="flex justify-center pt-4">
               <a
@@ -366,7 +259,6 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
           )}
         </motion.div>
 
-        {/* Hero Image - Glass Frame */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

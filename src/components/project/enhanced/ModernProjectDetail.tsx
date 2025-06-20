@@ -9,10 +9,8 @@ import ModernProjectContentSection from "./ModernProjectContentSection";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import ProjectCallToAction from "@/components/project/ProjectCallToAction";
 import AddSectionButton from "@/components/dev/AddSectionButton";
-import DevModeStatus from '@/components/dev/DevModeStatus';
-import DevModeSyncButton from '@/components/dev/DevModeSyncButton';
 import DevModeToggle from '@/components/dev/DevModeToggle';
-import { useProjectPersistence } from "@/hooks/useProjectPersistence";
+import { useProjectDataManager } from "@/hooks/useProjectDataManager";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -35,71 +33,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
 }) => {
   console.log('ModernProjectDetail: projectId received:', projectId, typeof projectId);
   
-  const { getProjectData } = useProjectPersistence(projectId);
-
-  // Listen for project data updates to force re-render - PREVENT NAVIGATION
-  const [updateTrigger, setUpdateTrigger] = React.useState(0);
+  const { updatedProject, updatedDetails, getReplacedImageSrc } = useProjectDataManager(projectId, project, details);
   
-  React.useEffect(() => {
-    const handleProjectDataUpdate = (e: CustomEvent) => {
-      console.log('ModernProjectDetail: Project data updated, forcing re-render');
-      
-      // Explicitly prevent any navigation or page refresh
-      if (e.detail?.stayOnPage) {
-        console.log('🔒 ModernProjectDetail: Staying on current page as requested');
-        e.preventDefault?.();
-        e.stopPropagation?.();
-      }
-      
-      setUpdateTrigger(prev => prev + 1);
-    };
-
-    window.addEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
-    
-    return () => {
-      window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
-    };
-  }, []);
-
-  // Get saved image replacements (now includes published overrides automatically)
-  const savedData = React.useMemo(() => getProjectData(), [getProjectData, updateTrigger]);
-
-  // Apply text content overrides
-  const getTextContent = React.useCallback((key: string, fallback: string) => {
-    return savedData.textContent[key] || fallback;
-  }, [savedData.textContent]);
-
-  // Apply image replacements
-  const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
-    return savedData.imageReplacements[originalSrc] || originalSrc;
-  }, [savedData.imageReplacements]);
-
-  // Create updated project with published changes
-  const updatedProject = React.useMemo(() => ({
-    ...project,
-    title: getTextContent(`hero_title_${projectId}`, project.title),
-    description: getTextContent(`hero_description_${projectId}`, project.description),
-    image: getReplacedImageSrc(project.image)
-  }), [project, projectId, getTextContent, getReplacedImageSrc]);
-
-  // Create updated details with published changes
-  const updatedDetails = React.useMemo(() => ({
-    ...details,
-    challenge: getTextContent(`challenge_title_${projectId}`, 
-      getTextContent(`challenge_content_${projectId}`, details.challenge)),
-    process: getTextContent(`process_title_${projectId}`, 
-      getTextContent(`process_content_${projectId}`, details.process)),
-    result: getTextContent(`result_title_${projectId}`, 
-      getTextContent(`result_content_${projectId}`, details.result))
-  }), [details, projectId, getTextContent]);
-  
-  // Convert ProjectImageConfig to the expected format for ModernProjectContentSection
   const convertImageConfig = (imageConfig?: any): Record<string, string[]> => {
     if (!imageConfig) return {};
     
     const converted: Record<string, string[]> = {};
     
-    // Convert each section's beforeHeader and afterHeader to arrays with image replacements applied
     Object.entries(imageConfig).forEach(([sectionKey, sectionConfig]: [string, any]) => {
       if (sectionConfig) {
         const images: string[] = [];
@@ -123,34 +63,24 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       transition={{ duration: 0.6 }}
       className="min-h-screen relative w-full"
     >
-      {/* Background Layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/50 to-purple-50/10" />
       
-      {/* Dev Mode Components */}
-      <DevModeStatus />
-      <DevModeSyncButton />
       <DevModeToggle />
       
-      {/* Hero Section */}
       <ModernProjectHero
         project={updatedProject}
         details={updatedDetails}
         imageCaptions={imageCaptions}
       />
 
-      {/* Main Content - Full Width Layout */}
       <div className="relative w-full px-4 py-8 space-y-8 z-10">
-        
-        {/* Hero Image Section */}
         <ProjectHeroImageSection 
           projectId={projectId} 
           imageCaptions={imageCaptions}
         />
 
-        {/* Add section button after hero */}
         <AddSectionButton projectId={projectId} insertAfter="hero" />
 
-        {/* The Challenge Section */}
         <ModernProjectContentSection
           title="The Challenge"
           content={updatedDetails.challenge}
@@ -160,10 +90,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           projectId={projectId}
         />
 
-        {/* Add section button after challenge */}
         <AddSectionButton projectId={projectId} insertAfter="challenge" />
 
-        {/* What I Did Section */}
         <ModernProjectContentSection
           title="What I Did"
           content={updatedDetails.process}
@@ -173,10 +101,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           projectId={projectId}
         />
 
-        {/* Add section button after process */}
         <AddSectionButton projectId={projectId} insertAfter="process" />
 
-        {/* The Result Section */}
         <ModernProjectContentSection
           title="The Result"
           content={updatedDetails.result}
@@ -186,13 +112,10 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           projectId={projectId}
         />
 
-        {/* Add section button after result */}
         <AddSectionButton projectId={projectId} insertAfter="result" />
 
-        {/* Call to Action Section */}
         <ProjectCallToAction />
 
-        {/* Project Navigation */}
         <div className="glass-card p-4 layered-depth">
           <ProjectNavigation
             currentProjectId={projectId}
@@ -200,7 +123,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           />
         </div>
 
-        {/* Final add section button */}
         <AddSectionButton projectId={projectId} />
       </div>
     </motion.div>
