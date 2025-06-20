@@ -14,22 +14,23 @@ export const useAutoFixer = () => {
   const { generateSingleCaption } = useEnhancedAiImageCaptions();
 
   const autoFixIssues = useCallback(async (issues: CaptionIssue[]): Promise<number> => {
-    console.log(`🔧 AutoFixer: Starting to fix ${issues.length} caption issues...`);
+    console.log(`🔧 AutoFixer: Starting to fix ${issues.length} caption issues across ALL PROJECTS...`);
     
     let fixedCount = 0;
-    const maxIssues = Math.min(issues.length, 10); // Reduced to 10 at a time to prevent overwhelming
+    const maxIssues = Math.min(issues.length, 15); // Increased to 15 at a time for all projects
     
     for (let i = 0; i < maxIssues; i++) {
       const issue = issues[i];
       
       try {
-        console.log(`🔄 AutoFixer: Fixing caption ${i + 1}/${maxIssues} for:`, issue.imageSrc.substring(0, 30) + '...');
+        console.log(`🔄 AutoFixer: Fixing caption ${i + 1}/${maxIssues} for project "${issue.projectId}":`, issue.imageSrc.substring(0, 30) + '...');
         
-        // Generate AI caption
+        // Generate AI caption with context based on project
+        const contextType = issue.projectId === 'general' ? 'general' : 'project';
         const newCaption = await generateSingleCaption(
           issue.imageSrc, 
           'descriptive', 
-          'project'
+          contextType
         );
         
         if (newCaption && newCaption.length > 10) {
@@ -45,22 +46,22 @@ export const useAutoFixer = () => {
           }));
           
           fixedCount++;
-          console.log(`✅ AutoFixer: Fixed caption ${i + 1}/${maxIssues} - "${newCaption.substring(0, 50)}..."`);
+          console.log(`✅ AutoFixer: Fixed caption ${i + 1}/${maxIssues} for project "${issue.projectId}" - "${newCaption.substring(0, 50)}..."`);
           
           // Increased delay to prevent rapid updates
           if (i < maxIssues - 1) {
-            await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
+            await new Promise(resolve => setTimeout(resolve, 1500)); // 1.5 second delay
           }
         } else {
-          console.warn(`⚠️ AutoFixer: Generated caption was too short or empty for:`, issue.imageSrc.substring(0, 30) + '...');
+          console.warn(`⚠️ AutoFixer: Generated caption was too short or empty for project "${issue.projectId}":`, issue.imageSrc.substring(0, 30) + '...');
         }
         
       } catch (error) {
-        console.error(`❌ AutoFixer: Failed to fix caption for:`, issue.imageSrc.substring(0, 30) + '...', error);
+        console.error(`❌ AutoFixer: Failed to fix caption for project "${issue.projectId}":`, issue.imageSrc.substring(0, 30) + '...', error);
       }
     }
     
-    console.log(`✅ AutoFixer: Completed fixing ${fixedCount}/${maxIssues} caption issues`);
+    console.log(`✅ AutoFixer: Completed fixing ${fixedCount}/${maxIssues} caption issues across ALL PROJECTS`);
     
     if (issues.length > maxIssues) {
       console.log(`📋 AutoFixer: ${issues.length - maxIssues} more issues will be processed in the next scan cycle`);

@@ -9,12 +9,22 @@ const AutoCaptionScanner: React.FC = () => {
   const { scanAllProjects, canScan, markScanStart, markScanEnd } = useImageScanner();
   const { autoFixIssues } = useAutoFixer();
 
-  const publishCaptionsToLive = async (projectId: string) => {
+  const publishCaptionsToLive = async (projectIds: string[]) => {
     try {
-      console.log('📤 Auto-publishing caption updates to live mode...');
+      console.log('📤 Auto-publishing caption updates to live mode for projects:', projectIds);
       const { PublishingService } = await import('@/services/publishingService');
-      await PublishingService.publishProject(projectId, true); // Preserve dev changes
-      console.log('✅ Caption updates published to live mode successfully');
+      
+      // Publish each project that had updates
+      for (const projectId of projectIds) {
+        try {
+          await PublishingService.publishProject(projectId, true); // Preserve dev changes
+          console.log(`✅ Caption updates published to live mode for project: ${projectId}`);
+        } catch (error) {
+          console.error(`❌ Failed to publish caption updates for project ${projectId}:`, error);
+        }
+      }
+      
+      console.log('✅ All caption updates published to live mode successfully');
     } catch (error) {
       console.error('❌ Failed to publish caption updates to live mode:', error);
     }
@@ -27,14 +37,14 @@ const AutoCaptionScanner: React.FC = () => {
     }
 
     markScanStart();
-    console.log('🔍 Global Caption Scanner: Starting automated scan...');
+    console.log('🔍 Global Caption Scanner: Starting automated scan across ALL PROJECTS...');
 
     // Dispatch scan start event
     window.dispatchEvent(new CustomEvent('captionScanStart'));
 
     try {
       const sortedIssues = await scanAllProjects();
-      console.log(`🔍 Global scan complete: Found ${sortedIssues.length} caption issues`);
+      console.log(`🔍 Global scan complete: Found ${sortedIssues.length} caption issues across all projects`);
 
       // Dispatch scan complete event
       window.dispatchEvent(new CustomEvent('captionScanComplete', {
@@ -42,22 +52,25 @@ const AutoCaptionScanner: React.FC = () => {
       }));
 
       if (sortedIssues.length > 0) {
-        console.log(`🚀 Starting to fix ${sortedIssues.length} caption issues...`);
+        console.log(`🚀 Starting to fix ${sortedIssues.length} caption issues across all projects...`);
         const fixedCount = await autoFixIssues(sortedIssues);
 
         if (fixedCount > 0) {
-          console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically`);
+          console.log(`🎉 Auto-fixed ${fixedCount} caption issues automatically across all projects`);
           
           // Single consolidated update event instead of multiple
           window.dispatchEvent(new CustomEvent('captionsUpdated', {
             detail: { fixedCount, timestamp: Date.now() }
           }));
 
-          // Auto-publish caption updates to live mode
-          await publishCaptionsToLive('investor-loan-app');
+          // Get unique project IDs that had updates
+          const updatedProjectIds = [...new Set(sortedIssues.slice(0, fixedCount).map(issue => issue.projectId))];
+          
+          // Auto-publish caption updates to live mode for all affected projects
+          await publishCaptionsToLive(updatedProjectIds);
         }
       } else {
-        console.log('✅ All captions are already up to date!');
+        console.log('✅ All captions are already up to date across all projects!');
         
         // Dispatch completion event even when no issues found
         window.dispatchEvent(new CustomEvent('captionsUpdated', {
@@ -73,7 +86,7 @@ const AutoCaptionScanner: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('🚀 Global Caption Scanner: Initialized and running automatically');
+    console.log('🚀 Global Caption Scanner: Initialized and running automatically for ALL PROJECTS');
     
     // Run immediately on first load
     if (!hasRunInitialScan.current) {
