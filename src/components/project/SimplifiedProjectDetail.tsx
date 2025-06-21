@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
 import ProjectDetailLoading from "./ProjectDetailLoading";
-import ModernProjectDetail from "./enhanced/ModernProjectDetail";
+import CleanProjectDetail from "./CleanProjectDetail";
 import ProjectDetailSeo from "./ProjectDetailSeo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -54,7 +54,7 @@ const SimplifiedProjectDetail = () => {
     );
   }
 
-  console.log('✅ SimplifiedProjectDetail: Rendering project detail with data:', {
+  console.log('✅ SimplifiedProjectDetail: Rendering clean project detail with data:', {
     projectTitle: project.title,
     detailsChallenge: details.challenge.substring(0, 50) + '...'
   });
@@ -64,7 +64,7 @@ const SimplifiedProjectDetail = () => {
       <ProjectDetailSeo project={project} details={details} />
       <Header />
       <main className="flex-grow">
-        <ModernProjectDetail
+        <CleanProjectDetail
           project={project}
           details={details}
           projectId={projectId}
