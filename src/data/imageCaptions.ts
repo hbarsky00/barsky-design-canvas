@@ -1,4 +1,3 @@
-
 // Comprehensive image captions for all projects
 export const imageCaptions: Record<string, string> = {
   // Medication App Project
@@ -11,9 +10,9 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/73d25798-547e-49a0-ad44-a79540285bff.png": "Mobile-optimized interface designed with accessibility principles, featuring large touch targets and high contrast design for elderly users",
   "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png": "Clean and accessible medication tracking interface with simplified navigation and clear visual hierarchy for improved user experience",
   "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png": "Competitive analysis framework evaluating existing medication management solutions, highlighting gaps in user experience and accessibility features for diabetic patients",
-  "/lovable-uploads/e12b7509-4723-4764-b27d-2ef83819cf92.png": "Visual style guide and design system components showcasing color palette, typography, and UI elements optimized for healthcare accessibility standards",
-  "/lovable-uploads/eff08717-cc0d-4a68-8bae-cf0f243794ee.png": "Comprehensive design process documentation illustrating user journey mapping, wireframe iterations, and usability testing methodology for medication adherence improvement",
-  "/lovable-uploads/7c3f8d92-4e5a-4b1c-9f7e-2a8b5c6d9e3f.png": "Project impact analytics and user satisfaction metrics demonstrating significant improvements in medication adherence rates and patient engagement outcomes",
+  "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png": "User research insights showing medication adherence challenges faced by diabetic patients with complex daily routines and multiple medications",
+  "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png": "Patient journey mapping and pain point analysis revealing opportunities for improved medication management through digital solutions",
+  "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png": "Visual style guide and design system components showcasing color palette, typography, and UI elements optimized for healthcare accessibility standards",
 
   // Investor Loan App Project - Updated hero image caption
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Professional loan management dashboard showcasing card-based deal organization with real-time status tracking, team collaboration features, and streamlined workflow management for financial institutions",
