@@ -31,7 +31,7 @@ export const medicationAppDetails: ProjectDetails = {
     },
     process: {
       beforeHeader: "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
-      afterHeader: "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png"
+      afterHeader: "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png"
     },
     result: {
       beforeHeader: "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
@@ -51,9 +51,7 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
   ],
 
-  challengeGalleryImages: [
-    "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png"
-  ],
+  challengeGalleryImages: [],
   
   resultGalleryImages: [
     "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
