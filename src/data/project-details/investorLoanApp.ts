@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const investorLoanAppDetails: ProjectDetails = {
@@ -19,10 +20,10 @@ export const investorLoanAppDetails: ProjectDetails = {
     },
     process: {
       beforeHeader: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
-      afterHeader: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png"
+      afterHeader: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png"
+      beforeHeader: "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png"
     }
   },
   
@@ -40,18 +41,20 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
     "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png",
     "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
-    "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
+    "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
+    "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
+    "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
   ],
   
-  // Streamlined legacy properties - removed duplicates
+  // Streamlined legacy properties - updated with new image assignments
   challengeGalleryImages: [
     "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
   ],
-  processImage: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
+  processImage: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png",
   processBottomImage: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
-  resultImage: "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png",
+  resultImage: "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
   resultGalleryImages: [
-    "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png",
+    "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
     "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png",
     "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
     "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
