@@ -46,7 +46,9 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png",
     "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
     "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
-    "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png"
+    "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png",
+    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
+    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
   ],
 
   challengeGalleryImages: [
@@ -54,8 +56,8 @@ export const medicationAppDetails: ProjectDetails = {
   ],
   
   resultGalleryImages: [
-    "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
-    "/lovable-uploads/73d25798-547e-49a0-ad44-a79540285bff.png"
+    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
+    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
   ],
   
   galleryImages: []
