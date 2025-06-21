@@ -36,8 +36,8 @@ export const herbalinkDetails: ProjectDetails = {
     "/lovable-uploads/ada2ad24-f156-4851-b6e8-572404ccb959.png",
     "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
     "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
-    "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png",
-    "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png"
+    "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
+    "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png"
   ],
 
   // Legacy properties - updated with new image assignments
@@ -49,7 +49,7 @@ export const herbalinkDetails: ProjectDetails = {
   processBottomImage: "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
   resultGalleryImages: [
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
-    "/lovable-uploads/11d88ba0-3135-42e4-99ba-d68beb56e518.png",
-    "/lovable-uploads/da448046-c673-41fd-9682-c9471088dc98.png"
+    "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
+    "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png"
   ]
 };

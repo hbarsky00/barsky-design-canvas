@@ -1,4 +1,3 @@
-
 // Comprehensive image captions for all projects
 export const imageCaptions: Record<string, string> = {
   // Medication App Project
@@ -41,9 +40,14 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/593ace1d-0082-49d1-aacf-debe109e5235.png": "Comprehensive calendar coordination system for managing children's activities, appointments, and custody schedules with shared visibility",
   "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png": "Family-centered interface promoting positive communication patterns and healthy co-parenting relationships through thoughtful design",
 
-  // HerbaLink Project
-  "/lovable-uploads/518c2c32-ef4d-43f6-888e-f4dc1d45a422.png": "Digital platform connecting patients with qualified herbalists, bridging traditional medicine practices with modern healthcare accessibility",
-  "/lovable-uploads/9988e728-a0bb-46c7-8366-5d5ff22ed959.png": "Location-based practitioner discovery interface with detailed professional profiles, specializations, and patient review systems",
+  // HerbaLink Project - AI Generated Captions
+  "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "HerbaLink project overview showcasing the platform's comprehensive approach to connecting patients with qualified herbalists through modern digital interface design",
+  "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "HerbaLink personalized dashboard interface featuring appointment tracking, consultation history, and herbal protocol management for enhanced patient experience",
+  "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png": "HerbaLink video consultation interface demonstrating integrated communication tools, real-time note collaboration, and herb identification features for remote herbal medicine consultations",
+  "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png": "HerbaLink wellness services marketplace featuring filtering options, practitioner profiles, and booking capabilities for personalized herbal consultations and educational workshops",
+  "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png": "HerbaLink final design highlights showcasing key features including smart herbalist discovery, personalized dashboards, and integrated consultation interfaces for modern herbal medicine practice",
+  "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png": "HerbaLink wellness services and classes interface displaying comprehensive filtration system, featured service cards, and booking functionality for herbal consultations and educational programs",
+  "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png": "HerbaLink impact and results analytics dashboard showing significant improvements in task completion rates, usability scores, user confidence, and consultation metrics for herbal wellness platform",
 
   // Gold2Crypto Project
   "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png": "Familiar trading platform interface designed specifically for traditional gold investors transitioning to cryptocurrency markets",
