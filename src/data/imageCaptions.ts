@@ -10,11 +10,6 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/73d25798-547e-49a0-ad44-a79540285bff.png": "Mobile-optimized interface designed with accessibility principles, featuring large touch targets and high contrast design for elderly users",
   "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png": "Clean and accessible medication tracking interface with simplified navigation and clear visual hierarchy for improved user experience",
 
-  // New uploaded images for Medication App
-  "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png": "Comprehensive design system style tile featuring MyMed Health branding, color palette, typography hierarchy, iconography, and UI components for consistent healthcare app design",
-  "/lovable-uploads/e12b7509-4723-4764-b27d-2ef83819cf92.png": "User research mind mapping analysis documenting healthcare provider responsibilities and identifying key pain points in patient care workflows and medication management",
-  "/lovable-uploads/eff08717-cc0d-4a68-8bae-cf0f243794ee.png": "Competitive analysis comparing healthcare apps including Teladoc and MySugr, identifying market gaps and opportunities for balanced user-friendly diabetes management solutions",
-
   // Investor Loan App Project - Updated hero image caption
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Professional loan management dashboard showcasing card-based deal organization with real-time status tracking, team collaboration features, and streamlined workflow management for financial institutions",
   "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Advanced financial orderbook interface displaying loan tranches with sophisticated filtering, real-time market data, and integrated communication features for seamless deal execution",
