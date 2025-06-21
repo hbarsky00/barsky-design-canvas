@@ -40,6 +40,22 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
     description: updatedProject.description.substring(0, 50) + '...'
   });
 
+  // Extract process images for proper display order
+  const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
+  const processRegularImage = details.processImage;
+  
+  // Create process images array with correct order
+  const processImages = React.useMemo(() => {
+    const images: string[] = [];
+    if (processBeforeHeaderImage) {
+      images.push(processBeforeHeaderImage);
+    }
+    if (processRegularImage) {
+      images.push(processRegularImage);
+    }
+    return images;
+  }, [processBeforeHeaderImage, processRegularImage]);
+
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
@@ -114,13 +130,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             content={updatedDetails.process}
             contentType="section"
             onSave={(content) => handleSectionContentSave('process', 'content', content)}
-            images={details.processImage ? [details.processImage] : []}
+            images={processImages}
             onImageAdd={(imageSrc) => {
               console.log('➕ Adding image to process section:', imageSrc);
             }}
             onImageReplace={(index, newSrc) => {
-              const originalSrc = details.processImage;
-              if (originalSrc && index === 0) {
+              const originalSrc = processImages[index];
+              if (originalSrc) {
                 console.log('🔄 Replacing process image:', originalSrc, '->', newSrc);
                 handleSectionImageUpdate('process', originalSrc, newSrc);
               }
