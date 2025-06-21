@@ -15,6 +15,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png": "Visual style guide and design system components showcasing color palette, typography, and UI elements optimized for healthcare accessibility standards",
   "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png": "Results & Impact dashboard showcasing 85% user satisfaction, 67% compliance increase, and 42% support reduction through improved diabetes management experience and streamlined design",
   "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png": "Comprehensive medication tracking mobile interface featuring dashboard, vitals monitoring, calendar integration, and task management for enhanced patient engagement and adherence",
+  "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png": "Comprehensive style tile showcasing the complete design system including logo variations, color palettes, typography hierarchy, button states, iconography, and UI components for the medication management platform",
 
   // Investor Loan App Project - Updated hero image caption
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Professional loan management dashboard showcasing card-based deal organization with real-time status tracking, team collaboration features, and streamlined workflow management for financial institutions",
