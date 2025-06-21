@@ -19,6 +19,7 @@ interface ProjectOverviewProps {
   challengeImage?: string;
   processImage?: string;
   processBottomImage?: string;
+  processBeforeHeaderImage?: string;
   resultImage?: string;
   resultGalleryImages?: string[];
   imageCaptions?: Record<string, string>;
@@ -40,6 +41,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
   challengeImage,
   processImage,
   processBottomImage,
+  processBeforeHeaderImage,
   resultImage,
   resultGalleryImages,
   imageCaptions = {},
@@ -86,6 +88,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         servicesCaptions={servicesCaptions}
         processImage={processImage}
         processBottomImage={processBottomImage}
+        processBeforeHeaderImage={processBeforeHeaderImage}
         imageCaptions={imageCaptions}
         projectId={projectId}
       />

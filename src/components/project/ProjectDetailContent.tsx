@@ -68,6 +68,9 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   // Check if this is DAE Search project to conditionally hide bottom gallery
   const isDaeSearchProject = projectId === "dae-search";
 
+  // Get the process before header image from imageConfig
+  const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <ProjectHeader
@@ -102,6 +105,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             challengeImage={getReplacedImageSrc(details.challengeImage || '')}
             processImage={getReplacedImageSrc(details.processImage || '')}
             processBottomImage={getReplacedImageSrc(details.processBottomImage || '')}
+            processBeforeHeaderImage={processBeforeHeaderImage ? getReplacedImageSrc(processBeforeHeaderImage) : undefined}
             resultImage={getReplacedImageSrc(details.resultImage || '')}
             resultGalleryImages={details.resultGalleryImages?.map(getReplacedImageSrc)}
             imageCaptions={imageCaptions}

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
+import MaximizableImage from "../MaximizableImage";
 
 interface ProcessSectionProps {
   processBeforeGallery?: string;
@@ -14,6 +15,7 @@ interface ProcessSectionProps {
   servicesCaptions?: Record<string, string>;
   processImage?: string;
   processBottomImage?: string;
+  processBeforeHeaderImage?: string;
   imageCaptions?: Record<string, string>;
   projectId?: string;
 }
@@ -22,6 +24,9 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
   processBeforeGallery = "",
   processAfterGallery = "",
   servicesGalleryImages = [],
+  processImage,
+  processBottomImage,
+  processBeforeHeaderImage,
   imageCaptions = {}
 }) => {
   const fullProcess = processBeforeGallery + processAfterGallery;
@@ -38,6 +43,19 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         <h2 className="text-3xl font-bold text-gray-900 mb-6">
           What I Did
         </h2>
+        
+        {/* Image after header, before content */}
+        {processBeforeHeaderImage && (
+          <div className="mb-8">
+            <MaximizableImage
+              src={processBeforeHeaderImage}
+              alt={imageCaptions[processBeforeHeaderImage] || "Process overview"}
+              caption={imageCaptions[processBeforeHeaderImage]}
+              className="rounded-lg shadow-lg"
+            />
+          </div>
+        )}
+        
         <div className="prose prose-lg text-gray-600 leading-relaxed">
           {fullProcess.split('\n\n').map((paragraph, index) => (
             <p key={index} className="mb-4">
@@ -45,6 +63,18 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
             </p>
           ))}
         </div>
+        
+        {/* Image after content */}
+        {processImage && (
+          <div className="mt-8">
+            <MaximizableImage
+              src={processImage}
+              alt={imageCaptions[processImage] || "Process details"}
+              caption={imageCaptions[processImage]}
+              className="rounded-lg shadow-lg"
+            />
+          </div>
+        )}
       </div>
 
       {servicesGalleryImages && servicesGalleryImages.length > 0 && (
