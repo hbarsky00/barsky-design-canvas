@@ -1,3 +1,4 @@
+
 // Comprehensive image captions for all projects
 export const imageCaptions: Record<string, string> = {
   // Medication App Project
@@ -17,8 +18,9 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png": "Comprehensive medication tracking mobile interface featuring dashboard, vitals monitoring, calendar integration, and task management for enhanced patient engagement and adherence",
   "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png": "Comprehensive style tile showcasing the complete design system including logo variations, color palettes, typography hierarchy, button states, iconography, and UI components for the medication management platform",
 
-  // Investor Loan App Project - Updated hero image caption
+  // Investor Loan App Project
   "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png": "Project Overview showcasing the comprehensive transformation challenge, role definition, and timeline for converting manual Excel-based loan management into a modern digital banking platform",
+  "/lovable-uploads/acf97c58-d413-4f82-9680-67b009d55201.png": "Low-fidelity wireframe of My Deals dashboard showing initial conceptual layout for loan management interface with card-based organization and filtering capabilities",
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Professional loan management dashboard showcasing card-based deal organization with real-time status tracking, team collaboration features, and streamlined workflow management for financial institutions",
   "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Advanced financial orderbook interface displaying loan tranches with sophisticated filtering, real-time market data, and integrated communication features for seamless deal execution",
   "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png": "AI-powered predictive search interface for loan management, featuring intelligent auto-complete suggestions and advanced filtering capabilities that streamline deal discovery",
@@ -32,8 +34,6 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png": "Comprehensive loan limit dashboard with visual utilization indicators, credit monitoring alerts, and automated compliance reporting for risk management",
   "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png": "Enhanced orderbook with integrated comments system and team communication features, enabling seamless collaboration throughout the deal lifecycle",
   "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png": "User workflow diagram illustrating the complete loan management process from initial deal discovery through final execution and ongoing monitoring",
-
-  // New uploaded images for Investor Loan App
   "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png": "Results & Impact dashboard showcasing key performance metrics: 85% error reduction, 40% faster processing, 200+ orders processed, and 80% user satisfaction from banking professionals",
   "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png": "Advanced loan management orderbook interface with intelligent search suggestions, multi-criteria filtering, and comprehensive deal tracking capabilities for enhanced productivity",
 

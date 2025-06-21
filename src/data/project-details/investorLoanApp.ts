@@ -13,11 +13,8 @@ export const investorLoanAppDetails: ProjectDetails = {
   client: "Private Banking Institution",
   role: "Lead UX/UI Designer & Product Strategist",
   
-  // Simplified image configuration without duplicates
+  // Simplified image configuration - removed duplicate reference in challenge beforeHeader
   imageConfig: {
-    challenge: {
-      beforeHeader: "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png"
-    },
     process: {
       beforeHeader: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
       afterHeader: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
@@ -27,9 +24,10 @@ export const investorLoanAppDetails: ProjectDetails = {
     }
   },
   
-  // Pool of available images for easy reference
+  // Pool of available images for easy reference - removed duplicates
   availableImages: [
     "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
+    "/lovable-uploads/acf97c58-d413-4f82-9680-67b009d55201.png",
     "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
     "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png",
     "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
@@ -46,9 +44,10 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
   ],
   
-  // Streamlined legacy properties - updated with new image assignments
+  // Challenge section with correct two images: project overview first, low-fidelity dashboard second
   challengeGalleryImages: [
-    "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png"
+    "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
+    "/lovable-uploads/acf97c58-d413-4f82-9680-67b009d55201.png"
   ],
   processImage: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png",
   processBottomImage: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
