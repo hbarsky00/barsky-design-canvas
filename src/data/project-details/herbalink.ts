@@ -19,8 +19,8 @@ export const herbalinkDetails: ProjectDetails = {
       afterHeader: "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
-      afterHeader: "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png"
+      beforeHeader: "/lovable-uploads/3d31184e-1382-4d05-9586-655bbe318d43.png",
+      afterHeader: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png"
     },
     result: {
       beforeHeader: "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png"
@@ -34,6 +34,7 @@ export const herbalinkDetails: ProjectDetails = {
     "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png",
     "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png",
     "/lovable-uploads/ada2ad24-f156-4851-b6e8-572404ccb959.png",
+    "/lovable-uploads/3d31184e-1382-4d05-9586-655bbe318d43.png",
     "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
     "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
     "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
@@ -45,8 +46,8 @@ export const herbalinkDetails: ProjectDetails = {
     "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png",
     "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png"
   ],
-  processImage: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
-  processBottomImage: "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
+  processImage: "/lovable-uploads/3d31184e-1382-4d05-9586-655bbe318d43.png",
+  processBottomImage: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
   resultGalleryImages: [
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
     "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
