@@ -1,4 +1,5 @@
 
+
 export interface ProjectDetails {
   challenge: string;
   process: string;
@@ -25,13 +26,13 @@ export interface ProjectDetails {
   useAiCaptions?: boolean; // New flag to enable AI caption generation
 }
 
-interface ImageConfig {
+export interface ImageConfig {
   challenge?: ImageSectionConfig;
   process?: ImageSectionConfig;
   result?: ImageSectionConfig;
 }
 
-interface ImageSectionConfig {
+export interface ImageSectionConfig {
   beforeHeader?: string;
   afterHeader?: string;
 }

@@ -1,5 +1,6 @@
 
-import { ImageConfig } from "@/data/types/project";
+
+import { ImageConfig, ImageSectionConfig } from "@/data/types/project";
 
 export interface ImageAssignment {
   section: string;
@@ -16,7 +17,7 @@ export const getImageAssignments = (imageConfig?: ImageConfig): ImageAssignment[
 
   const assignments: ImageAssignment[] = [];
 
-  Object.entries(imageConfig).forEach(([section, sectionConfig]) => {
+  Object.entries(imageConfig).forEach(([section, sectionConfig]: [string, ImageSectionConfig | undefined]) => {
     if (sectionConfig?.beforeHeader) {
       assignments.push({
         section,
