@@ -29,7 +29,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
   imageCaptions = {}
 }) => {
   const [aiCaptions, setAiCaptions] = useState<Record<string, string>>({});
-  const { generateProjectCaptions, isGenerating } = useOpenAiCaptions();
+  const { generateProjectCaptions, isGenerating, generationProgress } = useOpenAiCaptions();
   
   console.log('🎬 CleanProjectDetail: Rendering simplified project detail for:', project.title);
 
@@ -37,10 +37,18 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
   useEffect(() => {
     if (projectId === 'medication-app' && details.useAiCaptions) {
       const allImages = [
+        project.image,
+        ...(details.imageConfig?.challenge?.beforeHeader ? [details.imageConfig.challenge.beforeHeader] : []),
+        ...(details.imageConfig?.challenge?.afterHeader ? [details.imageConfig.challenge.afterHeader] : []),
+        ...(details.imageConfig?.process?.beforeHeader ? [details.imageConfig.process.beforeHeader] : []),
+        ...(details.imageConfig?.process?.afterHeader ? [details.imageConfig.process.afterHeader] : []),
+        ...(details.imageConfig?.result?.beforeHeader ? [details.imageConfig.result.beforeHeader] : []),
+        ...(details.imageConfig?.result?.afterHeader ? [details.imageConfig.result.afterHeader] : []),
         ...(details.challengeGalleryImages || []),
         ...(details.resultGalleryImages || []),
         ...(details.servicesGalleryImages || []),
-        project.image
+        ...(details.processGalleryImages || []),
+        ...(details.galleryImages || [])
       ].filter(Boolean);
 
       const uniqueImages = [...new Set(allImages)];
@@ -50,7 +58,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
       generateProjectCaptions(uniqueImages, projectId)
         .then(captions => {
           setAiCaptions(captions);
-          console.log('✅ AI captions generated for medication app');
+          console.log('✅ AI captions generated for medication app:', Object.keys(captions).length, 'captions');
         })
         .catch(error => {
           console.error('❌ Failed to generate AI captions:', error);
@@ -109,14 +117,41 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         
-        {/* AI Caption Loading Indicator */}
+        {/* AI Caption Generation Progress */}
         {projectId === 'medication-app' && isGenerating && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center text-blue-700"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center"
           >
-            🤖 Generating AI-powered image captions...
+            <div className="flex items-center justify-center space-x-3 text-blue-700">
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+              <span className="font-medium">🤖 Generating AI-powered image captions...</span>
+            </div>
+            {generationProgress && (
+              <div className="mt-3">
+                <div className="text-sm text-blue-600">
+                  Processing image {generationProgress.current} of {generationProgress.total}
+                </div>
+                <div className="w-full bg-blue-200 rounded-full h-2 mt-2">
+                  <div 
+                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${(generationProgress.current / generationProgress.total) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        )}
+
+        {/* Success indicator when AI captions are ready */}
+        {projectId === 'medication-app' && !isGenerating && Object.keys(aiCaptions).length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-green-50 border border-green-200 rounded-lg p-4 text-center text-green-700"
+          >
+            ✅ AI captions generated for {Object.keys(aiCaptions).length} images
           </motion.div>
         )}
         

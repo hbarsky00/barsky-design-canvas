@@ -9,11 +9,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-interface CaptionStyle {
-  type: 'alt-text' | 'descriptive' | 'seo-optimized' | 'technical';
-  caption: string;
-}
-
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -35,26 +30,26 @@ serve(async (req) => {
       ? imageSrc 
       : `${req.headers.get('origin') || 'https://barskydesign.pro'}${imageSrc}`;
 
-    console.log('🤖 OpenAI Caption: Analyzing image with context:', contextType, 'URL:', fullImageUrl);
+    console.log('🤖 OpenAI Caption: Analyzing medication app image with context:', contextType, 'URL:', fullImageUrl);
 
     const getSystemPrompt = (contextType: string, projectContext?: string) => {
-      const basePrompt = 'You are an expert at analyzing images and describing them accurately and professionally for UX/UI design portfolios.';
+      const basePrompt = 'You are an expert at analyzing medical app interfaces and describing them accurately for UX/UI design portfolios.';
       
       if (projectContext) {
-        return `${basePrompt} You are analyzing images from a ${projectContext}. Focus on the user interface elements, functionality, user experience features, and design decisions that support the project goals. Be specific about what the interface shows and how it serves users.`;
+        return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on the medication management features, user interface elements, patient-friendly design choices, accessibility features, and how the interface supports diabetic patients in managing their medication schedules. Be detailed about what functionality is visible and how it serves users.`;
       }
       
       switch (contextType) {
         case 'project':
-          return `${basePrompt} You are analyzing images from a professional design portfolio. Focus on design elements, user interfaces, functionality, processes, workflows, and technical implementations. Be specific about what the interface shows, what functionality is visible, and notable design elements.`;
+          return `${basePrompt} You are analyzing images from a medication management app designed for diabetic patients. Focus on the user interface design, medication tracking features, appointment scheduling, accessibility elements, patient-friendly navigation, and any health-related functionality visible in the interface. Describe specific UI components and their purpose.`;
         case 'blog':
-          return `${basePrompt} You are analyzing images for educational blog content. Focus on key concepts, actionable insights, and the educational value of what's shown in the image.`;
+          return `${basePrompt} You are analyzing images for educational content about medication management app design. Focus on key UX/UI principles and patient-centered design approaches.`;
         default:
-          return `${basePrompt} Look at the image carefully and describe exactly what you see - whether it's a user interface, design mockup, screenshot, process diagram, workflow, data visualization, mobile app screen, website layout, etc. Be specific about what the interface shows and any notable features.`;
+          return `${basePrompt} Look at this medication app interface carefully and describe exactly what you see - including specific UI elements, medication tracking features, patient interface components, accessibility features, and design elements that support healthcare management.`;
       }
     };
 
-    // Generate single descriptive caption using OpenAI
+    // Generate descriptive caption using OpenAI with medication app focus
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -73,7 +68,7 @@ serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: 'Please analyze this image and provide a specific, accurate description of what it shows. Focus on the actual content, interface elements, process steps, or functionality that is visible in the image. Make the caption professional and descriptive for a UX/UI portfolio.'
+                text: 'Please analyze this medication management app interface and provide a specific, detailed description of what it shows. Focus on the user interface elements, medication tracking features, patient-friendly design elements, accessibility considerations, and any healthcare-related functionality visible. Make the caption professional and descriptive for a UX/UI portfolio, highlighting how the design serves diabetic patients.'
               },
               {
                 type: 'image_url',
@@ -85,8 +80,8 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 200,
-        temperature: 0.3
+        max_tokens: 300,
+        temperature: 0.2
       }),
     });
 
@@ -103,7 +98,7 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    console.log('✅ OpenAI Caption: Generated caption:', caption);
+    console.log('✅ OpenAI Caption: Generated medication app caption:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -112,7 +107,7 @@ serve(async (req) => {
     console.error('❌ Error in OpenAI generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'Professional medication management interface designed for enhanced patient experience'
+      caption: 'Professional medication management interface designed for enhanced patient experience and medication adherence'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -8,13 +8,12 @@ interface OpenAiCaptionResponse {
 
 export const useOpenAiCaptions = () => {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState<{current: number, total: number} | null>(null);
 
   const generateCaption = async (imageSrc: string, projectContext?: string): Promise<OpenAiCaptionResponse> => {
-    setIsGenerating(true);
+    console.log('🤖 OpenAI Caption: Analyzing image for medication app:', imageSrc.substring(0, 50) + '...');
     
     try {
-      console.log('🤖 OpenAI Caption: Analyzing image for medication app:', imageSrc.substring(0, 50) + '...');
-      
       const response = await fetch('/api/generate-image-caption', {
         method: 'POST',
         headers: {
@@ -23,7 +22,7 @@ export const useOpenAiCaptions = () => {
         body: JSON.stringify({ 
           imageSrc,
           contextType: 'project',
-          projectContext: projectContext || 'medication management app for diabetic patients'
+          projectContext: projectContext || 'medication management app for diabetic patients - focus on UI/UX elements, user interface design, medication tracking features, and patient-friendly functionality'
         }),
       });
 
@@ -41,26 +40,36 @@ export const useOpenAiCaptions = () => {
         caption: 'Professional medication management interface showcasing user-friendly design for diabetic patients',
         error: error instanceof Error ? error.message : 'Unknown error'
       };
-    } finally {
-      setIsGenerating(false);
     }
   };
 
   const generateProjectCaptions = async (images: string[], projectId: string) => {
     console.log(`🚀 Starting OpenAI caption generation for ${images.length} images in ${projectId}...`);
     
+    setIsGenerating(true);
+    setGenerationProgress({ current: 0, total: images.length });
+    
     const captions: Record<string, string> = {};
     
-    for (const imageSrc of images) {
+    for (let i = 0; i < images.length; i++) {
+      const imageSrc = images[i];
       try {
-        const result = await generateCaption(imageSrc, 'medication management app for diabetic patients');
+        setGenerationProgress({ current: i + 1, total: images.length });
+        
+        const result = await generateCaption(
+          imageSrc, 
+          'medication management app for diabetic patients - describe the specific UI elements, features, and functionality visible in this interface design'
+        );
+        
         if (result.caption && !result.error) {
           captions[imageSrc] = result.caption;
+        } else {
+          captions[imageSrc] = 'Professional medication management interface designed for enhanced patient experience';
         }
         
         // Add delay to avoid overwhelming the API
-        if (images.length > 1) {
-          await new Promise(resolve => setTimeout(resolve, 1000));
+        if (i < images.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 1500));
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
@@ -68,6 +77,8 @@ export const useOpenAiCaptions = () => {
       }
     }
     
+    setIsGenerating(false);
+    setGenerationProgress(null);
     console.log('✅ OpenAI caption generation complete for project:', projectId);
     return captions;
   };
@@ -75,6 +86,7 @@ export const useOpenAiCaptions = () => {
   return {
     generateCaption,
     generateProjectCaptions,
-    isGenerating
+    isGenerating,
+    generationProgress
   };
 };
