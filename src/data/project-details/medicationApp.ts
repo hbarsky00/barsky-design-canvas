@@ -49,10 +49,15 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
     "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png",
     "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
-    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
+    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png",
+    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png",
+    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png"
   ],
 
-  challengeGalleryImages: [],
+  challengeGalleryImages: [
+    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png",
+    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png"
+  ],
   
   resultGalleryImages: [
     "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
