@@ -1,10 +1,17 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
+import { trackContentEngagement } from "@/lib/analytics";
 
 const ProjectCallToAction: React.FC = () => {
+  const openCalendly = () => {
+    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+    trackContentEngagement('project', 'consultation-booking', 'Calendly Booking');
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -43,6 +50,7 @@ const ProjectCallToAction: React.FC = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <Button 
+            onClick={openCalendly}
             size="lg"
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
           >
@@ -53,9 +61,12 @@ const ProjectCallToAction: React.FC = () => {
           <Button 
             variant="outline"
             size="lg"
+            asChild
             className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded-lg font-medium transition-colors"
           >
-            Contact Me
+            <Link to="/#contact">
+              Contact Me
+            </Link>
           </Button>
         </motion.div>
       </div>

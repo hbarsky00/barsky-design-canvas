@@ -19,11 +19,11 @@ const ServicesCallToAction = () => {
           Let's discuss how my design and development services can help you create exceptional digital experiences for your users.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <Button onClick={openCalendly} size="lg">
+          <Button onClick={openCalendly} size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
             <Calendar className="mr-2" />
             Schedule a Free Consultation
           </Button>
-          <Button variant="outline" size="lg" asChild>
+          <Button variant="outline" size="lg" asChild className="border-gray-300 text-gray-700 hover:bg-gray-50">
             <Link to="/#contact">
               Contact Me
             </Link>

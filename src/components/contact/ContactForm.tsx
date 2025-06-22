@@ -79,91 +79,93 @@ const ContactForm: React.FC = () => {
   };
   
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem className="mb-6">
-              <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Name</FormLabel>
-              <FormControl>
-                <Input 
-                  placeholder="Your name" 
-                  {...field} 
-                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem className="mb-6">
-              <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Email</FormLabel>
-              <FormControl>
-                <Input 
-                  placeholder="your@email.com" 
-                  type="email" 
-                  {...field} 
-                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="subject"
-          render={({ field }) => (
-            <FormItem className="mb-6">
-              <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Subject</FormLabel>
-              <FormControl>
-                <Input 
-                  placeholder="Subject of your message" 
-                  {...field} 
-                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem className="mb-6">
-              <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Message</FormLabel>
-              <FormControl>
-                <Textarea 
-                  placeholder="Your message..." 
-                  rows={5}
-                  {...field}
-                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        
-        <button 
-          type="submit" 
-          className="btn-primary w-full flex items-center justify-center gap-2"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
-        </button>
-      </form>
-    </Form>
+    <div id="contact-form">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Name</FormLabel>
+                <FormControl>
+                  <Input 
+                    placeholder="Your name" 
+                    {...field} 
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Email</FormLabel>
+                <FormControl>
+                  <Input 
+                    placeholder="your@email.com" 
+                    type="email" 
+                    {...field} 
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="subject"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Subject</FormLabel>
+                <FormControl>
+                  <Input 
+                    placeholder="Subject of your message" 
+                    {...field} 
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem className="mb-6">
+                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Message</FormLabel>
+                <FormControl>
+                  <Textarea 
+                    placeholder="Your message..." 
+                    rows={5}
+                    {...field}
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <button 
+            type="submit" 
+            className="btn-primary w-full flex items-center justify-center gap-2"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
+          </button>
+        </form>
+      </Form>
+    </div>
   );
 };
 

@@ -2,7 +2,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, Home, Briefcase, Store, User, Mail, BookOpen, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Home, Briefcase, Store, User, Mail, BookOpen, FileText, Calendar } from "lucide-react";
+import { trackContentEngagement } from "@/lib/analytics";
 
 interface MobileMenuProps {
   links: Array<{ name: string; href: string }>;
@@ -19,6 +21,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   handleLinkClick,
   isLinkActive,
 }) => {
+  const openCalendly = () => {
+    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+    trackContentEngagement('mobile-menu', 'consultation-booking', 'Calendly Booking');
+    toggleMobileMenu();
+  };
+
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
@@ -94,6 +102,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 </Link>
               );
             })}
+            
+            <Button
+              onClick={openCalendly}
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white mt-4 w-full"
+            >
+              <Calendar className="h-5 w-5 mr-2" />
+              Schedule a Free Consultation
+            </Button>
           </nav>
         </div>
       )}

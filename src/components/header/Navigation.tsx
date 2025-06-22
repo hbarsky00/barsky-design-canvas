@@ -3,7 +3,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "../ThemeToggle";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "lucide-react";
 import { Home, Briefcase, Store, User, Mail, BookOpen, FileText } from "lucide-react";
+import { trackContentEngagement } from "@/lib/analytics";
 
 interface NavigationProps {
   links: Array<{ name: string; href: string }>;
@@ -17,6 +20,11 @@ const Navigation: React.FC<NavigationProps> = ({
   handleLinkClick, 
   isLinkActive 
 }) => {
+  const openCalendly = () => {
+    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+    trackContentEngagement('navigation', 'consultation-booking', 'Calendly Booking');
+  };
+
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
@@ -42,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({
   };
 
   return (
-    <nav className="hidden md:flex items-center space-x-8">
+    <nav className="hidden md:flex items-center space-x-4">
       {links.map((link) => {
         // For external links, use a regular anchor tag
         if (link.href.startsWith('http')) {
@@ -79,6 +87,16 @@ const Navigation: React.FC<NavigationProps> = ({
           </Link>
         );
       })}
+      
+      <Button
+        onClick={openCalendly}
+        size="sm"
+        className="bg-blue-600 hover:bg-blue-700 text-white ml-4"
+      >
+        <Calendar className="h-4 w-4 mr-1" />
+        Book Call
+      </Button>
+      
       <ThemeToggle />
     </nav>
   );

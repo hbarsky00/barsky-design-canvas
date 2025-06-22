@@ -1,8 +1,16 @@
 
 import React from "react";
-import { Mail, MapPin, Phone, Linkedin, Github } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Mail, MapPin, Phone, Linkedin, Github, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { trackContentEngagement } from "@/lib/analytics";
 
 const ContactInformation: React.FC = () => {
+  const openCalendly = () => {
+    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+    trackContentEngagement('contact', 'consultation-booking', 'Calendly Booking');
+  };
+
   return (
     <div>
       <h3 className="text-2xl font-bold mb-6 text-barsky-dark dark:text-white">Contact Information</h3>
@@ -10,6 +18,19 @@ const ContactInformation: React.FC = () => {
         Have a project in mind or want to discuss a collaboration? Feel free to reach out — 
         I'm always open to new opportunities and challenges.
       </p>
+      
+      {/* Quick Action Buttons */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <Button onClick={openCalendly} size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Calendar className="mr-2 h-5 w-5" />
+          Schedule a Free Consultation
+        </Button>
+        <Button variant="outline" size="lg" asChild className="border-gray-300 text-gray-700 hover:bg-gray-50">
+          <Link to="#contact-form">
+            Contact Me
+          </Link>
+        </Button>
+      </div>
       
       <div className="flex flex-col gap-6 mb-8">
         <div className="flex items-center gap-4">
