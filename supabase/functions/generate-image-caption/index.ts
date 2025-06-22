@@ -15,22 +15,27 @@ serve(async (req) => {
   }
 
   try {
+    console.log('🔧 Edge Function: generate-image-caption called');
+    
     if (!openAIApiKey) {
+      console.error('❌ OpenAI API key not configured');
       throw new Error('OpenAI API key not configured');
     }
 
-    const { imageSrc, contextType = 'general', projectContext, requestMultipleStyles = false } = await req.json();
+    const { imageSrc, contextType = 'general', projectContext } = await req.json();
+    console.log('📥 Request data:', { imageSrc: imageSrc?.substring(0, 50), contextType, hasProjectContext: !!projectContext });
 
     if (!imageSrc) {
       throw new Error('Image source is required');
     }
 
-    // Convert relative URLs to absolute URLs
+    // Convert relative URLs to absolute URLs using request origin
+    const requestOrigin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://0fd089db-a4e5-4e17-ab5f-74878fb2d656.lovableproject.com';
     const fullImageUrl = imageSrc.startsWith('http') 
       ? imageSrc 
-      : `${req.headers.get('origin') || 'https://barskydesign.pro'}${imageSrc}`;
+      : `${requestOrigin}${imageSrc}`;
 
-    console.log('🤖 OpenAI Caption: Analyzing medication app image with context:', contextType, 'URL:', fullImageUrl);
+    console.log('🖼️ Processing image URL:', fullImageUrl);
 
     const getSystemPrompt = (contextType: string, projectContext?: string) => {
       const basePrompt = 'You are an expert at analyzing medical app interfaces and describing them accurately for UX/UI design portfolios.';
@@ -50,7 +55,8 @@ serve(async (req) => {
     };
 
     // Generate descriptive caption using OpenAI with medication app focus
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    console.log('🤖 Calling OpenAI API...');
+    const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${openAIApiKey}`,
@@ -85,26 +91,26 @@ serve(async (req) => {
       }),
     });
 
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error('❌ OpenAI API error:', response.status, errorData);
-      throw new Error(`OpenAI API error: ${response.status} - ${errorData}`);
+    if (!openAIResponse.ok) {
+      const errorData = await openAIResponse.text();
+      console.error('❌ OpenAI API error:', openAIResponse.status, errorData);
+      throw new Error(`OpenAI API error: ${openAIResponse.status} - ${errorData}`);
     }
 
-    const data = await response.json();
-    const caption = data.choices[0]?.message?.content?.trim();
+    const data = await openAIResponse.json();
+    const caption = data.choices?.[0]?.message?.content?.trim();
 
     if (!caption) {
       throw new Error('No caption generated from OpenAI');
     }
 
-    console.log('✅ OpenAI Caption: Generated medication app caption:', caption);
+    console.log('✅ OpenAI Caption generated successfully');
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('❌ Error in OpenAI generate-image-caption function:', error);
+    console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
       caption: 'Professional medication management interface designed for enhanced patient experience and medication adherence'
