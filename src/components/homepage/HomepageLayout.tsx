@@ -3,7 +3,6 @@ import React from "react";
 import Header from "@/components/Header";
 import EnhancedHero from "@/components/hero/EnhancedHero";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
-import AboutPreview from "@/components/home/AboutPreview";
 import About from "@/components/About";
 import InternalLinkingHub from "@/components/seo/InternalLinkingHub";
 import Contact from "@/components/Contact";
@@ -20,7 +19,6 @@ const HomepageLayout: React.FC = () => {
         <EnhancedHero />
         <FeaturedProjects />
         <InternalLinkingHub />
-        <AboutPreview />
         <About />
         <Contact />
         <ServicesCallToAction />
