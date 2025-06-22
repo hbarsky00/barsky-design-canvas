@@ -11,7 +11,7 @@ export const herbalinkDetails: ProjectDetails = {
   duration: "1 year to present",
   client: "Alternative Medicine Startup",
   role: "Lead UX/UI Designer & Product Strategist",
-  projectLink: "https://herbalink.app",
+  projectLink: "https://herbalink.live",
 
   imageConfig: {
     challenge: {

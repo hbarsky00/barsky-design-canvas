@@ -11,7 +11,7 @@ export const splittimeDetails: ProjectDetails = {
   duration: "1 year to present",
   client: "Family Technology Startup",
   role: "Lead Product Designer & UX Researcher",
-  projectLink: "https://splittime.app",
+  projectLink: "http://splittime.pro",
 
   imageConfig: {
     challenge: {
