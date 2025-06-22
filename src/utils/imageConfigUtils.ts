@@ -1,5 +1,5 @@
 
-import { ProjectImageConfig } from "@/data/types/project";
+import { ImageConfig } from "@/data/types/project";
 
 export interface ImageAssignment {
   section: string;
@@ -11,7 +11,7 @@ export interface ImageAssignment {
 /**
  * Get all image assignments from a project's image configuration
  */
-export const getImageAssignments = (imageConfig?: ProjectImageConfig): ImageAssignment[] => {
+export const getImageAssignments = (imageConfig?: ImageConfig): ImageAssignment[] => {
   if (!imageConfig) return [];
 
   const assignments: ImageAssignment[] = [];
@@ -40,7 +40,7 @@ export const getImageAssignments = (imageConfig?: ProjectImageConfig): ImageAssi
  * Validate that all images in the configuration exist in the available images array
  */
 export const validateImageConfig = (
-  imageConfig?: ProjectImageConfig,
+  imageConfig?: ImageConfig,
   availableImages?: string[]
 ): { isValid: boolean; missingImages: string[] } => {
   if (!imageConfig || !availableImages) {
@@ -61,7 +61,7 @@ export const validateImageConfig = (
  * Get unused images from the available images pool
  */
 export const getUnusedImages = (
-  imageConfig?: ProjectImageConfig,
+  imageConfig?: ImageConfig,
   availableImages?: string[]
 ): string[] => {
   if (!imageConfig || !availableImages) return availableImages || [];
@@ -75,7 +75,7 @@ export const getUnusedImages = (
 /**
  * Check for duplicate image assignments
  */
-export const findDuplicateImages = (imageConfig?: ProjectImageConfig): string[] => {
+export const findDuplicateImages = (imageConfig?: ImageConfig): string[] => {
   if (!imageConfig) return [];
 
   const assignments = getImageAssignments(imageConfig);
