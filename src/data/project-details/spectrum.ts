@@ -2,37 +2,25 @@
 import { ProjectDetails } from "../types/project";
 
 export const spectrumDetails: ProjectDetails = {
-  challenge: "E-commerce platforms often lack accessibility features, making it difficult for users with disabilities to customize and purchase apparel. The challenge was creating an inclusive shopping experience that works for users of all abilities.\n\nExisting custom apparel platforms were visually complex and relied heavily on precise mouse interactions, creating barriers for users with various disabilities.",
-  
-  process: "I collaborated with accessibility experts and users with various disabilities to understand the barriers in online shopping. The research revealed the need for alternative interaction methods and clearer visual hierarchies.\n\nI designed an accessible interface with multiple interaction options, clear focus indicators, and screen reader optimization while maintaining the visual appeal expected in fashion e-commerce.",
-  
-  result: "The platform achieved WCAG 2.1 AA compliance and received positive feedback from accessibility testing groups. Users with disabilities reported successful completion of design and purchase tasks with 90% satisfaction rates.\n\nThe accessible design also improved usability for all users, leading to a 25% increase in overall conversion rates and positive brand recognition for inclusive design.",
-  
-  technologies: ["E-commerce", "Accessibility Design", "Custom Apparel", "WCAG Compliance", "Inclusive Design", "User Testing"],
-  duration: "7 months",
-  client: "Custom Apparel Company",
-  role: "Accessibility UX Designer",
-  
-  imageConfig: {
-    challenge: {
-      beforeHeader: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png"
-    },
-    process: {
-      beforeHeader: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png"
-    },
-    result: {
-      beforeHeader: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png"
-    }
-  },
-  
-  availableImages: [
-    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png"
-  ],
-  
+  challenge: "Spectrum Apparel needed a modern e-commerce platform that could showcase custom apparel design capabilities while providing an intuitive shopping experience. The platform needed to handle both pre-designed products and custom design requests while being accessible to users with varying design experience.",
+
+  process: "I conducted user research with both casual customers and professional designers to understand different use cases. I developed wireframes that separated basic customization from advanced design tools, ensuring each user type had an appropriate experience with comprehensive accessibility testing.",
+
+  result: "The Spectrum Apparel platform launched successfully with both basic customization and advanced design tools, resulting in a 60% increase in custom orders and 40% improvement in customer satisfaction. The accessibility-focused design ensured usability for customers with visual impairments.",
+
+  technologies: ["E-commerce Platform", "Custom Design Tools", "Accessibility Standards", "Content Management", "Manufacturing Integration", "Real-time Preview", "Blog Platform", "SEO Optimization"],
+  duration: "1.5 years",
+  client: "Spectrum Apparel",
+  role: "UX/UI Designer & Accessibility Specialist",
+
   challengeGalleryImages: [
-    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png"
+    "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png"
   ],
+
+  processImage: "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png",
+
   resultGalleryImages: [
-    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png"
+    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
+    "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png"
   ]
 };
