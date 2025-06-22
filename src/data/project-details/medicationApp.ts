@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const medicationAppDetails: ProjectDetails = {
