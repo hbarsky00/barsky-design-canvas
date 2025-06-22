@@ -14,10 +14,6 @@ export const investorLoanAppDetails: ProjectDetails = {
   role: "Lead UX/UI Designer & Product Strategist",
   
   imageConfig: {
-    challenge: {
-      beforeHeader: "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
-      afterHeader: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
-    },
     process: {
       beforeHeader: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
       afterHeader: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
