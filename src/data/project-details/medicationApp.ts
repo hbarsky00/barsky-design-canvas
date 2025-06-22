@@ -72,5 +72,8 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/6d43a048-886a-4190-8aeb-c6bc15e2f49c.png"
   ],
   
-  galleryImages: []
+  galleryImages: [],
+
+  // Enable AI caption generation for this project
+  useAiCaptions: true
 };

@@ -1,18 +1,3 @@
-export interface ProjectImageConfig {
-  challenge?: {
-    beforeHeader?: string;
-    afterHeader?: string;
-  };
-  process?: {
-    beforeHeader?: string;
-    afterHeader?: string;
-  };
-  result?: {
-    beforeHeader?: string;
-    afterHeader?: string;
-  };
-}
-
 export interface ProjectDetails {
   challenge: string;
   process: string;
@@ -21,25 +6,35 @@ export interface ProjectDetails {
   duration: string;
   client: string;
   role: string;
-  projectLink?: string;
-  caseStudyLink?: string;
-  
-  // New simplified image configuration
-  imageConfig?: ProjectImageConfig;
-  
-  // Pool of available images for easy reference
+  imageConfig?: ImageConfig;
   availableImages?: string[];
-  
-  // Keep legacy properties for backward compatibility (will be deprecated)
-  challengeImage?: string;
-  processImage?: string;
-  processBottomImage?: string;
-  resultImage?: string;
-  resultGalleryImages?: string[];
-  galleryImages?: string[];
-  extraImages?: string[];
-  videoUrl?: string;
-  challengeBottomImage?: string;
   challengeGalleryImages?: string[];
+  processGalleryImages?: string[];
+  resultGalleryImages?: string[];
   servicesGalleryImages?: string[];
+  galleryImages?: string[];
+  processImage?: string;
+  resultImage?: string;
+  projectLink?: string;
+  useAiCaptions?: boolean; // New flag to enable AI caption generation
+}
+
+interface ImageConfig {
+  challenge?: ImageSectionConfig;
+  process?: ImageSectionConfig;
+  result?: ImageSectionConfig;
+}
+
+interface ImageSectionConfig {
+  beforeHeader?: string;
+  afterHeader?: string;
+}
+
+export interface ProjectProps {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  date?: string;
 }
