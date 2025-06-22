@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const herbalinkDetails: ProjectDetails = {
@@ -12,6 +11,7 @@ export const herbalinkDetails: ProjectDetails = {
   duration: "1 year to present",
   client: "Alternative Medicine Startup",
   role: "Lead UX/UI Designer & Product Strategist",
+  projectLink: "https://herbalink.app",
 
   imageConfig: {
     challenge: {
