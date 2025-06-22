@@ -74,12 +74,6 @@ const AboutPreview: React.FC = () => {
                   loading="lazy"
                 />
               </div>
-              {/* Floating Accent */}
-              <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white rounded-xl p-4 shadow-lg">
-                <div className="text-center">
-                  <div className="text-2xl font-bold">Years</div>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
