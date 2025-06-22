@@ -16,11 +16,9 @@ export const barskyjointDetails: ProjectDetails = {
 
   imageConfig: {
     challenge: {
-      beforeHeader: "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png",
       afterHeader: "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png",
       afterHeader: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png"
     },
     result: {
@@ -29,21 +27,16 @@ export const barskyjointDetails: ProjectDetails = {
   },
 
   availableImages: [
-    "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png",
     "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
-    "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png",
     "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
     "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
     "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
   ],
 
-  challengeGalleryImages: [
-    "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png"
-  ],
+  challengeGalleryImages: [],
 
-  processImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png",
-  processBottomImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
+  processImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
 
   resultGalleryImages: [
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
