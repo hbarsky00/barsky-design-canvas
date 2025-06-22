@@ -24,7 +24,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
   canonicalUrl,
   pageType,
   keywords = [],
-  ogImage = "https://barskydesign.pro/lovable-uploads/c6242fd2-6088-44ee-a5bd-2233fb68caef.png",
+  ogImage = "https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
   structuredData,
   breadcrumbs = []
 }) => {

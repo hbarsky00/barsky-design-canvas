@@ -18,13 +18,13 @@ const About = () => {
         <meta property="og:description" content="Learn about Hiram Barsky's design philosophy and approach to creating exceptional user experiences." />
         <meta property="og:url" content="https://barskydesign.pro/about" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About Hiram Barsky | Professional UX/UI Designer" />
         <meta name="twitter:description" content="Learn about my design philosophy and approach to user-centered design." />
-        <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
         {/* Structured Data */}
         <script type="application/ld+json">

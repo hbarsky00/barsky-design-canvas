@@ -19,7 +19,7 @@ const MobileAppDesign = () => {
         <meta property="og:description" content="Creating engaging mobile experiences for iOS and Android platforms that users love and businesses rely on." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/mobile-app-design" />
         <meta property="og:type" content="service" />
-        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
         {/* Structured Data */}
         <script type="application/ld+json">

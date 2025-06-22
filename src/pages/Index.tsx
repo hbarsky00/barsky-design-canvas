@@ -17,6 +17,7 @@ const Index = () => {
           "startup design consultant", "mobile app designer for hire",
           "React developer designer", "design system expert"
         ]}
+        ogImage="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
       />
       <AiTrainingAnalytics />
       <ScrollHandler />

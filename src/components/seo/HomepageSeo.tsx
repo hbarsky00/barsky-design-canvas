@@ -11,7 +11,7 @@ const HomepageSeo: React.FC = () => {
       <meta name="author" content="Barsky Design" />
       <meta property="og:title" content="Barsky Design - UX/UI Designer & Frontend Developer" />
       <meta property="og:description" content="Creating User-Centered Digital Experiences through user research, wireframing, prototyping, and responsive frontend development." />
-      <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+      <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
       <meta property="og:url" content="https://barskydesign.pro/" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Barsky Design - UX/UI Designer & Frontend Developer" />
@@ -19,7 +19,7 @@ const HomepageSeo: React.FC = () => {
       <meta name="twitter:creator" content="@barskydesign" />
       <meta name="twitter:title" content="Barsky Design - UX/UI Designer & Frontend Developer" />
       <meta name="twitter:description" content="Creating User-Centered Digital Experiences through user research, wireframing, prototyping, and responsive frontend development." />
-      <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+      <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
       <link rel="canonical" href="https://barskydesign.pro/" />
     </Helmet>
   );
