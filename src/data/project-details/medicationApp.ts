@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const medicationAppDetails: ProjectDetails = {
@@ -54,7 +55,8 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/4432f02a-a115-4ee6-8f59-eef3bed32909.png",
     "/lovable-uploads/93549759-596b-4dcf-9924-5a5d2a3430b2.png",
     "/lovable-uploads/0bd501de-722e-4f09-af9e-25a0dc629f9d.png",
-    "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png"
+    "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png",
+    "/lovable-uploads/6d43a048-886a-4190-8aeb-c6bc15e2f49c.png"
   ],
 
   challengeGalleryImages: [
@@ -68,7 +70,8 @@ export const medicationAppDetails: ProjectDetails = {
   ],
   
   servicesGalleryImages: [
-    "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png"
+    "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png",
+    "/lovable-uploads/6d43a048-886a-4190-8aeb-c6bc15e2f49c.png"
   ],
   
   galleryImages: []
