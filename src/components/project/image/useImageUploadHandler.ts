@@ -29,73 +29,56 @@ export const useImageUploadHandler = ({
 
     // Validate file
     if (!file.type.startsWith('image/')) {
-      console.error('❌ Invalid file type');
+      console.error('❌ Invalid file type:', file.type);
       toast.error('Please select an image file');
       event.target.value = '';
       return;
     }
 
     if (file.size > 10 * 1024 * 1024) {
-      console.error('❌ File too large');
+      console.error('❌ File too large:', file.size);
       toast.error('Image must be smaller than 10MB');
       event.target.value = '';
       return;
     }
 
     setImageError(false);
-    toast.info('Uploading image to Vercel Blob...');
+    toast.info('Uploading image...');
     
     try {
-      console.log('📤 Starting image upload for replacement using Vercel Blob:', file.name);
+      console.log('📤 Starting image upload for replacement:', file.name);
       
-      // Create immediate preview using FileReader for instant feedback
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const previewUrl = e.target?.result as string;
-        if (previewUrl) {
-          console.log('🖼️ Showing immediate preview while uploading');
-          setCurrentSrc(previewUrl);
-          setForceRefresh(prev => prev + 1);
-        }
-      };
-      reader.readAsDataURL(file);
+      // Create immediate preview for better UX
+      const previewUrl = URL.createObjectURL(file);
+      setCurrentSrc(previewUrl);
+      setForceRefresh(prev => prev + 1);
       
       const newImageUrl = await VercelBlobStorageService.uploadImage(file, projectId, currentSrc);
       
       if (newImageUrl) {
-        const cacheBustedUrl = `${newImageUrl}?v=${Date.now()}`;
+        console.log('✅ Image uploaded successfully:', newImageUrl);
         
-        console.log('✅ Image uploaded successfully to Vercel Blob, updating to final URL:', cacheBustedUrl);
+        // Clean up the preview URL
+        URL.revokeObjectURL(previewUrl);
         
-        setCurrentSrc(cacheBustedUrl);
+        setCurrentSrc(newImageUrl);
         setForceRefresh(prev => prev + 1);
         setImageError(false);
         
-        onImageReplace(cacheBustedUrl);
-        
-        // Force all images with this src to update in the DOM
-        setTimeout(() => {
-          document.querySelectorAll(`img[src*="${currentSrc}"]`).forEach((img) => {
-            (img as HTMLImageElement).src = cacheBustedUrl;
-          });
-          
-          window.dispatchEvent(new CustomEvent('imageReplaced', {
-            detail: { oldSrc: currentSrc, newSrc: cacheBustedUrl }
-          }));
-          
-          console.log('🔄 Triggered global image refresh');
-        }, 100);
+        onImageReplace(newImageUrl);
         
         toast.success('Image uploaded successfully!');
-        console.log('🎉 Image replacement completed successfully using Vercel Blob');
+        console.log('🎉 Image replacement completed successfully');
       } else {
         console.error('❌ Upload failed - no URL returned');
+        // Revert to original src on failure
         setCurrentSrc(currentSrc);
         setImageError(true);
-        toast.error('Image upload failed. Please check your Vercel Blob configuration.');
+        toast.error('Image upload failed. Please check your configuration.');
       }
     } catch (error) {
-      console.error('❌ Error uploading image to Vercel Blob:', error);
+      console.error('❌ Error uploading image:', error);
+      // Revert to original src on error
       setCurrentSrc(currentSrc);
       setImageError(true);
       toast.error('Image upload failed. Please try again.');

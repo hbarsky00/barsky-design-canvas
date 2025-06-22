@@ -41,7 +41,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
-  const [forceRefresh, setForceRefresh] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(0);
   const showEditingControls = shouldShowEditingControls();
 
   const { handleImageReplace } = useImageUploadHandler({
@@ -50,23 +50,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     onImageReplace,
     setCurrentSrc,
     setImageError,
-    setForceRefresh
+    setForceRefresh: setRefreshKey
   });
 
-  // Update current source when prop changes and force complete refresh
+  // Update current source when prop changes
   useEffect(() => {
     if (src !== currentSrc) {
-      console.log('🔄 Image src changed, forcing complete refresh:', src);
+      console.log('🔄 MaximizableImage: Source changed from', currentSrc.substring(0, 30), 'to', src.substring(0, 30));
       setCurrentSrc(src);
       setImageError(false);
-      setForceRefresh(prev => prev + 1);
-      
-      const img = new Image();
-      img.onload = () => {
-        console.log('✅ New image preloaded successfully');
-        setForceRefresh(prev => prev + 1);
-      };
-      img.src = src + '?refresh=' + Date.now();
+      setRefreshKey(prev => prev + 1);
     }
   }, [src]);
 
@@ -89,29 +82,35 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageLoad = () => {
-    console.log('✅ Image loaded successfully:', currentSrc);
+    console.log('✅ Image loaded successfully:', currentSrc.substring(0, 50) + '...');
     setImageError(false);
   };
 
-  // Create final URL with aggressive cache busting
+  // Simple cache busting only when needed
   const displayUrl = React.useMemo(() => {
-    const baseUrl = currentSrc;
-    const separator = baseUrl.includes('?') ? '&' : '?';
-    return `${baseUrl}${separator}refresh=${forceRefresh}&t=${Date.now()}`;
-  }, [currentSrc, forceRefresh]);
+    // Only add cache busting for blob URLs or when we have a refresh key > 0
+    if (currentSrc.startsWith('blob:') || refreshKey > 0) {
+      const separator = currentSrc.includes('?') ? '&' : '?';
+      return `${currentSrc}${separator}t=${refreshKey}`;
+    }
+    return currentSrc;
+  }, [currentSrc, refreshKey]);
 
   return (
-    <div className={`relative ${className}`} key={`image-${forceRefresh}`}>
+    <div className={`relative ${className}`} key={`image-container-${refreshKey}`}>
       <div 
         className="relative group overflow-hidden cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {imageError ? (
-          <ImageErrorFallback showEditingControls={showEditingControls} />
+          <ImageErrorFallback 
+            showEditingControls={showEditingControls}
+            originalSrc={currentSrc}
+          />
         ) : (
           <img
-            key={`img-${forceRefresh}-${Date.now()}`}
+            key={`img-${displayUrl}`}
             src={displayUrl}
             alt={alt}
             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
