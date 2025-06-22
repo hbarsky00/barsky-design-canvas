@@ -33,7 +33,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
   const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
   const processRegularImage = details.processImage;
   
-  // Create process images array with correct order
+  // Create process images array with correct order, including servicesGalleryImages
   const processImages = React.useMemo(() => {
     const images: string[] = [];
     if (processBeforeHeaderImage) {
@@ -42,8 +42,12 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
     if (processRegularImage) {
       images.push(processRegularImage);
     }
+    // Add servicesGalleryImages to the process section
+    if (details.servicesGalleryImages) {
+      images.push(...details.servicesGalleryImages);
+    }
     return images;
-  }, [processBeforeHeaderImage, processRegularImage]);
+  }, [processBeforeHeaderImage, processRegularImage, details.servicesGalleryImages]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
