@@ -28,7 +28,6 @@ export const splittimeDetails: ProjectDetails = {
     }
   },
 
-  // Cleaned available images - removed duplicates
   availableImages: [
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
     "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png",
@@ -40,16 +39,13 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png"
   ],
 
-  // Legacy properties - simplified
   challengeGalleryImages: [
-    "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png",
-    "/lovable-uploads/f90e5551-b19a-49c3-aeb4-348089b0ea6a.png"
+    "/lovable-uploads/d247fe26-c5c2-450d-a27d-fd1d41739b55.png"
   ],
   processImage: "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png",
   processBottomImage: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
   resultGalleryImages: [
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
-    "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png",
     "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
     "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png"
   ]

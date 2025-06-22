@@ -27,7 +27,6 @@ export const daeSearchDetails: ProjectDetails = {
     }
   },
   
-  // Cleaned up available images - removed duplicates
   availableImages: [
     "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png",
     "/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png",
@@ -38,7 +37,6 @@ export const daeSearchDetails: ProjectDetails = {
     "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png"
   ],
   
-  // Legacy properties - simplified
   challengeGalleryImages: [
     "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png"
   ],

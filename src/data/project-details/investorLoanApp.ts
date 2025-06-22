@@ -13,8 +13,11 @@ export const investorLoanAppDetails: ProjectDetails = {
   client: "Private Banking Institution",
   role: "Lead UX/UI Designer & Product Strategist",
   
-  // Simplified image configuration
   imageConfig: {
+    challenge: {
+      beforeHeader: "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
+      afterHeader: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
+    },
     process: {
       beforeHeader: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
       afterHeader: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
@@ -24,7 +27,6 @@ export const investorLoanAppDetails: ProjectDetails = {
     }
   },
   
-  // Pool of available images for easy reference
   availableImages: [
     "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
     "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
@@ -43,10 +45,8 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
   ],
   
-  // Challenge section with verified existing images
   challengeGalleryImages: [
-    "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png", // Project overview
-    "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"  // Professional dashboard
+    "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png"
   ],
   processImage: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png",
   processBottomImage: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",

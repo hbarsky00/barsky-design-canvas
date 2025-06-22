@@ -27,7 +27,6 @@ export const herbalinkDetails: ProjectDetails = {
     }
   },
 
-  // Updated available images with new uploads
   availableImages: [
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
     "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png",
@@ -41,10 +40,8 @@ export const herbalinkDetails: ProjectDetails = {
     "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png"
   ],
 
-  // Legacy properties - updated with new image assignments
   challengeGalleryImages: [
-    "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png",
-    "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png"
+    "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png"
   ],
   processImage: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
   processBottomImage: "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",

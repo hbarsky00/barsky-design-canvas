@@ -13,9 +13,30 @@ export const gold2cryptoDetails: ProjectDetails = {
   client: "Financial Technology Company",
   role: "Senior Product Designer",
 
-  challengeGalleryImages: [
+  imageConfig: {
+    challenge: {
+      beforeHeader: "/lovable-uploads/ddd4793c-96fd-4af4-a35a-6ee17e1ad879.png",
+      afterHeader: "/lovable-uploads/24032530-c712-4fff-9236-3975170ee6e6.png"
+    },
+    process: {
+      beforeHeader: "/lovable-uploads/8ad63858-b980-4021-af95-772475a451b5.png"
+    },
+    result: {
+      beforeHeader: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
+      afterHeader: "/lovable-uploads/f859dde1-e2bb-4777-a2cd-293d24d4d865.png"
+    }
+  },
+
+  availableImages: [
     "/lovable-uploads/ddd4793c-96fd-4af4-a35a-6ee17e1ad879.png",
-    "/lovable-uploads/24032530-c712-4fff-9236-3975170ee6e6.png"
+    "/lovable-uploads/24032530-c712-4fff-9236-3975170ee6e6.png",
+    "/lovable-uploads/8ad63858-b980-4021-af95-772475a451b5.png",
+    "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
+    "/lovable-uploads/f859dde1-e2bb-4777-a2cd-293d24d4d865.png"
+  ],
+
+  challengeGalleryImages: [
+    "/lovable-uploads/ddd4793c-96fd-4af4-a35a-6ee17e1ad879.png"
   ],
 
   processImage: "/lovable-uploads/8ad63858-b980-4021-af95-772475a451b5.png",

@@ -13,6 +13,26 @@ export const spectrumDetails: ProjectDetails = {
   client: "Spectrum Apparel",
   role: "UX/UI Designer & Accessibility Specialist",
 
+  imageConfig: {
+    challenge: {
+      beforeHeader: "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png"
+    },
+    process: {
+      beforeHeader: "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png"
+    },
+    result: {
+      beforeHeader: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
+      afterHeader: "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png"
+    }
+  },
+
+  availableImages: [
+    "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png",
+    "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png",
+    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
+    "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png"
+  ],
+
   challengeGalleryImages: [
     "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png"
   ],
