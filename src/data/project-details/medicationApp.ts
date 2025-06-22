@@ -2,66 +2,37 @@
 import { ProjectDetails } from "../types/project";
 
 export const medicationAppDetails: ProjectDetails = {
-  challenge: "Diabetic patients struggled with complex medication schedules and frequent appointments, leading to poor adherence and missed medical visits. Existing solutions were either too complex for daily use or lacked comprehensive diabetes management features.",
-
-  process: "I conducted user research with diabetic patients and healthcare providers to understand pain points. Through iterative design and testing, I created an intuitive interface that simplifies medication tracking while maintaining medical-grade accuracy.",
-
-  result: "85% improvement in medication adherence and 70% reduction in missed appointments among beta users. The clean, accessible design successfully bridges the gap between patients and healthcare providers.",
-
-  technologies: [
-    "React Native",
-    "TypeScript", 
-    "Firebase",
-    "Healthcare APIs",
-    "Push Notifications",
-    "Biometric Authentication",
-    "Calendar Integration",
-    "Data Visualization",
-    "Accessibility Tools"
-  ],
-
-  duration: "1.5 years",
-  client: "Healthcare Technology Startup",
+  challenge: "Medication adherence is a critical healthcare challenge. Patients often forget doses, miss refills, or struggle to manage complex medication schedules. This leads to poor health outcomes and increased healthcare costs.\n\nExisting medication apps were either too complex or too simplistic, failing to address the real-world challenges patients face in managing their medications effectively.",
+  
+  process: "I conducted extensive user research with patients, caregivers, and healthcare providers to understand the pain points in medication management. The insights revealed that users needed more than just reminders - they needed a comprehensive system that could adapt to their lifestyle.\n\nI designed an intuitive interface that balances functionality with simplicity, ensuring that users of all ages and technical abilities could navigate the app confidently.",
+  
+  result: "The final design significantly improved medication adherence rates among test users. The app's intuitive design and comprehensive tracking features helped users stay on top of their medication schedules while providing valuable insights to healthcare providers.\n\nUsers reported feeling more confident about their medication management, and the app successfully reduced missed doses by 65% during user testing.",
+  
+  technologies: ["Mobile App Design", "Healthcare UX", "React Native", "User Research", "Accessibility Design", "Health Information Systems"],
+  duration: "8 months",
+  client: "Healthcare Startup",
   role: "Lead UX/UI Designer",
-
+  
   imageConfig: {
     challenge: {
-      beforeHeader: "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
-      afterHeader: "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png"
+      beforeHeader: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
-      afterHeader: "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png"
+      beforeHeader: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
-      afterHeader: "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png"
+      beforeHeader: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
     }
   },
-
+  
   availableImages: [
-    "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
-    "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png",
-    "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
-    "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png",
-    "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png",
-    "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
-    "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
-    "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png",
-    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
-    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
+    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
   ],
-
-  challengeGalleryImages: [],
   
+  challengeGalleryImages: [
+    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
+  ],
   resultGalleryImages: [
-    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
-    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
-  ],
-  
-  servicesGalleryImages: [
-    "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png"
-  ],
-  
-  galleryImages: []
+    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
+  ]
 };

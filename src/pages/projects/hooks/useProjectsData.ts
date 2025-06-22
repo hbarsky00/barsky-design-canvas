@@ -6,8 +6,8 @@ import { ProjectProps } from "@/components/ProjectCard";
 // IDs of the featured projects to display on homepage
 const featuredProjectIds = ["investor-loan-app", "herbalink", "barskyjoint"];
 
-// IDs of hidden projects that won't appear in listings
-const hiddenProjectIds = ["gold2crypto", "spectrum", "dae-search"];
+// IDs of hidden projects that won't appear in listings - removed dae-search
+const hiddenProjectIds = ["gold2crypto", "spectrum"];
 
 export const useProjectsData = () => {
   const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);

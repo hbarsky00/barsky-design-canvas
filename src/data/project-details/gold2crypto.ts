@@ -2,26 +2,37 @@
 import { ProjectDetails } from "../types/project";
 
 export const gold2cryptoDetails: ProjectDetails = {
-  challenge: "Traditional gold investors wanted to enter the cryptocurrency market but lacked a trusted platform that understood their investment mindset. Existing crypto platforms were too complex and intimidating for investors accustomed to the stability of gold.",
-
-  process: "I conducted research with gold investors, financial advisors, and crypto experts to understand traditional investors' concerns. I developed user flows that mirrored familiar investment processes and created educational content that drew parallels between gold and cryptocurrency.",
-
-  result: "Gold2Crypto successfully onboarded over 2,000 traditional gold investors into cryptocurrency trading within six months. The platform achieved a 95% user satisfaction rate and reduced investment anxiety by 60%.",
-
-  technologies: ["React", "Node.js", "Cryptocurrency APIs", "Real-time Trading", "Security Protocols", "Educational Content Management", "Investment Tracking", "Mobile Trading"],
-  duration: "1.5 years",
-  client: "Financial Technology Company",
-  role: "Senior Product Designer",
-
-  challengeGalleryImages: [
-    "/lovable-uploads/ddd4793c-96fd-4af4-a35a-6ee17e1ad879.png",
-    "/lovable-uploads/24032530-c712-4fff-9236-3975170ee6e6.png"
+  challenge: "Traditional gold investors were hesitant to enter the cryptocurrency market due to complexity and unfamiliarity with digital assets. The learning curve was steep, and existing crypto platforms felt foreign to traditional investors.\n\nThe challenge was creating a bridge between traditional precious metals investing and cryptocurrency, making digital assets accessible to conservative investors.",
+  
+  process: "I studied the investment behaviors and preferences of traditional gold investors, understanding their risk tolerance and decision-making processes. The key insight was that these investors needed familiar interfaces and educational resources.\n\nI designed a platform that used familiar investment terminology and visual cues from traditional trading platforms while gradually introducing cryptocurrency concepts.",
+  
+  result: "The platform successfully onboarded over 1,000 traditional investors to cryptocurrency in the first quarter. User retention rates exceeded 85%, with users appreciating the educational approach and familiar interface.\n\nInvestors reported feeling confident in their cryptocurrency investments, with 78% expanding their digital asset portfolios beyond their initial investments.",
+  
+  technologies: ["Financial Technology", "Investment Platforms", "Cryptocurrency", "User Education", "Trading Interfaces"],
+  duration: "4 months",
+  client: "Investment Platform",
+  role: "Senior UX Designer",
+  
+  imageConfig: {
+    challenge: {
+      beforeHeader: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png"
+    },
+    process: {
+      beforeHeader: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png"
+    },
+    result: {
+      beforeHeader: "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png"
+    }
+  },
+  
+  availableImages: [
+    "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png"
   ],
-
-  processImage: "/lovable-uploads/8ad63858-b980-4021-af95-772475a451b5.png",
-
+  
+  challengeGalleryImages: [
+    "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png"
+  ],
   resultGalleryImages: [
-    "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png",
-    "/lovable-uploads/f859dde1-e2bb-4777-a2cd-293d24d4d865.png"
+    "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png"
   ]
 };

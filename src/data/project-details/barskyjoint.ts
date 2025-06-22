@@ -2,29 +2,37 @@
 import { ProjectDetails } from "../types/project";
 
 export const barskyjointDetails: ProjectDetails = {
-  challenge: "Barsky Joint needed a comprehensive digital presence for both their food truck operations and restaurant locations. The challenge was creating a unified brand experience that could handle mobile ordering, table reservations, and real-time location tracking.",
-
-  process: "I conducted field research by following food truck operations and observing customer interactions at both venues. I created wireframes that prioritized mobile-first design for food truck interactions while ensuring the restaurant experience remained elegant.",
-
-  result: "The Barsky Joint platform successfully launched with both mobile and web applications, resulting in a 45% increase in food truck orders and 30% improvement in restaurant reservations. The unified brand experience helped establish stronger customer loyalty.",
-
-  technologies: ["React Native", "Web App", "GPS Tracking", "Mobile Ordering", "Reservation System", "Payment Integration", "Real-time Updates", "Restaurant Management"],
-  duration: "1.5 years",
-  client: "Barsky Joint Restaurant Group",
-  role: "Lead UX/UI Designer",
-  projectLink: "https://barskyjoint.biz",
-
-  challengeGalleryImages: [
-    "/lovable-uploads/2bd2eddc-5394-4d81-890a-57eaa00a7ed3.png",
-    "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png"
+  challenge: "Operating both a traditional restaurant and a mobile food truck required a unified digital experience that could handle dual operations. Customers needed to easily distinguish between dining options while having consistent ordering experiences.\n\nThe complexity of managing two different service models - dine-in and mobile - presented unique challenges in terms of menu management, ordering systems, and customer communication.",
+  
+  process: "I analyzed the operational differences between restaurant and food truck services, identifying key user journeys for each format. The solution needed to accommodate different ordering flows while maintaining brand consistency.\n\nI designed a unified platform that clearly differentiates the two services while providing seamless transitions for customers who might use both options.",
+  
+  result: "The unified platform increased overall orders by 45% and improved customer satisfaction scores across both service formats. Customers appreciated the clarity in service options and the streamlined ordering process.\n\nOperational efficiency improved significantly, with staff able to manage both restaurant and food truck orders through a single system.",
+  
+  technologies: ["Restaurant Technology", "Mobile Ordering", "Dual-Format Operations", "E-commerce", "Food Service Design"],
+  duration: "5 months",
+  client: "Restaurant & Food Truck",
+  role: "UX/UI Designer",
+  
+  imageConfig: {
+    challenge: {
+      beforeHeader: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
+    },
+    process: {
+      beforeHeader: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
+    },
+    result: {
+      beforeHeader: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
+    }
+  },
+  
+  availableImages: [
+    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
   ],
-
-  processImage: "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png",
-  processBottomImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
-
+  
+  challengeGalleryImages: [
+    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
+  ],
   resultGalleryImages: [
-    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
-    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
+    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
   ]
 };
