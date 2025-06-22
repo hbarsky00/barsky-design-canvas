@@ -45,24 +45,6 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
     return images;
   }, [processBeforeHeaderImage, processRegularImage]);
 
-  // Extract challenge images
-  const challengeBeforeHeaderImage = details.imageConfig?.challenge?.beforeHeader;
-  const challengeAfterHeaderImage = details.imageConfig?.challenge?.afterHeader;
-  
-  const challengeImages = React.useMemo(() => {
-    const images: string[] = [];
-    if (challengeBeforeHeaderImage) {
-      images.push(challengeBeforeHeaderImage);
-    }
-    if (challengeAfterHeaderImage) {
-      images.push(challengeAfterHeaderImage);
-    }
-    if (details.challengeGalleryImages) {
-      images.push(...details.challengeGalleryImages);
-    }
-    return images;
-  }, [challengeBeforeHeaderImage, challengeAfterHeaderImage, details.challengeGalleryImages]);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
@@ -80,7 +62,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
         <SimpleContentSection
           title="The Challenge"
           content={details.challenge}
-          images={challengeImages}
+          images={details.challengeGalleryImages || []}
           imageCaptions={imageCaptions}
           projectId={projectId}
         />
