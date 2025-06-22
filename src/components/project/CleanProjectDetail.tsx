@@ -33,19 +33,32 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
   const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
   const processRegularImage = details.processImage;
   
-  // Create process images array with correct order, including servicesGalleryImages
+  // Create process images array with correct order, removing duplicates
   const processImages = React.useMemo(() => {
     const images: string[] = [];
-    if (processBeforeHeaderImage) {
+    const seenImages = new Set<string>();
+    
+    // Add images in order, checking for duplicates
+    if (processBeforeHeaderImage && !seenImages.has(processBeforeHeaderImage)) {
       images.push(processBeforeHeaderImage);
+      seenImages.add(processBeforeHeaderImage);
     }
-    if (processRegularImage) {
+    
+    if (processRegularImage && !seenImages.has(processRegularImage)) {
       images.push(processRegularImage);
+      seenImages.add(processRegularImage);
     }
-    // Add servicesGalleryImages to the process section
+    
+    // Add servicesGalleryImages to the process section, avoiding duplicates
     if (details.servicesGalleryImages) {
-      images.push(...details.servicesGalleryImages);
+      details.servicesGalleryImages.forEach(imageSrc => {
+        if (!seenImages.has(imageSrc)) {
+          images.push(imageSrc);
+          seenImages.add(imageSrc);
+        }
+      });
     }
+    
     return images;
   }, [processBeforeHeaderImage, processRegularImage, details.servicesGalleryImages]);
 
