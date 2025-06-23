@@ -6,7 +6,6 @@ import SimpleProjectHero from "./sections/SimpleProjectHero";
 import SimpleContentSection from "./sections/SimpleContentSection";
 import ProjectCallToAction from "./ProjectCallToAction";
 import ProjectNavigation from "@/components/ProjectNavigation";
-import AiCaptionProgress from "./AiCaptionProgress";
 import { useProjectAiCaptions } from "@/hooks/useProjectAiCaptions";
 import { useProcessImages } from "@/hooks/useProcessImages";
 
@@ -32,10 +31,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
   console.log('🎬 CleanProjectDetail: Rendering simplified project detail for:', project.title);
 
   const {
-    finalCaptions,
-    aiCaptions,
-    isGenerating,
-    generationProgress
+    finalCaptions
   } = useProjectAiCaptions(project, details, projectId, imageCaptions);
 
   const processImages = useProcessImages(details);
@@ -52,15 +48,6 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
-        
-        {/* AI Caption Generation Progress */}
-        {details.useAiCaptions && (
-          <AiCaptionProgress
-            isGenerating={isGenerating}
-            generationProgress={generationProgress}
-            aiCaptionsCount={Object.keys(aiCaptions).length}
-          />
-        )}
         
         {/* Challenge Section */}
         <SimpleContentSection
