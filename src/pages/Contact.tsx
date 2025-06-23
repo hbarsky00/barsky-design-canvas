@@ -3,6 +3,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ContactInformation from '@/components/contact/ContactInformation';
+import ContactForm from '@/components/contact/ContactForm';
 
 const Contact = () => {
   return (
@@ -50,10 +52,16 @@ const Contact = () => {
       
       <Header />
       <main className="flex-grow pt-24">
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
-          <p className="text-center text-gray-600">Get in touch with us for your design needs.</p>
-        </div>
+        <section className="py-20 dark:bg-gray-900">
+          <div className="section-container">
+            <h1 className="section-title mb-16">Get In Touch</h1>
+            
+            <div className="grid md:grid-cols-2 gap-12">
+              <ContactInformation />
+              <ContactForm />
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
