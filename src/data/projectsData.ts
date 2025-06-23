@@ -19,6 +19,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png": "MediTrack Pro - Comprehensive medication management",
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "InvestorConnect - Professional trading platform",
   "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "DataCatalog Pro - AI-powered data discovery",
+  "/lovable-uploads/22985530-d0a7-41f2-94f8-62025401ab85.png": "Splittime Co-Parenting App - Reducing conflict and court costs for families",
   "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "SplitTime - Co-parenting coordination",
   "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "HerbaLink - Digital herbalist platform",
   "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png": "Gold2Crypto - Investment transition platform",
