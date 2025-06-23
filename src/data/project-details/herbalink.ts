@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const herbalinkDetails: ProjectDetails = {
@@ -16,6 +15,9 @@ export const herbalinkDetails: ProjectDetails = {
   client: "Alternative Medicine Startup",
   role: "Lead UX/UI Designer & Product Strategist",
   projectLink: "https://herbalink.live",
+
+  // Enable AI caption generation for this project
+  useAiCaptions: true,
 
   imageConfig: {
     challenge: {

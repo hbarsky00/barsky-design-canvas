@@ -11,7 +11,7 @@ export const useOpenAiCaptions = () => {
   const [generationProgress, setGenerationProgress] = useState<{current: number, total: number} | null>(null);
 
   const generateCaption = async (imageSrc: string, projectContext?: string): Promise<OpenAiCaptionResponse> => {
-    console.log('🤖 OpenAI Caption: Analyzing image for medication app:', imageSrc.substring(0, 50) + '...');
+    console.log('🤖 OpenAI Caption: Analyzing image:', imageSrc.substring(0, 50) + '...');
     
     try {
       // Construct the full URL for the Supabase edge function
@@ -27,7 +27,7 @@ export const useOpenAiCaptions = () => {
         body: JSON.stringify({ 
           imageSrc,
           contextType: 'project',
-          projectContext: projectContext || 'medication management app for diabetic patients - focus on UI/UX elements, user interface design, medication tracking features, and patient-friendly functionality'
+          projectContext: projectContext || 'herbal medicine app interface - focus on UI/UX elements, user interface design, herbalist discovery features, consultation booking, herb recommendations, and patient-practitioner connection functionality'
         }),
       });
 
@@ -54,7 +54,7 @@ export const useOpenAiCaptions = () => {
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
       return { 
-        caption: 'Professional medication management interface showcasing user-friendly design for diabetic patients',
+        caption: 'Professional herbal medicine interface showcasing user-friendly design for connecting patients with herbalists',
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -68,6 +68,16 @@ export const useOpenAiCaptions = () => {
     
     const captions: Record<string, string> = {};
     
+    // Set appropriate context based on project
+    let projectContext = '';
+    if (projectId === 'herbalink') {
+      projectContext = 'herbal medicine app for connecting patients with herbalists - describe the specific UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this interface design';
+    } else if (projectId === 'medication-app') {
+      projectContext = 'medication management app for diabetic patients - describe the specific UI elements, features, and functionality visible in this interface design';
+    } else {
+      projectContext = 'app interface - describe the specific UI elements, features, and functionality visible in this interface design';
+    }
+    
     for (let i = 0; i < images.length; i++) {
       const imageSrc = images[i];
       
@@ -79,17 +89,17 @@ export const useOpenAiCaptions = () => {
       try {
         setGenerationProgress({ current: i + 1, total: images.length });
         
-        const result = await generateCaption(
-          imageSrc, 
-          'medication management app for diabetic patients - describe the specific UI elements, features, and functionality visible in this interface design'
-        );
+        const result = await generateCaption(imageSrc, projectContext);
         
         if (result.caption && !result.error) {
           captions[imageSrc] = result.caption;
           console.log(`✅ Caption generated for image ${i + 1}/${images.length}`);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
-          captions[imageSrc] = 'Professional medication management interface designed for enhanced patient experience';
+          const fallbackCaption = projectId === 'herbalink' 
+            ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
+            : 'Professional app interface designed for enhanced user experience';
+          captions[imageSrc] = fallbackCaption;
         }
         
         // Add delay to avoid overwhelming the API (only if not the last image)
@@ -98,7 +108,10 @@ export const useOpenAiCaptions = () => {
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
-        captions[imageSrc] = 'Professional medication management interface designed for enhanced patient experience';
+        const fallbackCaption = projectId === 'herbalink' 
+          ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
+          : 'Professional app interface designed for enhanced user experience';
+        captions[imageSrc] = fallbackCaption;
       }
     }
     

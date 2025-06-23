@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -32,9 +33,9 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
   
   console.log('🎬 CleanProjectDetail: Rendering simplified project detail for:', project.title);
 
-  // Generate AI captions for medication app
+  // Generate AI captions for projects that have useAiCaptions enabled
   useEffect(() => {
-    if (projectId === 'medication-app' && details.useAiCaptions) {
+    if (details.useAiCaptions) {
       const allImages = [
         project.image,
         ...(details.imageConfig?.challenge?.beforeHeader ? [details.imageConfig.challenge.beforeHeader] : []),
@@ -52,12 +53,12 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
 
       const uniqueImages = [...new Set(allImages)];
       
-      console.log('🤖 Generating OpenAI captions for medication app images:', uniqueImages.length);
+      console.log(`🤖 Generating OpenAI captions for ${projectId} images:`, uniqueImages.length);
       
       generateProjectCaptions(uniqueImages, projectId)
         .then(captions => {
           setAiCaptions(captions);
-          console.log('✅ AI captions generated for medication app:', Object.keys(captions).length, 'captions');
+          console.log(`✅ AI captions generated for ${projectId}:`, Object.keys(captions).length, 'captions');
         })
         .catch(error => {
           console.error('❌ Failed to generate AI captions:', error);
@@ -65,8 +66,8 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
     }
   }, [projectId, details.useAiCaptions, generateProjectCaptions]);
 
-  // Merge manual captions with AI captions (AI captions take priority for medication app)
-  const finalCaptions = projectId === 'medication-app' && details.useAiCaptions 
+  // Merge manual captions with AI captions (AI captions take priority for projects with useAiCaptions enabled)
+  const finalCaptions = details.useAiCaptions 
     ? { ...imageCaptions, ...aiCaptions }
     : imageCaptions;
 
@@ -117,7 +118,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
       <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         
         {/* AI Caption Generation Progress */}
-        {projectId === 'medication-app' && isGenerating && (
+        {details.useAiCaptions && isGenerating && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -144,7 +145,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
         )}
 
         {/* Success indicator when AI captions are ready */}
-        {projectId === 'medication-app' && !isGenerating && Object.keys(aiCaptions).length > 0 && (
+        {details.useAiCaptions && !isGenerating && Object.keys(aiCaptions).length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

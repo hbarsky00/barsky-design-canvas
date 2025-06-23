@@ -38,23 +38,29 @@ serve(async (req) => {
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
     const getSystemPrompt = (contextType: string, projectContext?: string) => {
-      const basePrompt = 'You are an expert at analyzing medical app interfaces and describing them accurately for UX/UI design portfolios.';
+      const basePrompt = 'You are an expert at analyzing app interfaces and describing them accurately for UX/UI design portfolios.';
       
       if (projectContext) {
-        return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on the medication management features, user interface elements, patient-friendly design choices, accessibility features, and how the interface supports diabetic patients in managing their medication schedules. Be detailed about what functionality is visible and how it serves users.`;
+        if (projectContext.includes('herbal medicine')) {
+          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on herbal medicine features like herbalist discovery, consultation booking, herb recommendations, patient-practitioner connections, herbal protocols, wellness tracking, and how the interface supports users in finding and connecting with qualified herbalists. Be detailed about what functionality is visible and how it serves both patients and practitioners in the herbal medicine space.`;
+        } else if (projectContext.includes('medication management')) {
+          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on the medication management features, user interface elements, patient-friendly design choices, accessibility features, and how the interface supports diabetic patients in managing their medication schedules. Be detailed about what functionality is visible and how it serves users.`;
+        } else {
+          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus on the user interface design, key features, and functionality visible in the interface. Describe specific UI components and their purpose.`;
+        }
       }
       
       switch (contextType) {
         case 'project':
-          return `${basePrompt} You are analyzing images from a medication management app designed for diabetic patients. Focus on the user interface design, medication tracking features, appointment scheduling, accessibility elements, patient-friendly navigation, and any health-related functionality visible in the interface. Describe specific UI components and their purpose.`;
+          return `${basePrompt} You are analyzing images from an app interface. Focus on the user interface design, key features, and functionality visible in the interface. Describe specific UI components and their purpose.`;
         case 'blog':
-          return `${basePrompt} You are analyzing images for educational content about medication management app design. Focus on key UX/UI principles and patient-centered design approaches.`;
+          return `${basePrompt} You are analyzing images for educational content about app design. Focus on key UX/UI principles and user-centered design approaches.`;
         default:
-          return `${basePrompt} Look at this medication app interface carefully and describe exactly what you see - including specific UI elements, medication tracking features, patient interface components, accessibility features, and design elements that support healthcare management.`;
+          return `${basePrompt} Look at this app interface carefully and describe exactly what you see - including specific UI elements, features, design elements, and functionality.`;
       }
     };
 
-    // Generate descriptive caption using OpenAI with medication app focus
+    // Generate descriptive caption using OpenAI
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -74,7 +80,7 @@ serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: 'Please analyze this medication management app interface and provide a specific, detailed description of what it shows. Focus on the user interface elements, medication tracking features, patient-friendly design elements, accessibility considerations, and any healthcare-related functionality visible. Make the caption professional and descriptive for a UX/UI portfolio, highlighting how the design serves diabetic patients.'
+                text: 'Please analyze this app interface and provide a specific, detailed description of what it shows. Focus on the user interface elements, key features, design elements, and functionality visible. Make the caption professional and descriptive for a UX/UI portfolio, highlighting how the design serves users.'
               },
               {
                 type: 'image_url',
@@ -113,7 +119,7 @@ serve(async (req) => {
     console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'Professional medication management interface designed for enhanced patient experience and medication adherence'
+      caption: 'Professional app interface designed for enhanced user experience and functionality'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
