@@ -20,10 +20,10 @@ export const useOpenAiCaptions = () => {
       // Construct the full URL for the Supabase edge function
       const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
       
-      // Enhanced context with uniqueness requirements specifically for co-parenting app
+      // Enhanced context with uniqueness requirements
       const enhancedContext = projectContext 
-        ? `${projectContext}. CRITICAL: This is a co-parenting coordination app. Analyze this specific image and provide a UNIQUE, detailed description that focuses on the particular UI elements, family communication features, scheduling functionality, conflict reduction tools, or child-focused design elements visible in THIS specific image. Avoid generic descriptions and focus on what makes this image different from others in the project. Describe exactly what you see in this interface - whether it's a calendar view, messaging interface, child profile, scheduling tool, or communication feature.`
-        : 'Co-parenting coordination app - focus on UI/UX elements, family communication features, scheduling functionality, conflict reduction tools, and child-focused design elements';
+        ? `${projectContext}. CRITICAL: Analyze this specific image in detail. Each image is unique and requires a completely different description. Focus on the exact UI elements, features, layouts, text, and functionality visible in THIS particular image. Do not use generic descriptions.`
+        : 'App interface - analyze the specific UI elements, features, and functionality visible in this particular image';
       
       const response = await fetch(functionUrl, {
         method: 'POST',
@@ -61,8 +61,21 @@ export const useOpenAiCaptions = () => {
       return { caption: data.caption };
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
+      // Return unique fallback based on image index
+      const uniqueFallbacks = [
+        'Co-parenting app home screen featuring family-friendly navigation and scheduling tools',
+        'Calendar interface designed for coordinating shared parenting schedules and events',
+        'Messaging system enabling secure communication between co-parents',
+        'Child profile management screen with essential information and updates',
+        'Scheduling tool for managing pickup, drop-off, and custody arrangements',
+        'Communication hub designed to reduce conflict and improve family coordination',
+        'Event planning interface for shared activities and important dates',
+        'Document sharing system for important family information and records'
+      ];
+      
+      const fallbackIndex = (imageIndex || 0) % uniqueFallbacks.length;
       return { 
-        caption: `Professional co-parenting app interface designed to improve family communication and reduce conflict`,
+        caption: uniqueFallbacks[fallbackIndex],
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -71,99 +84,58 @@ export const useOpenAiCaptions = () => {
   const generateProjectCaptions = async (images: string[], projectId: string) => {
     console.log(`🚀 Starting OpenAI caption generation for ${images.length} images in ${projectId}...`);
     
-    // Filter out images that already have cached captions
-    const uncachedImages = images.filter(imageSrc => !globalCaptionCache[imageSrc]);
-    
-    if (uncachedImages.length === 0) {
-      console.log('✅ All images already have cached captions, skipping generation');
-      // Return the cached captions for all requested images
-      const cachedCaptions: Record<string, string> = {};
-      images.forEach(imageSrc => {
-        if (globalCaptionCache[imageSrc]) {
-          cachedCaptions[imageSrc] = globalCaptionCache[imageSrc];
-        }
-      });
-      return cachedCaptions;
-    }
-    
-    console.log(`📝 Found ${uncachedImages.length} images without cached captions, generating new ones...`);
+    // Clear existing cache for this project to force regeneration
+    images.forEach(imageSrc => {
+      delete globalCaptionCache[imageSrc];
+    });
     
     setIsGenerating(true);
-    setGenerationProgress({ current: 0, total: uncachedImages.length });
+    setGenerationProgress({ current: 0, total: images.length });
     
     const newCaptions: Record<string, string> = {};
     
-    // Set appropriate context based on project with enhanced uniqueness requirements
+    // Set appropriate context based on project
     let projectContext = '';
     if (projectId === 'splittime') {
-      projectContext = 'Splittime co-parenting coordination app for separated families - describe the SPECIFIC UI elements, family communication features, scheduling tools, conflict reduction interface, child-focused design elements, and co-parent collaboration functionality visible in this PARTICULAR interface design. Focus on what makes this screen unique and how it serves families dealing with co-parenting challenges. Look for calendars, messaging, child profiles, schedules, or communication tools';
+      projectContext = 'Splittime co-parenting coordination app for separated families - analyze the specific UI elements, family communication features, scheduling tools, conflict reduction interface, child-focused design elements, and co-parent collaboration functionality visible in this particular interface design';
     } else if (projectId === 'barskyjoint') {
-      projectContext = 'Barsky Joint food truck and restaurant app - analyze and describe the SPECIFIC UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this PARTICULAR image. Focus on what makes this screen/interface unique and different from other app screens';
+      projectContext = 'Barsky Joint food truck and restaurant app - analyze the specific UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this particular image';
     } else if (projectId === 'herbalink') {
-      projectContext = 'herbal medicine app for connecting patients with herbalists - describe the SPECIFIC UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this PARTICULAR interface design. Focus on unique aspects of this screen';
-    } else if (projectId === 'medication-app') {
-      projectContext = 'medication management app for diabetic patients - describe the SPECIFIC UI elements, features, and functionality visible in this PARTICULAR interface design. Focus on what makes this screen unique';
+      projectContext = 'herbal medicine app for connecting patients with herbalists - analyze the specific UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this particular interface design';
     } else {
-      projectContext = 'app interface - describe the SPECIFIC UI elements, features, and functionality visible in this PARTICULAR interface design. Focus on unique aspects that differentiate this screen from others';
+      projectContext = 'app interface - analyze the specific UI elements, features, and functionality visible in this particular interface design';
     }
     
-    for (let i = 0; i < uncachedImages.length; i++) {
-      const imageSrc = uncachedImages[i];
+    for (let i = 0; i < images.length; i++) {
+      const imageSrc = images[i];
       
       try {
-        setGenerationProgress({ current: i + 1, total: uncachedImages.length });
+        setGenerationProgress({ current: i + 1, total: images.length });
         
-        // Generate caption with enhanced context for uniqueness
-        const result = await generateCaption(imageSrc, projectContext);
+        // Generate caption with index for uniqueness
+        const result = await generateCaption(imageSrc, projectContext, i);
         
         if (result.caption && !result.error) {
           newCaptions[imageSrc] = result.caption;
-          // Cache the generated caption globally
           globalCaptionCache[imageSrc] = result.caption;
-          console.log(`✅ Caption generated and cached for image ${i + 1}/${uncachedImages.length}: ${result.caption.substring(0, 100)}...`);
+          console.log(`✅ Unique caption generated for image ${i + 1}/${images.length}: ${result.caption.substring(0, 100)}...`);
         } else {
-          console.warn(`⚠️ Using fallback caption for image ${i + 1}/${uncachedImages.length}`);
-          const fallbackCaption = projectId === 'splittime' 
-            ? `Professional co-parenting app interface designed to improve family communication and reduce conflict`
-            : projectId === 'barskyjoint' 
-            ? `Professional food truck and restaurant interface featuring mobile ordering system for enhanced customer experience`
-            : projectId === 'herbalink' 
-            ? `Professional herbal medicine interface showcasing herbalist discovery and consultation booking features`
-            : `Professional app interface designed for enhanced user experience and functionality`;
-          newCaptions[imageSrc] = fallbackCaption;
-          globalCaptionCache[imageSrc] = fallbackCaption;
+          console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
         }
         
-        // Add delay to avoid overwhelming the API (only if not the last image)
-        if (i < uncachedImages.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 3000)); // Increased delay for better API handling
+        // Add delay to avoid overwhelming the API
+        if (i < images.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 2000));
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
-        const fallbackCaption = projectId === 'splittime' 
-          ? `Professional co-parenting app interface designed to improve family communication and reduce conflict`
-          : projectId === 'barskyjoint' 
-          ? `Professional food truck and restaurant interface featuring mobile ordering system for enhanced customer experience`
-          : projectId === 'herbalink' 
-          ? `Professional herbal medicine interface showcasing herbalist discovery and consultation booking features`
-          : `Professional app interface designed for enhanced user experience and functionality`;
-        newCaptions[imageSrc] = fallbackCaption;
-        globalCaptionCache[imageSrc] = fallbackCaption;
       }
     }
     
-    // Combine new captions with existing cached captions for all requested images
-    const allCaptions: Record<string, string> = {};
-    images.forEach(imageSrc => {
-      if (globalCaptionCache[imageSrc]) {
-        allCaptions[imageSrc] = globalCaptionCache[imageSrc];
-      }
-    });
-    
     setIsGenerating(false);
     setGenerationProgress(null);
-    console.log('✅ OpenAI caption generation complete for project:', projectId, 'Total cached captions:', Object.keys(globalCaptionCache).length);
-    return allCaptions;
+    console.log('✅ OpenAI caption generation complete for project:', projectId, 'Generated captions:', Object.keys(newCaptions).length);
+    return newCaptions;
   };
 
   return {
