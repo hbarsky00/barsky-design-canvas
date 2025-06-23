@@ -5,6 +5,7 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedDataManager } from "@/hooks/useSimplifiedDataManager";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
+import { useProjectAiCaptions } from "@/hooks/useProjectAiCaptions";
 import ModernProjectHero from "./ModernProjectHero";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import ProjectCallToAction from "../ProjectCallToAction";
@@ -33,12 +34,21 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   
   const { updatedProject, updatedDetails, componentKey } = useSimplifiedDataManager(projectId, project, details);
   const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });
+  
+  // Use AI captions if enabled for this project
+  const { finalCaptions, isGenerating } = useProjectAiCaptions(
+    updatedProject,
+    updatedDetails,
+    projectId,
+    imageCaptions
+  );
 
   console.log('🔄 ModernProjectDetail: Component key:', componentKey);
   console.log('🔄 ModernProjectDetail: Updated project data:', {
     title: updatedProject.title,
     description: updatedProject.description.substring(0, 50) + '...'
   });
+  console.log('🤖 ModernProjectDetail: Using AI captions:', Object.keys(finalCaptions).length, 'captions available');
 
   // Extract process images for proper display order
   const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
@@ -56,13 +66,24 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
     return images;
   }, [processBeforeHeaderImage, processRegularImage]);
 
+  if (isGenerating) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Generating AI captions for images...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
       <ModernProjectHero
         project={updatedProject}
         details={updatedDetails}
-        imageCaptions={imageCaptions}
+        imageCaptions={finalCaptions}
         projectId={projectId}
       />
 
@@ -93,7 +114,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             images={details.challengeGalleryImages || []}
             onImageAdd={(imageSrc) => {
               console.log('➕ Adding image to challenge section:', imageSrc);
-              // Image add will be handled by the ContentImageManager
             }}
             onImageReplace={(index, newSrc) => {
               const originalSrc = details.challengeGalleryImages?.[index];
@@ -105,7 +125,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             onImageRemove={(index) => console.log('🗑️ Removing image from challenge:', index)}
             maxImages={3}
             projectId={projectId}
-            imageCaptions={imageCaptions}
+            imageCaptions={finalCaptions}
           />
         </motion.section>
 
@@ -144,7 +164,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             onImageRemove={(index) => console.log('🗑️ Removing image from process:', index)}
             maxImages={2}
             projectId={projectId}
-            imageCaptions={imageCaptions}
+            imageCaptions={finalCaptions}
           />
         </motion.section>
 
@@ -183,7 +203,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             onImageRemove={(index) => console.log('🗑️ Removing image from result:', index)}
             maxImages={4}
             projectId={projectId}
-            imageCaptions={imageCaptions}
+            imageCaptions={finalCaptions}
           />
         </motion.section>
 

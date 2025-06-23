@@ -20,9 +20,9 @@ export const useOpenAiCaptions = () => {
       // Construct the full URL for the Supabase edge function
       const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
       
-      // Enhanced context with uniqueness requirements but without explicit numbering
+      // Enhanced context with uniqueness requirements specifically for co-parenting app
       const enhancedContext = projectContext 
-        ? `${projectContext}. IMPORTANT: Analyze this specific image and provide a UNIQUE, detailed description that focuses on the particular UI elements, features, or functionality visible in THIS specific image. Avoid generic descriptions and focus on what makes this image different from others in the project. Describe exactly what you see in this interface.`
+        ? `${projectContext}. CRITICAL: This is a co-parenting coordination app. Analyze this specific image and provide a UNIQUE, detailed description that focuses on the particular UI elements, family communication features, scheduling functionality, conflict reduction tools, or child-focused design elements visible in THIS specific image. Avoid generic descriptions and focus on what makes this image different from others in the project. Describe exactly what you see in this interface - whether it's a calendar view, messaging interface, child profile, scheduling tool, or communication feature.`
         : 'Co-parenting coordination app - focus on UI/UX elements, family communication features, scheduling functionality, conflict reduction tools, and child-focused design elements';
       
       const response = await fetch(functionUrl, {
@@ -96,7 +96,7 @@ export const useOpenAiCaptions = () => {
     // Set appropriate context based on project with enhanced uniqueness requirements
     let projectContext = '';
     if (projectId === 'splittime') {
-      projectContext = 'co-parenting coordination app for separated families - describe the SPECIFIC UI elements, family communication features, scheduling tools, conflict reduction interface, child-focused design elements, and co-parent collaboration functionality visible in this PARTICULAR interface design. Focus on what makes this screen unique and how it serves families';
+      projectContext = 'Splittime co-parenting coordination app for separated families - describe the SPECIFIC UI elements, family communication features, scheduling tools, conflict reduction interface, child-focused design elements, and co-parent collaboration functionality visible in this PARTICULAR interface design. Focus on what makes this screen unique and how it serves families dealing with co-parenting challenges. Look for calendars, messaging, child profiles, schedules, or communication tools';
     } else if (projectId === 'barskyjoint') {
       projectContext = 'Barsky Joint food truck and restaurant app - analyze and describe the SPECIFIC UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this PARTICULAR image. Focus on what makes this screen/interface unique and different from other app screens';
     } else if (projectId === 'herbalink') {
@@ -113,14 +113,14 @@ export const useOpenAiCaptions = () => {
       try {
         setGenerationProgress({ current: i + 1, total: uncachedImages.length });
         
-        // Generate caption without explicit numbering
+        // Generate caption with enhanced context for uniqueness
         const result = await generateCaption(imageSrc, projectContext);
         
         if (result.caption && !result.error) {
           newCaptions[imageSrc] = result.caption;
           // Cache the generated caption globally
           globalCaptionCache[imageSrc] = result.caption;
-          console.log(`✅ Caption generated and cached for image ${i + 1}/${uncachedImages.length}`);
+          console.log(`✅ Caption generated and cached for image ${i + 1}/${uncachedImages.length}: ${result.caption.substring(0, 100)}...`);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${uncachedImages.length}`);
           const fallbackCaption = projectId === 'splittime' 
@@ -136,7 +136,7 @@ export const useOpenAiCaptions = () => {
         
         // Add delay to avoid overwhelming the API (only if not the last image)
         if (i < uncachedImages.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          await new Promise(resolve => setTimeout(resolve, 3000)); // Increased delay for better API handling
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
