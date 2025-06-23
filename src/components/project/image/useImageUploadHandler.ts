@@ -48,38 +48,27 @@ export const useImageUploadHandler = ({
     try {
       console.log('📤 Starting image upload for replacement:', file.name);
       
-      // Create immediate preview for better UX
-      const previewUrl = URL.createObjectURL(file);
-      setCurrentSrc(previewUrl);
-      setForceRefresh(prev => prev + 1);
-      
       const newImageUrl = await VercelBlobStorageService.uploadImage(file, projectId, currentSrc);
       
       if (newImageUrl) {
         console.log('✅ Image uploaded successfully:', newImageUrl);
         
-        // Clean up the preview URL
-        URL.revokeObjectURL(previewUrl);
-        
+        // Update the current source immediately
         setCurrentSrc(newImageUrl);
-        setForceRefresh(prev => prev + 1);
         setImageError(false);
         
+        // Call the replacement callback
         onImageReplace(newImageUrl);
         
         toast.success('Image uploaded successfully!');
         console.log('🎉 Image replacement completed successfully');
       } else {
         console.error('❌ Upload failed - no URL returned');
-        // Revert to original src on failure
-        setCurrentSrc(currentSrc);
         setImageError(true);
         toast.error('Image upload failed. Please check your configuration.');
       }
     } catch (error) {
       console.error('❌ Error uploading image:', error);
-      // Revert to original src on error
-      setCurrentSrc(currentSrc);
       setImageError(true);
       toast.error('Image upload failed. Please try again.');
     } finally {

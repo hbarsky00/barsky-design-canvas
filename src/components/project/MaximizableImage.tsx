@@ -41,25 +41,30 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
   const showEditingControls = shouldShowEditingControls();
 
   const { handleImageReplace } = useImageUploadHandler({
     projectId,
     currentSrc,
-    onImageReplace,
+    onImageReplace: (newSrc) => {
+      console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
+      setCurrentSrc(newSrc);
+      setImageError(false);
+      if (onImageReplace) {
+        onImageReplace(newSrc);
+      }
+    },
     setCurrentSrc,
     setImageError,
-    setForceRefresh: setRefreshKey
+    setForceRefresh: () => {} // Simplified - no forced refreshes
   });
 
-  // Update current source when prop changes
+  // Only update source if prop actually changes
   useEffect(() => {
-    if (src !== currentSrc) {
-      console.log('🔄 MaximizableImage: Source changed from', currentSrc.substring(0, 30), 'to', src.substring(0, 30));
+    if (src !== currentSrc && src) {
+      console.log('🔄 MaximizableImage: Source updated from prop:', src);
       setCurrentSrc(src);
       setImageError(false);
-      setRefreshKey(prev => prev + 1);
     }
   }, [src]);
 
@@ -86,18 +91,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setImageError(false);
   };
 
-  // Simple cache busting only when needed
-  const displayUrl = React.useMemo(() => {
-    // Only add cache busting for blob URLs or when we have a refresh key > 0
-    if (currentSrc.startsWith('blob:') || refreshKey > 0) {
-      const separator = currentSrc.includes('?') ? '&' : '?';
-      return `${currentSrc}${separator}t=${refreshKey}`;
-    }
-    return currentSrc;
-  }, [currentSrc, refreshKey]);
-
   return (
-    <div className={`relative ${className}`} key={`image-container-${refreshKey}`}>
+    <div className={`relative ${className}`}>
       <div 
         className="relative group overflow-hidden cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
@@ -110,8 +105,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           />
         ) : (
           <img
-            key={`img-${displayUrl}`}
-            src={displayUrl}
+            src={currentSrc}
             alt={alt}
             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}

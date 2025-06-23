@@ -1,43 +1,38 @@
 
-import React from 'react';
-import { useSimplifiedProjectPersistence } from './useSimplifiedProjectPersistence';
+import { useState, useEffect } from 'react';
 import { ProjectProps } from '@/components/ProjectCard';
 import { ProjectDetails } from '@/data/types/project';
 
-export const useSimplifiedDataManager = (projectId: string, project: ProjectProps, details: ProjectDetails) => {
-  const { getTextContent, getImageSrc, refreshTrigger } = useSimplifiedProjectPersistence(projectId);
-  
-  console.log('🔄 SimplifiedDataManager: Refreshing with trigger:', refreshTrigger);
+export const useSimplifiedDataManager = (
+  projectId: string,
+  project: ProjectProps,
+  details: ProjectDetails
+) => {
+  const [componentKey, setComponentKey] = useState(0);
 
-  // Create updated project data
-  const updatedProject = React.useMemo(() => {
-    const result = {
-      ...project,
-      title: getTextContent(`hero_title_${projectId}`, project.title),
-      description: getTextContent(`hero_description_${projectId}`, project.description),
-      image: getImageSrc(project.image)
-    };
-    console.log('🔄 Updated project data:', { title: result.title });
-    return result;
-  }, [project, projectId, getTextContent, getImageSrc, refreshTrigger]);
+  // Just return the original data without complex transformations
+  const updatedProject = project;
+  const updatedDetails = details;
 
-  // Create updated details data
-  const updatedDetails = React.useMemo(() => {
-    const result = {
-      ...details,
-      challenge: getTextContent(`challenge_content_${projectId}`, details.challenge),
-      process: getTextContent(`process_content_${projectId}`, details.process),
-      result: getTextContent(`result_content_${projectId}`, details.result)
+  useEffect(() => {
+    // Only update component key if there are actual changes
+    const handleUpdate = (e: CustomEvent) => {
+      if (e.detail?.projectId === projectId) {
+        console.log('🔄 useSimplifiedDataManager: Simple update triggered');
+        setComponentKey(prev => prev + 1);
+      }
     };
-    console.log('🔄 Updated details data');
-    return result;
-  }, [details, projectId, getTextContent, refreshTrigger]);
+
+    window.addEventListener('projectDataUpdated', handleUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleUpdate as EventListener);
+    };
+  }, [projectId]);
 
   return {
     updatedProject,
     updatedDetails,
-    getImageSrc,
-    componentKey: refreshTrigger,
-    refreshTrigger
+    componentKey
   };
 };
