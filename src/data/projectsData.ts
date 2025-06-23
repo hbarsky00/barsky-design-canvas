@@ -22,6 +22,8 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/22985530-d0a7-41f2-94f8-62025401ab85.png": "Splittime Co-Parenting App - Reducing conflict and court costs for families",
   "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Multi-stakeholder approach showing children, co-parents, family court system, and mediators",
   "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Co-parenting communication platform interface with messaging and coordination features",
+  "/lovable-uploads/c264a69f-d9cc-4e34-bf70-7b0f5dd6e498.png": "Document management system with secure storage for custody agreements, medical records, and important family documents",
+  "/lovable-uploads/0de829ea-960a-4c02-a574-064d6096fbde.png": "Core features overview showing child profiles, shared calendar, document center, payment system, and mediated communication tools",
   "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "SplitTime - Co-parenting coordination",
   "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "HerbaLink - Digital herbalist platform",
   "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png": "Gold2Crypto - Investment transition platform",

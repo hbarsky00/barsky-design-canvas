@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
@@ -36,7 +37,9 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png",
     "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
     "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
-    "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png"
+    "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png",
+    "/lovable-uploads/c264a69f-d9cc-4e34-bf70-7b0f5dd6e498.png",
+    "/lovable-uploads/0de829ea-960a-4c02-a574-064d6096fbde.png"
   ],
 
   challengeGalleryImages: [
@@ -45,6 +48,10 @@ export const splittimeDetails: ProjectDetails = {
   ],
   processImage: "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png",
   processBottomImage: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
+  servicesGalleryImages: [
+    "/lovable-uploads/c264a69f-d9cc-4e34-bf70-7b0f5dd6e498.png",
+    "/lovable-uploads/0de829ea-960a-4c02-a574-064d6096fbde.png"
+  ],
   resultGalleryImages: [
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
     "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
