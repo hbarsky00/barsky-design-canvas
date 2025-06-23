@@ -21,6 +21,15 @@ export const projectsData: ProjectProps[] = [
     category: "E-commerce"
   },
   {
+    id: "splittime",
+    title: "Splittime",
+    description: "Co-parenting coordination app that reduces conflict and improves communication while prioritizing children's wellbeing.",
+    image: "/lovable-uploads/22985530-d0a7-41f2-94f8-62025401ab85.png",
+    tags: ["React Native", "Family Tech", "Communication", "Mobile App"],
+    featured: true,
+    category: "Mobile App"
+  },
+  {
     id: "barskyjoint",
     title: "Barsky Joint",
     description: "A comprehensive digital solution for food truck operations and restaurant management, featuring mobile ordering, GPS tracking, and real-time updates.",

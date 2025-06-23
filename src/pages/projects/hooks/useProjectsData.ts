@@ -4,7 +4,7 @@ import { projectsData } from "@/data/projects/projectsList";
 import { ProjectProps } from "@/components/ProjectCard";
 
 // All projects are featured now since we only have real projects
-const featuredProjectIds = ["investor-loan-app", "herbalink", "barskyjoint"];
+const featuredProjectIds = ["investor-loan-app", "herbalink", "splittime", "barskyjoint"];
 
 // No hidden projects since we removed all fake ones
 const hiddenProjectIds: string[] = [];
