@@ -6,6 +6,9 @@ interface OpenAiCaptionResponse {
   error?: string;
 }
 
+// Global cache for generated captions to persist across component remounts
+const globalCaptionCache: Record<string, string> = {};
+
 export const useOpenAiCaptions = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState<{current: number, total: number} | null>(null);
@@ -63,10 +66,27 @@ export const useOpenAiCaptions = () => {
   const generateProjectCaptions = async (images: string[], projectId: string) => {
     console.log(`🚀 Starting OpenAI caption generation for ${images.length} images in ${projectId}...`);
     
-    setIsGenerating(true);
-    setGenerationProgress({ current: 0, total: images.length });
+    // Filter out images that already have cached captions
+    const uncachedImages = images.filter(imageSrc => !globalCaptionCache[imageSrc]);
     
-    const captions: Record<string, string> = {};
+    if (uncachedImages.length === 0) {
+      console.log('✅ All images already have cached captions, skipping generation');
+      // Return the cached captions for all requested images
+      const cachedCaptions: Record<string, string> = {};
+      images.forEach(imageSrc => {
+        if (globalCaptionCache[imageSrc]) {
+          cachedCaptions[imageSrc] = globalCaptionCache[imageSrc];
+        }
+      });
+      return cachedCaptions;
+    }
+    
+    console.log(`📝 Found ${uncachedImages.length} images without cached captions, generating new ones...`);
+    
+    setIsGenerating(true);
+    setGenerationProgress({ current: 0, total: uncachedImages.length });
+    
+    const newCaptions: Record<string, string> = {};
     
     // Set appropriate context based on project
     let projectContext = '';
@@ -78,32 +98,30 @@ export const useOpenAiCaptions = () => {
       projectContext = 'app interface - describe the specific UI elements, features, and functionality visible in this interface design';
     }
     
-    for (let i = 0; i < images.length; i++) {
-      const imageSrc = images[i];
-      
-      // Skip if already processed or invalid
-      if (!imageSrc || captions[imageSrc]) {
-        continue;
-      }
+    for (let i = 0; i < uncachedImages.length; i++) {
+      const imageSrc = uncachedImages[i];
       
       try {
-        setGenerationProgress({ current: i + 1, total: images.length });
+        setGenerationProgress({ current: i + 1, total: uncachedImages.length });
         
         const result = await generateCaption(imageSrc, projectContext);
         
         if (result.caption && !result.error) {
-          captions[imageSrc] = result.caption;
-          console.log(`✅ Caption generated for image ${i + 1}/${images.length}`);
+          newCaptions[imageSrc] = result.caption;
+          // Cache the generated caption globally
+          globalCaptionCache[imageSrc] = result.caption;
+          console.log(`✅ Caption generated and cached for image ${i + 1}/${uncachedImages.length}`);
         } else {
-          console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
+          console.warn(`⚠️ Using fallback caption for image ${i + 1}/${uncachedImages.length}`);
           const fallbackCaption = projectId === 'herbalink' 
             ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
             : 'Professional app interface designed for enhanced user experience';
-          captions[imageSrc] = fallbackCaption;
+          newCaptions[imageSrc] = fallbackCaption;
+          globalCaptionCache[imageSrc] = fallbackCaption;
         }
         
         // Add delay to avoid overwhelming the API (only if not the last image)
-        if (i < images.length - 1) {
+        if (i < uncachedImages.length - 1) {
           await new Promise(resolve => setTimeout(resolve, 2000));
         }
       } catch (error) {
@@ -111,14 +129,23 @@ export const useOpenAiCaptions = () => {
         const fallbackCaption = projectId === 'herbalink' 
           ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
           : 'Professional app interface designed for enhanced user experience';
-        captions[imageSrc] = fallbackCaption;
+        newCaptions[imageSrc] = fallbackCaption;
+        globalCaptionCache[imageSrc] = fallbackCaption;
       }
     }
     
+    // Combine new captions with existing cached captions for all requested images
+    const allCaptions: Record<string, string> = {};
+    images.forEach(imageSrc => {
+      if (globalCaptionCache[imageSrc]) {
+        allCaptions[imageSrc] = globalCaptionCache[imageSrc];
+      }
+    });
+    
     setIsGenerating(false);
     setGenerationProgress(null);
-    console.log('✅ OpenAI caption generation complete for project:', projectId, 'Generated:', Object.keys(captions).length, 'captions');
-    return captions;
+    console.log('✅ OpenAI caption generation complete for project:', projectId, 'Total cached captions:', Object.keys(globalCaptionCache).length);
+    return allCaptions;
   };
 
   return {
