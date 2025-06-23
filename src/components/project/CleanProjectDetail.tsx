@@ -91,6 +91,16 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
       seenImages.add(processRegularImage);
     }
     
+    // Add processGalleryImages to the process section, avoiding duplicates
+    if (details.processGalleryImages) {
+      details.processGalleryImages.forEach(imageSrc => {
+        if (!seenImages.has(imageSrc)) {
+          images.push(imageSrc);
+          seenImages.add(imageSrc);
+        }
+      });
+    }
+    
     // Add servicesGalleryImages to the process section, avoiding duplicates
     if (details.servicesGalleryImages) {
       details.servicesGalleryImages.forEach(imageSrc => {
@@ -102,7 +112,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
     }
     
     return images;
-  }, [processBeforeHeaderImage, processRegularImage, details.servicesGalleryImages]);
+  }, [processBeforeHeaderImage, processRegularImage, details.processGalleryImages, details.servicesGalleryImages]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
