@@ -20,6 +20,8 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "InvestorConnect - Professional trading platform",
   "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "DataCatalog Pro - AI-powered data discovery",
   "/lovable-uploads/22985530-d0a7-41f2-94f8-62025401ab85.png": "Splittime Co-Parenting App - Reducing conflict and court costs for families",
+  "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Multi-stakeholder approach showing children, co-parents, family court system, and mediators",
+  "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Co-parenting communication platform interface with messaging and coordination features",
   "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "SplitTime - Co-parenting coordination",
   "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png": "HerbaLink - Digital herbalist platform",
   "/lovable-uploads/6fbe4453-e22e-460f-81ff-a4a5a9ce791a.png": "Gold2Crypto - Investment transition platform",
