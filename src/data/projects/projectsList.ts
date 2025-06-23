@@ -3,6 +3,15 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
+    id: "medication-app",
+    title: "Medication & Appointment Management App",
+    description: "Mobile app design for diabetic patients to track medication, schedule appointments, and monitor health data with an intuitive user experience.",
+    image: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
+    tags: ["Mobile App Design", "Healthcare", "UX Research", "UI Design", "Patient Care", "Accessibility"],
+    featured: true,
+    category: "Healthcare"
+  },
+  {
     id: "investor-loan-app",
     title: "Investor Loan App",
     description: "Comprehensive loan management platform for investors with portfolio tracking, risk assessment, and automated reporting.",
