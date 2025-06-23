@@ -38,7 +38,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "HerbaLink",
     description: "Digital platform connecting patients with qualified herbalists and naturopaths for personalized herbal medicine consultations and treatment plans.",
-    image: "/lovable-uploads/8df73511-1861-490b-a280-b6b75c419522.png",
+    image: "/lovable-uploads/8dd1106a-586f-4862-918b-5c7c82d24e25.png",
     tags: ["Healthcare", "Mobile App Design", "Telemedicine"],
     featured: false
   },

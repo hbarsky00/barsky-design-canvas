@@ -37,7 +37,8 @@ export const herbalinkDetails: ProjectDetails = {
     "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
     "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
     "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
-    "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png"
+    "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png",
+    "/lovable-uploads/8dd1106a-586f-4862-918b-5c7c82d24e25.png"
   ],
 
   challengeGalleryImages: [
