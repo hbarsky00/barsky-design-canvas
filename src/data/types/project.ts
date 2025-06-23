@@ -1,7 +1,7 @@
 
-
 export interface ProjectDetails {
   challenge: string;
+  challengeAdditionalText?: string; // New property for text between challenge images
   process: string;
   result: string;
   technologies: string[];

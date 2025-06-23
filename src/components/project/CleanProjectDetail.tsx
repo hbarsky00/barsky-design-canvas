@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -159,6 +158,7 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
         <SimpleContentSection
           title="The Challenge"
           content={details.challenge}
+          additionalText={details.challengeAdditionalText}
           images={details.challengeGalleryImages || []}
           imageCaptions={finalCaptions}
           projectId={projectId}
