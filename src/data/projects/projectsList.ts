@@ -1,4 +1,5 @@
 
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
@@ -87,7 +88,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "Herbalink",
     description: "Innovative herbal supplement e-commerce platform with integrated inventory management and customer relationship tools.",
-    image: "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png",
+    image: "/lovable-uploads/31b232a5-b995-443d-90d2-d11bf65c578e.png",
     tags: ["E-commerce", "Inventory", "Health & Wellness"],
     category: "E-commerce"
   },
@@ -132,3 +133,4 @@ export const projectsData: ProjectProps[] = [
     category: "AI/ML"
   }
 ];
+
