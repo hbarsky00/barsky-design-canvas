@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -88,7 +87,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
               "width": 1200,
               "height": 630
             },
-            "datePublished": "2025-01-01",
+            "datePublished": "2024-01-01",
             "dateModified": "${new Date().toISOString().split('T')[0]}",
             "creator": {
               "@type": "Organization",
