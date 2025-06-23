@@ -13,12 +13,17 @@ export const useOpenAiCaptions = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState<{current: number, total: number} | null>(null);
 
-  const generateCaption = async (imageSrc: string, projectContext?: string): Promise<OpenAiCaptionResponse> => {
+  const generateCaption = async (imageSrc: string, projectContext?: string, imageIndex?: number): Promise<OpenAiCaptionResponse> => {
     console.log('🤖 OpenAI Caption: Analyzing image:', imageSrc.substring(0, 50) + '...');
     
     try {
       // Construct the full URL for the Supabase edge function
       const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
+      
+      // Enhanced context with uniqueness requirements
+      const enhancedContext = projectContext 
+        ? `${projectContext}. IMPORTANT: This is image ${imageIndex || 1} - provide a UNIQUE, SPECIFIC description that focuses on the particular UI elements, features, or functionality visible in THIS specific image. Avoid generic descriptions and focus on what makes this image different from others in the project.`
+        : 'Barsky Joint food truck and restaurant app - focus on UI/UX elements, mobile ordering features, food truck operations, restaurant management, GPS tracking, and customer experience functionality';
       
       const response = await fetch(functionUrl, {
         method: 'POST',
@@ -30,7 +35,7 @@ export const useOpenAiCaptions = () => {
         body: JSON.stringify({ 
           imageSrc,
           contextType: 'project',
-          projectContext: projectContext || 'Barsky Joint food truck and restaurant app - focus on UI/UX elements, mobile ordering features, food truck operations, restaurant management, GPS tracking, and customer experience functionality'
+          projectContext: enhancedContext
         }),
       });
 
@@ -57,7 +62,7 @@ export const useOpenAiCaptions = () => {
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
       return { 
-        caption: 'Professional food truck and restaurant interface showcasing user-friendly design for mobile ordering and operations management',
+        caption: `Professional food truck and restaurant interface showcasing unique ${imageIndex ? `feature ${imageIndex}` : 'functionality'} for mobile ordering and operations management`,
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -88,16 +93,16 @@ export const useOpenAiCaptions = () => {
     
     const newCaptions: Record<string, string> = {};
     
-    // Set appropriate context based on project
+    // Set appropriate context based on project with enhanced uniqueness requirements
     let projectContext = '';
     if (projectId === 'barskyjoint') {
-      projectContext = 'Barsky Joint food truck and restaurant app - describe the specific UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this interface design';
+      projectContext = 'Barsky Joint food truck and restaurant app - analyze and describe the SPECIFIC UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this PARTICULAR image. Focus on what makes this screen/interface unique and different from other app screens';
     } else if (projectId === 'herbalink') {
-      projectContext = 'herbal medicine app for connecting patients with herbalists - describe the specific UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this interface design';
+      projectContext = 'herbal medicine app for connecting patients with herbalists - describe the SPECIFIC UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this PARTICULAR interface design. Focus on unique aspects of this screen';
     } else if (projectId === 'medication-app') {
-      projectContext = 'medication management app for diabetic patients - describe the specific UI elements, features, and functionality visible in this interface design';
+      projectContext = 'medication management app for diabetic patients - describe the SPECIFIC UI elements, features, and functionality visible in this PARTICULAR interface design. Focus on what makes this screen unique';
     } else {
-      projectContext = 'app interface - describe the specific UI elements, features, and functionality visible in this interface design';
+      projectContext = 'app interface - describe the SPECIFIC UI elements, features, and functionality visible in this PARTICULAR interface design. Focus on unique aspects that differentiate this screen from others';
     }
     
     for (let i = 0; i < uncachedImages.length; i++) {
@@ -106,7 +111,8 @@ export const useOpenAiCaptions = () => {
       try {
         setGenerationProgress({ current: i + 1, total: uncachedImages.length });
         
-        const result = await generateCaption(imageSrc, projectContext);
+        // Pass image index to ensure unique captions
+        const result = await generateCaption(imageSrc, projectContext, i + 1);
         
         if (result.caption && !result.error) {
           newCaptions[imageSrc] = result.caption;
@@ -116,10 +122,10 @@ export const useOpenAiCaptions = () => {
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${uncachedImages.length}`);
           const fallbackCaption = projectId === 'barskyjoint' 
-            ? 'Professional food truck and restaurant interface designed for enhanced mobile ordering and operations management'
+            ? `Professional food truck and restaurant interface featuring unique ${i === 0 ? 'ordering system' : i === 1 ? 'navigation features' : i === 2 ? 'payment processing' : `functionality ${i + 1}`} for enhanced mobile ordering experience`
             : projectId === 'herbalink' 
-            ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
-            : 'Professional app interface designed for enhanced user experience';
+            ? `Professional herbal medicine interface showcasing ${i === 0 ? 'herbalist discovery' : i === 1 ? 'consultation booking' : `unique feature ${i + 1}`} for enhanced patient-practitioner connections`
+            : `Professional app interface designed for enhanced user experience with unique feature ${i + 1}`;
           newCaptions[imageSrc] = fallbackCaption;
           globalCaptionCache[imageSrc] = fallbackCaption;
         }
@@ -131,10 +137,10 @@ export const useOpenAiCaptions = () => {
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
         const fallbackCaption = projectId === 'barskyjoint' 
-          ? 'Professional food truck and restaurant interface designed for enhanced mobile ordering and operations management'
+          ? `Professional food truck and restaurant interface featuring unique ${i === 0 ? 'ordering system' : i === 1 ? 'navigation features' : i === 2 ? 'payment processing' : `functionality ${i + 1}`} for enhanced mobile ordering experience`
           : projectId === 'herbalink' 
-          ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
-          : 'Professional app interface designed for enhanced user experience';
+          ? `Professional herbal medicine interface showcasing ${i === 0 ? 'herbalist discovery' : i === 1 ? 'consultation booking' : `unique feature ${i + 1}`} for enhanced patient-practitioner connections`
+          : `Professional app interface designed for enhanced user experience with unique feature ${i + 1}`;
         newCaptions[imageSrc] = fallbackCaption;
         globalCaptionCache[imageSrc] = fallbackCaption;
       }

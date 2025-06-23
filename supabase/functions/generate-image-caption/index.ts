@@ -38,25 +38,27 @@ serve(async (req) => {
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
     const getSystemPrompt = (contextType: string, projectContext?: string) => {
-      const basePrompt = 'You are an expert at analyzing app interfaces and describing them accurately for UX/UI design portfolios.';
+      const basePrompt = 'You are an expert at analyzing app interfaces and describing them accurately for UX/UI design portfolios. Each image is unique and requires a specific, detailed description.';
       
       if (projectContext) {
         if (projectContext.includes('herbal medicine')) {
-          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on herbal medicine features like herbalist discovery, consultation booking, herb recommendations, patient-practitioner connections, herbal protocols, wellness tracking, and how the interface supports users in finding and connecting with qualified herbalists. Be detailed about what functionality is visible and how it serves both patients and practitioners in the herbal medicine space.`;
+          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on herbal medicine features like herbalist discovery, consultation booking, herb recommendations, patient-practitioner connections, herbal protocols, wellness tracking, and how the interface supports users in finding and connecting with qualified herbalists. Be detailed about what functionality is visible and how it serves both patients and practitioners in the herbal medicine space. IMPORTANT: Provide a UNIQUE description that captures the specific elements visible in THIS particular image.`;
         } else if (projectContext.includes('medication management')) {
-          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on the medication management features, user interface elements, patient-friendly design choices, accessibility features, and how the interface supports diabetic patients in managing their medication schedules. Be detailed about what functionality is visible and how it serves users.`;
+          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus specifically on the medication management features, user interface elements, patient-friendly design choices, accessibility features, and how the interface supports diabetic patients in managing their medication schedules. Be detailed about what functionality is visible and how it serves users. IMPORTANT: Provide a UNIQUE description that captures the specific elements visible in THIS particular image.`;
+        } else if (projectContext.includes('Barsky Joint')) {
+          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus on the user interface design, key features, and functionality visible in the interface. Describe specific UI components and their purpose, including mobile ordering flows, food truck operations, restaurant management tools, GPS tracking features, and customer experience elements. IMPORTANT: Provide a UNIQUE, SPECIFIC description that captures what makes THIS particular screen or interface element distinctive from other parts of the app.`;
         } else {
-          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus on the user interface design, key features, and functionality visible in the interface. Describe specific UI components and their purpose.`;
+          return `${basePrompt} You are analyzing images from a ${projectContext}. Focus on the user interface design, key features, and functionality visible in the interface. Describe specific UI components and their purpose. IMPORTANT: Provide a UNIQUE description that captures the specific elements visible in THIS particular image.`;
         }
       }
       
       switch (contextType) {
         case 'project':
-          return `${basePrompt} You are analyzing images from an app interface. Focus on the user interface design, key features, and functionality visible in the interface. Describe specific UI components and their purpose.`;
+          return `${basePrompt} You are analyzing images from an app interface. Focus on the user interface design, key features, and functionality visible in the interface. Describe specific UI components and their purpose. IMPORTANT: Each image is unique - provide a specific description of what makes this particular screen or interface distinctive.`;
         case 'blog':
-          return `${basePrompt} You are analyzing images for educational content about app design. Focus on key UX/UI principles and user-centered design approaches.`;
+          return `${basePrompt} You are analyzing images for educational content about app design. Focus on key UX/UI principles and user-centered design approaches. IMPORTANT: Provide a unique perspective on this particular image.`;
         default:
-          return `${basePrompt} Look at this app interface carefully and describe exactly what you see - including specific UI elements, features, design elements, and functionality.`;
+          return `${basePrompt} Look at this app interface carefully and describe exactly what you see - including specific UI elements, features, design elements, and functionality. IMPORTANT: Focus on the unique aspects that make this image distinctive.`;
       }
     };
 
@@ -80,7 +82,7 @@ serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: 'Please analyze this app interface and provide a specific, detailed description of what it shows. Focus on the user interface elements, key features, design elements, and functionality visible. Make the caption professional and descriptive for a UX/UI portfolio, highlighting how the design serves users.'
+                text: 'Please analyze this app interface and provide a specific, detailed description of what it shows. Focus on the user interface elements, key features, design elements, and functionality visible. Make the caption professional and descriptive for a UX/UI portfolio, highlighting how the design serves users. CRITICAL: This caption must be UNIQUE and SPECIFIC to this particular image - avoid generic descriptions that could apply to any app screen. Describe the exact elements, features, or functionality visible in THIS specific interface.'
               },
               {
                 type: 'image_url',
@@ -93,7 +95,7 @@ serve(async (req) => {
           }
         ],
         max_tokens: 300,
-        temperature: 0.2
+        temperature: 0.3
       }),
     });
 
