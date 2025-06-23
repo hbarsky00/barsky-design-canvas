@@ -6,7 +6,6 @@ export const healthconnectDetails: ProjectDetails = {
   duration: "4 months", 
   role: "Senior UX/UI Designer",
   projectLink: "https://figma.com/healthconnect-design",
-  overview: "A comprehensive patient portal redesign focusing on accessibility, ease of use, and seamless healthcare management for patients of all ages.",
   problem: "The existing patient portal had poor usability, leading to low adoption rates and increased administrative burden on healthcare staff.",
   solution: "A modern, accessible interface that simplifies appointment scheduling, medical record access, and communication with healthcare providers.",
   keyFeatures: [

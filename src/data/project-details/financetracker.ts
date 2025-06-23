@@ -6,7 +6,6 @@ export const financetrackerDetails: ProjectDetails = {
   duration: "5 months",
   role: "Lead Product Designer", 
   projectLink: "https://figma.com/financetracker-app",
-  overview: "A comprehensive personal finance management application that helps users track expenses, create budgets, and achieve financial goals through intelligent insights and automation.",
   problem: "Many people struggle with personal finance management due to complex tools, lack of insights, and difficulty maintaining consistent tracking habits.",
   solution: "An intuitive mobile-first application that automates expense tracking, provides intelligent financial insights, and gamifies savings goals to encourage healthy financial habits.",
   keyFeatures: [

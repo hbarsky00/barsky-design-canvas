@@ -6,7 +6,6 @@ export const splittimeDetails: ProjectDetails = {
   duration: "3 months",
   role: "Lead UX/UI Designer",
   projectLink: "https://figma.com/splittime-prototype",
-  overview: "SplitTime is a comprehensive co-parenting application designed to streamline communication, scheduling, and coordination between separated parents.",
   problem: "Divorced and separated parents often struggle with coordination, leading to miscommunication, scheduling conflicts, and stress for both parents and children.",
   solution: "A centralized platform that facilitates clear communication, shared calendars, expense tracking, and document sharing while maintaining healthy boundaries.",
   keyFeatures: [
