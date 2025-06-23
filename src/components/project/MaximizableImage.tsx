@@ -4,7 +4,7 @@ import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import ImageOverlay from "./image/ImageOverlay";
 import UploadOverlay from "./image/UploadOverlay";
-import ImageErrorFallback from "./image/ImageErrorFallback";
+import ImageWithFallback from "./ImageWithFallback";
 import { useImageUploadHandler } from "./image/useImageUploadHandler";
 
 interface MaximizableImageProps {
@@ -61,7 +61,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       setImageError(false);
       setRefreshKey(prev => prev + 1);
     }
-  }, [src]);
+  }, [src, currentSrc]);
 
   const handleMaximize = () => {
     if (!imageError) {
@@ -86,15 +86,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setImageError(false);
   };
 
-  // Simple cache busting only when needed
-  const displayUrl = React.useMemo(() => {
-    // Only add cache busting for blob URLs or when we have a refresh key > 0
-    if (currentSrc.startsWith('blob:') || refreshKey > 0) {
-      const separator = currentSrc.includes('?') ? '&' : '?';
-      return `${currentSrc}${separator}t=${refreshKey}`;
-    }
-    return currentSrc;
-  }, [currentSrc, refreshKey]);
+  // Fallback image URL
+  const fallbackImageUrl = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80";
 
   return (
     <div className={`relative ${className}`} key={`image-container-${refreshKey}`}>
@@ -103,27 +96,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {imageError ? (
-          <ImageErrorFallback 
-            showEditingControls={showEditingControls}
-            originalSrc={currentSrc}
-          />
-        ) : (
-          <img
-            key={`img-${displayUrl}`}
-            src={displayUrl}
-            alt={alt}
-            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-            loading={priority ? "eager" : "lazy"}
-            onClick={handleMaximize}
-            onError={handleImageError}
-            onLoad={handleImageLoad}
-            style={{ 
-              opacity: isUploading ? 0.7 : 1,
-              transition: 'opacity 0.3s ease'
-            }}
-          />
-        )}
+        <ImageWithFallback
+          src={currentSrc}
+          alt={alt}
+          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+          fallbackSrc={fallbackImageUrl}
+          priority={priority}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
         
         <UploadOverlay isUploading={isUploading} />
         
