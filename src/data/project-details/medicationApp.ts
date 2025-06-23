@@ -26,50 +26,42 @@ export const medicationAppDetails: ProjectDetails = {
 
   imageConfig: {
     challenge: {
-      beforeHeader: "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
-      afterHeader: "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png"
+      beforeHeader: "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
+      afterHeader: "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png",
-      afterHeader: "/lovable-uploads/0bd501de-722e-4f09-af9e-25a0dc629f9d.png"
+      beforeHeader: "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png",
+      afterHeader: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
-      afterHeader: "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png"
+      beforeHeader: "/lovable-uploads/06c3b4e6-b260-4c9d-90d3-201371ff7381.png",
+      afterHeader: "/lovable-uploads/0937ca2e-b4b7-493a-963e-441f9fdafb2f.png"
     }
   },
 
   availableImages: [
-    "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
-    "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png",
-    "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
-    "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png",
-    "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png",
-    "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
-    "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
-    "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png",
-    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
-    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png",
-    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png",
-    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png",
-    "/lovable-uploads/4432f02a-a115-4ee6-8f59-eef3bed32909.png",
-    "/lovable-uploads/93549759-596b-4dcf-9924-5a5d2a3430b2.png",
+    "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
+    "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png",
+    "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png",
+    "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
+    "/lovable-uploads/06c3b4e6-b260-4c9d-90d3-201371ff7381.png",
+    "/lovable-uploads/0937ca2e-b4b7-493a-963e-441f9fdafb2f.png",
     "/lovable-uploads/0bd501de-722e-4f09-af9e-25a0dc629f9d.png",
-    "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png"
+    "/lovable-uploads/0de829ea-960a-4c02-a574-064d6096fbde.png"
   ],
 
   challengeGalleryImages: [
-    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png",
-    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png"
+    "/lovable-uploads/00b250de-52be-48ea-b9c4-99626f288d14.png",
+    "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png"
   ],
   
   resultGalleryImages: [
-    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
-    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
+    "/lovable-uploads/06c3b4e6-b260-4c9d-90d3-201371ff7381.png",
+    "/lovable-uploads/0937ca2e-b4b7-493a-963e-441f9fdafb2f.png"
   ],
   
   servicesGalleryImages: [
-    "/lovable-uploads/6d43a048-886a-4190-8aeb-c6bc15e2f49c.png"
+    "/lovable-uploads/0bd501de-722e-4f09-af9e-25a0dc629f9d.png"
   ],
   
   galleryImages: [],
