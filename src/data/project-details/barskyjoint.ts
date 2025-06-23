@@ -31,10 +31,13 @@ export const barskyjointDetails: ProjectDetails = {
     "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
     "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
-    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
+    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
+    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png"
   ],
 
-  challengeGalleryImages: [],
+  challengeGalleryImages: [
+    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png"
+  ],
 
   processImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
 
