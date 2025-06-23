@@ -82,7 +82,7 @@ serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: 'Please analyze this app interface and provide a specific, detailed description of what it shows. Focus on the user interface elements, key features, design elements, and functionality visible. Make the caption professional and descriptive for a UX/UI portfolio, highlighting how the design serves users. CRITICAL: This caption must be UNIQUE and SPECIFIC to this particular image - avoid generic descriptions that could apply to any app screen. Describe the exact elements, features, or functionality visible in THIS specific interface.'
+                text: 'Please analyze this app interface and provide a specific, detailed description of what it shows. Focus on the user interface elements, key features, design elements, and functionality visible. Make the caption professional and descriptive for a UX/UI portfolio, highlighting how the design serves users. CRITICAL: This caption must be UNIQUE and SPECIFIC to this particular image - avoid generic descriptions that could apply to any app screen. Describe the exact elements, features, or functionality visible in THIS specific interface. Do not include any numbering or counting in your description.'
               },
               {
                 type: 'image_url',

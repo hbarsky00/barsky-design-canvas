@@ -20,9 +20,9 @@ export const useOpenAiCaptions = () => {
       // Construct the full URL for the Supabase edge function
       const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
       
-      // Enhanced context with uniqueness requirements
+      // Enhanced context with uniqueness requirements but without explicit numbering
       const enhancedContext = projectContext 
-        ? `${projectContext}. IMPORTANT: This is image ${imageIndex || 1} - provide a UNIQUE, SPECIFIC description that focuses on the particular UI elements, features, or functionality visible in THIS specific image. Avoid generic descriptions and focus on what makes this image different from others in the project.`
+        ? `${projectContext}. IMPORTANT: Analyze this specific image and provide a UNIQUE, detailed description that focuses on the particular UI elements, features, or functionality visible in THIS specific image. Avoid generic descriptions and focus on what makes this image different from others in the project. Describe exactly what you see in this interface.`
         : 'Barsky Joint food truck and restaurant app - focus on UI/UX elements, mobile ordering features, food truck operations, restaurant management, GPS tracking, and customer experience functionality';
       
       const response = await fetch(functionUrl, {
@@ -62,7 +62,7 @@ export const useOpenAiCaptions = () => {
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
       return { 
-        caption: `Professional food truck and restaurant interface showcasing unique ${imageIndex ? `feature ${imageIndex}` : 'functionality'} for mobile ordering and operations management`,
+        caption: `Professional food truck and restaurant interface showcasing unique functionality for mobile ordering and operations management`,
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -111,8 +111,8 @@ export const useOpenAiCaptions = () => {
       try {
         setGenerationProgress({ current: i + 1, total: uncachedImages.length });
         
-        // Pass image index to ensure unique captions
-        const result = await generateCaption(imageSrc, projectContext, i + 1);
+        // Generate caption without explicit numbering
+        const result = await generateCaption(imageSrc, projectContext);
         
         if (result.caption && !result.error) {
           newCaptions[imageSrc] = result.caption;
@@ -122,10 +122,10 @@ export const useOpenAiCaptions = () => {
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${uncachedImages.length}`);
           const fallbackCaption = projectId === 'barskyjoint' 
-            ? `Professional food truck and restaurant interface featuring unique ${i === 0 ? 'ordering system' : i === 1 ? 'navigation features' : i === 2 ? 'payment processing' : `functionality ${i + 1}`} for enhanced mobile ordering experience`
+            ? `Professional food truck and restaurant interface featuring mobile ordering system for enhanced customer experience`
             : projectId === 'herbalink' 
-            ? `Professional herbal medicine interface showcasing ${i === 0 ? 'herbalist discovery' : i === 1 ? 'consultation booking' : `unique feature ${i + 1}`} for enhanced patient-practitioner connections`
-            : `Professional app interface designed for enhanced user experience with unique feature ${i + 1}`;
+            ? `Professional herbal medicine interface showcasing herbalist discovery and consultation booking features`
+            : `Professional app interface designed for enhanced user experience and functionality`;
           newCaptions[imageSrc] = fallbackCaption;
           globalCaptionCache[imageSrc] = fallbackCaption;
         }
@@ -137,10 +137,10 @@ export const useOpenAiCaptions = () => {
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
         const fallbackCaption = projectId === 'barskyjoint' 
-          ? `Professional food truck and restaurant interface featuring unique ${i === 0 ? 'ordering system' : i === 1 ? 'navigation features' : i === 2 ? 'payment processing' : `functionality ${i + 1}`} for enhanced mobile ordering experience`
+          ? `Professional food truck and restaurant interface featuring mobile ordering system for enhanced customer experience`
           : projectId === 'herbalink' 
-          ? `Professional herbal medicine interface showcasing ${i === 0 ? 'herbalist discovery' : i === 1 ? 'consultation booking' : `unique feature ${i + 1}`} for enhanced patient-practitioner connections`
-          : `Professional app interface designed for enhanced user experience with unique feature ${i + 1}`;
+          ? `Professional herbal medicine interface showcasing herbalist discovery and consultation booking features`
+          : `Professional app interface designed for enhanced user experience and functionality`;
         newCaptions[imageSrc] = fallbackCaption;
         globalCaptionCache[imageSrc] = fallbackCaption;
       }
