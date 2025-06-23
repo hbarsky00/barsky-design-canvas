@@ -23,7 +23,7 @@ export const useOpenAiCaptions = () => {
       // Enhanced context with uniqueness requirements but without explicit numbering
       const enhancedContext = projectContext 
         ? `${projectContext}. IMPORTANT: Analyze this specific image and provide a UNIQUE, detailed description that focuses on the particular UI elements, features, or functionality visible in THIS specific image. Avoid generic descriptions and focus on what makes this image different from others in the project. Describe exactly what you see in this interface.`
-        : 'Barsky Joint food truck and restaurant app - focus on UI/UX elements, mobile ordering features, food truck operations, restaurant management, GPS tracking, and customer experience functionality';
+        : 'Co-parenting coordination app - focus on UI/UX elements, family communication features, scheduling functionality, conflict reduction tools, and child-focused design elements';
       
       const response = await fetch(functionUrl, {
         method: 'POST',
@@ -62,7 +62,7 @@ export const useOpenAiCaptions = () => {
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
       return { 
-        caption: `Professional food truck and restaurant interface showcasing unique functionality for mobile ordering and operations management`,
+        caption: `Professional co-parenting app interface designed to improve family communication and reduce conflict`,
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -95,7 +95,9 @@ export const useOpenAiCaptions = () => {
     
     // Set appropriate context based on project with enhanced uniqueness requirements
     let projectContext = '';
-    if (projectId === 'barskyjoint') {
+    if (projectId === 'splittime') {
+      projectContext = 'co-parenting coordination app for separated families - describe the SPECIFIC UI elements, family communication features, scheduling tools, conflict reduction interface, child-focused design elements, and co-parent collaboration functionality visible in this PARTICULAR interface design. Focus on what makes this screen unique and how it serves families';
+    } else if (projectId === 'barskyjoint') {
       projectContext = 'Barsky Joint food truck and restaurant app - analyze and describe the SPECIFIC UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this PARTICULAR image. Focus on what makes this screen/interface unique and different from other app screens';
     } else if (projectId === 'herbalink') {
       projectContext = 'herbal medicine app for connecting patients with herbalists - describe the SPECIFIC UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this PARTICULAR interface design. Focus on unique aspects of this screen';
@@ -121,7 +123,9 @@ export const useOpenAiCaptions = () => {
           console.log(`✅ Caption generated and cached for image ${i + 1}/${uncachedImages.length}`);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${uncachedImages.length}`);
-          const fallbackCaption = projectId === 'barskyjoint' 
+          const fallbackCaption = projectId === 'splittime' 
+            ? `Professional co-parenting app interface designed to improve family communication and reduce conflict`
+            : projectId === 'barskyjoint' 
             ? `Professional food truck and restaurant interface featuring mobile ordering system for enhanced customer experience`
             : projectId === 'herbalink' 
             ? `Professional herbal medicine interface showcasing herbalist discovery and consultation booking features`
@@ -136,7 +140,9 @@ export const useOpenAiCaptions = () => {
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
-        const fallbackCaption = projectId === 'barskyjoint' 
+        const fallbackCaption = projectId === 'splittime' 
+          ? `Professional co-parenting app interface designed to improve family communication and reduce conflict`
+          : projectId === 'barskyjoint' 
           ? `Professional food truck and restaurant interface featuring mobile ordering system for enhanced customer experience`
           : projectId === 'herbalink' 
           ? `Professional herbal medicine interface showcasing herbalist discovery and consultation booking features`

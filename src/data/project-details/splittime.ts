@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
@@ -13,6 +12,7 @@ export const splittimeDetails: ProjectDetails = {
   client: "Family Technology Startup",
   role: "Lead Product Designer & UX Researcher",
   projectLink: "http://splittime.pro",
+  useAiCaptions: true, // Enable AI caption generation
 
   imageConfig: {
     challenge: {
