@@ -1,5 +1,4 @@
 
-
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
@@ -21,8 +20,8 @@ export const splittimeDetails: ProjectDetails = {
       afterHeader: "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png",
-      afterHeader: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png"
+      beforeHeader: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
+      afterHeader: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png"
     },
     result: {
       beforeHeader: "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
@@ -47,16 +46,12 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
   ],
-  processImage: "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png",
-  processBottomImage: "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
-  processGalleryImages: [
-    "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
-    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png"
-  ],
+  processImage: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
+  processBottomImage: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
+  processGalleryImages: [],
   resultGalleryImages: [
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
     "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
     "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png"
   ]
 };
-
