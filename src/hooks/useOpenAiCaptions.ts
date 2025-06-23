@@ -30,7 +30,7 @@ export const useOpenAiCaptions = () => {
         body: JSON.stringify({ 
           imageSrc,
           contextType: 'project',
-          projectContext: projectContext || 'herbal medicine app interface - focus on UI/UX elements, user interface design, herbalist discovery features, consultation booking, herb recommendations, and patient-practitioner connection functionality'
+          projectContext: projectContext || 'Barsky Joint food truck and restaurant app - focus on UI/UX elements, mobile ordering features, food truck operations, restaurant management, GPS tracking, and customer experience functionality'
         }),
       });
 
@@ -57,7 +57,7 @@ export const useOpenAiCaptions = () => {
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
       return { 
-        caption: 'Professional herbal medicine interface showcasing user-friendly design for connecting patients with herbalists',
+        caption: 'Professional food truck and restaurant interface showcasing user-friendly design for mobile ordering and operations management',
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -90,7 +90,9 @@ export const useOpenAiCaptions = () => {
     
     // Set appropriate context based on project
     let projectContext = '';
-    if (projectId === 'herbalink') {
+    if (projectId === 'barskyjoint') {
+      projectContext = 'Barsky Joint food truck and restaurant app - describe the specific UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this interface design';
+    } else if (projectId === 'herbalink') {
       projectContext = 'herbal medicine app for connecting patients with herbalists - describe the specific UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this interface design';
     } else if (projectId === 'medication-app') {
       projectContext = 'medication management app for diabetic patients - describe the specific UI elements, features, and functionality visible in this interface design';
@@ -113,7 +115,9 @@ export const useOpenAiCaptions = () => {
           console.log(`✅ Caption generated and cached for image ${i + 1}/${uncachedImages.length}`);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${uncachedImages.length}`);
-          const fallbackCaption = projectId === 'herbalink' 
+          const fallbackCaption = projectId === 'barskyjoint' 
+            ? 'Professional food truck and restaurant interface designed for enhanced mobile ordering and operations management'
+            : projectId === 'herbalink' 
             ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
             : 'Professional app interface designed for enhanced user experience';
           newCaptions[imageSrc] = fallbackCaption;
@@ -126,7 +130,9 @@ export const useOpenAiCaptions = () => {
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
-        const fallbackCaption = projectId === 'herbalink' 
+        const fallbackCaption = projectId === 'barskyjoint' 
+          ? 'Professional food truck and restaurant interface designed for enhanced mobile ordering and operations management'
+          : projectId === 'herbalink' 
           ? 'Professional herbal medicine interface designed for enhanced patient-practitioner connections'
           : 'Professional app interface designed for enhanced user experience';
         newCaptions[imageSrc] = fallbackCaption;

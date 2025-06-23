@@ -14,6 +14,9 @@ export const barskyjointDetails: ProjectDetails = {
   role: "Lead UX/UI Designer",
   projectLink: "https://barskyjoint.biz",
 
+  // Enable AI-generated captions for this project
+  useAiCaptions: true,
+
   imageConfig: {
     challenge: {
       afterHeader: "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png"
