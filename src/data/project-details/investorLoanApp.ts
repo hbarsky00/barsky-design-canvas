@@ -54,5 +54,8 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png",
     "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
     "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
-  ]
+  ],
+  
+  // Enable AI caption generation for this project
+  useAiCaptions: true
 };
