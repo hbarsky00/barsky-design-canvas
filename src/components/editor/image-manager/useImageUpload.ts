@@ -44,8 +44,8 @@ export const useImageUpload = ({ projectId, onImageAdd }: UseImageUploadProps) =
                 return;
               }
 
-              toast.info('Uploading image to Vercel Blob...');
-              console.log('📤 Uploading image to Vercel Blob:', file.name, 'Size:', file.size);
+              toast.info('Uploading image...');
+              console.log('📤 Uploading image:', file.name, 'Size:', file.size);
               
               const uploadedUrl = await VercelBlobStorageService.uploadImage(file, projectId, `content-${Date.now()}`);
               
@@ -81,7 +81,7 @@ export const useImageUpload = ({ projectId, onImageAdd }: UseImageUploadProps) =
       // Call the onImageAdd callback immediately
       onImageAdd(selectedImageSrc);
       
-      toast.success('Image uploaded and added successfully!');
+      toast.success('Image uploaded successfully!');
       console.log('✅ Image upload complete');
       
     } catch (error) {

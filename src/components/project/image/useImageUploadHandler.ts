@@ -53,15 +53,15 @@ export const useImageUploadHandler = ({
       if (newImageUrl) {
         console.log('✅ Image uploaded successfully:', newImageUrl);
         
-        // Update the current source immediately
+        // Update the current source immediately and persist it
         setCurrentSrc(newImageUrl);
         setImageError(false);
         
-        // Call the replacement callback
+        // Call the replacement callback to persist the change
         onImageReplace(newImageUrl);
         
         toast.success('Image uploaded successfully!');
-        console.log('🎉 Image replacement completed successfully');
+        console.log('🎉 Image replacement completed and persisted');
       } else {
         console.error('❌ Upload failed - no URL returned');
         setImageError(true);

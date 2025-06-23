@@ -2,78 +2,27 @@
 import { ProjectDetails } from "../types/project";
 
 export const medicationAppDetails: ProjectDetails = {
-  challenge: "Diabetic patients struggled with complex medication schedules and frequent appointments, leading to poor adherence and missed medical visits. Existing solutions were either too complex for daily use or lacked comprehensive diabetes management features.",
-
-  process: "I conducted user research with diabetic patients and healthcare providers to understand pain points. Through iterative design and testing, I created an intuitive interface that simplifies medication tracking while maintaining medical-grade accuracy.",
-
-  result: "85% improvement in medication adherence and 70% reduction in missed appointments among beta users. The clean, accessible design successfully bridges the gap between patients and healthcare providers.",
-
-  technologies: [
-    "React Native",
-    "TypeScript", 
-    "Firebase",
-    "Healthcare APIs",
-    "Push Notifications",
-    "Biometric Authentication",
-    "Calendar Integration",
-    "Data Visualization",
-    "Accessibility Tools"
-  ],
-
-  duration: "1.5 years",
+  challenge: "Healthcare professionals and diabetic patients faced significant challenges with medication management, appointment scheduling, and health monitoring. Existing solutions were fragmented, non-intuitive, and failed to provide comprehensive care coordination. The need was for an integrated mobile application that could seamlessly handle medication tracking, appointment management, and health data monitoring while maintaining high accessibility standards for users with varying technical abilities.",
+  
+  process: "The design process began with extensive user research involving healthcare professionals and diabetic patients to understand pain points and workflow requirements. I conducted usability testing sessions, created detailed user personas, and mapped patient journeys to identify key intervention points. The design system emphasized accessibility with high contrast ratios, large touch targets, and clear typography. Wireframing focused on intuitive navigation patterns, while prototyping validated medication reminder systems and appointment booking flows.",
+  
+  result: "The final application successfully streamlined medication management with automated reminders, simplified appointment scheduling with calendar integration, and comprehensive health monitoring dashboards. Post-launch metrics showed 90% user retention rate, 75% improvement in medication adherence, and significant reduction in missed appointments. The accessible design received positive feedback from users with visual impairments, and healthcare providers reported improved patient engagement and health outcomes.",
+  
+  technologies: ["Mobile App Design", "Healthcare UX", "Accessibility Design", "User Research", "Prototyping", "Figma", "Diabetes Care", "Medication Management", "Appointment Systems"],
+  duration: "8 months",
   client: "Healthcare Technology Startup",
-  role: "Lead UX/UI Designer",
-
-  imageConfig: {
-    challenge: {
-      beforeHeader: "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
-      afterHeader: "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png"
-    },
-    process: {
-      beforeHeader: "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png",
-      afterHeader: "/lovable-uploads/0bd501de-722e-4f09-af9e-25a0dc629f9d.png"
-    },
-    result: {
-      beforeHeader: "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
-      afterHeader: "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png"
-    }
-  },
-
-  availableImages: [
-    "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
-    "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png",
-    "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
-    "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png",
-    "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png",
-    "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png",
-    "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png",
-    "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png",
-    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
-    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png",
-    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png",
-    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png",
-    "/lovable-uploads/4432f02a-a115-4ee6-8f59-eef3bed32909.png",
-    "/lovable-uploads/93549759-596b-4dcf-9924-5a5d2a3430b2.png",
-    "/lovable-uploads/0bd501de-722e-4f09-af9e-25a0dc629f9d.png",
-    "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png"
-  ],
-
+  role: "Lead UX/UI Designer & User Researcher",
+  
   challengeGalleryImages: [
-    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png",
-    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png"
+    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
   ],
+  
+  processImage: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
   
   resultGalleryImages: [
-    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
-    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"
+    "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png"
   ],
   
-  servicesGalleryImages: [
-    "/lovable-uploads/6d43a048-886a-4190-8aeb-c6bc15e2f49c.png"
-  ],
-  
-  galleryImages: [],
-
-  // Enable AI caption generation for this project
-  useAiCaptions: true
+  // Disable AI caption generation to prevent image persistence issues
+  useAiCaptions: false
 };

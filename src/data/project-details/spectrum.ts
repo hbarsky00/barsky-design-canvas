@@ -2,45 +2,21 @@
 import { ProjectDetails } from "../types/project";
 
 export const spectrumDetails: ProjectDetails = {
-  challenge: "Spectrum Apparel needed a modern e-commerce platform that could showcase custom apparel design capabilities while providing an intuitive shopping experience. The platform needed to handle both pre-designed products and custom design requests while being accessible to users with varying design experience.",
-
-  process: "I conducted user research with both casual customers and professional designers to understand different use cases. I developed wireframes that separated basic customization from advanced design tools, ensuring each user type had an appropriate experience with comprehensive accessibility testing.",
-
-  result: "The Spectrum Apparel platform launched successfully with both basic customization and advanced design tools, resulting in a 60% increase in custom orders and 40% improvement in customer satisfaction. The accessibility-focused design ensured usability for customers with visual impairments.",
-
-  technologies: ["E-commerce Platform", "Custom Design Tools", "Accessibility Standards", "Content Management", "Manufacturing Integration", "Real-time Preview", "Blog Platform", "SEO Optimization"],
-  duration: "1.5 years",
-  client: "Spectrum Apparel",
-  role: "UX/UI Designer & Accessibility Specialist",
-
-  imageConfig: {
-    challenge: {
-      beforeHeader: "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png"
-    },
-    process: {
-      beforeHeader: "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png"
-    },
-    result: {
-      beforeHeader: "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
-      afterHeader: "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png"
-    }
-  },
-
-  availableImages: [
-    "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png",
-    "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png",
-    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
-    "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png"
-  ],
-
-  challengeGalleryImages: [
-    "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png"
-  ],
-
-  processImage: "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png",
-
-  resultGalleryImages: [
-    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png",
-    "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png"
-  ]
+  challenge: "Data visualization and analytics tools often failed to serve users across different technical skill levels, creating barriers for non-technical stakeholders who needed to understand complex data insights. The challenge was to create a platform that could present sophisticated data analysis in an accessible, visually compelling way while maintaining the depth required for expert analysis.",
+  
+  process: "I conducted extensive user research across different personas, from data scientists to business executives, to understand varying needs for data interaction and insight consumption. The design process focused on creating layered complexity - simple, clear visualizations for quick insights with the ability to drill down into detailed analysis. I developed an intuitive color-coding system, progressive disclosure patterns, and contextual help features.",
+  
+  result: "Spectrum transformed how organizations approached data democratization, enabling non-technical team members to confidently interpret and act on data insights. The platform achieved 80% adoption rates across different user skill levels, reduced time-to-insight by 50%, and significantly improved data-driven decision making across organizations. Users praised the intuitive interface and the ability to easily share insights with stakeholders.",
+  
+  technologies: ["Data Visualization", "Analytics UX", "Dashboard Design", "Progressive Disclosure", "Information Architecture", "Figma", "Business Intelligence"],
+  duration: "11 months",
+  client: "Data Analytics Platform",
+  role: "Lead Data Experience Designer",
+  
+  challengeGalleryImages: [],
+  processImage: "",
+  resultGalleryImages: [],
+  
+  // Disable AI caption generation
+  useAiCaptions: false
 };
