@@ -39,7 +39,8 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
     "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png",
     "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
-    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png"
+    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
   ],
 
   challengeGalleryImages: [
@@ -48,7 +49,9 @@ export const splittimeDetails: ProjectDetails = {
   ],
   processImage: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
   processBottomImage: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
-  processGalleryImages: [],
+  processGalleryImages: [
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
+  ],
   resultGalleryImages: [
     "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
     "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
