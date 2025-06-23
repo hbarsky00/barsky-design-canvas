@@ -1,8 +1,7 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
-  challenge: "Divorced parents were living in communication chaos. Missed pickups, forgotten events, heated text exchanges – co-parenting was becoming a battlefield instead of teamwork.\n\nFamilies needed a neutral zone where they could coordinate without the drama. These families needed something that understood their unique emotional landscape.",
+  challenge: "Separated parents face coordination challenges leading to miscommunication, scheduling conflicts, and tension. Traditional communication methods escalate conflicts, lack of centralized scheduling causes confusion, and children suffer from being caught in parental disputes. Problem Statement: How might we create a neutral digital platform that reduces conflict and improves co-parent communication while prioritizing children's wellbeing?",
 
   process: "I spent months listening to real families share their stories. Working with child psychologists taught me that technology could either heal or harm. Every design decision was filtered through one question: 'Does this help the kids?'\n\nTesting with actual families was eye-opening. When we got it right? Magic. Parents started smiling when they talked about scheduling.",
 
