@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import AllProjects from "./pages/AllProjects";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -38,6 +39,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/projects" element={<AllProjects />} />

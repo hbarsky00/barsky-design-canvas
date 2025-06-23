@@ -30,7 +30,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
       whileHover={{ y: -5 }}
       className="h-full"
     >
-      <Link to={`/projects/${project.id}`} className="block h-full">
+      <Link to={`/project/${project.id}`} className="block h-full">
         <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group">
           <div className="aspect-video overflow-hidden relative">
             <img

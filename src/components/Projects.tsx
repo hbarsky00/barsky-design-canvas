@@ -8,10 +8,6 @@ import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 const Projects: React.FC = () => {
   const { filteredProjects } = useProjectsData();
   
-  const handleScrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
-  
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="section-container">
@@ -46,7 +42,6 @@ const Projects: React.FC = () => {
           <Link 
             to="/projects" 
             className="btn-outline inline-flex items-center"
-            onClick={handleScrollToTop}
           >
             View All Projects <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
