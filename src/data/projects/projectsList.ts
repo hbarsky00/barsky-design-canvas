@@ -1,3 +1,4 @@
+
 import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
@@ -118,7 +119,7 @@ export const projectsData: ProjectProps[] = [
     id: "investor-loan-app",
     title: "Investor Loan App",
     description: "Comprehensive loan management platform for investors with portfolio tracking, risk assessment, and automated reporting.",
-    image: "/lovable-uploads/ce2fefe2-ea1c-4211-9b1d-2201b0388514.png",
+    image: "/lovable-uploads/1e5a7145-8d9a-4b97-ab7c-d5fbc0fdce20.png",
     tags: ["Fintech", "Investment", "Loan Management", "Portfolio"],
     category: "Fintech"
   },
