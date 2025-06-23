@@ -236,7 +236,7 @@ const EnhancedProjectGrid: React.FC<EnhancedProjectGridProps> = ({
                 {/* Project Meta */}
                 <div className="flex items-center justify-between pt-2 border-t border-gray-100">
                   <div className="flex items-center space-x-4 text-sm text-gray-500">
-                    <span>2024</span>
+                    <span>2025</span>
                     <span>•</span>
                     <span>UX/UI Design</span>
                   </div>
