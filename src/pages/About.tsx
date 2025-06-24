@@ -22,7 +22,7 @@ const skills = [
 
 const tools = [
   "Figma", "Adobe Creative Suite", "Zeplin", 
-  "Lovable.dev", "Protopen", "Webflow", "UXPilot", "Gamma", "Jira"
+  "Lovable.dev", "Protopen", "Webflow", "UXPilot", "Gamma", "Claude AI", "Chat GPT", "Jira"
 ];
 
 const About = () => {

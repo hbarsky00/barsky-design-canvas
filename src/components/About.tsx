@@ -78,7 +78,7 @@ const About: React.FC = () => {
             <div className="mt-12">
               <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Design Tools & Technologies</h3>
               <div className="flex flex-wrap gap-3">
-                {["Figma", "Adobe Creative Suite", "Zeplin", "Lovable.dev", "Protopen", "Webflow", "UXPilot", "Gamma", "Jira"].map((tool, index) => (
+                {["Figma", "Adobe Creative Suite", "Zeplin", "Lovable.dev", "Protopen", "Webflow", "UXPilot", "Gamma", "Claude AI", "Chat GPT", "Jira"].map((tool, index) => (
                   <span key={index} className="bg-white px-4 py-2 rounded-full text-barsky-text text-sm shadow-sm">
                     {tool}
                   </span>
