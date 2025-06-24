@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
@@ -12,7 +13,7 @@ export const splittimeDetails: ProjectDetails = {
   client: "Family Technology Startup",
   role: "Lead Product Designer & UX Researcher",
   projectLink: "http://splittime.pro",
-  useAiCaptions: true, // Enable AI caption generation
+  useAiCaptions: false, // Disable AI captions to use manual ones
 
   imageConfig: {
     challenge: {
@@ -27,6 +28,19 @@ export const splittimeDetails: ProjectDetails = {
       beforeHeader: "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
       afterHeader: "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png"
     }
+  },
+
+  // Manual image captions specific to Splittime co-parenting app
+  imageCaptions: {
+    "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Splittime home dashboard showing upcoming custody events, shared calendar access, and quick communication tools for seamless co-parenting coordination",
+    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Child profile management screen displaying important information, medical records, school schedules, and shared notes between co-parents",
+    "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png": "Interactive calendar interface allowing co-parents to coordinate pickup/drop-off times, plan events, and manage custody schedules with conflict-free scheduling",
+    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png": "Secure messaging system designed to reduce conflict with structured communication templates and emotion-neutral language suggestions",
+    "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "Family dashboard showing successful coordination metrics, reduced conflicts, and improved communication patterns between co-parents",
+    "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png": "Document sharing hub for important family information, custody agreements, medical forms, and school communications accessible to both parents",
+    "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png": "Event planning interface for coordinating shared family activities, birthdays, and special occasions with collaborative planning tools",
+    "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png": "Expense tracking system for shared child-related costs with transparent payment history and automatic splitting calculations",
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "Mobile-responsive design ensuring parents can coordinate custody schedules and communicate effectively from any device, anywhere"
   },
 
   availableImages: [
