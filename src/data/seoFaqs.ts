@@ -1,8 +1,9 @@
 
+
 export const homepageFaqs = [
   {
     question: "What UX/UI design services does Barsky Design offer?",
-    answer: "Barsky Design offers comprehensive UX/UI design services including user research, wireframing, prototyping, visual design, design systems creation, mobile app design, web application design, and startup MVP design. I specialize in creating user-centered digital experiences that drive business results.",
+    answer: "Barsky Design offers comprehensive design and development services including user research, wire-framing, prototyping, visual design, design systems creation, mobile app design, web application design, Gen AI scripting and startup MVP design. I specialize in creating user-centered digital experiences that drive business results.",
     keywords: ["UX/UI design services", "user research", "wireframing", "prototyping", "design systems"]
   },
   {
