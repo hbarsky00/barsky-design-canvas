@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Briefcase, Code, Smartphone, Globe } from "lucide-react";
@@ -119,7 +118,7 @@ const InternalLinkingHub: React.FC = () => {
             Explore My Design Work & Services
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Browse my comprehensive portfolio of UX/UI design projects, development services, and case studies. 
+            Browse my comprehensive Portfolio of Product Design Case studies with live links. 
             Each project showcases user-centered design principles and measurable business results.
           </p>
         </motion.div>
