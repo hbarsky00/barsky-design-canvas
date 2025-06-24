@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -20,7 +21,7 @@ const skills = [
 ];
 
 const tools = [
-  "Figma", "Adobe Creative Suite", "Adobe XD", "Zeplin", 
+  "Figma", "Adobe Creative Suite", "Zeplin", 
   "Lovable.dev", "Protopen", "Webflow", "UXPilot", "Gamma", "Jira"
 ];
 
@@ -216,7 +217,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Contact CTA */}
         <section className="py-20 bg-white">
           <div className="section-container text-center">
             <h2 className="text-3xl font-bold mb-6 text-barsky-dark">Let's Work Together</h2>
