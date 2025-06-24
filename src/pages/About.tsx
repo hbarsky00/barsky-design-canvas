@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -21,9 +20,8 @@ const skills = [
 ];
 
 const tools = [
-  "Figma", "Sketch", "Adobe XD", "InVision", "Miro", "Axure", 
-  "Principle", "Zeplin", "Abstract", "Lovable.dev", "Protopen", 
-  "Webflow", "Canva"
+  "Figma", "Adobe Creative Suite", "Adobe XD", "Zeplin", 
+  "Lovable.dev", "Protopen", "Webflow", "UXPilot", "Gamma", "Jira"
 ];
 
 const About = () => {
