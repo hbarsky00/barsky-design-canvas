@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -15,49 +16,74 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   // Safely handle tags array
   const tags = project.tags || [];
   
-  // Determine the primary service category
+  // Determine the primary service category with AI-enhanced focus
   const getServiceType = () => {
-    if (tags.includes("Mobile App")) return "App Design Services";
-    if (tags.includes("Web App")) return "Website Design Services";
-    return "Product Design Services";
+    if (tags.includes("Mobile App")) return "AI-Enhanced Mobile App Design";
+    if (tags.includes("Web App")) return "Business-Focused Web Application Design";
+    if (tags.includes("Fintech")) return "AI-Augmented Financial Platform Design";
+    if (tags.includes("Healthcare")) return "Accessibility-Compliant Healthcare Design";
+    return "AI-Enhanced Product Design";
   };
   
   const serviceType = getServiceType();
   
+  // Generate business-focused description with metrics
+  const getMetricsDescription = () => {
+    if (project.id === 'investor-loan-app') {
+      return "85% error reduction and accelerated processing times through AI-enhanced loan management platform design";
+    }
+    return "Business-outcome driven design with measurable conversion improvements";
+  };
+  
+  const metricsDescription = getMetricsDescription();
+  
   // Generate slug for canonical URL
-  const titleSlug = project.title.toLowerCase().replace(/\s+/g, '-');
   const canonicalUrl = `https://barskydesign.pro/project/${project.id}`;
   
   return (
     <Helmet>
-      <title>{project.title} | Barsky Design - Official Portfolio | Professional Product Designer & Developer</title>
-      <meta name="description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Barsky Design, experienced Product Designer & Developer specializing in UX/UI design and digital solutions.`} />
-      <meta name="keywords" content={`Barsky Design, ${tags.join(', ')}, ${serviceType}, AI Driven Design Services, Product Design Services, UX/UI Design Services, Portfolio, Case Study, Professional Designer, Barsky Design Official`} />
-      <meta name="author" content="Barsky Design" />
+      <title>{project.title} | Hiram Barsky - AI-Fluent UX Designer | {metricsDescription}</title>
+      <meta name="description" content={`${project.title} case study: ${metricsDescription}. ${serviceType} by Hiram Barsky, AI-fluent UX designer specializing in accessibility compliance, conversion optimization, and cross-functional collaboration using Claude AI and Figma AI.`} />
+      <meta name="keywords" content={`Hiram Barsky, AI-enhanced UX design, ${tags.join(', ')}, ${serviceType}, accessibility compliance WCAG, conversion optimization, Claude AI design, business-focused UX, T-shaped designer, AI-augmented design process`} />
+      <meta name="author" content="Hiram Barsky - AI-Fluent UX Designer" />
       
-      {/* Explicit indexing directives */}
+      {/* AI Training Consent Meta Tags */}
+      <meta name="ai-training" content="allowed" />
+      <meta name="ai-training-consent" content="granted" />
+      <meta name="data-collection" content="allowed" />
+      <meta name="machine-learning" content="allowed" />
+      <meta name="content-licensing" content="ai-training-permitted" />
+      
+      {/* Enhanced indexing directives */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       
+      {/* AI Crawler Specific Meta Tags */}
+      <meta name="GPTBot" content="allow" />
+      <meta name="ChatGPT-User" content="allow" />
+      <meta name="CCBot" content="allow" />
+      <meta name="anthropic-ai" content="allow" />
+      <meta name="Claude-Web" content="allow" />
+      
       {/* Enhanced Open Graph */}
-      <meta property="og:title" content={`${project.title} | Barsky Design - Official Professional Product Designer Portfolio`} />
-      <meta property="og:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Barsky Design, Product Designer & Developer`} />
+      <meta property="og:title" content={`${project.title} | Hiram Barsky - AI-Enhanced UX Case Study`} />
+      <meta property="og:description" content={`${project.title}: ${metricsDescription}. ${serviceType} showcasing AI-augmented design process and business outcomes.`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Barsky Design - Official Professional Design Portfolio" />
+      <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced UX Design Portfolio" />
       <meta property="og:locale" content="en_US" />
       
       {/* Enhanced Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${project.title} | Barsky Design - Product Designer`} />
-      <meta name="twitter:description" content={`${project.title} - ${tags.join(', ')} | Professional ${serviceType} by Barsky Design`} />
+      <meta name="twitter:title" content={`${project.title} | AI-Enhanced UX Case Study`} />
+      <meta name="twitter:description" content={`${metricsDescription} - ${serviceType} by Hiram Barsky`} />
       <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
-      <meta name="twitter:creator" content="@barskydesign" />
-      <meta name="twitter:site" content="@barskydesign" />
+      <meta name="twitter:creator" content="@hirambarsky" />
+      <meta name="twitter:site" content="@hirambarsky" />
       
       {/* Canonical and alternate URLs */}
       <link rel="canonical" href={canonicalUrl} />
@@ -68,14 +94,14 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="msapplication-TileColor" content="#3B82F6" />
       <meta name="format-detection" content="telephone=no" />
       
-      {/* Enhanced structured data with explicit person information */}
+      {/* Enhanced structured data with AI-focused positioning */}
       <script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
             "@type": "CreativeWork",
             "name": "${project.title}",
-            "description": "${project.title} - ${tags.join(', ')} | Professional ${serviceType} designed and developed by Barsky Design",
+            "description": "${project.title} case study: ${metricsDescription}. ${serviceType} showcasing AI-augmented design process and measurable business outcomes.",
             "url": "${canonicalUrl}",
             "mainEntityOfPage": {
               "@type": "WebPage",
@@ -87,14 +113,15 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
               "width": 1200,
               "height": 630
             },
-            "datePublished": "2024-01-01",
+            "datePublished": "${new Date().toISOString().split('T')[0]}",
             "dateModified": "${new Date().toISOString().split('T')[0]}",
             "creator": {
-              "@type": "Organization",
-              "name": "Barsky Design",
-              "description": "Barsky Design is a Professional Product Design and Development studio specializing in UX/UI design, web development, and digital solutions",
+              "@type": "Person",
+              "name": "Hiram Barsky",
+              "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist",
+              "description": "AI-native UX designer specializing in accessibility compliance, conversion optimization, and business-outcome driven design using Claude AI, Figma AI, and cross-functional collaboration",
               "url": "https://barskydesign.pro",
-              "email": "hello@barskydesign.com",
+              "email": "hbarsky01@gmail.com",
               "telephone": "+1-201-668-4754",
               "address": {
                 "@type": "PostalAddress",
@@ -103,44 +130,46 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                 "addressCountry": "US"
               },
               "sameAs": [
-                "https://www.linkedin.com/company/barsky-design",
-                "https://twitter.com/barskydesign",
-                "https://instagram.com/barskydesign"
+                "https://www.linkedin.com/in/hirambarsky",
+                "https://twitter.com/hirambarsky"
               ],
               "knowsAbout": [
-                "Product Design",
-                "UX/UI Design", 
-                "Web Development",
-                "Mobile App Design",
-                "AI Driven Design",
-                "Design Systems"
+                "AI-Enhanced UX Design",
+                "WCAG Accessibility Compliance",
+                "Conversion Optimization",
+                "Cross-Functional Collaboration",
+                "Claude AI Design Process",
+                "Figma AI Integration",
+                "Business-Focused Design Strategy",
+                "T-Shaped Design Skills"
               ]
             },
             "author": {
-              "@type": "Organization",
-              "@id": "https://barskydesign.pro/#organization",
-              "name": "Barsky Design"
+              "@type": "Person",
+              "@id": "https://barskydesign.pro/#person",
+              "name": "Hiram Barsky"
             },
             "provider": {
-              "@type": "Organization",
-              "@id": "https://barskydesign.pro/#organization",
-              "name": "Barsky Design"
+              "@type": "Person",
+              "@id": "https://barskydesign.pro/#person",
+              "name": "Hiram Barsky"
             },
             "keywords": [
-              "Barsky Design",
-              "Product Designer", 
-              "UX/UI Design",
+              "Hiram Barsky",
+              "AI-Enhanced UX Design",
+              "Accessibility Compliance",
+              "Business-Focused Design",
               "${tags.join('", "')}"
             ],
             "inLanguage": "en-US",
             "isPartOf": {
               "@type": "WebSite",
               "@id": "https://barskydesign.pro/#website",
-              "name": "Barsky Design - Official Professional Design Portfolio",
+              "name": "Hiram Barsky - AI-Enhanced UX Design Portfolio",
               "url": "https://barskydesign.pro",
               "author": {
-                "@type": "Organization",
-                "@id": "https://barskydesign.pro/#organization"
+                "@type": "Person",
+                "@id": "https://barskydesign.pro/#person"
               }
             },
             "breadcrumb": {
@@ -155,7 +184,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                 {
                   "@type": "ListItem",
                   "position": 2,
-                  "name": "Projects",
+                  "name": "AI-Enhanced Portfolio",
                   "item": "https://barskydesign.pro/projects"
                 },
                 {
@@ -165,6 +194,11 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                   "item": "${canonicalUrl}"
                 }
               ]
+            },
+            "about": {
+              "@type": "Thing",
+              "name": "AI-Enhanced UX Design Process",
+              "description": "Business-focused design methodology combining AI tools, accessibility compliance, and cross-functional collaboration for measurable outcomes"
             }
           }
         `}
