@@ -1,4 +1,3 @@
-
 export const homepageFaqs = [
   {
     question: "What UX/UI design services does Barsky Design offer?",
@@ -11,7 +10,7 @@ export const homepageFaqs = [
     keywords: ["design project cost", "freelance designer rates", "UX design pricing", "hire designer"]
   },
   {
-    question: "What makes Barsky Design different from other UX/UI designers?",
+    question: "What makes Barsky Design different from other design and development services?",
     answer: "I combine 5+ years of professional design experience with technical frontend development skills using React and TypeScript. This unique combination allows me to create designs that are not only beautiful and user-friendly but also technically feasible and optimized for development.",
     keywords: ["experienced UX designer", "technical designer", "React developer", "design and development"]
   },
