@@ -24,7 +24,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "Herbalink",
     description: "Innovative herbal supplement e-commerce platform with integrated inventory management and customer relationship tools.",
-    image: "/lovable-uploads/31b232a5-b995-443d-90d2-d11bf65c578e.png",
+    image: "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
     tags: ["E-commerce", "Inventory", "Health & Wellness"],
     featured: true,
     category: "E-commerce"
