@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -7,14 +8,26 @@ interface HeroDescriptionProps {
 
 const HeroDescription: React.FC<HeroDescriptionProps> = ({ isVisible }) => {
   return (
-    <motion.p
-      initial={{ opacity: 0, y: 20 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.7 }}
-      className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto px-2 sm:px-4"
-    >
+    <div className="relative mb-8">
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 1.2, duration: 0.5 }}
+        className="text-xl sm:text-2xl mb-4 text-gray-700 font-medium"
+      >
+        Specializing in Accessibility Compliance & AI-Enhanced Design
+      </motion.p>
       
-    </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 1.4, duration: 0.5 }}
+        className="text-base sm:text-lg mb-6 text-gray-600 max-w-4xl mx-auto leading-relaxed"
+      >
+        I bridge the gap between beautiful interfaces and business results using AI tools like Claude, Figma AI, and Perplexity. 
+        With WCAG expertise and cross-functional collaboration skills, I help companies solve the accessibility gap that 77% need but only 3% of portfolios address.
+      </motion.p>
+    </div>
   );
 };
 

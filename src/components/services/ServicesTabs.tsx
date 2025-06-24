@@ -1,293 +1,177 @@
+
 import React from "react";
-import { Calendar, PenLine, Users, Clock, Code, Smartphone, Palette } from "lucide-react";
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Link } from "react-router-dom";
-import { trackContentEngagement } from "@/lib/analytics";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Brain, Shield, TrendingUp, Users, Code, Zap, Target, CheckCircle } from "lucide-react";
 
 const ServicesTabs = () => {
-  const isMobile = useIsMobile();
-  
-  const openCalendly = () => {
-    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
-    trackContentEngagement('service', 'consultation-booking', 'Calendly Booking');
-  };
-
   return (
-    <Tabs defaultValue="all" className="w-full max-w-4xl mx-auto">
-      <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8">
-        <TabsTrigger value="all">All</TabsTrigger>
-        <TabsTrigger value="design">{isMobile ? "UX/UI" : "UX/UI Design"}</TabsTrigger>
-        <TabsTrigger value="web">{isMobile ? "Web" : "Web Development"}</TabsTrigger>
-        <TabsTrigger value="mobile">{isMobile ? "Mobile" : "Mobile Apps"}</TabsTrigger>
+    <Tabs defaultValue="ai-design" className="w-full mt-12">
+      <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-8">
+        <TabsTrigger value="ai-design" className="text-sm">AI-Enhanced UX</TabsTrigger>
+        <TabsTrigger value="accessibility" className="text-sm">Accessibility Compliance</TabsTrigger>
+        <TabsTrigger value="conversion" className="text-sm">Conversion Optimization</TabsTrigger>
+        <TabsTrigger value="collaboration" className="text-sm">Cross-Functional Design</TabsTrigger>
       </TabsList>
-      
-      <TabsContent value="all" className="space-y-8">
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Design & Consultation Card */}
-          <Card className="shadow-lg w-full">
-            <CardHeader>
-              <h3 className="text-2xl font-bold text-center">Design & Consultation</h3>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex items-start gap-3">
-                <div className="bg-barsky-blue/10 p-2 rounded-full mt-1">
-                  <PenLine className="w-5 h-5 text-barsky-blue" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-barsky-dark">Product Design</h4>
-                  <p className="text-slate-600 text-sm">Crafting user-centered interfaces with meticulous attention to detail, ensuring intuitive navigation and delightful interactions.</p>
-                </div>
+
+      <TabsContent value="ai-design" className="space-y-6">
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-3">
+              <Brain className="h-8 w-8 text-blue-600" />
+              <div>
+                <CardTitle className="text-2xl">AI-Enhanced UX Design</CardTitle>
+                <CardDescription className="text-lg">Leveraging AI tools for faster, smarter design decisions</CardDescription>
               </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="bg-barsky-blue/10 p-2 rounded-full mt-1">
-                  <Users className="w-5 h-5 text-barsky-blue" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-barsky-dark">User Research & Strategy</h4>
-                  <p className="text-slate-600 text-sm">Employing data-driven methods to understand your users, identify pain points, and develop strategic design solutions.</p>
-                </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <Zap className="h-5 w-5 mr-2 text-blue-600" />
+                  Rapid Prototyping with AI Tools
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Figma AI for component generation and design system optimization</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Claude-assisted user flow mapping and information architecture</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Automated A/B test variant generation for faster iteration</li>
+                </ul>
               </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="bg-barsky-blue/10 p-2 rounded-full mt-1">
-                  <Clock className="w-5 h-5 text-barsky-blue" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-barsky-dark">Flexible Engagement Models</h4>
-                  <p className="text-slate-600 text-sm">Whether you need ongoing support, fixed-scope projects, or expert consultation, I offer flexible options to accommodate your timeline and budget.</p>
-                </div>
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <Target className="h-5 w-5 mr-2 text-blue-600" />
+                  AI-Augmented User Research
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Perplexity-powered competitive analysis and market research</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />AI-assisted persona development and user journey mapping</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Automated usability testing insights and pattern recognition</li>
+                </ul>
               </div>
-            </CardContent>
-            <CardFooter className="flex flex-col gap-4">
-              <Button 
-                onClick={openCalendly} 
-                className="w-full"
-                size="lg"
-              >
-                <Calendar className="mr-2" />
-                Schedule a Call
-              </Button>
-            </CardFooter>
-          </Card>
-          
-          {/* Development Card */}
-          <Card className="shadow-lg w-full">
-            <CardHeader>
-              <h3 className="text-2xl font-bold text-center">Development Services</h3>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex items-start gap-3">
-                <div className="bg-green-500/10 p-2 rounded-full mt-1">
-                  <Code className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-barsky-dark">Frontend Development</h4>
-                  <p className="text-slate-600 text-sm">Building responsive and interactive web applications using modern frameworks and best practices.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="bg-green-500/10 p-2 rounded-full mt-1">
-                  <Smartphone className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-barsky-dark">Mobile App Development</h4>
-                  <p className="text-slate-600 text-sm">Creating cross-platform mobile applications that deliver native-like experiences on iOS and Android.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="bg-green-500/10 p-2 rounded-full mt-1">
-                  <Palette className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-barsky-dark">Design System Implementation</h4>
-                  <p className="text-slate-600 text-sm">Translating design systems into reusable code components for consistent user experiences across products.</p>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col gap-4">
-              <Button 
-                onClick={openCalendly}
-                className="w-full"
-                size="lg"
-                variant="outline"
-              >
-                <Calendar className="mr-2" />
-                Book a Technical Consultation
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
+            </div>
+          </CardContent>
+        </Card>
       </TabsContent>
-      
-      <TabsContent value="design" className="space-y-6">
-        <div className="bg-slate-50 p-6 rounded-lg">
-          <h3 className="text-2xl font-bold mb-4">UX/UI Design Services</h3>
-          <p className="text-slate-600 mb-6">I specialize in creating intuitive, user-centered designs that combine aesthetics with functionality to deliver exceptional digital experiences.</p>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">User Research & Strategy</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>User interviews and persona development</li>
-                <li>Competitive analysis and market research</li>
-                <li>Journey mapping and user flows</li>
-                <li>Information architecture</li>
-              </ul>
+
+      <TabsContent value="accessibility" className="space-y-6">
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-3">
+              <Shield className="h-8 w-8 text-green-600" />
+              <div>
+                <CardTitle className="text-2xl">Accessibility Compliance & Audits</CardTitle>
+                <CardDescription className="text-lg">WCAG 2.1 AA compliance addressing the 77% company need</CardDescription>
+              </div>
             </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Wireframing & Prototyping</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>Low and high-fidelity wireframing</li>
-                <li>Interactive prototyping</li>
-                <li>User testing and validation</li>
-                <li>Usability testing and analysis</li>
-              </ul>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
+                  Comprehensive Accessibility Audits
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />WCAG 2.1 AA compliance assessment and remediation plans</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Screen reader testing and keyboard navigation optimization</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Color contrast analysis and visual accessibility improvements</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <Users className="h-5 w-5 mr-2 text-green-600" />
+                  Team Training & Implementation
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Developer team training on accessible code practices</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Design system integration with accessibility components</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Ongoing accessibility testing and maintenance protocols</li>
+                </ul>
+              </div>
             </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Visual Design</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>UI component design</li>
-                <li>Design system development</li>
-                <li>Visual identity and brand consistency</li>
-                <li>Animation and micro-interactions</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Design Consultation</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>UX audits and heuristic evaluations</li>
-                <li>Design critique and recommendations</li>
-                <li>A/B testing and optimization</li>
-                <li>Accessibility evaluation and improvement</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="text-center">
-          <Button onClick={openCalendly} size="lg">
-            <Calendar className="mr-2" />
-            Schedule a Design Consultation
-          </Button>
-        </div>
+          </CardContent>
+        </Card>
       </TabsContent>
-      
-      <TabsContent value="web" className="space-y-6">
-        <div className="bg-slate-50 p-6 rounded-lg">
-          <h3 className="text-2xl font-bold mb-4">Web Development Services</h3>
-          <p className="text-slate-600 mb-6">I build modern, responsive, and accessible web applications that deliver exceptional user experiences and meet business objectives.</p>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Frontend Development</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>React and TypeScript development</li>
-                <li>Responsive web design</li>
-                <li>Progressive Web Apps (PWAs)</li>
-                <li>CSS-in-JS and Tailwind implementations</li>
-              </ul>
+
+      <TabsContent value="conversion" className="space-y-6">
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-3">
+              <TrendingUp className="h-8 w-8 text-purple-600" />
+              <div>
+                <CardTitle className="text-2xl">Conversion-Focused Design</CardTitle>
+                <CardDescription className="text-lg">ROI-driven interface optimization with measurable results</CardDescription>
+              </div>
             </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Performance Optimization</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>Core Web Vitals optimization</li>
-                <li>Code splitting and lazy loading</li>
-                <li>Image and asset optimization</li>
-                <li>Caching strategies</li>
-              </ul>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <Target className="h-5 w-5 mr-2 text-purple-600" />
+                  Business Metric Improvements
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />A/B testing strategy and implementation for conversion optimization</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />User flow analysis and friction point identification</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Conversion funnel optimization with data-driven design decisions</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <TrendingUp className="h-5 w-5 mr-2 text-purple-600" />
+                  Data Analysis & Optimization
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Google Analytics and heatmap analysis for user behavior insights</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Performance monitoring and ROI tracking for design changes</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Continuous optimization based on user data and business metrics</li>
+                </ul>
+              </div>
             </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Accessibility</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>WCAG 2.1 compliance</li>
-                <li>Screen reader compatibility</li>
-                <li>Keyboard navigation</li>
-                <li>Accessible color schemes</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">SEO & Analytics</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>Technical SEO implementation</li>
-                <li>Schema.org structured data</li>
-                <li>Analytics integration</li>
-                <li>Conversion tracking</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="text-center">
-          <Button onClick={openCalendly} size="lg" variant="outline">
-            <Calendar className="mr-2" />
-            Discuss Your Web Project
-          </Button>
-        </div>
+          </CardContent>
+        </Card>
       </TabsContent>
-      
-      <TabsContent value="mobile" className="space-y-6">
-        <div className="bg-slate-50 p-6 rounded-lg">
-          <h3 className="text-2xl font-bold mb-4">Mobile App Design Services</h3>
-          <p className="text-slate-600 mb-6">I create engaging mobile experiences that delight users and help businesses achieve their goals across iOS and Android platforms.</p>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">iOS App Design</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>Human Interface Guidelines adherence</li>
-                <li>Native iOS component design</li>
-                <li>iPhone and iPad optimized layouts</li>
-                <li>iOS accessibility implementation</li>
-              </ul>
+
+      <TabsContent value="collaboration" className="space-y-6">
+        <Card>
+          <CardHeader>
+            <div className="flex items-center space-x-3">
+              <Users className="h-8 w-8 text-orange-600" />
+              <div>
+                <CardTitle className="text-2xl">Cross-Functional Product Design</CardTitle>
+                <CardDescription className="text-lg">T-shaped collaboration skills for successful product shipping</CardDescription>
+              </div>
             </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Android App Design</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>Material Design implementation</li>
-                <li>Android-specific interaction patterns</li>
-                <li>Multi-device layout optimization</li>
-                <li>Android accessibility features</li>
-              </ul>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <Users className="h-5 w-5 mr-2 text-orange-600" />
+                  PM Collaboration & Strategy
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Product roadmap planning and feature prioritization</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />User story creation and acceptance criteria definition</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Stakeholder communication and design decision justification</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 flex items-center">
+                  <Code className="h-5 w-5 mr-2 text-orange-600" />
+                  Developer Handoff & Implementation
+                </h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Frontend development skills for better design-dev collaboration</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Technical feasibility assessment and constraint understanding</li>
+                  <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />Design system maintenance and component documentation</li>
+                </ul>
+              </div>
             </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Cross-Platform Design</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>React Native and Flutter design</li>
-                <li>Consistent cross-platform experiences</li>
-                <li>Platform-specific adaptations</li>
-                <li>Design system for multiple platforms</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white p-5 rounded-md shadow">
-              <h4 className="font-semibold text-lg mb-2">Mobile UX Strategy</h4>
-              <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                <li>Mobile-specific user research</li>
-                <li>Touch gesture optimization</li>
-                <li>Offline experience design</li>
-                <li>Push notification strategy</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="text-center">
-          <Button onClick={openCalendly} size="lg">
-            <Calendar className="mr-2" />
-            Plan Your Mobile App
-          </Button>
-        </div>
+          </CardContent>
+        </Card>
       </TabsContent>
     </Tabs>
   );
