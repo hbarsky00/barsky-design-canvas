@@ -35,7 +35,7 @@ const About: React.FC = () => {
               The market demands T-shaped professionals who can bridge design, development, and business strategy.
             </p>
             <p className="text-barsky-text mb-6">
-              While 77% of companies need accessibility expertise, only 3% of design portfolios showcase it. 
+              While 77% of companies need accessibility expertise, but only 3% of businesses address it. 
               I've built my practice around this gap, combining WCAG compliance with AI-enhanced design processes 
               that deliver measurable business outcomes.
             </p>
