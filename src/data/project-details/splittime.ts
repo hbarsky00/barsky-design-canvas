@@ -25,8 +25,8 @@ export const splittimeDetails: ProjectDetails = {
       afterHeader: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
-      afterHeader: "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png"
+      beforeHeader: "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
+      afterHeader: "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png"
     }
   },
 
@@ -36,22 +36,17 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Child profile management screen displaying important information, medical records, school schedules, and shared notes between co-parents",
     "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png": "Interactive calendar interface allowing co-parents to coordinate pickup/drop-off times, plan events, and manage custody schedules with conflict-free scheduling",
     "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png": "Secure messaging system designed to reduce conflict with structured communication templates and emotion-neutral language suggestions",
-    "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png": "Family dashboard showing successful coordination metrics, reduced conflicts, and improved communication patterns between co-parents",
-    "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png": "Document sharing hub for important family information, custody agreements, medical forms, and school communications accessible to both parents",
-    "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png": "Event planning interface for coordinating shared family activities, birthdays, and special occasions with collaborative planning tools",
-    "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png": "Expense tracking system for shared child-related costs with transparent payment history and automatic splitting calculations",
-    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "Mobile-responsive design ensuring parents can coordinate custody schedules and communicate effectively from any device, anywhere"
+    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png": "CoParent alerts dashboard showing real-time notifications for upcoming events, expense approvals, and communication requests to keep both parents informed and engaged",
+    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png": "Document management system for organizing and sharing important family documents including legal agreements, medical records, and school information between co-parents",
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png": "Advanced alert system with filtering options for calendar events, communication, expenses, and documents to help parents stay organized and responsive"
   },
 
   availableImages: [
-    "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
-    "/lovable-uploads/9ff55bb2-a684-40cf-a9e9-6afec3054d7e.png",
+    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
+    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png",
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png",
     "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png",
-    "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png",
-    "/lovable-uploads/044ebd4f-a061-46fd-8668-fef8e8496a16.png",
-    "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
-    "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png",
     "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
     "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
     "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
@@ -67,8 +62,8 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
   ],
   resultGalleryImages: [
-    "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
-    "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
-    "/lovable-uploads/bc71b077-5c56-4ad7-af25-3c11ccacd0d1.png"
+    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
+    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png",
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png"
   ]
 };
