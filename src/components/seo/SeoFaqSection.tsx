@@ -30,7 +30,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
           <p className="text-lg text-gray-600">
-            Common questions about UX/UI design services and frontend development
+            Common questions about Product Design Services and Frontend Gen AI Development
           </p>
         </motion.div>
 
