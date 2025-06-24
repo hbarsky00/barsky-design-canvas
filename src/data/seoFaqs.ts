@@ -1,3 +1,4 @@
+
 export const homepageFaqs = [
   {
     question: "What UX/UI design services does Barsky Design offer?",
@@ -6,7 +7,7 @@ export const homepageFaqs = [
   },
   {
     question: "How much does it cost to hire Barsky Design for a design project?",
-    answer: "Project costs vary based on scope, complexity, and timeline. I offer competitive rates for freelance UX/UI design work, ranging from $75-150/hour for consulting to fixed-price packages for complete projects. Contact me for a personalized quote based on your specific needs.",
+    answer: "Project costs vary based on scope, complexity, and timeline. I offer competitive rates for Design Consulting to fixed-price packages for complete projects. Contact me for a personalized quote based on your specific needs.",
     keywords: ["design project cost", "freelance designer rates", "UX design pricing", "hire designer"]
   },
   {
