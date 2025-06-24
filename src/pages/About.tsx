@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -17,7 +16,8 @@ const skills = [
   "Mobile App Design",
   "Web Development",
   "Frontend Development",
-  "React Development"
+  "React Development",
+  "Gen AI Design & Development"
 ];
 
 const tools = [

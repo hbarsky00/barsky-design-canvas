@@ -10,7 +10,8 @@ const skills = [
   "Design Thinking",
   "Interaction Design",
   "Wireframing & Prototyping",
-  "Design Leadership"
+  "Design Leadership",
+  "Gen AI Design & Development"
 ];
 
 const About: React.FC = () => {
