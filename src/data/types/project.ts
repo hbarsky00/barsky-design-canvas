@@ -1,50 +1,35 @@
 
 export interface ProjectDetails {
   challenge: string;
-  challengeAdditionalText?: string; // New property for text between challenge images
   process: string;
   result: string;
   technologies: string[];
   duration: string;
   client: string;
   role: string;
-  imageConfig?: ImageConfig;
+  projectLink?: string;
+  useAiCaptions?: boolean;
+  imageCaptions?: Record<string, string>; // Add this property
+  
+  imageConfig?: {
+    challenge?: {
+      beforeHeader?: string;
+      afterHeader?: string;
+    };
+    process?: {
+      beforeHeader?: string;
+      afterHeader?: string;
+    };
+    result?: {
+      beforeHeader?: string;
+      afterHeader?: string;
+    };
+  };
+  
   availableImages?: string[];
   challengeGalleryImages?: string[];
-  processGalleryImages?: string[];
-  resultGalleryImages?: string[];
-  servicesGalleryImages?: string[];
-  galleryImages?: string[];
   processImage?: string;
   processBottomImage?: string;
-  resultImage?: string;
-  challengeImage?: string;
-  challengeBottomImage?: string;
-  extraImages?: string[];
-  projectLink?: string;
-  caseStudyLink?: string;
-  useAiCaptions?: boolean; // New flag to enable AI caption generation
-}
-
-export interface ImageConfig {
-  challenge?: ImageSectionConfig;
-  process?: ImageSectionConfig;
-  result?: ImageSectionConfig;
-}
-
-export interface ImageSectionConfig {
-  beforeHeader?: string;
-  afterHeader?: string;
-}
-
-// Export ProjectImageConfig as an alias for ImageConfig
-export type ProjectImageConfig = ImageConfig;
-
-export interface ProjectProps {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  date?: string;
+  processGalleryImages?: string[];
+  resultGalleryImages?: string[];
 }
