@@ -97,7 +97,7 @@ const About = () => {
               <div>
                 <h2 className="text-3xl font-bold mb-6 text-barsky-dark">Hi, I'm Hiram Barsky</h2>
                 <p className="text-barsky-text mb-6">
-                  I'm a Freelance Product Designer with a passion for creating 
+                  I'm a Product Designer & Gen AI Developer with a passion for creating 
                   user-centered digital experiences that solve complex problems 
                   and drive business value through strategic design.
                 </p>

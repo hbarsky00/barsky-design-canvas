@@ -22,7 +22,7 @@ const About: React.FC = () => {
           <div>
             <h2 className="section-title">About Me</h2>
             <p className="text-barsky-text mb-6">
-              I'm a Senior Product Designer with a passion for creating 
+              I'm a Product Designer & Gen AI Developer with a passion for creating 
               user-centered digital experiences that solve complex problems 
               and drive business value through strategic design.
             </p>
