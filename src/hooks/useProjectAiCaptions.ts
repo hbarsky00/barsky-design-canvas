@@ -30,20 +30,29 @@ export const useProjectAiCaptions = (
             ...(details.resultGalleryImages || []),
             ...(details.processGalleryImages || []),
             ...(details.servicesGalleryImages || []),
-            ...(details.galleryImages || [])
+            ...(details.galleryImages || []),
+            // Also include images from imageConfig
+            ...(details.imageConfig?.challenge?.beforeHeader ? [details.imageConfig.challenge.beforeHeader] : []),
+            ...(details.imageConfig?.challenge?.afterHeader ? [details.imageConfig.challenge.afterHeader] : []),
+            ...(details.imageConfig?.process?.beforeHeader ? [details.imageConfig.process.beforeHeader] : []),
+            ...(details.imageConfig?.process?.afterHeader ? [details.imageConfig.process.afterHeader] : []),
+            ...(details.imageConfig?.result?.beforeHeader ? [details.imageConfig.result.beforeHeader] : []),
+            ...(details.imageConfig?.result?.afterHeader ? [details.imageConfig.result.afterHeader] : [])
           ].filter(Boolean)));
 
-          console.log('🖼️ useProjectAiCaptions: Generating captions for', allImages.length, 'images');
+          console.log('🖼️ useProjectAiCaptions: Generating captions for', allImages.length, 'unique images');
           
           const generatedCaptions = await generateProjectCaptions(allImages, projectId);
           
           // Merge static captions with AI-generated ones (AI takes precedence)
-          setFinalCaptions({
+          const updatedCaptions = {
             ...staticCaptions,
             ...generatedCaptions
-          });
+          };
           
-          console.log('✅ useProjectAiCaptions: AI caption generation complete');
+          setFinalCaptions(updatedCaptions);
+          
+          console.log('✅ useProjectAiCaptions: AI caption generation complete with', Object.keys(generatedCaptions).length, 'new captions');
         } catch (error) {
           console.error('❌ useProjectAiCaptions: Error generating captions:', error);
           // Fall back to static captions

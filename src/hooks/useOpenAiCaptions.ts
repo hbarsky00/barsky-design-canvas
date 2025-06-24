@@ -22,8 +22,8 @@ export const useOpenAiCaptions = () => {
       
       // Enhanced context with uniqueness requirements
       const enhancedContext = projectContext 
-        ? `${projectContext}. CRITICAL: Analyze this specific image in detail. Each image is unique and requires a completely different description. Focus on the exact UI elements, features, layouts, text, and functionality visible in THIS particular image. Do not use generic descriptions.`
-        : 'App interface - analyze the specific UI elements, features, and functionality visible in this particular image';
+        ? `${projectContext}. CRITICAL: Analyze this specific image in detail. Each image is unique and requires a completely different description. Focus on the exact UI elements, features, layouts, text, and functionality visible in THIS particular image. Do not use generic descriptions. Be specific about what makes this screen different from others.`
+        : 'App interface - analyze the specific UI elements, features, and functionality visible in this particular image. Provide a unique description that highlights what makes this screen special.';
       
       const response = await fetch(functionUrl, {
         method: 'POST',
@@ -56,26 +56,86 @@ export const useOpenAiCaptions = () => {
         throw new Error('No caption received from OpenAI API');
       }
       
-      console.log('✅ OpenAI Caption generated:', data.caption);
+      console.log('✅ OpenAI Caption generated successfully:', data.caption.substring(0, 100) + '...');
       
       return { caption: data.caption };
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
-      // Return unique fallback based on image index
-      const uniqueFallbacks = [
-        'Co-parenting app home screen featuring family-friendly navigation and scheduling tools',
-        'Calendar interface designed for coordinating shared parenting schedules and events',
-        'Messaging system enabling secure communication between co-parents',
-        'Child profile management screen with essential information and updates',
-        'Scheduling tool for managing pickup, drop-off, and custody arrangements',
-        'Communication hub designed to reduce conflict and improve family coordination',
-        'Event planning interface for shared activities and important dates',
-        'Document sharing system for important family information and records'
-      ];
+      // Return unique fallback based on image index and project context
+      const getUniqueFallback = (index: number, context: string) => {
+        if (context.includes('splittime') || context.includes('co-parenting')) {
+          const fallbacks = [
+            'Co-parenting coordination dashboard featuring family schedule management and communication tools',
+            'Child custody calendar interface with shared parenting schedule and event coordination',
+            'Co-parent messaging system designed to reduce conflict and improve family communication',
+            'Family profile management screen with child information and shared custody details',
+            'Alert and notification center for co-parenting activities and important updates',
+            'Document sharing hub for custody agreements and family records',
+            'Event planning interface for coordinating family activities and appointments',
+            'Communication timeline showing family interactions and shared updates'
+          ];
+          return fallbacks[index % fallbacks.length];
+        }
+        
+        if (context.includes('gold2crypto') || context.includes('cryptocurrency')) {
+          const fallbacks = [
+            'Cryptocurrency trading dashboard with portfolio tracking and market analysis',
+            'Digital asset management interface for traditional gold investors',
+            'Investment portfolio overview showing crypto and traditional asset allocation',
+            'Trading platform designed to bridge gold and cryptocurrency investments',
+            'Market analysis tools for cryptocurrency and precious metals trading',
+            'User onboarding interface for new crypto investors from traditional markets',
+            'Security features and wallet management for cryptocurrency trading',
+            'Educational resources for traditional investors entering crypto markets'
+          ];
+          return fallbacks[index % fallbacks.length];
+        }
+        
+        if (context.includes('spectrum') || context.includes('apparel')) {
+          const fallbacks = [
+            'Custom apparel design interface with real-time preview capabilities',
+            'E-commerce platform for personalized clothing and design tools',
+            'Product customization dashboard with advanced design options',
+            'Online store interface for custom apparel and design services',
+            'Design tool interface for creating personalized clothing items',
+            'Product catalog with customization options and design features',
+            'User-friendly design platform for custom apparel creation',
+            'Accessibility-focused e-commerce interface for inclusive shopping'
+          ];
+          return fallbacks[index % fallbacks.length];
+        }
+        
+        if (context.includes('dae') || context.includes('search') || context.includes('data')) {
+          const fallbacks = [
+            'Enterprise data search interface with advanced filtering capabilities',
+            'Data discovery platform with AI-powered search and recommendations',
+            'Dataset catalog with intelligent search and metadata management',
+            'Data analysis dashboard with predictive search functionality',
+            'Enterprise search results with relevance scoring and categorization',
+            'Data management interface with smart search and organization tools',
+            'Business intelligence platform with enhanced data discovery features',
+            'Search analytics dashboard showing data usage and discovery patterns'
+          ];
+          return fallbacks[index % fallbacks.length];
+        }
+        
+        // Generic fallbacks for other projects
+        const genericFallbacks = [
+          'Professional app interface designed for enhanced user experience',
+          'Modern dashboard with intuitive navigation and clean design',
+          'User-friendly platform interface with streamlined functionality',
+          'Responsive web application with professional design elements',
+          'Interactive interface showcasing modern UX/UI design principles',
+          'Digital platform with accessible design and user-focused features',
+          'Application interface demonstrating best practices in user experience',
+          'Professional software interface with clean, modern aesthetics'
+        ];
+        
+        return genericFallbacks[index % genericFallbacks.length];
+      };
       
-      const fallbackIndex = (imageIndex || 0) % uniqueFallbacks.length;
       return { 
-        caption: uniqueFallbacks[fallbackIndex],
+        caption: getUniqueFallback(imageIndex || 0, context || ''),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -97,13 +157,19 @@ export const useOpenAiCaptions = () => {
     // Set appropriate context based on project
     let projectContext = '';
     if (projectId === 'splittime') {
-      projectContext = 'Splittime co-parenting coordination app for separated families - analyze the specific UI elements, family communication features, scheduling tools, conflict reduction interface, child-focused design elements, and co-parent collaboration functionality visible in this particular interface design';
+      projectContext = 'Splittime co-parenting coordination app for separated families - analyze the specific UI elements, family communication features, scheduling tools, conflict reduction interface, child-focused design elements, and co-parent collaboration functionality visible in this particular interface design. Focus on co-parenting and family coordination features.';
     } else if (projectId === 'barskyjoint') {
       projectContext = 'Barsky Joint food truck and restaurant app - analyze the specific UI elements, mobile ordering features, food truck operations, restaurant management interface, GPS tracking functionality, and customer experience elements visible in this particular image';
     } else if (projectId === 'herbalink') {
-      projectContext = 'herbal medicine app for connecting patients with herbalists - analyze the specific UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this particular interface design';
+      projectContext = 'Herbalink herbal medicine app for connecting patients with herbalists - analyze the specific UI elements, herbalist discovery features, consultation booking interface, herb recommendation system, and patient-practitioner connection functionality visible in this particular interface design';
+    } else if (projectId === 'gold2crypto') {
+      projectContext = 'Gold2Crypto cryptocurrency trading platform for traditional investors - analyze the specific UI elements, trading features, portfolio management, market analysis tools, and investor onboarding functionality visible in this particular interface';
+    } else if (projectId === 'spectrum') {
+      projectContext = 'Spectrum Apparel custom clothing design platform - analyze the specific UI elements, design tools, e-commerce features, customization options, and accessibility features visible in this particular interface';
+    } else if (projectId === 'dae-search' || projectId === 'daeSearch') {
+      projectContext = 'DAE Search enterprise data discovery platform - analyze the specific UI elements, search functionality, data catalog features, AI recommendations, and business intelligence tools visible in this particular interface';
     } else {
-      projectContext = 'app interface - analyze the specific UI elements, features, and functionality visible in this particular interface design';
+      projectContext = 'Professional app interface - analyze the specific UI elements, features, and functionality visible in this particular interface design';
     }
     
     for (let i = 0; i < images.length; i++) {
@@ -118,14 +184,17 @@ export const useOpenAiCaptions = () => {
         if (result.caption && !result.error) {
           newCaptions[imageSrc] = result.caption;
           globalCaptionCache[imageSrc] = result.caption;
-          console.log(`✅ Unique caption generated for image ${i + 1}/${images.length}: ${result.caption.substring(0, 100)}...`);
+          console.log(`✅ Unique caption generated for image ${i + 1}/${images.length}`);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
+          if (result.caption) {
+            newCaptions[imageSrc] = result.caption;
+          }
         }
         
         // Add delay to avoid overwhelming the API
         if (i < images.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          await new Promise(resolve => setTimeout(resolve, 1500));
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for ${imageSrc}:`, error);
