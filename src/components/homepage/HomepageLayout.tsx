@@ -23,7 +23,7 @@ const HomepageLayout: React.FC = () => {
         <Contact />
         <ServicesCallToAction />
         <SeoFaqSection 
-          title="Frequently Asked Questions About UX/UI Design Services"
+          title="Frequently Asked Questions About Design Services"
           faqs={homepageFaqs}
         />
       </main>
