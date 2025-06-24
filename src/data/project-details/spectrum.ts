@@ -13,6 +13,9 @@ export const spectrumDetails: ProjectDetails = {
   client: "Spectrum Apparel",
   role: "UX/UI Designer & Accessibility Specialist",
 
+  // Enable AI captions for this project
+  useAiCaptions: true,
+
   imageConfig: {
     challenge: {
       beforeHeader: "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png"

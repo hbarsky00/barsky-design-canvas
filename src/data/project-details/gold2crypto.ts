@@ -13,6 +13,9 @@ export const gold2cryptoDetails: ProjectDetails = {
   client: "Financial Technology Company",
   role: "Senior Product Designer",
 
+  // Enable AI captions for this project
+  useAiCaptions: true,
+
   imageConfig: {
     challenge: {
       beforeHeader: "/lovable-uploads/ddd4793c-96fd-4af4-a35a-6ee17e1ad879.png",

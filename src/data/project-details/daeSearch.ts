@@ -13,6 +13,9 @@ export const daeSearchDetails: ProjectDetails = {
   client: "Enterprise Data Platform",
   role: "Senior UX/UI Designer",
   
+  // Enable AI captions for this project
+  useAiCaptions: true,
+  
   imageConfig: {
     challenge: {
       beforeHeader: "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png"
