@@ -27,6 +27,7 @@ export const useProjectUpdates = (
                 publishedData = {
                   textContent: freshPublished.text_content || {},
                   imageReplacements: normalizeImageReplacements(freshPublished.image_replacements || {}),
+                  imageCaptions: freshPublished.image_captions || {},
                   contentBlocks: freshPublished.content_blocks || {}
                 };
                 console.log('✅ Fresh published data loaded:', {
@@ -57,6 +58,10 @@ export const useProjectUpdates = (
               ...publishedData.imageReplacements,
               ...devChanges.imageReplacements
             }),
+            imageCaptions: {
+              ...publishedData.imageCaptions,
+              ...devChanges.imageCaptions
+            },
             contentBlocks: {
               ...publishedData.contentBlocks,
               ...devChanges.contentBlocks

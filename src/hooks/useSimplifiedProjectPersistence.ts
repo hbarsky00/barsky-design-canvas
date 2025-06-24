@@ -1,4 +1,3 @@
-
 import { useCallback, useState, useEffect, useRef } from 'react';
 import { ProjectData } from './persistence/types';
 import { saveChangeToDatabase } from './database/operations';
@@ -10,6 +9,7 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
   const [cachedData, setCachedData] = useState<ProjectData>({
     textContent: {},
     imageReplacements: {},
+    imageCaptions: {},
     contentBlocks: {}
   });
   const [isSaving, setIsSaving] = useState(false);

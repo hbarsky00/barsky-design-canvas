@@ -11,6 +11,7 @@ export const useDataLoader = (
   const [cachedData, setCachedData] = useState<ProjectData>(() => ({
     textContent: {},
     imageReplacements: {},
+    imageCaptions: {},
     contentBlocks: {}
   }));
   const [forceUpdate, setForceUpdate] = useState(0);
@@ -56,6 +57,10 @@ export const useDataLoader = (
             ...(publishedData?.image_replacements || {}),
             ...devChanges.imageReplacements  // DEV CHANGES ALWAYS WIN
           }),
+          imageCaptions: {
+            ...(publishedData?.image_captions || {}),
+            ...devChanges.imageCaptions  // DEV CHANGES ALWAYS WIN
+          },
           contentBlocks: {
             ...(publishedData?.content_blocks || {}),
             ...devChanges.contentBlocks  // DEV CHANGES ALWAYS WIN
