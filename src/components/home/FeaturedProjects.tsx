@@ -28,9 +28,9 @@ const FeaturedProjects: React.FC = () => {
             Featured Design Projects
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Showcasing my latest work in UX/UI design, user research, and frontend 
-            development. Each project demonstrates a user-centered design approach 
-            from research to implementation.
+            I'm excited to showcase my latest work in Product Design and Generative AI Development. 
+            Each project reflects a user-centered design approach, encompassing research, ideation, 
+            design, and development implementation.
           </p>
         </motion.div>
 
