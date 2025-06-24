@@ -1,79 +1,39 @@
 
 import { ProjectData } from '../persistence/types';
 
-interface DatabaseChange {
-  change_type: string;
-  change_key: string;
-  change_value: any; // Changed from string to any to handle Json type from Supabase
-}
-
-export const processChangesData = (rawChanges: DatabaseChange[]): ProjectData => {
+export const processChangesData = (rawChanges: any[]): ProjectData => {
   const processedData: ProjectData = {
     textContent: {},
     imageReplacements: {},
+    imageCaptions: {},
     contentBlocks: {}
   };
 
   rawChanges.forEach(change => {
+    const { change_type, change_key, change_value } = change;
+    
     try {
-      switch (change.change_type) {
-        case 'text':
-          // Convert to string if it's not already
-          processedData.textContent[change.change_key] = typeof change.change_value === 'string' 
-            ? change.change_value 
-            : String(change.change_value);
-          break;
-        
-        case 'image':
-          // Convert to string if it's not already
-          processedData.imageReplacements[change.change_key] = typeof change.change_value === 'string' 
-            ? change.change_value 
-            : String(change.change_value);
-          break;
-        
-        case 'content_block':
-          try {
-            // Handle both string JSON and already parsed objects
-            if (typeof change.change_value === 'string') {
-              processedData.contentBlocks[change.change_key] = JSON.parse(change.change_value);
-            } else {
-              processedData.contentBlocks[change.change_key] = change.change_value || [];
-            }
-          } catch (parseError) {
-            console.warn('⚠️ Failed to parse content block JSON:', change.change_key, parseError);
-            processedData.contentBlocks[change.change_key] = [];
-          }
-          break;
-        
-        default:
-          console.warn('⚠️ Unknown change type:', change.change_type);
+      if (change_type === 'text') {
+        processedData.textContent[change_key] = change_value;
+      } else if (change_type === 'image') {
+        processedData.imageReplacements[change_key] = change_value;
+      } else if (change_type === 'image_caption') {
+        processedData.imageCaptions[change_key] = change_value;
+      } else if (change_type === 'content_block') {
+        const blocks = typeof change_value === 'string' ? JSON.parse(change_value) : change_value;
+        processedData.contentBlocks[change_key] = blocks;
       }
     } catch (error) {
       console.error('❌ Error processing change:', change, error);
     }
   });
 
-  console.log('✅ Processed changes data:', {
-    textCount: Object.keys(processedData.textContent).length,
-    imageCount: Object.keys(processedData.imageReplacements).length,
-    contentCount: Object.keys(processedData.contentBlocks).length
+  console.log('📊 Processed changes data:', {
+    textKeys: Object.keys(processedData.textContent).length,
+    imageKeys: Object.keys(processedData.imageReplacements).length,
+    imageCaptionKeys: Object.keys(processedData.imageCaptions).length,
+    contentBlockKeys: Object.keys(processedData.contentBlocks).length
   });
 
   return processedData;
-};
-
-export const normalizeImageReplacements = (imageReplacements: any): Record<string, string> => {
-  if (!imageReplacements || typeof imageReplacements !== 'object') {
-    return {};
-  }
-
-  const normalized: Record<string, string> = {};
-  
-  Object.entries(imageReplacements).forEach(([key, value]) => {
-    if (typeof key === 'string' && typeof value === 'string') {
-      normalized[key] = value;
-    }
-  });
-
-  return normalized;
 };

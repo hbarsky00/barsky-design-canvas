@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { ProjectProps } from '@/components/ProjectCard';
 import { ProjectDetails } from '@/data/types/project';
 import { useOpenAiCaptions } from './useOpenAiCaptions';
+import { useProjectPersistence } from './useProjectPersistence';
 
 export const useProjectAiCaptions = (
   project: ProjectProps,
@@ -13,6 +14,7 @@ export const useProjectAiCaptions = (
   const [finalCaptions, setFinalCaptions] = useState<Record<string, string>>(staticCaptions);
   const [isGenerating, setIsGenerating] = useState(false);
   const { generateProjectCaptions } = useOpenAiCaptions();
+  const { saveImageCaption, getImageCaption } = useProjectPersistence(projectId);
 
   useEffect(() => {
     // Only generate AI captions if the project has useAiCaptions enabled
@@ -42,21 +44,63 @@ export const useProjectAiCaptions = (
 
           console.log('🖼️ useProjectAiCaptions: Generating captions for', allImages.length, 'unique images');
           
-          const generatedCaptions = await generateProjectCaptions(allImages, projectId);
+          // Check for existing captions from persistence layer
+          const existingCaptions: Record<string, string> = {};
+          allImages.forEach(imageSrc => {
+            const existingCaption = getImageCaption(imageSrc);
+            if (existingCaption) {
+              existingCaptions[imageSrc] = existingCaption;
+            }
+          });
+
+          // Only generate captions for images that don't have them
+          const imagesToGenerate = allImages.filter(imageSrc => !existingCaptions[imageSrc]);
           
-          // Merge static captions with AI-generated ones (AI takes precedence)
+          console.log('📝 Found existing captions for', Object.keys(existingCaptions).length, 'images');
+          console.log('🚀 Generating captions for', imagesToGenerate.length, 'new images');
+
+          let generatedCaptions: Record<string, string> = {};
+          
+          if (imagesToGenerate.length > 0) {
+            generatedCaptions = await generateProjectCaptions(
+              imagesToGenerate, 
+              projectId,
+              // Save each caption to persistence layer as it's generated
+              async (imageSrc: string, caption: string) => {
+                await saveImageCaption(imageSrc, caption);
+              }
+            );
+          }
+          
+          // Merge static captions, existing captions, and new AI-generated ones
           const updatedCaptions = {
             ...staticCaptions,
+            ...existingCaptions,
             ...generatedCaptions
           };
           
           setFinalCaptions(updatedCaptions);
           
-          console.log('✅ useProjectAiCaptions: AI caption generation complete with', Object.keys(generatedCaptions).length, 'new captions');
+          console.log('✅ useProjectAiCaptions: Caption generation complete with', Object.keys(generatedCaptions).length, 'new captions');
         } catch (error) {
           console.error('❌ useProjectAiCaptions: Error generating captions:', error);
-          // Fall back to static captions
-          setFinalCaptions(staticCaptions);
+          // Fall back to static captions and any existing persisted captions
+          const fallbackCaptions = { ...staticCaptions };
+          
+          // Try to load any existing captions from persistence
+          const allImages = Array.from(new Set([
+            project.image,
+            ...(details.availableImages || [])
+          ].filter(Boolean)));
+          
+          allImages.forEach(imageSrc => {
+            const existingCaption = getImageCaption(imageSrc);
+            if (existingCaption) {
+              fallbackCaptions[imageSrc] = existingCaption;
+            }
+          });
+          
+          setFinalCaptions(fallbackCaptions);
         } finally {
           setIsGenerating(false);
         }
@@ -64,12 +108,24 @@ export const useProjectAiCaptions = (
 
       generateCaptions();
     } else {
-      // Use static captions only
+      // Use static captions and any persisted captions
       console.log('📝 useProjectAiCaptions: Using static captions only for project:', projectId);
-      setFinalCaptions(staticCaptions);
+      const combinedCaptions = { ...staticCaptions };
+      
+      // Also load any existing persisted captions
+      if (details.availableImages) {
+        details.availableImages.forEach(imageSrc => {
+          const existingCaption = getImageCaption(imageSrc);
+          if (existingCaption) {
+            combinedCaptions[imageSrc] = existingCaption;
+          }
+        });
+      }
+      
+      setFinalCaptions(combinedCaptions);
       setIsGenerating(false);
     }
-  }, [project, details, projectId, staticCaptions, generateProjectCaptions]);
+  }, [project, details, projectId, staticCaptions, generateProjectCaptions, saveImageCaption, getImageCaption]);
 
   return {
     finalCaptions,

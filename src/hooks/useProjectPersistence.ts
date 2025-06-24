@@ -9,6 +9,7 @@ export const useProjectPersistence = (projectId: string) => {
   const [cachedData, setCachedData] = useState<ProjectData>({
     textContent: {},
     imageReplacements: {},
+    imageCaptions: {},
     contentBlocks: {}
   });
   const [isSaving, setIsSaving] = useState(false);
@@ -79,6 +80,10 @@ export const useProjectPersistence = (projectId: string) => {
   const getImageSrc = useCallback((originalSrc: string) => {
     return cachedData.imageReplacements[originalSrc] || originalSrc;
   }, [cachedData.imageReplacements]);
+
+  const getImageCaption = useCallback((imageSrc: string, fallback: string = '') => {
+    return cachedData.imageCaptions[imageSrc] || fallback;
+  }, [cachedData.imageCaptions]);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
     console.log('💾 SaveOperations: Saving text content:', key);
@@ -152,6 +157,40 @@ export const useProjectPersistence = (projectId: string) => {
     }
   }, [projectId]);
 
+  const saveImageCaption = useCallback(async (imageSrc: string, caption: string) => {
+    console.log('💾 SaveOperations: Saving image caption:', imageSrc.substring(0, 30) + '...', caption.substring(0, 50) + '...');
+    
+    setIsSaving(true);
+    
+    try {
+      await saveChangeToDatabase(projectId, 'image_caption', imageSrc, caption);
+      
+      // Update cached data immediately
+      setCachedData(prev => ({
+        ...prev,
+        imageCaptions: { ...prev.imageCaptions, [imageSrc]: caption }
+      }));
+      
+      setLastSaved(new Date());
+      console.log('✅ Image caption saved successfully');
+      
+      // Trigger global update event for real-time sync
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId,
+          imageCaptionUpdate: { imageSrc, caption },
+          immediate: true,
+          stayOnPage: true,
+          timestamp: Date.now()
+        }
+      }));
+    } catch (error) {
+      console.error('❌ Error saving image caption:', error);
+    } finally {
+      setIsSaving(false);
+    }
+  }, [projectId]);
+
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
     console.log('💾 SaveOperations: Saving content blocks:', sectionKey);
     setIsSaving(true);
@@ -189,6 +228,7 @@ export const useProjectPersistence = (projectId: string) => {
     setCachedData({
       textContent: {},
       imageReplacements: {},
+      imageCaptions: {},
       contentBlocks: {}
     });
     console.log('🗑️ Cleared project data');
@@ -202,10 +242,12 @@ export const useProjectPersistence = (projectId: string) => {
   return {
     saveTextContent,
     saveImageReplacement,
+    saveImageCaption,
     saveContentBlocks,
     getProjectData,
     getTextContent,
     getImageSrc,
+    getImageCaption,
     clearProjectData,
     forceRefresh,
     isSaving,

@@ -62,8 +62,8 @@ export const useOpenAiCaptions = () => {
     } catch (error) {
       console.error('❌ Error generating OpenAI caption:', error);
       // Return unique fallback based on image index and project context
-      const getUniqueFallback = (index: number, context: string) => {
-        if (context.includes('splittime') || context.includes('co-parenting')) {
+      const getUniqueFallback = (index: number, projectContext: string) => {
+        if (projectContext.includes('splittime') || projectContext.includes('co-parenting')) {
           const fallbacks = [
             'Co-parenting coordination dashboard featuring family schedule management and communication tools',
             'Child custody calendar interface with shared parenting schedule and event coordination',
@@ -77,7 +77,7 @@ export const useOpenAiCaptions = () => {
           return fallbacks[index % fallbacks.length];
         }
         
-        if (context.includes('gold2crypto') || context.includes('cryptocurrency')) {
+        if (projectContext.includes('gold2crypto') || projectContext.includes('cryptocurrency')) {
           const fallbacks = [
             'Cryptocurrency trading dashboard with portfolio tracking and market analysis',
             'Digital asset management interface for traditional gold investors',
@@ -91,7 +91,7 @@ export const useOpenAiCaptions = () => {
           return fallbacks[index % fallbacks.length];
         }
         
-        if (context.includes('spectrum') || context.includes('apparel')) {
+        if (projectContext.includes('spectrum') || projectContext.includes('apparel')) {
           const fallbacks = [
             'Custom apparel design interface with real-time preview capabilities',
             'E-commerce platform for personalized clothing and design tools',
@@ -105,7 +105,7 @@ export const useOpenAiCaptions = () => {
           return fallbacks[index % fallbacks.length];
         }
         
-        if (context.includes('dae') || context.includes('search') || context.includes('data')) {
+        if (projectContext.includes('dae') || projectContext.includes('search') || projectContext.includes('data')) {
           const fallbacks = [
             'Enterprise data search interface with advanced filtering capabilities',
             'Data discovery platform with AI-powered search and recommendations',
@@ -135,13 +135,13 @@ export const useOpenAiCaptions = () => {
       };
       
       return { 
-        caption: getUniqueFallback(imageIndex || 0, context || ''),
+        caption: getUniqueFallback(imageIndex || 0, projectContext || ''),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
   };
 
-  const generateProjectCaptions = async (images: string[], projectId: string) => {
+  const generateProjectCaptions = async (images: string[], projectId: string, onCaptionGenerated?: (imageSrc: string, caption: string) => void) => {
     console.log(`🚀 Starting OpenAI caption generation for ${images.length} images in ${projectId}...`);
     
     // Clear existing cache for this project to force regeneration
@@ -168,6 +168,10 @@ export const useOpenAiCaptions = () => {
       projectContext = 'Spectrum Apparel custom clothing design platform - analyze the specific UI elements, design tools, e-commerce features, customization options, and accessibility features visible in this particular interface';
     } else if (projectId === 'dae-search' || projectId === 'daeSearch') {
       projectContext = 'DAE Search enterprise data discovery platform - analyze the specific UI elements, search functionality, data catalog features, AI recommendations, and business intelligence tools visible in this particular interface';
+    } else if (projectId === 'medication-app') {
+      projectContext = 'Medication management app for diabetic patients - analyze the specific UI elements, medication tracking features, appointment scheduling, health monitoring tools, and patient care functionality visible in this particular interface';
+    } else if (projectId === 'investor-loan-app') {
+      projectContext = 'Investor loan management platform for private banking - analyze the specific UI elements, loan processing features, financial data management, banking workflows, and investment tracking functionality visible in this particular interface';
     } else {
       projectContext = 'Professional app interface - analyze the specific UI elements, features, and functionality visible in this particular interface design';
     }
@@ -184,11 +188,20 @@ export const useOpenAiCaptions = () => {
         if (result.caption && !result.error) {
           newCaptions[imageSrc] = result.caption;
           globalCaptionCache[imageSrc] = result.caption;
+          
+          // Save to persistence layer immediately
+          if (onCaptionGenerated) {
+            onCaptionGenerated(imageSrc, result.caption);
+          }
+          
           console.log(`✅ Unique caption generated for image ${i + 1}/${images.length}`);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
           if (result.caption) {
             newCaptions[imageSrc] = result.caption;
+            if (onCaptionGenerated) {
+              onCaptionGenerated(imageSrc, result.caption);
+            }
           }
         }
         

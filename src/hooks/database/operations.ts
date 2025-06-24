@@ -3,7 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const saveChangeToDatabase = async (
   projectId: string,
-  changeType: 'text' | 'image' | 'content_block',
+  changeType: 'text' | 'image' | 'image_caption' | 'content_block',
   key: string,
   value: any
 ) => {
