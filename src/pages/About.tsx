@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -5,6 +6,7 @@ import Footer from '@/components/Footer';
 import { CheckCircle, Briefcase, Award, Book, Users, Target, Lightbulb } from 'lucide-react';
 
 const skills = [
+  "Product Design",
   "UX/UI Design",
   "Design Systems",
   "Product Strategy", 

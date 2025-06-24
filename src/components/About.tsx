@@ -3,6 +3,7 @@ import React from "react";
 import { CheckCircle, Briefcase, Award, Book } from "lucide-react";
 
 const skills = [
+  "Product Design",
   "UX/UI Design",
   "Design Systems",
   "Product Strategy",
