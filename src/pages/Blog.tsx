@@ -1,7 +1,6 @@
 
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { blogPosts } from "@/data/blogData";
@@ -11,67 +10,46 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar, ChevronRight } from "lucide-react";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import { homepageFaqs } from "@/data/seoFaqs";
+import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 
 const Blog: React.FC = () => {
   useEffect(() => {
-    trackPageView('/blog', 'Blog - Hiram Barsky');
+    trackPageView('/blog', 'AI-Enhanced Design Insights - Hiram Barsky');
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>Blog | Hiram Barsky | Professional Design Services</title>
-        <meta name="description" content="Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design from Hiram Barsky." />
-        <meta name="keywords" content="Website Design Services Blog, App Design Services Blog, AI Driven Design Blog, Product Design Blog, UX/UI Design Blog, Design Case Studies, Design Process, Professional Designer Blog" />
-        <meta property="og:title" content="Blog | Hiram Barsky | Professional Design Services" />
-        <meta property="og:description" content="Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design from Hiram Barsky." />
-        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
-        <meta property="og:url" content="https://barskydesign.pro/blog" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://barskydesign.pro/blog" />
-        
-        {/* Structured data for blog */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Blog",
-              "name": "Hiram Barsky Design Services Blog",
-              "description": "Insights, case studies, and thoughts on Website Design Services, App Design Services, AI Driven Design, and Product Design",
-              "url": "https://barskydesign.pro/blog",
-              "author": {
-                "@type": "Person",
-                "name": "Hiram Barsky"
-              },
-              "publisher": {
-                "@type": "Organization",
-                "name": "Hiram Barsky Design Services",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
-                }
-              },
-              "blogPost": [
-                ${blogPosts.map(post => `{
-                  "@type": "BlogPosting",
-                  "headline": "${post.title}",
-                  "description": "${post.excerpt}",
-                  "author": {
-                    "@type": "Person",
-                    "name": "${post.author}"
-                  },
-                  "datePublished": "${post.date}",
-                  "mainEntityOfPage": {
-                    "@type": "WebPage",
-                    "@id": "https://barskydesign.pro/blog/${post.slug}"
-                  },
-                  "keywords": "${post.tags.join(', ')}, Website Design Services, App Design Services, AI Driven Design Services"
-                }`).join(',')}
-              ]
+      <EnhancedGlobalSeo 
+        title="AI-Enhanced Design Insights | Hiram Barsky | Accessibility & Business-Focused UX"
+        description="Expert insights on AI-enhanced design processes, accessibility compliance, conversion optimization, and cross-functional UX collaboration. Learn about Claude AI integration, WCAG implementation, and business-focused design strategies from an AI-fluent UX designer."
+        canonicalUrl="https://barskydesign.pro/blog"
+        pageType="blog"
+        keywords={[
+          "AI-enhanced design blog", "accessibility compliance insights", "conversion optimization UX",
+          "Claude AI design process", "WCAG implementation guide", "cross-functional design collaboration",
+          "business-focused UX strategy", "AI-augmented design workflow", "T-shaped designer insights"
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Hiram Barsky AI-Enhanced Design Insights",
+          "description": "Expert insights on AI-enhanced design processes, accessibility compliance, and business-focused UX strategies",
+          "url": "https://barskydesign.pro/blog",
+          "author": {
+            "@type": "Person",
+            "name": "Hiram Barsky",
+            "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Hiram Barsky AI-Enhanced Design Services",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
             }
-          `}
-        </script>
-      </Helmet>
+          }
+        }}
+      />
       
       <Header />
       
@@ -79,8 +57,8 @@ const Blog: React.FC = () => {
         <section className="py-20">
           <div className="section-container max-w-5xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-barsky-dark dark:text-white">Design Insights & Reflections</h1>
-              <p className="text-xl text-barsky-text max-w-2xl mx-auto">Expert thoughts, processes, and lessons learned on Website Design Services, App Design Services, AI Driven Design, and Product Design.</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-barsky-dark dark:text-white">AI-Enhanced Design Insights</h1>
+              <p className="text-xl text-barsky-text max-w-2xl mx-auto">Expert thoughts on AI-augmented design processes, accessibility compliance, conversion optimization, and cross-functional collaboration strategies.</p>
             </div>
             
             <div className="grid grid-cols-1 gap-8 md:gap-10">
@@ -131,9 +109,8 @@ const Blog: React.FC = () => {
           </div>
         </section>
         
-        {/* FAQ Section */}
         <SeoFaqSection 
-          title="Design Blog & Insights Questions"
+          title="AI-Enhanced Design Process & Strategy Questions"
           faqs={homepageFaqs}
         />
       </main>

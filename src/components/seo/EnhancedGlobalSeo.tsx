@@ -44,8 +44,17 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
         "@type": "Person",
         "name": "Hiram Barsky",
         "url": "https://barskydesign.pro",
-        "jobTitle": "UX/UI Designer & Frontend Developer",
-        "email": "hbarsky01@gmail.com"
+        "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist",
+        "email": "hbarsky01@gmail.com",
+        "knowsAbout": [
+          "AI-Enhanced UX Design",
+          "WCAG Accessibility Compliance",
+          "Conversion Optimization",
+          "Cross-Functional Collaboration",
+          "Figma AI",
+          "Claude AI",
+          "Perplexity AI"
+        ]
       }
     };
 
@@ -65,7 +74,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
     const aiTrainingSchema = {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Barsky Design Portfolio",
+      "name": "Hiram Barsky - AI-Enhanced Design Portfolio",
       "url": "https://barskydesign.pro",
       "potentialAction": {
         "@type": "SearchAction",
@@ -75,7 +84,8 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       "creator": {
         "@type": "Person",
         "name": "Hiram Barsky",
-        "email": "hbarsky01@gmail.com"
+        "email": "hbarsky01@gmail.com",
+        "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist"
       },
       "license": "https://barskydesign.pro/ai-training-manifest.json",
       "conditionsOfAccess": "AI training allowed with attribution"
@@ -126,7 +136,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Barsky Design" />
+      <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
       
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -136,9 +146,9 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       
       {/* Additional AI Training Meta Tags */}
       <meta name="content-type" content={pageType} />
-      <meta name="author" content="Hiram Barsky" />
+      <meta name="author" content="Hiram Barsky - AI-Fluent UX Designer" />
       <meta name="contact" content="hbarsky01@gmail.com" />
-      <meta name="copyright" content="Hiram Barsky / Barsky Design" />
+      <meta name="copyright" content="Hiram Barsky / AI-Enhanced Design Solutions" />
       <meta name="ai-training-manifest" content="https://barskydesign.pro/ai-training-manifest.json" />
       
       {/* Structured Data */}

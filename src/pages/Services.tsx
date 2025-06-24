@@ -11,40 +11,45 @@ import ServicesFaq from "@/components/services/ServicesFaq";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import { homepageFaqs } from "@/data/seoFaqs";
+import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 
 const Services = () => {
   React.useEffect(() => {
-    trackPageView('/services', 'Design Services - Hiram Barsky');
+    trackPageView('/services', 'AI-Enhanced Design Services - Hiram Barsky');
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <EnhancedGlobalSeo 
+        title="AI-Enhanced Design Services | Hiram Barsky | WCAG Compliance & Conversion Optimization"
+        description="AI-enhanced UX/UI design services bridging beautiful interfaces and measurable business outcomes. Specializing in accessibility compliance, AI-augmented processes, and cross-functional collaboration. Addressing the 77% company need for accessibility expertise."
+        canonicalUrl="https://barskydesign.pro/services"
+        pageType="service"
+        keywords={[
+          "AI-enhanced design services", "WCAG accessibility compliance", "conversion-focused design",
+          "cross-functional design collaboration", "AI-augmented UX process", "business-outcome design",
+          "accessibility audit services", "Claude AI design process", "Figma AI prototyping"
+        ]}
+      />
       <ServicesStructuredData />
       <Header />
       <main className="flex-grow pt-24">
-        {/* Hero Section */}
         <ServicesHero />
         
-        {/* Service Navigation Menu */}
         <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
           <div className="container px-4 mx-auto max-w-6xl">
             <ServicesNavMenu />
-
-            {/* Service Categories Tabs */}
             <ServicesTabs />
           </div>
         </section>
         
-        {/* FAQ Section */}
         <ServicesFaq />
         
-        {/* Additional FAQ Section */}
         <SeoFaqSection 
-          title="General UX/UI Design Questions"
+          title="AI-Enhanced Design & Accessibility Questions"
           faqs={homepageFaqs}
         />
         
-        {/* CTA Section */}
         <ServicesCallToAction />
       </main>
       <Footer />

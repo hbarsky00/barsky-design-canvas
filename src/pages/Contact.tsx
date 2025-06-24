@@ -5,50 +5,46 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactInformation from '@/components/contact/ContactInformation';
 import ContactForm from '@/components/contact/ContactForm';
+import EnhancedGlobalSeo from '@/components/seo/EnhancedGlobalSeo';
 
 const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>Contact Hiram Barsky | Professional UX/UI Designer & Developer | Get a Quote</title>
-        <meta name="description" content="Contact Hiram Barsky for your UX/UI design and development needs. Professional product designer available for freelance projects. Get a quote for mobile app design, web development, and design consultation." />
-        <meta name="keywords" content="contact designer, hire UX designer, freelance UI designer, design consultation, mobile app designer contact, web development quote, Hiram Barsky contact" />
-        <link rel="canonical" href="https://barskydesign.pro/contact" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="Contact Hiram Barsky | Professional UX/UI Designer" />
-        <meta property="og:description" content="Get in touch with Hiram Barsky for professional UX/UI design and development services. Available for freelance projects and design consultation." />
-        <meta property="og:url" content="https://barskydesign.pro/contact" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact Hiram Barsky | Professional UX/UI Designer" />
-        <meta name="twitter:description" content="Get in touch for professional UX/UI design and development services." />
-        <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "ContactPage",
-              "name": "Contact Hiram Barsky",
-              "description": "Contact page for professional UX/UI design and development services",
-              "url": "https://barskydesign.pro/contact",
-              "mainEntity": {
-                "@type": "Person",
-                "name": "Hiram Barsky",
-                "jobTitle": "UX/UI Designer & Frontend Developer",
-                "email": "hbarsky01@gmail.com",
-                "telephone": "+1-201-668-4754",
-                "url": "https://barskydesign.pro"
-              }
-            }
-          `}
-        </script>
-      </Helmet>
+      <EnhancedGlobalSeo 
+        title="Contact Hiram Barsky | AI-Fluent UX Designer | Accessibility & Conversion Specialist"
+        description="Get in touch with Hiram Barsky for AI-enhanced UX design, WCAG accessibility compliance, and conversion-focused design services. Specializing in cross-functional collaboration and business-outcome driven design solutions."
+        canonicalUrl="https://barskydesign.pro/contact"
+        pageType="content"
+        keywords={[
+          "contact AI-fluent UX designer", "hire accessibility specialist", "WCAG compliance consultant",
+          "conversion optimization designer", "AI-enhanced design services", "cross-functional UX collaboration",
+          "business-focused design consultant", "Claude AI design expert", "T-shaped designer hire"
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Hiram Barsky - AI-Enhanced UX Design Services",
+          "description": "Contact page for AI-enhanced UX design, accessibility compliance, and conversion optimization services",
+          "url": "https://barskydesign.pro/contact",
+          "mainEntity": {
+            "@type": "Person",
+            "name": "Hiram Barsky",
+            "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist",
+            "email": "hbarsky01@gmail.com",
+            "telephone": "+1-201-668-4754",
+            "url": "https://barskydesign.pro",
+            "knowsAbout": [
+              "AI-Enhanced UX Design",
+              "WCAG Accessibility Compliance", 
+              "Conversion Optimization",
+              "Cross-Functional Collaboration",
+              "Claude AI",
+              "Figma AI",
+              "Business-Focused Design"
+            ]
+          }
+        }}
+      />
       
       <Header />
       <main className="flex-grow pt-24">
