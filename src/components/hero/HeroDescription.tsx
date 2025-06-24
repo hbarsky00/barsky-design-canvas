@@ -24,8 +24,8 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({ isVisible }) => {
         transition={{ delay: 1.4, duration: 0.5 }}
         className="text-base sm:text-lg mb-6 text-gray-600 max-w-4xl mx-auto leading-relaxed"
       >
-        I bridge the gap between beautiful interfaces and business results using AI tools like Claude, Figma AI, and Perplexity. 
-        With WCAG expertise and cross-functional collaboration skills, I help companies solve the accessibility gap that 77% need but only 3% of portfolios address.
+        I bridge the gap between beautiful interfaces and business results using AI tools like Claude, Lovable.Dev, Figma AI, and Perplexity. 
+        With WCAG expertise and cross-functional collaboration skills, I help companies solve the accessibility gap that 77% need but only 3% of businesses address.
       </motion.p>
     </div>
   );
