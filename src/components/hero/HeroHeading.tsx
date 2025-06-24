@@ -11,7 +11,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
   return (
     <div className="relative">
       <AnimatedText 
-        text="AI-Fluent UX Designer" 
+        text="Hi, I'm Hiram" 
         tag="h2" 
         className="text-xl sm:text-2xl font-semibold mb-3 text-gray-600"
         delay={800}
@@ -20,13 +20,21 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         staggerChildren={0.05}
       />
       <AnimatedText
-        text="Driving 40% Conversion Gains Through Strategic Design"
+        text="AI-Fluent UX Designer"
         tag="h1"
         className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight"
         delay={1000}
         type="word"
         animation="bounce"
         staggerChildren={0.1}
+      />
+      <AnimatedText
+        text="Driving 40% Conversion Gains Through Strategic Design"
+        tag="p"
+        className="text-lg sm:text-xl text-gray-600 leading-relaxed"
+        delay={1200}
+        type="word"
+        animation="fade"
       />
     </div>
   );
