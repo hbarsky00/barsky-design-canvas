@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -32,7 +31,7 @@ const About = () => {
     <div className="flex flex-col min-h-screen">
       <Helmet>
         <title>About Hiram Barsky | Professional UX/UI Designer & Frontend Developer | Design Philosophy</title>
-        <meta name="description" content="Learn about Hiram Barsky, a professional UX/UI designer and frontend developer with 5+ years of experience. Discover my design philosophy, approach to user-centered design, and passion for creating exceptional digital experiences." />
+        <meta name="description" content="Learn about Hiram Barsky, a professional UX/UI designer and frontend developer with 12+ years of experience. Discover my design philosophy, approach to user-centered design, and passion for creating exceptional digital experiences." />
         <meta name="keywords" content="about Hiram Barsky, UX designer background, UI designer experience, design philosophy, user-centered design, frontend developer, product designer story" />
         <link rel="canonical" href="https://barskydesign.pro/about" />
         
@@ -62,7 +61,7 @@ const About = () => {
                 "@type": "Person",
                 "name": "Hiram Barsky",
                 "jobTitle": "UX/UI Designer & Frontend Developer",
-                "description": "Professional UX/UI designer and frontend developer with 5+ years of experience creating exceptional digital experiences",
+                "description": "Professional UX/UI designer and frontend developer with 12+ years of experience creating exceptional digital experiences",
                 "url": "https://barskydesign.pro",
                 "knowsAbout": [
                   "UX/UI Design",
@@ -121,7 +120,7 @@ const About = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-barsky-dark">Professional Experience</h3>
-                      <p className="text-sm text-barsky-text-light">5+ years in product design</p>
+                      <p className="text-sm text-barsky-text-light">12+ years in product design</p>
                     </div>
                   </div>
                   
