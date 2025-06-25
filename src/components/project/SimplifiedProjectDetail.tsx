@@ -55,7 +55,7 @@ const SimplifiedProjectDetail = () => {
     console.log('❌ Project not found:', projectId);
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 pt-24">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
             <p className="text-gray-600">Project "{projectId}" could not be found.</p>
@@ -70,7 +70,7 @@ const SimplifiedProjectDetail = () => {
     console.log('❌ Project details not found:', projectId);
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 pt-24">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Details Not Found</h1>
             <p className="text-gray-600">Details for project "{projectId}" could not be found.</p>
@@ -88,7 +88,7 @@ const SimplifiedProjectDetail = () => {
         <meta name="description" content={getTextContent('description', project.description)} />
       </Helmet>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 pt-24">
         {/* AI Caption Progress - Shows database status only */}
         {showEditingControls && (
           <div className="mb-6">
