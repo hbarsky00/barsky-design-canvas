@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { ProjectProps } from '@/components/ProjectCard';
 import { ProjectDetails } from '@/data/types/project';
-import { useOneTimeAiCaptions } from './useOneTimeAiCaptions';
 import { useProjectPersistence } from './useProjectPersistence';
 
 export const useProjectAiCaptions = (
@@ -31,22 +30,11 @@ export const useProjectAiCaptions = (
     ...(details.imageConfig?.result?.afterHeader ? [details.imageConfig.result.afterHeader] : [])
   ].filter(Boolean)));
 
-  // Use one-time AI caption generation
-  const { 
-    captions: aiCaptions, 
-    isGenerating, 
-    captionsGenerated 
-  } = useOneTimeAiCaptions({
-    projectId,
-    images: allImages,
-    enabled: details.useAiCaptions
-  });
-
   useEffect(() => {
-    // Combine static captions with AI-generated and persisted captions
+    // ONLY load persisted captions from database - NO AI generation
     const combinedCaptions = { ...staticCaptions };
     
-    // Add persisted captions
+    // Add persisted captions from database
     allImages.forEach(imageSrc => {
       const persistedCaption = getImageCaption(imageSrc);
       if (persistedCaption) {
@@ -54,23 +42,18 @@ export const useProjectAiCaptions = (
       }
     });
     
-    // Add AI-generated captions (these override persisted ones)
-    Object.entries(aiCaptions).forEach(([imageSrc, caption]) => {
-      combinedCaptions[imageSrc] = caption;
-    });
-    
     setFinalCaptions(combinedCaptions);
     
-    console.log('🔄 Updated final captions:', {
+    console.log('📷 Loaded captions from database only:', {
       staticCount: Object.keys(staticCaptions).length,
-      aiCount: Object.keys(aiCaptions).length,
+      persistedCount: Object.keys(combinedCaptions).length - Object.keys(staticCaptions).length,
       totalCount: Object.keys(combinedCaptions).length
     });
-  }, [staticCaptions, aiCaptions, allImages, getImageCaption]);
+  }, [staticCaptions, allImages, getImageCaption]);
 
   return {
     finalCaptions,
-    isGenerating,
-    captionsGenerated
+    isGenerating: false, // Never generating - only using saved captions
+    captionsGenerated: true // Always true since we only use saved captions
   };
 };

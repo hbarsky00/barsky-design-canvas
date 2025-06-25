@@ -89,11 +89,11 @@ const SimplifiedProjectDetail = () => {
       </Helmet>
 
       <div className="container mx-auto px-4 py-8">
-        {/* AI Caption Progress */}
+        {/* AI Caption Progress - Shows database status only */}
         {showEditingControls && (
           <div className="mb-6">
             <AiCaptionProgress 
-              isGenerating={isGeneratingCaptions}
+              isGenerating={false}
               generationProgress={null}
               aiCaptionsCount={Object.keys(finalCaptions).length}
             />

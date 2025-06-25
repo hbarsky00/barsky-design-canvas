@@ -1,6 +1,6 @@
 
 import React from "react";
-import { motion } from "framer-motion";
+import { shouldShowEditingControls } from "@/utils/devModeDetection";
 
 interface AiCaptionProgressProps {
   isGenerating: boolean;
@@ -13,47 +13,33 @@ const AiCaptionProgress: React.FC<AiCaptionProgressProps> = ({
   generationProgress,
   aiCaptionsCount
 }) => {
-  if (isGenerating) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center"
-      >
-        <div className="flex items-center justify-center space-x-3 text-blue-700">
-          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
-          <span className="font-medium">🤖 Generating AI-powered image captions...</span>
+  const showEditingControls = shouldShowEditingControls();
+  
+  // Don't show anything if not in dev mode or if there are no captions
+  if (!showEditingControls || aiCaptionsCount === 0) {
+    return null;
+  }
+
+  return (
+    <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <span className="text-sm font-medium text-gray-700">
+            Image Captions Loaded from Database
+          </span>
         </div>
-        {generationProgress && (
-          <div className="mt-3">
-            <div className="text-sm text-blue-600">
-              Processing image {generationProgress.current} of {generationProgress.total}
-            </div>
-            <div className="w-full bg-blue-200 rounded-full h-2 mt-2">
-              <div 
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${(generationProgress.current / generationProgress.total) * 100}%` }}
-              ></div>
-            </div>
-          </div>
-        )}
-      </motion.div>
-    );
-  }
-
-  if (!isGenerating && aiCaptionsCount > 0) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-green-50 border border-green-200 rounded-lg p-4 text-center text-green-700"
-      >
-        ✅ AI captions generated for {aiCaptionsCount} images
-      </motion.div>
-    );
-  }
-
-  return null;
+        
+        <div className="text-sm text-gray-600">
+          {aiCaptionsCount} caption{aiCaptionsCount !== 1 ? 's' : ''} loaded
+        </div>
+      </div>
+      
+      <div className="mt-2 text-xs text-gray-500">
+        All captions are saved in the database - no API calls needed
+      </div>
+    </div>
+  );
 };
 
 export default AiCaptionProgress;
