@@ -37,7 +37,7 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Generate simple, user-friendly caption using OpenAI
+    // Generate simple caption using OpenAI with very strict instructions
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -50,14 +50,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You create SHORT image captions. Respond with ONLY 2-3 words. NO analysis. NO descriptions. NO markdown. NO formatting. Just simple words like "Login screen" or "User dashboard" or "Settings page". NEVER write analysis or explanations.'
+            content: 'You write ONE simple sentence describing what you see in the image. Write like: "A banking dashboard showing loan data" or "Login screen with user fields" or "Search interface for financial data". NO analysis. NO markdown. NO technical details. Just ONE descriptive sentence.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Caption this image with only 2-3 words:'
+                text: 'Write one simple sentence describing this image:'
               },
               {
                 type: 'image_url',
@@ -69,7 +69,7 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 10,
+        max_tokens: 20,
         temperature: 0.1,
       }),
     });
@@ -87,16 +87,21 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // Force short captions - take only first 3 words maximum
-    const words = caption.split(' ').filter(word => word.length > 0);
-    caption = words.slice(0, 3).join(' ');
-
-    // Remove ALL formatting, markdown, punctuation
-    caption = caption.replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '').trim();
+    // Clean up the caption - remove any unwanted formatting
+    caption = caption
+      .replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
+      .replace(/\n/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
 
     // If it's still too long or contains analysis words, use fallback
-    if (caption.length > 20 || caption.toLowerCase().includes('interface') || caption.toLowerCase().includes('analysis') || caption.toLowerCase().includes('overview')) {
-      caption = 'App screen';
+    if (caption.length > 50 || 
+        caption.toLowerCase().includes('analysis') || 
+        caption.toLowerCase().includes('overview') ||
+        caption.toLowerCase().includes('interface analysis') ||
+        caption.includes('###') ||
+        caption.includes('####')) {
+      caption = 'Banking application interface';
     }
 
     console.log('✅ Simple caption generated:', caption);
@@ -108,7 +113,7 @@ serve(async (req) => {
     console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'App interface'
+      caption: 'Application interface'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

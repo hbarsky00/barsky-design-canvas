@@ -6,9 +6,6 @@ interface OpenAiCaptionResponse {
   error?: string;
 }
 
-// Global cache for generated captions to persist across component remounts
-const globalCaptionCache: Record<string, string> = {};
-
 export const useOpenAiCaptions = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationProgress, setGenerationProgress] = useState<{current: number, total: number} | null>(null);
@@ -43,71 +40,100 @@ export const useOpenAiCaptions = () => {
         throw new Error(result.error || 'No caption received');
       }
       
-      // Force ultra-short captions on client side too
       let caption = result.caption.trim();
       
-      // Remove any formatting or analysis language
-      caption = caption.replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '');
+      // Additional client-side cleanup to ensure simple captions
+      caption = caption
+        .replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
+        .replace(/\n/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
       
-      // If it contains analysis words, replace with simple fallback
-      if (caption.toLowerCase().includes('interface') || 
+      // If it contains analysis language, replace with simple fallback
+      if (caption.toLowerCase().includes('interface analysis') || 
           caption.toLowerCase().includes('analysis') || 
           caption.toLowerCase().includes('overview') ||
           caption.toLowerCase().includes('section') ||
           caption.toLowerCase().includes('functionality') ||
           caption.includes('###') ||
-          caption.includes('####')) {
-        caption = 'App screen';
+          caption.includes('####') ||
+          caption.length > 60) {
+        caption = getSimpleFallback(imageIndex || 0, projectContext || '');
       }
       
-      // Take only first 3 words
-      const words = caption.split(' ').filter(word => word.length > 0);
-      caption = words.slice(0, 3).join(' ');
-      
-      console.log('✅ Short caption received:', caption);
+      console.log('✅ Caption received:', caption);
       return { caption };
       
     } catch (error) {
       console.error('❌ Error generating caption:', error);
       
-      // Ultra-short fallback captions
-      const getShortFallback = (index: number, projectContext: string) => {
-        if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
-          const fallbacks = ['Loan screen', 'Bank interface', 'Finance view', 'Deal dashboard'];
-          return fallbacks[index % fallbacks.length];
-        }
-        
-        if (projectContext?.includes('splittime')) {
-          const fallbacks = ['Family app', 'Schedule view', 'Message screen', 'Parent tool'];
-          return fallbacks[index % fallbacks.length];
-        }
-        
-        if (projectContext?.includes('spectrum')) {
-          const fallbacks = ['Design tool', 'Product view', 'Custom screen', 'Build interface'];
-          return fallbacks[index % fallbacks.length];
-        }
-        
-        const genericFallbacks = ['App screen', 'User interface', 'Dashboard view', 'Feature page'];
-        return genericFallbacks[index % genericFallbacks.length];
-      };
-      
       return { 
-        caption: getShortFallback(imageIndex || 0, projectContext || ''),
+        caption: getSimpleFallback(imageIndex || 0, projectContext || ''),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
   };
 
+  const getSimpleFallback = (index: number, projectContext: string) => {
+    if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
+      const fallbacks = [
+        'Banking dashboard with loan data',
+        'Financial interface for loans',
+        'Loan management screen',
+        'Investment platform interface'
+      ];
+      return fallbacks[index % fallbacks.length];
+    }
+    
+    if (projectContext?.includes('splittime')) {
+      const fallbacks = [
+        'Family scheduling app interface',
+        'Parent communication screen',
+        'Child activity planner',
+        'Family calendar view'
+      ];
+      return fallbacks[index % fallbacks.length];
+    }
+    
+    if (projectContext?.includes('spectrum')) {
+      const fallbacks = [
+        'Design tool interface',
+        'Product customization screen',
+        'Configuration dashboard',
+        'User interface builder'
+      ];
+      return fallbacks[index % fallbacks.length];
+    }
+    
+    if (projectContext?.includes('barsky')) {
+      const fallbacks = [
+        'Restaurant ordering interface',
+        'Food truck app screen',
+        'Menu display interface',
+        'Restaurant management panel'
+      ];
+      return fallbacks[index % fallbacks.length];
+    }
+    
+    const genericFallbacks = [
+      'Application dashboard interface',
+      'User interface screen',
+      'Software application view',
+      'Digital platform interface'
+    ];
+    return genericFallbacks[index % genericFallbacks.length];
+  };
+
   const generateProjectCaptions = async (images: string[], projectId: string, onCaptionGenerated?: (imageSrc: string, caption: string) => void) => {
-    console.log(`🚀 Starting short caption generation for ${images.length} images in ${projectId}...`);
+    console.log(`🚀 Starting caption generation for ${images.length} images in ${projectId}...`);
     
     setIsGenerating(true);
     setGenerationProgress({ current: 0, total: images.length });
     
     const newCaptions: Record<string, string> = {};
     
-    // Set project context for short captions
-    let projectContext = `${projectId} app interface - generate 2-3 words MAXIMUM`;
+    // Set project context for better captions
+    let projectContext = `${projectId} application interface`;
     
     for (let i = 0; i < images.length; i++) {
       const imageSrc = images[i];
@@ -119,18 +145,17 @@ export const useOpenAiCaptions = () => {
         
         if (result.caption && !result.error) {
           newCaptions[imageSrc] = result.caption;
-          globalCaptionCache[imageSrc] = result.caption;
           
           if (onCaptionGenerated) {
             onCaptionGenerated(imageSrc, result.caption);
           }
           
-          console.log(`✅ Short caption generated (${i + 1}/${images.length}):`, result.caption);
+          console.log(`✅ Caption generated (${i + 1}/${images.length}):`, result.caption);
         }
         
-        // Add delay between requests
+        // Add delay between requests to avoid rate limiting
         if (i < images.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 3000));
+          await new Promise(resolve => setTimeout(resolve, 2000));
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for image ${i + 1}:`, error);
@@ -139,7 +164,7 @@ export const useOpenAiCaptions = () => {
     
     setIsGenerating(false);
     setGenerationProgress(null);
-    console.log('✅ Short caption generation complete for project:', projectId);
+    console.log('✅ Caption generation complete for project:', projectId);
     return newCaptions;
   };
 
