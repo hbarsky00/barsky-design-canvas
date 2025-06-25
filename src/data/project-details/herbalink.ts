@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const herbalinkDetails: ProjectDetails = {
