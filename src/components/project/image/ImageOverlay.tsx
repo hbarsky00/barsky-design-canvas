@@ -34,31 +34,31 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-black/40 flex items-center justify-center"
+          className="image-overlay-backdrop absolute inset-0 bg-black/40 flex items-center justify-center"
         >
-          <div className="flex space-x-2">
+          <div className="image-overlay-controls flex space-x-2">
             <Button
               size="sm"
               variant="secondary"
               onClick={onMaximize}
-              className="bg-white/90 hover:bg-white text-gray-900"
+              className="image-overlay-zoom-btn bg-white/90 hover:bg-white text-gray-900"
             >
               <ZoomIn className="h-4 w-4" />
             </Button>
             
             {showEditingControls && !hideEditButton && onImageReplace && (
-              <div className="relative">
+              <div className="image-overlay-edit-container relative">
                 <input
                   type="file"
                   accept="image/*"
                   onChange={onImageReplace}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  className="image-overlay-file-input absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   disabled={isUploading}
                 />
                 <Button
                   size="sm"
                   variant="secondary"
-                  className="bg-blue-500/90 hover:bg-blue-600 text-white"
+                  className="image-overlay-edit-btn bg-blue-500/90 hover:bg-blue-600 text-white"
                   disabled={isUploading}
                 >
                   <Edit className="h-4 w-4" />
@@ -71,7 +71,7 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
                 size="sm"
                 variant="secondary"
                 onClick={onImageRemove}
-                className="bg-red-500/90 hover:bg-red-600 text-white"
+                className="image-overlay-remove-btn bg-red-500/90 hover:bg-red-600 text-white"
               >
                 <Trash2 className="h-4 w-4" />
               </Button>
