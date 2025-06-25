@@ -38,22 +38,16 @@ serve(async (req) => {
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
     const getSystemPrompt = (contextType: string, projectContext?: string) => {
-      const basePrompt = 'You are an expert at analyzing app interfaces and describing them accurately for UX/UI design portfolios. Analyze each image carefully and provide a unique, specific description.';
+      const basePrompt = 'You are an expert at analyzing app interfaces and describing them accurately for UX/UI design portfolios. Your goal is to provide unique, specific, and detailed descriptions that highlight what makes each interface special and different.';
       
       if (projectContext) {
-        if (projectContext.includes('co-parenting')) {
-          return `${basePrompt} You are analyzing a co-parenting coordination app interface. Look carefully at this specific image and describe EXACTLY what you see - whether it's a calendar view, messaging interface, child profile screen, scheduling tool, communication feature, or other co-parenting functionality. Focus on the specific UI elements, buttons, text, layouts, and features visible in THIS particular screen. Make each description completely unique and specific to what's actually shown in the image.`;
-        } else if (projectContext.includes('food truck')) {
-          return `${basePrompt} You are analyzing a food truck app interface. Look at this specific image and describe the exact UI elements, features, and functionality visible - whether it's menu browsing, ordering, GPS tracking, restaurant management, or customer features. Make each description unique to what's actually shown.`;
-        } else if (projectContext.includes('herbal medicine')) {
-          return `${basePrompt} You are analyzing a herbal medicine app interface. Describe the specific features visible - herbalist profiles, consultation booking, herb recommendations, patient records, or practitioner tools. Focus on what makes this screen unique.`;
-        }
+        return `${basePrompt} Context: ${projectContext}`;
       }
       
       return `${basePrompt} Analyze this app interface and describe the specific UI elements, features, and functionality visible. Make each description unique and detailed.`;
     };
 
-    // Generate descriptive caption using OpenAI
+    // Generate descriptive caption using OpenAI with enhanced uniqueness focus
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -73,7 +67,7 @@ serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: 'Analyze this app interface image carefully. Describe exactly what you see in terms of UI elements, features, layout, text, buttons, and functionality. Be very specific about what makes this particular screen unique. Focus on the actual content visible in the image - don\'t make assumptions about features not shown. Provide a detailed, professional description suitable for a UX/UI portfolio that highlights the specific design and functionality visible in this exact image.'
+                text: 'Analyze this app interface image very carefully. I need you to describe EXACTLY what you see in terms of specific UI elements, features, layout, text, buttons, and functionality. Be extremely specific about what makes this particular screen unique and different from other app screens. Focus on the actual content visible in the image - describe specific text, icons, layouts, colors, and interface elements you can see. Provide a detailed, professional description suitable for a UX/UI portfolio that highlights the unique design and functionality visible in this exact image. Do not use generic descriptions - be specific about what you observe.'
               },
               {
                 type: 'image_url',
@@ -86,7 +80,7 @@ serve(async (req) => {
           }
         ],
         max_tokens: 300,
-        temperature: 0.7
+        temperature: 0.8, // Slightly higher temperature for more varied responses
       }),
     });
 
@@ -103,7 +97,7 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    console.log('✅ OpenAI Caption generated successfully');
+    console.log('✅ OpenAI Caption generated successfully:', caption.substring(0, 100) + '...');
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
