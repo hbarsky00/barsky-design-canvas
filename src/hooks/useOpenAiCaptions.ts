@@ -43,24 +43,24 @@ export const useOpenAiCaptions = () => {
         throw new Error(result.error || 'No caption received');
       }
       
-      // ULTRA STRICT caption length on client side - MAXIMUM 3 words
+      // Ensure caption stays short on client side
       let caption = result.caption.trim();
       const words = caption.split(' ').filter(word => word.length > 0);
-      if (words.length > 3) {
-        caption = words.slice(0, 3).join(' ');
+      if (words.length > 4) {
+        caption = words.slice(0, 4).join(' ');
       }
       
-      // Remove ALL punctuation
+      // Remove punctuation
       caption = caption.replace(/[.!?,;:]/g, '');
       
-      console.log('✅ Ultra short caption received:', caption);
+      console.log('✅ Short caption received:', caption);
       return { caption };
       
     } catch (error) {
       console.error('❌ Error generating caption:', error);
       
-      // ULTRA SHORT fallback captions based on project
-      const getUltraShortFallback = (index: number, projectContext: string) => {
+      // Short fallback captions based on project
+      const getShortFallback = (index: number, projectContext: string) => {
         if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
           const fallbacks = ['Banking dashboard', 'Loan system', 'Financial view', 'Investment platform'];
           return fallbacks[index % fallbacks.length];
@@ -81,22 +81,22 @@ export const useOpenAiCaptions = () => {
       };
       
       return { 
-        caption: getUltraShortFallback(imageIndex || 0, projectContext || ''),
+        caption: getShortFallback(imageIndex || 0, projectContext || ''),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
   };
 
   const generateProjectCaptions = async (images: string[], projectId: string, onCaptionGenerated?: (imageSrc: string, caption: string) => void) => {
-    console.log(`🚀 Starting ULTRA SHORT caption generation for ${images.length} images in ${projectId}...`);
+    console.log(`🚀 Starting short caption generation for ${images.length} images in ${projectId}...`);
     
     setIsGenerating(true);
     setGenerationProgress({ current: 0, total: images.length });
     
     const newCaptions: Record<string, string> = {};
     
-    // Set project context for ULTRA SHORT captions
-    let projectContext = `${projectId} app interface - generate 2-3 words MAXIMUM`;
+    // Set project context for short captions
+    let projectContext = `${projectId} app interface - generate 2-4 words MAXIMUM`;
     
     for (let i = 0; i < images.length; i++) {
       const imageSrc = images[i];
@@ -114,7 +114,7 @@ export const useOpenAiCaptions = () => {
             onCaptionGenerated(imageSrc, result.caption);
           }
           
-          console.log(`✅ ULTRA SHORT caption generated (${i + 1}/${images.length}):`, result.caption);
+          console.log(`✅ Short caption generated (${i + 1}/${images.length}):`, result.caption);
         }
         
         // Add delay between requests
@@ -128,7 +128,7 @@ export const useOpenAiCaptions = () => {
     
     setIsGenerating(false);
     setGenerationProgress(null);
-    console.log('✅ ULTRA SHORT caption generation complete for project:', projectId);
+    console.log('✅ Short caption generation complete for project:', projectId);
     return newCaptions;
   };
 

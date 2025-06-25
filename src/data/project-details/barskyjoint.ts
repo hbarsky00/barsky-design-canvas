@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const barskyjointDetails: ProjectDetails = {
@@ -13,8 +14,8 @@ export const barskyjointDetails: ProjectDetails = {
   role: "Lead UX/UI Designer",
   projectLink: "https://barskyjoint.biz",
 
-  // COMPLETELY DISABLE AI caption generation - use ONLY manual captions
-  useAiCaptions: false,
+  // Enable AI caption generation with short, user-friendly captions
+  useAiCaptions: true,
 
   imageConfig: {
     challenge: {

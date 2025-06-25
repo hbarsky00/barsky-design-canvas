@@ -37,7 +37,7 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Generate ULTRA SHORT caption using OpenAI with MAXIMUM 3 words
+    // Generate simple, user-friendly caption using OpenAI
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -50,14 +50,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You MUST respond with EXACTLY 2-3 words ONLY. NO MORE than 3 words. NO periods, NO articles (a, an, the), NO descriptions. Just 2-3 essential words. Examples: "Dashboard interface", "Login screen", "User profile", "Data chart".'
+            content: 'You are a helpful assistant that creates SHORT, simple captions for images. Write ONLY what a regular user would want to see - a brief, friendly description in 2-4 words. NO technical analysis, NO detailed breakdowns, NO interface descriptions. Just simple, clear captions like "Login screen", "Dashboard view", "User profile", "Settings page". Keep it short and user-friendly.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Describe this interface in EXACTLY 2-3 words MAXIMUM. NO MORE than 3 words. NO periods. NO articles.'
+                text: 'Create a simple, short caption for this image. Just 2-4 words maximum. Make it user-friendly, not technical.'
               },
               {
                 type: 'image_url',
@@ -69,8 +69,8 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 10,
-        temperature: 0.1,
+        max_tokens: 20,
+        temperature: 0.3,
       }),
     });
 
@@ -87,16 +87,16 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // ULTRA STRICT word limit - MAXIMUM 3 words
+    // Ensure caption is short and clean
     const words = caption.split(' ').filter(word => word.length > 0);
-    if (words.length > 3) {
-      caption = words.slice(0, 3).join(' ');
+    if (words.length > 4) {
+      caption = words.slice(0, 4).join(' ');
     }
 
-    // Remove ALL punctuation
+    // Remove punctuation except for necessary ones
     caption = caption.replace(/[.!?,;:]/g, '');
 
-    console.log('✅ Ultra short caption generated:', caption);
+    console.log('✅ Simple caption generated:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
