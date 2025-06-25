@@ -10,8 +10,8 @@ import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 const FeaturedProjects: React.FC = () => {
   const { filteredProjects } = useProjectsData();
   
-  // Get top 3 featured projects
-  const featuredProjects = filteredProjects.slice(0, 3);
+  // Show all projects instead of limiting to 3
+  const allProjects = filteredProjects;
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -25,10 +25,10 @@ const FeaturedProjects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Featured Design Projects
+            All Design Projects
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I'm excited to showcase my latest work in Product Design and Generative AI Development. 
+            Explore my complete portfolio of Product Design and Generative AI Development work. 
             Each project reflects a user-centered design approach, encompassing research, ideation, 
             design, and development implementation.
           </p>
@@ -36,7 +36,7 @@ const FeaturedProjects: React.FC = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {featuredProjects.map((project, index) => (
+          {allProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
@@ -133,7 +133,7 @@ const FeaturedProjects: React.FC = () => {
           ))}
         </div>
 
-        {/* View All Projects Button */}
+        {/* View All Projects Button - Updated to show "View Detailed Portfolio" */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ const FeaturedProjects: React.FC = () => {
               variant="outline"
               className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold"
             >
-              View All Design Projects
+              View Detailed Portfolio
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
