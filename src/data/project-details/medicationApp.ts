@@ -40,7 +40,7 @@ export const medicationAppDetails: ProjectDetails = {
   },
 
   availableImages: [
-    "/lovable-uploads/06446a67-cdb1-4ac3-86f6-d77b142f5560.png", // New hero image
+    "/lovable-uploads/aff68499-8e96-458a-b35b-4fe7a62bea6d.png", // New hero image with app interface
     "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
     "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png",
     "/lovable-uploads/3561de34-19f0-43b5-af1e-c72096282ab3.png",
