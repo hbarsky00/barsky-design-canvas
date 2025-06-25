@@ -1,3 +1,4 @@
+
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
@@ -13,20 +14,11 @@ export const splittimeDetails: ProjectDetails = {
   role: "Lead Product Designer & UX Researcher",
   projectLink: "http://splittime.pro",
   
-  // Enable AI captions for this project
+  // Enable AI captions for this project - AI will analyze actual images
   useAiCaptions: true,
 
-  // Accurate captions based on actual image content
-  imageCaptions: {
-    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png": "Mobile app screens showing family calendar and scheduling interface",
-    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png": "Chat messaging interface with parent communication features",
-    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png": "App dashboard displaying family member profiles and activity overview",
-    "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Calendar view showing custody schedule with date and time slots",
-    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Mobile interface with navigation and family management options",
-    "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png": "Design wireframes and mockups for co-parenting app features",
-    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png": "Research documentation and user insights about family coordination needs",
-    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "App prototype screens showing user interface and navigation flow"
-  },
+  // Remove manual captions to let AI generate them based on actual image content
+  imageCaptions: {},
 
   imageConfig: {
     challenge: {
