@@ -26,21 +26,12 @@ export class PublishingService {
         // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
-        // Get AI-generated image captions from localStorage with proper key format
+        // Get image captions from COMPLETELY ISOLATED localStorage - separate system
         const imageCaptionStorageKey = `image_captions_${projectId}`;
-        const storedImageCaptions = JSON.parse(localStorage.getItem(imageCaptionStorageKey) || '{}');
+        const imageCaptions = JSON.parse(localStorage.getItem(imageCaptionStorageKey) || '{}');
         
-        // CRITICAL: Convert AI captions to database format with img_caption_ prefix
-        const imageCaptions: Record<string, string> = {};
-        Object.entries(storedImageCaptions).forEach(([imageSrc, caption]) => {
-          const captionKey = `img_caption_${imageSrc}`;
-          imageCaptions[captionKey] = caption as string;
-          console.log('🤖 Converting AI caption for publishing:', captionKey, caption);
-        });
-        
-        console.log('📊 Found AI captions for publishing:', {
-          storedCount: Object.keys(storedImageCaptions).length,
-          convertedCount: Object.keys(imageCaptions).length,
+        console.log('📊 Found image captions (COMPLETELY ISOLATED SYSTEM):', {
+          count: Object.keys(imageCaptions).length,
           keys: Object.keys(imageCaptions),
           captions: imageCaptions
         });
@@ -84,22 +75,25 @@ export class PublishingService {
           projectId
         );
 
-        // MERGE ALL TEXT CONTENT - dev changes + AI captions with proper priority
+        // COMPLETELY SEPARATE CAPTION SYSTEM - prevent ALL conflicts
         const baseTextContent = { ...currentPublishedText };
         const devTextContent = { ...devChanges.textContent };
         
-        // Apply dev changes first (user edits take priority)
+        // Apply dev changes first (these are actual text edits)
         Object.keys(devTextContent).forEach(key => {
           baseTextContent[key] = devTextContent[key];
         });
         
-        // Apply AI captions (these should always be included in publish)
+        // Apply image captions SEPARATELY - they use img_caption_ prefix so NO conflicts possible
         Object.keys(imageCaptions).forEach(captionKey => {
-          baseTextContent[captionKey] = imageCaptions[captionKey];
-          console.log('✅ Added AI caption to publish data:', captionKey, imageCaptions[captionKey]);
+          // ONLY add if it starts with img_caption_ to ensure complete separation
+          if (captionKey.startsWith('img_caption_')) {
+            baseTextContent[captionKey] = imageCaptions[captionKey];
+            console.log('✅ Added isolated image caption:', captionKey, imageCaptions[captionKey]);
+          }
         });
 
-        // CLEAN UP old caption formats to prevent duplicates
+        // REMOVE any old caption_ keys to prevent duplicates
         Object.keys(baseTextContent).forEach(key => {
           if (key.startsWith('caption_') && !key.startsWith('img_caption_')) {
             delete baseTextContent[key];
@@ -109,12 +103,12 @@ export class PublishingService {
 
         const finalTextContent = baseTextContent;
 
-        console.log('📝 FINAL Text content with AI captions:', {
+        console.log('📝 FINAL Text content merge (ISOLATED IMAGE CAPTIONS):', {
           publishedCount: Object.keys(currentPublishedText).length,
           devChangesCount: Object.keys(devChanges.textContent).length,
-          aiCaptionsCount: Object.keys(imageCaptions).length,
+          imageCaptionsCount: Object.keys(imageCaptions).length,
           finalCount: Object.keys(finalTextContent).length,
-          captionKeys: Object.keys(finalTextContent).filter(k => k.startsWith('img_caption_'))
+          finalKeys: Object.keys(finalTextContent).slice(0, 10) // Show sample
         });
 
         // Process content blocks - dev changes win
@@ -141,11 +135,11 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing with AI captions:', {
+        console.log('✅ FINAL data for publishing (VERCEL BLOB STORAGE):', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
-          aiCaptionCount: Object.keys(imageCaptions).length,
-          contentBlockCount: Object.keys(finalContentBlocks).length
+          contentBlockCount: Object.keys(finalContentBlocks).length,
+          preserveDevChanges
         });
 
         // Store published state in the database
@@ -157,7 +151,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving published data with AI captions to database');
+        console.log('💾 Saving published data to database');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -170,7 +164,7 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Published data with AI captions stored successfully');
+        console.log('✅ Published data stored successfully');
 
         // Apply changes to DOM immediately
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
@@ -215,7 +209,7 @@ export class PublishingService {
         }
 
         // Force refresh to show published changes
-        console.log('🔄 Dispatching update event with published content including AI captions');
+        console.log('🔄 Dispatching update event with published content');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -230,10 +224,9 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully with AI captions:', {
+        console.log('✅ Project published successfully (VERCEL BLOB STORAGE):', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
-          aiCaptions: Object.keys(imageCaptions).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
           devChangesPreserved: preserveDevChanges
         });
