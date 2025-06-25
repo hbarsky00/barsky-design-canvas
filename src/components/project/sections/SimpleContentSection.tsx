@@ -1,94 +1,60 @@
 
 import React from "react";
-import { motion } from "framer-motion";
-import MaximizableImage from "../MaximizableImage";
 
 interface SimpleContentSectionProps {
   title: string;
   content: string;
-  additionalText?: string;
-  images?: string[];
-  imageCaptions?: Record<string, string>;
-  projectId?: string;
+  images: string[];
+  sectionKey: string;
+  projectId: string;
+  getTextContent: (key: string, fallback?: string) => string;
+  getImageSrc: (originalSrc: string) => string;
+  saveTextContent: (key: string, content: string) => Promise<void>;
+  saveImageReplacement: (originalSrc: string, newSrc: string) => Promise<void>;
+  finalCaptions: Record<string, string>;
 }
 
 const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
   title,
   content,
-  additionalText,
-  images = [],
-  imageCaptions = {},
-  projectId
+  images,
+  sectionKey,
+  projectId,
+  getTextContent,
+  getImageSrc,
+  saveTextContent,
+  saveImageReplacement,
+  finalCaptions
 }) => {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="glass-card-elevated p-8 layered-depth mb-12"
-    >
-      <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-        {title}
-      </h2>
+    <div className="bg-white rounded-lg shadow-sm p-8">
+      <h2 className="text-3xl font-bold text-gray-900 mb-6">{title}</h2>
       
-      <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center mb-8">
-        {content.split('\n').map((paragraph, index) => (
-          <p key={index} className="mb-4">
-            {paragraph}
-          </p>
-        ))}
+      <div className="prose max-w-none mb-8">
+        <p className="text-lg text-gray-700 leading-relaxed">
+          {getTextContent(`${sectionKey}_content`, content)}
+        </p>
       </div>
 
-      {images.length > 0 && (
-        <div className="space-y-6">
-          {/* First image */}
-          {images[0] && (
-            <div className="glass-card p-4 layered-depth">
-              <MaximizableImage
-                src={images[0]}
-                alt={`${title} image 1`}
-                caption={imageCaptions[images[0]] || `${title} supporting image`}
-                imageList={images}
-                currentIndex={0}
-                className="rounded-lg shadow-elevated w-full"
-                projectId={projectId}
-                hideEditButton={false}
-                allowRemove={false}
+      {images && images.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {images.map((image, index) => (
+            <div key={index} className="space-y-2">
+              <img
+                src={getImageSrc(image)}
+                alt={finalCaptions[image] || `${title} ${index + 1}`}
+                className="w-full h-auto rounded-lg shadow-md"
               />
-            </div>
-          )}
-
-          {/* Additional text between images */}
-          {additionalText && (
-            <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center my-8">
-              {additionalText.split('\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {paragraph}
+              {finalCaptions[image] && (
+                <p className="text-sm text-gray-600 italic">
+                  {finalCaptions[image]}
                 </p>
-              ))}
-            </div>
-          )}
-
-          {/* Remaining images */}
-          {images.slice(1).map((imageSrc, index) => (
-            <div key={index + 1} className="glass-card p-4 layered-depth">
-              <MaximizableImage
-                src={imageSrc}
-                alt={`${title} image ${index + 2}`}
-                caption={imageCaptions[imageSrc] || `${title} supporting image`}
-                imageList={images}
-                currentIndex={index + 1}
-                className="rounded-lg shadow-elevated w-full"
-                projectId={projectId}
-                hideEditButton={false}
-                allowRemove={false}
-              />
+              )}
             </div>
           ))}
         </div>
       )}
-    </motion.section>
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -7,7 +8,6 @@ import { useProjectAiCaptions } from "@/hooks/useProjectAiCaptions";
 import { useSimplifiedProjectPersistence } from "@/hooks/useSimplifiedProjectPersistence";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import AiCaptionProgress from "./AiCaptionProgress";
-import ProjectPublisher from "./ProjectPublisher";
 import ProjectDetailLoading from "./ProjectDetailLoading";
 import ProjectSidebar from "./ProjectSidebar";
 import SimpleProjectHero from "./sections/SimpleProjectHero";
@@ -32,8 +32,7 @@ const SimplifiedProjectDetail = () => {
   
   const { 
     finalCaptions, 
-    isGenerating: isGeneratingCaptions, 
-    captionsGenerated 
+    isGenerating: isGeneratingCaptions
   } = useProjectAiCaptions(project!, details!, projectId!, staticCaptions);
 
   useEffect(() => {
@@ -123,16 +122,6 @@ const SimplifiedProjectDetail = () => {
                 saveImageReplacement={saveImageReplacement}
                 finalCaptions={finalCaptions}
               />
-            )}
-
-            {/* Publishing Section */}
-            {showEditingControls && captionsGenerated && (
-              <div className="mt-8">
-                <ProjectPublisher 
-                  projectId={projectId!}
-                  projectTitle={getTextContent('title', project.title)}
-                />
-              </div>
             )}
           </div>
 
