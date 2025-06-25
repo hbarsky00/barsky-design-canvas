@@ -24,6 +24,23 @@ export const medicationAppDetails: ProjectDetails = {
   client: "Healthcare Technology Startup",
   role: "Lead UX/UI Designer",
 
+  // Disable AI captions - use manual captions only like SplitTime
+  useAiCaptions: false,
+
+  // Manual captions for all images
+  imageCaptions: {
+    "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png": "Medication tracking dashboard showing daily medication schedule",
+    "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png": "Patient profile interface with health metrics and medication history",
+    "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png": "Healthcare provider communication portal for appointment scheduling",
+    "/lovable-uploads/0bd501de-722e-4f09-af9e-25a0dc629f9d.png": "Medication reminder notifications and adherence tracking",
+    "/lovable-uploads/514e46c5-6962-483f-82a0-2c34030cb284.png": "Blood glucose monitoring interface with data visualization",
+    "/lovable-uploads/60d8aee8-4b4b-4335-8cc5-3a0816eccfab.png": "Appointment calendar showing upcoming medical visits",
+    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png": "User research insights from diabetic patient interviews",
+    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png": "Healthcare provider feedback on medication management features",
+    "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png": "Improved medication adherence metrics showing 85% success rate",
+    "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png": "Patient satisfaction survey results and healthcare outcomes"
+  },
+
   imageConfig: {
     challenge: {
       beforeHeader: "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
@@ -72,8 +89,5 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/6d43a048-886a-4190-8aeb-c6bc15e2f49c.png"
   ],
   
-  galleryImages: [],
-
-  // Enable AI caption generation for this project
-  useAiCaptions: true
+  galleryImages: []
 };
