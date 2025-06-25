@@ -14,8 +14,19 @@ export const barskyjointDetails: ProjectDetails = {
   role: "Lead UX/UI Designer",
   projectLink: "https://barskyjoint.biz",
 
-  // Enable AI caption generation with short, user-friendly captions
-  useAiCaptions: true,
+  // Disable AI captions - use manual captions only
+  useAiCaptions: false,
+
+  // Manual captions for all images
+  imageCaptions: {
+    "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png": "Barsky Joint mobile ordering interface",
+    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png": "Food truck GPS tracking and location system",
+    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Restaurant reservation management platform",
+    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png": "Order tracking and delivery system",
+    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "Customer loyalty and engagement features",
+    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png": "Brand integration across mobile and web platforms",
+    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png": "Analytics dashboard showing order increases"
+  },
 
   imageConfig: {
     challenge: {

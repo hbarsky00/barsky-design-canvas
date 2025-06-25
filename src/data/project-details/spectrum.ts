@@ -13,8 +13,16 @@ export const spectrumDetails: ProjectDetails = {
   client: "Spectrum Apparel",
   role: "UX/UI Designer & Accessibility Specialist",
 
-  // Enable AI captions for this project
-  useAiCaptions: true,
+  // Disable AI captions - use manual captions only
+  useAiCaptions: false,
+
+  // Manual captions for all images
+  imageCaptions: {
+    "/lovable-uploads/8a8efa4e-4d69-4f21-8ea3-b45b70284058.png": "Spectrum Apparel e-commerce platform homepage",
+    "/lovable-uploads/e65cf5f1-62f3-4412-b533-fdfc0e59aae3.png": "Custom design tools interface",
+    "/lovable-uploads/56a3b260-72d5-4b69-879b-9280e1731be7.png": "Accessibility features and user testing results",
+    "/lovable-uploads/6544f03a-2e0f-4adb-b382-521741cdf807.png": "Customer satisfaction and order increase metrics"
+  },
 
   imageConfig: {
     challenge: {

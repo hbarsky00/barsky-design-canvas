@@ -17,8 +17,24 @@ export const herbalinkDetails: ProjectDetails = {
   role: "Lead UX/UI Designer & Product Strategist",
   projectLink: "https://herbalink.live",
 
-  // Enable AI caption generation for this project
-  useAiCaptions: true,
+  // Disable AI captions - use manual captions only
+  useAiCaptions: false,
+
+  // Manual captions for all images
+  imageCaptions: {
+    "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "Herbalink platform showing practitioner and patient connection challenges",
+    "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "Trust and safety features for herbal medicine platform",
+    "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png": "Personalized dashboard for herb protocol tracking",
+    "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png": "Herbalist discovery system with specialty filtering",
+    "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png": "User satisfaction results showing 85% task completion rate",
+    "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png": "Video consultation interface with real-time collaboration",
+    "/lovable-uploads/ada2ad24-f156-4851-b6e8-572404ccb959.png": "Herb identification and recommendation system",
+    "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png": "Mobile-first design ensuring accessibility",
+    "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png": "Progress tracking and wellness journey visualization",
+    "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png": "Healthcare compliance and trust-building features",
+    "/lovable-uploads/8dd1106a-586f-4862-918b-5c7c82d24e25.png": "Local supplier integration and herb sourcing",
+    "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png": "Platform usability testing and user feedback analysis"
+  },
 
   imageConfig: {
     challenge: {

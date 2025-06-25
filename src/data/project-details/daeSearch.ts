@@ -13,8 +13,19 @@ export const daeSearchDetails: ProjectDetails = {
   client: "Enterprise Data Platform",
   role: "Senior UX/UI Designer",
   
-  // Enable AI captions for this project
-  useAiCaptions: true,
+  // Disable AI captions - use manual captions only
+  useAiCaptions: false,
+  
+  // Manual captions for all images
+  imageCaptions: {
+    "/lovable-uploads/8445f64a-5401-42d2-8888-d423cd24ea73.png": "Enterprise data search interface showing complex dataset challenges",
+    "/lovable-uploads/78d6fb56-e0b4-4632-a262-deba85415e1d.png": "User research with data analysts and workflow analysis",
+    "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png": "AI-powered search suggestions and predictive interface",
+    "/lovable-uploads/4cdd5e0d-f7c9-4d83-b760-08ffe57f27f4.png": "Improved data discovery results showing 60% faster search",
+    "/lovable-uploads/75a41291-ec18-401c-bbf1-8b3daf2c25eb.png": "User satisfaction metrics and productivity improvements",
+    "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png": "Advanced filtering and dataset relationship mapping",
+    "/lovable-uploads/88423dc3-1fd1-480a-846f-4d3f82a9d300.png": "Enterprise dashboard analytics and search performance"
+  },
   
   imageConfig: {
     challenge: {
