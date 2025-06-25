@@ -16,16 +16,16 @@ export const splittimeDetails: ProjectDetails = {
   // Enable AI captions for this project
   useAiCaptions: true,
 
-  // Add specific manual captions for SplitTime images
+  // Updated image captions to match actual content displayed
   imageCaptions: {
-    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png": "Family calendar interface showing shared custody schedule and events",
-    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png": "Parent messaging screen with child-focused conversation tools",
-    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png": "Child profile management with activity tracking and preferences",
-    "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Co-parent communication dashboard with scheduling conflicts highlighted",
-    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Family timeline view showing custody transitions and important events",
-    "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png": "Mobile app wireframes showing parent coordination features",
-    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png": "User research insights about co-parenting communication challenges",
-    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "App prototype showing child-centered scheduling interface"
+    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png": "Co-parenting app dashboard showing family schedule and communication features",
+    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png": "Mobile messaging interface for parent coordination and child updates",
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png": "Family management screen with child profiles and activity tracking",
+    "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Split custody scheduling interface with calendar view and events",
+    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Co-parent communication dashboard with scheduling tools and notifications",
+    "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png": "Mobile app design wireframes showing family coordination features",
+    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png": "User research documentation about co-parenting challenges and solutions",
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "App prototype interface focusing on child-centered scheduling design"
   },
 
   imageConfig: {
