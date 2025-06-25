@@ -132,10 +132,10 @@ const SimplifiedProjectDetail = () => {
               />
             )}
 
-            {/* Process Section */}
+            {/* What I Did Section */}
             {details.process && (
               <SimpleContentSection
-                title="Process"
+                title="What I Did"
                 content={details.process}
                 images={details.processGalleryImages || []}
                 sectionKey="process"
