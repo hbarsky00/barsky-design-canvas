@@ -77,3 +77,16 @@ export const medicationAppDetails: ProjectDetails = {
   // Enable AI caption generation for this project
   useAiCaptions: true
 };
+
+// Enhanced logging for debugging
+console.log('💊 Medication App details loaded:', {
+  hasChallenge: !!medicationAppDetails.challenge,
+  hasProcess: !!medicationAppDetails.process,
+  hasResult: !!medicationAppDetails.result,
+  challengeLength: medicationAppDetails.challenge?.length,
+  processLength: medicationAppDetails.process?.length,
+  resultLength: medicationAppDetails.result?.length,
+  availableImagesCount: medicationAppDetails.availableImages?.length,
+  challengeImagesCount: medicationAppDetails.challengeGalleryImages?.length,
+  resultImagesCount: medicationAppDetails.resultGalleryImages?.length
+});
