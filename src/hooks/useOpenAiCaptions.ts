@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 
 interface OpenAiCaptionResponse {
@@ -34,10 +35,8 @@ export const useOpenAiCaptions = () => {
     
     try {
       const result = await retryWithBackoff(async () => {
-        // Construct the full URL for the Supabase edge function
         const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
         
-        // Enhanced context with uniqueness requirements and image-specific details
         const enhancedContext = projectContext 
           ? `${projectContext}. CRITICAL: This is image #${imageIndex + 1} in the sequence. Analyze this specific image in detail and provide a COMPLETELY UNIQUE description. Each image must have a different caption that describes the exact UI elements, features, layouts, text, and functionality visible in THIS particular image. Do not use generic descriptions. Focus on what makes this screen unique and different from other screens.`
           : `App interface - analyze the specific UI elements, features, and functionality visible in this particular image #${imageIndex + 1}. Provide a unique description that highlights what makes this screen special.`;
@@ -160,8 +159,12 @@ export const useOpenAiCaptions = () => {
     }
   };
 
-  const generateProjectCaptions = async (images: string[], projectId: string, onCaptionGenerated?: (imageSrc: string, caption: string) => void) => {
-    console.log(`🚀 Starting OpenAI caption generation for ${images.length} unique images in ${projectId}...`);
+  const generateProjectCaptions = async (
+    images: string[], 
+    projectId: string, 
+    onCaptionGenerated?: (imageSrc: string, caption: string) => void
+  ) => {
+    console.log(`🚀 Starting one-time OpenAI caption generation for ${images.length} unique images in ${projectId}...`);
     
     // Clear existing cache for this project to force regeneration
     images.forEach(imageSrc => {
@@ -239,7 +242,7 @@ export const useOpenAiCaptions = () => {
     
     setIsGenerating(false);
     setGenerationProgress(null);
-    console.log('✅ OpenAI caption generation complete for project:', projectId, 'Generated captions:', Object.keys(newCaptions).length);
+    console.log('✅ One-time caption generation complete for project:', projectId, 'Generated captions:', Object.keys(newCaptions).length);
     return newCaptions;
   };
 
