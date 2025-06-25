@@ -20,6 +20,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [caption, setCaption] = useState(initialCaption);
   const [tempCaption, setTempCaption] = useState(initialCaption);
+  const [isSaving, setIsSaving] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const showEditingControls = shouldShowEditingControls();
   
@@ -48,6 +49,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   const handleSave = async () => {
     if (!projectId || tempCaption.trim() === '') return;
     
+    setIsSaving(true);
     try {
       // Save with img_caption_ prefix to ensure isolation
       const captionKey = `img_caption_${imageSrc}`;
@@ -61,6 +63,8 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
       console.error('❌ Error saving caption:', error);
       // Revert on error
       setTempCaption(caption);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -89,24 +93,30 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
             value={tempCaption}
             onChange={(e) => setTempCaption(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="editable-caption-input flex-1 px-2 py-1 text-sm border border-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+            className="editable-caption-input flex-1 px-3 py-2 text-sm border-2 border-blue-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
             placeholder="Enter image caption..."
+            disabled={isSaving}
           />
           <button
             onClick={handleSave}
-            className="editable-caption-save-btn p-1 text-green-600 hover:text-green-800 hover:bg-green-50 rounded transition-colors"
+            disabled={isSaving}
+            className="editable-caption-save-btn p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-md transition-colors disabled:opacity-50"
             title="Save caption"
           >
             <Check size={16} />
           </button>
           <button
             onClick={handleCancel}
-            className="editable-caption-cancel-btn p-1 text-red-600 hover:text-red-800 hover:bg-red-50 rounded transition-colors"
+            disabled={isSaving}
+            className="editable-caption-cancel-btn p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50"
             title="Cancel editing"
           >
             <X size={16} />
           </button>
         </div>
+        {isSaving && (
+          <div className="text-xs text-blue-600 text-center mt-1">Saving...</div>
+        )}
       </div>
     );
   }
@@ -115,8 +125,8 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
     <div className={`editable-caption-container group ${className}`}>
       <div className="mt-2 px-2">
         <div 
-          className={`editable-caption-text text-gray-600 text-sm text-center ${
-            showEditingControls ? 'cursor-pointer hover:text-gray-800 hover:bg-gray-50 rounded px-2 py-1 transition-colors' : ''
+          className={`editable-caption-text text-gray-700 text-sm text-center ${
+            showEditingControls ? 'cursor-pointer hover:text-gray-900 hover:bg-blue-50 rounded-md px-3 py-2 transition-all duration-200 border border-transparent hover:border-blue-200' : ''
           } relative`}
           onClick={handleStartEdit}
         >
@@ -124,7 +134,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
           {showEditingControls && (
             <Edit2 
               size={12} 
-              className="editable-caption-edit-icon inline-block ml-1 opacity-0 group-hover:opacity-60 transition-opacity" 
+              className="editable-caption-edit-icon inline-block ml-2 opacity-0 group-hover:opacity-70 transition-opacity text-blue-500" 
             />
           )}
         </div>

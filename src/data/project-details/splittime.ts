@@ -14,11 +14,20 @@ export const splittimeDetails: ProjectDetails = {
   role: "Lead Product Designer & UX Researcher",
   projectLink: "http://splittime.pro",
   
-  // Enable AI captions for this project - AI will analyze actual images
-  useAiCaptions: true,
+  // Disable AI captions - use manual captions only
+  useAiCaptions: false,
 
-  // Remove manual captions to let AI generate them based on actual image content
-  imageCaptions: {},
+  // Manual captions for all images
+  imageCaptions: {
+    "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Co-parenting dashboard showing family coordination features",
+    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Child wellbeing tracking interface with activity updates",
+    "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png": "Family calendar displaying custody schedule and events",
+    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png": "Parent communication screen for coordinating child activities",
+    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png": "Child profile management with health and activity information",
+    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png": "Family notifications panel showing upcoming events and alerts",
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png": "Co-parenting mobile view showing dashboard and child wellbeing",
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "Parent coordination interface with notification alerts"
+  },
 
   imageConfig: {
     challenge: {
