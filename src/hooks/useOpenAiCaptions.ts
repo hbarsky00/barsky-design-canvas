@@ -43,15 +43,26 @@ export const useOpenAiCaptions = () => {
         throw new Error(result.error || 'No caption received');
       }
       
-      // Ensure caption stays short on client side
+      // Force ultra-short captions on client side too
       let caption = result.caption.trim();
-      const words = caption.split(' ').filter(word => word.length > 0);
-      if (words.length > 4) {
-        caption = words.slice(0, 4).join(' ');
+      
+      // Remove any formatting or analysis language
+      caption = caption.replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '');
+      
+      // If it contains analysis words, replace with simple fallback
+      if (caption.toLowerCase().includes('interface') || 
+          caption.toLowerCase().includes('analysis') || 
+          caption.toLowerCase().includes('overview') ||
+          caption.toLowerCase().includes('section') ||
+          caption.toLowerCase().includes('functionality') ||
+          caption.includes('###') ||
+          caption.includes('####')) {
+        caption = 'App screen';
       }
       
-      // Remove punctuation
-      caption = caption.replace(/[.!?,;:]/g, '');
+      // Take only first 3 words
+      const words = caption.split(' ').filter(word => word.length > 0);
+      caption = words.slice(0, 3).join(' ');
       
       console.log('✅ Short caption received:', caption);
       return { caption };
@@ -59,24 +70,24 @@ export const useOpenAiCaptions = () => {
     } catch (error) {
       console.error('❌ Error generating caption:', error);
       
-      // Short fallback captions based on project
+      // Ultra-short fallback captions
       const getShortFallback = (index: number, projectContext: string) => {
         if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
-          const fallbacks = ['Banking dashboard', 'Loan system', 'Financial view', 'Investment platform'];
+          const fallbacks = ['Loan screen', 'Bank interface', 'Finance view', 'Deal dashboard'];
           return fallbacks[index % fallbacks.length];
         }
         
         if (projectContext?.includes('splittime')) {
-          const fallbacks = ['Parenting app', 'Family calendar', 'Message interface', 'Child schedule'];
+          const fallbacks = ['Family app', 'Schedule view', 'Message screen', 'Parent tool'];
           return fallbacks[index % fallbacks.length];
         }
         
         if (projectContext?.includes('spectrum')) {
-          const fallbacks = ['Custom design', 'Commerce interface', 'Product screen', 'Design tool'];
+          const fallbacks = ['Design tool', 'Product view', 'Custom screen', 'Build interface'];
           return fallbacks[index % fallbacks.length];
         }
         
-        const genericFallbacks = ['App interface', 'Dashboard screen', 'User interface', 'Feature screen'];
+        const genericFallbacks = ['App screen', 'User interface', 'Dashboard view', 'Feature page'];
         return genericFallbacks[index % genericFallbacks.length];
       };
       
@@ -96,7 +107,7 @@ export const useOpenAiCaptions = () => {
     const newCaptions: Record<string, string> = {};
     
     // Set project context for short captions
-    let projectContext = `${projectId} app interface - generate 2-4 words MAXIMUM`;
+    let projectContext = `${projectId} app interface - generate 2-3 words MAXIMUM`;
     
     for (let i = 0; i < images.length; i++) {
       const imageSrc = images[i];
@@ -119,7 +130,7 @@ export const useOpenAiCaptions = () => {
         
         // Add delay between requests
         if (i < images.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          await new Promise(resolve => setTimeout(resolve, 3000));
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for image ${i + 1}:`, error);

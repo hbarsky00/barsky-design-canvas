@@ -50,14 +50,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant that creates SHORT, simple captions for images. Write ONLY what a regular user would want to see - a brief, friendly description in 2-4 words. NO technical analysis, NO detailed breakdowns, NO interface descriptions. Just simple, clear captions like "Login screen", "Dashboard view", "User profile", "Settings page". Keep it short and user-friendly.'
+            content: 'You create SHORT image captions. Respond with ONLY 2-3 words. NO analysis. NO descriptions. NO markdown. NO formatting. Just simple words like "Login screen" or "User dashboard" or "Settings page". NEVER write analysis or explanations.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Create a simple, short caption for this image. Just 2-4 words maximum. Make it user-friendly, not technical.'
+                text: 'Caption this image with only 2-3 words:'
               },
               {
                 type: 'image_url',
@@ -69,8 +69,8 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 20,
-        temperature: 0.3,
+        max_tokens: 10,
+        temperature: 0.1,
       }),
     });
 
@@ -87,14 +87,17 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // Ensure caption is short and clean
+    // Force short captions - take only first 3 words maximum
     const words = caption.split(' ').filter(word => word.length > 0);
-    if (words.length > 4) {
-      caption = words.slice(0, 4).join(' ');
-    }
+    caption = words.slice(0, 3).join(' ');
 
-    // Remove punctuation except for necessary ones
-    caption = caption.replace(/[.!?,;:]/g, '');
+    // Remove ALL formatting, markdown, punctuation
+    caption = caption.replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '').trim();
+
+    // If it's still too long or contains analysis words, use fallback
+    if (caption.length > 20 || caption.toLowerCase().includes('interface') || caption.toLowerCase().includes('analysis') || caption.toLowerCase().includes('overview')) {
+      caption = 'App screen';
+    }
 
     console.log('✅ Simple caption generated:', caption);
 
