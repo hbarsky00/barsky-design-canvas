@@ -49,13 +49,13 @@ export const useOpenAiCaptions = () => {
       console.error('❌ Error generating caption:', error);
       
       return { 
-        caption: getSplitTimeSpecificFallback(imageIndex || 0, projectContext || ''),
+        caption: getProjectSpecificFallback(imageIndex || 0, projectContext || ''),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
   };
 
-  const getSplitTimeSpecificFallback = (index: number, projectContext: string) => {
+  const getProjectSpecificFallback = (index: number, projectContext: string) => {
     if (projectContext?.includes('splittime')) {
       const fallbacks = [
         'Co-parenting dashboard showing family coordination features',
@@ -66,6 +66,20 @@ export const useOpenAiCaptions = () => {
         'Family notifications panel showing upcoming events and alerts',
         'Co-parenting mobile view showing dashboard and child wellbeing',
         'Parent coordination interface with notification alerts'
+      ];
+      return fallbacks[index % fallbacks.length];
+    }
+    
+    if (projectContext?.includes('barsky') || projectContext?.includes('joint')) {
+      const fallbacks = [
+        'Food ordering interface showing menu and restaurant options',
+        'Restaurant menu browsing and food selection screen',
+        'Food truck location tracking and ordering dashboard',
+        'Order status and delivery tracking interface',
+        'Restaurant reservation and dining management screen',
+        'Mobile food ordering and payment interface',
+        'Food delivery status and tracking display',
+        'Restaurant app interface with menu and ordering features'
       ];
       return fallbacks[index % fallbacks.length];
     }
@@ -107,10 +121,14 @@ export const useOpenAiCaptions = () => {
     
     const newCaptions: Record<string, string> = {};
     
-    // Enhanced project context for SplitTime
+    // Enhanced project context
     let projectContext = `${projectId} application interface`;
     if (projectId === 'splittime') {
       projectContext = 'splittime co-parenting family coordination app';
+    } else if (projectId === 'barskyjoint') {
+      projectContext = 'barskyjoint food truck restaurant ordering platform';
+    } else if (projectId === 'herbalink') {
+      projectContext = 'herbalink herbal medicine wellness platform';
     }
     
     for (let i = 0; i < images.length; i++) {

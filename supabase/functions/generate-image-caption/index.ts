@@ -37,7 +37,7 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Enhanced SplitTime-specific prompt
+    // Project-specific prompts
     let systemPrompt = 'You are an expert at describing user interface screenshots. Write ONE simple, descriptive sentence about what you see in the image. Focus on the main interface elements and purpose.';
     
     if (projectContext?.includes('splittime')) {
@@ -63,14 +63,37 @@ Write ONE simple sentence describing what you see. Use terms like:
 - "Document center for family records..."
 
 NEVER use generic terms like "banking," "financial," or "business application." This is specifically a family/parenting app.`;
+    } else if (projectContext?.includes('barsky') || projectContext?.includes('joint')) {
+      systemPrompt = `You are describing screenshots from Barsky Joint, a food truck and restaurant ordering platform. 
+
+KEY FEATURES TO LOOK FOR:
+- Food ordering interfaces and menus
+- Restaurant/food truck location tracking
+- Order status and delivery tracking
+- Food menu browsing and selection
+- Payment and checkout screens
+- Restaurant reservation systems
+- Food delivery status updates
+- Mobile food ordering features
+
+Write ONE simple sentence describing what you see. Use terms like:
+- "Food ordering interface showing..."
+- "Restaurant menu and ordering screen..."
+- "Food truck location tracking display..."
+- "Order status and delivery tracking..."
+- "Restaurant reservation interface..."
+- "Mobile food ordering dashboard..."
+- "Food delivery status screen..."
+
+Focus on food, restaurant, and ordering-related features. NEVER use terms like "banking," "financial," or "family/parenting."`;
     } else if (projectContext?.includes('herbalink')) {
       systemPrompt = 'You are describing screenshots from HerbaLink, a herbal medicine platform. Write ONE simple sentence describing what you see - focus on herbal consultations, practitioner discovery, or wellness tracking. Examples: "Herbalist consultation booking interface" or "Herbal medicine recommendation screen".';
     } else if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
       systemPrompt = 'You are describing screenshots from a financial investment and loan platform. Write ONE simple sentence describing what you see - focus on banking, investments, or loan management. Examples: "Investment dashboard interface" or "Loan application screen".';
     }
 
-    // Generate caption using OpenAI with enhanced prompting
-    console.log('🤖 Calling OpenAI API with SplitTime-specific prompt...');
+    // Generate caption using OpenAI with project-specific prompting
+    console.log('🤖 Calling OpenAI API with project-specific prompt for:', projectContext);
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -89,7 +112,7 @@ NEVER use generic terms like "banking," "financial," or "business application." 
             content: [
               {
                 type: 'text',
-                text: 'Describe this user interface screenshot in one simple sentence. Pay attention to any family/parenting related elements, dashboard components, child information, calendars, or communication features:'
+                text: 'Describe this user interface screenshot in one simple sentence. Pay attention to the specific app features and interface elements:'
               },
               {
                 type: 'image_url',
@@ -126,7 +149,7 @@ NEVER use generic terms like "banking," "financial," or "business application." 
       .replace(/\s+/g, ' ')
       .trim();
 
-    // Enhanced SplitTime validation - reject inappropriate captions
+    // Project-specific validation
     if (projectContext?.includes('splittime')) {
       const inappropriateTerms = ['banking', 'financial', 'business', 'corporate', 'payment', 'transaction', 'account', 'investment', 'loan'];
       const hasInappropriateTerms = inappropriateTerms.some(term => 
@@ -134,8 +157,18 @@ NEVER use generic terms like "banking," "financial," or "business application." 
       );
       
       if (hasInappropriateTerms || !caption.toLowerCase().match(/(family|parent|child|custody|schedule|calendar|wellbeing|communication|dashboard|notification|co-parent|coordination)/)) {
-        console.log('🔄 Caption validation failed, using SplitTime-specific fallback');
+        console.log('🔄 SplitTime caption validation failed, using fallback');
         caption = getSplitTimeFallback();
+      }
+    } else if (projectContext?.includes('barsky') || projectContext?.includes('joint')) {
+      const inappropriateTerms = ['banking', 'financial', 'investment', 'loan', 'family', 'parent', 'child', 'custody'];
+      const hasInappropriateTerms = inappropriateTerms.some(term => 
+        caption.toLowerCase().includes(term)
+      );
+      
+      if (hasInappropriateTerms || !caption.toLowerCase().match(/(food|restaurant|order|menu|delivery|truck|dining|meal|kitchen|chef|cuisine)/)) {
+        console.log('🔄 Barsky Joint caption validation failed, using fallback');
+        caption = getBarskyJointFallback();
       }
     }
 
@@ -174,9 +207,26 @@ function getSplitTimeFallback(): string {
   return fallbacks[Math.floor(Math.random() * fallbacks.length)];
 }
 
+function getBarskyJointFallback(): string {
+  const fallbacks = [
+    'Food ordering interface showing menu and restaurant options',
+    'Restaurant menu browsing and food selection screen',
+    'Food truck location tracking and ordering dashboard',
+    'Order status and delivery tracking interface',
+    'Restaurant reservation and dining management screen',
+    'Mobile food ordering and payment interface',
+    'Food delivery status and tracking display'
+  ];
+  return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+}
+
 function getProjectSpecificFallback(projectContext: string): string {
   if (projectContext.includes('splittime')) {
     return getSplitTimeFallback();
+  }
+  
+  if (projectContext.includes('barsky') || projectContext.includes('joint')) {
+    return getBarskyJointFallback();
   }
   
   if (projectContext.includes('herbalink')) {
