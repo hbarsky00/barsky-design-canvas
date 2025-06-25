@@ -31,7 +31,7 @@ const ImageList: React.FC<ImageListProps> = ({
             <MaximizableImage
               src={imageSrc}
               alt={`Content image ${index + 1}`}
-              caption={imageCaptions[imageSrc] || `Image ${index + 1}`}
+              caption={imageCaptions[`img_caption_${imageSrc}`] || imageCaptions[imageSrc] || `Image ${index + 1}`}
               imageList={images}
               currentIndex={index}
               className="rounded-lg shadow-md w-full overflow-hidden"

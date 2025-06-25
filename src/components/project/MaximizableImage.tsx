@@ -5,6 +5,7 @@ import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import ImageOverlay from "./image/ImageOverlay";
 import UploadOverlay from "./image/UploadOverlay";
 import ImageErrorFallback from "./image/ImageErrorFallback";
+import EditableCaption from "../caption/EditableCaption";
 import { useImageUploadHandler } from "./image/useImageUploadHandler";
 
 interface MaximizableImageProps {
@@ -134,11 +135,12 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         />
       </div>
       
-      {caption && (
-        <div className="mt-2 px-2">
-          <p className="text-gray-600 text-sm text-center">{caption}</p>
-        </div>
-      )}
+      <EditableCaption
+        imageSrc={currentSrc}
+        initialCaption={caption || ''}
+        projectId={projectId}
+        className="maximizable-image-caption"
+      />
     </div>
   );
 };

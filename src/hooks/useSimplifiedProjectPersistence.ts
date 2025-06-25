@@ -1,3 +1,4 @@
+
 import { useCallback, useState, useEffect, useRef } from 'react';
 import { ProjectData } from './persistence/types';
 import { saveChangeToDatabase } from './database/operations';
@@ -65,8 +66,12 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
     // Force refresh
     setRefreshKey(prev => prev + 1);
     
-    // Show saving toast
-    toast.loading('Saving changes...', { id: `save-${key}` });
+    // Show saving toast for captions
+    if (key.startsWith('img_caption_')) {
+      toast.loading('Saving caption...', { id: `save-${key}` });
+    } else {
+      toast.loading('Saving changes...', { id: `save-${key}` });
+    }
     
     // Debounced save to database
     saveTimeoutRef.current = setTimeout(async () => {
@@ -74,7 +79,12 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
       try {
         await saveChangeToDatabase(projectId, 'text', key, content);
         console.log('✅ Text saved to database successfully');
-        toast.success('Changes saved!', { id: `save-${key}` });
+        
+        if (key.startsWith('img_caption_')) {
+          toast.success('Caption saved!', { id: `save-${key}` });
+        } else {
+          toast.success('Changes saved!', { id: `save-${key}` });
+        }
         
         // Dispatch global update event
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
@@ -87,7 +97,12 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
         }));
       } catch (error) {
         console.error('❌ Error saving text content:', error);
-        toast.error('Failed to save changes', { id: `save-${key}` });
+        
+        if (key.startsWith('img_caption_')) {
+          toast.error('Failed to save caption', { id: `save-${key}` });
+        } else {
+          toast.error('Failed to save changes', { id: `save-${key}` });
+        }
         
         // Revert UI change on error
         setCachedData(prev => {
@@ -169,6 +184,14 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
     return replacedSrc;
   }, [cachedData.imageReplacements]);
 
+  // Get image caption with img_caption_ prefix support
+  const getImageCaption = useCallback((imageSrc: string, fallback: string = '') => {
+    // Try with img_caption_ prefix first (new system)
+    const captionKey = `img_caption_${imageSrc}`;
+    const caption = cachedData.textContent[captionKey] || cachedData.imageCaptions[imageSrc] || fallback;
+    return caption;
+  }, [cachedData.textContent, cachedData.imageCaptions]);
+
   // Force refresh from database
   const forceRefresh = useCallback(async () => {
     console.log('🔄 Force refresh triggered');
@@ -199,6 +222,7 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
     getProjectData,
     getTextContent,
     getImageSrc,
+    getImageCaption,
     forceRefresh,
     isSaving,
     refreshTrigger: refreshKey,
