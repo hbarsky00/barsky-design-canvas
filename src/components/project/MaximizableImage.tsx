@@ -5,7 +5,7 @@ import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import ImageOverlay from "./image/ImageOverlay";
 import UploadOverlay from "./image/UploadOverlay";
 import ImageErrorFallback from "./image/ImageErrorFallback";
-import { useImageUploadHandler } from "./image/useImageUploadHandler";
+import { useImageUploadWithCaption } from "./image/useImageUploadWithCaption";
 
 interface MaximizableImageProps {
   src: string;
@@ -38,12 +38,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const [isHovered, setIsHovered] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
   const showEditingControls = shouldShowEditingControls();
 
-  const { handleImageReplace } = useImageUploadHandler({
+  const { handleImageReplace, isGeneratingCaption } = useImageUploadWithCaption({
     projectId,
     currentSrc,
     onImageReplace: (newSrc) => {
@@ -58,6 +57,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setImageError,
     setForceRefresh: () => {} // Simplified - no forced refreshes
   });
+
+  const isUploading = isGeneratingCaption;
 
   // Only update source if prop actually changes
   useEffect(() => {
