@@ -67,5 +67,5 @@ export const investorLoanAppDetails: ProjectDetails = {
   ],
 
   // Enable AI caption generation for this project
-  useAiCaptions: true
+  useAiCaptions: false
 };

@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 
 interface OpenAiCaptionResponse {
@@ -29,9 +30,9 @@ export const useOpenAiCaptions = () => {
     }
   };
 
-  // Function to enforce ultra-short captions
-  const enforceUltraShortCaption = (text: string): string => {
-    if (!text) return 'Modern app interface.';
+  // Function to enforce MAXIMUM short captions
+  const enforceMaximumShortCaption = (text: string): string => {
+    if (!text) return 'App interface.';
     
     // Remove any markdown formatting and punctuation except periods
     text = text.replace(/[*_`]/g, '').replace(/[^\w\s.]/g, '');
@@ -40,10 +41,10 @@ export const useOpenAiCaptions = () => {
     const sentences = text.split(/[.!?]+/);
     let caption = sentences[0].trim();
     
-    // Limit to 8 words maximum
+    // Limit to 3 words maximum
     const words = caption.split(/\s+/).filter(word => word.length > 0);
-    if (words.length > 8) {
-      caption = words.slice(0, 8).join(' ');
+    if (words.length > 3) {
+      caption = words.slice(0, 3).join(' ');
     }
     
     // Ensure it ends with a period
@@ -96,33 +97,33 @@ export const useOpenAiCaptions = () => {
         throw new Error('No caption received from OpenAI API');
       }
       
-      // Enforce ultra-short caption constraint on client side
-      const caption = enforceUltraShortCaption(result.caption);
+      // Enforce MAXIMUM short caption constraint on client side
+      const caption = enforceMaximumShortCaption(result.caption);
       
-      console.log('✅ Ultra-short caption generated for image', (imageIndex || 0) + 1, ':', caption);
+      console.log('✅ Maximum short caption generated for image', (imageIndex || 0) + 1, ':', caption);
       
       return { caption };
     } catch (error) {
       console.error('❌ Error generating OpenAI caption for image', (imageIndex || 0) + 1, ':', error);
       
-      // Return ultra-short fallback based on image index
-      const getUltraShortFallback = (index: number) => {
+      // Return MAXIMUM short fallback based on image index
+      const getMaximumShortFallback = (index: number) => {
         const fallbacks = [
-          'Modern app interface.',
-          'Clean dashboard design.',
-          'Interactive user platform.',
-          'Professional app screen.',
-          'Digital interface layout.',
-          'Application screen view.',
-          'Software interface design.',
-          'Modern platform screen.'
+          'App interface.',
+          'Dashboard view.',
+          'User platform.',
+          'App screen.',
+          'Interface layout.',
+          'Platform view.',
+          'Software design.',
+          'System screen.'
         ];
         
         return fallbacks[index % fallbacks.length];
       };
       
       return { 
-        caption: getUltraShortFallback(imageIndex || 0),
+        caption: getMaximumShortFallback(imageIndex || 0),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -153,12 +154,12 @@ export const useOpenAiCaptions = () => {
         
         console.log(`🎯 Processing image ${i + 1}/${images.length}:`, imageSrc.substring(0, 50) + '...');
         
-        // Generate caption with ultra-short constraints
+        // Generate caption with MAXIMUM short constraints
         const result = await generateCaption(imageSrc, projectId, i);
         
         if (result.caption && !result.error) {
-          // Double-check caption is ultra-short on client side
-          const cleanedCaption = enforceUltraShortCaption(result.caption);
+          // Double-check caption is MAXIMUM short on client side
+          const cleanedCaption = enforceMaximumShortCaption(result.caption);
           newCaptions[imageSrc] = cleanedCaption;
           globalCaptionCache[imageSrc] = cleanedCaption;
           
@@ -167,11 +168,11 @@ export const useOpenAiCaptions = () => {
             onCaptionGenerated(imageSrc, cleanedCaption);
           }
           
-          console.log(`✅ Ultra-short caption generated for image ${i + 1}/${images.length}:`, cleanedCaption);
+          console.log(`✅ Maximum short caption generated for image ${i + 1}/${images.length}:`, cleanedCaption);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
           if (result.caption) {
-            const cleanedCaption = enforceUltraShortCaption(result.caption);
+            const cleanedCaption = enforceMaximumShortCaption(result.caption);
             newCaptions[imageSrc] = cleanedCaption;
             if (onCaptionGenerated) {
               onCaptionGenerated(imageSrc, cleanedCaption);

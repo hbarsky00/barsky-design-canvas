@@ -37,7 +37,7 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Generate descriptive caption using OpenAI with ultra-strict constraints
+    // Generate descriptive caption using OpenAI with MAXIMUM constraints
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -50,14 +50,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You MUST write EXACTLY ONE short sentence describing this app interface. Maximum 8 words. No periods. No extra text.'
+            content: 'You MUST write EXACTLY 3 words describing this app interface. No punctuation. No articles. Just 3 descriptive words.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Describe this app interface in exactly one short sentence with maximum 8 words. Do not use punctuation.'
+                text: 'Describe this app interface in exactly 3 words. No punctuation. No articles like "a", "the", "an".'
               },
               {
                 type: 'image_url',
@@ -69,8 +69,8 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 15,
-        temperature: 0.1,
+        max_tokens: 5,
+        temperature: 0,
       }),
     });
 
@@ -87,14 +87,14 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // Ultra-strict enforcement: take only first 8 words, no punctuation
+    // MAXIMUM enforcement: take only first 3 words, no punctuation
     const words = caption.replace(/[^\w\s]/g, '').split(/\s+/).filter(word => word.length > 0);
-    caption = words.slice(0, 8).join(' ');
+    caption = words.slice(0, 3).join(' ');
 
     // Add period at the end
     caption = caption + '.';
 
-    console.log('✅ Ultra-short caption generated:', caption);
+    console.log('✅ Maximum short caption generated:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -103,7 +103,7 @@ serve(async (req) => {
     console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'Modern app interface design.'
+      caption: 'App interface.'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
