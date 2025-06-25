@@ -26,7 +26,8 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png": "Child profile management with health and activity information",
     "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png": "Family notifications panel showing upcoming events and alerts",
     "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png": "Co-parenting mobile view showing dashboard and child wellbeing",
-    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "Parent coordination interface with notification alerts"
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png": "Parent coordination interface with notification alerts",
+    "/lovable-uploads/010681bc-91bc-4f74-9ad9-33cba67f1289.png": "Results and impact metrics showing 60% reduction in court visits, $25K annual savings, and 85% satisfaction rate"
   },
 
   imageConfig: {
@@ -52,7 +53,8 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png",
     "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
     "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
-    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png",
+    "/lovable-uploads/010681bc-91bc-4f74-9ad9-33cba67f1289.png"
   ],
 
   challengeGalleryImages: [
@@ -67,6 +69,7 @@ export const splittimeDetails: ProjectDetails = {
   resultGalleryImages: [
     "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
     "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png",
-    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png"
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png",
+    "/lovable-uploads/010681bc-91bc-4f74-9ad9-33cba67f1289.png"
   ]
 };
