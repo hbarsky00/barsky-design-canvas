@@ -1,11 +1,11 @@
 export const shouldShowEditingControls = (): boolean => {
-  // Completely disable editing controls across all projects
-  return false;
+  // Enable editing controls for caption editing functionality
+  return true;
 };
 
 export const isDevMode = (): boolean => {
-  // Keep dev mode detection for other purposes but disable editing
-  return false;
+  // Keep dev mode detection for other purposes but enable editing
+  return true;
 };
 
 export const isDevelopment = (): boolean => {
