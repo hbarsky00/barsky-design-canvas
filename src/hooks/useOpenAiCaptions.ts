@@ -11,7 +11,7 @@ export const useOpenAiCaptions = () => {
   const [generationProgress, setGenerationProgress] = useState<{current: number, total: number} | null>(null);
 
   const generateCaption = async (imageSrc: string, projectContext?: string, imageIndex?: number): Promise<OpenAiCaptionResponse> => {
-    console.log('🤖 OpenAI Caption: Analyzing image:', imageSrc.substring(0, 50) + '...', 'Index:', imageIndex);
+    console.log('🤖 OpenAI Caption: Analyzing image:', imageSrc.substring(0, 50) + '...', 'Project:', projectContext);
     
     try {
       const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
@@ -42,26 +42,7 @@ export const useOpenAiCaptions = () => {
       
       let caption = result.caption.trim();
       
-      // Additional client-side cleanup to ensure simple captions
-      caption = caption
-        .replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
-        .replace(/\n/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-      
-      // If it contains analysis language, replace with simple fallback
-      if (caption.toLowerCase().includes('interface analysis') || 
-          caption.toLowerCase().includes('analysis') || 
-          caption.toLowerCase().includes('overview') ||
-          caption.toLowerCase().includes('section') ||
-          caption.toLowerCase().includes('functionality') ||
-          caption.includes('###') ||
-          caption.includes('####') ||
-          caption.length > 60) {
-        caption = getSimpleFallback(imageIndex || 0, projectContext || '');
-      }
-      
-      console.log('✅ Caption received:', caption);
+      console.log('✅ AI Caption received:', caption);
       return { caption };
       
     } catch (error) {
@@ -75,42 +56,32 @@ export const useOpenAiCaptions = () => {
   };
 
   const getSimpleFallback = (index: number, projectContext: string) => {
-    if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
-      const fallbacks = [
-        'Banking dashboard with loan data',
-        'Financial interface for loans',
-        'Loan management screen',
-        'Investment platform interface'
-      ];
-      return fallbacks[index % fallbacks.length];
-    }
-    
     if (projectContext?.includes('splittime')) {
       const fallbacks = [
         'Family scheduling app interface',
-        'Parent communication screen',
-        'Child activity planner',
-        'Family calendar view'
+        'Co-parenting communication screen',
+        'Child custody calendar view',
+        'Parent coordination dashboard'
       ];
       return fallbacks[index % fallbacks.length];
     }
     
-    if (projectContext?.includes('spectrum')) {
+    if (projectContext?.includes('herbalink')) {
       const fallbacks = [
-        'Design tool interface',
-        'Product customization screen',
-        'Configuration dashboard',
-        'User interface builder'
+        'Herbal medicine consultation interface',
+        'Practitioner discovery screen',
+        'Wellness tracking dashboard',
+        'Natural health app interface'
       ];
       return fallbacks[index % fallbacks.length];
     }
     
-    if (projectContext?.includes('barsky')) {
+    if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
       const fallbacks = [
-        'Restaurant ordering interface',
-        'Food truck app screen',
-        'Menu display interface',
-        'Restaurant management panel'
+        'Financial investment dashboard',
+        'Loan management interface',
+        'Banking application screen',
+        'Investment portfolio view'
       ];
       return fallbacks[index % fallbacks.length];
     }
@@ -133,7 +104,7 @@ export const useOpenAiCaptions = () => {
     const newCaptions: Record<string, string> = {};
     
     // Set project context for better captions
-    let projectContext = `${projectId} application interface`;
+    const projectContext = `${projectId} application interface`;
     
     for (let i = 0; i < images.length; i++) {
       const imageSrc = images[i];
@@ -155,7 +126,7 @@ export const useOpenAiCaptions = () => {
         
         // Add delay between requests to avoid rate limiting
         if (i < images.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          await new Promise(resolve => setTimeout(resolve, 3000));
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for image ${i + 1}:`, error);

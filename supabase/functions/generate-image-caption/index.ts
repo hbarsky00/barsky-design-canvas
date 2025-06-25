@@ -37,8 +37,19 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Generate simple caption using OpenAI with very strict instructions
-    console.log('🤖 Calling OpenAI API...');
+    // Determine context-specific prompt based on project
+    let systemPrompt = 'You are an expert at describing user interface screenshots. Write ONE simple, descriptive sentence about what you see in the image. Focus on the main interface elements and purpose.';
+    
+    if (projectContext?.includes('splittime')) {
+      systemPrompt = 'You are describing screenshots from SplitTime, a co-parenting family scheduling app. Write ONE simple sentence describing what you see - focus on family scheduling, calendar views, messaging between parents, child activity planning, or custody arrangements. Examples: "Family calendar showing custody schedule" or "Parent messaging interface" or "Child activity planning screen".';
+    } else if (projectContext?.includes('herbalink')) {
+      systemPrompt = 'You are describing screenshots from HerbaLink, a herbal medicine platform. Write ONE simple sentence describing what you see - focus on herbal consultations, practitioner discovery, or wellness tracking. Examples: "Herbalist consultation booking interface" or "Herbal medicine recommendation screen".';
+    } else if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
+      systemPromprompt = 'You are describing screenshots from a financial investment and loan platform. Write ONE simple sentence describing what you see - focus on banking, investments, or loan management. Examples: "Investment dashboard interface" or "Loan application screen".';
+    }
+
+    // Generate caption using OpenAI with improved prompting
+    console.log('🤖 Calling OpenAI API with context-specific prompt...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -50,27 +61,27 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You write ONE simple sentence describing what you see in the image. Write like: "A banking dashboard showing loan data" or "Login screen with user fields" or "Search interface for financial data". NO analysis. NO markdown. NO technical details. Just ONE descriptive sentence.'
+            content: systemPrompt
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Write one simple sentence describing this image:'
+                text: 'Describe this user interface screenshot in one simple sentence:'
               },
               {
                 type: 'image_url',
                 image_url: {
                   url: fullImageUrl,
-                  detail: 'low'
+                  detail: 'high'
                 }
               }
             ]
           }
         ],
-        max_tokens: 20,
-        temperature: 0.1,
+        max_tokens: 30,
+        temperature: 0.3,
       }),
     });
 
@@ -87,36 +98,77 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // Clean up the caption - remove any unwanted formatting
+    // Clean up the caption - remove unwanted formatting
     caption = caption
       .replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
       .replace(/\n/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
 
-    // If it's still too long or contains analysis words, use fallback
-    if (caption.length > 50 || 
-        caption.toLowerCase().includes('analysis') || 
-        caption.toLowerCase().includes('overview') ||
-        caption.toLowerCase().includes('interface analysis') ||
-        caption.includes('###') ||
-        caption.includes('####')) {
-      caption = 'Banking application interface';
+    // Project-specific validation and fallbacks
+    if (projectContext?.includes('splittime')) {
+      // If caption doesn't seem relevant to family/parenting, use project-specific fallback
+      if (!caption.toLowerCase().match(/(family|parent|child|calendar|schedule|custody|messaging|activity|coordination|planning)/)) {
+        caption = getProjectSpecificFallback('splittime');
+      }
+    } else if (projectContext?.includes('herbalink')) {
+      if (!caption.toLowerCase().match(/(herb|medicine|practitioner|consultation|wellness|health|natural)/)) {
+        caption = getProjectSpecificFallback('herbalink');
+      }
     }
 
-    console.log('✅ Simple caption generated:', caption);
+    console.log('✅ Context-aware caption generated:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.error('❌ Error in generate-image-caption function:', error);
+    
+    // Return project-specific fallback on error
+    const { projectContext } = await req.json().catch(() => ({}));
+    const fallbackCaption = getProjectSpecificFallback(projectContext || '');
+    
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'Application interface'
+      caption: fallbackCaption
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 });
+
+function getProjectSpecificFallback(projectContext: string): string {
+  if (projectContext.includes('splittime')) {
+    const fallbacks = [
+      'Family scheduling app interface',
+      'Co-parenting communication screen',
+      'Child custody calendar view',
+      'Parent coordination dashboard'
+    ];
+    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+  }
+  
+  if (projectContext.includes('herbalink')) {
+    const fallbacks = [
+      'Herbal medicine consultation interface',
+      'Practitioner discovery screen',
+      'Wellness tracking dashboard',
+      'Natural health app interface'
+    ];
+    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+  }
+  
+  if (projectContext.includes('investor') || projectContext.includes('loan')) {
+    const fallbacks = [
+      'Financial investment dashboard',
+      'Loan management interface',
+      'Banking application screen',
+      'Investment portfolio view'
+    ];
+    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+  }
+  
+  return 'Application interface';
+}
