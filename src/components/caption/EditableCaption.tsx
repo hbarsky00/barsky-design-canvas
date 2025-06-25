@@ -29,6 +29,15 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   const [caption, setCaption] = useState(actualCaption);
   const [tempCaption, setTempCaption] = useState(actualCaption);
 
+  console.log('🔍 EditableCaption Debug:', {
+    imageSrc: imageSrc.substring(0, 50) + '...',
+    actualCaption,
+    caption,
+    tempCaption,
+    isEditing,
+    showEditingControls
+  });
+
   // Update caption when source changes
   useEffect(() => {
     const currentCaption = getImageCaption(imageSrc) || initialCaption;
@@ -40,6 +49,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   // Focus input when editing starts
   useEffect(() => {
     if (isEditing && inputRef.current) {
+      console.log('🎯 Focusing input field');
       inputRef.current.focus();
       inputRef.current.select();
     }
@@ -47,12 +57,22 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
 
   const handleStartEdit = () => {
     if (!showEditingControls) return;
+    console.log('✏️ Starting edit mode');
     setTempCaption(caption);
     setIsEditing(true);
   };
 
   const handleSave = async () => {
-    if (!projectId || tempCaption.trim() === '') return;
+    if (!projectId) {
+      console.warn('⚠️ No projectId provided, cannot save');
+      return;
+    }
+    
+    console.log('💾 Saving caption:', {
+      imageSrc: imageSrc.substring(0, 50) + '...',
+      tempCaption,
+      projectId
+    });
     
     setIsSaving(true);
     try {
@@ -74,6 +94,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   };
 
   const handleCancel = () => {
+    console.log('❌ Canceling edit');
     setTempCaption(caption);
     setIsEditing(false);
   };
@@ -88,6 +109,12 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    console.log('📝 Input changed:', newValue);
+    setTempCaption(newValue);
+  };
+
   if (isEditing) {
     return (
       <div className={`editable-caption-container ${className}`}>
@@ -96,17 +123,20 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
             ref={inputRef}
             type="text"
             value={tempCaption}
-            onChange={(e) => setTempCaption(e.target.value)}
+            onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             className="editable-caption-input flex-1 px-3 py-2 text-sm border-2 border-blue-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
             placeholder="Enter image caption..."
             disabled={isSaving}
+            autoComplete="off"
+            spellCheck="false"
           />
           <button
             onClick={handleSave}
             disabled={isSaving}
             className="editable-caption-save-btn p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-md transition-colors disabled:opacity-50"
             title="Save caption"
+            type="button"
           >
             <Check size={16} />
           </button>
@@ -115,6 +145,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
             disabled={isSaving}
             className="editable-caption-cancel-btn p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50"
             title="Cancel editing"
+            type="button"
           >
             <X size={16} />
           </button>
