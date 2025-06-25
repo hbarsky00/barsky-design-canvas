@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Edit2, Check, X } from 'lucide-react';
 import { shouldShowEditingControls } from '@/utils/devModeDetection';
 import { useSimplifiedProjectPersistence } from '@/hooks/useSimplifiedProjectPersistence';
@@ -38,36 +38,50 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
     showEditingControls
   });
 
-  // Update caption when source changes
-  useEffect(() => {
+  // Update caption when source changes - use useCallback to prevent unnecessary updates
+  const updateCaption = useCallback(() => {
     const currentCaption = getImageCaption(imageSrc) || initialCaption;
     console.log('🔄 EditableCaption: Updating caption for:', imageSrc.substring(0, 50), 'to:', currentCaption);
     setCaption(currentCaption);
-    setTempCaption(currentCaption);
-  }, [imageSrc, initialCaption, getImageCaption]);
+    if (!isEditing) {
+      setTempCaption(currentCaption);
+    }
+  }, [imageSrc, initialCaption, getImageCaption, isEditing]);
 
-  // Focus input when editing starts
+  useEffect(() => {
+    updateCaption();
+  }, [updateCaption]);
+
+  // Focus input when editing starts - improve focus handling
   useEffect(() => {
     if (isEditing && inputRef.current) {
       console.log('🎯 Focusing input field');
-      // Add a small delay to ensure the input is properly rendered
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         if (inputRef.current) {
           inputRef.current.focus();
           inputRef.current.select();
         }
-      }, 100);
+      }, 50);
+      
+      return () => clearTimeout(timeoutId);
     }
   }, [isEditing]);
 
-  const handleStartEdit = () => {
+  const handleStartEdit = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!showEditingControls) return;
     console.log('✏️ Starting edit mode');
     setTempCaption(caption);
     setIsEditing(true);
-  };
+  }, [showEditingControls, caption]);
 
-  const handleSave = async () => {
+  const handleSave = useCallback(async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
     if (!projectId) {
       console.warn('⚠️ No projectId provided, cannot save');
       return;
@@ -96,37 +110,43 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
     } finally {
       setIsSaving(false);
     }
-  };
+  }, [projectId, imageSrc, tempCaption, caption, saveTextContent]);
 
-  const handleCancel = () => {
+  const handleCancel = useCallback((e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     console.log('❌ Canceling edit');
     setTempCaption(caption);
     setIsEditing(false);
-  };
+  }, [caption]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     console.log('⌨️ Key pressed:', e.key);
     if (e.key === 'Enter') {
       e.preventDefault();
+      e.stopPropagation();
       handleSave();
     } else if (e.key === 'Escape') {
       e.preventDefault();
+      e.stopPropagation();
       handleCancel();
     }
-  };
+  }, [handleSave, handleCancel]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     console.log('📝 Input changed:', newValue);
     setTempCaption(newValue);
-  };
+  }, []);
 
   // Prevent event bubbling on the container when editing
-  const handleContainerClick = (e: React.MouseEvent) => {
+  const handleContainerClick = useCallback((e: React.MouseEvent) => {
     if (isEditing) {
       e.stopPropagation();
     }
-  };
+  }, [isEditing]);
 
   if (isEditing) {
     return (
@@ -144,6 +164,8 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
             autoComplete="off"
             spellCheck="false"
             style={{ minWidth: '200px' }}
+            onFocus={() => console.log('🎯 Input focused')}
+            onBlur={() => console.log('🔍 Input blurred')}
           />
           <button
             onClick={handleSave}
