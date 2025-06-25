@@ -92,91 +92,107 @@ Focus on food, restaurant, and ordering-related features. NEVER use terms like "
       systemPrompt = 'You are describing screenshots from a financial investment and loan platform. Write ONE simple sentence describing what you see - focus on banking, investments, or loan management. Examples: "Investment dashboard interface" or "Loan application screen".';
     }
 
-    // Generate caption using OpenAI with project-specific prompting
-    console.log('🤖 Calling OpenAI API with project-specific prompt for:', projectContext);
-    const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${openAIApiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: systemPrompt
-          },
-          {
-            role: 'user',
-            content: [
-              {
-                type: 'text',
-                text: 'Describe this user interface screenshot in one simple sentence. Pay attention to the specific app features and interface elements:'
-              },
-              {
-                type: 'image_url',
-                image_url: {
-                  url: fullImageUrl,
-                  detail: 'high'
+    // Try OpenAI API first
+    try {
+      console.log('🤖 Calling OpenAI API with project-specific prompt for:', projectContext);
+      const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${openAIApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'system',
+              content: systemPrompt
+            },
+            {
+              role: 'user',
+              content: [
+                {
+                  type: 'text',
+                  text: 'Describe this user interface screenshot in one simple sentence. Pay attention to the specific app features and interface elements:'
+                },
+                {
+                  type: 'image_url',
+                  image_url: {
+                    url: fullImageUrl,
+                    detail: 'high'
+                  }
                 }
-              }
-            ]
-          }
-        ],
-        max_tokens: 40,
-        temperature: 0.2,
-      }),
-    });
+              ]
+            }
+          ],
+          max_tokens: 40,
+          temperature: 0.2,
+        }),
+      });
 
-    if (!openAIResponse.ok) {
-      const errorData = await openAIResponse.text();
-      console.error('❌ OpenAI API error:', openAIResponse.status, errorData);
-      throw new Error(`OpenAI API error: ${openAIResponse.status} - ${errorData}`);
-    }
-
-    const data = await openAIResponse.json();
-    let caption = data.choices?.[0]?.message?.content?.trim();
-
-    if (!caption) {
-      throw new Error('No caption generated from OpenAI');
-    }
-
-    // Clean up the caption - remove unwanted formatting
-    caption = caption
-      .replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
-      .replace(/\n/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-
-    // Project-specific validation
-    if (projectContext?.includes('splittime')) {
-      const inappropriateTerms = ['banking', 'financial', 'business', 'corporate', 'payment', 'transaction', 'account', 'investment', 'loan'];
-      const hasInappropriateTerms = inappropriateTerms.some(term => 
-        caption.toLowerCase().includes(term)
-      );
-      
-      if (hasInappropriateTerms || !caption.toLowerCase().match(/(family|parent|child|custody|schedule|calendar|wellbeing|communication|dashboard|notification|co-parent|coordination)/)) {
-        console.log('🔄 SplitTime caption validation failed, using fallback');
-        caption = getSplitTimeFallback();
+      if (!openAIResponse.ok) {
+        const errorData = await openAIResponse.text();
+        console.error('❌ OpenAI API error:', openAIResponse.status, errorData);
+        throw new Error(`OpenAI API error: ${openAIResponse.status} - ${errorData}`);
       }
-    } else if (projectContext?.includes('barsky') || projectContext?.includes('joint')) {
-      const inappropriateTerms = ['banking', 'financial', 'investment', 'loan', 'family', 'parent', 'child', 'custody'];
-      const hasInappropriateTerms = inappropriateTerms.some(term => 
-        caption.toLowerCase().includes(term)
-      );
-      
-      if (hasInappropriateTerms || !caption.toLowerCase().match(/(food|restaurant|order|menu|delivery|truck|dining|meal|kitchen|chef|cuisine)/)) {
-        console.log('🔄 Barsky Joint caption validation failed, using fallback');
-        caption = getBarskyJointFallback();
+
+      const data = await openAIResponse.json();
+      let caption = data.choices?.[0]?.message?.content?.trim();
+
+      if (!caption) {
+        throw new Error('No caption generated from OpenAI');
       }
+
+      // Clean up the caption - remove unwanted formatting
+      caption = caption
+        .replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
+        .replace(/\n/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      // Project-specific validation
+      if (projectContext?.includes('splittime')) {
+        const inappropriateTerms = ['banking', 'financial', 'business', 'corporate', 'payment', 'transaction', 'account', 'investment', 'loan'];
+        const hasInappropriateTerms = inappropriateTerms.some(term => 
+          caption.toLowerCase().includes(term)
+        );
+        
+        if (hasInappropriateTerms || !caption.toLowerCase().match(/(family|parent|child|custody|schedule|calendar|wellbeing|communication|dashboard|notification|co-parent|coordination)/)) {
+          console.log('🔄 SplitTime caption validation failed, using fallback');
+          caption = getSplitTimeFallback();
+        }
+      } else if (projectContext?.includes('barsky') || projectContext?.includes('joint')) {
+        const inappropriateTerms = ['banking', 'financial', 'investment', 'loan', 'family', 'parent', 'child', 'custody'];
+        const hasInappropriateTerms = inappropriateTerms.some(term => 
+          caption.toLowerCase().includes(term)
+        );
+        
+        if (hasInappropriateTerms || !caption.toLowerCase().match(/(food|restaurant|order|menu|delivery|truck|dining|meal|kitchen|chef|cuisine)/)) {
+          console.log('🔄 Barsky Joint caption validation failed, using fallback');
+          caption = getBarskyJointFallback();
+        }
+      }
+
+      console.log('✅ Context-aware caption generated:', caption);
+
+      return new Response(JSON.stringify({ caption }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+
+    } catch (apiError) {
+      console.error('❌ OpenAI API failed, using project-specific fallback:', apiError);
+      
+      // Use project-specific fallback when API fails
+      const fallbackCaption = getProjectSpecificFallback(projectContext || '');
+      
+      return new Response(JSON.stringify({ 
+        caption: fallbackCaption,
+        error: 'API unavailable, using fallback'
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
-    console.log('✅ Context-aware caption generated:', caption);
-
-    return new Response(JSON.stringify({ caption }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
   } catch (error) {
     console.error('❌ Error in generate-image-caption function:', error);
     
@@ -196,26 +212,26 @@ Focus on food, restaurant, and ordering-related features. NEVER use terms like "
 
 function getSplitTimeFallback(): string {
   const fallbacks = [
-    'Co-parenting dashboard showing family coordination features',
-    'Child wellbeing tracking interface with activity updates',
-    'Family calendar displaying custody schedule and events',
-    'Parent communication screen for coordinating child activities',
-    'Child profile management with health and activity information',
-    'Family notifications panel showing upcoming events and alerts',
-    'Co-parenting app interface for family schedule coordination'
+    'Co-parenting dashboard showing custody schedule and family coordination tools',
+    'Child wellbeing tracking interface with activity logs and health updates',
+    'Family calendar displaying shared custody days and important events',
+    'Parent communication center for coordinating child activities and schedules',
+    'Child profile management screen showing health records and preferences',
+    'Co-parenting notification panel with alerts for upcoming events and messages',
+    'Family coordination dashboard with custody calendar and communication tools'
   ];
   return fallbacks[Math.floor(Math.random() * fallbacks.length)];
 }
 
 function getBarskyJointFallback(): string {
   const fallbacks = [
-    'Food ordering interface showing menu and restaurant options',
-    'Restaurant menu browsing and food selection screen',
-    'Food truck location tracking and ordering dashboard',
-    'Order status and delivery tracking interface',
+    'Food ordering interface showing restaurant menu and ordering options',
+    'Restaurant menu browsing screen with food selection and pricing',
+    'Food truck location tracking dashboard with real-time updates',
+    'Order status and delivery tracking interface for restaurant orders',
     'Restaurant reservation and dining management screen',
-    'Mobile food ordering and payment interface',
-    'Food delivery status and tracking display'
+    'Mobile food ordering dashboard with menu categories and cart',
+    'Food delivery status display showing order progress and timing'
   ];
   return fallbacks[Math.floor(Math.random() * fallbacks.length)];
 }
@@ -231,23 +247,23 @@ function getProjectSpecificFallback(projectContext: string): string {
   
   if (projectContext.includes('herbalink')) {
     const fallbacks = [
-      'Herbal medicine consultation interface',
-      'Practitioner discovery screen',
-      'Wellness tracking dashboard',
-      'Natural health app interface'
+      'Herbal medicine consultation interface with practitioner matching',
+      'Natural wellness platform showing herbal remedy recommendations',
+      'Herbal practitioner discovery screen with consultation booking',
+      'Wellness tracking dashboard for natural health management'
     ];
     return fallbacks[Math.floor(Math.random() * fallbacks.length)];
   }
   
   if (projectContext.includes('investor') || projectContext.includes('loan')) {
     const fallbacks = [
-      'Financial investment dashboard',
-      'Loan management interface',
-      'Banking application screen',
-      'Investment portfolio view'
+      'Financial investment dashboard with portfolio management tools',
+      'Loan management interface showing application status and details',
+      'Banking application screen with account overview and transactions',
+      'Investment portfolio tracking interface with market data'
     ];
     return fallbacks[Math.floor(Math.random() * fallbacks.length)];
   }
   
-  return 'Application interface';
+  return 'Application interface display';
 }
