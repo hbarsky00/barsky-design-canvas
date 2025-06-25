@@ -40,6 +40,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const showEditingControls = shouldShowEditingControls();
 
   const { handleImageReplace, isGeneratingCaption } = useImageUploadWithCaption({
@@ -49,6 +50,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
       setCurrentSrc(newSrc);
       setImageError(false);
+      setImageLoaded(false);
       if (onImageReplace) {
         onImageReplace(newSrc);
       }
@@ -66,11 +68,22 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       console.log('🔄 MaximizableImage: Source updated from prop:', src);
       setCurrentSrc(src);
       setImageError(false);
+      setImageLoaded(false);
     }
   }, [src]);
 
+  // Log detailed image loading info
+  useEffect(() => {
+    console.log('🖼️ MaximizableImage: Attempting to load image:', {
+      src: currentSrc,
+      projectId,
+      alt: alt.substring(0, 30),
+      caption: caption?.substring(0, 30)
+    });
+  }, [currentSrc, projectId, alt, caption]);
+
   const handleMaximize = () => {
-    if (!imageError) {
+    if (!imageError && imageLoaded) {
       maximizeImage(currentSrc, alt, imageList, currentIndex);
     }
   };
@@ -83,13 +96,23 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageError = () => {
-    console.error('❌ Image failed to load:', currentSrc);
+    console.error('❌ Image failed to load:', {
+      src: currentSrc,
+      projectId,
+      alt
+    });
     setImageError(true);
+    setImageLoaded(false);
   };
 
   const handleImageLoad = () => {
-    console.log('✅ Image loaded successfully:', currentSrc.substring(0, 50) + '...');
+    console.log('✅ Image loaded successfully:', {
+      src: currentSrc.substring(0, 50) + '...',
+      projectId,
+      alt: alt.substring(0, 30)
+    });
     setImageError(false);
+    setImageLoaded(true);
   };
 
   return (
@@ -100,10 +123,20 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         onMouseLeave={() => setIsHovered(false)}
       >
         {imageError ? (
-          <ImageErrorFallback 
-            showEditingControls={showEditingControls}
-            originalSrc={currentSrc}
-          />
+          <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
+            <div className="text-center p-4">
+              <p className="text-gray-500 text-sm">Failed to load image</p>
+              <p className="text-gray-400 text-xs mt-1">{currentSrc.substring(0, 50)}...</p>
+              {showEditingControls && (
+                <button 
+                  onClick={() => document.getElementById(`file-upload-${currentIndex}`)?.click()}
+                  className="mt-2 px-3 py-1 bg-blue-500 text-white rounded text-xs"
+                >
+                  Replace Image
+                </button>
+              )}
+            </div>
+          </div>
         ) : (
           <img
             src={currentSrc}
@@ -133,6 +166,17 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           onImageReplace={handleImageReplace}
           onImageRemove={handleImageRemove}
         />
+
+        {/* Hidden file input for image replacement */}
+        {showEditingControls && (
+          <input
+            id={`file-upload-${currentIndex}`}
+            type="file"
+            accept="image/*"
+            onChange={handleImageReplace}
+            className="hidden"
+          />
+        )}
       </div>
       
       {caption && (
