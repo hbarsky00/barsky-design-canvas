@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 interface OpenAiCaptionResponse {
@@ -30,29 +29,29 @@ export const useOpenAiCaptions = () => {
     }
   };
 
-  // Function to clean and enforce one sentence
-  const enforceOneSentence = (text: string): string => {
-    if (!text) return 'Professional app interface with modern design.';
+  // Function to enforce ultra-short captions
+  const enforceUltraShortCaption = (text: string): string => {
+    if (!text) return 'Modern app interface.';
     
-    // Remove any markdown formatting
-    text = text.replace(/[*_`]/g, '');
+    // Remove any markdown formatting and punctuation except periods
+    text = text.replace(/[*_`]/g, '').replace(/[^\w\s.]/g, '');
     
-    // Split by sentence endings and take only the first sentence
+    // Take only the first sentence if multiple exist
     const sentences = text.split(/[.!?]+/);
     let caption = sentences[0].trim();
     
+    // Limit to 8 words maximum
+    const words = caption.split(/\s+/).filter(word => word.length > 0);
+    if (words.length > 8) {
+      caption = words.slice(0, 8).join(' ');
+    }
+    
     // Ensure it ends with a period
-    if (!caption.match(/[.!?]$/)) {
+    if (!caption.endsWith('.')) {
       caption += '.';
     }
     
-    // Limit to 20 words maximum
-    const words = caption.split(' ');
-    if (words.length > 20) {
-      caption = words.slice(0, 20).join(' ') + '.';
-    }
-    
-    // Clean up multiple spaces and line breaks
+    // Clean up multiple spaces
     caption = caption.replace(/\s+/g, ' ').trim();
     
     return caption;
@@ -65,18 +64,6 @@ export const useOpenAiCaptions = () => {
       const result = await retryWithBackoff(async () => {
         const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
         
-        // Enhanced context with unique image identifiers and concise prompts
-        const imageFileName = imageSrc.split('/').pop() || '';
-        const uniqueImageContext = `${projectContext}. 
-
-CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
-- Image filename: ${imageFileName}
-- Generate EXACTLY ONE SENTENCE describing the specific UI elements and functionality visible in this image
-- Be extremely specific about what makes this screen unique
-- Focus on the primary purpose and key visual elements you can see
-- Keep it concise but descriptive - maximum 20 words
-- Do not use generic descriptions - describe what you actually see in this specific interface`;
-        
         const response = await fetch(functionUrl, {
           method: 'POST',
           headers: {
@@ -87,7 +74,7 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
           body: JSON.stringify({ 
             imageSrc,
             contextType: 'project',
-            projectContext: uniqueImageContext
+            projectContext: projectContext || 'App interface'
           }),
         });
 
@@ -109,51 +96,33 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
         throw new Error('No caption received from OpenAI API');
       }
       
-      // Enforce one sentence constraint on client side as well
-      const caption = enforceOneSentence(result.caption);
+      // Enforce ultra-short caption constraint on client side
+      const caption = enforceUltraShortCaption(result.caption);
       
-      console.log('✅ OpenAI Caption generated successfully for image', (imageIndex || 0) + 1, ':', caption);
+      console.log('✅ Ultra-short caption generated for image', (imageIndex || 0) + 1, ':', caption);
       
       return { caption };
     } catch (error) {
       console.error('❌ Error generating OpenAI caption for image', (imageIndex || 0) + 1, ':', error);
-      // Return unique fallback based on image index, filename, and project context
-      const getUniqueFallback = (index: number, imageSrc: string, projectContext: string) => {
-        const imageFileName = imageSrc.split('/').pop() || `image-${index}`;
-        const imageId = imageFileName.replace(/\.[^/.]+$/, ""); // Remove extension
-        
-        if (projectContext.includes('medication') || projectContext.includes('diabetic') || projectContext.includes('health')) {
-          const medicationFallbacks = [
-            `Medication tracking dashboard for diabetic patients.`,
-            `Health monitoring interface with glucose tracking.`,
-            `Patient profile management with medical history.`,
-            `Appointment scheduling with medication reminders.`,
-            `Medical alert system for health notifications.`,
-            `Prescription refill management dashboard.`,
-            `Health metrics visualization interface.`,
-            `Doctor communication portal screen.`,
-            `Emergency contact system interface.`
-          ];
-          return medicationFallbacks[index % medicationFallbacks.length];
-        }
-        
-        // Generic fallbacks with unique identifiers
-        const genericFallbacks = [
-          `Professional app interface with modern design.`,
-          `Interactive dashboard with clean navigation.`,
-          `User-friendly platform with streamlined workflow.`,
-          `Responsive application screen design.`,
-          `Digital interface with modern aesthetics.`,
-          `Application screen with professional design.`,
-          `Software interface with accessible layout.`,
-          `Modern app screen with intuitive design.`
+      
+      // Return ultra-short fallback based on image index
+      const getUltraShortFallback = (index: number) => {
+        const fallbacks = [
+          'Modern app interface.',
+          'Clean dashboard design.',
+          'Interactive user platform.',
+          'Professional app screen.',
+          'Digital interface layout.',
+          'Application screen view.',
+          'Software interface design.',
+          'Modern platform screen.'
         ];
         
-        return genericFallbacks[index % genericFallbacks.length];
+        return fallbacks[index % fallbacks.length];
       };
       
       return { 
-        caption: getUniqueFallback(imageIndex || 0, imageSrc, projectContext || ''),
+        caption: getUltraShortFallback(imageIndex || 0),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -164,7 +133,7 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
     projectId: string, 
     onCaptionGenerated?: (imageSrc: string, caption: string) => void
   ) => {
-    console.log(`🚀 Starting one-time OpenAI caption generation for ${images.length} unique images in ${projectId}...`);
+    console.log(`🚀 Starting one-time OpenAI caption generation for ${images.length} images in ${projectId}...`);
     
     // Clear existing cache for this project to force regeneration if needed
     images.forEach(imageSrc => {
@@ -176,42 +145,20 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
     
     const newCaptions: Record<string, string> = {};
     
-    // Set specific project context for better caption generation
-    let projectContext = '';
-    if (projectId === 'medication-app') {
-      projectContext = 'Medication management app for diabetic patients with prescription tracking and health monitoring.';
-    } else if (projectId === 'splittime') {
-      projectContext = 'Splittime co-parenting coordination app for separated families with scheduling and communication tools.';
-    } else if (projectId === 'barskyjoint') {
-      projectContext = 'Barsky Joint food truck and restaurant app with mobile ordering and GPS tracking.';
-    } else if (projectId === 'herbalink') {
-      projectContext = 'Herbalink herbal medicine app connecting patients with herbalists for consultations.';
-    } else if (projectId === 'gold2crypto') {
-      projectContext = 'Gold2Crypto cryptocurrency trading platform for traditional investors.';
-    } else if (projectId === 'spectrum') {
-      projectContext = 'Spectrum Apparel custom clothing design platform with e-commerce features.';
-    } else if (projectId === 'dae-search' || projectId === 'daeSearch') {
-      projectContext = 'DAE Search enterprise data discovery platform with AI recommendations.';
-    } else if (projectId === 'investor-loan-app') {
-      projectContext = 'Investor loan management platform for private banking and financial data.';
-    } else {
-      projectContext = 'Professional app interface with modern design and functionality.';
-    }
-    
     for (let i = 0; i < images.length; i++) {
       const imageSrc = images[i];
       
       try {
         setGenerationProgress({ current: i + 1, total: images.length });
         
-        console.log(`🎯 Processing unique image ${i + 1}/${images.length}:`, imageSrc.substring(0, 50) + '...');
+        console.log(`🎯 Processing image ${i + 1}/${images.length}:`, imageSrc.substring(0, 50) + '...');
         
-        // Generate caption with enhanced uniqueness context
-        const result = await generateCaption(imageSrc, projectContext, i);
+        // Generate caption with ultra-short constraints
+        const result = await generateCaption(imageSrc, projectId, i);
         
         if (result.caption && !result.error) {
-          // Double-check caption is one sentence on client side
-          const cleanedCaption = enforceOneSentence(result.caption);
+          // Double-check caption is ultra-short on client side
+          const cleanedCaption = enforceUltraShortCaption(result.caption);
           newCaptions[imageSrc] = cleanedCaption;
           globalCaptionCache[imageSrc] = cleanedCaption;
           
@@ -220,23 +167,16 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
             onCaptionGenerated(imageSrc, cleanedCaption);
           }
           
-          console.log(`✅ Unique caption generated for image ${i + 1}/${images.length}:`, cleanedCaption);
+          console.log(`✅ Ultra-short caption generated for image ${i + 1}/${images.length}:`, cleanedCaption);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
           if (result.caption) {
-            const cleanedCaption = enforceOneSentence(result.caption);
+            const cleanedCaption = enforceUltraShortCaption(result.caption);
             newCaptions[imageSrc] = cleanedCaption;
             if (onCaptionGenerated) {
               onCaptionGenerated(imageSrc, cleanedCaption);
             }
           }
-        }
-        
-        // Add progressive delay to avoid overwhelming the API and ensure uniqueness
-        if (i < images.length - 1) {
-          const delay = 4000 + (i * 1000); // Start with 4s, increase by 1s each time for better API spacing
-          console.log(`⏳ Waiting ${delay/1000}s before processing next unique image...`);
-          await new Promise(resolve => setTimeout(resolve, delay));
         }
       } catch (error) {
         console.error(`❌ Failed to generate caption for image ${i + 1}: ${imageSrc}:`, error);
@@ -245,7 +185,7 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
     
     setIsGenerating(false);
     setGenerationProgress(null);
-    console.log('✅ One-time unique caption generation complete for project:', projectId, 'Generated captions:', Object.keys(newCaptions).length);
+    console.log('✅ One-time caption generation complete for project:', projectId, 'Generated captions:', Object.keys(newCaptions).length);
     return newCaptions;
   };
 

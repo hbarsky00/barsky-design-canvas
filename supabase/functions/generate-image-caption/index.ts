@@ -37,17 +37,7 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    const getSystemPrompt = (contextType: string, projectContext?: string) => {
-      const basePrompt = 'You are an expert at analyzing app interfaces and describing them in EXACTLY ONE SENTENCE. Your response must be a single sentence with maximum 20 words.';
-      
-      if (projectContext) {
-        return `${basePrompt} Context: ${projectContext}`;
-      }
-      
-      return `${basePrompt} Analyze this app interface and describe the specific UI elements and functionality in exactly one sentence.`;
-    };
-
-    // Generate descriptive caption using OpenAI with strict one-sentence constraint
+    // Generate descriptive caption using OpenAI with ultra-strict constraints
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -60,27 +50,27 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: getSystemPrompt(contextType, projectContext)
+            content: 'You MUST write EXACTLY ONE short sentence describing this app interface. Maximum 8 words. No periods. No extra text.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Describe this app interface in EXACTLY ONE SENTENCE with a maximum of 20 words. Focus on the key UI elements and functionality visible. Do not use multiple sentences or bullet points.'
+                text: 'Describe this app interface in exactly one short sentence with maximum 8 words. Do not use punctuation.'
               },
               {
                 type: 'image_url',
                 image_url: {
                   url: fullImageUrl,
-                  detail: 'high'
+                  detail: 'low'
                 }
               }
             ]
           }
         ],
-        max_tokens: 40, // Further reduced to enforce brevity
-        temperature: 0.3, // Lower temperature for more consistent output
+        max_tokens: 15,
+        temperature: 0.1,
       }),
     });
 
@@ -97,27 +87,14 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // Strictly enforce one sentence by taking only the first sentence
-    const sentences = caption.split(/[.!?]+/);
-    if (sentences.length > 1) {
-      caption = sentences[0].trim();
-    }
+    // Ultra-strict enforcement: take only first 8 words, no punctuation
+    const words = caption.replace(/[^\w\s]/g, '').split(/\s+/).filter(word => word.length > 0);
+    caption = words.slice(0, 8).join(' ');
 
-    // Ensure it ends with a period if it doesn't already
-    if (!caption.match(/[.!?]$/)) {
-      caption += '.';
-    }
+    // Add period at the end
+    caption = caption + '.';
 
-    // Strictly limit to 20 words maximum
-    const words = caption.split(' ');
-    if (words.length > 20) {
-      caption = words.slice(0, 20).join(' ') + '.';
-    }
-
-    // Remove any remaining line breaks or multiple spaces
-    caption = caption.replace(/\s+/g, ' ').trim();
-
-    console.log('✅ OpenAI Caption generated successfully:', caption);
+    console.log('✅ Ultra-short caption generated:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -126,7 +103,7 @@ serve(async (req) => {
     console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'Professional app interface with modern design.'
+      caption: 'Modern app interface design.'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

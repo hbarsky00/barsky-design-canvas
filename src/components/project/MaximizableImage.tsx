@@ -41,6 +41,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [forceRefresh, setForceRefresh] = useState(0);
   const showEditingControls = shouldShowEditingControls();
 
   const { handleImageReplace, isGeneratingCaption } = useImageUploadWithCaption({
@@ -51,36 +52,39 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       setCurrentSrc(newSrc);
       setImageError(false);
       setImageLoaded(false);
+      setForceRefresh(prev => prev + 1);
       if (onImageReplace) {
         onImageReplace(newSrc);
       }
     },
     setCurrentSrc,
     setImageError,
-    setForceRefresh: () => {} // Simplified - no forced refreshes
+    setForceRefresh
   });
 
   const isUploading = isGeneratingCaption;
 
-  // Only update source if prop actually changes
+  // Update source when prop changes
   useEffect(() => {
     if (src !== currentSrc && src) {
       console.log('🔄 MaximizableImage: Source updated from prop:', src);
       setCurrentSrc(src);
       setImageError(false);
       setImageLoaded(false);
+      setForceRefresh(prev => prev + 1);
     }
   }, [src]);
 
-  // Log detailed image loading info
+  // Log image loading attempts
   useEffect(() => {
-    console.log('🖼️ MaximizableImage: Attempting to load image:', {
+    console.log('🖼️ MaximizableImage: Loading image:', {
       src: currentSrc,
       projectId,
       alt: alt.substring(0, 30),
-      caption: caption?.substring(0, 30)
+      caption: caption?.substring(0, 30),
+      forceRefresh
     });
-  }, [currentSrc, projectId, alt, caption]);
+  }, [currentSrc, projectId, alt, caption, forceRefresh]);
 
   const handleMaximize = () => {
     if (!imageError && imageLoaded) {
@@ -99,7 +103,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     console.error('❌ Image failed to load:', {
       src: currentSrc,
       projectId,
-      alt
+      alt,
+      forceRefresh
     });
     setImageError(true);
     setImageLoaded(false);
@@ -109,7 +114,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     console.log('✅ Image loaded successfully:', {
       src: currentSrc.substring(0, 50) + '...',
       projectId,
-      alt: alt.substring(0, 30)
+      alt: alt.substring(0, 30),
+      forceRefresh
     });
     setImageError(false);
     setImageLoaded(true);
@@ -125,7 +131,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         {imageError ? (
           <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
             <div className="text-center p-4">
-              <p className="text-gray-500 text-sm">Failed to load image</p>
+              <p className="text-gray-500 text-sm">Image failed to load</p>
               <p className="text-gray-400 text-xs mt-1">{currentSrc.substring(0, 50)}...</p>
               {showEditingControls && (
                 <button 
@@ -146,6 +152,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             onClick={handleMaximize}
             onError={handleImageError}
             onLoad={handleImageLoad}
+            key={`${currentSrc}-${forceRefresh}`}
             style={{ 
               opacity: isUploading ? 0.7 : 1,
               transition: 'opacity 0.3s ease'
