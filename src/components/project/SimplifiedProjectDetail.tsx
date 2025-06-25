@@ -14,20 +14,20 @@ import SimpleProjectHero from "./sections/SimpleProjectHero";
 import SimpleContentSection from "./sections/SimpleContentSection";
 import ProjectCallToAction from "./ProjectCallToAction";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import Footer from "@/components/Footer";
 
 const SimplifiedProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const showEditingControls = shouldShowEditingControls();
 
   console.log('📋 SimplifiedProjectDetail: Loading project:', projectId);
-  console.log('📋 Available projects:', projectsData.map(p => p.id));
-  console.log('📋 Available project details:', Object.keys(projectDetails));
 
+  // Find project and details
   const project = projectsData.find(p => p.id === projectId);
   const details = projectDetails[projectId as keyof typeof projectDetails];
   
-  console.log('📋 Found project:', !!project);
-  console.log('📋 Found details:', !!details);
+  console.log('📋 Project found:', !!project, project?.title);
+  console.log('📋 Details found:', !!details);
   
   const { 
     saveTextContent, 
@@ -37,6 +37,7 @@ const SimplifiedProjectDetail = () => {
     refreshTrigger 
   } = useSimplifiedProjectPersistence(projectId!);
 
+  // Static captions - empty object since we load from database
   const staticCaptions = {};
   
   const { 
@@ -55,12 +56,15 @@ const SimplifiedProjectDetail = () => {
 
   if (!project) {
     console.log('❌ Project not found:', projectId);
+    console.log('📋 Available projects:', projectsData.map(p => p.id));
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-          <p className="text-gray-600">Project "{projectId}" could not be found.</p>
-          <p className="text-sm text-gray-500 mt-2">Available projects: {projectsData.map(p => p.id).join(', ')}</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
+            <p className="text-gray-600">Project "{projectId}" could not be found.</p>
+            <p className="text-sm text-gray-500 mt-2">Available projects: {projectsData.map(p => p.id).join(', ')}</p>
+          </div>
         </div>
       </div>
     );
@@ -68,19 +72,38 @@ const SimplifiedProjectDetail = () => {
 
   if (!details) {
     console.log('❌ Project details not found:', projectId);
+    console.log('📋 Available details:', Object.keys(projectDetails));
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Details Not Found</h1>
-          <p className="text-gray-600">Details for project "{projectId}" could not be found.</p>
-          <p className="text-sm text-gray-500 mt-2">Available details: {Object.keys(projectDetails).join(', ')}</p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Details Not Found</h1>
+            <p className="text-gray-600">Details for project "{projectId}" could not be found.</p>
+            <p className="text-sm text-gray-500 mt-2">Available details: {Object.keys(projectDetails).join(', ')}</p>
+          </div>
         </div>
       </div>
     );
   }
 
+  // Log the actual project data being displayed
+  console.log('✅ Displaying project:', {
+    id: project.id,
+    title: getTextContent('title', project.title),
+    description: getTextContent('description', project.description),
+    image: getImageSrc(project.image),
+    captionsCount: Object.keys(finalCaptions).length
+  });
+
+  console.log('✅ Displaying details:', {
+    challenge: getTextContent('challenge_content', details.challenge)?.substring(0, 50) + '...',
+    process: getTextContent('process_content', details.process)?.substring(0, 50) + '...',
+    result: getTextContent('result_content', details.result)?.substring(0, 50) + '...',
+    availableImages: details.availableImages?.length || 0
+  });
+
   return (
-    <div className="bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <Helmet>
         <title>{getTextContent('title', project.title)} - Barsky Design</title>
         <meta name="description" content={getTextContent('description', project.description)} />
@@ -168,12 +191,10 @@ const SimplifiedProjectDetail = () => {
             <ProjectCallToAction />
 
             {/* Project Navigation */}
-            <section className="mt-16">
-              <ProjectNavigation
-                currentProjectId={projectId!}
-                projectsData={projectsData}
-              />
-            </section>
+            <ProjectNavigation
+              currentProjectId={projectId!}
+              projectsData={projectsData}
+            />
           </div>
 
           {/* Sidebar */}
@@ -187,6 +208,9 @@ const SimplifiedProjectDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

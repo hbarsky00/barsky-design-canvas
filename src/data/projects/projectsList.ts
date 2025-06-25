@@ -4,47 +4,55 @@ import { ProjectProps } from "@/components/ProjectCard";
 export const projectsData: ProjectProps[] = [
   {
     id: "medication-app",
-    title: "Medication & Appointment Management App",
-    description: "Mobile app design for diabetic patients to track medication, schedule appointments, and monitor health data with an intuitive user experience.",
-    image: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
-    tags: ["Mobile App Design", "Healthcare", "UX Research", "UI Design", "Patient Care", "Accessibility"],
-    featured: true,
-    category: "Healthcare"
+    title: "Medication Management App",
+    description: "A comprehensive diabetes management application that helps patients track medications, schedule appointments, and monitor their health with an intuitive, accessible interface.",
+    image: "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
+    category: "Healthcare Technology",
+    year: "2023",
+    tags: ["UX/UI Design", "Mobile App", "Healthcare", "React Native"]
   },
   {
     id: "investor-loan-app",
-    title: "Investor Loan App",
-    description: "Comprehensive loan management platform for investors with portfolio tracking, risk assessment, and automated reporting.",
-    image: "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png",
-    tags: ["Fintech", "Investment", "Loan Management", "Portfolio"],
-    featured: true,
-    category: "Fintech"
+    title: "Private Money Lending Platform",
+    description: "A sophisticated financial platform connecting private lenders with real estate investors, featuring automated underwriting, document management, and portfolio tracking.",
+    image: "/lovable-uploads/e2bdc9bb-5f83-4a5a-b2ed-1ca6a5219890.png",
+    category: "Financial Technology",
+    year: "2023",
+    tags: ["UX/UI Design", "Web App", "FinTech", "React"]
   },
   {
     id: "herbalink",
-    title: "Herbalink",
-    description: "Herbalink is a mobile-first platform that connects users with certified herbalists for personalized consultations, creating a trusted ecosystem for natural wellness.",
-    image: "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
-    tags: ["E-commerce", "Inventory", "Health & Wellness"],
-    featured: true,
-    category: "E-commerce"
+    title: "Herbalink E-commerce Platform",
+    description: "A modern e-commerce solution for herbal products featuring advanced product filtering, secure payments, and comprehensive inventory management.",
+    image: "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png",
+    category: "E-commerce",
+    year: "2023",
+    tags: ["UX/UI Design", "E-commerce", "Web App", "React"]
   },
   {
     id: "splittime",
-    title: "Splittime",
-    description: "Co-parenting coordination app that reduces conflict and improves communication while prioritizing children's wellbeing.",
-    image: "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png",
-    tags: ["React Native", "Family Tech", "Communication", "Mobile App"],
-    featured: true,
-    category: "Mobile App"
+    title: "Splittime Employee Management",
+    description: "An innovative employee scheduling and management platform designed for restaurants and hospitality businesses, featuring shift planning, time tracking, and team communication.",
+    image: "/lovable-uploads/7a9c8543-57e2-4048-b200-5fa7a1f0b8a3.png",
+    category: "Business Management",
+    year: "2023",
+    tags: ["UX/UI Design", "Business Tools", "Web App", "React"]
   },
   {
     id: "barskyjoint",
-    title: "Barsky Joint",
-    description: "A comprehensive digital solution for food truck operations and restaurant management, featuring mobile ordering, GPS tracking, and real-time updates.",
-    image: "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
-    tags: ["React Native", "Mobile App", "GPS Tracking", "Food Tech"],
-    featured: true,
-    category: "Mobile App"
+    title: "Barsky Joint Restaurant",
+    description: "A vibrant restaurant website featuring online ordering, table reservations, and an engaging digital menu experience with seamless mobile optimization.",
+    image: "/lovable-uploads/f604a63a-fa98-4d5e-abac-418c139487d1.png",
+    category: "Restaurant & Hospitality",
+    year: "2023",
+    tags: ["UX/UI Design", "Restaurant", "Web Design", "React"]
   }
 ];
+
+// Enhanced logging for debugging
+console.log('📋 Projects list loaded successfully:', {
+  totalProjects: projectsData.length,
+  projectIds: projectsData.map(p => p.id),
+  medicationAppFound: !!projectsData.find(p => p.id === "medication-app"),
+  medicationAppData: projectsData.find(p => p.id === "medication-app")
+});
