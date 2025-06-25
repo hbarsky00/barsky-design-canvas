@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { projectDetails } from "@/data/project-details";
-import { projectsData } from "@/data/projectsData";
+import { projectsData } from "@/data/projects/projectsList";
 import { useProjectAiCaptions } from "@/hooks/useProjectAiCaptions";
 import { useSimplifiedProjectPersistence } from "@/hooks/useSimplifiedProjectPersistence";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
@@ -17,8 +17,15 @@ const SimplifiedProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const showEditingControls = shouldShowEditingControls();
 
+  console.log('📋 SimplifiedProjectDetail: Loading project:', projectId);
+  console.log('📋 Available projects:', projectsData.map(p => p.id));
+  console.log('📋 Available project details:', Object.keys(projectDetails));
+
   const project = projectsData.find(p => p.id === projectId);
   const details = projectDetails[projectId as keyof typeof projectDetails];
+  
+  console.log('📋 Found project:', !!project);
+  console.log('📋 Found details:', !!details);
   
   const { 
     saveTextContent, 
@@ -39,8 +46,39 @@ const SimplifiedProjectDetail = () => {
     console.log('🔄 SimplifiedProjectDetail: Component refreshed due to data changes');
   }, [refreshTrigger]);
 
-  if (!project || !details) {
+  if (!projectId) {
+    console.log('❌ No project ID provided');
     return <ProjectDetailLoading />;
+  }
+
+  if (!project) {
+    console.log('❌ Project not found:', projectId);
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
+            <p className="text-gray-600">Project "{projectId}" could not be found.</p>
+            <p className="text-sm text-gray-500 mt-2">Available projects: {projectsData.map(p => p.id).join(', ')}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!details) {
+    console.log('❌ Project details not found:', projectId);
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Details Not Found</h1>
+            <p className="text-gray-600">Details for project "{projectId}" could not be found.</p>
+            <p className="text-sm text-gray-500 mt-2">Available details: {Object.keys(projectDetails).join(', ')}</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -74,6 +112,7 @@ const SimplifiedProjectDetail = () => {
               saveTextContent={saveTextContent}
               saveImageReplacement={saveImageReplacement}
               finalCaptions={finalCaptions}
+              imageCaptions={finalCaptions}
             />
 
             {/* Challenge Section */}
@@ -89,6 +128,7 @@ const SimplifiedProjectDetail = () => {
                 saveTextContent={saveTextContent}
                 saveImageReplacement={saveImageReplacement}
                 finalCaptions={finalCaptions}
+                imageCaptions={finalCaptions}
               />
             )}
 
@@ -105,6 +145,7 @@ const SimplifiedProjectDetail = () => {
                 saveTextContent={saveTextContent}
                 saveImageReplacement={saveImageReplacement}
                 finalCaptions={finalCaptions}
+                imageCaptions={finalCaptions}
               />
             )}
 
@@ -121,6 +162,7 @@ const SimplifiedProjectDetail = () => {
                 saveTextContent={saveTextContent}
                 saveImageReplacement={saveImageReplacement}
                 finalCaptions={finalCaptions}
+                imageCaptions={finalCaptions}
               />
             )}
           </div>

@@ -19,3 +19,6 @@ export const projectDetails: Record<string, ProjectDetails> = {
   "barskyjoint": barskyjointDetails,
   "spectrum": spectrumDetails
 };
+
+// Log the available project details for debugging
+console.log('📚 Project details loaded:', Object.keys(projectDetails));
