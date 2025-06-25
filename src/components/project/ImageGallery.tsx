@@ -2,7 +2,7 @@
 import React from "react";
 import MaximizableImage from "./MaximizableImage";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
-import ImageUploadButton from "./ImageUploadButton";
+import ImageUploadButton from "../editor/image-manager/ImageUploadButton";
 
 interface ImageGalleryProps {
   images: string[];
@@ -41,11 +41,29 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
             {/* Image replacement button for editing mode */}
             {showEditingControls && onImageReplace && (
               <div className="absolute top-2 right-2">
-                <ImageUploadButton
-                  onImageSelected={(newSrc) => onImageReplace(imageSrc, newSrc)}
-                  buttonText="Replace"
+                <button
+                  onClick={() => {
+                    // Simple file input for replacement
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.onchange = (e) => {
+                      const file = (e.target as HTMLInputElement).files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                          const result = event.target?.result as string;
+                          onImageReplace(imageSrc, result);
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    };
+                    input.click();
+                  }}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm"
-                />
+                >
+                  Replace
+                </button>
               </div>
             )}
           </div>
@@ -55,14 +73,29 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
       {/* Add more images button in editing mode */}
       {showEditingControls && images.length < maxImages && (
         <div className="text-center">
-          <ImageUploadButton
-            onImageSelected={(newSrc) => {
-              // This would need to be handled by the parent component
-              console.log('Add new image:', newSrc);
+          <button
+            onClick={() => {
+              // Simple file input for adding new images
+              const input = document.createElement('input');
+              input.type = 'file';
+              input.accept = 'image/*';
+              input.onchange = (e) => {
+                const file = (e.target as HTMLInputElement).files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                    const result = event.target?.result as string;
+                    console.log('Add new image:', result);
+                  };
+                  reader.readAsDataURL(file);
+                }
+              };
+              input.click();
             }}
-            buttonText="Add Image"
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-          />
+          >
+            Add Image
+          </button>
         </div>
       )}
     </div>
