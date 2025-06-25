@@ -1,27 +1,48 @@
 
-import { useMemo } from 'react';
-import { ProjectDetails } from '@/data/types/project';
+import React from "react";
+import { ProjectDetails } from "@/data/types/project";
 
 export const useProcessImages = (details: ProjectDetails) => {
-  return useMemo(() => {
+  const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
+  const processRegularImage = details.processImage;
+  
+  const processImages = React.useMemo(() => {
     const images: string[] = [];
+    const seenImages = new Set<string>();
     
-    // Add process before header image if it exists
-    if (details.imageConfig?.process?.beforeHeader) {
-      images.push(details.imageConfig.process.beforeHeader);
+    // Add images in order, checking for duplicates
+    if (processBeforeHeaderImage && !seenImages.has(processBeforeHeaderImage)) {
+      images.push(processBeforeHeaderImage);
+      seenImages.add(processBeforeHeaderImage);
     }
     
-    // Add regular process image if it exists
-    if (details.processImage) {
-      images.push(details.processImage);
+    if (processRegularImage && !seenImages.has(processRegularImage)) {
+      images.push(processRegularImage);
+      seenImages.add(processRegularImage);
     }
     
-    // Add process bottom image if it exists
-    if (details.processBottomImage) {
-      images.push(details.processBottomImage);
+    // Add processGalleryImages to the process section, avoiding duplicates
+    if (details.processGalleryImages) {
+      details.processGalleryImages.forEach(imageSrc => {
+        if (!seenImages.has(imageSrc)) {
+          images.push(imageSrc);
+          seenImages.add(imageSrc);
+        }
+      });
     }
     
-    console.log('🔄 useProcessImages: Collected process images:', images.length);
+    // Add servicesGalleryImages to the process section, avoiding duplicates
+    if (details.servicesGalleryImages) {
+      details.servicesGalleryImages.forEach(imageSrc => {
+        if (!seenImages.has(imageSrc)) {
+          images.push(imageSrc);
+          seenImages.add(imageSrc);
+        }
+      });
+    }
+    
     return images;
-  }, [details]);
+  }, [processBeforeHeaderImage, processRegularImage, details.processGalleryImages, details.servicesGalleryImages]);
+
+  return processImages;
 };
