@@ -18,19 +18,24 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   className = ""
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [caption, setCaption] = useState(initialCaption);
-  const [tempCaption, setTempCaption] = useState(initialCaption);
   const [isSaving, setIsSaving] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const showEditingControls = shouldShowEditingControls();
   
-  const { saveTextContent } = useSimplifiedProjectPersistence(projectId || '');
+  const { saveTextContent, getImageCaption } = useSimplifiedProjectPersistence(projectId || '');
+  
+  // Get the actual caption from all possible sources
+  const actualCaption = getImageCaption(imageSrc) || initialCaption;
+  const [caption, setCaption] = useState(actualCaption);
+  const [tempCaption, setTempCaption] = useState(actualCaption);
 
-  // Update caption when initialCaption changes
+  // Update caption when source changes
   useEffect(() => {
-    setCaption(initialCaption);
-    setTempCaption(initialCaption);
-  }, [initialCaption]);
+    const currentCaption = getImageCaption(imageSrc) || initialCaption;
+    console.log('🔄 EditableCaption: Updating caption for:', imageSrc.substring(0, 50), 'to:', currentCaption);
+    setCaption(currentCaption);
+    setTempCaption(currentCaption);
+  }, [imageSrc, initialCaption, getImageCaption]);
 
   // Focus input when editing starts
   useEffect(() => {
@@ -51,7 +56,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
     
     setIsSaving(true);
     try {
-      // Save with img_caption_ prefix to ensure isolation
+      // Save with img_caption_ prefix to ensure proper storage
       const captionKey = `img_caption_${imageSrc}`;
       await saveTextContent(captionKey, tempCaption.trim());
       
