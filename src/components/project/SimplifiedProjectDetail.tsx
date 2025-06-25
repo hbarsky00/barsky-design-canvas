@@ -12,6 +12,9 @@ import ProjectDetailLoading from "./ProjectDetailLoading";
 import ProjectSidebar from "./ProjectSidebar";
 import SimpleProjectHero from "./sections/SimpleProjectHero";
 import SimpleContentSection from "./sections/SimpleContentSection";
+import ProjectCallToAction from "./ProjectCallToAction";
+import ProjectNavigation from "@/components/ProjectNavigation";
+import Footer from "@/components/Footer";
 
 const SimplifiedProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -183,6 +186,15 @@ const SimplifiedProjectDetail = () => {
                 imageCaptions={finalCaptions}
               />
             )}
+
+            {/* Call to Action */}
+            <ProjectCallToAction />
+
+            {/* Project Navigation */}
+            <ProjectNavigation
+              currentProjectId={projectId!}
+              projectsData={projectsData}
+            />
           </div>
 
           {/* Sidebar */}
@@ -196,6 +208,9 @@ const SimplifiedProjectDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
