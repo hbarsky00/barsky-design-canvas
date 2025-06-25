@@ -7,12 +7,12 @@ export const useProjectUtilities = (
   loadFreshDataFromDatabase: () => Promise<void>
 ) => {
   const clearProjectData = useCallback(() => {
-    setCachedData({
+    setCachedData(() => ({
       textContent: {},
       imageReplacements: {},
       imageCaptions: {},
       contentBlocks: {}
-    });
+    }));
     console.log('🗑️ Cleared project data');
   }, [setCachedData]);
 
