@@ -20,15 +20,5 @@ export const projectDetails: Record<string, ProjectDetails> = {
   "spectrum": spectrumDetails
 };
 
-// Enhanced logging for debugging
-console.log('📚 Project details loaded successfully:', {
-  totalProjects: Object.keys(projectDetails).length,
-  projectIds: Object.keys(projectDetails),
-  medicationAppLoaded: !!projectDetails["medication-app"],
-  medicationAppDetails: projectDetails["medication-app"] ? {
-    hasChallenge: !!projectDetails["medication-app"].challenge,
-    hasProcess: !!projectDetails["medication-app"].process,
-    hasResult: !!projectDetails["medication-app"].result,
-    imageCount: projectDetails["medication-app"].availableImages?.length || 0
-  } : null
-});
+// Log the available project details for debugging
+console.log('📚 Project details loaded:', Object.keys(projectDetails));
