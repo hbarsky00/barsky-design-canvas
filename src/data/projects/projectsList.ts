@@ -30,7 +30,7 @@ export const projectsData: ProjectProps[] = [
     id: "splittime",
     title: "SplitTime - Co-Parenting Coordination App",
     description: "Developed a comprehensive co-parenting platform that helps divorced parents coordinate schedules, track child wellbeing, and maintain clear communication. Features include custody calendars, expense tracking, and secure messaging.",
-    image: "/lovable-uploads/31b232a5-b995-443d-90d2-d11bf65c578e.png",
+    image: "/lovable-uploads/45112091-11bd-40a2-a69e-b6d37ae227cb.png",
     tags: ["Mobile App Design", "Family Tech", "Calendar Integration", "Communication Tools", "Child Wellbeing"],
     featured: true
   },
