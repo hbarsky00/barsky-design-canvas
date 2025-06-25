@@ -56,6 +56,6 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
   ],
   
-  // Enable AI caption generation for this project
-  useAiCaptions: true
+  // DISABLE AI caption generation - use manual captions only
+  useAiCaptions: false
 };
