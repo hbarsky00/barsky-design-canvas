@@ -49,19 +49,23 @@ export const useOpenAiCaptions = () => {
       console.error('❌ Error generating caption:', error);
       
       return { 
-        caption: getSimpleFallback(imageIndex || 0, projectContext || ''),
+        caption: getSplitTimeSpecificFallback(imageIndex || 0, projectContext || ''),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
   };
 
-  const getSimpleFallback = (index: number, projectContext: string) => {
+  const getSplitTimeSpecificFallback = (index: number, projectContext: string) => {
     if (projectContext?.includes('splittime')) {
       const fallbacks = [
-        'Family scheduling app interface',
-        'Co-parenting communication screen',
-        'Child custody calendar view',
-        'Parent coordination dashboard'
+        'Co-parenting dashboard showing family coordination features',
+        'Child wellbeing tracking interface with activity updates',
+        'Family calendar displaying custody schedule and events',
+        'Parent communication screen for coordinating child activities',
+        'Child profile management with health and activity information',
+        'Family notifications panel showing upcoming events and alerts',
+        'Co-parenting mobile view showing dashboard and child wellbeing',
+        'Parent coordination interface with notification alerts'
       ];
       return fallbacks[index % fallbacks.length];
     }
@@ -103,8 +107,11 @@ export const useOpenAiCaptions = () => {
     
     const newCaptions: Record<string, string> = {};
     
-    // Set project context for better captions
-    const projectContext = `${projectId} application interface`;
+    // Enhanced project context for SplitTime
+    let projectContext = `${projectId} application interface`;
+    if (projectId === 'splittime') {
+      projectContext = 'splittime co-parenting family coordination app';
+    }
     
     for (let i = 0; i < images.length; i++) {
       const imageSrc = images[i];

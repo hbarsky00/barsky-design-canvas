@@ -37,19 +37,40 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Determine context-specific prompt based on project
+    // Enhanced SplitTime-specific prompt
     let systemPrompt = 'You are an expert at describing user interface screenshots. Write ONE simple, descriptive sentence about what you see in the image. Focus on the main interface elements and purpose.';
     
     if (projectContext?.includes('splittime')) {
-      systemPrompt = 'You are describing screenshots from SplitTime, a co-parenting family scheduling app. Write ONE simple sentence describing what you see - focus on family scheduling, calendar views, messaging between parents, child activity planning, or custody arrangements. Examples: "Family calendar showing custody schedule" or "Parent messaging interface" or "Child activity planning screen".';
+      systemPrompt = `You are describing screenshots from SplitTime, a co-parenting family scheduling and communication app. 
+
+KEY FEATURES TO LOOK FOR:
+- Dashboard views with family/child information
+- Calendar interfaces for custody schedules
+- Child profiles and wellbeing tracking
+- Parent messaging and communication tools
+- Document management for custody/medical records
+- Notification panels and alerts
+- Family coordination features
+- Child activity planning screens
+
+Write ONE simple sentence describing what you see. Use terms like:
+- "Co-parenting dashboard showing..."
+- "Child wellbeing tracking interface..."
+- "Family calendar with custody schedule..."
+- "Parent communication screen..."
+- "Child profile management..."
+- "Family notifications and alerts..."
+- "Document center for family records..."
+
+NEVER use generic terms like "banking," "financial," or "business application." This is specifically a family/parenting app.`;
     } else if (projectContext?.includes('herbalink')) {
       systemPrompt = 'You are describing screenshots from HerbaLink, a herbal medicine platform. Write ONE simple sentence describing what you see - focus on herbal consultations, practitioner discovery, or wellness tracking. Examples: "Herbalist consultation booking interface" or "Herbal medicine recommendation screen".';
     } else if (projectContext?.includes('investor') || projectContext?.includes('loan')) {
-      systemPromprompt = 'You are describing screenshots from a financial investment and loan platform. Write ONE simple sentence describing what you see - focus on banking, investments, or loan management. Examples: "Investment dashboard interface" or "Loan application screen".';
+      systemPrompt = 'You are describing screenshots from a financial investment and loan platform. Write ONE simple sentence describing what you see - focus on banking, investments, or loan management. Examples: "Investment dashboard interface" or "Loan application screen".';
     }
 
-    // Generate caption using OpenAI with improved prompting
-    console.log('🤖 Calling OpenAI API with context-specific prompt...');
+    // Generate caption using OpenAI with enhanced prompting
+    console.log('🤖 Calling OpenAI API with SplitTime-specific prompt...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -68,7 +89,7 @@ serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: 'Describe this user interface screenshot in one simple sentence:'
+                text: 'Describe this user interface screenshot in one simple sentence. Pay attention to any family/parenting related elements, dashboard components, child information, calendars, or communication features:'
               },
               {
                 type: 'image_url',
@@ -80,8 +101,8 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 30,
-        temperature: 0.3,
+        max_tokens: 40,
+        temperature: 0.2,
       }),
     });
 
@@ -105,15 +126,16 @@ serve(async (req) => {
       .replace(/\s+/g, ' ')
       .trim();
 
-    // Project-specific validation and fallbacks
+    // Enhanced SplitTime validation - reject inappropriate captions
     if (projectContext?.includes('splittime')) {
-      // If caption doesn't seem relevant to family/parenting, use project-specific fallback
-      if (!caption.toLowerCase().match(/(family|parent|child|calendar|schedule|custody|messaging|activity|coordination|planning)/)) {
-        caption = getProjectSpecificFallback('splittime');
-      }
-    } else if (projectContext?.includes('herbalink')) {
-      if (!caption.toLowerCase().match(/(herb|medicine|practitioner|consultation|wellness|health|natural)/)) {
-        caption = getProjectSpecificFallback('herbalink');
+      const inappropriateTerms = ['banking', 'financial', 'business', 'corporate', 'payment', 'transaction', 'account', 'investment', 'loan'];
+      const hasInappropriateTerms = inappropriateTerms.some(term => 
+        caption.toLowerCase().includes(term)
+      );
+      
+      if (hasInappropriateTerms || !caption.toLowerCase().match(/(family|parent|child|custody|schedule|calendar|wellbeing|communication|dashboard|notification|co-parent|coordination)/)) {
+        console.log('🔄 Caption validation failed, using SplitTime-specific fallback');
+        caption = getSplitTimeFallback();
       }
     }
 
@@ -139,15 +161,22 @@ serve(async (req) => {
   }
 });
 
+function getSplitTimeFallback(): string {
+  const fallbacks = [
+    'Co-parenting dashboard showing family coordination features',
+    'Child wellbeing tracking interface with activity updates',
+    'Family calendar displaying custody schedule and events',
+    'Parent communication screen for coordinating child activities',
+    'Child profile management with health and activity information',
+    'Family notifications panel showing upcoming events and alerts',
+    'Co-parenting app interface for family schedule coordination'
+  ];
+  return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+}
+
 function getProjectSpecificFallback(projectContext: string): string {
   if (projectContext.includes('splittime')) {
-    const fallbacks = [
-      'Family scheduling app interface',
-      'Co-parenting communication screen',
-      'Child custody calendar view',
-      'Parent coordination dashboard'
-    ];
-    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+    return getSplitTimeFallback();
   }
   
   if (projectContext.includes('herbalink')) {
