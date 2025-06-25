@@ -50,8 +50,13 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   useEffect(() => {
     if (isEditing && inputRef.current) {
       console.log('🎯 Focusing input field');
-      inputRef.current.focus();
-      inputRef.current.select();
+      // Add a small delay to ensure the input is properly rendered
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.select();
+        }
+      }, 100);
     }
   }, [isEditing]);
 
@@ -100,6 +105,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    console.log('⌨️ Key pressed:', e.key);
     if (e.key === 'Enter') {
       e.preventDefault();
       handleSave();
@@ -115,9 +121,16 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
     setTempCaption(newValue);
   };
 
+  // Prevent event bubbling on the container when editing
+  const handleContainerClick = (e: React.MouseEvent) => {
+    if (isEditing) {
+      e.stopPropagation();
+    }
+  };
+
   if (isEditing) {
     return (
-      <div className={`editable-caption-container ${className}`}>
+      <div className={`editable-caption-container ${className}`} onClick={handleContainerClick}>
         <div className="flex items-center gap-2 mt-2 px-2">
           <input
             ref={inputRef}
@@ -130,6 +143,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
             disabled={isSaving}
             autoComplete="off"
             spellCheck="false"
+            style={{ minWidth: '200px' }}
           />
           <button
             onClick={handleSave}
