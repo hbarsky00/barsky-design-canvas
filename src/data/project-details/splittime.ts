@@ -67,9 +67,9 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
   ],
   resultGalleryImages: [
+    "/lovable-uploads/010681bc-91bc-4f74-9ad9-33cba67f1289.png",
     "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
     "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png",
-    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png",
-    "/lovable-uploads/010681bc-91bc-4f74-9ad9-33cba67f1289.png"
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png"
   ]
 };
