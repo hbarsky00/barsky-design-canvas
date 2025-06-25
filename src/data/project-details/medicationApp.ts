@@ -63,11 +63,6 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png"
   ],
   
-  processGalleryImages: [
-    "/lovable-uploads/4432f02a-a115-4ee6-8f59-eef3bed32909.png",
-    "/lovable-uploads/93549759-596b-4dcf-9924-5a5d2a3430b2.png"
-  ],
-  
   resultGalleryImages: [
     "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
     "/lovable-uploads/ba60df6e-4785-4c03-aba0-0bbc67c55e8f.png"

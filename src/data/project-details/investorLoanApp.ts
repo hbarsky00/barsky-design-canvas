@@ -2,77 +2,60 @@
 import { ProjectDetails } from "../types/project";
 
 export const investorLoanAppDetails: ProjectDetails = {
-  challenge: "Private banking institutions faced inefficiencies in loan management, lacking AI-powered search capabilities and streamlined workflow automation. Manual processes led to delays and inconsistent client experiences.",
-
-  process: "I conducted extensive user research with banking professionals to understand their workflows. Through iterative design and testing, I created an intuitive interface that integrates AI search with traditional banking processes, ensuring both innovation and reliability.",
-
-  result: "The platform reduced loan processing time by 60% and improved search accuracy by 85%. Banking professionals reported significantly enhanced productivity and client satisfaction through streamlined workflows.",
-
-  technologies: [
-    "React",
-    "TypeScript",
-    "AI Search Integration",
-    "Banking APIs",
-    "Real-time Analytics",
-    "Secure Authentication",
-    "Document Management",
-    "Workflow Automation",
-    "Data Visualization"
-  ],
-
-  duration: "2 years",
+  challenge: "A private banking institution faced significant challenges with their completely manual loan management system that relied entirely on Excel spreadsheets, creating inefficiencies, increasing error rates, and limiting scalability. As the Lead UX Designer, I was responsible for transforming this Excel-based process into a modern digital platform, handling everything from initial research through final implementation. The project included a comprehensive 9-month post-launch evaluation period to measure success metrics and gather user feedback for identifying future improvements.",
+  
+  process: "The design process included comprehensive information architecture that mapped the complete user journey from loan inquiry to final processing, identifying key decision points and data requirements. Wireframing and prototyping involved creating low-fidelity wireframes, mapping complex financial workflows, conducting usability testing, and developing high-fidelity prototypes. The design system development focused on creating a professional banking-specific color palette that emphasized trust, clarity, and accessibility for financial professionals.",
+  
+  result: "The implementation achieved an 85% error reduction through automated validation and streamlined workflows that significantly decreased manual errors. Processing times accelerated considerably due to optimized user flows and automation features, while the system successfully handled numerous orders within the first 60 days of deployment. Post-launch surveys revealed high user satisfaction among banking professionals, demonstrating the platform's effectiveness in meeting industry needs and expectations.",
+  
+  technologies: ["User Research", "Figma", "Balsamiq", "AG Grid", "Predictive AI Search", "Banking UI/UX", "Financial Data Visualization", "Excel Automation", "Order Management Systems"],
+  duration: "1.5 years",
   client: "Private Banking Institution",
-  role: "Lead UX/UI Designer",
-
+  role: "Lead UX/UI Designer & Product Strategist",
+  
   imageConfig: {
-    challenge: {
-      beforeHeader: "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png",
-      afterHeader: "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png"
-    },
     process: {
-      beforeHeader: "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
-      afterHeader: "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png"
+      beforeHeader: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
+      afterHeader: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
-      afterHeader: "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+      beforeHeader: "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png"
     }
   },
-
+  
   availableImages: [
-    "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png",
-    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
-    "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+    "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
+    "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+    "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png",
+    "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
+    "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png",
+    "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
+    "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png",
+    "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png",
+    "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png",
+    "/lovable-uploads/8d00085d-423a-4f72-be94-2f47f6c9a894.png",
+    "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
+    "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png",
+    "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
+    "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
+    "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png",
+    "/lovable-uploads/9aa6bca4-3f74-4345-8bd2-d89671301729.png"
   ],
-
+  
   challengeGalleryImages: [
-    "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png",
-    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png"
+    "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
+    "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
   ],
-  
-  processGalleryImages: [
-    "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
-    "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png"
-  ],
-  
+  processImage: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png",
+  processBottomImage: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
+  resultImage: "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
   resultGalleryImages: [
-    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
-    "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+    "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
+    "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png",
+    "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
+    "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
   ],
   
-  galleryImages: [
-    "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png",
-    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
-    "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
-  ],
-
-  // Disable AI caption generation completely for this project
-  useAiCaptions: false,
-  
-  // Use manual captions only
-  imageCaptions: {
-    "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png": "Loan dashboard.",
-    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png": "AI search.",
-    "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png": "Orderbook view."
-  }
+  // Enable AI caption generation for this project
+  useAiCaptions: true
 };

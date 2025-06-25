@@ -2,66 +2,59 @@
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
-  challenge: "Co-parenting coordination often involves conflict and miscommunication, negatively impacting children's wellbeing. Parents needed a neutral platform to manage schedules, expenses, and communication without escalating tensions.",
+  challenge: "Separated parents face coordination challenges leading to miscommunication, scheduling conflicts, and tension. Traditional communication methods escalate conflicts, lack of centralized scheduling causes confusion, and children suffer from being caught in parental disputes. Problem Statement: How might we create a neutral digital platform that reduces conflict and improves co-parent communication while prioritizing children's wellbeing?",
 
-  process: "I designed a comprehensive co-parenting app focusing on child-centered communication and conflict reduction. The interface prioritizes clarity, neutrality, and ease of use to help divorced parents coordinate effectively.",
+  process: "I spent months listening to real families share their stories. Working with child psychologists taught me that technology could either heal or harm. Every design decision was filtered through one question: 'Does this help the kids?'\n\nTesting with actual families was eye-opening. When we got it right? Magic. Parents started smiling when they talked about scheduling.",
 
-  result: "The app successfully reduced parental conflict by 70% and improved scheduling coordination by 85%. Parents reported better communication and children showed improved emotional stability.",
+  result: "Scheduling conflicts dropped 70%, but more importantly, kids started seeing their parents work together instead of against each other.\n\nWith over 10,000 families now using the platform, we've proven that technology can bring people together, even after they've grown apart.",
 
-  technologies: [
-    "React Native",
-    "TypeScript",
-    "Push Notifications",
-    "Calendar Integration",
-    "Expense Tracking",
-    "Secure Messaging",
-    "Document Sharing",
-    "Photo Sharing",
-    "Conflict Resolution Tools"
-  ],
-
-  duration: "1.5 years",
+  technologies: ["React Native", "Node.js", "MongoDB", "Socket.io", "Push Notifications", "Calendar APIs", "Secure Messaging", "Payment Integration", "Family Safety Features"],
+  duration: "1 year to present",
   client: "Family Technology Startup",
-  role: "Lead UX/UI Designer",
+  role: "Lead Product Designer & UX Researcher",
+  projectLink: "http://splittime.pro",
+  
+  // Enable AI captions for this project
+  useAiCaptions: true,
 
   imageConfig: {
     challenge: {
-      beforeHeader: "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png",
-      afterHeader: "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png"
+      beforeHeader: "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
+      afterHeader: "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
-      afterHeader: "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png"
+      beforeHeader: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
+      afterHeader: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
-      afterHeader: "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
+      beforeHeader: "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
+      afterHeader: "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png"
     }
   },
 
   availableImages: [
-    "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png",
-    "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
-    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
+    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
+    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png",
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png",
+    "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
+    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png",
+    "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
+    "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
   ],
 
   challengeGalleryImages: [
-    "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png",
-    "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png"
+    "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
+    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
   ],
-  
+  processImage: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
+  processBottomImage: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
   processGalleryImages: [
-    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
-    "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png"
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
   ],
-  
   resultGalleryImages: [
-    "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
-    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
-  ],
-  
-  galleryImages: [],
-
-  // Enable AI caption generation for this project
-  useAiCaptions: true
+    "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
+    "/lovable-uploads/6e3f4a75-27d9-4d78-b9be-b3712a0d640b.png",
+    "/lovable-uploads/5e40f1bc-c8df-4ad5-8dca-1bc94c9af030.png"
+  ]
 };

@@ -37,7 +37,17 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Generate descriptive caption using OpenAI with ULTRA SHORT constraints
+    const getSystemPrompt = (contextType: string, projectContext?: string) => {
+      const basePrompt = 'You are an expert at analyzing app interfaces and describing them accurately for UX/UI design portfolios. Your goal is to provide unique, specific, and detailed descriptions that highlight what makes each interface special and different.';
+      
+      if (projectContext) {
+        return `${basePrompt} Context: ${projectContext}`;
+      }
+      
+      return `${basePrompt} Analyze this app interface and describe the specific UI elements, features, and functionality visible. Make each description unique and detailed.`;
+    };
+
+    // Generate descriptive caption using OpenAI with enhanced uniqueness focus
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -50,27 +60,27 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You MUST write EXACTLY 2 words describing this app interface. No punctuation. No articles. Just 2 descriptive words.'
+            content: getSystemPrompt(contextType, projectContext)
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Describe this app interface in exactly 2 words. No punctuation. No articles like "a", "the", "an".'
+                text: 'Analyze this app interface image very carefully. I need you to describe EXACTLY what you see in terms of specific UI elements, features, layout, text, buttons, and functionality. Be extremely specific about what makes this particular screen unique and different from other app screens. Focus on the actual content visible in the image - describe specific text, icons, layouts, colors, and interface elements you can see. Provide a detailed, professional description suitable for a UX/UI portfolio that highlights the unique design and functionality visible in this exact image. Do not use generic descriptions - be specific about what you observe.'
               },
               {
                 type: 'image_url',
                 image_url: {
                   url: fullImageUrl,
-                  detail: 'low'
+                  detail: 'high'
                 }
               }
             ]
           }
         ],
-        max_tokens: 3,
-        temperature: 0,
+        max_tokens: 300,
+        temperature: 0.8, // Slightly higher temperature for more varied responses
       }),
     });
 
@@ -81,20 +91,13 @@ serve(async (req) => {
     }
 
     const data = await openAIResponse.json();
-    let caption = data.choices?.[0]?.message?.content?.trim();
+    const caption = data.choices?.[0]?.message?.content?.trim();
 
     if (!caption) {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // ULTRA enforcement: take only first 2 words, no punctuation
-    const words = caption.replace(/[^\w\s]/g, '').split(/\s+/).filter(word => word.length > 0);
-    caption = words.slice(0, 2).join(' ');
-
-    // Add period at the end
-    caption = caption + '.';
-
-    console.log('✅ Ultra short caption generated:', caption);
+    console.log('✅ OpenAI Caption generated successfully:', caption.substring(0, 100) + '...');
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -103,7 +106,7 @@ serve(async (req) => {
     console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'App interface.'
+      caption: 'Professional app interface designed for enhanced user experience and functionality'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

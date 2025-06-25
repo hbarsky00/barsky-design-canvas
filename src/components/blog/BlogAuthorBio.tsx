@@ -18,7 +18,7 @@ const BlogAuthorBio: React.FC<BlogAuthorBioProps> = ({ author }) => {
         <div>
           <h3 className="font-semibold text-barsky-dark dark:text-white">{author}</h3>
           <p className="text-barsky-text dark:text-slate-300 mt-1">
-            Product Designer and Developer with over 12+ years of experience creating digital products that solve real problems.
+            Product Designer and Developer with over a decade of experience creating digital products that solve real problems.
           </p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { shouldShowEditingControls } from '@/utils/devModeDetection';
 import ImageUploadButton from './image-manager/ImageUploadButton';
 import ImageList from './image-manager/ImageList';
-import { useImageUploadWithCaption } from './image-manager/useImageUploadWithCaption';
+import { useImageUpload } from './image-manager/useImageUpload';
 
 interface ContentImageManagerProps {
   images: string[];
@@ -30,7 +30,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   
   console.log('🖼️ ContentImageManager: Rendering with', localImages.length, 'images');
   
-  const { isSelecting, handleImageAdd } = useImageUploadWithCaption({ 
+  const { isSelecting, handleImageAdd } = useImageUpload({ 
     projectId, 
     onImageAdd: (imageSrc) => {
       console.log('📷 ContentImageManager: Image upload callback triggered:', imageSrc.substring(0, 50) + '...');
