@@ -20,72 +20,44 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
   imageCaptions = {},
   projectId
 }) => {
+  console.log('🎬 SimpleContentSection: Rendering with captions:', Object.keys(imageCaptions).length);
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="glass-card-elevated p-8 layered-depth mb-12"
+      className="mb-16"
     >
-      <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-        {title}
-      </h2>
+      <h2 className="text-3xl font-bold text-gray-900 mb-8">{title}</h2>
       
-      <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center mb-8">
-        {content.split('\n').map((paragraph, index) => (
-          <p key={index} className="mb-4">
-            {paragraph}
-          </p>
-        ))}
+      <div className="prose prose-lg max-w-none text-gray-700 mb-8">
+        <p className="leading-relaxed">{content}</p>
+        {additionalText && (
+          <p className="leading-relaxed mt-6">{additionalText}</p>
+        )}
       </div>
 
       {images.length > 0 && (
-        <div className="space-y-6">
-          {/* First image */}
-          {images[0] && (
-            <div className="glass-card p-4 layered-depth">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          {images.map((imageSrc, index) => {
+            const caption = imageCaptions[imageSrc];
+            console.log('🖼️ SimpleContentSection: Image caption for', imageSrc.substring(0, 30) + '...', ':', caption);
+            
+            return (
               <MaximizableImage
-                src={images[0]}
-                alt={`${title} image 1`}
-                caption={imageCaptions[images[0]] || `${title} supporting image`}
-                imageList={images}
-                currentIndex={0}
-                className="rounded-lg shadow-elevated w-full"
-                projectId={projectId}
-                hideEditButton={false}
-                allowRemove={false}
-              />
-            </div>
-          )}
-
-          {/* Additional text between images */}
-          {additionalText && (
-            <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center my-8">
-              {additionalText.split('\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
-
-          {/* Remaining images */}
-          {images.slice(1).map((imageSrc, index) => (
-            <div key={index + 1} className="glass-card p-4 layered-depth">
-              <MaximizableImage
+                key={`${imageSrc}-${index}`}
                 src={imageSrc}
-                alt={`${title} image ${index + 2}`}
-                caption={imageCaptions[imageSrc] || `${title} supporting image`}
+                alt={caption || `${title} image ${index + 1}`}
+                caption={caption}
                 imageList={images}
-                currentIndex={index + 1}
-                className="rounded-lg shadow-elevated w-full"
+                currentIndex={index}
+                className="rounded-lg shadow-lg"
                 projectId={projectId}
-                hideEditButton={false}
-                allowRemove={false}
               />
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </motion.section>
