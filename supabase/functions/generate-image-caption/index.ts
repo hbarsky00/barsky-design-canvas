@@ -37,7 +37,7 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Generate descriptive caption using OpenAI with MAXIMUM constraints
+    // Generate descriptive caption using OpenAI with ULTRA SHORT constraints
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -50,14 +50,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You MUST write EXACTLY 3 words describing this app interface. No punctuation. No articles. Just 3 descriptive words.'
+            content: 'You MUST write EXACTLY 2 words describing this app interface. No punctuation. No articles. Just 2 descriptive words.'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Describe this app interface in exactly 3 words. No punctuation. No articles like "a", "the", "an".'
+                text: 'Describe this app interface in exactly 2 words. No punctuation. No articles like "a", "the", "an".'
               },
               {
                 type: 'image_url',
@@ -69,7 +69,7 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 5,
+        max_tokens: 3,
         temperature: 0,
       }),
     });
@@ -87,14 +87,14 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // MAXIMUM enforcement: take only first 3 words, no punctuation
+    // ULTRA enforcement: take only first 2 words, no punctuation
     const words = caption.replace(/[^\w\s]/g, '').split(/\s+/).filter(word => word.length > 0);
-    caption = words.slice(0, 3).join(' ');
+    caption = words.slice(0, 2).join(' ');
 
     // Add period at the end
     caption = caption + '.';
 
-    console.log('✅ Maximum short caption generated:', caption);
+    console.log('✅ Ultra short caption generated:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

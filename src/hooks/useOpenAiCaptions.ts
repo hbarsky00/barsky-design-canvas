@@ -30,8 +30,8 @@ export const useOpenAiCaptions = () => {
     }
   };
 
-  // Function to enforce MAXIMUM short captions
-  const enforceMaximumShortCaption = (text: string): string => {
+  // Function to enforce ULTRA SHORT captions - MAXIMUM 2 words
+  const enforceUltraShortCaption = (text: string): string => {
     if (!text) return 'App interface.';
     
     // Remove any markdown formatting and punctuation except periods
@@ -41,10 +41,10 @@ export const useOpenAiCaptions = () => {
     const sentences = text.split(/[.!?]+/);
     let caption = sentences[0].trim();
     
-    // Limit to 3 words maximum
+    // Limit to MAXIMUM 2 words
     const words = caption.split(/\s+/).filter(word => word.length > 0);
-    if (words.length > 3) {
-      caption = words.slice(0, 3).join(' ');
+    if (words.length > 2) {
+      caption = words.slice(0, 2).join(' ');
     }
     
     // Ensure it ends with a period
@@ -97,17 +97,17 @@ export const useOpenAiCaptions = () => {
         throw new Error('No caption received from OpenAI API');
       }
       
-      // Enforce MAXIMUM short caption constraint on client side
-      const caption = enforceMaximumShortCaption(result.caption);
+      // Enforce ULTRA short caption constraint on client side - MAXIMUM 2 words
+      const caption = enforceUltraShortCaption(result.caption);
       
-      console.log('✅ Maximum short caption generated for image', (imageIndex || 0) + 1, ':', caption);
+      console.log('✅ Ultra short caption generated for image', (imageIndex || 0) + 1, ':', caption);
       
       return { caption };
     } catch (error) {
       console.error('❌ Error generating OpenAI caption for image', (imageIndex || 0) + 1, ':', error);
       
-      // Return MAXIMUM short fallback based on image index
-      const getMaximumShortFallback = (index: number) => {
+      // Return ULTRA short fallback based on image index - MAXIMUM 2 words
+      const getUltraShortFallback = (index: number) => {
         const fallbacks = [
           'App interface.',
           'Dashboard view.',
@@ -123,7 +123,7 @@ export const useOpenAiCaptions = () => {
       };
       
       return { 
-        caption: getMaximumShortFallback(imageIndex || 0),
+        caption: getUltraShortFallback(imageIndex || 0),
         error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
@@ -154,12 +154,12 @@ export const useOpenAiCaptions = () => {
         
         console.log(`🎯 Processing image ${i + 1}/${images.length}:`, imageSrc.substring(0, 50) + '...');
         
-        // Generate caption with MAXIMUM short constraints
+        // Generate caption with ULTRA short constraints - MAXIMUM 2 words
         const result = await generateCaption(imageSrc, projectId, i);
         
         if (result.caption && !result.error) {
-          // Double-check caption is MAXIMUM short on client side
-          const cleanedCaption = enforceMaximumShortCaption(result.caption);
+          // Double-check caption is ULTRA short on client side - MAXIMUM 2 words
+          const cleanedCaption = enforceUltraShortCaption(result.caption);
           newCaptions[imageSrc] = cleanedCaption;
           globalCaptionCache[imageSrc] = cleanedCaption;
           
@@ -168,11 +168,11 @@ export const useOpenAiCaptions = () => {
             onCaptionGenerated(imageSrc, cleanedCaption);
           }
           
-          console.log(`✅ Maximum short caption generated for image ${i + 1}/${images.length}:`, cleanedCaption);
+          console.log(`✅ Ultra short caption generated for image ${i + 1}/${images.length}:`, cleanedCaption);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
           if (result.caption) {
-            const cleanedCaption = enforceMaximumShortCaption(result.caption);
+            const cleanedCaption = enforceUltraShortCaption(result.caption);
             newCaptions[imageSrc] = cleanedCaption;
             if (onCaptionGenerated) {
               onCaptionGenerated(imageSrc, cleanedCaption);

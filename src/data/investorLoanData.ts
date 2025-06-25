@@ -1,8 +1,8 @@
 
 export const investorLoanImageCaptions: Record<string, string> = {
-  "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png": "Loan management dashboard.",
-  "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png": "AI search interface.",
-  "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png": "Orderbook loan view."
+  "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png": "Loan dashboard.",
+  "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png": "AI search.",
+  "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png": "Orderbook view."
 };
 
 // Updated gallery images to match the actual project images

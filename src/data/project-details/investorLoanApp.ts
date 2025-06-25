@@ -66,6 +66,13 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
   ],
 
-  // Enable AI caption generation for this project
-  useAiCaptions: false
+  // Disable AI caption generation completely for this project
+  useAiCaptions: false,
+  
+  // Use manual captions only
+  imageCaptions: {
+    "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png": "Loan dashboard.",
+    "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png": "AI search.",
+    "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png": "Orderbook view."
+  }
 };
