@@ -1,6 +1,6 @@
 
 /**
- * Utility functions for submitting sitemaps to search engines and AI crawlers
+ * Enhanced sitemap submission for better indexing
  */
 
 interface SubmissionResult {
@@ -19,17 +19,22 @@ export class SitemapSubmissionManager {
   }
 
   /**
-   * Submit sitemap to Google Search Console
+   * Submit sitemap to Google Search Console with enhanced parameters
    */
   async submitToGoogle(): Promise<SubmissionResult> {
     try {
       const pingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(this.sitemapUrl)}`;
-      const response = await fetch(pingUrl, { method: 'GET' });
+      const response = await fetch(pingUrl, { 
+        method: 'GET',
+        headers: {
+          'User-Agent': 'BarskyDesign-SEO-Bot/1.0'
+        }
+      });
       
       return {
         engine: 'Google',
         success: response.ok,
-        message: response.ok ? 'Successfully submitted to Google' : 'Google submission failed'
+        message: response.ok ? 'Successfully submitted to Google Search Console' : 'Google submission failed'
       };
     } catch (error) {
       return {
@@ -46,12 +51,17 @@ export class SitemapSubmissionManager {
   async submitToBing(): Promise<SubmissionResult> {
     try {
       const pingUrl = `https://www.bing.com/ping?sitemap=${encodeURIComponent(this.sitemapUrl)}`;
-      const response = await fetch(pingUrl, { method: 'GET' });
+      const response = await fetch(pingUrl, { 
+        method: 'GET',
+        headers: {
+          'User-Agent': 'BarskyDesign-SEO-Bot/1.0'
+        }
+      });
       
       return {
         engine: 'Bing',
         success: response.ok,
-        message: response.ok ? 'Successfully submitted to Bing' : 'Bing submission failed'
+        message: response.ok ? 'Successfully submitted to Bing Webmaster Tools' : 'Bing submission failed'
       };
     } catch (error) {
       return {
@@ -63,67 +73,82 @@ export class SitemapSubmissionManager {
   }
 
   /**
-   * Notify AI training platforms of content updates
+   * Submit individual URLs for faster indexing
    */
-  async notifyAiPlatforms(): Promise<SubmissionResult[]> {
-    const notifications: SubmissionResult[] = [];
+  async submitIndividualUrls(): Promise<SubmissionResult[]> {
+    const urls = [
+      '/',
+      '/projects',
+      '/services',
+      '/blog',
+      '/project/splittime',
+      '/project/herbalink',
+      '/project/medication-app',
+      '/project/gold2crypto',
+      '/project/dae-search',
+      '/project/barskyjoint',
+      '/design-services/ux-ui-design',
+      '/design-services/web-development',
+      '/design-services/mobile-app-design'
+    ];
+
+    const results: SubmissionResult[] = [];
     
-    // Common Crawl notification
-    try {
-      console.log('Notifying Common Crawl of sitemap update');
-      notifications.push({
-        engine: 'CommonCrawl',
-        success: true,
-        message: 'Sitemap update logged for Common Crawl'
-      });
-    } catch (error) {
-      notifications.push({
-        engine: 'CommonCrawl',
-        success: false,
-        message: `Common Crawl notification failed: ${error}`
-      });
-    }
-
-    // Log for AI training manifest
-    try {
-      console.log('AI Training Manifest updated:', {
-        sitemap_url: this.sitemapUrl,
-        last_updated: new Date().toISOString(),
-        notification_type: 'sitemap_update'
-      });
+    for (const path of urls) {
+      const fullUrl = `${this.baseUrl}${path}`;
       
-      notifications.push({
-        engine: 'AI Training Platforms',
-        success: true,
-        message: 'AI training platforms notified of content updates'
-      });
-    } catch (error) {
-      notifications.push({
-        engine: 'AI Training Platforms', 
-        success: false,
-        message: `AI platform notification failed: ${error}`
-      });
+      try {
+        // Submit to Google
+        const googlePing = `https://www.google.com/ping?sitemap=${encodeURIComponent(fullUrl)}`;
+        const googleResponse = await fetch(googlePing, { method: 'GET' });
+        
+        results.push({
+          engine: `Google (${path})`,
+          success: googleResponse.ok,
+          message: googleResponse.ok ? `Successfully submitted ${path}` : `Failed to submit ${path}`
+        });
+        
+        // Add delay between requests
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+      } catch (error) {
+        results.push({
+          engine: `Google (${path})`,
+          success: false,
+          message: `Error submitting ${path}: ${error}`
+        });
+      }
     }
-
-    return notifications;
+    
+    return results;
   }
 
   /**
-   * Submit to all platforms
+   * Enhanced submission to all platforms
    */
   async submitToAll(): Promise<SubmissionResult[]> {
-    console.log('Starting comprehensive sitemap submission...');
+    console.log('🚀 Starting enhanced sitemap submission for better indexing...');
     
     const results = await Promise.all([
       this.submitToGoogle(),
       this.submitToBing(),
-      ...await this.notifyAiPlatforms()
+      ...await this.submitIndividualUrls()
     ]);
 
     // Log results
     results.forEach(result => {
       console.log(`${result.engine}: ${result.message}`);
     });
+
+    // Track in analytics
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'enhanced_sitemap_submission', {
+        total_submissions: results.length,
+        successful_submissions: results.filter(r => r.success).length,
+        submission_type: 'enhanced_indexing',
+        timestamp: new Date().toISOString()
+      });
+    }
 
     return results;
   }
@@ -135,26 +160,16 @@ export class SitemapSubmissionManager {
     const successful = results.filter(r => r.success).length;
     const total = results.length;
     
-    return `Sitemap submission completed: ${successful}/${total} successful submissions. ` +
-           `Sitemap URL: ${this.sitemapUrl}`;
+    return `Enhanced sitemap submission completed: ${successful}/${total} successful submissions. ` +
+           `This should help improve indexing for discovered but unindexed pages.`;
   }
 }
 
-// Utility function to trigger submissions
+// Enhanced utility function
 export const submitSitemapToAllPlatforms = async (): Promise<void> => {
   const manager = new SitemapSubmissionManager();
   const results = await manager.submitToAll();
   const report = manager.getSubmissionReport(results);
   
-  console.log(report);
-  
-  // Track submission in analytics
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'sitemap_submission', {
-      submission_results: results,
-      total_submissions: results.length,
-      successful_submissions: results.filter(r => r.success).length,
-      timestamp: new Date().toISOString()
-    });
-  }
+  console.log('📊 SEO Report:', report);
 };

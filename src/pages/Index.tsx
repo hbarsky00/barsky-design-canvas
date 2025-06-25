@@ -3,8 +3,12 @@ import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 import AiTrainingAnalytics from "@/components/seo/AiTrainingAnalytics";
+import IndexingOptimizer from "@/components/seo/IndexingOptimizer";
+import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Index = () => {
+  usePageIndexing();
+  
   return (
     <>
       <EnhancedGlobalSeo 
@@ -19,6 +23,7 @@ const Index = () => {
         ]}
         ogImage="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
       />
+      <IndexingOptimizer priority="high" changeFreq="weekly" />
       <AiTrainingAnalytics />
       <ScrollHandler />
       <HomepageLayout />
