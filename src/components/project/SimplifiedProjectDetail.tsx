@@ -12,6 +12,7 @@ import ProjectDetailLoading from "./ProjectDetailLoading";
 import ProjectSidebar from "./ProjectSidebar";
 import SimpleProjectHero from "./sections/SimpleProjectHero";
 import SimpleContentSection from "./sections/SimpleContentSection";
+import ProjectNavigation from "@/components/ProjectNavigation";
 
 const SimplifiedProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -165,6 +166,12 @@ const SimplifiedProjectDetail = () => {
                 imageCaptions={finalCaptions}
               />
             )}
+
+            {/* Project Navigation */}
+            <ProjectNavigation
+              currentProjectId={projectId}
+              projectsData={projectsData}
+            />
           </div>
 
           {/* Sidebar */}

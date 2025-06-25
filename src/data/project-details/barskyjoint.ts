@@ -2,52 +2,66 @@
 import { ProjectDetails } from "../types/project";
 
 export const barskyjointDetails: ProjectDetails = {
-  challenge: "Barsky Joint needed a comprehensive digital presence for both their food truck operations and restaurant locations. The challenge was creating a unified brand experience that could handle mobile ordering, table reservations, and real-time location tracking.",
+  challenge: "Food truck operations needed a comprehensive digital solution to manage mobile ordering, GPS tracking, and restaurant operations. Existing solutions were either too complex or lacked essential features for dual-format businesses.",
 
-  process: "I conducted field research by following food truck operations and observing customer interactions at both venues. I created wireframes that prioritized mobile-first design for food truck interactions while ensuring the restaurant experience remained elegant.",
+  process: "I designed a unified platform that seamlessly handles both food truck mobility and restaurant operations. The interface adapts to different operational modes while maintaining consistent user experience across all touchpoints.",
 
-  result: "The Barsky Joint platform successfully launched with both mobile and web applications, resulting in a 45% increase in food truck orders and 30% improvement in restaurant reservations. The unified brand experience helped establish stronger customer loyalty.",
+  result: "The platform increased order efficiency by 75% and improved customer satisfaction through real-time tracking. Restaurant operations became more streamlined with integrated inventory and staff management.",
 
-  technologies: ["React Native", "Web App", "GPS Tracking", "Mobile Ordering", "Reservation System", "Payment Integration", "Real-time Updates", "Restaurant Management"],
-  duration: "1.5 years",
-  client: "Barsky Joint Restaurant Group",
+  technologies: [
+    "React Native",
+    "TypeScript",
+    "GPS Integration",
+    "Real-time Updates",
+    "Payment Processing",
+    "Inventory Management",
+    "Staff Scheduling",
+    "Order Management",
+    "Analytics Dashboard"
+  ],
+
+  duration: "2 years",
+  client: "Restaurant Technology Company",
   role: "Lead UX/UI Designer",
-  projectLink: "https://barskyjoint.biz",
-
-  // Enable AI-generated captions for this project
-  useAiCaptions: true,
 
   imageConfig: {
     challenge: {
-      afterHeader: "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png"
+      beforeHeader: "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
+      afterHeader: "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png"
     },
     process: {
-      afterHeader: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png"
+      beforeHeader: "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
+      afterHeader: "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
+      beforeHeader: "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png",
+      afterHeader: "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png"
     }
   },
 
   availableImages: [
-    "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png",
-    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
-    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
-    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
-    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png",
-    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
+    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
+    "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png",
+    "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png"
   ],
 
   challengeGalleryImages: [
-    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png"
+    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
+    "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png"
   ],
-
-  processImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
-
+  
+  processGalleryImages: [
+    "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
+    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
+  ],
+  
   resultGalleryImages: [
-    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
-    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png"
-  ]
+    "/lovable-uploads/1f6abc31-c1c7-48ca-9706-4de69deb907d.png",
+    "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png"
+  ],
+  
+  galleryImages: [],
+
+  // Enable AI caption generation for this project
+  useAiCaptions: true
 };
