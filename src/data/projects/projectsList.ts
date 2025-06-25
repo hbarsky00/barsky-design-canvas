@@ -3,6 +3,14 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
+    id: "splittime",
+    title: "SplitTime - Co-Parenting Coordination App",
+    description: "Developed a comprehensive co-parenting platform that helps divorced parents coordinate schedules, track child wellbeing, and maintain clear communication. Features include custody calendars, expense tracking, and secure messaging.",
+    image: "/lovable-uploads/45112091-11bd-40a2-a69e-b6d37ae227cb.png",
+    tags: ["Mobile App Design", "Family Tech", "Calendar Integration", "Communication Tools", "Child Wellbeing"],
+    featured: true
+  },
+  {
     id: "medication-app",
     title: "Patient Medication Management",
     description: "Designed an intuitive medication tracking app that helps patients manage their prescriptions, set reminders, and track adherence. The app features a clean interface with accessibility considerations and seamless integration with healthcare providers.",
@@ -24,14 +32,6 @@ export const projectsData: ProjectProps[] = [
     description: "Designed a comprehensive digital asset exchange platform with advanced trading features, real-time market data, and institutional-grade security. The platform serves both retail and professional traders.",
     image: "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png", 
     tags: ["Fintech", "Trading Platform", "Crypto", "Dashboard Design", "Real-time Data"],
-    featured: true
-  },
-  {
-    id: "splittime",
-    title: "SplitTime - Co-Parenting Coordination App",
-    description: "Developed a comprehensive co-parenting platform that helps divorced parents coordinate schedules, track child wellbeing, and maintain clear communication. Features include custody calendars, expense tracking, and secure messaging.",
-    image: "/lovable-uploads/45112091-11bd-40a2-a69e-b6d37ae227cb.png",
-    tags: ["Mobile App Design", "Family Tech", "Calendar Integration", "Communication Tools", "Child Wellbeing"],
     featured: true
   },
   {
