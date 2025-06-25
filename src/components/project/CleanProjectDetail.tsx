@@ -36,25 +36,14 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
 
   const processImages = useProcessImages(details);
 
-  // Create dummy functions for the required props
-  const getTextContent = (key: string, fallback: string) => fallback;
-  const getImageSrc = (src: string) => src;
-  const saveTextContent = async (key: string, content: string) => {};
-  const saveImageReplacement = async (originalSrc: string, newSrc: string) => {};
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
       <SimpleProjectHero
         project={project}
         details={details}
-        projectId={projectId}
-        getTextContent={getTextContent}
-        getImageSrc={getImageSrc}
-        saveTextContent={saveTextContent}
-        saveImageReplacement={saveImageReplacement}
-        finalCaptions={finalCaptions}
         imageCaptions={finalCaptions}
+        projectId={projectId}
       />
 
       {/* Main Content */}
@@ -64,15 +53,10 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
         <SimpleContentSection
           title="The Challenge"
           content={details.challenge}
+          additionalText={details.challengeAdditionalText}
           images={details.challengeGalleryImages || []}
-          sectionKey="challenge"
-          projectId={projectId}
-          getTextContent={getTextContent}
-          getImageSrc={getImageSrc}
-          saveTextContent={saveTextContent}
-          saveImageReplacement={saveImageReplacement}
-          finalCaptions={finalCaptions}
           imageCaptions={finalCaptions}
+          projectId={projectId}
         />
 
         {/* Process Section */}
@@ -80,14 +64,8 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
           title="What I Did"
           content={details.process}
           images={processImages}
-          sectionKey="process"
-          projectId={projectId}
-          getTextContent={getTextContent}
-          getImageSrc={getImageSrc}
-          saveTextContent={saveTextContent}
-          saveImageReplacement={saveImageReplacement}
-          finalCaptions={finalCaptions}
           imageCaptions={finalCaptions}
+          projectId={projectId}
         />
 
         {/* Result Section */}
@@ -95,14 +73,8 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
           title="The Result"
           content={details.result}
           images={details.resultGalleryImages || []}
-          sectionKey="results"
-          projectId={projectId}
-          getTextContent={getTextContent}
-          getImageSrc={getImageSrc}
-          saveTextContent={saveTextContent}
-          saveImageReplacement={saveImageReplacement}
-          finalCaptions={finalCaptions}
           imageCaptions={finalCaptions}
+          projectId={projectId}
         />
 
         {/* Call to Action */}

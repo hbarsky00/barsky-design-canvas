@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { projectsData } from "@/data/projects/projectsList";
 import { ProjectProps } from "@/components/ProjectCard";
 
-// All projects are real projects now - no fake ones
+// All projects are featured now since we only have real projects
 const featuredProjectIds = ["medication-app", "investor-loan-app", "herbalink", "splittime", "barskyjoint"];
 
 // No hidden projects since we removed all fake ones
@@ -20,7 +20,7 @@ export const useProjectsData = () => {
   );
   
   useEffect(() => {
-    // Show only real projects
+    // Show all real projects
     setVisibleProjects(projectsData);
   }, []);
   

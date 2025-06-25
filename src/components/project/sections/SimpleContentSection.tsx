@@ -1,28 +1,26 @@
 
 import React from "react";
-import { motion } from "framer-motion";
-import { shouldShowEditingControls } from "@/utils/devModeDetection";
-import EditableText from "@/components/project/EditableText";
-import ImageGallery from "@/components/project/ImageGallery";
 
 interface SimpleContentSectionProps {
   title: string;
   content: string;
-  images?: string[];
-  sectionKey: string;
+  additionalText?: string;
+  images: string[];
+  sectionKey?: string;
   projectId: string;
-  getTextContent: (key: string, fallback: string) => string;
-  getImageSrc: (src: string) => string;
-  saveTextContent: (key: string, content: string) => void;
-  saveImageReplacement: (originalSrc: string, newSrc: string) => void;
-  finalCaptions: Record<string, string>;
-  imageCaptions: Record<string, string>;
+  getTextContent?: (key: string, fallback?: string) => string;
+  getImageSrc?: (originalSrc: string) => string;
+  saveTextContent?: (key: string, content: string) => Promise<void>;
+  saveImageReplacement?: (originalSrc: string, newSrc: string) => Promise<void>;
+  finalCaptions?: Record<string, string>;
+  imageCaptions?: Record<string, string>;
 }
 
 const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
   title,
   content,
-  images = [],
+  additionalText,
+  images,
   sectionKey,
   projectId,
   getTextContent,
@@ -32,69 +30,44 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
   finalCaptions,
   imageCaptions
 }) => {
-  const showEditingControls = shouldShowEditingControls();
-  
-  // Get section-specific content
-  const sectionContent = getTextContent(`${sectionKey}_content`, content);
-  const sectionTitle = title === "Process" ? "What I Did" : title;
-
-  console.log(`📋 SimpleContentSection (${sectionKey}):`, {
-    title: sectionTitle,
-    contentLength: sectionContent.length,
-    imagesCount: images.length,
-    images: images.map(img => img.substring(0, 50) + '...')
-  });
+  const captions = finalCaptions || imageCaptions || {};
+  const getImageSource = getImageSrc || ((src: string) => src);
+  const getTextValue = getTextContent || ((key: string, fallback?: string) => fallback || '');
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="space-y-8"
-    >
-      <div className="max-w-4xl">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
-          {showEditingControls ? (
-            <EditableText
-              content={sectionTitle}
-              onSave={(newTitle) => saveTextContent(`${sectionKey}_title`, newTitle)}
-              className="text-3xl font-bold text-gray-900"
-            />
-          ) : (
-            sectionTitle
-          )}
-        </h2>
-        
-        <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
-          {showEditingControls ? (
-            <EditableText
-              content={sectionContent}
-              onSave={(newContent) => saveTextContent(`${sectionKey}_content`, newContent)}
-              className="prose prose-lg text-gray-600 leading-relaxed"
-            />
-          ) : (
-            sectionContent.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">
-                {paragraph}
-              </p>
-            ))
-          )}
-        </div>
+    <div className="bg-white rounded-lg shadow-sm p-8">
+      <h2 className="text-3xl font-bold text-gray-900 mb-6">{title}</h2>
+      
+      <div className="prose max-w-none mb-8">
+        <p className="text-lg text-gray-700 leading-relaxed">
+          {sectionKey ? getTextValue(`${sectionKey}_content`, content) : content}
+        </p>
+        {additionalText && (
+          <p className="text-lg text-gray-700 leading-relaxed mt-4">
+            {additionalText}
+          </p>
+        )}
       </div>
 
-      {/* Section Images */}
       {images && images.length > 0 && (
-        <div className="mt-12">
-          <ImageGallery
-            images={images.map(getImageSrc)}
-            imageCaptions={finalCaptions}
-            onImageReplace={showEditingControls ? saveImageReplacement : undefined}
-            projectId={projectId}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {images.map((image, index) => (
+            <div key={index} className="space-y-2">
+              <img
+                src={getImageSource(image)}
+                alt={captions[image] || `${title} ${index + 1}`}
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+              {captions[image] && (
+                <p className="text-sm text-gray-600 italic">
+                  {captions[image]}
+                </p>
+              )}
+            </div>
+          ))}
         </div>
       )}
-    </motion.section>
+    </div>
   );
 };
 
