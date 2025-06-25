@@ -75,7 +75,7 @@ export class PublishingService {
           projectId
         );
 
-        // COMPLETELY SEPARATE CAPTION SYSTEM - prevent ALL conflicts
+        // ENHANCED CAPTION SYSTEM - ensure ALL caption edits are preserved and published
         const baseTextContent = { ...currentPublishedText };
         const devTextContent = { ...devChanges.textContent };
         
@@ -84,31 +84,34 @@ export class PublishingService {
           baseTextContent[key] = devTextContent[key];
         });
         
-        // Apply image captions SEPARATELY - they use img_caption_ prefix so NO conflicts possible
+        // CRITICAL FIX: Apply image captions from localStorage with proper validation
+        console.log('🔧 CRITICAL FIX: Processing manually edited captions for publishing');
         Object.keys(imageCaptions).forEach(captionKey => {
-          // ONLY add if it starts with img_caption_ to ensure complete separation
-          if (captionKey.startsWith('img_caption_')) {
-            baseTextContent[captionKey] = imageCaptions[captionKey];
-            console.log('✅ Added isolated image caption:', captionKey, imageCaptions[captionKey]);
+          // Validate the caption key format
+          if (captionKey && typeof imageCaptions[captionKey] === 'string' && imageCaptions[captionKey].trim()) {
+            // Store with img_caption_ prefix to ensure complete separation and proper identification
+            const publishKey = captionKey.startsWith('img_caption_') ? captionKey : `img_caption_${captionKey}`;
+            baseTextContent[publishKey] = imageCaptions[captionKey].trim();
+            console.log('✅ Publishing manually edited caption:', publishKey, '=', imageCaptions[captionKey].trim());
           }
         });
 
-        // REMOVE any old caption_ keys to prevent duplicates
+        // REMOVE any old caption_ keys to prevent duplicates and conflicts
         Object.keys(baseTextContent).forEach(key => {
           if (key.startsWith('caption_') && !key.startsWith('img_caption_')) {
             delete baseTextContent[key];
-            console.log('🗑️ Removed old caption key:', key);
+            console.log('🗑️ Removed old caption key to prevent conflicts:', key);
           }
         });
 
         const finalTextContent = baseTextContent;
 
-        console.log('📝 FINAL Text content merge (ISOLATED IMAGE CAPTIONS):', {
+        console.log('📝 FINAL Text content with ENHANCED CAPTION PUBLISHING:', {
           publishedCount: Object.keys(currentPublishedText).length,
           devChangesCount: Object.keys(devChanges.textContent).length,
           imageCaptionsCount: Object.keys(imageCaptions).length,
           finalCount: Object.keys(finalTextContent).length,
-          finalKeys: Object.keys(finalTextContent).slice(0, 10) // Show sample
+          captionKeys: Object.keys(finalTextContent).filter(k => k.includes('caption'))
         });
 
         // Process content blocks - dev changes win
@@ -135,10 +138,11 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing (VERCEL BLOB STORAGE):', {
+        console.log('✅ FINAL data for publishing with ENHANCED CAPTIONS:', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
+          captionsIncluded: Object.keys(finalTextContent).filter(k => k.includes('caption')).length,
           preserveDevChanges
         });
 
@@ -151,7 +155,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving published data to database');
+        console.log('💾 Saving enhanced published data to database with captions');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -164,15 +168,15 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Published data stored successfully');
+        console.log('✅ Enhanced published data with captions stored successfully');
 
-        // Apply changes to DOM immediately
+        // Apply changes to DOM immediately with enhanced caption support
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
 
         // Store in localStorage as fallback
         try {
           localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
-          console.log('💾 Published data stored in localStorage as backup');
+          console.log('💾 Enhanced published data stored in localStorage as backup');
         } catch (error) {
           console.warn('⚠️ Could not store to localStorage:', error);
         }
@@ -208,8 +212,8 @@ export class PublishingService {
           window.history.replaceState(null, '', originalUrl);
         }
 
-        // Force refresh to show published changes
-        console.log('🔄 Dispatching update event with published content');
+        // Force refresh to show published changes including captions
+        console.log('🔄 Dispatching update event with enhanced published content including captions');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -220,14 +224,16 @@ export class PublishingService {
             textContent: finalTextContent,
             contentBlocks: finalContentBlocks,
             preserveDevChanges,
-            preventNavigation: true
+            preventNavigation: true,
+            captionsUpdated: true
           }
         }));
 
-        console.log('✅ Project published successfully (VERCEL BLOB STORAGE):', {
+        console.log('✅ Project published successfully with ENHANCED CAPTION SUPPORT:', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
+          captions: Object.keys(finalTextContent).filter(k => k.includes('caption')).length,
           devChangesPreserved: preserveDevChanges
         });
         
