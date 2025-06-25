@@ -4,18 +4,31 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 
 interface ProjectSidebarProps {
-  project: ProjectProps;
-  details: ProjectDetails;
-  getTextContent: (key: string, fallback?: string) => string;
-  saveTextContent: (key: string, content: string) => Promise<void>;
+  project?: ProjectProps;
+  details?: ProjectDetails;
+  duration?: string;
+  client?: string;
+  role?: string;
+  getTextContent?: (key: string, fallback?: string) => string;
+  saveTextContent?: (key: string, content: string) => Promise<void>;
 }
 
 const ProjectSidebar: React.FC<ProjectSidebarProps> = ({
   project,
   details,
+  duration,
+  client,
+  role,
   getTextContent,
   saveTextContent
 }) => {
+  const getTextValue = getTextContent || ((key: string, fallback?: string) => fallback || '');
+  
+  // Use direct props if provided, otherwise fall back to details object
+  const projectDuration = duration || details?.duration || '';
+  const projectClient = client || details?.client || '';
+  const projectRole = role || details?.role || '';
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 sticky top-8">
       <h3 className="text-xl font-bold text-gray-900 mb-4">Project Details</h3>
@@ -23,20 +36,20 @@ const ProjectSidebar: React.FC<ProjectSidebarProps> = ({
       <div className="space-y-4">
         <div>
           <h4 className="font-semibold text-gray-700 mb-2">Client</h4>
-          <p className="text-gray-600">{getTextContent('client', details.client)}</p>
+          <p className="text-gray-600">{getTextValue('client', projectClient)}</p>
         </div>
         
         <div>
           <h4 className="font-semibold text-gray-700 mb-2">Duration</h4>
-          <p className="text-gray-600">{getTextContent('duration', details.duration)}</p>
+          <p className="text-gray-600">{getTextValue('duration', projectDuration)}</p>
         </div>
         
         <div>
           <h4 className="font-semibold text-gray-700 mb-2">Role</h4>
-          <p className="text-gray-600">{getTextContent('role', details.role)}</p>
+          <p className="text-gray-600">{getTextValue('role', projectRole)}</p>
         </div>
         
-        {details.technologies && details.technologies.length > 0 && (
+        {details?.technologies && details.technologies.length > 0 && (
           <div>
             <h4 className="font-semibold text-gray-700 mb-2">Technologies</h4>
             <div className="flex flex-wrap gap-2">
