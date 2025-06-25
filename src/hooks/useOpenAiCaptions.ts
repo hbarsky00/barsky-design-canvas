@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 
 interface OpenAiCaptionResponse {
@@ -29,6 +30,34 @@ export const useOpenAiCaptions = () => {
     }
   };
 
+  // Function to clean and enforce one sentence
+  const enforceOneSentence = (text: string): string => {
+    if (!text) return 'Professional app interface with modern design.';
+    
+    // Remove any markdown formatting
+    text = text.replace(/[*_`]/g, '');
+    
+    // Split by sentence endings and take only the first sentence
+    const sentences = text.split(/[.!?]+/);
+    let caption = sentences[0].trim();
+    
+    // Ensure it ends with a period
+    if (!caption.match(/[.!?]$/)) {
+      caption += '.';
+    }
+    
+    // Limit to 20 words maximum
+    const words = caption.split(' ');
+    if (words.length > 20) {
+      caption = words.slice(0, 20).join(' ') + '.';
+    }
+    
+    // Clean up multiple spaces and line breaks
+    caption = caption.replace(/\s+/g, ' ').trim();
+    
+    return caption;
+  };
+
   const generateCaption = async (imageSrc: string, projectContext?: string, imageIndex?: number): Promise<OpenAiCaptionResponse> => {
     console.log('🤖 OpenAI Caption: Analyzing image:', imageSrc.substring(0, 50) + '...', 'Index:', imageIndex);
     
@@ -45,7 +74,7 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
 - Generate EXACTLY ONE SENTENCE describing the specific UI elements and functionality visible in this image
 - Be extremely specific about what makes this screen unique
 - Focus on the primary purpose and key visual elements you can see
-- Keep it concise but descriptive - maximum 25 words
+- Keep it concise but descriptive - maximum 20 words
 - Do not use generic descriptions - describe what you actually see in this specific interface`;
         
         const response = await fetch(functionUrl, {
@@ -80,18 +109,8 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
         throw new Error('No caption received from OpenAI API');
       }
       
-      // Ensure caption is one sentence by taking only the first sentence
-      let caption = result.caption.trim();
-      const firstSentence = caption.split(/[.!?]/)[0];
-      if (firstSentence && firstSentence.length > 10) {
-        caption = firstSentence + '.';
-      }
-      
-      // Limit to maximum 25 words
-      const words = caption.split(' ');
-      if (words.length > 25) {
-        caption = words.slice(0, 25).join(' ') + '.';
-      }
+      // Enforce one sentence constraint on client side as well
+      const caption = enforceOneSentence(result.caption);
       
       console.log('✅ OpenAI Caption generated successfully for image', (imageIndex || 0) + 1, ':', caption);
       
@@ -191,21 +210,24 @@ CRITICAL INSTRUCTIONS FOR IMAGE #${(imageIndex || 0) + 1}:
         const result = await generateCaption(imageSrc, projectContext, i);
         
         if (result.caption && !result.error) {
-          newCaptions[imageSrc] = result.caption;
-          globalCaptionCache[imageSrc] = result.caption;
+          // Double-check caption is one sentence on client side
+          const cleanedCaption = enforceOneSentence(result.caption);
+          newCaptions[imageSrc] = cleanedCaption;
+          globalCaptionCache[imageSrc] = cleanedCaption;
           
           // Save to persistence layer immediately to prevent regeneration
           if (onCaptionGenerated) {
-            onCaptionGenerated(imageSrc, result.caption);
+            onCaptionGenerated(imageSrc, cleanedCaption);
           }
           
-          console.log(`✅ Unique caption generated for image ${i + 1}/${images.length}:`, result.caption);
+          console.log(`✅ Unique caption generated for image ${i + 1}/${images.length}:`, cleanedCaption);
         } else {
           console.warn(`⚠️ Using fallback caption for image ${i + 1}/${images.length}`);
           if (result.caption) {
-            newCaptions[imageSrc] = result.caption;
+            const cleanedCaption = enforceOneSentence(result.caption);
+            newCaptions[imageSrc] = cleanedCaption;
             if (onCaptionGenerated) {
-              onCaptionGenerated(imageSrc, result.caption);
+              onCaptionGenerated(imageSrc, cleanedCaption);
             }
           }
         }
