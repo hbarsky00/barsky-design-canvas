@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const investorLoanAppDetails: ProjectDetails = {
@@ -56,6 +55,6 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png"
   ],
   
-  // DISABLE AI caption generation - use manual captions only
+  // COMPLETELY DISABLE AI caption generation - use ONLY manual captions
   useAiCaptions: false
 };

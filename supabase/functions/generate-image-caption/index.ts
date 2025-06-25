@@ -37,7 +37,7 @@ serve(async (req) => {
 
     console.log('🖼️ Processing image URL:', fullImageUrl);
 
-    // Generate descriptive caption using OpenAI with STRICT length limit
+    // Generate ULTRA SHORT caption using OpenAI with MAXIMUM 3 words
     console.log('🤖 Calling OpenAI API...');
     const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -50,14 +50,14 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: 'You are an expert at creating EXTREMELY SHORT image captions. You MUST respond with EXACTLY 3-5 words maximum. No periods, no articles (a, an, the), just essential descriptive words. Examples: "Banking dashboard interface", "User profile screen", "Data visualization chart", "Mobile app design".'
+            content: 'You MUST respond with EXACTLY 2-3 words ONLY. NO MORE than 3 words. NO periods, NO articles (a, an, the), NO descriptions. Just 2-3 essential words. Examples: "Dashboard interface", "Login screen", "User profile", "Data chart".'
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Describe this app interface in EXACTLY 3-5 words maximum. NO MORE than 5 words. Do not use articles (a, an, the). Just the most essential descriptive words.'
+                text: 'Describe this interface in EXACTLY 2-3 words MAXIMUM. NO MORE than 3 words. NO periods. NO articles.'
               },
               {
                 type: 'image_url',
@@ -69,8 +69,8 @@ serve(async (req) => {
             ]
           }
         ],
-        max_tokens: 20,
-        temperature: 0.3,
+        max_tokens: 10,
+        temperature: 0.1,
       }),
     });
 
@@ -87,16 +87,16 @@ serve(async (req) => {
       throw new Error('No caption generated from OpenAI');
     }
 
-    // Enforce strict word limit - truncate if needed
+    // ULTRA STRICT word limit - MAXIMUM 3 words
     const words = caption.split(' ').filter(word => word.length > 0);
-    if (words.length > 5) {
-      caption = words.slice(0, 5).join(' ');
+    if (words.length > 3) {
+      caption = words.slice(0, 3).join(' ');
     }
 
-    // Remove any periods or punctuation
-    caption = caption.replace(/[.!?]/g, '');
+    // Remove ALL punctuation
+    caption = caption.replace(/[.!?,;:]/g, '');
 
-    console.log('✅ Short caption generated:', caption);
+    console.log('✅ Ultra short caption generated:', caption);
 
     return new Response(JSON.stringify({ caption }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -105,7 +105,7 @@ serve(async (req) => {
     console.error('❌ Error in generate-image-caption function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      caption: 'App interface design'
+      caption: 'App interface'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
