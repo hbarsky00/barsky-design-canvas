@@ -24,7 +24,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "Herbalink",
     description: "Herbalink is a mobile-first platform that connects users with certified herbalists for personalized consultations, creating a trusted ecosystem for natural wellness.",
-    image: "/lovable-uploads/4f4ef59a-de02-4724-9d2c-37f450234b74.png",
+    image: "/lovable-uploads/3f239f0d-eaec-440a-a066-b6bdaa69bf33.png",
     tags: ["UX Design", "Gen AI Design", "Product Design", "E-commerce", "Inventory", "Health & Wellness"],
     featured: true,
     category: "E-commerce"
