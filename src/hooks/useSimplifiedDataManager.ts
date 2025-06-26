@@ -56,25 +56,35 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
     return content;
   }, [savedData.textContent, projectId]);
 
-  // FIXED: Use the getImageSrc method from persistence layer for proper image replacement
+  // FIXED: Enhanced image replacement with detailed logging
   const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
     const replacedSrc = getImageSrc(originalSrc);
-    if (replacedSrc !== originalSrc) {
-      console.log(`🖼️ Image replacement found: ${originalSrc.substring(0, 30)}... -> ${replacedSrc.substring(0, 30)}...`);
-    }
+    console.log('🖼️ SimplifiedDataManager: Image replacement check:');
+    console.log('  Original:', originalSrc);
+    console.log('  Replaced:', replacedSrc);
+    console.log('  Has replacement:', replacedSrc !== originalSrc);
+    
     return replacedSrc;
   }, [getImageSrc]);
 
   const updatedProject = React.useMemo(() => {
     console.log('🔄 SimplifiedDataManager: Updating project data with image replacements');
-    const updatedImageSrc = getReplacedImageSrc(project.image);
+    const originalImageSrc = project.image;
+    const updatedImageSrc = getReplacedImageSrc(originalImageSrc);
     
-    return {
+    console.log('🎯 Project image update:');
+    console.log('  Original project image:', originalImageSrc);
+    console.log('  Updated project image:', updatedImageSrc);
+    
+    const updatedProjectData = {
       ...project,
       title: getTextContent(`hero_title_${projectId}`, project.title),
       description: getTextContent(`hero_description_${projectId}`, project.description),
       image: updatedImageSrc
     };
+    
+    console.log('✅ Final updated project image:', updatedProjectData.image);
+    return updatedProjectData;
   }, [project, projectId, getTextContent, getReplacedImageSrc]);
 
   const updatedDetails = React.useMemo(() => {

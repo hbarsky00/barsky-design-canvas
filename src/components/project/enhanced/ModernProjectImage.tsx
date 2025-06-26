@@ -20,23 +20,36 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     projectId: projectId || '' 
   });
 
-  // ENHANCED: Force re-render when project.image changes to ensure updated images are displayed
+  // FIXED: Force re-render when project.image changes and log the actual image being used
   const [imageKey, setImageKey] = React.useState(0);
   
   React.useEffect(() => {
     setImageKey(prev => prev + 1);
-    console.log('🖼️ ModernProjectImage: Project image updated to:', project.image);
+    console.log('🖼️ ModernProjectImage: Rendering with image:', project.image);
+    console.log('🖼️ ModernProjectImage: Image key updated to:', imageKey + 1);
   }, [project.image]);
 
   const handleImageReplace = React.useCallback((newSrc: string) => {
-    console.log('🔄 ModernProjectImage: Hero image being replaced:', project.image, '->', newSrc);
+    console.log('🔄 ModernProjectImage: Hero image replacement triggered');
+    console.log('🔄 Old image:', project.image);
+    console.log('🔄 New image:', newSrc);
+    
     handleSectionImageUpdate('hero', project.image, newSrc);
     setImageKey(prev => prev + 1);
-  }, [project.image, handleSectionImageUpdate]);
+    
+    // Force a page refresh to ensure the new image displays
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('forceComponentRefresh', {
+        detail: { projectId, immediate: true }
+      }));
+    }, 100);
+  }, [project.image, handleSectionImageUpdate, projectId]);
+
+  console.log('🎨 ModernProjectImage: Rendering with final image src:', project.image);
 
   return (
     <motion.div
-      key={`hero-image-${imageKey}`}
+      key={`hero-image-${imageKey}-${project.image}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
