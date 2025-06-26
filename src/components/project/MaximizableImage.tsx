@@ -51,6 +51,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
       setCurrentSrc(newSrc);
       setImageError(false);
+      setIsUploading(false);
       if (onImageReplace) {
         onImageReplace(newSrc);
       }
@@ -59,6 +60,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setImageError,
     setForceRefresh: () => {} // Simplified - no forced refreshes
   });
+
+  // Handle upload start
+  const handleUploadStart = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && projectId) {
+      setIsUploading(true);
+      console.log('📤 Starting image upload...');
+    }
+    handleImageReplace(event);
+  };
 
   // Only update source if prop actually changes
   useEffect(() => {
@@ -85,11 +96,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const handleImageError = () => {
     console.error('❌ Image failed to load:', currentSrc);
     setImageError(true);
+    setIsUploading(false);
   };
 
   const handleImageLoad = () => {
     console.log('✅ Image loaded successfully:', currentSrc.substring(0, 50) + '...');
     setImageError(false);
+    setIsUploading(false);
   };
 
   return (
@@ -130,7 +143,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           hideEditButton={hideEditButton}
           allowRemove={allowRemove}
           onMaximize={handleMaximize}
-          onImageReplace={handleImageReplace}
+          onImageReplace={handleUploadStart}
           onImageRemove={handleImageRemove}
         />
       </div>
