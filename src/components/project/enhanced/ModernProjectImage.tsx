@@ -21,43 +21,33 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   const { saveImageReplacement, getImageSrc } = useSimplifiedProjectPersistence(projectId || '');
   
   const originalSrc = originalImageSrc || project.image;
-  const currentImageSrc = getImageSrc(originalSrc);
-  
-  // Force refresh key to ensure image updates are visible
+  const [currentImageSrc, setCurrentImageSrc] = useState(getImageSrc(originalSrc));
   const [forceRefresh, setForceRefresh] = useState(0);
   
   console.log('🖼️ ModernProjectImage: Original src:', originalSrc);
-  console.log('🖼️ ModernProjectImage: Project image src:', project.image);
-  console.log('🖼️ ModernProjectImage: Current src from persistence:', currentImageSrc);
+  console.log('🖼️ ModernProjectImage: Current src:', currentImageSrc);
+
+  // Update current image when persistence data changes
+  useEffect(() => {
+    const updatedSrc = getImageSrc(originalSrc);
+    console.log('🔄 ModernProjectImage: Updating current src to:', updatedSrc);
+    setCurrentImageSrc(updatedSrc);
+  }, [getImageSrc, originalSrc]);
 
   const handleImageReplace = async (newSrc: string) => {
     console.log('🔄 ModernProjectImage: Replacing hero image:', originalSrc, '->', newSrc);
     
     try {
-      // Clear any cached versions of the old image
-      if (currentImageSrc && currentImageSrc !== originalSrc) {
-        console.log('🗑️ Clearing old cached image:', currentImageSrc);
-        
-        // Force clear browser cache for the old image
-        const images = document.querySelectorAll(`img[src*="${currentImageSrc}"]`);
-        images.forEach(img => {
-          const htmlImg = img as HTMLImageElement;
-          htmlImg.src = '';
-          setTimeout(() => {
-            htmlImg.src = newSrc + '?v=' + Date.now();
-          }, 100);
-        });
-      }
-      
-      // Save the image replacement to the database using the original source as key
       if (projectId) {
+        // Save the replacement to database immediately
         await saveImageReplacement(originalSrc, newSrc);
-        console.log('✅ ModernProjectImage: Hero image replacement saved to database');
+        console.log('✅ ModernProjectImage: Image replacement saved to database');
         
-        // Force a refresh to show the new image
+        // Update the current display source immediately
+        setCurrentImageSrc(newSrc);
         setForceRefresh(prev => prev + 1);
         
-        // Dispatch event to trigger immediate update across the app
+        // Dispatch event to update the rest of the app
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -67,14 +57,18 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
             timestamp: Date.now()
           }
         }));
+        
+        console.log('✅ ModernProjectImage: Image replacement completed and events dispatched');
       }
     } catch (error) {
       console.error('❌ ModernProjectImage: Error saving hero image replacement:', error);
     }
   };
 
-  // Add cache-busting to the image source
-  const displayImageSrc = currentImageSrc + (currentImageSrc.includes('?') ? '&' : '?') + `v=${forceRefresh}`;
+  // Add cache-busting to ensure fresh display
+  const displayImageSrc = currentImageSrc + (currentImageSrc.includes('?') ? '&' : '?') + `refresh=${forceRefresh}`;
+
+  console.log('🎨 ModernProjectImage: Final display src:', displayImageSrc);
 
   return (
     <motion.div
