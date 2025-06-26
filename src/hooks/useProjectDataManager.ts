@@ -72,16 +72,18 @@ export const useProjectDataManager = (projectId: string, project: ProjectProps, 
 
   const updatedDetails = React.useMemo(() => {
     console.log('🔄 ProjectDataManager: Updating details data');
+    
+    // Fixed: Use the correct key for challenge content and check for saved changes first
+    const challengeContentKey = `challenge_content_${projectId}`;
+    const savedChallengeContent = savedData.textContent[challengeContentKey];
+    
     return {
       ...details,
-      challenge: getTextContent(`challenge_title_${projectId}`, 
-        getTextContent(`challenge_content_${projectId}`, details.challenge)),
-      process: getTextContent(`process_title_${projectId}`, 
-        getTextContent(`process_content_${projectId}`, details.process)),
-      result: getTextContent(`result_title_${projectId}`, 
-        getTextContent(`result_content_${projectId}`, details.result))
+      challenge: savedChallengeContent || details.challenge,
+      process: getTextContent(`process_content_${projectId}`, details.process),
+      result: getTextContent(`result_content_${projectId}`, details.result)
     };
-  }, [details, projectId, getTextContent]);
+  }, [details, projectId, getTextContent, savedData.textContent]);
 
   return {
     updatedProject,
