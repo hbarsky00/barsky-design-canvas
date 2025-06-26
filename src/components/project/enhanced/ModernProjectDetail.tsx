@@ -65,18 +65,11 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
 
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      {/* Hero Section */}
-      <ModernProjectHero
-        project={updatedProject}
-        details={updatedDetails}
-        imageCaptions={finalCaptions}
-        projectId={projectId}
-      />
-
+      
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         
-        {/* Challenge Section */}
+        {/* Challenge Section - Now appears first */}
         <motion.section
           key={`challenge-${componentKey}`}
           initial={{ opacity: 0, y: 30 }}
@@ -114,6 +107,14 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             imageCaptions={finalCaptions}
           />
         </motion.section>
+
+        {/* Hero Section - Now appears after challenge */}
+        <ModernProjectHero
+          project={updatedProject}
+          details={updatedDetails}
+          imageCaptions={finalCaptions}
+          projectId={projectId}
+        />
 
         {/* Process Section */}
         <motion.section
