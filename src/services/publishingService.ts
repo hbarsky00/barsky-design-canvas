@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { VercelBlobStorageService } from './vercelBlobStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -52,9 +53,24 @@ export class PublishingService {
           contentBlocks: {}
         };
         
-        console.log('📊 Dev changes to publish:', {
+        // CRITICAL FIX: Extract image replacements from dev_mode_changes with image_replacement type
+        const imageReplacementChanges: Record<string, string> = {};
+        if (rawChanges) {
+          rawChanges.forEach(change => {
+            if (change.change_type === 'image_replacement' && change.change_key && change.change_value) {
+              const key = change.change_key.replace('image_', ''); // Remove prefix
+              if (typeof change.change_value === 'object' && 'url' in change.change_value) {
+                imageReplacementChanges[key] = (change.change_value as { url: string }).url;
+                console.log('🔧 CRITICAL: Found image replacement in dev changes:', key, '->', imageReplacementChanges[key]);
+              }
+            }
+          });
+        }
+        
+        console.log('📊 CRITICAL: Dev changes to publish (including image replacements):', {
           textKeys: Object.keys(devChanges.textContent).length,
           imageKeys: Object.keys(devChanges.imageReplacements).length,
+          newImageReplacements: Object.keys(imageReplacementChanges).length,
           contentBlockKeys: Object.keys(devChanges.contentBlocks).length
         });
 
@@ -68,9 +84,22 @@ export class PublishingService {
           imageEntries: Object.keys(oldImageReplacements).length
         });
 
+        // CRITICAL: Merge both old and new image replacement systems
+        const allImageReplacements = {
+          ...devChanges.imageReplacements,
+          ...imageReplacementChanges
+        };
+
+        console.log('🔧 CRITICAL: All image replacements to process:', {
+          total: Object.keys(allImageReplacements).length,
+          fromOldSystem: Object.keys(devChanges.imageReplacements).length,
+          fromNewSystem: Object.keys(imageReplacementChanges).length,
+          replacements: allImageReplacements
+        });
+
         // Process images using Vercel Blob
         const { publishedImageMappings, oldImagesToCleanup, failedUploads } = await ImageProcessor.processImages(
-          devChanges.imageReplacements,
+          allImageReplacements,
           oldImageReplacements,
           projectId
         );
@@ -138,11 +167,12 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing with ENHANCED CAPTIONS:', {
+        console.log('✅ FINAL data for publishing with ENHANCED CAPTIONS and FIXED IMAGE REPLACEMENTS:', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
           captionsIncluded: Object.keys(finalTextContent).filter(k => k.includes('caption')).length,
+          imageReplacements: finalImageReplacements,
           preserveDevChanges
         });
 
@@ -155,7 +185,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving enhanced published data to database with captions');
+        console.log('💾 Saving enhanced published data to database with captions and image replacements');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -168,7 +198,7 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Enhanced published data with captions stored successfully');
+        console.log('✅ Enhanced published data with captions and image replacements stored successfully');
 
         // Apply changes to DOM immediately with enhanced caption support
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
@@ -213,7 +243,7 @@ export class PublishingService {
         }
 
         // Force refresh to show published changes including captions
-        console.log('🔄 Dispatching update event with enhanced published content including captions');
+        console.log('🔄 Dispatching update event with enhanced published content including captions and images');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -225,11 +255,12 @@ export class PublishingService {
             contentBlocks: finalContentBlocks,
             preserveDevChanges,
             preventNavigation: true,
-            captionsUpdated: true
+            captionsUpdated: true,
+            imagesUpdated: true
           }
         }));
 
-        console.log('✅ Project published successfully with ENHANCED CAPTION SUPPORT:', {
+        console.log('✅ Project published successfully with ENHANCED CAPTION SUPPORT and FIXED IMAGE REPLACEMENTS:', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
