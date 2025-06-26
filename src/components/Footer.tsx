@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Barsky<span className="text-barsky-blue">Design</span></h3>
+            <h3 className="text-2xl font-bold mb-6 text-white">Barsky<span className="text-barsky-blue">Design</span></h3>
             <p className="text-gray-300 mb-6">
               Crafting innovative software solutions that drive technology forward.
             </p>
@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-6">Navigation</h4>
+            <h4 className="text-lg font-semibold mb-6 text-white">Navigation</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/" className="text-gray-300 hover:text-barsky-blue transition-colors">
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-6">Contact</h4>
+            <h4 className="text-lg font-semibold mb-6 text-white">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
                 <span className="text-barsky-blue">Email:</span>
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
             </ul>
             
             <div className="mt-6">
-              <h4 className="text-lg font-semibold mb-4">Connect</h4>
+              <h4 className="text-lg font-semibold mb-4 text-white">Connect</h4>
               <div className="flex space-x-4">
                 <a 
                   href="https://www.linkedin.com/in/hiram-barsky" 
