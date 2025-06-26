@@ -1,7 +1,14 @@
-
 import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
+  {
+    id: "herbalink",
+    title: "HerbaLink - Herbal Medicine Platform", 
+    description: "A comprehensive platform connecting patients with certified herbalists for personalized wellness consultations and herbal recommendations.",
+    image: "/lovable-uploads/c4f665ad-70e7-4994-ae98-dbedce190576.png",
+    tags: ["UX/UI Design", "Healthcare", "Mobile App", "Web Development"],
+    featured: true
+  },
   {
     id: "investor-loan-app",
     title: "Investor Loan App",
