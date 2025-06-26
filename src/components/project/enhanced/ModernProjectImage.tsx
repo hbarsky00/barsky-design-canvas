@@ -45,8 +45,15 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
         .eq('change_type', 'image_replacement')
         .maybeSingle();
 
-      if (data?.change_value?.url) {
-        setDisplaySrc(data.change_value.url);
+      if (data?.change_value) {
+        // Type guard to check if change_value is an object with url property
+        const changeValue = data.change_value;
+        if (typeof changeValue === 'object' && changeValue !== null && 'url' in changeValue) {
+          const urlValue = (changeValue as { url: string }).url;
+          if (urlValue) {
+            setDisplaySrc(urlValue);
+          }
+        }
       }
     };
 
