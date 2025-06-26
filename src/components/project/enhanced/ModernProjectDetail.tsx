@@ -5,7 +5,8 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedDataManager } from "@/hooks/useSimplifiedDataManager";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
-import ModernProjectHero from "./ModernProjectHero";
+import ModernProjectHeader from "./ModernProjectHeader";
+import ModernProjectImage from "./ModernProjectImage";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import ProjectCallToAction from "../ProjectCallToAction";
 import ProjectNavigation from "@/components/ProjectNavigation";
@@ -66,10 +67,17 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       
+      {/* Header Section - At the very top */}
+      <ModernProjectHeader
+        project={updatedProject}
+        details={updatedDetails}
+        projectId={projectId}
+      />
+
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
         
-        {/* Challenge Section - Now appears first */}
+        {/* Challenge Section - First content section */}
         <motion.section
           key={`challenge-${componentKey}`}
           initial={{ opacity: 0, y: 30 }}
@@ -108,10 +116,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           />
         </motion.section>
 
-        {/* Hero Section - Now appears after challenge */}
-        <ModernProjectHero
+        {/* Hero Image Section - After challenge */}
+        <ModernProjectImage
           project={updatedProject}
-          details={updatedDetails}
           imageCaptions={finalCaptions}
           projectId={projectId}
         />
