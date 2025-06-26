@@ -33,27 +33,36 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
         throw new Error('Upload failed - no URL returned');
       }
 
-      console.log('✅ Upload successful, permanent URL:', uploadedUrl);
+      // Check if this is a blob URL (temporary) or permanent URL
+      const isPermanentUrl = !uploadedUrl.startsWith('blob:');
       
-      // Save to dev_mode_changes table with image_replacement type
-      const { error } = await supabase
-        .from('dev_mode_changes')
-        .upsert({
-          project_id: projectId,
-          change_key: `image_${originalSrc}`,
-          change_value: { url: uploadedUrl },
-          change_type: 'image_replacement',
-          updated_at: new Date().toISOString()
-        });
+      if (isPermanentUrl) {
+        console.log('✅ Upload successful, permanent URL:', uploadedUrl);
+        
+        // Save to dev_mode_changes table with image_replacement type using UPSERT
+        const { error } = await supabase
+          .from('dev_mode_changes')
+          .upsert({
+            project_id: projectId,
+            change_key: `image_${originalSrc}`,
+            change_value: { url: uploadedUrl },
+            change_type: 'image_replacement',
+            updated_at: new Date().toISOString()
+          }, {
+            onConflict: 'project_id,change_type,change_key'
+          });
 
-      if (error) {
-        console.error('❌ Database save error:', error);
-        throw error;
+        if (error) {
+          console.error('❌ Database save error:', error);
+          throw error;
+        }
+
+        console.log('✅ Database save successful for permanent URL');
+      } else {
+        console.log('⚠️ Using temporary blob URL:', uploadedUrl);
       }
-
-      console.log('✅ Database save successful for permanent URL');
       
-      // Update the display with the permanent URL
+      // Update the display with the new URL (permanent or temporary)
       setCurrentSrc(uploadedUrl);
       
       toast.success('Image replaced successfully!');
@@ -64,7 +73,8 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
           projectId,
           imageReplaced: true,
           originalSrc,
-          newSrc: uploadedUrl
+          newSrc: uploadedUrl,
+          isPermanent: isPermanentUrl
         }
       }));
       
