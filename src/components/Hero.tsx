@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
               <AnimatedText 
                 text="Hi, I'm" 
                 tag="h2" 
-                className="text-xl sm:text-2xl font-semibold mb-3 text-barsky-text"
+                className="text-xl sm:text-2xl font-semibold mb-3 text-white"
                 delay={800}
                 type="word"
                 animation="bounce"
@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
               <AnimatedText
                 text="Barsky Design"
                 tag="h1"
-                className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
+                className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-white"
                 delay={1000}
                 type="word"
                 animation="bounce"
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
               <AnimatedText
                 text="Freelance Product Designer"
                 tag="p"
-                className="text-xl sm:text-2xl mb-4 text-barsky-text"
+                className="text-xl sm:text-2xl mb-4 text-white"
                 delay={1200}
                 type="word"
                 animation="fade"
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.5 }}
-                className="text-base sm:text-lg mb-6 text-barsky-text-light max-w-3xl mx-auto md:mx-0"
+                className="text-base sm:text-lg mb-6 text-gray-200 max-w-3xl mx-auto md:mx-0"
               >
                 I help early-stage startups and teams create user-friendly digital experiences. I offer UX/UI design, design system creation, MVP design, and design audits to bring your ideas to life.
               </motion.p>
@@ -134,7 +134,7 @@ const Hero: React.FC = () => {
           <FloatingElement yAmount={8} duration={2} className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block">
             <BounceWrapper intensity="medium">
               <a href="#projects" aria-label="Scroll to projects">
-                <ArrowDownCircle className="w-10 h-10 text-barsky-blue" />
+                <ArrowDownCircle className="w-10 h-10 text-blue-400" />
               </a>
             </BounceWrapper>
           </FloatingElement>
