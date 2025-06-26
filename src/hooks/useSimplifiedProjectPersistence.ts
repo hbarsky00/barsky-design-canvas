@@ -7,7 +7,8 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
   const {
     cachedData,
     updateCachedData,
-    loadDataFromDatabase
+    loadDataFromDatabase,
+    forceUpdate
   } = useSimplifiedDataLoader(projectId);
 
   const {
@@ -62,6 +63,13 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
     return cachedData.imageReplacements[originalSrc] || originalSrc;
   };
 
+  // Add the missing methods that useSimplifiedDataManager expects
+  const getProjectData = () => cachedData;
+  
+  const forceRefresh = async () => {
+    await loadDataFromDatabase();
+  };
+
   return {
     saveTextContent,
     saveImageReplacement,
@@ -69,6 +77,9 @@ export const useSimplifiedProjectPersistence = (projectId: string) => {
     getTextContent,
     getImageSrc,
     getImageCaption,
+    getProjectData,
+    forceRefresh,
+    refreshTrigger: forceUpdate,
     isSaving,
     lastSaved,
     cachedData

@@ -1,4 +1,6 @@
 
+import { ProjectData } from './types';
+
 export interface SimplifiedProjectPersistenceHooks {
   saveTextContent: (key: string, content: string) => Promise<void>;
   saveImageReplacement: (originalSrc: string, newSrc: string) => Promise<void>;
@@ -9,3 +11,5 @@ export interface SimplifiedProjectPersistenceHooks {
   isSaving: boolean;
   lastSaved: Date | null;
 }
+
+export type SimplifiedProjectData = ProjectData;
