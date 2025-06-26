@@ -45,7 +45,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   console.log('🔄 ModernProjectDetail: Updated project data:', {
     title: updatedProject.title,
     description: updatedProject.description.substring(0, 50) + '...',
-    heroImage: updatedProject.image
+    heroImage: updatedProject.image,
+    originalHeroImage: project.image
   });
   console.log('📝 ModernProjectDetail: Using manual captions:', Object.keys(finalCaptions).length, 'captions available');
 
@@ -70,11 +71,12 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           imageCaptions={finalCaptions}
         />
 
-        {/* Hero Image Section - Right after challenge - NOW USES UPDATED PROJECT */}
+        {/* Hero Image Section - Right after challenge - NOW USES UPDATED PROJECT WITH ORIGINAL SOURCE */}
         <ModernProjectImage
           project={updatedProject}
           imageCaptions={finalCaptions}
           projectId={projectId}
+          originalImageSrc={project.image}
         />
 
         {/* Process and Result Sections */}

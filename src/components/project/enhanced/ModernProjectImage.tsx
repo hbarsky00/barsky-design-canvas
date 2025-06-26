@@ -9,28 +9,34 @@ interface ModernProjectImageProps {
   project: ProjectProps;
   imageCaptions: Record<string, string>;
   projectId?: string;
+  originalImageSrc?: string; // Add this to track the original image source
 }
 
 const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   project,
   imageCaptions,
-  projectId
+  projectId,
+  originalImageSrc
 }) => {
   const { saveImageReplacement, getImageSrc } = useSimplifiedProjectPersistence(projectId || '');
   
-  // Use the persistence system to get the current image source
-  const currentImageSrc = getImageSrc(project.image);
+  // Use the original image source for persistence lookups, fallback to project.image
+  const originalSrc = originalImageSrc || project.image;
   
-  console.log('🖼️ ModernProjectImage: Original src:', project.image);
+  // Use the persistence system to get the current image source
+  const currentImageSrc = getImageSrc(originalSrc);
+  
+  console.log('🖼️ ModernProjectImage: Original src:', originalSrc);
+  console.log('🖼️ ModernProjectImage: Project image src:', project.image);
   console.log('🖼️ ModernProjectImage: Current src from persistence:', currentImageSrc);
 
   const handleImageReplace = async (newSrc: string) => {
-    console.log('🔄 ModernProjectImage: Replacing hero image:', project.image, '->', newSrc);
+    console.log('🔄 ModernProjectImage: Replacing hero image:', originalSrc, '->', newSrc);
     
     try {
-      // Save the image replacement to the database
+      // Save the image replacement to the database using the original source as key
       if (projectId) {
-        await saveImageReplacement(project.image, newSrc);
+        await saveImageReplacement(originalSrc, newSrc);
         console.log('✅ ModernProjectImage: Hero image replacement saved to database');
       }
     } catch (error) {
@@ -50,7 +56,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
         <MaximizableImage
           src={currentImageSrc}
           alt={project.title}
-          caption={imageCaptions[currentImageSrc] || imageCaptions[project.image] || project.title}
+          caption={imageCaptions[currentImageSrc] || imageCaptions[originalSrc] || imageCaptions[project.image] || project.title}
           imageList={[currentImageSrc]}
           currentIndex={0}
           priority={true}
