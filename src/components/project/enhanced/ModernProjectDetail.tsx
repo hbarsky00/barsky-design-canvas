@@ -76,7 +76,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       />
 
       {/* Main Content */}
-      <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-6 py-16 space-y-16">
+      <div className="w-full lg:max-w-[85%] xl:max-w-[80%] lg:mx-auto px-2 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16">
         
         {/* Challenge Section - First content section */}
         <motion.section
@@ -85,13 +85,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="glass-card-elevated p-8 layered-depth"
+          className="glass-card-elevated p-4 sm:p-8 layered-depth"
         >
           <EnhancedContentEditor
             content="The Challenge"
             contentType="header"
             onSave={(content) => handleSectionContentSave('challenge', 'title', content)}
-            className="mb-8"
+            className="mb-6 lg:mb-8"
             projectId={projectId}
           />
           
@@ -131,13 +131,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass-card-elevated p-8 layered-depth"
+          className="glass-card-elevated p-4 sm:p-8 layered-depth"
         >
           <EnhancedContentEditor
             content="What I Did"
             contentType="header"
             onSave={(content) => handleSectionContentSave('process', 'title', content)}
-            className="mb-8"
+            className="mb-6 lg:mb-8"
             projectId={projectId}
           />
           
@@ -170,13 +170,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="glass-card-elevated p-8 layered-depth"
+          className="glass-card-elevated p-4 sm:p-8 layered-depth"
         >
           <EnhancedContentEditor
             content="The Result"
             contentType="header"
             onSave={(content) => handleSectionContentSave('result', 'title', content)}
-            className="mb-8"
+            className="mb-6 lg:mb-8"
             projectId={projectId}
           />
           
@@ -206,7 +206,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         <ProjectCallToAction />
 
         {/* Project Navigation */}
-        <section className="mt-16">
+        <section className="mt-8 lg:mt-16">
           <ProjectNavigation
             currentProjectId={projectId}
             projectsData={projectsData}

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -29,12 +30,12 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
-      <div className="relative max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-6 py-16 z-10">
+      <div className="relative w-full lg:max-w-[85%] xl:max-w-[80%] lg:mx-auto px-2 sm:px-6 py-8 lg:py-16 z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8"
+          className="mb-6 lg:mb-8"
         >
           <Link 
             to="/projects" 
@@ -49,7 +50,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="glass-card-elevated p-8 text-center space-y-6 layered-depth relative group"
+          className="glass-card-elevated p-4 sm:p-8 text-center space-y-4 lg:space-y-6 layered-depth relative group"
         >
           <div className="flex items-center justify-center space-x-3 text-sm">
             <span className="font-medium text-blue-600 glass-button px-3 py-1 rounded-full">{details.client}</span>
@@ -64,7 +65,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
             contentType="header"
             onSave={(content) => handleSectionContentSave('hero', 'title', content)}
             projectId={projectId}
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight text-center"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight text-center"
           />
           
           <EnhancedContentEditor
@@ -72,7 +73,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
             contentType="paragraph"
             onSave={(content) => handleSectionContentSave('hero', 'content', content)}
             projectId={projectId}
-            className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto text-center"
+            className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto text-center"
           />
 
           <div className="flex flex-wrap justify-center gap-2">

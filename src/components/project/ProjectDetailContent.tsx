@@ -72,7 +72,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
 
   return (
-    <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 py-8">
+    <div className="w-full lg:max-w-[85%] xl:max-w-[80%] lg:mx-auto px-2 sm:px-4 py-4 lg:py-8">
       <ProjectHeader
         title={updatedProject.title}
         description={updatedProject.description}
@@ -83,7 +83,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
         currentIndex={currentImageIndex >= 0 ? currentImageIndex : 0}
       />
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 xl:gap-8 mt-6 lg:mt-8">
         {/* Project Sidebar - Shows first on mobile, last on desktop */}
         <div className="lg:col-span-1 order-first lg:order-last">
           <ProjectSidebar
