@@ -36,11 +36,11 @@ const AllProjects = () => {
       
       <main className="flex-grow">
         <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-16 sm:py-20 pt-24 sm:pt-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               Design Portfolio
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Business-focused design case studies showcasing AI-augmented processes, accessibility compliance, 
               and measurable conversion improvements. Each project demonstrates strategic design thinking that bridges 
               user needs with business objectives.
@@ -48,10 +48,13 @@ const AllProjects = () => {
           </div>
         </section>
 
-        <EnhancedProjectGrid 
-          projects={currentProjects}
-          resetFilters={resetFilters}
-        />
+        <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <EnhancedProjectGrid 
+            projects={currentProjects}
+            resetFilters={resetFilters}
+          />
+        </div>
+        
         <SeoFaqSection 
           title="AI-Enhanced Portfolio & Business Design Questions"
           faqs={projectFaqs}

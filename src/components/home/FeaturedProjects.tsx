@@ -15,7 +15,7 @@ const FeaturedProjects: React.FC = () => {
 
   return (
     <section id="projects" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -27,7 +27,7 @@ const FeaturedProjects: React.FC = () => {
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             All Design Projects
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
             Explore my complete portfolio of Product Design and Generative AI Development work. 
             Each project reflects a user-centered design approach, encompassing research, ideation, 
             design, and development implementation.
