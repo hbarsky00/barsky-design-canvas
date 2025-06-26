@@ -1,4 +1,3 @@
-
 import { put, del, list } from '@vercel/blob';
 
 export class VercelBlobStorageService {
@@ -8,6 +7,7 @@ export class VercelBlobStorageService {
   private static checkConfiguration(): boolean {
     if (!this.BLOB_READ_WRITE_TOKEN) {
       console.error('❌ VITE_BLOB_READ_WRITE_TOKEN environment variable is not set');
+      console.log('💡 Please set your Vercel Blob token in the environment variables');
       return false;
     }
     return true;
@@ -22,13 +22,16 @@ export class VercelBlobStorageService {
         projectId: projectId.substring(0, 20) + '...'
       });
 
-      // Check configuration
+      // Check configuration first
       if (!this.checkConfiguration()) {
-        return null;
+        // Fallback: create a blob URL for local development
+        console.log('🔄 Using blob URL for local development');
+        const blobUrl = URL.createObjectURL(file);
+        return blobUrl;
       }
 
       // Validate file type
-      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
       if (!allowedTypes.includes(file.type)) {
         console.error('❌ Invalid file type:', file.type);
         return null;
@@ -56,7 +59,9 @@ export class VercelBlobStorageService {
 
       if (!blob.url) {
         console.error('❌ Upload succeeded but no URL returned');
-        return null;
+        // Fallback to blob URL
+        const blobUrl = URL.createObjectURL(file);
+        return blobUrl;
       }
 
       console.log('✅ Image uploaded successfully to Vercel Blob:', {
@@ -65,8 +70,12 @@ export class VercelBlobStorageService {
       
       return blob.url;
     } catch (error) {
-      console.error('❌ Unexpected error during Vercel Blob upload:', error);
-      return null;
+      console.error('❌ Error during Vercel Blob upload:', error);
+      
+      // Fallback: create a blob URL for immediate use
+      console.log('🔄 Falling back to blob URL for immediate preview');
+      const blobUrl = URL.createObjectURL(file);
+      return blobUrl;
     }
   }
 

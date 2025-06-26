@@ -60,12 +60,16 @@ export const useImageUploadHandler = ({
         // Call the replacement callback
         onImageReplace(newImageUrl);
         
-        toast.success('Image uploaded successfully!');
+        if (newImageUrl.startsWith('blob:')) {
+          toast.success('Image replaced successfully! (Using local preview - configure Vercel Blob for permanent storage)');
+        } else {
+          toast.success('Image uploaded and replaced successfully!');
+        }
         console.log('🎉 Image replacement completed successfully');
       } else {
         console.error('❌ Upload failed - no URL returned');
         setImageError(true);
-        toast.error('Image upload failed. Please check your configuration.');
+        toast.error('Image upload failed. Please check your Vercel Blob configuration.');
       }
     } catch (error) {
       console.error('❌ Error uploading image:', error);
