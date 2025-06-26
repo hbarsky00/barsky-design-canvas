@@ -75,19 +75,19 @@ const ContactInformation: React.FC = () => {
             href="https://www.linkedin.com/in/hiram-barsky" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="bg-white border border-gray-200 p-3 rounded-full hover:bg-blue-50 hover:border-blue-200 transition-colors shadow-sm"
+            className="bg-barsky-blue/10 p-3 rounded-full hover:bg-barsky-blue hover:text-white transition-colors"
             aria-label="LinkedIn"
           >
-            <Linkedin size={20} className="text-blue-600" />
+            <Linkedin size={20} />
           </a>
           <a 
             href="https://github.com/hbarsky00/barsky-design-canvas.git" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="bg-white border border-gray-200 p-3 rounded-full hover:bg-gray-50 hover:border-gray-300 transition-colors shadow-sm"
+            className="bg-barsky-blue/10 p-3 rounded-full hover:bg-barsky-blue hover:text-white transition-colors"
             aria-label="GitHub"
           >
-            <Github size={20} className="text-gray-700" />
+            <Github size={20} />
           </a>
         </div>
       </div>

@@ -21,25 +21,25 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
           href="https://www.linkedin.com/in/hiram-barsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-white/90 border border-gray-200 p-3 hover:bg-blue-50 hover:border-blue-200 rounded-lg transition-all duration-300 shadow-sm"
+          className="glass-button p-3 hover:bg-blue-100/80 rounded-lg transition-all duration-300 floating-element"
         >
-          <Linkedin className="h-5 w-5 text-blue-600" />
+          <Linkedin className="h-5 w-5 text-gray-600" />
         </a>
         <a 
           href="https://figma.com/@hirambarsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-white/90 border border-gray-200 p-3 hover:bg-purple-50 hover:border-purple-200 rounded-lg transition-all duration-300 shadow-sm"
+          className="glass-button p-3 hover:bg-purple-100/80 rounded-lg transition-all duration-300 floating-element"
         >
-          <Figma className="h-5 w-5 text-purple-600" />
+          <Figma className="h-5 w-5 text-gray-600" />
         </a>
         <a 
           href="https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk"
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-white/90 border border-gray-200 p-3 hover:bg-green-50 hover:border-green-200 rounded-lg transition-all duration-300 shadow-sm"
+          className="glass-button p-3 hover:bg-green-100/80 rounded-lg transition-all duration-300 floating-element"
         >
-          <Download className="h-5 w-5 text-green-600" />
+          <Download className="h-5 w-5 text-gray-600" />
         </a>
       </div>
     </motion.div>
