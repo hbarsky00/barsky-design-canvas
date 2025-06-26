@@ -16,7 +16,7 @@ const buttonVariants = cva(
         outline:
           "bg-white text-slate-800 hover:bg-slate-800 hover:text-white shadow-lg hover:shadow-lg",
         secondary:
-          "bg-white text-slate-800 hover:bg-slate-700 hover:text-white shadow-lg",
+          "bg-white text-slate-800 hover:bg-slate-700 hover:text-white shadow-lg hover:shadow-lg",
         ghost: "hover:bg-slate-800 hover:text-slate-100",
         link: "text-white underline-offset-4 hover:underline hover:text-white hover:bg-slate-700 rounded-md px-2 py-1 transition-all duration-300",
       },
