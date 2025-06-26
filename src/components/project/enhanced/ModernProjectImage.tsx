@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import MaximizableImage from "../MaximizableImage";
@@ -23,23 +23,35 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   
   const { getUpdatedImagePath, updateImageInProjectData } = useProjectDataUpdater();
   
-  // Get the current image source, checking for any replacements
-  const currentImageSrc = projectId ? getUpdatedImagePath(projectId, project.image) : project.image;
+  // State to track the current image source with persistence
+  const [currentImageSrc, setCurrentImageSrc] = useState(() => {
+    // Always check for updated path on initialization
+    return projectId ? getUpdatedImagePath(projectId, project.image) : project.image;
+  });
+  
+  // Update image source when project or projectId changes
+  useEffect(() => {
+    const updatedSrc = projectId ? getUpdatedImagePath(projectId, project.image) : project.image;
+    setCurrentImageSrc(updatedSrc);
+    console.log('🔄 ModernProjectImage: Updated image source on mount/change:', updatedSrc);
+  }, [project.image, projectId, getUpdatedImagePath]);
   
   console.log('🖼️ ModernProjectImage: Original src:', project.image);
-  console.log('🖼️ ModernProjectImage: Current src after replacement check:', currentImageSrc);
+  console.log('🖼️ ModernProjectImage: Current src:', currentImageSrc);
 
   const handleImageReplace = async (newSrc: string) => {
     console.log('🔄 ModernProjectImage: Replacing hero image:', project.image, '->', newSrc);
     
     try {
-      // Update both the simplified content editor system and the project data updater
+      // Update both persistence systems
       await handleSectionImageUpdate('hero', project.image, newSrc);
       
-      // Also update the project data updater to ensure localStorage persistence
       if (projectId) {
         updateImageInProjectData(projectId, project.image, newSrc);
       }
+      
+      // Immediately update the component state
+      setCurrentImageSrc(newSrc);
       
       console.log('✅ ModernProjectImage: Hero image replacement completed');
     } catch (error) {
