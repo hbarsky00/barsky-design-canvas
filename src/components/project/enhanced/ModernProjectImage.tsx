@@ -29,43 +29,58 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
 
   // Update display when replacement changes
   useEffect(() => {
+    console.log('🔄 ModernProjectImage: currentSrc changed to:', currentSrc);
     setDisplaySrc(currentSrc);
   }, [currentSrc]);
 
-  // Load any saved replacement on mount
+  // Load saved replacement on mount
   useEffect(() => {
     if (!projectId) return;
     
-    const loadSaved = async () => {
-      const { data } = await supabase
-        .from('dev_mode_changes')
-        .select('change_value')
-        .eq('project_id', projectId)
-        .eq('change_key', `image_${baseImageSrc}`)
-        .eq('change_type', 'image_replacement')
-        .maybeSingle();
+    const loadSavedReplacement = async () => {
+      console.log('🔍 Loading saved replacement for:', baseImageSrc);
+      
+      try {
+        const { data, error } = await supabase
+          .from('dev_mode_changes')
+          .select('change_value')
+          .eq('project_id', projectId)
+          .eq('change_key', `image_${baseImageSrc}`)
+          .eq('change_type', 'image_replacement')
+          .maybeSingle();
 
-      if (data?.change_value) {
-        // Type guard to check if change_value is an object with url property
-        const changeValue = data.change_value;
-        if (typeof changeValue === 'object' && changeValue !== null && 'url' in changeValue) {
-          const urlValue = (changeValue as { url: string }).url;
-          if (urlValue) {
-            setDisplaySrc(urlValue);
-          }
+        if (error) {
+          console.error('❌ Error loading saved replacement:', error);
+          return;
         }
+
+        if (data?.change_value) {
+          const changeValue = data.change_value;
+          if (typeof changeValue === 'object' && changeValue !== null && 'url' in changeValue) {
+            const urlValue = (changeValue as { url: string }).url;
+            if (urlValue && urlValue !== baseImageSrc) {
+              console.log('✅ Found saved replacement:', urlValue);
+              setDisplaySrc(urlValue);
+            }
+          }
+        } else {
+          console.log('ℹ️ No saved replacement found');
+        }
+      } catch (error) {
+        console.error('❌ Error in loadSavedReplacement:', error);
       }
     };
 
-    loadSaved();
+    loadSavedReplacement();
   }, [projectId, baseImageSrc]);
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    console.log('📤 Starting image upload:', file.name);
     await replaceImage(file);
-    event.target.value = '';
+    event.target.value = ''; // Clear input
   };
 
   return (
