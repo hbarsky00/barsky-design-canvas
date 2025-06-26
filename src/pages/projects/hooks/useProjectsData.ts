@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { projectsData } from '@/data/projectsData';
 import { ProjectProps } from "@/components/ProjectCard";
 
-// Only the real projects are featured
-const featuredProjectIds = ["herbalink", "investor-loan-app", "dae-search"];
+// Only these three projects should show on the homepage
+const featuredProjectIds = ["herbalink", "investor-loan-app", "splittime"];
 
-// No hidden projects since we only have real ones
+// No hidden projects
 const hiddenProjectIds: string[] = [];
 
 export const useProjectsData = () => {
@@ -14,13 +14,13 @@ export const useProjectsData = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
   
-  // Filter projects for homepage display (real projects only)
+  // Filter projects for homepage display (only the 3 specified projects)
   const filteredProjects = projectsData.filter(project => 
     featuredProjectIds.includes(project.id)
   );
   
   useEffect(() => {
-    // Show only the real projects
+    // Show all projects in the projects page
     setVisibleProjects(projectsData);
   }, []);
   
