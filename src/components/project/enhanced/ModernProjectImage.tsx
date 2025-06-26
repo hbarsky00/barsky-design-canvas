@@ -21,7 +21,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     projectId: projectId || '' 
   });
   
-  const { getUpdatedImagePath } = useProjectDataUpdater();
+  const { getUpdatedImagePath, updateImageInProjectData } = useProjectDataUpdater();
   
   // Get the current image source, checking for any replacements
   const currentImageSrc = projectId ? getUpdatedImagePath(projectId, project.image) : project.image;
@@ -29,9 +29,22 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   console.log('🖼️ ModernProjectImage: Original src:', project.image);
   console.log('🖼️ ModernProjectImage: Current src after replacement check:', currentImageSrc);
 
-  const handleImageReplace = (newSrc: string) => {
+  const handleImageReplace = async (newSrc: string) => {
     console.log('🔄 ModernProjectImage: Replacing hero image:', project.image, '->', newSrc);
-    handleSectionImageUpdate('hero', project.image, newSrc);
+    
+    try {
+      // Update both the simplified content editor system and the project data updater
+      await handleSectionImageUpdate('hero', project.image, newSrc);
+      
+      // Also update the project data updater to ensure localStorage persistence
+      if (projectId) {
+        updateImageInProjectData(projectId, project.image, newSrc);
+      }
+      
+      console.log('✅ ModernProjectImage: Hero image replacement completed');
+    } catch (error) {
+      console.error('❌ ModernProjectImage: Error replacing hero image:', error);
+    }
   };
 
   return (
