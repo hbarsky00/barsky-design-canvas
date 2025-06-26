@@ -60,12 +60,7 @@ export const useImageUploadHandler = ({
       if (newImageUrl) {
         console.log('✅ Image uploaded successfully:', newImageUrl);
         
-        // Update the current source immediately for instant feedback
-        setCurrentSrc(newImageUrl);
-        setImageError(false);
-        setForceRefresh(prev => prev + 1);
-        
-        // Call the replacement callback which will handle persistence
+        // Call the replacement callback immediately
         await onImageReplace(newImageUrl);
         
         toast.success('Image replaced successfully!');
@@ -82,7 +77,7 @@ export const useImageUploadHandler = ({
     } finally {
       event.target.value = '';
     }
-  }, [projectId, currentSrc, onImageReplace, setCurrentSrc, setImageError, setForceRefresh]);
+  }, [projectId, currentSrc, onImageReplace, setImageError]);
 
   return {
     handleImageReplace

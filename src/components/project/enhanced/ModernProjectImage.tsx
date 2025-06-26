@@ -20,70 +20,52 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
 }) => {
   const { saveImageReplacement, getImageSrc } = useSimplifiedProjectPersistence(projectId || '');
   
-  // Use originalImageSrc if provided, otherwise fall back to project.image
+  // Use the original image source as the base
   const baseImageSrc = originalImageSrc || project.image;
-  const [currentImageSrc, setCurrentImageSrc] = useState(baseImageSrc);
-  const [componentKey, setComponentKey] = useState(0);
   
-  console.log('🖼️ ModernProjectImage: Base image src:', baseImageSrc);
-  console.log('🖼️ ModernProjectImage: Current image src:', currentImageSrc);
+  // Get the current image (either original or replacement)
+  const [displayImageSrc, setDisplayImageSrc] = useState(() => {
+    const savedSrc = getImageSrc(baseImageSrc);
+    console.log('🖼️ ModernProjectImage: Initial image src:', baseImageSrc, '->', savedSrc);
+    return savedSrc;
+  });
 
-  // Check for any saved replacement on mount
+  // Update display when persistence data changes
   useEffect(() => {
-    const replacementSrc = getImageSrc(baseImageSrc);
-    console.log('🔄 ModernProjectImage: Checking for replacement:', baseImageSrc, '->', replacementSrc);
-    
-    if (replacementSrc !== baseImageSrc) {
-      console.log('✅ ModernProjectImage: Found replacement, updating current src');
-      setCurrentImageSrc(replacementSrc);
-      setComponentKey(prev => prev + 1);
+    const newSrc = getImageSrc(baseImageSrc);
+    console.log('🔄 ModernProjectImage: Checking for updates:', baseImageSrc, '->', newSrc);
+    if (newSrc !== displayImageSrc) {
+      console.log('✅ ModernProjectImage: Updating display image to:', newSrc);
+      setDisplayImageSrc(newSrc);
     }
-  }, [getImageSrc, baseImageSrc]);
+  }, [getImageSrc, baseImageSrc, displayImageSrc]);
 
   const handleImageReplace = async (newSrc: string) => {
-    console.log('🔄 ModernProjectImage: Starting image replacement:', baseImageSrc, '->', newSrc);
+    console.log('🔄 ModernProjectImage: Image replacement requested:', baseImageSrc, '->', newSrc);
     
     try {
+      // Immediately update the display
+      setDisplayImageSrc(newSrc);
+      console.log('✅ ModernProjectImage: Display updated immediately to:', newSrc);
+      
+      // Save to database
       if (projectId) {
-        // Update the display immediately for instant feedback
-        setCurrentImageSrc(newSrc);
-        setComponentKey(prev => prev + 1);
-        
-        // Save the replacement to database
         await saveImageReplacement(baseImageSrc, newSrc);
-        console.log('✅ ModernProjectImage: Image replacement saved to database');
-        
-        // Dispatch global update event
-        window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-          detail: { 
-            projectId,
-            imageReplacement: { originalSrc: baseImageSrc, newSrc },
-            immediate: true,
-            forceRefresh: true,
-            timestamp: Date.now()
-          }
-        }));
-        
-        console.log('✅ ModernProjectImage: Image replacement completed successfully');
-      } else {
-        console.error('❌ ModernProjectImage: No project ID provided for image replacement');
+        console.log('✅ ModernProjectImage: Saved to database successfully');
       }
+      
     } catch (error) {
-      console.error('❌ ModernProjectImage: Error during image replacement:', error);
+      console.error('❌ ModernProjectImage: Error during replacement:', error);
       // Revert on error
-      setCurrentImageSrc(baseImageSrc);
-      setComponentKey(prev => prev + 1);
+      const fallbackSrc = getImageSrc(baseImageSrc);
+      setDisplayImageSrc(fallbackSrc);
     }
   };
 
-  // Clean display URL without cache busting for better consistency
-  const displayImageSrc = currentImageSrc;
-
-  console.log('🎨 ModernProjectImage: Final display src:', displayImageSrc);
+  console.log('🎨 ModernProjectImage: Final render with src:', displayImageSrc);
 
   return (
     <motion.div
-      key={`hero-image-${componentKey}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

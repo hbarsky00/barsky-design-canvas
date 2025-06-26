@@ -40,36 +40,36 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const { maximizeImage } = useImageMaximizer();
   const [isHovered, setIsHovered] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
   const [forceRefresh, setForceRefresh] = useState(0);
   const showEditingControls = shouldShowEditingControls();
 
+  // Use the src prop directly - no local state management
+  const currentSrc = src;
+
+  console.log('🖼️ MaximizableImage: Rendering with src:', currentSrc);
   console.log('🖼️ MaximizableImage: Show editing controls:', showEditingControls);
-  console.log('🖼️ MaximizableImage: Current src:', currentSrc);
 
   const { handleImageReplace } = useImageUploadHandler({
     projectId,
     currentSrc,
-    onImageReplace: (newSrc) => {
-      console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
-      setCurrentSrc(newSrc);
-      setImageError(false);
+    onImageReplace: async (newSrc) => {
+      console.log('✅ MaximizableImage: Upload completed, calling parent callback:', newSrc);
       setIsUploading(false);
-      setForceRefresh(prev => prev + 1);
+      setImageError(false);
       if (onImageReplace) {
-        onImageReplace(newSrc);
+        await onImageReplace(newSrc);
       }
     },
-    setCurrentSrc,
+    setCurrentSrc: () => {}, // No local state management
     setImageError,
     setForceRefresh
   });
 
-  // Handle upload start and completion
   const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log('📤 MaximizableImage: Upload started');
     setIsUploading(true);
+    setImageError(false);
     
     try {
       await handleImageReplace(event);
@@ -79,16 +79,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       setImageError(true);
     }
   };
-
-  // Update source when prop changes
-  useEffect(() => {
-    if (src !== currentSrc && src) {
-      console.log('🔄 MaximizableImage: Source updated from prop:', src);
-      setCurrentSrc(src);
-      setImageError(false);
-      setForceRefresh(prev => prev + 1);
-    }
-  }, [src]);
 
   const handleMaximize = () => {
     if (!imageError) {
@@ -116,7 +106,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   return (
-    <div className={`relative ${className}`} key={`image-${forceRefresh}`}>
+    <div className={`relative ${className}`}>
       <div 
         className="relative group overflow-hidden cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
