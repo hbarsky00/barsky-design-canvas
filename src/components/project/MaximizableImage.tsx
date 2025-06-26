@@ -51,7 +51,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
       setCurrentSrc(newSrc);
       setImageError(false);
-      setIsUploading(false);
+      setIsUploading(false); // Clear uploading state
       if (onImageReplace) {
         onImageReplace(newSrc);
       }
@@ -61,14 +61,27 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setForceRefresh: () => {} // Simplified - no forced refreshes
   });
 
-  // Handle upload start
-  const handleUploadStart = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // Handle upload start and completion
+  const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && projectId) {
-      setIsUploading(true);
-      console.log('📤 Starting image upload...');
+    if (!file || !projectId) {
+      event.target.value = '';
+      return;
     }
-    handleImageReplace(event);
+
+    console.log('📤 Starting image upload...');
+    setIsUploading(true);
+    
+    try {
+      await handleImageReplace(event);
+    } catch (error) {
+      console.error('❌ Upload error:', error);
+      setIsUploading(false);
+      setImageError(true);
+    }
+    
+    // Always clear the input
+    event.target.value = '';
   };
 
   // Only update source if prop actually changes
