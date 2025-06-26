@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ExternalLink } from "lucide-react";
@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "../MaximizableImage";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
+import { useDirectImageUpload } from "@/hooks/useDirectImageUpload";
 
 interface ModernProjectHeroProps {
   project: ProjectProps;
@@ -23,18 +24,22 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   imageCaptions,
   projectId
 }) => {
-  const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ 
+  const { handleSectionContentSave } = useSimplifiedContentEditor({ 
     projectId: projectId || '' 
   });
 
-  // Handle image replacement with proper event handling
-  const handleImageReplace = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [heroImageSrc, setHeroImageSrc] = useState(project.image);
+  
+  const { uploadImage, isUploading } = useDirectImageUpload({
+    projectId: projectId || '',
+    onImageUpdate: setHeroImageSrc
+  });
+
+  const handleImageReplace = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
     
-    // Create object URL for immediate display
-    const newSrc = URL.createObjectURL(file);
-    handleSectionImageUpdate('hero', project.image, newSrc);
+    await uploadImage(file, project.image);
     event.target.value = '';
   };
 
@@ -127,16 +132,17 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
         >
           <div className="glass-card p-2 sm:p-4 layered-depth relative group">
             <MaximizableImage
-              src={project.image}
+              src={heroImageSrc}
               alt={project.title}
               caption={imageCaptions[project.image] || project.title}
-              imageList={[project.image]}
+              imageList={[heroImageSrc]}
               currentIndex={0}
               priority={true}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
               projectId={projectId}
               hideEditButton={false}
               onImageReplace={handleImageReplace}
+              isUploading={isUploading}
             />
           </div>
         </motion.div>
