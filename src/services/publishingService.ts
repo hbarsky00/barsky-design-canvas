@@ -60,14 +60,20 @@ export class PublishingService {
             if (change.change_type === 'image_replacement' && change.change_key && change.change_value) {
               const key = change.change_key.replace('image_', ''); // Remove prefix
               if (typeof change.change_value === 'object' && 'url' in change.change_value) {
-                imageReplacementChanges[key] = (change.change_value as { url: string }).url;
-                console.log('🔧 CRITICAL: Found image replacement in dev changes:', key, '->', imageReplacementChanges[key]);
+                const url = (change.change_value as { url: string }).url;
+                // Only use non-blob URLs for publishing (permanent URLs)
+                if (url && !url.startsWith('blob:')) {
+                  imageReplacementChanges[key] = url;
+                  console.log('🔧 CRITICAL: Found permanent image replacement in dev changes:', key, '->', url);
+                } else {
+                  console.warn('⚠️ Skipping blob URL in publishing:', key, url);
+                }
               }
             }
           });
         }
         
-        console.log('📊 CRITICAL: Dev changes to publish (including image replacements):', {
+        console.log('📊 CRITICAL: Dev changes to publish (including permanent image replacements):', {
           textKeys: Object.keys(devChanges.textContent).length,
           imageKeys: Object.keys(devChanges.imageReplacements).length,
           newImageReplacements: Object.keys(imageReplacementChanges).length,
@@ -90,14 +96,14 @@ export class PublishingService {
           ...imageReplacementChanges
         };
 
-        console.log('🔧 CRITICAL: All image replacements to process:', {
+        console.log('🔧 CRITICAL: All permanent image replacements to process:', {
           total: Object.keys(allImageReplacements).length,
           fromOldSystem: Object.keys(devChanges.imageReplacements).length,
           fromNewSystem: Object.keys(imageReplacementChanges).length,
           replacements: allImageReplacements
         });
 
-        // Process images using Vercel Blob
+        // Process images using Vercel Blob - only permanent URLs
         const { publishedImageMappings, oldImagesToCleanup, failedUploads } = await ImageProcessor.processImages(
           allImageReplacements,
           oldImageReplacements,
@@ -150,12 +156,14 @@ export class PublishingService {
           ...processedContentBlocks
         };
 
-        // Final validation for images
+        // Final validation for images - ensure no blob URLs make it to production
         const validImageReplacements = Object.fromEntries(
           Object.entries(publishedImageMappings).filter(([key, value]) => {
-            const isValid = value && (value.startsWith('https://') || value.startsWith('http://') || value.startsWith('/'));
+            const isValid = value && (value.startsWith('https://') || value.startsWith('http://') || value.startsWith('/')) && !value.startsWith('blob:');
             if (!isValid) {
-              console.warn('⚠️ Filtering out invalid image replacement:', key, '->', value);
+              console.warn('⚠️ Filtering out invalid/blob image replacement:', key, '->', value);
+            } else {
+              console.log('✅ Including valid permanent image replacement:', key, '->', value);
             }
             return isValid;
           })
@@ -167,7 +175,7 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing with ENHANCED CAPTIONS and FIXED IMAGE REPLACEMENTS:', {
+        console.log('✅ FINAL data for publishing with ENHANCED CAPTIONS and PERMANENT IMAGE REPLACEMENTS:', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
@@ -185,7 +193,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving enhanced published data to database with captions and image replacements');
+        console.log('💾 Saving enhanced published data to database with permanent image URLs');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -198,7 +206,7 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Enhanced published data with captions and image replacements stored successfully');
+        console.log('✅ Enhanced published data with permanent image URLs stored successfully');
 
         // Apply changes to DOM immediately with enhanced caption support
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
@@ -243,7 +251,7 @@ export class PublishingService {
         }
 
         // Force refresh to show published changes including captions
-        console.log('🔄 Dispatching update event with enhanced published content including captions and images');
+        console.log('🔄 Dispatching update event with enhanced published content including permanent images');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -260,7 +268,7 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully with ENHANCED CAPTION SUPPORT and FIXED IMAGE REPLACEMENTS:', {
+        console.log('✅ Project published successfully with PERMANENT IMAGE URLs:', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,

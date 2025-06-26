@@ -22,7 +22,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   const baseImageSrc = originalImageSrc || project.image;
   const [displaySrc, setDisplaySrc] = useState(baseImageSrc);
   
-  const { currentSrc, replaceImage, isUploading } = useSimpleImageReplacement({
+  const { replaceImage, isUploading } = useSimpleImageReplacement({
     projectId: projectId || '',
     originalSrc: baseImageSrc
   });
@@ -33,7 +33,9 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     
     const loadSavedImage = async () => {
       try {
-        // Use existing dev_mode_changes table instead of non-existent project_content table
+        console.log('🔍 Loading saved image for:', baseImageSrc);
+        
+        // Check dev_mode_changes for image replacement
         const { data, error } = await supabase
           .from('dev_mode_changes')
           .select('change_value')
@@ -44,11 +46,29 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
 
         if (data && !error && data.change_value && typeof data.change_value === 'object' && 'url' in data.change_value) {
           const imageUrl = (data.change_value as { url: string }).url;
-          console.log('✅ Found saved image in database:', imageUrl);
+          console.log('✅ Found saved image replacement:', imageUrl);
           setDisplaySrc(imageUrl);
         } else {
-          console.log('📝 No saved image found, using original:', baseImageSrc);
-          setDisplaySrc(baseImageSrc);
+          // Check published_projects for published image replacements
+          const { data: publishedData, error: publishedError } = await supabase
+            .from('published_projects')
+            .select('image_replacements')
+            .eq('project_id', projectId)
+            .single();
+
+          if (publishedData && !publishedError && publishedData.image_replacements) {
+            const imageReplacements = publishedData.image_replacements as Record<string, string>;
+            if (imageReplacements[baseImageSrc]) {
+              console.log('✅ Found published image replacement:', imageReplacements[baseImageSrc]);
+              setDisplaySrc(imageReplacements[baseImageSrc]);
+            } else {
+              console.log('📝 No replacement found, using original:', baseImageSrc);
+              setDisplaySrc(baseImageSrc);
+            }
+          } else {
+            console.log('📝 No published data found, using original:', baseImageSrc);
+            setDisplaySrc(baseImageSrc);
+          }
         }
       } catch (error) {
         console.error('❌ Error loading saved image:', error);
@@ -58,6 +78,22 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
 
     loadSavedImage();
   }, [projectId, baseImageSrc]);
+
+  // Listen for image updates
+  useEffect(() => {
+    const handleImageUpdate = (e: CustomEvent) => {
+      if (e.detail?.originalSrc === baseImageSrc && e.detail?.newSrc) {
+        console.log('🔄 Image update event received:', e.detail.newSrc);
+        setDisplaySrc(e.detail.newSrc);
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleImageUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleImageUpdate as EventListener);
+    };
+  }, [baseImageSrc]);
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

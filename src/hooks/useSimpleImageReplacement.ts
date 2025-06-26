@@ -22,7 +22,7 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
     try {
       console.log('🔄 Starting simple image replacement for:', originalSrc);
       
-      // Upload new image
+      // Upload new image to Vercel Blob - this creates a permanent URL
       const uploadedUrl = await VercelBlobStorageService.uploadImage(
         file, 
         projectId, 
@@ -30,12 +30,12 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
       );
       
       if (!uploadedUrl) {
-        throw new Error('Upload failed');
+        throw new Error('Upload failed - no URL returned');
       }
 
-      console.log('✅ Upload successful:', uploadedUrl);
+      console.log('✅ Upload successful, permanent URL:', uploadedUrl);
       
-      // Save to existing dev_mode_changes table instead of non-existent project_content table
+      // Save to dev_mode_changes table with image_replacement type
       const { error } = await supabase
         .from('dev_mode_changes')
         .upsert({
@@ -51,17 +51,22 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
         throw error;
       }
 
-      console.log('✅ Database save successful');
+      console.log('✅ Database save successful for permanent URL');
       
-      // Immediately update the display
+      // Update the display with the permanent URL
       setCurrentSrc(uploadedUrl);
       
       toast.success('Image replaced successfully!');
       
-      // Force a hard reload after a short delay to ensure it sticks
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      // Dispatch event to update other components
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId,
+          imageReplaced: true,
+          originalSrc,
+          newSrc: uploadedUrl
+        }
+      }));
       
     } catch (error) {
       console.error('❌ Image replacement failed:', error);
