@@ -5,7 +5,7 @@ import { ProjectProps } from '@/components/ProjectCard';
 import { ProjectDetails } from '@/data/types/project';
 
 export const useSimplifiedDataManager = (projectId: string, project: ProjectProps, details: ProjectDetails) => {
-  const { getProjectData, forceRefresh, refreshTrigger } = useSimplifiedProjectPersistence(projectId);
+  const { getProjectData, forceRefresh, refreshTrigger, getImageSrc } = useSimplifiedProjectPersistence(projectId);
   
   const [componentKey, setComponentKey] = React.useState(0);
 
@@ -56,21 +56,24 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
     return content;
   }, [savedData.textContent, projectId]);
 
+  // FIXED: Use the getImageSrc method from persistence layer for proper image replacement
   const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
-    const replacedSrc = savedData.imageReplacements[originalSrc] || originalSrc;
+    const replacedSrc = getImageSrc(originalSrc);
     if (replacedSrc !== originalSrc) {
       console.log(`🖼️ Image replacement found: ${originalSrc.substring(0, 30)}... -> ${replacedSrc.substring(0, 30)}...`);
     }
     return replacedSrc;
-  }, [savedData.imageReplacements]);
+  }, [getImageSrc]);
 
   const updatedProject = React.useMemo(() => {
-    console.log('🔄 SimplifiedDataManager: Updating project data');
+    console.log('🔄 SimplifiedDataManager: Updating project data with image replacements');
+    const updatedImageSrc = getReplacedImageSrc(project.image);
+    
     return {
       ...project,
       title: getTextContent(`hero_title_${projectId}`, project.title),
       description: getTextContent(`hero_description_${projectId}`, project.description),
-      image: getReplacedImageSrc(project.image)
+      image: updatedImageSrc
     };
   }, [project, projectId, getTextContent, getReplacedImageSrc]);
 

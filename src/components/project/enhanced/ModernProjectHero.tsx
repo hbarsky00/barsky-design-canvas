@@ -6,7 +6,6 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
-import MaximizableImage from "../MaximizableImage";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 
@@ -23,7 +22,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   imageCaptions,
   projectId
 }) => {
-  const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ 
+  const { handleSectionContentSave } = useSimplifiedContentEditor({ 
     projectId: projectId || '' 
   });
 
@@ -110,27 +109,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             )}
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="floating-element"
-          >
-            <div className="glass-card p-2 sm:p-4 layered-depth relative group">
-              <MaximizableImage
-                src={project.image}
-                alt={project.title}
-                caption={imageCaptions[project.image] || project.title}
-                imageList={[project.image]}
-                currentIndex={0}
-                priority={true}
-                className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                projectId={projectId}
-                hideEditButton={false}
-                onImageReplace={(newSrc) => handleSectionImageUpdate('hero', project.image, newSrc)}
-              />
-            </div>
-          </motion.div>
+          {/* REMOVED: Hero image from here - it now appears after Challenge section */}
         </div>
       </div>
     </div>

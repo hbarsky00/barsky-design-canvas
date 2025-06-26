@@ -20,8 +20,23 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     projectId: projectId || '' 
   });
 
+  // ENHANCED: Force re-render when project.image changes to ensure updated images are displayed
+  const [imageKey, setImageKey] = React.useState(0);
+  
+  React.useEffect(() => {
+    setImageKey(prev => prev + 1);
+    console.log('🖼️ ModernProjectImage: Project image updated to:', project.image);
+  }, [project.image]);
+
+  const handleImageReplace = React.useCallback((newSrc: string) => {
+    console.log('🔄 ModernProjectImage: Hero image being replaced:', project.image, '->', newSrc);
+    handleSectionImageUpdate('hero', project.image, newSrc);
+    setImageKey(prev => prev + 1);
+  }, [project.image, handleSectionImageUpdate]);
+
   return (
     <motion.div
+      key={`hero-image-${imageKey}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -39,7 +54,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
           className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
           projectId={projectId}
           hideEditButton={false}
-          onImageReplace={(newSrc) => handleSectionImageUpdate('hero', project.image, newSrc)}
+          onImageReplace={handleImageReplace}
         />
       </div>
     </motion.div>
