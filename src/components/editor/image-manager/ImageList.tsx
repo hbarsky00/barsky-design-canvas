@@ -21,27 +21,38 @@ const ImageList: React.FC<ImageListProps> = ({
   onImageReplace,
   onImageRemove
 }) => {
-  if (images.length === 0) return null;
+  if (images.length === 0) {
+    return null;
+  }
+
+  // Dynamic grid layout based on image count
+  const getGridLayout = () => {
+    if (images.length === 1) {
+      return "grid-cols-1";
+    } else if (images.length === 2) {
+      return "grid-cols-1 md:grid-cols-2"; // 2 columns on tablet and desktop
+    } else {
+      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"; // Default layout for 3+ images
+    }
+  };
 
   return (
-    <div className="space-y-6">
-      {images.map((imageSrc, index) => (
-        <div key={`${imageSrc}-${index}-${componentKey}`} className="relative group/image">
-          <div className="glass-card p-4 layered-depth">
-            <MaximizableImage
-              src={imageSrc}
-              alt={`Content image ${index + 1}`}
-              caption={imageCaptions[`img_caption_${imageSrc}`] || imageCaptions[imageSrc] || `Image ${index + 1}`}
-              imageList={images}
-              currentIndex={index}
-              className="rounded-lg shadow-md w-full overflow-hidden"
-              projectId={projectId}
-              hideEditButton={!showEditingControls}
-              allowRemove={showEditingControls}
-              onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
-              onImageRemove={() => onImageRemove(index)}
-            />
-          </div>
+    <div className={`grid ${getGridLayout()} gap-6`} key={`image-list-${componentKey}`}>
+      {images.map((image, index) => (
+        <div key={`${image}-${index}-${componentKey}`} className="glass-card p-4 layered-depth">
+          <MaximizableImage
+            src={image}
+            alt={`Image ${index + 1}`}
+            caption={imageCaptions[image]}
+            imageList={images}
+            currentIndex={index}
+            className="rounded-lg shadow-elevated w-full"
+            projectId={projectId}
+            hideEditButton={!showEditingControls}
+            allowRemove={showEditingControls}
+            onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
+            onImageRemove={() => onImageRemove(index)}
+          />
         </div>
       ))}
     </div>

@@ -19,10 +19,19 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  const gridCols = {
-    2: "md:grid-cols-2",
-    3: "md:grid-cols-2 lg:grid-cols-3",
-    4: "md:grid-cols-2 lg:grid-cols-4"
+  // Override columns prop when there are exactly 2 images
+  const getGridCols = () => {
+    if (images.length === 2) {
+      return "md:grid-cols-2"; // Force 2 columns for exactly 2 images
+    }
+    
+    const gridCols = {
+      2: "md:grid-cols-2",
+      3: "md:grid-cols-2 lg:grid-cols-3",
+      4: "md:grid-cols-2 lg:grid-cols-4"
+    };
+    
+    return gridCols[columns];
   };
 
   const openLightbox = (index: number) => {
@@ -50,7 +59,7 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
       )}
       
       {/* Gallery Grid */}
-      <div className={`grid grid-cols-1 ${gridCols[columns]} gap-6`}>
+      <div className={`grid grid-cols-1 ${getGridCols()} gap-6`}>
         {images.map((image, index) => (
           <motion.div
             key={index}
