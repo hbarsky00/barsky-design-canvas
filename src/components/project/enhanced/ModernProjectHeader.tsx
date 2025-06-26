@@ -26,9 +26,9 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
 
   return (
     <div className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/20 via-slate-800/10 to-slate-700/20" />
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-slate-700/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
       <div className="relative w-full px-4 sm:px-6 pt-20 pb-8 lg:pt-24 lg:pb-16 z-10">
         <motion.div
@@ -39,7 +39,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
         >
           <Link 
             to="/projects" 
-            className="glass-button inline-flex items-center text-white hover:text-blue-200 transition-all duration-300 px-4 py-2 rounded-lg backdrop-blur-sm"
+            className="glass-button inline-flex items-center text-white hover:text-slate-300 transition-all duration-300 px-4 py-2 rounded-lg backdrop-blur-sm"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Projects
@@ -53,7 +53,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
           className="glass-card-elevated p-4 sm:p-8 text-center space-y-4 lg:space-y-6 layered-depth relative group max-w-6xl mx-auto"
         >
           <div className="flex items-center justify-center space-x-3 text-sm">
-            <span className="font-medium text-blue-200 glass-button px-3 py-1 rounded-full">{details.client}</span>
+            <span className="font-medium text-slate-300 glass-button px-3 py-1 rounded-full">{details.client}</span>
             <span className="text-gray-300">•</span>
             <span className="text-gray-200">{details.duration}</span>
             <span className="text-gray-300">•</span>
@@ -81,7 +81,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
               <Badge 
                 key={tag}
                 variant="secondary" 
-                className="glass-button px-3 py-1 bg-blue-500/20 text-blue-200 hover:bg-blue-500/30 backdrop-blur-sm transition-all duration-300"
+                className="glass-button px-3 py-1 bg-slate-700/20 text-slate-200 hover:bg-slate-600/30 backdrop-blur-sm transition-all duration-300"
               >
                 {tag}
               </Badge>
@@ -94,7 +94,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
                 href={details.projectLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-accent inline-flex items-center px-6 py-3 border border-blue-400/30 text-blue-200 font-medium rounded-lg transition-all duration-300 hover:bg-blue-500/30 hover:scale-105 shadow-elevated backdrop-blur-md"
+                className="glass-accent inline-flex items-center px-6 py-3 border border-slate-600/30 text-slate-200 font-medium rounded-lg transition-all duration-300 hover:bg-slate-700/30 hover:scale-105 shadow-elevated backdrop-blur-md"
               >
                 View Live Project
                 <ExternalLink className="ml-2 h-4 w-4" />
