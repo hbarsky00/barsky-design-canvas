@@ -19,27 +19,42 @@ export const useDirectImageUpload = ({ projectId, onImageUpdate }: UseDirectImag
     }
 
     setIsUploading(true);
-    console.log('🔄 Starting direct image upload');
+    console.log('🔄 Starting direct image upload and replacement');
 
     try {
-      // Show immediate preview
+      // Step 1: Delete old image data from database first
+      console.log('🗑️ Removing old image data for:', originalSrc);
+      const { error: deleteError } = await supabase
+        .from('dev_mode_changes')
+        .delete()
+        .eq('project_id', projectId)
+        .eq('change_type', 'image_replacement')
+        .eq('change_key', `image_${originalSrc}`);
+
+      if (deleteError) {
+        console.warn('⚠️ Could not delete old image data:', deleteError);
+      }
+
+      // Step 2: Show immediate preview
       const blobUrl = URL.createObjectURL(file);
       onImageUpdate(blobUrl);
       
-      // Upload to Vercel Blob
-      const uploadedUrl = await VercelBlobStorageService.uploadImage(
+      // Step 3: Upload to Vercel Blob (this will replace the old image)
+      const uploadedUrl = await VercelBlobStorageService.replaceImage(
+        originalSrc,
         file, 
         projectId, 
         `img-${Date.now()}`
       );
       
       if (uploadedUrl) {
-        // Update with permanent URL
+        // Step 4: Update with permanent URL
         onImageUpdate(uploadedUrl);
         URL.revokeObjectURL(blobUrl);
         
-        // Save to database with the correct format for publishing system
-        await supabase
+        // Step 5: Save NEW image replacement to database
+        console.log('💾 Saving new image replacement:', originalSrc, '->', uploadedUrl);
+        const { error: saveError } = await supabase
           .from('dev_mode_changes')
           .upsert({
             project_id: projectId,
@@ -49,9 +64,14 @@ export const useDirectImageUpload = ({ projectId, onImageUpdate }: UseDirectImag
           }, {
             onConflict: 'project_id,change_type,change_key'
           });
-        
-        toast.success('Image uploaded successfully!');
-        console.log('✅ Image upload complete:', uploadedUrl);
+
+        if (saveError) {
+          console.error('❌ Failed to save image replacement:', saveError);
+          toast.error('Failed to save image replacement');
+        } else {
+          toast.success('Image replaced successfully!');
+          console.log('✅ Image replacement complete:', uploadedUrl);
+        }
       } else {
         throw new Error('Upload failed');
       }

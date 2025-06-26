@@ -170,22 +170,29 @@ export class VercelBlobStorageService {
     });
   }
 
-  // New method to force delete old image before uploading new one
+  // Enhanced method to properly replace images with cleanup
   static async replaceImage(oldImageUrl: string, file: File, projectId: string, originalPath: string): Promise<string | null> {
     try {
-      // First delete the old image if it exists
+      console.log('🔄 Starting complete image replacement process');
+      
+      // First delete the old image if it exists and is a permanent URL
       if (oldImageUrl && !oldImageUrl.startsWith('blob:') && oldImageUrl.includes('vercel-storage.com')) {
         console.log('🗑️ Deleting old image before upload:', oldImageUrl);
         await this.deleteImage(oldImageUrl);
         this.clearImageCache([oldImageUrl]);
       }
       
+      // Clear any existing blob URLs for the old image
+      if (oldImageUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(oldImageUrl);
+      }
+      
       // Then upload the new image
       const newImageUrl = await this.uploadImage(file, projectId, originalPath);
       
       if (newImageUrl) {
-        console.log('✅ Image replacement completed:', oldImageUrl, '->', newImageUrl);
-        // Clear cache for the old image path
+        console.log('✅ Image replacement completed successfully:', oldImageUrl, '->', newImageUrl);
+        // Clear cache for the old image path to ensure fresh loading
         this.clearImageCache([oldImageUrl]);
       }
       
