@@ -22,7 +22,7 @@ export const herbalinkDetails: ProjectDetails = {
 
   // Manual captions for all images
   imageCaptions: {
-    "/lovable-uploads/afe2e611-b2c4-4665-a547-34b78e6809db.png": "HerbaLink mobile app screens showing symptom tracker, certified herbalists connection, and wellness services",
+    "/lovable-uploads/6c4ed77d-1ea7-4da1-8c3e-ad25cd792518.png": "HerbaLink mobile app screens showing symptom tracker, certified herbalists connection, and wellness services",
     "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "Herbalink platform showing practitioner and patient connection challenges",
     "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "Trust and safety features for herbal medicine platform",
     "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png": "Personalized dashboard for herb protocol tracking",
@@ -52,7 +52,7 @@ export const herbalinkDetails: ProjectDetails = {
   },
 
   availableImages: [
-    "/lovable-uploads/afe2e611-b2c4-4665-a547-34b78e6809db.png",
+    "/lovable-uploads/6c4ed77d-1ea7-4da1-8c3e-ad25cd792518.png",
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
     "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png",
     "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png",
