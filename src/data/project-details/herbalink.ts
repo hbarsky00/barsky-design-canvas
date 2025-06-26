@@ -22,7 +22,7 @@ export const herbalinkDetails: ProjectDetails = {
 
   // Manual captions for all images
   imageCaptions: {
-    "/lovable-uploads/b5459ee2-e0e1-492a-b9cd-f9e8e0b7cdcb.png": "HerbaLink mobile app interface showing the magic of herbalists in your hands with consultation booking features",
+    "blob:https://0fd089db-a4e5-4e17-ab5f-74878fb2d656.lovableproject.com/79045d63-0ed8-4cd2-be5c-4ccb28ed98c9": "The magic of the Herbalists in your hands",
     "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "Herbalink platform showing practitioner and patient connection challenges",
     "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "Trust and safety features for herbal medicine platform",
     "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png": "Personalized dashboard for herb protocol tracking",
@@ -52,7 +52,7 @@ export const herbalinkDetails: ProjectDetails = {
   },
 
   availableImages: [
-    "/lovable-uploads/b5459ee2-e0e1-492a-b9cd-f9e8e0b7cdcb.png",
+    "blob:https://0fd089db-a4e5-4e17-ab5f-74878fb2d656.lovableproject.com/79045d63-0ed8-4cd2-be5c-4ccb28ed98c9",
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
     "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png",
     "/lovable-uploads/e4fb8ea0-be2b-41f7-8d69-d8f8a043c213.png",
