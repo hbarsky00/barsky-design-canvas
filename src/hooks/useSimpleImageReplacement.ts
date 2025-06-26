@@ -20,50 +20,56 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
     toast.info('Uploading image...');
     
     try {
-      console.log('🔄 Starting simple image replacement for:', originalSrc);
+      console.log('🔄 Starting image replacement for:', originalSrc);
       
-      // Upload new image to Vercel Blob - this creates a permanent URL
-      const uploadedUrl = await VercelBlobStorageService.uploadImage(
-        file, 
-        projectId, 
-        `replacement-${Date.now()}`
-      );
+      // Create immediate blob URL for instant preview
+      const blobUrl = URL.createObjectURL(file);
+      console.log('📱 Created blob URL for immediate preview:', blobUrl);
       
-      if (!uploadedUrl) {
-        throw new Error('Upload failed - no URL returned');
-      }
-
-      // Check if this is a blob URL (temporary) or permanent URL
-      const isPermanentUrl = !uploadedUrl.startsWith('blob:');
+      // Update display immediately with blob URL
+      setCurrentSrc(blobUrl);
       
-      if (isPermanentUrl) {
-        console.log('✅ Upload successful, permanent URL:', uploadedUrl);
+      // Try to upload to Vercel Blob in the background
+      try {
+        const uploadedUrl = await VercelBlobStorageService.uploadImage(
+          file, 
+          projectId, 
+          `replacement-${Date.now()}`
+        );
         
-        // Save to dev_mode_changes table with image_replacement type using UPSERT
-        const { error } = await supabase
-          .from('dev_mode_changes')
-          .upsert({
-            project_id: projectId,
-            change_key: `image_${originalSrc}`,
-            change_value: { url: uploadedUrl },
-            change_type: 'image_replacement',
-            updated_at: new Date().toISOString()
-          }, {
-            onConflict: 'project_id,change_type,change_key'
-          });
+        if (uploadedUrl && !uploadedUrl.startsWith('blob:')) {
+          console.log('✅ Vercel Blob upload successful:', uploadedUrl);
+          
+          // Update with permanent URL
+          setCurrentSrc(uploadedUrl);
+          
+          // Save to database with permanent URL
+          const { error } = await supabase
+            .from('dev_mode_changes')
+            .upsert({
+              project_id: projectId,
+              change_key: `image_${originalSrc}`,
+              change_value: { url: uploadedUrl },
+              change_type: 'image_replacement',
+              updated_at: new Date().toISOString()
+            }, {
+              onConflict: 'project_id,change_type,change_key'
+            });
 
-        if (error) {
-          console.error('❌ Database save error:', error);
-          throw error;
+          if (error) {
+            console.warn('⚠️ Database save failed, but image is still displayed:', error);
+          } else {
+            console.log('✅ Permanent URL saved to database');
+          }
+          
+          // Clean up blob URL
+          URL.revokeObjectURL(blobUrl);
+        } else {
+          console.log('⚠️ Vercel Blob upload failed or returned blob URL, using local blob');
         }
-
-        console.log('✅ Database save successful for permanent URL');
-      } else {
-        console.log('⚠️ Using temporary blob URL:', uploadedUrl);
+      } catch (uploadError) {
+        console.warn('⚠️ Background upload failed, but image is displayed locally:', uploadError);
       }
-      
-      // Update the display with the new URL (permanent or temporary)
-      setCurrentSrc(uploadedUrl);
       
       toast.success('Image replaced successfully!');
       
@@ -73,18 +79,19 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
           projectId,
           imageReplaced: true,
           originalSrc,
-          newSrc: uploadedUrl,
-          isPermanent: isPermanentUrl
+          newSrc: currentSrc
         }
       }));
       
     } catch (error) {
       console.error('❌ Image replacement failed:', error);
       toast.error('Image replacement failed. Please try again.');
+      // Revert to original on error
+      setCurrentSrc(originalSrc);
     } finally {
       setIsUploading(false);
     }
-  }, [projectId, originalSrc]);
+  }, [projectId, originalSrc, currentSrc]);
 
   return {
     currentSrc,

@@ -22,10 +22,15 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   const baseImageSrc = originalImageSrc || project.image;
   const [displaySrc, setDisplaySrc] = useState(baseImageSrc);
   
-  const { replaceImage, isUploading } = useSimpleImageReplacement({
+  const { currentSrc, replaceImage, isUploading } = useSimpleImageReplacement({
     projectId: projectId || '',
     originalSrc: baseImageSrc
   });
+
+  // Update display source when replacement hook changes
+  useEffect(() => {
+    setDisplaySrc(currentSrc);
+  }, [currentSrc]);
 
   // Load saved image from database on mount
   useEffect(() => {
@@ -42,37 +47,36 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
           .eq('project_id', projectId)
           .eq('change_key', `image_${baseImageSrc}`)
           .eq('change_type', 'image_replacement')
-          .single();
+          .maybeSingle();
 
         if (data && !error && data.change_value && typeof data.change_value === 'object' && 'url' in data.change_value) {
           const imageUrl = (data.change_value as { url: string }).url;
-          console.log('✅ Found saved image replacement:', imageUrl);
-          setDisplaySrc(imageUrl);
-        } else {
-          // Check published_projects for published image replacements
-          const { data: publishedData, error: publishedError } = await supabase
-            .from('published_projects')
-            .select('image_replacements')
-            .eq('project_id', projectId)
-            .single();
-
-          if (publishedData && !publishedError && publishedData.image_replacements) {
-            const imageReplacements = publishedData.image_replacements as Record<string, string>;
-            if (imageReplacements[baseImageSrc]) {
-              console.log('✅ Found published image replacement:', imageReplacements[baseImageSrc]);
-              setDisplaySrc(imageReplacements[baseImageSrc]);
-            } else {
-              console.log('📝 No replacement found, using original:', baseImageSrc);
-              setDisplaySrc(baseImageSrc);
-            }
-          } else {
-            console.log('📝 No published data found, using original:', baseImageSrc);
-            setDisplaySrc(baseImageSrc);
+          if (imageUrl && !imageUrl.startsWith('blob:')) {
+            console.log('✅ Found saved permanent image:', imageUrl);
+            setDisplaySrc(imageUrl);
+            return;
           }
         }
+
+        // Check published_projects for published image replacements
+        const { data: publishedData, error: publishedError } = await supabase
+          .from('published_projects')
+          .select('image_replacements')
+          .eq('project_id', projectId)
+          .maybeSingle();
+
+        if (publishedData && !publishedError && publishedData.image_replacements) {
+          const imageReplacements = publishedData.image_replacements as Record<string, string>;
+          if (imageReplacements[baseImageSrc]) {
+            console.log('✅ Found published image replacement:', imageReplacements[baseImageSrc]);
+            setDisplaySrc(imageReplacements[baseImageSrc]);
+            return;
+          }
+        }
+        
+        console.log('📝 No replacement found, using original:', baseImageSrc);
       } catch (error) {
         console.error('❌ Error loading saved image:', error);
-        setDisplaySrc(baseImageSrc);
       }
     };
 
