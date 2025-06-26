@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { projectsData } from "@/data/projects/projectsList";
+import { projectsData } from '@/data/projectsData';
 import { ProjectProps } from "@/components/ProjectCard";
 
 // All projects are featured now since we only have real projects
