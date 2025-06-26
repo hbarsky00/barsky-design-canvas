@@ -31,8 +31,8 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
       <div className="relative w-full px-4 sm:px-6 z-10">
-        {/* Header with logo alignment */}
-        <div className="max-w-7xl mx-auto pt-6 pb-8 lg:pt-8 lg:pb-16">
+        {/* Header with proper spacing from logo */}
+        <div className="max-w-7xl mx-auto pt-20 pb-8 lg:pt-24 lg:pb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
