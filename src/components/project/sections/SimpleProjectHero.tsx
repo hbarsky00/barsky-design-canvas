@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -57,7 +56,7 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
             <span className="text-gray-600">{details.role}</span>
           </div>
           
-          <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
             {project.title}
           </h1>
           

@@ -49,7 +49,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center">
+            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-center">
               {title}
             </h1>
             

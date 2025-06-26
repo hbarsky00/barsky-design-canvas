@@ -57,7 +57,7 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
                 <span className="text-sm text-gray-400">{details.duration}</span>
               </div>
               
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                 {project.title}
               </h1>
               

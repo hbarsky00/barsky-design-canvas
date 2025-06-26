@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -70,7 +69,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             contentType="header"
             onSave={(content) => handleSectionContentSave('hero', 'title', content)}
             projectId={projectId}
-            className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight text-center"
+            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight text-center"
           />
           
           <EnhancedContentEditor
