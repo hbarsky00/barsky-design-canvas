@@ -33,17 +33,19 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     
     const loadSavedImage = async () => {
       try {
+        // Use existing dev_mode_changes table instead of non-existent project_content table
         const { data, error } = await supabase
-          .from('project_content')
-          .select('content_value')
+          .from('dev_mode_changes')
+          .select('change_value')
           .eq('project_id', projectId)
-          .eq('content_key', `image_${baseImageSrc}`)
-          .eq('content_type', 'image')
+          .eq('change_key', `image_${baseImageSrc}`)
+          .eq('change_type', 'image_replacement')
           .single();
 
-        if (data && !error) {
-          console.log('✅ Found saved image in database:', data.content_value);
-          setDisplaySrc(data.content_value);
+        if (data && !error && data.change_value && typeof data.change_value === 'object' && 'url' in data.change_value) {
+          const imageUrl = (data.change_value as { url: string }).url;
+          console.log('✅ Found saved image in database:', imageUrl);
+          setDisplaySrc(imageUrl);
         } else {
           console.log('📝 No saved image found, using original:', baseImageSrc);
           setDisplaySrc(baseImageSrc);

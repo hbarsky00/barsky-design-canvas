@@ -21,6 +21,17 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
   imageCaption,
   onImageReplace 
 }) => {
+  // Handle image replacement with proper event handling
+  const handleImageReplace = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !onImageReplace) return;
+    
+    // Create object URL for immediate display
+    const newSrc = URL.createObjectURL(file);
+    onImageReplace(newSrc);
+    event.target.value = '';
+  };
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -53,7 +64,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
             alt={imageCaption || title}
             caption={imageCaption}
             className="rounded-lg shadow-elevated w-full"
-            onImageReplace={onImageReplace}
+            onImageReplace={handleImageReplace}
           />
         </div>
       )}

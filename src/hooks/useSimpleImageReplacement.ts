@@ -35,14 +35,14 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
 
       console.log('✅ Upload successful:', uploadedUrl);
       
-      // Save directly to database
+      // Save to existing dev_mode_changes table instead of non-existent project_content table
       const { error } = await supabase
-        .from('project_content')
+        .from('dev_mode_changes')
         .upsert({
           project_id: projectId,
-          content_key: `image_${originalSrc}`,
-          content_value: uploadedUrl,
-          content_type: 'image',
+          change_key: `image_${originalSrc}`,
+          change_value: { url: uploadedUrl },
+          change_type: 'image_replacement',
           updated_at: new Date().toISOString()
         });
 

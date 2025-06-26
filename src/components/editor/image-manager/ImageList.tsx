@@ -34,6 +34,17 @@ const ImageList: React.FC<ImageListProps> = ({
     }
   };
 
+  // Handle image replacement with proper event handling
+  const handleImageReplace = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    
+    // Create object URL for immediate display
+    const newSrc = URL.createObjectURL(file);
+    onImageReplace(index, newSrc);
+    event.target.value = '';
+  };
+
   return (
     <div className={`grid ${getGridLayout()} gap-6`} key={`image-list-${componentKey}`}>
       {images.map((image, index) => (
@@ -48,7 +59,7 @@ const ImageList: React.FC<ImageListProps> = ({
             projectId={projectId}
             hideEditButton={!showEditingControls}
             allowRemove={showEditingControls}
-            onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
+            onImageReplace={handleImageReplace(index)}
             onImageRemove={() => onImageRemove(index)}
           />
         </div>

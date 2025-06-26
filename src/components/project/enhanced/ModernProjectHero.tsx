@@ -27,6 +27,17 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
     projectId: projectId || '' 
   });
 
+  // Handle image replacement with proper event handling
+  const handleImageReplace = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    
+    // Create object URL for immediate display
+    const newSrc = URL.createObjectURL(file);
+    handleSectionImageUpdate('hero', project.image, newSrc);
+    event.target.value = '';
+  };
+
   console.log('🎬 ModernProjectHero: Rendering with project:', project.title);
 
   return (
@@ -125,7 +136,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
               projectId={projectId}
               hideEditButton={false}
-              onImageReplace={(newSrc) => handleSectionImageUpdate('hero', project.image, newSrc)}
+              onImageReplace={handleImageReplace}
             />
           </div>
         </motion.div>
