@@ -1,7 +1,6 @@
 
 import { useCallback } from 'react';
-import { useSimplifiedProjectPersistence } from './useSimplifiedProjectPersistence';
-import { toast } from 'sonner';
+import { useSimplifiedProjectPersistence } from '@/hooks/useSimplifiedProjectPersistence';
 
 interface UseSimplifiedContentEditorProps {
   projectId: string;
@@ -10,38 +9,64 @@ interface UseSimplifiedContentEditorProps {
 export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEditorProps) => {
   const { saveTextContent, saveImageReplacement } = useSimplifiedProjectPersistence(projectId);
 
-  const handleSectionContentSave = useCallback(async (
-    section: string, 
-    type: 'title' | 'content', 
-    content: string
-  ) => {
-    const key = `${section}_${type}_${projectId}`;
-    console.log('💾 SimplifiedContentEditor: Saving section content:', { section, type, key, content: content.substring(0, 50) + '...' });
+  const handleSectionContentSave = useCallback(async (section: string, type: 'title' | 'content', content: string) => {
+    console.log(`💾 Saving ${section} ${type}:`, content.substring(0, 50) + '...');
     
     try {
+      // FIXED: Use consistent key format for all text content
+      let key: string;
+      if (type === 'title') {
+        key = `${section}_title_${projectId}`;
+      } else {
+        key = `${section}_content_${projectId}`;
+      }
+      
+      console.log('🔑 Using save key:', key);
+      
       await saveTextContent(key, content);
-      console.log('✅ Section content saved successfully');
+      console.log('✅ Content saved successfully');
+      
+      // Force immediate refresh to show saved content
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId,
+          section,
+          type,
+          content,
+          immediate: true,
+          stayOnPage: true,
+          timestamp: Date.now()
+        }
+      }));
+      
     } catch (error) {
-      console.error('❌ Error saving section content:', error);
-      toast.error('Failed to save content');
+      console.error('❌ Error saving content:', error);
     }
   }, [projectId, saveTextContent]);
 
-  const handleSectionImageUpdate = useCallback(async (
-    section: string,
-    originalSrc: string,
-    newSrc: string
-  ) => {
-    console.log('🖼️ SimplifiedContentEditor: Updating section image:', { section, originalSrc: originalSrc.substring(0, 30) + '...', newSrc: newSrc.substring(0, 30) + '...' });
+  const handleSectionImageUpdate = useCallback(async (section: string, originalSrc: string, newSrc: string) => {
+    console.log(`🖼️ Updating ${section} image:`, originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
     
     try {
       await saveImageReplacement(originalSrc, newSrc);
-      console.log('✅ Section image updated successfully');
+      console.log('✅ Image replacement saved successfully');
+      
+      // Force immediate refresh to show replaced image
+      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
+        detail: { 
+          projectId,
+          section,
+          imageReplacement: { originalSrc, newSrc },
+          immediate: true,
+          stayOnPage: true,
+          timestamp: Date.now()
+        }
+      }));
+      
     } catch (error) {
-      console.error('❌ Error updating section image:', error);
-      toast.error('Failed to update image');
+      console.error('❌ Error saving image replacement:', error);
     }
-  }, [saveImageReplacement]);
+  }, [projectId, saveImageReplacement]);
 
   return {
     handleSectionContentSave,

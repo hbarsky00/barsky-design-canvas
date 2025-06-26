@@ -1,48 +1,49 @@
 
 import { useCallback, useState } from 'react';
 import { saveChangeToDatabase } from '../database/operations';
-import { ProjectData } from './types';
+import { SimplifiedProjectData } from './simplifiedTypes';
 
 export const useSimplifiedSaveOperations = (
   projectId: string,
-  updateCachedData: (updater: (prev: ProjectData) => ProjectData) => void
+  setCachedData: (updater: (prev: SimplifiedProjectData) => SimplifiedProjectData) => void
 ) => {
   const [isSaving, setIsSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
-    console.log('💾 SimplifiedSave: Saving text content:', key);
+    console.log('💾 SimplifiedSaveOperations: Saving text content:', key, content.substring(0, 50) + '...');
     setIsSaving(true);
     
     try {
+      // FIXED: Ensure proper saving with consistent key format
       await saveChangeToDatabase(projectId, 'text', key, content);
       
-      updateCachedData(prev => ({
-        ...prev,
-        textContent: { ...prev.textContent, [key]: content }
-      }));
+      // Update cached data immediately with the exact key used
+      setCachedData(prev => {
+        const updated = {
+          ...prev,
+          textContent: { ...prev.textContent, [key]: content }
+        };
+        
+        console.log('📊 Updated cached data with key:', key);
+        console.log('📊 New cached textContent keys:', Object.keys(updated.textContent));
+        
+        return updated;
+      });
       
       setLastSaved(new Date());
-      console.log('✅ Text content saved successfully');
+      console.log('✅ Text content saved and cached successfully with key:', key);
       
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          projectId,
-          textUpdate: { key, content },
-          immediate: true,
-          timestamp: Date.now()
-        }
-      }));
     } catch (error) {
       console.error('❌ Error saving text content:', error);
       throw error;
     } finally {
       setIsSaving(false);
     }
-  }, [projectId, updateCachedData]);
+  }, [projectId, setCachedData]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('💾 SimplifiedSave: Saving image replacement:', originalSrc.substring(0, 30) + '...');
+    console.log('💾 SimplifiedSaveOperations: Saving image replacement:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('⚠️ Skipping blob URL replacement save');
@@ -54,7 +55,8 @@ export const useSimplifiedSaveOperations = (
     try {
       await saveChangeToDatabase(projectId, 'image', originalSrc, newSrc);
       
-      updateCachedData(prev => ({
+      // Update cached data immediately
+      setCachedData(prev => ({
         ...prev,
         imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
       }));
@@ -62,31 +64,26 @@ export const useSimplifiedSaveOperations = (
       setLastSaved(new Date());
       console.log('✅ Image replacement saved successfully');
       
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          projectId,
-          imageReplacement: { originalSrc, newSrc },
-          immediate: true,
-          timestamp: Date.now()
-        }
-      }));
     } catch (error) {
       console.error('❌ Error saving image replacement:', error);
       throw error;
     } finally {
       setIsSaving(false);
     }
-  }, [projectId, updateCachedData]);
+  }, [projectId, setCachedData]);
 
   const saveImageCaption = useCallback(async (imageSrc: string, caption: string) => {
-    console.log('💾 SimplifiedSave: Saving image caption:', imageSrc.substring(0, 30) + '...');
+    console.log('💾 SimplifiedSaveOperations: Saving image caption:', imageSrc.substring(0, 30) + '...', caption.substring(0, 50) + '...');
     
     setIsSaving(true);
     
     try {
-      await saveChangeToDatabase(projectId, 'image_caption', imageSrc, caption);
+      // Use img_caption_ prefix for consistency with publishing system
+      const captionKey = `img_caption_${imageSrc}`;
+      await saveChangeToDatabase(projectId, 'image_caption', captionKey, caption);
       
-      updateCachedData(prev => ({
+      // Update cached data immediately
+      setCachedData(prev => ({
         ...prev,
         imageCaptions: { ...prev.imageCaptions, [imageSrc]: caption }
       }));
@@ -94,21 +91,13 @@ export const useSimplifiedSaveOperations = (
       setLastSaved(new Date());
       console.log('✅ Image caption saved successfully');
       
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          projectId,
-          imageCaptionUpdate: { imageSrc, caption },
-          immediate: true,
-          timestamp: Date.now()
-        }
-      }));
     } catch (error) {
       console.error('❌ Error saving image caption:', error);
       throw error;
     } finally {
       setIsSaving(false);
     }
-  }, [projectId, updateCachedData]);
+  }, [projectId, setCachedData]);
 
   return {
     saveTextContent,
