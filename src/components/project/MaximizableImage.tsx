@@ -6,8 +6,6 @@ import ImageOverlay from "./image/ImageOverlay";
 import UploadOverlay from "./image/UploadOverlay";
 import ImageErrorFallback from "./image/ImageErrorFallback";
 import EditableCaption from "../caption/EditableCaption";
-import { VercelBlobStorageService } from "@/services/vercelBlobStorage";
-import { toast } from "sonner";
 
 interface MaximizableImageProps {
   src: string;
@@ -20,8 +18,9 @@ interface MaximizableImageProps {
   projectId?: string;
   hideEditButton?: boolean;
   allowRemove?: boolean;
-  onImageReplace?: (newSrc: string) => void;
+  onImageReplace?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onImageRemove?: () => void;
+  isUploading?: boolean;
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -36,63 +35,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   hideEditButton = false,
   allowRemove = false,
   onImageReplace,
-  onImageRemove
+  onImageRemove,
+  isUploading = false
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const [isHovered, setIsHovered] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const [imageError, setImageError] = useState(false);
   const showEditingControls = shouldShowEditingControls();
 
   console.log('🖼️ MaximizableImage: Rendering with src:', src);
-
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file || !projectId || !onImageReplace) {
-      event.target.value = '';
-      return;
-    }
-
-    if (!file.type.startsWith('image/')) {
-      toast.error('Please select an image file');
-      event.target.value = '';
-      return;
-    }
-
-    if (file.size > 10 * 1024 * 1024) {
-      toast.error('Image must be smaller than 10MB');
-      event.target.value = '';
-      return;
-    }
-
-    setIsUploading(true);
-    toast.info('Uploading image...');
-    
-    try {
-      console.log('📤 Starting upload for:', file.name);
-      
-      const uploadedUrl = await VercelBlobStorageService.uploadImage(
-        file, 
-        projectId, 
-        `replacement-${Date.now()}`
-      );
-      
-      if (uploadedUrl) {
-        console.log('✅ Upload successful:', uploadedUrl);
-        await onImageReplace(uploadedUrl);
-        toast.success('Image replaced successfully!');
-      } else {
-        console.error('❌ Upload failed');
-        toast.error('Upload failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('❌ Upload error:', error);
-      toast.error('Upload failed. Please try again.');
-    } finally {
-      setIsUploading(false);
-      event.target.value = '';
-    }
-  };
 
   const handleMaximize = () => {
     if (!imageError) {
@@ -154,7 +105,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           hideEditButton={hideEditButton}
           allowRemove={allowRemove}
           onMaximize={handleMaximize}
-          onImageReplace={handleImageUpload}
+          onImageReplace={onImageReplace}
           onImageRemove={handleImageRemove}
         />
       </div>
