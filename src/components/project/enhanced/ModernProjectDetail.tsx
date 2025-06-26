@@ -5,7 +5,9 @@ import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedDataManager } from "@/hooks/useSimplifiedDataManager";
 import ModernProjectHeader from "./ModernProjectHeader";
 import ModernProjectImage from "./ModernProjectImage";
-import ModernProjectSections from "./sections/ModernProjectSections";
+import ModernProjectChallengeSection from "./sections/ModernProjectChallengeSection";
+import ModernProjectProcessSection from "./sections/ModernProjectProcessSection";
+import ModernProjectResultSection from "./sections/ModernProjectResultSection";
 import ProjectCallToAction from "../ProjectCallToAction";
 import ProjectNavigation from "@/components/ProjectNavigation";
 
@@ -59,19 +61,34 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       {/* Main Content */}
       <div className="w-full px-4 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16 max-w-6xl mx-auto">
         
-        {/* All Project Sections */}
-        <ModernProjectSections
+        {/* Challenge Section */}
+        <ModernProjectChallengeSection
           details={updatedDetails}
           projectId={projectId}
           componentKey={componentKey.toString()}
           imageCaptions={finalCaptions}
         />
 
-        {/* Hero Image Section - After challenge */}
+        {/* Hero Image Section - Right after challenge */}
         <ModernProjectImage
           project={updatedProject}
           imageCaptions={finalCaptions}
           projectId={projectId}
+        />
+
+        {/* Process and Result Sections */}
+        <ModernProjectProcessSection
+          details={updatedDetails}
+          projectId={projectId}
+          componentKey={componentKey.toString()}
+          imageCaptions={finalCaptions}
+        />
+
+        <ModernProjectResultSection
+          details={updatedDetails}
+          projectId={projectId}
+          componentKey={componentKey.toString()}
+          imageCaptions={finalCaptions}
         />
 
         {/* Call to Action */}
