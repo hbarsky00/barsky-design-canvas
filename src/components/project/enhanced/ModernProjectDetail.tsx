@@ -63,7 +63,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
         <ModernProjectSections
           details={updatedDetails}
           projectId={projectId}
-          componentKey={componentKey}
+          componentKey={componentKey.toString()}
           imageCaptions={finalCaptions}
         />
 
