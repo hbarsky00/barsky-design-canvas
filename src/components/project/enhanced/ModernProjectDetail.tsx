@@ -5,9 +5,7 @@ import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedDataManager } from "@/hooks/useSimplifiedDataManager";
 import ModernProjectHeader from "./ModernProjectHeader";
 import ModernProjectImage from "./ModernProjectImage";
-import ModernProjectChallengeSection from "./sections/ModernProjectChallengeSection";
-import ModernProjectProcessSection from "./sections/ModernProjectProcessSection";
-import ModernProjectResultSection from "./sections/ModernProjectResultSection";
+import ModernProjectSections from "./sections/ModernProjectSections";
 import ProjectCallToAction from "../ProjectCallToAction";
 import ProjectNavigation from "@/components/ProjectNavigation";
 
@@ -44,9 +42,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   console.log('🔄 ModernProjectDetail: Component key:', componentKey);
   console.log('🔄 ModernProjectDetail: Updated project data:', {
     title: updatedProject.title,
-    description: updatedProject.description.substring(0, 50) + '...',
-    heroImage: updatedProject.image,
-    originalHeroImage: project.image
+    description: updatedProject.description.substring(0, 50) + '...'
   });
   console.log('📝 ModernProjectDetail: Using manual captions:', Object.keys(finalCaptions).length, 'captions available');
 
@@ -63,35 +59,19 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       {/* Main Content */}
       <div className="w-full px-4 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16 max-w-6xl mx-auto">
         
-        {/* Challenge Section */}
-        <ModernProjectChallengeSection
+        {/* All Project Sections */}
+        <ModernProjectSections
           details={updatedDetails}
           projectId={projectId}
           componentKey={componentKey.toString()}
           imageCaptions={finalCaptions}
         />
 
-        {/* Hero Image Section - Right after challenge - NOW USES UPDATED PROJECT WITH ORIGINAL SOURCE */}
+        {/* Hero Image Section - After challenge */}
         <ModernProjectImage
           project={updatedProject}
           imageCaptions={finalCaptions}
           projectId={projectId}
-          originalImageSrc={project.image}
-        />
-
-        {/* Process and Result Sections */}
-        <ModernProjectProcessSection
-          details={updatedDetails}
-          projectId={projectId}
-          componentKey={componentKey.toString()}
-          imageCaptions={finalCaptions}
-        />
-
-        <ModernProjectResultSection
-          details={updatedDetails}
-          projectId={projectId}
-          componentKey={componentKey.toString()}
-          imageCaptions={finalCaptions}
         />
 
         {/* Call to Action */}

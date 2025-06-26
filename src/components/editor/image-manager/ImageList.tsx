@@ -25,24 +25,15 @@ const ImageList: React.FC<ImageListProps> = ({
     return null;
   }
 
-  // Updated grid layout - max 2 columns for desktop/tablet
+  // Dynamic grid layout based on image count
   const getGridLayout = () => {
     if (images.length === 1) {
       return "grid-cols-1";
+    } else if (images.length === 2) {
+      return "grid-cols-1 md:grid-cols-2"; // 2 columns on tablet and desktop
     } else {
-      return "grid-cols-1 md:grid-cols-2"; // Max 2 columns on tablet and desktop
+      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"; // Default layout for 3+ images
     }
-  };
-
-  // Handle image replacement with proper event handling
-  const handleImageReplace = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    
-    // Create object URL for immediate display
-    const newSrc = URL.createObjectURL(file);
-    onImageReplace(index, newSrc);
-    event.target.value = '';
   };
 
   return (
@@ -59,7 +50,7 @@ const ImageList: React.FC<ImageListProps> = ({
             projectId={projectId}
             hideEditButton={!showEditingControls}
             allowRemove={showEditingControls}
-            onImageReplace={handleImageReplace(index)}
+            onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
             onImageRemove={() => onImageRemove(index)}
           />
         </div>

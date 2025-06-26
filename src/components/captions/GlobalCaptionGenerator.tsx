@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sparkles, Download, RefreshCw, AlertCircle, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
-import { projectsData } from '@/data/projectsData';
+import { projectsData } from '@/data/projects/projectsList';
 
 interface ProjectImageStats {
   projectId: string;

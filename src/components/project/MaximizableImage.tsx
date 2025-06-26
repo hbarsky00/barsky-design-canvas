@@ -1,11 +1,12 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import ImageOverlay from "./image/ImageOverlay";
 import UploadOverlay from "./image/UploadOverlay";
 import ImageErrorFallback from "./image/ImageErrorFallback";
 import EditableCaption from "../caption/EditableCaption";
+import { useImageUploadHandler } from "./image/useImageUploadHandler";
 
 interface MaximizableImageProps {
   src: string;
@@ -18,9 +19,8 @@ interface MaximizableImageProps {
   projectId?: string;
   hideEditButton?: boolean;
   allowRemove?: boolean;
-  onImageReplace?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onImageReplace?: (newSrc: string) => void;
   onImageRemove?: () => void;
-  isUploading?: boolean;
 }
 
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
@@ -35,36 +35,96 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   hideEditButton = false,
   allowRemove = false,
   onImageReplace,
-  onImageRemove,
-  isUploading = false
+  onImageRemove
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const [isHovered, setIsHovered] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
   const showEditingControls = shouldShowEditingControls();
 
-  console.log('🖼️ MaximizableImage: Rendering with src:', src);
+  console.log('🖼️ MaximizableImage: Show editing controls:', showEditingControls);
+
+  const { handleImageReplace } = useImageUploadHandler({
+    projectId,
+    currentSrc,
+    onImageReplace: (newSrc) => {
+      console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
+      setCurrentSrc(newSrc);
+      setImageError(false);
+      setIsUploading(false);
+      if (onImageReplace) {
+        onImageReplace(newSrc);
+      }
+    },
+    setCurrentSrc,
+    setImageError,
+    setForceRefresh: () => {}
+  });
+
+  // Handle upload start and completion
+  const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Only allow uploads in dev mode
+    if (!showEditingControls) {
+      event.target.value = '';
+      return;
+    }
+
+    const file = event.target.files?.[0];
+    if (!file || !projectId) {
+      event.target.value = '';
+      return;
+    }
+
+    console.log('📤 Starting image upload...');
+    setIsUploading(true);
+    
+    try {
+      await handleImageReplace(event);
+    } catch (error) {
+      console.error('❌ Upload error:', error);
+      setIsUploading(false);
+      setImageError(true);
+    }
+    
+    // Always clear the input
+    event.target.value = '';
+  };
+
+  // Only update source if prop actually changes
+  useEffect(() => {
+    if (src !== currentSrc && src) {
+      console.log('🔄 MaximizableImage: Source updated from prop:', src);
+      setCurrentSrc(src);
+      setImageError(false);
+    }
+  }, [src]);
 
   const handleMaximize = () => {
     if (!imageError) {
-      maximizeImage(src, alt, imageList, currentIndex);
+      maximizeImage(currentSrc, alt, imageList, currentIndex);
     }
   };
 
   const handleImageRemove = () => {
+    // Only allow removal in dev mode
     if (onImageRemove && showEditingControls) {
+      console.log('🗑️ Removing image:', currentSrc);
       onImageRemove();
     }
   };
 
   const handleImageError = () => {
-    console.error('❌ Image failed to load:', src);
+    console.error('❌ Image failed to load:', currentSrc);
     setImageError(true);
+    setIsUploading(false);
   };
 
   const handleImageLoad = () => {
-    console.log('✅ Image loaded successfully');
+    console.log('✅ Image loaded successfully:', currentSrc.substring(0, 50) + '...');
     setImageError(false);
+    setIsUploading(false);
   };
 
   return (
@@ -77,11 +137,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         {imageError ? (
           <ImageErrorFallback 
             showEditingControls={showEditingControls}
-            originalSrc={src}
+            originalSrc={currentSrc}
           />
         ) : (
           <img
-            src={src}
+            src={currentSrc}
             alt={alt}
             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
@@ -105,13 +165,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           hideEditButton={hideEditButton}
           allowRemove={allowRemove}
           onMaximize={handleMaximize}
-          onImageReplace={onImageReplace}
+          onImageReplace={handleUploadStart}
           onImageRemove={handleImageRemove}
         />
       </div>
       
       <EditableCaption
-        imageSrc={src}
+        imageSrc={currentSrc}
         initialCaption={caption || ''}
         projectId={projectId}
         className="maximizable-image-caption"

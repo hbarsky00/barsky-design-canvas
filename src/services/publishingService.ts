@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { VercelBlobStorageService } from './vercelBlobStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
@@ -27,12 +26,13 @@ export class PublishingService {
         // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
-        // Get image captions from localStorage - separate system
+        // Get image captions from COMPLETELY ISOLATED localStorage - separate system
         const imageCaptionStorageKey = `image_captions_${projectId}`;
         const imageCaptions = JSON.parse(localStorage.getItem(imageCaptionStorageKey) || '{}');
         
-        console.log('📊 Found image captions:', {
+        console.log('📊 Found image captions (COMPLETELY ISOLATED SYSTEM):', {
           count: Object.keys(imageCaptions).length,
+          keys: Object.keys(imageCaptions),
           captions: imageCaptions
         });
         
@@ -52,30 +52,9 @@ export class PublishingService {
           contentBlocks: {}
         };
         
-        // CRITICAL FIX: Extract image replacements from dev_mode_changes with proper format
-        const imageReplacementChanges: Record<string, string> = {};
-        if (rawChanges) {
-          rawChanges.forEach(change => {
-            if (change.change_type === 'image_replacement' && change.change_key && change.change_value) {
-              const key = change.change_key.replace('image_', ''); // Remove prefix
-              if (typeof change.change_value === 'object' && change.change_value !== null && 'url' in change.change_value) {
-                const url = (change.change_value as { url: string }).url;
-                // Only use non-blob URLs for publishing (permanent URLs)
-                if (url && !url.startsWith('blob:')) {
-                  imageReplacementChanges[key] = url;
-                  console.log('✅ Found permanent image replacement:', key, '->', url);
-                } else {
-                  console.warn('⚠️ Skipping blob URL in publishing:', key, url);
-                }
-              }
-            }
-          });
-        }
-        
         console.log('📊 Dev changes to publish:', {
           textKeys: Object.keys(devChanges.textContent).length,
           imageKeys: Object.keys(devChanges.imageReplacements).length,
-          newImageReplacements: Object.keys(imageReplacementChanges).length,
           contentBlockKeys: Object.keys(devChanges.contentBlocks).length
         });
 
@@ -89,59 +68,65 @@ export class PublishingService {
           imageEntries: Object.keys(oldImageReplacements).length
         });
 
-        // Merge both old and new image replacement systems
-        const allImageReplacements = {
-          ...devChanges.imageReplacements,
-          ...imageReplacementChanges
-        };
-
-        console.log('🔧 All image replacements to process:', {
-          total: Object.keys(allImageReplacements).length,
-          replacements: allImageReplacements
-        });
-
-        // Process images using Vercel Blob - only permanent URLs
+        // Process images using Vercel Blob
         const { publishedImageMappings, oldImagesToCleanup, failedUploads } = await ImageProcessor.processImages(
-          allImageReplacements,
+          devChanges.imageReplacements,
           oldImageReplacements,
           projectId
         );
 
-        // Process text content with captions
+        // ENHANCED CAPTION SYSTEM - ensure ALL caption edits are preserved and published
         const baseTextContent = { ...currentPublishedText };
         const devTextContent = { ...devChanges.textContent };
         
-        // Apply dev changes first
+        // Apply dev changes first (these are actual text edits)
         Object.keys(devTextContent).forEach(key => {
           baseTextContent[key] = devTextContent[key];
         });
         
-        // Apply image captions from localStorage
+        // CRITICAL FIX: Apply image captions from localStorage with proper validation
+        console.log('🔧 CRITICAL FIX: Processing manually edited captions for publishing');
         Object.keys(imageCaptions).forEach(captionKey => {
+          // Validate the caption key format
           if (captionKey && typeof imageCaptions[captionKey] === 'string' && imageCaptions[captionKey].trim()) {
+            // Store with img_caption_ prefix to ensure complete separation and proper identification
             const publishKey = captionKey.startsWith('img_caption_') ? captionKey : `img_caption_${captionKey}`;
             baseTextContent[publishKey] = imageCaptions[captionKey].trim();
-            console.log('✅ Publishing caption:', publishKey, '=', imageCaptions[captionKey].trim());
+            console.log('✅ Publishing manually edited caption:', publishKey, '=', imageCaptions[captionKey].trim());
+          }
+        });
+
+        // REMOVE any old caption_ keys to prevent duplicates and conflicts
+        Object.keys(baseTextContent).forEach(key => {
+          if (key.startsWith('caption_') && !key.startsWith('img_caption_')) {
+            delete baseTextContent[key];
+            console.log('🗑️ Removed old caption key to prevent conflicts:', key);
           }
         });
 
         const finalTextContent = baseTextContent;
 
-        // Process content blocks
+        console.log('📝 FINAL Text content with ENHANCED CAPTION PUBLISHING:', {
+          publishedCount: Object.keys(currentPublishedText).length,
+          devChangesCount: Object.keys(devChanges.textContent).length,
+          imageCaptionsCount: Object.keys(imageCaptions).length,
+          finalCount: Object.keys(finalTextContent).length,
+          captionKeys: Object.keys(finalTextContent).filter(k => k.includes('caption'))
+        });
+
+        // Process content blocks - dev changes win
         const processedContentBlocks = await ImageProcessor.processContentBlocks(devChanges.contentBlocks, projectId);
         const finalContentBlocks = {
           ...(currentPublishedData?.content_blocks || {}),
           ...processedContentBlocks
         };
 
-        // Final validation for images - ensure no blob URLs make it to production
+        // Final validation for images
         const validImageReplacements = Object.fromEntries(
           Object.entries(publishedImageMappings).filter(([key, value]) => {
-            const isValid = value && (value.startsWith('https://') || value.startsWith('http://') || value.startsWith('/')) && !value.startsWith('blob:');
+            const isValid = value && (value.startsWith('https://') || value.startsWith('http://') || value.startsWith('/'));
             if (!isValid) {
-              console.warn('⚠️ Filtering out invalid/blob image replacement:', key, '->', value);
-            } else {
-              console.log('✅ Including valid permanent image replacement:', key, '->', value);
+              console.warn('⚠️ Filtering out invalid image replacement:', key, '->', value);
             }
             return isValid;
           })
@@ -153,12 +138,11 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing:', {
+        console.log('✅ FINAL data for publishing with ENHANCED CAPTIONS:', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
           captionsIncluded: Object.keys(finalTextContent).filter(k => k.includes('caption')).length,
-          imageReplacements: finalImageReplacements,
           preserveDevChanges
         });
 
@@ -171,7 +155,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving published data to database');
+        console.log('💾 Saving enhanced published data to database with captions');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -184,15 +168,15 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Published data stored successfully');
+        console.log('✅ Enhanced published data with captions stored successfully');
 
-        // Apply changes to DOM immediately
+        // Apply changes to DOM immediately with enhanced caption support
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
 
         // Store in localStorage as fallback
         try {
           localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
-          console.log('💾 Published data stored in localStorage as backup');
+          console.log('💾 Enhanced published data stored in localStorage as backup');
         } catch (error) {
           console.warn('⚠️ Could not store to localStorage:', error);
         }
@@ -228,8 +212,8 @@ export class PublishingService {
           window.history.replaceState(null, '', originalUrl);
         }
 
-        // Force refresh to show published changes
-        console.log('🔄 Dispatching update event with published content');
+        // Force refresh to show published changes including captions
+        console.log('🔄 Dispatching update event with enhanced published content including captions');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -241,12 +225,11 @@ export class PublishingService {
             contentBlocks: finalContentBlocks,
             preserveDevChanges,
             preventNavigation: true,
-            captionsUpdated: true,
-            imagesUpdated: true
+            captionsUpdated: true
           }
         }));
 
-        console.log('✅ Project published successfully:', {
+        console.log('✅ Project published successfully with ENHANCED CAPTION SUPPORT:', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,

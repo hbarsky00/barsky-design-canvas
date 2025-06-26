@@ -29,17 +29,6 @@ const SectionImageManager: React.FC<SectionImageManagerProps> = ({
   onRemoveImage,
   onImageReplace
 }) => {
-  // Handle image replacement with proper event handling
-  const handleImageReplace = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    
-    // Create object URL for immediate display
-    const newSrc = URL.createObjectURL(file);
-    onImageReplace(index, newSrc);
-    event.target.value = '';
-  };
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -75,7 +64,7 @@ const SectionImageManager: React.FC<SectionImageManagerProps> = ({
                 projectId={projectId}
                 hideEditButton={!showEditingControls}
                 allowRemove={showEditingControls}
-                onImageReplace={handleImageReplace(index)}
+                onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
                 onImageRemove={() => onRemoveImage(index)}
               />
             </div>

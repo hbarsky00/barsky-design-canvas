@@ -1,7 +1,7 @@
 
 import { useCallback, useRef } from 'react';
 import { getImageCaption } from '@/data/imageCaptions';
-import { projectsData } from '@/data/projectsData';
+import { projectsData } from '@/data/projects/projectsList';
 import { investorLoanAppDetails } from '@/data/project-details/investorLoanApp';
 
 export interface CaptionIssue {

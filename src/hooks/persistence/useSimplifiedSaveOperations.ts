@@ -15,8 +15,10 @@ export const useSimplifiedSaveOperations = (
     setIsSaving(true);
     
     try {
+      // FIXED: Ensure proper saving with consistent key format
       await saveChangeToDatabase(projectId, 'text', key, content);
       
+      // Update cached data immediately with the exact key used
       setCachedData(prev => {
         const updated = {
           ...prev,
@@ -24,6 +26,7 @@ export const useSimplifiedSaveOperations = (
         };
         
         console.log('📊 Updated cached data with key:', key);
+        console.log('📊 New cached textContent keys:', Object.keys(updated.textContent));
         
         return updated;
       });
@@ -40,7 +43,7 @@ export const useSimplifiedSaveOperations = (
   }, [projectId, setCachedData]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('💾 SimplifiedSaveOperations: Saving image replacement to database:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
+    console.log('💾 SimplifiedSaveOperations: Saving image replacement:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('⚠️ Skipping blob URL replacement save');
@@ -50,24 +53,16 @@ export const useSimplifiedSaveOperations = (
     setIsSaving(true);
     
     try {
-      // Save to database first
       await saveChangeToDatabase(projectId, 'image', originalSrc, newSrc);
-      console.log('✅ Image replacement saved to database successfully');
       
-      // Update cached data immediately after successful database save
-      setCachedData(prev => {
-        const updated = {
-          ...prev,
-          imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
-        };
-        
-        console.log('📊 Updated cached image replacements:', Object.keys(updated.imageReplacements).length, 'total');
-        
-        return updated;
-      });
+      // Update cached data immediately
+      setCachedData(prev => ({
+        ...prev,
+        imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
+      }));
       
       setLastSaved(new Date());
-      console.log('✅ Image replacement cached successfully');
+      console.log('✅ Image replacement saved successfully');
       
     } catch (error) {
       console.error('❌ Error saving image replacement:', error);

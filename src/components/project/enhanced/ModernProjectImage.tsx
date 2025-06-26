@@ -1,39 +1,24 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import MaximizableImage from "../MaximizableImage";
-import { useDirectImageUpload } from "@/hooks/useDirectImageUpload";
+import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 
 interface ModernProjectImageProps {
   project: ProjectProps;
   imageCaptions: Record<string, string>;
   projectId?: string;
-  originalImageSrc?: string;
 }
 
 const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   project,
   imageCaptions,
-  projectId,
-  originalImageSrc
+  projectId
 }) => {
-  const baseImageSrc = originalImageSrc || project.image;
-  const [currentSrc, setCurrentSrc] = useState(baseImageSrc);
-  
-  const { uploadImage, isUploading } = useDirectImageUpload({
-    projectId: projectId || '',
-    onImageUpdate: setCurrentSrc
+  const { handleSectionImageUpdate } = useSimplifiedContentEditor({ 
+    projectId: projectId || '' 
   });
-
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    console.log('📤 Handling image upload:', file.name);
-    await uploadImage(file, baseImageSrc);
-    event.target.value = '';
-  };
 
   return (
     <motion.div
@@ -45,17 +30,16 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     >
       <div className="glass-card p-4 layered-depth relative group">
         <MaximizableImage
-          src={currentSrc}
+          src={project.image}
           alt={project.title}
-          caption={imageCaptions[baseImageSrc] || project.title}
-          imageList={[currentSrc]}
+          caption={imageCaptions[project.image] || project.title}
+          imageList={[project.image]}
           currentIndex={0}
           priority={true}
           className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
           projectId={projectId}
           hideEditButton={false}
-          onImageReplace={handleImageUpload}
-          isUploading={isUploading}
+          onImageReplace={(newSrc) => handleSectionImageUpdate('hero', project.image, newSrc)}
         />
       </div>
     </motion.div>

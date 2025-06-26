@@ -24,7 +24,6 @@ export const useImageUploadHandler = ({
     const file = event.target.files?.[0];
     if (!file || !projectId || !onImageReplace) {
       event.target.value = '';
-      console.log('❌ Image upload blocked: missing file, projectId, or callback');
       return;
     }
 
@@ -47,28 +46,30 @@ export const useImageUploadHandler = ({
     toast.info('Uploading image...');
     
     try {
-      console.log('📤 Starting image upload for replacement:', file.name, 'Size:', file.size);
+      console.log('📤 Starting image upload for replacement:', file.name);
       
-      // Upload the new image and replace the old one
-      const newImageUrl = await VercelBlobStorageService.replaceImage(
-        currentSrc, 
-        file, 
-        projectId, 
-        `replacement-${Date.now()}`
-      );
+      const newImageUrl = await VercelBlobStorageService.uploadImage(file, projectId, currentSrc);
       
       if (newImageUrl) {
         console.log('✅ Image uploaded successfully:', newImageUrl);
         
-        // Call the replacement callback immediately
-        await onImageReplace(newImageUrl);
+        // Update the current source immediately
+        setCurrentSrc(newImageUrl);
+        setImageError(false);
         
-        toast.success('Image replaced successfully!');
+        // Call the replacement callback
+        onImageReplace(newImageUrl);
+        
+        if (newImageUrl.startsWith('blob:')) {
+          toast.success('Image replaced successfully! (Using local preview - configure Vercel Blob for permanent storage)');
+        } else {
+          toast.success('Image uploaded and replaced successfully!');
+        }
         console.log('🎉 Image replacement completed successfully');
       } else {
         console.error('❌ Upload failed - no URL returned');
         setImageError(true);
-        toast.error('Image upload failed. Please try again.');
+        toast.error('Image upload failed. Please check your Vercel Blob configuration.');
       }
     } catch (error) {
       console.error('❌ Error uploading image:', error);
@@ -77,7 +78,7 @@ export const useImageUploadHandler = ({
     } finally {
       event.target.value = '';
     }
-  }, [projectId, currentSrc, onImageReplace, setImageError]);
+  }, [projectId, currentSrc, onImageReplace, setCurrentSrc, setImageError, setForceRefresh]);
 
   return {
     handleImageReplace
