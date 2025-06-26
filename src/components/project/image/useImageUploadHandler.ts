@@ -24,6 +24,7 @@ export const useImageUploadHandler = ({
     const file = event.target.files?.[0];
     if (!file || !projectId || !onImageReplace) {
       event.target.value = '';
+      console.log('❌ Image upload blocked: missing file, projectId, or callback');
       return;
     }
 
@@ -46,30 +47,33 @@ export const useImageUploadHandler = ({
     toast.info('Uploading image...');
     
     try {
-      console.log('📤 Starting image upload for replacement:', file.name);
+      console.log('📤 Starting image upload for replacement:', file.name, 'Size:', file.size);
       
-      const newImageUrl = await VercelBlobStorageService.uploadImage(file, projectId, currentSrc);
+      // Upload the new image
+      const newImageUrl = await VercelBlobStorageService.uploadImage(file, projectId, `replacement-${Date.now()}`);
       
       if (newImageUrl) {
         console.log('✅ Image uploaded successfully:', newImageUrl);
         
-        // Update the current source immediately
+        // Update the current source immediately for instant feedback
         setCurrentSrc(newImageUrl);
         setImageError(false);
+        setForceRefresh(prev => prev + 1);
         
-        // Call the replacement callback
-        onImageReplace(newImageUrl);
+        // Call the replacement callback which will handle persistence
+        await onImageReplace(newImageUrl);
         
         if (newImageUrl.startsWith('blob:')) {
-          toast.success('Image replaced successfully! (Using local preview - configure Vercel Blob for permanent storage)');
+          toast.success('Image replaced successfully! (Using local preview)');
         } else {
           toast.success('Image uploaded and replaced successfully!');
         }
+        
         console.log('🎉 Image replacement completed successfully');
       } else {
         console.error('❌ Upload failed - no URL returned');
         setImageError(true);
-        toast.error('Image upload failed. Please check your Vercel Blob configuration.');
+        toast.error('Image upload failed. Please try again.');
       }
     } catch (error) {
       console.error('❌ Error uploading image:', error);

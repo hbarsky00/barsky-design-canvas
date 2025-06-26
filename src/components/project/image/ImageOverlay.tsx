@@ -42,12 +42,12 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
         </button>
       </div>
 
-      {/* Edit controls overlay - only visible in dev mode */}
+      {/* Edit controls overlay - only visible in dev mode and NOT hidden */}
       {showEditingControls && !hideEditButton && (
         <div className={`absolute top-2 right-2 flex space-x-2 transition-opacity duration-300 ${
-          isHovered || isUploading ? 'opacity-100' : 'opacity-0'
+          isHovered || isUploading ? 'opacity-100' : 'opacity-80'
         }`}>
-          {/* Replace image button */}
+          {/* Replace image button - ALWAYS show if editing controls are enabled */}
           <label className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg cursor-pointer transition-all duration-200 hover:scale-110">
             <Upload size={16} />
             <input
