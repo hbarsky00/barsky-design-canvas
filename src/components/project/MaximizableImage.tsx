@@ -42,9 +42,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
+  const [forceRefresh, setForceRefresh] = useState(0);
   const showEditingControls = shouldShowEditingControls();
 
   console.log('🖼️ MaximizableImage: Show editing controls:', showEditingControls);
+  console.log('🖼️ MaximizableImage: Current src:', currentSrc);
 
   const { handleImageReplace } = useImageUploadHandler({
     projectId,
@@ -54,30 +56,19 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       setCurrentSrc(newSrc);
       setImageError(false);
       setIsUploading(false);
+      setForceRefresh(prev => prev + 1);
       if (onImageReplace) {
         onImageReplace(newSrc);
       }
     },
     setCurrentSrc,
     setImageError,
-    setForceRefresh: () => {}
+    setForceRefresh
   });
 
   // Handle upload start and completion
   const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Only allow uploads in dev mode
-    if (!showEditingControls) {
-      event.target.value = '';
-      return;
-    }
-
-    const file = event.target.files?.[0];
-    if (!file || !projectId) {
-      event.target.value = '';
-      return;
-    }
-
-    console.log('📤 Starting image upload...');
+    console.log('📤 MaximizableImage: Upload started');
     setIsUploading(true);
     
     try {
@@ -87,17 +78,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       setIsUploading(false);
       setImageError(true);
     }
-    
-    // Always clear the input
-    event.target.value = '';
   };
 
-  // Only update source if prop actually changes
+  // Update source when prop changes
   useEffect(() => {
     if (src !== currentSrc && src) {
       console.log('🔄 MaximizableImage: Source updated from prop:', src);
       setCurrentSrc(src);
       setImageError(false);
+      setForceRefresh(prev => prev + 1);
     }
   }, [src]);
 
@@ -108,7 +97,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageRemove = () => {
-    // Only allow removal in dev mode
     if (onImageRemove && showEditingControls) {
       console.log('🗑️ Removing image:', currentSrc);
       onImageRemove();
@@ -128,7 +116,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} key={`image-${forceRefresh}`}>
       <div 
         className="relative group overflow-hidden cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}

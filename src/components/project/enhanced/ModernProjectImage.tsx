@@ -23,12 +23,12 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   // Use originalImageSrc if provided, otherwise fall back to project.image
   const baseImageSrc = originalImageSrc || project.image;
   const [currentImageSrc, setCurrentImageSrc] = useState(baseImageSrc);
-  const [forceRefresh, setForceRefresh] = useState(0);
+  const [componentKey, setComponentKey] = useState(0);
   
   console.log('🖼️ ModernProjectImage: Base image src:', baseImageSrc);
   console.log('🖼️ ModernProjectImage: Current image src:', currentImageSrc);
 
-  // Check for any saved replacement on mount and when persistence changes
+  // Check for any saved replacement on mount
   useEffect(() => {
     const replacementSrc = getImageSrc(baseImageSrc);
     console.log('🔄 ModernProjectImage: Checking for replacement:', baseImageSrc, '->', replacementSrc);
@@ -36,7 +36,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     if (replacementSrc !== baseImageSrc) {
       console.log('✅ ModernProjectImage: Found replacement, updating current src');
       setCurrentImageSrc(replacementSrc);
-      setForceRefresh(prev => prev + 1);
+      setComponentKey(prev => prev + 1);
     }
   }, [getImageSrc, baseImageSrc]);
 
@@ -45,18 +45,13 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     
     try {
       if (projectId) {
-        // Update the display immediately
+        // Update the display immediately for instant feedback
         setCurrentImageSrc(newSrc);
-        setForceRefresh(prev => prev + 1);
+        setComponentKey(prev => prev + 1);
         
         // Save the replacement to database
         await saveImageReplacement(baseImageSrc, newSrc);
         console.log('✅ ModernProjectImage: Image replacement saved to database');
-        
-        // Force a complete refresh of the component
-        setTimeout(() => {
-          setForceRefresh(prev => prev + 1);
-        }, 100);
         
         // Dispatch global update event
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
@@ -77,18 +72,18 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
       console.error('❌ ModernProjectImage: Error during image replacement:', error);
       // Revert on error
       setCurrentImageSrc(baseImageSrc);
-      setForceRefresh(prev => prev + 1);
+      setComponentKey(prev => prev + 1);
     }
   };
 
-  // Create a cache-busted display URL
-  const displayImageSrc = currentImageSrc + (currentImageSrc.includes('?') ? '&' : '?') + `refresh=${forceRefresh}&t=${Date.now()}`;
+  // Clean display URL without cache busting for better consistency
+  const displayImageSrc = currentImageSrc;
 
   console.log('🎨 ModernProjectImage: Final display src:', displayImageSrc);
 
   return (
     <motion.div
-      key={`hero-image-${forceRefresh}-${Date.now()}`}
+      key={`hero-image-${componentKey}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -99,7 +94,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
         <MaximizableImage
           src={displayImageSrc}
           alt={project.title}
-          caption={imageCaptions[currentImageSrc] || imageCaptions[baseImageSrc] || imageCaptions[project.image] || project.title}
+          caption={imageCaptions[baseImageSrc] || project.title}
           imageList={[displayImageSrc]}
           currentIndex={0}
           priority={true}

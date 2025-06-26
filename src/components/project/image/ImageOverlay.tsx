@@ -27,10 +27,10 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
 }) => {
   return (
     <>
-      {/* Maximize overlay - always visible on hover */}
+      {/* Maximize overlay - always visible on hover when not editing */}
       <div 
         className={`absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center ${
-          isHovered && !imageError ? 'opacity-100' : 'opacity-0'
+          isHovered && !imageError && !showEditingControls ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <button
@@ -42,12 +42,10 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
         </button>
       </div>
 
-      {/* Edit controls overlay - only visible in dev mode and NOT hidden */}
+      {/* Edit controls overlay - ALWAYS visible when editing controls are enabled */}
       {showEditingControls && !hideEditButton && (
-        <div className={`absolute top-2 right-2 flex space-x-2 transition-opacity duration-300 ${
-          isHovered || isUploading ? 'opacity-100' : 'opacity-80'
-        }`}>
-          {/* Replace image button - ALWAYS show if editing controls are enabled */}
+        <div className="absolute top-2 right-2 flex space-x-2 opacity-100">
+          {/* Replace image button - ALWAYS show */}
           <label className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg cursor-pointer transition-all duration-200 hover:scale-110">
             <Upload size={16} />
             <input
@@ -70,6 +68,16 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
               <Trash2 size={16} />
             </button>
           )}
+          
+          {/* Maximize button for editing mode */}
+          <button
+            onClick={onMaximize}
+            className="bg-gray-500 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+            title="View full size"
+            disabled={isUploading}
+          >
+            <Maximize2 size={16} />
+          </button>
         </div>
       )}
     </>
