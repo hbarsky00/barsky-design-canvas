@@ -17,16 +17,12 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
     if (!file || !projectId) return;
 
     setIsUploading(true);
-    console.log('🔄 Starting image replacement for:', originalSrc);
+    console.log('🔄 Replacing image:', originalSrc);
     
     try {
-      // Create immediate blob URL for instant preview
+      // Create blob URL for immediate display
       const blobUrl = URL.createObjectURL(file);
-      console.log('📱 Created blob URL for immediate preview:', blobUrl);
-      
-      // Update display immediately
       setCurrentSrc(blobUrl);
-      toast.info('Uploading image...');
       
       // Upload to Vercel Blob
       const uploadedUrl = await VercelBlobStorageService.uploadImage(
@@ -35,86 +31,36 @@ export const useSimpleImageReplacement = ({ projectId, originalSrc }: UseSimpleI
         `replacement-${Date.now()}`
       );
       
-      if (uploadedUrl && !uploadedUrl.startsWith('blob:')) {
-        console.log('✅ Vercel Blob upload successful:', uploadedUrl);
-        
-        // Update with permanent URL
+      if (uploadedUrl) {
+        console.log('✅ Upload successful:', uploadedUrl);
         setCurrentSrc(uploadedUrl);
         
-        // Save to database - use a simpler approach to avoid conflicts
-        const changeKey = `image_${originalSrc}`;
-        
-        // First try to update existing record
-        const { data: existingData } = await supabase
+        // Save to database - simple upsert
+        await supabase
           .from('dev_mode_changes')
-          .select('id')
-          .eq('project_id', projectId)
-          .eq('change_type', 'image_replacement')
-          .eq('change_key', changeKey)
-          .maybeSingle();
+          .upsert({
+            project_id: projectId,
+            change_key: `image_${originalSrc}`,
+            change_value: { url: uploadedUrl },
+            change_type: 'image_replacement'
+          }, {
+            onConflict: 'project_id,change_type,change_key'
+          });
         
-        if (existingData) {
-          // Update existing record
-          const { error: updateError } = await supabase
-            .from('dev_mode_changes')
-            .update({
-              change_value: { url: uploadedUrl },
-              updated_at: new Date().toISOString()
-            })
-            .eq('id', existingData.id);
-            
-          if (updateError) {
-            console.warn('⚠️ Database update failed:', updateError);
-          } else {
-            console.log('✅ Updated existing database record');
-          }
-        } else {
-          // Insert new record
-          const { error: insertError } = await supabase
-            .from('dev_mode_changes')
-            .insert({
-              project_id: projectId,
-              change_key: changeKey,
-              change_value: { url: uploadedUrl },
-              change_type: 'image_replacement',
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString()
-            });
-            
-          if (insertError) {
-            console.warn('⚠️ Database insert failed:', insertError);
-          } else {
-            console.log('✅ Inserted new database record');
-          }
-        }
-        
-        // Clean up blob URL
         URL.revokeObjectURL(blobUrl);
-        toast.success('Image replaced successfully!');
+        toast.success('Image replaced!');
       } else {
-        console.log('⚠️ Using local blob URL as fallback');
-        toast.success('Image replaced locally!');
+        toast.success('Image updated locally!');
       }
       
-      // Dispatch event to update other components
-      window.dispatchEvent(new CustomEvent('projectDataUpdated', {
-        detail: { 
-          projectId,
-          imageReplaced: true,
-          originalSrc,
-          newSrc: currentSrc
-        }
-      }));
-      
     } catch (error) {
-      console.error('❌ Image replacement failed:', error);
-      toast.error('Image replacement failed. Please try again.');
-      // Revert to original on error
+      console.error('❌ Replace failed:', error);
+      toast.error('Replace failed');
       setCurrentSrc(originalSrc);
     } finally {
       setIsUploading(false);
     }
-  }, [projectId, originalSrc, currentSrc]);
+  }, [projectId, originalSrc]);
 
   return {
     currentSrc,

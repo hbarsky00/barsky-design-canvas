@@ -27,77 +27,31 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     originalSrc: baseImageSrc
   });
 
-  // Update display source when replacement hook changes
+  // Update display when replacement changes
   useEffect(() => {
     setDisplaySrc(currentSrc);
   }, [currentSrc]);
 
-  // Load saved image from database on mount
+  // Load any saved replacement on mount
   useEffect(() => {
     if (!projectId) return;
     
-    const loadSavedImage = async () => {
-      try {
-        console.log('🔍 Loading saved image for:', baseImageSrc);
-        
-        // Check dev_mode_changes for image replacement
-        const { data, error } = await supabase
-          .from('dev_mode_changes')
-          .select('change_value')
-          .eq('project_id', projectId)
-          .eq('change_key', `image_${baseImageSrc}`)
-          .eq('change_type', 'image_replacement')
-          .maybeSingle();
+    const loadSaved = async () => {
+      const { data } = await supabase
+        .from('dev_mode_changes')
+        .select('change_value')
+        .eq('project_id', projectId)
+        .eq('change_key', `image_${baseImageSrc}`)
+        .eq('change_type', 'image_replacement')
+        .maybeSingle();
 
-        if (data && !error && data.change_value && typeof data.change_value === 'object' && 'url' in data.change_value) {
-          const imageUrl = (data.change_value as { url: string }).url;
-          if (imageUrl && !imageUrl.startsWith('blob:')) {
-            console.log('✅ Found saved permanent image:', imageUrl);
-            setDisplaySrc(imageUrl);
-            return;
-          }
-        }
-
-        // Check published_projects for published image replacements
-        const { data: publishedData, error: publishedError } = await supabase
-          .from('published_projects')
-          .select('image_replacements')
-          .eq('project_id', projectId)
-          .maybeSingle();
-
-        if (publishedData && !publishedError && publishedData.image_replacements) {
-          const imageReplacements = publishedData.image_replacements as Record<string, string>;
-          if (imageReplacements[baseImageSrc]) {
-            console.log('✅ Found published image replacement:', imageReplacements[baseImageSrc]);
-            setDisplaySrc(imageReplacements[baseImageSrc]);
-            return;
-          }
-        }
-        
-        console.log('📝 No replacement found, using original:', baseImageSrc);
-      } catch (error) {
-        console.error('❌ Error loading saved image:', error);
+      if (data?.change_value?.url) {
+        setDisplaySrc(data.change_value.url);
       }
     };
 
-    loadSavedImage();
+    loadSaved();
   }, [projectId, baseImageSrc]);
-
-  // Listen for image updates
-  useEffect(() => {
-    const handleImageUpdate = (e: CustomEvent) => {
-      if (e.detail?.originalSrc === baseImageSrc && e.detail?.newSrc) {
-        console.log('🔄 Image update event received:', e.detail.newSrc);
-        setDisplaySrc(e.detail.newSrc);
-      }
-    };
-
-    window.addEventListener('projectDataUpdated', handleImageUpdate as EventListener);
-    
-    return () => {
-      window.removeEventListener('projectDataUpdated', handleImageUpdate as EventListener);
-    };
-  }, [baseImageSrc]);
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -106,8 +60,6 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
     await replaceImage(file);
     event.target.value = '';
   };
-
-  console.log('🖼️ ModernProjectImage: Displaying image:', displaySrc);
 
   return (
     <motion.div
