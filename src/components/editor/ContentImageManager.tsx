@@ -29,6 +29,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   const showEditingControls = shouldShowEditingControls();
   
   console.log('🖼️ ContentImageManager: Rendering with', localImages.length, 'images');
+  console.log('🔧 ContentImageManager: Show editing controls:', showEditingControls);
   
   const { isSelecting, handleImageAdd } = useImageUpload({ 
     projectId, 
@@ -54,7 +55,7 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
   }, [images]);
 
   const handleImageReplace = useCallback((index: number, newSrc: string) => {
-    if (!onImageReplace) return;
+    if (!onImageReplace || !showEditingControls) return;
     
     console.log('🔄 ContentImageManager: Replacing image at index', index, 'with:', newSrc.substring(0, 50) + '...');
     
@@ -64,10 +65,10 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
     setForceUpdate(prev => prev + 1);
     
     onImageReplace(index, newSrc);
-  }, [localImages, onImageReplace]);
+  }, [localImages, onImageReplace, showEditingControls]);
 
   const handleImageRemove = useCallback((index: number) => {
-    if (!onImageRemove) return;
+    if (!onImageRemove || !showEditingControls) return;
     
     const updatedImages = localImages.filter((_, i) => i !== index);
     
@@ -77,9 +78,10 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
     setLocalImages(updatedImages);
     setForceUpdate(prev => prev + 1);
     onImageRemove(index);
-  }, [localImages, onImageRemove]);
+  }, [localImages, onImageRemove, showEditingControls]);
 
-  if (!onImageAdd && localImages.length === 0) {
+  // Don't show anything if no images and no editing controls
+  if (!showEditingControls && localImages.length === 0) {
     return null;
   }
 
@@ -102,8 +104,8 @@ const ContentImageManager: React.FC<ContentImageManagerProps> = ({
         projectId={projectId}
         showEditingControls={showEditingControls}
         componentKey={forceUpdate}
-        onImageReplace={handleImageReplace}
-        onImageRemove={handleImageRemove}
+        onImageReplace={showEditingControls ? handleImageReplace : () => {}}
+        onImageRemove={showEditingControls ? handleImageRemove : () => {}}
       />
     </div>
   );

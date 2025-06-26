@@ -44,6 +44,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [imageError, setImageError] = useState(false);
   const showEditingControls = shouldShowEditingControls();
 
+  console.log('🖼️ MaximizableImage: Show editing controls:', showEditingControls);
+
   const { handleImageReplace } = useImageUploadHandler({
     projectId,
     currentSrc,
@@ -51,18 +53,24 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
       setCurrentSrc(newSrc);
       setImageError(false);
-      setIsUploading(false); // Clear uploading state
+      setIsUploading(false);
       if (onImageReplace) {
         onImageReplace(newSrc);
       }
     },
     setCurrentSrc,
     setImageError,
-    setForceRefresh: () => {} // Simplified - no forced refreshes
+    setForceRefresh: () => {}
   });
 
   // Handle upload start and completion
   const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Only allow uploads in dev mode
+    if (!showEditingControls) {
+      event.target.value = '';
+      return;
+    }
+
     const file = event.target.files?.[0];
     if (!file || !projectId) {
       event.target.value = '';
@@ -100,7 +108,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageRemove = () => {
-    if (onImageRemove) {
+    // Only allow removal in dev mode
+    if (onImageRemove && showEditingControls) {
       console.log('🗑️ Removing image:', currentSrc);
       onImageRemove();
     }
