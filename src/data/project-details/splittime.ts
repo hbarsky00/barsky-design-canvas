@@ -36,8 +36,7 @@ export const splittimeDetails: ProjectDetails = {
       afterHeader: "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
-      afterHeader: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png"
+      beforeHeader: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png"
     },
     result: {
       beforeHeader: "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
@@ -62,7 +61,6 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
   ],
   processImage: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
-  processBottomImage: "/lovable-uploads/6e70d067-2ac3-4ead-a811-8dca98a26393.png",
   processGalleryImages: [
     "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
   ],
