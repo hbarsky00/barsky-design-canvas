@@ -76,7 +76,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       />
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 py-16 space-y-16">
+      <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-6 py-16 space-y-16">
         
         {/* Challenge Section - First content section */}
         <motion.section

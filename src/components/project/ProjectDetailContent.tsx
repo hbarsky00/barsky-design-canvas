@@ -72,7 +72,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 py-8">
       <ProjectHeader
         title={updatedProject.title}
         description={updatedProject.description}

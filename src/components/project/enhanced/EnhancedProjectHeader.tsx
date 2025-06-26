@@ -23,7 +23,7 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:50px_50px]" />
       
-      <div className="relative max-w-7xl mx-auto px-4 py-8">
+      <div className="relative max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 py-8">
         {/* Navigation */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

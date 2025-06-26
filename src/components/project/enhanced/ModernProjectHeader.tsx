@@ -30,7 +30,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
-      <div className="relative max-w-4xl mx-auto px-6 py-16 z-10">
+      <div className="relative max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-6 py-16 z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
             contentType="paragraph"
             onSave={(content) => handleSectionContentSave('hero', 'content', content)}
             projectId={projectId}
-            className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto text-center"
+            className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto text-center"
           />
 
           <div className="flex flex-wrap justify-center gap-2">
