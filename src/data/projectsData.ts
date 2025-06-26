@@ -30,7 +30,7 @@ export const projectsData: ProjectProps[] = [
     id: "barskyjoint",
     title: "Barsky Joint - Cannabis Platform",
     description: "A comprehensive cannabis platform providing strain information, dispensary locations, and community features for cannabis enthusiasts.",
-    image: "/lovable-uploads/placeholder-barskyjoint.png",
+    image: "/lovable-uploads/barsky-joint-hero.png",
     tags: ["Web Development", "Cannabis Tech", "Community Platform", "UX/UI Design"],
     featured: false,
   },
@@ -38,7 +38,7 @@ export const projectsData: ProjectProps[] = [
     id: "medication-app",
     title: "Mobile Health App",
     description: "A mobile health application for medication tracking, health monitoring, and patient care coordination with healthcare providers.",
-    image: "/lovable-uploads/placeholder-medication.png",
+    image: "/lovable-uploads/mobile-health-app-hero.png",
     tags: ["Mobile App", "Healthcare", "UX/UI Design", "Patient Care"],
     featured: false,
   }
