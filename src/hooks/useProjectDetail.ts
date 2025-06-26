@@ -10,7 +10,7 @@ import { imageCaptions } from "@/data/imageCaptions";
 interface UseProjectDetailResult {
   project: typeof projectsData[0] | null;
   details: ProjectDetails | null;
-  projectsData: typeof projectsData;
+  projectsData: Array<{ id: string; title: string; image: string; }>;
   imageCaptions: typeof imageCaptions;
   isLoading: boolean;
   error: string | null;
@@ -31,6 +31,18 @@ export const useProjectDetail = (projectId: string | undefined): UseProjectDetai
     if (!projectId) return null;
     return projectDetails[projectId] || null;
   }, [projectId]);
+
+  // Transform projectsData to match the expected format for navigation
+  const transformedProjectsData = React.useMemo(() => {
+    console.log('🔄 useProjectDetail: Transforming projects data for navigation');
+    const transformed = projectsData.map(project => ({
+      id: project.id,
+      title: project.title,
+      image: project.image
+    }));
+    console.log('🔄 useProjectDetail: Transformed projects:', transformed.map(p => p.id));
+    return transformed;
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -65,7 +77,7 @@ export const useProjectDetail = (projectId: string | undefined): UseProjectDetai
   return { 
     project, 
     details, 
-    projectsData, 
+    projectsData: transformedProjectsData, 
     imageCaptions, 
     isLoading, 
     error 

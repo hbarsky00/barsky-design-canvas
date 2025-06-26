@@ -31,6 +31,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   imageCaptions = {}
 }) => {
   console.log('🎬 ModernProjectDetail: Rendering with projectId:', projectId);
+  console.log('🎬 ModernProjectDetail: Projects data received:', projectsData.length, 'projects');
   
   const { updatedProject, updatedDetails, componentKey } = useSimplifiedDataManager(projectId, project, details);
   const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });

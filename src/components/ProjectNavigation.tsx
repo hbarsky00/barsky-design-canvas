@@ -18,12 +18,19 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   currentProjectId,
   projectsData,
 }) => {
+  console.log('🔍 ProjectNavigation: Current project ID:', currentProjectId);
+  console.log('🔍 ProjectNavigation: Available projects:', projectsData.map(p => p.id));
+  
   // Find current project index
   const currentIndex = projectsData.findIndex(p => p.id === currentProjectId);
+  console.log('🔍 ProjectNavigation: Current index:', currentIndex);
   
   // Get previous and next project
   const prevProject = currentIndex > 0 ? projectsData[currentIndex - 1] : null;
   const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : null;
+  
+  console.log('🔍 ProjectNavigation: Previous project:', prevProject?.id || 'none');
+  console.log('🔍 ProjectNavigation: Next project:', nextProject?.id || 'none');
   
   return (
     <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
