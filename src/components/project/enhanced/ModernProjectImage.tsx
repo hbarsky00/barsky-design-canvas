@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
 import MaximizableImage from "../MaximizableImage";
-import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
-import { useProjectDataUpdater } from "@/hooks/useProjectDataUpdater";
+import { useSimplifiedProjectPersistence } from "@/hooks/useSimplifiedProjectPersistence";
 
 interface ModernProjectImageProps {
   project: ProjectProps;
@@ -17,45 +16,25 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   imageCaptions,
   projectId
 }) => {
-  const { handleSectionImageUpdate } = useSimplifiedContentEditor({ 
-    projectId: projectId || '' 
-  });
+  const { saveImageReplacement, getImageSrc } = useSimplifiedProjectPersistence(projectId || '');
   
-  const { getUpdatedImagePath, updateImageInProjectData } = useProjectDataUpdater();
-  
-  // State to track the current image source with persistence
-  const [currentImageSrc, setCurrentImageSrc] = useState(() => {
-    // Always check for updated path on initialization
-    return projectId ? getUpdatedImagePath(projectId, project.image) : project.image;
-  });
-  
-  // Update image source when project or projectId changes
-  useEffect(() => {
-    const updatedSrc = projectId ? getUpdatedImagePath(projectId, project.image) : project.image;
-    setCurrentImageSrc(updatedSrc);
-    console.log('🔄 ModernProjectImage: Updated image source on mount/change:', updatedSrc);
-  }, [project.image, projectId, getUpdatedImagePath]);
+  // Use the persistence system to get the current image source
+  const currentImageSrc = getImageSrc(project.image);
   
   console.log('🖼️ ModernProjectImage: Original src:', project.image);
-  console.log('🖼️ ModernProjectImage: Current src:', currentImageSrc);
+  console.log('🖼️ ModernProjectImage: Current src from persistence:', currentImageSrc);
 
   const handleImageReplace = async (newSrc: string) => {
     console.log('🔄 ModernProjectImage: Replacing hero image:', project.image, '->', newSrc);
     
     try {
-      // Update both persistence systems
-      await handleSectionImageUpdate('hero', project.image, newSrc);
-      
+      // Save the image replacement to the database
       if (projectId) {
-        updateImageInProjectData(projectId, project.image, newSrc);
+        await saveImageReplacement(project.image, newSrc);
+        console.log('✅ ModernProjectImage: Hero image replacement saved to database');
       }
-      
-      // Immediately update the component state
-      setCurrentImageSrc(newSrc);
-      
-      console.log('✅ ModernProjectImage: Hero image replacement completed');
     } catch (error) {
-      console.error('❌ ModernProjectImage: Error replacing hero image:', error);
+      console.error('❌ ModernProjectImage: Error saving hero image replacement:', error);
     }
   };
 
