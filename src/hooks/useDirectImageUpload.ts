@@ -38,7 +38,7 @@ export const useDirectImageUpload = ({ projectId, onImageUpdate }: UseDirectImag
         onImageUpdate(uploadedUrl);
         URL.revokeObjectURL(blobUrl);
         
-        // Save to database
+        // Save to database with the correct format for publishing system
         await supabase
           .from('dev_mode_changes')
           .upsert({

@@ -27,13 +27,12 @@ export class PublishingService {
         // Get all dev mode changes FIRST - these are the source of truth
         const rawChanges = await fetchChangesFromDatabase(projectId);
         
-        // Get image captions from COMPLETELY ISOLATED localStorage - separate system
+        // Get image captions from localStorage - separate system
         const imageCaptionStorageKey = `image_captions_${projectId}`;
         const imageCaptions = JSON.parse(localStorage.getItem(imageCaptionStorageKey) || '{}');
         
-        console.log('📊 Found image captions (COMPLETELY ISOLATED SYSTEM):', {
+        console.log('📊 Found image captions:', {
           count: Object.keys(imageCaptions).length,
-          keys: Object.keys(imageCaptions),
           captions: imageCaptions
         });
         
@@ -53,18 +52,18 @@ export class PublishingService {
           contentBlocks: {}
         };
         
-        // CRITICAL FIX: Extract image replacements from dev_mode_changes with image_replacement type
+        // CRITICAL FIX: Extract image replacements from dev_mode_changes with proper format
         const imageReplacementChanges: Record<string, string> = {};
         if (rawChanges) {
           rawChanges.forEach(change => {
             if (change.change_type === 'image_replacement' && change.change_key && change.change_value) {
               const key = change.change_key.replace('image_', ''); // Remove prefix
-              if (typeof change.change_value === 'object' && 'url' in change.change_value) {
+              if (typeof change.change_value === 'object' && change.change_value !== null && 'url' in change.change_value) {
                 const url = (change.change_value as { url: string }).url;
                 // Only use non-blob URLs for publishing (permanent URLs)
                 if (url && !url.startsWith('blob:')) {
                   imageReplacementChanges[key] = url;
-                  console.log('🔧 CRITICAL: Found permanent image replacement in dev changes:', key, '->', url);
+                  console.log('✅ Found permanent image replacement:', key, '->', url);
                 } else {
                   console.warn('⚠️ Skipping blob URL in publishing:', key, url);
                 }
@@ -73,7 +72,7 @@ export class PublishingService {
           });
         }
         
-        console.log('📊 CRITICAL: Dev changes to publish (including permanent image replacements):', {
+        console.log('📊 Dev changes to publish:', {
           textKeys: Object.keys(devChanges.textContent).length,
           imageKeys: Object.keys(devChanges.imageReplacements).length,
           newImageReplacements: Object.keys(imageReplacementChanges).length,
@@ -90,16 +89,14 @@ export class PublishingService {
           imageEntries: Object.keys(oldImageReplacements).length
         });
 
-        // CRITICAL: Merge both old and new image replacement systems
+        // Merge both old and new image replacement systems
         const allImageReplacements = {
           ...devChanges.imageReplacements,
           ...imageReplacementChanges
         };
 
-        console.log('🔧 CRITICAL: All permanent image replacements to process:', {
+        console.log('🔧 All image replacements to process:', {
           total: Object.keys(allImageReplacements).length,
-          fromOldSystem: Object.keys(devChanges.imageReplacements).length,
-          fromNewSystem: Object.keys(imageReplacementChanges).length,
           replacements: allImageReplacements
         });
 
@@ -110,46 +107,27 @@ export class PublishingService {
           projectId
         );
 
-        // ENHANCED CAPTION SYSTEM - ensure ALL caption edits are preserved and published
+        // Process text content with captions
         const baseTextContent = { ...currentPublishedText };
         const devTextContent = { ...devChanges.textContent };
         
-        // Apply dev changes first (these are actual text edits)
+        // Apply dev changes first
         Object.keys(devTextContent).forEach(key => {
           baseTextContent[key] = devTextContent[key];
         });
         
-        // CRITICAL FIX: Apply image captions from localStorage with proper validation
-        console.log('🔧 CRITICAL FIX: Processing manually edited captions for publishing');
+        // Apply image captions from localStorage
         Object.keys(imageCaptions).forEach(captionKey => {
-          // Validate the caption key format
           if (captionKey && typeof imageCaptions[captionKey] === 'string' && imageCaptions[captionKey].trim()) {
-            // Store with img_caption_ prefix to ensure complete separation and proper identification
             const publishKey = captionKey.startsWith('img_caption_') ? captionKey : `img_caption_${captionKey}`;
             baseTextContent[publishKey] = imageCaptions[captionKey].trim();
-            console.log('✅ Publishing manually edited caption:', publishKey, '=', imageCaptions[captionKey].trim());
-          }
-        });
-
-        // REMOVE any old caption_ keys to prevent duplicates and conflicts
-        Object.keys(baseTextContent).forEach(key => {
-          if (key.startsWith('caption_') && !key.startsWith('img_caption_')) {
-            delete baseTextContent[key];
-            console.log('🗑️ Removed old caption key to prevent conflicts:', key);
+            console.log('✅ Publishing caption:', publishKey, '=', imageCaptions[captionKey].trim());
           }
         });
 
         const finalTextContent = baseTextContent;
 
-        console.log('📝 FINAL Text content with ENHANCED CAPTION PUBLISHING:', {
-          publishedCount: Object.keys(currentPublishedText).length,
-          devChangesCount: Object.keys(devChanges.textContent).length,
-          imageCaptionsCount: Object.keys(imageCaptions).length,
-          finalCount: Object.keys(finalTextContent).length,
-          captionKeys: Object.keys(finalTextContent).filter(k => k.includes('caption'))
-        });
-
-        // Process content blocks - dev changes win
+        // Process content blocks
         const processedContentBlocks = await ImageProcessor.processContentBlocks(devChanges.contentBlocks, projectId);
         const finalContentBlocks = {
           ...(currentPublishedData?.content_blocks || {}),
@@ -175,7 +153,7 @@ export class PublishingService {
           ...validImageReplacements
         };
 
-        console.log('✅ FINAL data for publishing with ENHANCED CAPTIONS and PERMANENT IMAGE REPLACEMENTS:', {
+        console.log('✅ FINAL data for publishing:', {
           imageCount: Object.keys(finalImageReplacements).length,
           textCount: Object.keys(finalTextContent).length,
           contentBlockCount: Object.keys(finalContentBlocks).length,
@@ -193,7 +171,7 @@ export class PublishingService {
           published_at: new Date().toISOString()
         };
 
-        console.log('💾 Saving enhanced published data to database with permanent image URLs');
+        console.log('💾 Saving published data to database');
 
         const { error: publishError } = await supabase
           .from('published_projects')
@@ -206,15 +184,15 @@ export class PublishingService {
           throw new Error(`Database error: ${publishError.message}`);
         }
 
-        console.log('✅ Enhanced published data with permanent image URLs stored successfully');
+        console.log('✅ Published data stored successfully');
 
-        // Apply changes to DOM immediately with enhanced caption support
+        // Apply changes to DOM immediately
         DOMUpdater.applyAllChangesToDOM(finalImageReplacements, finalTextContent, finalContentBlocks, originalPath);
 
         // Store in localStorage as fallback
         try {
           localStorage.setItem(`published_${projectId}`, JSON.stringify(publishedData));
-          console.log('💾 Enhanced published data stored in localStorage as backup');
+          console.log('💾 Published data stored in localStorage as backup');
         } catch (error) {
           console.warn('⚠️ Could not store to localStorage:', error);
         }
@@ -250,8 +228,8 @@ export class PublishingService {
           window.history.replaceState(null, '', originalUrl);
         }
 
-        // Force refresh to show published changes including captions
-        console.log('🔄 Dispatching update event with enhanced published content including permanent images');
+        // Force refresh to show published changes
+        console.log('🔄 Dispatching update event with published content');
         window.dispatchEvent(new CustomEvent('projectDataUpdated', {
           detail: { 
             projectId,
@@ -268,7 +246,7 @@ export class PublishingService {
           }
         }));
 
-        console.log('✅ Project published successfully with PERMANENT IMAGE URLs:', {
+        console.log('✅ Project published successfully:', {
           images: Object.keys(finalImageReplacements).length,
           texts: Object.keys(finalTextContent).length,
           contentBlocks: Object.keys(finalContentBlocks).length,
