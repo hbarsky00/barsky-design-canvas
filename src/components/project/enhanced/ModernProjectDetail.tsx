@@ -67,7 +67,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           imageCaptions={finalCaptions}
         />
 
-        {/* Hero Image Section - After challenge */}
+        {/* Hero Image Section - After What I Did section */}
         <ModernProjectImage
           project={updatedProject}
           imageCaptions={finalCaptions}
