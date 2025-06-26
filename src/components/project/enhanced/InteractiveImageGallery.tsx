@@ -15,23 +15,17 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
   images,
   captions = {},
   title,
-  columns = 3
+  columns = 2 // Default to 2 columns max
 }) => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  // Override columns prop when there are exactly 2 images
+  // Updated grid layout - always max 2 columns for desktop/tablet
   const getGridCols = () => {
-    if (images.length === 2) {
-      return "md:grid-cols-2"; // Force 2 columns for exactly 2 images
+    if (images.length === 1) {
+      return "grid-cols-1";
+    } else {
+      return "grid-cols-1 md:grid-cols-2"; // Max 2 columns on tablet and desktop
     }
-    
-    const gridCols = {
-      2: "md:grid-cols-2",
-      3: "md:grid-cols-2 lg:grid-cols-3",
-      4: "md:grid-cols-2 lg:grid-cols-4"
-    };
-    
-    return gridCols[columns];
   };
 
   const openLightbox = (index: number) => {
@@ -59,7 +53,7 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
       )}
       
       {/* Gallery Grid */}
-      <div className={`grid grid-cols-1 ${getGridCols()} gap-6`}>
+      <div className={`grid ${getGridCols()} gap-6`}>
         {images.map((image, index) => (
           <motion.div
             key={index}

@@ -17,14 +17,12 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     return null;
   }
 
-  // Dynamic grid layout based on image count
+  // Updated grid layout - max 2 columns for desktop/tablet
   const getGridLayout = () => {
     if (images.length === 1) {
       return "grid-cols-1";
-    } else if (images.length === 2) {
-      return "grid-cols-1 md:grid-cols-2"; // 2 columns on tablet and desktop
     } else {
-      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"; // Default layout for 3+ images
+      return "grid-cols-1 md:grid-cols-2"; // Max 2 columns on tablet and desktop
     }
   };
 
