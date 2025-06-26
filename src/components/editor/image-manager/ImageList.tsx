@@ -25,19 +25,8 @@ const ImageList: React.FC<ImageListProps> = ({
     return null;
   }
 
-  // Dynamic grid layout based on image count
-  const getGridLayout = () => {
-    if (images.length === 1) {
-      return "grid-cols-1";
-    } else if (images.length === 2) {
-      return "grid-cols-1 md:grid-cols-2"; // 2 columns on tablet and desktop
-    } else {
-      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"; // Default layout for 3+ images
-    }
-  };
-
   return (
-    <div className={`grid ${getGridLayout()} gap-6`} key={`image-list-${componentKey}`}>
+    <div className="grid grid-cols-1 gap-6" key={`image-list-${componentKey}`}>
       {images.map((image, index) => (
         <div key={`${image}-${index}-${componentKey}`} className="glass-card p-4 layered-depth">
           <MaximizableImage

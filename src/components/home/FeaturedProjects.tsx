@@ -34,8 +34,8 @@ const FeaturedProjects: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        {/* Projects Grid - Single Column */}
+        <div className="grid grid-cols-1 gap-8 mb-12">
           {allProjects.map((project, index) => (
             <motion.div
               key={project.id}
