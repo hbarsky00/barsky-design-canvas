@@ -1,3 +1,4 @@
+
 import { put, del, list } from '@vercel/blob';
 
 export class VercelBlobStorageService {
@@ -136,16 +137,18 @@ export class VercelBlobStorageService {
     }
   }
 
-  // Clear image cache for specific images
+  // Enhanced image cache clearing with aggressive cache busting
   static clearImageCache(imagePaths: string[]): void {
     imagePaths.forEach(imagePath => {
-      console.log('🧹 Clearing cache for image:', imagePath);
+      console.log('🧹 Aggressively clearing cache for image:', imagePath);
       
       // Force reload images by updating their src with cache busting
-      document.querySelectorAll(`img[src="${imagePath}"]`).forEach((img) => {
+      document.querySelectorAll(`img[src*="${imagePath}"]`).forEach((img) => {
         const htmlImg = img as HTMLImageElement;
         const originalSrc = htmlImg.src;
         htmlImg.src = '';
+        // Force browser to forget the old image
+        URL.revokeObjectURL(originalSrc);
         setTimeout(() => {
           htmlImg.src = originalSrc + '?v=' + Date.now();
         }, 100);
@@ -159,6 +162,37 @@ export class VercelBlobStorageService {
           style.backgroundImage = style.backgroundImage.replace(imagePath, newUrl);
         }
       });
+
+      // Clear blob URLs if they exist
+      if (imagePath.startsWith('blob:')) {
+        URL.revokeObjectURL(imagePath);
+      }
     });
+  }
+
+  // New method to force delete old image before uploading new one
+  static async replaceImage(oldImageUrl: string, file: File, projectId: string, originalPath: string): Promise<string | null> {
+    try {
+      // First delete the old image if it exists
+      if (oldImageUrl && !oldImageUrl.startsWith('blob:') && oldImageUrl.includes('vercel-storage.com')) {
+        console.log('🗑️ Deleting old image before upload:', oldImageUrl);
+        await this.deleteImage(oldImageUrl);
+        this.clearImageCache([oldImageUrl]);
+      }
+      
+      // Then upload the new image
+      const newImageUrl = await this.uploadImage(file, projectId, originalPath);
+      
+      if (newImageUrl) {
+        console.log('✅ Image replacement completed:', oldImageUrl, '->', newImageUrl);
+        // Clear cache for the old image path
+        this.clearImageCache([oldImageUrl]);
+      }
+      
+      return newImageUrl;
+    } catch (error) {
+      console.error('❌ Error during image replacement:', error);
+      return null;
+    }
   }
 }
