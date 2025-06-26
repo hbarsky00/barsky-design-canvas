@@ -1,12 +1,13 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import ImageOverlay from "./image/ImageOverlay";
 import UploadOverlay from "./image/UploadOverlay";
 import ImageErrorFallback from "./image/ImageErrorFallback";
 import EditableCaption from "../caption/EditableCaption";
-import { useImageUploadHandler } from "./image/useImageUploadHandler";
+import { VercelBlobStorageService } from "@/services/vercelBlobStorage";
+import { toast } from "sonner";
 
 interface MaximizableImageProps {
   src: string;
@@ -41,68 +42,78 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [forceRefresh, setForceRefresh] = useState(0);
   const showEditingControls = shouldShowEditingControls();
 
-  // Use the src prop directly - no local state management
-  const currentSrc = src;
+  console.log('🖼️ MaximizableImage: Rendering with src:', src);
 
-  console.log('🖼️ MaximizableImage: Rendering with src:', currentSrc);
-  console.log('🖼️ MaximizableImage: Show editing controls:', showEditingControls);
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !projectId || !onImageReplace) {
+      event.target.value = '';
+      return;
+    }
 
-  const { handleImageReplace } = useImageUploadHandler({
-    projectId,
-    currentSrc,
-    onImageReplace: async (newSrc) => {
-      console.log('✅ MaximizableImage: Upload completed, calling parent callback:', newSrc);
-      setIsUploading(false);
-      setImageError(false);
-      if (onImageReplace) {
-        await onImageReplace(newSrc);
-      }
-    },
-    setCurrentSrc: () => {}, // No local state management
-    setImageError,
-    setForceRefresh
-  });
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file');
+      event.target.value = '';
+      return;
+    }
 
-  const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('📤 MaximizableImage: Upload started');
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('Image must be smaller than 10MB');
+      event.target.value = '';
+      return;
+    }
+
     setIsUploading(true);
-    setImageError(false);
+    toast.info('Uploading image...');
     
     try {
-      await handleImageReplace(event);
+      console.log('📤 Starting upload for:', file.name);
+      
+      const uploadedUrl = await VercelBlobStorageService.uploadImage(
+        file, 
+        projectId, 
+        `replacement-${Date.now()}`
+      );
+      
+      if (uploadedUrl) {
+        console.log('✅ Upload successful:', uploadedUrl);
+        await onImageReplace(uploadedUrl);
+        toast.success('Image replaced successfully!');
+      } else {
+        console.error('❌ Upload failed');
+        toast.error('Upload failed. Please try again.');
+      }
     } catch (error) {
       console.error('❌ Upload error:', error);
+      toast.error('Upload failed. Please try again.');
+    } finally {
       setIsUploading(false);
-      setImageError(true);
+      event.target.value = '';
     }
   };
 
   const handleMaximize = () => {
     if (!imageError) {
-      maximizeImage(currentSrc, alt, imageList, currentIndex);
+      maximizeImage(src, alt, imageList, currentIndex);
     }
   };
 
   const handleImageRemove = () => {
     if (onImageRemove && showEditingControls) {
-      console.log('🗑️ Removing image:', currentSrc);
       onImageRemove();
     }
   };
 
   const handleImageError = () => {
-    console.error('❌ Image failed to load:', currentSrc);
+    console.error('❌ Image failed to load:', src);
     setImageError(true);
-    setIsUploading(false);
   };
 
   const handleImageLoad = () => {
-    console.log('✅ Image loaded successfully:', currentSrc.substring(0, 50) + '...');
+    console.log('✅ Image loaded successfully');
     setImageError(false);
-    setIsUploading(false);
   };
 
   return (
@@ -115,11 +126,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         {imageError ? (
           <ImageErrorFallback 
             showEditingControls={showEditingControls}
-            originalSrc={currentSrc}
+            originalSrc={src}
           />
         ) : (
           <img
-            src={currentSrc}
+            src={src}
             alt={alt}
             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
@@ -143,13 +154,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           hideEditButton={hideEditButton}
           allowRemove={allowRemove}
           onMaximize={handleMaximize}
-          onImageReplace={handleUploadStart}
+          onImageReplace={handleImageUpload}
           onImageRemove={handleImageRemove}
         />
       </div>
       
       <EditableCaption
-        imageSrc={currentSrc}
+        imageSrc={src}
         initialCaption={caption || ''}
         projectId={projectId}
         className="maximizable-image-caption"
