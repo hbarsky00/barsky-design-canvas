@@ -46,19 +46,24 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Professional Masculine Color Palette */
+    /* Professional Masculine Color Palette - Accessible */
     --steel-blue: 210 40% 30%;
     --navy-dark: 220 25% 15%;
     --charcoal: 220 15% 20%;
     --slate-gray: 215 25% 45%;
-    --electric-blue: 210 100% 50%;
+    --electric-blue: 210 100% 60%; /* Increased lightness for better contrast */
     --steel-light: 210 30% 85%;
     --white-smoke: 0 0% 96%;
     --deep-navy: 220 30% 10%;
-    --professional-blue: 210 80% 40%;
-    --accent-orange: 25 95% 55%;
-    --success-green: 145 65% 45%;
-    --warning-amber: 45 95% 50%;
+    --professional-blue: 210 80% 50%; /* Increased lightness */
+    --accent-orange: 25 95% 60%; /* Increased lightness */
+    --success-green: 145 65% 50%; /* Increased lightness */
+    --warning-amber: 45 95% 55%; /* Increased lightness */
+    
+    /* Accessible text colors */
+    --text-primary: 0 0% 100%; /* Pure white */
+    --text-secondary: 0 0% 85%; /* Light gray */
+    --text-muted: 0 0% 70%; /* Medium gray */
   }
 
   .dark {
@@ -106,10 +111,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans transition-colors duration-300;
+    @apply bg-background text-white font-sans transition-colors duration-300;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
+    color: white; /* Ensure white text globally */
   }
   
   html {
@@ -128,7 +134,7 @@
   
   .section-title::after {
     content: '';
-    @apply absolute -bottom-3 left-0 w-1/4 h-1 rounded-full bg-blue-500;
+    @apply absolute -bottom-3 left-0 w-1/4 h-1 rounded-full bg-blue-400;
   }
   
   .text-reveal-container {
@@ -141,12 +147,12 @@
   }
   
   .nav-link {
-    @apply relative text-slate-300 hover:text-blue-400 transition-all duration-300;
+    @apply relative text-gray-200 hover:text-blue-300 transition-all duration-300;
   }
   
   .nav-link::after {
     content: '';
-    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 ease-in-out;
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 ease-in-out;
   }
   
   .nav-link:hover::after {
@@ -154,7 +160,7 @@
   }
   
   .nav-link.active {
-    @apply text-blue-400;
+    @apply text-blue-300;
   }
   
   .nav-link.active::after {
@@ -162,11 +168,11 @@
   }
   
   .btn-primary {
-    @apply font-semibold py-3 px-6 rounded-xl transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-blue-600 hover:bg-blue-700 text-white;
+    @apply font-semibold py-3 px-6 rounded-xl transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-blue-600 hover:bg-blue-500 text-white;
   }
   
   .btn-outline {
-    @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 inline-block hover:shadow-lg transform hover:-translate-y-0.5;
+    @apply border-2 border-blue-400 text-blue-300 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 inline-block hover:shadow-lg transform hover:-translate-y-0.5;
   }
 
   .color-swatch {
@@ -189,12 +195,12 @@
   }
 
   .glass-nav {
-    @apply bg-black/20 backdrop-blur-2xl border-b border-blue-500/20;
+    @apply bg-black/20 backdrop-blur-2xl border-b border-blue-400/20;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
   }
 
   .glass-button {
-    @apply bg-white/15 backdrop-blur-md border border-blue-500/30 rounded-xl transition-all duration-300 hover:bg-blue-500/20 hover:scale-105;
+    @apply bg-white/15 backdrop-blur-md border border-blue-400/30 rounded-xl transition-all duration-300 hover:bg-blue-500/20 hover:scale-105 text-white;
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(30, 41, 59, 0.1));
     box-shadow: 0 4px 16px 0 rgba(59, 130, 246, 0.3);
   }
@@ -256,12 +262,12 @@
   }
 
   .case-study-hero {
-    @apply glass-card-elevated py-12 border-b border-blue-500/20;
+    @apply glass-card-elevated py-12 border-b border-blue-400/20;
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(15, 23, 42, 0.10));
   }
 
   .case-study-section {
-    @apply py-8 border-b border-blue-500/10 last:border-b-0;
+    @apply py-8 border-b border-blue-400/10 last:border-b-0;
   }
 
   .process-card {
@@ -273,11 +279,11 @@
   }
 
   .metric-number {
-    @apply text-3xl font-bold mb-2 text-blue-400;
+    @apply text-3xl font-bold mb-2 text-blue-300;
   }
 
   .metric-label {
-    @apply text-sm text-slate-300 uppercase tracking-wide font-medium;
+    @apply text-sm text-gray-300 uppercase tracking-wide font-medium;
   }
 
   .image-gallery-grid {
@@ -292,17 +298,17 @@
     @apply glass-card p-4 layered-depth;
   }
 
-  /* Enhanced Project Text Styles */
+  /* Enhanced Project Text Styles - Accessible White Text */
   .prose p {
-    @apply text-left leading-relaxed text-slate-200;
+    @apply text-left leading-relaxed text-white;
   }
 
   .prose.prose-lg p {
-    @apply text-left leading-relaxed text-slate-200;
+    @apply text-left leading-relaxed text-white;
   }
 
   .prose.prose-slate p {
-    @apply text-left leading-relaxed;
+    @apply text-left leading-relaxed text-white;
   }
 
   .prose h1 {
@@ -310,16 +316,16 @@
   }
 
   .prose h2 {
-    @apply text-center font-bold text-blue-300;
+    @apply text-center font-bold text-blue-200;
   }
 
   .prose h3 {
-    @apply text-left font-semibold text-slate-200;
+    @apply text-left font-semibold text-white;
   }
 
   /* Enhanced Interactive Elements */
   .story-link {
-    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left after:bg-blue-500;
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left after:bg-blue-400;
   }
   
   .hover-scale {
@@ -333,23 +339,23 @@
 
   /* Professional Button Variants */
   .btn-gradient-primary {
-    @apply text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800;
+    @apply text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400;
   }
 
   .btn-gradient-secondary {
-    @apply text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800;
+    @apply text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-gradient-to-r from-slate-600 to-slate-500 hover:from-slate-500 hover:to-slate-400;
   }
 
   .btn-gradient-accent {
-    @apply text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700;
+    @apply text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-400 hover:to-orange-300;
   }
 
   .btn-glass {
-    @apply bg-white/15 backdrop-blur-md border border-blue-500/30 text-slate-100 font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:bg-blue-500/20 hover:scale-105;
+    @apply bg-white/15 backdrop-blur-md border border-blue-400/30 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:bg-blue-500/20 hover:scale-105;
   }
 }
 
-/* Enhanced Typography Scale */
+/* Enhanced Typography Scale - Accessible White Text */
 .text-display {
   @apply font-black leading-tight text-white;
   font-size: clamp(3rem, 8vw, 6rem);
@@ -361,21 +367,21 @@
 }
 
 .text-heading-2 {
-  @apply font-bold leading-tight text-blue-300;
+  @apply font-bold leading-tight text-blue-200;
   font-size: clamp(2rem, 5vw, 3rem);
 }
 
 .text-heading-3 {
-  @apply font-semibold leading-tight text-slate-200;
+  @apply font-semibold leading-tight text-white;
   font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .text-body-large {
-  @apply text-lg leading-relaxed text-slate-200;
+  @apply text-lg leading-relaxed text-gray-200;
 }
 
 .text-body {
-  @apply text-base leading-relaxed text-slate-300;
+  @apply text-base leading-relaxed text-gray-300;
 }
 
 /* Professional Animations */
