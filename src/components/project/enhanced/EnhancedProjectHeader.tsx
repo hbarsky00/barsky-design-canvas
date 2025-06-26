@@ -23,7 +23,7 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:50px_50px]" />
       
-      <div className="relative max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 py-8">
+      <div className="relative max-w-6xl mx-auto px-4 pt-20 pb-8 lg:pt-24 lg:pb-16">
         {/* Navigation */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -57,7 +57,7 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
                 <span className="text-sm text-gray-400">{details.duration}</span>
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                 {project.title}
               </h1>
               

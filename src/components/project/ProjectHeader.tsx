@@ -29,8 +29,8 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   const caption = imageCaptions[image] || title;
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white py-8 lg:py-16">
-      <div className="w-full px-2 sm:px-4">
+    <div className="bg-gradient-to-br from-gray-50 to-white pt-20 pb-8 lg:pt-24 lg:pb-16">
+      <div className="w-full px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,13 +43,13 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 lg:mb-6 text-center">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 text-center">
               {title}
             </h1>
             

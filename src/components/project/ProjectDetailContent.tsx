@@ -72,7 +72,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
 
   return (
-    <div className="w-full lg:max-w-[85%] xl:max-w-[80%] lg:mx-auto px-2 sm:px-4 py-4 lg:py-8">
+    <div className="w-full px-4 sm:px-6 pt-20 pb-4 lg:pt-24 lg:pb-8">
       <ProjectHeader
         title={updatedProject.title}
         description={updatedProject.description}
@@ -83,7 +83,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
         currentIndex={currentImageIndex >= 0 ? currentImageIndex : 0}
       />
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 xl:gap-8 mt-6 lg:mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 xl:gap-8 mt-6 lg:mt-8 max-w-6xl mx-auto">
         {/* Project Sidebar - Shows first on mobile, last on desktop */}
         <div className="lg:col-span-1 order-first lg:order-last">
           <ProjectSidebar
@@ -121,14 +121,18 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
       </div>
       
       {/* Call to Action Section */}
-      <ProjectCallToAction />
+      <div className="max-w-6xl mx-auto">
+        <ProjectCallToAction />
+      </div>
       
       {/* Only show bottom gallery if it's not DAE Search project and has gallery images */}
       {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (
-        <ProjectGallery
-          images={Array.from(new Set(details.galleryImages.map(getReplacedImageSrc)))}
-          imageCaptions={imageCaptions}
-        />
+        <div className="max-w-6xl mx-auto">
+          <ProjectGallery
+            images={Array.from(new Set(details.galleryImages.map(getReplacedImageSrc)))}
+            imageCaptions={imageCaptions}
+          />
+        </div>
       )}
     </div>
   );
