@@ -16,6 +16,9 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   // Safely handle tags array
   const tags = project.tags || [];
   
+  // Use the project's hero image for social media sharing
+  const socialMediaImage = `https://barskydesign.pro${project.image}`;
+  
   // Determine the primary service category with AI-enhanced focus
   const getServiceType = () => {
     if (tags.includes("Mobile App")) return "AI-Enhanced Mobile App Design";
@@ -66,22 +69,22 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="anthropic-ai" content="allow" />
       <meta name="Claude-Web" content="allow" />
       
-      {/* Enhanced Open Graph */}
+      {/* Enhanced Open Graph - Using project hero image */}
       <meta property="og:title" content={`${project.title} | Hiram Barsky - AI-Enhanced UX Case Study`} />
       <meta property="og:description" content={`${project.title}: ${metricsDescription}. ${serviceType} showcasing AI-augmented design process and business outcomes.`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
+      <meta property="og:image" content={socialMediaImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced UX Design Portfolio" />
       <meta property="og:locale" content="en_US" />
       
-      {/* Enhanced Twitter Card */}
+      {/* Enhanced Twitter Card - Using project hero image */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={`${project.title} | AI-Enhanced UX Case Study`} />
       <meta name="twitter:description" content={`${metricsDescription} - ${serviceType} by Hiram Barsky`} />
-      <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
+      <meta name="twitter:image" content={socialMediaImage} />
       <meta name="twitter:creator" content="@hirambarsky" />
       <meta name="twitter:site" content="@hirambarsky" />
       
@@ -94,7 +97,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="msapplication-TileColor" content="#3B82F6" />
       <meta name="format-detection" content="telephone=no" />
       
-      {/* Enhanced structured data with AI-focused positioning */}
+      {/* Enhanced structured data with AI-focused positioning - Using project hero image */}
       <script type="application/ld+json">
         {`
           {
@@ -109,7 +112,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             },
             "image": {
               "@type": "ImageObject",
-              "url": "https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
+              "url": "${socialMediaImage}",
               "width": 1200,
               "height": 630
             },
