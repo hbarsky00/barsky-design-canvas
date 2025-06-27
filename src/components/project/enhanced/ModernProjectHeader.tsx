@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -23,6 +22,8 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
   const { handleSectionContentSave } = useSimplifiedContentEditor({ 
     projectId: projectId || '' 
   });
+
+  console.log('🎬 ModernProjectHeader: Rendering with proper spacing');
 
   return (
     <div className="relative overflow-hidden">
