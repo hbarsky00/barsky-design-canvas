@@ -10,8 +10,8 @@ import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 const FeaturedProjects: React.FC = () => {
   const { filteredProjects } = useProjectsData();
   
-  // Show all projects instead of limiting to 3
-  const allProjects = filteredProjects;
+  // Show first 6 projects to fill 3x2 grid
+  const displayProjects = filteredProjects.slice(0, 6);
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -25,18 +25,18 @@ const FeaturedProjects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            All Design Projects
+            Featured Projects
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Explore my complete portfolio of Product Design and Generative AI Development work. 
+            Explore my portfolio of Product Design and Generative AI Development work. 
             Each project reflects a user-centered design approach, encompassing research, ideation, 
             design, and development implementation.
           </p>
         </motion.div>
 
-        {/* Projects Grid - Single Column */}
-        <div className="grid grid-cols-1 gap-8 mb-12">
-          {allProjects.map((project, index) => (
+        {/* Projects Grid - 3 columns for desktop/tablet, 1 for mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {displayProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
@@ -45,7 +45,7 @@ const FeaturedProjects: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group relative"
             >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
                 {/* Project Image */}
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img
@@ -81,19 +81,19 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6 space-y-4">
-                  <div>
+                <div className="p-6 space-y-4 flex-1 flex flex-col">
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-600 line-clamp-2 leading-relaxed">
+                    <p className="text-gray-600 line-clamp-3 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
 
-                  {/* Technology Tags - Focus on Design/UX */}
+                  {/* Technology Tags */}
                   <div className="flex flex-wrap gap-2">
-                    {project.tags.slice(0, 3).map((tag) => (
+                    {project.tags.slice(0, 2).map((tag) => (
                       <Badge 
                         key={tag}
                         variant="secondary" 
@@ -102,12 +102,12 @@ const FeaturedProjects: React.FC = () => {
                         {tag}
                       </Badge>
                     ))}
-                    {project.tags.length > 3 && (
+                    {project.tags.length > 2 && (
                       <Badge 
                         variant="secondary" 
                         className="bg-gray-100 text-gray-500 text-xs"
                       >
-                        +{project.tags.length - 3} more
+                        +{project.tags.length - 2} more
                       </Badge>
                     )}
                   </div>
@@ -133,7 +133,7 @@ const FeaturedProjects: React.FC = () => {
           ))}
         </div>
 
-        {/* View All Projects Button - Updated to show "View Detailed Portfolio" */}
+        {/* View All Projects Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ const FeaturedProjects: React.FC = () => {
               variant="outline"
               className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold"
             >
-              View Detailed Portfolio
+              View All Projects
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
