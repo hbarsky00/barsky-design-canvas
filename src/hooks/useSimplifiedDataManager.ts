@@ -31,12 +31,19 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
       setComponentKey(prev => prev + 1);
     };
 
+    const handleDataLoaded = async (e: CustomEvent) => {
+      console.log('📊 SimplifiedDataManager: Data loaded from database');
+      setComponentKey(prev => prev + 1);
+    };
+
     window.addEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
     window.addEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
+    window.addEventListener('projectDataLoaded', handleDataLoaded as EventListener);
     
     return () => {
       window.removeEventListener('projectDataUpdated', handleProjectDataUpdate as EventListener);
       window.removeEventListener('forceComponentRefresh', handleForceRefresh as EventListener);
+      window.removeEventListener('projectDataLoaded', handleDataLoaded as EventListener);
     };
   }, [forceRefresh]);
 
@@ -113,7 +120,7 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
     console.log('  Image:', updatedProjectData.image);
     
     return updatedProjectData;
-  }, [project, getEnhancedTextContent, getReplacedImageSrc]);
+  }, [project, getEnhancedTextContent, getReplacedImageSrc, componentKey]);
 
   const updatedDetails = React.useMemo(() => {
     console.log('🔄 SimplifiedDataManager: Updating details data with enhanced text retrieval');
@@ -136,7 +143,7 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
     console.log('  Result:', updatedDetailsData.result?.substring(0, 50) + '...');
     
     return updatedDetailsData;
-  }, [details, getEnhancedTextContent]);
+  }, [details, getEnhancedTextContent, componentKey]);
 
   return {
     updatedProject,
