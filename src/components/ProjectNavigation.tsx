@@ -19,18 +19,23 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   projectsData,
 }) => {
   console.log('🔍 ProjectNavigation: Current project ID:', currentProjectId);
-  console.log('🔍 ProjectNavigation: Available projects:', projectsData.map(p => p.id));
+  console.log('🔍 ProjectNavigation: Available projects:', projectsData.map(p => `${p.id}: ${p.title}`));
   
   // Find current project index
   const currentIndex = projectsData.findIndex(p => p.id === currentProjectId);
   console.log('🔍 ProjectNavigation: Current index:', currentIndex);
   
-  // Get previous and next project
-  const prevProject = currentIndex > 0 ? projectsData[currentIndex - 1] : null;
-  const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : null;
+  // Get previous and next project (with wrapping)
+  const prevProject = currentIndex > 0 ? projectsData[currentIndex - 1] : projectsData[projectsData.length - 1];
+  const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : projectsData[0];
   
-  console.log('🔍 ProjectNavigation: Previous project:', prevProject?.id || 'none');
-  console.log('🔍 ProjectNavigation: Next project:', nextProject?.id || 'none');
+  console.log('🔍 ProjectNavigation: Previous project:', prevProject?.id || 'none', '-', prevProject?.title || 'none');
+  console.log('🔍 ProjectNavigation: Next project:', nextProject?.id || 'none', '-', nextProject?.title || 'none');
+  
+  // Don't show navigation if there's only one project or current project not found
+  if (projectsData.length <= 1 || currentIndex === -1) {
+    return null;
+  }
   
   return (
     <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">

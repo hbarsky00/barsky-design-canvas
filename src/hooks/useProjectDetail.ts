@@ -33,6 +33,7 @@ export const useProjectDetail = (projectId: string | undefined): UseProjectDetai
   }, [projectId]);
 
   // Transform projectsData to match the expected format for navigation
+  // Use the exact order from projectsList.ts
   const transformedProjectsData = React.useMemo(() => {
     console.log('🔄 useProjectDetail: Transforming projects data for navigation');
     const transformed = projectsData.map(project => ({
@@ -40,7 +41,7 @@ export const useProjectDetail = (projectId: string | undefined): UseProjectDetai
       title: project.title,
       image: project.image
     }));
-    console.log('🔄 useProjectDetail: Transformed projects:', transformed.map(p => p.id));
+    console.log('🔄 useProjectDetail: Transformed projects in order:', transformed.map(p => `${p.id}: ${p.title}`));
     return transformed;
   }, []);
 
