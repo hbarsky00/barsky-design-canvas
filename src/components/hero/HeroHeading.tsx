@@ -20,9 +20,9 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         staggerChildren={0.05}
       />
       <AnimatedText
-        text="Product Experience Designer"
+        text="Enhancing Product Experiences for Innovative Brands"
         tag="h1"
-        className="text-2xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight block"
+        className="text-xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight block"
         delay={1000}
         type="word"
         animation="bounce"
