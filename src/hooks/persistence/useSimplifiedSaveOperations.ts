@@ -15,18 +15,23 @@ export const useSimplifiedSaveOperations = (
     setIsSaving(true);
     
     try {
-      // FIXED: Ensure proper saving with consistent key format
+      // ENHANCED: Save with the exact key provided, no modifications
       await saveChangeToDatabase(projectId, 'text', key, content);
       
-      // Update cached data immediately with the exact key used
+      // Update cached data immediately with multiple key formats for compatibility
       setCachedData(prev => {
         const updated = {
           ...prev,
-          textContent: { ...prev.textContent, [key]: content }
+          textContent: { 
+            ...prev.textContent, 
+            [key]: content,
+            // Also store with project ID suffix for backward compatibility
+            [`${key}_${projectId}`]: content
+          }
         };
         
-        console.log('📊 Updated cached data with key:', key);
-        console.log('📊 New cached textContent keys:', Object.keys(updated.textContent));
+        console.log('📊 Updated cached data with keys:', [key, `${key}_${projectId}`]);
+        console.log('📊 All cached textContent keys:', Object.keys(updated.textContent));
         
         return updated;
       });

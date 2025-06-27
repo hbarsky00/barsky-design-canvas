@@ -1,3 +1,4 @@
+
 import { useCallback } from 'react';
 import { useSimplifiedProjectPersistence } from '@/hooks/useSimplifiedProjectPersistence';
 
@@ -12,21 +13,21 @@ export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEd
     console.log(`💾 Saving ${section} ${type}:`, content.substring(0, 50) + '...');
     
     try {
-      // FIXED: Use consistent key format for all text content
+      // ENHANCED: Use standardized key format without project ID suffix to match retrieval
       let key: string;
       if (textKey) {
-        // Use custom textKey if provided (for text sections between images)
-        key = `${textKey}_${projectId}`;
+        // Use custom textKey as-is (for text sections between images)
+        key = textKey;
       } else if (type === 'title') {
-        key = `${section}_title_${projectId}`;
+        key = `${section}_title`;
       } else {
-        key = `${section}_content_${projectId}`;
+        key = `${section}_content`;
       }
       
-      console.log('🔑 Using save key:', key);
+      console.log('🔑 Using standardized save key:', key);
       
       await saveTextContent(key, content);
-      console.log('✅ Content saved successfully');
+      console.log('✅ Content saved successfully with key:', key);
       
       // Force immediate refresh to show saved content
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
@@ -35,6 +36,7 @@ export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEd
           section,
           type,
           content,
+          key,
           immediate: true,
           stayOnPage: true,
           timestamp: Date.now()

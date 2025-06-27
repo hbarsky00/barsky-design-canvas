@@ -5,7 +5,7 @@ import { ProjectProps } from '@/components/ProjectCard';
 import { ProjectDetails } from '@/data/types/project';
 
 export const useSimplifiedDataManager = (projectId: string, project: ProjectProps, details: ProjectDetails) => {
-  const { getProjectData, forceRefresh, refreshTrigger, getImageSrc } = useSimplifiedProjectPersistence(projectId);
+  const { getProjectData, forceRefresh, refreshTrigger, getImageSrc, getTextContent } = useSimplifiedProjectPersistence(projectId);
   
   const [componentKey, setComponentKey] = React.useState(0);
 
@@ -46,15 +46,37 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
     return getProjectData();
   }, [getProjectData, componentKey, refreshTrigger]);
 
-  const getTextContent = React.useCallback((key: string, fallback: string) => {
-    // Check both direct key and prefixed key formats
-    const directContent = savedData.textContent[key];
-    const prefixedContent = savedData.textContent[`${key}_${projectId}`];
+  // ENHANCED: Improved text content retrieval with comprehensive key checking
+  const getEnhancedTextContent = React.useCallback((key: string, fallback: string) => {
+    // Try multiple key formats to ensure we find saved content
+    const possibleKeys = [
+      key, // Direct key
+      `${key}_${projectId}`, // Prefixed with project ID
+      key.replace(`_${projectId}`, ''), // Remove project ID if present
+    ];
     
-    const content = directContent || prefixedContent || fallback;
-    console.log(`📖 Getting text content for ${key}:`, content.substring(0, 50) + '...');
-    return content;
-  }, [savedData.textContent, projectId]);
+    let foundContent = '';
+    let usedKey = '';
+    
+    for (const testKey of possibleKeys) {
+      const content = getTextContent(testKey, '');
+      if (content && content.trim()) {
+        foundContent = content;
+        usedKey = testKey;
+        break;
+      }
+    }
+    
+    const finalContent = foundContent || fallback;
+    
+    if (foundContent) {
+      console.log(`📖 Found saved text content for ${key} using key: ${usedKey}`, finalContent.substring(0, 50) + '...');
+    } else {
+      console.log(`📖 No saved content found for ${key}, using fallback`);
+    }
+    
+    return finalContent;
+  }, [getTextContent, projectId]);
 
   // FIXED: Enhanced image replacement with detailed logging
   const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
@@ -68,45 +90,53 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
   }, [getImageSrc]);
 
   const updatedProject = React.useMemo(() => {
-    console.log('🔄 SimplifiedDataManager: Updating project data with image replacements');
+    console.log('🔄 SimplifiedDataManager: Updating project data with enhanced text retrieval');
     const originalImageSrc = project.image;
     const updatedImageSrc = getReplacedImageSrc(originalImageSrc);
     
-    console.log('🎯 Project image update:');
+    console.log('🎯 Project content update:');
+    console.log('  Original project title:', project.title);
+    console.log('  Original project description:', project.description.substring(0, 50) + '...');
     console.log('  Original project image:', originalImageSrc);
     console.log('  Updated project image:', updatedImageSrc);
     
     const updatedProjectData = {
       ...project,
-      title: getTextContent(`hero_title_${projectId}`, project.title),
-      description: getTextContent(`hero_description_${projectId}`, project.description),
+      title: getEnhancedTextContent(`hero_title`, project.title),
+      description: getEnhancedTextContent(`hero_description`, project.description),
       image: updatedImageSrc
     };
     
-    console.log('✅ Final updated project image:', updatedProjectData.image);
+    console.log('✅ Final updated project data:');
+    console.log('  Title:', updatedProjectData.title);
+    console.log('  Description:', updatedProjectData.description.substring(0, 50) + '...');
+    console.log('  Image:', updatedProjectData.image);
+    
     return updatedProjectData;
-  }, [project, projectId, getTextContent, getReplacedImageSrc]);
+  }, [project, getEnhancedTextContent, getReplacedImageSrc]);
 
   const updatedDetails = React.useMemo(() => {
-    console.log('🔄 SimplifiedDataManager: Updating details data');
+    console.log('🔄 SimplifiedDataManager: Updating details data with enhanced text retrieval');
     
-    // FIXED: Properly handle challenge content with correct key format
-    const challengeContentKey = `challenge_content_${projectId}`;
-    const savedChallengeContent = savedData.textContent[challengeContentKey];
+    console.log('🔍 Details content debug:');
+    console.log('  Original challenge:', details.challenge?.substring(0, 50) + '...');
+    console.log('  Original process:', details.process?.substring(0, 50) + '...');
+    console.log('  Original result:', details.result?.substring(0, 50) + '...');
     
-    console.log('🔍 Challenge content debug:', {
-      key: challengeContentKey,
-      saved: savedChallengeContent?.substring(0, 50) + '...',
-      original: details.challenge?.substring(0, 50) + '...'
-    });
-    
-    return {
+    const updatedDetailsData = {
       ...details,
-      challenge: savedChallengeContent || details.challenge,
-      process: getTextContent(`process_content_${projectId}`, details.process),
-      result: getTextContent(`result_content_${projectId}`, details.result)
+      challenge: getEnhancedTextContent(`challenge_content`, details.challenge),
+      process: getEnhancedTextContent(`process_content`, details.process),
+      result: getEnhancedTextContent(`result_content`, details.result)
     };
-  }, [details, projectId, getTextContent, savedData.textContent]);
+    
+    console.log('✅ Final updated details:');
+    console.log('  Challenge:', updatedDetailsData.challenge?.substring(0, 50) + '...');
+    console.log('  Process:', updatedDetailsData.process?.substring(0, 50) + '...');
+    console.log('  Result:', updatedDetailsData.result?.substring(0, 50) + '...');
+    
+    return updatedDetailsData;
+  }, [details, getEnhancedTextContent]);
 
   return {
     updatedProject,
