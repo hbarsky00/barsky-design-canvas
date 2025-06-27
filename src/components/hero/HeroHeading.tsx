@@ -29,7 +29,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         staggerChildren={0.1}
       />
       <AnimatedText
-        text="Driving ROI & User Satisfaction Through Strategic Design"
+        text="We enhance product experiences for innovative brands by driving return on investment (ROI) and user satisfaction through strategic design"
         tag="p"
         className="text-lg sm:text-xl text-gray-600 leading-relaxed block"
         delay={1200}
