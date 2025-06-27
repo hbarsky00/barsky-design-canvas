@@ -19,6 +19,15 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         animation="bounce"
         staggerChildren={0.05}
       />
+      <AnimatedText 
+        text="Enhancing Product Experiences for Innovative Brands" 
+        tag="h2" 
+        className="text-xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-800"
+        delay={1000}
+        type="word"
+        animation="bounce"
+        staggerChildren={0.08}
+      />
     </div>
   );
 };
