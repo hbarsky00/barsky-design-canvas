@@ -44,10 +44,8 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.stopPropagation();
     if (prevProject) {
       console.log('🔗 Navigating to previous project:', prevProject.id);
-      console.log('🔗 Current URL before navigation:', window.location.href);
-      
-      // Use window.location.href as a more direct approach
-      window.location.href = `/project/${prevProject.id}`;
+      // Use navigate with replace to avoid adding to history stack
+      navigate(`/project/${prevProject.id}`, { replace: false });
     }
   };
 
@@ -56,10 +54,8 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.stopPropagation();
     if (nextProject) {
       console.log('🔗 Navigating to next project:', nextProject.id);
-      console.log('🔗 Current URL before navigation:', window.location.href);
-      
-      // Use window.location.href as a more direct approach
-      window.location.href = `/project/${nextProject.id}`;
+      // Use navigate with replace to avoid adding to history stack
+      navigate(`/project/${nextProject.id}`, { replace: false });
     }
   };
   
