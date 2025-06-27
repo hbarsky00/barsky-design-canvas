@@ -59,7 +59,14 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       {/* Main Content */}
       <div className="w-full px-4 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16 max-w-6xl mx-auto">
         
-        {/* All Project Sections with Hero Image positioned after Challenge */}
+        {/* Hero Image Section - Now positioned before all project sections */}
+        <ModernProjectImage
+          project={updatedProject}
+          imageCaptions={finalCaptions}
+          projectId={projectId}
+        />
+
+        {/* All Project Sections (Challenge, Process, Result) */}
         <ModernProjectSections
           details={updatedDetails}
           projectId={projectId}

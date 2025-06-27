@@ -5,7 +5,6 @@ import { ProjectProps } from "@/components/ProjectCard";
 import ModernProjectChallengeSection from "./ModernProjectChallengeSection";
 import ModernProjectProcessSection from "./ModernProjectProcessSection";
 import ModernProjectResultSection from "./ModernProjectResultSection";
-import ModernProjectImage from "../ModernProjectImage";
 
 interface ModernProjectSectionsProps {
   details: ProjectDetails;
@@ -29,13 +28,6 @@ const ModernProjectSections: React.FC<ModernProjectSectionsProps> = ({
         projectId={projectId}
         componentKey={componentKey}
         imageCaptions={imageCaptions}
-      />
-
-      {/* Hero Image Section - After Challenge section */}
-      <ModernProjectImage
-        project={project}
-        imageCaptions={imageCaptions}
-        projectId={projectId}
       />
 
       <ModernProjectProcessSection
