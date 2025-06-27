@@ -112,6 +112,13 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Standardized paragraph styles across the app */
+  p {
+    @apply text-lg leading-relaxed text-gray-600 mb-4;
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
 }
 
 @layer components {
@@ -275,25 +282,35 @@
     @apply glass-card p-3 layered-depth;
   }
 
-  /* Project Text Styles - Left aligned paragraphs */
+  /* Standardized Project Text Styles */
   .prose p {
-    @apply text-left;
+    @apply text-lg leading-relaxed text-gray-600 mb-4 text-left;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   .prose.prose-lg p {
-    @apply text-left;
+    @apply text-lg leading-relaxed text-gray-600 mb-4 text-left;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   .prose.prose-slate p {
-    @apply text-left;
+    @apply text-lg leading-relaxed text-gray-600 mb-4 text-left;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   .prose.prose-slate.max-w-none p {
-    @apply text-left;
+    @apply text-lg leading-relaxed text-gray-600 mb-4 text-left;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   .prose.prose-slate.max-w-none.dark\:prose-invert p {
-    @apply text-left;
+    @apply text-lg leading-relaxed text-gray-600 mb-4 text-left;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   /* Project h1 elements - Center aligned */
@@ -378,6 +395,15 @@
   .case-study-section h3,
   .mobile-section-spacing h3 {
     @apply text-left;
+  }
+
+  /* Text content containers - standardized paragraph styling */
+  .text-content p,
+  .whitespace-pre-wrap p,
+  .project-content p {
+    @apply text-lg leading-relaxed text-gray-600 mb-4;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 }
 
