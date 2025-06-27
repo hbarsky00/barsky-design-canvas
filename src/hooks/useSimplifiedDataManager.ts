@@ -5,12 +5,13 @@ import { ProjectProps } from '@/components/ProjectCard';
 import { ProjectDetails } from '@/data/types/project';
 
 export const useSimplifiedDataManager = (projectId: string, project: ProjectProps, details: ProjectDetails) => {
-  const { getProjectData, getImageSrc, getTextContent } = useSimplifiedProjectPersistence(projectId);
+  const { getProjectData, getImageSrc, getTextContent, refreshTrigger } = useSimplifiedProjectPersistence(projectId);
   
-  // Get fresh data - simplified approach
+  // FIXED: Get fresh data every time refreshTrigger changes
   const savedData = React.useMemo(() => {
+    console.log('🔄 useSimplifiedDataManager: Getting fresh data, refreshTrigger:', refreshTrigger);
     return getProjectData();
-  }, [getProjectData]);
+  }, [getProjectData, refreshTrigger]);
 
   // Enhanced text content retrieval with multiple key checking
   const getEnhancedTextContent = React.useCallback((key: string, fallback: string) => {
@@ -25,7 +26,7 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
     let usedKey = '';
     
     for (const testKey of possibleKeys) {
-      const content = getTextContent(testKey, '');
+      const content = savedData.textContent[testKey] || '';
       if (content && content.trim()) {
         foundContent = content;
         usedKey = testKey;
@@ -40,7 +41,7 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
     }
     
     return finalContent;
-  }, [getTextContent, projectId]);
+  }, [savedData.textContent, projectId]);
 
   // Image replacement with logging
   const getReplacedImageSrc = React.useCallback((originalSrc: string) => {
@@ -58,7 +59,7 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
       description: getEnhancedTextContent(`hero_description`, project.description),
       image: updatedImageSrc
     };
-  }, [project, getEnhancedTextContent, getReplacedImageSrc]);
+  }, [project, getEnhancedTextContent, getReplacedImageSrc, refreshTrigger]);
 
   const updatedDetails = React.useMemo(() => {
     return {
@@ -67,12 +68,12 @@ export const useSimplifiedDataManager = (projectId: string, project: ProjectProp
       process: getEnhancedTextContent(`process_content`, details.process),
       result: getEnhancedTextContent(`result_content`, details.result)
     };
-  }, [details, getEnhancedTextContent]);
+  }, [details, getEnhancedTextContent, refreshTrigger]);
 
   return {
     updatedProject,
     updatedDetails,
     getReplacedImageSrc,
-    componentKey: 1 // Static key to prevent unnecessary re-renders
+    componentKey: refreshTrigger // Use refreshTrigger as component key to force re-renders when data changes
   };
 };

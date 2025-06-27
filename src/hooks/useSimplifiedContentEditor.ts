@@ -29,7 +29,7 @@ export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEd
       await saveTextContent(key, content);
       console.log('✅ Content saved successfully with key:', key);
       
-      // Force immediate refresh to show saved content
+      // FIXED: Force immediate refresh to show saved content with proper event details
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId,
@@ -38,7 +38,6 @@ export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEd
           content,
           key,
           immediate: true,
-          stayOnPage: true,
           timestamp: Date.now()
         }
       }));
@@ -62,7 +61,6 @@ export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEd
           section,
           imageReplacement: { originalSrc, newSrc },
           immediate: true,
-          stayOnPage: true,
           timestamp: Date.now()
         }
       }));

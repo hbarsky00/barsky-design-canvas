@@ -54,6 +54,25 @@ export const useSimplifiedDataLoader = (projectId: string) => {
     }
   }, [projectId, loadDataFromDatabase]);
 
+  // FIXED: Listen for project updates and reload data when needed
+  useEffect(() => {
+    const handleProjectUpdate = async (e: CustomEvent) => {
+      if (e.detail?.projectId === projectId) {
+        console.log('🔄 SimplifiedDataLoader: Project update detected, reloading data');
+        // Add a small delay to avoid flickering
+        setTimeout(() => {
+          loadDataFromDatabase();
+        }, 100);
+      }
+    };
+
+    window.addEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    
+    return () => {
+      window.removeEventListener('projectDataUpdated', handleProjectUpdate as EventListener);
+    };
+  }, [projectId, loadDataFromDatabase]);
+
   const updateCachedData = useCallback((updater: (prev: ProjectData) => ProjectData) => {
     setCachedData(updater);
     setForceUpdate(prev => prev + 1);
