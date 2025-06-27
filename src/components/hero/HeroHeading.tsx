@@ -13,7 +13,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
       <AnimatedText 
         text="Hi, I'm Hiram Barsky" 
         tag="h2" 
-        className="text-xl sm:text-2xl font-semibold mb-4 text-gray-600 block"
+        className="text-lg sm:text-2xl font-semibold mb-4 text-gray-600 block"
         delay={800}
         type="word"
         animation="bounce"
@@ -22,7 +22,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
       <AnimatedText
         text="Product Experience Designer"
         tag="h1"
-        className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight block"
+        className="text-2xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight block"
         delay={1000}
         type="word"
         animation="bounce"
