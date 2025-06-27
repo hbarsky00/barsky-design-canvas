@@ -8,6 +8,7 @@ import ProductGrid from "@/components/store/ProductGrid";
 import StoreHeader from "@/components/store/StoreHeader";
 import { MobileCategoryFilters, DesktopCategoryFilters } from "@/components/store/CategoryFilters";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import { products, categories } from "@/data/productsData";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
@@ -66,12 +67,12 @@ const Store: React.FC = () => {
           </div>
         </section>
         
+        <ServicesCallToAction />
+        <BlogPreview />
         <SeoFaqSection 
           title="AI-Enhanced Design Resources & Accessibility Questions"
           faqs={homepageFaqs}
         />
-        
-        <ServicesCallToAction />
       </main>
       <Footer />
     </div>

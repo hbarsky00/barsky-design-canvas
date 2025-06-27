@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactInformation from '@/components/contact/ContactInformation';
 import ContactForm from '@/components/contact/ContactForm';
+import BlogPreview from '@/components/blog/BlogPreview';
 import EnhancedGlobalSeo from '@/components/seo/EnhancedGlobalSeo';
 
 const Contact = () => {
@@ -58,6 +59,8 @@ const Contact = () => {
             </div>
           </div>
         </section>
+        
+        <BlogPreview />
       </main>
       <Footer />
     </div>

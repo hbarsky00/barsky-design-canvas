@@ -6,6 +6,7 @@ import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
+import BlogPreview from "@/components/blog/BlogPreview";
 import { useProjectsData } from "./projects/hooks/useProjectsData";
 import { projectFaqs } from "@/data/seoFaqs";
 
@@ -55,12 +56,13 @@ const AllProjects = () => {
           />
         </div>
         
+        <ServicesCallToAction />
+        <BlogPreview />
         <SeoFaqSection 
           title="AI-Enhanced Portfolio & Business Design Questions"
           faqs={projectFaqs}
           className="mt-16"
         />
-        <ServicesCallToAction />
       </main>
       
       <Footer />
