@@ -3,7 +3,7 @@ export const investorLoanImageCaptions: Record<string, string> = {
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Loan dashboard",
   "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Financial orderbook",
   "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png": "Search interface",
-  "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png": "Advanced search",
+  "/lovable-uploads/210badcf-5da6-47c5-9e9c-c4ba3a0c9102.png": "Design system overview",
   "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png": "Platform overview",
   "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png": "Project lessons",
   "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png": "Results metrics",
