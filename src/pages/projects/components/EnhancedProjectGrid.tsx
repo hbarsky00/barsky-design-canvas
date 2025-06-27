@@ -15,7 +15,7 @@ const EnhancedProjectGrid: React.FC<EnhancedProjectGridProps> = ({
   resetFilters
 }) => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Results Count */}
       <ProjectGridResults count={projects.length} />
 
