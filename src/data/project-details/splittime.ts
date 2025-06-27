@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
@@ -36,7 +35,7 @@ export const splittimeDetails: ProjectDetails = {
       afterHeader: "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png"
+      // Removed beforeHeader to eliminate duplicate - the family calendar image will only appear as processImage
     },
     result: {
       beforeHeader: "/lovable-uploads/053bd992-cc02-4938-9f9f-a693e33d3f56.png",
