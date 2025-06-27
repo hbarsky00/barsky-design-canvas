@@ -15,7 +15,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({ isVisible }) => {
         transition={{ delay: 1.2, duration: 0.5 }}
         className="text-xl sm:text-2xl mb-4 text-gray-700 font-medium"
       >
-        Specializing in Accessibility Compliance & AI-Enhanced Design
+        Enhancing Product Experiences for Innovative Brands
       </motion.p>
       
       <motion.p
@@ -24,8 +24,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({ isVisible }) => {
         transition={{ delay: 1.4, duration: 0.5 }}
         className="text-base sm:text-lg mb-6 text-gray-600 max-w-4xl mx-auto leading-relaxed"
       >
-        I bridge the gap between beautiful interfaces and business results using AI tools like Claude, Lovable.Dev, Figma AI, and Perplexity. 
-        With WCAG expertise and cross-functional collaboration skills, I help companies solve the accessibility gap that 77% need but only 3% of businesses address.
+        With a strong background in product development and user experience design, I leverage data-driven insights to create solutions that align with both business objectives and user needs. I am passionate about collaborating with cross-functional teams to transform ideas into impactful products that not only meet market demands but also foster lasting customer relationships.
       </motion.p>
     </div>
   );
