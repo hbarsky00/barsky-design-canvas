@@ -10,15 +10,6 @@ interface HeroHeadingProps {
 const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
   return (
     <div className="relative">
-      <AnimatedText 
-        text="Hi, I'm Hiram Barsky" 
-        tag="h2" 
-        className="text-lg sm:text-2xl font-semibold mb-4 text-gray-600 block"
-        delay={800}
-        type="word"
-        animation="bounce"
-        staggerChildren={0.05}
-      />
       <AnimatedText
         text="Enhancing Product Experiences for Innovative Brands"
         tag="h1"
