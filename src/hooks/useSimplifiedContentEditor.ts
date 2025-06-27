@@ -1,4 +1,3 @@
-
 import { useCallback } from 'react';
 import { useSimplifiedProjectPersistence } from '@/hooks/useSimplifiedProjectPersistence';
 
@@ -9,7 +8,7 @@ interface UseSimplifiedContentEditorProps {
 export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEditorProps) => {
   const { saveTextContent, saveImageReplacement } = useSimplifiedProjectPersistence(projectId);
 
-  const handleSectionContentSave = useCallback(async (section: string, type: 'title' | 'content', content: string, textKey?: string) => {
+  const handleSectionContentSave = useCallback(async (section: string, type: 'title' | 'content' | 'text', content: string, textKey?: string) => {
     console.log(`💾 Saving ${section} ${type}:`, content.substring(0, 50) + '...');
     
     try {
