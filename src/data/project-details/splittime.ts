@@ -1,4 +1,3 @@
-
 import { ProjectDetails } from "../types/project";
 
 export const splittimeDetails: ProjectDetails = {
@@ -19,7 +18,6 @@ export const splittimeDetails: ProjectDetails = {
 
   // Manual captions for all images
   imageCaptions: {
-    "/lovable-uploads/d2348788-5b71-4218-9351-53c2284c7768.png": "Splittime co-parenting app dashboard showing alerts, notifications, and family coordination features",
     "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png": "Co-parenting dashboard showing family coordination features",
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png": "Child wellbeing tracking interface with activity updates",
     "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png": "Family calendar displaying custody schedule and events",
@@ -93,7 +91,6 @@ export const splittimeDetails: ProjectDetails = {
   ],
 
   availableImages: [
-    "/lovable-uploads/d2348788-5b71-4218-9351-53c2284c7768.png",
     "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png",
     "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
