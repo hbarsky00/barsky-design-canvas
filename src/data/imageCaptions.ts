@@ -67,7 +67,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/876fb1bd-4f5a-4734-8812-c18fa01e10ce.png": "Advanced market analysis tools and trading features specifically designed for gold-to-crypto investment transition",
 
   // BarskyJoint Project
-  "/lovable-uploads/dbed92d3-b001-4854-bf76-b4c7ae74de29.png": "Innovative dual-format food service application supporting both mobile food truck operations and traditional restaurant service",
+  "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png": "Barsky Joint desktop menu interface showcasing signature items, burgers, and comprehensive food ordering system with customization options",
   "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png": "Real-time food truck location tracking system with GPS integration and customer notification features for mobile dining",
   "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png": "Restaurant management interface with menu customization, inventory tracking, and operational efficiency tools",
 

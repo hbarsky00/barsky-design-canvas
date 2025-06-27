@@ -19,7 +19,7 @@ export const barskyjointDetails: ProjectDetails = {
 
   // Manual captions for all images
   imageCaptions: {
-    "/lovable-uploads/3b15c9a1-d59f-47e2-912b-19487962b3f9.png": "Barsky Joint mobile app interface showing menu, payment, and account management screens",
+    "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png": "Barsky Joint desktop menu interface showcasing signature items, burgers, and comprehensive food ordering system with customization options",
     "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png": "Food truck GPS tracking and location system",
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Restaurant reservation management platform",
     "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png": "Order tracking and delivery system",
@@ -30,7 +30,7 @@ export const barskyjointDetails: ProjectDetails = {
 
   imageConfig: {
     challenge: {
-      afterHeader: "/lovable-uploads/3b15c9a1-d59f-47e2-912b-19487962b3f9.png"
+      afterHeader: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png"
     },
     process: {
       afterHeader: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png"
@@ -41,7 +41,7 @@ export const barskyjointDetails: ProjectDetails = {
   },
 
   availableImages: [
-    "/lovable-uploads/3b15c9a1-d59f-47e2-912b-19487962b3f9.png",
+    "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
     "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
     "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
