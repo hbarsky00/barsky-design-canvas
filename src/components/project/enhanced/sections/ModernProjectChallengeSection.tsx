@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import ImageTextGallery from "@/components/project/sections/ImageTextGallery";
 
 interface ModernProjectChallengeSectionProps {
   details: ProjectDetails;
@@ -19,6 +20,10 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
   imageCaptions
 }) => {
   const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });
+
+  const handleTextSave = (textKey: string, content: string) => {
+    handleSectionContentSave('challenge', 'text', content, textKey);
+  };
 
   return (
     <motion.section
@@ -41,22 +46,41 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         content={details.challenge}
         contentType="section"
         onSave={(content) => handleSectionContentSave('challenge', 'content', content)}
-        images={details.challengeGalleryImages || []}
-        onImageAdd={(imageSrc) => {
-          console.log('➕ Adding image to challenge section:', imageSrc);
-        }}
-        onImageReplace={(index, newSrc) => {
-          const originalSrc = details.challengeGalleryImages?.[index];
-          if (originalSrc) {
-            console.log('🔄 Replacing challenge image:', originalSrc, '->', newSrc);
-            handleSectionImageUpdate('challenge', originalSrc, newSrc);
-          }
-        }}
-        onImageRemove={(index) => console.log('🗑️ Removing image from challenge:', index)}
-        maxImages={3}
+        className="mb-8"
         projectId={projectId}
-        imageCaptions={imageCaptions}
       />
+
+      {/* Enhanced gallery with text sections */}
+      {details.challengeGalleryContent && details.challengeGalleryContent.length > 0 ? (
+        <ImageTextGallery
+          items={details.challengeGalleryContent}
+          imageCaptions={imageCaptions}
+          projectId={projectId}
+          sectionName="Challenge"
+          onTextSave={handleTextSave}
+        />
+      ) : details.challengeGalleryImages && details.challengeGalleryImages.length > 0 ? (
+        <EnhancedContentEditor
+          content=""
+          contentType="section"
+          onSave={() => {}}
+          images={details.challengeGalleryImages || []}
+          onImageAdd={(imageSrc) => {
+            console.log('➕ Adding image to challenge section:', imageSrc);
+          }}
+          onImageReplace={(index, newSrc) => {
+            const originalSrc = details.challengeGalleryImages?.[index];
+            if (originalSrc) {
+              console.log('🔄 Replacing challenge image:', originalSrc, '->', newSrc);
+              handleSectionImageUpdate('challenge', originalSrc, newSrc);
+            }
+          }}
+          onImageRemove={(index) => console.log('🗑️ Removing image from challenge:', index)}
+          maxImages={3}
+          projectId={projectId}
+          imageCaptions={imageCaptions}
+        />
+      ) : null}
     </motion.section>
   );
 };

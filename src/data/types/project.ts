@@ -1,5 +1,3 @@
-
-
 export interface ProjectDetails {
   challenge: string;
   challengeAdditionalText?: string; // Text that appears between challenge images
@@ -15,6 +13,11 @@ export interface ProjectDetails {
   imageCaptions?: Record<string, string>; // Manual image captions
   
   imageConfig?: ImageConfig;
+  
+  // Enhanced gallery support with text sections
+  challengeGalleryContent?: ImageTextItem[];
+  processGalleryContent?: ImageTextItem[];
+  resultGalleryContent?: ImageTextItem[];
   
   availableImages?: string[];
   challengeGalleryImages?: string[];
@@ -53,3 +56,9 @@ export interface ProjectProps {
   date?: string;
 }
 
+export interface ImageTextItem {
+  type: 'image' | 'text';
+  content: string; // For images: image path, for text: text content
+  caption?: string; // Only for images
+  textKey?: string; // Only for text sections, used for saving
+}

@@ -2,14 +2,18 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
+import ImageTextGallery from "./ImageTextGallery";
+import { ImageTextItem } from "@/data/types/project";
 
 interface SimpleContentSectionProps {
   title: string;
   content: string;
   additionalText?: string;
   images?: string[];
+  galleryContent?: ImageTextItem[]; // New prop for enhanced gallery
   imageCaptions?: Record<string, string>;
   projectId?: string;
+  onTextSave?: (textKey: string, content: string) => void;
 }
 
 const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
@@ -17,9 +21,14 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
   content,
   additionalText,
   images = [],
+  galleryContent,
   imageCaptions = {},
-  projectId
+  projectId,
+  onTextSave
 }) => {
+  // Use enhanced gallery if available, otherwise fall back to legacy image display
+  const useEnhancedGallery = galleryContent && galleryContent.length > 0;
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -40,7 +49,15 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
         ))}
       </div>
 
-      {images.length > 0 && (
+      {useEnhancedGallery ? (
+        <ImageTextGallery
+          items={galleryContent}
+          imageCaptions={imageCaptions}
+          projectId={projectId}
+          sectionName={title}
+          onTextSave={onTextSave}
+        />
+      ) : images.length > 0 ? (
         <div className="space-y-6">
           {/* First image */}
           {images[0] && (
@@ -87,7 +104,7 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
             </div>
           ))}
         </div>
-      )}
+      ) : null}
     </motion.section>
   );
 };
