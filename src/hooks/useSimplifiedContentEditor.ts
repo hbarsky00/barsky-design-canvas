@@ -9,13 +9,16 @@ interface UseSimplifiedContentEditorProps {
 export const useSimplifiedContentEditor = ({ projectId }: UseSimplifiedContentEditorProps) => {
   const { saveTextContent, saveImageReplacement } = useSimplifiedProjectPersistence(projectId);
 
-  const handleSectionContentSave = useCallback(async (section: string, type: 'title' | 'content', content: string) => {
+  const handleSectionContentSave = useCallback(async (section: string, type: 'title' | 'content', content: string, textKey?: string) => {
     console.log(`💾 Saving ${section} ${type}:`, content.substring(0, 50) + '...');
     
     try {
       // FIXED: Use consistent key format for all text content
       let key: string;
-      if (type === 'title') {
+      if (textKey) {
+        // Use custom textKey if provided (for text sections between images)
+        key = `${textKey}_${projectId}`;
+      } else if (type === 'title') {
         key = `${section}_title_${projectId}`;
       } else {
         key = `${section}_content_${projectId}`;
