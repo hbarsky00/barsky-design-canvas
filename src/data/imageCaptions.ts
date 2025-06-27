@@ -1,3 +1,4 @@
+
 // Comprehensive image captions for all projects
 export const imageCaptions: Record<string, string> = {
   // Medication App Project
@@ -18,6 +19,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/b0c65de3-6fea-4554-8ccc-4cb4bfe3e371.png": "Comprehensive style tile showcasing the complete design system including logo variations, color palettes, typography hierarchy, button states, iconography, and UI components for the medication management platform",
 
   // Investor Loan App Project
+  "/lovable-uploads/64cbae23-8219-4689-a78c-53218f2a09e5.png": "Investment loan management platform featuring comprehensive orderbook interface with advanced search capabilities, deal tracking, and portfolio management tools for financial institutions",
   "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png": "Project Overview showcasing the comprehensive transformation challenge, role definition, and timeline for converting manual Excel-based loan management into a modern digital banking platform",
   "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png": "Professional loan management dashboard showcasing card-based deal organization with real-time status tracking, team collaboration features, and streamlined workflow management for financial institutions",
   "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png": "Advanced financial orderbook interface displaying loan tranches with sophisticated filtering, real-time market data, and integrated communication features for seamless deal execution",
@@ -46,6 +48,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png": "Interactive data visualization dashboard with analytics capabilities and comprehensive reporting features for enterprise data insights",
 
   // SplitTime Project
+  "/lovable-uploads/4edbc00b-80df-4dcd-bf13-ef4526e23d80.png": "Splittime co-parenting app interface showing alerts dashboard and notifications panel",
   "/lovable-uploads/27fba121-19a6-475b-977a-925861f25ff2.png": "Secure co-parenting communication platform designed to facilitate positive interactions and reduce conflict between separated parents",
   "/lovable-uploads/593ace1d-0082-49d1-aacf-debe109e5235.png": "Comprehensive calendar coordination system for managing children's activities, appointments, and custody schedules with shared visibility",
   "/lovable-uploads/39898ab4-1bbc-4590-9af2-114808c351c0.png": "Family-centered interface promoting positive communication patterns and healthy co-parenting relationships through thoughtful design",
