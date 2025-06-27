@@ -76,8 +76,7 @@ export const medicationAppDetails: ProjectDetails = {
   ],
 
   challengeGalleryImages: [
-    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png",
-    "/lovable-uploads/2d0691de-800e-4ddb-9c3f-302d8389b65d.png"
+    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png"
   ],
   
   resultGalleryImages: [
