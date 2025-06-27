@@ -35,13 +35,13 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
       <div className="relative w-full px-4 sm:px-6 z-10">
-        {/* Header with proper spacing from logo */}
-        <div className="max-w-7xl mx-auto pt-20 pb-8 lg:pt-24 lg:pb-16">
+        {/* Header with proper spacing from logo - increased top padding */}
+        <div className="max-w-7xl mx-auto pt-32 pb-8 lg:pt-36 lg:pb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 lg:mb-8"
+            className="mb-8 lg:mb-12"
           >
             <Link 
               to="/projects" 
