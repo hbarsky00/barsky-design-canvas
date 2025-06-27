@@ -4,7 +4,6 @@ import Header from "@/components/Header";
 import EnhancedHero from "@/components/hero/EnhancedHero";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import About from "@/components/About";
-import InternalLinkingHub from "@/components/seo/InternalLinkingHub";
 import Contact from "@/components/Contact";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
@@ -18,7 +17,6 @@ const HomepageLayout: React.FC = () => {
       <main className="flex-grow">
         <EnhancedHero />
         <FeaturedProjects />
-        <InternalLinkingHub />
         <About />
         <Contact />
         <ServicesCallToAction />
