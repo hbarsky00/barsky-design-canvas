@@ -1,7 +1,7 @@
 
 import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
@@ -18,6 +18,8 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   currentProjectId,
   projectsData,
 }) => {
+  const navigate = useNavigate();
+  
   console.log('🔍 ProjectNavigation: Current project ID:', currentProjectId);
   console.log('🔍 ProjectNavigation: Available projects:', projectsData.map(p => `${p.id}: ${p.title}`));
   
@@ -36,14 +38,30 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   if (projectsData.length <= 1 || currentIndex === -1) {
     return null;
   }
+
+  const handlePrevProject = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (prevProject) {
+      console.log('🔗 Navigating to previous project:', prevProject.id);
+      navigate(`/project/${prevProject.id}`, { replace: true });
+    }
+  };
+
+  const handleNextProject = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (nextProject) {
+      console.log('🔗 Navigating to next project:', nextProject.id);
+      navigate(`/project/${nextProject.id}`, { replace: true });
+    }
+  };
   
   return (
     <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
       <div className="flex-1">
         {prevProject && (
-          <Link
-            to={`/project/${prevProject.id}`}
-            className="group flex items-center space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors"
+          <button
+            onClick={handlePrevProject}
+            className="group flex items-center space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors cursor-pointer bg-transparent border-none"
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
             <div className="hidden sm:block relative w-16 h-16 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue">
@@ -59,7 +77,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
               <p className="text-sm text-barsky-text/70">Previous Project</p>
               <p className="font-medium">{prevProject.title}</p>
             </div>
-          </Link>
+          </button>
         )}
       </div>
       
@@ -78,9 +96,9 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
       
       <div className="flex-1 text-right">
         {nextProject && (
-          <Link
-            to={`/project/${nextProject.id}`}
-            className="group flex items-center justify-end space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors"
+          <button
+            onClick={handleNextProject}
+            className="group flex items-center justify-end space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors cursor-pointer bg-transparent border-none w-full"
           >
             <div className="text-right">
               <p className="text-sm text-barsky-text/70">Next Project</p>
@@ -96,7 +114,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
               </AspectRatio>
             </div>
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-          </Link>
+          </button>
         )}
       </div>
     </div>
