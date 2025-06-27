@@ -21,14 +21,18 @@ export const useProjectDetail = (projectId: string | undefined): UseProjectDetai
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  // Get base project and details from static data
+  // Get base project and details from static data - using the correct source
   const project = React.useMemo(() => {
     if (!projectId) return null;
+    console.log('🔍 useProjectDetail: Looking for project:', projectId);
+    console.log('🔍 useProjectDetail: Available projects:', projectsData.map(p => p.id));
     return projectsData.find(p => p.id === projectId) || null;
   }, [projectId]);
 
   const details = React.useMemo(() => {
     if (!projectId) return null;
+    console.log('🔍 useProjectDetail: Looking for details:', projectId);
+    console.log('🔍 useProjectDetail: Available details:', Object.keys(projectDetails));
     return projectDetails[projectId] || null;
   }, [projectId]);
 

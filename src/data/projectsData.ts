@@ -3,35 +3,59 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
-    id: "herbalink",
-    title: "HerbaLink - Herbal Medicine Platform",
-    description: "A comprehensive platform connecting patients with certified herbalists for personalized herbal medicine consultations and treatments.",
-    image: "/lovable-uploads/6c4ed77d-1ea7-4da1-8c3e-ad25cd792518.png",
-    tags: ["UX/UI Design", "Healthcare", "Mobile App", "Wellness"],
-    featured: true,
+    id: "splittime",
+    title: "SplitTime Co-Parenting App",
+    description: "A comprehensive platform designed to help separated parents coordinate schedules, share important information, and communicate effectively while prioritizing their children's wellbeing.",
+    image: "/lovable-uploads/d2348788-5b71-4218-9351-53c2284c7768.png",
+    tags: ["Mobile App", "UX/UI Design", "Family Tech", "React Native"]
+  },
+  {
+    id: "medication-app",
+    title: "MyWay Health - Medication Management",
+    description: "An intuitive mobile application designed to help diabetic patients manage their medication schedules, track health metrics, and communicate with healthcare providers.",
+    image: "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
+    tags: ["Mobile App", "Healthcare", "UX/UI Design", "React Native"]
   },
   {
     id: "investor-loan-app",
-    title: "Investor Loan App",
-    description: "A comprehensive loan management platform for private banking institutions, featuring AI-powered search capabilities and streamlined workflow automation.",
-    image: "/lovable-uploads/14993fcb-59d3-434b-8406-599f14a686c3.png",
-    tags: ["UX Design", "Gen AI Design", "Product Design", "Fintech", "AI Search", "Banking", "B2B Platform"],
-    featured: true,
+    title: "Investor Loan Management Platform", 
+    description: "A comprehensive web application designed to streamline the loan management process for real estate investors, featuring automated calculations, document management, and investor communication tools.",
+    image: "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
+    tags: ["Web App", "Fintech", "Real Estate", "React"]
   },
   {
     id: "dae-search",
-    title: "DAE Search Platform",
-    description: "An advanced search and analytics platform designed for data exploration and enterprise insights.",
-    image: "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
-    tags: ["UX Design", "Gen AI Design", "Product Design", "Search", "Analytics", "Enterprise", "Data Platform"],
-    featured: true,
+    title: "DAE Search - Advanced Analytics Platform",
+    description: "A sophisticated search and analytics platform that provides real-time data insights and advanced filtering capabilities for enterprise users.",
+    image: "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png",
+    tags: ["Web App", "Analytics", "Enterprise", "Data Visualization"]
   },
   {
-    id: "portfolio-website",
-    title: "Portfolio Website",
-    description: "A modern, responsive portfolio website showcasing design work and professional achievements.",
-    image: "/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
-    tags: ["UX Design", "Gen AI Design", "Product Design", "Portfolio", "Web Design", "Responsive", "Personal Branding"],
-    featured: false,
+    id: "herbalink",
+    title: "HerbaLink - Herbal Medicine Platform",
+    description: "A digital platform connecting herbal medicine practitioners with patients, featuring appointment scheduling, treatment tracking, and educational resources.",
+    image: "/lovable-uploads/544c0417-cda6-4fee-af30-348eb96cf290.png",
+    tags: ["Healthcare", "Web App", "Alternative Medicine", "Patient Care"]
+  },
+  {
+    id: "spectrum",
+    title: "Spectrum - Communication Dashboard",
+    description: "A unified communication platform designed to streamline team collaboration with integrated messaging, file sharing, and project management tools.",
+    image: "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+    tags: ["Web App", "Communication", "Team Collaboration", "Productivity"]
+  },
+  {
+    id: "gold2crypto",
+    title: "Gold2Crypto - Investment Platform",
+    description: "A secure investment platform enabling users to convert traditional gold investments into cryptocurrency, featuring real-time market data and portfolio management.",
+    image: "/lovable-uploads/716b7cef-a40b-4d2a-a4db-6a360313a63a.png",
+    tags: ["Fintech", "Cryptocurrency", "Investment", "Web App"]
+  },
+  {
+    id: "barskyjoint",
+    title: "Barsky Joint - Medical Practice Platform",
+    description: "A comprehensive practice management system for orthopedic specialists, featuring patient records, appointment scheduling, and treatment tracking capabilities.",
+    image: "/lovable-uploads/adc23be5-793c-4b9e-9e79-73f51c92d6b8.png",
+    tags: ["Healthcare", "Practice Management", "Medical Records", "Web App"]
   }
 ];
