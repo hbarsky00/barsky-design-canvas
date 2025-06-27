@@ -42,7 +42,7 @@ export const projectsData: ProjectProps[] = [
     id: "barskyjoint",
     title: "Barsky Joint",
     description: "A comprehensive digital solution for food truck operations and restaurant management, featuring mobile ordering, GPS tracking, and real-time updates.",
-    image: "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
+    image: "/lovable-uploads/3b15c9a1-d59f-47e2-912b-19487962b3f9.png",
     tags: ["UX Design", "Gen AI Design", "Product Design", "React Native", "Mobile App", "GPS Tracking", "Food Tech"],
     featured: true,
     category: "Mobile App"
