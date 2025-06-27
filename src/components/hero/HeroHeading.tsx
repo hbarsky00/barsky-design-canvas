@@ -12,7 +12,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
     <div className="relative">
       <AnimatedText 
         text="Hi, I'm Hiram Barsky" 
-        tag="h2" 
+        tag="h1" 
         className="text-lg sm:text-2xl font-semibold mb-4 text-gray-600 block"
         delay={800}
         type="word"
