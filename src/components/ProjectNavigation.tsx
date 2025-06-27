@@ -41,17 +41,25 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
 
   const handlePrevProject = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     if (prevProject) {
       console.log('🔗 Navigating to previous project:', prevProject.id);
-      navigate(`/project/${prevProject.id}`, { replace: true });
+      console.log('🔗 Current URL before navigation:', window.location.href);
+      
+      // Use window.location.href as a more direct approach
+      window.location.href = `/project/${prevProject.id}`;
     }
   };
 
   const handleNextProject = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     if (nextProject) {
       console.log('🔗 Navigating to next project:', nextProject.id);
-      navigate(`/project/${nextProject.id}`, { replace: true });
+      console.log('🔗 Current URL before navigation:', window.location.href);
+      
+      // Use window.location.href as a more direct approach
+      window.location.href = `/project/${nextProject.id}`;
     }
   };
   
@@ -62,6 +70,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
           <button
             onClick={handlePrevProject}
             className="group flex items-center space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors cursor-pointer bg-transparent border-none"
+            type="button"
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
             <div className="hidden sm:block relative w-16 h-16 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue">
@@ -99,6 +108,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
           <button
             onClick={handleNextProject}
             className="group flex items-center justify-end space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors cursor-pointer bg-transparent border-none w-full"
+            type="button"
           >
             <div className="text-right">
               <p className="text-sm text-barsky-text/70">Next Project</p>
