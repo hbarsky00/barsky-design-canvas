@@ -27,7 +27,7 @@ export const medicationAppDetails: ProjectDetails = {
   // Disable AI captions - use manual captions only like SplitTime
   useAiCaptions: false,
 
-  // Manual captions for all images - removed f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png
+  // Manual captions for all images - removed f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png and eb257843-42b4-4fc8-a769-41ef52dc1fc5.png
   imageCaptions: {
     "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png": "Medication tracking dashboard showing daily medication schedule",
     "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png": "Patient profile interface with health metrics and medication history",
@@ -56,7 +56,7 @@ export const medicationAppDetails: ProjectDetails = {
     }
   },
 
-  // Removed f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png from availableImages
+  // Removed f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png and eb257843-42b4-4fc8-a769-41ef52dc1fc5.png from availableImages
   availableImages: [
     "/lovable-uploads/5e00c1b3-3845-412a-820e-b841d8fc0637.png",
     "/lovable-uploads/5b5ddbaf-c24b-45f5-b3fb-c31d42fc092e.png",
@@ -76,9 +76,8 @@ export const medicationAppDetails: ProjectDetails = {
     "/lovable-uploads/8847c151-cc21-4e47-af62-b048390cdefb.png"
   ],
 
-  challengeGalleryImages: [
-    "/lovable-uploads/00678d78-5fbc-4a64-9380-568b990994e4.png"
-  ],
+  // Removed eb257843-42b4-4fc8-a769-41ef52dc1fc5.png from challengeGalleryImages - now empty
+  challengeGalleryImages: [],
   
   resultGalleryImages: [
     "/lovable-uploads/f12641a5-2740-4d06-bc91-a1b82c43fa31.png",
