@@ -33,7 +33,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png": "Enhanced orderbook with integrated comments system and team communication features, enabling seamless collaboration throughout the deal lifecycle",
   "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png": "User workflow diagram illustrating the complete loan management process from initial deal discovery through final execution and ongoing monitoring",
   "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png": "Results & Impact dashboard showcasing key performance metrics: 85% error reduction, 40% faster processing, 200+ orders processed, and 80% user satisfaction from banking professionals",
-  "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png": "Advanced loan management orderbook interface with intelligent search suggestions, multi-criteria filtering, and comprehensive deal tracking capabilities for enhanced productivity",
+  "/lovable-uploads/cb58ad80-d24c-4907-84b9-e3e941d7cc6f.png": "Comprehensive design system for the investment loan app showcasing professional banking color palette, typography hierarchy, reusable UI components, spacing guidelines, and consistent visual elements for modern financial interfaces",
 
   // Legacy workflow images
   "/lovable-uploads/70baa6f2-a718-46e8-809d-52e3c43dc137.png": "Analysis of complex Excel-based workflow transformation showing inefficiencies and manual processes that were automated in the new system",

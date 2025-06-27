@@ -16,7 +16,7 @@ export const investorLoanAppDetails: ProjectDetails = {
   imageConfig: {
     process: {
       beforeHeader: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
-      afterHeader: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png"
+      afterHeader: "/lovable-uploads/cb58ad80-d24c-4907-84b9-e3e941d7cc6f.png"
     },
     result: {
       beforeHeader: "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png"
@@ -38,7 +38,7 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/ca299ce2-3a90-4503-8cda-c2c8e17fe160.png",
     "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
     "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
-    "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png",
+    "/lovable-uploads/cb58ad80-d24c-4907-84b9-e3e941d7cc6f.png",
     "/lovable-uploads/9aa6bca4-3f74-4345-8bd2-d89671301729.png"
   ],
   
@@ -46,7 +46,7 @@ export const investorLoanAppDetails: ProjectDetails = {
     "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
     "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
   ],
-  processImage: "/lovable-uploads/59664705-8ea2-45d7-a47e-c4f1ccc3ff3f.png",
+  processImage: "/lovable-uploads/cb58ad80-d24c-4907-84b9-e3e941d7cc6f.png",
   processBottomImage: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
   resultImage: "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png",
   resultGalleryImages: [
