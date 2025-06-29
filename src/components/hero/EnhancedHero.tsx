@@ -8,6 +8,7 @@ import HeroDescription from "./HeroDescription";
 import HeroSkillsTags from "./HeroSkillsTags";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
+import HeroVisualElements from "./HeroVisualElements";
 
 const EnhancedHero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,25 +22,50 @@ const EnhancedHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center overflow-hidden pt-16 sm:pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
       <HeroBackground />
+      <HeroVisualElements />
       
       <div className="relative w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 z-10">
         <div className="w-full text-center">
           
-          {/* Glass Container */}
+          {/* Enhanced Glass Container with better visual appeal */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="glass-card-elevated p-6 sm:p-8 lg:p-10 space-y-6 sm:space-y-8 layered-depth max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="glass-card-elevated p-8 sm:p-10 lg:p-12 space-y-8 sm:space-y-10 layered-depth max-w-6xl mx-auto relative overflow-hidden"
           >
+            {/* Animated gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 animate-pulse opacity-50" />
+            
             <HeroStatusBadge isVisible={isVisible} />
             <HeroHeading isVisible={isVisible} />
             <HeroDescription isVisible={isVisible} />
             <HeroSkillsTags isVisible={isVisible} />
             <HeroActionButtons isVisible={isVisible} />
             <HeroSocialLinks isVisible={isVisible} />
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 2, duration: 0.8 }}
+            className="mt-16 flex flex-col items-center"
+          >
+            <p className="text-sm text-gray-500 mb-4">Discover our work</p>
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center"
+            >
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1 h-3 bg-gray-400 rounded-full mt-2"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
