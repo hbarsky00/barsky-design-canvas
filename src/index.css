@@ -113,12 +113,35 @@
     scroll-behavior: smooth;
   }
 
-  /* COMPREHENSIVE PROJECT TEXT STYLES - Applied to ALL paragraph text across ALL projects */
-  p,
+  /* UNIVERSAL PROJECT PARAGRAPH TEXT STYLING - MAXIMUM COVERAGE */
+  /* This ensures ALL paragraph text across ALL project components uses consistent styling */
+  
+  /* Target all paragraph elements universally */
+  p {
+    font-size: 18px !important;
+    line-height: 1.625 !important;
+    font-weight: 400 !important;
+    color: rgb(75 85 99) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Target all div elements that contain paragraph-like text */
   div p,
   section p,
   article p,
   main p,
+  aside p,
+  nav p,
+  header p,
+  footer p {
+    font-size: 18px !important;
+    line-height: 1.625 !important;
+    font-weight: 400 !important;
+    color: rgb(75 85 99) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Target all component-specific classes */
   .prose p,
   .prose.prose-lg p,
   .prose.prose-slate p,
@@ -139,7 +162,15 @@
   .gallery-image p,
   .image-gallery-grid p,
   .case-study-container p,
-  .case-study-hero p,
+  .case-study-hero p {
+    font-size: 18px !important;
+    line-height: 1.625 !important;
+    font-weight: 400 !important;
+    color: rgb(75 85 99) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Target React component rendered content */
   [class*="text-"] p,
   [class*="prose"] p,
   [class*="leading-"] p,
@@ -151,10 +182,12 @@
   [class*="challenge"] p,
   [class*="process"] p,
   [class*="result"] p,
-  div[class*="space-y"] p,
-  div[class*="max-w"] p,
-  motion\.div p,
-  motion\.section p {
+  [data-testid*="project"] p,
+  [data-testid*="section"] p,
+  [data-testid*="content"] p,
+  [id*="project"] p,
+  [id*="section"] p,
+  [id*="content"] p {
     font-size: 18px !important;
     line-height: 1.625 !important;
     font-weight: 400 !important;
@@ -162,13 +195,34 @@
     margin-bottom: 1rem !important;
   }
 
-  /* Target React component rendered paragraphs specifically */
-  [data-testid*="project"] p,
-  [data-testid*="section"] p,
-  [data-testid*="content"] p,
-  [id*="project"] p,
-  [id*="section"] p,
-  [id*="content"] p {
+  /* Target motion components and animated elements */
+  motion\.div p,
+  motion\.section p,
+  div[class*="space-y"] p,
+  div[class*="max-w"] p,
+  section[class*="space-y"] p {
+    font-size: 18px !important;
+    line-height: 1.625 !important;
+    font-weight: 400 !important;
+    color: rgb(75 85 99) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Target any remaining paragraph-like text elements */
+  .text-lg,
+  .text-base,
+  .leading-relaxed,
+  .leading-loose {
+    font-size: 18px !important;
+    line-height: 1.625 !important;
+    font-weight: 400 !important;
+    color: rgb(75 85 99) !important;
+  }
+
+  /* Special targeting for image-text gallery content */
+  [class*="image-text"] p,
+  [class*="gallery"] p,
+  [class*="content-section"] p {
     font-size: 18px !important;
     line-height: 1.625 !important;
     font-weight: 400 !important;
@@ -336,34 +390,6 @@
 
   .before-after-container {
     @apply glass-card p-3 layered-depth;
-  }
-
-  /* ADDITIONAL UNIVERSAL PROJECT TEXT OVERRIDES - Catches all remaining text patterns */
-  .prose p,
-  .prose.prose-lg p,
-  .prose.prose-slate p,
-  .prose.prose-slate.max-w-none p,
-  .prose.prose-slate.max-w-none.dark\:prose-invert p,
-  .text-content p,
-  .whitespace-pre-wrap p,
-  .project-content p,
-  .glass-card-elevated p,
-  .case-study-section p,
-  .mobile-section-spacing p,
-  .process-card p,
-  [class*="text-"] p,
-  [class*="prose"] p,
-  div[class*="text-gray"] p,
-  div[class*="leading-"] p,
-  div[class*="space-y"] p,
-  section[class*="space-y"] p,
-  motion\.div p,
-  motion\.section p {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-    margin-bottom: 1rem !important;
   }
 
   /* Project h1 elements - Center aligned */
