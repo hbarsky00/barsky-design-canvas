@@ -33,7 +33,13 @@ const TextSection: React.FC<TextSectionProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`prose prose-lg text-gray-600 leading-relaxed max-w-none ${className}`}
+      className={`text-gray-600 max-w-none ${className}`}
+      style={{
+        fontSize: '18px',
+        lineHeight: '1.625',
+        fontWeight: '400',
+        color: 'rgb(75 85 99)'
+      }}
     >
       {showEditingControls && onSave ? (
         <EnhancedContentEditor
@@ -45,7 +51,12 @@ const TextSection: React.FC<TextSectionProps> = ({
       ) : (
         <div className="whitespace-pre-wrap">
           {content.split('\n').map((paragraph, index) => (
-            <p key={index} className="mb-4">
+            <p key={index} className="mb-4" style={{
+              fontSize: '18px',
+              lineHeight: '1.625',
+              fontWeight: '400',
+              color: 'rgb(75 85 99)'
+            }}>
               {paragraph}
             </p>
           ))}
