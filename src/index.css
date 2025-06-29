@@ -1,4 +1,5 @@
 
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -113,13 +114,16 @@
     scroll-behavior: smooth;
   }
 
-  /* Standardized paragraph styles for all projects - consistent 16px size */
-  p {
-    @apply text-base leading-relaxed text-gray-600 mb-4;
+  /* UNIVERSAL PROJECT TEXT STYLES - Applied to ALL paragraph text across projects */
+  p,
+  div p,
+  section p,
+  article p {
     font-size: 16px !important;
     line-height: 1.625 !important;
     font-weight: 400 !important;
     color: rgb(75 85 99) !important;
+    margin-bottom: 1rem !important;
   }
 }
 
@@ -284,7 +288,7 @@
     @apply glass-card p-3 layered-depth;
   }
 
-  /* Standardized Project Text Styles - Forced consistency across all projects */
+  /* COMPREHENSIVE PROJECT TEXT OVERRIDES - Catches all text patterns */
   .prose p,
   .prose.prose-lg p,
   .prose.prose-slate p,
@@ -292,7 +296,15 @@
   .prose.prose-slate.max-w-none.dark\:prose-invert p,
   .text-content p,
   .whitespace-pre-wrap p,
-  .project-content p {
+  .project-content p,
+  .glass-card-elevated p,
+  .case-study-section p,
+  .mobile-section-spacing p,
+  .process-card p,
+  [class*="text-"] p,
+  [class*="prose"] p,
+  div[class*="text-gray"] p,
+  div[class*="leading-"] p {
     font-size: 16px !important;
     line-height: 1.625 !important;
     font-weight: 400 !important;
@@ -390,3 +402,4 @@
     @apply scale-100 translate-y-0;
   }
 }
+
