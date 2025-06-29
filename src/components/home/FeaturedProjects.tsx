@@ -10,8 +10,11 @@ import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 const FeaturedProjects: React.FC = () => {
   const { filteredProjects } = useProjectsData();
   
-  // Show first 6 projects to fill 3x2 grid
-  const displayProjects = filteredProjects.slice(0, 6);
+  // Show only the three specific projects in order: herbalink, splittime, investor-loan-app
+  const featuredProjectIds = ["herbalink", "splittime", "investor-loan-app"];
+  const displayProjects = featuredProjectIds
+    .map(id => filteredProjects.find(project => project.id === id))
+    .filter(Boolean); // Remove any undefined projects
 
   return (
     <section id="projects" className="py-20 bg-white">
