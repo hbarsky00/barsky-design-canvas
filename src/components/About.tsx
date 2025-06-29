@@ -1,25 +1,26 @@
-import React from "react";
-import { CheckCircle, Briefcase, Award, Book, Brain, Target, Users, Zap } from "lucide-react";
 
-const coreDesignSkills = [
-  "User Research & Testing",
-  "Interface Design & Prototyping",
+import React from "react";
+import { CheckCircle, Target, Users, Lightbulb, Search, TrendingUp, Zap, Award } from "lucide-react";
+
+const researchCapabilities = [
+  "User Research & Usability Testing",
+  "Competitive Analysis & Market Research", 
+  "User Journey Mapping & Persona Development",
+  "Data Analytics & Behavioral Analysis"
+];
+
+const designServices = [
+  "Strategic UX/UI Design & Prototyping",
   "Design Systems & Component Libraries",
+  "Information Architecture & Wireframing",
   "Accessibility & WCAG Compliance"
 ];
 
-const aiTechTools = [
-  "Figma AI, Claude, Perplexity",
-  "Frontend Development (HTML/CSS/JS)",
-  "Analytics & A/B Testing Tools",
-  "CMS and Development Handoff"
-];
-
-const businessCollaboration = [
-  "Product Management Collaboration",
-  "Conversion Optimization & ROI Analysis", 
-  "Content Strategy & Information Architecture",
-  "Stakeholder Communication & Presenting"
+const businessOutcomes = [
+  "Conversion Rate Optimization",
+  "User Engagement & Retention Strategy",
+  "Digital Product Strategy & Roadmapping", 
+  "Cross-Functional Team Collaboration"
 ];
 
 const About: React.FC = () => {
@@ -28,25 +29,29 @@ const About: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <h2 className="section-title">About Hiram Barsky</h2>
+            <h2 className="section-title">About Barsky Design</h2>
             <p className="text-barsky-text mb-6">
-              I'm an AI-native UX designer who understands that traditional UX roles are evolving, not disappearing. 
-              The market demands T-shaped professionals who can bridge design, development, and business strategy.
+              Barsky Design is a research and design agency that helps businesses improve the user experience 
+              of their digital products through comprehensive research, strategic thinking, and data-driven design solutions.
+            </p>
+            <p className="text-barsky-text mb-6">
+              We believe that great user experiences start with deep user understanding. Our research-first approach 
+              combines qualitative insights with quantitative data to inform every design decision, ensuring that 
+              our solutions drive measurable business outcomes.
             </p>
             <p className="text-barsky-text mb-8">
-              My daily toolkit includes Claude for research augmentation, Figma AI for rapid prototyping, 
-              and Perplexity for competitive analysis. This isn't just about using new tools—it's about 
-              leveraging AI strategically to solve complex user problems faster and more effectively.
+              From early-stage startups to established enterprises, we partner with organizations to transform 
+              user insights into exceptional digital experiences that users love and businesses benefit from.
             </p>
             
             <div className="flex flex-col gap-5 mb-8">
               <div className="flex items-center gap-4">
                 <div className="bg-barsky-blue/10 p-3 rounded-full">
-                  <Brain className="w-6 h-6 text-barsky-blue" />
+                  <Search className="w-6 h-6 text-barsky-blue" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-barsky-dark">AI-Enhanced Design Process</h3>
-                  <p className="text-sm text-barsky-text-light">Daily use of Claude, Figma AI, and Perplexity</p>
+                  <h3 className="font-semibold text-barsky-dark">Research-Driven Approach</h3>
+                  <p className="text-sm text-barsky-text-light">User insights inform every design decision</p>
                 </div>
               </div>
               
@@ -55,28 +60,28 @@ const About: React.FC = () => {
                   <Target className="w-6 h-6 text-barsky-blue" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-barsky-dark">Business-Focused Results</h3>
-                  <p className="text-sm text-barsky-text-light">40%+ conversion improvements through strategic design</p>
+                  <h3 className="font-semibold text-barsky-dark">Strategic Design Thinking</h3>
+                  <p className="text-sm text-barsky-text-light">Aligning user needs with business objectives</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-4">
                 <div className="bg-barsky-blue/10 p-3 rounded-full">
-                  <Users className="w-6 h-6 text-barsky-blue" />
+                  <TrendingUp className="w-6 h-6 text-barsky-blue" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-barsky-dark">Cross-Functional Collaboration</h3>
-                  <p className="text-sm text-barsky-text-light">PM partnerships, developer handoff, content strategy</p>
+                  <h3 className="font-semibold text-barsky-dark">Measurable Business Impact</h3>
+                  <p className="text-sm text-barsky-text-light">40%+ improvements in key user metrics</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="bg-barsky-blue/10 p-3 rounded-full">
-                  <Zap className="w-6 h-6 text-barsky-blue" />
+                  <Users className="w-6 h-6 text-barsky-blue" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-barsky-dark">Accessibility Specialist</h3>
-                  <p className="text-sm text-barsky-text-light">WCAG 2.1 AA compliance and accessibility audits</p>
+                  <h3 className="font-semibold text-barsky-dark">Collaborative Partnership</h3>
+                  <p className="text-sm text-barsky-text-light">Seamless integration with your team</p>
                 </div>
               </div>
             </div>
@@ -84,45 +89,45 @@ const About: React.FC = () => {
           
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Core Design Skills</h3>
+              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Research Capabilities</h3>
               <div className="grid grid-cols-1 gap-3">
-                {coreDesignSkills.map((skill, index) => (
+                {researchCapabilities.map((capability, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-barsky-blue flex-shrink-0" />
-                    <span className="text-barsky-text">{skill}</span>
+                    <span className="text-barsky-text">{capability}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">AI & Tech Tools</h3>
+              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Design Services</h3>
               <div className="grid grid-cols-1 gap-3">
-                {aiTechTools.map((skill, index) => (
+                {designServices.map((service, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-barsky-blue flex-shrink-0" />
-                    <span className="text-barsky-text">{skill}</span>
+                    <span className="text-barsky-text">{service}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Business & Collaboration</h3>
+              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Business Outcomes</h3>
               <div className="grid grid-cols-1 gap-3">
-                {businessCollaboration.map((skill, index) => (
+                {businessOutcomes.map((outcome, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-barsky-blue flex-shrink-0" />
-                    <span className="text-barsky-text">{skill}</span>
+                    <span className="text-barsky-text">{outcome}</span>
                   </div>
                 ))}
               </div>
             </div>
             
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Design & Development Tools</h3>
+              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Tools & Technologies</h3>
               <div className="flex flex-wrap gap-3">
-                {["Figma + AI", "Adobe Creative Suite", "Claude AI", "Perplexity", "Lovable.dev", "Webflow", "React/TypeScript", "WCAG Testing Tools", "Analytics Platforms"].map((tool, index) => (
+                {["User Research Tools", "Figma & Prototyping", "Analytics Platforms", "A/B Testing", "Accessibility Tools", "Design Systems", "Frontend Development", "Data Visualization"].map((tool, index) => (
                   <span key={index} className="bg-white px-4 py-2 rounded-full text-barsky-text text-sm shadow-sm border border-gray-200">
                     {tool}
                   </span>
