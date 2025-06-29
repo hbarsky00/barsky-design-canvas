@@ -30,7 +30,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: 1.1 }}
-      className="flex flex-col sm:flex-row justify-center gap-6"
+      className="flex flex-col sm:flex-row justify-center gap-4"
     >
       <motion.div
         whileHover={{ scale: 1.05, y: -2 }}
@@ -39,7 +39,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         <Button 
           size="lg" 
           onClick={scrollToProjects}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl backdrop-blur-md transition-all duration-300 w-full sm:w-auto relative overflow-hidden group"
+          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-6 py-3 text-base font-semibold shadow-xl hover:shadow-2xl backdrop-blur-md transition-all duration-300 w-full sm:w-auto relative overflow-hidden group"
         >
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
@@ -47,9 +47,9 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
             animate={{ x: '100%' }}
             transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
           />
-          <Sparkles className="mr-2 h-5 w-5" />
-          View Our Research & Design Work
-          <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          <Sparkles className="mr-2 h-4 w-4" />
+          View Our Work
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </motion.div>
       
@@ -61,9 +61,9 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="outline" 
           size="lg"
           onClick={scrollToContact}
-          className="glass-button border-2 border-blue-600/60 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:border-blue-700 hover:shadow-xl"
+          className="glass-button border-2 border-blue-600/60 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:border-blue-700 hover:shadow-xl"
         >
-          <Mail className="mr-2 h-5 w-5" />
+          <Mail className="mr-2 h-4 w-4" />
           Start Your Project
         </Button>
       </motion.div>

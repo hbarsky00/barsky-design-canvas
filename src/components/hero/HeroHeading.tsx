@@ -18,7 +18,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         <AnimatedText 
           text="Barsky Design" 
           tag="h1" 
-          className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-6 text-gray-900 block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent"
+          className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent"
           delay={800}
           type="word"
           animation="bounce"
@@ -34,7 +34,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         <AnimatedText 
           text="UX Research & Design Agency" 
           tag="h2" 
-          className="text-xl sm:text-3xl lg:text-4xl font-semibold text-gray-600 block mb-4"
+          className="text-lg sm:text-2xl lg:text-3xl font-semibold text-gray-600 block mb-4"
           delay={1000}
           type="word"
           animation="fade"
