@@ -3,6 +3,7 @@ import React from "react";
 import ProjectCard from "./ProjectCard";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 
 const Projects: React.FC = () => {
@@ -39,11 +40,15 @@ const Projects: React.FC = () => {
         )}
         
         <div className="text-center mt-12">
-          <Link 
-            to="/projects" 
-            className="btn-outline inline-flex items-center"
-          >
-            View All Projects <ArrowRight className="ml-2 h-4 w-4" />
+          <Link to="/projects">
+            <Button 
+              size="lg"
+              variant="outline"
+              className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md transition-all duration-300 hover:shadow-xl border border-blue-600 hover:border-blue-600"
+            >
+              View All Projects
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </Link>
         </div>
       </div>
