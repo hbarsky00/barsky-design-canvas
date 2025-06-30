@@ -10,11 +10,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-700 shadow-xl hover:shadow-2xl backdrop-blur-md !text-white hover:!text-white [&_svg]:!text-white [&_svg]:!fill-white hover:[&_svg]:!text-white hover:[&_svg]:!fill-white",
+        default: "bg-blue-600 text-white hover:bg-blue-700 shadow-xl hover:shadow-2xl backdrop-blur-md !text-white hover:!text-white [&_svg]:!text-white [&_svg]:!fill-white hover:[&_svg]:!text-white hover:[&_svg]:!fill-white active:[&_svg]:!text-white active:[&_svg]:!fill-white",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "text-blue-600 hover:bg-blue-600 hover:!text-white backdrop-blur-md hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group [&_svg]:text-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white",
+          "text-blue-600 hover:bg-blue-600 hover:!text-white backdrop-blur-md hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group [&_svg]:text-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white active:[&_svg]:!text-white active:[&_svg]:!fill-white",
         secondary:
           "bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-600 !text-white hover:!text-white active:!text-white [&_svg]:!text-white [&_svg]:!fill-white hover:[&_svg]:!text-white hover:[&_svg]:!fill-white active:[&_svg]:!text-white active:[&_svg]:!fill-white",
         ghost: "hover:bg-accent hover:text-accent-foreground",
