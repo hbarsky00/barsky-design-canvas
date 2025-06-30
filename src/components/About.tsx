@@ -25,7 +25,7 @@ const businessOutcomes = [
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-barsky-bg-light">
+    <section id="about" className="py-12 bg-barsky-bg-light">
       <div className="section-container">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
