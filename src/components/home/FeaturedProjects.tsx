@@ -18,7 +18,7 @@ const FeaturedProjects: React.FC = () => {
 
   return (
     <section id="projects" className="py-20 bg-white">
-      <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -37,7 +37,7 @@ const FeaturedProjects: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid - 3 columns for desktop/tablet, 1 for mobile */}
+        {/* Projects Grid - 3 columns for desktop/tablet, 1 for mobile - FULL WIDTH */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {displayProjects.map((project, index) => (
             <motion.div
