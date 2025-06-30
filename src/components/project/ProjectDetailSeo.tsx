@@ -19,38 +19,69 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   // Use the project's hero image for social media sharing
   const socialMediaImage = `https://barskydesign.pro${project.image}`;
   
-  // Determine the primary service category with design agency focus
-  const getServiceType = () => {
-    if (tags.includes("Mobile App")) return "Professional Mobile App Design";
-    if (tags.includes("Web App")) return "Business Web Application Design";
-    if (tags.includes("Fintech")) return "Financial Platform UX Design";
-    if (tags.includes("Healthcare")) return "Healthcare Application Design";
-    return "User Experience Design";
-  };
-  
-  const serviceType = getServiceType();
-  
-  // Generate business-focused description with outcomes
-  const getProjectDescription = () => {
+  // Generate concise, problem-focused titles (50-60 chars)
+  const getOptimizedTitle = () => {
     if (project.id === 'herbalink') {
-      return "Comprehensive UX research and design for herbal consultation platform, improving user trust and accessibility";
+      return "Herbal App UX Design | Trust & Access | Barsky Design";
     }
     if (project.id === 'investor-loan-app') {
-      return "Financial platform design with 85% error reduction and streamlined loan processing workflows";
+      return "Fintech UX Design | Loan Platform | Barsky Design";
     }
-    return "User-centered design case study with measurable business impact and improved user experience";
+    if (project.id === 'medication-app') {
+      return "Healthcare App UX | Patient Care | Barsky Design";
+    }
+    if (project.id === 'splittime') {
+      return "Team Management UX | Workflow Design | Barsky Design";
+    }
+    if (project.id === 'gold2crypto') {
+      return "Crypto Trading UX | Investment App | Barsky Design";
+    }
+    if (project.id === 'dae-search') {
+      return "Search Platform UX | Data Discovery | Barsky Design";
+    }
+    if (project.id === 'barskyjoint') {
+      return "Cannabis Platform UX | E-commerce | Barsky Design";
+    }
+    return `${project.title.substring(0, 35)} | Barsky Design`;
   };
   
-  const projectDescription = getProjectDescription();
+  // Generate concise, results-focused descriptions (150-160 chars)
+  const getOptimizedDescription = () => {
+    if (project.id === 'herbalink') {
+      return "UX case study: Herbal consultation app design solving trust issues and improving accessibility for wellness seekers. 40% increase in user engagement.";
+    }
+    if (project.id === 'investor-loan-app') {
+      return "Fintech UX design case study: Loan management platform reducing errors by 85% and streamlining investment workflows for better user experience.";
+    }
+    if (project.id === 'medication-app') {
+      return "Healthcare app UX design: Medication tracking solution improving patient adherence and care coordination through user-centered design approach.";
+    }
+    if (project.id === 'splittime') {
+      return "Team management UX case study: Workflow optimization platform design improving productivity and collaboration for distributed teams.";
+    }
+    if (project.id === 'gold2crypto') {
+      return "Crypto trading platform UX design: Investment app interface solving complexity issues and improving user confidence in digital asset trading.";
+    }
+    if (project.id === 'dae-search') {
+      return "Search platform UX design: Data discovery interface improving findability and user efficiency through strategic information architecture.";
+    }
+    if (project.id === 'barskyjoint') {
+      return "Cannabis e-commerce UX design: Platform interface solving regulatory compliance and user trust issues in regulated market space.";
+    }
+    return `${project.title} UX design case study by Barsky Design - UX research and design agency specializing in user-centered solutions.`;
+  };
+  
+  const optimizedTitle = getOptimizedTitle();
+  const optimizedDescription = getOptimizedDescription();
   
   // Generate slug for canonical URL
   const canonicalUrl = `https://barskydesign.pro/project/${project.id}`;
   
   return (
     <Helmet>
-      <title>{project.title} Case Study | Barsky Design - UX Research & Design Agency | {serviceType}</title>
-      <meta name="description" content={`${project.title} case study by Barsky Design: ${projectDescription}. Professional UX research and design agency specializing in user-centered design solutions that improve digital product experiences and drive business results.`} />
-      <meta name="keywords" content={`Barsky Design, UX research agency, design agency, ${tags.join(', ')}, ${serviceType}, user experience design, digital product design, design case study, UX consulting`} />
+      <title>{optimizedTitle}</title>
+      <meta name="description" content={optimizedDescription} />
+      <meta name="keywords" content={`Barsky Design, UX research agency, design agency, ${tags.join(', ')}, user experience design, digital product design, design case study, UX consulting`} />
       <meta name="author" content="Barsky Design - UX Research & Design Agency" />
       
       {/* Enhanced indexing directives */}
@@ -59,8 +90,8 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       
       {/* Enhanced Open Graph - Using project hero image */}
-      <meta property="og:title" content={`${project.title} Case Study | Barsky Design`} />
-      <meta property="og:description" content={`${project.title}: ${projectDescription}. Professional UX research and design agency case study showcasing user-centered design solutions.`} />
+      <meta property="og:title" content={optimizedTitle} />
+      <meta property="og:description" content={optimizedDescription} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={socialMediaImage} />
@@ -71,8 +102,8 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       
       {/* Enhanced Twitter Card - Using project hero image */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${project.title} | Barsky Design Case Study`} />
-      <meta name="twitter:description" content={`${projectDescription} - Professional UX research and design agency`} />
+      <meta name="twitter:title" content={optimizedTitle} />
+      <meta name="twitter:description" content={optimizedDescription} />
       <meta name="twitter:image" content={socialMediaImage} />
       <meta name="twitter:creator" content="@barskydesign" />
       <meta name="twitter:site" content="@barskydesign" />
@@ -93,7 +124,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "@context": "https://schema.org",
             "@type": "CreativeWork",
             "name": "${project.title}",
-            "description": "${project.title} case study: ${projectDescription}. Professional UX research and design agency showcasing user-centered design solutions.",
+            "description": "${optimizedDescription}",
             "url": "${canonicalUrl}",
             "mainEntityOfPage": {
               "@type": "WebPage",

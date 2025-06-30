@@ -9,15 +9,15 @@ const MobileAppDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Professional Mobile App Design Services | Barsky Design - UX Research & Design Agency</title>
-        <meta name="description" content="Professional mobile app design services by Barsky Design. Specializing in iOS and Android app design, cross-platform design solutions, and user-centered mobile experiences that users love. UX research-driven mobile design approach." />
-        <meta name="keywords" content="Barsky Design, mobile app design, iOS app design, Android app design, cross-platform design, mobile UX, mobile UI, app design services, UX research agency" />
+        <title>Mobile App Design Services | Barsky Design Agency</title>
+        <meta name="description" content="Professional mobile app design services for iOS and Android platforms with UX research-driven approach creating engaging mobile experiences." />
+        <meta name="keywords" content="Barsky Design, mobile app design, iOS app design, Android app design, cross-platform design, mobile UX, mobile UI, app design services" />
         <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         <link rel="canonical" href="https://barskydesign.pro/design-services/mobile-app-design" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Professional Mobile App Design Services | Barsky Design" />
-        <meta property="og:description" content="Creating engaging mobile experiences for iOS and Android platforms that users love and businesses rely on. UX research-driven mobile design by Barsky Design." />
+        <meta property="og:title" content="Mobile App Design Services | Barsky Design" />
+        <meta property="og:description" content="Creating engaging mobile experiences for iOS and Android platforms that users love and businesses rely on." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/mobile-app-design" />
         <meta property="og:type" content="service" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />

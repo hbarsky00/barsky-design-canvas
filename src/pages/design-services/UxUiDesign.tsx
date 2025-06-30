@@ -9,15 +9,15 @@ const UxUiDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Professional UX/UI Design Services | Barsky Design - UX Research & Design Agency</title>
-        <meta name="description" content="Professional UX/UI design services by Barsky Design. Specializing in user research, interaction design, prototyping, and user-centered design solutions for web and mobile applications. Transform your digital products with expert UX research and design." />
-        <meta name="keywords" content="Barsky Design, UX design services, UI design services, user experience design, user interface design, user research, interaction design, prototyping, design consultation, UX research agency" />
+        <title>UX/UI Design Services | Barsky Design Agency</title>
+        <meta name="description" content="Professional UX/UI design services specializing in user research, interaction design, and prototyping for better digital experiences." />
+        <meta name="keywords" content="Barsky Design, UX design services, UI design services, user experience design, user interface design, user research, interaction design, prototyping, design consultation" />
         <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         <link rel="canonical" href="https://barskydesign.pro/design-services/ux-ui-design" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Professional UX/UI Design Services | Barsky Design" />
-        <meta property="og:description" content="Professional UX/UI design services specializing in user-centered design for web and mobile applications by Barsky Design - UX research and design agency." />
+        <meta property="og:title" content="UX/UI Design Services | Barsky Design" />
+        <meta property="og:description" content="Professional UX/UI design services specializing in user-centered design for web and mobile applications." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/ux-ui-design" />
         <meta property="og:type" content="service" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />

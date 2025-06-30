@@ -9,15 +9,15 @@ const WebDevelopment = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Professional Web Development Services | Barsky Design - UX Research & Design Agency</title>
-        <meta name="description" content="Professional web development services by Barsky Design. Specializing in React, TypeScript, and modern frontend technologies. Responsive design, performance optimization, and accessible web applications from a UX research and design agency perspective." />
-        <meta name="keywords" content="Barsky Design, web development services, frontend development, React development, TypeScript, responsive design, performance optimization, web applications, UX-focused development" />
+        <title>Web Development Services | Barsky Design Agency</title>
+        <meta name="description" content="Professional web development services using React, TypeScript, and modern technologies for fast, responsive, and accessible websites." />
+        <meta name="keywords" content="Barsky Design, web development services, frontend development, React development, TypeScript, responsive design, performance optimization, web applications" />
         <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         <link rel="canonical" href="https://barskydesign.pro/design-services/web-development" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Professional Web Development Services | Barsky Design" />
-        <meta property="og:description" content="Modern web development services using React, TypeScript, and cutting-edge frontend technologies by Barsky Design - UX research and design agency." />
+        <meta property="og:title" content="Web Development Services | Barsky Design" />
+        <meta property="og:description" content="Modern web development services using React, TypeScript, and cutting-edge frontend technologies." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/web-development" />
         <meta property="og:type" content="service" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
