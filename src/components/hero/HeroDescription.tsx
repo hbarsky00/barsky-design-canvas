@@ -17,7 +17,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
         transition={{ delay: 1.2, duration: 0.5 }}
         className="text-lg mb-4 text-gray-700 font-medium sm:text-xl"
       >
-        Improving Digital Experiences Through Research & Strategy
+        We transform digital experiences through comprehensive user research and strategic design thinking.
       </motion.p>
       
       <motion.p 
@@ -26,7 +26,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
         transition={{ delay: 1.4, duration: 0.5 }}
         className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed"
       >
-        We help businesses improve user experience through research, strategic design thinking, and data-driven solutions.
+        Our data-driven approach helps businesses create user-friendly solutions that drive meaningful results and lasting impact.
       </motion.p>
     </div>
   );
