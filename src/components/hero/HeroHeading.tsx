@@ -32,7 +32,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         <AnimatedText 
           text="UX Research & Design Agency" 
           tag="h2" 
-          className="text-base sm:text-xl lg:text-2xl font-semibold text-gray-600 block mb-2"
+          className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-700 block mb-2"
           delay={1000}
           type="word"
           animation="fade"
