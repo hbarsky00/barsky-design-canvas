@@ -44,27 +44,6 @@ const EnhancedHero: React.FC = () => {
             <HeroActionButtons isVisible={isVisible} />
             <HeroSocialLinks isVisible={isVisible} />
           </motion.div>
-
-          {/* Minimal scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 2, duration: 0.8 }}
-            className="mt-6 flex flex-col items-center"
-          >
-            <p className="text-xs text-gray-500 mb-2">Discover our work</p>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center"
-            >
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-2 bg-gray-400 rounded-full mt-1"
-              />
-            </motion.div>
-          </motion.div>
         </div>
       </div>
     </section>
