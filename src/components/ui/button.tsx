@@ -15,7 +15,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-blue-600 bg-transparent text-blue-600 hover:bg-blue-700 hover:text-white hover:border-blue-700 [&_svg]:text-blue-600 [&_svg]:fill-blue-600 [&_svg]:stroke-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white hover:[&_svg]:!stroke-white transition-all duration-300 hover:!text-white",
+          "border border-blue-600 bg-transparent text-blue-600 hover:bg-blue-700 hover:text-white hover:border-blue-700 [&_svg]:text-blue-600 [&_svg]:fill-blue-600 [&_svg]:stroke-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white hover:[&_svg]:!stroke-white hover:[&>svg]:!stroke-white hover:[&>svg]:!text-white hover:[&>svg]:!fill-white hover:[&_svg_path]:!stroke-white hover:[&_svg_*]:!stroke-white transition-all duration-300 hover:!text-white",
         secondary:
           "bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-600 !text-white hover:!text-white active:!text-white [&_svg]:!text-white [&_svg]:!fill-white hover:[&_svg]:!text-white hover:[&_svg]:!fill-white active:[&_svg]:!text-white active:[&_svg]:!fill-white [&_svg]:!stroke-white hover:[&_svg]:!stroke-white active:[&_svg]:!stroke-white",
         ghost: "hover:bg-accent hover:text-accent-foreground",
