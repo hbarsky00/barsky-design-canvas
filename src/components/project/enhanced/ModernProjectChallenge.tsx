@@ -37,7 +37,7 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
         </div>
       </div>
 
-      {/* Challenge Images with text positioned after first image */}
+      {/* Challenge Images */}
       {challengeGalleryImages && challengeGalleryImages.length > 0 && (
         <div className="mt-12 space-y-8">
           {/* First Image */}
