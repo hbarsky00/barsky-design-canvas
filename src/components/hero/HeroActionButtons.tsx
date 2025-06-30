@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 interface HeroActionButtonsProps {
@@ -9,14 +10,6 @@ interface HeroActionButtonsProps {
 }
 
 const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
-  const scrollToProjects = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const scrollToContact = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const contactSection = document.getElementById('contact');
@@ -38,12 +31,14 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
       >
         <Button 
           size="lg" 
-          onClick={scrollToProjects}
+          asChild
           className="w-full sm:w-auto relative overflow-hidden group"
         >
-          <Sparkles className="mr-2 h-4 w-4" />
-          <span>View Our Work</span>
-          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <Link to="/projects">
+            <Sparkles className="mr-2 h-4 w-4" />
+            <span>View Our Work</span>
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </Button>
       </motion.div>
       

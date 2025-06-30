@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import AnimatedText from "./AnimatedText";
 import FloatingElement from "./animations/FloatingElement";
 import ShakeElement from "./animations/ShakeElement";
@@ -40,15 +41,6 @@ const Hero: React.FC = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Function to scroll to projects section
-  const scrollToProjects = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -110,23 +102,25 @@ const Hero: React.FC = () => {
                 <BounceWrapper intensity="medium" wiggle={true}>
                   <Button 
                     size="lg" 
-                    onClick={scrollToProjects}
+                    asChild
                     className="relative"
                   >
-                    View Projects
-                    {/* Attention indicator */}
-                    <motion.span
-                      className="absolute -top-1 -right-1 h-3 w-3 bg-yellow-400 rounded-full"
-                      animate={{ 
-                        scale: [1, 1.5, 1],
-                        opacity: [0.8, 1, 0.8],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                      }}
-                    />
+                    <Link to="/projects">
+                      View Projects
+                      {/* Attention indicator */}
+                      <motion.span
+                        className="absolute -top-1 -right-1 h-3 w-3 bg-yellow-400 rounded-full"
+                        animate={{ 
+                          scale: [1, 1.5, 1],
+                          opacity: [0.8, 1, 0.8],
+                        }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          repeatType: "reverse"
+                        }}
+                      />
+                    </Link>
                   </Button>
                 </BounceWrapper>
               </motion.div>
@@ -151,9 +145,9 @@ const Hero: React.FC = () => {
           
           <FloatingElement yAmount={8} duration={2} className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block">
             <BounceWrapper intensity="medium">
-              <a href="#projects" aria-label="Scroll to projects">
+              <Link to="/projects" aria-label="Scroll to projects">
                 <ArrowDownCircle className="w-10 h-10 text-barsky-blue" />
-              </a>
+              </Link>
             </BounceWrapper>
           </FloatingElement>
         </div>
