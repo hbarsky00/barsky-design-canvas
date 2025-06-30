@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
+import MaximizableImage from "../MaximizableImage";
 
 interface ChallengeSectionProps {
   challenge: string;
@@ -38,27 +38,50 @@ const ChallengeSection: React.FC<ChallengeSectionProps> = ({
             </p>
           ))}
         </div>
-        
-        {/* Additional text section - appears after challenge description */}
-        {challengeAdditionalText && (
-          <div className="mt-8 p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-            <div className="prose prose-lg text-gray-700 leading-relaxed">
-              {challengeAdditionalText.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4 last:mb-0">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       {challengeGalleryImages && challengeGalleryImages.length > 0 && (
-        <div className="mt-12">
-          <ProjectMultiImageGallery 
-            images={challengeGalleryImages}
-            imageCaptions={imageCaptions}
-          />
+        <div className="mt-12 space-y-8">
+          {/* First Image */}
+          {challengeGalleryImages[0] && (
+            <div className="glass-card p-4 layered-depth">
+              <MaximizableImage
+                src={challengeGalleryImages[0]}
+                alt={imageCaptions[challengeGalleryImages[0]] || "Challenge overview"}
+                caption={imageCaptions[challengeGalleryImages[0]] || "Challenge overview"}
+                imageList={challengeGalleryImages}
+                currentIndex={0}
+                className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              />
+            </div>
+          )}
+
+          {/* Additional text section - appears after first image */}
+          {challengeAdditionalText && (
+            <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+              <div className="prose prose-lg text-gray-700 leading-relaxed">
+                {challengeAdditionalText.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="mb-4 last:mb-0">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Remaining Images */}
+          {challengeGalleryImages.slice(1).map((image, index) => (
+            <div key={index + 1} className="glass-card p-4 layered-depth">
+              <MaximizableImage
+                src={image}
+                alt={imageCaptions[image] || `Challenge image ${index + 2}`}
+                caption={imageCaptions[image] || `Challenge image ${index + 2}`}
+                imageList={challengeGalleryImages}
+                currentIndex={index + 1}
+                className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              />
+            </div>
+          ))}
         </div>
       )}
     </motion.section>
