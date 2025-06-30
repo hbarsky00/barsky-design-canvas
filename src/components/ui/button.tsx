@@ -10,20 +10,20 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-6 py-3 text-base font-medium shadow-xl hover:shadow-2xl backdrop-blur-md [&_svg]:text-white",
+        default: "bg-blue-600 text-white hover:bg-blue-700 hover:text-white shadow-xl hover:shadow-2xl backdrop-blur-md [&_svg]:text-white",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group",
+          "text-blue-600 hover:bg-blue-600 hover:text-white backdrop-blur-md hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group [&_svg]:text-blue-600 hover:[&_svg]:text-white",
         secondary:
-          "bg-gray-800 text-white hover:bg-gray-700 px-6 py-3 text-base font-medium",
+          "bg-gray-800 text-white hover:bg-gray-700",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-auto px-6 py-3",
-        sm: "h-9 rounded-md px-3 text-sm",
-        lg: "h-auto px-8 py-4 text-lg",
+        default: "h-auto px-6 py-3 text-base font-medium",
+        sm: "h-9 rounded-md px-3 text-sm font-medium",
+        lg: "h-auto px-8 py-4 text-lg font-medium",
         icon: "h-10 w-10",
       },
     },

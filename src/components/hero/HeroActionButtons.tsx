@@ -39,11 +39,11 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         <Button 
           size="lg" 
           onClick={scrollToProjects}
-          className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-6 py-3 text-base font-medium shadow-xl hover:shadow-2xl backdrop-blur-md transition-all duration-300 w-full sm:w-auto relative overflow-hidden group [&_svg]:text-white"
+          className="w-full sm:w-auto relative overflow-hidden group"
         >
-          <Sparkles className="mr-2 h-4 w-4 text-white" />
-          <span className="text-white">View Our Work</span>
-          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform text-white" />
+          <Sparkles className="mr-2 h-4 w-4" />
+          <span>View Our Work</span>
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </motion.div>
       
@@ -55,10 +55,10 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="outline" 
           size="lg"
           onClick={scrollToContact}
-          className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group"
+          className="w-full sm:w-auto relative overflow-hidden group"
         >
-          <Mail className="mr-2 h-4 w-4 text-blue-600 group-hover:text-white" />
-          <span className="font-medium text-blue-600 group-hover:text-white">Start Your Project</span>
+          <Mail className="mr-2 h-4 w-4" />
+          <span className="font-medium">Start Your Project</span>
         </Button>
       </motion.div>
     </motion.div>
