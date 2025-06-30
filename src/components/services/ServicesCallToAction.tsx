@@ -14,14 +14,14 @@ const ServicesCallToAction = () => {
         </p>
         <div className="flex justify-center">
           <Button 
+            variant="outline" 
             size="lg"
-            variant="outline"
-            asChild 
-            className="text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-medium backdrop-blur-md transition-all duration-300 hover:shadow-xl border border-blue-600 hover:border-blue-600"
+            asChild
+            className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group"
           >
             <Link to="/projects">
-              View Our Work
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="font-medium text-blue-600 group-hover:text-white">View Our Work</span>
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
