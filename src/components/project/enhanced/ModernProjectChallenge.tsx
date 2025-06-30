@@ -42,7 +42,7 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
         <div className="mt-12 space-y-8">
           {challengeGalleryImages.map((image, index) => (
             <React.Fragment key={index}>
-              {/* Image */}
+              {/* First Image */}
               <div className="glass-card p-4 layered-depth">
                 <MaximizableImage
                   src={image}
@@ -54,7 +54,7 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
                 />
               </div>
               
-              {/* Show additional text after first image */}
+              {/* Show additional text ONLY after first image (index 0) */}
               {index === 0 && challengeAdditionalText && (
                 <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
