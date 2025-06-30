@@ -14,7 +14,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "text-blue-600 hover:bg-blue-600 hover:!text-white backdrop-blur-md hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group [&_svg]:!text-blue-600 [&_svg]:!stroke-blue-600 [&_svg]:!fill-blue-600 [&_svg]:!color-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white hover:[&_svg]:!stroke-white hover:[&_svg]:!color-white active:[&_svg]:!text-white active:[&_svg]:!fill-white active:[&_svg]:!stroke-white active:[&_svg]:!color-white [&_svg]:opacity-100 hover:[&_svg]:opacity-100 [&>svg]:!text-blue-600 [&>svg]:!stroke-blue-600 [&>svg]:!fill-blue-600 hover:[&>svg]:!text-white hover:[&>svg]:!fill-white hover:[&>svg]:!stroke-white active:[&>svg]:!text-white active:[&>svg]:!fill-white active:[&>svg]:!stroke-white",
+          "text-blue-600 hover:bg-blue-600 hover:!text-white backdrop-blur-md hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group [&_svg]:!text-blue-600 [&_svg]:!stroke-blue-600 [&_svg]:!fill-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white hover:[&_svg]:!stroke-white hover:[&_svg]:!important",
         secondary:
           "bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-600 !text-white hover:!text-white active:!text-white [&_svg]:!text-white [&_svg]:!fill-white hover:[&_svg]:!text-white hover:[&_svg]:!fill-white active:[&_svg]:!text-white active:[&_svg]:!fill-white [&_svg]:!stroke-white hover:[&_svg]:!stroke-white active:[&_svg]:!stroke-white",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -48,6 +48,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
+        style={{
+          ...(variant === 'outline' && {
+            '--icon-color-hover': '#ffffff'
+          }),
+          ...props.style
+        }}
       />
     )
   }
