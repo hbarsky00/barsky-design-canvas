@@ -28,7 +28,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
           <img
             src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
             alt="Barsky Design"
-            className="h-40 w-40 md:h-48 md:w-48 lg:h-52 lg:w-52 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
+            className="h-44 w-44 md:h-52 md:w-52 lg:h-56 lg:w-56 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
             style={{
               imageRendering: 'crisp-edges',
             }}
