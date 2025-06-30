@@ -17,7 +17,7 @@ const ServicesCallToAction = () => {
             variant="outline" 
             size="lg"
             asChild
-            className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group"
+            className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group"
           >
             <Link to="/projects">
               <span className="font-medium text-blue-600 group-hover:text-white">View Our Work</span>
