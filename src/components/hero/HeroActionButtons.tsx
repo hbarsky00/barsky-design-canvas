@@ -69,8 +69,8 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
             animate={{ x: '100%' }}
             transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
           />
-          <Mail className="mr-2 h-4 w-4" />
-          <span className="font-semibold">Start Your Project</span>
+          <Mail className="mr-2 h-4 w-4 text-blue-600 group-hover:text-white" />
+          <span className="font-semibold text-blue-600 group-hover:text-white">Start Your Project</span>
         </Button>
       </motion.div>
     </motion.div>
