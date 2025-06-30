@@ -9,10 +9,14 @@ export const usePageIndexing = () => {
   useEffect(() => {
     const handlePageIndexing = async () => {
       const config = getPageConfig(location.pathname);
-      const currentUrl = window.location.href;
+      
+      // Construct proper canonical URL
+      const baseUrl = 'https://barskydesign.pro';
+      const canonicalPath = location.pathname === '/' ? '/' : location.pathname;
+      const canonicalUrl = `${baseUrl}${canonicalPath}`;
       
       // Submit URL for indexing
-      await submitUrlForIndexing(currentUrl);
+      await submitUrlForIndexing(canonicalUrl);
       
       // Enhanced meta tags for better crawling
       const addCrawlingHints = () => {
@@ -33,16 +37,26 @@ export const usePageIndexing = () => {
           fetchMeta.content = 'high';
           document.head.appendChild(fetchMeta);
         }
+        
+        // Ensure canonical URL is properly set
+        const existingCanonical = document.querySelector('link[rel="canonical"]');
+        if (!existingCanonical) {
+          const canonicalLink = document.createElement('link');
+          canonicalLink.rel = 'canonical';
+          canonicalLink.href = canonicalUrl;
+          document.head.appendChild(canonicalLink);
+        }
       };
       
       addCrawlingHints();
       
       // Log for debugging
-      console.log('🔍 Page Indexing:', {
+      console.log('🔍 Page Indexing Enhanced:', {
         path: location.pathname,
         priority: config.priority,
         changeFreq: config.changeFreq,
-        url: currentUrl
+        canonicalUrl: canonicalUrl,
+        indexingSignals: 'enhanced'
       });
     };
 

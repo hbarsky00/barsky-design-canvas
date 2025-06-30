@@ -3,7 +3,6 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import IndexingOptimizer from "@/components/seo/IndexingOptimizer";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Blog = () => {
@@ -19,8 +18,20 @@ const Blog = () => {
         {/* Enhanced indexing signals */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <meta name="priority" content="medium" />
-        <meta name="revisit-after" content="7 days" />
+        <meta name="bingbot" content="index, follow" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="UX Design Blog | AI-Enhanced Design Insights" />
+        <meta property="og:description" content="Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization." />
+        <meta property="og:url" content="https://barskydesign.pro/blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="UX Design Blog | AI-Enhanced Design Insights" />
+        <meta name="twitter:description" content="Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization." />
+        <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
         {/* Blog structured data */}
         <script type="application/ld+json">
@@ -45,8 +56,6 @@ const Blog = () => {
           `}
         </script>
       </Helmet>
-      
-      <IndexingOptimizer priority="low" changeFreq="weekly" />
       
       <Header />
       <main className="flex-grow">

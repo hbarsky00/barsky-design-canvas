@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AllProjects from "./AllProjects";
-import IndexingOptimizer from "@/components/seo/IndexingOptimizer";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Projects = () => {
@@ -20,8 +19,20 @@ const Projects = () => {
         {/* Enhanced indexing signals */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <meta name="priority" content="high" />
-        <meta name="revisit-after" content="7 days" />
+        <meta name="bingbot" content="index, follow" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="AI-Enhanced UX Portfolio | Professional Design Projects" />
+        <meta property="og:description" content="Explore AI-enhanced UX/UI design portfolio featuring conversion-optimized mobile apps, web applications, and accessibility-compliant interfaces." />
+        <meta property="og:url" content="https://barskydesign.pro/projects" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AI-Enhanced UX Portfolio | Professional Design Projects" />
+        <meta name="twitter:description" content="Explore AI-enhanced UX/UI design portfolio featuring conversion-optimized mobile apps and web applications." />
+        <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
         {/* Structured data for portfolio */}
         <script type="application/ld+json">
@@ -61,7 +72,6 @@ const Projects = () => {
         </script>
       </Helmet>
       
-      <IndexingOptimizer priority="high" changeFreq="weekly" />
       <AllProjects />
     </>
   );

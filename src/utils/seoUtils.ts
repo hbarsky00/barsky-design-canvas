@@ -7,7 +7,7 @@ export interface PageIndexingConfig {
 }
 
 export const pageIndexingConfigs: PageIndexingConfig[] = [
-  // High priority pages
+  // High priority pages - note the trailing slash for homepage
   { path: '/', priority: 'high', changeFreq: 'weekly' },
   { path: '/projects', priority: 'high', changeFreq: 'weekly' },
   { path: '/services', priority: 'high', changeFreq: 'monthly' },
@@ -26,7 +26,8 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   { path: '/design-services/mobile-app-design', priority: 'medium', changeFreq: 'monthly' },
   
   // Blog - low priority for now
-  { path: '/blog', priority: 'low', changeFreq: 'weekly' }
+  { path: '/blog', priority: 'low', changeFreq: 'weekly' },
+  { path: '/contact', priority: 'medium', changeFreq: 'monthly' }
 ];
 
 export const getPageConfig = (pathname: string): PageIndexingConfig => {
@@ -40,7 +41,7 @@ export const generateSitemapEntries = (): string => {
   
   return pageIndexingConfigs.map(config => `
   <url>
-    <loc>${baseUrl}${config.path}</loc>
+    <loc>${baseUrl}${config.path === '/' ? '/' : config.path}</loc>
     <lastmod>${config.lastModified || currentDate}</lastmod>
     <changefreq>${config.changeFreq}</changefreq>
     <priority>${config.priority === 'high' ? '1.0' : config.priority === 'medium' ? '0.8' : '0.6'}</priority>
@@ -49,19 +50,28 @@ export const generateSitemapEntries = (): string => {
 
 export const submitUrlForIndexing = async (url: string): Promise<boolean> => {
   try {
-    // Google IndexNow API (if available)
-    const indexNowKey = 'your-indexnow-key'; // Replace with actual key if using IndexNow
-    
-    // For now, we'll use a simple ping approach
+    // Enhanced URL submission with proper formatting
     console.log('🔍 SEO: Submitting URL for indexing:', url);
     
-    // Track submission
+    // Ping Google with the specific URL
+    const googlePingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(url)}`;
+    
+    // Track submission with enhanced analytics
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'url_submission', {
         submitted_url: url,
-        submission_method: 'manual',
-        timestamp: new Date().toISOString()
+        submission_method: 'enhanced_indexing',
+        canonical_url: url,
+        timestamp: new Date().toISOString(),
+        page_priority: getPageConfig(new URL(url).pathname).priority
       });
+    }
+    
+    // Submit to search engines
+    try {
+      await fetch(googlePingUrl, { method: 'GET' });
+    } catch (error) {
+      console.log('⚠️ SEO: Google ping failed, continuing with local tracking');
     }
     
     return true;
