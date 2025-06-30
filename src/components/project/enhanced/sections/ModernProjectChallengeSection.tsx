@@ -101,8 +101,8 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                 </div>
               )}
 
-              {/* Show Key Features & Solutions text ONLY after second image (index 1) for investor project */}
-              {index === 1 && isInvestorProject && (
+              {/* Show Key Features & Solutions text ONLY after first image (index 0) for investor project - MOVED HERE */}
+              {index === 0 && isInvestorProject && (
                 <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Features & Solutions</h3>
