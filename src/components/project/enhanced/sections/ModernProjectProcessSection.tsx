@@ -36,6 +36,9 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
     return images;
   }, [processBeforeHeaderImage, processRegularImage]);
 
+  // Check if this is the investor loan app project
+  const isInvestorProject = projectId === 'investor-loan-app';
+
   return (
     <motion.section
       key={`process-${componentKey}`}
@@ -88,43 +91,63 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                 />
               </div>
               
-              {/* Show Key Design Solutions text ONLY after first image (index 0) */}
+              {/* Show project-specific content after first image (index 0) */}
               {index === 0 && (
                 <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Design Solutions</h3>
-                    
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">1. Trust-Building Through Transparency</h4>
-                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Users hesitant to trust online herbalists</p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I designed comprehensive herbalist profiles featuring detailed certification displays, educational backgrounds, years of experience, verified client testimonials, and clearly marked specialization areas to build user trust through transparency.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">2. Personalized Matching Algorithm</h4>
-                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Connecting users with the right herbalist for their needs</p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I created a smart matching system that considers users' health goals and concerns, preferred consultation styles, budget constraints, location and timezone preferences, plus herbalist availability and specializations to ensure optimal pairing.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">3. Educational Integration</h4>
-                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Users lacking herbal knowledge feel overwhelmed</p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I integrated contextual education features including herb information cards with safety warnings, interactive learning modules, a comprehensive glossary of herbal terms, and progress tracking for educational content to empower users with knowledge.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">4. Streamlined Consultation Experience</h4>
-                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Complex booking and consultation process</p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I designed a simplified three-step process: an adaptive health intake questionnaire that adjusts based on user concerns, herbalist selection showing instant availability, and integrated video consultation with built-in note-taking tools.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">5. Competitive Analysis</h4>
-                        <p className="text-sm text-gray-600 mb-2"><strong>Competitive Analysis:</strong> Analyzed existing telemedicine platforms and herbal consultation services</p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Key Insights:</strong> Most competitors lacked proper herbalist verification systems and personalized matching capabilities, creating an opportunity for HerbaLink to differentiate through trust-building features and intelligent pairing algorithms.</p>
-                      </div>
-                    </div>
+                    {isInvestorProject ? (
+                      <>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Research & Discovery</h3>
+                        
+                        <div className="space-y-6">
+                          <div>
+                            <p className="text-sm text-gray-700 mb-4">
+                              I conducted extensive research with the banking team to understand their current pain points, identifying critical issues including manual data entry errors causing compliance issues, time-consuming Excel-based tracking processes, difficulty collaborating on complex deals, limited search and filtering capabilities, and email-based communication creating information silos. Through this research, I developed three key user personas: Investment Managers who need quick access to deal information and real-time updates, Loan Officers who require efficient deal processing and client communication tools, and Compliance Officers who need accurate reporting and audit trails.
+                            </p>
+                            
+                            <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                              My competitive analysis focused on existing financial platforms, with particular emphasis on Bloomberg's search functionality, which became a key inspiration for our AI-powered search feature. This analysis revealed opportunities to modernize traditional banking workflows while maintaining the professional standards and regulatory compliance requirements that are essential in the financial services industry.
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Design Solutions</h3>
+                        
+                        <div className="space-y-6">
+                          <div>
+                            <h4 className="font-semibold text-gray-800 mb-2">1. Trust-Building Through Transparency</h4>
+                            <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Users hesitant to trust online herbalists</p>
+                            <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I designed comprehensive herbalist profiles featuring detailed certification displays, educational backgrounds, years of experience, verified client testimonials, and clearly marked specialization areas to build user trust through transparency.</p>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold text-gray-800 mb-2">2. Personalized Matching Algorithm</h4>
+                            <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Connecting users with the right herbalist for their needs</p>
+                            <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I created a smart matching system that considers users' health goals and concerns, preferred consultation styles, budget constraints, location and timezone preferences, plus herbalist availability and specializations to ensure optimal pairing.</p>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold text-gray-800 mb-2">3. Educational Integration</h4>
+                            <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Users lacking herbal knowledge feel overwhelmed</p>
+                            <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I integrated contextual education features including herb information cards with safety warnings, interactive learning modules, a comprehensive glossary of herbal terms, and progress tracking for educational content to empower users with knowledge.</p>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold text-gray-800 mb-2">4. Streamlined Consultation Experience</h4>
+                            <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Complex booking and consultation process</p>
+                            <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I designed a simplified three-step process: an adaptive health intake questionnaire that adjusts based on user concerns, herbalist selection showing instant availability, and integrated video consultation with built-in note-taking tools.</p>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold text-gray-800 mb-2">5. Competitive Analysis</h4>
+                            <p className="text-sm text-gray-600 mb-2"><strong>Competitive Analysis:</strong> Analyzed existing telemedicine platforms and herbal consultation services</p>
+                            <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Key Insights:</strong> Most competitors lacked proper herbalist verification systems and personalized matching capabilities, creating an opportunity for HerbaLink to differentiate through trust-building features and intelligent pairing algorithms.</p>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
