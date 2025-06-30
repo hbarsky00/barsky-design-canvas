@@ -48,7 +48,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
             transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
           />
           <Sparkles className="mr-2 h-4 w-4 text-white" />
-          View Our Work
+          <span className="text-white">View Our Work</span>
           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform text-white" />
         </Button>
       </motion.div>
@@ -58,13 +58,13 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         whileTap={{ scale: 0.98 }}
       >
         <Button 
-          variant="outline" 
+          variant="ghost" 
           size="lg"
           onClick={scrollToContact}
-          className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white border-2 border-blue-600 px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:border-blue-700 hover:shadow-xl [&_svg]:text-white"
+          className="text-white hover:bg-white/10 hover:text-white px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl [&_svg]:text-white"
         >
           <Mail className="mr-2 h-4 w-4 text-white" />
-          Start Your Project
+          <span className="text-white">Start Your Project</span>
         </Button>
       </motion.div>
     </motion.div>
