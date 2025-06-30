@@ -100,27 +100,6 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                   </div>
                 </div>
               )}
-
-              {/* Show Key Features & Solutions text ONLY after first image (index 0) for investor project - MOVED HERE */}
-              {index === 0 && isInvestorProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Features & Solutions</h3>
-                    
-                    <div className="space-y-6">
-                      <div>
-                        <p className="text-sm text-gray-700 mb-4">
-                          The platform's AI-powered search functionality addressed the critical problem of users being unable to efficiently find specific loans or borrower information within Excel spreadsheets. Drawing inspiration from Bloomberg's search interface, I implemented a predictive search system with multiple categories that includes predictive text suggestions, category-based filtering for deals, borrowers, and investors, advanced search parameters, and real-time results updating. This comprehensive search solution transformed how users interact with loan data, making information retrieval intuitive and fast.
-                        </p>
-                        
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          Dynamic order book management was another cornerstone feature that solved the complex and error-prone limit management processes that plagued the Excel-based system. The new intuitive interface allows users to seamlessly add and remove limits, edit existing limits without data loss, view real-time total amount calculations, and receive visual feedback for all changes. Complementing this was the flexible deal management system that replaced static Excel sheets with dynamic functionality offering both card views for quick overviews and grid views for detailed analysis, along with real-time collaboration tools and integrated communication features. Additionally, the advanced search and filtering capabilities provide smart defaults showing the most recent deals, borrowers, and investors, while offering advanced filtering options, saved search preferences, and quick access to frequently used searches.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
               
               {/* Show additional challenge text ONLY after first image (index 0) for non-investor projects */}
               {index === 0 && !isInvestorProject && details.challengeAdditionalText && (
