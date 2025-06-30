@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -13,7 +14,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-blue-600 bg-transparent !text-blue-600 hover:!bg-blue-700 hover:!text-white hover:border-blue-700 [&_svg]:!text-blue-600 [&_svg]:!fill-blue-600 [&_svg]:!stroke-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white hover:[&_svg]:!stroke-white hover:[&_svg]:!color-white transition-all duration-300",
+          "border border-blue-600 bg-transparent !text-blue-600 hover:!text-white hover:border-blue-700 [&_svg]:!text-blue-600 [&_svg]:!fill-blue-600 [&_svg]:!stroke-blue-600 hover:[&_svg]:!text-white hover:[&_svg]:!fill-white hover:[&_svg]:!stroke-white transition-all duration-300",
         secondary:
           "bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-600 !text-white hover:!text-white active:!text-white [&_svg]:!text-white [&_svg]:!fill-white hover:[&_svg]:!text-white hover:[&_svg]:!fill-white active:[&_svg]:!text-white active:[&_svg]:!fill-white [&_svg]:!stroke-white hover:[&_svg]:!stroke-white active:[&_svg]:!stroke-white",
         ghost: "hover:bg-accent hover:text-accent-foreground",
