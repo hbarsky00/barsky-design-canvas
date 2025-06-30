@@ -21,19 +21,19 @@ const EnhancedHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[50vh] flex items-center overflow-hidden pt-16">
+    <section className="relative min-h-[40vh] flex items-center overflow-hidden pt-12">
       <HeroBackground />
       <HeroVisualElements />
       
-      <div className="relative w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 z-10">
+      <div className="relative w-full px-4 sm:px-6 lg:px-8 py-2 sm:py-4 lg:py-6 z-10">
         <div className="w-full text-center">
           
-          {/* Enhanced Glass Container with minimal padding */}
+          {/* Minimal Glass Container */}
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="glass-card-elevated p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 layered-depth max-w-6xl mx-auto relative overflow-hidden"
+            className="glass-card-elevated p-3 sm:p-4 lg:p-6 space-y-3 sm:space-y-4 layered-depth max-w-5xl mx-auto relative overflow-hidden"
           >
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 animate-pulse opacity-50" />
@@ -45,23 +45,23 @@ const EnhancedHero: React.FC = () => {
             <HeroSocialLinks isVisible={isVisible} />
           </motion.div>
 
-          {/* Scroll indicator with minimal margin */}
+          {/* Minimal scroll indicator */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 2, duration: 0.8 }}
-            className="mt-4 flex flex-col items-center"
+            className="mt-3 flex flex-col items-center"
           >
-            <p className="text-sm text-gray-500 mb-2">Discover our work</p>
+            <p className="text-xs text-gray-500 mb-1">Discover our work</p>
             <motion.div
-              animate={{ y: [0, 10, 0] }}
+              animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center"
+              className="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center"
             >
               <motion.div
-                animate={{ y: [0, 12, 0] }}
+                animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-3 bg-gray-400 rounded-full mt-2"
+                className="w-1 h-2 bg-gray-400 rounded-full mt-1"
               />
             </motion.div>
           </motion.div>

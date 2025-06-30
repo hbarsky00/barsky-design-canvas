@@ -12,9 +12,7 @@ const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
     "User Research & Testing",
     "Design Strategy", 
     "Information Architecture",
-    "Wireframing & Prototyping",
-    "Accessibility & WCAG",
-    "Conversion Optimization"
+    "Wireframing & Prototyping"
   ];
 
   return (
@@ -22,7 +20,7 @@ const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: 1.6, duration: 0.6 }}
-      className="flex flex-wrap justify-center gap-3 mb-8"
+      className="flex flex-wrap justify-center gap-2 mb-6"
     >
       {skills.map((skill, index) => (
         <motion.div
@@ -33,7 +31,7 @@ const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
         >
           <Badge 
             variant="secondary" 
-            className="glass-button px-4 py-2 bg-blue-50/80 text-blue-800 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300 border border-blue-200/30"
+            className="glass-button px-3 py-1 bg-blue-50/80 text-blue-800 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300 border border-blue-200/30 text-xs"
           >
             {skill}
           </Badge>
