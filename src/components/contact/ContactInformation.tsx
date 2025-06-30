@@ -19,16 +19,11 @@ const ContactInformation: React.FC = () => {
         I'm always open to new opportunities and challenges.
       </p>
       
-      {/* Quick Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
-        <Button onClick={openCalendly} size="lg">
+      {/* Quick Action Button - Only Schedule Consultation */}
+      <div className="mb-8">
+        <Button onClick={openCalendly} size="lg" className="w-full sm:w-auto">
           <Calendar className="mr-2 h-5 w-5" />
           Schedule a Free Consultation
-        </Button>
-        <Button variant="outline" size="lg" asChild>
-          <Link to="#contact-form">
-            Contact Me
-          </Link>
         </Button>
       </div>
       
