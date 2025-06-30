@@ -39,14 +39,8 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         <Button 
           size="lg" 
           onClick={scrollToProjects}
-          className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-6 py-3 text-base font-semibold shadow-xl hover:shadow-2xl backdrop-blur-md transition-all duration-300 w-full sm:w-auto relative overflow-hidden group [&_svg]:text-white"
+          className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-6 py-3 text-base font-medium shadow-xl hover:shadow-2xl backdrop-blur-md transition-all duration-300 w-full sm:w-auto relative overflow-hidden group [&_svg]:text-white"
         >
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-            initial={{ x: '-100%' }}
-            animate={{ x: '100%' }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-          />
           <Sparkles className="mr-2 h-4 w-4 text-white" />
           <span className="text-white">View Our Work</span>
           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform text-white" />
@@ -58,19 +52,13 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         whileTap={{ scale: 0.98 }}
       >
         <Button 
-          variant="ghost" 
+          variant="outline" 
           size="lg"
           onClick={scrollToContact}
-          className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl border border-blue-600 hover:border-blue-600 [&_svg]:text-blue-600 hover:[&_svg]:text-white relative overflow-hidden group"
+          className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group"
         >
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100"
-            initial={{ x: '-100%' }}
-            animate={{ x: '100%' }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-          />
           <Mail className="mr-2 h-4 w-4 text-blue-600 group-hover:text-white" />
-          <span className="font-semibold text-blue-600 group-hover:text-white">Start Your Project</span>
+          <span className="font-medium text-blue-600 group-hover:text-white">Start Your Project</span>
         </Button>
       </motion.div>
     </motion.div>
