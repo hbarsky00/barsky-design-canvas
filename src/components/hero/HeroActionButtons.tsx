@@ -48,7 +48,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         whileTap={{ scale: 0.98 }}
       >
         <Button 
-          variant="secondary"
+          variant="outline"
           size="lg"
           onClick={scrollToContact}
           className="w-full sm:w-auto relative overflow-hidden group"
