@@ -91,7 +91,7 @@ const Navigation: React.FC<NavigationProps> = ({
       <Button
         onClick={openCalendly}
         size="sm"
-        className="bg-blue-600 hover:bg-blue-700 text-white ml-4"
+        className="ml-4"
       >
         <Calendar className="h-4 w-4 mr-1" />
         Book Call

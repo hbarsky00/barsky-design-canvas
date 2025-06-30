@@ -6,24 +6,24 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 duration-300",
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-700",
+        default: "bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-6 py-3 text-base font-medium shadow-xl hover:shadow-2xl backdrop-blur-md [&_svg]:text-white",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-blue-600 bg-transparent text-blue-600 hover:bg-blue-600 hover:text-white",
+          "text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md hover:shadow-xl border border-blue-600 hover:border-blue-600 relative overflow-hidden group",
         secondary:
-          "bg-gray-800 text-white hover:bg-gray-700",
+          "bg-gray-800 text-white hover:bg-gray-700 px-6 py-3 text-base font-medium",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        default: "h-auto px-6 py-3",
+        sm: "h-9 rounded-md px-3 text-sm",
+        lg: "h-auto px-8 py-4 text-lg",
         icon: "h-10 w-10",
       },
     },

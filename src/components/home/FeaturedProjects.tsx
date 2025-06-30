@@ -148,7 +148,6 @@ const FeaturedProjects: React.FC = () => {
             <Button 
               size="lg"
               variant="outline"
-              className="text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-medium backdrop-blur-md transition-all duration-300 hover:shadow-xl border border-blue-600 hover:border-blue-600"
             >
               View All Projects
               <ArrowRight className="ml-2 h-5 w-5" />

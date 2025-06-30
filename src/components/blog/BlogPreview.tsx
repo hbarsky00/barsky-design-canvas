@@ -92,7 +92,6 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
             <Button 
               size="lg"
               variant="outline"
-              className="text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-medium backdrop-blur-md transition-all duration-300 hover:shadow-xl border border-blue-600 hover:border-blue-600"
             >
               View All Posts
               <ArrowRight className="h-4 w-4" />

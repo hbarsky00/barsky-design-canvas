@@ -106,7 +106,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             <Button
               onClick={openCalendly}
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white mt-4 w-full"
+              className="mt-4 w-full"
             >
               <Calendar className="h-5 w-5 mr-2" />
               Schedule a Free Consultation
