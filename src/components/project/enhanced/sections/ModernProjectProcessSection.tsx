@@ -118,6 +118,12 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                         <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Complex booking and consultation process</p>
                         <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Solution:</strong> I designed a simplified three-step process: an adaptive health intake questionnaire that adjusts based on user concerns, herbalist selection showing instant availability, and integrated video consultation with built-in note-taking tools.</p>
                       </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">5. Competitive Analysis</h4>
+                        <p className="text-sm text-gray-600 mb-2"><strong>Competitive Analysis:</strong> Analyzed existing telemedicine platforms and herbal consultation services</p>
+                        <p className="text-sm text-gray-700 mb-4 last:mb-0"><strong>Key Insights:</strong> Most competitors lacked proper herbalist verification systems and personalized matching capabilities, creating an opportunity for HerbaLink to differentiate through trust-building features and intelligent pairing algorithms.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
