@@ -19,7 +19,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         <img
           src="/lovable-uploads/ac3cac82-c216-4f87-b7b5-f3dc7b3d58ad.png"
           alt="Barsky Design"
-          className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+          className="h-20 sm:h-24 lg:h-28 w-auto object-contain"
           loading="eager"
         />
       </motion.div>
