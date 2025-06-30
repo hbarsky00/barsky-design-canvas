@@ -2,15 +2,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
-import { trackContentEngagement } from "@/lib/analytics";
+import { ArrowRight } from "lucide-react";
 
 const ServicesCallToAction = () => {
-  const openCalendly = () => {
-    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
-    trackContentEngagement('service', 'consultation-booking', 'Calendly Booking');
-  };
-
   return (
     <section className="py-20 bg-barsky-blue/5">
       <div className="container px-4 mx-auto max-w-4xl text-center">
@@ -18,14 +12,16 @@ const ServicesCallToAction = () => {
         <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
           Let's discuss how my design and development services can help you create exceptional digital experiences for your users.
         </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Button onClick={openCalendly} size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-            <Calendar className="mr-2" />
-            Schedule a Free Consultation
-          </Button>
-          <Button variant="outline" size="lg" asChild className="border-gray-300 text-gray-700 hover:bg-gray-50">
-            <Link to="/#contact">
-              Contact Me
+        <div className="flex justify-center">
+          <Button 
+            size="lg"
+            variant="outline"
+            asChild 
+            className="text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-medium backdrop-blur-md transition-all duration-300 hover:shadow-xl border border-blue-600 hover:border-blue-600"
+          >
+            <Link to="/projects">
+              View Our Work
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
         </div>
