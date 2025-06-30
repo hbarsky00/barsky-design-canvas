@@ -97,6 +97,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
         <div className="lg:col-span-2 order-last lg:order-first">
           <ProjectOverview
             challenge={details.challenge}
+            challengeAdditionalText={details.challengeAdditionalText}
             process={details.process}
             result={details.result}
             technologies={details.technologies}

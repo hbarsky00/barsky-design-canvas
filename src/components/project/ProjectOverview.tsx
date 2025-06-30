@@ -11,6 +11,7 @@ import { useProcessContent } from "@/hooks/useProcessContent";
 
 interface ProjectOverviewProps {
   challenge: string;
+  challengeAdditionalText?: string;
   process: string;
   result: string;
   technologies: string[];
@@ -34,6 +35,7 @@ interface ProjectOverviewProps {
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
   challenge, 
+  challengeAdditionalText,
   process, 
   result,
   technologies,
@@ -70,6 +72,7 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
     <div>
       <ChallengeSection
         challenge={challenge}
+        challengeAdditionalText={challengeAdditionalText}
         challengeImage={challengeImage}
         challengeBottomImage={challengeBottomImage}
         challengeGalleryImages={challengeGalleryImages}
