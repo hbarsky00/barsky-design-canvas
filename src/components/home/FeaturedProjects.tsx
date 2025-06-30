@@ -37,7 +37,7 @@ const FeaturedProjects: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid - 1 column for mobile, 2 for tablet, 3 for desktop */}
+        {/* Projects Grid - 3 columns for desktop/tablet, 1 for mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {displayProjects.map((project, index) => (
             <motion.div
@@ -46,11 +46,11 @@ const FeaturedProjects: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative w-full"
+              className="group relative"
             >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col w-full">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
                 {/* Project Image */}
-                <div className="relative aspect-[16/10] overflow-hidden w-full">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -84,7 +84,7 @@ const FeaturedProjects: React.FC = () => {
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6 space-y-4 flex-1 flex flex-col w-full">
+                <div className="p-6 space-y-4 flex-1 flex flex-col">
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                       {project.title}
