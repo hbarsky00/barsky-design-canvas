@@ -57,22 +57,75 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         content={details.process}
         contentType="section"
         onSave={(content) => handleSectionContentSave('process', 'content', content)}
-        images={processImages}
-        onImageAdd={(imageSrc) => {
-          console.log('➕ Adding image to process section:', imageSrc);
-        }}
-        onImageReplace={(index, newSrc) => {
-          const originalSrc = processImages[index];
-          if (originalSrc) {
-            console.log('🔄 Replacing process image:', originalSrc, '->', newSrc);
-            handleSectionImageUpdate('process', originalSrc, newSrc);
-          }
-        }}
-        onImageRemove={(index) => console.log('🗑️ Removing image from process:', index)}
-        maxImages={2}
+        className="mb-8"
         projectId={projectId}
-        imageCaptions={imageCaptions}
       />
+
+      {/* Process Images Gallery with text positioned between images */}
+      {processImages && processImages.length > 0 && (
+        <div className="mt-12 space-y-8">
+          {processImages.map((image, index) => (
+            <React.Fragment key={index}>
+              {/* Each Image */}
+              <div className="glass-card p-4 layered-depth">
+                <EnhancedContentEditor
+                  content=""
+                  contentType="section"
+                  onSave={() => {}}
+                  images={[image]}
+                  onImageAdd={(imageSrc) => {
+                    console.log('➕ Adding image to process section:', imageSrc);
+                  }}
+                  onImageReplace={(imgIndex, newSrc) => {
+                    console.log('🔄 Replacing process image:', image, '->', newSrc);
+                    handleSectionImageUpdate('process', image, newSrc);
+                  }}
+                  onImageRemove={(imgIndex) => console.log('🗑️ Removing image from process:', imgIndex)}
+                  maxImages={1}
+                  projectId={projectId}
+                  imageCaptions={imageCaptions}
+                  className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                />
+              </div>
+              
+              {/* Show Key Design Solutions text ONLY after first image (index 0) */}
+              {index === 0 && (
+                <div className="p-6 bg-green-50/50 rounded-lg border border-green-100">
+                  <div className="prose prose-lg text-gray-700 leading-relaxed">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Design Solutions</h3>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">1. Trust-Building Through Transparency</h4>
+                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Users hesitant to trust online herbalists</p>
+                        <p className="text-sm text-gray-700"><strong>Solution:</strong> I designed comprehensive herbalist profiles featuring detailed certification displays, educational backgrounds, years of experience, verified client testimonials, and clearly marked specialization areas to build user trust through transparency.</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">2. Personalized Matching Algorithm</h4>
+                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Connecting users with the right herbalist for their needs</p>
+                        <p className="text-sm text-gray-700"><strong>Solution:</strong> I created a smart matching system that considers users' health goals and concerns, preferred consultation styles, budget constraints, location and timezone preferences, plus herbalist availability and specializations to ensure optimal pairing.</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">3. Educational Integration</h4>
+                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Users lacking herbal knowledge feel overwhelmed</p>
+                        <p className="text-sm text-gray-700"><strong>Solution:</strong> I integrated contextual education features including herb information cards with safety warnings, interactive learning modules, a comprehensive glossary of herbal terms, and progress tracking for educational content to empower users with knowledge.</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">4. Streamlined Consultation Experience</h4>
+                        <p className="text-sm text-gray-600 mb-2"><strong>Challenge:</strong> Complex booking and consultation process</p>
+                        <p className="text-sm text-gray-700"><strong>Solution:</strong> I designed a simplified three-step process: an adaptive health intake questionnaire that adjusts based on user concerns, herbalist selection showing instant availability, and integrated video consultation with built-in note-taking tools.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
     </motion.section>
   );
 };
