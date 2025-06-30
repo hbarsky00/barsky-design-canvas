@@ -39,7 +39,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         <Button 
           size="lg" 
           onClick={scrollToProjects}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-6 py-3 text-base font-semibold shadow-xl hover:shadow-2xl backdrop-blur-md transition-all duration-300 w-full sm:w-auto relative overflow-hidden group"
+          className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white px-6 py-3 text-base font-semibold shadow-xl hover:shadow-2xl backdrop-blur-md transition-all duration-300 w-full sm:w-auto relative overflow-hidden group [&_svg]:text-white"
         >
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
@@ -47,9 +47,9 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
             animate={{ x: '100%' }}
             transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
           />
-          <Sparkles className="mr-2 h-4 w-4" />
+          <Sparkles className="mr-2 h-4 w-4 text-white" />
           View Our Work
-          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform text-white" />
         </Button>
       </motion.div>
       
@@ -61,9 +61,9 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="outline" 
           size="lg"
           onClick={scrollToContact}
-          className="glass-button border-2 border-blue-600/60 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:border-blue-700 hover:shadow-xl"
+          className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white border-2 border-blue-600 px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:border-blue-700 hover:shadow-xl [&_svg]:text-white"
         >
-          <Mail className="mr-2 h-4 w-4" />
+          <Mail className="mr-2 h-4 w-4 text-white" />
           Start Your Project
         </Button>
       </motion.div>
