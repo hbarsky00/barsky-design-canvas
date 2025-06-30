@@ -42,7 +42,7 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
         <div className="mt-12 space-y-8">
           {challengeGalleryImages.map((image, index) => (
             <React.Fragment key={index}>
-              {/* First Image */}
+              {/* Each Image */}
               <div className="glass-card p-4 layered-depth">
                 <MaximizableImage
                   src={image}
