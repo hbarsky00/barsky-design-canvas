@@ -20,6 +20,9 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
 }) => {
   const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });
 
+  // Check if this is the investor loan app project
+  const isInvestorProject = projectId === 'investor-loan-app';
+
   return (
     <motion.section
       key={`result-${componentKey}`}
@@ -77,12 +80,25 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
                 <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Conclusion</strong></h3>
-                    <p className="text-sm text-gray-700 mb-4">
-                      Herbalink addresses a significant gap in the wellness market by creating a trusted, educational platform for herbal consultations. The design prioritizes transparency, accessibility, and user empowerment while respecting the expertise of certified herbalists. The app has been developed and is ready for market launch, with the design foundation in place to support both users seeking herbal guidance and practitioners looking to grow their practice digitally.
-                    </p>
-                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                      The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
-                    </p>
+                    {isInvestorProject ? (
+                      <>
+                        <p className="text-sm text-gray-700 mb-4">
+                          This project successfully transformed a manual, error-prone Excel-based system into a modern, efficient digital platform. The key to success was understanding user needs deeply and designing solutions that not only solved technical problems but also improved the daily work experience for banking professionals.
+                        </p>
+                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                          The 85% reduction in errors and 40% improvement in processing speed demonstrate the tangible business impact, while the high user satisfaction scores show that the solution truly met user needs. This project positioned the private bank for future growth while making their current operations significantly more efficient and enjoyable.
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-sm text-gray-700 mb-4">
+                          Herbalink addresses a significant gap in the wellness market by creating a trusted, educational platform for herbal consultations. The design prioritizes transparency, accessibility, and user empowerment while respecting the expertise of certified herbalists. The app has been developed and is ready for market launch, with the design foundation in place to support both users seeking herbal guidance and practitioners looking to grow their practice digitally.
+                        </p>
+                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                          The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
