@@ -13,13 +13,13 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={isVisible ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.6 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         className="flex justify-center mb-6"
       >
         <img
           src="/lovable-uploads/ac3cac82-c216-4f87-b7b5-f3dc7b3d58ad.png"
           alt="Barsky Design"
-          className="h-48 sm:h-64 lg:h-80 w-auto object-contain"
+          className="h-32 sm:h-44 lg:h-56 w-auto object-contain"
           loading="eager"
         />
       </motion.div>

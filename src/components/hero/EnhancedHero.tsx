@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HeroBackground from "./HeroBackground";
-import HeroStatusBadge from "./HeroStatusBadge";
 import HeroHeading from "./HeroHeading";
 import HeroDescription from "./HeroDescription";
 import HeroSkillsTags from "./HeroSkillsTags";
@@ -39,7 +38,6 @@ const EnhancedHero: React.FC = () => {
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 animate-pulse opacity-50" />
             
-            <HeroStatusBadge isVisible={isVisible} />
             <HeroHeading isVisible={isVisible} />
             <HeroDescription isVisible={isVisible} />
             <HeroSkillsTags isVisible={isVisible} />
