@@ -7,6 +7,7 @@ import FloatingElement from "./animations/FloatingElement";
 import ShakeElement from "./animations/ShakeElement";
 import BounceWrapper from "./animations/BounceWrapper";
 import HeroLogo from "./hero/HeroLogo";
+import { Button } from "@/components/ui/button";
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,11 +35,20 @@ const Hero: React.FC = () => {
   }, []);
 
   // Function to scroll to contact section
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollToContact = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Function to scroll to projects section
+  const scrollToProjects = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -98,7 +108,11 @@ const Hero: React.FC = () => {
                 transition={{ delay: 1.6, duration: 0.5 }}
               >
                 <BounceWrapper intensity="medium" wiggle={true}>
-                  <a href="#projects" className="btn-primary relative">
+                  <Button 
+                    size="lg" 
+                    onClick={scrollToProjects}
+                    className="relative"
+                  >
                     View Projects
                     {/* Attention indicator */}
                     <motion.span
@@ -113,7 +127,7 @@ const Hero: React.FC = () => {
                         repeatType: "reverse"
                       }}
                     />
-                  </a>
+                  </Button>
                 </BounceWrapper>
               </motion.div>
               
@@ -123,9 +137,13 @@ const Hero: React.FC = () => {
                 transition={{ delay: 1.8, duration: 0.5 }}
               >
                 <BounceWrapper intensity="subtle">
-                  <a href="#contact" onClick={scrollToContact} className="btn-outline">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    onClick={scrollToContact}
+                  >
                     Get In Touch
-                  </a>
+                  </Button>
                 </BounceWrapper>
               </motion.div>
             </div>
