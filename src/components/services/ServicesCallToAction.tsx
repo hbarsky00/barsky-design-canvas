@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 const ServicesCallToAction = () => {
   return (
-    <section className="py-20 bg-barsky-blue/5">
+    <section className="py-12 bg-barsky-blue/5">
       <div className="container px-4 mx-auto max-w-4xl text-center">
         <h2 className="text-3xl font-bold mb-6">Ready to Start Your Project?</h2>
         <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
