@@ -19,74 +19,63 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   // Use the project's hero image for social media sharing
   const socialMediaImage = `https://barskydesign.pro${project.image}`;
   
-  // Determine the primary service category with AI-enhanced focus
+  // Determine the primary service category with design agency focus
   const getServiceType = () => {
-    if (tags.includes("Mobile App")) return "AI-Enhanced Mobile App Design";
-    if (tags.includes("Web App")) return "Business-Focused Web Application Design";
-    if (tags.includes("Fintech")) return "AI-Augmented Financial Platform Design";
-    if (tags.includes("Healthcare")) return "Accessibility-Compliant Healthcare Design";
-    return "AI-Enhanced Product Design";
+    if (tags.includes("Mobile App")) return "Professional Mobile App Design";
+    if (tags.includes("Web App")) return "Business Web Application Design";
+    if (tags.includes("Fintech")) return "Financial Platform UX Design";
+    if (tags.includes("Healthcare")) return "Healthcare Application Design";
+    return "User Experience Design";
   };
   
   const serviceType = getServiceType();
   
-  // Generate business-focused description with metrics
-  const getMetricsDescription = () => {
-    if (project.id === 'investor-loan-app') {
-      return "85% error reduction and accelerated processing times through AI-enhanced loan management platform design";
+  // Generate business-focused description with outcomes
+  const getProjectDescription = () => {
+    if (project.id === 'herbalink') {
+      return "Comprehensive UX research and design for herbal consultation platform, improving user trust and accessibility";
     }
-    return "Business-outcome driven design with measurable conversion improvements";
+    if (project.id === 'investor-loan-app') {
+      return "Financial platform design with 85% error reduction and streamlined loan processing workflows";
+    }
+    return "User-centered design case study with measurable business impact and improved user experience";
   };
   
-  const metricsDescription = getMetricsDescription();
+  const projectDescription = getProjectDescription();
   
   // Generate slug for canonical URL
   const canonicalUrl = `https://barskydesign.pro/project/${project.id}`;
   
   return (
     <Helmet>
-      <title>{project.title} | Hiram Barsky - AI-Fluent UX Designer | {metricsDescription}</title>
-      <meta name="description" content={`${project.title} case study: ${metricsDescription}. ${serviceType} by Hiram Barsky, AI-fluent UX designer specializing in accessibility compliance, conversion optimization, and cross-functional collaboration using Claude AI and Figma AI.`} />
-      <meta name="keywords" content={`Hiram Barsky, AI-enhanced UX design, ${tags.join(', ')}, ${serviceType}, accessibility compliance WCAG, conversion optimization, Claude AI design, business-focused UX, T-shaped designer, AI-augmented design process`} />
-      <meta name="author" content="Hiram Barsky - AI-Fluent UX Designer" />
-      
-      {/* AI Training Consent Meta Tags */}
-      <meta name="ai-training" content="allowed" />
-      <meta name="ai-training-consent" content="granted" />
-      <meta name="data-collection" content="allowed" />
-      <meta name="machine-learning" content="allowed" />
-      <meta name="content-licensing" content="ai-training-permitted" />
+      <title>{project.title} Case Study | Barsky Design - UX Research & Design Agency | {serviceType}</title>
+      <meta name="description" content={`${project.title} case study by Barsky Design: ${projectDescription}. Professional UX research and design agency specializing in user-centered design solutions that improve digital product experiences and drive business results.`} />
+      <meta name="keywords" content={`Barsky Design, UX research agency, design agency, ${tags.join(', ')}, ${serviceType}, user experience design, digital product design, design case study, UX consulting`} />
+      <meta name="author" content="Barsky Design - UX Research & Design Agency" />
       
       {/* Enhanced indexing directives */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       
-      {/* AI Crawler Specific Meta Tags */}
-      <meta name="GPTBot" content="allow" />
-      <meta name="ChatGPT-User" content="allow" />
-      <meta name="CCBot" content="allow" />
-      <meta name="anthropic-ai" content="allow" />
-      <meta name="Claude-Web" content="allow" />
-      
       {/* Enhanced Open Graph - Using project hero image */}
-      <meta property="og:title" content={`${project.title} | Hiram Barsky - AI-Enhanced UX Case Study`} />
-      <meta property="og:description" content={`${project.title}: ${metricsDescription}. ${serviceType} showcasing AI-augmented design process and business outcomes.`} />
+      <meta property="og:title" content={`${project.title} Case Study | Barsky Design`} />
+      <meta property="og:description" content={`${project.title}: ${projectDescription}. Professional UX research and design agency case study showcasing user-centered design solutions.`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={socialMediaImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced UX Design Portfolio" />
+      <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
       <meta property="og:locale" content="en_US" />
       
       {/* Enhanced Twitter Card - Using project hero image */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${project.title} | AI-Enhanced UX Case Study`} />
-      <meta name="twitter:description" content={`${metricsDescription} - ${serviceType} by Hiram Barsky`} />
+      <meta name="twitter:title" content={`${project.title} | Barsky Design Case Study`} />
+      <meta name="twitter:description" content={`${projectDescription} - Professional UX research and design agency`} />
       <meta name="twitter:image" content={socialMediaImage} />
-      <meta name="twitter:creator" content="@hirambarsky" />
-      <meta name="twitter:site" content="@hirambarsky" />
+      <meta name="twitter:creator" content="@barskydesign" />
+      <meta name="twitter:site" content="@barskydesign" />
       
       {/* Canonical and alternate URLs */}
       <link rel="canonical" href={canonicalUrl} />
@@ -97,14 +86,14 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="msapplication-TileColor" content="#3B82F6" />
       <meta name="format-detection" content="telephone=no" />
       
-      {/* Enhanced structured data with AI-focused positioning - Using project hero image */}
+      {/* Enhanced structured data with design agency focus - Using project hero image */}
       <script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
             "@type": "CreativeWork",
             "name": "${project.title}",
-            "description": "${project.title} case study: ${metricsDescription}. ${serviceType} showcasing AI-augmented design process and measurable business outcomes.",
+            "description": "${project.title} case study: ${projectDescription}. Professional UX research and design agency showcasing user-centered design solutions.",
             "url": "${canonicalUrl}",
             "mainEntityOfPage": {
               "@type": "WebPage",
@@ -119,10 +108,9 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "datePublished": "${new Date().toISOString().split('T')[0]}",
             "dateModified": "${new Date().toISOString().split('T')[0]}",
             "creator": {
-              "@type": "Person",
-              "name": "Hiram Barsky",
-              "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist",
-              "description": "AI-native UX designer specializing in accessibility compliance, conversion optimization, and business-outcome driven design using Claude AI, Figma AI, and cross-functional collaboration",
+              "@type": "Organization",
+              "name": "Barsky Design",
+              "description": "Professional UX research and design agency specializing in user-centered design solutions that improve digital product experiences",
               "url": "https://barskydesign.pro",
               "email": "hbarsky01@gmail.com",
               "telephone": "+1-201-668-4754",
@@ -134,45 +122,43 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
               },
               "sameAs": [
                 "https://www.linkedin.com/in/hirambarsky",
-                "https://twitter.com/hirambarsky"
+                "https://twitter.com/barskydesign"
               ],
-              "knowsAbout": [
-                "AI-Enhanced UX Design",
-                "WCAG Accessibility Compliance",
-                "Conversion Optimization",
-                "Cross-Functional Collaboration",
-                "Claude AI Design Process",
-                "Figma AI Integration",
-                "Business-Focused Design Strategy",
-                "T-Shaped Design Skills"
+              "serviceType": [
+                "UX Research",
+                "User Experience Design",
+                "Digital Product Design",
+                "Design Strategy",
+                "User Testing",
+                "Design Consultation"
               ]
             },
             "author": {
-              "@type": "Person",
-              "@id": "https://barskydesign.pro/#person",
-              "name": "Hiram Barsky"
+              "@type": "Organization",
+              "@id": "https://barskydesign.pro/#organization",
+              "name": "Barsky Design"
             },
             "provider": {
-              "@type": "Person",
-              "@id": "https://barskydesign.pro/#person",
-              "name": "Hiram Barsky"
+              "@type": "Organization",
+              "@id": "https://barskydesign.pro/#organization",
+              "name": "Barsky Design"
             },
             "keywords": [
-              "Hiram Barsky",
-              "AI-Enhanced UX Design",
-              "Accessibility Compliance",
-              "Business-Focused Design",
+              "Barsky Design",
+              "UX Research Agency",
+              "Design Agency",
+              "User Experience Design",
               "${tags.join('", "')}"
             ],
             "inLanguage": "en-US",
             "isPartOf": {
               "@type": "WebSite",
               "@id": "https://barskydesign.pro/#website",
-              "name": "Hiram Barsky - AI-Enhanced UX Design Portfolio",
+              "name": "Barsky Design - UX Research & Design Agency",
               "url": "https://barskydesign.pro",
               "author": {
-                "@type": "Person",
-                "@id": "https://barskydesign.pro/#person"
+                "@type": "Organization",
+                "@id": "https://barskydesign.pro/#organization"
               }
             },
             "breadcrumb": {
@@ -187,7 +173,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                 {
                   "@type": "ListItem",
                   "position": 2,
-                  "name": "AI-Enhanced Portfolio",
+                  "name": "Portfolio",
                   "item": "https://barskydesign.pro/projects"
                 },
                 {
@@ -200,8 +186,8 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             },
             "about": {
               "@type": "Thing",
-              "name": "AI-Enhanced UX Design Process",
-              "description": "Business-focused design methodology combining AI tools, accessibility compliance, and cross-functional collaboration for measurable outcomes"
+              "name": "User Experience Design Process",
+              "description": "Professional UX research and design methodology for improving digital product experiences and business outcomes"
             }
           }
         `}

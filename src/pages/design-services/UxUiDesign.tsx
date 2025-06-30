@@ -9,17 +9,19 @@ const UxUiDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Professional UX/UI Design Services | Hiram Barsky | User-Centered Design Solutions</title>
-        <meta name="description" content="Professional UX/UI design services by Hiram Barsky. Specializing in user research, interaction design, prototyping, and user-centered design for web and mobile applications. Get a quote today." />
-        <meta name="keywords" content="UX design services, UI design services, user experience design, user interface design, user research, interaction design, prototyping, design consultation" />
+        <title>Professional UX/UI Design Services | Barsky Design - UX Research & Design Agency</title>
+        <meta name="description" content="Professional UX/UI design services by Barsky Design. Specializing in user research, interaction design, prototyping, and user-centered design solutions for web and mobile applications. Transform your digital products with expert UX research and design." />
+        <meta name="keywords" content="Barsky Design, UX design services, UI design services, user experience design, user interface design, user research, interaction design, prototyping, design consultation, UX research agency" />
+        <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         <link rel="canonical" href="https://barskydesign.pro/design-services/ux-ui-design" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Professional UX/UI Design Services | Hiram Barsky" />
-        <meta property="og:description" content="Professional UX/UI design services specializing in user-centered design for web and mobile applications." />
+        <meta property="og:title" content="Professional UX/UI Design Services | Barsky Design" />
+        <meta property="og:description" content="Professional UX/UI design services specializing in user-centered design for web and mobile applications by Barsky Design - UX research and design agency." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/ux-ui-design" />
         <meta property="og:type" content="service" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
+        <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -30,9 +32,9 @@ const UxUiDesign = () => {
               "name": "UX/UI Design Services",
               "description": "Professional UX/UI design services including user research, interaction design, and prototyping",
               "provider": {
-                "@type": "Person",
-                "name": "Hiram Barsky",
-                "jobTitle": "UX/UI Designer"
+                "@type": "Organization",
+                "name": "Barsky Design",
+                "description": "UX Research & Design Agency"
               },
               "serviceType": "UX/UI Design",
               "areaServed": "Worldwide",
@@ -46,7 +48,7 @@ const UxUiDesign = () => {
       <main className="flex-grow pt-24">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-center mb-8">UX/UI Design Services</h1>
-          <p className="text-center text-gray-600 mb-12">Professional user-centered design services for web and mobile applications.</p>
+          <p className="text-center text-gray-600 mb-12">Professional user-centered design services for web and mobile applications by Barsky Design.</p>
           
           <div className="max-w-4xl mx-auto">
             <section className="mb-12" id="user-research">

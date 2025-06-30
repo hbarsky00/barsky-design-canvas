@@ -9,17 +9,19 @@ const WebDevelopment = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Professional Web Development Services | Hiram Barsky | Modern Frontend Development</title>
-        <meta name="description" content="Professional web development services by Hiram Barsky. Specializing in React, TypeScript, and modern frontend technologies. Responsive design, performance optimization, and accessible web applications." />
-        <meta name="keywords" content="web development services, frontend development, React development, TypeScript, responsive design, performance optimization, web applications" />
+        <title>Professional Web Development Services | Barsky Design - UX Research & Design Agency</title>
+        <meta name="description" content="Professional web development services by Barsky Design. Specializing in React, TypeScript, and modern frontend technologies. Responsive design, performance optimization, and accessible web applications from a UX research and design agency perspective." />
+        <meta name="keywords" content="Barsky Design, web development services, frontend development, React development, TypeScript, responsive design, performance optimization, web applications, UX-focused development" />
+        <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         <link rel="canonical" href="https://barskydesign.pro/design-services/web-development" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Professional Web Development Services | Hiram Barsky" />
-        <meta property="og:description" content="Modern web development services using React, TypeScript, and cutting-edge frontend technologies." />
+        <meta property="og:title" content="Professional Web Development Services | Barsky Design" />
+        <meta property="og:description" content="Modern web development services using React, TypeScript, and cutting-edge frontend technologies by Barsky Design - UX research and design agency." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/web-development" />
         <meta property="og:type" content="service" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
+        <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -28,11 +30,11 @@ const WebDevelopment = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "Web Development Services",
-              "description": "Professional web development services using modern technologies like React and TypeScript",
+              "description": "Professional web development services using modern technologies like React and TypeScript with UX-focused approach",
               "provider": {
-                "@type": "Person",
-                "name": "Hiram Barsky",
-                "jobTitle": "Frontend Developer"
+                "@type": "Organization",
+                "name": "Barsky Design",
+                "description": "UX Research & Design Agency"
               },
               "serviceType": "Web Development",
               "areaServed": "Worldwide",
@@ -46,7 +48,7 @@ const WebDevelopment = () => {
       <main className="flex-grow pt-24">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-center mb-8">Web Development Services</h1>
-          <p className="text-center text-gray-600 mb-12">Modern web development using the latest technologies for fast, responsive, and accessible websites.</p>
+          <p className="text-center text-gray-600 mb-12">Modern web development using the latest technologies for fast, responsive, and accessible websites from a UX research and design agency perspective.</p>
           
           <div className="max-w-4xl mx-auto">
             <section className="mb-12" id="frontend">

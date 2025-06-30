@@ -9,17 +9,19 @@ const MobileAppDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>Professional Mobile App Design Services | Hiram Barsky | iOS & Android App Design</title>
-        <meta name="description" content="Professional mobile app design services by Hiram Barsky. Specializing in iOS and Android app design, cross-platform design solutions, and user-centered mobile experiences that users love." />
-        <meta name="keywords" content="mobile app design, iOS app design, Android app design, cross-platform design, mobile UX, mobile UI, app design services" />
+        <title>Professional Mobile App Design Services | Barsky Design - UX Research & Design Agency</title>
+        <meta name="description" content="Professional mobile app design services by Barsky Design. Specializing in iOS and Android app design, cross-platform design solutions, and user-centered mobile experiences that users love. UX research-driven mobile design approach." />
+        <meta name="keywords" content="Barsky Design, mobile app design, iOS app design, Android app design, cross-platform design, mobile UX, mobile UI, app design services, UX research agency" />
+        <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         <link rel="canonical" href="https://barskydesign.pro/design-services/mobile-app-design" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Professional Mobile App Design Services | Hiram Barsky" />
-        <meta property="og:description" content="Creating engaging mobile experiences for iOS and Android platforms that users love and businesses rely on." />
+        <meta property="og:title" content="Professional Mobile App Design Services | Barsky Design" />
+        <meta property="og:description" content="Creating engaging mobile experiences for iOS and Android platforms that users love and businesses rely on. UX research-driven mobile design by Barsky Design." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/mobile-app-design" />
         <meta property="og:type" content="service" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
+        <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -28,11 +30,11 @@ const MobileAppDesign = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "Mobile App Design Services",
-              "description": "Professional mobile app design services for iOS and Android platforms",
+              "description": "Professional mobile app design services for iOS and Android platforms with UX research-driven approach",
               "provider": {
-                "@type": "Person",
-                "name": "Hiram Barsky",
-                "jobTitle": "Mobile App Designer"
+                "@type": "Organization",
+                "name": "Barsky Design",
+                "description": "UX Research & Design Agency"
               },
               "serviceType": "Mobile App Design",
               "areaServed": "Worldwide",
@@ -46,7 +48,7 @@ const MobileAppDesign = () => {
       <main className="flex-grow pt-24">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-center mb-8">Mobile App Design Services</h1>
-          <p className="text-center text-gray-600 mb-12">Creating engaging mobile experiences that users love and businesses rely on.</p>
+          <p className="text-center text-gray-600 mb-12">Creating engaging mobile experiences that users love and businesses rely on with UX research-driven design approach.</p>
           
           <div className="max-w-4xl mx-auto">
             <section className="mb-12" id="ios">
