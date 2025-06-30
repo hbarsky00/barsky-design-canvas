@@ -33,7 +33,7 @@ const EnhancedHero: React.FC = () => {
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="glass-card-elevated p-3 sm:p-4 lg:p-6 space-y-3 sm:space-y-4 layered-depth max-w-5xl mx-auto relative overflow-hidden"
+            className="glass-card-elevated p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-5 lg:space-y-6 layered-depth max-w-5xl mx-auto relative overflow-hidden"
           >
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 animate-pulse opacity-50" />
@@ -50,9 +50,9 @@ const EnhancedHero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 2, duration: 0.8 }}
-            className="mt-3 flex flex-col items-center"
+            className="mt-6 flex flex-col items-center"
           >
-            <p className="text-xs text-gray-500 mb-1">Discover our work</p>
+            <p className="text-xs text-gray-500 mb-2">Discover our work</p>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

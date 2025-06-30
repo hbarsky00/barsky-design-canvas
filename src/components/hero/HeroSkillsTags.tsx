@@ -20,7 +20,7 @@ const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: 1.6, duration: 0.6 }}
-      className="flex flex-wrap justify-center gap-2 mb-6"
+      className="flex flex-wrap justify-center gap-2 mb-4"
     >
       {skills.map((skill, index) => (
         <motion.div
