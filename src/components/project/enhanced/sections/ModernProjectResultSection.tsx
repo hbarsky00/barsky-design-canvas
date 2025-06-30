@@ -41,22 +41,55 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
         content={details.result}
         contentType="section"
         onSave={(content) => handleSectionContentSave('result', 'content', content)}
-        images={details.resultGalleryImages || []}
-        onImageAdd={(imageSrc) => {
-          console.log('➕ Adding image to result section:', imageSrc);
-        }}
-        onImageReplace={(index, newSrc) => {
-          const originalSrc = details.resultGalleryImages?.[index];
-          if (originalSrc) {
-            console.log('🔄 Replacing result image:', originalSrc, '->', newSrc);
-            handleSectionImageUpdate('result', originalSrc, newSrc);
-          }
-        }}
-        onImageRemove={(index) => console.log('🗑️ Removing image from result:', index)}
-        maxImages={4}
+        className="mb-8"
         projectId={projectId}
-        imageCaptions={imageCaptions}
       />
+
+      {/* Result Images Gallery with text positioned between images */}
+      {details.resultGalleryImages && details.resultGalleryImages.length > 0 && (
+        <div className="mt-12 space-y-8">
+          {details.resultGalleryImages.map((image, index) => (
+            <React.Fragment key={index}>
+              {/* Each Image */}
+              <div className="glass-card p-4 layered-depth">
+                <EnhancedContentEditor
+                  content=""
+                  contentType="section"
+                  onSave={() => {}}
+                  images={[image]}
+                  onImageAdd={(imageSrc) => {
+                    console.log('➕ Adding image to result section:', imageSrc);
+                  }}
+                  onImageReplace={(imgIndex, newSrc) => {
+                    console.log('🔄 Replacing result image:', image, '->', newSrc);
+                    handleSectionImageUpdate('result', image, newSrc);
+                  }}
+                  onImageRemove={(imgIndex) => console.log('🗑️ Removing image from result:', imgIndex)}
+                  maxImages={1}
+                  projectId={projectId}
+                  imageCaptions={imageCaptions}
+                  className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                />
+              </div>
+              
+              {/* Show Conclusion text ONLY after first image (index 0) */}
+              {index === 0 && (
+                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                  <div className="prose prose-lg text-gray-700 leading-relaxed">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Conclusion</strong></h3>
+                    <p className="text-sm text-gray-700 mb-4">
+                      Herbalink addresses a significant gap in the wellness market by creating a trusted, educational platform for herbal consultations. The design prioritizes transparency, accessibility, and user empowerment while respecting the expertise of certified herbalists. Through iterative design and user testing, we created a solution that bridges the gap between traditional herbal wisdom and modern digital healthcare needs.
+                    </p>
+                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                      The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
     </motion.section>
   );
 };
