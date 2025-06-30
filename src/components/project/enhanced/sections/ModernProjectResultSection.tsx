@@ -78,7 +78,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Conclusion</strong></h3>
                     <p className="text-sm text-gray-700 mb-4">
-                      Herbalink addresses a significant gap in the wellness market by creating a trusted, educational platform for herbal consultations. The design prioritizes transparency, accessibility, and user empowerment while respecting the expertise of certified herbalists. Through iterative design and user testing, we created a solution that bridges the gap between traditional herbal wisdom and modern digital healthcare needs.
+                      Herbalink addresses a significant gap in the wellness market by creating a trusted, educational platform for herbal consultations. The design prioritizes transparency, accessibility, and user empowerment while respecting the expertise of certified herbalists. The app has been developed and is ready for market launch, with the design foundation in place to support both users seeking herbal guidance and practitioners looking to grow their practice digitally.
                     </p>
                     <p className="text-sm text-gray-700 mb-4 last:mb-0">
                       The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
