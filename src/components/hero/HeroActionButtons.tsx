@@ -61,10 +61,10 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="ghost" 
           size="lg"
           onClick={scrollToContact}
-          className="text-white hover:bg-white/10 hover:text-white px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl [&_svg]:text-white"
+          className="text-white hover:bg-white/20 hover:text-white px-6 py-3 text-base font-semibold backdrop-blur-md transition-all duration-300 w-full sm:w-auto hover:shadow-xl border border-white/30 hover:border-white/50 [&_svg]:text-white"
         >
           <Mail className="mr-2 h-4 w-4 text-white" />
-          <span className="text-white">Start Your Project</span>
+          <span className="text-white font-semibold">Start Your Project</span>
         </Button>
       </motion.div>
     </motion.div>
