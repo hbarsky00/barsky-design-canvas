@@ -14,12 +14,12 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={isVisible ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="flex justify-center mb-6"
+        className="flex justify-center mb-4"
       >
         <img
           src="/lovable-uploads/ac3cac82-c216-4f87-b7b5-f3dc7b3d58ad.png"
           alt="Barsky Design"
-          className="h-32 sm:h-44 lg:h-56 w-auto object-contain"
+          className="h-24 sm:h-32 lg:h-40 w-auto object-contain"
           loading="eager"
         />
       </motion.div>
@@ -32,7 +32,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         <AnimatedText 
           text="UX Research & Design Agency" 
           tag="h2" 
-          className="text-lg sm:text-2xl lg:text-3xl font-semibold text-gray-600 block mb-4"
+          className="text-lg sm:text-2xl lg:text-3xl font-semibold text-gray-600 block mb-3"
           delay={1000}
           type="word"
           animation="fade"
