@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { Calendar, Mail } from "lucide-react";
 import { trackContentEngagement } from "@/lib/analytics";
 
 const ProjectCallToAction: React.FC = () => {
@@ -52,6 +52,7 @@ const ProjectCallToAction: React.FC = () => {
           <Button 
             onClick={openCalendly}
             size="lg"
+            className="w-full sm:w-auto"
           >
             <Calendar className="h-5 w-5 mr-2" />
             Schedule a Free Consultation
@@ -61,8 +62,10 @@ const ProjectCallToAction: React.FC = () => {
             variant="outline"
             size="lg"
             asChild
+            className="w-full sm:w-auto"
           >
             <Link to="/#contact">
+              <Mail className="h-5 w-5 mr-2" />
               Contact Me
             </Link>
           </Button>
