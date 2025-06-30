@@ -17,7 +17,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
         transition={{ delay: 1.2, duration: 0.5 }}
         className="text-xl mb-4 text-gray-700 font-medium sm:text-3xl"
       >
-        Research & Design Agency Improving Digital Experiences
+        Improving Digital Experiences Through Research & Strategy
       </motion.p>
       
       <motion.p 
