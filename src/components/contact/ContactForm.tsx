@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
@@ -16,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, {
@@ -156,13 +156,14 @@ const ContactForm: React.FC = () => {
             )}
           />
           
-          <button 
+          <Button 
             type="submit" 
-            className="btn-primary w-full flex items-center justify-center gap-2"
+            size="lg"
+            className="w-full flex items-center justify-center gap-2"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
-          </button>
+          </Button>
         </form>
       </Form>
     </div>

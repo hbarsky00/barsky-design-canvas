@@ -52,7 +52,6 @@ const ProjectCallToAction: React.FC = () => {
           <Button 
             onClick={openCalendly}
             size="lg"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
           >
             <Calendar className="h-5 w-5 mr-2" />
             Schedule a Free Consultation
@@ -62,7 +61,6 @@ const ProjectCallToAction: React.FC = () => {
             variant="outline"
             size="lg"
             asChild
-            className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded-lg font-medium transition-colors"
           >
             <Link to="/#contact">
               Contact Me
