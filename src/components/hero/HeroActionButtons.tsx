@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -53,7 +53,6 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           onClick={scrollToContact}
           className="w-full sm:w-auto relative overflow-hidden group"
         >
-          <Mail className="mr-2 h-4 w-4" />
           <span className="font-medium">Start Your Project</span>
         </Button>
       </motion.div>
