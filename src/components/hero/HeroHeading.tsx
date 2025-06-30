@@ -14,15 +14,13 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={isVisible ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.6 }}
+        className="flex justify-center mb-6"
       >
-        <AnimatedText 
-          text="Barsky Design" 
-          tag="h1" 
-          className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent"
-          delay={800}
-          type="word"
-          animation="bounce"
-          staggerChildren={0.1}
+        <img
+          src="/lovable-uploads/ac3cac82-c216-4f87-b7b5-f3dc7b3d58ad.png"
+          alt="Barsky Design"
+          className="h-24 sm:h-32 lg:h-40 w-auto object-contain"
+          loading="eager"
         />
       </motion.div>
       
