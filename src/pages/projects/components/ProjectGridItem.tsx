@@ -46,7 +46,7 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-blue-600/90 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center"
                 >
                   <Figma className="h-4 w-4 mr-1" />
                   Live Demo

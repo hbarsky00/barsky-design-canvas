@@ -6,6 +6,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface EnhancedProjectHeaderProps {
   project: ProjectProps;
@@ -82,15 +83,16 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
             {/* Project Links */}
             {details.projectLink && (
               <div className="flex items-center space-x-4">
-                <a
-                  href={details.projectLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
-                >
-                  View Live Project
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
+                <Button asChild>
+                  <a
+                    href={details.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Live Project
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
               </div>
             )}
           </motion.div>

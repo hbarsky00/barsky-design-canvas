@@ -12,16 +12,16 @@ const ProjectLinks: React.FC<ProjectLinksProps> = ({ projectLink }) => {
   
   return (
     <div className="flex flex-wrap gap-4 mb-8">
-      <a
-        href={projectLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="View the live project"
-      >
-        <Button className="bg-barsky-blue text-white hover:bg-barsky-blue/90 transition-colors">
+      <Button asChild>
+        <a
+          href={projectLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View the live project"
+        >
           View Live Project <ExternalLink className="ml-2 h-4 w-4" />
-        </Button>
-      </a>
+        </a>
+      </Button>
     </div>
   );
 };
