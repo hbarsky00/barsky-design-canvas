@@ -41,8 +41,9 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
     return images;
   }, [processBeforeHeaderImage, processRegularImage]);
 
-  // Check if this is the splittime project
+  // Check if this is the splittime or herbalink project
   const isSpittimeProject = projectId === 'splittime';
+  const isHerbalinkProject = projectId === 'herbalink';
 
   const handleImageRemove = (imageIndex: number) => {
     console.log('🗑️ Removing process image at index:', imageIndex);
@@ -125,6 +126,43 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                         <p className="mt-4">
                           Three distinct user personas crystallized from this research: the Overwhelmed Parent who struggles to balance demanding work schedules with complex childcare coordination needs, the Detail-Oriented Parent who requires comprehensive tracking and documentation capabilities to manage every aspect of co-parenting arrangements, and the Conflict-Avoidant Parent who desperately seeks solutions that minimize direct communication with their ex-partner while still maintaining effective coordination for their children's wellbeing.
                         </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Show Herbalink research content after first image - with blue box styling */}
+              {index === 0 && isHerbalinkProject && (
+                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                  <div className="prose prose-lg text-gray-700 leading-relaxed">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Research & Discovery</h3>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-lg font-medium text-gray-800 mb-3">User Research</h4>
+                        <p className="text-sm text-gray-700 mb-3">
+                          I conducted interviews with 12 participants (6 potential users, 6 practicing herbalists) to understand pain points and opportunities.
+                        </p>
+                        <div>
+                          <p className="font-medium text-gray-800 mb-2">Key Findings:</p>
+                          <p className="text-sm text-gray-700">
+                            Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-lg font-medium text-gray-800 mb-3">Competitive Analysis</h4>
+                        <p className="text-sm text-gray-700 mb-3">
+                          Analyzed BetterHelp, Headspace Health, and Zocdoc to identify opportunities for differentiation in the herbal wellness space.
+                        </p>
+                        <div>
+                          <p className="font-medium text-gray-800 mb-2">Key Insights:</p>
+                          <p className="text-sm text-gray-700">
+                            The analysis revealed no platforms specifically designed for herbalist consultations, creating an opportunity for specialized intake forms tailored to herbal needs and education-focused features that build user confidence in natural wellness approaches.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
