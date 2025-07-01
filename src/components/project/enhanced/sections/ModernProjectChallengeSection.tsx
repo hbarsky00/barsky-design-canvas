@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
-import ImageTextGallery from "../../sections/ImageTextGallery";
 
 interface ModernProjectChallengeSectionProps {
   details: ProjectDetails;
@@ -32,6 +31,9 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
   // Check if this is the splittime project
   const isSpittimeProject = projectId === 'splittime';
 
+  // Get challenge gallery images from details
+  const challengeImages = details.challengeGalleryImages || [];
+
   return (
     <motion.section
       key={`challenge-${componentKey}`}
@@ -57,8 +59,49 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         projectId={projectId}
       />
 
-      {/* Challenge Gallery Content */}
-      {details.challengeGalleryContent && details.challengeGalleryContent.length > 0 && (
+      {/* Challenge Gallery Images */}
+      {challengeImages && challengeImages.length > 0 && (
+        <div className="mt-12 space-y-8">
+          {challengeImages.map((image, index) => (
+            <React.Fragment key={index}>
+              {/* Each Image */}
+              <div className="glass-card p-4 layered-depth">
+                <EnhancedContentEditor
+                  content=""
+                  contentType="section"
+                  onSave={() => {}}
+                  images={[image]}
+                  onImageAdd={(imageSrc) => {
+                    console.log('➕ Adding image to challenge section:', imageSrc);
+                  }}
+                  onImageReplace={(imgIndex, newSrc) => {
+                    console.log('🔄 Replacing challenge image:', image, '->', newSrc);
+                  }}
+                  onImageRemove={() => handleImageRemove(index)}
+                  maxImages={1}
+                  projectId={projectId}
+                  imageCaptions={imageCaptions}
+                  className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                />
+              </div>
+              
+              {/* Show custom text after first image for Splittime project */}
+              {index === 0 && isSpittimeProject && (
+                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                  <div className="prose prose-lg text-gray-700 leading-relaxed">
+                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                      Key challenges include emotional triggers in messaging, scheduling chaos from lack of centralized systems, financial disputes over child expenses, documentation issues causing information loss, and children caught in parental conflicts.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+
+      {/* Challenge Gallery Content - Fallback for new format */}
+      {details.challengeGalleryContent && details.challengeGalleryContent.length > 0 && !challengeImages.length && (
         <div className="mt-12 space-y-8">
           {details.challengeGalleryContent.map((item, index) => (
             <React.Fragment key={index}>
