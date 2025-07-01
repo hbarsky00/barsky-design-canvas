@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ZoomIn, ZoomOut, Maximize, X } from "lucide-react";
+import { Circle } from "lucide-react";
 
 interface ImageControlsProps {
   scale: number;
@@ -26,9 +26,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomOut}
         disabled={scale <= 0.5}
         title="Zoom Out"
-        className="h-16 w-16 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-blue-600 shadow-lg backdrop-blur-sm text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white"
       >
-        <ZoomOut className="h-7 w-7 text-white stroke-white fill-none stroke-2" />
+        <Circle className="h-6 w-6 text-white stroke-white fill-none stroke-2" />
         <span className="sr-only">Zoom Out</span>
       </Button>
       <Button
@@ -37,9 +37,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomIn}
         disabled={scale >= 3}
         title="Zoom In"
-        className="h-16 w-16 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-blue-600 shadow-lg backdrop-blur-sm text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white"
       >
-        <ZoomIn className="h-7 w-7 text-white stroke-white fill-none stroke-2" />
+        <Circle className="h-6 w-6 text-white stroke-white fill-none stroke-2" />
         <span className="sr-only">Zoom In</span>
       </Button>
       <Button
@@ -48,9 +48,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onReset}
         disabled={scale === 1}
         title="Reset Zoom"
-        className="h-16 w-16 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-blue-600 shadow-lg backdrop-blur-sm text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white"
       >
-        <Maximize className="h-7 w-7 text-white stroke-white fill-none stroke-2" />
+        <Circle className="h-6 w-6 text-white stroke-white fill-none stroke-2" />
         <span className="sr-only">Reset Zoom</span>
       </Button>
       <Button
@@ -58,9 +58,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         size="icon"
         onClick={onClose}
         title="Close"
-        className="h-16 w-16 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-blue-600 shadow-lg backdrop-blur-sm text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white"
       >
-        <X className="h-7 w-7 text-white stroke-white fill-none stroke-2" />
+        <Circle className="h-6 w-6 text-white stroke-white fill-none stroke-2" />
         <span className="sr-only">Close</span>
       </Button>
     </div>
