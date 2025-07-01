@@ -64,7 +64,9 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
             sectionName="challenge"
             onTextSave={(textKey, content) => {
               console.log('💾 Saving challenge text:', textKey, content);
-              handleSectionContentSave('challenge', textKey, content);
+              // Convert textKey to match the expected type union
+              const type = textKey.includes('text') ? 'text' as const : 'content' as const;
+              handleSectionContentSave('challenge', type, content);
             }}
             onImageRemove={handleImageRemove}
             className="space-y-8"
