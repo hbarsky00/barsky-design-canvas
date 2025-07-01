@@ -46,6 +46,9 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
           {/* Design System Image */}
           <div className="mt-6">
             <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Design System</span></h4>
+            <p className="text-sm text-gray-700 mb-3">
+              Created a comprehensive design system built for natural wellness experiences, emphasizing trust, accessibility, and user empowerment through carefully chosen color palettes and typography that reflect the organic nature of herbal wellness.
+            </p>
             <div className="glass-card p-4 layered-depth">
               <EnhancedContentEditor
                 content=""
@@ -67,9 +70,6 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
                 className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
               />
             </div>
-            <p className="text-sm text-gray-700 mt-3">
-              Created a comprehensive design system built for natural wellness experiences, emphasizing trust, accessibility, and user empowerment through carefully chosen color palettes and typography that reflect the organic nature of herbal wellness.
-            </p>
           </div>
         </div>
       </div>
