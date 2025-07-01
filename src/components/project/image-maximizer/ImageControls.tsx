@@ -26,9 +26,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomOut}
         disabled={scale <= 0.5}
         title="Zoom Out"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm !text-white hover:!text-white"
       >
-        <ZoomOut className="h-6 w-6 text-white !stroke-white !fill-none" />
+        <ZoomOut className="h-6 w-6 !text-white !stroke-white !fill-none stroke-2" />
         <span className="sr-only">Zoom Out</span>
       </Button>
       <Button
@@ -37,9 +37,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomIn}
         disabled={scale >= 3}
         title="Zoom In"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm !text-white hover:!text-white"
       >
-        <ZoomIn className="h-6 w-6 text-white !stroke-white !fill-none" />
+        <ZoomIn className="h-6 w-6 !text-white !stroke-white !fill-none stroke-2" />
         <span className="sr-only">Zoom In</span>
       </Button>
       <Button
@@ -48,9 +48,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onReset}
         disabled={scale === 1}
         title="Reset Zoom"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm !text-white hover:!text-white"
       >
-        <Maximize className="h-6 w-6 text-white !stroke-white !fill-none" />
+        <Maximize className="h-6 w-6 !text-white !stroke-white !fill-none stroke-2" />
         <span className="sr-only">Reset Zoom</span>
       </Button>
       <Button
@@ -58,9 +58,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         size="icon"
         onClick={onClose}
         title="Close"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm"
+        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 border-blue-600 shadow-lg backdrop-blur-sm !text-white hover:!text-white"
       >
-        <X className="h-6 w-6 text-white !stroke-white !fill-none" />
+        <X className="h-6 w-6 !text-white !stroke-white !fill-none stroke-2" />
         <span className="sr-only">Close</span>
       </Button>
     </div>
