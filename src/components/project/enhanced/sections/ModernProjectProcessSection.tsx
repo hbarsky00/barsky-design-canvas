@@ -116,6 +116,10 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                     <div className="space-y-6">
                       <div>
                         <p className="text-sm text-gray-700 mb-4">
+                          The main dashboard needed to provide instant visibility into all family activities while maintaining a neutral, non-confrontational interface. Parents could see schedules, messages, and child updates without the emotional triggers that often escalate conflicts.
+                        </p>
+                        
+                        <p className="text-sm text-gray-700 mb-4">
                           Based on comprehensive research methodology that included 12 in-depth interviews with divorced and separated parents, 8 interviews with family counselors and mediators, a survey of over 150 parents currently using existing co-parenting tools, and competitive analysis of 8 existing co-parenting applications, several critical pain points emerged. The research revealed that parents consistently struggle with emotional triggers embedded in standard messaging systems, face scheduling chaos without centralized coordination systems, encounter ongoing financial disputes over child-related expenses, experience documentation issues that lead to critical information loss, and worry about their children being caught in the middle of parental conflicts.
                         </p>
                         
