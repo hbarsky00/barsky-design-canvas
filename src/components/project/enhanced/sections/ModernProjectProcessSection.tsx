@@ -145,7 +145,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                           I conducted interviews with 12 participants (6 potential users, 6 practicing herbalists) to understand pain points and opportunities.
                         </p>
                         <div>
-                          <p className="font-medium text-gray-800 mb-2">Key Findings:</p>
+                          <p className="font-bold text-gray-800 mb-2">Key Findings:</p>
                           <p className="text-sm text-gray-700">
                             Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
                           </p>
@@ -158,7 +158,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                           Analyzed BetterHelp, Headspace Health, and Zocdoc to identify opportunities for differentiation in the herbal wellness space.
                         </p>
                         <div>
-                          <p className="font-medium text-gray-800 mb-2">Key Insights:</p>
+                          <p className="font-bold text-gray-800 mb-2">Key Insights:</p>
                           <p className="text-sm text-gray-700">
                             The analysis revealed no platforms specifically designed for herbalist consultations, creating an opportunity for specialized intake forms tailored to herbal needs and education-focused features that build user confidence in natural wellness approaches.
                           </p>
