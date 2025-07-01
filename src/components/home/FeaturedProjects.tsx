@@ -31,7 +31,7 @@ const FeaturedProjects: React.FC = () => {
             Featured Projects
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Explore my portfolio of Product Design and Generative AI Development work. 
+            Explore my portfolio of Product Design, UX/UI and Generative AI Development work. 
             Each project reflects a user-centered design approach, encompassing research, ideation, 
             design, and development implementation.
           </p>
