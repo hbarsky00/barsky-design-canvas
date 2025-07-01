@@ -109,7 +109,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             onClick={handleZoomOut}
             disabled={scale <= 0.5}
             title="Zoom Out"
-            className="h-10 w-10 text-white hover:bg-white/20 bg-transparent border-none rounded-full"
+            className="h-10 w-10 text-white hover:bg-black/20 bg-black/30 border-none rounded-full"
           >
             <ZoomOut className="h-5 w-5" />
             <span className="sr-only">Zoom Out</span>
@@ -120,7 +120,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             onClick={handleZoomIn}
             disabled={scale >= 3}
             title="Zoom In"
-            className="h-10 w-10 text-white hover:bg-white/20 bg-transparent border-none rounded-full"
+            className="h-10 w-10 text-white hover:bg-black/20 bg-black/30 border-none rounded-full"
           >
             <ZoomIn className="h-5 w-5" />
             <span className="sr-only">Zoom In</span>
@@ -131,7 +131,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             onClick={handleReset}
             disabled={scale === 1}
             title="Reset Zoom"
-            className="h-10 w-10 text-white hover:bg-white/20 bg-transparent border-none rounded-full"
+            className="h-10 w-10 text-white hover:bg-black/20 bg-black/30 border-none rounded-full"
           >
             <Maximize className="h-5 w-5" />
             <span className="sr-only">Reset Zoom</span>
@@ -141,7 +141,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             size="icon"
             onClick={onClose}
             title="Close"
-            className="h-10 w-10 text-white hover:bg-white/20 bg-transparent border-none rounded-full"
+            className="h-10 w-10 text-white hover:bg-black/20 bg-black/30 border-none rounded-full"
           >
             <X className="h-5 w-5" />
             <span className="sr-only">Close</span>
