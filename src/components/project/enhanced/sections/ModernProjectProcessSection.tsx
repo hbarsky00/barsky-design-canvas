@@ -111,9 +111,9 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                 />
               </div>
               
-              {/* Show Splittime research content after first image - now using static content to avoid conflicts */}
+              {/* Show Splittime research content after first image - with sexy blue box styling */}
               {index === 0 && isSpittimeProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                <div className="sexy p-6 bg-blue-50/50 rounded-lg border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Research & User Insights</h3>
                     
