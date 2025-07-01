@@ -101,15 +101,6 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
         <DialogTitle className="sr-only">Image: {title}</DialogTitle>
         <DialogDescription className="sr-only">Full size view of the image</DialogDescription>
         
-        {/* Floating controls positioned over the image */}
-        <ImageControls
-          scale={scale}
-          onZoomIn={handleZoomIn}
-          onZoomOut={handleZoomOut}
-          onReset={handleReset}
-          onClose={onClose}
-        />
-
         {/* Image counter for multiple images */}
         <ImageCounter
           currentIndex={currentIndex}
@@ -118,6 +109,15 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
         />
         
         <div className="flex-grow overflow-hidden bg-gray-50 flex items-center justify-center relative">
+          {/* Floating controls positioned over the image */}
+          <ImageControls
+            scale={scale}
+            onZoomIn={handleZoomIn}
+            onZoomOut={handleZoomOut}
+            onReset={handleReset}
+            onClose={onClose}
+          />
+
           <ZoomableImage 
             image={image}
             title={title}
