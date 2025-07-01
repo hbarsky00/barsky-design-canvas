@@ -28,8 +28,9 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
     // This could involve updating the project details or triggering a refresh
   };
 
-  // Check if this is the splittime project
+  // Check if this is the splittime or herbalink project
   const isSpittimeProject = projectId === 'splittime';
+  const isHerbalinkProject = projectId === 'herbalink';
 
   // Get challenge gallery images from details
   const challengeImages = details.challengeGalleryImages || [];
@@ -91,6 +92,18 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     <p className="text-sm text-gray-700 mb-4 last:mb-0">
                       Key challenges include emotional triggers in messaging, scheduling chaos from lack of centralized systems, financial disputes over child expenses, documentation issues causing information loss, and children caught in parental conflicts.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Show key findings after first image for Herbalink project */}
+              {index === 0 && isHerbalinkProject && (
+                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                  <div className="prose prose-lg text-gray-700 leading-relaxed">
+                    <h4 className="text-lg font-medium text-gray-800 mb-3">Key Findings:</h4>
+                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                      Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
                     </p>
                   </div>
                 </div>
