@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
-import ImageTextGallery from "@/components/project/sections/ImageTextGallery";
+import ImageTextGallery from "../../sections/ImageTextGallery";
 
 interface ModernProjectChallengeSectionProps {
   details: ProjectDetails;
@@ -19,14 +19,15 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
   componentKey,
   imageCaptions
 }) => {
-  const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });
+  const { handleSectionContentSave } = useSimplifiedContentEditor({
+    projectId
+  });
 
-  const handleTextSave = (textKey: string, content: string) => {
-    handleSectionContentSave('challenge', 'text', content, textKey);
+  const handleImageRemove = (index: number) => {
+    console.log('🗑️ Removing image from challenge section at index:', index);
+    // For now, just log the removal - you can implement actual removal logic if needed
+    // This could involve updating the project details or triggering a refresh
   };
-
-  // Check if this is the investor loan app project
-  const isInvestorProject = projectId === 'investor-loan-app';
 
   return (
     <motion.section
@@ -53,80 +54,22 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         projectId={projectId}
       />
 
-      {/* Challenge Images Gallery with text positioned between images */}
-      {details.challengeGalleryImages && details.challengeGalleryImages.length > 0 && (
-        <div className="mt-12 space-y-8">
-          {details.challengeGalleryImages.map((image, index) => (
-            <React.Fragment key={index}>
-              {/* Each Image */}
-              <div className="glass-card p-4 layered-depth">
-                <EnhancedContentEditor
-                  content=""
-                  contentType="section"
-                  onSave={() => {}}
-                  images={[image]}
-                  onImageAdd={(imageSrc) => {
-                    console.log('➕ Adding image to challenge section:', imageSrc);
-                  }}
-                  onImageReplace={(imgIndex, newSrc) => {
-                    console.log('🔄 Replacing challenge image:', image, '->', newSrc);
-                    handleSectionImageUpdate('challenge', image, newSrc);
-                  }}
-                  onImageRemove={(imgIndex) => console.log('🗑️ Removing image from challenge:', imgIndex)}
-                  maxImages={1}
-                  projectId={projectId}
-                  imageCaptions={imageCaptions}
-                  className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                />
-              </div>
-              
-              {/* Show Research & Discovery text ONLY after first image (index 0) for investor project */}
-              {index === 0 && isInvestorProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Research & Discovery</h3>
-                    
-                    <div className="space-y-6">
-                      <div>
-                        <p className="text-sm text-gray-700 mb-4">
-                          I conducted extensive research with the banking team to understand their current pain points, identifying critical issues including manual data entry errors causing compliance issues, time-consuming Excel-based tracking processes, difficulty collaborating on complex deals, limited search and filtering capabilities, and email-based communication creating information silos. Through this research, I developed three key user personas: Investment Managers who need quick access to deal information and real-time updates, Loan Officers who require efficient deal processing and client communication tools, and Compliance Officers who need accurate reporting and audit trails.
-                        </p>
-                        
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          My competitive analysis focused on existing financial platforms, with particular emphasis on Bloomberg's search functionality, which became a key inspiration for our AI-powered search feature. This analysis revealed opportunities to modernize traditional banking workflows while maintaining the professional standards and regulatory compliance requirements that are essential in the financial services industry.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              
-              {/* Show additional challenge text ONLY after first image (index 0) for non-investor projects */}
-              {index === 0 && !isInvestorProject && details.challengeAdditionalText && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    {details.challengeAdditionalText.split('\n\n').map((paragraph, paragraphIndex) => (
-                      <p key={paragraphIndex} className="mb-4 last:mb-0">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      )}
-
-      {/* Enhanced gallery with text sections */}
+      {/* Challenge Gallery Content */}
       {details.challengeGalleryContent && details.challengeGalleryContent.length > 0 && (
-        <ImageTextGallery
-          items={details.challengeGalleryContent}
-          imageCaptions={imageCaptions}
-          projectId={projectId}
-          sectionName="Challenge"
-          onTextSave={handleTextSave}
-        />
+        <div className="mt-12">
+          <ImageTextGallery
+            items={details.challengeGalleryContent}
+            imageCaptions={imageCaptions}
+            projectId={projectId}
+            sectionName="challenge"
+            onTextSave={(textKey, content) => {
+              console.log('💾 Saving challenge text:', textKey, content);
+              handleSectionContentSave('challenge', textKey, content);
+            }}
+            onImageRemove={handleImageRemove}
+            className="space-y-8"
+          />
+        </div>
       )}
     </motion.section>
   );
