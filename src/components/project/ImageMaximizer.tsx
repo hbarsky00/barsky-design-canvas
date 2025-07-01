@@ -109,7 +109,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             onClick={handleZoomOut}
             disabled={scale <= 0.5}
             title="Zoom Out"
-            className="h-10 w-10 text-white hover:bg-blue-700 bg-blue-600 border-none rounded-full"
+            className="!h-10 !w-10 !min-w-10 !bg-blue-600 hover:!bg-blue-700 !text-white hover:!text-white !border-none !rounded-full [&_svg]:!text-white hover:[&_svg]:!text-white"
           >
             <ZoomOut className="h-5 w-5" />
             <span className="sr-only">Zoom Out</span>
@@ -120,7 +120,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             onClick={handleZoomIn}
             disabled={scale >= 3}
             title="Zoom In"
-            className="h-10 w-10 text-white hover:bg-blue-700 bg-blue-600 border-none rounded-full"
+            className="!h-10 !w-10 !min-w-10 !bg-blue-600 hover:!bg-blue-700 !text-white hover:!text-white !border-none !rounded-full [&_svg]:!text-white hover:[&_svg]:!text-white"
           >
             <ZoomIn className="h-5 w-5" />
             <span className="sr-only">Zoom In</span>
@@ -131,7 +131,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             onClick={handleReset}
             disabled={scale === 1}
             title="Reset Zoom"
-            className="h-10 w-10 text-white hover:bg-blue-700 bg-blue-600 border-none rounded-full"
+            className="!h-10 !w-10 !min-w-10 !bg-blue-600 hover:!bg-blue-700 !text-white hover:!text-white !border-none !rounded-full [&_svg]:!text-white hover:[&_svg]:!text-white"
           >
             <Maximize className="h-5 w-5" />
             <span className="sr-only">Reset Zoom</span>
@@ -141,7 +141,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             size="icon"
             onClick={onClose}
             title="Close"
-            className="h-10 w-10 text-white hover:bg-blue-700 bg-blue-600 border-none rounded-full"
+            className="!h-10 !w-10 !min-w-10 !bg-blue-600 hover:!bg-blue-700 !text-white hover:!text-white !border-none !rounded-full [&_svg]:!text-white hover:[&_svg]:!text-white"
           >
             <X className="h-5 w-5" />
             <span className="sr-only">Close</span>
