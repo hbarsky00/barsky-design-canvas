@@ -11,22 +11,28 @@ export const useProjectSaveOperations = (
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
   const saveTextContent = useCallback(async (key: string, content: string) => {
-    console.log('💾 SaveOperations: Saving text content:', key);
+    if (!projectId) {
+      console.error('❌ Cannot save: No projectId provided');
+      return;
+    }
+
+    console.log('💾 SaveOperations: Saving text content for project:', projectId, 'key:', key);
     setIsSaving(true);
     
     try {
+      // CRITICAL: Always include projectId in the save operation
       await saveChangeToDatabase(projectId, 'text', key, content);
       
-      // Update cached data immediately
+      // Update cached data immediately with project isolation
       setCachedData(prev => ({
         ...prev,
         textContent: { ...prev.textContent, [key]: content }
       }));
       
       setLastSaved(new Date());
-      console.log('✅ Text content saved successfully');
+      console.log('✅ Text content saved successfully for project:', projectId);
       
-      // Trigger global update event for real-time sync
+      // Trigger global update event with strict project scoping
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId,
@@ -37,14 +43,19 @@ export const useProjectSaveOperations = (
         }
       }));
     } catch (error) {
-      console.error('❌ Error saving text content:', error);
+      console.error('❌ Error saving text content for project:', projectId, error);
     } finally {
       setIsSaving(false);
     }
   }, [projectId, setCachedData]);
 
   const saveImageReplacement = useCallback(async (originalSrc: string, newSrc: string) => {
-    console.log('💾 SaveOperations: Saving image replacement:', originalSrc.substring(0, 30) + '...', '->', newSrc.substring(0, 30) + '...');
+    if (!projectId) {
+      console.error('❌ Cannot save: No projectId provided');
+      return;
+    }
+
+    console.log('💾 SaveOperations: Saving image replacement for project:', projectId);
     
     if (originalSrc.startsWith('blob:') || newSrc.startsWith('blob:')) {
       console.log('⚠️ Skipping blob URL replacement save');
@@ -54,18 +65,19 @@ export const useProjectSaveOperations = (
     setIsSaving(true);
     
     try {
+      // CRITICAL: Always include projectId in the save operation
       await saveChangeToDatabase(projectId, 'image', originalSrc, newSrc);
       
-      // Update cached data immediately
+      // Update cached data immediately with project isolation
       setCachedData(prev => ({
         ...prev,
         imageReplacements: { ...prev.imageReplacements, [originalSrc]: newSrc }
       }));
       
       setLastSaved(new Date());
-      console.log('✅ Image replacement saved successfully');
+      console.log('✅ Image replacement saved successfully for project:', projectId);
       
-      // Trigger global update event for real-time sync
+      // Trigger global update event with strict project scoping
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId,
@@ -76,30 +88,36 @@ export const useProjectSaveOperations = (
         }
       }));
     } catch (error) {
-      console.error('❌ Error saving image replacement:', error);
+      console.error('❌ Error saving image replacement for project:', projectId, error);
     } finally {
       setIsSaving(false);
     }
   }, [projectId, setCachedData]);
 
   const saveImageCaption = useCallback(async (imageSrc: string, caption: string) => {
-    console.log('💾 SaveOperations: Saving image caption:', imageSrc.substring(0, 30) + '...', caption.substring(0, 50) + '...');
+    if (!projectId) {
+      console.error('❌ Cannot save: No projectId provided');
+      return;
+    }
+
+    console.log('💾 SaveOperations: Saving image caption for project:', projectId);
     
     setIsSaving(true);
     
     try {
+      // CRITICAL: Always include projectId in the save operation
       await saveChangeToDatabase(projectId, 'image_caption', imageSrc, caption);
       
-      // Update cached data immediately
+      // Update cached data immediately with project isolation
       setCachedData(prev => ({
         ...prev,
         imageCaptions: { ...prev.imageCaptions, [imageSrc]: caption }
       }));
       
       setLastSaved(new Date());
-      console.log('✅ Image caption saved successfully');
+      console.log('✅ Image caption saved successfully for project:', projectId);
       
-      // Trigger global update event for real-time sync
+      // Trigger global update event with strict project scoping
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId,
@@ -110,29 +128,35 @@ export const useProjectSaveOperations = (
         }
       }));
     } catch (error) {
-      console.error('❌ Error saving image caption:', error);
+      console.error('❌ Error saving image caption for project:', projectId, error);
     } finally {
       setIsSaving(false);
     }
   }, [projectId, setCachedData]);
 
   const saveContentBlocks = useCallback(async (sectionKey: string, blocks: any[]) => {
-    console.log('💾 SaveOperations: Saving content blocks:', sectionKey);
+    if (!projectId) {
+      console.error('❌ Cannot save: No projectId provided');
+      return;
+    }
+
+    console.log('💾 SaveOperations: Saving content blocks for project:', projectId);
     setIsSaving(true);
     
     try {
+      // CRITICAL: Always include projectId in the save operation
       await saveChangeToDatabase(projectId, 'content_block', sectionKey, blocks);
       
-      // Update cached data immediately
+      // Update cached data immediately with project isolation
       setCachedData(prev => ({
         ...prev,
         contentBlocks: { ...prev.contentBlocks, [sectionKey]: blocks }
       }));
       
       setLastSaved(new Date());
-      console.log('✅ Content blocks saved successfully');
+      console.log('✅ Content blocks saved successfully for project:', projectId);
       
-      // Trigger global update event for real-time sync
+      // Trigger global update event with strict project scoping
       window.dispatchEvent(new CustomEvent('projectDataUpdated', {
         detail: { 
           projectId,
@@ -143,7 +167,7 @@ export const useProjectSaveOperations = (
         }
       }));
     } catch (error) {
-      console.error('❌ Error saving content blocks:', error);
+      console.error('❌ Error saving content blocks for project:', projectId, error);
     } finally {
       setIsSaving(false);
     }
