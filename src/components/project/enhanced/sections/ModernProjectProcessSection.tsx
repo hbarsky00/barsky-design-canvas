@@ -140,12 +140,12 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                     
                     <div className="space-y-6">
                       <div>
-                        <h4 className="text-lg font-medium text-gray-800 mb-3">User Research</h4>
+                        <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">User Research</span></h4>
                         <p className="text-sm text-gray-700 mb-3">
                           I conducted interviews with 12 participants (6 potential users, 6 practicing herbalists) to understand pain points and opportunities.
                         </p>
                         <div>
-                          <p className="font-bold text-gray-800 mb-2">Key Findings:</p>
+                          <p className="font-bold text-gray-800 mb-2"><span className="font-bold">Key Findings</span></p>
                           <p className="text-sm text-gray-700">
                             Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
                           </p>
@@ -153,12 +153,12 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                       </div>
 
                       <div>
-                        <h4 className="text-lg font-medium text-gray-800 mb-3">Competitive Analysis</h4>
+                        <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Competitive Analysis</span></h4>
                         <p className="text-sm text-gray-700 mb-3">
                           Analyzed BetterHelp, Headspace Health, and Zocdoc to identify opportunities for differentiation in the herbal wellness space.
                         </p>
                         <div>
-                          <p className="font-bold text-gray-800 mb-2">Key Insights:</p>
+                          <p className="font-bold text-gray-800 mb-2"><span className="font-bold">Key Insights</span></p>
                           <p className="text-sm text-gray-700">
                             The analysis revealed no platforms specifically designed for herbalist consultations, creating an opportunity for specialized intake forms tailored to herbal needs and education-focused features that build user confidence in natural wellness approaches.
                           </p>
@@ -167,7 +167,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
 
                       {/* Design System Image */}
                       <div className="mt-6">
-                        <h4 className="text-lg font-medium text-gray-800 mb-3">Design System</h4>
+                        <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Design System</span></h4>
                         <div className="glass-card p-4 layered-depth">
                           <EnhancedContentEditor
                             content=""
