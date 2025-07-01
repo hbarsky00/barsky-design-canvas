@@ -22,6 +22,8 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
 
   // Check if this is the investor loan app project
   const isInvestorProject = projectId === 'investor-loan-app';
+  // Check if this is the Splittime project
+  const isSpittimeProject = projectId === 'splittime';
 
   return (
     <motion.section
@@ -87,6 +89,15 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
                         </p>
                         <p className="text-sm text-gray-700 mb-4 last:mb-0">
                           The 85% reduction in errors and 40% improvement in processing speed demonstrate the tangible business impact, while the high user satisfaction scores show that the solution truly met user needs. This project positioned the private bank for future growth while making their current operations significantly more efficient and enjoyable.
+                        </p>
+                      </>
+                    ) : isSpittimeProject ? (
+                      <>
+                        <p className="text-sm text-gray-700 mb-4">
+                          The platform reduced court visits, generated significant legal fee savings, achieved high user satisfaction, and increased productive co-parent communication. One beta user noted: "This app saved my relationship with my ex-partner. We can actually focus on our kids now instead of fighting about logistics."
+                        </p>
+                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                          Additional benefits included reduced stress, better coordination, improved documentation, and stronger focus on children's wellbeing over conflict.
                         </p>
                       </>
                     ) : (
