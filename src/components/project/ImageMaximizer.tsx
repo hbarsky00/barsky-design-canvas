@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
-import ImageHeader from "./image-maximizer/ImageHeader";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
 import ZoomableImage from "./image-maximizer/ZoomableImage";
 import { useImageKeyboardNavigation } from "@/hooks/useImageKeyboardNavigation";
+import { Button } from "@/components/ui/button";
+import { ZoomIn, ZoomOut, Maximize, X } from "lucide-react";
 
 interface ImageMaximizerProps {
   image: string;
@@ -100,17 +101,59 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
         <DialogTitle className="sr-only">Image: {title}</DialogTitle>
         <DialogDescription className="sr-only">Full size view of the image</DialogDescription>
         
-        <ImageHeader
-          title={title}
-          currentIndex={currentIndex}
-          totalImages={imageList.length}
-          scale={scale}
-          onZoomIn={handleZoomIn}
-          onZoomOut={handleZoomOut}
-          onReset={handleReset}
-          onClose={onClose}
-          showTitle={!hideEditButton}
-        />
+        {/* Floating controls positioned over the image */}
+        <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleZoomOut}
+            disabled={scale <= 0.5}
+            title="Zoom Out"
+            className="h-10 w-10 bg-black/50 border-white/20 text-white hover:bg-black/70 [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          >
+            <ZoomOut className="h-5 w-5" />
+            <span className="sr-only">Zoom Out</span>
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleZoomIn}
+            disabled={scale >= 3}
+            title="Zoom In"
+            className="h-10 w-10 bg-black/50 border-white/20 text-white hover:bg-black/70 [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          >
+            <ZoomIn className="h-5 w-5" />
+            <span className="sr-only">Zoom In</span>
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleReset}
+            disabled={scale === 1}
+            title="Reset Zoom"
+            className="h-10 w-10 bg-black/50 border-white/20 text-white hover:bg-black/70 [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          >
+            <Maximize className="h-5 w-5" />
+            <span className="sr-only">Reset Zoom</span>
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={onClose}
+            title="Close"
+            className="h-10 w-10 bg-black/50 border-white/20 text-white hover:bg-black/70 [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          >
+            <X className="h-5 w-5" />
+            <span className="sr-only">Close</span>
+          </Button>
+        </div>
+
+        {/* Image counter for multiple images */}
+        {hasMultipleImages && (
+          <div className="absolute top-4 left-4 z-10 bg-black/50 text-white px-3 py-1 rounded-lg text-sm">
+            {currentIndex + 1} / {imageList.length}
+          </div>
+        )}
         
         <div className="flex-grow overflow-hidden bg-gray-50 flex items-center justify-center relative">
           <ZoomableImage 
