@@ -49,10 +49,14 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
     const imageToRemove = processImages[imageIndex];
     if (imageToRemove) {
       console.log('🗑️ Removing image:', imageToRemove);
-      // You can add logic here to actually remove the image from the project data
-      // For now, we'll just hide it by replacing with empty string
       handleSectionImageUpdate('process', imageToRemove, '');
     }
+  };
+
+  // Handle saving the editable research content
+  const handleResearchContentSave = (content: string) => {
+    console.log('💾 Saving research content:', content.substring(0, 100) + '...');
+    handleSectionContentSave('process', 'text', content, 'process_research_content');
   };
 
   return (
@@ -107,7 +111,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                 />
               </div>
               
-              {/* Show Splittime research content after first image */}
+              {/* Show Splittime research content after first image - now editable */}
               {index === 0 && isSpittimeProject && (
                 <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
@@ -115,15 +119,15 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                     
                     <div className="space-y-6">
                       <div>
-                        <p className="text-sm text-gray-700 mb-4">
-                          The main dashboard needed to provide instant visibility into all family activities while maintaining a neutral, non-confrontational interface. Parents could see schedules, messages, and child updates without the emotional triggers that often escalate conflicts.
-                        </p>
-                        
-                        <p className="text-sm text-gray-700 mb-4">
-                          Based on comprehensive research methodology that included 12 in-depth interviews with divorced and separated parents, 8 interviews with family counselors and mediators, a survey of over 150 parents currently using existing co-parenting tools, and competitive analysis of 8 existing co-parenting applications, several critical pain points emerged. The research revealed that parents consistently struggle with emotional triggers embedded in standard messaging systems, face scheduling chaos without centralized coordination systems, encounter ongoing financial disputes over child-related expenses, experience documentation issues that lead to critical information loss, and worry about their children being caught in the middle of parental conflicts.
-                        </p>
-                        
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">Three distinct user personas crystallized from this research: the Overwhelmed Parent who struggles to balance demanding work schedules with complex childcare coordination needs, the Detail-Oriented Parent who requires comprehensive tracking and documentation capabilities to manage every aspect of co-parenting arrangements, and the Conflict-Avoidant Parent who desperately seeks solutions that minimize direct communication with their ex-partner while still maintaining effective coordination for their children's wellbeing.</p>
+                        <EnhancedContentEditor
+                          content="Based on comprehensive research methodology that included 12 in-depth interviews with divorced and separated parents, 8 interviews with family counselors and mediators, a survey of over 150 parents currently using existing co-parenting tools, and competitive analysis of 8 existing co-parenting applications, several critical pain points emerged. The research revealed that parents consistently struggle with emotional triggers embedded in standard messaging systems, face scheduling chaos without centralized coordination systems, encounter ongoing financial disputes over child-related expenses, experience documentation issues that lead to critical information loss, and worry about their children being caught in the middle of parental conflicts.
+
+Three distinct user personas crystallized from this research: the Overwhelmed Parent who struggles to balance demanding work schedules with complex childcare coordination needs, the Detail-Oriented Parent who requires comprehensive tracking and documentation capabilities to manage every aspect of co-parenting arrangements, and the Conflict-Avoidant Parent who desperately seeks solutions that minimize direct communication with their ex-partner while still maintaining effective coordination for their children's wellbeing."
+                          contentType="section"
+                          onSave={handleResearchContentSave}
+                          projectId={projectId}
+                          className="text-sm text-gray-700"
+                        />
                       </div>
                     </div>
                   </div>
