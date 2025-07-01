@@ -28,7 +28,7 @@ const ImageUploadButton: React.FC<ImageUploadButtonProps> = ({
         onClick={onImageAdd}
         variant="outline"
         size="sm"
-        className="flex items-center space-x-2"
+        className="flex items-center space-x-2 [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         disabled={isDisabled || !projectId}
       >
         <Plus className="h-4 w-4" />

@@ -27,23 +27,25 @@ const Navigation: React.FC<NavigationProps> = ({
 
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
+    const iconProps = "h-4 w-4 mr-1 stroke-2 stroke-current fill-none";
+    
     switch (linkName.toLowerCase()) {
       case "home":
-        return <Home className="h-4 w-4 mr-1" />;
+        return <Home className={iconProps} />;
       case "projects":
-        return <Briefcase className="h-4 w-4 mr-1" />;
+        return <Briefcase className={iconProps} />;
       case "about":
-        return <User className="h-4 w-4 mr-1" />;
+        return <User className={iconProps} />;
       case "services":
-        return <Briefcase className="h-4 w-4 mr-1" />;
+        return <Briefcase className={iconProps} />;
       case "store":
-        return <Store className="h-4 w-4 mr-1" />;
+        return <Store className={iconProps} />;
       case "blog":
-        return <BookOpen className="h-4 w-4 mr-1" />;
+        return <BookOpen className={iconProps} />;
       case "resume":
-        return <FileText className="h-4 w-4 mr-1" />;
+        return <FileText className={iconProps} />;
       case "contact":
-        return <Mail className="h-4 w-4 mr-1" />;
+        return <Mail className={iconProps} />;
       default:
         return null;
     }
@@ -91,6 +93,7 @@ const Navigation: React.FC<NavigationProps> = ({
       <Button
         onClick={openCalendly}
         size="sm"
+        className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
       >
         <Calendar className="h-4 w-4 mr-1" />
         Book Call

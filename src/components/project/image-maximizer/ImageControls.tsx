@@ -26,8 +26,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomOut}
         disabled={scale <= 0.5}
         title="Zoom Out"
+        className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
       >
-        <ZoomOut className="h-4 w-4" />
+        <ZoomOut className="h-5 w-5" />
         <span className="sr-only">Zoom Out</span>
       </Button>
       <Button
@@ -36,8 +37,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomIn}
         disabled={scale >= 3}
         title="Zoom In"
+        className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
       >
-        <ZoomIn className="h-4 w-4" />
+        <ZoomIn className="h-5 w-5" />
         <span className="sr-only">Zoom In</span>
       </Button>
       <Button
@@ -46,8 +48,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onReset}
         disabled={scale === 1}
         title="Reset Zoom"
+        className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
       >
-        <Maximize className="h-4 w-4" />
+        <Maximize className="h-5 w-5" />
         <span className="sr-only">Reset Zoom</span>
       </Button>
       <Button
@@ -55,8 +58,9 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         size="icon"
         onClick={onClose}
         title="Close"
+        className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
       >
-        <X className="h-4 w-4" />
+        <X className="h-5 w-5" />
         <span className="sr-only">Close</span>
       </Button>
     </div>

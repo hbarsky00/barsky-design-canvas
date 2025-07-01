@@ -21,7 +21,7 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
           href="https://www.linkedin.com/in/hiram-barsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-3 hover:bg-blue-100/80 rounded-lg transition-all duration-300 floating-element"
+          className="glass-button p-3 hover:bg-blue-100/80 rounded-lg transition-all duration-300 floating-element [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
           <Linkedin className="h-5 w-5 text-gray-600" />
         </a>
@@ -29,7 +29,7 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
           href="https://figma.com/@hirambarsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-3 hover:bg-purple-100/80 rounded-lg transition-all duration-300 floating-element"
+          className="glass-button p-3 hover:bg-purple-100/80 rounded-lg transition-all duration-300 floating-element [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
           <Figma className="h-5 w-5 text-gray-600" />
         </a>
@@ -37,7 +37,7 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
           href="https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk"
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-3 hover:bg-green-100/80 rounded-lg transition-all duration-300 floating-element"
+          className="glass-button p-3 hover:bg-green-100/80 rounded-lg transition-all duration-300 floating-element [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
           <Download className="h-5 w-5 text-gray-600" />
         </a>

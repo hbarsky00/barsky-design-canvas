@@ -33,7 +33,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="default"
           size="lg" 
           asChild
-          className="w-full sm:w-auto relative overflow-hidden group"
+          className="w-full sm:w-auto relative overflow-hidden group [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
           <Link to="/projects">
             <Sparkles className="mr-2 h-4 w-4" />
@@ -51,7 +51,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="outline"
           size="lg"
           onClick={scrollToContact}
-          className="w-full sm:w-auto relative overflow-hidden group"
+          className="w-full sm:w-auto relative overflow-hidden group [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
           <span className="font-medium">Start Your Project</span>
         </Button>
