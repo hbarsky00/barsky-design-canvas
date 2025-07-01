@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
@@ -77,12 +78,12 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                     <div className="space-y-6">
                       <div>
                         <p className="text-sm text-gray-700 mb-4">
-                          The platform's AI-powered search functionality addressed the critical problem of users being unable to efficiently find specific loans or borrower information within Excel spreadsheets. Drawing inspiration from Bloomberg's search interface, I implemented a predictive search system with multiple categories that includes predictive text suggestions, category-based filtering for deals, borrowers, and investors, advanced search parameters, and real-time results updating. This comprehensive search solution transformed how users interact with loan data, making information retrieval intuitive and fast.
+                          The platform's search functionality addressed the critical problem of users being unable to efficiently find specific loans or borrower information within Excel spreadsheets. Drawing inspiration from Bloomberg's search interface, I implemented a predictive search system with multiple categories that includes predictive text suggestions, category-based filtering for deals, borrowers, and investors, advanced search parameters, and real-time results updating. This comprehensive search solution transformed how users interact with loan data, making information retrieval intuitive and fast.
                         </p>
                         
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">Dynamic order book management was another cornerstone feature that solved the complex and error-prone limit management processes that plagued the Excel-based system. The new intuitive interface allows users to seamlessly add and remove limits, edit existing limits without data loss, view real-time total amount calculations, and receive visual feedback for all changes. Complementing this was the flexible deal management system that replaced static Excel sheets with dynamic functionality offering both card views for quick overviews and grid views for detailed analysis, along with real-time collaboration tools and integrated communication features. 
+                        <p className="text-sm text-gray-700 mb-4">Dynamic order book management was another cornerstone feature that solved the complex and error-prone limit management processes that plagued the Excel-based system. The new intuitive interface allows users to seamlessly add and remove limits, edit existing limits without data loss, view real-time total amount calculations, leave comments and receive visual feedback for all changes. Complementing this was the flexible deal management system that replaced static Excel sheets with dynamic functionality offering both card views for quick overviews and grid views for detailed analysis, along with real-time collaboration tools and integrated communication features.</p>
 
-Additionally, the advanced search and filtering capabilities provide smart defaults showing the most recent deals, borrowers, and investors, while offering advanced filtering options, saved search preferences, and quick access to frequently used searches.</p>
+                        <p className="text-sm text-gray-700 mb-4 last:mb-0">Additionally, the advanced search and filtering capabilities provide smart defaults showing the most recent deals, borrowers, and investors, while offering advanced filtering options, saved search preferences, and quick access to frequently used searches.</p>
                       </div>
                     </div>
                   </div>
