@@ -15,6 +15,7 @@ interface ImageMaximizerProps {
   onClose: () => void;
   imageList?: string[];
   currentIndex?: number;
+  hideEditButton?: boolean;
 }
 
 const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
@@ -24,6 +25,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   onClose,
   imageList = [],
   currentIndex = 0,
+  hideEditButton = false,
 }) => {
   const [scale, setScale] = useState(1);
   const { maximizeImage } = useImageMaximizer();
@@ -107,6 +109,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
           onZoomOut={handleZoomOut}
           onReset={handleReset}
           onClose={onClose}
+          showTitle={!hideEditButton}
         />
         
         <div className="flex-grow overflow-hidden bg-gray-50 flex items-center justify-center relative">

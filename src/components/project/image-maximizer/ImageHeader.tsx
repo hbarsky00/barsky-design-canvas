@@ -12,6 +12,7 @@ interface ImageHeaderProps {
   onZoomOut: () => void;
   onReset: () => void;
   onClose: () => void;
+  showTitle?: boolean;
 }
 
 const ImageHeader: React.FC<ImageHeaderProps> = ({
@@ -23,6 +24,7 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
   onZoomOut,
   onReset,
   onClose,
+  showTitle = true,
 }) => {
   const hasMultipleImages = totalImages && totalImages > 1;
 
@@ -30,7 +32,9 @@ const ImageHeader: React.FC<ImageHeaderProps> = ({
     <div className="flex items-center justify-between p-4 border-b">
       <h3 className="text-lg font-medium flex items-center gap-2">
         <Image className="h-5 w-5" />
-        <span className="line-clamp-1">{title}</span>
+        {showTitle && (
+          <span className="line-clamp-1">{title}</span>
+        )}
         {hasMultipleImages && (
           <span className="text-sm text-gray-500 ml-2">
             {(currentIndex ?? 0) + 1} / {totalImages}
