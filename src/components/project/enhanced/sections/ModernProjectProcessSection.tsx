@@ -45,7 +45,6 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
   // Check if this is the splittime or herbalink project
   const isSpittimeProject = projectId === 'splittime';
   const isHerbalinkProject = projectId === 'herbalink';
-  const isInvestorProject = projectId === 'investor-loan-app';
 
   const handleImageRemove = (imageIndex: number) => {
     console.log('🗑️ Removing process image at index:', imageIndex);
@@ -84,21 +83,6 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         className="mb-8"
         projectId={projectId}
       />
-
-      {/* Research Box - Only show for investor loan app */}
-      {isInvestorProject && (
-        <div className="mb-8 p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-          <div className="prose prose-lg text-gray-700 leading-relaxed">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Research & Analysis</strong></h3>
-            <p className="text-sm text-gray-700 mb-4">
-              I conducted extensive research with the banking team to understand their current pain points, identifying critical issues including manual data entry errors causing compliance issues, time-consuming Excel-based tracking processes, difficulty collaborating on complex deals, limited search and filtering capabilities, and email-based communication creating information silos. Through this research, I developed three key user personas: Investment Managers who need quick access to deal information and real-time updates, Loan Officers who require efficient deal processing and client communication tools, and Compliance Officers who need accurate reporting and audit trails.
-            </p>
-            <p className="text-sm text-gray-700 mb-4 last:mb-0">
-              My competitive analysis focused on existing financial platforms, with particular emphasis on Bloomberg's search functionality, which became a key inspiration for our AI-powered search feature. This analysis revealed opportunities to modernize traditional banking workflows while maintaining the professional standards and regulatory compliance requirements that are essential in the financial services industry.
-            </p>
-          </div>
-        </div>
-      )}
 
       <ProcessImageGallery
         processImages={processImages}
