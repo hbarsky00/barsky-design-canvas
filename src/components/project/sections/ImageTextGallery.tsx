@@ -17,6 +17,7 @@ interface ImageTextGalleryProps {
   projectId?: string;
   sectionName?: string;
   onTextSave?: (textKey: string, content: string) => void;
+  onImageRemove?: (index: number) => void;
   className?: string;
 }
 
@@ -26,11 +27,18 @@ const ImageTextGallery: React.FC<ImageTextGalleryProps> = ({
   projectId,
   sectionName,
   onTextSave,
+  onImageRemove,
   className = ""
 }) => {
   const handleTextSave = (textKey: string, content: string) => {
     if (onTextSave) {
       onTextSave(textKey, content);
+    }
+  };
+
+  const handleImageRemove = (itemIndex: number) => {
+    if (onImageRemove) {
+      onImageRemove(itemIndex);
     }
   };
 
@@ -53,7 +61,8 @@ const ImageTextGallery: React.FC<ImageTextGalleryProps> = ({
                 className="rounded-lg shadow-elevated w-full"
                 projectId={projectId}
                 hideEditButton={false}
-                allowRemove={false}
+                allowRemove={true}
+                onImageRemove={() => handleImageRemove(index)}
               />
             </div>
           ) : (
