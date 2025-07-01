@@ -31,9 +31,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <ProfileAvatar />
-            <div className="hidden sm:block">
-              <AnimatedLogo />
-            </div>
+            <AnimatedLogo />
           </div>
 
           <div className="flex items-center space-x-2">
