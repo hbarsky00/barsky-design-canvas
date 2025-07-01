@@ -131,11 +131,12 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const imageTitle = alt || 'Image';
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} data-lovable-element="image-container">
       <div 
         className="relative group overflow-hidden cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        data-lovable-editable="image-wrapper"
       >
         {imageError ? (
           <ImageErrorFallback 
@@ -152,9 +153,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             onClick={handleMaximize}
             onError={handleImageError}
             onLoad={handleImageLoad}
+            data-lovable-editable="image"
+            data-image-src={currentSrc}
+            data-project-id={projectId}
             style={{ 
               opacity: isUploading ? 0.7 : 1,
-              transition: 'opacity 0.3s ease'
+              transition: 'opacity 0.3s ease',
+              display: 'block',
+              maxWidth: '100%',
+              height: 'auto'
             }}
           />
         )}

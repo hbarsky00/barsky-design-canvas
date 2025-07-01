@@ -32,23 +32,33 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
         className={`absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center ${
           isHovered && !imageError ? 'opacity-100' : 'opacity-0'
         }`}
+        style={{ pointerEvents: isHovered ? 'auto' : 'none' }}
       >
         <button
           onClick={onMaximize}
           className="bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
           title="View full size"
+          style={{ pointerEvents: 'auto' }}
         >
           <Maximize2 size={20} />
         </button>
       </div>
 
-      {/* Edit controls overlay - only visible in dev mode */}
+      {/* Edit controls overlay - enhanced for better Lovable integration */}
       {showEditingControls && !hideEditButton && (
-        <div className={`absolute top-2 right-2 flex space-x-2 transition-opacity duration-300 ${
-          isHovered || isUploading ? 'opacity-100' : 'opacity-0'
-        }`}>
-          {/* Replace image button */}
-          <label className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg cursor-pointer transition-all duration-200 hover:scale-110">
+        <div 
+          className={`absolute top-2 right-2 flex space-x-2 transition-opacity duration-300 ${
+            isHovered || isUploading ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ pointerEvents: 'auto', zIndex: 10 }}
+        >
+          {/* Replace image button - enhanced for Lovable edit detection */}
+          <label 
+            className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg cursor-pointer transition-all duration-200 hover:scale-110"
+            data-lovable-editable="image-replace"
+            data-action="replace-image"
+            style={{ pointerEvents: 'auto' }}
+          >
             <Upload size={16} />
             <input
               type="file"
@@ -56,16 +66,20 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
               onChange={onImageReplace}
               className="hidden"
               disabled={isUploading}
+              data-lovable-input="image-upload"
             />
           </label>
 
-          {/* Remove image button */}
+          {/* Remove image button - enhanced for Lovable integration */}
           {allowRemove && onImageRemove && (
             <button
               onClick={onImageRemove}
               className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
               title="Remove image"
               disabled={isUploading}
+              data-lovable-editable="image-remove"
+              data-action="remove-image"
+              style={{ pointerEvents: 'auto' }}
             >
               <Trash2 size={16} />
             </button>
