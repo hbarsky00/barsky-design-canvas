@@ -127,6 +127,9 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setIsUploading(false);
   };
 
+  // Use alt text as the title instead of caption to avoid HTML
+  const imageTitle = alt || 'Image';
+
   return (
     <div className={`relative ${className}`}>
       <div 
@@ -143,6 +146,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           <img
             src={currentSrc}
             alt={alt}
+            title={imageTitle}
             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             loading={priority ? "eager" : "lazy"}
             onClick={handleMaximize}
