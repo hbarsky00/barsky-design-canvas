@@ -97,7 +97,10 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
 
             {details.projectLink && (
               <div className="flex justify-center pt-4">
-                <Button asChild>
+                <Button 
+                  asChild
+                  variant="default"
+                >
                   <a
                     href={details.projectLink}
                     target="_blank"

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -5,6 +6,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 
@@ -93,15 +95,19 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
 
             {details.projectLink && (
               <div className="flex justify-center pt-4">
-                <a
-                  href={details.projectLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-accent inline-flex items-center px-6 py-3 border border-blue-300/30 text-blue-800 font-medium rounded-lg transition-all duration-300 hover:bg-blue-500/30 hover:scale-105 shadow-elevated backdrop-blur-md"
+                <Button 
+                  asChild
+                  variant="default"
                 >
-                  View Live Project
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
+                  <a
+                    href={details.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Live Project
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
               </div>
             )}
           </motion.div>

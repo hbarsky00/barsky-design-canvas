@@ -7,6 +7,8 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 
 interface EnhancedProjectHeaderProps {
   project: ProjectProps;
@@ -19,6 +21,12 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
   details,
   imageCaptions
 }) => {
+  const { handleSectionContentSave } = useSimplifiedContentEditor({ 
+    projectId: project.id || '' 
+  });
+
+  console.log('🎬 EnhancedProjectHeader: Rendering with proper spacing');
+
   return (
     <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
       {/* Background Pattern */}
@@ -85,6 +93,7 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
               <div className="flex items-center space-x-4">
                 <Button 
                   asChild
+                  variant="default"
                   className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
                 >
                   <a

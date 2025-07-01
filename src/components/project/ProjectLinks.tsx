@@ -14,6 +14,7 @@ const ProjectLinks: React.FC<ProjectLinksProps> = ({ projectLink }) => {
     <div className="flex flex-wrap gap-4 mb-8">
       <Button 
         asChild
+        variant="default"
         className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
       >
         <a
