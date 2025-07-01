@@ -164,6 +164,35 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                           </p>
                         </div>
                       </div>
+
+                      {/* Design System Image */}
+                      <div className="mt-6">
+                        <h4 className="text-lg font-medium text-gray-800 mb-3">Design System</h4>
+                        <div className="glass-card p-4 layered-depth">
+                          <EnhancedContentEditor
+                            content=""
+                            contentType="section"
+                            onSave={() => {}}
+                            images={["/lovable-uploads/a8ef8ea7-ae55-4f15-8f9b-13dcf5efe9d1.png"]}
+                            onImageAdd={(imageSrc) => {
+                              console.log('➕ Adding design system image:', imageSrc);
+                            }}
+                            onImageReplace={(imgIndex, newSrc) => {
+                              console.log('🔄 Replacing design system image:', newSrc);
+                            }}
+                            onImageRemove={() => {}}
+                            maxImages={1}
+                            projectId={projectId}
+                            imageCaptions={{
+                              "/lovable-uploads/a8ef8ea7-ae55-4f15-8f9b-13dcf5efe9d1.png": "Herbalink comprehensive design system emphasizing trust, accessibility, and natural wellness through calming colors and user-friendly typography"
+                            }}
+                            className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                          />
+                        </div>
+                        <p className="text-sm text-gray-700 mt-3">
+                          Created a comprehensive design system built for natural wellness experiences, emphasizing trust, accessibility, and user empowerment through carefully chosen color palettes and typography that reflect the organic nature of herbal wellness.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
