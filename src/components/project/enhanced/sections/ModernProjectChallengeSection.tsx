@@ -29,6 +29,9 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
     // This could involve updating the project details or triggering a refresh
   };
 
+  // Check if this is the splittime project
+  const isSpittimeProject = projectId === 'splittime';
+
   return (
     <motion.section
       key={`challenge-${componentKey}`}
@@ -56,21 +59,44 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
 
       {/* Challenge Gallery Content */}
       {details.challengeGalleryContent && details.challengeGalleryContent.length > 0 && (
-        <div className="mt-12">
-          <ImageTextGallery
-            items={details.challengeGalleryContent}
-            imageCaptions={imageCaptions}
-            projectId={projectId}
-            sectionName="challenge"
-            onTextSave={(textKey, content) => {
-              console.log('💾 Saving challenge text:', textKey, content);
-              // Convert textKey to match the expected type union
-              const type = textKey.includes('text') ? 'text' as const : 'content' as const;
-              handleSectionContentSave('challenge', type, content);
-            }}
-            onImageRemove={handleImageRemove}
-            className="space-y-8"
-          />
+        <div className="mt-12 space-y-8">
+          {details.challengeGalleryContent.map((item, index) => (
+            <React.Fragment key={index}>
+              {/* Each Image */}
+              {item.type === 'image' && (
+                <div className="glass-card p-4 layered-depth">
+                  <EnhancedContentEditor
+                    content=""
+                    contentType="section"
+                    onSave={() => {}}
+                    images={[item.content]}
+                    onImageAdd={(imageSrc) => {
+                      console.log('➕ Adding image to challenge section:', imageSrc);
+                    }}
+                    onImageReplace={(imgIndex, newSrc) => {
+                      console.log('🔄 Replacing challenge image:', item.content, '->', newSrc);
+                    }}
+                    onImageRemove={() => handleImageRemove(index)}
+                    maxImages={1}
+                    projectId={projectId}
+                    imageCaptions={imageCaptions}
+                    className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                  />
+                </div>
+              )}
+              
+              {/* Show custom text after first image for Splittime project */}
+              {index === 0 && isSpittimeProject && (
+                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                  <div className="prose prose-lg text-gray-700 leading-relaxed">
+                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
+                      Key challenges include emotional triggers in messaging, scheduling chaos from lack of centralized systems, financial disputes over child expenses, documentation issues causing information loss, and children caught in parental conflicts.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       )}
     </motion.section>
