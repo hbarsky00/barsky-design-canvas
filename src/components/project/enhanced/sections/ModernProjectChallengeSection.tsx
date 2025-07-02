@@ -102,17 +102,17 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         projectId={projectId}
       />
 
-      {/* Challenge Gallery Images - remaining images after the first two */}
-      {challengeImages && challengeImages.length > 2 && (
+      {/* Challenge Gallery Images - for Splittime show remaining images after first two, for others show all */}
+      {challengeImages && challengeImages.length > 0 && (isSpittimeProject ? challengeImages.length > 2 : true) && (
         <div className="mt-12 space-y-8">
-          {challengeImages.slice(2).map((image, index) => (
-            <React.Fragment key={index + 2}>
+          {(isSpittimeProject ? challengeImages.slice(2) : challengeImages).map((image, index) => (
+            <React.Fragment key={isSpittimeProject ? index + 2 : index}>
               <MaximizableImage
                 src={image}
-                alt={imageCaptions[image] || `Challenge image ${index + 3}`}
-                caption={imageCaptions[image] || `Challenge image ${index + 3}`}
+                alt={imageCaptions[image] || `Challenge image ${isSpittimeProject ? index + 3 : index + 1}`}
+                caption={imageCaptions[image] || `Challenge image ${isSpittimeProject ? index + 3 : index + 1}`}
                 imageList={challengeImages}
-                currentIndex={index + 2}
+                currentIndex={isSpittimeProject ? index + 2 : index}
                 projectId={projectId}
                 className="w-full h-auto object-cover rounded-lg shadow-elevated-lg bg-white p-4"
               />
