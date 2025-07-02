@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface ModernProjectChallengeSectionProps {
   details: ProjectDetails;
@@ -60,28 +61,28 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* First image */}
           <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
-            <img
+            <MaximizableImage
               src={challengeImages[0]}
               alt={imageCaptions[challengeImages[0]] || 'Challenge image 1'}
+              caption={imageCaptions[challengeImages[0]] || 'Challenge image 1'}
+              imageList={challengeImages}
+              currentIndex={0}
+              projectId={projectId}
               className="w-full h-auto object-cover rounded-lg"
-              loading="lazy"
             />
-            <figcaption className="mt-3 text-sm text-gray-600 leading-relaxed">
-              {imageCaptions[challengeImages[0]] || 'Challenge image 1'}
-            </figcaption>
           </figure>
           
           {/* Second image */}
           <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
-            <img
+            <MaximizableImage
               src={challengeImages[1]}
               alt={imageCaptions[challengeImages[1]] || 'Challenge image 2'}
+              caption={imageCaptions[challengeImages[1]] || 'Challenge image 2'}
+              imageList={challengeImages}
+              currentIndex={1}
+              projectId={projectId}
               className="w-full h-auto object-cover rounded-lg"
-              loading="lazy"
             />
-            <figcaption className="mt-3 text-sm text-gray-600 leading-relaxed">
-              {imageCaptions[challengeImages[1]] || 'Challenge image 2'}
-            </figcaption>
           </figure>
         </div>
       )}
@@ -100,15 +101,15 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
           {challengeImages.slice(2).map((image, index) => (
             <React.Fragment key={index + 2}>
               <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
-                <img
+                <MaximizableImage
                   src={image}
                   alt={imageCaptions[image] || `Challenge image ${index + 3}`}
+                  caption={imageCaptions[image] || `Challenge image ${index + 3}`}
+                  imageList={challengeImages}
+                  currentIndex={index + 2}
+                  projectId={projectId}
                   className="w-full h-auto object-cover rounded-lg"
-                  loading="lazy"
                 />
-                <figcaption className="mt-3 text-sm text-gray-600 leading-relaxed">
-                  {imageCaptions[image] || `Challenge image ${index + 3}`}
-                </figcaption>
               </figure>
               
               {/* Show research box after first image for investor project */}
