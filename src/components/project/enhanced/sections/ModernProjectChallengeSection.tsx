@@ -59,45 +59,30 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
       {isSpittimeProject && challengeImages && challengeImages.length >= 2 && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* First image */}
-          <div className="glass-card p-4 layered-depth">
-            <EnhancedContentEditor
-              content=""
-              contentType="section"
-              onSave={() => {}}
-              images={[challengeImages[0]]}
-              onImageAdd={(imageSrc) => {
-                console.log('➕ Adding image to challenge section:', imageSrc);
-              }}
-              onImageReplace={(imgIndex, newSrc) => {
-                console.log('🔄 Replacing challenge image:', challengeImages[0], '->', newSrc);
-              }}
-              onImageRemove={() => handleImageRemove(0)}
-              maxImages={1}
-              projectId={projectId}
-              imageCaptions={imageCaptions}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+          <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
+            <img
+              src={challengeImages[0]}
+              alt={imageCaptions[challengeImages[0]] || 'Challenge image 1'}
+              className="w-full h-auto object-cover rounded-lg"
+              loading="lazy"
             />
-          </div>
+            <figcaption className="mt-3 text-sm text-gray-600 leading-relaxed">
+              {imageCaptions[challengeImages[0]] || 'Challenge image 1'}
+            </figcaption>
+          </figure>
+          
           {/* Second image */}
-          <div className="glass-card p-4 layered-depth">
-            <EnhancedContentEditor
-              content=""
-              contentType="section"
-              onSave={() => {}}
-              images={[challengeImages[1]]}
-              onImageAdd={(imageSrc) => {
-                console.log('➕ Adding image to challenge section:', imageSrc);
-              }}
-              onImageReplace={(imgIndex, newSrc) => {
-                console.log('🔄 Replacing challenge image:', challengeImages[1], '->', newSrc);
-              }}
-              onImageRemove={() => handleImageRemove(1)}
-              maxImages={1}
-              projectId={projectId}
-              imageCaptions={imageCaptions}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+          <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
+            <img
+              src={challengeImages[1]}
+              alt={imageCaptions[challengeImages[1]] || 'Challenge image 2'}
+              className="w-full h-auto object-cover rounded-lg"
+              loading="lazy"
             />
-          </div>
+            <figcaption className="mt-3 text-sm text-gray-600 leading-relaxed">
+              {imageCaptions[challengeImages[1]] || 'Challenge image 2'}
+            </figcaption>
+          </figure>
         </div>
       )}
       
@@ -114,26 +99,17 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         <div className="mt-12 space-y-8">
           {challengeImages.slice(2).map((image, index) => (
             <React.Fragment key={index + 2}>
-              {/* Each Image */}
-              <div className="glass-card p-4 layered-depth">
-                <EnhancedContentEditor
-                  content=""
-                  contentType="section"
-                  onSave={() => {}}
-                  images={[image]}
-                  onImageAdd={(imageSrc) => {
-                    console.log('➕ Adding image to challenge section:', imageSrc);
-                  }}
-                  onImageReplace={(imgIndex, newSrc) => {
-                    console.log('🔄 Replacing challenge image:', image, '->', newSrc);
-                  }}
-                  onImageRemove={() => handleImageRemove(index + 2)}
-                  maxImages={1}
-                  projectId={projectId}
-                  imageCaptions={imageCaptions}
-                  className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
+                <img
+                  src={image}
+                  alt={imageCaptions[image] || `Challenge image ${index + 3}`}
+                  className="w-full h-auto object-cover rounded-lg"
+                  loading="lazy"
                 />
-              </div>
+                <figcaption className="mt-3 text-sm text-gray-600 leading-relaxed">
+                  {imageCaptions[image] || `Challenge image ${index + 3}`}
+                </figcaption>
+              </figure>
               
               {/* Show research box after first image for investor project */}
               {index === 0 && isInvestorProject && (
