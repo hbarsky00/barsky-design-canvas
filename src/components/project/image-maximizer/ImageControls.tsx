@@ -27,8 +27,12 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomOut}
         disabled={scale <= 0.5}
         title="Zoom Out"
-        className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-800 disabled:bg-blue-300 border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white hover:text-white disabled:text-white transition-all duration-200 ease-in-out [&_svg]:stroke-white [&_svg]:fill-none"
-        style={{ backgroundColor: scale <= 0.5 ? '#93C5FD' : '#3B82F6' }}
+        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        style={{ 
+          backgroundColor: scale <= 0.5 ? '#93C5FD' : '#3B82F6',
+          width: '48px',
+          height: '48px'
+        }}
         onMouseEnter={(e) => {
           if (scale > 0.5) {
             e.currentTarget.style.backgroundColor = '#1E40AF';
@@ -40,7 +44,7 @@ const ImageControls: React.FC<ImageControlsProps> = ({
           }
         }}
       >
-        <Minus className="h-6 w-6 stroke-2 text-white" />
+        <Minus className="w-5 h-5 stroke-2 text-white" />
         <span className="sr-only">Zoom Out</span>
       </Button>
 
@@ -51,8 +55,12 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomIn}
         disabled={scale >= 3}
         title="Zoom In"
-        className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-800 disabled:bg-blue-300 border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white hover:text-white disabled:text-white transition-all duration-200 ease-in-out [&_svg]:stroke-white [&_svg]:fill-none"
-        style={{ backgroundColor: scale >= 3 ? '#93C5FD' : '#3B82F6' }}
+        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        style={{ 
+          backgroundColor: scale >= 3 ? '#93C5FD' : '#3B82F6',
+          width: '48px',
+          height: '48px'
+        }}
         onMouseEnter={(e) => {
           if (scale < 3) {
             e.currentTarget.style.backgroundColor = '#1E40AF';
@@ -64,7 +72,7 @@ const ImageControls: React.FC<ImageControlsProps> = ({
           }
         }}
       >
-        <Plus className="h-6 w-6 stroke-2 text-white" />
+        <Plus className="w-5 h-5 stroke-2 text-white" />
         <span className="sr-only">Zoom In</span>
       </Button>
 
@@ -75,8 +83,12 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onReset}
         disabled={scale === 1}
         title="Fit to Screen"
-        className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-800 disabled:bg-blue-300 border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white hover:text-white disabled:text-white transition-all duration-200 ease-in-out [&_svg]:stroke-white [&_svg]:fill-none"
-        style={{ backgroundColor: scale === 1 ? '#93C5FD' : '#3B82F6' }}
+        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        style={{ 
+          backgroundColor: scale === 1 ? '#93C5FD' : '#3B82F6',
+          width: '48px',
+          height: '48px'
+        }}
         onMouseEnter={(e) => {
           if (scale !== 1) {
             e.currentTarget.style.backgroundColor = '#1E40AF';
@@ -88,7 +100,7 @@ const ImageControls: React.FC<ImageControlsProps> = ({
           }
         }}
       >
-        <Maximize className="h-6 w-6 stroke-2 text-white" />
+        <Maximize className="w-5 h-5 stroke-2 text-white" />
         <span className="sr-only">Fit to Screen</span>
       </Button>
 
@@ -98,8 +110,12 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         size="icon"
         onClick={onClose}
         title="Close"
-        className="w-12 h-12 rounded-full border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white hover:text-white transition-all duration-200 ease-in-out [&_svg]:stroke-white [&_svg]:fill-none"
-        style={{ backgroundColor: '#3B82F6' }}
+        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        style={{ 
+          backgroundColor: '#3B82F6',
+          width: '48px',
+          height: '48px'
+        }}
         onMouseEnter={(e) => {
           e.currentTarget.style.backgroundColor = '#1E40AF';
         }}
@@ -107,7 +123,7 @@ const ImageControls: React.FC<ImageControlsProps> = ({
           e.currentTarget.style.backgroundColor = '#3B82F6';
         }}
       >
-        <X className="h-6 w-6 stroke-2 text-white" />
+        <X className="w-5 h-5 stroke-2 text-white" />
         <span className="sr-only">Close</span>
       </Button>
     </div>
