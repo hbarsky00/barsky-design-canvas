@@ -18,6 +18,8 @@ export const splittimeDetails: ProjectDetails = {
 
   // Manual captions for all images
   imageCaptions: {
+    "/lovable-uploads/028009a0-8ed7-4cf1-9155-1269a756bcb1.png": "Splittime app user flow diagram showing navigation paths for different user types",
+    "/lovable-uploads/a2a89b81-55de-4401-ba10-ce7b03e08e2a.png": "User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns",
     "/lovable-uploads/9ffb7140-e75f-4bd2-bc71-39e527664cc1.png": "User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns",
     "/lovable-uploads/39924843-58df-42d8-918b-f8a7cffa124e.png": "Splittime app user flow diagram showing navigation paths for different user types",
     "/lovable-uploads/4edbc00b-80df-4dcd-bf13-ef4526e23d80.png": "Splittime co-parenting app interface showing alerts dashboard and notifications panel",
@@ -50,13 +52,13 @@ export const splittimeDetails: ProjectDetails = {
   challengeGalleryContent: [
     {
       type: 'image',
-      content: '/lovable-uploads/9ffb7140-e75f-4bd2-bc71-39e527664cc1.png',
-      caption: 'User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns'
+      content: '/lovable-uploads/028009a0-8ed7-4cf1-9155-1269a756bcb1.png',
+      caption: 'Splittime app user flow diagram showing navigation paths for different user types'
     },
     {
       type: 'image',
-      content: '/lovable-uploads/39924843-58df-42d8-918b-f8a7cffa124e.png',
-      caption: 'Splittime app user flow diagram showing navigation paths for different user types'
+      content: '/lovable-uploads/a2a89b81-55de-4401-ba10-ce7b03e08e2a.png',
+      caption: 'User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns'
     },
     {
       type: 'image',
@@ -104,6 +106,8 @@ export const splittimeDetails: ProjectDetails = {
   ],
 
   availableImages: [
+    "/lovable-uploads/028009a0-8ed7-4cf1-9155-1269a756bcb1.png",
+    "/lovable-uploads/a2a89b81-55de-4401-ba10-ce7b03e08e2a.png",
     "/lovable-uploads/9ffb7140-e75f-4bd2-bc71-39e527664cc1.png",
     "/lovable-uploads/39924843-58df-42d8-918b-f8a7cffa124e.png",
     "/lovable-uploads/4edbc00b-80df-4dcd-bf13-ef4526e23d80.png",
