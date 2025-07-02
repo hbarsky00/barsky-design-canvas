@@ -134,8 +134,58 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         <div className="mt-12 space-y-8">
           {details.challengeGalleryContent.map((item, index) => (
             <React.Fragment key={index}>
-              {/* Each Image */}
-              {item.type === 'image' && (
+              {/* Special handling for first two images in Splittime - display side by side */}
+              {item.type === 'image' && isSpittimeProject && index < 2 && (
+                <>
+                  {index === 0 && (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {/* First image */}
+                      <div className="glass-card p-4 layered-depth">
+                        <EnhancedContentEditor
+                          content=""
+                          contentType="section"
+                          onSave={() => {}}
+                          images={[item.content]}
+                          onImageAdd={(imageSrc) => {
+                            console.log('➕ Adding image to challenge section:', imageSrc);
+                          }}
+                          onImageReplace={(imgIndex, newSrc) => {
+                            console.log('🔄 Replacing challenge image:', item.content, '->', newSrc);
+                          }}
+                          onImageRemove={() => handleImageRemove(index)}
+                          maxImages={1}
+                          projectId={projectId}
+                          imageCaptions={imageCaptions}
+                          className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                        />
+                      </div>
+                      {/* Second image */}
+                      <div className="glass-card p-4 layered-depth">
+                        <EnhancedContentEditor
+                          content=""
+                          contentType="section"
+                          onSave={() => {}}
+                          images={[details.challengeGalleryContent[1].content]}
+                          onImageAdd={(imageSrc) => {
+                            console.log('➕ Adding image to challenge section:', imageSrc);
+                          }}
+                          onImageReplace={(imgIndex, newSrc) => {
+                            console.log('🔄 Replacing challenge image:', details.challengeGalleryContent[1].content, '->', newSrc);
+                          }}
+                          onImageRemove={() => handleImageRemove(1)}
+                          maxImages={1}
+                          projectId={projectId}
+                          imageCaptions={imageCaptions}
+                          className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+              
+              {/* Regular image display for other projects or images after the first two */}
+              {item.type === 'image' && (!isSpittimeProject || index >= 2) && (
                 <div className="glass-card p-4 layered-depth">
                   <EnhancedContentEditor
                     content=""
@@ -157,8 +207,8 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                 </div>
               )}
               
-              {/* Show custom text after first image for Splittime project */}
-              {index === 0 && isSpittimeProject && (
+              {/* Show custom text after third image (index 2) for Splittime project */}
+              {index === 2 && isSpittimeProject && (
                 <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     <p className="text-sm text-gray-700 mb-4 last:mb-0">
