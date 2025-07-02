@@ -46,14 +46,12 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         
         {/* Image after header, before content */}
         {processBeforeHeaderImage && (
-          <div className="mb-8">
-            <MaximizableImage
-              src={processBeforeHeaderImage}
-              alt={imageCaptions[processBeforeHeaderImage] || "Process overview"}
-              caption={imageCaptions[processBeforeHeaderImage]}
-              className="rounded-lg shadow-lg"
-            />
-          </div>
+          <MaximizableImage
+            src={processBeforeHeaderImage}
+            alt={imageCaptions[processBeforeHeaderImage] || "Process overview"}
+            caption={imageCaptions[processBeforeHeaderImage]}
+            className="rounded-lg shadow-lg mb-8"
+          />
         )}
         
         <div className="prose prose-lg text-gray-600 leading-relaxed">
@@ -66,14 +64,12 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         
         {/* Image after content */}
         {processImage && (
-          <div className="mt-8">
-            <MaximizableImage
-              src={processImage}
-              alt={imageCaptions[processImage] || "Process details"}
-              caption={imageCaptions[processImage]}
-              className="rounded-lg shadow-lg"
-            />
-          </div>
+          <MaximizableImage
+            src={processImage}
+            alt={imageCaptions[processImage] || "Process details"}
+            caption={imageCaptions[processImage]}
+            className="rounded-lg shadow-lg mt-8"
+          />
         )}
       </div>
 

@@ -61,19 +61,17 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
         <div className="space-y-6">
           {/* First image */}
           {images[0] && (
-            <div className="glass-card p-4 layered-depth">
-              <MaximizableImage
-                src={images[0]}
-                alt={`${title} image 1`}
-                caption={imageCaptions[images[0]] || `${title} supporting image`}
-                imageList={images}
-                currentIndex={0}
-                className="rounded-lg shadow-elevated w-full"
-                projectId={projectId}
-                hideEditButton={false}
-                allowRemove={false}
-              />
-            </div>
+            <MaximizableImage
+              src={images[0]}
+              alt={`${title} image 1`}
+              caption={imageCaptions[images[0]] || `${title} supporting image`}
+              imageList={images}
+              currentIndex={0}
+              className="rounded-lg shadow-elevated w-full glass-card layered-depth"
+              projectId={projectId}
+              hideEditButton={false}
+              allowRemove={false}
+            />
           )}
 
           {/* Additional text between images */}
@@ -89,19 +87,18 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
 
           {/* Remaining images */}
           {images.slice(1).map((imageSrc, index) => (
-            <div key={index + 1} className="glass-card p-4 layered-depth">
-              <MaximizableImage
-                src={imageSrc}
-                alt={`${title} image ${index + 2}`}
-                caption={imageCaptions[imageSrc] || `${title} supporting image`}
-                imageList={images}
-                currentIndex={index + 1}
-                className="rounded-lg shadow-elevated w-full"
-                projectId={projectId}
-                hideEditButton={false}
-                allowRemove={false}
-              />
-            </div>
+            <MaximizableImage
+              key={index + 1}
+              src={imageSrc}
+              alt={`${title} image ${index + 2}`}
+              caption={imageCaptions[imageSrc] || `${title} supporting image`}
+              imageList={images}
+              currentIndex={index + 1}
+              className="rounded-lg shadow-elevated w-full glass-card layered-depth"
+              projectId={projectId}
+              hideEditButton={false}
+              allowRemove={false}
+            />
           ))}
         </div>
       ) : null}

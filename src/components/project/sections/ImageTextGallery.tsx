@@ -53,18 +53,16 @@ const ImageTextGallery: React.FC<ImageTextGalleryProps> = ({
           transition={{ duration: 0.6, delay: index * 0.1 }}
         >
           {item.type === 'image' ? (
-            <div className="glass-card p-4 layered-depth">
-              <MaximizableImage
-                src={item.content}
-                alt={item.caption || `${sectionName} image ${index + 1}`}
-                caption={item.caption || imageCaptions[item.content] || `${sectionName} supporting image`}
-                className="rounded-lg shadow-elevated w-full"
-                projectId={projectId}
-                hideEditButton={false}
-                allowRemove={true}
-                onImageRemove={() => handleImageRemove(index)}
-              />
-            </div>
+            <MaximizableImage
+              src={item.content}
+              alt={item.caption || `${sectionName} image ${index + 1}`}
+              caption={item.caption || imageCaptions[item.content] || `${sectionName} supporting image`}
+              className="rounded-lg shadow-elevated w-full glass-card layered-depth"
+              projectId={projectId}
+              hideEditButton={false}
+              allowRemove={true}
+              onImageRemove={() => handleImageRemove(index)}
+            />
           ) : (
             <TextSection
               content={item.content}

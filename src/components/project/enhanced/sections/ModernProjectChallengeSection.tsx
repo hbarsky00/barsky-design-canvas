@@ -96,17 +96,15 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         <div className="mt-12 space-y-8">
           {challengeImages.slice(2).map((image, index) => (
             <React.Fragment key={index + 2}>
-              <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
-                <MaximizableImage
-                  src={image}
-                  alt={imageCaptions[image] || `Challenge image ${index + 3}`}
-                  caption={imageCaptions[image] || `Challenge image ${index + 3}`}
-                  imageList={challengeImages}
-                  currentIndex={index + 2}
-                  projectId={projectId}
-                  className="w-full h-auto object-cover rounded-lg"
-                />
-              </figure>
+              <MaximizableImage
+                src={image}
+                alt={imageCaptions[image] || `Challenge image ${index + 3}`}
+                caption={imageCaptions[image] || `Challenge image ${index + 3}`}
+                imageList={challengeImages}
+                currentIndex={index + 2}
+                projectId={projectId}
+                className="w-full h-auto object-cover rounded-lg shadow-elevated-lg bg-white p-4"
+              />
               
               {/* Show research box after first image for investor project */}
               {index === 0 && isInvestorProject && (

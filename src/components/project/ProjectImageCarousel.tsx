@@ -30,8 +30,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   };
 
   return (
-    <div className="relative glass-card p-4 layered-depth">
-      <div className="relative overflow-hidden rounded-lg">
+    <div className="relative">
+      <div className="relative overflow-hidden rounded-lg glass-card layered-depth">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}

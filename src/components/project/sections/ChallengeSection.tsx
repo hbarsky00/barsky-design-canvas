@@ -45,16 +45,14 @@ const ChallengeSection: React.FC<ChallengeSectionProps> = ({
           {challengeGalleryImages.map((image, index) => (
             <React.Fragment key={index}>
               {/* Each Image */}
-              <div className="glass-card p-4 layered-depth">
-                <MaximizableImage
-                  src={image}
-                  alt={imageCaptions[image] || `Challenge image ${index + 1}`}
-                  caption={imageCaptions[image] || `Challenge image ${index + 1}`}
-                  imageList={challengeGalleryImages}
-                  currentIndex={index}
-                  className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                />
-              </div>
+              <MaximizableImage
+                src={image}
+                alt={imageCaptions[image] || `Challenge image ${index + 1}`}
+                caption={imageCaptions[image] || `Challenge image ${index + 1}`}
+                imageList={challengeGalleryImages}
+                currentIndex={index}
+                className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+              />
               
               {/* Show additional text ONLY after first image (index 0) */}
               {index === 0 && challengeAdditionalText && (

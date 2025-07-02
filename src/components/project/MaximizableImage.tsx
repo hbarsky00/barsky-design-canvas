@@ -131,55 +131,54 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const imageTitle = alt || 'Image';
 
   return (
-    <div className={`relative ${className}`} data-lovable-element="image-container">
-      <div 
-        className="relative group overflow-hidden cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        data-lovable-editable="image-wrapper"
-      >
-        {imageError ? (
-          <ImageErrorFallback 
-            showEditingControls={showEditingControls}
-            originalSrc={currentSrc}
-          />
-        ) : (
-          <img
-            src={currentSrc}
-            alt={alt}
-            title={imageTitle}
-            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-            loading={priority ? "eager" : "lazy"}
-            onClick={handleMaximize}
-            onError={handleImageError}
-            onLoad={handleImageLoad}
-            data-lovable-editable="image"
-            data-image-src={currentSrc}
-            data-project-id={projectId}
-            style={{ 
-              opacity: isUploading ? 0.7 : 1,
-              transition: 'opacity 0.3s ease',
-              display: 'block',
-              maxWidth: '100%',
-              height: 'auto'
-            }}
-          />
-        )}
-        
-        <UploadOverlay isUploading={isUploading} />
-        
-        <ImageOverlay
-          isHovered={isHovered}
-          isUploading={isUploading}
-          imageError={imageError}
+    <figure 
+      className={`relative group overflow-hidden cursor-pointer ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      data-lovable-element="image-container"
+      data-lovable-editable="image-wrapper"
+    >
+      {imageError ? (
+        <ImageErrorFallback 
           showEditingControls={showEditingControls}
-          hideEditButton={hideEditButton}
-          allowRemove={allowRemove}
-          onMaximize={handleMaximize}
-          onImageReplace={handleUploadStart}
-          onImageRemove={handleImageRemove}
+          originalSrc={currentSrc}
         />
-      </div>
+      ) : (
+        <img
+          src={currentSrc}
+          alt={alt}
+          title={imageTitle}
+          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+          loading={priority ? "eager" : "lazy"}
+          onClick={handleMaximize}
+          onError={handleImageError}
+          onLoad={handleImageLoad}
+          data-lovable-editable="image"
+          data-image-src={currentSrc}
+          data-project-id={projectId}
+          style={{ 
+            opacity: isUploading ? 0.7 : 1,
+            transition: 'opacity 0.3s ease',
+            display: 'block',
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
+      )}
+      
+      <UploadOverlay isUploading={isUploading} />
+      
+      <ImageOverlay
+        isHovered={isHovered}
+        isUploading={isUploading}
+        imageError={imageError}
+        showEditingControls={showEditingControls}
+        hideEditButton={hideEditButton}
+        allowRemove={allowRemove}
+        onMaximize={handleMaximize}
+        onImageReplace={handleUploadStart}
+        onImageRemove={handleImageRemove}
+      />
       
       <EditableCaption
         imageSrc={currentSrc}
@@ -187,7 +186,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         projectId={projectId}
         className="maximizable-image-caption"
       />
-    </div>
+    </figure>
   );
 };
 

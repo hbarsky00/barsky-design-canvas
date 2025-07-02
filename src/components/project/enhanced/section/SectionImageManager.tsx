@@ -53,27 +53,25 @@ const SectionImageManager: React.FC<SectionImageManagerProps> = ({
       <div className="space-y-6">
         {images.map((imageSrc, index) => (
           <div key={index} className="relative group/image">
-            <div className="glass-card p-4 layered-depth relative group">
-              <MaximizableImage
-                src={imageSrc}
-                alt={`${title} image ${index + 1}`}
-                caption={imageCaptions[imageSrc] || `${title} supporting image`}
-                imageList={images}
-                currentIndex={index}
-                className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                projectId={projectId}
-                hideEditButton={!showEditingControls}
-                allowRemove={showEditingControls}
-                onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
-                onImageRemove={() => onRemoveImage(index)}
-              />
-            </div>
+            <MaximizableImage
+              src={imageSrc}
+              alt={`${title} image ${index + 1}`}
+              caption={imageCaptions[imageSrc] || `${title} supporting image`}
+              imageList={images}
+              currentIndex={index}
+              className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+              projectId={projectId}
+              hideEditButton={!showEditingControls}
+              allowRemove={showEditingControls}
+              onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
+              onImageRemove={() => onRemoveImage(index)}
+            />
             {showEditingControls && (
               <Button
                 onClick={() => onRemoveImage(index)}
                 variant="ghost"
                 size="sm"
-                className="absolute top-2 right-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-200 bg-red-500 hover:bg-red-600 text-white"
+                className="absolute top-2 right-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-200 bg-red-500 hover:bg-red-600 text-white z-10"
               >
                 <Trash2 className="h-4 w-4" />
               </Button>
