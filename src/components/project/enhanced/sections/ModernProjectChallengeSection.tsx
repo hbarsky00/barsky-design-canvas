@@ -60,30 +60,26 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
       {isSpittimeProject && challengeImages && challengeImages.length >= 2 && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* First image */}
-          <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
-            <MaximizableImage
-              src={challengeImages[0]}
-              alt={imageCaptions[challengeImages[0]] || 'Challenge image 1'}
-              caption={imageCaptions[challengeImages[0]] || 'Challenge image 1'}
-              imageList={challengeImages}
-              currentIndex={0}
-              projectId={projectId}
-              className="w-full h-auto object-cover rounded-lg"
-            />
-          </figure>
+          <MaximizableImage
+            src={challengeImages[0]}
+            alt={imageCaptions[challengeImages[0]] || 'Challenge image 1'}
+            caption={imageCaptions[challengeImages[0]] || 'Challenge image 1'}
+            imageList={challengeImages}
+            currentIndex={0}
+            projectId={projectId}
+            className="w-full h-auto object-cover rounded-lg"
+          />
           
           {/* Second image */}
-          <figure className="rounded-xl shadow-elevated-lg overflow-hidden bg-white p-4">
-            <MaximizableImage
-              src={challengeImages[1]}
-              alt={imageCaptions[challengeImages[1]] || 'Challenge image 2'}
-              caption={imageCaptions[challengeImages[1]] || 'Challenge image 2'}
-              imageList={challengeImages}
-              currentIndex={1}
-              projectId={projectId}
-              className="w-full h-auto object-cover rounded-lg"
-            />
-          </figure>
+          <MaximizableImage
+            src={challengeImages[1]}
+            alt={imageCaptions[challengeImages[1]] || 'Challenge image 2'}
+            caption={imageCaptions[challengeImages[1]] || 'Challenge image 2'}
+            imageList={challengeImages}
+            currentIndex={1}
+            projectId={projectId}
+            className="w-full h-auto object-cover rounded-lg"
+          />
         </div>
       )}
       
