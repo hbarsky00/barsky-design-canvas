@@ -53,34 +53,30 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
     <div className="space-y-6">
       <div className={`grid ${getGridLayout()} gap-6`}>
         {images.map((image, index) => (
-          <motion.div
+          <motion.figure
             key={image}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass-card p-4 layered-depth"
+            className="glass-card layered-depth group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+            onClick={() => openLightbox(index)}
           >
-            <div 
-              className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
-              onClick={() => openLightbox(index)}
-            >
-              <img
-                src={image}
-                alt={imageCaptions[image] || `Gallery image ${index + 1}`}
-                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              
-              {imageCaptions[image] && (
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-sm">{imageCaptions[image]}</p>
-                </div>
-              )}
-            </div>
-          </motion.div>
+            <img
+              src={image}
+              alt={imageCaptions[image] || `Gallery image ${index + 1}`}
+              className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
+            />
+            
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+            
+            {imageCaptions[image] && (
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm">{imageCaptions[image]}</p>
+              </figcaption>
+            )}
+          </motion.figure>
         ))}
       </div>
 

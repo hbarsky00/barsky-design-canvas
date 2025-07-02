@@ -56,20 +56,18 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
       transition={{ duration: 0.8 }}
       className="floating-element"
     >
-      <div className="glass-card p-4 layered-depth relative group">
-        <MaximizableImage
-          src={project.image}
-          alt={project.title}
-          caption={imageCaptions[project.image] || project.title}
-          imageList={[project.image]}
-          currentIndex={0}
-          priority={true}
-          className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-          projectId={projectId}
-          hideEditButton={false}
-          onImageReplace={handleImageReplace}
-        />
-      </div>
+      <MaximizableImage
+        src={project.image}
+        alt={project.title}
+        caption={imageCaptions[project.image] || project.title}
+        imageList={[project.image]}
+        currentIndex={0}
+        priority={true}
+        className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+        projectId={projectId}
+        hideEditButton={false}
+        onImageReplace={handleImageReplace}
+      />
     </motion.div>
   );
 };

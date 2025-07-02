@@ -159,45 +159,41 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                   {index === 0 && (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       {/* First image */}
-                      <div className="glass-card p-4 layered-depth">
-                        <EnhancedContentEditor
-                          content=""
-                          contentType="section"
-                          onSave={() => {}}
-                          images={[item.content]}
-                          onImageAdd={(imageSrc) => {
-                            console.log('➕ Adding image to challenge section:', imageSrc);
-                          }}
-                          onImageReplace={(imgIndex, newSrc) => {
-                            console.log('🔄 Replacing challenge image:', item.content, '->', newSrc);
-                          }}
-                          onImageRemove={() => handleImageRemove(index)}
-                          maxImages={1}
-                          projectId={projectId}
-                          imageCaptions={imageCaptions}
-                          className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                        />
-                      </div>
+                      <EnhancedContentEditor
+                        content=""
+                        contentType="section"
+                        onSave={() => {}}
+                        images={[item.content]}
+                        onImageAdd={(imageSrc) => {
+                          console.log('➕ Adding image to challenge section:', imageSrc);
+                        }}
+                        onImageReplace={(imgIndex, newSrc) => {
+                          console.log('🔄 Replacing challenge image:', item.content, '->', newSrc);
+                        }}
+                        onImageRemove={() => handleImageRemove(index)}
+                        maxImages={1}
+                        projectId={projectId}
+                        imageCaptions={imageCaptions}
+                        className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+                      />
                       {/* Second image */}
-                      <div className="glass-card p-4 layered-depth">
-                        <EnhancedContentEditor
-                          content=""
-                          contentType="section"
-                          onSave={() => {}}
-                          images={[details.challengeGalleryContent[1].content]}
-                          onImageAdd={(imageSrc) => {
-                            console.log('➕ Adding image to challenge section:', imageSrc);
-                          }}
-                          onImageReplace={(imgIndex, newSrc) => {
-                            console.log('🔄 Replacing challenge image:', details.challengeGalleryContent[1].content, '->', newSrc);
-                          }}
-                          onImageRemove={() => handleImageRemove(1)}
-                          maxImages={1}
-                          projectId={projectId}
-                          imageCaptions={imageCaptions}
-                          className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                        />
-                      </div>
+                      <EnhancedContentEditor
+                        content=""
+                        contentType="section"
+                        onSave={() => {}}
+                        images={[details.challengeGalleryContent[1].content]}
+                        onImageAdd={(imageSrc) => {
+                          console.log('➕ Adding image to challenge section:', imageSrc);
+                        }}
+                        onImageReplace={(imgIndex, newSrc) => {
+                          console.log('🔄 Replacing challenge image:', details.challengeGalleryContent[1].content, '->', newSrc);
+                        }}
+                        onImageRemove={() => handleImageRemove(1)}
+                        maxImages={1}
+                        projectId={projectId}
+                        imageCaptions={imageCaptions}
+                        className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+                      />
                     </div>
                   )}
                 </>
@@ -205,25 +201,23 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
               
               {/* Regular image display for other projects or images after the first two */}
               {item.type === 'image' && (!isSpittimeProject || index >= 2) && (
-                <div className="glass-card p-4 layered-depth">
-                  <EnhancedContentEditor
-                    content=""
-                    contentType="section"
-                    onSave={() => {}}
-                    images={[item.content]}
-                    onImageAdd={(imageSrc) => {
-                      console.log('➕ Adding image to challenge section:', imageSrc);
-                    }}
-                    onImageReplace={(imgIndex, newSrc) => {
-                      console.log('🔄 Replacing challenge image:', item.content, '->', newSrc);
-                    }}
-                    onImageRemove={() => handleImageRemove(index)}
-                    maxImages={1}
-                    projectId={projectId}
-                    imageCaptions={imageCaptions}
-                    className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                  />
-                </div>
+                <EnhancedContentEditor
+                  content=""
+                  contentType="section"
+                  onSave={() => {}}
+                  images={[item.content]}
+                  onImageAdd={(imageSrc) => {
+                    console.log('➕ Adding image to challenge section:', imageSrc);
+                  }}
+                  onImageReplace={(imgIndex, newSrc) => {
+                    console.log('🔄 Replacing challenge image:', item.content, '->', newSrc);
+                  }}
+                  onImageRemove={() => handleImageRemove(index)}
+                  maxImages={1}
+                  projectId={projectId}
+                  imageCaptions={imageCaptions}
+                  className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+                />
               )}
               
               {/* Show custom text after third image (index 2) for Splittime project */}

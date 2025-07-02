@@ -19,15 +19,13 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
   priority = false,
 }) => {
   return (
-    <div className={`glass-card p-4 layered-depth ${className}`}>
-      <MaximizableImage
-        src={src}
-        alt={alt}
-        caption={caption}
-        priority={priority}
-        className="rounded-lg shadow-elevated w-full"
-      />
-    </div>
+    <MaximizableImage
+      src={src}
+      alt={alt}
+      caption={caption}
+      priority={priority}
+      className={`rounded-lg shadow-elevated w-full glass-card layered-depth ${className}`}
+    />
   );
 };
 

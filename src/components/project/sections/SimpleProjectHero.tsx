@@ -105,19 +105,17 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
             transition={{ duration: 0.8, delay: 0.3 }}
             className="floating-element"
           >
-            <div className="glass-card p-2 sm:p-4 layered-depth">
-              <MaximizableImage
-                src={project.image}
-                alt={project.title}
-                caption={imageCaptions[project.image] || project.title}
-                imageList={[project.image]}
-                currentIndex={0}
-                priority={true}
-                className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                projectId={projectId}
-                hideEditButton={false}
-              />
-            </div>
+            <MaximizableImage
+              src={project.image}
+              alt={project.title}
+              caption={imageCaptions[project.image] || project.title}
+              imageList={[project.image]}
+              currentIndex={0}
+              priority={true}
+              className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+              projectId={projectId}
+              hideEditButton={false}
+            />
           </motion.div>
         </div>
       </div>

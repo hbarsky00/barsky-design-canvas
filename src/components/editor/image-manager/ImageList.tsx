@@ -28,21 +28,20 @@ const ImageList: React.FC<ImageListProps> = ({
   return (
     <div className="grid grid-cols-1 gap-6" key={`image-list-${componentKey}`}>
       {images.map((image, index) => (
-        <div key={`${image}-${index}-${componentKey}`} className="glass-card p-4 layered-depth">
-          <MaximizableImage
-            src={image}
-            alt={`Image ${index + 1}`}
-            caption={imageCaptions[image]}
-            imageList={images}
-            currentIndex={index}
-            className="rounded-lg shadow-elevated w-full"
-            projectId={projectId}
-            hideEditButton={!showEditingControls}
-            allowRemove={showEditingControls}
-            onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
-            onImageRemove={() => onImageRemove(index)}
-          />
-        </div>
+        <MaximizableImage
+          key={`${image}-${index}-${componentKey}`}
+          src={image}
+          alt={`Image ${index + 1}`}
+          caption={imageCaptions[image]}
+          imageList={images}
+          currentIndex={index}
+          className="rounded-lg shadow-elevated w-full glass-card layered-depth"
+          projectId={projectId}
+          hideEditButton={!showEditingControls}
+          allowRemove={showEditingControls}
+          onImageReplace={(newSrc) => onImageReplace(index, newSrc)}
+          onImageRemove={() => onImageRemove(index)}
+        />
       ))}
     </div>
   );
