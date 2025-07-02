@@ -124,6 +124,8 @@ export const splittimeDetails: ProjectDetails = {
 
   // Legacy support - keep existing gallery images for backward compatibility
   challengeGalleryImages: [
+    "/lovable-uploads/028009a0-8ed7-4cf1-9155-1269a756bcb1.png",
+    "/lovable-uploads/a2a89b81-55de-4401-ba10-ce7b03e08e2a.png",
     "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
     "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
   ],
