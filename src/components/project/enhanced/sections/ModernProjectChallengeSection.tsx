@@ -56,6 +56,17 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         projectId={projectId}
       />
 
+      {/* Show intro text in blue box before images for Splittime */}
+      {isSpittimeProject && (
+        <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100 mb-8">
+          <div className="prose prose-lg text-gray-700 leading-relaxed">
+            <p className="text-sm text-gray-700 mb-0">
+              Co-parenting can be one of the most emotionally and logistically challenging experiences in modern family life. Many parents rely on a mix of disconnected tools—texts, emails, calendars, and spreadsheets—to manage shared custody, expenses, and communication. Emotional tension only compounds the complexity. Despite a few existing apps in this space, most are either too rigid, too outdated, or unintuitive. SplitTime was designed to address this gap with a fresh, emotionally-aware, and mobile-first experience.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Show first two challenge images side by side immediately after header for Splittime */}
       {isSpittimeProject && challengeImages && challengeImages.length >= 2 && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
