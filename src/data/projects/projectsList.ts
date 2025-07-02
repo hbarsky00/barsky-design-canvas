@@ -15,7 +15,7 @@ export const projectsData: ProjectProps[] = [
     id: "investor-loan-app",
     title: "Investor Loan App",
     description: "Comprehensive loan management platform for investors with portfolio tracking, risk assessment, and automated reporting.",
-    image: "/lovable-uploads/b88801ff-b9e2-4012-ac45-1449a3d6dd6a.png",
+    image: "/lovable-uploads/792b1203-fb09-429d-9a0a-bbf7e173dcdb.png",
     tags: ["UX Design", "Gen AI Design", "Product Design", "Fintech", "Investment", "Loan Management", "Portfolio"],
     featured: true,
     category: "Fintech"
