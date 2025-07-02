@@ -18,6 +18,8 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
   componentKey,
   imageCaptions
 }) => {
+  console.log('🔍 Challenge gallery content for', projectId, ':', details.challengeGalleryContent);
+  
   const { handleSectionContentSave } = useSimplifiedContentEditor({
     projectId
   });
