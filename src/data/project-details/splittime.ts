@@ -18,8 +18,6 @@ export const splittimeDetails: ProjectDetails = {
 
   // Manual captions for all images
   imageCaptions: {
-    "/lovable-uploads/c771234f-3628-4af6-a2f5-c6c644322bcb.png": "User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns",
-    "/lovable-uploads/b27367c5-32c6-4a02-83c7-d2e86f3c5fb9.png": "Splittime app user flow diagram showing navigation paths for different user types",
     "/lovable-uploads/9ffb7140-e75f-4bd2-bc71-39e527664cc1.png": "User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns",
     "/lovable-uploads/39924843-58df-42d8-918b-f8a7cffa124e.png": "Splittime app user flow diagram showing navigation paths for different user types",
     "/lovable-uploads/4edbc00b-80df-4dcd-bf13-ef4526e23d80.png": "Splittime co-parenting app interface showing alerts dashboard and notifications panel",
@@ -52,12 +50,12 @@ export const splittimeDetails: ProjectDetails = {
   challengeGalleryContent: [
     {
       type: 'image',
-      content: '/lovable-uploads/c771234f-3628-4af6-a2f5-c6c644322bcb.png',
+      content: '/lovable-uploads/9ffb7140-e75f-4bd2-bc71-39e527664cc1.png',
       caption: 'User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns'
     },
     {
       type: 'image',
-      content: '/lovable-uploads/b27367c5-32c6-4a02-83c7-d2e86f3c5fb9.png',
+      content: '/lovable-uploads/39924843-58df-42d8-918b-f8a7cffa124e.png',
       caption: 'Splittime app user flow diagram showing navigation paths for different user types'
     },
     {
