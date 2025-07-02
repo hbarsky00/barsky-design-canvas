@@ -62,19 +62,13 @@ const AboutPreview: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
           >
-            {/* Professional Photo */}
-            <div className="relative">
-              <div className="aspect-square w-80 mx-auto rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
-                  alt="Hiram Barsky - UX/UI Designer"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            <img
+              src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+              alt="Hiram Barsky - UX/UI Designer"
+              className="aspect-square w-80 mx-auto rounded-2xl shadow-2xl object-cover"
+              loading="lazy"
+            />
           </motion.div>
         </div>
       </div>
