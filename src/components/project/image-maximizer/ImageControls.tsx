@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ZoomIn, ZoomOut, Maximize, X } from "lucide-react";
+import { Plus, Minus, Maximize, X } from "lucide-react";
 
 interface ImageControlsProps {
   scale: number;
@@ -19,48 +19,55 @@ const ImageControls: React.FC<ImageControlsProps> = ({
   onClose,
 }) => {
   return (
-    <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+    <div className="fixed top-4 right-4 z-50 flex flex-col gap-2 bg-black/60 backdrop-blur-sm rounded-lg p-2 border border-white/20 shadow-2xl">
+      {/* Zoom Out Button */}
       <Button
-        variant="outline"
+        variant="ghost"
         size="icon"
         onClick={onZoomOut}
         disabled={scale <= 0.5}
         title="Zoom Out"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        className="w-11 h-11 rounded-md bg-white/10 hover:bg-white/20 active:bg-white/30 border border-white/30 text-white hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 shadow-lg"
       >
-        <ZoomOut className="h-5 w-5 text-white stroke-white fill-none stroke-2" />
+        <Minus className="h-5 w-5 stroke-2" />
         <span className="sr-only">Zoom Out</span>
       </Button>
+
+      {/* Zoom In Button */}
       <Button
-        variant="outline"
+        variant="ghost"
         size="icon"
         onClick={onZoomIn}
         disabled={scale >= 3}
         title="Zoom In"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        className="w-11 h-11 rounded-md bg-white/10 hover:bg-white/20 active:bg-white/30 border border-white/30 text-white hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 shadow-lg"
       >
-        <ZoomIn className="h-5 w-5 text-white stroke-white fill-none stroke-2" />
+        <Plus className="h-5 w-5 stroke-2" />
         <span className="sr-only">Zoom In</span>
       </Button>
+
+      {/* Reset Zoom / Fit to Screen Button */}
       <Button
-        variant="outline"
+        variant="ghost"
         size="icon"
         onClick={onReset}
         disabled={scale === 1}
-        title="Reset Zoom"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        title="Fit to Screen"
+        className="w-11 h-11 rounded-md bg-white/10 hover:bg-white/20 active:bg-white/30 border border-white/30 text-white hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 shadow-lg"
       >
-        <Maximize className="h-5 w-5 text-white stroke-white fill-none stroke-2" />
-        <span className="sr-only">Reset Zoom</span>
+        <Maximize className="h-5 w-5 stroke-2" />
+        <span className="sr-only">Fit to Screen</span>
       </Button>
+
+      {/* Close Button */}
       <Button
-        variant="outline"
+        variant="ghost"
         size="icon"
         onClick={onClose}
         title="Close"
-        className="h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 border-none shadow-lg text-white hover:text-white active:text-white focus:text-white disabled:text-white [&_svg]:text-white [&_svg]:stroke-white [&_svg]:fill-none hover:[&_svg]:text-white hover:[&_svg]:stroke-white active:[&_svg]:text-white active:[&_svg]:stroke-white focus:[&_svg]:text-white focus:[&_svg]:stroke-white disabled:[&_svg]:text-white disabled:[&_svg]:stroke-white"
+        className="w-11 h-11 rounded-md bg-white/10 hover:bg-red-500/80 active:bg-red-600/80 border border-white/30 hover:border-red-400/50 text-white hover:text-white transition-all duration-200 hover:scale-105 shadow-lg"
       >
-        <X className="h-5 w-5 text-white stroke-white fill-none stroke-2" />
+        <X className="h-5 w-5 stroke-2" />
         <span className="sr-only">Close</span>
       </Button>
     </div>
