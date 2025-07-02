@@ -119,7 +119,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
               
               {/* Show research box after first image for investor project */}
               {index === 0 && isInvestorProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100 mb-8">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Research & Analysis</strong></h3>
                     <p className="text-sm text-gray-700 mb-4">
@@ -129,6 +129,31 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                       My competitive analysis focused on existing financial platforms, with particular emphasis on Bloomberg's search functionality, which became a key inspiration for our AI-powered search feature. This analysis revealed opportunities to modernize traditional banking workflows while maintaining the professional standards and regulatory compliance requirements that are essential in the financial services industry.
                     </p>
                   </div>
+                  
+                  {/* Two images side by side after research text */}
+                  {challengeImages && challengeImages.length >= 4 && (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+                      <MaximizableImage
+                        src={challengeImages[2]}
+                        alt={imageCaptions[challengeImages[2]] || 'Loan Central interface'}
+                        caption={imageCaptions[challengeImages[2]] || 'Loan Central interface'}
+                        imageList={challengeImages}
+                        currentIndex={2}
+                        projectId={projectId}
+                        className="w-full h-auto object-cover rounded-lg"
+                      />
+                      
+                      <MaximizableImage
+                        src={challengeImages[3]}
+                        alt={imageCaptions[challengeImages[3]] || 'Orderbook interface'}
+                        caption={imageCaptions[challengeImages[3]] || 'Orderbook interface'}
+                        imageList={challengeImages}
+                        currentIndex={3}
+                        projectId={projectId}
+                        className="w-full h-auto object-cover rounded-lg"
+                      />
+                    </div>
+                  )}
                 </div>
               )}
 
