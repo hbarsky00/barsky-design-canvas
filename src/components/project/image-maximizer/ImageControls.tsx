@@ -27,11 +27,11 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomOut}
         disabled={scale <= 0.5}
         title="Zoom Out"
-        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        className="w-10 h-10 min-w-10 min-h-10 max-w-10 max-h-10 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
         style={{ 
           backgroundColor: scale <= 0.5 ? '#93C5FD' : '#3B82F6',
-          width: '48px',
-          height: '48px'
+          width: '38px',
+          height: '38px'
         }}
         onMouseEnter={(e) => {
           if (scale > 0.5) {
@@ -55,11 +55,11 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onZoomIn}
         disabled={scale >= 3}
         title="Zoom In"
-        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        className="w-10 h-10 min-w-10 min-h-10 max-w-10 max-h-10 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
         style={{ 
           backgroundColor: scale >= 3 ? '#93C5FD' : '#3B82F6',
-          width: '48px',
-          height: '48px'
+          width: '38px',
+          height: '38px'
         }}
         onMouseEnter={(e) => {
           if (scale < 3) {
@@ -83,11 +83,11 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         onClick={onReset}
         disabled={scale === 1}
         title="Fit to Screen"
-        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        className="w-10 h-10 min-w-10 min-h-10 max-w-10 max-h-10 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
         style={{ 
           backgroundColor: scale === 1 ? '#93C5FD' : '#3B82F6',
-          width: '48px',
-          height: '48px'
+          width: '38px',
+          height: '38px'
         }}
         onMouseEnter={(e) => {
           if (scale !== 1) {
@@ -110,11 +110,11 @@ const ImageControls: React.FC<ImageControlsProps> = ({
         size="icon"
         onClick={onClose}
         title="Close"
-        className="w-12 h-12 min-w-12 min-h-12 max-w-12 max-h-12 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
+        className="w-10 h-10 min-w-10 min-h-10 max-w-10 max-h-10 rounded-full p-0 flex items-center justify-center border-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] text-white transition-all duration-200 ease-in-out"
         style={{ 
           backgroundColor: '#3B82F6',
-          width: '48px',
-          height: '48px'
+          width: '38px',
+          height: '38px'
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.backgroundColor = '#1E40AF';
