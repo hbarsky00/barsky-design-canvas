@@ -5,6 +5,7 @@ import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import ProjectVideo from "@/components/project/ProjectVideo";
 
 interface ModernProjectChallengeSectionProps {
   details: ProjectDetails;
@@ -29,6 +30,17 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
     console.log('🗑️ Removing image from challenge section at index:', index);
     // For now, just log the removal - you can implement actual removal logic if needed
     // This could involve updating the project details or triggering a refresh
+  };
+
+  // Helper function to detect if a URL is a video
+  const isVideoUrl = (url: string): boolean => {
+    return url.includes('loom.com/share/') || 
+           url.includes('youtube.com/') || 
+           url.includes('youtu.be/') || 
+           url.includes('vimeo.com/') ||
+           url.endsWith('.mp4') || 
+           url.endsWith('.webm') || 
+           url.endsWith('.ogg');
   };
 
   // Check if this is the splittime or herbalink project
@@ -105,17 +117,27 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
       {/* Challenge Gallery Images - for Splittime show remaining images after first two, for others show all */}
       {challengeImages && challengeImages.length > 0 && (isSpittimeProject ? challengeImages.length > 2 : true) && (
         <div className="mt-12 space-y-8">
-          {(isSpittimeProject ? challengeImages.slice(2) : challengeImages).map((image, index) => (
-            <React.Fragment key={isSpittimeProject ? index + 2 : index}>
-              <MaximizableImage
-                src={image}
-                alt={imageCaptions[image] || `Challenge image ${isSpittimeProject ? index + 3 : index + 1}`}
-                caption={imageCaptions[image] || `Challenge image ${isSpittimeProject ? index + 3 : index + 1}`}
-                imageList={challengeImages}
-                currentIndex={isSpittimeProject ? index + 2 : index}
-                projectId={projectId}
-                className="w-full h-auto object-cover rounded-lg shadow-elevated-lg bg-white p-4"
-              />
+           {(isSpittimeProject ? challengeImages.slice(2) : challengeImages).map((item, index) => (
+             <React.Fragment key={isSpittimeProject ? index + 2 : index}>
+               {isVideoUrl(item) ? (
+                 <ProjectVideo
+                   src={item}
+                   title={imageCaptions[item] || `Challenge video ${isSpittimeProject ? index + 3 : index + 1}`}
+                   caption={imageCaptions[item] || `Challenge video ${isSpittimeProject ? index + 3 : index + 1}`}
+                   projectId={projectId}
+                   className="w-full rounded-lg shadow-elevated-lg bg-white p-4"
+                 />
+               ) : (
+                 <MaximizableImage
+                   src={item}
+                   alt={imageCaptions[item] || `Challenge image ${isSpittimeProject ? index + 3 : index + 1}`}
+                   caption={imageCaptions[item] || `Challenge image ${isSpittimeProject ? index + 3 : index + 1}`}
+                   imageList={challengeImages.filter(img => !isVideoUrl(img))}
+                   currentIndex={challengeImages.filter(img => !isVideoUrl(img)).indexOf(item)}
+                   projectId={projectId}
+                   className="w-full h-auto object-cover rounded-lg shadow-elevated-lg bg-white p-4"
+                 />
+               )}
               
               {/* Show research box after first image for investor project */}
               {index === 0 && isInvestorProject && (
