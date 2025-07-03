@@ -19,28 +19,16 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
         <div className="space-y-6">
           <div>
             <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">User Research</span></h4>
-            <p className="text-sm text-gray-700 mb-3">
-              I conducted interviews with 12 participants (6 potential users, 6 practicing herbalists) to understand pain points and opportunities.
+            <p className="text-sm text-gray-700">
+              Through in-depth interviews with 12 participants—including 6 potential users and 6 practicing herbalists—I uncovered critical pain points within the herbal wellness ecosystem. Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and treatment safety, while high costs and limited rural availability created additional barriers. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
             </p>
-            <div>
-              <p className="font-bold text-gray-800 mb-2"><span className="font-bold">Key Findings</span></p>
-              <p className="text-sm text-gray-700">
-                Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
-              </p>
-            </div>
           </div>
 
           <div>
             <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Competitive Analysis</span></h4>
-            <p className="text-sm text-gray-700 mb-3">
-              Analyzed BetterHelp, Headspace Health, and Zocdoc to identify opportunities for differentiation in the herbal wellness space.
+            <p className="text-sm text-gray-700">
+              I analyzed leading wellness platforms including BetterHelp, Headspace Health, and Zocdoc to identify market gaps within the herbal wellness space. The competitive landscape revealed a significant opportunity: no existing platforms specifically serve herbalist consultations. This gap presents unique possibilities for specialized intake forms tailored to herbal needs, educational features that build user confidence in natural wellness approaches, and trust-building elements that address safety concerns while connecting users with qualified practitioners.
             </p>
-            <div>
-              <p className="font-bold text-gray-800 mb-2"><span className="font-bold">Key Insights</span></p>
-              <p className="text-sm text-gray-700">
-                The analysis revealed no platforms specifically designed for herbalist consultations, creating an opportunity for specialized intake forms tailored to herbal needs and education-focused features that build user confidence in natural wellness approaches.
-              </p>
-            </div>
           </div>
 
           {/* Design System Image */}
