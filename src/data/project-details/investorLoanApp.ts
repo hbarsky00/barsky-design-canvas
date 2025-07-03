@@ -44,9 +44,7 @@ export const investorLoanAppDetails: ProjectDetails = {
   
   challengeGalleryImages: [
     "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
-    "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-    "/lovable-uploads/8e039ff1-eb1f-492d-97e2-3d61761d80c8.png",
-    "/lovable-uploads/e44f8478-f2d9-413e-8540-855aca13abe2.png"
+    "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
   ],
   processImage: "/lovable-uploads/ec1458b5-d364-498e-a5ec-4122b62195d3.png",
   processBottomImage: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
