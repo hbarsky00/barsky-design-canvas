@@ -56,13 +56,12 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
       <span className="text-barsky-text-light text-sm flex items-center [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none">
         <Share2 className="h-4 w-4 mr-2" /> Share:
       </span>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex gap-2">
         {shareLinks.map((link) => (
           <Button
             key={link.name}
             variant="outline"
-            size="sm"
-            className={`${link.color} transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none`}
+            className={`${link.color} transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none w-10 h-10 p-0`}
             onClick={() => window.open(link.href, "_blank", "noreferrer,noopener,width=600,height=400")}
             aria-label={`Share on ${link.name}`}
             title={`Share on ${link.name}`}
@@ -73,8 +72,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
         ))}
         <Button
           variant="outline"
-          size="sm"
-          className="hover:bg-slate-800 hover:text-white transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          className="hover:bg-slate-800 hover:text-white transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none w-10 h-10 p-0"
           onClick={copyToClipboard}
           aria-label="Copy link"
           title="Copy link"
