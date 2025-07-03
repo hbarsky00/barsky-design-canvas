@@ -15,7 +15,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
       <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, UX/UI Design Services"} />
       <meta property="og:title" content={`${post.title} | Barsky Design Blog`} />
       <meta property="og:description" content={post.excerpt} />
-      <meta property="og:image" content={post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/c6242fd2-6088-44ee-a5bd-2233fb68caef.png"} />
+      <meta property="og:image" content={post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"} />
       <meta property="og:url" content={`https://barskydesign.pro/blog/${post.slug}`} />
       <meta property="og:type" content="article" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -31,7 +31,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
             "@type": "BlogPosting",
             "headline": "${post.title}",
             "description": "${post.excerpt}",
-            "image": "${post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/c6242fd2-6088-44ee-a5bd-2233fb68caef.png"}",
+            "image": "${post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"}",
             "author": {
               "@type": "Person",
               "name": "${post.author}"
@@ -41,7 +41,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
               "name": "Barsky Design Services",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://barskydesign.pro/lovable-uploads/c6242fd2-6088-44ee-a5bd-2233fb68caef.png"
+                "url": "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
               }
             },
             "datePublished": "${post.date}",

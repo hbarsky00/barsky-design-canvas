@@ -22,7 +22,7 @@ const Index = () => {
           "Generative AI design", "AI UX consultant", "Intelligent user interface design", 
           "AI-powered web apps", "Gen AI integration specialist", "AI UX design services"
         ]}
-        ogImage="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+        ogImage="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
       />
       <PremiumSeoOptimization pageType="homepage" />
       <AdvancedSitemapMeta />
