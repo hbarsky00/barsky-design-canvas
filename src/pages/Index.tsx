@@ -11,14 +11,14 @@ const Index = () => {
   return (
     <>
       <EnhancedGlobalSeo 
-        title="Barsky Design - UX Research & Design Agency | Improving Digital Product Experiences"
-        description="Research and design agency helping businesses improve user experience through comprehensive user research, strategic design thinking, and data-driven solutions. Specializing in UX research, design strategy, and digital product optimization."
+        title="Hiram Barsky - UX/UI Product Designer & Gen AI Developer | AI-Powered Web Applications"
+        description="Expert UX/UI Product Designer specializing in Gen AI integration. I design and develop intelligent web applications that combine beautiful interfaces with cutting-edge AI capabilities, creating user-centered digital experiences."
         canonicalUrl="https://barskydesign.pro/"
         pageType="homepage"
         keywords={[
-          "UX research agency", "design strategy consulting", "user experience research", 
-          "digital product design", "UX consulting services", "user research methods",
-          "design thinking agency", "product strategy design", "user testing services"
+          "UX UI designer", "Gen AI developer", "AI web applications", "Product designer AI experience", 
+          "Generative AI design", "AI UX consultant", "Intelligent user interface design", 
+          "AI-powered web apps", "Gen AI integration specialist", "AI UX design services"
         ]}
         ogImage="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
       />

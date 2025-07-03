@@ -9,10 +9,10 @@ interface HeroSkillsTagsProps {
 
 const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
   const skills = [
-    "User Research & Testing",
-    "Design Strategy", 
-    "Information Architecture",
-    "Wireframing & Prototyping"
+    "UX/UI Design",
+    "Gen AI Integration", 
+    "Web App Development",
+    "Design Systems"
   ];
 
   return (

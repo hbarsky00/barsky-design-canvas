@@ -12,15 +12,15 @@ const Pricing = () => {
   return (
     <section id="pricing" className="py-20 bg-slate-50">
       <div className="section-container">
-        <h2 className="text-3xl font-bold text-center mb-4">My Design Services</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">UX/UI Design & AI Development Services</h2>
         <p className="text-center text-slate-600 max-w-2xl mx-auto mb-12">
-          I offer comprehensive design solutions tailored to your specific needs, helping you create intuitive, engaging, and effective digital experiences.
+          I create intelligent web applications by combining thoughtful UX/UI design with cutting-edge generative AI integration, bringing your ideas to life through design and technology.
         </p>
         
         <div className="flex justify-center">
           <Card className="shadow-lg w-full max-w-2xl">
             <CardHeader>
-              <h3 className="text-2xl font-bold text-center">Design & Consultation</h3>
+              <h3 className="text-2xl font-bold text-center">UX/UI Design & AI Integration</h3>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-start gap-3">
@@ -28,8 +28,8 @@ const Pricing = () => {
                   <PenLine className="w-5 h-5 text-barsky-blue" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-barsky-dark">Product Design</h4>
-                  <p className="text-slate-600 text-sm">Crafting user-centered interfaces with meticulous attention to detail, ensuring intuitive navigation and delightful interactions.</p>
+                  <h4 className="font-semibold text-barsky-dark">UX/UI Product Design</h4>
+                  <p className="text-slate-600 text-sm">Creating user-centered interfaces that seamlessly integrate AI capabilities, ensuring intuitive experiences for both human users and AI interactions.</p>
                 </div>
               </div>
               
@@ -38,8 +38,8 @@ const Pricing = () => {
                   <Users className="w-5 h-5 text-barsky-blue" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-barsky-dark">User Research & Strategy</h4>
-                  <p className="text-slate-600 text-sm">Employing data-driven methods to understand your users, identify pain points, and develop strategic design solutions.</p>
+                  <h4 className="font-semibold text-barsky-dark">Gen AI Integration & Development</h4>
+                  <p className="text-slate-600 text-sm">Developing intelligent web applications with AI-powered features like conversational interfaces, content generation, and personalized user experiences.</p>
                 </div>
               </div>
               
@@ -48,8 +48,8 @@ const Pricing = () => {
                   <Clock className="w-5 h-5 text-barsky-blue" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-barsky-dark">Flexible Engagement Models</h4>
-                  <p className="text-slate-600 text-sm">Whether you need ongoing support, fixed-scope projects, or expert consultation, I offer flexible options to accommodate your timeline and budget.</p>
+                  <h4 className="font-semibold text-barsky-dark">End-to-End Web Development</h4>
+                  <p className="text-slate-600 text-sm">From concept to deployment, I handle the complete development lifecycle, combining design expertise with modern web technologies and AI integration.</p>
                 </div>
               </div>
             </CardContent>

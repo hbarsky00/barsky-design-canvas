@@ -12,36 +12,36 @@ const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <EnhancedGlobalSeo 
-        title="Contact Hiram Barsky | AI-Fluent UX Designer | Accessibility & Conversion Specialist"
-        description="Get in touch with Hiram Barsky for AI-enhanced UX design, WCAG accessibility compliance, and conversion-focused design services. Specializing in cross-functional collaboration and business-outcome driven design solutions."
+        title="Contact Hiram Barsky | UX/UI Designer & Gen AI Developer | AI Web App Consultation"
+        description="Get in touch with Hiram Barsky for UX/UI design and Gen AI integration services. Specializing in intelligent web applications, AI-powered interfaces, and user-centered design solutions with cutting-edge AI capabilities."
         canonicalUrl="https://barskydesign.pro/contact"
         pageType="content"
         keywords={[
-          "contact AI-fluent UX designer", "hire accessibility specialist", "WCAG compliance consultant",
-          "conversion optimization designer", "AI-enhanced design services", "cross-functional UX collaboration",
-          "business-focused design consultant", "Claude AI design expert", "T-shaped designer hire"
+          "contact UX UI designer", "hire Gen AI developer", "AI web app consultant",
+          "UX designer with AI experience", "AI integration services", "Gen AI design consultation",
+          "intelligent web application design", "AI UX consultant", "generative AI developer hire"
         ]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          "name": "Contact Hiram Barsky - AI-Enhanced UX Design Services",
-          "description": "Contact page for AI-enhanced UX design, accessibility compliance, and conversion optimization services",
+          "name": "Contact Hiram Barsky - UX/UI Design & Gen AI Development Services",
+          "description": "Contact page for UX/UI design and Gen AI integration services, specializing in intelligent web applications",
           "url": "https://barskydesign.pro/contact",
           "mainEntity": {
             "@type": "Person",
             "name": "Hiram Barsky",
-            "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist",
+            "jobTitle": "UX/UI Product Designer & Gen AI Developer",
             "email": "hbarsky01@gmail.com",
             "telephone": "+1-201-668-4754",
             "url": "https://barskydesign.pro",
             "knowsAbout": [
-              "AI-Enhanced UX Design",
-              "WCAG Accessibility Compliance", 
-              "Conversion Optimization",
-              "Cross-Functional Collaboration",
+              "UX/UI Product Design",
+              "Gen AI Integration", 
+              "Intelligent Web Applications",
+              "AI-Powered User Interfaces",
+              "ChatGPT Integration",
               "Claude AI",
-              "Figma AI",
-              "Business-Focused Design"
+              "React Development"
             ]
           }
         }}

@@ -17,7 +17,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
         transition={{ delay: 1.2, duration: 0.5 }}
         className="text-lg mb-4 text-gray-700 font-medium sm:text-xl max-w-4xl mx-auto leading-relaxed"
       >
-        We transform digital experiences through comprehensive user research and strategic design thinking, using our data-driven approach to help businesses create user-friendly solutions that drive meaningful results and lasting impact.
+        I create intelligent, user-centered digital experiences by combining thoughtful UX/UI design with cutting-edge generative AI integration. From intuitive interfaces to AI-powered web applications, I bring ideas to life through design and technology.
       </motion.p>
     </div>
   );

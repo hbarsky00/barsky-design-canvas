@@ -21,15 +21,15 @@ const AllProjects = () => {
   return (
     <div className="flex flex-col min-h-screen px-5">
       <EnhancedGlobalSeo 
-        title="UX Research & Design Case Studies | Barsky Design Agency Portfolio"
-        description="Explore our comprehensive UX research and design case studies showcasing user research methodologies, design strategy, and measurable business outcomes. Real projects demonstrating research-driven design solutions and conversion improvements."
+        title="AI-Enhanced UX/UI Design Portfolio | Hiram Barsky - Gen AI Web Applications"
+        description="Explore UX/UI design portfolio featuring AI-powered web applications, intelligent user interfaces, and Gen AI integration. Real case studies demonstrating AI-enhanced design solutions and measurable user experience improvements."
         canonicalUrl="https://barskydesign.pro/projects"
         breadcrumbs={breadcrumbs}
         pageType="portfolio"
         keywords={[
-          "UX research case studies", "design agency portfolio", "user research projects",
-          "design strategy examples", "UX design case studies", "digital product design",
-          "user experience research", "conversion optimization cases", "design thinking examples"
+          "AI-enhanced UX portfolio", "Gen AI web applications", "AI UX design case studies",
+          "intelligent user interface design", "AI-powered design portfolio", "generative AI projects",
+          "UX UI designer portfolio", "AI web app development", "Gen AI integration examples"
         ]}
       />
       
@@ -39,12 +39,12 @@ const AllProjects = () => {
         <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-16 sm:py-20 pt-24 sm:pt-28">
           <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Research & Design Case Studies
+              AI-Enhanced Design Portfolio
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Explore our portfolio of research-driven design projects showcasing comprehensive user research, 
-              strategic design thinking, and measurable business outcomes. Each case study demonstrates our 
-              process from user insights to implementation.
+              Explore my portfolio of UX/UI design projects featuring Gen AI integration and intelligent web applications. 
+              Each case study demonstrates the fusion of thoughtful design with cutting-edge AI technology, 
+              creating user-centered experiences that leverage the power of artificial intelligence.
             </p>
           </div>
         </section>
@@ -59,7 +59,7 @@ const AllProjects = () => {
         <ServicesCallToAction />
         <BlogPreview />
         <SeoFaqSection 
-          title="UX Research & Design Project Questions"
+          title="AI-Enhanced UX/UI Design Project Questions"
           faqs={projectFaqs}
           className="mt-16"
         />

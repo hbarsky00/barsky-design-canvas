@@ -16,13 +16,13 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-10">
           <div>
             <h3 className="text-2xl font-bold mb-6 text-neutral-50">
-              Barsky<span className="text-blue-vibrant">Design</span>
+              Hiram <span className="text-blue-vibrant">Barsky</span>
             </h3>
             <p className="text-neutral-50 mb-6 leading-relaxed">
-              Crafting innovative software solutions that drive technology forward.
+              UX/UI Product Designer & Gen AI Developer creating intelligent, user-centered digital experiences.
             </p>
             <p className="text-neutral-200 text-sm">
-              &copy; {currentYear} Barsky Design. All rights reserved.
+              &copy; {currentYear} Hiram Barsky. All rights reserved.
             </p>
           </div>
           

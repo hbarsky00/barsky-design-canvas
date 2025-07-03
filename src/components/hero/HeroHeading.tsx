@@ -30,7 +30,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         transition={{ duration: 0.6, delay: 1.2 }}
       >
         <AnimatedText 
-          text="UX Research & Design Agency" 
+          text="UX/UI Product Designer & Gen AI Developer" 
           tag="h2" 
           className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-700 block mb-2"
           delay={1000}

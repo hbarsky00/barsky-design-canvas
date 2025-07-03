@@ -12,8 +12,8 @@ const Projects = () => {
   return (
     <>
       <Helmet>
-        <title>AI-Enhanced UX Portfolio | Hiram Barsky - Professional Design Projects</title>
-        <meta name="description" content="Explore AI-enhanced UX/UI design portfolio featuring conversion-optimized mobile apps, web applications, and accessibility-compliant interfaces. Real case studies with measurable business outcomes and ROI-driven design solutions." />
+        <title>UX/UI Design & Gen AI Portfolio | Hiram Barsky - AI-Powered Web Applications</title>
+        <meta name="description" content="Explore UX/UI design portfolio featuring Gen AI integration, intelligent web applications, and AI-powered user interfaces. Real case studies demonstrating AI-enhanced design solutions and user experience innovations." />
         <link rel="canonical" href="https://barskydesign.pro/projects" />
         
         {/* Enhanced indexing signals */}
@@ -22,16 +22,16 @@ const Projects = () => {
         <meta name="bingbot" content="index, follow" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="AI-Enhanced UX Portfolio | Professional Design Projects" />
-        <meta property="og:description" content="Explore AI-enhanced UX/UI design portfolio featuring conversion-optimized mobile apps, web applications, and accessibility-compliant interfaces." />
+        <meta property="og:title" content="UX/UI Design & Gen AI Portfolio | AI-Powered Web Applications" />
+        <meta property="og:description" content="Explore UX/UI design portfolio featuring Gen AI integration, intelligent web applications, and AI-powered user interfaces." />
         <meta property="og:url" content="https://barskydesign.pro/projects" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AI-Enhanced UX Portfolio | Professional Design Projects" />
-        <meta name="twitter:description" content="Explore AI-enhanced UX/UI design portfolio featuring conversion-optimized mobile apps and web applications." />
+        <meta name="twitter:title" content="UX/UI Design & Gen AI Portfolio | AI-Powered Web Applications" />
+        <meta name="twitter:description" content="Explore UX/UI design portfolio featuring Gen AI integration and intelligent web applications." />
         <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
         {/* Structured data for portfolio */}
@@ -40,12 +40,12 @@ const Projects = () => {
             {
               "@context": "https://schema.org",
               "@type": "CollectionPage",
-              "name": "AI-Enhanced UX Design Portfolio",
-              "description": "Professional portfolio showcasing AI-augmented UX/UI design projects with measurable business outcomes",
+              "name": "UX/UI Design & Gen AI Portfolio",
+              "description": "Professional portfolio showcasing UX/UI design projects with Gen AI integration and intelligent web applications",
               "url": "https://barskydesign.pro/projects",
               "mainEntity": {
                 "@type": "ItemList",
-                "name": "Design Portfolio Projects",
+                "name": "AI-Enhanced Design Projects",
                 "numberOfItems": 6,
                 "itemListElement": [
                   {
@@ -65,7 +65,7 @@ const Projects = () => {
               "author": {
                 "@type": "Person",
                 "name": "Hiram Barsky",
-                "jobTitle": "AI-Fluent UX Designer"
+                "jobTitle": "UX/UI Product Designer & Gen AI Developer"
               }
             }
           `}
