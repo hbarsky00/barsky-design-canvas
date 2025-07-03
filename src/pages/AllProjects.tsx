@@ -22,7 +22,7 @@ const AllProjects = () => {
     <div className="flex flex-col min-h-screen px-5">
       <EnhancedGlobalSeo 
         title="AI-Enhanced UX/UI Design Portfolio | Hiram Barsky - Gen AI Web Applications"
-        description="Explore UX/UI design portfolio featuring AI-powered web applications, intelligent user interfaces, and Gen AI integration. Real case studies demonstrating AI-enhanced design solutions and measurable user experience improvements."
+        description="Explore UX/UI design portfolio featuring AI-powered web applications and Gen AI integration. Real case studies with measurable results and user improvements."
         canonicalUrl="https://barskydesign.pro/projects"
         breadcrumbs={breadcrumbs}
         pageType="portfolio"

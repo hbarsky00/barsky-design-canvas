@@ -13,7 +13,7 @@ const Contact = () => {
     <div className="flex flex-col min-h-screen">
       <EnhancedGlobalSeo 
         title="Contact Hiram Barsky | UX/UI Designer & Gen AI Developer | AI Web App Consultation"
-        description="Get in touch with Hiram Barsky for UX/UI design and Gen AI integration services. Specializing in intelligent web applications, AI-powered interfaces, and user-centered design solutions with cutting-edge AI capabilities."
+        description="Get in touch with Hiram Barsky for UX/UI design and Gen AI integration services. Specializing in intelligent web applications and AI-powered interfaces."
         canonicalUrl="https://barskydesign.pro/contact"
         pageType="content"
         keywords={[
