@@ -22,27 +22,27 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   // Generate concise, problem-focused titles (50-60 chars)
   const getOptimizedTitle = () => {
     if (project.id === 'herbalink') {
-      return "Herbal App UX Design | Trust & Access | Barsky Design";
+      return "Herbal App UX Design | Trust & Access | Hiram Barsky";
     }
     if (project.id === 'investor-loan-app') {
-      return "Fintech UX Design | Loan Platform | Barsky Design";
+      return "Fintech UX Design | Loan Platform | Hiram Barsky";
     }
     if (project.id === 'medication-app') {
-      return "Healthcare App UX | Patient Care | Barsky Design";
+      return "Healthcare App UX | Patient Care | Hiram Barsky";
     }
     if (project.id === 'splittime') {
-      return "Team Management UX | Workflow Design | Barsky Design";
+      return "Team Management UX | Workflow Design | Hiram Barsky";
     }
     if (project.id === 'gold2crypto') {
-      return "Crypto Trading UX | Investment App | Barsky Design";
+      return "Crypto Trading UX | Investment App | Hiram Barsky";
     }
     if (project.id === 'dae-search') {
-      return "Search Platform UX | Data Discovery | Barsky Design";
+      return "Search Platform UX | Data Discovery | Hiram Barsky";
     }
     if (project.id === 'barskyjoint') {
-      return "Cannabis Platform UX | E-commerce | Barsky Design";
+      return "Cannabis Platform UX | E-commerce | Hiram Barsky";
     }
-    return `${project.title.substring(0, 35)} | Barsky Design`;
+    return `${project.title.substring(0, 35)} | Hiram Barsky`;
   };
   
   // Generate concise, results-focused descriptions (150-160 chars)
@@ -68,7 +68,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     if (project.id === 'barskyjoint') {
       return "Cannabis e-commerce UX design: Platform interface solving regulatory compliance and user trust issues in regulated market space.";
     }
-    return `${project.title} UX design case study by Barsky Design - UX research and design agency specializing in user-centered solutions.`;
+    return `${project.title} UX design case study by Hiram Barsky - UX/UI Product Designer & Gen AI Developer specializing in user-centered solutions.`;
   };
   
   const optimizedTitle = getOptimizedTitle();
@@ -81,8 +81,8 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     <Helmet>
       <title>{optimizedTitle}</title>
       <meta name="description" content={optimizedDescription} />
-      <meta name="keywords" content={`Barsky Design, UX research agency, design agency, ${tags.join(', ')}, user experience design, digital product design, design case study, UX consulting`} />
-      <meta name="author" content="Barsky Design - UX Research & Design Agency" />
+      <meta name="keywords" content={`Hiram Barsky, UX UI designer, Gen AI developer, ${tags.join(', ')}, user experience design, digital product design, design case study, UX consulting`} />
+      <meta name="author" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer" />
       
       {/* Enhanced indexing directives */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -97,7 +97,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta property="og:image" content={socialMediaImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
+      <meta property="og:site_name" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer" />
       <meta property="og:locale" content="en_US" />
       
       {/* Enhanced Twitter Card - Using project hero image */}
@@ -139,9 +139,10 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "datePublished": "${new Date().toISOString().split('T')[0]}",
             "dateModified": "${new Date().toISOString().split('T')[0]}",
             "creator": {
-              "@type": "Organization",
-              "name": "Barsky Design",
-              "description": "Professional UX research and design agency specializing in user-centered design solutions that improve digital product experiences",
+              "@type": "Person",
+              "name": "Hiram Barsky",
+              "jobTitle": "UX/UI Product Designer & Gen AI Developer",
+              "description": "Expert UX/UI Product Designer specializing in Gen AI integration and intelligent web applications",
               "url": "https://barskydesign.pro",
               "email": "hbarsky01@gmail.com",
               "telephone": "+1-201-668-4754",
@@ -155,29 +156,29 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                 "https://www.linkedin.com/in/hirambarsky",
                 "https://twitter.com/barskydesign"
               ],
-              "serviceType": [
-                "UX Research",
+              "knowsAbout": [
+                "UX/UI Product Design",
+                "Gen AI Integration",
                 "User Experience Design",
                 "Digital Product Design",
-                "Design Strategy",
-                "User Testing",
+                "AI-Powered Web Applications",
                 "Design Consultation"
               ]
             },
             "author": {
-              "@type": "Organization",
-              "@id": "https://barskydesign.pro/#organization",
-              "name": "Barsky Design"
+              "@type": "Person",
+              "@id": "https://barskydesign.pro/#person",
+              "name": "Hiram Barsky"
             },
             "provider": {
-              "@type": "Organization",
-              "@id": "https://barskydesign.pro/#organization",
-              "name": "Barsky Design"
+              "@type": "Person",
+              "@id": "https://barskydesign.pro/#person",
+              "name": "Hiram Barsky"
             },
             "keywords": [
-              "Barsky Design",
-              "UX Research Agency",
-              "Design Agency",
+              "Hiram Barsky",
+              "UX UI Designer",
+              "Gen AI Developer",
               "User Experience Design",
               "${tags.join('", "')}"
             ],
@@ -185,11 +186,11 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "isPartOf": {
               "@type": "WebSite",
               "@id": "https://barskydesign.pro/#website",
-              "name": "Barsky Design - UX Research & Design Agency",
+              "name": "Hiram Barsky - UX/UI Product Designer & Gen AI Developer",
               "url": "https://barskydesign.pro",
               "author": {
-                "@type": "Organization",
-                "@id": "https://barskydesign.pro/#organization"
+                "@type": "Person",
+                "@id": "https://barskydesign.pro/#person"
               }
             },
             "breadcrumb": {
