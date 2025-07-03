@@ -2,7 +2,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 const ServicesCallToAction = () => {
   return (
@@ -31,7 +30,6 @@ const ServicesCallToAction = () => {
               }}
             >
               View Our Work
-              <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
