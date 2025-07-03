@@ -17,8 +17,8 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         className="flex justify-center mb-3"
       >
         <img
-          src="/lovable-uploads/ac3cac82-c216-4f87-b7b5-f3dc7b3d58ad.png"
-          alt="Barsky Design"
+          src="/lovable-uploads/2d17e5c5-6394-4af8-a954-4b94033e5574.png"
+          alt="Hiram Barsky Product Designer"
           className="h-24 sm:h-28 lg:h-32 w-auto object-contain"
           loading="eager"
         />
