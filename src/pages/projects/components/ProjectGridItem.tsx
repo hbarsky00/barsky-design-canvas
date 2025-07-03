@@ -20,7 +20,7 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group relative"
     >
-      <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+      <div className="bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
         {/* Project Image */}
         <div className="relative overflow-hidden aspect-[16/10]">
           <img
@@ -36,7 +36,7 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
             <div className="flex space-x-3">
               <Link 
                 to={`/project/${project.id}`}
-                className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors flex items-center [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+                className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 font-medium transition-colors flex items-center [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
               >
                 <Eye className="h-4 w-4 mr-1" />
                 View Case Study
@@ -46,7 +46,7 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center [&_svg]:stroke-2 [&_svg]:stroke-white [&_svg]:fill-none"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center [&_svg]:stroke-2 [&_svg]:stroke-white [&_svg]:fill-none"
                 >
                   <Figma className="h-4 w-4 mr-1" />
                   Live Demo

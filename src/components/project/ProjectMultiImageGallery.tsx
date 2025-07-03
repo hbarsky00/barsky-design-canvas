@@ -59,7 +59,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass-card layered-depth group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+            className="glass-card layered-depth group relative overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
             onClick={() => openLightbox(index)}
           >
             <img

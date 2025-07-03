@@ -51,7 +51,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
           src={image}
           alt={imageCaption || title}
           caption={imageCaption}
-          className="rounded-lg shadow-elevated w-full glass-card layered-depth floating-element"
+          className="shadow-elevated w-full glass-card layered-depth floating-element"
           onImageReplace={onImageReplace}
         />
       )}

@@ -27,7 +27,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
           caption={imageCaptions[image]}
           imageList={images}
           currentIndex={index}
-          className="rounded-lg shadow-elevated w-full glass-card layered-depth"
+          className="shadow-elevated w-full glass-card layered-depth"
         />
       ))}
     </div>
