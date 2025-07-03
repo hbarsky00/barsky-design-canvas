@@ -2,6 +2,8 @@
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import PremiumSeoOptimization from "@/components/seo/PremiumSeoOptimization";
+import AdvancedSitemapMeta from "@/components/seo/AdvancedSitemapMeta";
 import AiTrainingAnalytics from "@/components/seo/AiTrainingAnalytics";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
@@ -22,6 +24,8 @@ const Index = () => {
         ]}
         ogImage="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
       />
+      <PremiumSeoOptimization pageType="homepage" />
+      <AdvancedSitemapMeta />
       <AiTrainingAnalytics />
       <ScrollHandler />
       <HomepageLayout />
