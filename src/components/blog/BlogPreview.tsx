@@ -94,7 +94,6 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
               variant="outline"
             >
               View All Posts
-              <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>
