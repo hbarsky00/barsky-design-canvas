@@ -61,6 +61,11 @@ export const splittimeDetails: ProjectDetails = {
       caption: 'User personas showing Dad, Mom, Lawyer, and Judge with their information and usage patterns'
     },
     {
+      type: 'video',
+      content: 'https://www.loom.com/share/0bf47ee2418c46dd9196ec72afad5a39?sid=a2b787d0-b14f-4a68-8a8a-d441db511fe4',
+      caption: 'Splittime app demonstration video showing key features and user interactions'
+    },
+    {
       type: 'image',
       content: '/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png',
       caption: 'Co-parenting dashboard showing family coordination features'

@@ -5,9 +5,9 @@ import MaximizableImage from "../MaximizableImage";
 import TextSection from "./TextSection";
 
 interface ImageTextItem {
-  type: 'image' | 'text';
-  content: string; // For images: image path, for text: text content
-  caption?: string; // Only for images
+  type: 'image' | 'text' | 'video';
+  content: string; // For images: image path, for text: text content, for video: video URL
+  caption?: string; // Only for images and videos
   textKey?: string; // Only for text sections, used for saving
 }
 
@@ -57,6 +57,17 @@ const ImageTextGallery: React.FC<ImageTextGalleryProps> = ({
               src={item.content}
               alt={item.caption || `${sectionName} image ${index + 1}`}
               caption={item.caption || imageCaptions[item.content] || `${sectionName} supporting image`}
+              className="rounded-lg shadow-elevated w-full glass-card layered-depth"
+              projectId={projectId}
+              hideEditButton={false}
+              allowRemove={true}
+              onImageRemove={() => handleImageRemove(index)}
+            />
+          ) : item.type === 'video' ? (
+            <MaximizableImage
+              src={item.content}
+              alt={item.caption || `${sectionName} video ${index + 1}`}
+              caption={item.caption || `${sectionName} supporting video`}
               className="rounded-lg shadow-elevated w-full glass-card layered-depth"
               projectId={projectId}
               hideEditButton={false}

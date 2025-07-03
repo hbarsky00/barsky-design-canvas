@@ -57,8 +57,8 @@ export interface ProjectProps {
 }
 
 export interface ImageTextItem {
-  type: 'image' | 'text';
-  content: string; // For images: image path, for text: text content
-  caption?: string; // Only for images
+  type: 'image' | 'text' | 'video';
+  content: string; // For images: image path, for text: text content, for video: video URL
+  caption?: string; // Only for images and videos
   textKey?: string; // Only for text sections, used for saving
 }
