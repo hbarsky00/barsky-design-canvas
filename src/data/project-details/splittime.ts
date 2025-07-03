@@ -127,7 +127,7 @@ export const splittimeDetails: ProjectDetails = {
     "/lovable-uploads/028009a0-8ed7-4cf1-9155-1269a756bcb1.png",
     "/lovable-uploads/a2a89b81-55de-4401-ba10-ce7b03e08e2a.png",
     "/lovable-uploads/3be08617-e041-4762-95ee-d64e40bfa9bd.png",
-    "/lovable-uploads/54b8d8d3-83c7-4d48-b647-d7ae18dd9685.png"
+    "https://www.loom.com/share/0bf47ee2418c46dd9196ec72afad5a39?sid=a2b787d0-b14f-4a68-8a8a-d441db511fe4"
   ],
   processImage: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
   processGalleryImages: [
