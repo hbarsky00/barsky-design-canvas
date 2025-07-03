@@ -1,27 +1,40 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "../AnimatedText";
+import BackgroundRemovalProcessor from "./BackgroundRemovalProcessor";
+import { shouldShowEditingControls } from "@/utils/devModeDetection";
 
 interface HeroHeadingProps {
   isVisible: boolean;
 }
 
 const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
+  const [currentImageSrc, setCurrentImageSrc] = useState("/lovable-uploads/2d17e5c5-6394-4af8-a954-4b94033e5574.png");
+  const showEditingControls = shouldShowEditingControls();
   return (
     <div className="relative">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={isVisible ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="flex justify-center mb-3"
+        className="flex justify-center mb-3 relative"
       >
         <img
-          src="/lovable-uploads/2d17e5c5-6394-4af8-a954-4b94033e5574.png"
+          src={currentImageSrc}
           alt="Hiram Barsky Product Designer"
           className="h-24 sm:h-28 lg:h-32 w-auto object-contain"
           loading="eager"
         />
+        
+        {showEditingControls && (
+          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+            <BackgroundRemovalProcessor
+              currentImageSrc={currentImageSrc}
+              onImageProcessed={setCurrentImageSrc}
+            />
+          </div>
+        )}
       </motion.div>
       
       <motion.div
