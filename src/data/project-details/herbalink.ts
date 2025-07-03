@@ -21,6 +21,7 @@ export const herbalinkDetails: ProjectDetails = {
   // Manual captions for all images
   imageCaptions: {
     "/lovable-uploads/6c4ed77d-1ea7-4da1-8c3e-ad25cd792518.png": "HerbaLink mobile app screens showing symptom tracker, certified herbalists connection, and wellness services",
+    "https://www.loom.com/share/86af4c91366b461f929ac740cf88c9ee?sid=8dae2317-83b7-4641-a6cf-a467b88c2ce9": "Project overview video showing Herbalink platform features and user journey",
     "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "Herbalink platform showing practitioner and patient connection challenges",
     "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "Trust and safety features for herbal medicine platform",
     "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png": "Personalized dashboard for herb protocol tracking",
@@ -65,7 +66,7 @@ export const herbalinkDetails: ProjectDetails = {
   ],
 
   challengeGalleryImages: [
-    "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png",
+    "https://www.loom.com/share/86af4c91366b461f929ac740cf88c9ee?sid=8dae2317-83b7-4641-a6cf-a467b88c2ce9",
     "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png"
   ],
   processImage: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
