@@ -87,7 +87,7 @@ const Services = () => {
       
       <Header />
       <main className="flex-grow">
-        <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <section className="py-12 bg-gradient-to-br from-blue-50 to-indigo-100">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               UX Research & Design Services
