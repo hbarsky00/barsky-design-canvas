@@ -162,7 +162,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           className="w-full h-64 md:h-80 lg:h-96 rounded-lg transition-transform duration-300 group-hover:scale-105"
           frameBorder="0"
           allowFullScreen
-          onClick={handleMaximize}
           onLoad={handleImageLoad}
           style={{ 
             opacity: isUploading ? 0.7 : 1,
