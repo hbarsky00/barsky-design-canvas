@@ -130,18 +130,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   // Use alt text as the title instead of caption to avoid HTML
   const imageTitle = alt || 'Image';
 
-  // Check if src is a Loom video link
-  const isLoomVideo = currentSrc.includes('loom.com/share/');
-  
-  // Extract Loom embed ID from the URL
-  const getLoomEmbedUrl = (url: string) => {
-    const match = url.match(/loom\.com\/share\/([a-zA-Z0-9]+)/);
-    if (match) {
-      return `https://www.loom.com/embed/${match[1]}`;
-    }
-    return url;
-  };
-
   return (
     <figure 
       className={`relative group overflow-hidden cursor-pointer ${className}`}
@@ -154,22 +142,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         <ImageErrorFallback 
           showEditingControls={showEditingControls}
           originalSrc={currentSrc}
-        />
-      ) : isLoomVideo ? (
-        <iframe
-          src={getLoomEmbedUrl(currentSrc)}
-          title={imageTitle}
-          className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
-          frameBorder="0"
-          allowFullScreen
-          style={{ 
-            opacity: isUploading ? 0.7 : 1,
-            transition: 'opacity 0.3s ease',
-            display: 'block',
-            maxWidth: '100%',
-            height: 'auto',
-            minHeight: '400px'
-          }}
         />
       ) : (
         <img

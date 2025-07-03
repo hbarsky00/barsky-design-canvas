@@ -131,7 +131,7 @@ export const splittimeDetails: ProjectDetails = {
   ],
   processImage: "/lovable-uploads/ae5ccd96-fa33-40a2-a780-81e82a3beb93.png",
   processGalleryImages: [
-    "https://www.loom.com/share/0bf47ee2418c46dd9196ec72afad5a39?sid=a2b787d0-b14f-4a68-8a8a-d441db511fe4"
+    "/lovable-uploads/41321aa7-5b68-4633-93d3-bc34aff90385.png"
   ],
   resultGalleryImages: [
     "/lovable-uploads/010681bc-91bc-4f74-9ad9-33cba67f1289.png",
