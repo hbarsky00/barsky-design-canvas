@@ -39,6 +39,104 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_interactions: {
+        Row: {
+          completed_at: string | null
+          content: string | null
+          created_at: string
+          id: string
+          interaction_type: string
+          lead_id: string
+          scheduled_at: string | null
+          subject: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          interaction_type: string
+          lead_id: string
+          scheduled_at?: string | null
+          subject?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          interaction_type?: string
+          lead_id?: string
+          scheduled_at?: string | null
+          subject?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_interactions_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          budget_range: string | null
+          company: string | null
+          contacted_at: string | null
+          created_at: string
+          email: string
+          id: string
+          lead_source: string | null
+          lead_status: string | null
+          name: string
+          notes: string | null
+          phone: string | null
+          priority_score: number | null
+          project_description: string | null
+          project_type: string | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          budget_range?: string | null
+          company?: string | null
+          contacted_at?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          lead_source?: string | null
+          lead_status?: string | null
+          name: string
+          notes?: string | null
+          phone?: string | null
+          priority_score?: number | null
+          project_description?: string | null
+          project_type?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          budget_range?: string | null
+          company?: string | null
+          contacted_at?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          lead_source?: string | null
+          lead_status?: string | null
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          priority_score?: number | null
+          project_description?: string | null
+          project_type?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       published_projects: {
         Row: {
           content_blocks: Json

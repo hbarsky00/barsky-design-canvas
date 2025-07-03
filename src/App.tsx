@@ -21,6 +21,8 @@ import Store from "./pages/Store";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import NotFound from "./pages/NotFound";
 import TinyMCEDemo from "@/pages/TinyMCEDemo";
+import LeadCapture from "@/pages/LeadCapture";
+import AdminDashboard from "@/pages/AdminDashboard";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -54,6 +56,8 @@ function App() {
               <Route path="/blog/:postId" element={<BlogPost />} />
               <Route path="/store" element={<Store />} />
               <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
+              <Route path="/get-started" element={<LeadCapture />} />
+              <Route path="/admin/leads" element={<AdminDashboard />} />
               <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
