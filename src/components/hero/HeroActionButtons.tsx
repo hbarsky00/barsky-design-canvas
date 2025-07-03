@@ -18,6 +18,14 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
     }
   };
 
+  const scrollToProjects = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -32,14 +40,12 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         <Button 
           variant="default"
           size="lg" 
-          asChild
+          onClick={scrollToProjects}
           className="w-full sm:w-auto relative overflow-hidden group [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
-          <Link to="/projects">
-            <Sparkles className="mr-2 h-4 w-4" />
-            <span>View My Work</span>
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <Sparkles className="mr-2 h-4 w-4" />
+          <span>View My Work</span>
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </motion.div>
       
