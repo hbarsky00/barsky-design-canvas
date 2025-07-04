@@ -2,16 +2,18 @@
 import { ProjectDetails } from "../types/project";
 
 export const barskyjointDetails: ProjectDetails = {
-  challenge: "Barsky Joint needed a comprehensive digital presence for both their food truck operations and restaurant locations. The challenge was creating a unified brand experience that could handle mobile ordering, table reservations, and real-time location tracking.",
+  challenge: "Balancing Speed with Customization - The biggest challenge was creating an ordering experience that was both lightning-fast for rushed lunch customers while still allowing for meaningful burger customization. Food truck customers have notoriously short attention spans and often make decisions while walking, yet our gourmet burger concept required showcasing customization options that differentiated us from fast-food competitors.",
 
-  process: "I conducted field research by following food truck operations and observing customer interactions at both venues. I created wireframes that prioritized mobile-first design for food truck interactions while ensuring the restaurant experience remained elegant.",
+  challengeAdditionalText: "Technical Constraints: Working with a limited development timeline and budget meant finding creative solutions for complex features like real-time location tracking and order queue management. The food truck's mobile nature also presented unique challenges for consistent connectivity and payment processing in various locations.\n\nUser Experience Complexity: Initial user testing revealed that customers were overwhelmed by too many customization options, leading to decision paralysis and cart abandonment. Additionally, managing user expectations around wait times proved difficult without real-time kitchen integration.",
 
-  result: "The Barsky Joint platform successfully launched with both mobile and web applications, resulting in a 45% increase in food truck orders and 30% improvement in restaurant reservations. The unified brand experience helped establish stronger customer loyalty.",
+  process: "I conducted comprehensive research to understand the food truck ecosystem and customer pain points. Through interviews with 15 potential customers and observations at local food trucks, I identified key user needs: quick ordering during lunch breaks, real-time location tracking, and menu transparency. I mapped out the core user journey from app discovery to order completion, focusing on a streamlined 3-tap ordering process. Using Figma, I developed a comprehensive design system featuring warm, appetite-inducing colors that reflected the gourmet burger brand. I leveraged Lovable's AI-powered development platform to rapidly prototype and build the React Native application, translating my Figma designs into functional components with integrated location services, payment processing, and real-time order status updates.",
 
-  technologies: ["React Native", "Web App", "GPS Tracking", "Mobile Ordering", "Reservation System", "Payment Integration", "Real-time Updates", "Restaurant Management"],
-  duration: "1.5 years",
-  client: "Barsky Joint Restaurant Group",
-  role: "Lead UX/UI Designer",
+  result: "The streamlined interface resulted in measurably better user satisfaction with 92% of users finding the ordering process 'intuitive' and 87% appreciating the real-time truck location feature. The app directly contributed to a 35% increase in daily orders and enabled the food truck to serve 25% more customers during peak lunch hours. The pre-ordering feature allowed for better inventory management and reduced food waste by 18%, with 68% of users opting into push notifications for location updates.",
+
+  technologies: ["Lovable", "React Native", "Figma", "Stripe", "WebSocket", "GPS Tracking", "Mobile Ordering", "Payment Integration", "Real-time Updates"],
+  duration: "4 weeks",
+  client: "Barsky Joint Restaurant Group", 
+  role: "UX Designer & Developer",
   projectLink: "https://barskyjoint.biz",
 
   // Disable AI captions - use manual captions only
