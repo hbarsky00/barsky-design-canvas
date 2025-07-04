@@ -73,6 +73,49 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
 
   const styling = getProjectStyling();
 
+  // Get project-specific gradient colors for image placeholders
+  const getImageGradients = () => {
+    switch (projectId) {
+      case 'barskyjoint':
+        return {
+          hero: 'linear-gradient(135deg, #fff5f2, #ffebe6)',
+          light: 'linear-gradient(135deg, #fef7f0, #fdf2f8)',
+          medium: 'linear-gradient(135deg, #fed7aa, #fdba74)',
+          textColor: '#dc2626'
+        };
+      case 'herbalink':
+        return {
+          hero: 'linear-gradient(135deg, #e8f5e8, #f0f8f0)',
+          light: 'linear-gradient(135deg, #f0fdf4, #dcfce7)',
+          medium: 'linear-gradient(135deg, #bbf7d0, #86efac)',
+          textColor: '#15803d'
+        };
+      case 'splittime':
+        return {
+          hero: 'linear-gradient(135deg, #f3e8ff, #e9d5ff)',
+          light: 'linear-gradient(135deg, #faf5ff, #f3e8ff)',
+          medium: 'linear-gradient(135deg, #d8b4fe, #c084fc)',
+          textColor: '#7c3aed'
+        };
+      case 'investor-loan-app':
+        return {
+          hero: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
+          light: 'linear-gradient(135deg, #eff6ff, #dbeafe)',
+          medium: 'linear-gradient(135deg, #93c5fd, #60a5fa)',
+          textColor: '#2563eb'
+        };
+      default:
+        return {
+          hero: 'linear-gradient(135deg, #f1f5f9, #e2e8f0)',
+          light: 'linear-gradient(135deg, #f8fafc, #f1f5f9)',
+          medium: 'linear-gradient(135deg, #cbd5e1, #94a3b8)',
+          textColor: '#475569'
+        };
+    }
+  };
+
+  const gradients = getImageGradients();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
@@ -91,6 +134,25 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
             <div><strong>Role:</strong> {styling.role}</div>
             <div><strong>Duration:</strong> {styling.duration}</div>
             <div><strong>Platform:</strong> {styling.platform}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section Image */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div 
+          className="w-full h-80 rounded-lg border-2 flex items-center justify-center text-center"
+          style={{ background: gradients.hero, borderColor: gradients.textColor, color: gradients.textColor }}
+        >
+          <div className="p-6">
+            <div className="text-6xl mb-4">
+              {projectId === 'barskyjoint' && '🍔'}
+              {projectId === 'herbalink' && '🌿'}
+              {projectId === 'splittime' && '📱'}
+              {projectId === 'investor-loan-app' && '📊'}
+            </div>
+            <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+            <p className="text-lg">Main Application Interface</p>
           </div>
         </div>
       </div>
@@ -139,6 +201,90 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                 </CardContent>
               </Card>
 
+              {/* Process Step Images (3 images) */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold">Design Process Steps</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-4xl mb-3">🔍</div>
+                      <h4 className="font-bold mb-1">Research</h4>
+                      <p className="text-sm">User interviews and market analysis</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-4xl mb-3">🎨</div>
+                      <h4 className="font-bold mb-1">Design</h4>
+                      <p className="text-sm">Wireframes and visual design</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-4xl mb-3">⚡</div>
+                      <h4 className="font-bold mb-1">Development</h4>
+                      <p className="text-sm">Implementation and testing</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content Block Images (4 images) */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold">Key Design Elements</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-3xl mb-2">👤</div>
+                      <h4 className="font-bold mb-1">User Experience</h4>
+                      <p className="text-sm">Intuitive navigation and flow</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-3xl mb-2">📱</div>
+                      <h4 className="font-bold mb-1">Mobile First</h4>
+                      <p className="text-sm">Responsive design approach</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-3xl mb-2">🎯</div>
+                      <h4 className="font-bold mb-1">Performance</h4>
+                      <p className="text-sm">Optimized for speed and efficiency</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-3xl mb-2">🔒</div>
+                      <h4 className="font-bold mb-1">Security</h4>
+                      <p className="text-sm">Data protection and privacy</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Tech Stack */}
               {details.technologies && (
                 <div className="space-y-4">
@@ -174,6 +320,43 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Challenge Gallery Images (3 images) */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold">Challenge Breakdown</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div 
+                    className="h-44 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.medium, borderColor: gradients.textColor, color: '#ffffff' }}
+                  >
+                    <div>
+                      <div className="text-3xl mb-2">⚠️</div>
+                      <h4 className="font-bold mb-1">Technical Constraints</h4>
+                      <p className="text-sm">Limited resources and timeline</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-44 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.medium, borderColor: gradients.textColor, color: '#ffffff' }}
+                  >
+                    <div>
+                      <div className="text-3xl mb-2">👥</div>
+                      <h4 className="font-bold mb-1">User Adoption</h4>
+                      <p className="text-sm">Change management challenges</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-44 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.medium, borderColor: gradients.textColor, color: '#ffffff' }}
+                  >
+                    <div>
+                      <div className="text-3xl mb-2">🎯</div>
+                      <h4 className="font-bold mb-1">Market Position</h4>
+                      <p className="text-sm">Competitive differentiation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </TabsContent>
 
@@ -189,6 +372,33 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Results Images (2 images) */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold">Key Results</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-4xl mb-3">📈</div>
+                      <h4 className="font-bold mb-2">Performance Metrics</h4>
+                      <p className="text-sm">Significant improvement in key KPIs</p>
+                    </div>
+                  </div>
+                  <div 
+                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
+                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
+                  >
+                    <div>
+                      <div className="text-4xl mb-3">⭐</div>
+                      <h4 className="font-bold mb-2">User Satisfaction</h4>
+                      <p className="text-sm">High ratings and positive feedback</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* Project Links */}
               {details.projectLink && (
