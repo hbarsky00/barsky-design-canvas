@@ -39,7 +39,7 @@ const IramText = ({ isDarkMode, letterTransition }: IramTextProps) => {
               }
             }
           }}
-          className="inline-block"
+          className={letter === " " ? "inline-block w-2" : "inline-block"}
         >
           {letter}
         </motion.span>
