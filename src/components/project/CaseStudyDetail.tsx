@@ -116,6 +116,49 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
 
   const gradients = getImageGradients();
 
+  // Get actual images from project details
+  const getProjectImages = () => {
+    switch (projectId) {
+      case 'barskyjoint':
+        return {
+          hero: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+          challenge: details.challengeGalleryImages?.[0] || "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png",
+          process: details.processImage || "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
+          result: details.resultGalleryImages?.[0] || "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png"
+        };
+      case 'herbalink':
+        return {
+          hero: "/lovable-uploads/6c4ed77d-1ea7-4da1-8c3e-ad25cd792518.png",
+          challenge: "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png",
+          process: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
+          result: "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png"
+        };
+      case 'splittime':
+        return {
+          hero: details.availableImages?.[0] || "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+          challenge: details.challengeGalleryImages?.[0] || "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+          process: details.processImage || "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png",
+          result: details.resultGalleryImages?.[0] || "/lovable-uploads/647c00bd-470d-4fc5-8c5e-34c8d1c42676.png"
+        };
+      case 'investor-loan-app':
+        return {
+          hero: "/lovable-uploads/e1d0b229-0ec0-4f02-a551-437bd38393e5.png",
+          challenge: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+          process: "/lovable-uploads/ec1458b5-d364-498e-a5ec-4122b62195d3.png",
+          result: "/lovable-uploads/7a8b4364-8a51-4c15-9e30-ab0352103ba1.png"
+        };
+      default:
+        return {
+          hero: project.image,
+          challenge: project.image,
+          process: project.image,
+          result: project.image
+        };
+    }
+  };
+
+  const images = getProjectImages();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
@@ -138,152 +181,121 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
         </div>
       </div>
 
-      {/* Hero Section Image */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div 
-          className="w-full h-80 rounded-lg border-2 flex items-center justify-center text-center"
-          style={{ background: gradients.hero, borderColor: gradients.textColor, color: gradients.textColor }}
-        >
-          <div className="p-6">
-            <div className="text-6xl mb-4">
-              {projectId === 'barskyjoint' && '🍔'}
-              {projectId === 'herbalink' && '🌿'}
-              {projectId === 'splittime' && '📱'}
-              {projectId === 'investor-loan-app' && '📊'}
-            </div>
-            <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-            <p className="text-lg">Main Application Interface</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation Tabs */}
+      {/* Navigation Menu - Anchor Links */}
       <div className="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40">
         <div className="max-w-6xl mx-auto px-4">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="w-full justify-start h-14 bg-transparent border-0 p-0">
-              <TabsTrigger 
-                value="what-i-did" 
-                className="h-14 px-6 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:bg-transparent rounded-none"
-              >
-                What I Did
-              </TabsTrigger>
-              <TabsTrigger 
-                value="challenge" 
-                className="h-14 px-6 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:bg-transparent rounded-none"
-              >
-                Challenge
-              </TabsTrigger>
-              <TabsTrigger 
-                value="results" 
-                className="h-14 px-6 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:bg-transparent rounded-none"
-              >
-                Results
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <nav className="flex justify-start h-14">
+            <a 
+              href="#challenge" 
+              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              Challenge
+            </a>
+            <a 
+              href="#what-i-did" 
+              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              What I Did
+            </a>
+            <a 
+              href="#results" 
+              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              Results
+            </a>
+          </nav>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsContent value="what-i-did" className="mt-0">
-            <div className="space-y-8">
-              <Card className="bg-white shadow-lg border border-gray-200">
-                <CardHeader>
-                  <CardTitle className="text-2xl">Process & Approach</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="prose max-w-none">
-                    <p className="text-lg leading-relaxed">{details.process}</p>
-                  </div>
-                </CardContent>
-              </Card>
+      {/* Hero Image */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <img 
+          src={images.hero} 
+          alt={project.title}
+          className="w-full h-80 object-cover rounded-lg shadow-lg"
+        />
+      </div>
 
-              {/* Process Step Images (3 images) */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold">Design Process Steps</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-4xl mb-3">🔍</div>
-                      <h4 className="font-bold mb-1">Research</h4>
-                      <p className="text-sm">User interviews and market analysis</p>
-                    </div>
+      {/* Content Sections */}
+      <div className="max-w-6xl mx-auto px-4 py-12 space-y-16">
+        
+        {/* Challenge Section */}
+        <section id="challenge" className="scroll-mt-20">
+          <Card className="bg-white shadow-lg border border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-3xl">The Challenge</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="prose max-w-none mb-8">
+                <p className="text-lg leading-relaxed">{details.challenge}</p>
+                {details.challengeAdditionalText && (
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <p className="text-base leading-relaxed whitespace-pre-line">
+                      {details.challengeAdditionalText}
+                    </p>
                   </div>
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-4xl mb-3">🎨</div>
-                      <h4 className="font-bold mb-1">Design</h4>
-                      <p className="text-sm">Wireframes and visual design</p>
-                    </div>
-                  </div>
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-4xl mb-3">⚡</div>
-                      <h4 className="font-bold mb-1">Development</h4>
-                      <p className="text-sm">Implementation and testing</p>
-                    </div>
-                  </div>
-                </div>
+                )}
+              </div>
+              
+              {/* Challenge Images */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <img 
+                  src={images.challenge} 
+                  alt="Challenge visualization"
+                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                />
+                {details.challengeGalleryImages?.[1] && (
+                  <img 
+                    src={details.challengeGalleryImages[1]} 
+                    alt="Challenge details"
+                    className="w-full h-64 object-cover rounded-lg shadow-md"
+                  />
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* What I Did Section */}
+        <section id="what-i-did" className="scroll-mt-20">
+          <Card className="bg-white shadow-lg border border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-3xl">What I Did</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="prose max-w-none mb-8">
+                <p className="text-lg leading-relaxed">{details.process}</p>
+              </div>
+              
+              {/* Process Images */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <img 
+                  src={images.process} 
+                  alt="Design process"
+                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                />
+                {details.processBottomImage && (
+                  <img 
+                    src={details.processBottomImage} 
+                    alt="Process details"
+                    className="w-full h-64 object-cover rounded-lg shadow-md"
+                  />
+                )}
               </div>
 
-              {/* Content Block Images (4 images) */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold">Key Design Elements</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-3xl mb-2">👤</div>
-                      <h4 className="font-bold mb-1">User Experience</h4>
-                      <p className="text-sm">Intuitive navigation and flow</p>
-                    </div>
-                  </div>
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-3xl mb-2">📱</div>
-                      <h4 className="font-bold mb-1">Mobile First</h4>
-                      <p className="text-sm">Responsive design approach</p>
-                    </div>
-                  </div>
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-3xl mb-2">🎯</div>
-                      <h4 className="font-bold mb-1">Performance</h4>
-                      <p className="text-sm">Optimized for speed and efficiency</p>
-                    </div>
-                  </div>
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-3xl mb-2">🔒</div>
-                      <h4 className="font-bold mb-1">Security</h4>
-                      <p className="text-sm">Data protection and privacy</p>
-                    </div>
-                  </div>
+              {/* Additional Process Images */}
+              {details.availableImages && details.availableImages.length > 2 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  {details.availableImages.slice(1, 4).map((image, index) => (
+                    <img 
+                      key={index}
+                      src={image} 
+                      alt={`Process step ${index + 1}`}
+                      className="w-full h-48 object-cover rounded-lg shadow-md"
+                    />
+                  ))}
                 </div>
-              </div>
+              )}
 
               {/* Tech Stack */}
               {details.technologies && (
@@ -298,106 +310,35 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                   </div>
                 </div>
               )}
-            </div>
-          </TabsContent>
+            </CardContent>
+          </Card>
+        </section>
 
-          <TabsContent value="challenge" className="mt-0">
-            <div className="space-y-8">
-              <Card className="bg-white shadow-lg border border-gray-200">
-                <CardHeader>
-                  <CardTitle className="text-2xl">The Challenge</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="prose max-w-none">
-                    <p className="text-lg leading-relaxed">{details.challenge}</p>
-                    {details.challengeAdditionalText && (
-                      <div className="mt-6 pt-6 border-t border-gray-200">
-                        <p className="text-base leading-relaxed whitespace-pre-line">
-                          {details.challengeAdditionalText}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Challenge Gallery Images (3 images) */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold">Challenge Breakdown</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div 
-                    className="h-44 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.medium, borderColor: gradients.textColor, color: '#ffffff' }}
-                  >
-                    <div>
-                      <div className="text-3xl mb-2">⚠️</div>
-                      <h4 className="font-bold mb-1">Technical Constraints</h4>
-                      <p className="text-sm">Limited resources and timeline</p>
-                    </div>
-                  </div>
-                  <div 
-                    className="h-44 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.medium, borderColor: gradients.textColor, color: '#ffffff' }}
-                  >
-                    <div>
-                      <div className="text-3xl mb-2">👥</div>
-                      <h4 className="font-bold mb-1">User Adoption</h4>
-                      <p className="text-sm">Change management challenges</p>
-                    </div>
-                  </div>
-                  <div 
-                    className="h-44 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.medium, borderColor: gradients.textColor, color: '#ffffff' }}
-                  >
-                    <div>
-                      <div className="text-3xl mb-2">🎯</div>
-                      <h4 className="font-bold mb-1">Market Position</h4>
-                      <p className="text-sm">Competitive differentiation</p>
-                    </div>
-                  </div>
-                </div>
+        {/* Results Section */}
+        <section id="results" className="scroll-mt-20">
+          <Card className="bg-white shadow-lg border border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-3xl">Results & Impact</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="prose max-w-none mb-8">
+                <p className="text-lg leading-relaxed">{details.result}</p>
               </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="results" className="mt-0">
-            <div className="space-y-8">
-              <Card className="bg-white shadow-lg border border-gray-200">
-                <CardHeader>
-                  <CardTitle className="text-2xl">Results & Impact</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="prose max-w-none">
-                    <p className="text-lg leading-relaxed">{details.result}</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Results Images (2 images) */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold">Key Results</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-4xl mb-3">📈</div>
-                      <h4 className="font-bold mb-2">Performance Metrics</h4>
-                      <p className="text-sm">Significant improvement in key KPIs</p>
-                    </div>
-                  </div>
-                  <div 
-                    className="h-48 rounded-lg border flex items-center justify-center text-center p-4"
-                    style={{ background: gradients.light, borderColor: gradients.textColor, color: gradients.textColor }}
-                  >
-                    <div>
-                      <div className="text-4xl mb-3">⭐</div>
-                      <h4 className="font-bold mb-2">User Satisfaction</h4>
-                      <p className="text-sm">High ratings and positive feedback</p>
-                    </div>
-                  </div>
-                </div>
+              
+              {/* Results Images */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <img 
+                  src={images.result} 
+                  alt="Project results"
+                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                />
+                {details.resultGalleryImages?.[1] && (
+                  <img 
+                    src={details.resultGalleryImages[1]} 
+                    alt="Additional results"
+                    className="w-full h-64 object-cover rounded-lg shadow-md"
+                  />
+                )}
               </div>
 
               {/* Project Links */}
@@ -417,9 +358,9 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
                   </CardContent>
                 </Card>
               )}
-            </div>
-          </TabsContent>
-        </Tabs>
+            </CardContent>
+          </Card>
+        </section>
       </div>
     </div>
   );
