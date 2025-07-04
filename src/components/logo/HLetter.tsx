@@ -29,7 +29,7 @@ const HLetter = ({ isDarkMode, letterTransition }: HLetterProps) => {
         }}
         transition={letterTransition}
       >
-        <span className="relative z-10">B</span>
+        <span className="relative z-10">H</span>
         
         {/* Animated dot for B */}
         <motion.span
