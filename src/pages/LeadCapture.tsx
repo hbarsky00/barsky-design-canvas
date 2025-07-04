@@ -86,7 +86,7 @@ const LeadCapture: React.FC = () => {
             <h2 className="text-2xl font-bold mb-4">What Happens Next?</h2>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                <div className="w-[38px] h-[38px] bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
                   1
                 </div>
                 <div>
@@ -98,7 +98,7 @@ const LeadCapture: React.FC = () => {
               </div>
               
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                <div className="w-[38px] h-[38px] bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
                   2
                 </div>
                 <div>
@@ -110,7 +110,7 @@ const LeadCapture: React.FC = () => {
               </div>
               
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                <div className="w-[38px] h-[38px] bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
                   3
                 </div>
                 <div>
