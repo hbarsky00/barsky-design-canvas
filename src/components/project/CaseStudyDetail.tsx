@@ -4,6 +4,7 @@ import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import MaximizableImage from "./MaximizableImage";
 
 interface CaseStudyDetailProps {
   project: ProjectProps;
@@ -209,10 +210,12 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
 
       {/* Hero Image */}
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <img 
-          src={images.hero} 
+        <MaximizableImage
+          src={images.hero}
           alt={project.title}
+          caption={details.imageCaptions?.[images.hero]}
           className="w-full h-80 object-cover rounded-lg shadow-lg"
+          projectId={projectId}
         />
       </div>
 
@@ -239,16 +242,20 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
               
               {/* Challenge Images */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <img 
-                  src={images.challenge} 
+                <MaximizableImage
+                  src={images.challenge}
                   alt="Challenge visualization"
+                  caption={details.imageCaptions?.[images.challenge]}
                   className="w-full h-64 object-cover rounded-lg shadow-md"
+                  projectId={projectId}
                 />
                 {details.challengeGalleryImages?.[1] && (
-                  <img 
-                    src={details.challengeGalleryImages[1]} 
+                  <MaximizableImage
+                    src={details.challengeGalleryImages[1]}
                     alt="Challenge details"
+                    caption={details.imageCaptions?.[details.challengeGalleryImages[1]]}
                     className="w-full h-64 object-cover rounded-lg shadow-md"
+                    projectId={projectId}
                   />
                 )}
               </div>
@@ -269,16 +276,20 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
               
               {/* Process Images */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <img 
-                  src={images.process} 
+                <MaximizableImage
+                  src={images.process}
                   alt="Design process"
+                  caption={details.imageCaptions?.[images.process]}
                   className="w-full h-64 object-cover rounded-lg shadow-md"
+                  projectId={projectId}
                 />
                 {details.processBottomImage && (
-                  <img 
-                    src={details.processBottomImage} 
+                  <MaximizableImage
+                    src={details.processBottomImage}
                     alt="Process details"
+                    caption={details.imageCaptions?.[details.processBottomImage]}
                     className="w-full h-64 object-cover rounded-lg shadow-md"
+                    projectId={projectId}
                   />
                 )}
               </div>
@@ -287,11 +298,13 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
               {details.availableImages && details.availableImages.length > 2 && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                   {details.availableImages.slice(1, 4).map((image, index) => (
-                    <img 
+                    <MaximizableImage
                       key={index}
-                      src={image} 
+                      src={image}
                       alt={`Process step ${index + 1}`}
+                      caption={details.imageCaptions?.[image]}
                       className="w-full h-48 object-cover rounded-lg shadow-md"
+                      projectId={projectId}
                     />
                   ))}
                 </div>
@@ -327,16 +340,20 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
               
               {/* Results Images */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <img 
-                  src={images.result} 
+                <MaximizableImage
+                  src={images.result}
                   alt="Project results"
+                  caption={details.imageCaptions?.[images.result]}
                   className="w-full h-64 object-cover rounded-lg shadow-md"
+                  projectId={projectId}
                 />
                 {details.resultGalleryImages?.[1] && (
-                  <img 
-                    src={details.resultGalleryImages[1]} 
+                  <MaximizableImage
+                    src={details.resultGalleryImages[1]}
                     alt="Additional results"
+                    caption={details.imageCaptions?.[details.resultGalleryImages[1]]}
                     className="w-full h-64 object-cover rounded-lg shadow-md"
+                    projectId={projectId}
                   />
                 )}
               </div>
