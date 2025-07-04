@@ -7,6 +7,7 @@ import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import BlogPreview from "@/components/blog/BlogPreview";
+import ProjectPdfExporter from "@/components/export/ProjectPdfExporter";
 import { useProjectsData } from "./projects/hooks/useProjectsData";
 import { projectFaqs } from "@/data/seoFaqs";
 
@@ -41,11 +42,16 @@ const AllProjects = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               AI-Enhanced Design Portfolio
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
               Explore my portfolio of UX/UI design projects featuring Gen AI integration and intelligent web applications. 
               Each case study demonstrates the fusion of thoughtful design with cutting-edge AI technology, 
               creating user-centered experiences that leverage the power of artificial intelligence.
             </p>
+            
+            {/* PDF Export Section */}
+            <div className="max-w-2xl mx-auto">
+              <ProjectPdfExporter />
+            </div>
           </div>
         </section>
 
