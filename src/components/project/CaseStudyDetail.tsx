@@ -167,17 +167,17 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
         className="relative h-96 flex items-center justify-center text-white text-center"
         style={{ background: styling.gradient }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative z-10 max-w-4xl px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">{project.title}</h1>
-          <p className="text-xl md:text-2xl mb-6 opacity-90">{styling.tagline}</p>
-          <div className="text-lg font-medium">{styling.heroText}</div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">{project.title}</h1>
+          <p className="text-xl md:text-2xl mb-6 opacity-95 text-white drop-shadow-md font-medium">{styling.tagline}</p>
+          <div className="text-lg font-semibold text-white drop-shadow-md">{styling.heroText}</div>
           
           {/* Project Meta */}
-          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm">
-            <div><strong>Role:</strong> {styling.role}</div>
-            <div><strong>Duration:</strong> {styling.duration}</div>
-            <div><strong>Platform:</strong> {styling.platform}</div>
+          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm text-white drop-shadow-sm">
+            <div className="font-medium"><strong>Role:</strong> {styling.role}</div>
+            <div className="font-medium"><strong>Duration:</strong> {styling.duration}</div>
+            <div className="font-medium"><strong>Platform:</strong> {styling.platform}</div>
           </div>
         </div>
       </div>
@@ -188,19 +188,19 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
           <nav className="flex justify-start h-14">
             <a 
               href="#challenge" 
-              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-700 hover:text-blue-600 transition-colors"
+              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-800 hover:text-blue-600 transition-colors font-medium"
             >
               Challenge
             </a>
             <a 
               href="#what-i-did" 
-              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-700 hover:text-blue-600 transition-colors"
+              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-800 hover:text-blue-600 transition-colors font-medium"
             >
               What I Did
             </a>
             <a 
               href="#results" 
-              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-700 hover:text-blue-600 transition-colors"
+              className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-800 hover:text-blue-600 transition-colors font-medium"
             >
               Results
             </a>
