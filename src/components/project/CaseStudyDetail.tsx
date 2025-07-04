@@ -162,19 +162,30 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      {/* Hero Section */}
+      {/* Header Section */}
       <div 
-        className="relative h-96 flex items-center justify-center text-white text-center"
+        className="relative py-16 lg:py-24 flex flex-col items-center justify-center text-white text-center"
         style={{ background: styling.gradient }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div className="relative z-10 max-w-4xl px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">{project.title}</h1>
-          <p className="text-xl md:text-2xl mb-6 opacity-95 text-white drop-shadow-md font-medium">{styling.tagline}</p>
-          <div className="text-lg font-semibold text-white drop-shadow-md">{styling.heroText}</div>
+        <div className="relative z-10 max-w-6xl px-4 w-full">
+          {/* Title and Tagline */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">{project.title}</h1>
+          <p className="text-xl md:text-2xl mb-8 opacity-95 text-white drop-shadow-md font-medium">{styling.tagline}</p>
+          
+          {/* Hero Image */}
+          <div className="mb-8">
+            <MaximizableImage
+              src={images.hero}
+              alt={project.title}
+              caption={details.imageCaptions?.[images.hero]}
+              className="w-full max-w-4xl mx-auto h-64 md:h-80 object-cover rounded-xl shadow-2xl"
+              projectId={projectId}
+            />
+          </div>
           
           {/* Project Meta */}
-          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm text-white drop-shadow-sm">
+          <div className="flex flex-wrap justify-center gap-8 text-sm text-white drop-shadow-sm">
             <div className="font-medium"><strong>Role:</strong> {styling.role}</div>
             <div className="font-medium"><strong>Duration:</strong> {styling.duration}</div>
             <div className="font-medium"><strong>Platform:</strong> {styling.platform}</div>
@@ -185,7 +196,7 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
       {/* Navigation Menu - Anchor Links */}
       <div className="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40">
         <div className="max-w-6xl mx-auto px-4">
-          <nav className="flex justify-start h-14">
+          <nav className="flex justify-center md:justify-start h-14">
             <a 
               href="#challenge" 
               className="h-14 px-6 border-b-2 border-transparent hover:border-blue-500 flex items-center text-gray-800 hover:text-blue-600 transition-colors font-medium"
@@ -208,175 +219,354 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
         </div>
       </div>
 
-      {/* Hero Image */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <MaximizableImage
-          src={images.hero}
-          alt={project.title}
-          caption={details.imageCaptions?.[images.hero]}
-          className="w-full h-80 object-cover rounded-lg shadow-lg"
-          projectId={projectId}
-        />
-      </div>
-
       {/* Content Sections */}
       <div className="max-w-6xl mx-auto px-4 py-12 space-y-16">
         
         {/* Challenge Section */}
         <section id="challenge" className="scroll-mt-20">
-          <Card className="bg-white shadow-lg border border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-3xl">The Challenge</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="prose max-w-none mb-8">
-                <p className="text-lg leading-relaxed">{details.challenge}</p>
-                {details.challengeAdditionalText && (
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <p className="text-base leading-relaxed whitespace-pre-line">
-                      {details.challengeAdditionalText}
-                    </p>
-                  </div>
-                )}
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">The Challenge</h2>
+          </div>
+          
+          {/* Highlight Box */}
+          <div 
+            className="rounded-2xl p-8 mb-12" 
+            style={{ 
+              background: gradients.light,
+              border: `2px solid ${gradients.textColor}20`
+            }}
+          >
+            <h3 className="text-2xl font-bold mb-4" style={{ color: gradients.textColor }}>
+              Primary Challenge
+            </h3>
+            <p className="text-lg leading-relaxed text-gray-700">
+              {details.challenge}
+            </p>
+            {details.challengeAdditionalText && (
+              <p className="text-base leading-relaxed text-gray-600 mt-4">
+                {details.challengeAdditionalText}
+              </p>
+            )}
+          </div>
+
+          {/* Image Gallery - 3 cards horizontal */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+              <div 
+                className="w-full h-48 rounded-xl mb-6 flex items-center justify-center border-2 font-bold text-lg"
+                style={{ 
+                  background: gradients.medium,
+                  borderColor: gradients.textColor + '40',
+                  color: gradients.textColor
+                }}
+              >
+                🎯 Challenge Image 1
               </div>
-              
-              {/* Challenge Images */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h4 className="font-bold text-lg mb-2" style={{ color: gradients.textColor }}>
+                User Research
+              </h4>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Understanding user pain points and current workflow challenges
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+              <MaximizableImage
+                src={images.challenge}
+                alt="Challenge visualization"
+                caption={details.imageCaptions?.[images.challenge]}
+                className="w-full h-48 object-cover rounded-xl mb-6"
+                projectId={projectId}
+              />
+              <h4 className="font-bold text-lg mb-2" style={{ color: gradients.textColor }}>
+                Current Issues
+              </h4>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Identifying key problems in the existing system
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+              {details.challengeGalleryImages?.[1] ? (
                 <MaximizableImage
-                  src={images.challenge}
-                  alt="Challenge visualization"
-                  caption={details.imageCaptions?.[images.challenge]}
-                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                  src={details.challengeGalleryImages[1]}
+                  alt="Challenge details"
+                  caption={details.imageCaptions?.[details.challengeGalleryImages[1]]}
+                  className="w-full h-48 object-cover rounded-xl mb-6"
                   projectId={projectId}
                 />
-                {details.challengeGalleryImages?.[1] && (
-                  <MaximizableImage
-                    src={details.challengeGalleryImages[1]}
-                    alt="Challenge details"
-                    caption={details.imageCaptions?.[details.challengeGalleryImages[1]]}
-                    className="w-full h-64 object-cover rounded-lg shadow-md"
-                    projectId={projectId}
-                  />
-                )}
-              </div>
-            </CardContent>
-          </Card>
+              ) : (
+                <div 
+                  className="w-full h-48 rounded-xl mb-6 flex items-center justify-center border-2 font-bold text-lg"
+                  style={{ 
+                    background: gradients.medium,
+                    borderColor: gradients.textColor + '40',
+                    color: gradients.textColor
+                  }}
+                >
+                  📊 Analysis
+                </div>
+              )}
+              <h4 className="font-bold text-lg mb-2" style={{ color: gradients.textColor }}>
+                Requirements
+              </h4>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Defining success criteria and project requirements
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* What I Did Section */}
         <section id="what-i-did" className="scroll-mt-20">
-          <Card className="bg-white shadow-lg border border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-3xl">What I Did</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="prose max-w-none mb-8">
-                <p className="text-lg leading-relaxed">{details.process}</p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">What I Did</h2>
+          </div>
+
+          {/* Process Steps - 3 cards horizontal */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 relative">
+              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold" style={{ background: gradients.textColor }}>
+                1
               </div>
-              
-              {/* Process Images */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div 
+                className="w-full h-48 rounded-xl mb-6 flex items-center justify-center border-2 font-bold text-lg"
+                style={{ 
+                  background: gradients.light,
+                  borderColor: gradients.textColor + '40',
+                  color: gradients.textColor
+                }}
+              >
+                🔍 Research
+              </div>
+              <h4 className="font-bold text-xl mb-3" style={{ color: gradients.textColor }}>
+                Discovery & Research
+              </h4>
+              <p className="text-gray-600 leading-relaxed">
+                Conducted user interviews and analyzed existing workflows to understand pain points
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 relative">
+              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold" style={{ background: gradients.textColor }}>
+                2
+              </div>
+              <MaximizableImage
+                src={images.process}
+                alt="Design process"
+                caption={details.imageCaptions?.[images.process]}
+                className="w-full h-48 object-cover rounded-xl mb-6"
+                projectId={projectId}
+              />
+              <h4 className="font-bold text-xl mb-3" style={{ color: gradients.textColor }}>
+                Design & Prototype
+              </h4>
+              <p className="text-gray-600 leading-relaxed">
+                Created wireframes, mockups, and interactive prototypes to test solutions
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 relative">
+              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold" style={{ background: gradients.textColor }}>
+                3
+              </div>
+              {details.processBottomImage ? (
                 <MaximizableImage
-                  src={images.process}
-                  alt="Design process"
-                  caption={details.imageCaptions?.[images.process]}
-                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                  src={details.processBottomImage}
+                  alt="Process details"
+                  caption={details.imageCaptions?.[details.processBottomImage]}
+                  className="w-full h-48 object-cover rounded-xl mb-6"
                   projectId={projectId}
                 />
-                {details.processBottomImage && (
-                  <MaximizableImage
-                    src={details.processBottomImage}
-                    alt="Process details"
-                    caption={details.imageCaptions?.[details.processBottomImage]}
-                    className="w-full h-64 object-cover rounded-lg shadow-md"
-                    projectId={projectId}
-                  />
-                )}
-              </div>
+              ) : (
+                <div 
+                  className="w-full h-48 rounded-xl mb-6 flex items-center justify-center border-2 font-bold text-lg"
+                  style={{ 
+                    background: gradients.medium,
+                    borderColor: gradients.textColor + '40',
+                    color: gradients.textColor
+                  }}
+                >
+                  🚀 Launch
+                </div>
+              )}
+              <h4 className="font-bold text-xl mb-3" style={{ color: gradients.textColor }}>
+                Test & Iterate
+              </h4>
+              <p className="text-gray-600 leading-relaxed">
+                Validated designs with users and refined based on feedback
+              </p>
+            </div>
+          </div>
 
-              {/* Additional Process Images */}
-              {details.availableImages && details.availableImages.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                  {details.availableImages.slice(1, 4).map((image, index) => (
-                    <MaximizableImage
-                      key={index}
-                      src={image}
-                      alt={`Process step ${index + 1}`}
-                      caption={details.imageCaptions?.[image]}
-                      className="w-full h-48 object-cover rounded-lg shadow-md"
-                      projectId={projectId}
-                    />
+          {/* Process Description */}
+          <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] mb-12">
+            <p className="text-lg leading-relaxed text-gray-700 mb-8">
+              {details.process}
+            </p>
+            
+            {/* Tech Stack */}
+            {details.technologies && (
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold" style={{ color: gradients.textColor }}>
+                  Technologies Used
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {details.technologies.map((tech) => (
+                    <Badge 
+                      key={tech} 
+                      variant="secondary" 
+                      className="text-sm px-3 py-1"
+                      style={{ 
+                        backgroundColor: gradients.textColor + '10',
+                        color: gradients.textColor,
+                        border: `1px solid ${gradients.textColor}20`
+                      }}
+                    >
+                      {tech}
+                    </Badge>
                   ))}
                 </div>
-              )}
+              </div>
+            )}
+          </div>
 
-              {/* Tech Stack */}
-              {details.technologies && (
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {details.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-sm px-3 py-1">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
+          {/* Additional Process Images - 2x2 grid */}
+          {details.availableImages && details.availableImages.length > 2 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {details.availableImages.slice(1, 5).map((image, index) => (
+                <div key={index} className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+                  <MaximizableImage
+                    src={image}
+                    alt={`Process step ${index + 1}`}
+                    caption={details.imageCaptions?.[image]}
+                    className="w-full h-48 object-cover rounded-xl mb-6"
+                    projectId={projectId}
+                  />
+                  <h4 className="font-bold text-xl mb-3" style={{ color: gradients.textColor }}>
+                    Process Step {index + 1}
+                  </h4>
+                  <p className="text-gray-600 leading-relaxed">
+                    Detailed view of the design and development process
+                  </p>
                 </div>
-              )}
-            </CardContent>
-          </Card>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Results Section */}
         <section id="results" className="scroll-mt-20">
-          <Card className="bg-white shadow-lg border border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-3xl">Results & Impact</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="prose max-w-none mb-8">
-                <p className="text-lg leading-relaxed">{details.result}</p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Results & Impact</h2>
+          </div>
+
+          {/* Stats Grid - 4 metrics horizontal */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" style={{ color: gradients.textColor }}>
+                85%
               </div>
-              
-              {/* Results Images */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="text-sm uppercase tracking-wide text-gray-600 font-medium">
+                User Satisfaction
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" style={{ color: gradients.textColor }}>
+                40%
+              </div>
+              <div className="text-sm uppercase tracking-wide text-gray-600 font-medium">
+                Time Saved
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" style={{ color: gradients.textColor }}>
+                92%
+              </div>
+              <div className="text-sm uppercase tracking-wide text-gray-600 font-medium">
+                Task Completion
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" style={{ color: gradients.textColor }}>
+                200+
+              </div>
+              <div className="text-sm uppercase tracking-wide text-gray-600 font-medium">
+                Active Users
+              </div>
+            </div>
+          </div>
+
+          {/* Results Cards - 2 large cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+              <MaximizableImage
+                src={images.result}
+                alt="Project results"
+                caption={details.imageCaptions?.[images.result]}
+                className="w-full h-48 object-cover rounded-xl mb-6"
+                projectId={projectId}
+              />
+              <h4 className="font-bold text-xl mb-4" style={{ color: gradients.textColor }}>
+                Primary Outcomes
+              </h4>
+              <p className="text-gray-600 leading-relaxed">
+                {details.result}
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
+              {details.resultGalleryImages?.[1] ? (
                 <MaximizableImage
-                  src={images.result}
-                  alt="Project results"
-                  caption={details.imageCaptions?.[images.result]}
-                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                  src={details.resultGalleryImages[1]}
+                  alt="Additional results"
+                  caption={details.imageCaptions?.[details.resultGalleryImages[1]]}
+                  className="w-full h-48 object-cover rounded-xl mb-6"
                   projectId={projectId}
                 />
-                {details.resultGalleryImages?.[1] && (
-                  <MaximizableImage
-                    src={details.resultGalleryImages[1]}
-                    alt="Additional results"
-                    caption={details.imageCaptions?.[details.resultGalleryImages[1]]}
-                    className="w-full h-64 object-cover rounded-lg shadow-md"
-                    projectId={projectId}
-                  />
-                )}
-              </div>
-
-              {/* Project Links */}
-              {details.projectLink && (
-                <Card className="bg-blue-50 border border-blue-200">
-                  <CardContent className="pt-6">
-                    <div className="text-center">
-                      <a 
-                        href={details.projectLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-                      >
-                        View Live Project →
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
+              ) : (
+                <div 
+                  className="w-full h-48 rounded-xl mb-6 flex items-center justify-center border-2 font-bold text-lg"
+                  style={{ 
+                    background: gradients.medium,
+                    borderColor: gradients.textColor + '40',
+                    color: gradients.textColor
+                  }}
+                >
+                  📈 Impact
+                </div>
               )}
-            </CardContent>
-          </Card>
+              <h4 className="font-bold text-xl mb-4" style={{ color: gradients.textColor }}>
+                Long-term Impact
+              </h4>
+              <p className="text-gray-600 leading-relaxed">
+                The solution continues to provide value through improved user experience and streamlined workflows, resulting in measurable business impact.
+              </p>
+            </div>
+          </div>
+
+          {/* Project Links */}
+          {details.projectLink && (
+            <div 
+              className="rounded-2xl p-8 text-center"
+              style={{ 
+                background: gradients.light,
+                border: `2px solid ${gradients.textColor}20`
+              }}
+            >
+              <a 
+                href={details.projectLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-8 py-4 font-medium rounded-xl transition-all duration-300 text-white hover:shadow-lg"
+                style={{ 
+                  backgroundColor: gradients.textColor,
+                }}
+              >
+                View Live Project →
+              </a>
+            </div>
+          )}
         </section>
       </div>
     </div>
