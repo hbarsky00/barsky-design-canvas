@@ -86,13 +86,13 @@ export default {
 					900: 'hsl(var(--neutral-900))'
 				},
 				barsky: {
-					'bg-light': 'hsl(240, 9%, 96%)',
-					'bg-white': 'hsl(0, 0%, 100%)',
-					'blue': 'hsl(240, 100%, 68%)',
-					'blue-dark': 'hsl(241, 47%, 55%)',
-					'dark': 'hsl(225, 14%, 22%)',
-					'text': 'hsl(216, 23%, 37%)',
-					'text-light': 'hsl(216, 12%, 62%)',
+					'bg-light': '#F6F6F8',
+					'bg-white': '#FFFFFF',
+					'blue': '#5D5DFF',
+					'blue-dark': '#4B4ACF',
+					'dark': '#333644',
+					'text': '#4F5D75',
+					'text-light': '#8A94A7',
 				},
 				// Glass morphism colors
 				glass: {

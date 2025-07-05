@@ -2,7 +2,7 @@
 import React from "react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
-import CaseStudyDetail from "./CaseStudyDetail";
+import ModernProjectDetail from "./enhanced/ModernProjectDetail";
 
 interface CleanProjectDetailProps {
   project: ProjectProps;
@@ -26,10 +26,12 @@ const CleanProjectDetail: React.FC<CleanProjectDetailProps> = ({
   console.log('🎬 CleanProjectDetail: Rendering with projectId:', projectId);
   
   return (
-    <CaseStudyDetail
+    <ModernProjectDetail
       project={project}
       details={details}
       projectId={projectId}
+      projectsData={projectsData}
+      imageCaptions={imageCaptions}
     />
   );
 };

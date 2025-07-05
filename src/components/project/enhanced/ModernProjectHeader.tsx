@@ -58,11 +58,11 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
             className="glass-card-elevated p-4 sm:p-8 text-center space-y-4 lg:space-y-6 layered-depth relative group"
           >
             <div className="flex items-center justify-center space-x-3 text-sm">
-              <span className="font-medium text-white glass-button px-3 py-1 rounded-full">{details.client}</span>
-              <span className="text-white/70">•</span>
-              <span className="text-white">{details.duration}</span>
-              <span className="text-white/70">•</span>
-              <span className="text-white">{details.role}</span>
+              <span className="font-medium text-blue-600 glass-button px-3 py-1 rounded-full">{details.client}</span>
+              <span className="text-gray-400">•</span>
+              <span className="text-gray-600">{details.duration}</span>
+              <span className="text-gray-400">•</span>
+              <span className="text-gray-600">{details.role}</span>
             </div>
             
             <EnhancedContentEditor
@@ -70,7 +70,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
               contentType="header"
               onSave={(content) => handleSectionContentSave('hero', 'title', content)}
               projectId={projectId}
-              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight text-center"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight text-center"
             />
             
             <EnhancedContentEditor
@@ -78,7 +78,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
               contentType="paragraph"
               onSave={(content) => handleSectionContentSave('hero', 'content', content)}
               projectId={projectId}
-              className="text-lg lg:text-xl text-white leading-relaxed max-w-4xl mx-auto text-center"
+              className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto text-center"
             />
 
             <div className="flex flex-wrap justify-center gap-2">
@@ -86,7 +86,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
                 <Badge 
                   key={tag}
                   variant="secondary" 
-                  className="glass-button px-3 py-1 bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm transition-all duration-300"
+                  className="glass-button px-3 py-1 bg-blue-50/80 text-blue-700 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300"
                 >
                   {tag}
                 </Badge>

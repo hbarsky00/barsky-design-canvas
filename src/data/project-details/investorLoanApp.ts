@@ -1,18 +1,16 @@
 import { ProjectDetails } from "../types/project";
 
 export const investorLoanAppDetails: ProjectDetails = {
-  challenge: "Transforming Legacy Excel-Based Banking Operations - The bank's outdated Excel-based approach created significant inefficiencies, increased error rates, and severely limited scalability potential. The institution urgently needed to automate workflows, reduce human error, support rapid business growth, handle complex financial data with strict accuracy, and maintain regulatory compliance standards.",
-
-  challengeAdditionalText: "User Adoption Challenges: The biggest challenge was helping users transition from familiar Excel workflows they had used for years to a completely new digital platform while maintaining productivity during the transition period. Required careful change management including training programs, gradual rollout phases, and maintaining some Excel familiarity in the interface design patterns.\n\nTechnical & Regulatory Complexity: Needed to balance usability with strict compliance requirements while handling complex financial data structures that required both accuracy and accessibility for different user roles. The solution had to integrate with existing CRM systems, compliance reporting tools, and communication platforms without disrupting daily banking operations.",
-
-  process: "I conducted extensive research with the banking team to understand critical pain points: manual data entry errors causing compliance issues, time-consuming Excel tracking processes, difficulty collaborating on complex deals, and limited search capabilities. I mapped the complete user journey from initial loan inquiry to final processing, identifying key decision points and data requirements for complex financial workflows. Developed a professional color palette specifically for banking UI applications ensuring WCAG 2.1 AA compliance. The platform's AI-powered search functionality, inspired by Bloomberg's interface, addressed the critical problem of users being unable to efficiently find specific loans or borrower information within Excel spreadsheets.",
-
-  result: "The platform delivered exceptional results: 85% reduction in manual errors, 40% acceleration in deal processing time, and successful processing of over 200 orders within the first 60 days of launch. Post-launch surveys revealed 80% user satisfaction response rate, with teams reporting that workflows became 'actually enjoyable' and email chaos was eliminated through integrated communication tools. Beyond quantitative metrics, the bank gained increased agility to move faster in competitive markets while maintaining better compliance through automated audit trails.",
-
-  technologies: ["Figma", "Sketch", "Principle", "InVision", "User Research", "AG Grid", "Predictive AI Search", "Banking UI/UX", "Financial Data Visualization"],
+  challenge: "A private banking institution faced significant challenges with their completely manual loan management system that relied entirely on Excel spreadsheets, creating inefficiencies, increasing error rates, and limiting scalability. As the Lead UX Designer, I was responsible for transforming this Excel-based process into a modern digital platform, handling everything from initial research through final implementation. The project included a comprehensive 9-month post-launch evaluation period to measure success metrics and gather user feedback for identifying future improvements.",
+  
+  process: "The design process included comprehensive information architecture that mapped the complete user journey from loan inquiry to final processing, identifying key decision points and data requirements. Wireframing and prototyping involved creating low-fidelity wireframes, mapping complex financial workflows, conducting usability testing, and developing high-fidelity prototypes. The design system development focused on creating a professional banking-specific color palette that emphasized trust, clarity, and accessibility for financial professionals.",
+  
+  result: "The implementation achieved an 85% error reduction through automated validation and streamlined workflows that significantly decreased manual errors. Processing times accelerated considerably due to optimized user flows and automation features, while the system successfully handled numerous orders within the first 60 days of deployment. Post-launch surveys revealed high user satisfaction among banking professionals, demonstrating the platform's effectiveness in meeting industry needs and expectations.",
+  
+  technologies: ["User Research", "Figma", "Balsamiq", "AG Grid", "Predictive AI Search", "Banking UI/UX", "Financial Data Visualization", "Excel Automation", "Order Management Systems"],
   duration: "1.5 years",
   client: "Private Banking Institution",
-  role: "Lead UX Designer",
+  role: "Lead UX/UI Designer & Product Strategist",
   
   imageConfig: {
     process: {
