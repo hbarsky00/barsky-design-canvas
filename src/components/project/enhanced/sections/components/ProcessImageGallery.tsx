@@ -3,6 +3,7 @@ import React from "react";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import SpittimeResearchContent from "./SpittimeResearchContent";
 import HerbalinkResearchContent from "./HerbalinkResearchContent";
+import HerbalinkProcessCards from "./HerbalinkProcessCards";
 
 interface ProcessImageGalleryProps {
   processImages: string[];
@@ -73,10 +74,13 @@ const ProcessImageGallery: React.FC<ProcessImageGalleryProps> = ({
           {/* Show project-specific content after first image */}
           {index === 0 && isSpittimeProject && <SpittimeResearchContent />}
           {index === 0 && isHerbalinkProject && (
-            <HerbalinkResearchContent 
-              projectId={projectId}
-              imageCaptions={imageCaptions}
-            />
+            <>
+              <HerbalinkResearchContent 
+                projectId={projectId}
+                imageCaptions={imageCaptions}
+              />
+              <HerbalinkProcessCards />
+            </>
           )}
         </React.Fragment>
       ))}
