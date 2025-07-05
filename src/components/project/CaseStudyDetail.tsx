@@ -31,7 +31,7 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Header Section */}
       <div 
-        className="relative py-16 lg:py-24 flex flex-col items-center justify-center text-white text-center"
+        className="hero-header relative py-16 lg:py-24 flex flex-col items-center justify-center text-white text-center"
         style={{ background: styling.gradient }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
