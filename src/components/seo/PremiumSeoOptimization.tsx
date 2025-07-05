@@ -113,53 +113,12 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
     return [basePersonSchema, professionalServiceSchema, organizationSchema];
   };
 
-  const generateFAQSchema = () => {
-    const faqData = [
-      {
-        question: "What makes Hiram Barsky different from other UX designers?",
-        answer: "I specialize in Gen AI integration and accessibility-first design, combining traditional UX principles with cutting-edge AI capabilities to create user experiences that are both innovative and inclusive."
-      },
-      {
-        question: "How do you integrate AI into UX design?",
-        answer: "I implement AI through personalized user journeys, intelligent content recommendations, automated accessibility features, and conversational interfaces using ChatGPT and Claude AI APIs."
-      },
-      {
-        question: "What is your design process for AI-enhanced experiences?",
-        answer: "My process includes AI opportunity mapping, ethical AI considerations, accessibility validation, and iterative testing to ensure AI enhances rather than complicates the user experience."
-      },
-      {
-        question: "Do you work with startups or enterprises?",
-        answer: "I work with both startups and enterprises, adapting my approach to match the scale and complexity of each project while maintaining focus on user-centered design principles."
-      }
-    ];
-
-    return {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqData.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    };
-  };
-
   return (
     <Helmet>
       {/* Advanced Schema Markup */}
       <script type="application/ld+json">
         {JSON.stringify(generateAdvancedSchema())}
       </script>
-      
-      {/* FAQ Schema for Homepage */}
-      {pageType === 'homepage' && (
-        <script type="application/ld+json">
-          {JSON.stringify(generateFAQSchema())}
-        </script>
-      )}
 
       {/* Premium SEO Meta Tags */}
       <meta name="expertise-level" content="senior" />
