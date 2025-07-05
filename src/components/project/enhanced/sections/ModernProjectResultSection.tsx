@@ -150,7 +150,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
       <div className={`${themeClass} p-6 rounded-xl mt-8 border-2`}>
         <h3 className="text-xl font-semibold mb-4">Key Takeaways</h3>
         <EnhancedContentEditor
-          content={details.result.split('\n\n')[2] || "This project demonstrates the importance of user-centered design and thorough research in creating successful digital solutions."}
+          content={details.result.split('\n\n')[2] || `Key insights from the ${projectId.replace('-', ' ')} project design process.`}
           contentType="section"
           onSave={(content) => handleSectionContentSave('result', 'content', content)}
           projectId={projectId}
