@@ -20,10 +20,71 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
 }) => {
   const { handleSectionContentSave, handleSectionImageUpdate } = useSimplifiedContentEditor({ projectId });
 
-  // Check if this is the investor loan app project
-  const isInvestorProject = projectId === 'investor-loan-app';
-  // Check if this is the Splittime project
-  const isSpittimeProject = projectId === 'splittime';
+  // Get theme class based on project
+  const getThemeClass = () => {
+    switch (projectId) {
+      case 'barsky-joint': return 'barsky-theme';
+      case 'herbalink': return 'herbalink-theme';
+      case 'splittime': return 'splittime-theme';
+      case 'investor-loan-app': return 'investment-theme';
+      default: return 'herbalink-theme';
+    }
+  };
+
+  const themeClass = getThemeClass();
+
+  // Get subtitle and stats based on project
+  const getSubtitle = () => {
+    switch (projectId) {
+      case 'barsky-joint':
+        return "The measurable impact and user satisfaction results from the mobile ordering platform.";
+      case 'herbalink':
+        return "Validation results and market readiness outcomes from user testing and development.";
+      case 'splittime':
+        return "Current development status and key learnings from the co-parenting platform design process.";
+      case 'investor-loan-app':
+        return "Quantifiable improvements in efficiency, accuracy, and user satisfaction from the banking platform transformation.";
+      default:
+        return "The outcomes and impact of the project.";
+    }
+  };
+
+  const getStats = () => {
+    switch (projectId) {
+      case 'barsky-joint':
+        return [
+          { number: "40%", label: "Increase in Daily Orders" },
+          { number: "85%", label: "Reduction in Cart Abandonment" },
+          { number: "60%", label: "Faster Order Processing" },
+          { number: "4.7/5", label: "User Satisfaction Rating" }
+        ];
+      case 'herbalink':
+        return [
+          { number: "92%", label: "User Trust Rating" },
+          { number: "85%", label: "Herbalist Matching Success" },
+          { number: "75%", label: "Consultation Completion Rate" },
+          { number: "12", label: "Participating Herbalists" }
+        ];
+      case 'splittime':
+        return [
+          { number: "7", label: "Co-Parents Interviewed" },
+          { number: "5", label: "User Testing Sessions" },
+          { number: "3", label: "Competitor Apps Analyzed" },
+          { number: "100%", label: "Feature Implementation" }
+        ];
+      case 'investor-loan-app':
+        return [
+          { number: "85%", label: "Error Reduction" },
+          { number: "40%", label: "Processing Speed Increase" },
+          { number: "80%", label: "User Satisfaction" },
+          { number: "200+", label: "Orders Processed" }
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const stats = getStats();
 
   return (
     <motion.section
@@ -38,85 +99,63 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
         content="The Result"
         contentType="header"
         onSave={(content) => handleSectionContentSave('result', 'title', content)}
-        className="mb-6 lg:mb-8"
+        className="mb-4"
         projectId={projectId}
       />
       
-      <EnhancedContentEditor
-        content={details.result}
-        contentType="section"
-        onSave={(content) => handleSectionContentSave('result', 'content', content)}
-        className="mb-8"
-        projectId={projectId}
-      />
+      <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+        {getSubtitle()}  
+      </p>
 
-      {/* Result Images Gallery with text positioned between images */}
-      {details.resultGalleryImages && details.resultGalleryImages.length > 0 && (
-        <div className="mt-12 space-y-8">
-          {details.resultGalleryImages.map((image, index) => (
-            <React.Fragment key={index}>
-              {/* Each Image */}
-              <div className="glass-card p-4 layered-depth">
-                <EnhancedContentEditor
-                  content=""
-                  contentType="section"
-                  onSave={() => {}}
-                  images={[image]}
-                  onImageAdd={(imageSrc) => {
-                    console.log('➕ Adding image to result section:', imageSrc);
-                  }}
-                  onImageReplace={(imgIndex, newSrc) => {
-                    console.log('🔄 Replacing result image:', image, '->', newSrc);
-                    handleSectionImageUpdate('result', image, newSrc);
-                  }}
-                  onImageRemove={(imgIndex) => console.log('🗑️ Removing image from result:', imgIndex)}
-                  maxImages={1}
-                  projectId={projectId}
-                  imageCaptions={imageCaptions}
-                  className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
-                />
-              </div>
-              
-              {/* Show Conclusion text ONLY after first image (index 0) */}
-              {index === 0 && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Conclusion</strong></h3>
-                    {isInvestorProject ? (
-                      <>
-                        <p className="text-sm text-gray-700 mb-4">
-                          This project successfully transformed a manual, error-prone Excel-based system into a modern, efficient digital platform. The key to success was understanding user needs deeply and designing solutions that not only solved technical problems but also improved the daily work experience for banking professionals.
-                        </p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          The 85% reduction in errors and 40% improvement in processing speed demonstrate the tangible business impact, while the high user satisfaction scores show that the solution truly met user needs. This project positioned the private bank for future growth while making their current operations significantly more efficient and enjoyable.
-                        </p>
-                      </>
-                    ) : isSpittimeProject ? (
-                      <>
-                        <p className="text-sm text-gray-700 mb-4">
-                          The platform reduced court visits, generated significant legal fee savings, achieved high user satisfaction, and increased productive co-parent communication. One beta user noted: "This app saved my relationship with my ex-partner. We can actually focus on our kids now instead of fighting about logistics."
-                        </p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          Additional benefits included reduced stress, better coordination, improved documentation, and stronger focus on children's wellbeing over conflict.
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="text-sm text-gray-700 mb-4">
-                          Herbalink addresses a significant gap in the wellness market by creating a trusted, educational platform for herbal consultations. The design prioritizes transparency, accessibility, and user empowerment while respecting the expertise of certified herbalists. The app has been developed and is ready for market launch, with the design foundation in place to support both users seeking herbal guidance and practitioners looking to grow their practice digitally.
-                        </p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
-                        </p>
-                      </>
-                    )}
-                  </div>
-                </div>
-              )}
-            </React.Fragment>
+      {/* Stats Cards */}
+      {stats.length > 0 && (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {stats.map((stat, index) => (
+            <div key={index} className={`${themeClass} p-4 rounded-xl text-center border-2`}>
+              <div className="text-2xl lg:text-3xl font-bold mb-2">{stat.number}</div>
+              <div className="text-sm font-medium">{stat.label}</div>
+            </div>
           ))}
         </div>
       )}
+
+      {/* Results Content Grid */}
+      <div className="results-grid">
+        <div>
+          <div className={`content-image ${themeClass} mb-4`}>
+            Results Card 1
+          </div>
+          <EnhancedContentEditor
+            content={details.result.split('\n\n')[0] || details.result.substring(0, 400)}
+            contentType="section"
+            onSave={(content) => handleSectionContentSave('result', 'content1', content)}
+            projectId={projectId}
+          />
+        </div>
+        
+        <div>
+          <div className={`content-image ${themeClass} mb-4`}>
+            Results Card 2
+          </div>
+          <EnhancedContentEditor
+            content={details.result.split('\n\n')[1] || details.result.substring(400)}
+            contentType="section"
+            onSave={(content) => handleSectionContentSave('result', 'content2', content)}
+            projectId={projectId}
+          />
+        </div>
+      </div>
+
+      {/* Final Highlight Box */}
+      <div className={`${themeClass} p-6 rounded-xl mt-8 border-2`}>
+        <h3 className="text-xl font-semibold mb-4">Key Takeaways</h3>
+        <EnhancedContentEditor
+          content={details.result.split('\n\n')[2] || "This project demonstrates the importance of user-centered design and thorough research in creating successful digital solutions."}
+          contentType="section"
+          onSave={(content) => handleSectionContentSave('result', 'takeaways', content)}
+          projectId={projectId}
+        />
+      </div>
     </motion.section>
   );
 };

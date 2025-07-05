@@ -333,6 +333,115 @@
     transform: translateZ(-1px);
   }
 
+  /* Challenge Section Images */
+  .challenge-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+  }
+
+  .challenge-image {
+    height: 180px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    border: 2px solid;
+  }
+
+  /* Process Step Images */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 40px 0;
+  }
+
+  .process-image {
+    height: 200px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    border: 2px solid;
+    margin: 20px 0;
+  }
+
+  /* Content Block Images */
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin: 40px 0;
+  }
+
+  .content-image {
+    height: 200px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    border: 2px solid;
+    margin-bottom: 20px;
+  }
+
+  /* Results Cards */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin: 40px 0;
+  }
+
+  /* Project-Specific Colors */
+  .barsky-theme {
+    background: linear-gradient(135deg, #fff5f2, #ffebe6);
+    color: #d73502;
+    border-color: #ffd6cc;
+  }
+
+  .herbalink-theme {
+    background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+    color: #4a7c59;
+    border-color: #c3e6c3;
+  }
+
+  .splittime-theme {
+    background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+    color: #7c3aed;
+    border-color: #ddd6fe;
+  }
+
+  .investment-theme {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e3a8a;
+    border-color: #93c5fd;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .challenge-gallery,
+    .process-steps,
+    .content-grid,
+    .results-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
   /* Mobile-Optimized Components - Reduced padding */
   .mobile-optimized-padding {
     @apply p-2 md:p-3 lg:p-4;
