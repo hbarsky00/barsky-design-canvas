@@ -128,7 +128,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
           <EnhancedContentEditor
             content={details.result.split('\n\n')[0] || details.result.substring(0, 400)}
             contentType="section"
-            onSave={(content) => handleSectionContentSave('result', 'content1', content)}
+            onSave={(content) => handleSectionContentSave('result', 'content', content)}
             projectId={projectId}
           />
         </div>
@@ -140,7 +140,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
           <EnhancedContentEditor
             content={details.result.split('\n\n')[1] || details.result.substring(400)}
             contentType="section"
-            onSave={(content) => handleSectionContentSave('result', 'content2', content)}
+            onSave={(content) => handleSectionContentSave('result', 'content', content)}
             projectId={projectId}
           />
         </div>
@@ -152,7 +152,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
         <EnhancedContentEditor
           content={details.result.split('\n\n')[2] || "This project demonstrates the importance of user-centered design and thorough research in creating successful digital solutions."}
           contentType="section"
-          onSave={(content) => handleSectionContentSave('result', 'takeaways', content)}
+          onSave={(content) => handleSectionContentSave('result', 'content', content)}
           projectId={projectId}
         />
       </div>

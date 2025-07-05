@@ -139,7 +139,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
           <EnhancedContentEditor
             content={details.process.split('\n\n')[1] || details.process.substring(300, 600)}
             contentType="section"
-            onSave={(content) => handleSectionContentSave('process', 'content2', content)}
+            onSave={(content) => handleSectionContentSave('process', 'content', content)}
             projectId={projectId}
           />
         </div>
@@ -151,7 +151,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
           <EnhancedContentEditor
             content={details.process.split('\n\n')[2] || details.process.substring(600, 900)}
             contentType="section"
-            onSave={(content) => handleSectionContentSave('process', 'content3', content)}
+            onSave={(content) => handleSectionContentSave('process', 'content', content)}
             projectId={projectId}
           />
         </div>
@@ -163,7 +163,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
           <EnhancedContentEditor
             content={details.process.split('\n\n')[3] || details.process.substring(900)}
             contentType="section"
-            onSave={(content) => handleSectionContentSave('process', 'content4', content)}
+            onSave={(content) => handleSectionContentSave('process', 'content', content)}
             projectId={projectId}
           />
         </div>
