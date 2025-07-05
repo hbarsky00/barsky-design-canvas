@@ -28,7 +28,7 @@ const ChallengeSection: React.FC<ChallengeSectionProps> = ({
       className="space-y-8"
     >
       <div className="max-w-3xl">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 pt-2.5">
           The Challenge
         </h2>
         <div className="prose prose-lg text-gray-600 leading-relaxed">

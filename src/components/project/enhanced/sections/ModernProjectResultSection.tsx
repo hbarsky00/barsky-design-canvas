@@ -39,7 +39,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
         content="The Result"
         contentType="header"
         onSave={(content) => handleSectionContentSave('result', 'title', content)}
-        className="mb-6 lg:mb-8"
+        className="mb-6 lg:mb-8 pt-2.5"
         projectId={projectId}
       />
       

@@ -23,7 +23,7 @@ const ModernProjectResults: React.FC<ModernProjectResultsProps> = ({
       className="space-y-8"
     >
       <div className="max-w-3xl">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 pt-2.5">
           The Results
         </h2>
         <div className="prose prose-lg text-gray-600 leading-relaxed">

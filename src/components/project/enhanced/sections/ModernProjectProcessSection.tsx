@@ -73,7 +73,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         content="What I Did"
         contentType="header"
         onSave={(content) => handleSectionContentSave('process', 'title', content)}
-        className="mb-6 lg:mb-8"
+        className="mb-6 lg:mb-8 pt-2.5"
         projectId={projectId}
       />
       

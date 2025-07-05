@@ -49,7 +49,7 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
           transition={{ duration: 0.6 }}
           className="process-card"
         >
-          <h2 className="text-heading-2 text-navy-primary mb-6">The Challenge</h2>
+          <h2 className="text-heading-2 text-navy-primary mb-6 pt-2.5">The Challenge</h2>
           <p className="text-body text-neutral-500 leading-relaxed mb-6">
             {challenge}
           </p>

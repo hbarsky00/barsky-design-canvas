@@ -40,7 +40,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
       className="space-y-8"
     >
       <div className="max-w-3xl">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 pt-2.5">
           What I Did
         </h2>
         

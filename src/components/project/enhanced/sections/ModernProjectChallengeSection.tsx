@@ -65,7 +65,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         content="The Challenge"
         contentType="header"
         onSave={(content) => handleSectionContentSave('challenge', 'title', content)}
-        className="mb-6 lg:mb-8"
+        className="mb-6 lg:mb-8 pt-2.5"
         projectId={projectId}
       />
 
