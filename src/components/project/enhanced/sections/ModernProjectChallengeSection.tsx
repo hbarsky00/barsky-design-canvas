@@ -105,13 +105,15 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         </div>
       )}
       
-      <EnhancedContentEditor
-        content={details.challenge}
-        contentType="section"
-        onSave={(content) => handleSectionContentSave('challenge', 'content', content)}
-        className="mb-8"
-        projectId={projectId}
-      />
+      <ProjectContentBox>
+        <EnhancedContentEditor
+          content={details.challenge}
+          contentType="section"
+          onSave={(content) => handleSectionContentSave('challenge', 'content', content)}
+          className="mb-8"
+          projectId={projectId}
+        />
+      </ProjectContentBox>
 
       {/* Challenge Gallery Images - for Splittime show remaining images after first two, for others show all */}
       {challengeImages && challengeImages.length > 0 && (isSpittimeProject ? challengeImages.length > 2 : true) && (
