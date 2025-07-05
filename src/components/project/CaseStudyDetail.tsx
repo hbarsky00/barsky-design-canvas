@@ -36,7 +36,7 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
         <div className="relative z-10 max-w-6xl px-4 w-full">
           {/* Title and Tagline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">{project.title}</h1>
-          <p className="text-xl md:text-2xl mb-8 text-white drop-shadow-md font-medium">{styling.tagline}</p>
+          <p className="text-xl md:text-2xl mb-8 text-white font-medium" style={{ color: '#ffffff' }}>{styling.tagline}</p>
           
           {/* Hero Image */}
           <div className="mb-8">
