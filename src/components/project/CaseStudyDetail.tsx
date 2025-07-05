@@ -24,6 +24,8 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
   const styling = getProjectStyling(projectId);
   const gradients = getImageGradients(projectId);
   const images = getProjectImages(projectId, details);
+  
+  console.log('🎨 CaseStudyDetail: Tagline should be:', styling.tagline);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -36,7 +38,15 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({
         <div className="relative z-10 max-w-6xl px-4 w-full">
           {/* Title and Tagline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">{project.title}</h1>
-          <p className="text-xl md:text-2xl mb-8 font-medium !text-white" style={{ color: '#ffffff !important' }}>{styling.tagline}</p>
+          <p 
+            className="text-xl md:text-2xl mb-8 font-medium" 
+            style={{ 
+              color: '#ffffff !important',
+              textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+            }}
+          >
+            {styling.tagline}
+          </p>
           
           {/* Hero Image */}
           <div className="mb-8">
