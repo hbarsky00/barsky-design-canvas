@@ -61,25 +61,4 @@ export const barskyjointDetails: ProjectDetails = {
     "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
     "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png"
   ]
-  },
-
-  availableImages: [
-    "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
-    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
-    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
-    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png",
-    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
-  ],
-
-  challengeGalleryImages: [
-    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png"
-  ],
-
-  processImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
-
-  resultGalleryImages: [
-    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png"
-  ]
 };
