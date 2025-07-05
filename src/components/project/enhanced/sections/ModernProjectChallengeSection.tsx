@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import ProjectContentBox from "@/components/project/ProjectContentBox";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import ProjectVideo from "@/components/project/ProjectVideo";
 
@@ -70,13 +71,11 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
 
       {/* Show intro text in blue box before images for Splittime */}
       {isSpittimeProject && (
-        <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100 mb-8">
-          <div className="prose prose-lg text-gray-700 leading-relaxed">
-            <p className="text-sm text-gray-700 mb-0">
-              Co-parenting can be one of the most emotionally and logistically challenging experiences in modern family life. Many parents rely on a mix of disconnected tools—texts, emails, calendars, and spreadsheets—to manage shared custody, expenses, and communication. Emotional tension only compounds the complexity. Despite a few existing apps in this space, most are either too rigid, too outdated, or unintuitive. SplitTime was designed to address this gap with a fresh, emotionally-aware, and mobile-first experience.
-            </p>
-          </div>
-        </div>
+        <ProjectContentBox className="mb-8">
+          <p>
+            Co-parenting can be one of the most emotionally and logistically challenging experiences in modern family life. Many parents rely on a mix of disconnected tools—texts, emails, calendars, and spreadsheets—to manage shared custody, expenses, and communication. Emotional tension only compounds the complexity. Despite a few existing apps in this space, most are either too rigid, too outdated, or unintuitive. SplitTime was designed to address this gap with a fresh, emotionally-aware, and mobile-first experience.
+          </p>
+        </ProjectContentBox>
       )}
 
       {/* Show first two challenge images side by side immediately after header for Splittime */}
@@ -141,16 +140,13 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
               
               {/* Show research box after first image for investor project */}
               {index === 0 && isInvestorProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100 mb-8">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Research & Analysis</strong></h3>
-                    <p className="text-sm text-gray-700 mb-4">
-                      I conducted extensive research with the banking team to understand their current pain points, identifying critical issues including manual data entry errors causing compliance issues, time-consuming Excel-based tracking processes, difficulty collaborating on complex deals, limited search and filtering capabilities, and email-based communication creating information silos. Through this research, I developed three key user personas: Investment Managers who need quick access to deal information and real-time updates, Loan Officers who require efficient deal processing and client communication tools, and Compliance Officers who need accurate reporting and audit trails.
-                    </p>
-                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                      My competitive analysis focused on existing financial platforms, with particular emphasis on Bloomberg's search functionality, which became a key inspiration for our AI-powered search feature. This analysis revealed opportunities to modernize traditional banking workflows while maintaining the professional standards and regulatory compliance requirements that are essential in the financial services industry.
-                    </p>
-                  </div>
+                <ProjectContentBox title="Research & Analysis">
+                  <p>
+                    I conducted extensive research with the banking team to understand their current pain points, identifying critical issues including manual data entry errors causing compliance issues, time-consuming Excel-based tracking processes, difficulty collaborating on complex deals, limited search and filtering capabilities, and email-based communication creating information silos. Through this research, I developed three key user personas: Investment Managers who need quick access to deal information and real-time updates, Loan Officers who require efficient deal processing and client communication tools, and Compliance Officers who need accurate reporting and audit trails.
+                  </p>
+                  <p>
+                    My competitive analysis focused on existing financial platforms, with particular emphasis on Bloomberg's search functionality, which became a key inspiration for our AI-powered search feature. This analysis revealed opportunities to modernize traditional banking workflows while maintaining the professional standards and regulatory compliance requirements that are essential in the financial services industry.
+                  </p>
                   
                   {/* Two images side by side after research text */}
                   {challengeImages && challengeImages.length >= 4 && (
@@ -176,30 +172,25 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                       />
                     </div>
                   )}
-                </div>
+                </ProjectContentBox>
               )}
 
               {/* Show custom text after first image for Splittime project */}
               {index === 0 && isSpittimeProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                      Key challenges include emotional triggers in messaging, scheduling chaos from lack of centralized systems, financial disputes over child expenses, documentation issues causing information loss, and children caught in parental conflicts.
-                    </p>
-                  </div>
-                </div>
+                <ProjectContentBox>
+                  <p>
+                    Key challenges include emotional triggers in messaging, scheduling chaos from lack of centralized systems, financial disputes over child expenses, documentation issues causing information loss, and children caught in parental conflicts.
+                  </p>
+                </ProjectContentBox>
               )}
 
               {/* Show key findings after first image for Herbalink project */}
               {index === 0 && isHerbalinkProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <h4 className="text-lg font-medium text-gray-800 mb-3">Key Findings:</h4>
-                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                      Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
-                    </p>
-                  </div>
-                </div>
+                <ProjectContentBox title="Key Findings">
+                  <p>
+                    Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
+                  </p>
+                </ProjectContentBox>
               )}
             </React.Fragment>
           ))}
@@ -280,13 +271,11 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
               
               {/* Show custom text after third image (index 2) for Splittime project */}
               {index === 2 && isSpittimeProject && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                      Key challenges include emotional triggers in messaging, scheduling chaos from lack of centralized systems, financial disputes over child expenses, documentation issues causing information loss, and children caught in parental conflicts.
-                    </p>
-                  </div>
-                </div>
+                <ProjectContentBox>
+                  <p>
+                    Key challenges include emotional triggers in messaging, scheduling chaos from lack of centralized systems, financial disputes over child expenses, documentation issues causing information loss, and children caught in parental conflicts.
+                  </p>
+                </ProjectContentBox>
               )}
             </React.Fragment>
           ))}

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import ProjectContentBox from "@/components/project/ProjectContentBox";
 
 interface ModernProjectResultSectionProps {
   details: ProjectDetails;
@@ -79,39 +80,36 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
               
               {/* Show Conclusion text ONLY after first image (index 0) */}
               {index === 0 && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4"><strong>Conclusion</strong></h3>
-                    {isInvestorProject ? (
-                      <>
-                        <p className="text-sm text-gray-700 mb-4">
-                          This project successfully transformed a manual, error-prone Excel-based system into a modern, efficient digital platform. The key to success was understanding user needs deeply and designing solutions that not only solved technical problems but also improved the daily work experience for banking professionals.
-                        </p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          The 85% reduction in errors and 40% improvement in processing speed demonstrate the tangible business impact, while the high user satisfaction scores show that the solution truly met user needs. This project positioned the private bank for future growth while making their current operations significantly more efficient and enjoyable.
-                        </p>
-                      </>
-                    ) : isSpittimeProject ? (
-                      <>
-                        <p className="text-sm text-gray-700 mb-4">
-                          The platform reduced court visits, generated significant legal fee savings, achieved high user satisfaction, and increased productive co-parent communication. One beta user noted: "This app saved my relationship with my ex-partner. We can actually focus on our kids now instead of fighting about logistics."
-                        </p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          Additional benefits included reduced stress, better coordination, improved documentation, and stronger focus on children's wellbeing over conflict.
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="text-sm text-gray-700 mb-4">
-                          Herbalink addresses a significant gap in the wellness market by creating a trusted, educational platform for herbal consultations. The design prioritizes transparency, accessibility, and user empowerment while respecting the expertise of certified herbalists. The app has been developed and is ready for market launch, with the design foundation in place to support both users seeking herbal guidance and practitioners looking to grow their practice digitally.
-                        </p>
-                        <p className="text-sm text-gray-700 mb-4 last:mb-0">
-                          The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
-                        </p>
-                      </>
-                    )}
-                  </div>
-                </div>
+                <ProjectContentBox title="Conclusion">
+                  {isInvestorProject ? (
+                    <>
+                      <p>
+                        This project successfully transformed a manual, error-prone Excel-based system into a modern, efficient digital platform. The key to success was understanding user needs deeply and designing solutions that not only solved technical problems but also improved the daily work experience for banking professionals.
+                      </p>
+                      <p>
+                        The 85% reduction in errors and 40% improvement in processing speed demonstrate the tangible business impact, while the high user satisfaction scores show that the solution truly met user needs. This project positioned the private bank for future growth while making their current operations significantly more efficient and enjoyable.
+                      </p>
+                    </>
+                  ) : isSpittimeProject ? (
+                    <>
+                      <p>
+                        The platform reduced court visits, generated significant legal fee savings, achieved high user satisfaction, and increased productive co-parent communication. One beta user noted: "This app saved my relationship with my ex-partner. We can actually focus on our kids now instead of fighting about logistics."
+                      </p>
+                      <p>
+                        Additional benefits included reduced stress, better coordination, improved documentation, and stronger focus on children's wellbeing over conflict.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        Herbalink addresses a significant gap in the wellness market by creating a trusted platform connecting people with certified herbalists for personalized wellness consultations.
+                      </p>
+                      <p>
+                        The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
+                      </p>
+                    </>
+                  )}
+                </ProjectContentBox>
               )}
             </React.Fragment>
           ))}
