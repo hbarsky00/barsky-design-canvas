@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import ProjectContentBox from "@/components/project/ProjectContentBox";
 import ProcessImageGallery from "./components/ProcessImageGallery";
 
 interface ModernProjectProcessSectionProps {
@@ -76,13 +77,15 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         projectId={projectId}
       />
       
-      <EnhancedContentEditor
-        content={details.process}
-        contentType="section"
-        onSave={(content) => handleSectionContentSave('process', 'content', content)}
-        className="mb-8"
-        projectId={projectId}
-      />
+      <ProjectContentBox>
+        <EnhancedContentEditor
+          content={details.process}
+          contentType="section"
+          onSave={(content) => handleSectionContentSave('process', 'content', content)}
+          className="mb-8"
+          projectId={projectId}
+        />
+      </ProjectContentBox>
 
       <ProcessImageGallery
         processImages={processImages}

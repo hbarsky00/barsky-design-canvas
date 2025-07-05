@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
 import ImageTextGallery from "./ImageTextGallery";
+import ProjectContentBox from "@/components/project/ProjectContentBox";
 import { ImageTextItem } from "@/data/types/project";
 
 interface SimpleContentSectionProps {
@@ -41,13 +42,13 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
         {title}
       </h2>
       
-      <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center mb-8">
+      <ProjectContentBox>
         {content.split('\n').map((paragraph, index) => (
-          <p key={index} className="mb-4">
+          <p key={index}>
             {paragraph}
           </p>
         ))}
-      </div>
+      </ProjectContentBox>
 
       {useEnhancedGallery ? (
         <ImageTextGallery
@@ -76,13 +77,13 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
 
           {/* Additional text between images */}
           {additionalText && (
-            <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center my-8">
+            <ProjectContentBox>
               {additionalText.split('\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">
+                <p key={index}>
                   {paragraph}
                 </p>
               ))}
-            </div>
+            </ProjectContentBox>
           )}
 
           {/* Remaining images */}

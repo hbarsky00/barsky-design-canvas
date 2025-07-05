@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
+import ProjectContentBox from "@/components/project/ProjectContentBox";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
 
 interface TextSectionProps {
@@ -33,34 +34,25 @@ const TextSection: React.FC<TextSectionProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`text-gray-600 max-w-none ${className}`}
-      style={{
-        fontSize: '18px',
-        lineHeight: '1.625',
-        fontWeight: '400',
-        color: 'rgb(75 85 99)'
-      }}
+      className={className}
     >
       {showEditingControls && onSave ? (
-        <EnhancedContentEditor
-          content={content}
-          contentType="paragraph"
-          onSave={handleSave}
-          projectId={projectId}
-        />
+        <ProjectContentBox>
+          <EnhancedContentEditor
+            content={content}
+            contentType="paragraph"
+            onSave={handleSave}
+            projectId={projectId}
+          />
+        </ProjectContentBox>
       ) : (
-        <div className="whitespace-pre-wrap">
+        <ProjectContentBox>
           {content.split('\n').map((paragraph, index) => (
-            <p key={index} className="mb-4" style={{
-              fontSize: '18px',
-              lineHeight: '1.625',
-              fontWeight: '400',
-              color: 'rgb(75 85 99)'
-            }}>
+            <p key={index}>
               {paragraph}
             </p>
           ))}
-        </div>
+        </ProjectContentBox>
       )}
     </motion.div>
   );

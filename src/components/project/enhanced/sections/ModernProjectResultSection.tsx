@@ -43,13 +43,15 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
         projectId={projectId}
       />
       
-      <EnhancedContentEditor
-        content={details.result}
-        contentType="section"
-        onSave={(content) => handleSectionContentSave('result', 'content', content)}
-        className="mb-8"
-        projectId={projectId}
-      />
+      <ProjectContentBox>
+        <EnhancedContentEditor
+          content={details.result}
+          contentType="section"
+          onSave={(content) => handleSectionContentSave('result', 'content', content)}
+          className="mb-8"
+          projectId={projectId}
+        />
+      </ProjectContentBox>
 
       {/* Result Images Gallery with text positioned between images */}
       {details.resultGalleryImages && details.resultGalleryImages.length > 0 && (
