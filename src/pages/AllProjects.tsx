@@ -7,7 +7,6 @@ import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import BlogPreview from "@/components/blog/BlogPreview";
-import ProjectPdfExporter from "@/components/export/ProjectPdfExporter";
 import { useProjectsData } from "./projects/hooks/useProjectsData";
 import { projectFaqs } from "@/data/seoFaqs";
 
@@ -47,11 +46,6 @@ const AllProjects = () => {
               Each case study demonstrates the fusion of thoughtful design with cutting-edge AI technology, 
               creating user-centered experiences that leverage the power of artificial intelligence.
             </p>
-            
-            {/* PDF Export Section */}
-            <div className="max-w-2xl mx-auto">
-              <ProjectPdfExporter />
-            </div>
           </div>
         </section>
 
