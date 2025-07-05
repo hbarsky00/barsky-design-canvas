@@ -25,7 +25,7 @@ const EnhancedHero: React.FC = () => {
       <HeroBackground />
       <HeroVisualElements />
       
-      <div className="relative w-full px-4 sm:px-6 lg:px-8 py-2 sm:py-4 lg:py-6 z-10">
+      <div className="relative w-full py-2 sm:py-4 lg:py-6 z-10">
         <div className="w-full text-center">
           
           {/* Minimal Glass Container */}
@@ -33,7 +33,7 @@ const EnhancedHero: React.FC = () => {
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="glass-card-elevated p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-5 lg:space-y-6 layered-depth max-w-7xl mx-auto relative overflow-hidden"
+            className="glass-card-elevated p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-5 lg:space-y-6 layered-depth w-full relative overflow-hidden"
           >
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 animate-pulse opacity-50" />
