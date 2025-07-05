@@ -57,7 +57,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       />
 
       {/* Main Content */}
-      <div className="w-full px-4 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16 max-w-6xl mx-auto">
+      <div className="w-full px-4 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16">
         
         {/* Hero Image Section - Now positioned before all project sections */}
         <ModernProjectImage
