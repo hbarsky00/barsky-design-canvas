@@ -87,6 +87,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         />
       </ProjectContentBox>
 
+      {/* Add consistent spacing before image gallery */}
       <ProcessImageGallery
         processImages={processImages}
         projectId={projectId}

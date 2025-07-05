@@ -31,7 +31,7 @@ const ProcessImageGallery: React.FC<ProcessImageGalleryProps> = ({
   }
 
   return (
-    <div className="mt-12 space-y-8">
+    <div className="mt-16 space-y-12">
       {processImages.map((image, index) => (
         <React.Fragment key={index}>
           {/* Each Image */}

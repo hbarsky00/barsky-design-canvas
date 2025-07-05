@@ -35,7 +35,7 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8 lg:mb-12"
+            className="mb-10 lg:mb-16"
           >
             <Link 
               to="/projects" 
@@ -50,7 +50,7 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="glass-card-elevated p-4 sm:p-8 text-center space-y-4 lg:space-y-6 layered-depth mb-8 lg:mb-12"
+            className="glass-card-elevated p-4 sm:p-8 text-center space-y-4 lg:space-y-6 layered-depth mb-10 lg:mb-16"
           >
             <div className="flex items-center justify-center space-x-3 text-sm">
               <span className="font-medium text-blue-600 glass-button px-3 py-1 rounded-full">{details.client}</span>

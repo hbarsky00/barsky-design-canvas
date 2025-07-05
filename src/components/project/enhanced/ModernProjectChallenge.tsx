@@ -39,7 +39,7 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
 
       {/* Challenge Images Gallery */}
       {challengeGalleryImages && challengeGalleryImages.length > 0 && (
-        <div className="mt-12 space-y-8">
+        <div className="mt-16 space-y-12">
           {challengeGalleryImages.map((image, index) => (
             <React.Fragment key={index}>
               {/* Each Image */}

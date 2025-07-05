@@ -55,7 +55,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
 
       {/* Result Images Gallery with text positioned between images */}
       {details.resultGalleryImages && details.resultGalleryImages.length > 0 && (
-        <div className="mt-12 space-y-8">
+        <div className="mt-16 space-y-12">
           {details.resultGalleryImages.map((image, index) => (
             <React.Fragment key={index}>
               {/* Each Image */}

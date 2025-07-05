@@ -117,7 +117,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
 
       {/* Challenge Gallery Images - for Splittime show remaining images after first two, for others show all */}
       {challengeImages && challengeImages.length > 0 && (isSpittimeProject ? challengeImages.length > 2 : true) && (
-        <div className="mt-12 space-y-8">
+        <div className="mt-16 space-y-12">
            {(isSpittimeProject ? challengeImages.slice(2) : challengeImages).map((item, index) => (
              <React.Fragment key={isSpittimeProject ? index + 2 : index}>
                {isVideoUrl(item) ? (
@@ -201,7 +201,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
 
       {/* Challenge Gallery Content - Fallback for new format */}
       {details.challengeGalleryContent && details.challengeGalleryContent.length > 0 && !challengeImages.length && (
-        <div className="mt-12 space-y-8">
+        <div className="mt-16 space-y-12">
           {details.challengeGalleryContent.map((item, index) => (
             <React.Fragment key={index}>
               {/* Special handling for first two images in Splittime - display side by side */}
