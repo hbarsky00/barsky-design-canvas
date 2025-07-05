@@ -208,11 +208,11 @@
     margin-bottom: 1rem !important;
   }
 
-  /* Target any remaining paragraph-like text elements, but exclude navigation */
-  .text-lg:not(.nav-link):not([class*="nav-"]),
-  .text-base:not(.nav-link):not([class*="nav-"]),
-  .leading-relaxed:not(.nav-link):not([class*="nav-"]),
-  .leading-loose:not(.nav-link):not([class*="nav-"]) {
+  /* Target any remaining paragraph-like text elements */
+  .text-lg,
+  .text-base,
+  .leading-relaxed,
+  .leading-loose {
     font-size: 18px !important;
     line-height: 1.625 !important;
     font-weight: 400 !important;
