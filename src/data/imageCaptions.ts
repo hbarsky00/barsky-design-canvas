@@ -61,7 +61,7 @@ export const imageCaptions: Record<string, string> = {
   "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png": "HerbaLink wellness services marketplace featuring filtering options, practitioner profiles, and booking capabilities for personalized herbal consultations and educational workshops",
   "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png": "HerbaLink final design highlights showcasing key features including smart herbalist discovery, personalized dashboards, and integrated consultation interfaces for modern herbal medicine practice",
   "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png": "HerbaLink wellness services and classes interface displaying comprehensive filtration system, featured service cards, and booking functionality for herbal consultations and educational programs",
-  "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png": "HerbaLink impact and results analytics dashboard showing significant improvements in task completion rates, usability scores, user confidence, and consultation metrics for herbal wellness platform",
+  "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png": "HerbaLink platform results showing improved user trust and herbalist matching success rates",
 
   // Gold2Crypto Project
   "/lovable-uploads/7ca9117b-f843-4407-876d-90bbd289f24e.png": "Familiar trading platform interface designed specifically for traditional gold investors transitioning to cryptocurrency markets",
