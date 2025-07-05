@@ -101,6 +101,14 @@ export const useHeaderNavigation = () => {
       const scrollPosition = window.scrollY;
       const heroHeight = window.innerHeight;
       
+      // For project pages and projects page, always keep header white
+      const isProjectsPage = location.pathname === '/projects';
+      if (isProjectPage || isProjectsPage) {
+        setIsScrolled(true);
+        setIsScrolledPastHero(true);
+        return;
+      }
+      
       // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
       
