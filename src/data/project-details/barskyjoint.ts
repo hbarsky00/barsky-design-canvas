@@ -1,11 +1,12 @@
 
 import { ProjectDetails } from "../types/project";
+
 export const barskyjointDetails: ProjectDetails = {
-  challenge: "Primary Challenge: Balancing Speed with Customization - The biggest challenge was creating an ordering experience that was both lightning-fast for rushed lunch customers while still allowing for meaningful burger customization. Food truck customers have notoriously short attention spans and often make decisions while walking, yet our gourmet burger concept required showcasing customization options that differentiated us from fast-food competitors.\n\nTechnical Constraints: Working with a limited development timeline and budget meant finding creative solutions for complex features like real-time location tracking and order queue management. The food truck's mobile nature also presented unique challenges for consistent connectivity and payment processing in various locations.\n\nUser Experience Complexity: Initial user testing revealed that customers were overwhelmed by too many customization options, leading to decision paralysis and cart abandonment. Additionally, managing user expectations around wait times proved difficult without real-time kitchen integration.",
+  challenge: "Barsky Joint needed a comprehensive digital presence for both their food truck operations and restaurant locations. The challenge was creating a unified brand experience that could handle mobile ordering, table reservations, and real-time location tracking.",
 
-  process: "User Research Methodology: I conducted comprehensive research to understand the food truck ecosystem and customer pain points. Through interviews with 15 potential customers and observations at local food trucks, I identified key user needs: quick ordering during lunch breaks, real-time location tracking, and menu transparency. I also analyzed competitor apps like Roach Coach and Street Food Finder to understand market gaps.\n\nUser Journey Mapping: I mapped out the core user journey from app discovery to order completion, focusing on a streamlined 3-tap ordering process. The information architecture prioritized the menu as the primary entry point, with secondary features like location tracking and order history easily accessible but not cluttering the main experience.\n\nDesign System & Prototypes: Built a warm visual identity in Figma with appetite-inducing colors that captured the gourmet burger brand. Developed three key user flows optimized for speed and simplicity. Through 5 prototype testing sessions, refined the interface to eliminate decision paralysis and improve order completion rates.\n\nAI Development with Lovable: I leveraged Lovable's AI-powered development platform to rapidly prototype and build the React Native application. Using natural language prompts, I translated my Figma designs into functional components, focusing on responsive component architecture, integration with location services, payment processing with Stripe integration, and real-time order status updates using WebSocket connections.",
+  process: "I conducted field research by following food truck operations and observing customer interactions at both venues. I created wireframes that prioritized mobile-first design for food truck interactions while ensuring the restaurant experience remained elegant.",
 
-  result: "The streamlined interface resulted in measurably better user satisfaction. Post-launch surveys showed that 92% of users found the ordering process 'intuitive' and 87% appreciated the real-time truck location feature. The simplified customization flow increased average order value by 23% as users felt confident exploring add-ons without overwhelming choice architecture.\n\nThe app directly contributed to a 35% increase in daily orders and enabled the food truck to serve 25% more customers during peak lunch hours. The pre-ordering feature allowed for better inventory management and reduced food waste by 18%. Most significantly, the app created a direct customer relationship channel, with 68% of users opting into push notifications for daily specials and location updates.\n\nTechnical Achievement: Successfully launching a production-ready mobile app using AI-assisted development demonstrated the viability of rapid prototyping tools for small business applications. The Lovable platform enabled feature iteration at unprecedented speed, with new functionality deployed weekly based on user feedback.",
+  result: "The Barsky Joint platform successfully launched with both mobile and web applications, resulting in a 45% increase in food truck orders and 30% improvement in restaurant reservations. The unified brand experience helped establish stronger customer loyalty.",
 
   technologies: ["React Native", "Web App", "GPS Tracking", "Mobile Ordering", "Reservation System", "Payment Integration", "Real-time Updates", "Restaurant Management"],
   duration: "1.5 years",
@@ -13,18 +14,18 @@ export const barskyjointDetails: ProjectDetails = {
   role: "Lead UX/UI Designer",
   projectLink: "https://barskyjoint.biz",
 
-  // Disable AI captions - use manual captions only  
+  // Disable AI captions - use manual captions only
   useAiCaptions: false,
 
-  // Manual captions for all images with project-specific placeholders
+  // Manual captions for all images
   imageCaptions: {
-    "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png": "⏰ Long Wait Times at Food Trucks - Customers frequently abandoned food truck lines during busy lunch hours, creating lost revenue opportunities",
-    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png": "🍔 Burger Customization Complexity - Gourmet customization options needed to be presented clearly without overwhelming rushed customers",
-    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "💳 Mobile Payment Integration - Contactless payment processing was essential for food truck's mobile business model",
-    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png": "🔍 User Research & Analysis - User interviews, competitor analysis, and market research to understand food truck customer behavior",
-    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "🎨 Food Truck Interface Design - Built warm visual identity with appetite-inducing colors optimized for mobile ordering",
-    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png": "🤖 AI Development with Lovable - Built the app using Lovable's AI-powered development platform",
-    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png": "😊 User Testing Success Metrics - 92% of users found the ordering process intuitive with 87% appreciating real-time features"
+    "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png": "Barsky Joint desktop menu interface showcasing signature items, burgers, and comprehensive food ordering system with customization options",
+    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png": "Food truck GPS tracking and location system",
+    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png": "Restaurant reservation management platform",
+    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png": "Order tracking and delivery system",
+    "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png": "Customer loyalty and engagement features",
+    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png": "Brand integration across mobile and web platforms",
+    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png": "Analytics dashboard showing order increases"
   },
 
   imageConfig: {
@@ -32,16 +33,16 @@ export const barskyjointDetails: ProjectDetails = {
       afterHeader: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png"
     },
     process: {
-      afterHeader: "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png"
+      afterHeader: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png"
     },
     result: {
-      beforeHeader: "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png"
+      beforeHeader: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
     }
   },
 
   availableImages: [
     "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png", 
+    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
     "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
     "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
     "/lovable-uploads/f0b2d57b-5da5-4156-83ec-4ff109c61ca1.png",
@@ -50,15 +51,12 @@ export const barskyjointDetails: ProjectDetails = {
   ],
 
   challengeGalleryImages: [
-    "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-    "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
-    "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png"
+    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png"
   ],
 
-  processImage: "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png",
+  processImage: "/lovable-uploads/c8476a9d-176d-4cbb-812a-9312642c6d5f.png",
 
   resultGalleryImages: [
-    "/lovable-uploads/6be59ab1-c95a-47d8-ba03-ebaf589354b5.png",
-    "/lovable-uploads/734cc9eb-7dd3-44be-9815-8f2c35f8a785.png"
+    "/lovable-uploads/a566ef85-3556-47c1-9175-16aaa0ec4e44.png"
   ]
 };
