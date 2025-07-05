@@ -35,8 +35,7 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-2">
-            <ThemeToggle />
-            <MobileMenu 
+            <MobileMenu
               links={navLinks}
               isMobileMenuOpen={isMobileMenuOpen}
               toggleMobileMenu={toggleMobileMenu}
