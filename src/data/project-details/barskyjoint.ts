@@ -1,6 +1,5 @@
 
 import { ProjectDetails } from "../types/project";
-
 export const barskyjointDetails: ProjectDetails = {
   challenge: "The biggest challenge was creating an ordering experience that was both lightning-fast for rushed lunch customers while still allowing for meaningful burger customization. Food truck customers have notoriously short attention spans and often make decisions while walking, yet our gourmet burger concept required showcasing customization options that differentiated us from fast-food competitors.\n\nTechnical Constraints: Working with a limited development timeline and budget meant finding creative solutions for complex features like real-time location tracking and order queue management. The food truck's mobile nature also presented unique challenges for consistent connectivity and payment processing in various locations.\n\nUser Experience Complexity: Initial user testing revealed that customers were overwhelmed by too many customization options, leading to decision paralysis and cart abandonment. Additionally, managing user expectations around wait times proved difficult without real-time kitchen integration.",
 
