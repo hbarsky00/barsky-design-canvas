@@ -1,5 +1,11 @@
 
-export default Services;
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { Search, Target, Palette, TrendingUp, Users, Zap } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import IndexingOptimizer from "@/components/seo/IndexingOptimizer";
+import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Services = () => {
   usePageIndexing();
