@@ -43,7 +43,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
         projectId={projectId}
       />
       
-      <ProjectContentBox>
+      <div className="glass-card p-6 layered-depth bg-blue-50/50 border border-blue-100">
         <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
           {details.result.split('\n\n').map((paragraph, index) => {
             // Check if this is a header (like "Next Steps")
@@ -83,13 +83,13 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
             
             // Regular paragraph
             return (
-              <p key={index} className="mb-4">
+              <p key={index} className="mb-4 text-gray-700">
                 {paragraph}
               </p>
             );
           })}
         </div>
-      </ProjectContentBox>
+      </div>
 
       {/* Result Images Gallery with text positioned between images */}
       {details.resultGalleryImages && details.resultGalleryImages.length > 0 && (
