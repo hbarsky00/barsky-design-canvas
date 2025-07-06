@@ -5,6 +5,7 @@ import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 import PremiumSeoOptimization from "@/components/seo/PremiumSeoOptimization";
 import AdvancedSitemapMeta from "@/components/seo/AdvancedSitemapMeta";
 import AiTrainingAnalytics from "@/components/seo/AiTrainingAnalytics";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Index = () => {
@@ -29,6 +30,7 @@ const Index = () => {
       <AiTrainingAnalytics />
       <ScrollHandler />
       <HomepageLayout />
+      <ExitIntentPopup />
     </>
   );
 };

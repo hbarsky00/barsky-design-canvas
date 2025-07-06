@@ -30,13 +30,33 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({ isVisible }) => {
         transition={{ duration: 0.6, delay: 1.2 }}
       >
         <AnimatedText 
-          text="I Help Startups & Enterprises Increase Revenue 40%+ Through AI-Enhanced UX Design" 
+          text="Senior UX/UI Designer + Gen AI Developer" 
+          tag="div" 
+          className="text-lg sm:text-xl lg:text-2xl font-semibold text-blue-600 mb-3 leading-tight"
+          delay={800}
+          type="word"
+          animation="fade"
+          staggerChildren={0.03}
+        />
+        
+        <AnimatedText 
+          text="Turn Your Digital Product Into a Revenue Machine" 
           tag="h1" 
-          className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 block mb-2 leading-tight"
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 block mb-4 leading-tight"
           delay={1000}
           type="word"
           animation="fade"
           staggerChildren={0.05}
+        />
+        
+        <AnimatedText 
+          text="15+ Years Experience • 40%+ Conversion Improvements • AI Integration Expert" 
+          tag="div" 
+          className="text-lg sm:text-xl font-medium text-gray-700 mb-4 leading-relaxed"
+          delay={1200}
+          type="word"
+          animation="fade"
+          staggerChildren={0.02}
         />
         
         <motion.div

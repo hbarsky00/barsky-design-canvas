@@ -53,10 +53,11 @@ const ServicesPreviewSection: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Choose Your Revenue Growth Path
+            Choose Your Revenue Growth Strategy
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Two proven packages designed to accelerate your business growth through AI-enhanced UX design.
+            Two proven packages designed to accelerate business growth through AI-enhanced UX design. 
+            Each includes free consultation to ensure perfect fit for your goals.
           </p>
         </motion.div>
 
@@ -125,25 +126,42 @@ const ServicesPreviewSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <div className="glass-card p-8 max-w-2xl mx-auto">
+          <div className="glass-card p-8 max-w-2xl mx-auto border border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Not sure which package is right for you?
+              Ready to 10X Your Conversion Rate?
             </h3>
             <p className="text-gray-600 mb-6">
-              Get a free 30-minute consultation to discuss your specific needs and receive a personalized recommendation.
+              Get a free 30-minute strategy session where I'll analyze your current setup and show you exactly 
+              how to implement AI-enhanced UX that drives measurable ROI.
             </p>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              onClick={() => {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              Schedule Free Consultation
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                variant="default" 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Book Free Strategy Session
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-2 border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold py-3 px-6 transition-all duration-300"
+                onClick={() => {
+                  const projectsSection = document.getElementById('projects');
+                  if (projectsSection) {
+                    projectsSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                See Success Stories
+              </Button>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -30,6 +30,7 @@ import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
 import MvpValidation from "@/pages/services/MvpValidation";
 import ConversionAudit from "@/pages/services/ConversionAudit";
 import AiRedesign from "@/pages/services/AiRedesign";
+import LinkedInVisitors from "@/pages/LinkedInVisitors";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -73,6 +74,7 @@ function App() {
               <Route path="/services/mvp-validation" element={<MvpValidation />} />
               <Route path="/services/conversion-audit" element={<ConversionAudit />} />
               <Route path="/services/ai-redesign" element={<AiRedesign />} />
+              <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
