@@ -19,9 +19,9 @@ const HomepageLayout: React.FC = () => {
       <Header />
       <main className="flex-grow space-y-4">
         <EnhancedHero />
+        <FeaturedProjects />
         <ProblemSolutionSection />
         <ServicesPreviewSection />
-        <FeaturedProjects />
         <About />
         <Contact />
         <BlogPreview />
