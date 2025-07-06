@@ -34,7 +34,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
         <iframe
           src={getEmbedUrl(src)}
           title={title}
-          className="w-full h-80 md:h-96 lg:h-[32rem] rounded-lg"
+          className="w-full h-80 md:h-96 lg:h-[32rem]"
           frameBorder="0"
           allowFullScreen
           style={{ 
@@ -46,7 +46,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
         <video
           src={src}
           title={title}
-          className="w-full h-auto rounded-lg"
+          className="w-full h-auto"
           controls
           style={{ 
             display: 'block',

@@ -276,11 +276,11 @@
   }
   
   .btn-primary {
-    @apply bg-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-accent))] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 inline-block shadow-lg;
+    @apply bg-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-accent))] text-white font-semibold py-3 px-6 transition-colors duration-300 inline-block shadow-lg;
   }
   
   .btn-outline {
-    @apply border-2 border-[hsl(var(--blue-vibrant))] text-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-vibrant))] hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 inline-block;
+    @apply border-2 border-[hsl(var(--blue-vibrant))] text-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-vibrant))] hover:text-white font-semibold py-3 px-6 transition-colors duration-300 inline-block;
   }
 
   .color-swatch {

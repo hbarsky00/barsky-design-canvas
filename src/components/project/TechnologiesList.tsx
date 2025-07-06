@@ -20,7 +20,7 @@ const TechnologiesList: React.FC<TechnologiesListProps> = ({ technologies }) => 
         {technologies.map((tech, index) => (
           <motion.span 
             key={tech} 
-            className="bg-barsky-blue/10 text-barsky-blue px-3 py-1 rounded-full text-sm"
+            className="bg-barsky-blue/10 text-barsky-blue px-3 py-1 text-sm"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}

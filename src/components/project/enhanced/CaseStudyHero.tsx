@@ -88,7 +88,7 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative overflow-hidden shadow-2xl">
               <img
                 src={heroImage}
                 alt={title}

@@ -70,7 +70,7 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
             className="gallery-image group"
             onClick={() => openLightbox(index)}
           >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <img
                 src={image}
                 alt={captions[image] || `Gallery image ${index + 1}`}
@@ -79,7 +79,7 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-white/90 p-3 rounded-full">
+                <div className="bg-white/90 p-3">
                   <Maximize className="h-5 w-5 text-navy-primary" />
                 </div>
               </div>
@@ -145,19 +145,19 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
                 <img
                   src={images[selectedImage]}
                   alt={captions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
-                  className="max-w-full max-h-full object-contain rounded-lg"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
 
               {/* Caption */}
               {captions[images[selectedImage]] && (
-                <div className="absolute bottom-4 left-4 right-4 bg-black/70 text-white p-4 rounded-lg">
+                <div className="absolute bottom-4 left-4 right-4 bg-black/70 text-white p-4">
                   <p className="text-center">{captions[images[selectedImage]]}</p>
                 </div>
               )}
 
               {/* Image Counter */}
-              <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-lg text-sm">
+              <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 text-sm">
                 {selectedImage + 1} / {images.length}
               </div>
             </motion.div>

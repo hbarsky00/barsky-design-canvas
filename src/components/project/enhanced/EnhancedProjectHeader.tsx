@@ -116,7 +116,7 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className="relative overflow-hidden shadow-2xl">
               <div className="aspect-[16/10] bg-gradient-to-br from-gray-100 to-gray-200">
                 <img
                   src={project.image}
@@ -131,8 +131,8 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
             </div>
             
             {/* Floating Elements for Visual Interest */}
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-500/20 rounded-full blur-xl" />
-            <div className="absolute -top-4 -right-4 w-32 h-32 bg-purple-500/20 rounded-full blur-xl" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-500/20 blur-xl" />
+            <div className="absolute -top-4 -right-4 w-32 h-32 bg-purple-500/20 blur-xl" />
           </motion.div>
         </div>
       </div>

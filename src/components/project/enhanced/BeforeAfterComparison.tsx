@@ -52,7 +52,7 @@ const BeforeAfterComparison: React.FC<BeforeAfterComparisonProps> = ({
       )}
 
       <div 
-        className="relative aspect-[16/10] overflow-hidden rounded-xl cursor-grab active:cursor-grabbing select-none"
+        className="relative aspect-[16/10] overflow-hidden cursor-grab active:cursor-grabbing select-none"
         onMouseMove={handleMouseMove}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -85,16 +85,16 @@ const BeforeAfterComparison: React.FC<BeforeAfterComparisonProps> = ({
           style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
         >
           {/* Slider Handle */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white shadow-lg flex items-center justify-center">
             <ArrowRight className="h-4 w-4 text-navy-primary" />
           </div>
         </div>
 
         {/* Labels */}
-        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
+        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 text-sm font-medium">
           {beforeLabel}
         </div>
-        <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
+        <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 text-sm font-medium">
           {afterLabel}
         </div>
 
@@ -102,7 +102,7 @@ const BeforeAfterComparison: React.FC<BeforeAfterComparisonProps> = ({
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: isDragging ? 0 : 1 }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-lg text-sm"
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 text-sm"
         >
           Drag to compare
         </motion.div>

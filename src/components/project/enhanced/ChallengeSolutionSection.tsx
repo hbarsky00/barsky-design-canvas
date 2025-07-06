@@ -35,7 +35,7 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
           <img
             src={challengeImage}
             alt="Challenge illustration"
-            className="w-full max-w-4xl mx-auto h-64 object-cover rounded-lg shadow-lg"
+            className="w-full max-w-4xl mx-auto h-64 object-cover shadow-lg"
           />
         </motion.div>
       )}
@@ -81,7 +81,7 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
               <img
                 src={solutionImage}
                 alt="Solution illustration"
-                className="w-full h-48 object-cover rounded-lg shadow-md"
+                className="w-full h-48 object-cover shadow-md"
               />
             </div>
           )}
