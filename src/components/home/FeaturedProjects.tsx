@@ -16,6 +16,13 @@ const FeaturedProjects: React.FC = () => {
     .map(id => filteredProjects.find(project => project.id === id))
     .filter(Boolean); // Remove any undefined projects
 
+  console.log("FeaturedProjects Debug:", {
+    filteredProjects: filteredProjects.length,
+    featuredProjectIds,
+    displayProjects: displayProjects.length,
+    displayProjectsData: displayProjects.map(p => ({ id: p.id, title: p.title }))
+  });
+
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-8">
