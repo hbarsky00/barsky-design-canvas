@@ -291,17 +291,17 @@ const MvpValidation: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-4 px-8 text-lg group"
-                    onClick={() => window.location.href = '/free-audit'}
+                    onClick={() => window.location.href = '/contact'}
                   >
-                    Start Your MVP Validation
+                    Book Free Consultation
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <Button 
                     variant="outline" 
                     className="py-4 px-8 text-lg"
-                    onClick={() => window.location.href = '/contact'}
+                    onClick={() => window.location.href = '/free-audit'}
                   >
-                    Book Free Consultation
+                    Learn More
                   </Button>
                 </div>
               </motion.div>

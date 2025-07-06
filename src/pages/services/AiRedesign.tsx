@@ -357,17 +357,17 @@ const AiRedesign: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     className="bg-purple-vibrant hover:bg-purple-700 text-white font-semibold py-4 px-8 text-lg group"
-                    onClick={() => window.location.href = '/free-audit'}
+                    onClick={() => window.location.href = '/contact'}
                   >
-                    Start Full Redesign
+                    Schedule Strategy Call
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <Button 
                     variant="outline" 
                     className="py-4 px-8 text-lg"
-                    onClick={() => window.location.href = '/contact'}
+                    onClick={() => window.location.href = '/free-audit'}
                   >
-                    Schedule Strategy Call
+                    Learn More
                   </Button>
                 </div>
               </motion.div>
