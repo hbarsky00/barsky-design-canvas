@@ -5,6 +5,7 @@ import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import ProcessImageGallery from "./components/ProcessImageGallery";
+import { getImageForListItem } from "@/utils/listItemImageMapping";
 
 interface ModernProjectProcessSectionProps {
   details: ProjectDetails;
@@ -103,12 +104,28 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
               if (items.length > 0) {
                 return (
                   <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    {items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex items-start bg-white/50 p-3 rounded-lg border border-blue-100/50">
-                        <span className="text-primary mr-3 mt-1 font-bold">•</span>
-                        <span className="text-gray-700 text-sm leading-relaxed">{item.replace('•', '').trim()}</span>
-                      </div>
-                    ))}
+                    {items.map((item, itemIndex) => {
+                      const itemText = item.replace('•', '').trim();
+                      const itemImage = getImageForListItem(itemText);
+                      
+                      return (
+                        <div key={itemIndex} className="flex flex-col bg-white/50 p-3 rounded-lg border border-blue-100/50">
+                          <div className="flex items-start mb-3">
+                            <span className="text-primary mr-3 mt-1 font-bold">•</span>
+                            <span className="text-gray-700 text-sm leading-relaxed">{itemText}</span>
+                          </div>
+                          {itemImage && (
+                            <div className="mt-2">
+                              <img 
+                                src={itemImage} 
+                                alt={`Illustration for: ${itemText}`}
+                                className="w-full h-32 object-cover rounded-md"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 );
               }
