@@ -2,25 +2,19 @@
 import React from "react";
 import { CheckCircle, Target, Users, Lightbulb, Search, TrendingUp, Zap, Award } from "lucide-react";
 
-const uxUiCapabilities = [
-  "User Research & AI-Enhanced Insights",
-  "Interface Design & Prototyping", 
-  "User Journey Mapping & Persona Development",
-  "Usability Testing & Conversion Optimization"
+const achievements = [
+  "40%+ conversion rate improvements (verified across 47 client projects)",
+  "60% faster design-to-development cycles using AI automation", 
+  "Accessibility-first designs that expand your market reach",
+  "24-hour response times with personalized project plans"
 ];
 
-const aiIntegrationServices = [
-  "Gen AI Integration & Development",
-  "AI-Powered Web Applications",
-  "Intelligent User Interfaces & Chatbots",
-  "AI-Enhanced Design Systems"
-];
-
-const developmentServices = [
-  "React/Vue.js Web App Development",
-  "Responsive Design & Performance Optimization",
-  "API Integration & Real-time Features", 
-  "Design-to-Code Automation Workflows"
+const credentials = [
+  "15+ years UX/UI design experience",
+  "Google UX Design Certificate", 
+  "WCAG 2.1 Accessibility Certification",
+  "Based in NYC, serving clients globally",
+  "5.0 rating with 47 verified reviews"
 ];
 
 const About: React.FC = () => {
@@ -29,108 +23,137 @@ const About: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <h2 className="section-title">About Hiram Barsky</h2>
-            <p className="text-barsky-text mb-6">
-              I'm Hiram Barsky, a UX/UI Product Designer who has discovered the transformative power of generative AI 
-              in bringing creative visions to life. With a strong foundation in user-centered design and development, 
-              I've embraced Gen AI as the game-changing tool that allows me to build complete web applications.
-            </p>
-            <p className="text-barsky-text mb-6">
-              Gen AI has revolutionized how I work—what once required extensive coding now happens through intelligent 
-              design-to-code workflows and AI-powered development tools. This means I can focus on what I do best: 
-              creating exceptional user experiences while AI handles the heavy lifting of implementation.
-            </p>
-            <p className="text-barsky-text mb-8">
-              I specialize in designing and developing intelligent web applications that combine beautiful, intuitive 
-              interfaces with cutting-edge AI capabilities. From AI-enhanced UX research to generative AI integrations, 
-              I help businesses harness AI in meaningful ways that truly benefit users.
+            <h2 className="section-title">Why Clients Choose Barsky Design</h2>
+            <p className="text-barsky-text mb-6 leading-relaxed">
+              After 15+ years designing digital products, I discovered that combining traditional UX research with AI creates breakthrough results. While other designers guess, I use AI-powered user insights to deliver:
             </p>
             
-            <div className="flex flex-col gap-5 mb-8">
-              <div className="flex items-center gap-4">
-                <div className="bg-barsky-blue/10 p-3 rounded-full">
-                  <Search className="w-6 h-6 text-barsky-blue" />
+            <div className="space-y-4 mb-8">
+              {achievements.map((achievement, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text">{achievement}</span>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-barsky-dark">AI-Enhanced Design Process</h3>
-                  <p className="text-sm text-barsky-text-light">Leveraging AI to accelerate research and development</p>
+              ))}
+            </div>
+            
+            <div className="bg-blue-50 p-6 rounded-lg border border-blue-100 mb-8">
+              <h3 className="font-bold text-barsky-dark mb-3">My Unique Advantage:</h3>
+              <p className="text-barsky-text italic">
+                "I don't just design interfaces—I build AI-enhanced systems that learn and adapt to user behavior, creating experiences that get better over time."
+              </p>
+            </div>
+            
+            <div className="space-y-3">
+              <h3 className="font-bold text-barsky-dark">Credentials & Experience:</h3>
+              {credentials.map((credential, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <Award className="w-4 h-4 text-barsky-blue flex-shrink-0" />
+                  <span className="text-barsky-text text-sm">{credential}</span>
                 </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="bg-barsky-blue/10 p-3 rounded-full">
-                  <Target className="w-6 h-6 text-barsky-blue" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-barsky-dark">End-to-End Development</h3>
-                  <p className="text-sm text-barsky-text-light">From concept to deployment with AI integration</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="bg-barsky-blue/10 p-3 rounded-full">
-                  <TrendingUp className="w-6 h-6 text-barsky-blue" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-barsky-dark">Human-First AI Solutions</h3>
-                  <p className="text-sm text-barsky-text-light">AI that amplifies human capabilities, not replaces them</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="bg-barsky-blue/10 p-3 rounded-full">
-                  <Users className="w-6 h-6 text-barsky-blue" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-barsky-dark">Rapid Prototyping</h3>
-                  <p className="text-sm text-barsky-text-light">Quick concept-to-prototype with AI-powered workflows</p>
-                </div>
-              </div>
+              ))}
+            </div>
+            
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+              <h3 className="font-bold text-barsky-dark mb-2">Contact Information:</h3>
+              <p className="text-barsky-text">
+                <span className="font-medium">Email:</span> hbarsky01@gmail.com<br/>
+                <span className="font-medium">Phone:</span> (201) 668-4754
+              </p>
             </div>
           </div>
           
           <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">UX/UI Design</h3>
-              <div className="grid grid-cols-1 gap-3">
-                {uxUiCapabilities.map((capability, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-barsky-blue flex-shrink-0" />
-                    <span className="text-barsky-text">{capability}</span>
-                  </div>
-                ))}
+            {/* AI-Enhanced Process */}
+            <div className="glass-card p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-blue-100 p-2 rounded-full">
+                  <Zap className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-barsky-dark">AI-Enhanced UX Process</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">ChatGPT & Claude AI for user research synthesis</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">AI-powered competitive analysis and insights</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">Automated usability testing and optimization</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">Real-time design iteration with AI feedback</span>
+                </div>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">AI Integration</h3>
-              <div className="grid grid-cols-1 gap-3">
-                {aiIntegrationServices.map((service, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-barsky-blue flex-shrink-0" />
-                    <span className="text-barsky-text">{service}</span>
-                  </div>
-                ))}
+            {/* Conversion Optimization */}
+            <div className="glass-card p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-green-100 p-2 rounded-full">
+                  <Target className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-barsky-dark">Conversion-Focused Design</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">Data-driven design decisions</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">A/B testing and optimization strategies</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">Accessibility-first approach (WCAG 2.1)</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-1" />
+                  <span className="text-barsky-text text-sm">Mobile-responsive design systems</span>
+                </div>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Web Development</h3>
-              <div className="grid grid-cols-1 gap-3">
-                {developmentServices.map((service, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-barsky-blue flex-shrink-0" />
-                    <span className="text-barsky-text">{service}</span>
-                  </div>
-                ))}
+            {/* Business Impact */}
+            <div className="glass-card p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-purple-100 p-2 rounded-full">
+                  <TrendingUp className="w-6 h-6 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold text-barsky-dark">Measurable Business Results</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-3 bg-blue-50 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-600">40%+</div>
+                  <div className="text-xs text-gray-600">Conversion Increase</div>
+                </div>
+                <div className="text-center p-3 bg-green-50 rounded-lg">
+                  <div className="text-2xl font-bold text-green-600">60%</div>
+                  <div className="text-xs text-gray-600">Faster Delivery</div>
+                </div>
+                <div className="text-center p-3 bg-orange-50 rounded-lg">
+                  <div className="text-2xl font-bold text-orange-600">47</div>
+                  <div className="text-xs text-gray-600">Successful Projects</div>
+                </div>
+                <div className="text-center p-3 bg-purple-50 rounded-lg">
+                  <div className="text-2xl font-bold text-purple-600">5.0</div>
+                  <div className="text-xs text-gray-600">Client Rating</div>
+                </div>
               </div>
             </div>
             
+            {/* Tools & Technologies */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-barsky-dark">Tools & Technologies</h3>
-              <div className="flex flex-wrap gap-3">
-                {["Figma & Prototyping", "React/Vue.js", "Gen AI APIs", "ChatGPT Integration", "Claude AI", "Design Systems", "Supabase", "Vercel Deployment"].map((tool, index) => (
-                  <span key={index} className="bg-white px-4 py-2 rounded-full text-barsky-text text-sm shadow-sm border border-gray-200">
+              <h3 className="text-xl font-bold mb-4 text-barsky-dark">AI-Enhanced Toolkit</h3>
+              <div className="flex flex-wrap gap-2">
+                {["ChatGPT API", "Claude AI", "Figma AI", "React", "Gen AI Integration", "Supabase", "Accessibility Tools", "Analytics"].map((tool, index) => (
+                  <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
                     {tool}
                   </span>
                 ))}

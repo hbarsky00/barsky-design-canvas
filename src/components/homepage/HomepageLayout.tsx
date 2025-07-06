@@ -2,6 +2,8 @@
 import React from "react";
 import Header from "@/components/Header";
 import EnhancedHero from "@/components/hero/EnhancedHero";
+import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
+import ServicesPreviewSection from "@/components/home/ServicesPreviewSection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
@@ -17,13 +19,14 @@ const HomepageLayout: React.FC = () => {
       <Header />
       <main className="flex-grow space-y-4">
         <EnhancedHero />
+        <ProblemSolutionSection />
+        <ServicesPreviewSection />
         <FeaturedProjects />
         <About />
         <Contact />
-        <ServicesCallToAction />
         <BlogPreview />
         <SeoFaqSection 
-          title="Frequently Asked Questions About Design Services"
+          title="Frequently Asked Questions About AI-Enhanced UX Design"
           faqs={homepageFaqs}
         />
       </main>

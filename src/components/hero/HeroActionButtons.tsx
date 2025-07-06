@@ -10,15 +10,16 @@ interface HeroActionButtonsProps {
 }
 
 const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
-  const scrollToContact = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleFreeAudit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    // Navigate to contact page or scroll to contact section
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const scrollToProjects = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleViewResults = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
@@ -40,11 +41,11 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         <Button 
           variant="default"
           size="lg" 
-          onClick={scrollToProjects}
+          onClick={handleFreeAudit}
           className="w-full sm:w-auto relative overflow-hidden group [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
           <Sparkles className="mr-2 h-4 w-4" />
-          <span>View My Work</span>
+          <span>Get Your Free Conversion Audit</span>
           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </motion.div>
@@ -56,10 +57,10 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         <Button 
           variant="outline"
           size="lg"
-          onClick={scrollToContact}
+          onClick={handleViewResults}
           className="w-full sm:w-auto relative overflow-hidden group [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
         >
-          <span className="font-medium">Let's Collaborate</span>
+          <span className="font-medium">See $2M+ in Client Results</span>
         </Button>
       </motion.div>
     </motion.div>
