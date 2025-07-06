@@ -104,10 +104,10 @@ const LeadCaptureForm: React.FC = () => {
       <CardHeader className="text-center">
         <CardTitle className="text-2xl flex items-center justify-center gap-2">
           <Sparkles className="h-6 w-6 text-blue-600" />
-          Let's Build Something Amazing Together
+          Project Details
         </CardTitle>
         <p className="text-muted-foreground">
-          Tell me about your project and I'll craft a personalized approach for your needs.
+          Tell me about your project and I'll create a custom approach for your needs.
         </p>
       </CardHeader>
       

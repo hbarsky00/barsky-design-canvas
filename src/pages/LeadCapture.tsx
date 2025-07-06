@@ -40,47 +40,14 @@ const LeadCapture: React.FC = () => {
         <div className="section-container">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Ready to Build Something Amazing?
+              Start Your Project
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Let's discuss your project and create a custom solution that combines cutting-edge AI 
-              with exceptional user experience design.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Get a personalized project plan and quote within 24 hours.
             </p>
           </div>
           
           <LeadCaptureForm />
-          
-          <div className="mt-16 grid md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-4">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-2xl">🤖</span>
-              </div>
-              <h3 className="text-xl font-semibold">AI-Powered Analysis</h3>
-              <p className="text-muted-foreground">
-                I use AI tools to analyze your project requirements and create data-driven design solutions.
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-2xl">⚡</span>
-              </div>
-              <h3 className="text-xl font-semibold">24-Hour Response</h3>
-              <p className="text-muted-foreground">
-                You'll receive a personalized project plan and next steps within 24 hours of submission.
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-2xl">🎯</span>
-              </div>
-              <h3 className="text-xl font-semibold">Custom Solutions</h3>
-              <p className="text-muted-foreground">
-                Every project gets a tailored approach based on your specific goals and constraints.
-              </p>
-            </div>
-          </div>
           
           <div className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">What Happens Next?</h2>
