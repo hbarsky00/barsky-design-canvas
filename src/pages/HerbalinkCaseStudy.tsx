@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, TrendingUp, Users, Clock, Smartphone } from "lucide-react";
+import { ArrowRight, CheckCircle, TrendingUp, Users, Clock, Smartphone, Accessibility, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,11 +15,26 @@ const HerbalinkCaseStudy: React.FC = () => {
   ];
 
   const keyFeatures = [
-    "Intelligent herbalist matching based on user needs",
-    "Simplified consultation booking process",
-    "Mobile-optimized interface with accessibility compliance",
-    "Real-time availability system",
-    "Personalized dashboard for ongoing consultations"
+    {
+      title: "Intelligent Herbalist Matching",
+      description: "AI-powered algorithm matches users with certified herbalists based on health concerns, preferences, and availability. Reduces decision paralysis and improves satisfaction.",
+      icon: Users
+    },
+    {
+      title: "Simplified Booking Process", 
+      description: "One-click consultation scheduling with real-time availability display, automated confirmation and reminders.",
+      icon: Clock
+    },
+    {
+      title: "Mobile-Optimized Interface",
+      description: "Touch-friendly design for all devices with fast loading times on mobile networks and intuitive navigation.",
+      icon: Smartphone  
+    },
+    {
+      title: "Accessibility-First Design",
+      description: "WCAG 2.1 compliant for all users, screen reader compatible with high contrast and readable typography.",
+      icon: Accessibility
+    }
   ];
 
   const processSteps = [
@@ -48,13 +63,13 @@ const HerbalinkCaseStudy: React.FC = () => {
   return (
     <>
       <EnhancedGlobalSeo 
-        title="Herbalink Case Study: 65% Engagement Increase with AI-Powered UX | Hiram Barsky"
-        description="See how AI-enhanced UX design helped Herbalink increase user engagement by 65% and booking speed by 45%. Complete case study with process and results."
-        canonicalUrl="https://barskydesign.pro/case-study/herbalink"
-        pageType="project"
+        title="Case Study: How Herbalink Increased User Engagement 65% With AI-Powered UX"
+        description="See how AI-enhanced UX design helped Herbalink increase user engagement by 65% and speed up consultation booking by 45%. Real results from Barsky Design."
+        canonicalUrl="https://barskydesign.pro/case-study-herbalink"
+        pageType="content"
         keywords={[
-          "Herbalink case study", "UX case study", "AI UX design", "healthcare UX", "mobile app design",
-          "consultation platform design", "user engagement improvement"
+          "Herbalink case study", "AI-powered UX design", "healthcare UX", "consultation platform design",
+          "mobile-first design", "user engagement optimization", "herbalist platform UX"
         ]}
       />
       
@@ -73,10 +88,10 @@ const HerbalinkCaseStudy: React.FC = () => {
                 className="text-center mb-16"
               >
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-                  How Herbalink Increased User Engagement 65% With AI-Powered UX
+                  Herbalink: 65% Engagement Increase Through AI-Powered UX Design
                 </h1>
                 <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed">
-                  A complete redesign of a healthcare consultation platform using AI-enhanced user research and mobile-first design principles.
+                  How intelligent herbalist matching and mobile-first design transformed user experience
                 </p>
               </motion.div>
 
@@ -122,33 +137,38 @@ const HerbalinkCaseStudy: React.FC = () => {
                 <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
                   The Challenge
                 </h2>
-                <div className="max-w-4xl mx-auto">
-                  <p className="text-xl text-neutral-500 leading-relaxed mb-8">
-                    Herbalink needed to connect users with certified herbalists for personalized consultations, 
-                    but their existing platform had poor user engagement and complicated booking processes.
-                  </p>
-                  <div className="glass-card p-6 text-left">
-                    <h3 className="font-bold text-neutral-900 mb-4">Key Pain Points Identified:</h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-neutral-500">Users couldn't easily find herbalists matching their specific needs</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-neutral-500">Booking process was lengthy and confusing on mobile devices</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-neutral-500">Lack of trust signals and practitioner verification</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-neutral-500">Poor accessibility and mobile responsiveness</span>
-                      </li>
-                    </ul>
+                  <div className="max-w-4xl mx-auto">
+                    <p className="text-xl text-neutral-500 leading-relaxed mb-8">
+                      Herbalink needed to connect users with certified herbalists for personalized consultations, 
+                      but their existing platform suffered from poor user engagement and complicated booking processes. 
+                      Users were abandoning the platform before completing consultations, and the matching system wasn't intuitive.
+                    </p>
+                    <div className="glass-card p-6 text-left">
+                      <h3 className="font-bold text-neutral-900 mb-4">Key Problems:</h3>
+                      <ul className="space-y-3">
+                        <li className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-neutral-500">Low user engagement and high bounce rates</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-neutral-500">Complicated herbalist selection process</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-neutral-500">Poor mobile experience</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-neutral-500">Unclear consultation booking flow</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-neutral-500">No intelligent matching between users and herbalists</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
               </motion.div>
             </div>
           </section>
@@ -178,29 +198,25 @@ const HerbalinkCaseStudy: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="grid md:grid-cols-2 gap-8 mb-16"
+                className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
               >
-                <div className="glass-card p-8">
-                  <Smartphone className="h-12 w-12 text-blue-vibrant mb-6" />
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-4">Key Features Designed</h3>
-                  <ul className="space-y-3">
-                    {keyFeatures.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-success-green mt-1 flex-shrink-0" />
-                        <span className="text-neutral-500">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="glass-card p-8">
-                  <div className="w-full h-64 bg-neutral-200 rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-neutral-500">Herbalink App Screenshots</span>
-                  </div>
-                  <p className="text-neutral-500 text-sm">
-                    Mobile-first design with intelligent matching and streamlined booking flow
-                  </p>
-                </div>
+                {keyFeatures.map((feature, index) => {
+                  const IconComponent = feature.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: index * 0.1 }}
+                      className="glass-card p-6"
+                    >
+                      <IconComponent className="h-12 w-12 text-blue-vibrant mb-4" />
+                      <h3 className="text-xl font-bold text-neutral-900 mb-3">{feature.title}</h3>
+                      <p className="text-neutral-500 text-sm leading-relaxed">{feature.description}</p>
+                    </motion.div>
+                  );
+                })}
               </motion.div>
             </div>
           </section>
@@ -319,7 +335,14 @@ const HerbalinkCaseStudy: React.FC = () => {
                   Technologies Used
                 </h2>
                 <div className="flex flex-wrap justify-center gap-3">
-                  {["Figma", "React", "ChatGPT API", "Claude AI", "Supabase", "Mobile-first Design", "WCAG 2.1", "User Testing"].map((tech, index) => (
+                  {[
+                    "Figma for design and prototyping",
+                    "React for frontend development", 
+                    "ChatGPT API for intelligent matching",
+                    "Claude AI for user research analysis",
+                    "Supabase for backend infrastructure",
+                    "Mobile-first responsive design principles"
+                  ].map((tech, index) => (
                     <span key={index} className="bg-blue-50 text-blue-accent px-4 py-2 rounded-full text-sm font-medium">
                       {tech}
                     </span>
