@@ -44,13 +44,51 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
       />
       
       <ProjectContentBox>
-        <EnhancedContentEditor
-          content={details.result}
-          contentType="section"
-          onSave={(content) => handleSectionContentSave('result', 'content', content)}
-          className="mb-8"
-          projectId={projectId}
-        />
+        <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+          {details.result.split('\n\n').map((paragraph, index) => {
+            // Check if this is a header (like "Next Steps")
+            if (paragraph.includes(':') && !paragraph.includes('•') && paragraph.length < 50) {
+              return (
+                <h3 key={index} className="text-xl font-semibold text-gray-900 mt-8 mb-4 first:mt-0">
+                  {paragraph.replace(':', '')}
+                </h3>
+              );
+            }
+            
+            // Check if this is a subheader (like "Immediate Priorities:")
+            if (paragraph.endsWith(':') && paragraph.length < 100) {
+              return (
+                <h4 key={index} className="text-lg font-medium text-gray-800 mt-6 mb-3">
+                  {paragraph}
+                </h4>
+              );
+            }
+            
+            // Check if this contains bullet points
+            if (paragraph.includes('•')) {
+              const items = paragraph.split('\n').filter(line => line.trim().startsWith('•'));
+              if (items.length > 0) {
+                return (
+                  <ul key={index} className="list-none space-y-2 mb-6">
+                    {items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-start">
+                        <span className="text-primary mr-2 mt-1">•</span>
+                        <span>{item.replace('•', '').trim()}</span>
+                      </li>
+                    ))}
+                  </ul>
+                );
+              }
+            }
+            
+            // Regular paragraph
+            return (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            );
+          })}
+        </div>
       </ProjectContentBox>
 
       {/* Result Images Gallery with text positioned between images */}
