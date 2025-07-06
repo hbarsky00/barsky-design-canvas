@@ -5,7 +5,6 @@ import AnimatedLogo from "./AnimatedLogo";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
 import ProfileAvatar from "./header/ProfileAvatar";
-import ProjectPdfExporter from "./export/ProjectPdfExporter";
 
 const Header: React.FC = () => {
   const { 
@@ -35,7 +34,6 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-2">
-            <ProjectPdfExporter variant="icon" className="hidden sm:block" />
             <MobileMenu
               links={navLinks}
               isMobileMenuOpen={isMobileMenuOpen}
