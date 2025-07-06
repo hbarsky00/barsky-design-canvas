@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, Clock, Mail, Phone, Star } from "lucide-react";
+import { CheckCircle, Clock, Mail, Phone, Star, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,12 +9,66 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const FreeAudit: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    website: '',
+    phone: '',
+    projectType: '',
+    budgetRange: '',
+    projectDescription: '',
+    timeline: ''
+  });
+  const { toast } = useToast();
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted');
+    
+    if (!formData.name || !formData.email || !formData.projectType || !formData.budgetRange || !formData.projectDescription) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('process-free-audit', {
+        body: formData
+      });
+
+      if (error) throw error;
+
+      setIsSubmitted(true);
+      toast({
+        title: "Request Submitted!",
+        description: "You'll receive a confirmation email shortly with next steps.",
+      });
+
+    } catch (error: any) {
+      console.error('Error submitting audit request:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const benefits = [
@@ -120,86 +174,163 @@ const FreeAudit: React.FC = () => {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="glass-card-elevated p-8"
                 >
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        required
-                        placeholder="Your full name"
-                        className="w-full"
-                      />
+                  {isSubmitted ? (
+                    <div className="text-center space-y-4">
+                      <CheckCircle className="h-16 w-16 text-success-green mx-auto" />
+                      <h3 className="text-2xl font-bold text-neutral-900">Request Submitted!</h3>
+                      <p className="text-neutral-500">
+                        Thank you for your interest! You'll receive a confirmation email with next steps within 24 hours.
+                      </p>
+                      <Button
+                        onClick={() => setIsSubmitted(false)}
+                        variant="outline"
+                        className="mt-4"
+                      >
+                        Submit Another Request
+                      </Button>
                     </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name *</Label>
+                        <Input
+                          id="name"
+                          type="text"
+                          required
+                          placeholder="Your full name"
+                          className="w-full"
+                          value={formData.name}
+                          onChange={(e) => handleInputChange('name', e.target.value)}
+                        />
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        required
-                        placeholder="your@email.com"
-                        className="w-full"
-                      />
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email Address *</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          required
+                          placeholder="your@email.com"
+                          className="w-full"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange('email', e.target.value)}
+                        />
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="company">Company/Project Name *</Label>
-                      <Input
-                        id="company"
-                        type="text"
-                        required
-                        placeholder="Your company or project name"
-                        className="w-full"
-                      />
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="company">Company/Project Name</Label>
+                        <Input
+                          id="company"
+                          type="text"
+                          placeholder="Your company or project name"
+                          className="w-full"
+                          value={formData.company}
+                          onChange={(e) => handleInputChange('company', e.target.value)}
+                        />
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="visitors">Current Monthly Website Visitors</Label>
-                      <Select>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select visitor range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="<1K">Less than 1,000</SelectItem>
-                          <SelectItem value="1-5K">1,000 - 5,000</SelectItem>
-                          <SelectItem value="5-10K">5,000 - 10,000</SelectItem>
-                          <SelectItem value="10K+">10,000+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="website">Website URL</Label>
+                        <Input
+                          id="website"
+                          type="url"
+                          placeholder="https://yourwebsite.com"
+                          className="w-full"
+                          value={formData.website}
+                          onChange={(e) => handleInputChange('website', e.target.value)}
+                        />
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="challenge">What's your biggest UX challenge?</Label>
-                      <Textarea
-                        id="challenge"
-                        placeholder="Describe your main UX challenge or what you'd like to improve..."
-                        rows={4}
-                        className="w-full"
-                      />
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone Number</Label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          placeholder="(555) 123-4567"
+                          className="w-full"
+                          value={formData.phone}
+                          onChange={(e) => handleInputChange('phone', e.target.value)}
+                        />
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="meetingTime">Preferred Meeting Time</Label>
-                      <Input
-                        id="meetingTime"
-                        type="text"
-                        placeholder="e.g., Weekdays 2-4 PM EST, or any specific dates"
-                        className="w-full"
-                      />
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="projectType">Project Type *</Label>
+                        <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select project type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Website Redesign">Website Redesign</SelectItem>
+                            <SelectItem value="Mobile App Design">Mobile App Design</SelectItem>
+                            <SelectItem value="UX Audit">UX Audit</SelectItem>
+                            <SelectItem value="AI Integration">AI Integration</SelectItem>
+                            <SelectItem value="E-commerce">E-commerce Platform</SelectItem>
+                            <SelectItem value="SaaS Platform">SaaS Platform</SelectItem>
+                            <SelectItem value="Other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-3 px-6 transition-colors duration-300"
-                    >
-                      Book My Free Audit
-                    </Button>
+                      <div className="space-y-2">
+                        <Label htmlFor="budgetRange">Budget Range *</Label>
+                        <Select value={formData.budgetRange} onValueChange={(value) => handleInputChange('budgetRange', value)}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select budget range" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="<$5k">Less than $5,000</SelectItem>
+                            <SelectItem value="$5k-$10k">$5,000 - $10,000</SelectItem>
+                            <SelectItem value="$10k-$20k">$10,000 - $20,000</SelectItem>
+                            <SelectItem value="$20k-$50k">$20,000 - $50,000</SelectItem>
+                            <SelectItem value="$50k+">$50,000+</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-                    <p className="text-sm text-neutral-500 text-center">
-                      No spam, no sales pitch - just valuable insights
-                    </p>
-                  </form>
+                      <div className="space-y-2">
+                        <Label htmlFor="projectDescription">Project Description *</Label>
+                        <Textarea
+                          id="projectDescription"
+                          placeholder="Describe your project, goals, and main challenges..."
+                          rows={4}
+                          className="w-full"
+                          value={formData.projectDescription}
+                          onChange={(e) => handleInputChange('projectDescription', e.target.value)}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="timeline">Preferred Meeting Time</Label>
+                        <Input
+                          id="timeline"
+                          type="text"
+                          placeholder="e.g., Weekdays 2-4 PM EST, or any specific dates"
+                          className="w-full"
+                          value={formData.timeline}
+                          onChange={(e) => handleInputChange('timeline', e.target.value)}
+                        />
+                      </div>
+
+                      <Button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-3 px-6 transition-colors duration-300 disabled:opacity-50"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                            Submitting...
+                          </>
+                        ) : (
+                          'Book My Free Audit'
+                        )}
+                      </Button>
+
+                      <p className="text-sm text-neutral-500 text-center">
+                        No spam, no sales pitch - just valuable insights
+                      </p>
+                    </form>
+                  )}
                 </motion.div>
               </div>
 
