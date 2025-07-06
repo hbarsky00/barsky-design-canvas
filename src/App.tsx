@@ -23,6 +23,8 @@ import NotFound from "./pages/NotFound";
 import TinyMCEDemo from "@/pages/TinyMCEDemo";
 import LeadCapture from "@/pages/LeadCapture";
 import AdminDashboard from "@/pages/AdminDashboard";
+import FreeAudit from "@/pages/FreeAudit";
+import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -59,6 +61,8 @@ function App() {
               <Route path="/get-started" element={<LeadCapture />} />
               <Route path="/admin/leads" element={<AdminDashboard />} />
               <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
+              <Route path="/free-audit" element={<FreeAudit />} />
+              <Route path="/case-study/herbalink" element={<HerbalinkCaseStudy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
