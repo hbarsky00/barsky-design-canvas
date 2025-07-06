@@ -79,7 +79,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           {images.map((_, index) => (
             <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-colors ${
+              className={`w-2 h-2 transition-colors ${
                 index === currentIndex ? "bg-blue-500" : "bg-gray-300"
               }`}
               onClick={() => setCurrentIndex(index)}

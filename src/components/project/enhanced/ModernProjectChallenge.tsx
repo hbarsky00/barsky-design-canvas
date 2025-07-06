@@ -49,12 +49,12 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
                 caption={imageCaptions[image] || `Challenge image ${index + 1}`}
                 imageList={challengeGalleryImages}
                 currentIndex={index}
-                className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
+                className="shadow-elevated-lg w-full glass-card layered-depth"
               />
               
               {/* Show additional text ONLY after first image (index 0) */}
               {index === 0 && challengeAdditionalText && (
-                <div className="p-6 bg-blue-50/50 rounded-lg border border-blue-100">
+                <div className="p-6 bg-blue-50/50 border border-blue-100">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     {challengeAdditionalText.split('\n\n').map((paragraph, paragraphIndex) => (
                       <p key={paragraphIndex} className="mb-4 last:mb-0">

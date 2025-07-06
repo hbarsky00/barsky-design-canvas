@@ -52,7 +52,7 @@ const ProcessImageGallery: React.FC<ProcessImageGalleryProps> = ({
               maxImages={1}
               projectId={projectId}
               imageCaptions={imageCaptions}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              className="shadow-elevated-lg w-full overflow-hidden"
             />
           </div>
           

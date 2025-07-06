@@ -159,7 +159,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         <iframe
           src={getEmbedUrl(currentSrc)}
           title={imageTitle}
-          className="w-full h-64 md:h-80 lg:h-96 rounded-lg transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-64 md:h-80 lg:h-96 transition-transform duration-300 group-hover:scale-105"
           frameBorder="0"
           allowFullScreen
           onLoad={handleImageLoad}
