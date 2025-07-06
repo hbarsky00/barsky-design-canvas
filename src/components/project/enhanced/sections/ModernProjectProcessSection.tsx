@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ProjectDetails } from "@/data/types/project";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
-import ProjectContentBox from "@/components/project/ProjectContentBox";
 import ProcessImageGallery from "./components/ProcessImageGallery";
 
 interface ModernProjectProcessSectionProps {
@@ -77,15 +76,53 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         projectId={projectId}
       />
       
-      <ProjectContentBox>
-        <EnhancedContentEditor
-          content={details.process}
-          contentType="section"
-          onSave={(content) => handleSectionContentSave('process', 'content', content)}
-          className="mb-8"
-          projectId={projectId}
-        />
-      </ProjectContentBox>
+      <div className="glass-card p-6 layered-depth bg-blue-50/50 border border-blue-100">
+        <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+          {details.process.split('\n\n').map((paragraph, index) => {
+            // Check if this is a main header (like "Design Process & Methodology:")
+            if (paragraph.includes(':') && !paragraph.includes('•') && paragraph.length < 80) {
+              return (
+                <h3 key={index} className="text-xl font-semibold text-gray-900 mt-8 mb-4 first:mt-0">
+                  {paragraph.replace(':', '')}
+                </h3>
+              );
+            }
+            
+            // Check if this is a subheader (like "Key Features & Solutions Created:")
+            if (paragraph.endsWith(':') && paragraph.length < 150) {
+              return (
+                <h4 key={index} className="text-lg font-medium text-gray-800 mt-6 mb-3">
+                  {paragraph}
+                </h4>
+              );
+            }
+            
+            // Check if this contains bullet points - create two columns for better layout
+            if (paragraph.includes('•')) {
+              const items = paragraph.split('\n').filter(line => line.trim().startsWith('•'));
+              if (items.length > 0) {
+                return (
+                  <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    {items.map((item, itemIndex) => (
+                      <div key={itemIndex} className="flex items-start bg-white/50 p-3 rounded-lg border border-blue-100/50">
+                        <span className="text-primary mr-3 mt-1 font-bold">•</span>
+                        <span className="text-gray-700 text-sm leading-relaxed">{item.replace('•', '').trim()}</span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+            }
+            
+            // Regular paragraph
+            return (
+              <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                {paragraph}
+              </p>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Add consistent spacing before image gallery */}
       <ProcessImageGallery
