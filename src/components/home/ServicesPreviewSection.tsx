@@ -24,23 +24,6 @@ const ServicesPreviewSection: React.FC = () => {
       href: "/services#mvp-validation"
     },
     {
-      icon: <Target className="h-8 w-8 text-orange-600" />,
-      title: "Conversion Optimization Audit",
-      price: "$2,500",
-      description: "Ideal for existing products underperforming",
-      timeline: "7 days to 2x conversion strategy",
-      features: [
-        "AI-enhanced user behavior analysis",
-        "Conversion funnel breakdown",
-        "Accessibility and usability audit",
-        "Competitor strategy analysis",
-        "Quick-win implementation guide",
-        "1-hour strategy call"
-      ],
-      cta: "Get Audit",
-      href: "/services#conversion-audit"
-    },
-    {
       icon: <Trophy className="h-8 w-8 text-purple-600" />,
       title: "AI-Enhanced Redesign",
       price: "$18,500",
@@ -73,11 +56,11 @@ const ServicesPreviewSection: React.FC = () => {
             Choose Your Revenue Growth Path
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Three proven packages designed to accelerate your business growth through AI-enhanced UX design.
+            Two proven packages designed to accelerate your business growth through AI-enhanced UX design.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={index}
