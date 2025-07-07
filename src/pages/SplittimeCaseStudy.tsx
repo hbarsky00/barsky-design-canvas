@@ -5,95 +5,77 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
-
 const SplittimeCaseStudy: React.FC = () => {
-  const conflictSources = [
-    {
-      title: "Fragmented Communication",
-      description: "Conversations scattered across text, email, and multiple apps creating confusion and missed information.",
-      icon: <MessageCircle className="h-8 w-8" />
-    },
-    {
-      title: "Scheduling Conflicts",
-      description: "Miscommunications about pickup times, events, and schedule changes leading to frustration and disappointment.",
-      icon: <Calendar className="h-8 w-8" />
-    },
-    {
-      title: "Financial Disputes",
-      description: "Disagreements over shared expenses, child costs, and financial responsibilities without clear tracking.",
-      icon: <TrendingDown className="h-8 w-8" />
-    },
-    {
-      title: "Information Silos",
-      description: "Important details about children's needs, activities, and wellbeing not shared between parents effectively.",
-      icon: <Shield className="h-8 w-8" />
-    }
-  ];
-
-  const coordinationFeatures = [
-    {
-      title: "Unified Communication Hub",
-      description: "All co-parenting conversations in one respectful, structured platform designed to reduce misunderstandings.",
-      visual: "💬"
-    },
-    {
-      title: "Shared Family Calendar",
-      description: "Synchronized scheduling with automatic notifications, reducing conflicts over pickup times and events.",
-      visual: "📅"
-    },
-    {
-      title: "Expense Transparency",
-      description: "Clear tracking and splitting of child-related expenses with photo receipts and approval workflows.",
-      visual: "💰"
-    }
-  ];
-
-  const familyInterface = [
-    {
-      step: "Connect",
-      title: "Respectful Communication Tools",
-      description: "Structured messaging that encourages positive, child-focused conversations between co-parents.",
-      image: "/lovable-uploads/0152c609-c279-4472-84e0-4b6a0a2b6735.png"
-    },
-    {
-      step: "Coordinate",
-      title: "Shared Calendar Management", 
-      description: "Visual scheduling that prevents conflicts and keeps both parents informed about children's activities.",
-      image: "/lovable-uploads/839b6de9-4297-414c-9f99-7a3b4d2a74d7.png"
-    },
-    {
-      step: "Care",
-      title: "Child-Centered Information Hub",
-      description: "Medical info, school updates, and activity details accessible to both parents for better child care.",
-      image: "/lovable-uploads/59ed017e-e0b4-4f9e-8c80-babccd697006.png"
-    },
-    {
-      step: "Celebrate",
-      title: "Positive Co-Parenting Journey",
-      description: "Tools that encourage collaboration and celebrate successful co-parenting achievements together.",
-      image: "/lovable-uploads/530b9072-e9d2-47f0-83dc-a44ecf87b82d.png"
-    }
-  ];
-
-  const familyImpact = [
-    { metric: "73%", label: "Reduction in Communication Conflicts", icon: <TrendingDown className="h-6 w-6" /> },
-    { metric: "89%", label: "Improved Schedule Coordination", icon: <Calendar className="h-6 w-6" /> },
-    { metric: "94%", label: "Parent Satisfaction Rate", icon: <Heart className="h-6 w-6" /> },
-    { metric: "67%", label: "Decrease in Scheduling Disputes", icon: <CheckCircle2 className="h-6 w-6" /> }
-  ];
-
-  return (
-    <>
-      <EnhancedGlobalSeo 
-        title="Splittime: Transforming Co-Parenting from Conflict to Collaboration"
-        description="Discover how Splittime's family-centered platform helps separated parents coordinate schedules, communicate effectively, and prioritize children's wellbeing through streamlined digital tools."
-        canonicalUrl="https://barskydesign.pro/case-study-splittime"
-        pageType="content"
-        keywords={[
-          "Splittime co-parenting app", "family coordination platform", "co-parenting communication", "child custody scheduling",
-          "family management app", "parenting after separation", "family-centered design"
-        ]}
-      />
+  const conflictSources = [{
+    title: "Fragmented Communication",
+    description: "Conversations scattered across text, email, and multiple apps creating confusion and missed information.",
+    icon: <MessageCircle className="h-8 w-8" />
+  }, {
+    title: "Scheduling Conflicts",
+    description: "Miscommunications about pickup times, events, and schedule changes leading to frustration and disappointment.",
+    icon: <Calendar className="h-8 w-8" />
+  }, {
+    title: "Financial Disputes",
+    description: "Disagreements over shared expenses, child costs, and financial responsibilities without clear tracking.",
+    icon: <TrendingDown className="h-8 w-8" />
+  }, {
+    title: "Information Silos",
+    description: "Important details about children's needs, activities, and wellbeing not shared between parents effectively.",
+    icon: <Shield className="h-8 w-8" />
+  }];
+  const coordinationFeatures = [{
+    title: "Unified Communication Hub",
+    description: "All co-parenting conversations in one respectful, structured platform designed to reduce misunderstandings.",
+    visual: "💬"
+  }, {
+    title: "Shared Family Calendar",
+    description: "Synchronized scheduling with automatic notifications, reducing conflicts over pickup times and events.",
+    visual: "📅"
+  }, {
+    title: "Expense Transparency",
+    description: "Clear tracking and splitting of child-related expenses with photo receipts and approval workflows.",
+    visual: "💰"
+  }];
+  const familyInterface = [{
+    step: "Connect",
+    title: "Respectful Communication Tools",
+    description: "Structured messaging that encourages positive, child-focused conversations between co-parents.",
+    image: "/lovable-uploads/0152c609-c279-4472-84e0-4b6a0a2b6735.png"
+  }, {
+    step: "Coordinate",
+    title: "Shared Calendar Management",
+    description: "Visual scheduling that prevents conflicts and keeps both parents informed about children's activities.",
+    image: "/lovable-uploads/839b6de9-4297-414c-9f99-7a3b4d2a74d7.png"
+  }, {
+    step: "Care",
+    title: "Child-Centered Information Hub",
+    description: "Medical info, school updates, and activity details accessible to both parents for better child care.",
+    image: "/lovable-uploads/59ed017e-e0b4-4f9e-8c80-babccd697006.png"
+  }, {
+    step: "Celebrate",
+    title: "Positive Co-Parenting Journey",
+    description: "Tools that encourage collaboration and celebrate successful co-parenting achievements together.",
+    image: "/lovable-uploads/530b9072-e9d2-47f0-83dc-a44ecf87b82d.png"
+  }];
+  const familyImpact = [{
+    metric: "73%",
+    label: "Reduction in Communication Conflicts",
+    icon: <TrendingDown className="h-6 w-6" />
+  }, {
+    metric: "89%",
+    label: "Improved Schedule Coordination",
+    icon: <Calendar className="h-6 w-6" />
+  }, {
+    metric: "94%",
+    label: "Parent Satisfaction Rate",
+    icon: <Heart className="h-6 w-6" />
+  }, {
+    metric: "67%",
+    label: "Decrease in Scheduling Disputes",
+    icon: <CheckCircle2 className="h-6 w-6" />
+  }];
+  return <>
+      <EnhancedGlobalSeo title="Splittime: Transforming Co-Parenting from Conflict to Collaboration" description="Discover how Splittime's family-centered platform helps separated parents coordinate schedules, communicate effectively, and prioritize children's wellbeing through streamlined digital tools." canonicalUrl="https://barskydesign.pro/case-study-splittime" pageType="content" keywords={["Splittime co-parenting app", "family coordination platform", "co-parenting communication", "child custody scheduling", "family management app", "parenting after separation", "family-centered design"]} />
       
       <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
         <Header />
@@ -104,12 +86,15 @@ const SplittimeCaseStudy: React.FC = () => {
           <section className="family-harmony-introduction py-20 lg:py-32">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="space-y-8"
-                >
+                <motion.div initial={{
+                opacity: 0,
+                x: -50
+              }} animate={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                duration: 0.8
+              }} className="space-y-8">
                   <div className="flex items-center gap-3 mb-6">
                     <Heart className="h-10 w-10 text-blue-600" />
                     <span className="text-blue-700 font-semibold text-lg">Family Harmony</span>
@@ -141,32 +126,21 @@ const SplittimeCaseStudy: React.FC = () => {
                   </div>
                 </motion.div>
                 
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="relative"
-                >
-                  <img 
-                    src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" 
-                    alt="Happy family showing the positive outcomes of effective co-parenting coordination and communication"
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                  />
+                <motion.div initial={{
+                opacity: 0,
+                x: 50
+              }} animate={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                duration: 0.8,
+                delay: 0.2
+              }} className="relative">
+                  <img src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" alt="Happy family showing the positive outcomes of effective co-parenting coordination and communication" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
                   
-                  <div className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-3 rounded-xl shadow-lg hidden md:block">
-                    <div className="flex items-center gap-2">
-                      <Heart className="h-4 w-4" />
-                      <div>
-                        <p className="font-medium text-sm">Children First</p>
-                        <p className="text-xs opacity-90">Peaceful co-parenting</p>
-                      </div>
-                    </div>
-                  </div>
                   
-                  <div className="absolute -top-3 -right-3 bg-white/90 backdrop-blur text-blue-700 p-3 rounded-xl shadow-lg hidden md:block">
-                    <p className="font-medium text-xs">Family-Centered Design</p>
-                    <p className="text-xs opacity-75">Supportive & respectful</p>
-                  </div>
+                  
+                  
                 </motion.div>
               </div>
             </div>
@@ -175,13 +149,17 @@ const SplittimeCaseStudy: React.FC = () => {
           {/* Co-Parenting Conflict Analysis */}
           <section className="communication-conflict-breakdown py-20 bg-white/60 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <TrendingDown className="h-10 w-10 text-red-500" />
                   <span className="text-red-600 font-semibold text-lg">Communication Breakdown</span>
@@ -201,15 +179,18 @@ const SplittimeCaseStudy: React.FC = () => {
                 <div className="space-y-8">
                   <h3 className="text-2xl font-bold text-neutral-900">Core Communication Barriers:</h3>
                   
-                  {conflictSources.map((source, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-2xl border border-red-200"
-                    >
+                  {conflictSources.map((source, index) => <motion.div key={index} initial={{
+                  opacity: 0,
+                  y: 30
+                }} whileInView={{
+                  opacity: 1,
+                  y: 0
+                }} viewport={{
+                  once: true
+                }} transition={{
+                  duration: 0.6,
+                  delay: index * 0.1
+                }} className="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-2xl border border-red-200">
                       <div className="flex items-start gap-4">
                         <div className="text-red-500 flex-shrink-0">
                           {source.icon}
@@ -219,27 +200,24 @@ const SplittimeCaseStudy: React.FC = () => {
                           <p className="text-neutral-600">{source.description}</p>
                         </div>
                       </div>
-                    </motion.div>
-                  ))}
+                    </motion.div>)}
                 </div>
                 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="relative"
-                >
-                  <img 
-                    src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png"
-                    alt="Stressed parent showing the emotional impact of fragmented co-parenting communication and coordination challenges"
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                  />
+                <motion.div initial={{
+                opacity: 0,
+                scale: 0.95
+              }} whileInView={{
+                opacity: 1,
+                scale: 1
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: 0.3
+              }} className="relative">
+                  <img src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png" alt="Stressed parent showing the emotional impact of fragmented co-parenting communication and coordination challenges" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
                   
-                  <div className="absolute top-6 left-6 bg-white/95 backdrop-blur text-red-700 p-4 rounded-xl shadow-lg">
-                    <p className="font-semibold text-sm">Current Reality</p>
-                    <p className="text-xs">Fragmented & stressful</p>
-                  </div>
+                  
                 </motion.div>
               </div>
             </div>
@@ -248,13 +226,17 @@ const SplittimeCaseStudy: React.FC = () => {
           {/* Coordination Solution Engine */}
           <section className="coordination-streamlining-system py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Users className="h-10 w-10 text-blue-500" />
                   <span className="text-blue-600 font-semibold text-lg">Coordination Solution</span>
@@ -271,29 +253,36 @@ const SplittimeCaseStudy: React.FC = () => {
               </motion.div>
               
               <div className="grid lg:grid-cols-3 gap-8">
-                {coordinationFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300"
-                  >
+                {coordinationFeatures.map((feature, index) => <motion.div key={index} initial={{
+                opacity: 0,
+                y: 50
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: index * 0.2
+              }} className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300">
                     <div className="text-4xl mb-6 text-center">{feature.visual}</div>
                     <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">{feature.title}</h3>
                     <p className="text-neutral-600 text-center leading-relaxed">{feature.description}</p>
-                  </motion.div>
-                ))}
+                  </motion.div>)}
               </div>
               
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-white text-center"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8,
+              delay: 0.6
+            }} className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-white text-center">
                 <h3 className="text-2xl font-bold mb-4">Conflict Reduction Approach</h3>
                 <p className="text-lg opacity-90 max-w-3xl mx-auto">
                   By providing structure, transparency, and child-focused communication tools, 
@@ -306,13 +295,17 @@ const SplittimeCaseStudy: React.FC = () => {
           {/* Family-First Interface */}
           <section className="child-centered-platform-design py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Home className="h-10 w-10 text-green-500" />
                   <span className="text-green-600 font-semibold text-lg">Family-First Interface</span>
@@ -329,15 +322,18 @@ const SplittimeCaseStudy: React.FC = () => {
               </motion.div>
               
               <div className="grid lg:grid-cols-2 gap-8">
-                {familyInterface.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-3xl border border-blue-200"
-                  >
+                {familyInterface.map((item, index) => <motion.div key={index} initial={{
+                opacity: 0,
+                x: index % 2 === 0 ? -50 : 50
+              }} whileInView={{
+                opacity: 1,
+                x: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: index * 0.1
+              }} className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-3xl border border-blue-200">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                         {index + 1}
@@ -348,15 +344,10 @@ const SplittimeCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <img 
-                      src={item.image}
-                      alt={`${item.title} - family-centered co-parenting platform interface`}
-                      className="w-full h-48 object-cover rounded-2xl mb-6"
-                    />
+                    <img src={item.image} alt={`${item.title} - family-centered co-parenting platform interface`} className="w-full h-48 object-cover rounded-2xl mb-6" />
                     
                     <p className="text-neutral-600 leading-relaxed">{item.description}</p>
-                  </motion.div>
-                ))}
+                  </motion.div>)}
               </div>
             </div>
           </section>
@@ -364,13 +355,17 @@ const SplittimeCaseStudy: React.FC = () => {
           {/* Family Impact Metrics */}
           <section className="positive-family-outcomes py-20 bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Star className="h-10 w-10 text-yellow-500" />
                   <span className="text-yellow-600 font-semibold text-lg">Positive Family Outcomes</span>
@@ -387,32 +382,39 @@ const SplittimeCaseStudy: React.FC = () => {
               </motion.div>
               
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                {familyImpact.map((impact, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-blue-200"
-                  >
+                {familyImpact.map((impact, index) => <motion.div key={index} initial={{
+                opacity: 0,
+                y: 50
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: index * 0.1
+              }} className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-blue-200">
                     <div className="flex justify-center mb-4 text-blue-500">
                       {impact.icon}
                     </div>
                     <div className="text-4xl font-bold text-blue-600 mb-2">{impact.metric}</div>
                     <div className="text-sm text-neutral-600 uppercase tracking-wide">{impact.label}</div>
-                  </motion.div>
-                ))}
+                  </motion.div>)}
               </div>
               
               {/* Family Success Story */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-blue-200 shadow-xl"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8,
+              delay: 0.4
+            }} className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-blue-200 shadow-xl">
                 <div className="mb-8">
                   <Heart className="h-12 w-12 text-blue-500 mx-auto mb-4" />
                   <p className="text-2xl text-neutral-700 italic leading-relaxed mb-6">
@@ -439,12 +441,17 @@ const SplittimeCaseStudy: React.FC = () => {
           {/* Call to Action */}
           <section className="py-20 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 text-white">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }}>
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Heart className="h-10 w-10" />
                   <span className="font-semibold text-lg">Supporting Families</span>
@@ -459,12 +466,7 @@ const SplittimeCaseStudy: React.FC = () => {
                   Your family-centered platform deserves the same thoughtful, empathetic approach.
                 </p>
                 
-                <Button 
-                  size="lg"
-                  variant="default"
-                  className="font-semibold px-10 py-6 text-lg group"
-                  onClick={() => window.location.href = '/contact'}
-                >
+                <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group" onClick={() => window.location.href = '/contact'}>
                   Start Your Family Project
                   <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -475,8 +477,6 @@ const SplittimeCaseStudy: React.FC = () => {
         
         <Footer />
       </div>
-    </>
-  );
+    </>;
 };
-
 export default SplittimeCaseStudy;
