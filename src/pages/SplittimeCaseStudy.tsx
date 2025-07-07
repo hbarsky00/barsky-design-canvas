@@ -381,6 +381,34 @@ const SplittimeCaseStudy: React.FC = () => {
                   </motion.div>)}
               </div>
               
+              {/* New Rounded Rectangle Row */}
+              <motion.div 
+                initial={{
+                  opacity: 0,
+                  y: 30
+                }} 
+                whileInView={{
+                  opacity: 1,
+                  y: 0
+                }} 
+                viewport={{
+                  once: true
+                }} 
+                transition={{
+                  duration: 0.8,
+                  delay: 0.4
+                }} 
+                className="mt-12 bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-blue-200 shadow-md"
+              >
+                <div className="flex items-center justify-center gap-4">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <p className="text-lg text-neutral-700 font-medium text-center">
+                    Seamless coordination that puts children's wellbeing first through intelligent communication design
+                  </p>
+                  <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
+                </div>
+              </motion.div>
+              
               <motion.div initial={{
               opacity: 0,
               y: 30
