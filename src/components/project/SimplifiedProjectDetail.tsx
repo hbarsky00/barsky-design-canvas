@@ -19,6 +19,17 @@ const SimplifiedProjectDetail = () => {
     return <StoryDrivenProjectDetail />;
   }
   
+  // Redirect to case study pages for herbalink and splittime
+  if (projectId === 'herbalink') {
+    window.location.href = '/case-study-herbalink';
+    return null;
+  }
+  
+  if (projectId === 'splittime') {
+    window.location.href = '/case-study-splittime';
+    return null;
+  }
+  
   console.log('🎬 SimplifiedProjectDetail: Rendering with projectId:', projectId);
   
   const {
