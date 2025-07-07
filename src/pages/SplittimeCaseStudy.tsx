@@ -380,9 +380,14 @@ const SplittimeCaseStudy: React.FC = () => {
                   Real families report significant reductions in co-parenting conflicts and improvements 
                   in communication, coordination, and overall satisfaction with their co-parenting relationship.
                 </p>
-              </motion.div>
-              
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                </motion.div>
+                
+                {/* Family Harmony Image */}
+                <div className="mb-16">
+                  <img src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" alt="Happy family showing successful co-parenting collaboration and family harmony" className="w-full h-auto object-contain shadow-xl mx-auto max-w-4xl" />
+                </div>
+                
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 {familyImpact.map((impact, index) => <motion.div key={index} initial={{
                 opacity: 0,
                 y: 50
