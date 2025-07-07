@@ -98,12 +98,20 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
               );
             }
             
-            // Check if this contains bullet points - create two columns for better layout
+            // Check if this contains bullet points - create balanced column layout
             if (paragraph.includes('•')) {
               const items = paragraph.split('\n').filter(line => line.trim().startsWith('•'));
               if (items.length > 0) {
+                // Calculate optimal columns based on number of items
+                const getGridCols = (itemCount: number) => {
+                  if (itemCount <= 2) return 'grid-cols-1 md:grid-cols-1';
+                  if (itemCount <= 4) return 'grid-cols-1 md:grid-cols-2';
+                  if (itemCount <= 6) return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
+                  return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
+                };
+                
                 return (
-                  <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div key={index} className={`grid ${getGridCols(items.length)} gap-4 mb-6`}>
                     {items.map((item, itemIndex) => {
                       const itemText = item.replace('•', '').trim();
                       const itemImage = getImageForListItem(itemText);
@@ -119,7 +127,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                               <img 
                                 src={itemImage} 
                                 alt={`Illustration for: ${itemText}`}
-                                className="w-full h-32 object-cover rounded-md"
+                                className="w-full h-48 object-cover rounded-md"
                               />
                             </div>
                           )}
