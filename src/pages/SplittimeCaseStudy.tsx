@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
-
 const SplittimeCaseStudy: React.FC = () => {
   const [viewerOpen, setViewerOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState({ src: '', alt: '', caption: '' });
+  const [currentImage, setCurrentImage] = useState({
+    src: '',
+    alt: '',
+    caption: ''
+  });
   const [currentZoom, setCurrentZoom] = useState(1);
 
   // Image viewer functions
@@ -25,24 +28,19 @@ const SplittimeCaseStudy: React.FC = () => {
       setCurrentZoom(1);
     }
   };
-
   const closeImageViewer = () => {
     setViewerOpen(false);
     setCurrentZoom(1);
   };
-
   const zoomIn = () => {
     setCurrentZoom(prev => Math.min(prev + 0.25, 3));
   };
-
   const zoomOut = () => {
     setCurrentZoom(prev => Math.max(prev - 0.25, 0.5));
   };
-
   const resetZoom = () => {
     setCurrentZoom(1);
   };
-
   const handleImageKeypress = (event: React.KeyboardEvent, imageId: string) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -54,8 +52,7 @@ const SplittimeCaseStudy: React.FC = () => {
   useEffect(() => {
     const handleKeyboard = (event: KeyboardEvent) => {
       if (!viewerOpen) return;
-      
-      switch(event.key) {
+      switch (event.key) {
         case 'Escape':
           closeImageViewer();
           break;
@@ -71,11 +68,9 @@ const SplittimeCaseStudy: React.FC = () => {
           break;
       }
     };
-
     document.addEventListener('keydown', handleKeyboard);
     return () => document.removeEventListener('keydown', handleKeyboard);
   }, [viewerOpen]);
-
   const conflictSources = [{
     title: "Fragmented Communication",
     description: "Conversations scattered across text, email, and multiple apps creating confusion and missed information.",
@@ -207,17 +202,7 @@ const SplittimeCaseStudy: React.FC = () => {
                 delay: 0.2
               }} className="relative">
                   <figure className="project-image-container">
-                    <img 
-                      src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" 
-                      alt="Splittime co-parenting dashboard with shared calendar integration" 
-                      className="clickable-image w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                      onClick={() => openImageViewer('splittime-hero-1')}
-                      tabIndex={0}
-                      onKeyDown={(e) => handleImageKeypress(e, 'splittime-hero-1')}
-                      role="button"
-                      aria-label="Click to view Splittime co-parenting dashboard in full screen"
-                      id="splittime-hero-1" 
-                    />
+                    <img src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" alt="Splittime co-parenting dashboard with shared calendar integration" onClick={() => openImageViewer('splittime-hero-1')} tabIndex={0} onKeyDown={e => handleImageKeypress(e, 'splittime-hero-1')} role="button" aria-label="Click to view Splittime co-parenting dashboard in full screen" id="splittime-hero-1" className="clickable-image w-full h-[500px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-contain" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">Splittime co-parenting dashboard with shared calendar integration</figcaption>
                   </figure>
                   
@@ -299,32 +284,12 @@ const SplittimeCaseStudy: React.FC = () => {
                 delay: 0.3
               }} className="relative">
                   <figure className="project-image-container">
-                    <img 
-                      src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png" 
-                      alt="Communication interface designed to reduce family conflict" 
-                      className="clickable-image w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                      onClick={() => openImageViewer('splittime-conflict-1')}
-                      tabIndex={0}
-                      onKeyDown={(e) => handleImageKeypress(e, 'splittime-conflict-1')}
-                      role="button"
-                      aria-label="Click to view communication interface in full screen"
-                      id="splittime-conflict-1" 
-                    />
+                    <img src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png" alt="Communication interface designed to reduce family conflict" className="clickable-image w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => openImageViewer('splittime-conflict-1')} tabIndex={0} onKeyDown={e => handleImageKeypress(e, 'splittime-conflict-1')} role="button" aria-label="Click to view communication interface in full screen" id="splittime-conflict-1" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">Communication interface designed to reduce family conflict</figcaption>
                   </figure>
                   
                   <figure className="project-image-container mt-8">
-                    <img 
-                      src="/lovable-uploads/448a9776-8ef2-421b-a68c-5451bbc5f823.png" 
-                      alt="Splittime app interface showing key features and solutions for co-parenting coordination" 
-                      className="clickable-image w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                      onClick={() => openImageViewer('splittime-features-1')}
-                      tabIndex={0}
-                      onKeyDown={(e) => handleImageKeypress(e, 'splittime-features-1')}
-                      role="button"
-                      aria-label="Click to view Splittime features in full screen"
-                      id="splittime-features-1" 
-                    />
+                    <img src="/lovable-uploads/448a9776-8ef2-421b-a68c-5451bbc5f823.png" alt="Splittime app interface showing key features and solutions for co-parenting coordination" className="clickable-image w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => openImageViewer('splittime-features-1')} tabIndex={0} onKeyDown={e => handleImageKeypress(e, 'splittime-features-1')} role="button" aria-label="Click to view Splittime features in full screen" id="splittime-features-1" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">Splittime app interface showing key features and solutions for co-parenting coordination</figcaption>
                   </figure>
                   
@@ -382,36 +347,20 @@ const SplittimeCaseStudy: React.FC = () => {
               </div>
               
               {/* Co-parenting App Interface Image */}
-              <motion.div 
-                initial={{
-                  opacity: 0,
-                  y: 30
-                }} 
-                whileInView={{
-                  opacity: 1,
-                  y: 0
-                }} 
-                viewport={{
-                  once: true
-                }} 
-                transition={{
-                  duration: 0.8,
-                  delay: 0.4
-                }} 
-                className="mt-12"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8,
+              delay: 0.4
+            }} className="mt-12">
                 <figure className="project-image-container">
-                  <img 
-                    src="/lovable-uploads/61ff17e4-e3a6-4015-8e93-7e40eda58f1c.png" 
-                    alt="Splittime messaging interface showing structured co-parenting communication between parents" 
-                    className="clickable-image w-full h-auto object-contain shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                    onClick={() => openImageViewer('splittime-messaging-1')}
-                    tabIndex={0}
-                    onKeyDown={(e) => handleImageKeypress(e, 'splittime-messaging-1')}
-                    role="button"
-                    aria-label="Click to view messaging interface in full screen"
-                    id="splittime-messaging-1" 
-                  />
+                  <img src="/lovable-uploads/61ff17e4-e3a6-4015-8e93-7e40eda58f1c.png" alt="Splittime messaging interface showing structured co-parenting communication between parents" className="clickable-image w-full h-auto object-contain shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => openImageViewer('splittime-messaging-1')} tabIndex={0} onKeyDown={e => handleImageKeypress(e, 'splittime-messaging-1')} role="button" aria-label="Click to view messaging interface in full screen" id="splittime-messaging-1" />
                   <figcaption className="text-sm text-gray-600 italic mt-2 text-center">Splittime messaging interface showing structured co-parenting communication between parents</figcaption>
                 </figure>
               </motion.div>
@@ -490,17 +439,7 @@ const SplittimeCaseStudy: React.FC = () => {
                     </div>
                     
                     <figure className="project-image-container">
-                      <img 
-                        src={item.image} 
-                        alt={`${item.title} - family-centered co-parenting platform interface`} 
-                        className="clickable-image w-full h-48 object-cover mb-6 cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                        onClick={() => openImageViewer(`splittime-interface-${index + 1}`)}
-                        tabIndex={0}
-                        onKeyDown={(e) => handleImageKeypress(e, `splittime-interface-${index + 1}`)}
-                        role="button"
-                        aria-label={`Click to view ${item.title} in full screen`}
-                        id={`splittime-interface-${index + 1}`}
-                      />
+                      <img src={item.image} alt={`${item.title} - family-centered co-parenting platform interface`} className="clickable-image w-full h-48 object-cover mb-6 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => openImageViewer(`splittime-interface-${index + 1}`)} tabIndex={0} onKeyDown={e => handleImageKeypress(e, `splittime-interface-${index + 1}`)} role="button" aria-label={`Click to view ${item.title} in full screen`} id={`splittime-interface-${index + 1}`} />
                       <figcaption className="text-sm text-gray-600 italic mt-2 text-center">{item.description}</figcaption>
                     </figure>
                     
@@ -542,32 +481,12 @@ const SplittimeCaseStudy: React.FC = () => {
                 {/* Family Harmony Images - Two Column Layout */}
                 <div className="mb-16 grid lg:grid-cols-2 gap-8 items-center">
                   <figure className="project-image-container">
-                    <img 
-                      src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" 
-                      alt="Happy family showing successful co-parenting collaboration and family harmony" 
-                      className="clickable-image w-full h-96 object-cover shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                      onClick={() => openImageViewer('splittime-harmony-1')}
-                      tabIndex={0}
-                      onKeyDown={(e) => handleImageKeypress(e, 'splittime-harmony-1')}
-                      role="button"
-                      aria-label="Click to view family harmony image in full screen"
-                      id="splittime-harmony-1" 
-                    />
+                    <img src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" alt="Happy family showing successful co-parenting collaboration and family harmony" className="clickable-image w-full h-96 object-cover shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => openImageViewer('splittime-harmony-1')} tabIndex={0} onKeyDown={e => handleImageKeypress(e, 'splittime-harmony-1')} role="button" aria-label="Click to view family harmony image in full screen" id="splittime-harmony-1" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">Happy family showing successful co-parenting collaboration and family harmony</figcaption>
                   </figure>
                   
                   <figure className="project-image-container">
-                    <img 
-                      src="/lovable-uploads/7c381aef-4b14-4b6e-ab5d-00248808e4dc.png" 
-                      alt="Splittime results and impact metrics showing measurable improvements in co-parenting outcomes" 
-                      className="clickable-image w-full h-96 object-cover shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                      onClick={() => openImageViewer('splittime-results-1')}
-                      tabIndex={0}
-                      onKeyDown={(e) => handleImageKeypress(e, 'splittime-results-1')}
-                      role="button"
-                      aria-label="Click to view results and impact metrics in full screen"
-                      id="splittime-results-1" 
-                    />
+                    <img src="/lovable-uploads/7c381aef-4b14-4b6e-ab5d-00248808e4dc.png" alt="Splittime results and impact metrics showing measurable improvements in co-parenting outcomes" className="clickable-image w-full h-96 object-cover shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => openImageViewer('splittime-results-1')} tabIndex={0} onKeyDown={e => handleImageKeypress(e, 'splittime-results-1')} role="button" aria-label="Click to view results and impact metrics in full screen" id="splittime-results-1" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">Splittime results and impact metrics showing measurable improvements in co-parenting outcomes</figcaption>
                   </figure>
                 </div>
@@ -667,67 +586,39 @@ const SplittimeCaseStudy: React.FC = () => {
         </main>
         
         {/* Image Viewer Modal */}
-        {viewerOpen && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) closeImageViewer();
-            }}
-          >
+        {viewerOpen && <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50" onClick={e => {
+        if (e.target === e.currentTarget) closeImageViewer();
+      }}>
             <div className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center">
               {/* Close Button */}
-              <button
-                className="absolute -top-12 right-0 bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded-full w-10 h-10 text-xl cursor-pointer z-10 transition-all duration-200"
-                onClick={closeImageViewer}
-                aria-label="Close image viewer"
-                title="Close (Press Escape)"
-              >
+              <button className="absolute -top-12 right-0 bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded-full w-10 h-10 text-xl cursor-pointer z-10 transition-all duration-200" onClick={closeImageViewer} aria-label="Close image viewer" title="Close (Press Escape)">
                 <span className="text-black">×</span>
               </button>
               
               {/* Zoom Controls */}
               <div className="absolute -top-12 left-0 flex gap-3 z-10">
-                <button
-                  className="bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded w-9 h-9 text-lg cursor-pointer font-bold transition-all duration-200"
-                  onClick={zoomIn}
-                  aria-label="Zoom in"
-                  title="Zoom In (+)"
-                >
+                <button className="bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded w-9 h-9 text-lg cursor-pointer font-bold transition-all duration-200" onClick={zoomIn} aria-label="Zoom in" title="Zoom In (+)">
                   <span className="text-black">+</span>
                 </button>
-                <button
-                  className="bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded w-9 h-9 text-lg cursor-pointer font-bold transition-all duration-200"
-                  onClick={zoomOut}
-                  aria-label="Zoom out"
-                  title="Zoom Out (-)"
-                >
+                <button className="bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded w-9 h-9 text-lg cursor-pointer font-bold transition-all duration-200" onClick={zoomOut} aria-label="Zoom out" title="Zoom Out (-)">
                   <span className="text-black">−</span>
                 </button>
-                <button
-                  className="bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded w-9 h-9 text-lg cursor-pointer font-bold transition-all duration-200"
-                  onClick={resetZoom}
-                  aria-label="Reset zoom"
-                  title="Reset Zoom (0)"
-                >
+                <button className="bg-white bg-opacity-90 hover:bg-opacity-100 border-none rounded w-9 h-9 text-lg cursor-pointer font-bold transition-all duration-200" onClick={resetZoom} aria-label="Reset zoom" title="Reset Zoom (0)">
                   <span className="text-black">⌂</span>
                 </button>
               </div>
               
               {/* Main Image */}
-              <img
-                src={currentImage.src}
-                alt={currentImage.alt}
-                className="max-w-full max-h-[80vh] object-contain transition-transform duration-300"
-                style={{ transform: `scale(${currentZoom})` }}
-              />
+              <img src={currentImage.src} alt={currentImage.alt} className="max-w-full max-h-[80vh] object-contain transition-transform duration-300" style={{
+            transform: `scale(${currentZoom})`
+          }} />
               
               {/* Caption */}
               <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">
                 <p className="text-black text-sm">{currentImage.caption}</p>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
         
         <Footer />
       </div>
