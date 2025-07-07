@@ -231,8 +231,8 @@ const SplittimeCaseStudy: React.FC = () => {
                   className="relative"
                 >
                   <img 
-                    src="https://images.unsplash.com/photo-1541199249251-f713e6145474?w=800&h=600&fit=crop"
-                    alt="Parent and child showing the emotional impact of communication conflicts and the need for better co-parenting coordination"
+                    src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png"
+                    alt="Stressed parent showing the emotional impact of fragmented co-parenting communication and coordination challenges"
                     className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
                   />
                   
