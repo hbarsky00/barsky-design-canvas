@@ -24,9 +24,6 @@ import TinyMCEDemo from "@/pages/TinyMCEDemo";
 import LeadCapture from "@/pages/LeadCapture";
 import AdminDashboard from "@/pages/AdminDashboard";
 import FreeAudit from "@/pages/FreeAudit";
-import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
-import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
-import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
 import MvpValidation from "@/pages/services/MvpValidation";
 import ConversionAudit from "@/pages/services/ConversionAudit";
 import AiRedesign from "@/pages/services/AiRedesign";
@@ -68,9 +65,6 @@ function App() {
               <Route path="/admin/leads" element={<AdminDashboard />} />
               <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
               <Route path="/free-audit" element={<FreeAudit />} />
-              <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
-              <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
-              <Route path="/case-study-investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
               <Route path="/services/mvp-validation" element={<MvpValidation />} />
               <Route path="/services/conversion-audit" element={<ConversionAudit />} />
               <Route path="/services/ai-redesign" element={<AiRedesign />} />

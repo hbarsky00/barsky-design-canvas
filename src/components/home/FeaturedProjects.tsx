@@ -10,8 +10,8 @@ import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 const FeaturedProjects: React.FC = () => {
   const { filteredProjects } = useProjectsData();
   
-  // Show only the three specific projects in order: herbalink, splittime, investor-loan-app
-  const featuredProjectIds = ["herbalink", "splittime", "investor-loan-app"];
+  // Show only the wholesale distribution project
+  const featuredProjectIds = ["wholesale-distribution"];
   const displayProjects = featuredProjectIds
     .map(id => filteredProjects.find(project => project.id === id))
     .filter(Boolean); // Remove any undefined projects
@@ -40,7 +40,7 @@ const FeaturedProjects: React.FC = () => {
             <div className="bg-green-50 p-4 rounded-lg border border-green-200">
               <div className="text-2xl font-bold text-green-600">65%</div>
               <div className="text-sm text-green-700">User Engagement ↑</div>
-              <div className="text-xs text-green-600">Herbalink Platform</div>
+              <div className="text-xs text-green-600">Wholesale Distribution</div>
             </div>
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
               <div className="text-2xl font-bold text-blue-600">70%</div>
