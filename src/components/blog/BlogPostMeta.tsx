@@ -12,7 +12,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
     <Helmet>
       <title>{post.title} | Barsky Design Blog</title>
       <meta name="description" content={post.excerpt} />
-      <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, UX/UI Design Services"} />
+      <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services"} />
       <meta property="og:title" content={`${post.title} | Barsky Design Blog`} />
       <meta property="og:description" content={post.excerpt} />
       <meta property="og:image" content={post.coverImage ? `https://barskydesign.pro${post.coverImage}` : "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"} />

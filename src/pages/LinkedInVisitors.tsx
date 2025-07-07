@@ -56,7 +56,7 @@ const LinkedInVisitors: React.FC = () => {
     <>
       <EnhancedGlobalSeo 
         title="Turn Your Digital Product Into a Revenue Machine | LinkedIn Exclusive"
-        description="Senior UX/UI Designer + Gen AI Developer helping business leaders achieve 40%+ conversion improvements. Free strategy session for LinkedIn professionals."
+        description="Senior Product Designer + Gen AI Developer helping business leaders achieve 40%+ conversion improvements. Free strategy session for LinkedIn professionals."
         canonicalUrl="https://barskydesign.pro/linkedin-visitors"
         pageType="service"
         keywords={["UX design ROI", "AI integration business", "conversion optimization", "digital transformation", "startup UX consultant"]}

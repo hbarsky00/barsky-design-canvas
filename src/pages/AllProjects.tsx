@@ -22,8 +22,8 @@ const AllProjects = () => {
   return (
     <div className="flex flex-col min-h-screen px-5">
       <EnhancedGlobalSeo 
-        title="AI-Enhanced UX/UI Design Portfolio | Hiram Barsky - Gen AI Web Applications"
-        description="Explore UX/UI design portfolio featuring AI-powered web applications and Gen AI integration. Real case studies with measurable results and user improvements."
+        title="AI-Enhanced Product Design Portfolio | Hiram Barsky - Gen AI Web Applications"
+        description="Explore Product Design portfolio featuring AI-powered web applications and Gen AI integration. Real case studies with measurable results and user improvements."
         canonicalUrl="https://barskydesign.pro/projects"
         breadcrumbs={breadcrumbs}
         pageType="portfolio"
@@ -43,7 +43,7 @@ const AllProjects = () => {
               AI-Enhanced Design Portfolio
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Explore my portfolio of UX/UI design projects featuring Gen AI integration and intelligent web applications. 
+              Explore my portfolio of Product Design projects featuring Gen AI integration and intelligent web applications. 
               Each case study demonstrates the fusion of thoughtful design with cutting-edge AI technology, 
               creating user-centered experiences that leverage the power of artificial intelligence.
             </p>
@@ -60,7 +60,7 @@ const AllProjects = () => {
         <ServicesCallToAction />
         <BlogPreview />
         <SeoFaqSection 
-          title="AI-Enhanced UX/UI Design Project Questions"
+          title="AI-Enhanced Product Design Project Questions"
           faqs={projectFaqs}
           className="mt-16"
         />

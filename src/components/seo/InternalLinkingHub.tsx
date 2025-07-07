@@ -17,11 +17,11 @@ const InternalLinkingHub: React.FC = () => {
   const linkCategories: LinkCategory[] = [
     {
       title: "Design Services",
-      description: "Professional UX/UI design and consultation services",
+      description: "Professional Product Design and consultation services",
       icon: <Briefcase className="w-6 h-6" />,
       links: [
         {
-          text: "UX/UI Design Services",
+          text: "Product Design Services",
           url: "/design-services/ux-ui-design",
           description: "Complete user experience and interface design"
         },

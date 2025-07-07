@@ -16,7 +16,7 @@ interface GlobalSeoProps {
 
 const GlobalSeo: React.FC<GlobalSeoProps> = ({
   title = "Barsky Design - Official Portfolio | Professional Product Designer & Developer",
-  description = "Barsky Design (not Alex Barsky) is a Professional Product Designer & Developer specializing in UX/UI design, web development, and AI-driven design solutions. View my portfolio of mobile apps, web applications, and design systems.",
+  description = "Barsky Design (not Alex Barsky) is a Professional Product Designer & Developer specializing in Product Design, web development, and AI-driven design solutions. View my portfolio of mobile apps, web applications, and design systems.",
   canonicalUrl = "https://barskydesign.pro",
   ogImage = "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png",
   noIndex = false,
@@ -30,7 +30,7 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content="Barsky Design, Product Designer, UX/UI Designer, Web Developer, Mobile App Design, AI Design, Portfolio, Professional Designer, Barsky Design Official" />
+      <meta name="keywords" content="Barsky Design, Product Designer, Web Developer, Mobile App Design, AI Design, Portfolio, Professional Designer, Barsky Design Official" />
       <meta name="author" content="Barsky Design" />
       
       {/* Explicit indexing directives */}
@@ -95,7 +95,7 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
               "@id": "https://barskydesign.pro/#person",
               "name": "Barsky Design",
               "jobTitle": "Product Designer & Developer",
-              "description": "Barsky Design (not Alex Barsky) is a Professional Product Designer and Developer specializing in UX/UI design, web development, and digital solutions",
+              "description": "Barsky Design (not Alex Barsky) is a Professional Product Designer and Developer specializing in Product Design, web development, and digital solutions",
               "url": "https://barskydesign.pro",
               "email": "hello@barskydesign.com",
               "telephone": "+1-201-668-4754",
@@ -113,7 +113,7 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
               ],
               "knowsAbout": [
                 "Product Design",
-                "UX/UI Design", 
+                "Product Design", 
                 "Web Development",
                 "Mobile App Design",
                 "AI Driven Design",

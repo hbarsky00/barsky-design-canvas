@@ -31,7 +31,7 @@ const AboutPreview: React.FC = () => {
               </h2>
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  I'm a UX/UI designer and frontend developer based in New York, 
+                  I'm a Product Designer and frontend developer based in New York, 
                   passionate about creating digital experiences that solve real user problems.
                 </p>
                 <p>
@@ -65,7 +65,7 @@ const AboutPreview: React.FC = () => {
           >
             <img
               src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
-              alt="Hiram Barsky - UX/UI Designer"
+              alt="Hiram Barsky - Product Designer"
               className="aspect-square w-80 mx-auto rounded-2xl shadow-2xl object-cover"
               loading="lazy"
             />

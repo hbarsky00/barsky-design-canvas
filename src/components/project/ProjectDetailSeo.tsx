@@ -68,7 +68,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     if (project.id === 'barskyjoint') {
       return "Cannabis e-commerce UX design: Platform interface solving regulatory compliance and user trust issues in regulated market space.";
     }
-    return `${project.title} UX design case study by Hiram Barsky - UX/UI Product Designer & Gen AI Developer specializing in user-centered solutions.`;
+    return `${project.title} Product Design case study by Hiram Barsky - Product Designer & Gen AI Developer specializing in user-centered solutions.`;
   };
   
   const optimizedTitle = getOptimizedTitle();
@@ -81,8 +81,8 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     <Helmet>
       <title>{optimizedTitle}</title>
       <meta name="description" content={optimizedDescription} />
-      <meta name="keywords" content={`Hiram Barsky, UX UI designer, Gen AI developer, ${tags.join(', ')}, user experience design, digital product design, design case study, UX consulting`} />
-      <meta name="author" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer" />
+      <meta name="keywords" content={`Hiram Barsky, Product Designer, Gen AI developer, ${tags.join(', ')}, user experience design, digital product design, design case study, UX consulting`} />
+      <meta name="author" content="Hiram Barsky - Product Designer & Gen AI Developer" />
       
       {/* Enhanced indexing directives */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -97,7 +97,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta property="og:image" content={socialMediaImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer" />
+      <meta property="og:site_name" content="Hiram Barsky - Product Designer & Gen AI Developer" />
       <meta property="og:locale" content="en_US" />
       
       {/* Enhanced Twitter Card - Using project hero image */}
@@ -141,8 +141,8 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "creator": {
               "@type": "Person",
               "name": "Hiram Barsky",
-              "jobTitle": "UX/UI Product Designer & Gen AI Developer",
-              "description": "Expert UX/UI Product Designer specializing in Gen AI integration and intelligent web applications",
+              "jobTitle": "Product Designer & Gen AI Developer",
+              "description": "Expert Product Designer specializing in Gen AI integration and intelligent web applications",
               "url": "https://barskydesign.pro",
               "email": "hbarsky01@gmail.com",
               "telephone": "+1-201-668-4754",
@@ -157,7 +157,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
                 "https://twitter.com/barskydesign"
               ],
               "knowsAbout": [
-                "UX/UI Product Design",
+                "Product Design",
                 "Gen AI Integration",
                 "User Experience Design",
                 "Digital Product Design",
@@ -177,7 +177,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             },
             "keywords": [
               "Hiram Barsky",
-              "UX UI Designer",
+              "Product Designer",
               "Gen AI Developer",
               "User Experience Design",
               "${tags.join('", "')}"
@@ -186,7 +186,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
             "isPartOf": {
               "@type": "WebSite",
               "@id": "https://barskydesign.pro/#website",
-              "name": "Hiram Barsky - UX/UI Product Designer & Gen AI Developer",
+              "name": "Hiram Barsky - Product Designer & Gen AI Developer",
               "url": "https://barskydesign.pro",
               "author": {
                 "@type": "Person",

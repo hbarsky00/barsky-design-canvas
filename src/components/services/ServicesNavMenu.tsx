@@ -9,14 +9,14 @@ const ServicesNavMenu = () => {
       <NavigationMenu>
         <NavigationMenuList className="flex flex-wrap justify-center gap-2">
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-white">UX/UI Design</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="bg-white">Product Design</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <Link to="/design-services/ux-ui-design" className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-barsky-blue/20 to-barsky-blue/5 p-6 no-underline outline-none focus:shadow-md">
                       <div className="mb-2 mt-4 text-lg font-medium text-barsky-dark">
-                        UX/UI Design
+                        Product Design
                       </div>
                       <p className="text-sm leading-tight text-slate-600">
                         User-centered design services that create intuitive, engaging interfaces for web and mobile applications.

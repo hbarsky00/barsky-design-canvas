@@ -15,8 +15,8 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Hiram Barsky",
-      "jobTitle": "Senior UX/UI Designer & Gen AI Integration Specialist",
-      "description": "Top 1% UX/UI Designer specializing in AI-powered user experiences, accessibility, and conversion optimization",
+      "jobTitle": "Senior Product Designer & Gen AI Integration Specialist",
+      "description": "Top 1% Product Designer specializing in AI-powered user experiences, accessibility, and conversion optimization",
       "url": "https://barskydesign.pro",
       "email": "hbarsky01@gmail.com",
       "telephone": "+1-201-668-4754",
@@ -33,7 +33,7 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
         "addressCountry": "US"
       },
       "knowsAbout": [
-        "UX/UI Design",
+        "Product Design",
         "Gen AI Integration",
         "ChatGPT API Integration", 
         "Claude AI Implementation",
@@ -48,7 +48,7 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
       ],
       "hasOccupation": {
         "@type": "Occupation",
-        "name": "UX/UI Designer & Gen AI Developer",
+        "name": "Product Designer & Gen AI Developer",
         "description": "Specialized in creating AI-enhanced user experiences that improve conversion rates and accessibility",
         "skills": [
           "AI-Powered UX Design",
@@ -61,7 +61,7 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
       "worksFor": {
         "@type": "Organization",
         "name": "Freelance UX Consultant",
-        "description": "Independent UX/UI design consultancy specializing in AI integration"
+        "description": "Independent Product Design consultancy specializing in AI integration"
       }
     };
 
@@ -69,14 +69,14 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Hiram Barsky UX Design Services",
-      "description": "Premium UX/UI design services with AI integration expertise",
+      "description": "Premium Product Design services with AI integration expertise",
       "url": "https://barskydesign.pro",
       "telephone": "+1-201-668-4754",
       "email": "hbarsky01@gmail.com",
       "priceRange": "$150-$250/hour",
       "areaServed": ["United States", "Canada", "United Kingdom", "Europe"],
       "serviceType": [
-        "UX/UI Design",
+        "Product Design",
         "Gen AI Integration",
         "Accessibility Consulting",
         "Conversion Optimization",
@@ -92,7 +92,7 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Hiram Barsky Design",
-      "description": "Leading UX/UI design consultancy specializing in AI-enhanced user experiences",
+      "description": "Leading Product Design consultancy specializing in AI-enhanced user experiences",
       "url": "https://barskydesign.pro",
       "logo": "https://barskydesign.pro/lovable-uploads/ac3cac82-c216-4f87-b7b5-f3dc7b3d58ad.png",
       "contactPoint": {

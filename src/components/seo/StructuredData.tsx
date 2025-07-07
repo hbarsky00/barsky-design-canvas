@@ -8,8 +8,8 @@ const StructuredData: React.FC = () => {
     "@type": ["Person", "ProfessionalService"],
     "name": "Barsky Design",
     "alternateName": ["Barsky Design UX Designer", "Barsky Design Frontend Developer", "Barsky Design Designer"],
-    "description": "Barsky Design is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
-    "jobTitle": "UX/UI Designer & Frontend Developer",
+    "description": "Barsky Design is a Product Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
+    "jobTitle": "Product Designer & Frontend Developer",
     "image": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     "url": "https://barskydesign.pro",
     "mainEntityOfPage": "https://barskydesign.pro",
@@ -58,7 +58,7 @@ const StructuredData: React.FC = () => {
     ],
     "hasCredential": {
       "@type": "EducationalOccupationalCredential",
-      "name": "UX/UI Designer & Frontend Developer",
+      "name": "Product Designer & Frontend Developer",
       "description": "Barsky Design specializes in creating user-centered digital experiences through comprehensive design and development expertise"
     },
     "worksFor": {
@@ -136,17 +136,17 @@ const StructuredData: React.FC = () => {
       "@type": "WebSite",
       "name": "Barsky Design Services",
       "url": "https://barskydesign.pro",
-      "about": "UX/UI design and frontend development services"
+      "about": "Product Design and frontend development services"
     }
   };
 
   const websiteStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Barsky Design - UX/UI Designer & Frontend Developer",
+    "name": "Barsky Design - Product Designer & Frontend Developer",
     "alternateName": "Barsky Design Portfolio",
     "url": "https://barskydesign.pro",
-    "description": "Barsky Design is a UX/UI Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
+    "description": "Barsky Design is a Product Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
     "author": {
       "@type": "Person",
       "name": "Barsky Design"

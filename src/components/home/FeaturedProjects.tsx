@@ -138,7 +138,7 @@ const FeaturedProjects: React.FC = () => {
                     <div className="flex items-center space-x-4 text-sm text-gray-500">
                       <span>2024</span>
                       <span>•</span>
-                      <span>UX/UI Design</span>
+                      <span>Product Design</span>
                     </div>
                     <Link 
                       to={`/project/${project.id}`}

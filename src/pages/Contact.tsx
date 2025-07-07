@@ -12,8 +12,8 @@ const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <EnhancedGlobalSeo 
-        title="Contact Hiram Barsky | UX/UI Designer & Gen AI Developer | AI Web App Consultation"
-        description="Get in touch with Hiram Barsky for UX/UI design and Gen AI integration services. Specializing in intelligent web applications and AI-powered interfaces."
+        title="Contact Hiram Barsky | Product Designer & Gen AI Developer | AI Web App Consultation"
+        description="Get in touch with Hiram Barsky for Product Design and Gen AI integration services. Specializing in intelligent web applications and AI-powered interfaces."
         canonicalUrl="https://barskydesign.pro/contact"
         pageType="content"
         keywords={[
@@ -24,18 +24,18 @@ const Contact = () => {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          "name": "Contact Hiram Barsky - UX/UI Design & Gen AI Development Services",
-          "description": "Contact page for UX/UI design and Gen AI integration services, specializing in intelligent web applications",
+          "name": "Contact Hiram Barsky - Product Design & Gen AI Development Services",
+          "description": "Contact page for Product Design and Gen AI integration services, specializing in intelligent web applications",
           "url": "https://barskydesign.pro/contact",
           "mainEntity": {
             "@type": "Person",
             "name": "Hiram Barsky",
-            "jobTitle": "UX/UI Product Designer & Gen AI Developer",
+            "jobTitle": "Product Designer & Gen AI Developer",
             "email": "hbarsky01@gmail.com",
             "telephone": "+1-201-668-4754",
             "url": "https://barskydesign.pro",
             "knowsAbout": [
-              "UX/UI Product Design",
+              "Product Design",
               "Gen AI Integration", 
               "Intelligent Web Applications",
               "AI-Powered User Interfaces",

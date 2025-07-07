@@ -18,7 +18,7 @@ const ScrollHandler: React.FC = () => {
     }
     
     // Track homepage view with additional details
-    trackPageView('/', 'Homepage - Hiram Barsky UX/UI Designer & Frontend Developer');
+    trackPageView('/', 'Homepage - Hiram Barsky Product Designer & Frontend Developer');
   }, [location.state]);
 
   return null;

@@ -7,7 +7,7 @@ import { CheckCircle, Briefcase, Award, Book, Users, Target, Lightbulb } from 'l
 
 const skills = [
   "Product Design",
-  "UX/UI Design",
+  "Product Design",
   "Design Systems",
   "Product Strategy", 
   "User Research",
@@ -31,13 +31,13 @@ const About = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>About Hiram Barsky | Professional UX/UI Designer & Frontend Developer | Design Philosophy</title>
-        <meta name="description" content="Learn about Hiram Barsky, a professional UX/UI designer and frontend developer with 5+ years of experience. Discover my design philosophy, approach to user-centered design, and passion for creating exceptional digital experiences." />
+        <title>About Hiram Barsky | Professional Product Designer & Frontend Developer | Design Philosophy</title>
+        <meta name="description" content="Learn about Hiram Barsky, a professional Product Designer and frontend developer with 5+ years of experience. Discover my design philosophy, approach to user-centered design, and passion for creating exceptional digital experiences." />
         <meta name="keywords" content="about Hiram Barsky, UX designer background, UI designer experience, design philosophy, user-centered design, frontend developer, product designer story" />
         <link rel="canonical" href="https://barskydesign.pro/about" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="About Hiram Barsky | Professional UX/UI Designer & Developer" />
+        <meta property="og:title" content="About Hiram Barsky | Professional Product Designer & Developer" />
         <meta property="og:description" content="Learn about Hiram Barsky's design philosophy and approach to creating exceptional user experiences." />
         <meta property="og:url" content="https://barskydesign.pro/about" />
         <meta property="og:type" content="website" />
@@ -45,7 +45,7 @@ const About = () => {
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About Hiram Barsky | Professional UX/UI Designer" />
+        <meta name="twitter:title" content="About Hiram Barsky | Professional Product Designer" />
         <meta name="twitter:description" content="Learn about my design philosophy and approach to user-centered design." />
         <meta name="twitter:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
         
@@ -61,11 +61,11 @@ const About = () => {
               "mainEntity": {
                 "@type": "Person",
                 "name": "Hiram Barsky",
-                "jobTitle": "UX/UI Designer & Frontend Developer",
-                "description": "Professional UX/UI designer and frontend developer with 5+ years of experience creating exceptional digital experiences",
+                "jobTitle": "Product Designer & Frontend Developer",
+                "description": "Professional Product Designer and frontend developer with 5+ years of experience creating exceptional digital experiences",
                 "url": "https://barskydesign.pro",
                 "knowsAbout": [
-                  "UX/UI Design",
+                  "Product Design",
                   "Frontend Development", 
                   "Mobile App Design",
                   "Web Development",
@@ -110,7 +110,7 @@ const About = () => {
                 </p>
                 <p className="text-barsky-text mb-8">
                   I help early-stage startups and teams create user-friendly digital experiences. 
-                  I offer UX/UI design, design system creation, MVP design, and design audits 
+                  I offer Product Design, design system creation, MVP design, and design audits 
                   to bring your ideas to life.
                 </p>
                 
@@ -190,7 +190,7 @@ const About = () => {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="bg-white p-6 rounded-lg shadow-sm border">
-                  <h3 className="text-xl font-semibold mb-4 text-barsky-dark">UX/UI Design</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-barsky-dark">Product Design</h3>
                   <p className="text-barsky-text">
                     Creating intuitive and engaging user interfaces that prioritize user experience 
                     and drive business results.

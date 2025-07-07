@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ServicesList: React.FC = () => {
   const services = [
-    "UX/UI Design Consultation",
+    "Product Design Consultation",
     "User Research & Testing",
     "Design System Creation",
     "Cross-Platform Optimization",

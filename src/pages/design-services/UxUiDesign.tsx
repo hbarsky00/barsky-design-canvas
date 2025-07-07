@@ -9,15 +9,15 @@ const UxUiDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Helmet>
-        <title>UX/UI Design Services | Barsky Design Agency</title>
-        <meta name="description" content="Professional UX/UI design services specializing in user research, interaction design, and prototyping for better digital experiences." />
+        <title>Product Design Services | Barsky Design Agency</title>
+        <meta name="description" content="Professional Product Design services specializing in user research, interaction design, and prototyping for better digital experiences." />
         <meta name="keywords" content="Barsky Design, UX design services, UI design services, user experience design, user interface design, user research, interaction design, prototyping, design consultation" />
         <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         <link rel="canonical" href="https://barskydesign.pro/design-services/ux-ui-design" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="UX/UI Design Services | Barsky Design" />
-        <meta property="og:description" content="Professional UX/UI design services specializing in user-centered design for web and mobile applications." />
+        <meta property="og:title" content="Product Design Services | Barsky Design" />
+        <meta property="og:description" content="Professional Product Design services specializing in user-centered design for web and mobile applications." />
         <meta property="og:url" content="https://barskydesign.pro/design-services/ux-ui-design" />
         <meta property="og:type" content="service" />
         <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
@@ -29,14 +29,14 @@ const UxUiDesign = () => {
             {
               "@context": "https://schema.org",
               "@type": "Service",
-              "name": "UX/UI Design Services",
-              "description": "Professional UX/UI design services including user research, interaction design, and prototyping",
+              "name": "Product Design Services",
+              "description": "Professional Product Design services including user research, interaction design, and prototyping",
               "provider": {
                 "@type": "Organization",
                 "name": "Barsky Design",
                 "description": "UX Research & Design Agency"
               },
-              "serviceType": "UX/UI Design",
+              "serviceType": "Product Design",
               "areaServed": "Worldwide",
               "url": "https://barskydesign.pro/design-services/ux-ui-design"
             }
@@ -47,7 +47,7 @@ const UxUiDesign = () => {
       <Header />
       <main className="flex-grow pt-24">
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold text-center mb-8">UX/UI Design Services</h1>
+          <h1 className="text-4xl font-bold text-center mb-8">Product Design Services</h1>
           <p className="text-center text-gray-600 mb-12">Professional user-centered design services for web and mobile applications by Barsky Design.</p>
           
           <div className="max-w-4xl mx-auto">

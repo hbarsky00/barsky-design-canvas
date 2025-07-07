@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
                 transition={{ delay: 1.4, duration: 0.5 }}
                 className="text-base sm:text-lg mb-6 text-barsky-text-light max-w-3xl mx-auto md:mx-0"
               >
-                I help early-stage startups and teams create user-friendly digital experiences. I offer UX/UI design, design system creation, MVP design, and design audits to bring your ideas to life.
+                I help early-stage startups and teams create user-friendly digital experiences. I offer Product Design, design system creation, MVP design, and design audits to bring your ideas to life.
               </motion.p>
             </div>
             

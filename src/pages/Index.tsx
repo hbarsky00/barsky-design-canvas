@@ -14,8 +14,8 @@ const Index = () => {
   return (
     <>
       <EnhancedGlobalSeo 
-        title="Hiram Barsky - UX/UI Designer & Gen AI Developer"
-        description="Expert UX/UI Product Designer specializing in Gen AI integration. I create intelligent web applications with beautiful interfaces and AI capabilities."
+        title="Hiram Barsky - Product Designer & Gen AI Developer"
+        description="Expert Product Designer specializing in Gen AI integration. I create intelligent web applications with beautiful interfaces and AI capabilities."
         canonicalUrl="https://barskydesign.pro/"
         pageType="homepage"
         keywords={[

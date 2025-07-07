@@ -14,7 +14,7 @@ const ProblemSolutionSection: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Most UX Designers Guess. I Use AI to Know.
+            Most Product Designers Guess. I Use AI to Know.
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Stop relying on assumptions. Start making data-driven design decisions that deliver guaranteed results.

@@ -2,7 +2,7 @@
 export const homepageFaqs = [
   {
     question: "What services does Barsky Design offer as a UX research and design agency?",
-    answer: "Barsky Design offers comprehensive UX research and design services including user research and usability testing, competitive analysis, user journey mapping, strategic UX/UI design, design systems creation, and digital product strategy. We help businesses improve their digital product experiences through research-driven design solutions.",
+    answer: "Barsky Design offers comprehensive UX research and design services including user research and usability testing, competitive analysis, user journey mapping, strategic Product Design, design systems creation, and digital product strategy. We help businesses improve their digital product experiences through research-driven design solutions.",
     keywords: ["UX research services", "design agency services", "user research", "UX design", "digital product strategy"]
   },
   {

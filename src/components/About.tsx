@@ -10,7 +10,7 @@ const achievements = [
 ];
 
 const credentials = [
-  "15+ years UX/UI design experience",
+  "15+ years Product Design experience",
   "Google UX Design Certificate", 
   "WCAG 2.1 Accessibility Certification",
   "Based in NYC, serving clients globally",
