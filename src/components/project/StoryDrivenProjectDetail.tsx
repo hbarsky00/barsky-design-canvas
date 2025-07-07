@@ -302,7 +302,8 @@ const StoryDrivenProjectDetail: React.FC = () => {
           </p>
           <Button 
             size="lg"
-            className="bg-white text-orange-600 hover:bg-gray-100 font-semibold px-8 py-4 text-lg"
+            variant="default"
+            className="font-semibold px-8 py-4 text-lg"
           >
             Start the Conversation
           </Button>

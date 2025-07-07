@@ -456,7 +456,8 @@ const HerbalinkCaseStudy: React.FC = () => {
                 
                 <Button 
                   size="lg"
-                  className="bg-white text-emerald-600 hover:bg-emerald-50 font-semibold px-10 py-6 text-lg group shadow-xl"
+                  variant="default"
+                  className="font-semibold px-10 py-6 text-lg group"
                   onClick={() => window.location.href = '/contact'}
                 >
                   Start Your Wellness Project
