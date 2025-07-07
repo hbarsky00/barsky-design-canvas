@@ -120,7 +120,7 @@ const ServicesPreviewSection: React.FC = () => {
               how to implement AI-enhanced UX that drives measurable ROI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="default" size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300" onClick={() => {
+              <Button variant="default" size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 !text-white [&_*]:!text-white font-semibold py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300" onClick={() => {
               const contactSection = document.getElementById('contact');
               if (contactSection) {
                 contactSection.scrollIntoView({
