@@ -106,6 +106,20 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         />
       </ProjectContentBox>
 
+      {/* Additional challenge context for Herbalink */}
+      {isHerbalinkProject && (
+        <div className="mt-8 mb-8">
+          <ProjectContentBox>
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              Building Trust in a Skeptical Market
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              The biggest challenge was creating a platform that would instill confidence in users who are often skeptical about online health services, especially in the alternative medicine space. Users needed assurance about herbalist qualifications while herbalists needed tools to establish credibility and manage their practice effectively.
+            </p>
+          </ProjectContentBox>
+        </div>
+      )}
+
       {/* Two-column image row for Herbalink project */}
       {isHerbalinkProject && (
         <>
