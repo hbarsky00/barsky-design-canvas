@@ -217,6 +217,7 @@ const SplittimeCaseStudy: React.FC = () => {
               }} className="relative">
                   <img src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png" alt="Stressed parent showing the emotional impact of fragmented co-parenting communication and coordination challenges" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
                   
+                  <img src="/lovable-uploads/448a9776-8ef2-421b-a68c-5451bbc5f823.png" alt="Splittime app interface showing key features and solutions for co-parenting coordination" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl mt-8" />
                   
                 </motion.div>
               </div>
