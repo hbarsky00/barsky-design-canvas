@@ -91,13 +91,13 @@ const ExitIntentPopup: React.FC = () => {
                 {/* Compact analysis preview image */}
                 <div className="relative mb-4">
                   <img 
-                    src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center"
-                    alt="UX analysis dashboard preview"
+                    src="/lovable-uploads/269c6b35-e093-4302-8658-d446824d8616.png"
+                    alt="AI-enhanced app design examples"
                     className="w-full h-32 object-cover rounded-lg shadow-md"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center">
                     <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-800">
-                      AI-Powered Analysis Preview
+                      AI-Powered Design Results
                     </div>
                   </div>
                 </div>
