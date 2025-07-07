@@ -40,6 +40,7 @@ const ServicesCallToAction = () => {
           <Button 
             size="lg"
             asChild
+            className="!text-white [&_*]:!text-white [&_svg]:!text-white"
           >
             <Link to="/get-started" className="flex items-center justify-center">
               <Sparkles className="mr-2 h-5 w-5" />
