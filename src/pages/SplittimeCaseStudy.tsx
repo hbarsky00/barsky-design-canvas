@@ -100,24 +100,45 @@ const SplittimeCaseStudy: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="glass-card-elevated p-8 mb-16"
+                className="relative overflow-hidden rounded-2xl bg-white border border-neutral-200 shadow-lg mb-16"
               >
-                <div className="grid md:grid-cols-4 gap-8 text-center">
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Client</h3>
-                    <p className="text-neutral-500">Splittime</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Industry</h3>
-                    <p className="text-neutral-500">Family Tech/Communication</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Timeline</h3>
-                    <p className="text-neutral-500">10 weeks</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Results</h3>
-                    <p className="text-neutral-500">50% faster onboarding</p>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/20"></div>
+                <div className="relative p-8">
+                  <div className="grid md:grid-cols-4 gap-8">
+                    <div className="text-center relative">
+                      <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
+                        <Users className="h-6 w-6 text-blue-vibrant" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Client</h3>
+                      <p className="text-lg font-bold text-neutral-900">Splittime</p>
+                    </div>
+                    
+                    <div className="text-center relative">
+                      <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
+                      <div className="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center mx-auto mb-4">
+                        <Smartphone className="h-6 w-6 text-purple-600" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Industry</h3>
+                      <p className="text-lg font-bold text-neutral-900">Family Tech/<br/>Communication</p>
+                    </div>
+                    
+                    <div className="text-center relative">
+                      <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
+                      <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-4">
+                        <Clock className="h-6 w-6 text-green-600" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Timeline</h3>
+                      <p className="text-lg font-bold text-neutral-900">10 weeks</p>
+                    </div>
+                    
+                    <div className="text-center relative">
+                      <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
+                      <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
+                        <TrendingUp className="h-6 w-6 text-emerald-600" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Results</h3>
+                      <p className="text-lg font-bold text-success-green">50% faster onboarding</p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
