@@ -1,104 +1,108 @@
 import { ProjectVariable } from "./types";
 
 export const wholesaleDistributionVariables: ProjectVariable = {
-  projectTitle: "Wholesale Distribution Management App",
-  projectSubtitle: "From Restaurant Conversation to Business Solution",
+  projectTitle: "From Restaurant Chat to Business Solution",
+  projectSubtitle: "AI-Powered Designer to Developer Evolution",
   timeline: "4 weeks (ongoing)",
   role: "Product Designer & AI Developer",
   industry: "Distribution/Logistics",
   client: "Wholesale Distribution Business",
 
   challenge: {
-    heading: "The Problem",
-    description: "The problem wasn't discovered through market research—it was revealed during a casual conversation at a restaurant. The client was struggling with their current finance platform that was hindering rather than helping their daily operations.",
+    heading: "What They Were Actually Struggling With",
+    description: "A chance meeting at a restaurant led to discovering a wholesale distribution business drowning in inefficient software. What started as a conversation over dinner became a custom solution that's transforming their daily operations.",
     painPoints: [
-      "Unclickable grid actions with no clear purpose or function",
-      "Multiple unnecessary screens that lacked focus and added confusion",
-      "System was designed for complexity, not for the user's actual workflow",
-      "Time-consuming processes that could be automated",
-      "Lack of streamlined tracking for expenses, products, and store operations",
-      "Platform was costing money and time instead of saving them"
+      "Grid actions that looked clickable but did nothing (pure frustration)",
+      "Endless screens that buried simple tasks in complexity", 
+      "A system designed by people who never ran a distribution business",
+      "Paying for software that actively worked against their workflow",
+      "Hours of manual work that could be automated with basic scripts",
+      "No way to track what actually mattered to their business"
     ]
   },
 
   process: {
-    heading: "From Conversation to Solution",
-    description: "Discovery Through Human Connection: The entire project started with authentic conversation—listening to real pain points from someone struggling with their current system.",
+    heading: "Excel → Custom App → AI-Powered Development",
+    description: "This project showcases my evolution from traditional designer to AI-enhanced developer. Started with Excel scripts to solve immediate pain, then built a custom app foundation, and finally used AI to bridge the gap from design to deployment.",
     steps: [
-      "Discovery: Authentic conversation revealed real pain points and workflow issues",
-      "Analysis: Rapid evaluation of existing finance platform problems",
-      "Foundation: Created Excel template with automated scripts as starting point",
-      "Development: Built custom application using AI-powered development approach"
+      "Restaurant Conversation: Listened to real frustration with existing software",
+      "Quick Excel Solution: Created automated scripts to solve immediate pain points", 
+      "Custom App Foundation: Built on the Excel foundation with proper interface",
+      "AI-Powered Development: Used AI tools to evolve from designer to full-stack developer"
     ],
     keyInnovations: [
-      "Leveraged AI tools to accelerate designer-to-developer transition",
-      "Used AI assistance for rapid prototyping and feature development",
-      "Integrated intelligent automation to reduce manual tasks",
-      "Applied AI-enhanced problem-solving throughout development process",
-      "Created automated workflows to reduce daily operational overhead"
+      "Real human conversation drove the entire solution (not market research)",
+      "Started with immediate Excel relief before building the full solution",
+      "Used AI to accelerate designer-to-developer transition", 
+      "Every feature serves actual workflow, not theoretical use cases",
+      "Proved AI can amplify design skills rather than replace them"
     ]
   },
 
   solution: {
-    heading: "The AI-Powered Solution",
-    description: "A custom application built using Excel foundation as the starting point, focused on expense tracking, product management, and store operations with streamlined user experience.",
+    heading: "AI Didn't Replace My Skills - It Amplified Them", 
+    description: "Now I can take a project from user research through final deployment, creating solutions that actually work for real businesses. This isn't just another portfolio piece - it's proof that the best solutions come from genuine relationships.",
     features: [
-      "Custom app development using Excel foundation",
-      "Streamlined expense, product, and store tracking",
-      "Automated workflows reducing manual tasks",
-      "Direct, purposeful interactions eliminating confusion",
-      "AI-enhanced development bridging design and implementation"
+      "Eliminated the useless grid interface that frustrated users daily",
+      "Streamlined expense and product tracking around actual workflow",
+      "Automated the tedious manual tasks with intelligent scripts",
+      "Created direct, purposeful actions instead of complex navigation",
+      "Built ongoing relationship for continuous improvements"
     ]
   },
 
   results: {
-    heading: "Business Impact & AI Development Milestone",
-    description: "Measurable business impact within 4 weeks, showcasing the evolution from traditional design work to AI-enhanced development.",
+    heading: "Why This Project Actually Matters",
+    description: "This represents more than just improved software - it's proof that genuine human connections and AI-enhanced development can solve real business problems.",
     metrics: [
-      "70% reduction in manual data entry through automated scripts",
-      "Significant reduction in daily operational time on administrative tasks",
-      "Eliminated ongoing costs from problematic previous platform",
-      "Streamlined workflows eliminated need for multiple unnecessary screens",
-      "Custom solution proved more cost-effective than existing finance platform"
+      "70% reduction in manual data entry through intelligent automation",
+      "Eliminated daily frustration with unclickable interface elements",
+      "Custom solution proved more cost-effective than existing platform",
+      "Direct workflow integration instead of forcing users to adapt",
+      "Ongoing partnership based on trust and delivered results",
+      "Template created for future conversation-to-solution projects"
+    ],
+    testimonials: [
+      "Finally, someone who actually listened to what we needed instead of selling us features",
+      "The difference between talking to a real person who gets it versus another software vendor",
+      "This is what happens when you design for actual people doing actual work"
     ],
     longTermImpact: [
-      "Ongoing project relationship with continued enhancements",
-      "Trust built through delivery of practical, working solution",
-      "Project expansion based on initial success",
-      "Successfully bridged traditional design work with AI-powered development",
-      "Established new approach combining human insight with AI implementation"
+      "Proved AI can bridge the gap from design insight to working solution",
+      "Established new approach: conversation → understanding → custom development",
+      "Demonstrated that the best technology comes from genuine human connections",
+      "Created sustainable business relationship rather than one-time project"
     ]
   },
 
   techStack: [
-    "Custom App Development", "Excel Automation", "AI-Powered Development", 
-    "Workflow Optimization", "Business Process Automation", "Data Management", "User Experience Design"
+    "Human Conversation", "Excel Automation", "AI-Powered Development", 
+    "Custom App Architecture", "Workflow Optimization", "Relationship Building"
   ],
 
   imageConfig: {
-    hero: "/lovable-uploads/placeholder-hero.png",
+    hero: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=800&fit=crop", // Person working on laptop
     challenge: [
-      "/lovable-uploads/placeholder-before.png",
-      "/lovable-uploads/placeholder-conversation.png"
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop" // Woman using laptop - real work
     ],
     process: [
-      "/lovable-uploads/placeholder-excel.png",
-      "/lovable-uploads/placeholder-workflow.png"
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop", // Gray laptop - technical
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop"  // Programming monitor
     ],
     solution: [
-      "/lovable-uploads/placeholder-app-mockup.png",
-      "/lovable-uploads/placeholder-features.png"
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop" // Person using MacBook - development
     ],
-    results: ["/lovable-uploads/placeholder-results.png"]
+    results: [
+      "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=1200&h=600&fit=crop" // Peaceful water - successful outcome
+    ]
   },
 
   imageCaptions: {
-    "/lovable-uploads/placeholder-hero.png": "Wholesale Distribution Management App dashboard showing streamlined interface design",
-    "/lovable-uploads/placeholder-before.png": "Previous finance platform showing confusing grid interface with unclickable actions",
-    "/lovable-uploads/placeholder-excel.png": "Excel template foundation with automated scripts for business operations",
-    "/lovable-uploads/placeholder-workflow.png": "Workflow diagram showing conversation to analysis to solution process",
-    "/lovable-uploads/placeholder-app-mockup.png": "Custom app interface mockups showing expense and product tracking features",
-    "/lovable-uploads/placeholder-features.png": "Key features highlighted with callouts showing automation capabilities",
-    "/lovable-uploads/placeholder-results.png": "Results metrics visualization showing time savings and cost reduction"
+    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=1200&h=800&fit=crop": "Real conversation led to real solutions - the power of human connection in tech",
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop": "Understanding actual workflow instead of forcing users to adapt to software",
+    "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop": "From Excel scripts to custom development - AI bridging the design-to-code gap",
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop": "AI-powered development enabling designers to build what they envision",
+    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop": "Evolution from designer to full-stack developer through AI amplification",
+    "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=1200&h=600&fit=crop": "Sustainable business relationships built on understanding and delivered results"
   }
 };
