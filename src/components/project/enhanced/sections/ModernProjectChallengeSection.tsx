@@ -140,15 +140,6 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                   </p>
                 </ProjectContentBox>
               )}
-
-              {/* Show key findings after first image for Herbalink project */}
-              {index === 0 && isHerbalinkProject && (
-                <ProjectContentBox title="Key Findings">
-                  <p>
-                    Users struggled with finding qualified, credentialed herbalists and felt uncertain about practitioner backgrounds and herbal recommendation safety. High costs and limited rural availability created additional barriers to accessing herbal care. Meanwhile, herbalists faced challenges building their client base, managing time-consuming intake processes, and maintaining remote client relationships without a centralized platform.
-                  </p>
-                </ProjectContentBox>
-              )}
             </React.Fragment>
           ))}
         </div>

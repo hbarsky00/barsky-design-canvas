@@ -82,3 +82,7 @@ if (projectMatch) {
   console.log(`🔍 Auto-clearing cache for current project: ${currentProjectId}`);
   clearProjectCache(currentProjectId);
 }
+
+// Force clear herbalink project cache
+console.log('🧹 Force-clearing herbalink project cache');
+clearProjectCache('herbalink');
