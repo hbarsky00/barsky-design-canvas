@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
+import StoryDrivenProjectDetail from "./StoryDrivenProjectDetail";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
 import ProjectDetailLoading from "./ProjectDetailLoading";
 import CleanProjectDetail from "./CleanProjectDetail";
@@ -12,6 +13,11 @@ import { projectFaqs } from "@/data/seoFaqs";
 
 const SimplifiedProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
+  
+  // Use the new story-driven component for wholesale-distribution
+  if (projectId === 'wholesale-distribution') {
+    return <StoryDrivenProjectDetail />;
+  }
   
   console.log('🎬 SimplifiedProjectDetail: Rendering with projectId:', projectId);
   
