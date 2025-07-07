@@ -25,5 +25,13 @@ export const projectsData: ProjectProps[] = [
     image: "/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png",
     tags: ["Family Tech", "Co-Parenting", "Communication Design", "Conflict Reduction", "Child-Centered UX"],
     featured: true,
+  },
+  {
+    id: "investor-loan-app",
+    title: "Investor Loan App: Smart Portfolio Management",
+    description: "FinTech platform transforming real estate investment management from spreadsheet chaos to intelligent portfolio tracking with automated reporting and performance analytics.",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=800&fit=crop",
+    tags: ["FinTech", "Portfolio Management", "Investment Analytics", "Automated Reporting", "Real Estate Tech"],
+    featured: true,
   }
 ];

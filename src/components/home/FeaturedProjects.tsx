@@ -11,7 +11,7 @@ const FeaturedProjects: React.FC = () => {
   const { filteredProjects } = useProjectsData();
   
   // Show featured projects
-  const featuredProjectIds = ["wholesale-distribution", "herbalink", "splittime"];
+  const featuredProjectIds = ["wholesale-distribution", "herbalink", "splittime", "investor-loan-app"];
   const displayProjects = featuredProjectIds
     .map(id => filteredProjects.find(project => project.id === id))
     .filter(Boolean); // Remove any undefined projects

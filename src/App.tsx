@@ -30,6 +30,7 @@ import AiRedesign from "@/pages/services/AiRedesign";
 import LinkedInVisitors from "@/pages/LinkedInVisitors";
 import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
+import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -73,6 +74,7 @@ function App() {
               <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
               <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
               <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
+              <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

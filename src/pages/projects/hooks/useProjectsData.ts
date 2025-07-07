@@ -4,7 +4,7 @@ import { projectsData } from "@/data/projectsData";
 import { ProjectProps } from "@/components/ProjectCard";
 
 // Show all featured projects
-const featuredProjectIds = ["wholesale-distribution", "herbalink", "splittime"];
+const featuredProjectIds = ["wholesale-distribution", "herbalink", "splittime", "investor-loan-app"];
 
 export const useProjectsData = () => {
   const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
