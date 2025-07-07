@@ -136,14 +136,9 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
                       </p>
                     </>
                   ) : (
-                    <>
-                      <p>
-                        Herbalink addresses a significant gap in the wellness market by creating a trusted platform connecting people with certified herbalists for personalized wellness consultations.
-                      </p>
-                      <p>
-                        The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
-                      </p>
-                    </>
+                    <p>
+                      Herbalink addresses a significant gap in the wellness market by creating a trusted platform connecting people with certified herbalists for personalized wellness consultations. The project demonstrated the importance of understanding both sides of a marketplace, building trust through design, and creating educational experiences that empower users to make informed wellness decisions.
+                    </p>
                   )}
                 </ProjectContentBox>
               )}
