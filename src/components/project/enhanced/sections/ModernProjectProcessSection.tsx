@@ -6,6 +6,7 @@ import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import ProcessImageGallery from "./components/ProcessImageGallery";
 import { getImageForListItem } from "@/utils/listItemImageMapping";
+import MaximizableImage from "../../MaximizableImage";
 
 interface ModernProjectProcessSectionProps {
   details: ProjectDetails;
@@ -124,10 +125,11 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                           </div>
                           {itemImage && (
                             <div className="mt-2">
-                              <img 
+                              <MaximizableImage 
                                 src={itemImage} 
                                 alt={`Illustration for: ${itemText}`}
-                                className="w-full h-48 object-cover rounded-md"
+                                className="w-full h-48 object-cover rounded-md cursor-pointer"
+                                projectId="herbalink"
                               />
                             </div>
                           )}

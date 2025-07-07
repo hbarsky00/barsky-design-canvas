@@ -67,10 +67,11 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
                           </div>
                           {itemImage && (
                             <div className="mt-2">
-                              <img 
+                              <MaximizableImage 
                                 src={itemImage} 
                                 alt={`Illustration for: ${itemText}`}
-                                className="w-full h-32 object-cover rounded-md"
+                                className="w-full h-32 object-cover rounded-md cursor-pointer"
+                                projectId="herbalink"
                               />
                             </div>
                           )}

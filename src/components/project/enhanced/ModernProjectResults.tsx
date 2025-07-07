@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
 import { getImageForListItem } from "@/utils/listItemImageMapping";
+import MaximizableImage from "../MaximizableImage";
 
 interface ModernProjectResultsProps {
   result: string;
@@ -65,10 +66,11 @@ const ModernProjectResults: React.FC<ModernProjectResultsProps> = ({
                           </div>
                           {itemImage && (
                             <div className="mt-2">
-                              <img 
+                              <MaximizableImage 
                                 src={itemImage} 
                                 alt={`Illustration for: ${itemText}`}
-                                className="w-full h-32 object-cover rounded-md"
+                                className="w-full h-32 object-cover rounded-md cursor-pointer"
+                                projectId="herbalink"
                               />
                             </div>
                           )}
