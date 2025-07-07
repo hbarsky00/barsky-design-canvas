@@ -1,397 +1,472 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, TrendingUp, Users, Clock, Smartphone, Heart, Shield } from "lucide-react";
+import { ArrowRight, Heart, Users, Calendar, MessageCircle, TrendingDown, Shield, Star, CheckCircle2, Baby, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 
 const SplittimeCaseStudy: React.FC = () => {
-  const results = [
-    { metric: "50%", label: "Reduction in Onboarding Time", icon: <Clock className="h-6 w-6" /> },
-    { metric: "40%", label: "Fewer Support Tickets", icon: <CheckCircle className="h-6 w-6" /> },
-    { metric: "65%", label: "Improvement in Completion Rates", icon: <TrendingUp className="h-6 w-6" /> },
-    { metric: "35%", label: "Reduction in Communication Conflicts", icon: <Heart className="h-6 w-6" /> }
-  ];
-
-  const keyFeatures = [
+  const conflictSources = [
     {
-      title: "Streamlined Onboarding",
-      description: "Progressive disclosure reduces cognitive load with smart defaults based on custody arrangements, visual progress indicators, and skip-ahead options for experienced users.",
-      icon: TrendingUp
+      title: "Fragmented Communication",
+      description: "Conversations scattered across text, email, and multiple apps creating confusion and missed information.",
+      icon: <MessageCircle className="h-8 w-8" />
     },
     {
-      title: "AI-Powered Conflict Prevention", 
-      description: "Communication tone analysis, smart scheduling that avoids conflict times, automatic neutral language recommendations, and escalation prevention through design.",
-      icon: Shield
+      title: "Scheduling Conflicts",
+      description: "Miscommunications about pickup times, events, and schedule changes leading to frustration and disappointment.",
+      icon: <Calendar className="h-8 w-8" />
     },
     {
-      title: "Intuitive Calendar Management",
-      description: "Drag-and-drop scheduling with conflict detection, automatic notifications, integration with existing calendar systems, and child-focused event prioritization.",
-      icon: Clock  
+      title: "Financial Disputes",
+      description: "Disagreements over shared expenses, child costs, and financial responsibilities without clear tracking.",
+      icon: <TrendingDown className="h-8 w-8" />
     },
     {
-      title: "Stress-Reducing Design",
-      description: "Calming color palette, clear visual hierarchy reducing decision fatigue, positive reinforcement, and emergency contact resources.",
-      icon: Heart
+      title: "Information Silos",
+      description: "Important details about children's needs, activities, and wellbeing not shared between parents effectively.",
+      icon: <Shield className="h-8 w-8" />
     }
   ];
 
-  const processSteps = [
+  const coordinationFeatures = [
     {
-      week: "Week 1-2",
-      title: "Discovery & Sensitive User Research",
-      description: "Conducted interviews with divorced/separated parents and AI-powered analysis of co-parenting communication patterns to identify emotional stress points."
+      title: "Unified Communication Hub",
+      description: "All co-parenting conversations in one respectful, structured platform designed to reduce misunderstandings.",
+      visual: "💬"
     },
     {
-      week: "Week 3-4", 
-      title: "Strategic Planning & Information Architecture",
-      description: "Developed simplified user flows with conflict reduction focus, progressive onboarding strategy, and communication features with tone analysis."
+      title: "Shared Family Calendar",
+      description: "Synchronized scheduling with automatic notifications, reducing conflicts over pickup times and events.",
+      visual: "📅"
     },
     {
-      week: "Week 5-7",
-      title: "Visual Design & Prototyping", 
-      description: "Created calming, stress-reducing visual design system with interactive prototypes featuring smart scheduling and mobile-first accessibility optimization."
-    },
-    {
-      week: "Week 8-10",
-      title: "Testing & Conflict Prevention Optimization",
-      description: "Conducted usability testing with real co-parenting families and implemented AI-powered communication analysis with stress-testing of conflict scenarios."
+      title: "Expense Transparency",
+      description: "Clear tracking and splitting of child-related expenses with photo receipts and approval workflows.",
+      visual: "💰"
     }
+  ];
+
+  const familyInterface = [
+    {
+      step: "Connect",
+      title: "Respectful Communication Tools",
+      description: "Structured messaging that encourages positive, child-focused conversations between co-parents.",
+      image: "https://images.unsplash.com/photo-1516627145497-ae4120d51a1a?w=600&h=400&fit=crop"
+    },
+    {
+      step: "Coordinate",
+      title: "Shared Calendar Management", 
+      description: "Visual scheduling that prevents conflicts and keeps both parents informed about children's activities.",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop"
+    },
+    {
+      step: "Care",
+      title: "Child-Centered Information Hub",
+      description: "Medical info, school updates, and activity details accessible to both parents for better child care.",
+      image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&h=400&fit=crop"
+    },
+    {
+      step: "Celebrate",
+      title: "Positive Co-Parenting Journey",
+      description: "Tools that encourage collaboration and celebrate successful co-parenting achievements together.",
+      image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&h=400&fit=crop"
+    }
+  ];
+
+  const familyImpact = [
+    { metric: "73%", label: "Reduction in Communication Conflicts", icon: <TrendingDown className="h-6 w-6" /> },
+    { metric: "89%", label: "Improved Schedule Coordination", icon: <Calendar className="h-6 w-6" /> },
+    { metric: "94%", label: "Parent Satisfaction Rate", icon: <Heart className="h-6 w-6" /> },
+    { metric: "67%", label: "Decrease in Scheduling Disputes", icon: <CheckCircle2 className="h-6 w-6" /> }
   ];
 
   return (
     <>
       <EnhancedGlobalSeo 
-        title="Case Study: How Splittime Reduced User Onboarding Time 50% With AI-Enhanced UX"
-        description="See how AI-enhanced UX design helped Splittime reduce user onboarding by 50% and decrease support tickets by 40%. Real results from Barsky Design."
+        title="Splittime: Transforming Co-Parenting from Conflict to Collaboration"
+        description="Discover how Splittime's family-centered platform helps separated parents coordinate schedules, communicate effectively, and prioritize children's wellbeing through streamlined digital tools."
         canonicalUrl="https://barskydesign.pro/case-study-splittime"
         pageType="content"
         keywords={[
-          "Splittime case study", "AI-enhanced UX design", "co-parenting app UX", "family tech design",
-          "communication platform design", "conflict reduction UX", "family coordination app"
+          "Splittime co-parenting app", "family coordination platform", "co-parenting communication", "child custody scheduling",
+          "family management app", "parenting after separation", "family-centered design"
         ]}
       />
       
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
         <Header />
         
         <main className="flex-grow pt-20">
           
-          {/* Hero Section */}
-          <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Family Harmony Hero */}
+          <section className="family-harmony-introduction py-20 lg:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="space-y-8"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <Heart className="h-10 w-10 text-blue-600" />
+                    <span className="text-blue-700 font-semibold text-lg">Family Harmony</span>
+                  </div>
+                  
+                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-neutral-900 leading-tight">
+                    From Conflict to
+                    <span className="text-blue-600 block">Collaboration</span>
+                  </h1>
+                  
+                  <p className="text-xl text-neutral-600 leading-relaxed max-w-2xl">
+                    Splittime transforms co-parenting by centralizing communication, streamlining schedules, 
+                    and keeping children's wellbeing at the center of every interaction between separated parents.
+                  </p>
+                  
+                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 shadow-lg">
+                    <div className="flex items-start gap-4">
+                      <Baby className="h-8 w-8 text-blue-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-lg font-medium text-neutral-800 mb-2">
+                          Child-First Philosophy
+                        </p>
+                        <p className="text-neutral-600 italic">
+                          "Co-parenting tools should reduce conflict, not create more. When parents can communicate 
+                          respectfully and coordinate effectively, children thrive in both homes."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="relative"
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1516627145497-ae4120d51a1a?w=800&h=600&fit=crop" 
+                    alt="Happy family showing the positive outcomes of effective co-parenting coordination and communication"
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                  />
+                  
+                  <div className="absolute -bottom-6 -left-6 bg-blue-500 text-white p-6 rounded-2xl shadow-xl">
+                    <div className="flex items-center gap-3">
+                      <Heart className="h-6 w-6" />
+                      <div>
+                        <p className="font-semibold">Children First</p>
+                        <p className="text-sm opacity-90">Peaceful co-parenting</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur text-blue-700 p-4 rounded-2xl shadow-lg">
+                    <p className="font-semibold text-sm">Family-Centered Design</p>
+                    <p className="text-xs">Supportive & respectful</p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Co-Parenting Conflict Analysis */}
+          <section className="communication-conflict-breakdown py-20 bg-white/60 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
               >
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-                  Splittime: 50% Faster Onboarding Through AI-Enhanced Co-Parenting UX
-                </h1>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed">
-                  How intelligent coordination features and conflict-reduction design transformed family communication
-                </p>
-              </motion.div>
-
-              {/* Project Overview */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative overflow-hidden rounded-2xl bg-white border border-neutral-200 shadow-lg mb-16"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/20"></div>
-                <div className="relative p-8">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="text-center relative">
-                      <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
-                        <Users className="h-6 w-6 text-blue-vibrant" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Client</h3>
-                      <p className="text-lg font-bold text-neutral-900">Splittime</p>
-                    </div>
-                    
-                    <div className="text-center relative">
-                      <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
-                      <div className="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center mx-auto mb-4">
-                        <Smartphone className="h-6 w-6 text-purple-600" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Industry</h3>
-                      <p className="text-lg font-bold text-neutral-900">Family Tech/<br/>Communication</p>
-                    </div>
-                    
-                    <div className="text-center relative">
-                      <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
-                      <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-4">
-                        <Clock className="h-6 w-6 text-green-600" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Timeline</h3>
-                      <p className="text-lg font-bold text-neutral-900">10 weeks</p>
-                    </div>
-                    
-                    <div className="text-center relative">
-                      <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
-                      <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-                        <TrendingUp className="h-6 w-6 text-emerald-600" />
-                      </div>
-                      <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Results</h3>
-                      <p className="text-lg font-bold text-success-green">50% faster onboarding</p>
-                    </div>
-                  </div>
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <TrendingDown className="h-10 w-10 text-red-500" />
+                  <span className="text-red-600 font-semibold text-lg">Communication Breakdown</span>
                 </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Challenge Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  The Challenge
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Where Co-Parenting Communication Falls Apart
                 </h2>
-                  <div className="max-w-4xl mx-auto">
-                    <p className="text-xl text-neutral-500 leading-relaxed mb-8">
-                      Splittime needed to create a co-parenting coordination app that would reduce conflict and improve communication between separated parents. 
-                      The existing user flow was complicated, leading to user frustration and high abandonment rates during onboarding.
-                    </p>
-                    <div className="glass-card p-6 text-left">
-                      <h3 className="font-bold text-neutral-900 mb-4">Key Problems:</h3>
-                      <ul className="space-y-3">
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Complex onboarding process causing 60% user drop-off</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Confusing interface leading to miscommunication</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">High emotional stress during app usage</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Frequent support tickets from confused users</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">No intelligent conflict prevention features</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Solution Section */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  The AI-Enhanced Solution
-                </h2>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed mb-12">
-                  I designed an intuitive co-parenting platform with AI-powered conflict detection and smart scheduling features 
-                  that automatically reduce friction points between parents.
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Despite good intentions, co-parenting coordination often becomes a source of ongoing stress 
+                  rather than collaborative support for children's needs and wellbeing.
                 </p>
               </motion.div>
-
-              {/* Key Features */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
-              >
-                {keyFeatures.map((feature, index) => {
-                  const IconComponent = feature.icon;
-                  return (
+              
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <div className="space-y-8">
+                  <h3 className="text-2xl font-bold text-neutral-900">Core Communication Barriers:</h3>
+                  
+                  {conflictSources.map((source, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.1 }}
-                      className="glass-card p-6"
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-2xl border border-red-200"
                     >
-                      <IconComponent className="h-12 w-12 text-blue-vibrant mb-4" />
-                      <h3 className="text-xl font-bold text-neutral-900 mb-3">{feature.title}</h3>
-                      <p className="text-neutral-500 text-sm leading-relaxed">{feature.description}</p>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Process Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Design Process
-                </h2>
-              </motion.div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {processSteps.map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6"
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 bg-blue-vibrant text-white rounded-full flex items-center justify-center text-sm font-bold">
-                        {index + 1}
+                      <div className="flex items-start gap-4">
+                        <div className="text-red-500 flex-shrink-0">
+                          {source.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-neutral-800 mb-2">{source.title}</h4>
+                          <p className="text-neutral-600">{source.description}</p>
+                        </div>
                       </div>
-                      <span className="text-sm font-medium text-blue-vibrant">{step.week}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-neutral-900 mb-3">{step.title}</h3>
-                    <p className="text-neutral-500">{step.description}</p>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
+                
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="relative"
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1541199249251-f713e6145474?w=800&h=600&fit=crop"
+                    alt="Parent and child showing the emotional impact of communication conflicts and the need for better co-parenting coordination"
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                  />
+                  
+                  <div className="absolute top-6 left-6 bg-white/95 backdrop-blur text-red-700 p-4 rounded-xl shadow-lg">
+                    <p className="font-semibold text-sm">Current Reality</p>
+                    <p className="text-xs">Fragmented & stressful</p>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Results Section */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Coordination Solution Engine */}
+          <section className="coordination-streamlining-system py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center mb-12"
+                className="text-center mb-16"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Measurable Results
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Users className="h-10 w-10 text-blue-500" />
+                  <span className="text-blue-600 font-semibold text-lg">Coordination Solution</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Streamlined Co-Parenting Communication
                 </h2>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed">
-                  The AI-enhanced redesign delivered significant improvements in user experience and family communication within 10 weeks.
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Our platform centralizes all co-parenting coordination in one respectful space, 
+                  reducing friction and keeping children's needs at the center of every interaction.
                 </p>
               </motion.div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                {results.map((result, index) => (
+              
+              <div className="grid lg:grid-cols-3 gap-8">
+                {coordinationFeatures.map((feature, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6 text-center"
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300"
                   >
-                    <div className="flex justify-center mb-4 text-blue-vibrant">
-                      {result.icon}
-                    </div>
-                    <div className="text-3xl font-bold text-success-green mb-2">{result.metric}</div>
-                    <div className="text-sm text-neutral-500 uppercase tracking-wide">{result.label}</div>
+                    <div className="text-4xl mb-6 text-center">{feature.visual}</div>
+                    <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">{feature.title}</h3>
+                    <p className="text-neutral-600 text-center leading-relaxed">{feature.description}</p>
                   </motion.div>
                 ))}
               </div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-white text-center"
+              >
+                <h3 className="text-2xl font-bold mb-4">Conflict Reduction Approach</h3>
+                <p className="text-lg opacity-90 max-w-3xl mx-auto">
+                  By providing structure, transparency, and child-focused communication tools, 
+                  parents spend less time arguing and more time supporting their children's wellbeing.
+                </p>
+              </motion.div>
+            </div>
+          </section>
 
-              {/* Client Testimonial */}
+          {/* Family-First Interface */}
+          <section className="child-centered-platform-design py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Home className="h-10 w-10 text-green-500" />
+                  <span className="text-green-600 font-semibold text-lg">Family-First Interface</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Designed with Children's Wellbeing in Mind
+                </h2>
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Every feature prioritizes what's best for the children, making co-parenting coordination 
+                  feel supportive rather than adversarial through thoughtful, family-centered design.
+                </p>
+              </motion.div>
+              
+              <div className="grid lg:grid-cols-2 gap-8">
+                {familyInterface.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-3xl border border-blue-200"
+                  >
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-blue-600 uppercase tracking-wide">{item.step}</span>
+                        <h3 className="text-xl font-bold text-neutral-900">{item.title}</h3>
+                      </div>
+                    </div>
+                    
+                    <img 
+                      src={item.image}
+                      alt={`${item.title} - family-centered co-parenting platform interface`}
+                      className="w-full h-48 object-cover rounded-2xl mb-6"
+                    />
+                    
+                    <p className="text-neutral-600 leading-relaxed">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Family Impact Metrics */}
+          <section className="positive-family-outcomes py-20 bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Star className="h-10 w-10 text-yellow-500" />
+                  <span className="text-yellow-600 font-semibold text-lg">Positive Family Outcomes</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Measurable Improvements in Family Harmony
+                </h2>
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-12">
+                  Real families report significant reductions in co-parenting conflicts and improvements 
+                  in communication, coordination, and overall satisfaction with their co-parenting relationship.
+                </p>
+              </motion.div>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                {familyImpact.map((impact, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-blue-200"
+                  >
+                    <div className="flex justify-center mb-4 text-blue-500">
+                      {impact.icon}
+                    </div>
+                    <div className="text-4xl font-bold text-blue-600 mb-2">{impact.metric}</div>
+                    <div className="text-sm text-neutral-600 uppercase tracking-wide">{impact.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Family Success Story */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="glass-card-elevated p-8 text-center max-w-4xl mx-auto"
+                className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-blue-200 shadow-xl"
               >
-                <p className="text-xl text-neutral-500 italic mb-6 leading-relaxed">
-                  "Hiram understood the emotional complexity of co-parenting and designed an app that actually reduces stress instead of adding to it. 
-                  The AI-powered conflict prevention has been a game-changer for our families."
-                </p>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-12 bg-neutral-200 rounded-full"></div>
+                <div className="mb-8">
+                  <Heart className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+                  <p className="text-2xl text-neutral-700 italic leading-relaxed mb-6">
+                    "Splittime changed everything for our family. Instead of constant arguments about schedules, 
+                    we now coordinate seamlessly. Our kids see us working together, not fighting. 
+                    This app gave us our peace back."
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-center gap-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
                   <div className="text-left">
-                    <p className="font-bold text-neutral-900">Mike Rodriguez</p>
-                    <p className="text-sm text-neutral-500">CTO, Splittime</p>
+                    <p className="font-bold text-neutral-900 text-lg">Sarah & Michael</p>
+                    <p className="text-blue-600 font-medium">Co-parents of two</p>
+                    <p className="text-sm text-neutral-500">Using Splittime for 18 months</p>
                   </div>
                 </div>
               </motion.div>
             </div>
           </section>
 
-          {/* Technologies Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Call to Action */}
+          <section className="py-20 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 text-white">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-8">
-                  Technologies Used
-                </h2>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {[
-                    "Figma for sensitive user experience design",
-                    "React for responsive web application", 
-                    "AI communication analysis tools",
-                    "Claude AI for user research synthesis",
-                    "Calendar API integrations",
-                    "Accessibility-first design principles"
-                  ].map((tech, index) => (
-                    <span key={index} className="bg-blue-50 text-blue-accent px-4 py-2 rounded-full text-sm font-medium">
-                      {tech}
-                    </span>
-                  ))}
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Heart className="h-10 w-10" />
+                  <span className="font-semibold text-lg">Supporting Families</span>
                 </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="py-16 bg-gradient-to-br from-blue-50 to-neutral-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Ready to Create User Experiences That Reduce Friction?
+                
+                <h2 className="text-4xl sm:text-5xl font-bold mb-8">
+                  Ready to Transform Family Coordination?
                 </h2>
-                <p className="text-xl text-neutral-500 mb-8 leading-relaxed">
-                  Get a free consultation and discover how AI-enhanced UX can solve your most complex user challenges.
+                
+                <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                  Let's create digital experiences that support families through life transitions. 
+                  Your family-centered platform deserves the same thoughtful, empathetic approach.
                 </p>
+                
                 <Button 
-                  className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-4 px-8 text-lg group"
-                  onClick={() => window.location.href = '/free-audit'}
+                  size="lg"
+                  variant="default"
+                  className="font-semibold px-10 py-6 text-lg group"
+                  onClick={() => window.location.href = '/contact'}
                 >
-                  Get Your Free Audit
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  Start Your Family Project
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
             </div>
