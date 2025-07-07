@@ -17,6 +17,8 @@ const imageMapping: Record<string, string> = {
   // Herbalink-specific features
   "trust-building verification": "/lovable-uploads/9fdc648a-10a5-4064-b579-b5decbe2da4d.png",
   "practitioner credentials": "/lovable-uploads/b80704a1-be0a-449f-8f1e-fac0c50daa5d.png",
+  "streamlined booking flow": "/lovable-uploads/6c674eda-d6fd-4603-81c2-87f2d202dbc3.png",
+  "reduced friction": "/lovable-uploads/6c674eda-d6fd-4603-81c2-87f2d202dbc3.png",
   "ai-powered herbalist matching": "/lovable-uploads/da41f3f1-3e1c-4300-83dc-d8a72c1d6831.png",
   "symptoms and preferences": "/lovable-uploads/d6c83a40-3d29-41c5-a4fd-1edf94a20375.png",
   "mobile-first interface": "/lovable-uploads/f0a13f3a-d111-4f75-962f-9c3d0f7e32a4.png",
