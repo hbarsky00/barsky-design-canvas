@@ -4,7 +4,7 @@ import { ProjectDetails } from "../types/project";
 export const gold2cryptoDetails: ProjectDetails = {
   challenge: "Traditional gold investors wanted to enter the cryptocurrency market but lacked a trusted platform that understood their investment mindset. Existing crypto platforms were too complex and intimidating for investors accustomed to the stability of gold.",
 
-  process: "I conducted research with gold investors, financial advisors, and crypto experts to understand traditional investors' concerns. I developed user flows that mirrored familiar investment processes and created educational content that drew parallels between gold and cryptocurrency.",
+  process: "Research and Discovery:\nI conducted research with gold investors, financial advisors, and crypto experts to understand traditional investors' concerns and barriers to entering the cryptocurrency market.\n\nI developed user flows that mirrored familiar investment processes and created educational content that drew parallels between gold and cryptocurrency.",
 
   result: "Gold2Crypto successfully onboarded over 2,000 traditional gold investors into cryptocurrency trading within six months. The platform achieved a 95% user satisfaction rate and reduced investment anxiety by 60%.",
 

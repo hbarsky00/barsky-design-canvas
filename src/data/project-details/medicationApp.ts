@@ -4,7 +4,7 @@ import { ProjectDetails } from "../types/project";
 export const medicationAppDetails: ProjectDetails = {
   challenge: "Diabetic patients struggled with complex medication schedules and frequent appointments, leading to poor adherence and missed medical visits. Existing solutions were either too complex for daily use or lacked comprehensive diabetes management features.",
 
-  process: "I conducted user research with diabetic patients and healthcare providers to understand pain points. Through iterative design and testing, I created an intuitive interface that simplifies medication tracking while maintaining medical-grade accuracy.",
+  process: "Research and Discovery:\nI conducted comprehensive user research with diabetic patients and healthcare providers to understand pain points in medication management. Through iterative design and testing, I created an intuitive interface that simplifies medication tracking while maintaining medical-grade accuracy.",
 
   result: "85% improvement in medication adherence and 70% reduction in missed appointments among beta users. The clean, accessible design successfully bridges the gap between patients and healthcare providers.",
 

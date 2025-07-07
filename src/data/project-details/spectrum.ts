@@ -4,7 +4,7 @@ import { ProjectDetails } from "../types/project";
 export const spectrumDetails: ProjectDetails = {
   challenge: "Spectrum Apparel needed a modern e-commerce platform that could showcase custom apparel design capabilities while providing an intuitive shopping experience. The platform needed to handle both pre-designed products and custom design requests while being accessible to users with varying design experience.",
 
-  process: "I conducted user research with both casual customers and professional designers to understand different use cases. I developed wireframes that separated basic customization from advanced design tools, ensuring each user type had an appropriate experience with comprehensive accessibility testing.",
+  process: "Research and Discovery:\nI conducted user research with both casual customers and professional designers to understand different use cases and accessibility needs.\n\nI developed wireframes that separated basic customization from advanced design tools, ensuring each user type had an appropriate experience with comprehensive accessibility testing.",
 
   result: "The Spectrum Apparel platform launched successfully with both basic customization and advanced design tools, resulting in a 60% increase in custom orders and 40% improvement in customer satisfaction. The accessibility-focused design ensured usability for customers with visual impairments.",
 
