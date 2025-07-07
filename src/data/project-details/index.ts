@@ -8,12 +8,14 @@ import { gold2cryptoDetails } from "./gold2crypto";
 import { barskyjointDetails } from "./barskyjoint";
 import { spectrumDetails } from "./spectrum";
 import { medicationAppDetails } from "./medicationApp";
+import { wholesaleDistributionDetails } from "./wholesaleDistribution";
 
 export const projectDetails: Record<string, ProjectDetails> = {
   "medication-app": medicationAppDetails,
   "investor-loan-app": investorLoanAppDetails,
   "dae-search": daeSearchDetails,
   "splittime": splittimeDetails,
+  "wholesale-distribution": wholesaleDistributionDetails,
   "herbalink": herbalinkDetails,
   "gold2crypto": gold2cryptoDetails,
   "barskyjoint": barskyjointDetails,

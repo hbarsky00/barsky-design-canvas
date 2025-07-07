@@ -36,6 +36,14 @@ export const projectsData: ProjectProps[] = [
     featured: false,
   },
   {
+    id: "wholesale-distribution",
+    title: "Wholesale Distribution Management App",
+    description: "AI-powered business solution transforming restaurant conversation into custom development. Achieved 70% reduction in manual tasks through intelligent automation and streamlined workflows.",
+    image: "/lovable-uploads/placeholder-hero.png",
+    tags: ["Product Design", "AI Development", "Business Automation", "Custom Development", "Workflow Optimization"],
+    featured: true,
+  },
+  {
     id: "portfolio-website",
     title: "Portfolio Website",
     description: "A modern, responsive portfolio website showcasing design work and professional achievements.",
