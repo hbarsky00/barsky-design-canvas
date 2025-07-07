@@ -28,6 +28,8 @@ import MvpValidation from "@/pages/services/MvpValidation";
 import ConversionAudit from "@/pages/services/ConversionAudit";
 import AiRedesign from "@/pages/services/AiRedesign";
 import LinkedInVisitors from "@/pages/LinkedInVisitors";
+import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
+import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -69,6 +71,8 @@ function App() {
               <Route path="/services/conversion-audit" element={<ConversionAudit />} />
               <Route path="/services/ai-redesign" element={<AiRedesign />} />
               <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
+              <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
+              <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
