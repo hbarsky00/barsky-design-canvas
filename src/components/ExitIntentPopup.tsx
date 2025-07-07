@@ -72,14 +72,10 @@ const ExitIntentPopup: React.FC = () => {
                 <X className="h-6 w-6" />
               </button>
               
-              <div className="flex items-center justify-center gap-3 mb-2">
+              <div className="flex items-center justify-center gap-3 mb-4">
                 <Sparkles className="h-8 w-8 text-white" />
-                <h2 className="text-2xl font-bold text-white drop-shadow-sm">Wait! Don't Miss This...</h2>
+                <h2 className="text-2xl font-bold text-white text-center drop-shadow-sm">Wait! Don't Miss This...</h2>
               </div>
-              
-              <p className="text-white text-center drop-shadow-sm">
-                Before you go, let me help you identify exactly how AI can 10X your conversion rate
-              </p>
             </div>
 
             {/* Content */}
