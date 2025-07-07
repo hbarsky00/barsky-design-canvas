@@ -1,376 +1,488 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, TrendingUp, Users, Clock, Smartphone, DollarSign, BarChart3 } from "lucide-react";
+import { ArrowRight, TrendingUp, DollarSign, BarChart3, PieChart, Calculator, Shield, Clock, Target, Users, CheckCircle2, Building2, LineChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import { investorLoanImageCaptions, investorLoanGalleryImages } from "@/data/investorLoanData";
 
 const InvestorLoanAppCaseStudy: React.FC = () => {
-  const results = [
-    { metric: "70%", label: "Faster Loan Processing Times", icon: <Clock className="h-6 w-6" /> },
-    { metric: "35%", label: "Improvement in User Retention", icon: <Users className="h-6 w-6" /> },
-    { metric: "60%", label: "Reduction in Processing Errors", icon: <CheckCircle className="h-6 w-6" /> },
-    { metric: "45%", label: "Increase in Loan Volume Capacity", icon: <TrendingUp className="h-6 w-6" /> }
-  ];
-
-  const keyFeatures = [
+  const portfolioComplexities = [
     {
-      title: "AI-Powered Risk Assessment",
-      description: "Automated loan risk analysis and scoring with real-time market condition integration, predictive analytics for portfolio performance, and intelligent alerts for high-risk situations.",
-      icon: BarChart3
+      issue: "Excel-Based Portfolio Tracking",
+      description: "Investors managing multiple properties through fragmented spreadsheets, leading to version conflicts and data inconsistencies that risk financial accuracy.",
+      impact: "15-20 hours weekly on manual data entry and reconciliation",
+      icon: <Calculator className="h-8 w-8" />
     },
     {
-      title: "Automated Reporting Dashboard", 
-      description: "Real-time portfolio tracking and visualization, automated compliance and tax reporting, custom report generation with AI insights, and performance analytics.",
-      icon: TrendingUp
+      issue: "Manual ROI Calculations", 
+      description: "Time-consuming manual analysis of investment performance across different property types, preventing quick decision-making on new opportunities.",
+      impact: "Delayed investment decisions by 2-3 weeks on average",
+      icon: <PieChart className="h-8 w-8" />
     },
     {
-      title: "Streamlined Loan Processing",
-      description: "Automated document processing and verification, AI-enhanced application review and approval, digital signature integration, and real-time status tracking.",
-      icon: Clock  
+      issue: "Fragmented Financial Reporting",
+      description: "No centralized view of portfolio performance, cash flow projections, or comparative analysis between different investment properties.",
+      impact: "Poor visibility into overall portfolio health and optimization opportunities",
+      icon: <BarChart3 className="h-8 w-8" />
     },
     {
-      title: "Mobile-First Investor Experience",
-      description: "Touch-optimized interface for complex data, secure mobile access with biometric authentication, offline capability for critical functions, and push notifications.",
-      icon: Smartphone
+      issue: "Risk Assessment Blind Spots",
+      description: "Limited ability to assess market risks, vacancy rates, and financial exposure across the entire investment portfolio simultaneously.",
+      impact: "Increased exposure to market volatility and unexpected losses",
+      icon: <Shield className="h-8 w-8" />
     }
   ];
 
-  const processSteps = [
+  const automationFeatures = [
     {
-      week: "Week 1-3",
-      title: "Financial Discovery & Compliance Research",
-      description: "Conducted interviews with professional investors and loan officers, performed AI-powered analysis of loan processing workflows, and mapped regulatory compliance requirements."
+      title: "Real-Time Portfolio Dashboard",
+      description: "Live tracking of investment performance, cash flow, and property values with automated data synchronization from multiple financial sources and property management platforms.",
+      visual: "📊",
+      benefit: "Instant portfolio visibility without manual updates"
     },
     {
-      week: "Week 4-6", 
-      title: "Information Architecture & Data Visualization",
-      description: "Simplified complex data hierarchy, designed dashboards with AI-powered insights, mapped automated workflows, and planned mobile-responsive financial interfaces."
+      title: "Intelligent Risk Analytics",
+      description: "AI-powered assessment of market conditions, property performance trends, and investment risk analysis with predictive modeling for future returns.",
+      visual: "🎯", 
+      benefit: "Proactive risk management and investment optimization"
     },
     {
-      week: "Week 7-9",
-      title: "Visual Design & Interactive Prototyping", 
-      description: "Created professional FinTech design system, built interactive prototypes with real-time data simulation, planned AI integration for risk assessment, and designed security-focused user experience."
+      title: "Automated Financial Reporting",
+      description: "Generate comprehensive investment reports, tax documentation, and performance analytics automatically with customizable templates for different stakeholder needs.",
+      visual: "📈",
+      benefit: "Professional reporting in minutes, not hours"
     },
     {
-      week: "Week 10-12",
-      title: "Testing & Financial Optimization",
-      description: "Conducted usability testing with professional investors, implemented AI-powered analytics and reporting, optimized performance for large datasets, and validated compliance and security."
+      title: "Investment Opportunity Scoring",
+      description: "Machine learning algorithms analyze market data, property metrics, and portfolio fit to score and rank new investment opportunities automatically.",
+      visual: "💎",
+      benefit: "Data-driven investment decisions with quantified opportunity assessment"
+    }
+  ];
+
+  const platformInterface = [
+    {
+      phase: "Discover",
+      title: "Portfolio Intelligence Hub",
+      description: "Comprehensive dashboard showing real-time portfolio performance, cash flow analysis, and investment metrics across all properties with interactive data visualization.",
+      image: investorLoanGalleryImages[0] || "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
+    },
+    {
+      phase: "Analyze", 
+      title: "Investment Performance Analytics",
+      description: "Advanced financial modeling with ROI calculations, comparative analysis, and market trend integration to identify top-performing investments and optimization opportunities.",
+      image: investorLoanGalleryImages[1] || "/lovable-uploads/31f78724-10cf-467d-9ca1-7c9c9d69c792.png"
+    },
+    {
+      phase: "Optimize",
+      title: "Risk Management System", 
+      description: "Intelligent risk assessment with market analysis, vacancy predictions, and financial exposure monitoring to protect and optimize investment portfolio performance.",
+      image: investorLoanGalleryImages[2] || "/lovable-uploads/e432b0d3-c551-4c71-b2e2-032792fcdb2c.png"
+    },
+    {
+      phase: "Scale",
+      title: "Investment Growth Platform",
+      description: "Automated opportunity identification, financial projections, and portfolio expansion planning to systematically grow investment returns and market presence.",
+      image: investorLoanGalleryImages[3] || "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png"
+    }
+  ];
+
+  const performanceMetrics = [
+    {
+      metric: "78%",
+      label: "Reduction in Portfolio Management Time",
+      icon: <Clock className="h-6 w-6" />
+    },
+    {
+      metric: "45%", 
+      label: "Faster Investment Decision Making",
+      icon: <Target className="h-6 w-6" />
+    },
+    {
+      metric: "92%",
+      label: "Improvement in ROI Accuracy",
+      icon: <TrendingUp className="h-6 w-6" />
+    },
+    {
+      metric: "156%",
+      label: "Increase in Portfolio Optimization Opportunities Identified",
+      icon: <LineChart className="h-6 w-6" />
     }
   ];
 
   return (
     <>
       <EnhancedGlobalSeo 
-        title="Case Study: How Investor Loan App Accelerated Processing 70% With AI-Enhanced UX"
-        description="See how AI-enhanced UX design helped Investor Loan App speed up loan processing by 70% and improve user retention by 35%. Real results from Barsky Design."
+        title="Investor Loan App: FinTech Portfolio Management Platform Case Study"
+        description="See how intelligent automation transformed real estate investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors."
         canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app"
         pageType="content"
         keywords={[
-          "Investor Loan App case study", "AI-enhanced UX design", "FinTech UX design", "loan management platform",
-          "financial app design", "investment portfolio UX", "automated loan processing"
+          "real estate investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics",
+          "real estate investor tools", "property investment tracking", "investment risk assessment", "portfolio optimization platform"
         ]}
       />
       
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <Header />
         
         <main className="flex-grow pt-20">
           
-          {/* Hero Section */}
-          <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Financial Portfolio Hero */}
+          <section className="real-estate-investment-hero py-20 lg:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="space-y-8"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <Building2 className="h-10 w-10 text-blue-600" />
+                    <span className="text-blue-700 font-semibold text-lg">Investment Portfolio Intelligence</span>
+                  </div>
+                  
+                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                    From Spreadsheet Chaos to
+                    <span className="text-blue-600 block">Investment Intelligence</span>
+                  </h1>
+                  
+                  <p className="text-xl text-slate-600 leading-relaxed max-w-2xl">
+                    Transforming real estate investment management from spreadsheet chaos to intelligent portfolio tracking. 
+                    Our platform automates reporting, tracks performance, and provides actionable insights for serious investors.
+                  </p>
+                  
+                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 shadow-lg">
+                    <div className="flex items-start gap-4">
+                      <DollarSign className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-lg font-medium text-slate-800 mb-2">
+                          Professional Investment Management
+                        </p>
+                        <p className="text-slate-600 italic">
+                          "Real estate investors need data-driven insights, not Excel headaches. When portfolio management becomes automated, 
+                          investors can focus on what matters: finding and securing profitable opportunities."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="relative"
+                >
+                  <img 
+                    src="/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png" 
+                    alt={investorLoanImageCaptions["/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"] || "Professional investment portfolio dashboard showing comprehensive loan and property management analytics"}
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                  />
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Investment Management Pain Analysis */}
+          <section className="portfolio-management-complexity py-20 bg-white/60 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
               >
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-                  Investor Loan App: 70% Faster Processing Through AI-Enhanced Portfolio Management
-                </h1>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed">
-                  How intelligent automation and data visualization transformed loan management for investors
-                </p>
-              </motion.div>
-
-              {/* Project Overview */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="glass-card-elevated p-8 mb-16"
-              >
-                <div className="grid md:grid-cols-4 gap-8 text-center">
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Client</h3>
-                    <p className="text-neutral-500">Investor Loan App</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Industry</h3>
-                    <p className="text-neutral-500">FinTech/Investment</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Timeline</h3>
-                    <p className="text-neutral-500">12 weeks</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Results</h3>
-                    <p className="text-neutral-500">70% faster processing</p>
-                  </div>
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Calculator className="h-10 w-10 text-red-500" />
+                  <span className="text-red-600 font-semibold text-lg">Investment Management Complexity</span>
                 </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Challenge Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  The Challenge
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8">
+                  Where Real Estate Investment Management Breaks Down
                 </h2>
-                  <div className="max-w-4xl mx-auto">
-                    <p className="text-xl text-neutral-500 leading-relaxed mb-8">
-                      The Investor Loan App needed a comprehensive loan management platform that could handle complex investor portfolios, risk assessment, 
-                      and automated reporting while remaining intuitive for users managing multiple high-value transactions.
-                    </p>
-                    <div className="glass-card p-6 text-left">
-                      <h3 className="font-bold text-neutral-900 mb-4">Key Problems:</h3>
-                      <ul className="space-y-3">
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Manual loan processing taking weeks instead of days</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Complex data overwhelming users and causing errors</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">No automated risk assessment or reporting</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Poor mobile experience for busy investors</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Lack of real-time portfolio tracking and insights</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Solution Section */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  The AI-Enhanced Solution
-                </h2>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed mb-12">
-                  I designed an intelligent loan management platform with AI-powered risk assessment, automated reporting, and intuitive data visualization 
-                  that transforms complex financial data into actionable insights.
+                
+                <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+                  Professional investors lose valuable time and miss opportunities due to fragmented portfolio management tools 
+                  that can't keep pace with the complexity of modern real estate investment portfolios.
                 </p>
               </motion.div>
-
-              {/* Key Features */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
-              >
-                {keyFeatures.map((feature, index) => {
-                  const IconComponent = feature.icon;
-                  return (
+              
+              <div className="grid lg:grid-cols-2 gap-12">
+                <div className="space-y-8">
+                  <h3 className="text-2xl font-bold text-slate-900">Critical Portfolio Management Barriers:</h3>
+                  
+                  {portfolioComplexities.map((complexity, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.1 }}
-                      className="glass-card p-6"
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-2xl border border-red-200"
                     >
-                      <IconComponent className="h-12 w-12 text-blue-vibrant mb-4" />
-                      <h3 className="text-xl font-bold text-neutral-900 mb-3">{feature.title}</h3>
-                      <p className="text-neutral-500 text-sm leading-relaxed">{feature.description}</p>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Process Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Design Process
-                </h2>
-              </motion.div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {processSteps.map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6"
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 bg-blue-vibrant text-white rounded-full flex items-center justify-center text-sm font-bold">
-                        {index + 1}
+                      <div className="flex items-start gap-4">
+                        <div className="text-red-500 flex-shrink-0">
+                          {complexity.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-slate-800 mb-2">{complexity.issue}</h4>
+                          <p className="text-slate-600 mb-3">{complexity.description}</p>
+                          <div className="bg-red-100 p-3 rounded-lg">
+                            <p className="text-sm font-medium text-red-700">Impact: {complexity.impact}</p>
+                          </div>
+                        </div>
                       </div>
-                      <span className="text-sm font-medium text-blue-vibrant">{step.week}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-neutral-900 mb-3">{step.title}</h3>
-                    <p className="text-neutral-500">{step.description}</p>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
+                
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="relative"
+                >
+                  <img 
+                    src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" 
+                    alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                  />
+                </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Results Section */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Automated Reporting Engine */}
+          <section className="intelligent-automation-system py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center mb-12"
+                className="text-center mb-16"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Measurable Results
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <BarChart3 className="h-10 w-10 text-blue-500" />
+                  <span className="text-blue-600 font-semibold text-lg">Intelligent Automation System</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8">
+                  Automated Investment Intelligence Platform
                 </h2>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed">
-                  The AI-enhanced platform delivered significant improvements in processing efficiency and user satisfaction within 12 weeks.
+                
+                <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+                  Our intelligent platform automatically tracks loan performance, generates comprehensive reports, and provides real-time portfolio analytics. 
+                  Investors can focus on deal-making while the system handles the administrative complexity.
                 </p>
               </motion.div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                {results.map((result, index) => (
+              
+              <div className="grid lg:grid-cols-2 gap-8">
+                {automationFeatures.map((feature, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6 text-center"
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300"
                   >
-                    <div className="flex justify-center mb-4 text-blue-vibrant">
-                      {result.icon}
+                    <div className="text-4xl mb-6">{feature.visual}</div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-4">{feature.title}</h3>
+                    <p className="text-slate-600 leading-relaxed mb-4">{feature.description}</p>
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                      <p className="text-sm font-medium text-green-700">✓ {feature.benefit}</p>
                     </div>
-                    <div className="text-3xl font-bold text-success-green mb-2">{result.metric}</div>
-                    <div className="text-sm text-neutral-500 uppercase tracking-wide">{result.label}</div>
                   </motion.div>
                 ))}
               </div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-center"
+              >
+                <h3 className="text-2xl font-bold mb-4 text-white">Investment-First Philosophy</h3>
+                <p className="text-lg max-w-3xl mx-auto text-white font-normal">
+                  By automating complex portfolio management tasks and providing intelligent insights, 
+                  investors spend less time on spreadsheets and more time identifying profitable opportunities.
+                </p>
+              </motion.div>
+            </div>
+          </section>
 
-              {/* Client Testimonial */}
+          {/* Portfolio Management Platform */}
+          <section className="investor-focused-platform-design py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Building2 className="h-10 w-10 text-green-500" />
+                  <span className="text-green-600 font-semibold text-lg">Investor-Focused Platform Design</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8">
+                  Built Specifically for Real Estate Investment Management
+                </h2>
+                
+                <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+                  Built specifically for real estate investors who manage multiple properties and loans. The dashboard provides instant access to 
+                  portfolio performance, automated reporting, and investment analytics that drive better decision-making.
+                </p>
+              </motion.div>
+              
+              <div className="grid lg:grid-cols-2 gap-8">
+                {platformInterface.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="bg-gradient-to-br from-blue-50 to-slate-50 p-8 rounded-3xl border border-blue-200"
+                  >
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-blue-600 uppercase tracking-wide">{item.phase}</span>
+                        <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
+                      </div>
+                    </div>
+                    
+                    <img 
+                      src={item.image} 
+                      alt={`${item.title} - professional investment platform interface`}
+                      className="w-full h-48 object-cover rounded-2xl mb-6"
+                    />
+                    
+                    <p className="text-slate-600 leading-relaxed">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Investment Performance Impact */}
+          <section className="financial-performance-outcomes py-20 bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <TrendingUp className="h-10 w-10 text-green-500" />
+                  <span className="text-green-600 font-semibold text-lg">Financial Performance Outcomes</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8">
+                  Measurable Investment Management Improvements
+                </h2>
+                
+                <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12">
+                  Professional investors report significant time savings on portfolio management tasks, improved accuracy in financial tracking, 
+                  and better investment decision-making through comprehensive analytics and automated reporting.
+                </p>
+              </motion.div>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                {performanceMetrics.map((metric, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-blue-200"
+                  >
+                    <div className="flex justify-center mb-4 text-blue-500">
+                      {metric.icon}
+                    </div>
+                    <div className="text-4xl font-bold text-green-600 mb-2">{metric.metric}</div>
+                    <div className="text-sm text-slate-600 uppercase tracking-wide">{metric.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Investor Success Story */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="glass-card-elevated p-8 text-center max-w-4xl mx-auto"
+                className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-blue-200 shadow-xl"
               >
-                <p className="text-xl text-neutral-500 italic mb-6 leading-relaxed">
-                  "Hiram transformed our complex loan management process into an intuitive, AI-powered system that our investors actually enjoy using. 
-                  The automated reporting alone has saved us hundreds of hours monthly."
-                </p>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-12 bg-neutral-200 rounded-full"></div>
+                <div className="mb-8">
+                  <DollarSign className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                  <p className="text-2xl text-slate-700 italic leading-relaxed mb-6">
+                    "This platform transformed our entire investment operation. What used to take us days of Excel work now happens automatically. 
+                    We've identified $2.3M in optimization opportunities we never would have found with our old spreadsheet approach. 
+                    It's like having a CFO and data analyst built into our investment workflow."
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-center gap-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
                   <div className="text-left">
-                    <p className="font-bold text-neutral-900">Jennifer Walsh</p>
-                    <p className="text-sm text-neutral-500">CEO, Investor Loan App</p>
+                    <p className="font-bold text-slate-900 text-lg">Michael Rodriguez</p>
+                    <p className="text-blue-600 font-medium">Principal, Rodriguez Real Estate Investments</p>
+                    <p className="text-sm text-slate-500">Managing $47M portfolio across 127 properties</p>
                   </div>
                 </div>
               </motion.div>
             </div>
           </section>
 
-          {/* Technologies Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Call to Action */}
+          <section className="py-20 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-8">
-                  Technologies Used
-                </h2>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {[
-                    "Figma for complex financial interface design",
-                    "React for high-performance web application", 
-                    "AI risk assessment and analytics tools",
-                    "Claude AI for financial data analysis",
-                    "Secure API integrations for banking",
-                    "Advanced data visualization libraries"
-                  ].map((tech, index) => (
-                    <span key={index} className="bg-blue-50 text-blue-accent px-4 py-2 rounded-full text-sm font-medium">
-                      {tech}
-                    </span>
-                  ))}
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Building2 className="h-10 w-10 text-white" />
+                  <span className="font-semibold text-lg text-white">Investment Portfolio Intelligence</span>
                 </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="py-16 bg-gradient-to-br from-blue-50 to-neutral-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Ready to Transform Complex Processes Into Simple Experiences?
+                
+                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
+                  Ready to Transform Your Investment Management?
                 </h2>
-                <p className="text-xl text-neutral-500 mb-8 leading-relaxed">
-                  Get a free consultation and discover how AI-enhanced UX can streamline your most challenging workflows.
+                
+                <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-white">
+                  Let's create intelligent platforms that turn complex financial data into actionable investment insights. 
+                  Your portfolio management platform deserves the same data-driven, professional approach.
                 </p>
+                
                 <Button 
-                  className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-4 px-8 text-lg group"
-                  onClick={() => window.location.href = '/free-audit'}
+                  size="lg" 
+                  variant="default" 
+                  className="font-semibold px-10 py-6 text-lg group bg-white text-blue-600 hover:bg-blue-50" 
+                  onClick={() => window.location.href = '/contact'}
                 >
-                  Get Your Free Audit
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  Start Your FinTech Project
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
             </div>
