@@ -125,7 +125,7 @@ const ExitIntentPopup: React.FC = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col gap-3">
-                <Button onClick={handleGetAudit} className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-semibold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300 text-slate-50">
+                <Button onClick={handleGetAudit} className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-semibold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300 text-white">
                   Get My Free AI+UX Audit
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
