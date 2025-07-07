@@ -153,19 +153,19 @@ const SplittimeCaseStudy: React.FC = () => {
                     className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
                   />
                   
-                  <div className="absolute -bottom-6 -left-6 bg-blue-500 text-white p-6 rounded-2xl shadow-xl">
-                    <div className="flex items-center gap-3">
-                      <Heart className="h-6 w-6" />
+                  <div className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-3 rounded-xl shadow-lg hidden md:block">
+                    <div className="flex items-center gap-2">
+                      <Heart className="h-4 w-4" />
                       <div>
-                        <p className="font-semibold">Children First</p>
-                        <p className="text-sm opacity-90">Peaceful co-parenting</p>
+                        <p className="font-medium text-sm">Children First</p>
+                        <p className="text-xs opacity-90">Peaceful co-parenting</p>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur text-blue-700 p-4 rounded-2xl shadow-lg">
-                    <p className="font-semibold text-sm">Family-Centered Design</p>
-                    <p className="text-xs">Supportive & respectful</p>
+                  <div className="absolute -top-3 -right-3 bg-white/90 backdrop-blur text-blue-700 p-3 rounded-xl shadow-lg hidden md:block">
+                    <p className="font-medium text-xs">Family-Centered Design</p>
+                    <p className="text-xs opacity-75">Supportive & respectful</p>
                   </div>
                 </motion.div>
               </div>
