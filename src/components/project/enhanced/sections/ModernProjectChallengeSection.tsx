@@ -130,7 +130,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
           {/* Additional challenge context between image rows */}
           <div className="mt-8 mb-8">
             <ProjectContentBox>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-xl font-semibold text-blue-900 mb-4">
                 Building Trust in a Skeptical Market
               </h3>
               <p className="text-gray-700 leading-relaxed">

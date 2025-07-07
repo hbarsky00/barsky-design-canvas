@@ -16,7 +16,7 @@ const ProjectContentBox: React.FC<ProjectContentBoxProps> = ({
     <div className={cn("p-6 bg-blue-50/50 border border-blue-100", className)}>
       <div className="prose prose-lg text-gray-700 leading-relaxed">
         {title && (
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+          <h3 className="text-xl font-semibold text-blue-900 mb-4">
             <strong>{title}</strong>
           </h3>
         )}
