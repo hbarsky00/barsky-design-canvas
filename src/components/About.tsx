@@ -1,6 +1,6 @@
 
 import React from "react";
-import { CheckCircle, Target, Users, Lightbulb, Search, TrendingUp, Zap, Award } from "lucide-react";
+import { CheckCircle, Target, Users, Lightbulb, Search, TrendingUp, Zap, Award, ArrowRight } from "lucide-react";
 
 const achievements = [
   "40%+ conversion rate improvements (verified across 47 client projects)",
@@ -54,11 +54,32 @@ const About: React.FC = () => {
               ))}
             </div>
             
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+            {/* Strategic CTA */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg">
+              <h3 className="font-bold mb-3">Ready to Transform Your Business?</h3>
+              <p className="mb-4 text-blue-100">
+                Join 47+ successful projects that achieved 40%+ conversion improvements through AI-enhanced UX design.
+              </p>
+              <button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
+              >
+                Get Free Strategy Session
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+            
+            <div className="mt-6 p-6 bg-gray-50 rounded-lg">
               <h3 className="font-bold text-barsky-dark mb-2">Contact Information:</h3>
               <p className="text-barsky-text">
-                <span className="font-medium">Email:</span> hbarsky01@gmail.com<br/>
-                <span className="font-medium">Phone:</span> (201) 668-4754
+                <span className="font-medium">Email:</span> hello@barskydesign.pro<br/>
+                <span className="font-medium">Phone:</span> (201) 668-4754<br/>
+                <span className="font-medium">Response Time:</span> 24 hours guaranteed
               </p>
             </div>
           </div>

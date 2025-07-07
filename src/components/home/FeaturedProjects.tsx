@@ -28,13 +28,31 @@ const FeaturedProjects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Featured Projects
+            Proven Results: 40%+ Conversion Improvements
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Explore my portfolio of Product Design, UX/UI and Generative AI Development work. 
-            Each project reflects a user-centered design approach, encompassing research, ideation, 
-            design, and development implementation.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+            Real case studies showing how AI-enhanced UX design delivers measurable ROI for startups and enterprises. 
+            Each project combines traditional UX research with Gen AI to create breakthrough results.
           </p>
+          
+          {/* ROI Metrics Bar */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto mb-8">
+            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+              <div className="text-2xl font-bold text-green-600">65%</div>
+              <div className="text-sm text-green-700">User Engagement ↑</div>
+              <div className="text-xs text-green-600">Herbalink Platform</div>
+            </div>
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div className="text-2xl font-bold text-blue-600">70%</div>
+              <div className="text-sm text-blue-700">Faster Processing</div>
+              <div className="text-xs text-blue-600">Loan Management</div>
+            </div>
+            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <div className="text-2xl font-bold text-purple-600">$2M+</div>
+              <div className="text-sm text-purple-700">Revenue Generated</div>
+              <div className="text-xs text-purple-600">Client Portfolio</div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Projects Grid - 3 columns for desktop/tablet, 1 for mobile - FULL WIDTH */}
@@ -136,23 +154,45 @@ const FeaturedProjects: React.FC = () => {
           ))}
         </div>
 
-        {/* View All Projects Button */}
+        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
+          className="text-center bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-lg"
         >
-          <Link to="/projects">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            Ready to See Similar Results for Your Business?
+          </h3>
+          <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+            Get a free consultation and discover how AI-enhanced UX can deliver 40%+ conversion improvements for your digital product.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg"
-              variant="outline"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold"
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
-              View All Projects
+              Get Free UX+AI Consultation
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-          </Link>
+            <Link to="/projects">
+              <Button 
+                size="lg"
+                variant="outline"
+                className="border-2 border-blue-500 text-blue-600 hover:bg-blue-50"
+              >
+                View All Case Studies
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>
