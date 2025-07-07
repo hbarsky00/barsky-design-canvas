@@ -35,13 +35,9 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
       transition={{ duration: 0.8, delay: 0.4 }}
       className="glass-card-elevated p-4 sm:p-8 layered-depth"
     >
-      <EnhancedContentEditor
-        content="The Result"
-        contentType="header"
-        onSave={(content) => handleSectionContentSave('result', 'title', content)}
-        className="mb-6 lg:mb-8 pt-2.5"
-        projectId={projectId}
-      />
+      <h2 className="text-3xl font-bold text-gray-900 mb-6 lg:mb-8 pt-2.5">
+        The Result
+      </h2>
       
       <div className="glass-card p-6 layered-depth bg-blue-50/50 border border-blue-100">
         <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">

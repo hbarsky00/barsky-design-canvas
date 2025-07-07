@@ -64,7 +64,7 @@ const ExitIntentPopup: React.FC = () => {
             className="bg-white rounded-xl shadow-2xl max-w-lg w-full mx-4 overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 relative">
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 pt-8 relative text-center">
               <button
                 onClick={handleClose}
                 className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
@@ -72,9 +72,9 @@ const ExitIntentPopup: React.FC = () => {
                 <X className="h-6 w-6" />
               </button>
               
-              <div className="flex items-center gap-3 mb-2">
-                <Sparkles className="h-8 w-8" />
-                <h2 className="text-2xl font-bold">Wait! Don't Miss This...</h2>
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <Sparkles className="h-8 w-8 text-white" />
+                <h2 className="text-2xl font-bold text-white">Wait! Don't Miss This...</h2>
               </div>
               
               <p className="text-blue-100">
