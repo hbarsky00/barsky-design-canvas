@@ -22,7 +22,7 @@ export const medicationAppDetails: ProjectDetails = {
 
   duration: "1.5 years",
   client: "Healthcare Technology Startup",
-  role: "Lead UX/UI Designer",
+  role: "Lead Product Designer",
 
   // Disable AI captions - use manual captions only like SplitTime
   useAiCaptions: false,

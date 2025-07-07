@@ -1,7 +1,7 @@
 
 export const categories = [
   "All",
-  "UI/UX Design",
+  "Product Design",
   "Web Development",
   "Branding",
   "Mobile Design",

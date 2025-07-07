@@ -11,7 +11,7 @@ export const spectrumDetails: ProjectDetails = {
   technologies: ["E-commerce Platform", "Custom Design Tools", "Accessibility Standards", "Content Management", "Manufacturing Integration", "Real-time Preview", "Blog Platform", "SEO Optimization"],
   duration: "1.5 years",
   client: "Spectrum Apparel",
-  role: "UX/UI Designer & Accessibility Specialist",
+  role: "Product Designer & Accessibility Specialist",
 
   // Disable AI captions - use manual captions only
   useAiCaptions: false,

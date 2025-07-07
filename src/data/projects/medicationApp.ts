@@ -15,5 +15,5 @@ export const herbalinkProject: ProjectProps = {
   title: "HerbaLink - Herbal Medicine Platform",
   description: "A comprehensive platform connecting patients with certified herbalists for personalized herbal medicine consultations and treatments.",
   image: "/lovable-uploads/6c4ed77d-1ea7-4da1-8c3e-ad25cd792518.png",
-  tags: ["UX/UI Design", "Healthcare", "Mobile App", "Wellness"]
+  tags: ["Product Design", "Healthcare", "Mobile App", "Wellness"]
 };

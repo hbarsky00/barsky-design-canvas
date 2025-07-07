@@ -10,7 +10,7 @@ export const barskyjointDetails: ProjectDetails = {
   technologies: ["React Native", "Web App", "GPS Tracking", "Mobile Ordering", "Reservation System", "Payment Integration", "Real-time Updates", "Restaurant Management"],
   duration: "1.5 years",
   client: "Barsky Joint Restaurant Group",
-  role: "Lead UX/UI Designer",
+  role: "Lead Product Designer",
   projectLink: "https://barskyjoint.biz",
 
   // Disable AI captions - use manual captions only

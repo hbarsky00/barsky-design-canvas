@@ -10,7 +10,7 @@ export const investorLoanAppDetails: ProjectDetails = {
   technologies: ["User Research", "Figma", "Balsamiq", "AG Grid", "Predictive AI Search", "Banking UI/UX", "Financial Data Visualization", "Excel Automation", "Order Management Systems"],
   duration: "1.5 years",
   client: "Private Banking Institution",
-  role: "Lead UX/UI Designer & Product Strategist",
+  role: "Lead Product Designer & Product Strategist",
   
   imageConfig: {
     process: {

@@ -10,7 +10,7 @@ export const daeSearchDetails: ProjectDetails = {
   technologies: ["Enterprise Search", "Data Catalog Systems", "Predictive AI", "React", "TypeScript", "Advanced Filtering", "User Experience Design", "Information Architecture"],
   duration: "1.5 years",
   client: "Enterprise Data Platform",
-  role: "Senior UX/UI Designer",
+  role: "Senior Product Designer",
   
   // Disable AI captions - use manual captions only
   useAiCaptions: false,

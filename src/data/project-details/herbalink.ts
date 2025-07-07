@@ -10,7 +10,7 @@ export const herbalinkDetails: ProjectDetails = {
   technologies: ["React", "Node.js", "MongoDB", "Video Conferencing API", "Payment Processing", "Content Management", "Mobile Responsive Design", "Healthcare Compliance"],
   duration: "1 year to present",
   client: "Alternative Medicine Startup",
-  role: "Lead UX/UI Designer & Product Strategist",
+  role: "Lead Product Designer & Product Strategist",
   projectLink: "https://herbalink.live",
 
   // Disable AI captions - use manual captions only

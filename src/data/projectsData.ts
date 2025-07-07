@@ -7,7 +7,7 @@ export const projectsData: ProjectProps[] = [
     title: "HerbaLink - Herbal Medicine Platform",
     description: "47% increase in consultation bookings through AI-enhanced UX research and trust-building design. Mobile-first platform connecting users with certified herbalists in the $8.2B wellness market.",
     image: "/lovable-uploads/6c4ed77d-1ea7-4da1-8c3e-ad25cd792518.png",
-    tags: ["UX/UI Design", "Healthcare", "Mobile App", "Wellness"],
+    tags: ["Product Design", "Healthcare", "Mobile App", "Wellness"],
     featured: true,
   },
   {
@@ -23,7 +23,7 @@ export const projectsData: ProjectProps[] = [
     title: "Splittime - Co-Parenting Coordination App",
     description: "AI-enhanced co-parenting platform that reduces conflict by 52% through emotionally intelligent design and neutral communication tools.",
     image: "/lovable-uploads/028009a0-8ed7-4cf1-9155-1269a756bcb1.png",
-    tags: ["UX/UI Design", "AI Integration", "Family Tech", "Mobile App", "Conflict Resolution"],
+    tags: ["Product Design", "AI Integration", "Family Tech", "Mobile App", "Conflict Resolution"],
     featured: true,
     link: "http://splittime.pro"
   },
