@@ -84,9 +84,23 @@ const ExitIntentPopup: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   Get Your FREE AI+UX Audit
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   I'll personally analyze your digital product and show you specific opportunities for 40%+ improvement
                 </p>
+                
+                {/* Compact analysis preview image */}
+                <div className="relative mb-4">
+                  <img 
+                    src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center"
+                    alt="UX analysis dashboard preview"
+                    className="w-full h-32 object-cover rounded-lg shadow-md"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center">
+                    <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-800">
+                      AI-Powered Analysis Preview
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Benefits */}
