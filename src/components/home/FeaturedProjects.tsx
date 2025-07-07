@@ -153,47 +153,6 @@ const FeaturedProjects: React.FC = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-lg"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Ready to See Similar Results for Your Business?
-          </h3>
-          <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-            Get a free consultation and discover how AI-enhanced UX can deliver 40%+ conversion improvements for your digital product.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold"
-              onClick={() => {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              Get Free UX+AI Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Link to="/projects">
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-2 border-blue-500 text-blue-600 hover:bg-blue-50"
-              >
-                View All Case Studies
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
