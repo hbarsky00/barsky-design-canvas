@@ -88,7 +88,6 @@ export const herbalinkDetails: ProjectDetails = {
   processGalleryImages: [],
   resultGalleryImages: [
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
-    "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
-    "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png"
+    "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png"
   ]
 };
