@@ -77,7 +77,7 @@ const ExitIntentPopup: React.FC = () => {
                 <h2 className="text-2xl font-bold text-white">Wait! Don't Miss This...</h2>
               </div>
               
-              <p className="text-white">
+              <p className="text-white !text-white font-medium">
                 Before you go, let me help you identify exactly how AI can 10X your conversion rate
               </p>
             </div>
