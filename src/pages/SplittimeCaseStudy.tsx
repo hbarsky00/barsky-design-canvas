@@ -384,7 +384,7 @@ const SplittimeCaseStudy: React.FC = () => {
                 
                 {/* Family Harmony Image */}
                 <div className="mb-16">
-                  <img src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" alt="Happy family showing successful co-parenting collaboration and family harmony" className="w-full h-auto object-contain shadow-xl mx-auto max-w-4xl" />
+                  <img src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" alt="Happy family showing successful co-parenting collaboration and family harmony" className="w-full h-64 object-contain shadow-xl mx-auto max-w-4xl" />
                 </div>
                 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
