@@ -480,4 +480,8 @@
   .floating-element:hover {
     @apply scale-100 translate-y-0;
   }
+  
+  .force-white-text {
+    color: white !important;
+  }
 }
