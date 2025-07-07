@@ -148,7 +148,7 @@ const SplittimeCaseStudy: React.FC = () => {
                   className="relative"
                 >
                   <img 
-                    src="https://images.unsplash.com/photo-1516627145497-ae4120d51a1a?w=800&h=600&fit=crop" 
+                    src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" 
                     alt="Happy family showing the positive outcomes of effective co-parenting coordination and communication"
                     className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
                   />
