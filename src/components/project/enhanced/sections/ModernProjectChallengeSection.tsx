@@ -131,42 +131,6 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                  />
                )}
               
-              {/* Show research box after first image for investor project */}
-              {index === 0 && isInvestorProject && (
-                <ProjectContentBox title="Research & Analysis">
-                  <p>
-                    I conducted extensive research with the banking team to understand their current pain points, identifying critical issues including manual data entry errors causing compliance issues, time-consuming Excel-based tracking processes, difficulty collaborating on complex deals, limited search and filtering capabilities, and email-based communication creating information silos. Through this research, I developed three key user personas: Investment Managers who need quick access to deal information and real-time updates, Loan Officers who require efficient deal processing and client communication tools, and Compliance Officers who need accurate reporting and audit trails.
-                  </p>
-                  <p>
-                    My competitive analysis focused on existing financial platforms, with particular emphasis on Bloomberg's search functionality, which became a key inspiration for our AI-powered search feature. This analysis revealed opportunities to modernize traditional banking workflows while maintaining the professional standards and regulatory compliance requirements that are essential in the financial services industry.
-                  </p>
-                  
-                  {/* Two images side by side after research text */}
-                  {challengeImages && challengeImages.length >= 4 && (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-                      <MaximizableImage
-                        src={challengeImages[2]}
-                        alt={imageCaptions[challengeImages[2]] || 'Loan Central interface'}
-                        caption={imageCaptions[challengeImages[2]] || 'Loan Central interface'}
-                        imageList={challengeImages}
-                        currentIndex={2}
-                        projectId={projectId}
-                        className="w-full h-auto object-cover rounded-lg"
-                      />
-                      
-                      <MaximizableImage
-                        src={challengeImages[3]}
-                        alt={imageCaptions[challengeImages[3]] || 'Orderbook interface'}
-                        caption={imageCaptions[challengeImages[3]] || 'Orderbook interface'}
-                        imageList={challengeImages}
-                        currentIndex={3}
-                        projectId={projectId}
-                        className="w-full h-auto object-cover rounded-lg"
-                      />
-                    </div>
-                  )}
-                </ProjectContentBox>
-              )}
 
               {/* Show custom text after first image for Splittime project */}
               {index === 0 && isSpittimeProject && (
