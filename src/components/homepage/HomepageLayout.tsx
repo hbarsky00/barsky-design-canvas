@@ -20,6 +20,7 @@ const HomepageLayout: React.FC = () => {
       <main className="flex-grow space-y-4">
         <EnhancedHero />
         <FeaturedProjects />
+        <ServicesCallToAction />
         <ProblemSolutionSection />
         <ServicesPreviewSection />
         <About />
