@@ -522,6 +522,22 @@
   margin-bottom: 1rem !important;
 }
 
+/* NUCLEAR WHITE TEXT CLASS - MAXIMUM SPECIFICITY */
+.white-text-nuclear {
+  color: #ffffff !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  font-weight: inherit !important;
+  margin-bottom: inherit !important;
+}
+
+p.white-text-nuclear,
+div p.white-text-nuclear,
+section p.white-text-nuclear,
+[class*="bg-gradient"] p.white-text-nuclear {
+  color: #ffffff !important;
+}
+
 /* Button hover state fixes - Global */
 button[class*="bg-blue"]:hover,
 .btn:hover,
