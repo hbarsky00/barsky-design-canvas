@@ -2,7 +2,7 @@
 import { useCallback, useRef } from 'react';
 import { getImageCaption } from '@/data/imageCaptions';
 import { projectsData } from '@/data/projects/projectsList';
-import { investorLoanAppDetails } from '@/data/project-details/investorLoanApp';
+
 
 export interface CaptionIssue {
   imageSrc: string;
@@ -101,31 +101,8 @@ export const useImageScanner = () => {
       }
     });
 
-    // Specifically scan investor loan app project detailed images (if available)
-    if (investorLoanAppDetails.availableImages) {
-      console.log('🎯 Scanning investor loan app detailed images...');
-      investorLoanAppDetails.availableImages.forEach((imagePath, index) => {
-        const staticCaption = getImageCaption(imagePath);
-        const isGeneric = !staticCaption || 
-                         staticCaption === "Professional project showcase demonstrating innovative solutions and user-centered design" ||
-                         staticCaption.includes('Professional design showcase') ||
-                         staticCaption.includes('newly added') ||
-                         staticCaption.length < 20;
-        
-        if (isGeneric) {
-          const issue: CaptionIssue = {
-            imageSrc: imagePath,
-            projectId: 'investor-loan-app',
-            currentCaption: staticCaption || 'No caption',
-            issueType: (!staticCaption || staticCaption.length < 10) ? 'missing' : 'generic',
-            priority: (!staticCaption || staticCaption.length < 10) ? 1 : 2
-          };
-          
-          issues.push(issue);
-          console.log(`⚠️ Found investor project detailed image caption issue ${index + 1}: ${issue.issueType} for ${imagePath.substring(0, 30)}...`);
-        }
-      });
-    }
+    // Note: Removed detailed project scanning since we only have wholesale-distribution now
+    // and it uses the new dynamic template system
     
     // Remove duplicates and sort by priority
     const uniqueIssues = issues.filter((issue, index, self) => 
