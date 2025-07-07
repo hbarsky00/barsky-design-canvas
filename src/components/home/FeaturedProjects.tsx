@@ -55,8 +55,8 @@ const FeaturedProjects: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Projects Grid - 3 columns for desktop/tablet, 1 for mobile - FULL WIDTH */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {/* Projects Grid - 2x2 layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {displayProjects.map((project, index) => (
             <motion.div
               key={project.id}

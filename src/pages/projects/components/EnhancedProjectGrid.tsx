@@ -19,8 +19,8 @@ const EnhancedProjectGrid: React.FC<EnhancedProjectGridProps> = ({
       {/* Results Count */}
       <ProjectGridResults count={projects.length} />
 
-      {/* Projects Grid - Single Column */}
-      <div className="grid grid-cols-1 gap-8">
+      {/* Projects Grid - 2x2 layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <ProjectGridItem 
             key={project.id}
