@@ -108,23 +108,43 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
 
       {/* Two-column image row for Herbalink project */}
       {isHerbalinkProject && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-          <MaximizableImage
-            src="/lovable-uploads/a7f0be86-72db-4c00-86f7-798b641bcf7a.png"
-            alt="Herbalist consultation illustration showing the challenge of trust-building between practitioner and patient"
-            caption="Trust-building consultation process between herbalist and patient"
-            projectId={projectId}
-            className="w-full h-auto object-cover rounded-lg shadow-lg"
-          />
-          
-          <MaximizableImage
-            src="/lovable-uploads/d5720e5f-50e6-418f-ada9-6b089ae091c1.png"
-            alt="Herbalink video consultation interface showing platform functionality"
-            caption="Herbalink video consultation interface with practitioner credentials and live recommendations"
-            projectId={projectId}
-            className="w-full h-auto object-cover rounded-lg shadow-lg"
-          />
-        </div>
+        <>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+            <MaximizableImage
+              src="/lovable-uploads/a7f0be86-72db-4c00-86f7-798b641bcf7a.png"
+              alt="Herbalist consultation illustration showing the challenge of trust-building between practitioner and patient"
+              caption="Trust-building consultation process between herbalist and patient"
+              projectId={projectId}
+              className="w-full h-auto object-cover rounded-lg shadow-lg"
+            />
+            
+            <MaximizableImage
+              src="/lovable-uploads/d5720e5f-50e6-418f-ada9-6b089ae091c1.png"
+              alt="Herbalink video consultation interface showing platform functionality"
+              caption="Herbalink video consultation interface with practitioner credentials and live recommendations"
+              projectId={projectId}
+              className="w-full h-auto object-cover rounded-lg shadow-lg"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <MaximizableImage
+              src="/lovable-uploads/9fcd93b1-bcda-4b24-bfc8-f67b544b17ec.png"
+              alt="The Problem illustration showing user frustration with unreliable information, finding practitioners, tracking progress, and poor interfaces"
+              caption="Key challenges users face: unreliable information, difficulty finding practitioners, tracking progress, and poor interfaces"
+              projectId={projectId}
+              className="w-full h-auto object-cover rounded-lg shadow-lg"
+            />
+            
+            <MaximizableImage
+              src="/lovable-uploads/37dc4599-85f2-42b0-b1c9-e1c49c4006c3.png"
+              alt="HerbaLink platform overview showing cross-platform solution, reliable herbal remedies, and licensed practitioners"
+              caption="HerbaLink platform featuring wellness services, classes, and personalized consultations with certified herbalists"
+              projectId={projectId}
+              className="w-full h-auto object-cover rounded-lg shadow-lg"
+            />
+          </div>
+        </>
       )}
 
       {/* Challenge Gallery Images - for Splittime show remaining images after first two, for others show all */}
