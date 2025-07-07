@@ -5,18 +5,13 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
 const StoryDrivenProjectDetail: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
+  return <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
       <Header />
       
       {/* Back Navigation */}
       <div className="pt-20 px-4 sm:px-6 max-w-7xl mx-auto">
-        <Link 
-          to="/projects" 
-          className="inline-flex items-center text-amber-700 hover:text-amber-900 transition-colors font-medium"
-        >
+        <Link to="/projects" className="inline-flex items-center text-amber-700 hover:text-amber-900 transition-colors font-medium">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Projects
         </Link>
@@ -26,11 +21,15 @@ const StoryDrivenProjectDetail: React.FC = () => {
       <section className="py-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: -50
+          }} animate={{
+            opacity: 1,
+            x: 0
+          }} transition={{
+            duration: 0.8
+          }}>
               <div className="flex items-center gap-3 mb-6">
                 <MessageCircle className="h-8 w-8 text-amber-600" />
                 <span className="text-amber-700 font-semibold">The Story Hook</span>
@@ -49,21 +48,18 @@ const StoryDrivenProjectDetail: React.FC = () => {
               </div>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop" 
-                alt="Real conversation led to real solutions"
-                className="w-full h-[400px] object-cover rounded-3xl shadow-2xl"
-              />
-              <div className="absolute -bottom-4 -left-4 bg-amber-500 text-white p-4 rounded-2xl shadow-lg">
-                <p className="font-semibold">Real Connection</p>
-                <p className="text-sm">Over dinner conversation</p>
-              </div>
+            <motion.div initial={{
+            opacity: 0,
+            x: 50
+          }} animate={{
+            opacity: 1,
+            x: 0
+          }} transition={{
+            duration: 0.8,
+            delay: 0.2
+          }} className="relative">
+              <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop" alt="Real conversation led to real solutions" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl" />
+              
             </motion.div>
           </div>
         </div>
@@ -85,39 +81,35 @@ const StoryDrivenProjectDetail: React.FC = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Their Daily Frustrations:</h3>
-              {[
-                "Grid actions that looked clickable but did nothing (pure frustration)",
-                "Endless screens that buried simple tasks in complexity", 
-                "A system designed by people who never ran a distribution business",
-                "Paying for software that actively worked against their workflow",
-                "Hours of manual work that could be automated with basic scripts"
-              ].map((pain, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-start gap-4 bg-red-50 p-4 rounded-xl border border-red-200"
-                >
+              {["Grid actions that looked clickable but did nothing (pure frustration)", "Endless screens that buried simple tasks in complexity", "A system designed by people who never ran a distribution business", "Paying for software that actively worked against their workflow", "Hours of manual work that could be automated with basic scripts"].map((pain, index) => <motion.div key={index} initial={{
+              opacity: 0,
+              y: 20
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.5,
+              delay: index * 0.1
+            }} className="flex items-start gap-4 bg-red-50 p-4 rounded-xl border border-red-200">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-3 flex-shrink-0"></div>
                   <p className="text-gray-800">{pain}</p>
-                </motion.div>
-              ))}
+                </motion.div>)}
             </div>
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop"
-                alt="Understanding actual workflow instead of forcing users to adapt"
-                className="w-full h-[400px] object-cover rounded-2xl shadow-xl"
-              />
+            <motion.div initial={{
+            opacity: 0,
+            scale: 0.95
+          }} whileInView={{
+            opacity: 1,
+            scale: 1
+          }} viewport={{
+            once: true
+          }} transition={{
+            duration: 0.8
+          }} className="relative">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop" alt="Understanding actual workflow instead of forcing users to adapt" className="w-full h-[400px] object-cover rounded-2xl shadow-xl" />
               <div className="absolute top-4 right-4 bg-red-500 text-white p-3 rounded-xl">
                 <p className="font-semibold text-sm">Real Users</p>
                 <p className="text-xs">Real Problems</p>
@@ -141,54 +133,46 @@ const StoryDrivenProjectDetail: React.FC = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                step: "1",
-                title: "Excel Scripts",
-                description: "Started with quick automation to solve immediate pain",
-                image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
-                color: "green"
-              },
-              {
-                step: "2", 
-                title: "Custom Foundation",
-                description: "Built proper app interface on the Excel foundation",
-                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
-                color: "blue"
-              },
-              {
-                step: "3",
-                title: "AI-Enhanced Development", 
-                description: "Used AI to evolve from designer to full-stack developer",
-                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
-                color: "purple"
-              }
-            ].map((phase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="relative"
-              >
+            {[{
+            step: "1",
+            title: "Excel Scripts",
+            description: "Started with quick automation to solve immediate pain",
+            image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
+            color: "green"
+          }, {
+            step: "2",
+            title: "Custom Foundation",
+            description: "Built proper app interface on the Excel foundation",
+            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
+            color: "blue"
+          }, {
+            step: "3",
+            title: "AI-Enhanced Development",
+            description: "Used AI to evolve from designer to full-stack developer",
+            image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
+            color: "purple"
+          }].map((phase, index) => <motion.div key={index} initial={{
+            opacity: 0,
+            y: 50
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            duration: 0.8,
+            delay: index * 0.2
+          }} className="relative">
                 <div className="bg-white rounded-3xl p-6 shadow-xl border-2 border-gray-100 hover:shadow-2xl transition-all duration-300">
                   <div className={`w-12 h-12 bg-${phase.color}-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-6`}>
                     {phase.step}
                   </div>
-                  <img 
-                    src={phase.image}
-                    alt={phase.title}
-                    className="w-full h-48 object-cover rounded-2xl mb-6"
-                  />
+                  <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover rounded-2xl mb-6" />
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{phase.title}</h3>
                   <p className="text-gray-600">{phase.description}</p>
                 </div>
-                {index < 2 && (
-                  <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gray-300"></div>
-                )}
-              </motion.div>
-            ))}
+                {index < 2 && <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gray-300"></div>}
+              </motion.div>)}
           </div>
         </div>
       </section>
@@ -201,13 +185,17 @@ const StoryDrivenProjectDetail: React.FC = () => {
             <span className="text-pink-700 font-semibold">Why This Project Matters</span>
           </div>
           
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-white/60 backdrop-blur-sm rounded-3xl p-12 border border-pink-200"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          scale: 0.95
+        }} whileInView={{
+          opacity: 1,
+          scale: 1
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.8
+        }} className="bg-white/60 backdrop-blur-sm rounded-3xl p-12 border border-pink-200">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
               The Best Solutions Come from Genuine Relationships
             </h2>
@@ -251,41 +239,41 @@ const StoryDrivenProjectDetail: React.FC = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <motion.div initial={{
+            opacity: 0,
+            x: -50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            duration: 0.8
+          }}>
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-gray-900">Results That Matter:</h3>
-                {[
-                  "70% reduction in manual data entry through intelligent automation",
-                  "Eliminated daily frustration with unclickable interface elements", 
-                  "Custom solution more cost-effective than existing platform",
-                  "Ongoing partnership based on trust and delivered results"
-                ].map((result, index) => (
-                  <div key={index} className="flex items-start gap-4">
+                {["70% reduction in manual data entry through intelligent automation", "Eliminated daily frustration with unclickable interface elements", "Custom solution more cost-effective than existing platform", "Ongoing partnership based on trust and delivered results"].map((result, index) => <div key={index} className="flex items-start gap-4">
                     <div className="w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                       ✓
                     </div>
                     <p className="text-gray-700">{result}</p>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=500&fit=crop"
-                alt="Sustainable business relationships built on understanding"
-                className="w-full h-[350px] object-cover rounded-3xl shadow-2xl"
-              />
+            <motion.div initial={{
+            opacity: 0,
+            x: 50
+          }} whileInView={{
+            opacity: 1,
+            x: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            duration: 0.8,
+            delay: 0.2
+          }}>
+              <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=500&fit=crop" alt="Sustainable business relationships built on understanding" className="w-full h-[350px] object-cover rounded-3xl shadow-2xl" />
             </motion.div>
           </div>
         </div>
@@ -300,19 +288,13 @@ const StoryDrivenProjectDetail: React.FC = () => {
           <p className="text-xl mb-8 opacity-90">
             Let's start with a conversation about your real challenges, not a sales pitch.
           </p>
-          <Button 
-            size="lg"
-            variant="default"
-            className="font-semibold px-8 py-4 text-lg"
-          >
+          <Button size="lg" variant="default" className="font-semibold px-8 py-4 text-lg">
             Start the Conversation
           </Button>
         </div>
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default StoryDrivenProjectDetail;
