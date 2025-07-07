@@ -32,7 +32,16 @@ export const herbalinkDetails: ProjectDetails = {
     "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png": "Progress tracking and wellness journey visualization",
     "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png": "Healthcare compliance and trust-building features",
     "/lovable-uploads/8dd1106a-586f-4862-918b-5c7c82d24e25.png": "Local supplier integration and herb sourcing",
-    "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png": "Platform usability testing and user feedback analysis"
+    "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png": "Platform usability testing and user feedback analysis",
+    // New process images
+    "/lovable-uploads/9fdc648a-10a5-4064-b579-b5decbe2da4d.png": "Botanical specimen collection showing trust-building verification system with herbal credentials",
+    "/lovable-uploads/b80704a1-be0a-449f-8f1e-fac0c50daa5d.png": "Certified herbalist in professional workshop demonstrating practitioner credential verification",
+    "/lovable-uploads/da41f3f1-3e1c-4300-83dc-d8a72c1d6831.png": "AI-powered user interface elements for personalized herbalist matching system",
+    "/lovable-uploads/d6c83a40-3d29-41c5-a4fd-1edf94a20375.png": "Patient consultation scene showing AI-powered matching based on symptoms and preferences",
+    "/lovable-uploads/f0a13f3a-d111-4f75-962f-9c3d0f7e32a4.png": "Mobile app interface showcasing healthcare decision-making optimization and ChatGPT API integration",
+    "/lovable-uploads/625861de-fcc5-4aa3-98c8-ae385d58e3d3.png": "Tablet interface demonstrating mobile-first responsive design with accessibility focus",
+    "/lovable-uploads/02cb6dee-9823-4fbe-9509-1ec886f5c41c.png": "Advanced user journey mapping analysis and A/B testing insights for conversion optimization",
+    "/lovable-uploads/cc56049a-2a15-411a-b724-43f847005b49.png": "Complete platform overview showing cross-platform herbal wellness solution"
   },
 
   imageConfig: {
@@ -61,7 +70,16 @@ export const herbalinkDetails: ProjectDetails = {
     "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
     "/lovable-uploads/7d71035d-a0a5-4ed8-8983-7f8d6530af7f.png",
     "/lovable-uploads/8dd1106a-586f-4862-918b-5c7c82d24e25.png",
-    "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png"
+    "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png",
+    // New process images
+    "/lovable-uploads/9fdc648a-10a5-4064-b579-b5decbe2da4d.png",
+    "/lovable-uploads/b80704a1-be0a-449f-8f1e-fac0c50daa5d.png",
+    "/lovable-uploads/da41f3f1-3e1c-4300-83dc-d8a72c1d6831.png",
+    "/lovable-uploads/d6c83a40-3d29-41c5-a4fd-1edf94a20375.png",
+    "/lovable-uploads/f0a13f3a-d111-4f75-962f-9c3d0f7e32a4.png",
+    "/lovable-uploads/625861de-fcc5-4aa3-98c8-ae385d58e3d3.png",
+    "/lovable-uploads/02cb6dee-9823-4fbe-9509-1ec886f5c41c.png",
+    "/lovable-uploads/cc56049a-2a15-411a-b724-43f847005b49.png"
   ],
 
   challengeGalleryImages: [
@@ -70,6 +88,18 @@ export const herbalinkDetails: ProjectDetails = {
   ],
   processImage: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
   processBottomImage: "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
+  
+  // Enhanced process gallery with new images
+  processGalleryImages: [
+    "/lovable-uploads/9fdc648a-10a5-4064-b579-b5decbe2da4d.png", // Trust-building verification
+    "/lovable-uploads/b80704a1-be0a-449f-8f1e-fac0c50daa5d.png", // Practitioner credentials
+    "/lovable-uploads/da41f3f1-3e1c-4300-83dc-d8a72c1d6831.png", // AI-powered matching UI
+    "/lovable-uploads/d6c83a40-3d29-41c5-a4fd-1edf94a20375.png", // Consultation matching
+    "/lovable-uploads/f0a13f3a-d111-4f75-962f-9c3d0f7e32a4.png", // Mobile interface
+    "/lovable-uploads/625861de-fcc5-4aa3-98c8-ae385d58e3d3.png", // Responsive design
+    "/lovable-uploads/02cb6dee-9823-4fbe-9509-1ec886f5c41c.png", // User journey mapping
+    "/lovable-uploads/cc56049a-2a15-411a-b724-43f847005b49.png"  // Platform overview
+  ],
   resultGalleryImages: [
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
     "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
