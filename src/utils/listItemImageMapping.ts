@@ -27,8 +27,6 @@ const imageMapping: Record<string, string> = {
   "behavioral insights": "/lovable-uploads/02cb6dee-9823-4fbe-9509-1ec886f5c41c.png",
   "mobile-first responsive design": "/lovable-uploads/625861de-fcc5-4aa3-98c8-ae385d58e3d3.png",
   "accessibility focus": "/lovable-uploads/625861de-fcc5-4aa3-98c8-ae385d58e3d3.png",
-  "a/b testing": "/lovable-uploads/02cb6dee-9823-4fbe-9509-1ec886f5c41c.png",
-  "conversion points": "/lovable-uploads/02cb6dee-9823-4fbe-9509-1ec886f5c41c.png",
   
   // Healthcare/Herbal Medicine
   "find qualified": herbalinstSearch,
