@@ -160,7 +160,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
           {/* Additional challenge details in two columns */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
             <ProjectContentBox>
-              <h4 className="text-lg font-semibold text-gray-900 mb-3">
+              <h4 className="text-lg font-bold text-gray-900 mb-3">
                 Complex Information Architecture
               </h4>
               <p className="text-gray-700 leading-relaxed">
@@ -169,7 +169,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
             </ProjectContentBox>
 
             <ProjectContentBox>
-              <h4 className="text-lg font-semibold text-gray-900 mb-3">
+              <h4 className="text-lg font-bold text-gray-900 mb-3">
                 Regulatory & Safety Considerations
               </h4>
               <p className="text-gray-700 leading-relaxed">
