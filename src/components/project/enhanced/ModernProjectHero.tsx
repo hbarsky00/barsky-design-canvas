@@ -37,7 +37,7 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
       
       <div className="relative w-full px-4 sm:px-6 z-10">
         {/* Header with proper spacing from logo */}
-        <div className="max-w-7xl mx-auto pt-20 pb-8 lg:pt-24 lg:pb-16">
+        <div className="w-full pt-20 pb-8 lg:pt-24 lg:pb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
