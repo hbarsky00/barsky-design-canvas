@@ -381,7 +381,7 @@ const SplittimeCaseStudy: React.FC = () => {
                   </motion.div>)}
               </div>
               
-              {/* New Rounded Rectangle Row */}
+              {/* Co-parenting App Interface Image */}
               <motion.div 
                 initial={{
                   opacity: 0,
@@ -398,15 +398,22 @@ const SplittimeCaseStudy: React.FC = () => {
                   duration: 0.8,
                   delay: 0.4
                 }} 
-                className="mt-12 bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-blue-200 shadow-md"
+                className="mt-12"
               >
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <p className="text-lg text-neutral-700 font-medium text-center">
-                    Seamless coordination that puts children's wellbeing first through intelligent communication design
-                  </p>
-                  <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
-                </div>
+                <figure className="project-image-container">
+                  <img 
+                    src="/lovable-uploads/61ff17e4-e3a6-4015-8e93-7e40eda58f1c.png" 
+                    alt="Splittime messaging interface showing structured co-parenting communication between parents" 
+                    className="clickable-image w-full h-auto object-contain shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                    onClick={() => openImageViewer('splittime-messaging-1')}
+                    tabIndex={0}
+                    onKeyDown={(e) => handleImageKeypress(e, 'splittime-messaging-1')}
+                    role="button"
+                    aria-label="Click to view messaging interface in full screen"
+                    id="splittime-messaging-1" 
+                  />
+                  <figcaption className="text-sm text-gray-600 italic mt-2 text-center">Splittime messaging interface showing structured co-parenting communication between parents</figcaption>
+                </figure>
               </motion.div>
               
               <motion.div initial={{
