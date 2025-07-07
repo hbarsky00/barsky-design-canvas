@@ -94,6 +94,13 @@ if (projectMatch) {
   const currentProjectId = projectMatch[1];
   console.log(`🔍 Auto-clearing cache for current project: ${currentProjectId}`);
   clearProjectCache(currentProjectId);
+  
+  // Force page reload for herbalink project to ensure clean state
+  if (currentProjectId === 'herbalink') {
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  }
 }
 
 // Note: Removed problematic auto-reload logic that was causing infinite refresh loop
