@@ -394,7 +394,7 @@ const SplittimeCaseStudy: React.FC = () => {
               delay: 0.6
             }} className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-center text-white">
                 <h3 className="text-2xl font-bold mb-4 !text-white">Conflict Reduction Approach</h3>
-                <p className="text-lg max-w-3xl mx-auto !text-white font-normal">
+                <p className="text-lg max-w-3xl mx-auto font-normal force-white-text-override">
                   By providing structure, transparency, and child-focused communication tools, 
                   parents spend less time arguing and more time supporting their children's wellbeing.
                 </p>

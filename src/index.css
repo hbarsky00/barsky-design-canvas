@@ -489,21 +489,37 @@
     color: white !important;
   }
   
-  /* Override paragraph text color in blue background sections */
-  [class*="bg-gradient-to-r"][class*="blue"] p,
-  [class*="bg-gradient-to-r"][class*="indigo"] p,
-  [class*="bg-blue"] p,
-  [class*="bg-indigo"] p,
-  .text-white p {
-    color: white !important;
-  }
-  
-  /* Specific overrides for Splittime sections */
+  /* Override paragraph text color in blue background sections - High Specificity */
+  motion\.div[class*="bg-gradient-to-r"][class*="blue"] p,
+  div[class*="bg-gradient-to-r"][class*="blue"] p,
+  section[class*="bg-gradient-to-r"][class*="blue"] p,
   [class*="bg-gradient-to-r"][class*="from-blue-500"] p,
   [class*="bg-gradient-to-r"][class*="to-indigo-500"] p,
-  [class*="bg-gradient-to-r"][class*="via-indigo-500"] p {
+  [class*="bg-gradient-to-r"][class*="via-indigo-500"] p,
+  [class*="bg-gradient-to-r"][class*="to-blue-600"] p,
+  div.mt-16[class*="bg-gradient-to-r"] p,
+  motion\.div.mt-16[class*="bg-gradient-to-r"] p {
+    color: white !important;
+    font-size: 18px !important;
+    line-height: 1.625 !important;
+    font-weight: 400 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Even more specific - target the exact classes */
+  .bg-gradient-to-r.from-blue-500.to-indigo-500 p,
+  .bg-gradient-to-r.from-blue-500.via-indigo-500.to-blue-600 p {
     color: white !important;
   }
+}
+
+/* Nuclear option - Force white text for specific class */
+.force-white-text-override {
+  color: white !important;
+  font-size: 18px !important;
+  line-height: 1.625 !important;
+  font-weight: 400 !important;
+  margin-bottom: 1rem !important;
 }
 
 /* Button hover state fixes - Global */
