@@ -106,6 +106,27 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         />
       </ProjectContentBox>
 
+      {/* Two-column image row for Herbalink project */}
+      {isHerbalinkProject && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+          <MaximizableImage
+            src="/lovable-uploads/a7f0be86-72db-4c00-86f7-798b641bcf7a.png"
+            alt="Herbalist consultation illustration showing the challenge of trust-building between practitioner and patient"
+            caption="Trust-building consultation process between herbalist and patient"
+            projectId={projectId}
+            className="w-full h-auto object-cover rounded-lg shadow-lg"
+          />
+          
+          <MaximizableImage
+            src="/lovable-uploads/d5720e5f-50e6-418f-ada9-6b089ae091c1.png"
+            alt="Herbalink video consultation interface showing platform functionality"
+            caption="Herbalink video consultation interface with practitioner credentials and live recommendations"
+            projectId={projectId}
+            className="w-full h-auto object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      )}
+
       {/* Challenge Gallery Images - for Splittime show remaining images after first two, for others show all */}
       {challengeImages && challengeImages.length > 0 && (isSpittimeProject ? challengeImages.length > 2 : true) && (
         <div className="mt-16 space-y-12">
