@@ -57,7 +57,7 @@ const About: React.FC = () => {
             {/* Strategic CTA */}
             <div className="mt-8 p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg">
               <h3 className="font-bold mb-3">Ready to Transform Your Business?</h3>
-              <p className="mb-4 !text-white force-white-text-override" style={{ color: 'white !important' }}>
+              <p className="mb-4 !text-white force-white-text-override" style={{ color: '#ffffff' }}>
                 Join 47+ successful projects that achieved 40%+ conversion improvements through AI-enhanced UX design.
               </p>
               <button
