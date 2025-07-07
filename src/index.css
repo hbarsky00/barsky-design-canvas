@@ -305,8 +305,12 @@
   }
 
   .glass-button {
-    @apply bg-white/20 backdrop-blur-sm border border-white/30 transition-all duration-300 hover:bg-white/30 hover:scale-105 hover:shadow-elevated;
+    @apply bg-white/20 backdrop-blur-sm border border-white/30 transition-all duration-300 hover:bg-white/30 hover:scale-[1.02] hover:shadow-lg;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  }
+
+  .glass-button:not(.btn):not(button) {
+    @apply hover:scale-105;
   }
 
   .glass-accent {
@@ -484,4 +488,29 @@
   .force-white-text {
     color: white !important;
   }
+}
+
+/* Button hover state fixes - Global */
+button[class*="bg-blue"]:hover,
+.btn:hover,
+[role="button"]:hover {
+  transform: none !important;
+}
+
+button:not(.glass-button):hover {
+  scale: 1 !important;
+}
+
+/* Ensure all buttons have proper hover states */
+button, 
+[role="button"],
+.btn {
+  transition: all 0.3s ease !important;
+}
+
+/* Fix floating elements that are also buttons */
+button.floating-element:hover,
+[role="button"].floating-element:hover {
+  transform: none !important;
+  scale: 1 !important;
 }
