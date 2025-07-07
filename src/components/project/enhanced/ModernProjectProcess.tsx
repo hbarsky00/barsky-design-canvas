@@ -1,17 +1,20 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import MaximizableImage from "../MaximizableImage";
 
 interface ModernProjectProcessProps {
   process: string;
   processImage?: string;
   imageCaptions: Record<string, string>;
+  projectId?: string;
 }
 
 const ModernProjectProcess: React.FC<ModernProjectProcessProps> = ({
   process,
   processImage,
-  imageCaptions
+  imageCaptions,
+  projectId
 }) => {
   return (
     <motion.section
@@ -37,18 +40,13 @@ const ModernProjectProcess: React.FC<ModernProjectProcessProps> = ({
       {/* Process Image */}
       {processImage && (
         <div className="mt-12">
-          <div className="relative rounded-lg overflow-hidden shadow-lg">
-            <img
-              src={processImage}
-              alt={imageCaptions[processImage] || "Design process"}
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          {imageCaptions[processImage] && (
-            <p className="text-sm text-gray-500 text-center mt-3">
-              {imageCaptions[processImage]}
-            </p>
-          )}
+          <MaximizableImage
+            src={processImage}
+            alt={imageCaptions[processImage] || "Design process"}
+            caption={imageCaptions[processImage]}
+            className="w-full h-auto object-cover rounded-lg shadow-lg"
+            projectId={projectId}
+          />
         </div>
       )}
     </motion.section>

@@ -1,6 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import MaximizableImage from "../MaximizableImage";
 import { generateProjectImages } from "@/utils/projectImageGenerator";
 import { projectDetails } from "@/data/project-details";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
@@ -32,10 +33,11 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
           transition={{ duration: 0.6 }}
           className="mb-8"
         >
-          <img
+          <MaximizableImage
             src={challengeImage}
             alt="Challenge illustration"
             className="w-full max-w-4xl mx-auto h-64 object-cover shadow-lg"
+            projectId={projectId}
           />
         </motion.div>
       )}
@@ -78,10 +80,11 @@ const ChallengeSolutionSection: React.FC<ChallengeSolutionSectionProps> = ({
           {/* Solution Image - Only show if image exists */}
           {solutionImage && (
             <div className="mb-6">
-              <img
+              <MaximizableImage
                 src={solutionImage}
                 alt="Solution illustration"
                 className="w-full h-48 object-cover shadow-md"
+                projectId={projectId}
               />
             </div>
           )}

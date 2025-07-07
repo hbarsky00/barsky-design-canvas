@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
+import MaximizableImage from "../MaximizableImage";
 
 interface EnhancedProjectHeaderProps {
   project: ProjectProps;
@@ -117,14 +118,14 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
             className="relative"
           >
             <div className="relative overflow-hidden shadow-2xl">
-              <div className="aspect-[16/10] bg-gradient-to-br from-gray-100 to-gray-200">
-                <img
-                  src={project.image}
-                  alt={imageCaptions[project.image] || project.title}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-              </div>
+              <MaximizableImage
+                src={project.image}
+                alt={imageCaptions[project.image] || project.title}
+                caption={imageCaptions[project.image]}
+                className="w-full aspect-[16/10] object-cover"
+                projectId={project.id}
+                priority={true}
+              />
               
               {/* Image Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />

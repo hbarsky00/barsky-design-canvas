@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import MaximizableImage from "../MaximizableImage";
 
 interface KeyMetric {
   value: string;
@@ -18,6 +19,8 @@ interface CaseStudyHeroProps {
   role: string;
   client: string;
   keyMetrics: KeyMetric[];
+  projectId?: string;
+  imageCaptions?: Record<string, string>;
 }
 
 const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
@@ -28,7 +31,9 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
   duration,
   role,
   client,
-  keyMetrics
+  keyMetrics,
+  projectId,
+  imageCaptions = {}
 }) => {
   return (
     <section className="relative bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
@@ -89,10 +94,13 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
             className="relative"
           >
             <div className="relative overflow-hidden shadow-2xl">
-              <img
+              <MaximizableImage
                 src={heroImage}
                 alt={title}
+                caption={imageCaptions[heroImage]}
                 className="w-full h-auto object-cover"
+                projectId={projectId}
+                priority={true}
               />
             </div>
           </motion.div>
