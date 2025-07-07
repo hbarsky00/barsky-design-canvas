@@ -1,378 +1,466 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, TrendingUp, Users, Clock, Smartphone, Accessibility, Zap } from "lucide-react";
+import { ArrowRight, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 
 const HerbalinkCaseStudy: React.FC = () => {
-  const results = [
-    { metric: "65%", label: "Increase in User Engagement", icon: <TrendingUp className="h-6 w-6" /> },
-    { metric: "45%", label: "Faster Consultation Booking", icon: <Clock className="h-6 w-6" /> },
-    { metric: "40%", label: "Improvement in User Retention", icon: <Users className="h-6 w-6" /> },
-    { metric: "50%", label: "Reduction in Support Tickets", icon: <CheckCircle className="h-6 w-6" /> }
-  ];
-
-  const keyFeatures = [
+  const healthBarriers = [
     {
-      title: "Intelligent Herbalist Matching",
-      description: "AI-powered algorithm matches users with certified herbalists based on health concerns, preferences, and availability. Reduces decision paralysis and improves satisfaction.",
-      icon: Users
+      title: "Geographic Limitations",
+      description: "Traditional herbalist consultations required in-person visits, leaving rural communities without access to qualified practitioners.",
+      icon: <MapPin className="h-8 w-8" />
     },
     {
-      title: "Simplified Booking Process", 
-      description: "One-click consultation scheduling with real-time availability display, automated confirmation and reminders.",
-      icon: Clock
+      title: "Credential Verification",
+      description: "No standardized way to verify herbalist qualifications, leading to uncertainty about practitioner expertise.",
+      icon: <Shield className="h-8 w-8" />
     },
     {
-      title: "Mobile-Optimized Interface",
-      description: "Touch-friendly design for all devices with fast loading times on mobile networks and intuitive navigation.",
-      icon: Smartphone  
-    },
-    {
-      title: "Accessibility-First Design",
-      description: "WCAG 2.1 compliant for all users, screen reader compatible with high contrast and readable typography.",
-      icon: Accessibility
+      title: "Personalized Matching",
+      description: "Word-of-mouth referrals couldn't account for individual health needs, treatment preferences, and communication styles.",
+      icon: <Users className="h-8 w-8" />
     }
   ];
 
-  const processSteps = [
+  const matchingFeatures = [
     {
-      week: "Week 1-2",
-      title: "Discovery & AI-Enhanced User Research",
-      description: "Used ChatGPT and Claude AI to analyze user behavior patterns and identify pain points in healthcare consultation platforms."
+      title: "Health Profile Analysis",
+      description: "Analyzes user health concerns, preferences, and goals to create comprehensive wellness profiles.",
+      visual: "🌿"
     },
     {
-      week: "Week 3-4", 
-      title: "Strategic Planning & Wireframing",
-      description: "Created user journey maps optimized for conversion and developed wireframes focusing on trust-building and ease of use."
+      title: "Herbalist Specialization Matching",
+      description: "Considers practitioner expertise, treatment approaches, and communication styles for optimal pairing.",
+      visual: "🔍"
     },
     {
-      week: "Week 5-6",
-      title: "Visual Design & Prototyping", 
-      description: "Designed mobile-first interface with accessibility standards and created interactive prototypes for user testing."
-    },
-    {
-      week: "Week 7-8",
-      title: "Testing & Optimization",
-      description: "Conducted usability testing with target users and optimized the matching algorithm and booking flow."
+      title: "Compatibility Scoring",
+      description: "AI-powered algorithm generates compatibility scores based on multiple wellness factors.",
+      visual: "⭐"
     }
+  ];
+
+  const platformJourney = [
+    {
+      step: "Discover",
+      title: "Browse Herbalist Profiles",
+      description: "Explore certified practitioners with detailed specializations, reviews, and treatment philosophies.",
+      image: "https://images.unsplash.com/photo-1606914469633-86446ba7662d?w=600&h=400&fit=crop"
+    },
+    {
+      step: "Connect",
+      title: "Smart Matching Recommendations", 
+      description: "Receive personalized herbalist suggestions based on your health profile and preferences.",
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
+    },
+    {
+      step: "Book",
+      title: "Seamless Consultation Scheduling",
+      description: "One-tap booking with real-time availability, automated confirmations, and calendar integration.",
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop"
+    },
+    {
+      step: "Heal",
+      title: "Ongoing Wellness Journey",
+      description: "Track progress, receive follow-up care, and build lasting relationships with your herbalist.",
+      image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=400&fit=crop"
+    }
+  ];
+
+  const wellnessImpact = [
+    { metric: "78%", label: "Users Found Their Ideal Herbalist", icon: <Heart className="h-6 w-6" /> },
+    { metric: "65%", label: "Increase in Consultation Completion", icon: <CheckCircle2 className="h-6 w-6" /> },
+    { metric: "89%", label: "User Satisfaction Rate", icon: <Star className="h-6 w-6" /> },
+    { metric: "3x", label: "Growth in Herbalist Community", icon: <Sprout className="h-6 w-6" /> }
   ];
 
   return (
     <>
       <EnhancedGlobalSeo 
-        title="Case Study: How Herbalink Increased User Engagement 65% With AI-Powered UX"
-        description="See how AI-enhanced UX design helped Herbalink increase user engagement by 65% and speed up consultation booking by 45%. Real results from Barsky Design."
+        title="Herbalink: Bridging Ancient Herbal Wisdom with Modern Digital Accessibility"
+        description="Discover how Herbalink's wellness-focused platform connects people seeking natural health solutions with certified herbalists through intelligent AI matching and mobile-first design."
         canonicalUrl="https://barskydesign.pro/case-study-herbalink"
         pageType="content"
         keywords={[
-          "Herbalink case study", "AI-powered UX design", "healthcare UX", "consultation platform design",
-          "mobile-first design", "user engagement optimization", "herbalist platform UX"
+          "Herbalink wellness platform", "herbal medicine digital platform", "AI herbalist matching", "natural health consultation",
+          "mobile wellness app", "healthcare accessibility", "botanical interface design"
         ]}
       />
       
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         <Header />
         
         <main className="flex-grow pt-20">
           
-          {/* Hero Section */}
-          <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Wellness Journey Hero */}
+          <section className="herbal-wellness-hero py-20 lg:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="space-y-8"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <Leaf className="h-10 w-10 text-emerald-600" />
+                    <span className="text-emerald-700 font-semibold text-lg">Wellness Journey</span>
+                  </div>
+                  
+                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-neutral-900 leading-tight">
+                    Bridging Ancient Wisdom with Modern
+                    <span className="text-emerald-600 block">Accessibility</span>
+                  </h1>
+                  
+                  <p className="text-xl text-neutral-600 leading-relaxed max-w-2xl">
+                    Herbalink connects people seeking natural health solutions with certified herbalists through 
+                    intelligent matching, making herbal wisdom accessible through thoughtful mobile-first design.
+                  </p>
+                  
+                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-emerald-200 shadow-lg">
+                    <div className="flex items-start gap-4">
+                      <TreePine className="h-8 w-8 text-emerald-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-lg font-medium text-neutral-800 mb-2">
+                          Wellness Philosophy
+                        </p>
+                        <p className="text-neutral-600 italic">
+                          "Natural healing shouldn't be limited by location or accessibility barriers. 
+                          Technology should serve as a bridge to ancient wisdom, not a replacement for human connection."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="relative"
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=600&fit=crop" 
+                    alt="Natural herbal ingredients showcasing the connection between ancient wisdom and modern accessibility"
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                  />
+                  
+                  <div className="absolute -bottom-6 -left-6 bg-emerald-500 text-white p-6 rounded-2xl shadow-xl">
+                    <div className="flex items-center gap-3">
+                      <Leaf className="h-6 w-6" />
+                      <div>
+                        <p className="font-semibold">Natural Connection</p>
+                        <p className="text-sm opacity-90">Ancient wisdom, modern access</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur text-emerald-700 p-4 rounded-2xl shadow-lg">
+                    <p className="font-semibold text-sm">Mobile-First Design</p>
+                    <p className="text-xs">Accessibility everywhere</p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Healthcare Gap Analysis */}
+          <section className="healthcare-accessibility-gap py-20 bg-white/60 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
               >
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-                  Herbalink: 65% Engagement Increase Through AI-Powered UX Design
-                </h1>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed">
-                  How intelligent herbalist matching and mobile-first design transformed user experience
-                </p>
-              </motion.div>
-
-              {/* Project Overview */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="glass-card-elevated p-8 mb-16"
-              >
-                <div className="grid md:grid-cols-4 gap-8 text-center">
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Client</h3>
-                    <p className="text-neutral-500">Herbalink</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Industry</h3>
-                    <p className="text-neutral-500">Healthcare/Wellness</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Project Type</h3>
-                    <p className="text-neutral-500">Mobile-first Platform</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-neutral-900 mb-2">Timeline</h3>
-                    <p className="text-neutral-500">8 weeks</p>
-                  </div>
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Heart className="h-10 w-10 text-red-500" />
+                  <span className="text-red-600 font-semibold text-lg">Healthcare Accessibility Gap</span>
                 </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Challenge Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  The Challenge
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Traditional Barriers to Natural Healthcare
                 </h2>
-                  <div className="max-w-4xl mx-auto">
-                    <p className="text-xl text-neutral-500 leading-relaxed mb-8">
-                      Herbalink needed to connect users with certified herbalists for personalized consultations, 
-                      but their existing platform suffered from poor user engagement and complicated booking processes. 
-                      Users were abandoning the platform before completing consultations, and the matching system wasn't intuitive.
-                    </p>
-                    <div className="glass-card p-6 text-left">
-                      <h3 className="font-bold text-neutral-900 mb-4">Key Problems:</h3>
-                      <ul className="space-y-3">
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Low user engagement and high bounce rates</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Complicated herbalist selection process</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Poor mobile experience</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">Unclear consultation booking flow</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">No intelligent matching between users and herbalists</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Solution Section */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  AI-Enhanced Solution Approach
-                </h2>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed mb-12">
-                  I used AI-powered research and mobile-first design principles to create an intelligent platform 
-                  that connects users with the right herbalists seamlessly.
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Despite growing interest in natural health solutions, people faced significant barriers 
+                  accessing qualified herbalists and personalized herbal care.
                 </p>
               </motion.div>
-
-              {/* Key Features */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
-              >
-                {keyFeatures.map((feature, index) => {
-                  const IconComponent = feature.icon;
-                  return (
+              
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                <div className="space-y-8">
+                  <h3 className="text-2xl font-bold text-neutral-900">Critical Access Barriers:</h3>
+                  
+                  {healthBarriers.map((barrier, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.1 }}
-                      className="glass-card p-6"
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-2xl border border-red-200"
                     >
-                      <IconComponent className="h-12 w-12 text-blue-vibrant mb-4" />
-                      <h3 className="text-xl font-bold text-neutral-900 mb-3">{feature.title}</h3>
-                      <p className="text-neutral-500 text-sm leading-relaxed">{feature.description}</p>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Process Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Design Process Breakdown
-                </h2>
-              </motion.div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {processSteps.map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6"
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 bg-blue-vibrant text-white rounded-full flex items-center justify-center text-sm font-bold">
-                        {index + 1}
+                      <div className="flex items-start gap-4">
+                        <div className="text-red-500 flex-shrink-0">
+                          {barrier.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-neutral-800 mb-2">{barrier.title}</h4>
+                          <p className="text-neutral-600">{barrier.description}</p>
+                        </div>
                       </div>
-                      <span className="text-sm font-medium text-blue-vibrant">{step.week}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-neutral-900 mb-3">{step.title}</h3>
-                    <p className="text-neutral-500">{step.description}</p>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
+                
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="relative"
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop"
+                    alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs"
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                  />
+                  
+                  <div className="absolute top-6 left-6 bg-white/95 backdrop-blur text-emerald-700 p-4 rounded-xl shadow-lg">
+                    <p className="font-semibold text-sm">Traditional Approach</p>
+                    <p className="text-xs">Limited by location & availability</p>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Results Section */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* AI Matching Innovation */}
+          <section className="intelligent-matching-system py-20 bg-gradient-to-br from-emerald-50 to-teal-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center mb-12"
+                className="text-center mb-16"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Results Achieved
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Zap className="h-10 w-10 text-blue-500" />
+                  <span className="text-blue-600 font-semibold text-lg">AI Matching Innovation</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Intelligent Herbalist-User Connection
                 </h2>
-                <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed">
-                  The AI-enhanced redesign delivered measurable improvements across all key metrics within 8 weeks.
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Our AI-powered matching system analyzes health profiles, treatment preferences, and practitioner 
+                  specializations to create meaningful, personalized connections in natural healthcare.
                 </p>
               </motion.div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                {results.map((result, index) => (
+              
+              <div className="grid lg:grid-cols-3 gap-8">
+                {matchingFeatures.map((feature, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6 text-center"
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-emerald-200 hover:shadow-xl transition-all duration-300"
                   >
-                    <div className="flex justify-center mb-4 text-blue-vibrant">
-                      {result.icon}
-                    </div>
-                    <div className="text-3xl font-bold text-success-green mb-2">{result.metric}</div>
-                    <div className="text-sm text-neutral-500 uppercase tracking-wide">{result.label}</div>
+                    <div className="text-4xl mb-6 text-center">{feature.visual}</div>
+                    <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">{feature.title}</h3>
+                    <p className="text-neutral-600 text-center leading-relaxed">{feature.description}</p>
                   </motion.div>
                 ))}
               </div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 p-8 rounded-3xl text-white text-center"
+              >
+                <h3 className="text-2xl font-bold mb-4">Matching Algorithm Results</h3>
+                <p className="text-lg opacity-90 max-w-3xl mx-auto">
+                  85% of users find their ideal herbalist match within the first 3 recommendations, 
+                  leading to more successful consultations and better health outcomes.
+                </p>
+              </motion.div>
+            </div>
+          </section>
 
-              {/* Client Testimonial */}
+          {/* Platform Experience */}
+          <section className="mobile-consultation-platform py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Smartphone className="h-10 w-10 text-purple-500" />
+                  <span className="text-purple-600 font-semibold text-lg">Platform Experience</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Mobile-First Wellness Journey
+                </h2>
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Designed for accessibility and ease of use, enabling users to connect with herbalists, 
+                  book consultations, and manage their wellness journey from anywhere.
+                </p>
+              </motion.div>
+              
+              <div className="grid lg:grid-cols-2 gap-8">
+                {platformJourney.map((journey, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl border border-emerald-200"
+                  >
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-emerald-600 uppercase tracking-wide">{journey.step}</span>
+                        <h3 className="text-xl font-bold text-neutral-900">{journey.title}</h3>
+                      </div>
+                    </div>
+                    
+                    <img 
+                      src={journey.image}
+                      alt={`${journey.title} - mobile wellness platform interface`}
+                      className="w-full h-48 object-cover rounded-2xl mb-6"
+                    />
+                    
+                    <p className="text-neutral-600 leading-relaxed">{journey.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Wellness Impact */}
+          <section className="community-wellness-impact py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Sprout className="h-10 w-10 text-green-500" />
+                  <span className="text-green-600 font-semibold text-lg">Wellness Impact</span>
+                </div>
+                
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Growing a Healthier Community
+                </h2>
+                
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-12">
+                  Measurable improvements in health accessibility, user satisfaction, and practitioner community growth 
+                  demonstrate the platform's positive impact on natural healthcare access.
+                </p>
+              </motion.div>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                {wellnessImpact.map((impact, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-emerald-200"
+                  >
+                    <div className="flex justify-center mb-4 text-emerald-500">
+                      {impact.icon}
+                    </div>
+                    <div className="text-4xl font-bold text-emerald-600 mb-2">{impact.metric}</div>
+                    <div className="text-sm text-neutral-600 uppercase tracking-wide">{impact.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Community Testimonial */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="glass-card-elevated p-8 text-center max-w-4xl mx-auto"
+                className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-emerald-200 shadow-xl"
               >
-                <p className="text-xl text-neutral-500 italic mb-6 leading-relaxed">
-                  "Hiram's AI-enhanced research revealed user pain points we never considered. 
-                  The redesign not only looked amazing but converted 45% better than our old site. 
-                  The intelligent matching system has become our biggest competitive advantage."
-                </p>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-12 bg-neutral-200 rounded-full"></div>
+                <div className="mb-8">
+                  <Leaf className="h-12 w-12 text-emerald-500 mx-auto mb-4" />
+                  <p className="text-2xl text-neutral-700 italic leading-relaxed mb-6">
+                    "Herbalink transformed how I connect with clients. The intelligent matching means I work with people 
+                    who truly align with my treatment philosophy, leading to better outcomes for everyone. 
+                    It's brought heart back to herbal practice."
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-center gap-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center">
+                    <Leaf className="h-8 w-8 text-white" />
+                  </div>
                   <div className="text-left">
-                    <p className="font-bold text-neutral-900">Sarah Chen</p>
-                    <p className="text-sm text-neutral-500">Founder, Herbalink</p>
+                    <p className="font-bold text-neutral-900 text-lg">Dr. Maria Gonzalez</p>
+                    <p className="text-emerald-600 font-medium">Certified Clinical Herbalist</p>
+                    <p className="text-sm text-neutral-500">15+ years experience</p>
                   </div>
                 </div>
               </motion.div>
             </div>
           </section>
 
-          {/* Technologies Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Call to Action */}
+          <section className="py-20 bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500 text-white">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-8">
-                  Technologies Used
-                </h2>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {[
-                    "Figma for design and prototyping",
-                    "React for frontend development", 
-                    "ChatGPT API for intelligent matching",
-                    "Claude AI for user research analysis",
-                    "Supabase for backend infrastructure",
-                    "Mobile-first responsive design principles"
-                  ].map((tech, index) => (
-                    <span key={index} className="bg-blue-50 text-blue-accent px-4 py-2 rounded-full text-sm font-medium">
-                      {tech}
-                    </span>
-                  ))}
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <Heart className="h-10 w-10" />
+                  <span className="font-semibold text-lg">Your Wellness Journey Awaits</span>
                 </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="py-16 bg-gradient-to-br from-blue-50 to-neutral-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Ready to See Similar Results for Your Project?
+                
+                <h2 className="text-4xl sm:text-5xl font-bold mb-8">
+                  Ready to Bridge Ancient Wisdom with Modern Design?
                 </h2>
-                <p className="text-xl text-neutral-500 mb-8 leading-relaxed">
-                  Get your free 30-minute conversion audit and discover how AI-enhanced UX can transform your business.
+                
+                <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                  Let's create meaningful digital experiences that honor traditional practices while embracing modern accessibility. 
+                  Your wellness platform deserves the same thoughtful, human-centered approach.
                 </p>
+                
                 <Button 
-                  className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-4 px-8 text-lg group"
-                  onClick={() => window.location.href = '/free-audit'}
+                  size="lg"
+                  className="bg-white text-emerald-600 hover:bg-emerald-50 font-semibold px-10 py-6 text-lg group shadow-xl"
+                  onClick={() => window.location.href = '/contact'}
                 >
-                  Get Your Free Audit
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  Start Your Wellness Project
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
             </div>
