@@ -488,6 +488,22 @@
   .force-white-text {
     color: white !important;
   }
+  
+  /* Override paragraph text color in blue background sections */
+  [class*="bg-gradient-to-r"][class*="blue"] p,
+  [class*="bg-gradient-to-r"][class*="indigo"] p,
+  [class*="bg-blue"] p,
+  [class*="bg-indigo"] p,
+  .text-white p {
+    color: white !important;
+  }
+  
+  /* Specific overrides for Splittime sections */
+  [class*="bg-gradient-to-r"][class*="from-blue-500"] p,
+  [class*="bg-gradient-to-r"][class*="to-indigo-500"] p,
+  [class*="bg-gradient-to-r"][class*="via-indigo-500"] p {
+    color: white !important;
+  }
 }
 
 /* Button hover state fixes - Global */
