@@ -1,23 +1,23 @@
 
 import { useState, useEffect } from "react";
-import { projectsData } from "@/data/projects/projectsList";
+import { projectsData } from "@/data/projectsData";
 import { ProjectProps } from "@/components/ProjectCard";
 
-// Only show these 3 specific projects everywhere
-const featuredProjectIds = ["herbalink", "splittime", "investor-loan-app"];
+// Only show the wholesale distribution project
+const featuredProjectIds = ["wholesale-distribution"];
 
 export const useProjectsData = () => {
   const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
   
-  // Filter projects to only show the 3 featured ones
+  // Filter projects to only show the wholesale distribution project
   const filteredProjects = projectsData.filter(project => 
     featuredProjectIds.includes(project.id)
   );
   
   useEffect(() => {
-    // Only show the 3 filtered projects
+    // Only show the filtered project
     setVisibleProjects(filteredProjects);
   }, []);
   
