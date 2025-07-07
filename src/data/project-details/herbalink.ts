@@ -3,7 +3,7 @@ import { ProjectDetails } from "../types/project";
 export const herbalinkDetails: ProjectDetails = {
   challenge: "When Herbalink approached me, their mobile platform was bleeding users. Despite connecting people with certified herbalists—a growing $8.2B market—their conversion rate sat at a dismal 2.3%.\n\nThe problem wasn't their concept; it was their user experience.\n\nUser Pain Points:\n• 73% of users abandoned the platform without booking a consultation\n• Patients felt overwhelmed by choice and uncertain about herbalist credibility\n• Complex booking process created friction at critical conversion moments\n• No trust-building elements to establish practitioner legitimacy\n• Mobile experience didn't match user expectations for health platforms\n• Educational content was disconnected from the booking journey",
 
-  process: "Using AI-enhanced user insights and strategic persona development, I redesigned their entire user journey.\n\nKey Solutions Created:\n• Trust-building verification system with practitioner credentials and patient reviews\n• Streamlined booking flow that reduced friction by 65%\n• AI-powered herbalist matching based on symptoms and preferences\n• Educational content integration that builds confidence throughout the journey\n• Mobile-first interface optimized for healthcare decision-making\n\nTools & AI Integration:\n• ChatGPT API for personalized herbalist recommendations\n• Advanced user journey mapping with behavioral insights\n• Mobile-first responsive design with accessibility focus\n\nThe solution wasn't just better design—it was strategically positioning trust and education at every touchpoint to transform skeptical visitors into confident consultation bookers.",
+  process: "Using AI-enhanced user insights and strategic persona development, I redesigned their entire user journey.\n\nKey Solutions Created:\n• Trust-building verification system with practitioner credentials and patient reviews\n• Streamlined booking flow that reduced friction by 65%\n• AI-powered herbalist matching based on symptoms and preferences\n• Educational content integration that builds confidence throughout the journey\n• Mobile-first interface optimized for healthcare decision-making",
 
   result: "47% increase in consultation bookings within 8 weeks\n\nBusiness Impact:\n• Conversion rate jumped from 2.3% to 3.4% (47% improvement)\n• User abandonment during booking dropped by 65%\n• Platform engagement increased by 78% month-over-month\n• Average session duration increased by 92%\n• Trust metrics: 94% of users now complete the practitioner verification check\n\nUser Feedback Highlights:\n• \"Finally, a platform that makes me feel confident about choosing an herbalist\"\n• \"The booking process is so much smoother than other health platforms\"\n• \"I love how it educates me while I'm deciding on treatment options\"\n\nKey Success Factors:\n• Trust-building features proved critical - verification badges increased conversions by 34%\n• Educational content integration reduced bounce rate by 52%\n• Mobile-first approach captured 73% of total platform usage\n• AI-powered matching increased consultation satisfaction by 67%\n\nHerbalink now has a scalable platform that builds trust from the first interaction and guides users seamlessly from curiosity to consultation.\n\nNext Phase Results:\n• Expanded to 5 new markets with consistent conversion performance\n• Herbalist retention rate: 89% (industry average: 34%)\n• Platform generating 300+ consultations monthly\n• ROI for Herbalink: 312% increase in revenue within first quarter",
 
@@ -48,8 +48,8 @@ export const herbalinkDetails: ProjectDetails = {
       afterHeader: "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png"
     },
     process: {
-      beforeHeader: "/lovable-uploads/03796792-d60d-4579-97e0-ad103f8ec303.png",
-      afterHeader: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png"
+      beforeHeader: "",
+      afterHeader: ""
     },
     result: {
       beforeHeader: "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png"
@@ -83,20 +83,11 @@ export const herbalinkDetails: ProjectDetails = {
   challengeGalleryImages: [
     "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png"
   ],
-  processImage: "/lovable-uploads/4c84b548-940e-4558-b931-f1e4d509d852.png",
-  processBottomImage: "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
+  processImage: "",
+  processBottomImage: "",
   
   // Enhanced process gallery with new images
-  processGalleryImages: [
-    "/lovable-uploads/9fdc648a-10a5-4064-b579-b5decbe2da4d.png", // Trust-building verification
-    "/lovable-uploads/b80704a1-be0a-449f-8f1e-fac0c50daa5d.png", // Practitioner credentials
-    "/lovable-uploads/da41f3f1-3e1c-4300-83dc-d8a72c1d6831.png", // AI-powered matching UI
-    "/lovable-uploads/d6c83a40-3d29-41c5-a4fd-1edf94a20375.png", // Consultation matching
-    "/lovable-uploads/f0a13f3a-d111-4f75-962f-9c3d0f7e32a4.png", // Mobile interface
-    "/lovable-uploads/625861de-fcc5-4aa3-98c8-ae385d58e3d3.png", // Responsive design
-    "/lovable-uploads/02cb6dee-9823-4fbe-9509-1ec886f5c41c.png", // User journey mapping
-    "/lovable-uploads/cc56049a-2a15-411a-b724-43f847005b49.png"  // Platform overview
-  ],
+  processGalleryImages: [],
   resultGalleryImages: [
     "/lovable-uploads/20f98d85-8b95-4a08-ab8e-7396a8cb7138.png",
     "/lovable-uploads/df804ea2-f90f-4f0d-a6a9-33399c408a56.png",
