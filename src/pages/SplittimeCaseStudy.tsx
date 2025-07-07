@@ -384,8 +384,8 @@ const SplittimeCaseStudy: React.FC = () => {
                 
                 {/* Family Harmony Images - Two Column Layout */}
                 <div className="mb-16 grid lg:grid-cols-2 gap-8 items-center">
-                  <img src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" alt="Happy family showing successful co-parenting collaboration and family harmony" className="w-full h-64 object-contain shadow-xl mx-auto" />
-                  <img src="/lovable-uploads/7c381aef-4b14-4b6e-ab5d-00248808e4dc.png" alt="Splittime results and impact metrics showing measurable improvements in co-parenting outcomes" className="w-full h-64 object-contain shadow-xl mx-auto" />
+                  <img src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" alt="Happy family showing successful co-parenting collaboration and family harmony" className="w-full h-96 object-cover shadow-xl mx-auto" />
+                  <img src="/lovable-uploads/7c381aef-4b14-4b6e-ab5d-00248808e4dc.png" alt="Splittime results and impact metrics showing measurable improvements in co-parenting outcomes" className="w-full h-96 object-cover shadow-xl mx-auto" />
                 </div>
                 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
