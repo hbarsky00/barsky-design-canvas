@@ -2,7 +2,6 @@
 import React from "react";
 import Header from "@/components/Header";
 import EnhancedHero from "@/components/hero/EnhancedHero";
-import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
 import ServicesPreviewSection from "@/components/home/ServicesPreviewSection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import About from "@/components/About";
@@ -21,7 +20,6 @@ const HomepageLayout: React.FC = () => {
         <EnhancedHero />
         <FeaturedProjects />
         <ServicesCallToAction />
-        <ProblemSolutionSection />
         <ServicesPreviewSection />
         <About />
         <Contact />
