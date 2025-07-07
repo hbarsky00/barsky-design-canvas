@@ -53,25 +53,25 @@ const SplittimeCaseStudy: React.FC = () => {
       step: "Connect",
       title: "Respectful Communication Tools",
       description: "Structured messaging that encourages positive, child-focused conversations between co-parents.",
-      image: "https://images.unsplash.com/photo-1516627145497-ae4120d51a1a?w=600&h=400&fit=crop"
+      image: "/lovable-uploads/0152c609-c279-4472-84e0-4b6a0a2b6735.png"
     },
     {
       step: "Coordinate",
       title: "Shared Calendar Management", 
       description: "Visual scheduling that prevents conflicts and keeps both parents informed about children's activities.",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop"
+      image: "/lovable-uploads/839b6de9-4297-414c-9f99-7a3b4d2a74d7.png"
     },
     {
       step: "Care",
       title: "Child-Centered Information Hub",
       description: "Medical info, school updates, and activity details accessible to both parents for better child care.",
-      image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&h=400&fit=crop"
+      image: "/lovable-uploads/59ed017e-e0b4-4f9e-8c80-babccd697006.png"
     },
     {
       step: "Celebrate",
       title: "Positive Co-Parenting Journey",
       description: "Tools that encourage collaboration and celebrate successful co-parenting achievements together.",
-      image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&h=400&fit=crop"
+      image: "/lovable-uploads/530b9072-e9d2-47f0-83dc-a44ecf87b82d.png"
     }
   ];
 
