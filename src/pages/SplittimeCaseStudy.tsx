@@ -282,9 +282,9 @@ const SplittimeCaseStudy: React.FC = () => {
             }} transition={{
               duration: 0.8,
               delay: 0.6
-            }} className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-white text-center">
-                <h3 className="text-2xl font-bold mb-4">Conflict Reduction Approach</h3>
-                <p className="text-lg opacity-90 max-w-3xl mx-auto text-zinc-50 font-normal">
+            }} className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-center">
+                <h3 className="text-2xl font-bold mb-4 text-white">Conflict Reduction Approach</h3>
+                <p className="text-lg max-w-3xl mx-auto text-white font-normal">
                   By providing structure, transparency, and child-focused communication tools, 
                   parents spend less time arguing and more time supporting their children's wellbeing.
                 </p>
@@ -439,7 +439,7 @@ const SplittimeCaseStudy: React.FC = () => {
           </section>
 
           {/* Call to Action */}
-          <section className="py-20 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 text-white">
+          <section className="py-20 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <motion.div initial={{
               opacity: 0,
@@ -453,15 +453,15 @@ const SplittimeCaseStudy: React.FC = () => {
               duration: 0.8
             }}>
                 <div className="flex items-center justify-center gap-3 mb-6">
-                  <Heart className="h-10 w-10" />
-                  <span className="font-semibold text-lg">Supporting Families</span>
+                  <Heart className="h-10 w-10 text-white" />
+                  <span className="font-semibold text-lg text-white">Supporting Families</span>
                 </div>
                 
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8">
+                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
                   Ready to Transform Family Coordination?
                 </h2>
                 
-                <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-white">
                   Let's create digital experiences that support families through life transitions. 
                   Your family-centered platform deserves the same thoughtful, empathetic approach.
                 </p>
