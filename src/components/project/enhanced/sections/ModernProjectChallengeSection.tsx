@@ -106,20 +106,6 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
         />
       </ProjectContentBox>
 
-      {/* Additional challenge context for Herbalink */}
-      {isHerbalinkProject && (
-        <div className="mt-8 mb-8">
-          <ProjectContentBox>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Building Trust in a Skeptical Market
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              The biggest challenge was creating a platform that would instill confidence in users who are often skeptical about online health services, especially in the alternative medicine space. Users needed assurance about herbalist qualifications while herbalists needed tools to establish credibility and manage their practice effectively.
-            </p>
-          </ProjectContentBox>
-        </div>
-      )}
-
       {/* Two-column image row for Herbalink project */}
       {isHerbalinkProject && (
         <>
@@ -141,7 +127,19 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          {/* Additional challenge context between image rows */}
+          <div className="mt-8 mb-8">
+            <ProjectContentBox>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Building Trust in a Skeptical Market
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                The biggest challenge was creating a platform that would instill confidence in users who are often skeptical about online health services, especially in the alternative medicine space. Users needed assurance about herbalist qualifications while herbalists needed tools to establish credibility and manage their practice effectively.
+              </p>
+            </ProjectContentBox>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <MaximizableImage
               src="/lovable-uploads/9fcd93b1-bcda-4b24-bfc8-f67b544b17ec.png"
               alt="The Problem illustration showing user frustration with unreliable information, finding practitioners, tracking progress, and poor interfaces"
