@@ -83,6 +83,22 @@ if (projectMatch) {
   clearProjectCache(currentProjectId);
 }
 
-// Force clear herbalink project cache
-console.log('🧹 Force-clearing herbalink project cache');
-clearProjectCache('herbalink');
+// Force clear herbalink project cache and database overrides
+if (pathname.includes('herbalink')) {
+  console.log('🧹 Force-clearing herbalink project cache and database overrides');
+  clearProjectCache('herbalink');
+  
+  // Clear any database override keys for herbalink
+  const dbKeys = ['challenge_content', 'challenge_content_herbalink', 'challenge_gallery_images'];
+  dbKeys.forEach(key => {
+    localStorage.removeItem(`db_override_${key}_herbalink`);
+    localStorage.removeItem(`${key}_herbalink`);
+  });
+  
+  // Force page refresh after cache clear
+  setTimeout(() => {
+    if (window.location.pathname.includes('herbalink')) {
+      window.location.reload();
+    }
+  }, 100);
+}
