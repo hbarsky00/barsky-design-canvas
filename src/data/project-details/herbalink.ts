@@ -81,7 +81,7 @@ export const herbalinkDetails: ProjectDetails = {
   ],
 
   challengeGalleryImages: [],
-  processImage: "/lovable-uploads/9898cd3c-5ad2-4887-b3ac-3a5b022a560f.png",
+  processImage: "",
   processBottomImage: "",
   
   // Enhanced process gallery with new images
