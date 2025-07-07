@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Users, Clock, User, TrendingUp } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
@@ -57,44 +57,13 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
             transition={{ duration: 0.8 }}
             className="glass-card-elevated p-4 sm:p-8 text-center space-y-4 lg:space-y-6 layered-depth relative group"
           >
-            {/* Project Overview Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative overflow-hidden rounded-2xl bg-white border border-neutral-200 shadow-lg mb-6"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/20"></div>
-              <div className="relative p-6">
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="text-center relative">
-                    <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
-                      <Users className="h-6 w-6 text-blue-vibrant" />
-                    </div>
-                    <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Client</h3>
-                    <p className="text-lg font-bold text-neutral-900">{details.client}</p>
-                  </div>
-                  
-                  <div className="text-center relative">
-                    <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
-                    <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-4">
-                      <Clock className="h-6 w-6 text-green-600" />
-                    </div>
-                    <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Duration</h3>
-                    <p className="text-lg font-bold text-neutral-900">{details.duration}</p>
-                  </div>
-                  
-                  <div className="text-center relative">
-                    <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-neutral-200"></div>
-                    <div className="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center mx-auto mb-4">
-                      <User className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide mb-2">Role</h3>
-                    <p className="text-lg font-bold text-neutral-900">{details.role}</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <div className="flex items-center justify-center space-x-3 text-sm">
+              <span className="font-medium text-blue-600 glass-button px-3 py-1">{details.client}</span>
+              <span className="text-gray-400">•</span>
+              <span className="text-gray-600">{details.duration}</span>
+              <span className="text-gray-400">•</span>
+              <span className="text-gray-600">{details.role}</span>
+            </div>
             
             <EnhancedContentEditor
               content={project.title}
