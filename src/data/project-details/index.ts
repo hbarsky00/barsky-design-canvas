@@ -1,6 +1,5 @@
 
 import { ProjectDetails } from "../types/project";
-import { wholesaleDistributionDetails } from "./wholesaleDistribution";
 import { projectVariables } from "../project-variables";
 import { generateProjectDetailsFromVariables } from "../../utils/projectTemplateGenerator";
 
@@ -10,12 +9,15 @@ const dynamicProjectDetails: Record<string, ProjectDetails> = {};
 // Generate details for projects that have variables defined
 Object.keys(projectVariables).forEach(projectId => {
   const variables = projectVariables[projectId];
-  if (variables && projectId === "wholesale-distribution") {
+  if (variables) {
+    console.log(`🔧 Generating dynamic project details for: ${projectId}`);
     dynamicProjectDetails[projectId] = generateProjectDetailsFromVariables(variables);
   }
 });
 
+console.log('📋 Dynamic project details generated:', Object.keys(dynamicProjectDetails));
+
 export const projectDetails: Record<string, ProjectDetails> = {
-  // Only keep wholesale distribution project
+  // ONLY dynamic projects generated from variables - NO hardcoded content
   ...dynamicProjectDetails
 };
