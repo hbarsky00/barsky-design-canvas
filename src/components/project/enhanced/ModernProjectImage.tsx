@@ -54,7 +54,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="floating-element"
+      className="floating-element m-0 p-0"
     >
       <MaximizableImage
         src={project.image}
