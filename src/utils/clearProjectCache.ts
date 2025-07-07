@@ -25,8 +25,21 @@ export const clearProjectCache = (projectId: string) => {
   }
   
   keysToRemove.forEach(key => {
-    localStorage.removeItem(key);
-    console.log('🗑️ Removed cache key:', key);
+    // Clean up HTML content before removing
+    try {
+      const content = localStorage.getItem(key);
+      if (content && content.includes('<h3><br></h3>')) {
+        const cleanedContent = content.replace(/<h3><br><\/h3>/g, '');
+        localStorage.setItem(key, cleanedContent);
+        console.log('🧹 Cleaned HTML from cache key:', key);
+      } else {
+        localStorage.removeItem(key);
+        console.log('🗑️ Removed cache key:', key);
+      }
+    } catch (error) {
+      localStorage.removeItem(key);
+      console.log('🗑️ Removed cache key (with error):', key);
+    }
   });
   
   console.log(`✅ Cleared ${keysToRemove.length} cached items for project ${projectId}`);
