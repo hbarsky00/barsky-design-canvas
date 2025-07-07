@@ -136,7 +136,7 @@ const SplittimeCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.2
               }} className="relative">
-                  <img src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" alt="Happy family showing the positive outcomes of effective co-parenting coordination and communication" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
+                  <img src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" alt="Happy family showing the positive outcomes of effective co-parenting coordination and communication" className="w-full h-[500px] object-cover shadow-2xl" />
                   
                   
                   
@@ -215,9 +215,9 @@ const SplittimeCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
-                  <img src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png" alt="Stressed parent showing the emotional impact of fragmented co-parenting communication and coordination challenges" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
+                  <img src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png" alt="Stressed parent showing the emotional impact of fragmented co-parenting communication and coordination challenges" className="w-full h-[500px] object-cover shadow-2xl" />
                   
-                  <img src="/lovable-uploads/448a9776-8ef2-421b-a68c-5451bbc5f823.png" alt="Splittime app interface showing key features and solutions for co-parenting coordination" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl mt-8" />
+                  <img src="/lovable-uploads/448a9776-8ef2-421b-a68c-5451bbc5f823.png" alt="Splittime app interface showing key features and solutions for co-parenting coordination" className="w-full h-[500px] object-contain shadow-2xl mt-8" />
                   
                 </motion.div>
               </div>
@@ -345,7 +345,7 @@ const SplittimeCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <img src={item.image} alt={`${item.title} - family-centered co-parenting platform interface`} className="w-full h-48 object-cover rounded-2xl mb-6" />
+                    <img src={item.image} alt={`${item.title} - family-centered co-parenting platform interface`} className="w-full h-48 object-cover mb-6" />
                     
                     <p className="text-neutral-600 leading-relaxed">{item.description}</p>
                   </motion.div>)}
