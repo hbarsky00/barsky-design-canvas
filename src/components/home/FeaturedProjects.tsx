@@ -10,8 +10,8 @@ import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
 const FeaturedProjects: React.FC = () => {
   const { filteredProjects } = useProjectsData();
   
-  // Show only the wholesale distribution project
-  const featuredProjectIds = ["wholesale-distribution"];
+  // Show featured projects
+  const featuredProjectIds = ["wholesale-distribution", "herbalink", "splittime"];
   const displayProjects = featuredProjectIds
     .map(id => filteredProjects.find(project => project.id === id))
     .filter(Boolean); // Remove any undefined projects
