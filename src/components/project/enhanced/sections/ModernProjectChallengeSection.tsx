@@ -160,18 +160,18 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
           {/* Additional challenge details in two columns */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
             <ProjectContentBox>
-              <h4 className="text-lg font-extrabold text-gray-900 mb-3">
+              <h3 className="text-lg font-extrabold text-gray-900 mb-3">
                 Complex Information Architecture
-              </h4>
+              </h3>
               <p className="text-gray-700 leading-relaxed">
                 Creating an intuitive flow that balances comprehensive health intake with user-friendly simplicity. Initial testing showed users were overwhelmed by too many questions upfront. I solved this by implementing progressive disclosure and adaptive questioning that adjusts based on user responses.
               </p>
             </ProjectContentBox>
 
             <ProjectContentBox>
-              <h4 className="text-lg font-extrabold text-gray-900 mb-3">
+              <h3 className="text-lg font-extrabold text-gray-900 mb-3">
                 Regulatory & Safety Considerations
-              </h4>
+              </h3>
               <p className="text-gray-700 leading-relaxed">
                 Ensuring the platform met health information privacy requirements while providing clear disclaimers about herbal consultations not replacing medical care. I worked closely with legal advisors to implement appropriate safeguards and user education about the scope of herbal consultations.
               </p>
