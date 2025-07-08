@@ -5,6 +5,7 @@ import EnhancedHero from "@/components/hero/EnhancedHero";
 import ServicesPreviewSection from "@/components/home/ServicesPreviewSection";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import About from "@/components/About";
+import ContactForm from "@/components/home/ContactForm";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import BlogPreview from "@/components/blog/BlogPreview";
@@ -21,6 +22,7 @@ const HomepageLayout: React.FC = () => {
         <ServicesCallToAction />
         <ServicesPreviewSection />
         <About />
+        <ContactForm />
         <BlogPreview />
         <SeoFaqSection 
           title="Frequently Asked Questions About AI-Enhanced UX Design"
