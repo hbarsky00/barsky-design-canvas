@@ -1,10 +1,12 @@
 // Central export file for all images
 // This file makes it easy to import images from a single location
-// Example usage: import { heroImage } from "@/images"
+// Example usage: import { herbalImage } from "@/images"
 
-// You can add your images here as they are moved to this folder
-// Example:
-// import heroImage from "./hero-image.jpg";
-// export { heroImage };
+// Example imports (add your actual images here):
+// import herbalImage from "./herbal-consultation.jpg";
+// import heroImage from "./hero-background.png";
+
+// Export your images here:
+// export { herbalImage, heroImage };
 
 export {};
