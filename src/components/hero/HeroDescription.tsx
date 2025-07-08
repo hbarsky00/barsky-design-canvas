@@ -42,27 +42,6 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
           <span className="font-medium text-purple-700">AI Integration Expert</span>
         </div>
       </motion.div>
-      
-      {/* Results Metrics */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 1.8, duration: 0.5 }}
-        className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 text-center mb-6"
-      >
-        <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg border border-gray-200">
-          <div className="text-2xl font-bold text-gray-900">40%+</div>
-          <div className="text-sm text-gray-600">Conversion Improvement</div>
-        </div>
-        <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg border border-gray-200">
-          <div className="text-2xl font-bold text-gray-900">15+</div>
-          <div className="text-sm text-gray-600">Years Experience</div>
-        </div>
-        <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg border border-gray-200">
-          <div className="text-2xl font-bold text-gray-900">$2M+</div>
-          <div className="text-sm text-gray-600">Client Revenue Generated</div>
-        </div>
-      </motion.div>
     </div>
   );
 };
