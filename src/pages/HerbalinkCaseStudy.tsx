@@ -388,7 +388,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <img src="/lovable-uploads/eda1da95-b322-4c66-b97b-a73816281f51.png" alt={`${journey.title} - mobile wellness platform interface`} className="w-full h-64 object-cover rounded-2xl mb-6" />
+                    <img src={journey.image} alt={`${journey.title} - mobile wellness platform interface`} className="w-full h-64 object-cover rounded-2xl mb-6" />
                     
                     <p className="text-neutral-600 leading-relaxed">{journey.description}</p>
                   </motion.div>)}
