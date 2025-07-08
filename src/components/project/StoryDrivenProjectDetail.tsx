@@ -110,10 +110,6 @@ const StoryDrivenProjectDetail: React.FC = () => {
             duration: 0.8
           }} className="relative">
               <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop" alt="Understanding actual workflow instead of forcing users to adapt" className="w-full h-[400px] object-cover rounded-2xl shadow-xl" />
-              <div className="absolute top-4 right-4 bg-red-500 text-white p-3 rounded-xl">
-                <p className="font-semibold text-sm">Real Users</p>
-                <p className="text-xs">Real Problems</p>
-              </div>
             </motion.div>
           </div>
         </div>
