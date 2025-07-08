@@ -286,6 +286,50 @@ const HerbalinkCaseStudy: React.FC = () => {
             </div>
           </section>
 
+          {/* Key Design Solutions */}
+          <section className="key-design-solutions py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Key Design Solutions
+                </h2>
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Comprehensive approach to building trust, personalization, and streamlined user experience 
+                  in the herbal wellness platform.
+                </p>
+              </motion.div>
+              
+              <motion.div initial={{
+              opacity: 0,
+              scale: 0.95
+            }} whileInView={{
+              opacity: 1,
+              scale: 1
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8,
+              delay: 0.3
+            }} className="w-full">
+                <img 
+                  src="/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png" 
+                  alt="Herbalink key design solutions showing trust-building transparency, personalized matching algorithm, educational integration, and streamlined consultation experience" 
+                  className="w-full rounded-3xl shadow-2xl"
+                />
+              </motion.div>
+            </div>
+          </section>
+
           {/* Platform Experience */}
           <section className="mobile-consultation-platform py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
