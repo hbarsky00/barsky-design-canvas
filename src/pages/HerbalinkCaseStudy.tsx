@@ -41,7 +41,7 @@ const HerbalinkCaseStudy: React.FC = () => {
     step: "Connect",
     title: "Smart Matching Recommendations",
     description: "Receive personalized herbalist suggestions based on your health profile and preferences.",
-    image: "/lovable-uploads/6ac697d2-0417-49dc-b4de-cb3702484e09.png"
+    image: "/lovable-uploads/8c5f2c56-320c-4d0c-9ea9-beb831b8077f.png"
   }, {
     step: "Book",
     title: "Seamless Consultation Scheduling",
