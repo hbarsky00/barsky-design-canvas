@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 const HerbalinkCaseStudy: React.FC = () => {
-
   const healthBarriers = [{
     title: "Geographic Limitations",
     description: "Traditional herbalist consultations required in-person visits, leaving rural communities without access to qualified practitioners.",
@@ -212,11 +211,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop" 
-                    alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" 
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                  />
+                  <img alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" src="/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png" />
                 </motion.div>
               </div>
             </div>
