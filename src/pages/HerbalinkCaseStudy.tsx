@@ -460,7 +460,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   Ready to Bridge Ancient Wisdom with Modern Design?
                 </h2>
                 
-                <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed white-text-nuclear">
                   Let's create meaningful digital experiences that honor traditional practices while embracing modern accessibility. 
                   Your wellness platform deserves the same thoughtful, human-centered approach.
                 </p>
