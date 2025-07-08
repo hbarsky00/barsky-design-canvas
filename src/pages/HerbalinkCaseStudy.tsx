@@ -36,22 +36,22 @@ const HerbalinkCaseStudy: React.FC = () => {
     step: "Discover",
     title: "Browse Herbalist Profiles",
     description: "Explore certified practitioners with detailed specializations, reviews, and treatment philosophies.",
-    image: "https://images.unsplash.com/photo-1606914469633-86446ba7662d?w=600&h=400&fit=crop"
+    image: "/lovable-uploads/c7ea1342-709c-4491-8795-61605f2fa0db.png"
   }, {
     step: "Connect",
     title: "Smart Matching Recommendations",
     description: "Receive personalized herbalist suggestions based on your health profile and preferences.",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
+    image: "/lovable-uploads/6ac697d2-0417-49dc-b4de-cb3702484e09.png"
   }, {
     step: "Book",
     title: "Seamless Consultation Scheduling",
     description: "One-tap booking with real-time availability, automated confirmations, and calendar integration.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop"
+    image: "/lovable-uploads/6ac697d2-0417-49dc-b4de-cb3702484e09.png"
   }, {
     step: "Heal",
     title: "Ongoing Wellness Journey",
     description: "Track progress, receive follow-up care, and build lasting relationships with your herbalist.",
-    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=400&fit=crop"
+    image: "/lovable-uploads/2c0494f7-e624-472c-87b4-0fac92ac54e0.png"
   }];
   const wellnessImpact = [{
     metric: "78%",
