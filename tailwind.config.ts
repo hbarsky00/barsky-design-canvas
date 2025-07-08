@@ -75,6 +75,12 @@ export default {
 					accent: 'hsl(var(--blue-accent))',
 					vibrant: 'hsl(var(--blue-vibrant))'
 				},
+				orange: {
+					vibrant: 'hsl(var(--orange-vibrant))'
+				},
+				purple: {
+					vibrant: 'hsl(var(--purple-vibrant))'
+				},
 				success: {
 					green: 'hsl(var(--success-green))'
 				},
