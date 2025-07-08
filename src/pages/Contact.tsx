@@ -48,8 +48,8 @@ const Contact = () => {
       />
       
       <Header />
-      <main className="flex-grow pt-24">
-        <section className="py-20 dark:bg-gray-900">
+      <main className="flex-grow pt-16">
+        <section className="py-12 dark:bg-gray-900">
           <div className="section-container">
             <h1 className="section-title mb-16">Get In Touch</h1>
             
