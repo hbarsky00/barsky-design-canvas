@@ -226,41 +226,21 @@ const HerbalinkCaseStudy: React.FC = () => {
               }} transition={{
                 duration: 0.8,
                 delay: 0.3
-              }} className="relative group">
+              }} className="relative">
                   <img 
                     src={editableImage} 
                     alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" 
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" 
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer" 
+                    onClick={() => setIsEditing(!isEditing)}
                   />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl flex items-center justify-center">
-                    <div className="flex gap-4">
-                      <Button
-                        onClick={() => setIsEditing(!isEditing)}
-                        variant="secondary"
-                        size="sm"
-                        className="bg-white/90 hover:bg-white text-gray-900"
-                      >
-                        <Upload className="h-4 w-4 mr-2" />
-                        Change Image
-                      </Button>
-                    </div>
-                  </div>
                   {isEditing && (
-                    <div className="absolute top-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-xl border">
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm p-3 rounded-lg border shadow-lg">
                       <input
                         type="file"
                         accept="image/*"
                         onChange={handleImageUpload}
-                        className="w-full text-sm"
+                        className="text-xs"
                       />
-                      <Button
-                        onClick={() => setIsEditing(false)}
-                        variant="outline"
-                        size="sm"
-                        className="mt-2"
-                      >
-                        Cancel
-                      </Button>
                     </div>
                   )}
                 </motion.div>
