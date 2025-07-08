@@ -36,7 +36,7 @@ const HerbalinkCaseStudy: React.FC = () => {
     step: "Discover",
     title: "Browse Herbalist Profiles",
     description: "Explore certified practitioners with detailed specializations, reviews, and treatment philosophies.",
-    image: "/lovable-uploads/c7ea1342-709c-4491-8795-61605f2fa0db.png"
+    image: "/lovable-uploads/186b768d-cd6e-4a04-9452-fbaeb83ca960.png"
   }, {
     step: "Connect",
     title: "Smart Matching Recommendations",
