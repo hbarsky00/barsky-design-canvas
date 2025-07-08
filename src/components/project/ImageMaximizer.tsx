@@ -1,13 +1,8 @@
 
 import React, { useState, useEffect } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
-import ZoomableImage from "./image-maximizer/ZoomableImage";
 import ImageControls from "./image-maximizer/ImageControls";
-import ImageCounter from "./image-maximizer/ImageCounter";
-import { useImageKeyboardNavigation } from "@/hooks/useImageKeyboardNavigation";
 
 interface ImageMaximizerProps {
   image: string;
@@ -73,17 +68,37 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     }
   };
   
-  // Use our custom keyboard navigation hook
-  useImageKeyboardNavigation({
-    isOpen,
-    onClose,
-    onNext: hasMultipleImages ? handleNextImage : undefined,
-    onPrevious: hasMultipleImages ? handlePrevImage : undefined,
-    onZoomIn: handleZoomIn,
-    onZoomOut: handleZoomOut,
-    onReset: handleReset,
-    hasNavigation: hasMultipleImages
-  });
+  // Keyboard navigation for viewer (matching Splittime implementation)
+  useEffect(() => {
+    const handleKeyboard = (event: KeyboardEvent) => {
+      if (!isOpen) return;
+      
+      switch(event.key) {
+        case 'Escape':
+          onClose();
+          break;
+        case '+':
+        case '=':
+          handleZoomIn();
+          break;
+        case '-':
+          handleZoomOut();
+          break;
+        case '0':
+          handleReset();
+          break;
+        case 'ArrowLeft':
+          if (hasMultipleImages) handlePrevImage();
+          break;
+        case 'ArrowRight':
+          if (hasMultipleImages) handleNextImage();
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyboard);
+    return () => document.removeEventListener('keydown', handleKeyboard);
+  }, [isOpen, hasMultipleImages]);
   
   // Reset scale when dialog closes
   useEffect(() => {
@@ -95,35 +110,43 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   if (!isOpen) return null;
   
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-0 overflow-hidden flex flex-col" hideCloseButton>
-        {/* Add DialogTitle for accessibility - can be visually hidden if needed */}
-        <DialogTitle className="sr-only">Image: {title}</DialogTitle>
-        <DialogDescription className="sr-only">Full size view of the image</DialogDescription>
-        
-        {/* Image counter for multiple images */}
-        <ImageCounter
-          currentIndex={currentIndex}
-          totalImages={imageList.length}
-          show={hasMultipleImages}
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center">
+        <ImageControls
+          scale={scale}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onReset={handleReset}
+          onClose={onClose}
         />
         
-        <div className="flex-grow overflow-hidden bg-gray-50 flex items-center justify-center relative">
-          {/* Floating controls positioned over the image */}
-          <ImageControls
-            scale={scale}
-            onZoomIn={handleZoomIn}
-            onZoomOut={handleZoomOut}
-            onReset={handleReset}
-            onClose={onClose}
-          />
-
-          <ZoomableImage 
-            image={image}
-            title={title}
-            scale={scale}
-          />
-          
+        {/* Image counter for multiple images */}
+        {hasMultipleImages && (
+          <div className="absolute -top-12 text-white text-sm font-medium z-10">
+            {currentIndex + 1} / {imageList.length}
+          </div>
+        )}
+        
+        {/* Main Image */}
+        <img
+          src={image}
+          alt={title}
+          className="max-w-full max-h-[80vh] object-contain transition-transform duration-300"
+          style={{ transform: `scale(${scale})` }}
+        />
+        
+        {/* Caption */}
+        <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">
+          <p className="text-black text-sm">{title}</p>
+        </div>
+        
+        {/* Navigation buttons for multiple images */}
+        {hasMultipleImages && (
           <NavigationButtons
             onPrev={handlePrevImage}
             onNext={handleNextImage}
@@ -131,9 +154,9 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             currentIndex={currentIndex}
             totalImages={imageList.length}
           />
-        </div>
-      </DialogContent>
-    </Dialog>
+        )}
+      </div>
+    </div>
   );
 };
 

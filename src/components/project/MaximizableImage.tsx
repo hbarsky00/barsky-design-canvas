@@ -107,6 +107,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
   };
 
+  const handleImageKeypress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleMaximize();
+    }
+  };
+
   const handleImageRemove = () => {
     // Only allow removal in dev mode
     if (onImageRemove && showEditingControls) {
@@ -178,11 +185,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
           loading={priority ? "eager" : "lazy"}
           onClick={handleMaximize}
+          onKeyDown={handleImageKeypress}
           onError={handleImageError}
           onLoad={handleImageLoad}
           data-lovable-editable="image"
           data-image-src={currentSrc}
           data-project-id={projectId}
+          tabIndex={0}
+          role="button"
+          aria-label={`Click to view ${alt} in full screen`}
           style={{ 
             opacity: isUploading ? 0.7 : 1,
             transition: 'opacity 0.3s ease',
