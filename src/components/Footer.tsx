@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             <p className="white-text-nuclear mb-6 leading-relaxed">
               Product Designer & Gen AI Developer creating intelligent, user-centered digital experiences.
             </p>
-            <p className="text-neutral-200 text-sm">
+            <p className="white-text-nuclear text-sm">
               &copy; {currentYear} Hiram Barsky. All rights reserved.
             </p>
           </div>
@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="border-t border-neutral-700 mt-12 pt-8 text-center text-neutral-200 text-sm">
+        <div className="border-t border-neutral-700 mt-12 pt-8 text-center white-text-nuclear text-sm">
           <p>Engineered with precision and passion</p>
         </div>
       </div>
