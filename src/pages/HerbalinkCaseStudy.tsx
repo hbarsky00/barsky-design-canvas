@@ -132,7 +132,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.2
               }} className="relative">
-                  <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=600&fit=crop" alt="Natural herbal ingredients showcasing the connection between ancient wisdom and modern accessibility" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
+                  <img src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png" alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
                   
                   
                   
