@@ -5,90 +5,73 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
-
 const HerbalinkCaseStudy: React.FC = () => {
-  const healthBarriers = [
-    {
-      title: "Geographic Limitations",
-      description: "Traditional herbalist consultations required in-person visits, leaving rural communities without access to qualified practitioners.",
-      icon: <MapPin className="h-8 w-8" />
-    },
-    {
-      title: "Credential Verification",
-      description: "No standardized way to verify herbalist qualifications, leading to uncertainty about practitioner expertise.",
-      icon: <Shield className="h-8 w-8" />
-    },
-    {
-      title: "Personalized Matching",
-      description: "Word-of-mouth referrals couldn't account for individual health needs, treatment preferences, and communication styles.",
-      icon: <Users className="h-8 w-8" />
-    }
-  ];
-
-  const matchingFeatures = [
-    {
-      title: "Health Profile Analysis",
-      description: "Analyzes user health concerns, preferences, and goals to create comprehensive wellness profiles.",
-      visual: "🌿"
-    },
-    {
-      title: "Herbalist Specialization Matching",
-      description: "Considers practitioner expertise, treatment approaches, and communication styles for optimal pairing.",
-      visual: "🔍"
-    },
-    {
-      title: "Compatibility Scoring",
-      description: "AI-powered algorithm generates compatibility scores based on multiple wellness factors.",
-      visual: "⭐"
-    }
-  ];
-
-  const platformJourney = [
-    {
-      step: "Discover",
-      title: "Browse Herbalist Profiles",
-      description: "Explore certified practitioners with detailed specializations, reviews, and treatment philosophies.",
-      image: "https://images.unsplash.com/photo-1606914469633-86446ba7662d?w=600&h=400&fit=crop"
-    },
-    {
-      step: "Connect",
-      title: "Smart Matching Recommendations", 
-      description: "Receive personalized herbalist suggestions based on your health profile and preferences.",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
-    },
-    {
-      step: "Book",
-      title: "Seamless Consultation Scheduling",
-      description: "One-tap booking with real-time availability, automated confirmations, and calendar integration.",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop"
-    },
-    {
-      step: "Heal",
-      title: "Ongoing Wellness Journey",
-      description: "Track progress, receive follow-up care, and build lasting relationships with your herbalist.",
-      image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=400&fit=crop"
-    }
-  ];
-
-  const wellnessImpact = [
-    { metric: "78%", label: "Users Found Their Ideal Herbalist", icon: <Heart className="h-6 w-6" /> },
-    { metric: "65%", label: "Increase in Consultation Completion", icon: <CheckCircle2 className="h-6 w-6" /> },
-    { metric: "89%", label: "User Satisfaction Rate", icon: <Star className="h-6 w-6" /> },
-    { metric: "3x", label: "Growth in Herbalist Community", icon: <Sprout className="h-6 w-6" /> }
-  ];
-
-  return (
-    <>
-      <EnhancedGlobalSeo 
-        title="Herbalink: Bridging Ancient Herbal Wisdom with Modern Digital Accessibility"
-        description="Discover how Herbalink's wellness-focused platform connects people seeking natural health solutions with certified herbalists through intelligent AI matching and mobile-first design."
-        canonicalUrl="https://barskydesign.pro/case-study-herbalink"
-        pageType="content"
-        keywords={[
-          "Herbalink wellness platform", "herbal medicine digital platform", "AI herbalist matching", "natural health consultation",
-          "mobile wellness app", "healthcare accessibility", "botanical interface design"
-        ]}
-      />
+  const healthBarriers = [{
+    title: "Geographic Limitations",
+    description: "Traditional herbalist consultations required in-person visits, leaving rural communities without access to qualified practitioners.",
+    icon: <MapPin className="h-8 w-8" />
+  }, {
+    title: "Credential Verification",
+    description: "No standardized way to verify herbalist qualifications, leading to uncertainty about practitioner expertise.",
+    icon: <Shield className="h-8 w-8" />
+  }, {
+    title: "Personalized Matching",
+    description: "Word-of-mouth referrals couldn't account for individual health needs, treatment preferences, and communication styles.",
+    icon: <Users className="h-8 w-8" />
+  }];
+  const matchingFeatures = [{
+    title: "Health Profile Analysis",
+    description: "Analyzes user health concerns, preferences, and goals to create comprehensive wellness profiles.",
+    visual: "🌿"
+  }, {
+    title: "Herbalist Specialization Matching",
+    description: "Considers practitioner expertise, treatment approaches, and communication styles for optimal pairing.",
+    visual: "🔍"
+  }, {
+    title: "Compatibility Scoring",
+    description: "AI-powered algorithm generates compatibility scores based on multiple wellness factors.",
+    visual: "⭐"
+  }];
+  const platformJourney = [{
+    step: "Discover",
+    title: "Browse Herbalist Profiles",
+    description: "Explore certified practitioners with detailed specializations, reviews, and treatment philosophies.",
+    image: "https://images.unsplash.com/photo-1606914469633-86446ba7662d?w=600&h=400&fit=crop"
+  }, {
+    step: "Connect",
+    title: "Smart Matching Recommendations",
+    description: "Receive personalized herbalist suggestions based on your health profile and preferences.",
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
+  }, {
+    step: "Book",
+    title: "Seamless Consultation Scheduling",
+    description: "One-tap booking with real-time availability, automated confirmations, and calendar integration.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop"
+  }, {
+    step: "Heal",
+    title: "Ongoing Wellness Journey",
+    description: "Track progress, receive follow-up care, and build lasting relationships with your herbalist.",
+    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&h=400&fit=crop"
+  }];
+  const wellnessImpact = [{
+    metric: "78%",
+    label: "Users Found Their Ideal Herbalist",
+    icon: <Heart className="h-6 w-6" />
+  }, {
+    metric: "65%",
+    label: "Increase in Consultation Completion",
+    icon: <CheckCircle2 className="h-6 w-6" />
+  }, {
+    metric: "89%",
+    label: "User Satisfaction Rate",
+    icon: <Star className="h-6 w-6" />
+  }, {
+    metric: "3x",
+    label: "Growth in Herbalist Community",
+    icon: <Sprout className="h-6 w-6" />
+  }];
+  return <>
+      <EnhancedGlobalSeo title="Herbalink: Bridging Ancient Herbal Wisdom with Modern Digital Accessibility" description="Discover how Herbalink's wellness-focused platform connects people seeking natural health solutions with certified herbalists through intelligent AI matching and mobile-first design." canonicalUrl="https://barskydesign.pro/case-study-herbalink" pageType="content" keywords={["Herbalink wellness platform", "herbal medicine digital platform", "AI herbalist matching", "natural health consultation", "mobile wellness app", "healthcare accessibility", "botanical interface design"]} />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         <Header />
@@ -99,12 +82,15 @@ const HerbalinkCaseStudy: React.FC = () => {
           <section className="herbal-wellness-hero py-20 lg:py-32">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="space-y-8"
-                >
+                <motion.div initial={{
+                opacity: 0,
+                x: -50
+              }} animate={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                duration: 0.8
+              }} className="space-y-8">
                   <div className="flex items-center gap-3 mb-6">
                     <Leaf className="h-10 w-10 text-emerald-600" />
                     <span className="text-emerald-700 font-semibold text-lg">Wellness Journey</span>
@@ -136,32 +122,21 @@ const HerbalinkCaseStudy: React.FC = () => {
                   </div>
                 </motion.div>
                 
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="relative"
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=600&fit=crop" 
-                    alt="Natural herbal ingredients showcasing the connection between ancient wisdom and modern accessibility"
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                  />
+                <motion.div initial={{
+                opacity: 0,
+                x: 50
+              }} animate={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                duration: 0.8,
+                delay: 0.2
+              }} className="relative">
+                  <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=600&fit=crop" alt="Natural herbal ingredients showcasing the connection between ancient wisdom and modern accessibility" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
                   
-                  <div className="absolute -bottom-6 -left-6 bg-emerald-500 text-white p-6 rounded-2xl shadow-xl">
-                    <div className="flex items-center gap-3">
-                      <Leaf className="h-6 w-6" />
-                      <div>
-                        <p className="font-semibold">Natural Connection</p>
-                        <p className="text-sm opacity-90">Ancient wisdom, modern access</p>
-                      </div>
-                    </div>
-                  </div>
                   
-                  <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur text-emerald-700 p-4 rounded-2xl shadow-lg">
-                    <p className="font-semibold text-sm">Mobile-First Design</p>
-                    <p className="text-xs">Accessibility everywhere</p>
-                  </div>
+                  
+                  
                 </motion.div>
               </div>
             </div>
@@ -170,13 +145,17 @@ const HerbalinkCaseStudy: React.FC = () => {
           {/* Healthcare Gap Analysis */}
           <section className="healthcare-accessibility-gap py-20 bg-white/60 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Heart className="h-10 w-10 text-red-500" />
                   <span className="text-red-600 font-semibold text-lg">Healthcare Accessibility Gap</span>
@@ -196,15 +175,18 @@ const HerbalinkCaseStudy: React.FC = () => {
                 <div className="space-y-8">
                   <h3 className="text-2xl font-bold text-neutral-900">Critical Access Barriers:</h3>
                   
-                  {healthBarriers.map((barrier, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-2xl border border-red-200"
-                    >
+                  {healthBarriers.map((barrier, index) => <motion.div key={index} initial={{
+                  opacity: 0,
+                  y: 30
+                }} whileInView={{
+                  opacity: 1,
+                  y: 0
+                }} viewport={{
+                  once: true
+                }} transition={{
+                  duration: 0.6,
+                  delay: index * 0.1
+                }} className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-2xl border border-red-200">
                       <div className="flex items-start gap-4">
                         <div className="text-red-500 flex-shrink-0">
                           {barrier.icon}
@@ -214,22 +196,22 @@ const HerbalinkCaseStudy: React.FC = () => {
                           <p className="text-neutral-600">{barrier.description}</p>
                         </div>
                       </div>
-                    </motion.div>
-                  ))}
+                    </motion.div>)}
                 </div>
                 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="relative"
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop"
-                    alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs"
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                  />
+                <motion.div initial={{
+                opacity: 0,
+                scale: 0.95
+              }} whileInView={{
+                opacity: 1,
+                scale: 1
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: 0.3
+              }} className="relative">
+                  <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop" alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
                   
                   <div className="absolute top-6 left-6 bg-white/95 backdrop-blur text-emerald-700 p-4 rounded-xl shadow-lg">
                     <p className="font-semibold text-sm">Traditional Approach</p>
@@ -243,13 +225,17 @@ const HerbalinkCaseStudy: React.FC = () => {
           {/* AI Matching Innovation */}
           <section className="intelligent-matching-system py-20 bg-gradient-to-br from-emerald-50 to-teal-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Zap className="h-10 w-10 text-blue-500" />
                   <span className="text-blue-600 font-semibold text-lg">AI Matching Innovation</span>
@@ -266,29 +252,36 @@ const HerbalinkCaseStudy: React.FC = () => {
               </motion.div>
               
               <div className="grid lg:grid-cols-3 gap-8">
-                {matchingFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-emerald-200 hover:shadow-xl transition-all duration-300"
-                  >
+                {matchingFeatures.map((feature, index) => <motion.div key={index} initial={{
+                opacity: 0,
+                y: 50
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: index * 0.2
+              }} className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-emerald-200 hover:shadow-xl transition-all duration-300">
                     <div className="text-4xl mb-6 text-center">{feature.visual}</div>
                     <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">{feature.title}</h3>
                     <p className="text-neutral-600 text-center leading-relaxed">{feature.description}</p>
-                  </motion.div>
-                ))}
+                  </motion.div>)}
               </div>
               
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 p-8 rounded-3xl text-white text-center"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8,
+              delay: 0.6
+            }} className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 p-8 rounded-3xl text-white text-center">
                 <h3 className="text-2xl font-bold mb-4">Matching Algorithm Results</h3>
                 <p className="text-lg opacity-90 max-w-3xl mx-auto">
                   85% of users find their ideal herbalist match within the first 3 recommendations, 
@@ -301,13 +294,17 @@ const HerbalinkCaseStudy: React.FC = () => {
           {/* Platform Experience */}
           <section className="mobile-consultation-platform py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Smartphone className="h-10 w-10 text-purple-500" />
                   <span className="text-purple-600 font-semibold text-lg">Platform Experience</span>
@@ -324,15 +321,18 @@ const HerbalinkCaseStudy: React.FC = () => {
               </motion.div>
               
               <div className="grid lg:grid-cols-2 gap-8">
-                {platformJourney.map((journey, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl border border-emerald-200"
-                  >
+                {platformJourney.map((journey, index) => <motion.div key={index} initial={{
+                opacity: 0,
+                x: index % 2 === 0 ? -50 : 50
+              }} whileInView={{
+                opacity: 1,
+                x: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: index * 0.1
+              }} className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl border border-emerald-200">
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold">
                         {index + 1}
@@ -343,15 +343,10 @@ const HerbalinkCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <img 
-                      src={journey.image}
-                      alt={`${journey.title} - mobile wellness platform interface`}
-                      className="w-full h-48 object-cover rounded-2xl mb-6"
-                    />
+                    <img src={journey.image} alt={`${journey.title} - mobile wellness platform interface`} className="w-full h-48 object-cover rounded-2xl mb-6" />
                     
                     <p className="text-neutral-600 leading-relaxed">{journey.description}</p>
-                  </motion.div>
-                ))}
+                  </motion.div>)}
               </div>
             </div>
           </section>
@@ -359,13 +354,17 @@ const HerbalinkCaseStudy: React.FC = () => {
           {/* Wellness Impact */}
           <section className="community-wellness-impact py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Sprout className="h-10 w-10 text-green-500" />
                   <span className="text-green-600 font-semibold text-lg">Wellness Impact</span>
@@ -382,32 +381,39 @@ const HerbalinkCaseStudy: React.FC = () => {
               </motion.div>
               
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                {wellnessImpact.map((impact, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-emerald-200"
-                  >
+                {wellnessImpact.map((impact, index) => <motion.div key={index} initial={{
+                opacity: 0,
+                y: 50
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.8,
+                delay: index * 0.1
+              }} className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-emerald-200">
                     <div className="flex justify-center mb-4 text-emerald-500">
                       {impact.icon}
                     </div>
                     <div className="text-4xl font-bold text-emerald-600 mb-2">{impact.metric}</div>
                     <div className="text-sm text-neutral-600 uppercase tracking-wide">{impact.label}</div>
-                  </motion.div>
-                ))}
+                  </motion.div>)}
               </div>
               
               {/* Community Testimonial */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-emerald-200 shadow-xl"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8,
+              delay: 0.4
+            }} className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-emerald-200 shadow-xl">
                 <div className="mb-8">
                   <Leaf className="h-12 w-12 text-emerald-500 mx-auto mb-4" />
                   <p className="text-2xl text-neutral-700 italic leading-relaxed mb-6">
@@ -434,12 +440,17 @@ const HerbalinkCaseStudy: React.FC = () => {
           {/* Call to Action */}
           <section className="py-20 bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500 text-white">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              duration: 0.8
+            }}>
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Heart className="h-10 w-10" />
                   <span className="font-semibold text-lg">Your Wellness Journey Awaits</span>
@@ -454,12 +465,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   Your wellness platform deserves the same thoughtful, human-centered approach.
                 </p>
                 
-                <Button 
-                  size="lg"
-                  variant="default"
-                  className="font-semibold px-10 py-6 text-lg group"
-                  onClick={() => window.location.href = '/contact'}
-                >
+                <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group" onClick={() => window.location.href = '/contact'}>
                   Start Your Wellness Project
                   <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -470,8 +476,6 @@ const HerbalinkCaseStudy: React.FC = () => {
         
         <Footer />
       </div>
-    </>
-  );
+    </>;
 };
-
 export default HerbalinkCaseStudy;
