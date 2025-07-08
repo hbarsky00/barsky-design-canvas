@@ -283,7 +283,7 @@ const HerbalinkCaseStudy: React.FC = () => {
               delay: 0.6
             }} className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 p-8 rounded-3xl text-white text-center">
                 <h3 className="text-2xl font-bold mb-4">Matching Algorithm Results</h3>
-                <p className="text-lg opacity-90 max-w-3xl mx-auto">
+                <p className="text-lg opacity-90 max-w-3xl mx-auto white-text-nuclear">
                   85% of users find their ideal herbalist match within the first 3 recommendations, 
                   leading to more successful consultations and better health outcomes.
                 </p>
