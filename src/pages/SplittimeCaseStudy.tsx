@@ -652,7 +652,7 @@ const SplittimeCaseStudy: React.FC = () => {
                   Ready to Transform Family Coordination?
                 </h2>
                 
-                <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-white">
+                <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed white-text-nuclear">
                   Let's create digital experiences that support families through life transitions. 
                   Your family-centered platform deserves the same thoughtful, empathetic approach.
                 </p>
