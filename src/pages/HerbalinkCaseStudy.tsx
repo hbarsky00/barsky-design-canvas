@@ -84,7 +84,7 @@ const HerbalinkCaseStudy: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6"
+            className="mb-8"
           >
             <Link to="/projects" className="inline-flex items-center text-emerald-700 hover:text-emerald-900 transition-colors font-medium">
               <ArrowLeft className="h-4 w-4 mr-2" />
