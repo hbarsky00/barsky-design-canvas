@@ -58,7 +58,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
             duration: 0.8,
             delay: 0.2
           }} className="relative">
-              <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop" alt="Real conversation led to real solutions" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl" />
+              <img alt="Real conversation led to real solutions" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl" src="/lovable-uploads/733f06d4-448d-433a-85c0-80416c2ab26d.png" />
               
             </motion.div>
           </div>
