@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine } from "lucide-react";
+import { ArrowRight, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 const HerbalinkCaseStudy: React.FC = () => {
+  const [editableImage, setEditableImage] = useState("https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop");
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result as string;
+        setEditableImage(result);
+        setIsEditing(false);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const healthBarriers = [{
     title: "Geographic Limitations",
     description: "Traditional herbalist consultations required in-person visits, leaving rural communities without access to qualified practitioners.",
@@ -210,8 +226,43 @@ const HerbalinkCaseStudy: React.FC = () => {
               }} transition={{
                 duration: 0.8,
                 delay: 0.3
-              }} className="relative">
-                  <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop" alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" />
+              }} className="relative group">
+                  <img 
+                    src={editableImage} 
+                    alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" 
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" 
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl flex items-center justify-center">
+                    <div className="flex gap-4">
+                      <Button
+                        onClick={() => setIsEditing(!isEditing)}
+                        variant="secondary"
+                        size="sm"
+                        className="bg-white/90 hover:bg-white text-gray-900"
+                      >
+                        <Upload className="h-4 w-4 mr-2" />
+                        Change Image
+                      </Button>
+                    </div>
+                  </div>
+                  {isEditing && (
+                    <div className="absolute top-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-xl border">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="w-full text-sm"
+                      />
+                      <Button
+                        onClick={() => setIsEditing(false)}
+                        variant="outline"
+                        size="sm"
+                        className="mt-2"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  )}
                 </motion.div>
               </div>
             </div>
