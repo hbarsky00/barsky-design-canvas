@@ -1,26 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine, Upload } from "lucide-react";
+import { ArrowRight, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
 const HerbalinkCaseStudy: React.FC = () => {
-  const [editableImage, setEditableImage] = useState("https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop");
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = e.target?.result as string;
-        setEditableImage(result);
-        setIsEditing(false);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const healthBarriers = [{
     title: "Geographic Limitations",
@@ -228,21 +213,10 @@ const HerbalinkCaseStudy: React.FC = () => {
                 delay: 0.3
               }} className="relative">
                   <img 
-                    src={editableImage} 
+                    src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=600&fit=crop" 
                     alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" 
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer" 
-                    onClick={() => setIsEditing(!isEditing)}
+                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
                   />
-                  {isEditing && (
-                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm p-3 rounded-lg border shadow-lg">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="text-xs"
-                      />
-                    </div>
-                  )}
                 </motion.div>
               </div>
             </div>
