@@ -208,7 +208,7 @@ const SplittimeCaseStudy: React.FC = () => {
               }} className="relative">
                   <figure className="project-image-container">
                     <img 
-                      src="/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png" 
+                      src="/lovable-uploads/3b4dca90-c8fe-4f51-bf52-76fc04f990b5.png" 
                       alt="Splittime co-parenting dashboard with shared calendar integration" 
                       className="clickable-image w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                       onClick={() => openImageViewer('splittime-hero-1')}

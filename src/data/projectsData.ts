@@ -22,7 +22,7 @@ export const projectsData: ProjectProps[] = [
     id: "splittime",
     title: "Splittime: From Conflict to Collaboration",
     description: "Family-centered co-parenting platform that transforms communication between separated parents. Reduced scheduling conflicts by 73% through thoughtful, child-focused design.",
-    image: "/lovable-uploads/dfd3c92e-ca1c-4a63-b41c-1244c2c1039a.png",
+    image: "/lovable-uploads/3b4dca90-c8fe-4f51-bf52-76fc04f990b5.png",
     tags: ["Family Tech", "Co-Parenting", "Communication Design", "Conflict Reduction", "Child-Centered UX"],
     featured: true,
   },
