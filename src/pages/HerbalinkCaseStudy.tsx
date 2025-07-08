@@ -216,6 +216,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
+                  <img alt="Healthcare professional illustration showing the digital transformation needed to bridge traditional herbal practice with modern accessibility" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl mb-8" src="/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png" />
                   <img alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl" src="/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png" />
                 </motion.div>
               </div>
