@@ -30,7 +30,7 @@ export const projectsData: ProjectProps[] = [
     id: "investor-loan-app",
     title: "Investor Loan App: Smart Portfolio Management",
     description: "FinTech platform transforming real estate investment management from spreadsheet chaos to intelligent portfolio tracking with automated reporting and performance analytics.",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=800&fit=crop",
+    image: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
     tags: ["FinTech", "Portfolio Management", "Investment Analytics", "Automated Reporting", "Real Estate Tech"],
     featured: true,
   }
