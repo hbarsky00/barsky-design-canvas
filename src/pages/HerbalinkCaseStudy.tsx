@@ -106,6 +106,11 @@ const HerbalinkCaseStudy: React.FC = () => {
                     intelligent matching, making herbal wisdom accessible through thoughtful mobile-first design.
                   </p>
                   
+                  <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-emerald-600 hover:bg-emerald-700" onClick={() => window.open('http://herbalink.live', '_blank')}>
+                    Visit Live Site
+                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  
                   <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-emerald-200 shadow-lg">
                     <div className="flex items-start gap-4">
                       <TreePine className="h-8 w-8 text-emerald-600 flex-shrink-0 mt-1" />
@@ -504,17 +509,10 @@ const HerbalinkCaseStudy: React.FC = () => {
                   Your wellness platform deserves the same thoughtful, human-centered approach.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-white text-emerald-600 hover:bg-white/90" onClick={() => window.open('http://herbalink.live', '_blank')}>
-                    Visit Live Site
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  
-                  <Button size="lg" variant="outline" className="font-semibold px-10 py-6 text-lg group border-white text-white hover:bg-white hover:text-emerald-600" onClick={() => window.location.href = '/contact'}>
-                    Start Your Wellness Project
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
+                <Button size="lg" variant="outline" className="font-semibold px-10 py-6 text-lg group border-white text-white hover:bg-white hover:text-emerald-600" onClick={() => window.location.href = '/contact'}>
+                  Start Your Wellness Project
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </motion.div>
             </div>
           </section>
