@@ -645,7 +645,7 @@ const SplittimeCaseStudy: React.FC = () => {
             }}>
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <Heart className="h-10 w-10 text-white" />
-                  <span className="font-semibold text-lg text-white">Supporting Families</span>
+                  <span className="font-semibold text-lg white-text-nuclear">Supporting Families</span>
                 </div>
                 
                 <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
