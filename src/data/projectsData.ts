@@ -14,7 +14,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "Herbalink: Bridging Ancient Wisdom with Modern Accessibility",
     description: "Wellness-focused platform connecting people with certified herbalists through intelligent AI matching and mobile-first design. Achieved 78% user satisfaction with personalized herbal care.",
-    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1200&h=800&fit=crop",
+    image: "/lovable-uploads/54ddb7c1-ce60-4077-b56c-ae4640252d52.png",
     tags: ["Healthcare UX", "AI Matching", "Mobile-First", "Wellness Platform", "Accessibility Design"],
     featured: true,
   },
