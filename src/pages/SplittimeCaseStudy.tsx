@@ -157,7 +157,7 @@ const SplittimeCaseStudy: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6"
+            className="mb-8"
           >
             <Link to="/projects" className="inline-flex items-center text-blue-700 hover:text-blue-900 transition-colors font-medium">
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -169,7 +169,7 @@ const SplittimeCaseStudy: React.FC = () => {
         <main className="flex-grow">
           
           {/* Family Harmony Hero */}
-          <section className="family-harmony-introduction py-20 lg:py-32">
+          <section className="family-harmony-introduction py-8 lg:py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <motion.div initial={{
