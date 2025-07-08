@@ -31,6 +31,7 @@ import LinkedInVisitors from "@/pages/LinkedInVisitors";
 import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
+import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -47,37 +48,39 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <TooltipProvider>
-          <Toaster />
-          <BrowserRouter>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/projects" element={<AllProjects />} />
-              <Route path="/project/:projectId" element={<ProjectDetail />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
-              <Route path="/design-services/web-development" element={<WebDevelopment />} />
-              <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:postId" element={<BlogPost />} />
-              <Route path="/store" element={<Store />} />
-              <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
-              <Route path="/get-started" element={<LeadCapture />} />
-              <Route path="/admin/leads" element={<AdminDashboard />} />
-              <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
-              <Route path="/free-audit" element={<FreeAudit />} />
-              <Route path="/services/mvp-validation" element={<MvpValidation />} />
-              <Route path="/services/conversion-audit" element={<ConversionAudit />} />
-              <Route path="/services/ai-redesign" element={<AiRedesign />} />
-              <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
-              <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
-              <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
-              <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+          <ImageMaximizerProvider>
+            <Toaster />
+            <BrowserRouter>
+              <ScrollToTop />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/projects" element={<AllProjects />} />
+                <Route path="/project/:projectId" element={<ProjectDetail />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
+                <Route path="/design-services/web-development" element={<WebDevelopment />} />
+                <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:postId" element={<BlogPost />} />
+                <Route path="/store" element={<Store />} />
+                <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
+                <Route path="/get-started" element={<LeadCapture />} />
+                <Route path="/admin/leads" element={<AdminDashboard />} />
+                <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
+                <Route path="/free-audit" element={<FreeAudit />} />
+                <Route path="/services/mvp-validation" element={<MvpValidation />} />
+                <Route path="/services/conversion-audit" element={<ConversionAudit />} />
+                <Route path="/services/ai-redesign" element={<AiRedesign />} />
+                <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
+                <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
+                <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
+                <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </ImageMaximizerProvider>
         </TooltipProvider>
       </HelmetProvider>
     </QueryClientProvider>
