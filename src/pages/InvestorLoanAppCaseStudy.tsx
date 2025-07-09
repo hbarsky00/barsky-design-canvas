@@ -170,8 +170,8 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 delay: 0.2
               }} className="relative">
                   <MaximizableImage
-                    src="/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
-                    alt={investorLoanImageCaptions["/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"] || "Professional investment portfolio dashboard showing comprehensive loan and property management analytics"}
+                    src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
+                    alt="Loan Central orderbook interface showing investment deals and lender allocation details"
                     className="w-full h-[500px] object-cover shadow-2xl"
                   />
                   
