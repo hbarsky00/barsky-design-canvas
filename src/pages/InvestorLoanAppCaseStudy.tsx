@@ -169,18 +169,28 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.2
               }} className="relative">
-                  <MaximizableImage
-                    src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
-                    alt="Loan Central orderbook interface showing investment deals and lender allocation details"
-                    className="w-full h-[500px] object-cover shadow-2xl"
-                  />
+                  <figure className="project-image-container">
+                    <img 
+                      src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" 
+                      alt="Loan Central orderbook interface showing investment deals and lender allocation details"
+                      className="w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                    />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Low Fidelity Loan Central Order book
+                    </figcaption>
+                  </figure>
                   
                   <div className="mt-8">
-                    <MaximizableImage
-                      src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png"
-                      alt="Loan Central My Deals Dashboard interface"
-                      className="w-full h-auto object-contain shadow-2xl"
-                    />
+                    <figure className="project-image-container mt-8">
+                      <img 
+                        src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" 
+                        alt="Loan Central My Deals Dashboard interface"
+                        className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                      />
+                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                        Low Fidelity Loan Central My Deals Dashboard
+                      </figcaption>
+                    </figure>
                   </div>
                 </motion.div>
               </div>
@@ -259,11 +269,16 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
-                  <MaximizableImage
-                    src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
-                    alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
-                    className="w-full h-[300px] shadow-2xl object-contain"
-                  />
+                  <figure className="project-image-container">
+                    <img 
+                      src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" 
+                      alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
+                      className="w-full h-[300px] shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                    />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      User Process Flow
+                    </figcaption>
+                  </figure>
                 </motion.div>
               </div>
             </div>
