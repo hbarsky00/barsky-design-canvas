@@ -109,7 +109,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
           }} transition={{
             duration: 0.8
           }} className="relative">
-              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop" alt="Understanding actual workflow instead of forcing users to adapt" className="w-full h-[400px] object-cover rounded-2xl shadow-xl" />
+              <img alt="Understanding actual workflow instead of forcing users to adapt" src="/lovable-uploads/a0687cd1-40e1-44e6-8efc-5e6de58db84d.png" className="w-full h-[300px] rounded-2xl shadow-xl object-contain" />
             </motion.div>
           </div>
         </div>
