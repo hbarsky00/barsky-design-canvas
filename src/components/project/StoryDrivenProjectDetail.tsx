@@ -108,11 +108,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
             once: true
           }} transition={{
             duration: 0.8
-          }} className="relative space-y-6">
-              <div>
-                <img alt="early low fidelity wireframe" src="/lovable-uploads/8cf1f8bd-0c5f-4de7-b4ec-0190ca9aa1e1.png" className="w-full h-[300px] rounded-2xl shadow-xl object-contain" />
-                <p className="text-sm text-gray-600 text-center mt-2 italic">early low fidelity wireframe</p>
-              </div>
+          }} className="relative">
               <img alt="Understanding actual workflow instead of forcing users to adapt" src="/lovable-uploads/a0687cd1-40e1-44e6-8efc-5e6de58db84d.png" className="w-full h-[300px] rounded-2xl shadow-xl object-contain" />
             </motion.div>
           </div>
@@ -137,13 +133,13 @@ const StoryDrivenProjectDetail: React.FC = () => {
             step: "1",
             title: "Excel Scripts",
             description: "Started with quick automation to solve immediate pain",
-            image: "/lovable-uploads/1ae328a9-7fbc-4007-8892-2e1d5f7402a3.png",
+            image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
             color: "green"
           }, {
             step: "2",
             title: "Custom Foundation",
             description: "Built proper app interface on the Excel foundation",
-            video: "https://www.loom.com/embed/f746677f541647d8934010a1a5dfa5c2?sid=7bd8394d-4daa-4fab-89d2-4cb4c8c08203",
+            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
             color: "blue"
           }, {
             step: "3",
@@ -167,17 +163,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
                   <div className={`w-12 h-12 bg-${phase.color}-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-6`}>
                     {phase.step}
                   </div>
-                  {phase.video ? (
-                    <iframe 
-                      src={phase.video} 
-                      className="w-full h-48 rounded-2xl mb-6" 
-                      frameBorder="0" 
-                      allowFullScreen
-                      title={phase.title}
-                    />
-                  ) : (
-                    <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover rounded-2xl mb-6" />
-                  )}
+                  <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover rounded-2xl mb-6" />
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{phase.title}</h3>
                   <p className="text-gray-600">{phase.description}</p>
                 </div>
@@ -295,7 +281,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Ready for Your Own Story-Driven Solution?
           </h2>
-          <p className="text-xl mb-8 white-text-nuclear">
+          <p className="text-xl mb-8 opacity-90">
             Let's start with a conversation about your real challenges, not a sales pitch.
           </p>
           <Button size="lg" variant="default" className="font-semibold px-8 py-4 text-lg">
