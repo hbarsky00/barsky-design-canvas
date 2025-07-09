@@ -173,7 +173,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   >
                     <div className="relative w-full h-0 pb-[56.25%] overflow-hidden shadow-2xl">
                       <iframe 
-                        src="https://www.loom.com/embed/513d7cabdf054bdeb222bc7f60d5f9b0?sid=2f594fb9-9919-49c9-8be2-bd658ad76d6c"
+                        src="https://www.loom.com/embed/0f34883a677f4083a48e763a54aeb010?sid=ebd6569a-d60f-417f-8847-6db93b616afc"
                         frameBorder="0"
                         allowFullScreen
                         className="absolute top-0 left-0 w-full h-full"
