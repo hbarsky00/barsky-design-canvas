@@ -22,53 +22,59 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   // Generate concise, problem-focused titles (50-60 chars)
   const getOptimizedTitle = () => {
     if (project.id === 'herbalink') {
-      return "Herbal App UX Design | Trust & Access | Hiram Barsky";
+      return "Herbalink: AI-Enhanced UX Design for Wellness | Hiram Barsky - Product Designer & Gen AI Developer";
     }
     if (project.id === 'investor-loan-app') {
-      return "Fintech UX Design | Loan Platform | Hiram Barsky";
+      return "Investor Loan App: AI-Enhanced FinTech UX | Hiram Barsky - Product Designer & Gen AI Developer";
     }
     if (project.id === 'medication-app') {
-      return "Healthcare App UX | Patient Care | Hiram Barsky";
+      return "Healthcare App: AI-Powered UX Design | Hiram Barsky - Product Designer & Gen AI Developer";
     }
     if (project.id === 'splittime') {
-      return "Team Management UX | Workflow Design | Hiram Barsky";
+      return "Splittime: AI-Powered Co-Parenting App Design | Hiram Barsky - Product Designer & Gen AI Developer";
     }
     if (project.id === 'gold2crypto') {
-      return "Crypto Trading UX | Investment App | Hiram Barsky";
+      return "Gold2Crypto: AI-Enhanced Trading UX | Hiram Barsky - Product Designer & Gen AI Developer";
     }
     if (project.id === 'dae-search') {
-      return "Search Platform UX | Data Discovery | Hiram Barsky";
+      return "DAE Search: AI-Powered Data Discovery | Hiram Barsky - Product Designer & Gen AI Developer";
     }
     if (project.id === 'barskyjoint') {
-      return "Cannabis Platform UX | E-commerce | Hiram Barsky";
+      return "BarskyJoint: AI-Enhanced Cannabis Platform | Hiram Barsky - Product Designer & Gen AI Developer";
     }
-    return `${project.title.substring(0, 35)} | Hiram Barsky`;
+    if (project.id === 'wholesale-distribution') {
+      return "Wholesale Distribution: From Designer to Gen AI Developer | Hiram Barsky Case Study";
+    }
+    return `${project.title.substring(0, 35)} | Hiram Barsky - Product Designer & Gen AI Developer`;
   };
   
   // Generate concise, results-focused descriptions (150-160 chars)
   const getOptimizedDescription = () => {
     if (project.id === 'herbalink') {
-      return "UX case study: Herbal consultation app design solving trust issues and improving accessibility for wellness seekers. 40% increase in user engagement.";
+      return "Discover how Gen AI integration and UX design created a wellness platform connecting users with certified herbalists. 78% user satisfaction through AI-powered matching and mobile-first design.";
     }
     if (project.id === 'investor-loan-app') {
-      return "Fintech UX design case study: Loan management platform reducing errors by 85% and streamlining investment workflows for better user experience.";
+      return "FinTech platform transforming real estate investment management through AI-powered portfolio tracking, automated reporting, and intelligent UX design.";
     }
     if (project.id === 'medication-app') {
-      return "Healthcare app UX design: Medication tracking solution improving patient adherence and care coordination through user-centered design approach.";
+      return "Healthcare app UX design: AI-enhanced medication tracking solution improving patient adherence and care coordination through intelligent design approach.";
     }
     if (project.id === 'splittime') {
-      return "Team management UX case study: Workflow optimization platform design improving productivity and collaboration for distributed teams.";
+      return "See how AI-enhanced UX design reduced co-parenting scheduling conflicts by 73%. Family-centered platform transforming separated parent communication through intelligent design.";
     }
     if (project.id === 'gold2crypto') {
-      return "Crypto trading platform UX design: Investment app interface solving complexity issues and improving user confidence in digital asset trading.";
+      return "Crypto trading platform with AI-enhanced UX design: Investment app interface solving complexity issues and improving user confidence in digital asset trading.";
     }
     if (project.id === 'dae-search') {
-      return "Search platform UX design: Data discovery interface improving findability and user efficiency through strategic information architecture.";
+      return "AI-powered search platform UX design: Data discovery interface improving findability and user efficiency through strategic information architecture and intelligent design.";
     }
     if (project.id === 'barskyjoint') {
-      return "Cannabis e-commerce UX design: Platform interface solving regulatory compliance and user trust issues in regulated market space.";
+      return "Cannabis e-commerce platform with AI-enhanced UX design: Platform interface solving regulatory compliance and user trust issues in regulated market space.";
     }
-    return `${project.title} Product Design case study by Hiram Barsky - Product Designer & Gen AI Developer specializing in user-centered solutions.`;
+    if (project.id === 'wholesale-distribution') {
+      return "Real conversation to custom AI-powered business solution. How UX expertise evolved into full-stack Gen AI development for wholesale distribution challenges.";
+    }
+    return `${project.title} Product Design case study by Hiram Barsky - Product Designer & Gen AI Developer specializing in AI-enhanced user-centered solutions.`;
   };
   
   const optimizedTitle = getOptimizedTitle();
