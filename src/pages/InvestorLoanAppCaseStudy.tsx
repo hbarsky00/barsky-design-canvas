@@ -263,6 +263,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   <MaximizableImage
                     src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
                     alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
+                    caption="User Process Flow"
                     className="w-full h-[300px] shadow-2xl object-contain"
                   />
                 </motion.div>
