@@ -333,7 +333,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
               delay: 0.6
             }} className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-center">
                 <h3 className="text-2xl font-bold mb-4 text-white">Investment-First Philosophy</h3>
-                <p className="text-lg max-w-3xl mx-auto text-white font-normal [color:white]">
+                <p className="text-lg max-w-3xl mx-auto white-text-nuclear">
                   By automating complex portfolio management tasks and providing intelligent insights, 
                   investors spend less time on spreadsheets and more time identifying profitable opportunities.
                 </p>
