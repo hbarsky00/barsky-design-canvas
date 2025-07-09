@@ -170,11 +170,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 delay: 0.2
               }} className="relative">
                   <figure className="project-image-container">
-                    <img 
-                      src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" 
-                      alt="Loan Central orderbook interface showing investment deals and lender allocation details"
-                      className="w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                    />
+                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[500px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                       Low Fidelity Loan Central Order book
                     </figcaption>
@@ -182,11 +178,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   
                   <div className="mt-8">
                     <figure className="project-image-container mt-8">
-                      <img 
-                        src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" 
-                        alt="Loan Central My Deals Dashboard interface"
-                        className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                      />
+                      <img src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" alt="Loan Central My Deals Dashboard interface" className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
                       <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                         Low Fidelity Loan Central My Deals Dashboard
                       </figcaption>
@@ -270,11 +262,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 delay: 0.3
               }} className="relative">
                   <figure className="project-image-container">
-                    <img 
-                      src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" 
-                      alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
-                      className="w-full h-[300px] shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                    />
+                    <img src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"} className="w-full h-[300px] shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                       User Process Flow
                     </figcaption>
@@ -408,11 +396,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <MaximizableImage
-                      src={item.image}
-                      alt={`${item.title} - professional investment platform interface`}
-                      className="w-full h-48 object-cover mb-6"
-                    />
+                    <MaximizableImage src={item.image} alt={`${item.title} - professional investment platform interface`} className="w-full h-48 object-cover mb-6" />
                     
                     <p className="text-slate-600 leading-relaxed">{item.description}</p>
                   </motion.div>)}
