@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import MaximizableImage from "@/components/project/MaximizableImage";
 import { investorLoanImageCaptions, investorLoanGalleryImages } from "@/data/investorLoanData";
 const InvestorLoanAppCaseStudy: React.FC = () => {
   const portfolioComplexities = [{
@@ -168,7 +169,11 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.2
               }} className="relative">
-                  <img src="/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png" alt={investorLoanImageCaptions["/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"] || "Professional investment portfolio dashboard showing comprehensive loan and property management analytics"} className="w-full h-[500px] object-cover shadow-2xl" />
+                  <MaximizableImage
+                    src="/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
+                    alt={investorLoanImageCaptions["/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"] || "Professional investment portfolio dashboard showing comprehensive loan and property management analytics"}
+                    className="w-full h-[500px] object-cover shadow-2xl"
+                  />
                 </motion.div>
               </div>
             </div>
@@ -246,7 +251,11 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
-                  <img src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"} className="w-full h-[300px] shadow-2xl object-contain" />
+                  <MaximizableImage
+                    src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
+                    alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
+                    className="w-full h-[300px] shadow-2xl object-contain"
+                  />
                 </motion.div>
               </div>
             </div>
@@ -376,7 +385,11 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <img src={item.image} alt={`${item.title} - professional investment platform interface`} className="w-full h-48 object-cover mb-6" />
+                    <MaximizableImage
+                      src={item.image}
+                      alt={`${item.title} - professional investment platform interface`}
+                      className="w-full h-48 object-cover mb-6"
+                    />
                     
                     <p className="text-slate-600 leading-relaxed">{item.description}</p>
                   </motion.div>)}
