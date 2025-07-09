@@ -171,7 +171,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="mt-8"
                   >
-                    <div className="relative w-full h-0 pb-[56.25%] rounded-3xl overflow-hidden shadow-2xl">
+                    <div className="relative w-full h-0 pb-[56.25%] overflow-hidden shadow-2xl">
                       <iframe 
                         src="https://www.loom.com/embed/513d7cabdf054bdeb222bc7f60d5f9b0?sid=2f594fb9-9919-49c9-8be2-bd658ad76d6c"
                         frameBorder="0"
