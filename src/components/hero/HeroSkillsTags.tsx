@@ -41,17 +41,6 @@ const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
         ))}
       </motion.div>
 
-      {/* Senior Product Designer + Gen AI Developer Row */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 2.2, duration: 0.6 }}
-        className="text-center"
-      >
-        <p className="text-sm font-medium text-slate-600 tracking-wide">
-          Senior Product Designer + Gen AI Developer
-        </p>
-      </motion.div>
     </div>
   );
 };
