@@ -614,6 +614,29 @@ img {
   loading: lazy;
   height: auto;
   max-width: 100%;
+  border-radius: 0 !important; /* Remove all rounded corners from images */
+}
+
+/* Remove rounded corners from all image-related elements */
+img[class*="rounded-"],
+figure img,
+div img,
+.glass-card img,
+.gallery-image img,
+.project-image-container img,
+[class*="image"] img {
+  border-radius: 0 !important;
+}
+
+/* Remove rounded corners from MaximizableImage containers */
+figure[data-lovable-element="image-container"],
+.maximizable-image-container {
+  border-radius: 0 !important;
+}
+
+/* Remove rounded corners from iframe videos */
+iframe {
+  border-radius: 0 !important;
 }
 
 img[loading="eager"] {
