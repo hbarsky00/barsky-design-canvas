@@ -139,7 +139,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
             step: "2",
             title: "Custom Foundation",
             description: "Built proper app interface on the Excel foundation",
-            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
+            video: "https://www.loom.com/embed/f746677f541647d8934010a1a5dfa5c2?sid=7bd8394d-4daa-4fab-89d2-4cb4c8c08203",
             color: "blue"
           }, {
             step: "3",
@@ -163,7 +163,17 @@ const StoryDrivenProjectDetail: React.FC = () => {
                   <div className={`w-12 h-12 bg-${phase.color}-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-6`}>
                     {phase.step}
                   </div>
-                  <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover rounded-2xl mb-6" />
+                  {phase.video ? (
+                    <iframe 
+                      src={phase.video} 
+                      className="w-full h-48 rounded-2xl mb-6" 
+                      frameBorder="0" 
+                      allowFullScreen
+                      title={phase.title}
+                    />
+                  ) : (
+                    <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover rounded-2xl mb-6" />
+                  )}
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{phase.title}</h3>
                   <p className="text-gray-600">{phase.description}</p>
                 </div>
