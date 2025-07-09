@@ -196,6 +196,11 @@ const SplittimeCaseStudy: React.FC = () => {
                     and keeping children's wellbeing at the center of every interaction between separated parents.
                   </p>
                   
+                  <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-blue-600 hover:bg-blue-700" onClick={() => window.open('http://splittime.pro', '_blank')}>
+                    Visit Live Site
+                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  
                   <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 shadow-lg">
                     <div className="flex items-start gap-4">
                       <Baby className="h-8 w-8 text-blue-600 flex-shrink-0 mt-1" />
