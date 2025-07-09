@@ -5,9 +5,14 @@ import { Link } from "react-router-dom";
 
 const ProfileAvatar: React.FC = () => {
   return (
-    <Link to="/">
+    <Link to="/" aria-label="Go to homepage">
       <Avatar className="h-12 w-12 border-2 border-barsky-blue">
-        <AvatarImage src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" alt="Barsky Design" />
+        <AvatarImage 
+          src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" 
+          alt="Barsky Design professional profile photo" 
+          loading="eager"
+          fetchPriority="high"
+        />
         <AvatarFallback>BD</AvatarFallback>
       </Avatar>
     </Link>

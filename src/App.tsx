@@ -32,6 +32,8 @@ import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
+import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
+import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -44,6 +46,10 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  // Apply performance and accessibility optimizations
+  usePerformanceOptimization();
+  useAccessibilityEnhancements();
+  
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
@@ -52,7 +58,8 @@ function App() {
             <Toaster />
             <BrowserRouter>
               <ScrollToTop />
-              <Routes>
+              <main id="main-content" role="main">
+                <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/projects" element={<AllProjects />} />
                 <Route path="/project/:projectId" element={<ProjectDetail />} />
@@ -78,7 +85,8 @@ function App() {
                 <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
                 <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
                 <Route path="*" element={<NotFound />} />
-              </Routes>
+                </Routes>
+              </main>
             </BrowserRouter>
           </ImageMaximizerProvider>
         </TooltipProvider>

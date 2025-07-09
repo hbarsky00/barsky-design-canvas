@@ -54,16 +54,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div>
       <button 
-        className="text-barsky-dark dark:text-white" 
+        className="text-barsky-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1" 
         onClick={toggleMobileMenu}
-        aria-label="Toggle menu"
+        aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="mobile-navigation"
       >
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {isMobileMenuOpen && (
         <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800 shadow-md z-50">
-          <nav className="flex flex-col space-y-4">
+          <nav id="mobile-navigation" className="flex flex-col space-y-4" role="navigation" aria-label="Mobile navigation menu">
             {links.map((link) => {
               // For external links, use a regular anchor tag
               if (link.href.startsWith('http')) {

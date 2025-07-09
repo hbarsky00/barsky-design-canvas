@@ -17,7 +17,7 @@ interface GlobalSeoProps {
 const GlobalSeo: React.FC<GlobalSeoProps> = ({
   title = "Barsky Design - Official Portfolio | Professional Product Designer & Developer",
   description = "Barsky Design (not Alex Barsky) is a Professional Product Designer & Developer specializing in Product Design, web development, and AI-driven design solutions. View my portfolio of mobile apps, web applications, and design systems.",
-  canonicalUrl = "https://barskydesign.pro",
+  canonicalUrl = "https://barskydesign.pro/",
   ogImage = "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png",
   noIndex = false,
   breadcrumbs = []
@@ -57,9 +57,14 @@ const GlobalSeo: React.FC<GlobalSeoProps> = ({
       <meta name="twitter:creator" content="@barskydesign" />
       <meta name="twitter:site" content="@barskydesign" />
       
-      {/* Canonical and alternate URLs */}
+      {/* Canonical and alternate URLs - Ensure single canonical */}
       <link rel="canonical" href={canonicalUrl} />
       <link rel="alternate" hrefLang="en" href={canonicalUrl} />
+      
+      {/* Resource hints for performance */}
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+      <link rel="preconnect" href="//fonts.gstatic.com" crossOrigin="anonymous" />
       
       {/* Additional SEO meta tags */}
       <meta name="theme-color" content="#3B82F6" />
