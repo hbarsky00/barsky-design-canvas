@@ -174,6 +174,15 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                     alt={investorLoanImageCaptions["/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"] || "Professional investment portfolio dashboard showing comprehensive loan and property management analytics"}
                     className="w-full h-[500px] object-cover shadow-2xl"
                   />
+                  
+                  <div className="mt-8">
+                    <MaximizableImage
+                      src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png"
+                      alt="low res design My Deals Investment Management Platform"
+                      caption="low res design My Deals Investment Management Platform"
+                      className="w-full h-auto object-contain shadow-2xl"
+                    />
+                  </div>
                 </motion.div>
               </div>
             </div>
