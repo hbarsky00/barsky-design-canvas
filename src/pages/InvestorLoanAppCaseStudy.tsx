@@ -246,7 +246,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
-                  <img src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"} className="w-full h-[500px] shadow-2xl object-contain" />
+                  <img src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"} className="w-full h-[300px] shadow-2xl object-contain" />
                 </motion.div>
               </div>
             </div>
