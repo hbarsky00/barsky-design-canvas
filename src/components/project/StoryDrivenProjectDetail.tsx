@@ -163,7 +163,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
                   <div className={`w-12 h-12 bg-${phase.color}-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-6`}>
                     {phase.step}
                   </div>
-                  {phase.step === "1" ? (
+                  {phase.step === "2" ? (
                     <iframe 
                       src="https://www.loom.com/embed/f746677f541647d8934010a1a5dfa5c2" 
                       frameBorder="0" 
