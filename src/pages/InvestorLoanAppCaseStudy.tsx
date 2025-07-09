@@ -172,7 +172,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   <MaximizableImage
                     src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
                     alt="Loan Central orderbook interface showing investment deals and lender allocation details"
-                    caption="Loan Central Order book"
+                    caption="Low Fidelity Loan Central Order book"
                     className="w-full h-[500px] object-cover shadow-2xl"
                   />
                   
@@ -180,7 +180,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                     <MaximizableImage
                       src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png"
                       alt="Loan Central My Deals Dashboard interface"
-                      caption="Loan Central My Deals Dashboard"
+                      caption="Low Fidelity Loan Central My Deals Dashboard"
                       className="w-full h-auto object-contain shadow-2xl"
                     />
                   </div>
