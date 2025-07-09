@@ -514,7 +514,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   Ready to Transform Your Investment Management?
                 </h2>
                 
-                <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-white">
+                <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed white-text-nuclear">
                   Let's create intelligent platforms that turn complex financial data into actionable investment insights. 
                   Your portfolio management platform deserves the same data-driven, professional approach.
                 </p>
