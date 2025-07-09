@@ -90,7 +90,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     icon: <LineChart className="h-6 w-6" />
   }];
   return <>
-      <EnhancedGlobalSeo title="Investor Loan App: FinTech Portfolio Management Platform Case Study" description="See how intelligent automation transformed real estate investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors." canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app" pageType="content" keywords={["real estate investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics", "real estate investor tools", "property investment tracking", "investment risk assessment", "portfolio optimization platform"]} />
+      <EnhancedGlobalSeo title="Investor Loan App: FinTech Portfolio Management Platform Case Study" description="See how intelligent automation transformed investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors." canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app" pageType="content" keywords={["investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics", "investor tools", "portfolio investment tracking", "investment risk assessment", "portfolio optimization platform"]} />
       
       <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <Header />
@@ -139,7 +139,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   </h1>
                   
                   <p className="text-xl text-slate-600 leading-relaxed max-w-2xl">
-                    Transforming real estate investment management from spreadsheet chaos to intelligent portfolio tracking. 
+                    Transforming investment management from spreadsheet chaos to intelligent portfolio tracking. 
                     Our platform automates reporting, tracks performance, and provides actionable insights for serious investors.
                   </p>
                   
@@ -151,7 +151,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                           Professional Investment Management
                         </p>
                         <p className="text-slate-600 italic">
-                          "Real estate investors need data-driven insights, not Excel headaches. When portfolio management becomes automated, 
+                          "Investors need data-driven insights, not Excel headaches. When portfolio management becomes automated, 
                           investors can focus on what matters: finding and securing profitable opportunities."
                         </p>
                       </div>
@@ -209,12 +209,12 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 </div>
                 
                 <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8">
-                  Where Real Estate Investment Management Breaks Down
+                  Where Investment Management Breaks Down
                 </h2>
                 
                 <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
                   Professional investors lose valuable time and miss opportunities due to fragmented portfolio management tools 
-                  that can't keep pace with the complexity of modern real estate investment portfolios.
+                  that can't keep pace with the complexity of modern investment portfolios.
                 </p>
               </motion.div>
               
@@ -364,11 +364,11 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 </div>
                 
                 <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-8">
-                  Built Specifically for Real Estate Investment Management
+                  Built Specifically for Investment Management
                 </h2>
                 
                 <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-                  Built specifically for real estate investors who manage multiple properties and loans. The dashboard provides instant access to 
+                  Built specifically for investors who manage multiple assets and loans. The dashboard provides instant access to 
                   portfolio performance, automated reporting, and investment analytics that drive better decision-making.
                 </p>
               </motion.div>
@@ -486,8 +486,8 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   </div>
                   <div className="text-left">
                     <p className="font-bold text-slate-900 text-lg">Michael Rodriguez</p>
-                    <p className="text-blue-600 font-medium">Principal, Rodriguez Real Estate Investments</p>
-                    <p className="text-sm text-slate-500">Managing $47M portfolio across 127 properties</p>
+                    <p className="text-blue-600 font-medium">Principal, Rodriguez Investments</p>
+                    <p className="text-sm text-slate-500">Managing $47M portfolio across 127 assets</p>
                   </div>
                 </div>
               </motion.div>
