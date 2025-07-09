@@ -248,7 +248,7 @@ const LinkedInVisitors: React.FC = () => {
                 <h2 className="text-3xl sm:text-4xl font-bold mb-6">
                   Ready to Transform Your Business?
                 </h2>
-                <p className="text-xl mb-8 leading-relaxed">
+                <p className="text-xl mb-8 leading-relaxed white-text-nuclear">
                   Get a free 30-minute strategy session where I'll analyze your current setup and show you exactly 
                   how to implement AI-enhanced UX that drives measurable ROI.
                 </p>
