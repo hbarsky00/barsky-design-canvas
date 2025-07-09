@@ -266,6 +266,30 @@ const HerbalinkCaseStudy: React.FC = () => {
             </div>
           </section>
 
+          {/* Mobile App Interface Showcase */}
+          <section className="mobile-interface-showcase py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.8 }}
+                className="w-full"
+              >
+                <figure className="project-image-container">
+                  <img 
+                    src="/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png" 
+                    alt="HerbaLink mobile app interface showing Dashboard, Select Herbalist, and Pay for Herbalist screens with comprehensive user flow" 
+                    className="w-full h-auto object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                  />
+                  <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                    HerbaLink mobile app interface showcasing the complete user journey from dashboard to payment
+                  </figcaption>
+                </figure>
+              </motion.div>
+            </div>
+          </section>
+
           {/* AI Matching Innovation */}
           <section className="intelligent-matching-system py-20 bg-gradient-to-br from-emerald-50 to-teal-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
