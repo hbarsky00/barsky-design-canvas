@@ -196,7 +196,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   <img 
                     src="/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png" 
                     alt={investorLoanImageCaptions["/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"] || "Professional investment portfolio dashboard showing comprehensive loan and property management analytics"}
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                    className="w-full h-[500px] object-cover shadow-2xl"
                   />
                 </motion.div>
               </div>
@@ -267,7 +267,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   <img 
                     src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" 
                     alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
+                    className="w-full h-[500px] object-cover shadow-2xl"
                   />
                 </motion.div>
               </div>
@@ -383,7 +383,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                     <img 
                       src={item.image} 
                       alt={`${item.title} - professional investment platform interface`}
-                      className="w-full h-48 object-cover rounded-2xl mb-6"
+                      className="w-full h-48 object-cover mb-6"
                     />
                     
                     <p className="text-slate-600 leading-relaxed">{item.description}</p>

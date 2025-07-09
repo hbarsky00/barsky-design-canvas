@@ -58,7 +58,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
             duration: 0.8,
             delay: 0.2
           }} className="relative">
-              <img alt="Real conversation led to real solutions" src="/lovable-uploads/733f06d4-448d-433a-85c0-80416c2ab26d.png" className="w-full h-[400px] rounded-3xl shadow-2xl object-contain" />
+              <img alt="Real conversation led to real solutions" src="/lovable-uploads/733f06d4-448d-433a-85c0-80416c2ab26d.png" className="w-full h-[400px] shadow-2xl object-contain" />
               
             </motion.div>
           </div>
@@ -109,7 +109,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
           }} transition={{
             duration: 0.8
           }} className="relative">
-              <img alt="Understanding actual workflow instead of forcing users to adapt" src="/lovable-uploads/a0687cd1-40e1-44e6-8efc-5e6de58db84d.png" className="w-full h-[300px] rounded-2xl shadow-xl object-contain" />
+              <img alt="Understanding actual workflow instead of forcing users to adapt" src="/lovable-uploads/a0687cd1-40e1-44e6-8efc-5e6de58db84d.png" className="w-full h-[300px] shadow-xl object-contain" />
             </motion.div>
           </div>
         </div>
@@ -163,7 +163,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
                   <div className={`w-12 h-12 bg-${phase.color}-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-6`}>
                     {phase.step}
                   </div>
-                  <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover rounded-2xl mb-6" />
+                  <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover mb-6" />
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{phase.title}</h3>
                   <p className="text-gray-600">{phase.description}</p>
                 </div>
@@ -269,7 +269,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
             duration: 0.8,
             delay: 0.2
           }}>
-              <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=500&fit=crop" alt="Sustainable business relationships built on understanding" className="w-full h-[350px] object-cover rounded-3xl shadow-2xl" />
+              <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=500&fit=crop" alt="Sustainable business relationships built on understanding" className="w-full h-[350px] object-cover shadow-2xl" />
             </motion.div>
           </div>
         </div>

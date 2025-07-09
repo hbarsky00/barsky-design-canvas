@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   id: string;
   title: string;
@@ -30,7 +29,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>That was me. And if you're reading this, it might be you too.</p>
       
-      <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop" alt="Solo designer working on laptop" class="w-full h-auto rounded-lg my-6" />
+      <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop" alt="Solo designer working on laptop" class="w-full h-auto my-6" />
       
       <p>Here's the good news: even without marketing experience or live data, you can share your work in a way that gets attention, starts conversations, and builds momentum.</p>
       
@@ -40,7 +39,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>People connect with people. You're not a faceless brand—you're a designer who built something from scratch. That's a story in itself.</p>
       
-      <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop" alt="Laptop with design work" class="w-full h-auto rounded-lg my-6" />
+      <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop" alt="Laptop with design work" class="w-full h-auto my-6" />
       
       <p><strong>What to do:</strong></p>
       
@@ -57,7 +56,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>If there's no real data or users, make your marketing about the experience—not the stats.</p>
       
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop" alt="Circuit board technology" class="w-full h-auto rounded-lg my-6" />
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop" alt="Circuit board technology" class="w-full h-auto my-6" />
       
       <p><strong>What to do:</strong></p>
       
@@ -73,7 +72,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Think of it as a product design portfolio piece—not a product you're "selling."</p>
       
-      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop" alt="Code on monitor screen" class="w-full h-auto rounded-lg my-6" />
+      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop" alt="Code on monitor screen" class="w-full h-auto my-6" />
       
       <p><strong>What to include:</strong></p>
       
@@ -98,7 +97,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>There's no need to blast ads or beg for signups. Instead, share your work where product designers hang out:</p>
       
-      <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop" alt="Person using MacBook Pro" class="w-full h-auto rounded-lg my-6" />
+      <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop" alt="Person using MacBook Pro" class="w-full h-auto my-6" />
       
       <ul class="list-disc pl-6 mb-4">
         <li>Reddit: r/userexperience, r/web_design, r/design_critiques</li>
@@ -126,7 +125,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Instead of one big post, break your experience into smaller bits of content over a few weeks:</p>
       
-      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=400&fit=crop" alt="Woman using laptop computer" class="w-full h-auto rounded-lg my-6" />
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=400&fit=crop" alt="Woman using laptop computer" class="w-full h-auto my-6" />
       
       <ul class="list-disc pl-6 mb-4">
         <li>"Why I built this"</li>
