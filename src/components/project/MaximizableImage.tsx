@@ -151,7 +151,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       display: 'block',
       maxWidth: '100%',
       height: 'auto'
-    }} className="w-full h-auto transition-transform duration-300 group-hover:scale-105 object-contain" />}
+    }} className="w-full h-auto transition-transform duration-300 group-hover:scale-105 object-cover" />}
       
       <UploadOverlay isUploading={isUploading} />
       
