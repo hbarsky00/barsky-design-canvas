@@ -295,7 +295,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Ready for Your Own Story-Driven Solution?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
+          <p className="text-xl mb-8 text-white">
             Let's start with a conversation about your real challenges, not a sales pitch.
           </p>
           <Button size="lg" variant="default" className="font-semibold px-8 py-4 text-lg">
