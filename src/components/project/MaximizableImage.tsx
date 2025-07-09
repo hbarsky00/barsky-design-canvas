@@ -151,7 +151,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   return (
     <figure 
-      className={`relative group overflow-hidden cursor-pointer ${className}`}
+      className={`relative group overflow-hidden cursor-pointer h-auto ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       data-lovable-element="image-container"
