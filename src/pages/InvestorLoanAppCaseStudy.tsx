@@ -172,7 +172,6 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   <MaximizableImage
                     src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
                     alt="Loan Central orderbook interface showing investment deals and lender allocation details"
-                    caption="Low Fidelity Loan Central Order book"
                     className="w-full h-[500px] object-cover shadow-2xl"
                   />
                   
@@ -180,7 +179,6 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                     <MaximizableImage
                       src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png"
                       alt="Loan Central My Deals Dashboard interface"
-                      caption="Low Fidelity Loan Central My Deals Dashboard"
                       className="w-full h-auto object-contain shadow-2xl"
                     />
                   </div>
@@ -264,7 +262,6 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   <MaximizableImage
                     src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"
                     alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"}
-                    caption="User Process Flow"
                     className="w-full h-[300px] shadow-2xl object-contain"
                   />
                 </motion.div>
