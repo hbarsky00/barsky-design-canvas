@@ -29,7 +29,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   const caption = imageCaptions[image] || title;
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white pt-20 pb-8 lg:pt-24 lg:pb-16">
+    <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16">
       <div className="w-full px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

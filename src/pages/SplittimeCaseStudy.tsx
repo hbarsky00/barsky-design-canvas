@@ -33,7 +33,7 @@ const SplittimeCaseStudy: React.FC = () => {
         <Header />
         
         {/* Back Navigation */}
-        <div className="pt-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="pt-24 px-4 sm:px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
