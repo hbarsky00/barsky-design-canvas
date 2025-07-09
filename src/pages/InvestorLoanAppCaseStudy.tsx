@@ -267,6 +267,13 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                       User Process Flow
                     </figcaption>
                   </figure>
+                  
+                  <figure className="project-image-container mt-8">
+                    <img src="/lovable-uploads/b0818367-7247-4c42-80b6-c4b8a33d8367.png" alt="Loan Central deals dashboard showing borrower information and deal status tracking" className="w-full h-auto shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      High Fidelity Loan Central Dashboard
+                    </figcaption>
+                  </figure>
                 </motion.div>
               </div>
             </div>
