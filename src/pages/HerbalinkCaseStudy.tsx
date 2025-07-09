@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
-import MaximizableImage from "@/components/project/MaximizableImage";
 const HerbalinkCaseStudy: React.FC = () => {
   const healthBarriers = [{
     title: "Geographic Limitations",
@@ -154,12 +153,16 @@ const HerbalinkCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.2
               }} className="relative">
-                  <MaximizableImage 
-                    src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png" 
-                    alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" 
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                    caption="Herbalink mobile app interface showcasing the comprehensive wellness platform"
-                  />
+                  <figure className="project-image-container">
+                    <img 
+                      src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png" 
+                      alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" 
+                      className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                    />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Herbalink mobile app interface showcasing the comprehensive wellness platform
+                    </figcaption>
+                  </figure>
                   
                   
                   
@@ -238,18 +241,26 @@ const HerbalinkCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
-                  <MaximizableImage 
-                    src="/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png" 
-                    alt="Healthcare professional illustration showing the digital transformation needed to bridge traditional herbal practice with modern accessibility" 
-                    className="w-full h-[400px] object-cover rounded-3xl shadow-2xl mb-8"
-                    caption="Digital transformation bridging traditional herbal practice with modern accessibility"
-                  />
-                  <MaximizableImage 
-                    src="/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png" 
-                    alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" 
-                    className="w-full h-[500px] object-cover rounded-3xl shadow-2xl"
-                    caption="Traditional herbal medicine consultation highlighting accessibility challenges"
-                  />
+                  <figure className="project-image-container mb-8">
+                    <img 
+                      src="/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png" 
+                      alt="Healthcare professional illustration showing the digital transformation needed to bridge traditional herbal practice with modern accessibility" 
+                      className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                    />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Digital transformation bridging traditional herbal practice with modern accessibility
+                    </figcaption>
+                  </figure>
+                  <figure className="project-image-container">
+                    <img 
+                      src="/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png" 
+                      alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" 
+                      className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                    />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Traditional herbal medicine consultation highlighting accessibility challenges
+                    </figcaption>
+                  </figure>
                 </motion.div>
               </div>
             </div>
@@ -359,12 +370,16 @@ const HerbalinkCaseStudy: React.FC = () => {
               duration: 0.8,
               delay: 0.3
             }} className="w-full">
-                <MaximizableImage 
-                  src="/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png" 
-                  alt="Herbalink key design solutions showing trust-building transparency, personalized matching algorithm, educational integration, and streamlined consultation experience" 
-                  className="w-full rounded-3xl shadow-2xl"
-                  caption="Comprehensive design solutions for the herbal wellness platform"
-                />
+                <figure className="project-image-container">
+                  <img 
+                    src="/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png" 
+                    alt="Herbalink key design solutions showing trust-building transparency, personalized matching algorithm, educational integration, and streamlined consultation experience" 
+                    className="w-full rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                  />
+                  <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                    Comprehensive design solutions for the herbal wellness platform
+                  </figcaption>
+                </figure>
               </motion.div>
             </div>
           </section>
@@ -421,12 +436,16 @@ const HerbalinkCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <MaximizableImage 
-                      src={journey.image} 
-                      alt={`${journey.title} - mobile wellness platform interface`} 
-                      className="w-full h-64 object-cover rounded-2xl mb-6"
-                      caption={`${journey.title} - ${journey.description}`}
-                    />
+                    <figure className="project-image-container mb-6">
+                      <img 
+                        src={journey.image} 
+                        alt={`${journey.title} - mobile wellness platform interface`} 
+                        className="w-full h-64 object-cover rounded-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                      />
+                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                        {journey.title} - {journey.description}
+                      </figcaption>
+                    </figure>
                     
                     <p className="text-neutral-600 leading-relaxed">{journey.description}</p>
                   </motion.div>)}

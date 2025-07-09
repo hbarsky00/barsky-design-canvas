@@ -7,7 +7,6 @@ import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import MaximizableImage from "../MaximizableImage";
 
 interface SimpleProjectHeroProps {
   project: ProjectProps;
@@ -100,22 +99,21 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="floating-element"
           >
-            <MaximizableImage
-              src={project.image}
-              alt={project.title}
-              caption={imageCaptions[project.image] || project.title}
-              imageList={[project.image]}
-              currentIndex={0}
-              priority={true}
-              className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
-              projectId={projectId}
-              hideEditButton={false}
-            />
+            <figure className="project-image-container">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+              />
+              <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                {imageCaptions[project.image] || project.title}
+              </figcaption>
+            </figure>
           </motion.div>
         </div>
       </div>

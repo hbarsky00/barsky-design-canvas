@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ProjectMultiImageGallery from "../ProjectMultiImageGallery";
-import MaximizableImage from "../MaximizableImage";
 
 interface ProcessSectionProps {
   processBeforeGallery?: string;
@@ -46,12 +45,16 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         
         {/* Image after header, before content */}
         {processBeforeHeaderImage && (
-          <MaximizableImage
-            src={processBeforeHeaderImage}
-            alt={imageCaptions[processBeforeHeaderImage] || "Process overview"}
-            caption={imageCaptions[processBeforeHeaderImage]}
-            className="rounded-lg shadow-lg mb-8"
-          />
+          <figure className="project-image-container mb-8">
+            <img
+              src={processBeforeHeaderImage}
+              alt={imageCaptions[processBeforeHeaderImage] || "Process overview"}
+              className="rounded-lg shadow-lg w-full h-auto object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+            />
+            <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+              {imageCaptions[processBeforeHeaderImage] || "Process overview"}
+            </figcaption>
+          </figure>
         )}
         
         <div className="prose prose-lg text-gray-600 leading-relaxed">
@@ -64,12 +67,16 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         
         {/* Image after content */}
         {processImage && (
-          <MaximizableImage
-            src={processImage}
-            alt={imageCaptions[processImage] || "Process details"}
-            caption={imageCaptions[processImage]}
-            className="rounded-lg shadow-lg mt-8"
-          />
+          <figure className="project-image-container mt-8">
+            <img
+              src={processImage}
+              alt={imageCaptions[processImage] || "Process details"}
+              className="rounded-lg shadow-lg w-full h-auto object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+            />
+            <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+              {imageCaptions[processImage] || "Process details"}
+            </figcaption>
+          </figure>
         )}
       </div>
 

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
-import MaximizableImage from "./MaximizableImage";
 
 interface ProjectHeaderProps {
   title: string;
@@ -80,14 +79,16 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <MaximizableImage
-              src={image}
-              alt={title}
-              caption={caption}
-              imageList={imageList}
-              currentIndex={currentIndex}
-              priority={true}
-            />
+            <figure className="project-image-container">
+              <img
+                src={image}
+                alt={title}
+                className="w-full h-auto shadow-elevated-lg object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+              />
+              <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                {caption}
+              </figcaption>
+            </figure>
           </motion.div>
         </div>
       </div>

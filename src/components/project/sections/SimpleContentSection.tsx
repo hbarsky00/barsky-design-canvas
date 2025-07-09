@@ -1,7 +1,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import MaximizableImage from "../MaximizableImage";
 import ImageTextGallery from "./ImageTextGallery";
 import ProjectContentBox from "@/components/project/ProjectContentBox";
 import { ImageTextItem } from "@/data/types/project";
@@ -62,17 +61,16 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
         <div className="space-y-6">
           {/* First image */}
           {images[0] && (
-            <MaximizableImage
-              src={images[0]}
-              alt={`${title} image 1`}
-              caption={imageCaptions[images[0]] || `${title} supporting image`}
-              imageList={images}
-              currentIndex={0}
-              className="rounded-lg shadow-elevated w-full glass-card layered-depth"
-              projectId={projectId}
-              hideEditButton={false}
-              allowRemove={false}
-            />
+            <figure className="project-image-container">
+              <img
+                src={images[0]}
+                alt={`${title} image 1`}
+                className="rounded-lg shadow-elevated w-full glass-card layered-depth cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+              />
+              <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                {imageCaptions[images[0]] || `${title} supporting image`}
+              </figcaption>
+            </figure>
           )}
 
           {/* Additional text between images */}
@@ -88,18 +86,16 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
 
           {/* Remaining images */}
           {images.slice(1).map((imageSrc, index) => (
-            <MaximizableImage
-              key={index + 1}
-              src={imageSrc}
-              alt={`${title} image ${index + 2}`}
-              caption={imageCaptions[imageSrc] || `${title} supporting image`}
-              imageList={images}
-              currentIndex={index + 1}
-              className="rounded-lg shadow-elevated w-full glass-card layered-depth"
-              projectId={projectId}
-              hideEditButton={false}
-              allowRemove={false}
-            />
+            <figure key={index + 1} className="project-image-container">
+              <img
+                src={imageSrc}
+                alt={`${title} image ${index + 2}`}
+                className="rounded-lg shadow-elevated w-full glass-card layered-depth cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+              />
+              <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                {imageCaptions[imageSrc] || `${title} supporting image`}
+              </figcaption>
+            </figure>
           ))}
         </div>
       ) : null}
