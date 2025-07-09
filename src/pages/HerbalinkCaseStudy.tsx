@@ -164,8 +164,22 @@ const HerbalinkCaseStudy: React.FC = () => {
                     </figcaption>
                   </figure>
                   
-                  
-                  
+                  {/* Video after first image */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="mt-8"
+                  >
+                    <div className="relative w-full h-0 pb-[56.25%] rounded-3xl overflow-hidden shadow-2xl">
+                      <iframe 
+                        src="https://www.loom.com/embed/513d7cabdf054bdeb222bc7f60d5f9b0?sid=2f594fb9-9919-49c9-8be2-bd658ad76d6c"
+                        frameBorder="0"
+                        allowFullScreen
+                        className="absolute top-0 left-0 w-full h-full"
+                      ></iframe>
+                    </div>
+                  </motion.div>
                   
                 </motion.div>
               </div>
@@ -454,20 +468,6 @@ const HerbalinkCaseStudy: React.FC = () => {
                         <h3 className="text-xl font-bold text-neutral-900">{journey.title}</h3>
                       </div>
                     </div>
-                    
-                    {/* Add video above the Book step image */}
-                    {journey.step === "Book" && (
-                      <div className="mb-6">
-                        <div className="relative w-full h-0 pb-[56.25%] rounded-2xl overflow-hidden">
-                          <iframe 
-                            src="https://www.loom.com/embed/513d7cabdf054bdeb222bc7f60d5f9b0?sid=2f594fb9-9919-49c9-8be2-bd658ad76d6c"
-                            frameBorder="0"
-                            allowFullScreen
-                            className="absolute top-0 left-0 w-full h-full"
-                          ></iframe>
-                        </div>
-                      </div>
-                    )}
                     
                     <figure className="project-image-container mb-6">
                       <img 
