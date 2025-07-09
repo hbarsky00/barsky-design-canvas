@@ -133,7 +133,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
             step: "1",
             title: "Excel Scripts",
             description: "Started with quick automation to solve immediate pain",
-            image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
+            image: "/lovable-uploads/5dbc55b5-23eb-4f33-a9c7-152110769b20.png",
             color: "green"
           }, {
             step: "2",
