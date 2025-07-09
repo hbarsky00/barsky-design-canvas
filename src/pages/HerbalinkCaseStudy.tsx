@@ -38,7 +38,7 @@ const HerbalinkCaseStudy: React.FC = () => {
     step: "Discover",
     title: "Browse Herbalist Profiles",
     description: "Explore certified practitioners with detailed specializations, reviews, and treatment philosophies.",
-    image: "/lovable-uploads/67facb2d-d64e-44c8-9f6a-ae33a0db8adc.png"
+    image: "/lovable-uploads/6ac697d2-0417-49dc-b4de-cb3702484e09.png"
   }, {
     step: "Connect",
     title: "Smart Matching Recommendations",
@@ -48,7 +48,7 @@ const HerbalinkCaseStudy: React.FC = () => {
     step: "Book",
     title: "Seamless Consultation Scheduling",
     description: "One-tap booking with real-time availability, automated confirmations, and calendar integration.",
-    image: "/lovable-uploads/6ac697d2-0417-49dc-b4de-cb3702484e09.png"
+    image: "/lovable-uploads/67facb2d-d64e-44c8-9f6a-ae33a0db8adc.png"
   }, {
     step: "Heal",
     title: "Ongoing Wellness Journey",
