@@ -455,6 +455,20 @@ const HerbalinkCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
+                    {/* Add video above the Book step image */}
+                    {journey.step === "Book" && (
+                      <div className="mb-6">
+                        <div className="relative w-full h-0 pb-[56.25%] rounded-2xl overflow-hidden">
+                          <iframe 
+                            src="https://www.loom.com/embed/513d7cabdf054bdeb222bc7f60d5f9b0?sid=2f594fb9-9919-49c9-8be2-bd658ad76d6c"
+                            frameBorder="0"
+                            allowFullScreen
+                            className="absolute top-0 left-0 w-full h-full"
+                          ></iframe>
+                        </div>
+                      </div>
+                    )}
+                    
                     <figure className="project-image-container mb-6">
                       <img 
                         src={journey.image} 
