@@ -347,6 +347,29 @@ const HerbalinkCaseStudy: React.FC = () => {
                   </motion.div>)}
               </div>
               
+              {/* Process Flow Chart */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mt-16 mb-16"
+              >
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-4">AI-Enhanced Development Workflow</h3>
+                  <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+                    From human conversation to deployed solution - how AI amplifies every step of the development process.
+                  </p>
+                </div>
+                <div className="bg-white rounded-3xl p-8 shadow-xl border border-emerald-200">
+                  <img 
+                    src="/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png" 
+                    alt="AI-enhanced development workflow from conversation to deployment" 
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </motion.div>
+
               <motion.div initial={{
               opacity: 0,
               y: 30
