@@ -108,7 +108,11 @@ const StoryDrivenProjectDetail: React.FC = () => {
             once: true
           }} transition={{
             duration: 0.8
-          }} className="relative">
+          }} className="relative space-y-6">
+              <div>
+                <img alt="early low fidelity wireframe" src="/lovable-uploads/8cf1f8bd-0c5f-4de7-b4ec-0190ca9aa1e1.png" className="w-full h-[300px] rounded-2xl shadow-xl object-contain" />
+                <p className="text-sm text-gray-600 text-center mt-2 italic">early low fidelity wireframe</p>
+              </div>
               <img alt="Understanding actual workflow instead of forcing users to adapt" src="/lovable-uploads/a0687cd1-40e1-44e6-8efc-5e6de58db84d.png" className="w-full h-[300px] rounded-2xl shadow-xl object-contain" />
             </motion.div>
           </div>
