@@ -16,28 +16,43 @@ const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: 1.6, duration: 0.6 }}
-      className="flex flex-wrap justify-center gap-2 mb-4"
-    >
-      {skills.map((skill, index) => (
-        <motion.div
-          key={skill}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isVisible ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 1.8 + index * 0.1, duration: 0.4 }}
-        >
-          <Badge 
-            variant="secondary" 
-            className="glass-button px-3 py-1 bg-blue-50/80 text-blue-800 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300 border border-blue-200/30 text-xs"
+    <div className="space-y-4">
+      {/* Skills Tags */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 1.6, duration: 0.6 }}
+        className="flex flex-wrap justify-center gap-2"
+      >
+        {skills.map((skill, index) => (
+          <motion.div
+            key={skill}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 1.8 + index * 0.1, duration: 0.4 }}
           >
-            {skill}
-          </Badge>
-        </motion.div>
-      ))}
-    </motion.div>
+            <Badge 
+              variant="secondary" 
+              className="glass-button px-3 py-1 bg-blue-50/80 text-blue-800 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300 border border-blue-200/30 text-xs"
+            >
+              {skill}
+            </Badge>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Senior Product Designer + Gen AI Developer Row */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 2.2, duration: 0.6 }}
+        className="text-center"
+      >
+        <p className="text-sm font-medium text-slate-600 tracking-wide">
+          Senior Product Designer + Gen AI Developer
+        </p>
+      </motion.div>
+    </div>
   );
 };
 
