@@ -181,6 +181,9 @@ const HerbalinkCaseStudy: React.FC = () => {
                     <div className="relative w-full h-0 pb-[56.25%] overflow-hidden shadow-2xl">
                       <iframe src="https://www.loom.com/embed/0f34883a677f4083a48e763a54aeb010?sid=ebd6569a-d60f-417f-8847-6db93b616afc" frameBorder="0" allowFullScreen className="absolute top-0 left-0 w-full h-full"></iframe>
                     </div>
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Booking an Herbalist
+                    </figcaption>
                   </motion.div>
                   
                 </motion.div>
