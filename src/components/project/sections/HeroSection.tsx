@@ -24,8 +24,9 @@ const HeroSection: React.FC = () => {
               From Restaurant Chat to Business Solution
             </h1>
             <p className="text-xl text-gray-700 leading-relaxed mb-8">
-              A chance meeting at a restaurant led to discovering a wholesale distribution business drowning in inefficient software. 
-              What started as a conversation over dinner became a custom solution that's transforming their daily operations.
+              A wholesale distribution business was trapped by software that looked professional but failed at every critical moment. 
+              Clickable buttons that did nothing, endless screens hiding simple tasks, and hours of manual work that modern tools should automate - 
+              all while paying premium prices for the frustration.
             </p>
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-amber-200">
               <p className="text-lg italic text-gray-800">
