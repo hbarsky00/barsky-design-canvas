@@ -125,8 +125,9 @@ const HerbalinkCaseStudy: React.FC = () => {
                   </h1>
                   
                   <p className="text-xl text-neutral-600 leading-relaxed max-w-2xl">
-                    Herbalink connects people seeking natural health solutions with certified herbalists through 
-                    intelligent matching, making herbal wisdom accessible through thoughtful mobile-first design.
+                    Finding qualified herbalists has been nearly impossible for most people. Geographic barriers, 
+                    lack of credential verification, and no way to match individual health needs with practitioner 
+                    expertise left people struggling to access natural healthcare solutions.
                   </p>
                   
                   <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-emerald-600 hover:bg-emerald-700" onClick={() => window.open('http://herbalink.live', '_blank')}>
