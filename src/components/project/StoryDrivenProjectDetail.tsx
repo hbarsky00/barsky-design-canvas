@@ -58,7 +58,12 @@ const StoryDrivenProjectDetail: React.FC = () => {
             duration: 0.8,
             delay: 0.2
           }} className="relative">
-              <img alt="Real conversation led to real solutions" src="/lovable-uploads/733f06d4-448d-433a-85c0-80416c2ab26d.png" className="w-full h-[400px] shadow-2xl object-contain" />
+              <iframe 
+                src="https://www.loom.com/embed/7b6a6a8e7ecc4c29b39b35d9be1ad3a3" 
+                frameBorder="0" 
+                allowFullScreen 
+                className="w-full h-[400px] shadow-2xl"
+              ></iframe>
               
             </motion.div>
           </div>
