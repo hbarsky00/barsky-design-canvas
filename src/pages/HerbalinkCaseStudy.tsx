@@ -182,7 +182,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                       <iframe src="https://www.loom.com/embed/a477db12673d4dd687048f5d1235d76e" frameBorder="0" allowFullScreen className="absolute top-0 left-0 w-full h-full"></iframe>
                     </div>
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                      Booking an Herbalist
+                      Booking an Herbalist using Lucid Charts, Lets Create a User Flow
                     </figcaption>
                   </motion.div>
                   
