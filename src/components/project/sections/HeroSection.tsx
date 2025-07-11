@@ -91,13 +91,6 @@ const HeroSection: React.FC = () => {
               </p>
             </div>
             
-            <MaximizableImage
-              src="/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png"
-              alt="QuickFlow Business Dashboard - Mobile interface showing sales analytics and performance tracking"
-              caption="QuickFlow Business Dashboard - Mobile Interface"
-              className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-md"
-            />
-            
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-amber-200">
               <p className="text-lg italic text-gray-800">
                 "Sometimes the best projects come from genuine conversations, not cold pitches."
@@ -114,7 +107,14 @@ const HeroSection: React.FC = () => {
           }} transition={{
             duration: 0.8,
             delay: 0.2
-          }} className="relative">
+          }} className="relative space-y-6">
+            <MaximizableImage
+              src="/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png"
+              alt="QuickFlow Business Dashboard - Mobile interface showing sales analytics and performance tracking"
+              caption="QuickFlow Business Dashboard - Mobile Interface"
+              className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-md"
+            />
+            
             <iframe 
               src="https://www.loom.com/embed/7b6a6a8e7ecc4c29b39b35d9be1ad3a3" 
               frameBorder="0" 
