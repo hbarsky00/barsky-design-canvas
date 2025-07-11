@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,7 +13,14 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <>
+      <DynamicSeo 
+        type="page"
+        title="Page Not Found | Hiram Barsky"
+        description="Sorry, the page you're looking for doesn't exist. Return to Hiram Barsky's UX design portfolio for AI-enhanced design services."
+        path="/404"
+      />
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
@@ -21,6 +29,7 @@ const NotFound = () => {
         </a>
       </div>
     </div>
+    </>
   );
 };
 
