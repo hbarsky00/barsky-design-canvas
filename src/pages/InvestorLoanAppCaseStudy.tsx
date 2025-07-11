@@ -90,7 +90,14 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     icon: <LineChart className="h-6 w-6" />
   }];
   return <>
-      <EnhancedGlobalSeo title="Investor Loan App: FinTech Portfolio Management Platform Case Study" description="See how intelligent automation transformed investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors." canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app" pageType="content" keywords={["investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics", "investor tools", "portfolio investment tracking", "investment risk assessment", "portfolio optimization platform"]} ogImage="https://barskydesign.pro/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" />
+      <EnhancedGlobalSeo 
+        title="Investor Loan App: FinTech Portfolio Management Platform Case Study | Hiram Barsky" 
+        description="See how intelligent automation transformed investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors." 
+        canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app" 
+        pageType="content" 
+        keywords={["investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics", "investor tools", "portfolio investment tracking", "investment risk assessment", "portfolio optimization platform"]} 
+        ogImage="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png" 
+      />
       
       <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <Header />
