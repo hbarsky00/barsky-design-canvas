@@ -47,44 +47,40 @@ const ProblemSection: React.FC = () => {
           </h2>
         </div>
         
-        <div className="grid lg:grid-cols-1 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Their Daily Frustrations:</h3>
-            {painPoints.map((pain, index) => (
-              <motion.div 
-                key={index} 
-                initial={{
-                  opacity: 0,
-                  y: 20
-                }} 
-                whileInView={{
-                  opacity: 1,
-                  y: 0
-                }} 
-                viewport={{
-                  once: true
-                }} 
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1
-                }} 
-                className="bg-red-50 p-8 rounded-xl border border-red-200 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <div className="flex-1">
-                    <p className="text-gray-800 leading-relaxed text-lg font-medium mb-4">{pain.text}</p>
-                  </div>
-                  <div className="w-full md:w-80 flex-shrink-0">
-                    <MaximizableImage
-                      src={pain.image}
-                      alt={pain.alt}
-                      className="w-full h-48 object-contain shadow-xl rounded-lg"
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8 col-span-full">Their Daily Frustrations:</h3>
+          {painPoints.map((pain, index) => (
+            <motion.div 
+              key={index} 
+              initial={{
+                opacity: 0,
+                y: 20
+              }} 
+              whileInView={{
+                opacity: 1,
+                y: 0
+              }} 
+              viewport={{
+                once: true
+              }} 
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1
+              }} 
+              className="bg-red-50 p-6 rounded-xl border border-red-200 hover:shadow-lg transition-all duration-300 flex flex-col"
+            >
+              <div className="flex-1 mb-4">
+                <p className="text-gray-800 leading-relaxed text-base font-medium">{pain.text}</p>
+              </div>
+              <div className="w-full">
+                <MaximizableImage
+                  src={pain.image}
+                  alt={pain.alt}
+                  className="w-full h-40 object-contain shadow-xl rounded-lg"
+                />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
