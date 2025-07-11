@@ -211,8 +211,8 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                   </h1>
                   
                   <p className="text-xl text-slate-600 leading-relaxed max-w-2xl">
-                    Transforming investment management from spreadsheet chaos to intelligent portfolio tracking. 
-                    Our platform automates reporting, tracks performance, and provides actionable insights for serious investors.
+                    Managing multiple investment properties through fragmented spreadsheets leads to data inconsistencies, 
+                    manual errors, and missed opportunities. Investors spend countless hours on administrative tasks instead of focusing on profitable deals.
                   </p>
                   
                   <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 shadow-lg">
