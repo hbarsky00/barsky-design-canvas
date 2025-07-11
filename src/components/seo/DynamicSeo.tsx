@@ -263,13 +263,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.title} | Barsky Design Case Study</title>
+        <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${props.title} | Barsky Design Case Study`} />
+        <meta property="og:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
@@ -290,7 +290,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
         <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.title} | Barsky Design Case Study`} />
+        <meta name="twitter:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
         <meta name="twitter:image:alt" content={props.projectName} />
@@ -314,13 +314,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.title} | Barsky Design</title>
+        <title>{props.serviceName} - Product Design Services | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${props.title} | Barsky Design`} />
+        <meta property="og:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
@@ -333,7 +333,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.title} | Barsky Design`} />
+        <meta name="twitter:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
         <meta name="twitter:image:alt" content={props.serviceName} />
@@ -350,19 +350,19 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   // Default/Home page
-  const homeDescription = "15+ years experience creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises.";
+  const homeDescription = "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises.";
   const truncatedHomeDescription = truncateDescription(homeDescription);
 
   return (
     <Helmet>
       {/* Basic Meta Tags */}
-      <title>Hiram Barsky - UX/UI Product Designer & Gen AI Developer | New York</title>
+      <title>Hiram Barsky - Product Designer & Gen AI Developer | New York</title>
       <meta name="description" content={truncatedHomeDescription} />
       <link rel="canonical" href={baseUrl} />
       
       {/* Open Graph Tags */}
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer | New York" />
+      <meta property="og:title" content="Hiram Barsky - Product Designer & Gen AI Developer | New York" />
       <meta property="og:description" content={truncatedHomeDescription} />
       <meta property="og:url" content={baseUrl} />
       <meta property="og:image" content={defaultImage} />
@@ -375,7 +375,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@hirambarsky" />
-      <meta name="twitter:title" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer | New York" />
+      <meta name="twitter:title" content="Hiram Barsky - Product Designer & Gen AI Developer | New York" />
       <meta name="twitter:description" content={truncatedHomeDescription} />
       <meta name="twitter:image" content={defaultImage} />
       <meta name="twitter:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer" />
