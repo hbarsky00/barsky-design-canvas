@@ -85,8 +85,11 @@ function App() {
                 <Route path="/services/ai-redesign" element={<AiRedesign />} />
                 <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
                 <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
+                <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
                 <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
+                <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
                 <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
+                <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
                 <Route path="/meta-tag-manager" element={<MetaTagManager />} />
                 <Route path="*" element={<NotFound />} />
                 </Routes>

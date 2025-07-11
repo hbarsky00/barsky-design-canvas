@@ -30,12 +30,12 @@ const SplittimeCaseStudy: React.FC = () => {
         <DynamicSeo 
           type="project"
           title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
-          description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination by 50%."
-          image="https://barskydesign.pro/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png"
+          description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination."
+          image="https://barskydesign.pro/lovable-uploads/splittime-hero-image.png"
           projectName="Splittime"
           results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
           technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
-          path="/case-study-splittime"
+          path="/project/splittime"
         />
       
       <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
