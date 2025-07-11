@@ -17,7 +17,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
   const recentPosts = blogPosts.slice(0, maxPosts);
 
   return (
-    <section className="py-8 sm:py-12 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
+    <section className="pt-0 pb-12 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
       <div className="section-container">
         {showTitle && (
           <div className="text-center mb-12">
