@@ -11,6 +11,7 @@ import ServicesCallToAction from "@/components/services/ServicesCallToAction";
 import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
+import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 
 const HomepageLayout: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const HomepageLayout: React.FC = () => {
         />
       </main>
       <Footer />
+      <FloatingConsultationBubble />
     </div>
   );
 };
