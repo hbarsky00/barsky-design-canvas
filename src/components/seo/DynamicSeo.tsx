@@ -60,7 +60,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       case 'blog-post':
         return `${baseDomain}/blog/${props.slug}`;
       case 'project':
-        return `${baseDomain}/project/${props.path}`;
+        return `${baseDomain}${props.path}`;
       case 'page':
       case 'service':
         return `${baseDomain}${props.path}`;
@@ -181,7 +181,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   };
 
   if (props.type === 'blog-post') {
-    const pageCanonicalUrl = `${baseDomain}/blog/${props.slug}`;
+    const pageCanonicalUrl = canonicalUrl;
     const schema = generateBlogPostSchema(props);
     const truncatedExcerpt = truncateDescription(props.excerpt);
 
@@ -233,7 +233,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'page') {
-    const pageCanonicalUrl = `${baseDomain}${props.path}`;
+    const pageCanonicalUrl = canonicalUrl;
     const schema = generatePageSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -273,7 +273,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'project') {
-    const pageCanonicalUrl = `${baseDomain}${props.path}`;
+    const pageCanonicalUrl = canonicalUrl;
     const schema = generateProjectSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -324,7 +324,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'service') {
-    const pageCanonicalUrl = `${baseDomain}${props.path}`;
+    const pageCanonicalUrl = canonicalUrl;
     const schema = generateServiceSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
