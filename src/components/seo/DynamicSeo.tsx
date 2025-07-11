@@ -52,6 +52,14 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const baseUrl = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
 
+  // Helper function to truncate description to 150-160 characters
+  const truncateDescription = (text: string, maxLength: number = 160): string => {
+    if (text.length <= maxLength) return text;
+    const truncated = text.substring(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(' ');
+    return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
+  };
+
   // Debug logging to ensure unique meta tags are being set
   console.log('DynamicSeo rendering for:', props.type, 
     props.type === 'home' ? 'Home page' : 
@@ -158,24 +166,26 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   if (props.type === 'blog-post') {
     const canonicalUrl = `${baseUrl}/blog/${props.slug}`;
     const schema = generateBlogPostSchema(props);
+    const truncatedExcerpt = truncateDescription(props.excerpt);
 
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.title} | Hiram Barsky - AI-Enhanced Design</title>
-        <meta name="description" content={props.excerpt} />
+        <title>{props.title} | Barsky Design Blog</title>
+        <meta name="description" content={truncatedExcerpt} />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph Tags for Facebook/LinkedIn */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={props.title} />
-        <meta property="og:description" content={props.excerpt} />
+        <meta property="og:title" content={`${props.title} | Barsky Design Blog`} />
+        <meta property="og:description" content={truncatedExcerpt} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={props.featuredImage || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
-        <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+        <meta property="og:site_name" content="Barsky Design" />
+        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
         
         {/* Article-specific Open Graph Tags */}
         <meta property="og:article:author" content={props.author} />
@@ -189,8 +199,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
         <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content={props.title} />
-        <meta name="twitter:description" content={props.excerpt} />
+        <meta name="twitter:title" content={`${props.title} | Barsky Design Blog`} />
+        <meta name="twitter:description" content={truncatedExcerpt} />
         <meta name="twitter:image" content={props.featuredImage || defaultImage} />
         <meta name="twitter:image:alt" content={props.title} />
         
@@ -208,30 +218,32 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   if (props.type === 'page') {
     const canonicalUrl = `${baseUrl}${props.path}`;
     const schema = generatePageSchema(props);
+    const truncatedDescription = truncateDescription(props.description);
 
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.title} | Hiram Barsky - AI-Enhanced Design</title>
-        <meta name="description" content={props.description} />
+        <title>{props.title} | Barsky Design</title>
+        <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={props.title} />
-        <meta property="og:description" content={props.description} />
+        <meta property="og:title" content={`${props.title} | Barsky Design`} />
+        <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
-        <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+        <meta property="og:site_name" content="Barsky Design" />
+        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:title" content={props.title} />
-        <meta name="twitter:description" content={props.description} />
+        <meta name="twitter:title" content={`${props.title} | Barsky Design`} />
+        <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
         <meta name="twitter:image:alt" content={props.title} />
         
@@ -246,24 +258,26 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   if (props.type === 'project') {
     const canonicalUrl = `${baseUrl}${props.path}`;
     const schema = generateProjectSchema(props);
+    const truncatedDescription = truncateDescription(props.description);
 
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.title} | Hiram Barsky - AI-Enhanced Design</title>
-        <meta name="description" content={props.description} />
+        <title>{props.title} | Barsky Design Case Study</title>
+        <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={props.title} />
-        <meta property="og:description" content={props.description} />
+        <meta property="og:title" content={`${props.title} | Barsky Design Case Study`} />
+        <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.projectName} />
-        <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+        <meta property="og:site_name" content="Barsky Design" />
+        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
         
         {/* Project-specific Open Graph Tags */}
         <meta property="og:article:author" content="Hiram Barsky" />
@@ -276,8 +290,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
         <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content={props.title} />
-        <meta name="twitter:description" content={props.description} />
+        <meta name="twitter:title" content={`${props.title} | Barsky Design Case Study`} />
+        <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
         <meta name="twitter:image:alt" content={props.projectName} />
         
@@ -295,35 +309,37 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   if (props.type === 'service') {
     const canonicalUrl = `${baseUrl}${props.path}`;
     const schema = generateServiceSchema(props);
+    const truncatedDescription = truncateDescription(props.description);
 
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.title} | Hiram Barsky - AI-Enhanced Design</title>
-        <meta name="description" content={props.description} />
+        <title>{props.title} | Barsky Design</title>
+        <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={props.title} />
-        <meta property="og:description" content={props.description} />
+        <meta property="og:title" content={`${props.title} | Barsky Design`} />
+        <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.serviceName} />
-        <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+        <meta property="og:site_name" content="Barsky Design" />
+        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:title" content={props.title} />
-        <meta name="twitter:description" content={props.description} />
+        <meta name="twitter:title" content={`${props.title} | Barsky Design`} />
+        <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
         <meta name="twitter:image:alt" content={props.serviceName} />
         
         {/* Keywords */}
-        <meta name="keywords" content={`${props.serviceName}, AI Integration, UX Design, ${props.targetAudience}, Hiram Barsky`} />
+        <meta name="keywords" content={`${props.serviceName}, UX Design, AI Integration, Product Design, Hiram Barsky`} />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -333,31 +349,39 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     );
   }
 
-  // Default/home page
+  // Default/Home page
+  const homeDescription = "15+ years experience creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises.";
+  const truncatedHomeDescription = truncateDescription(homeDescription);
+
   return (
     <Helmet>
-      <title>Hiram Barsky - Product Designer & Gen AI Developer</title>
-      <meta name="description" content="Expert Product Designer specializing in Gen AI integration, user-centered design solutions, and transforming complex business challenges into intuitive digital experiences." />
+      {/* Basic Meta Tags */}
+      <title>Hiram Barsky - UX/UI Product Designer & Gen AI Developer | New York</title>
+      <meta name="description" content={truncatedHomeDescription} />
       <link rel="canonical" href={baseUrl} />
       
       {/* Open Graph Tags */}
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="Hiram Barsky - Product Designer & Gen AI Developer" />
-      <meta property="og:description" content="Expert Product Designer specializing in Gen AI integration, user-centered design solutions, and transforming complex business challenges into intuitive digital experiences." />
+      <meta property="og:title" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer | New York" />
+      <meta property="og:description" content={truncatedHomeDescription} />
       <meta property="og:url" content={baseUrl} />
       <meta property="og:image" content={defaultImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer" />
-      <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+      <meta property="og:site_name" content="Barsky Design" />
+      <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
       
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@hirambarsky" />
-      <meta name="twitter:title" content="Hiram Barsky - Product Designer & Gen AI Developer" />
-      <meta name="twitter:description" content="Expert Product Designer specializing in Gen AI integration, user-centered design solutions, and transforming complex business challenges into intuitive digital experiences." />
+      <meta name="twitter:title" content="Hiram Barsky - UX/UI Product Designer & Gen AI Developer | New York" />
+      <meta name="twitter:description" content={truncatedHomeDescription} />
       <meta name="twitter:image" content={defaultImage} />
       <meta name="twitter:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer" />
+      
+      {/* Keywords */}
+      <meta name="keywords" content="UX Designer, UI Designer, Product Designer, Gen AI Developer, Artificial Intelligence, UX Research, Design Systems, New York" />
     </Helmet>
   );
 };
