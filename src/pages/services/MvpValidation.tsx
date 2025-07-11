@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const MvpValidation: React.FC = () => {
   const weeklyBreakdown = [
@@ -59,15 +59,14 @@ const MvpValidation: React.FC = () => {
 
   return (
     <>
-      <EnhancedGlobalSeo 
+      <DynamicSeo 
+        type="service"
         title="MVP Validation Package - 3 Weeks to Launch-Ready Design"
         description="Get your startup MVP validated and designed in 3 weeks. Same process that helped Herbalink achieve 65% engagement increase. $8,500 investment."
-        canonicalUrl="https://barskydesign.pro/services/mvp-validation"
-        pageType="service"
-        keywords={[
-          "MVP validation", "startup design", "rapid prototyping", "AI-powered research",
-          "user validation", "design system", "startup UX", "prototype development"
-        ]}
+        serviceName="MVP Validation Package"
+        benefits={["40% better engagement guarantee", "3-week delivery", "AI-powered research"]}
+        targetAudience="Funded Startups"
+        path="/services/mvp-validation"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

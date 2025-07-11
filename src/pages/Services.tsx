@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Services = () => {
@@ -118,15 +118,14 @@ const Services = () => {
 
   return (
     <>
-      <EnhancedGlobalSeo 
-        title="UX Design Services That Increase Revenue - Barsky Design"
-        description="AI-enhanced UX design services for startups and enterprises. Proven 40-70% improvements across healthcare, fintech, and family tech. Based in NYC, serving globally."
-        canonicalUrl="https://barskydesign.pro/services"
-        pageType="service"
-        keywords={[
-          "UX design services", "AI-enhanced UX", "conversion optimization", "startup design",
-          "enterprise UX", "mobile app design", "user research", "design systems"
-        ]}
+      <DynamicSeo 
+        type="service"
+        title="Design Systems That Teams Actually Use"
+        description="Stop building design systems that die in Figma. Get scalable, AI-powered systems that accelerate development and maintain consistency."
+        serviceName="UX Design Services"
+        benefits={["40-70% improvement guarantee", "AI-enhanced research", "Proven results"]}
+        targetAudience="Startups and Enterprises"
+        path="/services"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

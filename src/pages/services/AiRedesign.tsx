@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const AiRedesign: React.FC = () => {
   const processBreakdown = [
@@ -88,15 +88,14 @@ const AiRedesign: React.FC = () => {
 
   return (
     <>
-      <EnhancedGlobalSeo 
+      <DynamicSeo 
+        type="service"
         title="AI-Enhanced Redesign - Complete Digital Transformation"
         description="Transform your digital presence with AI-powered redesign. Same approach that helped Investor Loan App achieve 70% faster processing. $18,500 investment."
-        canonicalUrl="https://barskydesign.pro/services/ai-redesign"
-        pageType="service"
-        keywords={[
-          "AI-enhanced redesign", "digital transformation", "AI integration", "enterprise UX",
-          "design systems", "AI interfaces", "machine learning UX", "intelligent design"
-        ]}
+        serviceName="AI-Enhanced Redesign"
+        benefits={["Complete digital transformation", "AI integration", "90-day support"]}
+        targetAudience="Enterprise Organizations"
+        path="/services/ai-redesign"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

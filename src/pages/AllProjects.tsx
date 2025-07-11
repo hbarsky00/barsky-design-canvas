@@ -2,7 +2,7 @@
 import React from "react";
 import Header from "@/components/Header";
 import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
@@ -21,17 +21,12 @@ const AllProjects = () => {
 
   return (
     <div className="flex flex-col min-h-screen px-5">
-      <EnhancedGlobalSeo 
-        title="AI-Enhanced Product Design Portfolio | Hiram Barsky - Gen AI Web Applications"
-        description="Explore Product Design portfolio featuring AI-powered web applications and Gen AI integration. Real case studies with measurable results and user improvements."
-        canonicalUrl="https://barskydesign.pro/projects"
-        breadcrumbs={breadcrumbs}
-        pageType="portfolio"
-        keywords={[
-          "AI-enhanced UX portfolio", "Gen AI web applications", "AI UX design case studies",
-          "intelligent user interface design", "AI-powered design portfolio", "generative AI projects",
-          "UX UI designer portfolio", "AI web app development", "Gen AI integration examples"
-        ]}
+      <DynamicSeo 
+        type="page"
+        title="AI-Enhanced Design Portfolio - Project Case Studies"
+        description="Explore AI-powered product design projects with real case studies and measurable results. See how AI integration transforms user experiences."
+        image="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png"
+        path="/projects"
       />
       
       <Header />
