@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Lightbulb } from "lucide-react";
+import MaximizableImage from "../MaximizableImage";
 
 const ProblemSection: React.FC = () => {
   const painPoints = [
@@ -68,12 +69,27 @@ const ProblemSection: React.FC = () => {
             transition={{
               duration: 0.8
             }} 
-            className="relative"
+            className="relative space-y-6"
           >
-            <img 
-              alt="Understanding actual workflow instead of forcing users to adapt" 
-              src="/lovable-uploads/a0687cd1-40e1-44e6-8efc-5e6de58db84d.png" 
-              className="w-full h-[300px] shadow-xl object-contain" 
+            <MaximizableImage
+              src="/lovable-uploads/a5f7cbb4-e20e-42ac-af22-f9611e5994e4.png"
+              alt="Frustrated business owner overwhelmed by chaotic software and manual processes"
+              caption="The daily chaos of inefficient business software"
+              className="w-full h-[300px] shadow-xl object-contain"
+            />
+            
+            <MaximizableImage
+              src="/lovable-uploads/82339ea3-2074-4095-83b2-c52489b602ef.png"
+              alt="Business professional and warehouse worker collaborating with digital technology"
+              caption="Bridging the gap between business needs and operational reality"
+              className="w-full h-[300px] shadow-xl object-contain"
+            />
+            
+            <MaximizableImage
+              src="/lovable-uploads/98c02902-7f36-4c8a-b29e-0dace089c297.png"
+              alt="Developer surrounded by overwhelming code interfaces and digital complexity"
+              caption="The overwhelming complexity of traditional software development"
+              className="w-full h-[300px] shadow-xl object-contain"
             />
           </motion.div>
         </div>
