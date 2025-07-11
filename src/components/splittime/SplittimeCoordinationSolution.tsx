@@ -62,6 +62,17 @@ const SplittimeCoordinationSolution: React.FC<SplittimeCoordinationSolutionProps
           transition={{ duration: 0.8, delay: 0.4 }} 
           className="mt-12"
         >
+          <figure className="project-image-container mb-8">
+            <img 
+              src="/lovable-uploads/656c0433-9b6b-4a41-9c08-90b154ee0f32.png" 
+              alt="Comprehensive System Architecture: Five Core Modules for distribution management" 
+              className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg"
+            />
+            <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+              Comprehensive System Architecture: Five Core Modules
+            </figcaption>
+          </figure>
+
           <figure className="project-video-container">
             <div className="relative w-full rounded-lg overflow-hidden shadow-xl bg-gray-100">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
