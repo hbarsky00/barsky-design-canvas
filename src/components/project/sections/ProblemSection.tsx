@@ -76,6 +76,13 @@ const ProblemSection: React.FC = () => {
                 <MaximizableImage
                   src={pain.image}
                   alt={pain.alt}
+                  caption={
+                    index === 0 ? "The frustration of broken software interfaces" :
+                    index === 1 ? "Overwhelming complexity in software development" :
+                    index === 2 ? "Bridging the gap between business needs and reality" :
+                    index === 3 ? "The cost of inefficient software solutions" :
+                    "Manual processes that should be automated"
+                  }
                   className="w-full h-40 object-contain shadow-xl rounded-lg"
                 />
               </div>
