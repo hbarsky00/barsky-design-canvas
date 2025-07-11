@@ -2,9 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Lightbulb } from "lucide-react";
 import MaximizableImage from "../MaximizableImage";
-import brokenButtonsImage from "@/assets/frustration-broken-buttons.jpg";
-import complexScreensImage from "@/assets/frustration-complex-screens.jpg";
-import disconnectImage from "@/assets/frustration-disconnect.jpg";
 import expensiveSoftwareImage from "@/assets/frustration-expensive-software.jpg";
 import manualWorkImage from "@/assets/frustration-manual-work.jpg";
 
@@ -12,18 +9,18 @@ const ProblemSection: React.FC = () => {
   const painPoints = [
     {
       text: "Grid actions that looked clickable but did nothing (pure frustration)",
-      image: brokenButtonsImage,
-      alt: "Frustrated user clicking broken interface buttons"
+      image: "/lovable-uploads/a5f7cbb4-e20e-42ac-af22-f9611e5994e4.png",
+      alt: "Frustrated business owner overwhelmed by chaotic software and manual processes"
     },
     {
       text: "Endless screens that buried simple tasks in complexity",
-      image: complexScreensImage,
-      alt: "Overwhelming complex software interface"
+      image: "/lovable-uploads/98c02902-7f36-4c8a-b29e-0dace089c297.png",
+      alt: "Developer surrounded by overwhelming code interfaces and digital complexity"
     },
     {
       text: "A system designed by people who never ran a distribution business",
-      image: disconnectImage,
-      alt: "Disconnect between software developers and actual users"
+      image: "/lovable-uploads/82339ea3-2074-4095-83b2-c52489b602ef.png",
+      alt: "Business professional and warehouse worker collaborating with digital technology"
     },
     {
       text: "Paying for software that actively worked against their workflow",
@@ -50,9 +47,9 @@ const ProblemSection: React.FC = () => {
           </h2>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Their Daily Frustrations:</h3>
+        <div className="grid lg:grid-cols-1 gap-12">
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">Their Daily Frustrations:</h3>
             {painPoints.map((pain, index) => (
               <motion.div 
                 key={index} 
@@ -71,59 +68,23 @@ const ProblemSection: React.FC = () => {
                   duration: 0.5,
                   delay: index * 0.1
                 }} 
-                className="flex items-start gap-4 bg-red-50 p-6 rounded-xl border border-red-200 hover:shadow-lg transition-all duration-300"
+                className="bg-red-50 p-8 rounded-xl border border-red-200 hover:shadow-lg transition-all duration-300"
               >
-                <img 
-                  src={pain.image} 
-                  alt={pain.alt}
-                  className="w-20 h-20 object-cover rounded-lg flex-shrink-0 shadow-md"
-                />
-                <div className="flex-1">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mb-2"></div>
-                  <p className="text-gray-800 leading-relaxed">{pain.text}</p>
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="flex-1">
+                    <p className="text-gray-800 leading-relaxed text-lg font-medium mb-4">{pain.text}</p>
+                  </div>
+                  <div className="w-full md:w-80 flex-shrink-0">
+                    <MaximizableImage
+                      src={pain.image}
+                      alt={pain.alt}
+                      className="w-full h-48 object-contain shadow-xl rounded-lg"
+                    />
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
-          
-          <motion.div 
-            initial={{
-              opacity: 0,
-              scale: 0.95
-            }} 
-            whileInView={{
-              opacity: 1,
-              scale: 1
-            }} 
-            viewport={{
-              once: true
-            }} 
-            transition={{
-              duration: 0.8
-            }} 
-            className="relative space-y-6"
-          >
-            <MaximizableImage
-              src="/lovable-uploads/a5f7cbb4-e20e-42ac-af22-f9611e5994e4.png"
-              alt="Frustrated business owner overwhelmed by chaotic software and manual processes"
-              caption="The daily chaos of inefficient business software"
-              className="w-full h-[300px] shadow-xl object-contain"
-            />
-            
-            <MaximizableImage
-              src="/lovable-uploads/82339ea3-2074-4095-83b2-c52489b602ef.png"
-              alt="Business professional and warehouse worker collaborating with digital technology"
-              caption="Bridging the gap between business needs and operational reality"
-              className="w-full h-[300px] shadow-xl object-contain"
-            />
-            
-            <MaximizableImage
-              src="/lovable-uploads/98c02902-7f36-4c8a-b29e-0dace089c297.png"
-              alt="Developer surrounded by overwhelming code interfaces and digital complexity"
-              caption="The overwhelming complexity of traditional software development"
-              className="w-full h-[300px] shadow-xl object-contain"
-            />
-          </motion.div>
         </div>
       </div>
     </section>
