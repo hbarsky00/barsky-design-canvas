@@ -49,42 +49,89 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       
-      {/* Header Section - At the very top */}
-      <ModernProjectHeader
-        project={updatedProject}
-        details={updatedDetails}
-        projectId={projectId}
-      />
-
-      {/* Main Content */}
-      <div className="w-full px-4 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16">
+      {/* Mobile Layout: Image First, Then Header */}
+      <div className="block lg:hidden">
+        {/* Mobile Hero Image - Appears First */}
+        <div className="px-4 sm:px-6 pt-20 pb-4">
+          <ModernProjectImage
+            project={updatedProject}
+            imageCaptions={finalCaptions}
+            projectId={projectId}
+          />
+        </div>
         
-        {/* Hero Image Section - Now positioned before all project sections */}
-        <ModernProjectImage
+        {/* Mobile Header - Appears After Image */}
+        <ModernProjectHeader
           project={updatedProject}
-          imageCaptions={finalCaptions}
-          projectId={projectId}
-        />
-
-        {/* All Project Sections (Challenge, Process, Result) */}
-        <ModernProjectSections
           details={updatedDetails}
           projectId={projectId}
-          componentKey={componentKey.toString()}
-          imageCaptions={finalCaptions}
+        />
+      </div>
+
+      {/* Desktop Layout: Header First, Then Image */}
+      <div className="hidden lg:block">
+        {/* Desktop Header Section - At the very top */}
+        <ModernProjectHeader
           project={updatedProject}
+          details={updatedDetails}
+          projectId={projectId}
         />
 
-        {/* Call to Action */}
-        <ProjectCallToAction />
-
-        {/* Project Navigation */}
-        <section className="mt-8 lg:mt-16">
-          <ProjectNavigation
-            currentProjectId={projectId}
-            projectsData={projectsData}
+        {/* Desktop Main Content */}
+        <div className="w-full px-4 sm:px-6 py-8 lg:py-16 space-y-8 lg:space-y-16">
+          
+          {/* Desktop Hero Image Section */}
+          <ModernProjectImage
+            project={updatedProject}
+            imageCaptions={finalCaptions}
+            projectId={projectId}
           />
-        </section>
+
+          {/* All Project Sections (Challenge, Process, Result) */}
+          <ModernProjectSections
+            details={updatedDetails}
+            projectId={projectId}
+            componentKey={componentKey.toString()}
+            imageCaptions={finalCaptions}
+            project={updatedProject}
+          />
+
+          {/* Call to Action */}
+          <ProjectCallToAction />
+
+          {/* Project Navigation */}
+          <section className="mt-8 lg:mt-16">
+            <ProjectNavigation
+              currentProjectId={projectId}
+              projectsData={projectsData}
+            />
+          </section>
+        </div>
+      </div>
+
+      {/* Mobile Project Sections - Outside the header/image reordering */}
+      <div className="block lg:hidden">
+        <div className="w-full px-4 sm:px-6 py-8 space-y-8">
+          {/* All Project Sections (Challenge, Process, Result) */}
+          <ModernProjectSections
+            details={updatedDetails}
+            projectId={projectId}
+            componentKey={componentKey.toString()}
+            imageCaptions={finalCaptions}
+            project={updatedProject}
+          />
+
+          {/* Call to Action */}
+          <ProjectCallToAction />
+
+          {/* Project Navigation */}
+          <section className="mt-8">
+            <ProjectNavigation
+              currentProjectId={projectId}
+              projectsData={projectsData}
+            />
+          </section>
+        </div>
       </div>
     </div>
   );

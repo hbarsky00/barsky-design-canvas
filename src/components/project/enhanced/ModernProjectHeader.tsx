@@ -34,8 +34,8 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
       <div className="relative w-full px-4 sm:px-6 z-10">
-        {/* Header with proper spacing from logo */}
-        <div className="max-w-7xl mx-auto pt-24 pb-8 lg:pt-28 lg:pb-16">
+        {/* Header with conditional spacing - more padding on desktop, less on mobile */}
+        <div className="max-w-7xl mx-auto pt-8 lg:pt-24 pb-8 lg:pb-16">{/* Reduced mobile top padding since image comes first */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
