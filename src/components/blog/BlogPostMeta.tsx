@@ -34,14 +34,14 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
       <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services"} />
       
       {/* Open Graph meta tags */}
-      <meta property="og:title" content={`${post.title} | Barsky Design Blog`} />
+      <meta property="og:title" content={`${post.title} | Hiram Barsky`} />
       <meta property="og:description" content={post.excerpt} />
       <meta property="og:image" content={ogImageUrl} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="article" />
-      <meta property="og:site_name" content="Barsky Design" />
+      <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced UX Design" />
       
       {/* Twitter Card meta tags */}
       <meta name="twitter:card" content="summary_large_image" />
