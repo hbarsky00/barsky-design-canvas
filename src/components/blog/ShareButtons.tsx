@@ -1,7 +1,7 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Twitter, Facebook, Linkedin, AtSign, Link, Share2, MessageCircle, Edit3 } from "lucide-react";
+import { Twitter, Facebook, Linkedin, AtSign, Link, Share2, MessageCircle, Edit3, MoreHorizontal } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 interface ShareButtonsProps {
@@ -13,6 +13,7 @@ interface ShareButtonsProps {
 
 const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashtags = [] }) => {
   const { toast } = useToast();
+  const [showAll, setShowAll] = useState(false);
   const hashtagString = hashtags.join(",");
   
   const shareLinks = [
@@ -48,6 +49,12 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
     },
   ];
 
+  // Main share buttons (most popular)
+  const mainShareLinks = shareLinks.slice(0, 3); // Twitter, Facebook, LinkedIn
+  const additionalShareLinks = shareLinks.slice(3); // Threads, Medium, Email
+
+  const visibleShareLinks = showAll ? shareLinks : mainShareLinks;
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(url);
     toast({
@@ -63,7 +70,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
         <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" /> <span className="hidden sm:inline">Share:</span>
       </span>
       <div className="flex gap-1 sm:gap-2">
-        {shareLinks.map((link) => (
+        {visibleShareLinks.map((link) => (
           <Button
             key={link.name}
             variant="outline"
@@ -76,6 +83,18 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
             <span className="sr-only">{link.name}</span>
           </Button>
         ))}
+        {!showAll && additionalShareLinks.length > 0 && (
+          <Button
+            variant="outline"
+            className="share-button"
+            onClick={() => setShowAll(true)}
+            aria-label="Show more share options"
+            title="More"
+          >
+            <MoreHorizontal className="h-4 w-4" />
+            <span className="sr-only">More</span>
+          </Button>
+        )}
         <Button
           variant="outline"
           className="share-button"
