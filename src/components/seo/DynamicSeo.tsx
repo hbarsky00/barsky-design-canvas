@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -22,13 +23,10 @@ interface PageSeoProps {
 
 interface ProjectSeoProps {
   type: 'project';
-  title: string;
+  projectName: string;
   description: string;
   image?: string;
-  projectName: string;
-  results: string[];
-  technologies: string[];
-  path: string;
+  keywords?: string;
 }
 
 interface ServiceSeoProps {
@@ -49,24 +47,14 @@ interface HomeSeoProps {
 type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | ServiceSeoProps | HomeSeoProps;
 
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
+  const location = useLocation();
   const baseDomain = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
 
-  // Generate the correct canonical URL for each page type
+  // Generate the correct canonical URL based on current location
   const getCanonicalUrl = () => {
-    switch (props.type) {
-      case 'home':
-        return `${baseDomain}/`;
-      case 'blog-post':
-        return `${baseDomain}/blog/${props.slug}`;
-      case 'project':
-        return `${baseDomain}${props.path}`;
-      case 'page':
-      case 'service':
-        return `${baseDomain}${props.path}`;
-      default:
-        return `${baseDomain}/`;
-    }
+    // Use current pathname to ensure canonical URL matches fetched URL
+    return `${baseDomain}${location.pathname}`;
   };
 
   const canonicalUrl = getCanonicalUrl();
@@ -82,28 +70,10 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   // Debug logging to show what canonical URL is being set
   console.log('DynamicSeo canonical URL:', canonicalUrl, 'for page type:', props.type);
   
-  // Force immediate rendering and override any existing meta tags
+  // Debug logging to verify canonical URL generation
   React.useEffect(() => {
-    // Ensure the document title and canonical URL are set immediately
-    document.title = props.type === 'project' ? `${(props as ProjectSeoProps).projectName} - Product Design Case Study | Barsky Design` :
-                     props.type === 'blog-post' ? `${props.title} | Barsky Design Blog` :
-                     props.type === 'page' ? `${props.title} | Barsky Design` :
-                     props.type === 'service' ? `${(props as ServiceSeoProps).serviceName} - Product Design Services | Barsky Design` :
-                     'Hiram Barsky - Product Designer & Gen AI Developer | New York';
-    
-    // Remove any existing canonical links and add the correct one
-    const existingCanonical = document.querySelector('link[rel="canonical"]');
-    if (existingCanonical) {
-      existingCanonical.remove();
-    }
-    
-    const newCanonical = document.createElement('link');
-    newCanonical.rel = 'canonical';
-    newCanonical.href = canonicalUrl;
-    document.head.appendChild(newCanonical);
-    
-    console.log('Force set canonical URL in DOM:', canonicalUrl);
-  }, [canonicalUrl, props]);
+    console.log('DynamicSeo canonical URL:', canonicalUrl, 'for pathname:', location.pathname, 'page type:', props.type);
+  }, [canonicalUrl, location.pathname, props.type]);
 
   // Generate structured data for blog posts
   const generateBlogPostSchema = (props: BlogPostSeoProps) => {
@@ -157,9 +127,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return {
       "@context": "https://schema.org",
       "@type": "CreativeWork",
-      "name": props.title,
+      "name": props.projectName,
       "description": props.description,
-      "url": `${baseDomain}${props.path}`,
+      "url": canonicalUrl,
       "image": props.image || defaultImage,
       "creator": {
         "@type": "Person",
@@ -167,7 +137,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         "url": `${baseDomain}/about`
       },
       "about": props.projectName,
-      "keywords": [...props.technologies, "UX Design", "AI Integration"].join(', '),
+      "keywords": `${props.keywords || ''}, UX Design, AI Integration`,
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
@@ -301,7 +271,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const truncatedDescription = truncateDescription(props.description);
 
     return (
-      <Helmet prioritizeSeoTags>
+      <Helmet>
         {/* Basic Meta Tags */}
         <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
@@ -322,9 +292,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Project-specific Open Graph Tags */}
         <meta property="og:article:author" content="Hiram Barsky" />
         <meta property="og:article:section" content="Case Studies" />
-        {props.technologies.map(tech => (
-          <meta key={tech} property="og:article:tag" content={tech} />
-        ))}
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -336,7 +303,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:image:alt" content={props.projectName} />
         
         {/* Keywords */}
-        <meta name="keywords" content={`${props.technologies.join(', ')}, Case Study, UX Design, AI Integration, Hiram Barsky`} />
+        <meta name="keywords" content={`${props.keywords || ''}, Case Study, UX Design, AI Integration, Hiram Barsky`} />
         
         {/* Structured Data */}
         <script type="application/ld+json">
