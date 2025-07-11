@@ -18,39 +18,39 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
   const shareLinks = [
     {
       name: "Twitter",
-      icon: <Twitter className="h-5 w-5" />,
+      icon: <Twitter className="h-4 w-4" />,
       href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}&hashtags=${hashtagString}`,
-      color: "hover:bg-[#1DA1F2] hover:text-white",
+      hoverStyles: "hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2]",
     },
     {
-      name: "Facebook",
-      icon: <Facebook className="h-5 w-5" />,
+      name: "Facebook", 
+      icon: <Facebook className="h-4 w-4" />,
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-      color: "hover:bg-[#4267B2] hover:text-white",
+      hoverStyles: "hover:bg-[#4267B2] hover:text-white hover:border-[#4267B2]",
     },
     {
       name: "LinkedIn",
-      icon: <Linkedin className="h-5 w-5" />,
+      icon: <Linkedin className="h-4 w-4" />,
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(summary)}`,
-      color: "hover:bg-[#0077b5] hover:text-white",
+      hoverStyles: "hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5]",
     },
     {
       name: "Threads",
-      icon: <MessageCircle className="h-5 w-5" />,
+      icon: <MessageCircle className="h-4 w-4" />,
       href: `https://threads.net/intent/post?text=${encodeURIComponent(`${title}\n\n${summary}\n\n${url}`)}`,
-      color: "hover:bg-black hover:text-white",
+      hoverStyles: "hover:bg-black hover:text-white hover:border-black",
     },
     {
       name: "Medium",
-      icon: <Edit3 className="h-5 w-5" />,
+      icon: <Edit3 className="h-4 w-4" />,
       href: `https://medium.com/new-story?title=${encodeURIComponent(title)}&tags=${encodeURIComponent(hashtags.slice(0, 5).join(','))}&canonicalUrl=${encodeURIComponent(url)}`,
-      color: "hover:bg-[#00ab6c] hover:text-white",
+      hoverStyles: "hover:bg-[#00ab6c] hover:text-white hover:border-[#00ab6c]",
     },
     {
       name: "Email",
-      icon: <AtSign className="h-5 w-5" />,
+      icon: <AtSign className="h-4 w-4" />,
       href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${summary}\n\nRead more: ${url}`)}`,
-      color: "hover:bg-slate-800 hover:text-white",
+      hoverStyles: "hover:bg-muted-foreground hover:text-white hover:border-muted-foreground",
     },
   ];
 
@@ -68,12 +68,23 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
       <span className="text-barsky-text-light text-sm flex items-center [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none">
         <Share2 className="h-4 w-4 mr-2" /> Share:
       </span>
-      <div className="flex gap-2">
+      <div className="flex gap-3 flex-wrap">
         {shareLinks.map((link) => (
           <Button
             key={link.name}
             variant="outline"
-            className={`${link.color} transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none w-10 h-10 p-0`}
+            size="sm"
+            className={`
+              ${link.hoverStyles}
+              border-2 border-muted-foreground/20 
+              text-muted-foreground bg-background
+              transition-all duration-300 ease-in-out
+              hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
+              focus:outline-none focus:ring-2 focus:ring-primary/20
+              w-11 h-11 p-0 rounded-lg
+              [&_svg]:transition-all [&_svg]:duration-300
+              active:scale-95
+            `}
             onClick={() => window.open(link.href, "_blank", "noreferrer,noopener,width=600,height=400")}
             aria-label={`Share on ${link.name}`}
             title={`Share on ${link.name}`}
@@ -84,12 +95,23 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
         ))}
         <Button
           variant="outline"
-          className="hover:bg-slate-800 hover:text-white transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none w-10 h-10 p-0"
+          size="sm"
+          className="
+            hover:bg-primary hover:text-primary-foreground hover:border-primary
+            border-2 border-muted-foreground/20 
+            text-muted-foreground bg-background
+            transition-all duration-300 ease-in-out
+            hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
+            focus:outline-none focus:ring-2 focus:ring-primary/20
+            w-11 h-11 p-0 rounded-lg
+            [&_svg]:transition-all [&_svg]:duration-300
+            active:scale-95
+          "
           onClick={copyToClipboard}
           aria-label="Copy link"
           title="Copy link"
         >
-          <Link className="h-5 w-5" />
+          <Link className="h-4 w-4" />
           <span className="sr-only">Copy link</span>
         </Button>
       </div>
