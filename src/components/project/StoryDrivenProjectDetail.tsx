@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import HeroSection from "./sections/HeroSection";
 import ProblemSection from "./sections/ProblemSection";
 import EvolutionSection from "./sections/EvolutionSection";
@@ -15,13 +15,15 @@ import CallToActionSection from "./sections/CallToActionSection";
 const StoryDrivenProjectDetail: React.FC = () => {
   return (
     <>
-      <EnhancedGlobalSeo 
-        title="Wholesale Distribution: From Designer to Gen AI Developer | Hiram Barsky Case Study" 
-        description="Real conversation to custom AI-powered business solution. How UX expertise evolved into full-stack Gen AI development for wholesale distribution challenges." 
-        canonicalUrl="https://barskydesign.pro/project/wholesale-distribution" 
-        pageType="content" 
-        keywords={["wholesale distribution software", "AI business automation", "custom development", "workflow optimization", "business solution", "Gen AI development", "restaurant conversation to solution"]}
-        ogImage="https://barskydesign.pro/lovable-uploads/62c180ba-ccc8-4c56-9f71-a3374bfc43f7.png"
+      <DynamicSeo 
+        type="project"
+        title="Wholesale Distribution: Excel to Custom App Transformation | Hiram Barsky"
+        description="70% reduction in manual tasks through AI-powered business automation. From restaurant conversation to custom solution transforming daily operations."
+        image="https://barskydesign.pro/lovable-uploads/62c180ba-ccc8-4c56-9f71-a3374bfc43f7.png"
+        projectName="Wholesale Distribution App"
+        results={["70% reduction in manual tasks", "Custom AI-powered automation", "Full workflow transformation"]}
+        technologies={["Business Automation", "AI Development", "Custom Software", "Workflow Optimization"]}
+        path="/project/wholesale-distribution"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
