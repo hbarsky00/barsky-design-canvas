@@ -31,6 +31,9 @@ import LinkedInVisitors from "@/pages/LinkedInVisitors";
 import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
+import BlogPostPage from "@/components/blog/BlogPostPage";
+import ServicePage from "@/components/pages/ServicePage";
+import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
@@ -84,6 +87,8 @@ function App() {
                 <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
                 <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
                 <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                <Route path="/meta-tag-manager" element={<MetaTagManager />} />
                 <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>

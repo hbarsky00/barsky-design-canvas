@@ -33,8 +33,8 @@ export const usePageMetadata = (path: string) => {
           console.error('Error fetching page metadata:', error);
         } else if (data) {
           setMetadata({
-            title: data.seo_title,
-            description: data.seo_description,
+            title: data.seo_title || '',
+            description: data.seo_description || '',
             image: data.featured_image || undefined
           });
         }
@@ -68,11 +68,11 @@ export const useBlogPostMetadata = (slug: string) => {
           console.error('Error fetching blog post metadata:', error);
         } else if (data) {
           setMetadata({
-            title: data.title,
-            excerpt: data.excerpt,
+            title: data.title || '',
+            excerpt: data.excerpt || '',
             featuredImage: data.featured_image || undefined,
-            author: data.author,
-            publishedDate: data.published_date,
+            author: data.author || 'Hiram Barsky',
+            publishedDate: data.published_date || '',
             tags: data.tags || []
           });
         }

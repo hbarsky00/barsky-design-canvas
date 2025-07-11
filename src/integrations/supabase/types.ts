@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_posts: {
+        Row: {
+          author: string
+          content: string | null
+          created_at: string
+          excerpt: string
+          featured_image: string | null
+          id: string
+          published_date: string
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string
+          content?: string | null
+          created_at?: string
+          excerpt: string
+          featured_image?: string | null
+          id?: string
+          published_date?: string
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          content?: string | null
+          created_at?: string
+          excerpt?: string
+          featured_image?: string | null
+          id?: string
+          published_date?: string
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       dev_mode_changes: {
         Row: {
           change_key: string
@@ -139,6 +181,36 @@ export type Database = {
           project_type?: string | null
           updated_at?: string
           website?: string | null
+        }
+        Relationships: []
+      }
+      page_metadata: {
+        Row: {
+          created_at: string
+          featured_image: string | null
+          id: string
+          path: string
+          seo_description: string
+          seo_title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          featured_image?: string | null
+          id?: string
+          path: string
+          seo_description: string
+          seo_title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          featured_image?: string | null
+          id?: string
+          path?: string
+          seo_description?: string
+          seo_title?: string
+          updated_at?: string
         }
         Relationships: []
       }

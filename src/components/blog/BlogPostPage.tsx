@@ -5,14 +5,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicSeo from '@/components/seo/DynamicSeo';
 import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
-import { blogData } from '@/data/blogData';
+import { blogPosts } from '@/data/blogData';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { metadata, loading } = useBlogPostMetadata(slug || '');
   
   // Fallback to static blog data if database doesn't have the post
-  const staticPost = blogData.find(post => post.slug === slug);
+  const staticPost = blogPosts.find(post => post.slug === slug);
   const post = metadata || staticPost;
 
   if (loading) {

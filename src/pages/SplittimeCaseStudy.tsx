@@ -27,14 +27,14 @@ const SplittimeCaseStudy: React.FC = () => {
     handleImageKeypress
   } = useSplittimeImageViewer();
   return <>
-      <EnhancedGlobalSeo 
-        title="Splittime: Transforming Co-Parenting from Conflict to Collaboration" 
-        description="Discover how Splittime's family-centered platform helps separated parents coordinate schedules, communicate effectively, and prioritize children's wellbeing through streamlined digital tools." 
-        canonicalUrl="https://barskydesign.pro/case-study-splittime" 
-        pageType="content" 
-        keywords={["Splittime co-parenting app", "family coordination platform", "co-parenting communication", "child custody scheduling", "family management app", "parenting after separation", "family-centered design"]}
-        ogImage="https://barskydesign.pro/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png"
-      />
+        <EnhancedGlobalSeo 
+          title="Splittime: Transforming Co-Parenting from Conflict to Collaboration" 
+          description="Discover how Splittime's family-centered platform helps separated parents coordinate schedules, communicate effectively, and prioritize children's wellbeing through streamlined digital tools." 
+          canonicalUrl="https://barskydesign.pro/case-study-splittime" 
+          pageType="content" 
+          keywords={["Splittime co-parenting app", "family coordination platform", "co-parenting communication", "child custody scheduling", "family management app", "parenting after separation", "family-centered design"]}
+          ogImage="https://barskydesign.pro/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png"
+        />
       
       <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
         <Header />

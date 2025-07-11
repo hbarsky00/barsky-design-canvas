@@ -11,6 +11,7 @@ const ServicePage: React.FC = () => {
   const defaultMetadata = {
     title: 'Design Services - AI-Enhanced Product Design',
     description: 'Expert product design services specializing in Gen AI integration, UX research, UI design, and user-centered solutions that drive business growth and user satisfaction.',
+    image: undefined as string | undefined
   };
 
   const pageData = metadata || defaultMetadata;
