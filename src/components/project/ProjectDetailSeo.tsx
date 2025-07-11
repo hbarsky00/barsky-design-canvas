@@ -13,11 +13,24 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   project,
   details
 }) => {
+  // Get the current domain for proper image URLs
+  const currentDomain = window.location.origin;
+  const isProduction = currentDomain.includes('barskydesign.pro');
+  const baseUrl = isProduction ? 'https://barskydesign.pro' : currentDomain;
+  
   // Safely handle tags array
   const tags = project.tags || [];
   
+  // Construct proper image URL for social sharing
+  const getImageUrl = (imagePath: string) => {
+    if (imagePath.startsWith('http')) {
+      return imagePath; // Already a full URL
+    }
+    return `${baseUrl}${imagePath}`;
+  };
+  
   // Use the project's hero image for social media sharing
-  const socialMediaImage = `https://barskydesign.pro${project.image}`;
+  const socialMediaImage = getImageUrl(project.image);
   
   // Generate concise, problem-focused titles (50-60 chars)
   const getOptimizedTitle = () => {
