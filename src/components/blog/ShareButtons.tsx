@@ -58,11 +58,11 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+    <div className="flex flex-row items-center gap-3">
       <span className="text-barsky-text-light text-sm flex items-center [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none">
         <Share2 className="h-4 w-4 mr-2" /> Share:
       </span>
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex gap-2">
         {shareLinks.map((link) => (
           <Button
             key={link.name}
