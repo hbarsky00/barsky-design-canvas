@@ -73,7 +73,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:postId" element={<BlogPost />} />
+                {/* Removed conflicting route - using slug-based route below */}
                 <Route path="/store" element={<Store />} />
                 <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
                 <Route path="/get-started" element={<LeadCapture />} />
