@@ -56,11 +56,18 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   });
   console.log('📝 ModernProjectDetail: Using manual captions:', Object.keys(finalCaptions).length, 'captions available');
 
+  console.log('🔍 ModernProjectDetail: Rendering mobile layout check');
+  console.log('🔍 Screen size detection test - Mobile layout should show on screens < 1024px');
+
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       
-      {/* Mobile Layout: Image First, Then Header (< 1024px) */}
-      <div className="lg:hidden">
+      {/* MOBILE LAYOUT: Image First, Then Header (< 1024px) */}
+      <div className="block sm:block md:block lg:hidden xl:hidden">
+        {/* DEBUG: Mobile layout is active */}
+        <div className="fixed top-0 left-0 bg-red-500 text-white p-2 z-50 text-xs">
+          MOBILE LAYOUT ACTIVE
+        </div>
         {/* Mobile: Back Button */}
         <div className="px-4 sm:px-6 pt-20 pb-4">
           <Link 
