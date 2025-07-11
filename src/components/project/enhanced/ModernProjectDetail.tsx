@@ -62,13 +62,9 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
   return (
     <div key={`project-detail-${componentKey}`} className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       
-      {/* MOBILE LAYOUT: Image First, Then Header (< 1024px) */}
-      <div className="block sm:block md:block lg:hidden xl:hidden">
-        {/* DEBUG: Mobile layout is active */}
-        <div className="fixed top-0 left-0 bg-red-500 text-white p-2 z-50 text-xs">
-          MOBILE LAYOUT ACTIVE
-        </div>
-        {/* Mobile: Back Button */}
+      {/* Mobile Layout */}
+      <div className="lg:hidden">
+        {/* Back Button */}
         <div className="px-4 sm:px-6 pt-20 pb-4">
           <Link 
             to="/projects" 
@@ -79,8 +75,8 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           </Link>
         </div>
 
-        {/* Mobile: Hero Image First */}
-        <div className="px-4 sm:px-6 pb-4">
+        {/* Image First on Mobile */}
+        <div className="px-4 sm:px-6 pb-8">
           <ModernProjectImage
             project={updatedProject}
             imageCaptions={finalCaptions}
@@ -88,7 +84,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           />
         </div>
         
-        {/* Mobile: Header Content After Image */}
+        {/* Header Content After Image */}
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
           <div className="relative w-full px-4 sm:px-6 z-10">
