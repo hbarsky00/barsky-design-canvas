@@ -29,8 +29,8 @@ const SplittimeCaseStudy: React.FC = () => {
   return <>
         <DynamicSeo 
           type="project"
-          title="Splittime - Co-Parenting App Case Study"
-          description="Transforming co-parenting coordination from conflict to collaboration. AI-powered features that reduce communication stress."
+          title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
+          description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination by 50%."
           image="https://barskydesign.pro/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png"
           projectName="Splittime"
           results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}

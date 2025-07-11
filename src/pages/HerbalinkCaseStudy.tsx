@@ -78,8 +78,8 @@ const HerbalinkCaseStudy: React.FC = () => {
   return <>
       <DynamicSeo 
         type="project"
-        title="Herbalink - AI-Enhanced UX Case Study"
-        description="Mobile-first platform connecting users with certified herbalists. See how AI-enhanced UX design improved consultation booking by 40%."
+        title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"
+        description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access."
         image="https://barskydesign.pro/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
         projectName="Herbalink"
         results={["78% users found ideal herbalist", "65% increase in consultation completion", "89% user satisfaction rate"]}
