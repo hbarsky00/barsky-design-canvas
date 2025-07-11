@@ -73,7 +73,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/blog" element={<Blog />} />
-                {/* Removed conflicting route - using slug-based route below */}
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/store" element={<Store />} />
                 <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
                 <Route path="/get-started" element={<LeadCapture />} />
@@ -87,7 +87,6 @@ function App() {
                 <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
                 <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
                 <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
-                <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/meta-tag-manager" element={<MetaTagManager />} />
                 <Route path="*" element={<NotFound />} />
                 </Routes>
