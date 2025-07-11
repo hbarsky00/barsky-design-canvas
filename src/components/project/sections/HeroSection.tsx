@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
+import MaximizableImage from "../MaximizableImage";
 
 const HeroSection: React.FC = () => {
   return (
@@ -45,16 +46,12 @@ const HeroSection: React.FC = () => {
             duration: 0.8,
             delay: 0.2
           }} className="relative space-y-6">
-            <figure className="text-center">
-              <img 
-                src="/lovable-uploads/62c180ba-ccc8-4c56-9f71-a3374bfc43f7.png" 
-                alt="Comprehensive System Architecture: Five Core Modules for wholesale distribution" 
-                className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-5xl"
-              />
-              <figcaption className="text-sm text-gray-600 italic mt-4">
-                Comprehensive System Architecture: Five Core Modules
-              </figcaption>
-            </figure>
+            <MaximizableImage
+              src="/lovable-uploads/62c180ba-ccc8-4c56-9f71-a3374bfc43f7.png"
+              alt="Comprehensive System Architecture: Five Core Modules for wholesale distribution"
+              caption="Comprehensive System Architecture: Five Core Modules"
+              className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-5xl"
+            />
             
             <iframe 
               src="https://www.loom.com/embed/7b6a6a8e7ecc4c29b39b35d9be1ad3a3" 
