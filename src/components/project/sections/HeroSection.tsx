@@ -6,25 +6,6 @@ const HeroSection: React.FC = () => {
   return (
     <section className="py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        {/* System Architecture Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-16"
-        >
-          <figure className="text-center">
-            <img 
-              src="/lovable-uploads/62c180ba-ccc8-4c56-9f71-a3374bfc43f7.png" 
-              alt="Comprehensive System Architecture: Five Core Modules for wholesale distribution" 
-              className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-5xl"
-            />
-            <figcaption className="text-sm text-gray-600 italic mt-4">
-              Comprehensive System Architecture: Five Core Modules
-            </figcaption>
-          </figure>
-        </motion.div>
-
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div initial={{
             opacity: 0,
@@ -63,7 +44,18 @@ const HeroSection: React.FC = () => {
           }} transition={{
             duration: 0.8,
             delay: 0.2
-          }} className="relative">
+          }} className="relative space-y-6">
+            <figure className="text-center">
+              <img 
+                src="/lovable-uploads/62c180ba-ccc8-4c56-9f71-a3374bfc43f7.png" 
+                alt="Comprehensive System Architecture: Five Core Modules for wholesale distribution" 
+                className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-5xl"
+              />
+              <figcaption className="text-sm text-gray-600 italic mt-4">
+                Comprehensive System Architecture: Five Core Modules
+              </figcaption>
+            </figure>
+            
             <iframe 
               src="https://www.loom.com/embed/7b6a6a8e7ecc4c29b39b35d9be1ad3a3" 
               frameBorder="0" 
