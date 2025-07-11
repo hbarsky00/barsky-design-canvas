@@ -126,26 +126,6 @@ const FeaturedProjects: React.FC = () => {
             </motion.div>)}
         </div>
 
-        {/* ROI Metrics Bar - Mobile (after projects) */}
-        <div className="sm:hidden px-4">
-          <div className="grid grid-cols-3 gap-3 max-w-full mx-auto">
-            <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-              <div className="text-lg font-bold text-green-600">65%</div>
-              <div className="text-xs text-green-700">User Engagement ↑</div>
-              <div className="text-xs text-green-600">Wholesale Distribution</div>
-            </div>
-            <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-              <div className="text-lg font-bold text-blue-600">70%</div>
-              <div className="text-xs text-blue-700">Faster Processing</div>
-              <div className="text-xs text-blue-600">Loan Management</div>
-            </div>
-            <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
-              <div className="text-lg font-bold text-purple-600">$2M+</div>
-              <div className="text-xs text-purple-700">Revenue Generated</div>
-              <div className="text-xs text-purple-600">Client Portfolio</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>;
 };
