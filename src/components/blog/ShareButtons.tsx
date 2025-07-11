@@ -67,22 +67,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
           <Button
             key={link.name}
             variant="outline"
-            className="
-              hover:!bg-primary hover:!text-white hover:!border-primary
-              border-2 border-muted-foreground/20 
-              text-muted-foreground bg-background
-              transition-all duration-300 ease-in-out
-              hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
-              focus:outline-none focus:ring-2 focus:ring-primary/20
-              active:scale-95
-              !w-[45px] !h-[45px] !min-w-[45px] !min-h-[45px] !max-w-[45px] !max-h-[45px]
-              !p-0 !rounded-full !aspect-square
-              !flex !items-center !justify-center
-              cursor-pointer
-              [&_svg]:!transition-all [&_svg]:!duration-300 
-              [&_svg]:!stroke-current [&_svg]:!fill-none
-              hover:[&_svg]:!text-white hover:[&_svg]:!stroke-white
-            "
+            className="share-button"
             onClick={() => window.open(link.href, "_blank", "noreferrer,noopener,width=600,height=400")}
             aria-label={`Share on ${link.name}`}
             title={`Share on ${link.name}`}
@@ -93,22 +78,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
         ))}
         <Button
           variant="outline"
-          className="
-            hover:!bg-primary hover:!text-white hover:!border-primary
-            border-2 border-muted-foreground/20 
-            text-muted-foreground bg-background
-            transition-all duration-300 ease-in-out
-            hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
-            focus:outline-none focus:ring-2 focus:ring-primary/20
-            active:scale-95
-            !w-[45px] !h-[45px] !min-w-[45px] !min-h-[45px] !max-w-[45px] !max-h-[45px]
-            !p-0 !rounded-full !aspect-square
-            !flex !items-center !justify-center
-            cursor-pointer
-            [&_svg]:!transition-all [&_svg]:!duration-300 
-            [&_svg]:!stroke-current [&_svg]:!fill-none
-            hover:[&_svg]:!text-white hover:[&_svg]:!stroke-white
-          "
+          className="share-button"
           onClick={copyToClipboard}
           aria-label="Copy link"
           title="Copy link"
