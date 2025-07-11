@@ -81,6 +81,29 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
   // Debug logging to show what canonical URL is being set
   console.log('DynamicSeo canonical URL:', canonicalUrl, 'for page type:', props.type);
+  
+  // Force immediate rendering and override any existing meta tags
+  React.useEffect(() => {
+    // Ensure the document title and canonical URL are set immediately
+    document.title = props.type === 'project' ? `${(props as ProjectSeoProps).projectName} - Product Design Case Study | Barsky Design` :
+                     props.type === 'blog-post' ? `${props.title} | Barsky Design Blog` :
+                     props.type === 'page' ? `${props.title} | Barsky Design` :
+                     props.type === 'service' ? `${(props as ServiceSeoProps).serviceName} - Product Design Services | Barsky Design` :
+                     'Hiram Barsky - Product Designer & Gen AI Developer | New York';
+    
+    // Remove any existing canonical links and add the correct one
+    const existingCanonical = document.querySelector('link[rel="canonical"]');
+    if (existingCanonical) {
+      existingCanonical.remove();
+    }
+    
+    const newCanonical = document.createElement('link');
+    newCanonical.rel = 'canonical';
+    newCanonical.href = canonicalUrl;
+    document.head.appendChild(newCanonical);
+    
+    console.log('Force set canonical URL in DOM:', canonicalUrl);
+  }, [canonicalUrl, props]);
 
   // Generate structured data for blog posts
   const generateBlogPostSchema = (props: BlogPostSeoProps) => {
@@ -278,7 +301,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const truncatedDescription = truncateDescription(props.description);
 
     return (
-      <Helmet>
+      <Helmet prioritizeSeoTags>
         {/* Basic Meta Tags */}
         <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />

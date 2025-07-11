@@ -76,6 +76,13 @@ const HerbalinkCaseStudy: React.FC = () => {
     label: "Growth in Herbalist Community",
     icon: <Sprout className="h-6 w-6" />
   }];
+  // Force correct URL in browser history to ensure canonical URL matches
+  React.useEffect(() => {
+    if (window.location.pathname !== '/project/herbalink') {
+      window.history.replaceState({}, '', '/project/herbalink');
+    }
+  }, []);
+
   return <>
       <DynamicSeo 
         type="project"
