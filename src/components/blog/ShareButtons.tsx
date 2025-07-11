@@ -20,37 +20,31 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
       name: "Twitter",
       icon: <Twitter className="h-4 w-4" />,
       href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}&hashtags=${hashtagString}`,
-      hoverStyles: "hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2]",
     },
     {
       name: "Facebook", 
       icon: <Facebook className="h-4 w-4" />,
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-      hoverStyles: "hover:bg-[#4267B2] hover:text-white hover:border-[#4267B2]",
     },
     {
       name: "LinkedIn",
       icon: <Linkedin className="h-4 w-4" />,
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(summary)}`,
-      hoverStyles: "hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5]",
     },
     {
       name: "Threads",
       icon: <MessageCircle className="h-4 w-4" />,
       href: `https://threads.net/intent/post?text=${encodeURIComponent(`${title}\n\n${summary}\n\n${url}`)}`,
-      hoverStyles: "hover:bg-black hover:text-white hover:border-black",
     },
     {
       name: "Medium",
       icon: <Edit3 className="h-4 w-4" />,
       href: `https://medium.com/new-story?title=${encodeURIComponent(title)}&tags=${encodeURIComponent(hashtags.slice(0, 5).join(','))}&canonicalUrl=${encodeURIComponent(url)}`,
-      hoverStyles: "hover:bg-[#00ab6c] hover:text-white hover:border-[#00ab6c]",
     },
     {
       name: "Email",
       icon: <AtSign className="h-4 w-4" />,
       href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${summary}\n\nRead more: ${url}`)}`,
-      hoverStyles: "hover:bg-muted-foreground hover:text-white hover:border-muted-foreground",
     },
   ];
 
@@ -73,18 +67,17 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
           <Button
             key={link.name}
             variant="outline"
-            size="sm"
-            className={`
-              ${link.hoverStyles}
+            className="
+              hover:bg-primary hover:text-primary-foreground hover:border-primary
               border-2 border-muted-foreground/20 
               text-muted-foreground bg-background
               transition-all duration-300 ease-in-out
               hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
               focus:outline-none focus:ring-2 focus:ring-primary/20
-              w-11 h-11 p-0 rounded-lg
+              w-[38px] h-[38px] p-0 rounded-full
               [&_svg]:transition-all [&_svg]:duration-300
               active:scale-95
-            `}
+            "
             onClick={() => window.open(link.href, "_blank", "noreferrer,noopener,width=600,height=400")}
             aria-label={`Share on ${link.name}`}
             title={`Share on ${link.name}`}
@@ -95,7 +88,6 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
         ))}
         <Button
           variant="outline"
-          size="sm"
           className="
             hover:bg-primary hover:text-primary-foreground hover:border-primary
             border-2 border-muted-foreground/20 
@@ -103,7 +95,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
             transition-all duration-300 ease-in-out
             hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
             focus:outline-none focus:ring-2 focus:ring-primary/20
-            w-11 h-11 p-0 rounded-lg
+            w-[38px] h-[38px] p-0 rounded-full
             [&_svg]:transition-all [&_svg]:duration-300
             active:scale-95
           "
