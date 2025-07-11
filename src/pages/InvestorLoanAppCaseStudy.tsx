@@ -90,14 +90,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     icon: <LineChart className="h-6 w-6" />
   }];
   return <>
-      <EnhancedGlobalSeo 
-        title="Investor Loan App: FinTech Portfolio Management Platform Case Study" 
-        description="See how intelligent automation transformed investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors." 
-        canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app" 
-        pageType="content" 
-        keywords={["investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics", "investor tools", "portfolio investment tracking", "investment risk assessment", "portfolio optimization platform"]}
-        ogImage="https://barskydesign.pro/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
-      />
+      <EnhancedGlobalSeo title="Investor Loan App: FinTech Portfolio Management Platform Case Study" description="See how intelligent automation transformed investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors." canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app" pageType="content" keywords={["investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics", "investor tools", "portfolio investment tracking", "investment risk assessment", "portfolio optimization platform"]} ogImage="https://barskydesign.pro/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" />
       
       <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <Header />
@@ -129,14 +122,14 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
               {/* Mobile Layout: Image First */}
               <div className="lg:hidden space-y-8">
                 <motion.div initial={{
-                  opacity: 0,
-                  y: 30
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.8
-                }} className="relative">
+                opacity: 0,
+                y: 30
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.8
+              }} className="relative">
                   <figure className="project-image-container">
                     <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[400px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover rounded-3xl" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
@@ -155,15 +148,15 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 </motion.div>
                 
                 <motion.div initial={{
-                  opacity: 0,
-                  y: 30
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.8,
-                  delay: 0.2
-                }} className="space-y-8">
+                opacity: 0,
+                y: 30
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.8,
+                delay: 0.2
+              }} className="space-y-8">
                   <div className="flex items-center gap-3 mb-6">
                     <Building2 className="h-10 w-10 text-blue-600" />
                     <span className="text-blue-700 font-semibold text-lg">Investment Portfolio Intelligence</span>
@@ -249,7 +242,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 delay: 0.2
               }} className="relative">
                   <figure className="project-image-container">
-                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[500px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover rounded-3xl" />
+                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[350px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl object-contain" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                       Low Fidelity Loan Central Order book
                     </figcaption>
