@@ -76,7 +76,14 @@ const HerbalinkCaseStudy: React.FC = () => {
     icon: <Sprout className="h-6 w-6" />
   }];
   return <>
-      <EnhancedGlobalSeo title="Herbalink: Bridging Ancient Herbal Wisdom with Modern Digital Accessibility" description="Discover how Herbalink's wellness-focused platform connects people seeking natural health solutions with certified herbalists through intelligent AI matching and mobile-first design." canonicalUrl="https://barskydesign.pro/case-study-herbalink" pageType="content" keywords={["Herbalink wellness platform", "herbal medicine digital platform", "AI herbalist matching", "natural health consultation", "mobile wellness app", "healthcare accessibility", "botanical interface design"]} />
+      <EnhancedGlobalSeo 
+        title="Herbalink: Bridging Ancient Herbal Wisdom with Modern Digital Accessibility" 
+        description="Discover how Herbalink's wellness-focused platform connects people seeking natural health solutions with certified herbalists through intelligent AI matching and mobile-first design." 
+        canonicalUrl="https://barskydesign.pro/case-study-herbalink" 
+        pageType="content" 
+        keywords={["Herbalink wellness platform", "herbal medicine digital platform", "AI herbalist matching", "natural health consultation", "mobile wellness app", "healthcare accessibility", "botanical interface design"]}
+        ogImage="https://barskydesign.pro/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
+      />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         <Header />
