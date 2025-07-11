@@ -30,8 +30,9 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({ onImageClick, onImageKeyp
             </h1>
             
             <p className="text-xl text-neutral-600 leading-relaxed max-w-2xl">
-              Splittime transforms co-parenting by centralizing communication, streamlining schedules, 
-              and keeping children's wellbeing at the center of every interaction between separated parents.
+              When separated parents struggle with fragmented communication, missed schedules, and emotional 
+              tensions, children suffer the consequences. Splittime transforms chaotic co-parenting into 
+              coordinated collaboration, putting children's wellbeing first through streamlined digital tools.
             </p>
             
             <Button 

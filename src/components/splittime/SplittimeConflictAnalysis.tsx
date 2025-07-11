@@ -28,12 +28,13 @@ const SplittimeConflictAnalysis: React.FC<SplittimeConflictAnalysisProps> = ({
           </div>
           
           <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
-            Where Co-Parenting Communication Falls Apart
+            The Hidden Cost of Fragmented Co-Parenting
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-            Despite good intentions, co-parenting coordination often becomes a source of ongoing stress 
-            rather than collaborative support for children's needs and wellbeing.
+            Scattered text messages, forgotten pickups, conflicting schedules, and misunderstood communications 
+            create stress that ripples through families. When co-parenting lacks structure and clarity, 
+            children experience the emotional toll of parental friction and coordination failures.
           </p>
         </motion.div>
         
