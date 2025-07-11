@@ -74,9 +74,10 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
               transition-all duration-300 ease-in-out
               hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
               focus:outline-none focus:ring-2 focus:ring-primary/20
-              w-[38px] h-[38px] p-0 rounded-full
               [&_svg]:transition-all [&_svg]:duration-300
               active:scale-95
+              !w-[45px] !h-[45px] !min-w-[45px] !min-h-[45px] !max-w-[45px] !max-h-[45px]
+              !p-0 !rounded-full !aspect-square
             "
             onClick={() => window.open(link.href, "_blank", "noreferrer,noopener,width=600,height=400")}
             aria-label={`Share on ${link.name}`}
@@ -95,9 +96,10 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
             transition-all duration-300 ease-in-out
             hover:shadow-lg hover:scale-105 hover:-translate-y-0.5
             focus:outline-none focus:ring-2 focus:ring-primary/20
-            w-[38px] h-[38px] p-0 rounded-full
             [&_svg]:transition-all [&_svg]:duration-300
             active:scale-95
+            !w-[45px] !h-[45px] !min-w-[45px] !min-h-[45px] !max-w-[45px] !max-h-[45px]
+            !p-0 !rounded-full !aspect-square
           "
           onClick={copyToClipboard}
           aria-label="Copy link"
