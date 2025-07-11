@@ -3,6 +3,7 @@ import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { CheckCircle, Briefcase, Award, Book, Users, Target, Lightbulb } from 'lucide-react';
+import aboutOgImage from "@/assets/social/about-og.jpg";
 
 const skills = [
   "Product Design",
@@ -32,7 +33,7 @@ const About = () => {
         type="page"
         title="About Hiram Barsky - AI-Enhanced Product Designer"
         description="Professional Product Designer with 15+ years creating AI-enhanced digital experiences. Learn about my design philosophy and AI integration expertise."
-        image="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+        image={`https://barskydesign.pro${aboutOgImage}`}
         path="/about"
       />
       

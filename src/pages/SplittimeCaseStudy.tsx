@@ -13,6 +13,7 @@ import SplittimeFamilyInterface from "@/components/splittime/SplittimeFamilyInte
 import SplittimeImpactMetrics from "@/components/splittime/SplittimeImpactMetrics";
 import SplittimeCallToAction from "@/components/splittime/SplittimeCallToAction";
 import { useSplittimeImageViewer } from "@/hooks/useSplittimeImageViewer";
+import splittimeOgImage from "@/assets/social/splittime-og.jpg";
 
 const SplittimeCaseStudy: React.FC = () => {
   const {
@@ -31,7 +32,7 @@ const SplittimeCaseStudy: React.FC = () => {
           type="project"
           title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
           description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination."
-          image="https://barskydesign.pro/lovable-uploads/splittime-hero.png"
+          image={`https://barskydesign.pro${splittimeOgImage}`}
           projectName="Splittime"
           results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
           technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}

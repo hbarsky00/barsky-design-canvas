@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import herbalinkOgImage from "@/assets/social/herbalink-og.jpg";
 const HerbalinkCaseStudy: React.FC = () => {
   const {
     maximizeImage
@@ -80,7 +81,7 @@ const HerbalinkCaseStudy: React.FC = () => {
         type="project"
         title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"
         description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access."
-        image="https://barskydesign.pro/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
+        image={`https://barskydesign.pro${herbalinkOgImage}`}
         projectName="Herbalink"
         results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
         technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}

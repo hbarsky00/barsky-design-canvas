@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { investorLoanImageCaptions, investorLoanGalleryImages } from "@/data/investorLoanData";
+import investorLoanOgImage from "@/assets/social/investor-loan-og.jpg";
 const InvestorLoanAppCaseStudy: React.FC = () => {
   const portfolioComplexities = [{
     issue: "Excel-Based Portfolio Tracking",
@@ -94,7 +95,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
         type="project"
         title="Investor Loan App: Smart Portfolio Management Case Study | Hiram Barsky"
         description="Automated reporting and portfolio tracking for investors. See how AI integration streamlined complex financial workflows."
-        image="https://barskydesign.pro/lovable-uploads/investor-loan-hero.png"
+        image={`https://barskydesign.pro${investorLoanOgImage}`}
         projectName="Investor Loan App"
         results={["60% faster portfolio analysis", "90% automated report generation", "Real-time market insights"]}
         technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
