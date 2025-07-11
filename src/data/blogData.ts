@@ -65,7 +65,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "5",
     title: "Building Design Systems That Actually Get Used (Not Shelved)",
-    excerpt: "I've seen more design systems die in Figma libraries than I care to count. Beautiful, comprehensive, and completely ignored by the teams they were meant to help.",
+    excerpt: "I've seen more design systems die in Figma libraries than I care to count. Here's how to build ones that actually get used.",
     author: "Hiram Barsky",
     date: "January 8, 2025",
     readTime: "8 min read",
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "6",
     title: "Portfolio Red Flags: Why Your UX Portfolio Isn't Getting You Interviews",
-    excerpt: "Your portfolio is getting views but no interviews. After reviewing hundreds of UX portfolios, I've identified the red flags that make hiring managers hit the back button.",
+    excerpt: "Your portfolio gets views but no interviews? After reviewing hundreds of UX portfolios, I've identified the red flags killing your chances.",
     author: "Hiram Barsky",
     date: "December 28, 2025",
     readTime: "6 min read",
