@@ -2,14 +2,39 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Lightbulb } from "lucide-react";
 import MaximizableImage from "../MaximizableImage";
+import brokenButtonsImage from "@/assets/frustration-broken-buttons.jpg";
+import complexScreensImage from "@/assets/frustration-complex-screens.jpg";
+import disconnectImage from "@/assets/frustration-disconnect.jpg";
+import expensiveSoftwareImage from "@/assets/frustration-expensive-software.jpg";
+import manualWorkImage from "@/assets/frustration-manual-work.jpg";
 
 const ProblemSection: React.FC = () => {
   const painPoints = [
-    "Grid actions that looked clickable but did nothing (pure frustration)",
-    "Endless screens that buried simple tasks in complexity",
-    "A system designed by people who never ran a distribution business",
-    "Paying for software that actively worked against their workflow",
-    "Hours of manual work that could be automated with basic scripts"
+    {
+      text: "Grid actions that looked clickable but did nothing (pure frustration)",
+      image: brokenButtonsImage,
+      alt: "Frustrated user clicking broken interface buttons"
+    },
+    {
+      text: "Endless screens that buried simple tasks in complexity",
+      image: complexScreensImage,
+      alt: "Overwhelming complex software interface"
+    },
+    {
+      text: "A system designed by people who never ran a distribution business",
+      image: disconnectImage,
+      alt: "Disconnect between software developers and actual users"
+    },
+    {
+      text: "Paying for software that actively worked against their workflow",
+      image: expensiveSoftwareImage,
+      alt: "Expensive software bills with poor workflow"
+    },
+    {
+      text: "Hours of manual work that could be automated with basic scripts",
+      image: manualWorkImage,
+      alt: "Person doing tedious manual data entry work"
+    }
   ];
 
   return (
@@ -46,10 +71,17 @@ const ProblemSection: React.FC = () => {
                   duration: 0.5,
                   delay: index * 0.1
                 }} 
-                className="flex items-start gap-4 bg-red-50 p-4 rounded-xl border border-red-200"
+                className="flex items-start gap-4 bg-red-50 p-6 rounded-xl border border-red-200 hover:shadow-lg transition-all duration-300"
               >
-                <div className="w-2 h-2 bg-red-500 rounded-full mt-3 flex-shrink-0"></div>
-                <p className="text-gray-800">{pain}</p>
+                <img 
+                  src={pain.image} 
+                  alt={pain.alt}
+                  className="w-20 h-20 object-cover rounded-lg flex-shrink-0 shadow-md"
+                />
+                <div className="flex-1">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mb-2"></div>
+                  <p className="text-gray-800 leading-relaxed">{pain.text}</p>
+                </div>
               </motion.div>
             ))}
           </div>
