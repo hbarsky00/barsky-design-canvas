@@ -3,6 +3,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BlogPreview from "@/components/blog/BlogPreview";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Blog = () => {
@@ -67,22 +68,11 @@ const Blog = () => {
             <p className="text-xl text-gray-600 mb-8">
               Expert insights on AI-enhanced design, accessibility compliance, and conversion optimization
             </p>
-            
-            <div className="bg-white p-8 rounded-lg shadow-lg text-left">
-              <h2 className="text-2xl font-semibold mb-4">Coming Soon</h2>
-              <p className="text-gray-600 mb-4">
-                I'm working on bringing you valuable content about:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>AI-enhanced UX design processes using Claude and Figma AI</li>
-                <li>Accessibility compliance and WCAG implementation strategies</li>
-                <li>Conversion optimization through strategic design</li>
-                <li>Cross-functional collaboration techniques</li>
-                <li>Business-focused design methodologies</li>
-              </ul>
-            </div>
           </div>
         </section>
+        
+        {/* Blog Posts Grid */}
+        <BlogPreview maxPosts={9} showTitle={false} />
       </main>
       <Footer />
     </div>
