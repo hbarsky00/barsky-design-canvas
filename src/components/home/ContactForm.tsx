@@ -301,21 +301,23 @@ const ContactForm: React.FC = () => {
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-3 px-6 transition-colors duration-300 disabled:opacity-50"
-                    size="lg"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Submitting...
-                      </>
-                    ) : (
-                      'Book My Free Audit'
-                    )}
-                  </Button>
+                  <div className="flex justify-center">
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-3 px-8 transition-colors duration-300 disabled:opacity-50"
+                      size="lg"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        'Book My Free Audit'
+                      )}
+                    </Button>
+                  </div>
 
                   <p className="text-sm text-neutral-500 text-center">
                     No spam, no sales pitch - just valuable insights
