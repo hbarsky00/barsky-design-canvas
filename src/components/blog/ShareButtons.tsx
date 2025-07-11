@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Twitter, Facebook, Linkedin, AtSign, Link, Share2 } from "lucide-react";
+import { Twitter, Facebook, Linkedin, AtSign, Link, Share2, MessageCircle, Edit3 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 interface ShareButtonsProps {
@@ -31,8 +31,20 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
     {
       name: "LinkedIn",
       icon: <Linkedin className="h-5 w-5" />,
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(summary)}`,
       color: "hover:bg-[#0077b5] hover:text-white",
+    },
+    {
+      name: "Threads",
+      icon: <MessageCircle className="h-5 w-5" />,
+      href: `https://threads.net/intent/post?text=${encodeURIComponent(`${title}\n\n${summary}\n\n${url}`)}`,
+      color: "hover:bg-black hover:text-white",
+    },
+    {
+      name: "Medium",
+      icon: <Edit3 className="h-5 w-5" />,
+      href: `https://medium.com/new-story?title=${encodeURIComponent(title)}&tags=${encodeURIComponent(hashtags.slice(0, 5).join(','))}&canonicalUrl=${encodeURIComponent(url)}`,
+      color: "hover:bg-[#00ab6c] hover:text-white",
     },
     {
       name: "Email",
