@@ -118,7 +118,79 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
           {/* Financial Portfolio Hero */}
           <section className="real-estate-investment-hero py-8 lg:py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
+              
+              {/* Mobile Layout: Image First */}
+              <div className="lg:hidden space-y-8">
+                <motion.div initial={{
+                  opacity: 0,
+                  y: 30
+                }} animate={{
+                  opacity: 1,
+                  y: 0
+                }} transition={{
+                  duration: 0.8
+                }} className="relative">
+                  <figure className="project-image-container">
+                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[400px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover rounded-3xl" />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Low Fidelity Loan Central Order book
+                    </figcaption>
+                  </figure>
+                  
+                  <div className="mt-8">
+                    <figure className="project-image-container">
+                      <img src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" alt="Loan Central My Deals Dashboard interface" className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl" />
+                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                        Low Fidelity Loan Central My Deals Dashboard
+                      </figcaption>
+                    </figure>
+                  </div>
+                </motion.div>
+                
+                <motion.div initial={{
+                  opacity: 0,
+                  y: 30
+                }} animate={{
+                  opacity: 1,
+                  y: 0
+                }} transition={{
+                  duration: 0.8,
+                  delay: 0.2
+                }} className="space-y-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Building2 className="h-10 w-10 text-blue-600" />
+                    <span className="text-blue-700 font-semibold text-lg">Investment Portfolio Intelligence</span>
+                  </div>
+                  
+                  <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
+                    From Spreadsheet Chaos to
+                    <span className="text-blue-600 block">Investment Intelligence</span>
+                  </h1>
+                  
+                  <p className="text-lg text-slate-600 leading-relaxed">
+                    Transforming investment management from spreadsheet chaos to intelligent portfolio tracking. 
+                    Our platform automates reporting, tracks performance, and provides actionable insights for serious investors.
+                  </p>
+                  
+                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 shadow-lg">
+                    <div className="flex items-start gap-4">
+                      <DollarSign className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <p className="text-lg font-medium text-slate-800 mb-2">
+                          Professional Investment Management
+                        </p>
+                        <p className="text-slate-600 italic">
+                          "Investors need data-driven insights, not Excel headaches. When portfolio management becomes automated, 
+                          investors can focus on what matters: finding and securing profitable opportunities."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Desktop Layout: Side by Side */}
+              <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-center">
                 <motion.div initial={{
                 opacity: 0,
                 x: -50
@@ -170,15 +242,15 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 delay: 0.2
               }} className="relative">
                   <figure className="project-image-container">
-                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[500px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover" />
+                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[500px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover rounded-3xl" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                       Low Fidelity Loan Central Order book
                     </figcaption>
                   </figure>
                   
                   <div className="mt-8">
-                    <figure className="project-image-container mt-8">
-                      <img src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" alt="Loan Central My Deals Dashboard interface" className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
+                    <figure className="project-image-container">
+                      <img src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" alt="Loan Central My Deals Dashboard interface" className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl" />
                       <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                         Low Fidelity Loan Central My Deals Dashboard
                       </figcaption>
