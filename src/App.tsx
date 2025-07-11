@@ -31,6 +31,7 @@ import LinkedInVisitors from "@/pages/LinkedInVisitors";
 import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
+import StoryDrivenProjectDetail from "@/components/project/StoryDrivenProjectDetail";
 import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
@@ -90,6 +91,7 @@ function App() {
                 <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
                 <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
                 <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
+                <Route path="/project/wholesale-distribution" element={<StoryDrivenProjectDetail />} />
                 <Route path="/meta-tag-manager" element={<MetaTagManager />} />
                 <Route path="*" element={<NotFound />} />
                 </Routes>

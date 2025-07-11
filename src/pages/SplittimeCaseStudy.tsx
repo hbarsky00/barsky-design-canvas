@@ -31,7 +31,7 @@ const SplittimeCaseStudy: React.FC = () => {
           type="project"
           title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
           description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination."
-          image="https://barskydesign.pro/lovable-uploads/splittime-hero-image.png"
+          image="https://barskydesign.pro/lovable-uploads/splittime-hero.png"
           projectName="Splittime"
           results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
           technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
