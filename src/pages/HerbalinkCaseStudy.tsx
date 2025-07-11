@@ -84,7 +84,7 @@ const HerbalinkCaseStudy: React.FC = () => {
         projectName="Herbalink"
         results={["78% users found ideal herbalist", "65% increase in consultation completion", "89% user satisfaction rate"]}
         technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
-        path="/case-study-herbalink"
+        path="/project/herbalink"
       />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
