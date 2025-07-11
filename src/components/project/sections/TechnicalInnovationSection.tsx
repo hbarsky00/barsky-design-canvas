@@ -74,9 +74,9 @@ const TechnicalInnovationSection: React.FC = () => {
             }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=500&fit=crop" 
-              alt="Sustainable business relationships built on understanding" 
-              className="w-full h-[350px] object-cover shadow-2xl" 
+              src="/lovable-uploads/656c0433-9b6b-4a41-9c08-90b154ee0f32.png" 
+              alt="Comprehensive System Architecture: Five Core Modules for distribution management" 
+              className="w-full h-auto object-contain shadow-2xl rounded-lg" 
             />
           </motion.div>
         </div>
