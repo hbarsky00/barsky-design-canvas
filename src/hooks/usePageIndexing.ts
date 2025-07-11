@@ -38,14 +38,8 @@ export const usePageIndexing = () => {
           document.head.appendChild(fetchMeta);
         }
         
-        // Ensure canonical URL is properly set
-        const existingCanonical = document.querySelector('link[rel="canonical"]');
-        if (!existingCanonical) {
-          const canonicalLink = document.createElement('link');
-          canonicalLink.rel = 'canonical';
-          canonicalLink.href = canonicalUrl;
-          document.head.appendChild(canonicalLink);
-        }
+        // Skip canonical URL creation - handled by SEO components to prevent duplicates
+        // This prevents the hook from creating additional canonical tags
       };
       
       addCrawlingHints();

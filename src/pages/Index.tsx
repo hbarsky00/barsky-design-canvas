@@ -13,6 +13,7 @@ const Index = () => {
   
   return (
     <>
+      {/* Single consolidated SEO component to prevent duplicate canonical tags */}
       <EnhancedGlobalSeo 
         title="Hiram Barsky - Product Designer & Gen AI Developer"
         description="Expert Product Designer specializing in Gen AI integration. I create intelligent web applications with beautiful interfaces and AI capabilities."
