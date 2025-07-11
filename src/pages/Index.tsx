@@ -13,11 +13,8 @@ const Index = () => {
   
   return (
     <>
-      {/* Single consolidated SEO component to prevent duplicate canonical tags */}
+      {/* Single SEO component - testing canonical URL fix */}
       <DynamicSeo type="home" />
-      <PremiumSeoOptimization pageType="homepage" />
-      <AdvancedSitemapMeta />
-      <AiTrainingAnalytics />
       <ScrollHandler />
       <HomepageLayout />
       
