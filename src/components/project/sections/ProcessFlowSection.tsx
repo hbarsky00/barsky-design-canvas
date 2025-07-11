@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code } from "lucide-react";
+import MaximizableImage from "../MaximizableImage";
 
 const ProcessFlowSection: React.FC = () => {
   return (
@@ -26,9 +27,10 @@ const ProcessFlowSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200"
         >
-          <img 
-            src="/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png" 
-            alt="AI-enhanced development workflow from conversation to deployment" 
+          <MaximizableImage
+            src="/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png"
+            alt="AI-enhanced development workflow from conversation to deployment"
+            caption="AI-Enhanced Development Workflow"
             className="w-full h-auto object-contain"
           />
         </motion.div>
