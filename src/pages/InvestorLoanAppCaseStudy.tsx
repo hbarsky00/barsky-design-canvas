@@ -96,7 +96,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
         description="Automated reporting and portfolio tracking for investors. See how AI integration streamlined complex financial workflows."
         image="https://barskydesign.pro/lovable-uploads/investor-loan-hero.png"
         projectName="Investor Loan App"
-        results={["78% reduction in portfolio management time", "45% faster investment decisions", "92% improvement in ROI accuracy"]}
+        results={["60% faster portfolio analysis", "90% automated report generation", "Real-time market insights"]}
         technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
         path="/project/investor-loan-app"
       />

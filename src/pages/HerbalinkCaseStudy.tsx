@@ -82,7 +82,7 @@ const HerbalinkCaseStudy: React.FC = () => {
         description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access."
         image="https://barskydesign.pro/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
         projectName="Herbalink"
-        results={["78% users found ideal herbalist", "65% increase in consultation completion", "89% user satisfaction rate"]}
+        results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
         technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
         path="/project/herbalink"
       />

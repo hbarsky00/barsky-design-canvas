@@ -21,7 +21,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
         description="From Excel spreadsheets to AI-powered business solution. See how custom app development transformed wholesale operations."
         image="https://barskydesign.pro/lovable-uploads/wholesale-hero.png"
         projectName="Wholesale Distribution App"
-        results={["70% reduction in manual tasks", "Custom AI-powered automation", "Full workflow transformation"]}
+        results={["95% reduction in manual data entry", "500% faster order processing", "Custom automation solutions"]}
         technologies={["Business Automation", "AI Development", "Custom Software", "Workflow Optimization"]}
         path="/project/wholesale-distribution"
       />
