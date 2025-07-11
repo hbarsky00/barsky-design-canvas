@@ -28,7 +28,7 @@ const FeaturedProjects: React.FC = () => {
       }} transition={{
         duration: 0.6
       }} className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">AI - Powered Product Design Portfolio</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 py-[25px]">AI - Powered Product Design Portfolio</h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
             Real case studies showing how AI-enhanced UX design delivers measurable ROI for startups and enterprises. 
             Each project combines traditional UX research with Gen AI to create breakthrough results.
@@ -109,13 +109,18 @@ const FeaturedProjects: React.FC = () => {
         </div>
 
         {/* ROI Metrics Bar - Desktop */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="hidden sm:grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-16"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} viewport={{
+        once: true
+      }} transition={{
+        duration: 0.6,
+        delay: 0.3
+      }} className="hidden sm:grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-16">
           <div className="bg-green-50 p-4 rounded-lg border border-green-200">
             <div className="text-2xl font-bold text-green-600">65%</div>
             <div className="text-sm text-green-700">User Engagement ↑</div>
