@@ -49,8 +49,27 @@ interface HomeSeoProps {
 type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | ServiceSeoProps | HomeSeoProps;
 
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
-  const baseUrl = 'https://barskydesign.pro';
+  const baseDomain = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
+
+  // Generate the correct canonical URL for each page type
+  const getCanonicalUrl = () => {
+    switch (props.type) {
+      case 'home':
+        return `${baseDomain}/`;
+      case 'blog-post':
+        return `${baseDomain}/blog/${props.slug}`;
+      case 'project':
+        return `${baseDomain}/project/${props.path}`;
+      case 'page':
+      case 'service':
+        return `${baseDomain}${props.path}`;
+      default:
+        return `${baseDomain}/`;
+    }
+  };
+
+  const canonicalUrl = getCanonicalUrl();
 
   // Helper function to truncate description to 150-160 characters
   const truncateDescription = (text: string, maxLength: number = 160): string => {
@@ -60,10 +79,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
   };
 
-  // Debug logging to ensure unique meta tags are being set
-  console.log('DynamicSeo rendering for:', props.type, 
-    props.type === 'home' ? 'Home page' : 
-    'title' in props ? props.title : 'No title provided');
+  // Debug logging to show what canonical URL is being set
+  console.log('DynamicSeo canonical URL:', canonicalUrl, 'for page type:', props.type);
 
   // Generate structured data for blog posts
   const generateBlogPostSchema = (props: BlogPostSeoProps) => {
@@ -76,21 +93,21 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "author": {
         "@type": "Person",
         "name": props.author,
-        "url": `${baseUrl}/about`
+        "url": `${baseDomain}/about`
       },
       "publisher": {
         "@type": "Organization",
         "name": "Hiram Barsky - AI-Enhanced Design",
         "logo": {
           "@type": "ImageObject",
-          "url": `${baseUrl}/logo.png`
+          "url": `${baseDomain}/logo.png`
         }
       },
       "datePublished": props.publishedDate,
       "dateModified": props.publishedDate,
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `${baseUrl}/blog/${props.slug}`
+        "@id": `${baseDomain}/blog/${props.slug}`
       },
       "keywords": props.tags.join(', ')
     };
@@ -103,11 +120,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "WebPage",
       "name": props.title,
       "description": props.description,
-      "url": `${baseUrl}${props.path}`,
+      "url": `${baseDomain}${props.path}`,
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
-        "url": baseUrl
+        "url": baseDomain
       }
     };
   };
@@ -119,19 +136,19 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "CreativeWork",
       "name": props.title,
       "description": props.description,
-      "url": `${baseUrl}${props.path}`,
+      "url": `${baseDomain}${props.path}`,
       "image": props.image || defaultImage,
       "creator": {
         "@type": "Person",
         "name": "Hiram Barsky",
-        "url": `${baseUrl}/about`
+        "url": `${baseDomain}/about`
       },
       "about": props.projectName,
       "keywords": [...props.technologies, "UX Design", "AI Integration"].join(', '),
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
-        "url": baseUrl
+        "url": baseDomain
       }
     };
   };
@@ -143,12 +160,12 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "Service",
       "name": props.serviceName,
       "description": props.description,
-      "url": `${baseUrl}${props.path}`,
+      "url": `${baseDomain}${props.path}`,
       "image": props.image || defaultImage,
       "provider": {
         "@type": "Person",
         "name": "Hiram Barsky",
-        "url": `${baseUrl}/about`
+        "url": `${baseDomain}/about`
       },
       "audience": {
         "@type": "Audience",
@@ -158,13 +175,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
-        "url": baseUrl
+        "url": baseDomain
       }
     };
   };
 
   if (props.type === 'blog-post') {
-    const canonicalUrl = `${baseUrl}/blog/${props.slug}`;
+    const pageCanonicalUrl = `${baseDomain}/blog/${props.slug}`;
     const schema = generateBlogPostSchema(props);
     const truncatedExcerpt = truncateDescription(props.excerpt);
 
@@ -173,13 +190,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design Blog</title>
         <meta name="description" content={truncatedExcerpt} />
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags for Facebook/LinkedIn */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${props.title} | Barsky Design Blog`} />
         <meta property="og:description" content={truncatedExcerpt} />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={props.featuredImage || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -216,7 +233,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'page') {
-    const canonicalUrl = `${baseUrl}${props.path}`;
+    const pageCanonicalUrl = `${baseDomain}${props.path}`;
     const schema = generatePageSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -225,13 +242,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${props.title} | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -256,7 +273,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'project') {
-    const canonicalUrl = `${baseUrl}${props.path}`;
+    const pageCanonicalUrl = `${baseDomain}${props.path}`;
     const schema = generateProjectSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -265,13 +282,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -307,7 +324,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'service') {
-    const canonicalUrl = `${baseUrl}${props.path}`;
+    const pageCanonicalUrl = `${baseDomain}${props.path}`;
     const schema = generateServiceSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -316,13 +333,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.serviceName} - Product Design Services | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -358,13 +375,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       {/* Basic Meta Tags */}
       <title>Hiram Barsky - Product Designer & Gen AI Developer | New York</title>
       <meta name="description" content={truncatedHomeDescription} />
-      <link rel="canonical" href={baseUrl} />
+      <link rel="canonical" href={canonicalUrl} />
       
       {/* Open Graph Tags */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Hiram Barsky - Product Designer & Gen AI Developer | New York" />
       <meta property="og:description" content={truncatedHomeDescription} />
-      <meta property="og:url" content={baseUrl} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={defaultImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
