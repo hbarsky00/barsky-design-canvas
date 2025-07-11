@@ -60,7 +60,7 @@ const Blog = () => {
       
       <Header />
       <main className="flex-grow">
-        <section className="pt-15 pb-8 bg-gradient-to-br from-purple-50 to-blue-100">
+        <section className="pt-28 pb-8 bg-gradient-to-br from-purple-50 to-blue-100">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               UX Design Blog
