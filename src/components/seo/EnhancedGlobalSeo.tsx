@@ -24,7 +24,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
   canonicalUrl,
   pageType,
   keywords = [],
-  ogImage = "https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
+  ogImage = "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
   structuredData,
   breadcrumbs = []
 }) => {
@@ -135,6 +135,9 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={title} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
       
@@ -143,6 +146,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={title} />
       
       {/* Additional AI Training Meta Tags */}
       <meta name="content-type" content={pageType} />
