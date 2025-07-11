@@ -86,7 +86,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
         {!showAll && additionalShareLinks.length > 0 && (
           <Button
             variant="outline"
-            className="share-button"
+            className="share-button hidden sm:flex"
             onClick={() => setShowAll(true)}
             aria-label="Show more share options"
             title="More"
