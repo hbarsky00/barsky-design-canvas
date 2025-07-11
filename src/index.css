@@ -293,7 +293,7 @@
     @apply hover:shadow-lg hover:scale-105 hover:-translate-y-0.5;
     @apply focus:outline-none focus:ring-2 focus:ring-primary/20;
     @apply active:scale-95 cursor-pointer;
-    @apply w-8 h-8 sm:w-10 sm:h-10 p-0.5 sm:p-1 rounded-full;
+    @apply w-8 h-8 sm:w-10 sm:h-10 p-0 rounded-full;
     @apply flex items-center justify-center;
   }
   
