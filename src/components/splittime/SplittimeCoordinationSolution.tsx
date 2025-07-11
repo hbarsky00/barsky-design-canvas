@@ -62,20 +62,20 @@ const SplittimeCoordinationSolution: React.FC<SplittimeCoordinationSolutionProps
           transition={{ duration: 0.8, delay: 0.4 }} 
           className="mt-12"
         >
-          <figure className="project-image-container">
-            <img 
-              src="/lovable-uploads/61ff17e4-e3a6-4015-8e93-7e40eda58f1c.png" 
-              alt="Splittime messaging interface showing structured co-parenting communication between parents" 
-              className="clickable-image w-full h-auto object-contain shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-              onClick={() => onImageClick('splittime-messaging-1')}
-              tabIndex={0}
-              onKeyDown={(e) => onImageKeypress(e, 'splittime-messaging-1')}
-              role="button"
-              aria-label="Click to view messaging interface in full screen"
-              id="splittime-messaging-1" 
-            />
+          <figure className="project-video-container">
+            <div className="relative w-full rounded-lg overflow-hidden shadow-xl bg-gray-100">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src="https://www.loom.com/embed/0bf47ee2418c46dd9196ec72afad5a39?sid=c5f0df22-3e30-4ac2-8ffe-39e5cfb4b08d"
+                  className="absolute inset-0 w-full h-full rounded-lg"
+                  frameBorder="0"
+                  allowFullScreen
+                  title="First rendition of design for Splittime app"
+                />
+              </div>
+            </div>
             <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-              Splittime messaging interface showing structured co-parenting communication between parents
+              First rendition of design for Splittime app
             </figcaption>
           </figure>
         </motion.div>
