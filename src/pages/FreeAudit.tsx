@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -81,11 +81,10 @@ const FreeAudit: React.FC = () => {
 
   return (
     <>
-      <EnhancedGlobalSeo 
+      <DynamicSeo 
+        type="service"
         title="Free UX Conversion Audit - Increase Conversions 40%+ | Hiram Barsky"
         description="Get your free 30-minute UX conversion audit. Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX design. Book now!"
-        canonicalUrl="https://barskydesign.pro/free-audit"
-        pageType="content"
         keywords={[
           "free UX audit", "conversion optimization audit", "UX consultation", "AI UX analysis",
           "website conversion audit", "UX designer consultation", "free design review"

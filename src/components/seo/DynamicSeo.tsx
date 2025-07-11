@@ -18,15 +18,19 @@ interface PageSeoProps {
   title: string;
   description: string;
   image?: string;
-  path: string;
+  keywords?: string[];
+  structuredData?: Record<string, any>;
+  path?: string; // Optional for backwards compatibility
 }
 
 interface ProjectSeoProps {
   type: 'project';
-  projectName: string;
-  description: string;
+  project?: any;
+  details?: any;
+  projectName?: string;
+  description?: string;
   image?: string;
-  keywords?: string;
+  keywords?: string | string[];
 }
 
 interface ServiceSeoProps {
@@ -34,10 +38,11 @@ interface ServiceSeoProps {
   title: string;
   description: string;
   image?: string;
-  serviceName: string;
-  benefits: string[];
-  targetAudience: string;
-  path: string;
+  keywords?: string[];
+  serviceName?: string;
+  benefits?: string[];
+  targetAudience?: string;
+  path?: string; // Optional for backwards compatibility
 }
 
 interface HomeSeoProps {
@@ -113,7 +118,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "WebPage",
       "name": props.title,
       "description": props.description,
-      "url": `${baseDomain}${props.path}`,
+      "url": canonicalUrl,
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
@@ -124,20 +129,24 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
   // Generate structured data for project pages
   const generateProjectSchema = (props: ProjectSeoProps) => {
+    const projectName = props.project?.title || props.projectName || 'Project';
+    const description = props.project?.description || props.details?.challenge || props.description || 'A design project';
+    const keywords = Array.isArray(props.keywords) ? props.keywords.join(', ') : (props.keywords || '');
+    
     return {
       "@context": "https://schema.org",
       "@type": "CreativeWork",
-      "name": props.projectName,
-      "description": props.description,
+      "name": projectName,
+      "description": description,
       "url": canonicalUrl,
-      "image": props.image || defaultImage,
+      "image": props.image || props.project?.heroImage || defaultImage,
       "creator": {
         "@type": "Person",
         "name": "Hiram Barsky",
         "url": `${baseDomain}/about`
       },
-      "about": props.projectName,
-      "keywords": `${props.keywords || ''}, UX Design, AI Integration`,
+      "about": projectName,
+      "keywords": `${keywords}, UX Design, AI Integration`,
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
@@ -151,9 +160,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return {
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": props.serviceName,
+      "name": props.serviceName || props.title,
       "description": props.description,
-      "url": `${baseDomain}${props.path}`,
+      "url": canonicalUrl,
       "image": props.image || defaultImage,
       "provider": {
         "@type": "Person",
@@ -162,7 +171,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       },
       "audience": {
         "@type": "Audience",
-        "audienceType": props.targetAudience
+        "audienceType": props.targetAudience || "Business professionals"
       },
       "serviceType": "Design & Development",
       "isPartOf": {
@@ -227,19 +236,20 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
   if (props.type === 'page') {
     const pageCanonicalUrl = canonicalUrl;
-    const schema = generatePageSchema(props);
+    const schema = props.structuredData || generatePageSchema(props);
     const truncatedDescription = truncateDescription(props.description);
+    const keywordsString = props.keywords ? props.keywords.join(', ') : '';
 
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.title} | Barsky Design</title>
+        <title>{props.title}</title>
         <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${props.title} | Barsky Design`} />
+        <meta property="og:title" content={props.title} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
@@ -252,10 +262,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.title} | Barsky Design`} />
+        <meta name="twitter:title" content={props.title} />
         <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
         <meta name="twitter:image:alt" content={props.title} />
+        
+        {/* Keywords */}
+        {keywordsString && <meta name="keywords" content={`${keywordsString}, Hiram Barsky`} />}
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -268,24 +281,27 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   if (props.type === 'project') {
     const pageCanonicalUrl = canonicalUrl;
     const schema = generateProjectSchema(props);
-    const truncatedDescription = truncateDescription(props.description);
+    const projectName = props.project?.title || props.projectName || 'Project';
+    const description = props.project?.description || props.details?.challenge || props.description || 'A design project';
+    const truncatedDescription = truncateDescription(description);
+    const keywords = Array.isArray(props.keywords) ? props.keywords.join(', ') : (props.keywords || '');
 
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
+        <title>{projectName} - Product Design Case Study | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
+        <meta property="og:title" content={`${projectName} - Product Design Case Study | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={pageCanonicalUrl} />
-        <meta property="og:image" content={props.image || defaultImage} />
+        <meta property="og:image" content={props.image || props.project?.heroImage || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={props.projectName} />
+        <meta property="og:image:alt" content={projectName} />
         <meta property="og:site_name" content="Barsky Design" />
         <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
         
@@ -297,13 +313,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
         <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
+        <meta name="twitter:title" content={`${projectName} - Product Design Case Study | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
-        <meta name="twitter:image" content={props.image || defaultImage} />
-        <meta name="twitter:image:alt" content={props.projectName} />
+        <meta name="twitter:image" content={props.image || props.project?.heroImage || defaultImage} />
+        <meta name="twitter:image:alt" content={projectName} />
         
         {/* Keywords */}
-        <meta name="keywords" content={`${props.keywords || ''}, Case Study, UX Design, AI Integration, Hiram Barsky`} />
+        <meta name="keywords" content={`${keywords}, Case Study, UX Design, AI Integration, Hiram Barsky`} />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -317,36 +333,38 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const pageCanonicalUrl = canonicalUrl;
     const schema = generateServiceSchema(props);
     const truncatedDescription = truncateDescription(props.description);
+    const serviceName = props.serviceName || props.title;
+    const keywordsString = props.keywords ? props.keywords.join(', ') : '';
 
     return (
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{props.serviceName} - Product Design Services | Barsky Design</title>
+        <title>{props.title}</title>
         <meta name="description" content={truncatedDescription} />
         <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
+        <meta property="og:title" content={props.title} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={props.serviceName} />
+        <meta property="og:image:alt" content={serviceName} />
         <meta property="og:site_name" content="Barsky Design" />
         <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
+        <meta name="twitter:title" content={props.title} />
         <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
-        <meta name="twitter:image:alt" content={props.serviceName} />
+        <meta name="twitter:image:alt" content={serviceName} />
         
         {/* Keywords */}
-        <meta name="keywords" content={`${props.serviceName}, UX Design, AI Integration, Product Design, Hiram Barsky`} />
+        {keywordsString && <meta name="keywords" content={`${keywordsString}, UX Design, AI Integration, Product Design, Hiram Barsky`} />}
         
         {/* Structured Data */}
         <script type="application/ld+json">
