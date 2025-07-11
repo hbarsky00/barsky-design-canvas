@@ -20,11 +20,33 @@ interface PageSeoProps {
   path: string;
 }
 
+interface ProjectSeoProps {
+  type: 'project';
+  title: string;
+  description: string;
+  image?: string;
+  projectName: string;
+  results: string[];
+  technologies: string[];
+  path: string;
+}
+
+interface ServiceSeoProps {
+  type: 'service';
+  title: string;
+  description: string;
+  image?: string;
+  serviceName: string;
+  benefits: string[];
+  targetAudience: string;
+  path: string;
+}
+
 interface HomeSeoProps {
   type: 'home';
 }
 
-type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | HomeSeoProps;
+type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | ServiceSeoProps | HomeSeoProps;
 
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const baseUrl = 'https://barskydesign.pro';
@@ -69,6 +91,57 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "name": props.title,
       "description": props.description,
       "url": `${baseUrl}${props.path}`,
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Hiram Barsky - AI-Enhanced Design",
+        "url": baseUrl
+      }
+    };
+  };
+
+  // Generate structured data for project pages
+  const generateProjectSchema = (props: ProjectSeoProps) => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": props.title,
+      "description": props.description,
+      "url": `${baseUrl}${props.path}`,
+      "image": props.image || defaultImage,
+      "creator": {
+        "@type": "Person",
+        "name": "Hiram Barsky",
+        "url": `${baseUrl}/about`
+      },
+      "about": props.projectName,
+      "keywords": [...props.technologies, "UX Design", "AI Integration"].join(', '),
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Hiram Barsky - AI-Enhanced Design",
+        "url": baseUrl
+      }
+    };
+  };
+
+  // Generate structured data for service pages
+  const generateServiceSchema = (props: ServiceSeoProps) => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": props.serviceName,
+      "description": props.description,
+      "url": `${baseUrl}${props.path}`,
+      "image": props.image || defaultImage,
+      "provider": {
+        "@type": "Person",
+        "name": "Hiram Barsky",
+        "url": `${baseUrl}/about`
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": props.targetAudience
+      },
+      "serviceType": "Design & Development",
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
@@ -156,6 +229,96 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:description" content={props.description} />
         <meta name="twitter:image" content={props.image || defaultImage} />
         <meta name="twitter:image:alt" content={props.title} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      </Helmet>
+    );
+  }
+
+  if (props.type === 'project') {
+    const canonicalUrl = `${baseUrl}${props.path}`;
+    const schema = generateProjectSchema(props);
+
+    return (
+      <Helmet>
+        {/* Basic Meta Tags */}
+        <title>{props.title} | Hiram Barsky - AI-Enhanced Design</title>
+        <meta name="description" content={props.description} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={props.title} />
+        <meta property="og:description" content={props.description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={props.image || defaultImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={props.projectName} />
+        <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+        
+        {/* Project-specific Open Graph Tags */}
+        <meta property="og:article:author" content="Hiram Barsky" />
+        <meta property="og:article:section" content="Case Studies" />
+        {props.technologies.map(tech => (
+          <meta key={tech} property="og:article:tag" content={tech} />
+        ))}
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@hirambarsky" />
+        <meta name="twitter:creator" content="@hirambarsky" />
+        <meta name="twitter:title" content={props.title} />
+        <meta name="twitter:description" content={props.description} />
+        <meta name="twitter:image" content={props.image || defaultImage} />
+        <meta name="twitter:image:alt" content={props.projectName} />
+        
+        {/* Keywords */}
+        <meta name="keywords" content={`${props.technologies.join(', ')}, Case Study, UX Design, AI Integration, Hiram Barsky`} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      </Helmet>
+    );
+  }
+
+  if (props.type === 'service') {
+    const canonicalUrl = `${baseUrl}${props.path}`;
+    const schema = generateServiceSchema(props);
+
+    return (
+      <Helmet>
+        {/* Basic Meta Tags */}
+        <title>{props.title} | Hiram Barsky - AI-Enhanced Design</title>
+        <meta name="description" content={props.description} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={props.title} />
+        <meta property="og:description" content={props.description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={props.image || defaultImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={props.serviceName} />
+        <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@hirambarsky" />
+        <meta name="twitter:title" content={props.title} />
+        <meta name="twitter:description" content={props.description} />
+        <meta name="twitter:image" content={props.image || defaultImage} />
+        <meta name="twitter:image:alt" content={props.serviceName} />
+        
+        {/* Keywords */}
+        <meta name="keywords" content={`${props.serviceName}, AI Integration, UX Design, ${props.targetAudience}, Hiram Barsky`} />
         
         {/* Structured Data */}
         <script type="application/ld+json">

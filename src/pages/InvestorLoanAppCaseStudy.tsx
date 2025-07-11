@@ -5,7 +5,7 @@ import { ArrowRight, ArrowLeft, TrendingUp, DollarSign, BarChart3, PieChart, Cal
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { investorLoanImageCaptions, investorLoanGalleryImages } from "@/data/investorLoanData";
 const InvestorLoanAppCaseStudy: React.FC = () => {
@@ -90,13 +90,15 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     icon: <LineChart className="h-6 w-6" />
   }];
   return <>
-      <EnhancedGlobalSeo 
-        title="Investor Loan App: FinTech Portfolio Management Platform Case Study | Hiram Barsky" 
-        description="See how intelligent automation transformed investment management, reducing portfolio management time by 78% and improving ROI accuracy by 92% for professional investors." 
-        canonicalUrl="https://barskydesign.pro/case-study-investor-loan-app" 
-        pageType="content" 
-        keywords={["investment platform", "FinTech portfolio management", "automated investment reporting", "investment portfolio analytics", "investor tools", "portfolio investment tracking", "investment risk assessment", "portfolio optimization platform"]} 
-        ogImage="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png" 
+      <DynamicSeo 
+        type="project"
+        title="Investor Loan Management Platform"
+        description="Smart portfolio management with automated reporting. See how AI integration streamlined complex financial workflows."
+        image="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png"
+        projectName="Investor Loan App"
+        results={["70% faster loan processing", "35% improvement in retention", "AI-powered risk assessment"]}
+        technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
+        path="/case-study-investor-loan-app"
       />
       
       <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">

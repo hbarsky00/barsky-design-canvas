@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import SplittimeImageViewer from "@/components/splittime/SplittimeImageViewer";
 import SplittimeHero from "@/components/splittime/SplittimeHero";
 import SplittimeConflictAnalysis from "@/components/splittime/SplittimeConflictAnalysis";
@@ -27,13 +27,15 @@ const SplittimeCaseStudy: React.FC = () => {
     handleImageKeypress
   } = useSplittimeImageViewer();
   return <>
-        <EnhancedGlobalSeo 
-          title="Splittime: Transforming Co-Parenting from Conflict to Collaboration" 
-          description="Discover how Splittime's family-centered platform helps separated parents coordinate schedules, communicate effectively, and prioritize children's wellbeing through streamlined digital tools." 
-          canonicalUrl="https://barskydesign.pro/case-study-splittime" 
-          pageType="content" 
-          keywords={["Splittime co-parenting app", "family coordination platform", "co-parenting communication", "child custody scheduling", "family management app", "parenting after separation", "family-centered design"]}
-          ogImage="https://barskydesign.pro/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png"
+        <DynamicSeo 
+          type="project"
+          title="Splittime - Co-Parenting App Case Study"
+          description="Transforming co-parenting coordination from conflict to collaboration. AI-powered features that reduce communication stress."
+          image="https://barskydesign.pro/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png"
+          projectName="Splittime"
+          results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
+          technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
+          path="/case-study-splittime"
         />
       
       <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">

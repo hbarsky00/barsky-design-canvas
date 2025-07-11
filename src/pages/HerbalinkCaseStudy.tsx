@@ -5,7 +5,7 @@ import { ArrowRight, ArrowLeft, Leaf, Heart, Smartphone, Users, MapPin, Shield, 
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 const HerbalinkCaseStudy: React.FC = () => {
   const {
@@ -76,13 +76,15 @@ const HerbalinkCaseStudy: React.FC = () => {
     icon: <Sprout className="h-6 w-6" />
   }];
   return <>
-      <EnhancedGlobalSeo 
-        title="Herbalink: Bridging Ancient Herbal Wisdom with Modern Digital Accessibility" 
-        description="Discover how Herbalink's wellness-focused platform connects people seeking natural health solutions with certified herbalists through intelligent AI matching and mobile-first design." 
-        canonicalUrl="https://barskydesign.pro/case-study-herbalink" 
-        pageType="content" 
-        keywords={["Herbalink wellness platform", "herbal medicine digital platform", "AI herbalist matching", "natural health consultation", "mobile wellness app", "healthcare accessibility", "botanical interface design"]}
-        ogImage="https://barskydesign.pro/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
+      <DynamicSeo 
+        type="project"
+        title="Herbalink - AI-Enhanced UX Case Study"
+        description="Mobile-first platform connecting users with certified herbalists. See how AI-enhanced UX design improved consultation booking by 40%."
+        image="https://barskydesign.pro/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
+        projectName="Herbalink"
+        results={["78% users found ideal herbalist", "65% increase in consultation completion", "89% user satisfaction rate"]}
+        technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
+        path="/case-study-herbalink"
       />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">

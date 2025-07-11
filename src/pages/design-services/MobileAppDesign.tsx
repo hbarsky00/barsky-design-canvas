@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServicesCallToAction from '@/components/services/ServicesCallToAction';
@@ -8,41 +8,16 @@ import ServicesCallToAction from '@/components/services/ServicesCallToAction';
 const MobileAppDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>Mobile App Design Services | Barsky Design Agency</title>
-        <meta name="description" content="Professional mobile app design services for iOS and Android platforms with UX research-driven approach creating engaging mobile experiences." />
-        <meta name="keywords" content="Barsky Design, mobile app design, iOS app design, Android app design, cross-platform design, mobile UX, mobile UI, app design services" />
-        <meta name="author" content="Barsky Design - UX Research & Design Agency" />
-        <link rel="canonical" href="https://barskydesign.pro/design-services/mobile-app-design" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="Mobile App Design Services | Barsky Design" />
-        <meta property="og:description" content="Creating engaging mobile experiences for iOS and Android platforms that users love and businesses rely on." />
-        <meta property="og:url" content="https://barskydesign.pro/design-services/mobile-app-design" />
-        <meta property="og:type" content="service" />
-        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
-        <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "name": "Mobile App Design Services",
-              "description": "Professional mobile app design services for iOS and Android platforms with UX research-driven approach",
-              "provider": {
-                "@type": "Organization",
-                "name": "Barsky Design",
-                "description": "UX Research & Design Agency"
-              },
-              "serviceType": "Mobile App Design",
-              "areaServed": "Worldwide",
-              "url": "https://barskydesign.pro/design-services/mobile-app-design"
-            }
-          `}
-        </script>
-      </Helmet>
+      <DynamicSeo 
+        type="service"
+        title="Mobile App Design Services"
+        description="Design mobile apps that users love and businesses succeed with. iOS and Android platforms with AI-enhanced UX research."
+        image="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+        serviceName="Mobile App Design"
+        benefits={["iOS & Android platforms", "User-centered design", "AI-enhanced research"]}
+        targetAudience="App Entrepreneurs and Companies"
+        path="/design-services/mobile-app-design"
+      />
       
       <Header />
       <main className="flex-grow pt-24">

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServicesCallToAction from '@/components/services/ServicesCallToAction';
@@ -8,41 +8,16 @@ import ServicesCallToAction from '@/components/services/ServicesCallToAction';
 const WebDevelopment = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>Web Development Services | Barsky Design Agency</title>
-        <meta name="description" content="Professional web development services using React, TypeScript, and modern technologies for fast, responsive, and accessible websites." />
-        <meta name="keywords" content="Barsky Design, web development services, frontend development, React development, TypeScript, responsive design, performance optimization, web applications" />
-        <meta name="author" content="Barsky Design - UX Research & Design Agency" />
-        <link rel="canonical" href="https://barskydesign.pro/design-services/web-development" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="Web Development Services | Barsky Design" />
-        <meta property="og:description" content="Modern web development services using React, TypeScript, and cutting-edge frontend technologies." />
-        <meta property="og:url" content="https://barskydesign.pro/design-services/web-development" />
-        <meta property="og:type" content="service" />
-        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png" />
-        <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "name": "Web Development Services",
-              "description": "Professional web development services using modern technologies like React and TypeScript with UX-focused approach",
-              "provider": {
-                "@type": "Organization",
-                "name": "Barsky Design",
-                "description": "UX Research & Design Agency"
-              },
-              "serviceType": "Web Development",
-              "areaServed": "Worldwide",
-              "url": "https://barskydesign.pro/design-services/web-development"
-            }
-          `}
-        </script>
-      </Helmet>
+      <DynamicSeo 
+        type="service"
+        title="AI Integration for Web Applications"
+        description="Transform your digital product with intelligent features. From chatbots to predictive UX - see how AI can boost user engagement."
+        image="https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+        serviceName="Web Development"
+        benefits={["AI-powered features", "Modern tech stack", "Performance optimization"]}
+        targetAudience="Businesses and Organizations"
+        path="/design-services/web-development"
+      />
       
       <Header />
       <main className="flex-grow pt-24">

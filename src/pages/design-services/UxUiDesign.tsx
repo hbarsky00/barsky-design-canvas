@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServicesCallToAction from '@/components/services/ServicesCallToAction';
@@ -8,41 +7,15 @@ import ServicesCallToAction from '@/components/services/ServicesCallToAction';
 const UxUiDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <title>Product Design Services | Barsky Design Agency</title>
-        <meta name="description" content="Professional Product Design services specializing in user research, interaction design, and prototyping for better digital experiences." />
-        <meta name="keywords" content="Barsky Design, UX design services, UI design services, user experience design, user interface design, user research, interaction design, prototyping, design consultation" />
-        <meta name="author" content="Barsky Design - UX Research & Design Agency" />
-        <link rel="canonical" href="https://barskydesign.pro/design-services/ux-ui-design" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="Product Design Services | Barsky Design" />
-        <meta property="og:description" content="Professional Product Design services specializing in user-centered design for web and mobile applications." />
-        <meta property="og:url" content="https://barskydesign.pro/design-services/ux-ui-design" />
-        <meta property="og:type" content="service" />
-        <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
-        <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "name": "Product Design Services",
-              "description": "Professional Product Design services including user research, interaction design, and prototyping",
-              "provider": {
-                "@type": "Organization",
-                "name": "Barsky Design",
-                "description": "UX Research & Design Agency"
-              },
-              "serviceType": "Product Design",
-              "areaServed": "Worldwide",
-              "url": "https://barskydesign.pro/design-services/ux-ui-design"
-            }
-          `}
-        </script>
-      </Helmet>
+      <DynamicSeo 
+        type="service"
+        title="UX Research & User Testing Services"
+        description="AI-enhanced user research that uncovers insights traditional methods miss. Get actionable data that drives 40%+ conversion improvements."
+        serviceName="UX & UI Design"
+        benefits={["40%+ conversion improvements", "Data-driven insights", "User-centered design"]}
+        targetAudience="Startups and Enterprise"
+        path="/design-services/ux-ui-design"
+      />
       
       <Header />
       <main className="flex-grow pt-24">
