@@ -50,7 +50,7 @@ type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | Servi
 
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const baseUrl = 'https://barskydesign.pro';
-  const defaultImage = 'https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png';
+  const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
 
   // Generate structured data for blog posts
   const generateBlogPostSchema = (props: BlogPostSeoProps) => {
