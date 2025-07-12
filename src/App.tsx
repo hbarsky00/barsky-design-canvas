@@ -77,9 +77,9 @@ function App() {
         <HelmetProvider>
           <TooltipProvider>
             <ImageMaximizerProvider>
-              <CanonicalTag />
               <Toaster />
               <BrowserRouter>
+                <CanonicalTag />
                 <ScrollToTop />
                 <main id="main-content" role="main">
                   <Routes>
