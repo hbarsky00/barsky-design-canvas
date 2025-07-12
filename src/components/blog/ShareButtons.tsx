@@ -12,6 +12,7 @@ interface ShareButtonsProps {
 }
 
 const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashtags = [] }) => {
+  console.log("ShareButtons rendering with:", { title, summary, url, hashtags });
   const { toast } = useToast();
   const [showAll, setShowAll] = useState(false);
   const hashtagString = hashtags.join(",");
