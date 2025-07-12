@@ -65,10 +65,13 @@ const AboutPreview: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img
-              src={getOptimizedImageSrc("/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png")}
+              src={getOptimizedImageSrc("/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png", window.innerWidth <= 768)}
+              loading="lazy"
+              fetchPriority="low"
+              width="208"
+              height="208"
               alt="Hiram Barsky - Product Designer"
               className="aspect-square w-80 mx-auto rounded-2xl shadow-2xl object-cover"
-              loading="lazy"
             />
           </motion.div>
         </div>

@@ -58,16 +58,21 @@ function App() {
   useAccessibilityEnhancements();
   useMobileOptimization();
   
-  // Preload critical images for better performance
+  // Enable image compression and performance monitoring
   React.useEffect(() => {
-    import('@/utils/imageOptimization').then(({ preloadCriticalImages }) => {
+    import('@/utils/imageOptimization').then(({ preloadCriticalImages, trackCompressionStats }) => {
       preloadCriticalImages();
+      trackCompressionStats();
+    });
+    
+    import('@/utils/imageCleanup').then(({ generateImageCleanupReport }) => {
+      generateImageCleanupReport();
     });
     
     // Enable global image compression
     import('@/utils/imageCompressionTracker').then(({ enableGlobalImageCompression, monitorImagePerformance }) => {
       enableGlobalImageCompression();
-      setTimeout(monitorImagePerformance, 2000); // Monitor after images load
+      setTimeout(monitorImagePerformance, 2000);
     });
   }, []);
   

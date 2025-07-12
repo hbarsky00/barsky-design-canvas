@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LazyImage } from './LazyImage';
-import { getOptimizedImageSrc, getImageDimensions } from '@/utils/imageOptimization';
+import { getOptimizedImageSrc, OPTIMIZED_IMAGE_MAP } from '@/utils/imageOptimization';
 import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -26,7 +26,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 }) => {
   const [hasError, setHasError] = useState(false);
   const optimizedSrc = getOptimizedImageSrc(src);
-  const dimensions = getImageDimensions(src);
+  const dimensions = OPTIMIZED_IMAGE_MAP[src];
   
   const handleError = () => {
     setHasError(true);
