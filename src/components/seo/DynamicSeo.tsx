@@ -98,6 +98,26 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Force correct canonical URL after component mounts
+  React.useEffect(() => {
+    if (isRouterReady && typeof window !== 'undefined') {
+      // Remove any existing canonical links to prevent duplicates
+      const existingCanonicals = document.querySelectorAll('link[rel="canonical"]');
+      existingCanonicals.forEach(link => {
+        if (link.getAttribute('href')?.includes('index.html')) {
+          console.warn('🚨 Removing incorrect canonical URL:', link.getAttribute('href'));
+          link.remove();
+        }
+      });
+      
+      // Force update document title and URL for debugging
+      setTimeout(() => {
+        const currentCanonicals = document.querySelectorAll('link[rel="canonical"]');
+        console.log('🔍 Current canonical tags after cleanup:', Array.from(currentCanonicals).map(l => l.getAttribute('href')));
+      }, 100);
+    }
+  }, [isRouterReady]);
+
   // Debug logging and validation
   React.useEffect(() => {
     if (isRouterReady) {

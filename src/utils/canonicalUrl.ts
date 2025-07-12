@@ -5,6 +5,13 @@ export const getCanonicalUrl = (pathname?: string): string => {
   // Use provided pathname, React Router pathname, or fallback to window.location
   let currentPath = pathname;
   
+  // Debug: log what we're starting with
+  console.log('🔗 getCanonicalUrl - Starting with:', {
+    providedPathname: pathname,
+    windowPathname: typeof window !== 'undefined' ? window.location.pathname : 'undefined',
+    windowHref: typeof window !== 'undefined' ? window.location.href : 'undefined'
+  });
+  
   if (!currentPath) {
     // Try to get from window.location if available
     if (typeof window !== 'undefined') {
