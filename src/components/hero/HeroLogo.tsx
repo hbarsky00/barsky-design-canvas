@@ -27,7 +27,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
       <Link to="/">
         <div className="relative group">
           <img
-            src={getOptimizedImageSrc("/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png")}
+            src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
             alt="Barsky Design"
             className="h-44 w-44 md:h-52 md:w-52 lg:h-56 lg:w-56 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
             style={{
