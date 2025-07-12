@@ -56,8 +56,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   
   // Generate dynamic canonical URL
   const getCanonicalUrl = (pathname: string): string => {
+    // Clean pathname to remove any index.html references
+    let cleanPath = pathname.replace('/index.html', '').replace('index.html', '');
+    
     const routeMappings: Record<string, string> = {
-      '/': '/',
+      '/': '',
       '/about': '/about', 
       '/services': '/services',
       '/projects': '/portfolio',
@@ -76,7 +79,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       '/project/wholesale-distribution': '/portfolio/wholesale-distribution'
     };
     
-    const mappedPath = routeMappings[pathname] || pathname;
+    const mappedPath = routeMappings[cleanPath] || cleanPath;
     return `${baseUrl}${mappedPath}`;
   };
   
