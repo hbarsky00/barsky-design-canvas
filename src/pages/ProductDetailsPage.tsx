@@ -88,8 +88,6 @@ const ProductDetailsPage: React.FC = () => {
             }
           `}
         </script>
-        
-        <link rel="canonical" href={`https://barskydesign.pro/store/product/${product.id}`} />
       </Helmet>
       
       <Header />

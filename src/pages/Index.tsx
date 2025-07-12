@@ -7,7 +7,6 @@ import React from "react";
 
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 import { debugCanonicalUrl } from "@/utils/seoDebugger";
-import SeoValidator from "@/components/seo/SeoValidator";
 
 const Index = () => {
   usePageIndexing();
@@ -23,7 +22,6 @@ const Index = () => {
     <>
       {/* Single SEO component - testing canonical URL fix */}
       <DynamicSeo type="home" />
-      <SeoValidator expectedCanonical="https://barskydesign.pro/" />
       <ScrollHandler />
       <HomepageLayout />
       
