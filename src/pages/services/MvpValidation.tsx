@@ -119,7 +119,7 @@ const MvpValidation: React.FC = () => {
                       Using this exact process, I helped Herbalink achieve a 65% increase in user engagement 
                       and 45% faster consultation booking through intelligent matching algorithms and mobile-first design.
                     </p>
-                    <Link to="/project/herbalink" className="text-blue-accent hover:text-blue-vibrant font-semibold">
+                    <Link to="/case-study-herbalink" className="text-blue-accent hover:text-blue-vibrant font-semibold">
                       Read Full Herbalink Case Study →
                     </Link>
                   </div>

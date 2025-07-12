@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
@@ -85,14 +85,11 @@ function App() {
                 <Route path="/services/conversion-audit" element={<ConversionAudit />} />
                 <Route path="/services/ai-redesign" element={<AiRedesign />} />
                 <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
-                {/* Redirects from old URLs to canonical project URLs */}
-                <Route path="/case-study-herbalink" element={<Navigate to="/project/herbalink" replace />} />
-                <Route path="/case-study-splittime" element={<Navigate to="/project/splittime" replace />} />
-                <Route path="/case-study-investor-loan" element={<Navigate to="/project/investor-loan-app" replace />} />
-                
-                {/* Canonical project URLs */}
+                <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
                 <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
+                <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
                 <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
+                <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
                 <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
                 <Route path="/project/wholesale-distribution" element={<StoryDrivenProjectDetail />} />
                 <Route path="/meta-tag-manager" element={<MetaTagManager />} />

@@ -12,9 +12,6 @@ interface TestResult {
   title?: string;
   description?: string;
   image?: string;
-  canonical?: string;
-  ogUrl?: string;
-  canonicalValid?: boolean;
   message: string;
 }
 
@@ -41,21 +38,6 @@ const SocialSharingTester: React.FC = () => {
     }
   ];
 
-  const validateImageDimensions = async (imageUrl: string): Promise<{valid: boolean, dimensions?: string}> => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => {
-        const isOptimal = img.width === 1200 && img.height === 630;
-        resolve({
-          valid: isOptimal,
-          dimensions: `${img.width}x${img.height}`
-        });
-      };
-      img.onerror = () => resolve({valid: false});
-      img.src = imageUrl;
-    });
-  };
-
   const testMetaTags = async (url: string) => {
     setTesting(true);
     setResults([]);
@@ -65,67 +47,31 @@ const SocialSharingTester: React.FC = () => {
       const response = await fetch(url);
       const html = await response.text();
       
-      // Parse meta tags (enhanced version with image validation and canonical URL checking)
+      // Parse meta tags (simplified version)
       const ogTitle = html.match(/<meta property="og:title" content="([^"]*)"/) || [];
       const ogDescription = html.match(/<meta property="og:description" content="([^"]*)"/) || [];
       const ogImage = html.match(/<meta property="og:image" content="([^"]*)"/) || [];
-      const ogUrl = html.match(/<meta property="og:url" content="([^"]*)"/) || [];
-      const canonical = html.match(/<link rel="canonical" href="([^"]*)"/) || [];
-      const ogImageWidth = html.match(/<meta property="og:image:width" content="([^"]*)"/) || [];
-      const ogImageHeight = html.match(/<meta property="og:image:height" content="([^"]*)"/) || [];
       const twitterTitle = html.match(/<meta name="twitter:title" content="([^"]*)"/) || [];
-      const twitterCard = html.match(/<meta name="twitter:card" content="([^"]*)"/) || [];
-
-      // Validate canonical URL
-      const canonicalValid = canonical[1] === url || ogUrl[1] === url;
-
-      // Validate og:image dimensions if present
-      let imageValidation = null;
-      if (ogImage[1]) {
-        imageValidation = await validateImageDimensions(ogImage[1]);
-      }
 
       const newResults: TestResult[] = [
         {
-          platform: 'Canonical URL Validation',
-          url: url,
-          status: canonicalValid ? 'success' : 'error',
-          canonical: canonical[1],
-          ogUrl: ogUrl[1],
-          canonicalValid,
-          message: canonicalValid 
-            ? 'Canonical URL matches test URL' 
-            : `Canonical URL mismatch! Expected: ${url}, Found: ${canonical[1] || 'none'}, og:url: ${ogUrl[1] || 'none'}`
-        },
-        {
           platform: 'Open Graph (Facebook/LinkedIn)',
           url: url,
-          status: ogTitle[1] && ogDescription[1] && ogImage[1] ? 'success' : 'warning',
+          status: ogTitle[1] && ogDescription[1] ? 'success' : 'warning',
           title: ogTitle[1],
           description: ogDescription[1],
           image: ogImage[1],
-          message: ogTitle[1] && ogDescription[1] && ogImage[1]
-            ? `Meta tags configured correctly${imageValidation && !imageValidation.valid ? ` (Image: ${imageValidation.dimensions}, recommended: 1200x630)` : ''}`
-            : 'Missing or incomplete Open Graph tags (title, description, image required)'
-        },
-        {
-          platform: 'LinkedIn Optimization',
-          url: url,
-          status: ogImage[1] && imageValidation?.valid ? 'success' : 'warning',
-          image: ogImage[1],
-          message: ogImage[1] 
-            ? (imageValidation?.valid 
-                ? 'Image optimized for LinkedIn (1200x630px)' 
-                : `Image found but not optimal for LinkedIn (${imageValidation?.dimensions || 'unknown'}, recommended: 1200x630px)`)
-            : 'No og:image found - LinkedIn will not display image preview'
+          message: ogTitle[1] && ogDescription[1] 
+            ? 'Meta tags found and properly configured' 
+            : 'Missing or incomplete Open Graph tags'
         },
         {
           platform: 'Twitter Cards',
           url: url,
-          status: twitterTitle[1] && twitterCard[1] ? 'success' : 'warning',
+          status: twitterTitle[1] ? 'success' : 'warning',
           title: twitterTitle[1],
-          message: twitterTitle[1] && twitterCard[1]
-            ? `Twitter Card configured (${twitterCard[1] || 'unknown type'})`
+          message: twitterTitle[1] 
+            ? 'Twitter Card tags configured correctly' 
             : 'Twitter Card tags missing or incomplete'
         }
       ];
@@ -210,7 +156,7 @@ const SocialSharingTester: React.FC = () => {
                 Services
               </button>
               <button
-                onClick={() => setTestUrl('https://barskydesign.pro/project/splittime')}
+                onClick={() => setTestUrl('https://barskydesign.pro/case-study-splittime')}
                 className="text-blue-600 hover:underline"
               >
                 Case Study
@@ -238,34 +184,11 @@ const SocialSharingTester: React.FC = () => {
                 
                 <p className="text-sm text-gray-600 mb-2">{result.message}</p>
                 
-                {(result.title || result.image || result.canonical) && (
-                  <div className="space-y-2 text-sm">
-                    {result.title && <p><strong>Title:</strong> {result.title}</p>}
+                {result.title && (
+                  <div className="space-y-1 text-sm">
+                    <p><strong>Title:</strong> {result.title}</p>
                     {result.description && <p><strong>Description:</strong> {result.description}</p>}
-                    {result.canonical && (
-                      <div>
-                        <p><strong>Canonical URL:</strong> <span className="text-xs break-all">{result.canonical}</span></p>
-                        {result.ogUrl && <p><strong>og:url:</strong> <span className="text-xs break-all">{result.ogUrl}</span></p>}
-                        <p className={`text-xs ${result.canonicalValid ? 'text-green-600' : 'text-red-600'}`}>
-                          <strong>Status:</strong> {result.canonicalValid ? '✓ Valid' : '✗ Invalid'}
-                        </p>
-                      </div>
-                    )}
-                    {result.image && (
-                      <div>
-                        <p><strong>Image URL:</strong> <span className="text-xs break-all">{result.image}</span></p>
-                        <div className="mt-2 border rounded p-2 bg-gray-50">
-                          <img 
-                            src={result.image} 
-                            alt="og:image preview" 
-                            className="max-w-full h-auto max-h-32 rounded"
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none';
-                            }}
-                          />
-                        </div>
-                      </div>
-                    )}
+                    {result.image && <p><strong>Image:</strong> {result.image}</p>}
                   </div>
                 )}
               </div>
@@ -320,14 +243,13 @@ const SocialSharingTester: React.FC = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-2">LinkedIn Image Optimization</h4>
+              <h4 className="font-semibold mb-2">Image Optimization</h4>
               <ul className="text-sm space-y-1 text-gray-600">
-                <li>• Size: 1200x630px (optimal for LinkedIn)</li>
+                <li>• Size: 1200x630px (1.91:1 ratio)</li>
                 <li>• Format: JPG, PNG, or WebP</li>
-                <li>• File size: Under 5MB (recommended under 100KB)</li>
-                <li>• High contrast for professional visibility</li>
+                <li>• File size: Under 100KB</li>
+                <li>• Include alt text</li>
                 <li>• Use absolute URLs</li>
-                <li>• Include og:image:width and og:image:height</li>
               </ul>
             </div>
           </div>

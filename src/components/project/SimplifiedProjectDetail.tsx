@@ -5,7 +5,7 @@ import StoryDrivenProjectDetail from "./StoryDrivenProjectDetail";
 import { useProjectDetail } from "@/hooks/useProjectDetail";
 import ProjectDetailLoading from "./ProjectDetailLoading";
 import CleanProjectDetail from "./CleanProjectDetail";
-import DynamicSeo from "@/components/seo/DynamicSeo";
+import ProjectDetailSeo from "./ProjectDetailSeo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
@@ -19,6 +19,21 @@ const SimplifiedProjectDetail = () => {
     return <StoryDrivenProjectDetail />;
   }
   
+  // Redirect to case study pages for specific projects
+  if (projectId === 'herbalink') {
+    window.location.href = '/case-study-herbalink';
+    return null;
+  }
+  
+  if (projectId === 'splittime') {
+    window.location.href = '/case-study-splittime';
+    return null;
+  }
+  
+  if (projectId === 'investor-loan-app') {
+    window.location.href = '/case-study-investor-loan';
+    return null;
+  }
   
   console.log('🎬 SimplifiedProjectDetail: Rendering with projectId:', projectId);
   
@@ -68,11 +83,7 @@ const SimplifiedProjectDetail = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <DynamicSeo 
-        type="project" 
-        project={project}
-        details={details}
-      />
+      <ProjectDetailSeo project={project} details={details} />
       <Header />
       <main className="flex-grow">
         <CleanProjectDetail

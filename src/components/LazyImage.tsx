@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { generateWebPUrl, getRecommendedSizes } from '@/utils/imageOptimization';
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -9,8 +8,6 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   priority?: boolean;
   aspectRatio?: string;
   onLoadComplete?: () => void;
-  webpSrc?: string;
-  context?: 'hero' | 'gallery' | 'thumbnail' | 'avatar' | 'content';
 }
 
 /**
@@ -24,29 +21,12 @@ export const LazyImage: React.FC<LazyImageProps> = ({
   aspectRatio,
   onLoadComplete,
   className,
-  webpSrc,
-  context = 'content',
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isInView, setIsInView] = useState(priority);
-  const [useWebP, setUseWebP] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  
-  // Auto-generate WebP source if not provided
-  const optimizedWebpSrc = webpSrc || generateWebPUrl(src);
-  
-  // Check WebP support
-  useEffect(() => {
-    const checkWebPSupport = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = 1;
-      canvas.height = 1;
-      return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    };
-    setUseWebP(checkWebPSupport());
-  }, []);
 
   useEffect(() => {
     if (priority || !('IntersectionObserver' in window)) {
@@ -62,8 +42,8 @@ export const LazyImage: React.FC<LazyImageProps> = ({
         }
       },
       {
-        rootMargin: '100px', // Increased for better performance
-        threshold: 0.01,
+        rootMargin: '50px',
+        threshold: 0.1,
       }
     );
 
@@ -84,30 +64,11 @@ export const LazyImage: React.FC<LazyImageProps> = ({
     setIsLoaded(true);
   };
 
-  // Generate responsive srcSet
-  const generateSrcSet = (baseSrc: string) => {
-    const lastDot = baseSrc.lastIndexOf('.');
-    const baseName = baseSrc.substring(0, lastDot);
-    const extension = baseSrc.substring(lastDot);
-    
-    const widths = [480, 768, 1024, 1280, 1920];
-    return widths
-      .map(width => `${baseName}-${width}w${extension} ${width}w`)
-      .join(', ');
-  };
-
-  // Get optimal source
-  const getOptimalSrc = () => {
-    if (hasError) return fallback;
-    if (useWebP && optimizedWebpSrc) return optimizedWebpSrc;
-    return src;
-  };
-
   return (
-    <picture
+    <div
       ref={imgRef}
       className={cn(
-        'relative block overflow-hidden bg-neutral-100 dark:bg-neutral-800',
+        'relative overflow-hidden bg-gray-100',
         aspectRatio && `aspect-[${aspectRatio}]`,
         className
       )}
@@ -115,32 +76,21 @@ export const LazyImage: React.FC<LazyImageProps> = ({
     >
       {/* Skeleton loader */}
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-200 via-neutral-300 to-neutral-200 dark:from-neutral-700 dark:via-neutral-600 dark:to-neutral-700 animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
       )}
 
-      {/* WebP source for supporting browsers */}
-      {isInView && optimizedWebpSrc && (
-        <source
-          srcSet={generateSrcSet(optimizedWebpSrc)}
-          sizes={getRecommendedSizes(context)}
-          type="image/webp"
-        />
-      )}
-
-      {/* Fallback image */}
+      {/* Actual image */}
       {isInView && (
         <img
-          src={getOptimalSrc()}
+          src={hasError ? fallback : src}
           alt={alt}
-          srcSet={!optimizedWebpSrc ? generateSrcSet(src) : undefined}
-          sizes={getRecommendedSizes(context)}
           onLoad={handleLoad}
           onError={handleError}
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
           decoding="async"
           className={cn(
-            'w-full h-full object-cover transition-opacity duration-500',
+            'w-full h-full object-cover transition-opacity duration-300',
             isLoaded ? 'opacity-100' : 'opacity-0'
           )}
           {...props}
@@ -149,13 +99,13 @@ export const LazyImage: React.FC<LazyImageProps> = ({
 
       {/* Error state */}
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 text-neutral-500">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-500">
           <div className="text-center">
             <div className="text-2xl mb-2">📷</div>
             <div className="text-sm">Image unavailable</div>
           </div>
         </div>
       )}
-    </picture>
+    </div>
   );
 };

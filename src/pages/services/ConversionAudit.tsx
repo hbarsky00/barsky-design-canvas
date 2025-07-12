@@ -127,7 +127,7 @@ const ConversionAudit: React.FC = () => {
                       Using this methodology, I helped Splittime reduce user onboarding time by 50% 
                       and decrease support tickets by 40% through strategic UX improvements and conflict-reduction design.
                     </p>
-                    <Link to="/project/splittime" className="text-blue-accent hover:text-blue-vibrant font-semibold">
+                    <Link to="/case-study-splittime" className="text-blue-accent hover:text-blue-vibrant font-semibold">
                       Read Full Splittime Case Study →
                     </Link>
                   </div>

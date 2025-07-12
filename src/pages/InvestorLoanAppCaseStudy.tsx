@@ -93,10 +93,13 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
   return <>
       <DynamicSeo 
         type="project"
-        projectName="Investor Loan App"
+        title="Investor Loan App: Smart Portfolio Management Case Study | Hiram Barsky"
         description="Automated reporting and portfolio tracking for investors. See how AI integration streamlined complex financial workflows."
         image={`https://barskydesign.pro${investorLoanOgImage}`}
-        keywords="FinTech Platform, Portfolio Management, AI Analytics, Automated Reporting"
+        projectName="Investor Loan App"
+        results={["60% faster portfolio analysis", "90% automated report generation", "Real-time market insights"]}
+        technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
+        path="/project/investor-loan-app"
       />
       
       <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">

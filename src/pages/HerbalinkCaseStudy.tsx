@@ -76,14 +76,16 @@ const HerbalinkCaseStudy: React.FC = () => {
     label: "Growth in Herbalist Community",
     icon: <Sprout className="h-6 w-6" />
   }];
-
   return <>
       <DynamicSeo 
         type="project"
+        title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"
+        description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access."
+        image={`https://barskydesign.pro${herbalinkOgImage}`}
         projectName="Herbalink"
-        description="An AI-enhanced herbalist platform connecting users with personalized herbal wellness solutions through intelligent matching technology."
-        image="https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/herbalink-hero.jpg"
-        keywords="herbalist platform, AI wellness, herbal medicine, digital health"
+        results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
+        technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
+        path="/project/herbalink"
       />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">

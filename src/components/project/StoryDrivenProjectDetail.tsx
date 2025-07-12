@@ -17,10 +17,13 @@ const StoryDrivenProjectDetail: React.FC = () => {
     <>
       <DynamicSeo 
         type="project"
-        projectName="Wholesale Distribution App"
+        title="Wholesale Distribution: Excel to Custom App Case Study | Hiram Barsky"
         description="From Excel spreadsheets to AI-powered business solution. See how custom app development transformed wholesale operations."
         image="https://barskydesign.pro/lovable-uploads/wholesale-hero.png"
-        keywords="Business Automation, AI Development, Custom Software, Workflow Optimization"
+        projectName="Wholesale Distribution App"
+        results={["95% reduction in manual data entry", "500% faster order processing", "Custom automation solutions"]}
+        technologies={["Business Automation", "AI Development", "Custom Software", "Workflow Optimization"]}
+        path="/project/wholesale-distribution"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
