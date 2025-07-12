@@ -54,7 +54,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div>
       <button 
-        className="text-barsky-dark dark:text-white focus:outline-none p-1" 
+        className="text-barsky-dark dark:text-white outline-none focus:outline-none p-1" 
         onClick={toggleMobileMenu}
         aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={isMobileMenuOpen}
