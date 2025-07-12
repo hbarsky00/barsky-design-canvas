@@ -66,7 +66,7 @@ const BlogPost: React.FC = () => {
         <article className="py-20">
           <div className="section-container max-w-3xl mx-auto px-4 sm:px-6">
             <BlogPostHeader post={post} />
-            <BlogPostContent content={post.content} />
+            <BlogPostContent content={post.content} slug={post.slug} />
             <BlogAuthorBio author={post.author} />
             <RelatedPosts posts={relatedPosts} />
           </div>

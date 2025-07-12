@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import DynamicSeo from '@/components/seo/DynamicSeo';
 import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
 import { blogPosts } from '@/data/blogData';
+import { InternalLinkEnhancer, RelatedPosts } from './InternalLinkEnhancer';
+import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -91,6 +93,12 @@ const BlogPostPage: React.FC = () => {
               
               {/* Article Content */}
               <div className="p-8 lg:p-12">
+                {/* SEO Breadcrumbs */}
+                <BlogBreadcrumbs 
+                  currentTitle={post.title} 
+                  currentSlug={slug}
+                />
+                
                 <header className="mb-8">
                   <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                     {post.title}
@@ -125,9 +133,19 @@ const BlogPostPage: React.FC = () => {
                     {metadata?.excerpt || staticPost?.excerpt}
                   </p>
                   
-                  {/* Static content would be rendered here */}
+                  {/* Enhanced blog content with internal SEO links */}
                   {staticPost?.content && (
-                    <div dangerouslySetInnerHTML={{ __html: staticPost.content }} />
+                    <div className="prose prose-lg max-w-none">
+                      <InternalLinkEnhancer 
+                        content={staticPost.content} 
+                        currentSlug={staticPost.slug} 
+                      />
+                    </div>
+                  )}
+                  
+                  {/* Related posts section for additional internal linking */}
+                  {staticPost && (
+                    <RelatedPosts currentSlug={staticPost.slug} maxPosts={3} />
                   )}
                 </div>
               </div>
