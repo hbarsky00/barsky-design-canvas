@@ -28,7 +28,7 @@ const FeaturedProjects: React.FC = () => {
       }} transition={{
         duration: 0.6
       }} className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 py-[25px]">AI - Powered Product Design Portfolio</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 py-[25px]">Case Study Design Portfolio</h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
             Real case studies showing how AI-enhanced UX design delivers measurable ROI for startups and enterprises. 
             Each project combines traditional UX research with Gen AI to create breakthrough results.
