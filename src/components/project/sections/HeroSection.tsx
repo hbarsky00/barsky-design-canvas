@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import MaximizableImage from "../MaximizableImage";
+import ShareButtons from "@/components/blog/ShareButtons";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 
 const HeroSection: React.FC = () => {
@@ -30,8 +31,18 @@ const HeroSection: React.FC = () => {
             <p className="text-lg text-gray-700 leading-relaxed mb-8">
               A wholesale distribution business was trapped by software that looked professional but failed at every critical moment. 
               Clickable buttons that did nothing, endless screens hiding simple tasks, and hours of manual work that modern tools should automate - 
-              all while paying premium prices for the frustration.
-            </p>
+               all while paying premium prices for the frustration.
+             </p>
+             
+             {/* Share Buttons */}
+             <div className="mt-6">
+               <ShareButtons 
+                 title="Wholesale Distribution: Excel to Custom App Case Study"
+                 summary="From Excel spreadsheets to AI-powered business solution. See how custom app development transformed wholesale operations with 95% reduction in manual data entry."
+                 url={window.location.href}
+                 hashtags={["BusinessAutomation", "CustomSoftware", "AI", "CaseStudy", "WorkflowOptimization"]}
+               />
+             </div>
           </motion.div>
           
           <motion.div initial={{
@@ -88,8 +99,18 @@ const HeroSection: React.FC = () => {
               <p className="text-xl text-gray-700 leading-relaxed mb-8">
                 A wholesale distribution business was trapped by software that looked professional but failed at every critical moment. 
                 Clickable buttons that did nothing, endless screens hiding simple tasks, and hours of manual work that modern tools should automate - 
-                all while paying premium prices for the frustration.
-              </p>
+                 all while paying premium prices for the frustration.
+               </p>
+               
+               {/* Share Buttons */}
+               <div className="mt-6">
+                 <ShareButtons 
+                   title="Wholesale Distribution: Excel to Custom App Case Study"
+                   summary="From Excel spreadsheets to AI-powered business solution. See how custom app development transformed wholesale operations with 95% reduction in manual data entry."
+                   url={window.location.href}
+                   hashtags={["BusinessAutomation", "CustomSoftware", "AI", "CaseStudy", "WorkflowOptimization"]}
+                 />
+               </div>
             </div>
             
             <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-amber-200">
