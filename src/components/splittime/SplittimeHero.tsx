@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Heart, Baby } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ShareButtons from "@/components/blog/ShareButtons";
 
 interface SplittimeHeroProps {
   onImageClick: (imageId: string) => void;
@@ -61,6 +62,16 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({ onImageClick, onImageKeyp
               coordinated collaboration, putting children's wellbeing first through streamlined digital tools.
             </p>
             
+            {/* Share Buttons */}
+            <div className="mt-6">
+              <ShareButtons 
+                title="Splittime: Co-Parenting App Case Study"
+                summary="Transforming co-parenting from conflict to collaboration with AI-powered features that reduce communication stress and improve family coordination."
+                url={window.location.href}
+                hashtags={["UXDesign", "FamilyTech", "CoParenting", "CaseStudy", "MobileUX"]}
+              />
+            </div>
+            
             <Button 
               size="lg" 
               variant="default" 
@@ -111,6 +122,16 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({ onImageClick, onImageKeyp
               tensions, children suffer the consequences. Splittime transforms chaotic co-parenting into 
               coordinated collaboration, putting children's wellbeing first through streamlined digital tools.
             </p>
+            
+            {/* Share Buttons */}
+            <div className="mt-6">
+              <ShareButtons 
+                title="Splittime: Co-Parenting App Case Study"
+                summary="Transforming co-parenting from conflict to collaboration with AI-powered features that reduce communication stress and improve family coordination."
+                url={window.location.href}
+                hashtags={["UXDesign", "FamilyTech", "CoParenting", "CaseStudy", "MobileUX"]}
+              />
+            </div>
             
             <Button 
               size="lg" 
