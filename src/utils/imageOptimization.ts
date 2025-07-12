@@ -10,10 +10,10 @@ export interface OptimizedImageMapping {
 
 // Critical images that need optimization
 export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {
-  // Profile/Avatar images
+  // Profile/Avatar images - keep original user photo
   '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png': {
     original: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
-    webp: '/optimized/profile-avatar.webp',
+    webp: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Use original for now
     width: 208,
     height: 208,
     aspectRatio: '1/1'
