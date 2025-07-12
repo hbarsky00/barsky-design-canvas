@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 15, 2025",
     readTime: "7 min read",
-    coverImage: "/src/assets/blog-finding-ux-job.jpg",
+    coverImage: "/blog-finding-ux-job.jpg",
     tags: ["UX Design", "Career", "Job Search", "Portfolio", "Networking"],
     slug: "finding-first-ux-job-guide",
     content: `
@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 8, 2025",
     readTime: "8 min read",
-    coverImage: "/src/assets/blog-design-systems.jpg",
+    coverImage: "/blog-design-systems.jpg",
     tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
     slug: "design-systems-that-get-used",
     content: `
@@ -120,7 +120,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 28, 2025",
     readTime: "6 min read",
-    coverImage: "/src/assets/blog-portfolio-red-flags.jpg",
+    coverImage: "/blog-portfolio-red-flags.jpg",
     tags: ["Portfolio", "UX Design", "Career", "Job Search", "Interview"],
     slug: "portfolio-red-flags-no-interviews",
     content: `
@@ -178,7 +178,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 15, 2025",
     readTime: "9 min read",
-    coverImage: "/src/assets/blog-ai-enhanced-ux.jpg",
+    coverImage: "/blog-ai-enhanced-ux.jpg",
     tags: ["AI", "UX Design", "Future", "Career", "Technology"],
     slug: "ai-enhanced-ux-designer-future",
     content: `
@@ -244,7 +244,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 1, 2025",
     readTime: "7 min read",
-    coverImage: "/src/assets/blog-user-research-budget.jpg",
+    coverImage: "/blog-user-research-budget.jpg",
     tags: ["User Research", "Budget", "Methods", "Strategy", "Process"],
     slug: "user-research-shoestring-budget",
     content: `
