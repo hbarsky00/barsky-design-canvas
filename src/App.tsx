@@ -40,6 +40,7 @@ import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
 import { useMobileOptimization } from "@/hooks/useMobileOptimization";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { CanonicalTag } from "@/hooks/useDynamicCanonical";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -76,6 +77,7 @@ function App() {
         <HelmetProvider>
           <TooltipProvider>
             <ImageMaximizerProvider>
+              <CanonicalTag />
               <Toaster />
               <BrowserRouter>
                 <ScrollToTop />

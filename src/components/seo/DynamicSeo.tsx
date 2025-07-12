@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -49,8 +50,34 @@ interface HomeSeoProps {
 type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | ServiceSeoProps | HomeSeoProps;
 
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
+  const location = useLocation();
   const baseUrl = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
+  
+  // Generate dynamic canonical URL
+  const getCanonicalUrl = (pathname: string): string => {
+    const routeMappings: Record<string, string> = {
+      '/': '/',
+      '/about': '/about', 
+      '/services': '/services',
+      '/projects': '/portfolio',
+      '/contact': '/contact',
+      '/blog': '/blog',
+      '/case-study-herbalink': '/case-studies/herbalink',
+      '/project/herbalink': '/case-studies/herbalink',
+      '/case-study-splittime': '/case-studies/splittime',
+      '/project/splittime': '/case-studies/splittime', 
+      '/case-study-investor-loan': '/case-studies/investor-loan-app',
+      '/project/investor-loan-app': '/case-studies/investor-loan-app'
+    };
+    
+    const mappedPath = routeMappings[pathname] || pathname;
+    return `${baseUrl}${mappedPath}`;
+  };
+  
+  const canonicalUrl = 'path' in props && props.path 
+    ? `${baseUrl}${props.path}` 
+    : getCanonicalUrl(location.pathname);
 
   // Helper function to truncate description to 150-160 characters
   const truncateDescription = (text: string, maxLength: number = 160): string => {
