@@ -65,9 +65,9 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
   };
 
   return (
-    <div className="flex flex-row items-center gap-2 sm:gap-3 px-4 sm:px-6">
-      <span className="text-barsky-text-light text-sm flex items-center [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none">
-        <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" /> <span className="hidden sm:inline">Share:</span>
+    <div className="flex flex-row items-center gap-2 sm:gap-3 py-4 border-t border-border mt-6">
+      <span className="text-muted-foreground text-sm flex items-center font-medium">
+        <Share2 className="h-4 w-4 mr-2" /> Share:
       </span>
       <div className="flex gap-1 sm:gap-2">
         {visibleShareLinks.map((link) => (
