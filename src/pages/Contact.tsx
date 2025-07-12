@@ -16,6 +16,7 @@ const Contact = () => {
         title="Contact Hiram Barsky - AI Design Consultation"
         description="Get in touch for AI-enhanced product design services. Specializing in intelligent web applications and AI-powered user interfaces."
         path="/contact"
+        canonicalUrl="https://barskydesign.pro/contact"
       />
       
       <Header />

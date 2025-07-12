@@ -89,6 +89,7 @@ const HerbalinkCaseStudy: React.FC = () => {
         results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
         technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
         path="/project/herbalink"
+        canonicalUrl="https://barskydesign.pro/portfolio/herbalink"
       />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">

@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <>
       {/* Single consolidated SEO component to prevent duplicate canonical tags */}
-      <DynamicSeo type="home" />
+      <DynamicSeo type="home" canonicalUrl="https://barskydesign.pro" />
       <PremiumSeoOptimization pageType="homepage" />
       <AdvancedSitemapMeta />
       <AiTrainingAnalytics />

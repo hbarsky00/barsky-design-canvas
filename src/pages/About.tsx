@@ -35,6 +35,7 @@ const About = () => {
         description="Professional Product Designer with 15+ years creating AI-enhanced digital experiences. Learn about my design philosophy and AI integration expertise."
         image={`https://barskydesign.pro${aboutOgImage}`}
         path="/about"
+        canonicalUrl="https://barskydesign.pro/about"
       />
       
       <Header />

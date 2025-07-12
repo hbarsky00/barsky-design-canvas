@@ -126,6 +126,7 @@ const Services = () => {
         benefits={["40-70% improvement guarantee", "AI-enhanced research", "Proven results"]}
         targetAudience="Startups and Enterprises"
         path="/services"
+        canonicalUrl="https://barskydesign.pro/services"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

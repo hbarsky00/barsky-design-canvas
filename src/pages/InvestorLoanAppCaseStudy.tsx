@@ -102,6 +102,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
         results={["60% faster portfolio analysis", "90% automated report generation", "Real-time market insights"]}
         technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
         path="/project/investor-loan-app"
+        canonicalUrl="https://barskydesign.pro/portfolio/investor-loan-app"
       />
       
       <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">

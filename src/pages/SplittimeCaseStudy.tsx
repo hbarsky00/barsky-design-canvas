@@ -39,6 +39,7 @@ const SplittimeCaseStudy: React.FC = () => {
           results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
           technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
           path="/project/splittime"
+          canonicalUrl="https://barskydesign.pro/portfolio/splittime"
         />
       
       <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
