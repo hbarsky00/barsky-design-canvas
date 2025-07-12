@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
+import RelatedProjects from "@/components/RelatedProjects";
 import herbalinkOgImage from "@/assets/social/herbalink-og.jpg";
 const HerbalinkCaseStudy: React.FC = () => {
   const {

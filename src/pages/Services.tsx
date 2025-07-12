@@ -147,7 +147,23 @@ const Services = () => {
                 <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed mb-8">
                   I don't just design pretty interfaces - I build revenue-generating experiences using AI-enhanced UX research. 
                   Proven results across healthcare, fintech, and family tech.
-                </p>
+            </p>
+            <div className="flex flex-wrap gap-4 mt-6">
+              <Link 
+                to="/case-study-herbalink"
+                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              >
+                View HerbaLink Case Study
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link 
+                to="/case-study-splittime"
+                className="inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-colors"
+              >
+                View SplitTime Case Study
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
 
                 {/* Results Banner */}
                 <div className="glass-card p-6 max-w-5xl mx-auto">
