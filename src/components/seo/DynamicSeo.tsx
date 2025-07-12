@@ -63,13 +63,17 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       '/projects': '/portfolio',
       '/contact': '/contact',
       '/blog': '/blog',
-      '/case-study-herbalink': '/case-studies/herbalink-mobile-herbalist-ux-design',
-      '/project/herbalink': '/case-studies/herbalink-mobile-herbalist-ux-design',
-      '/case-study-splittime': '/case-studies/splittime-coparenting-app-design',
-      '/project/splittime': '/case-studies/splittime-coparenting-app-design', 
-      '/case-study-investor-loan': '/case-studies/investor-loan-portfolio-management',
-      '/project/investor-loan-app': '/case-studies/investor-loan-portfolio-management',
-      '/project/wholesale-distribution': '/case-studies/wholesale-distribution-ai-solution'
+      '/case-studies/herbalink-mobile-herbalist-ux-design': '/portfolio/herbalink',
+      '/project/herbalink': '/portfolio/herbalink',
+      '/case-study-herbalink': '/portfolio/herbalink',
+      '/case-studies/splittime-coparenting-app-design': '/portfolio/splittime',
+      '/project/splittime': '/portfolio/splittime',
+      '/case-study-splittime': '/portfolio/splittime',
+      '/case-studies/investor-loan-portfolio-management': '/portfolio/investor-loan-app',
+      '/project/investor-loan-app': '/portfolio/investor-loan-app',
+      '/case-study-investor-loan': '/portfolio/investor-loan-app',
+      '/case-studies/wholesale-distribution-ai-solution': '/portfolio/wholesale-distribution',
+      '/project/wholesale-distribution': '/portfolio/wholesale-distribution'
     };
     
     const mappedPath = routeMappings[pathname] || pathname;
