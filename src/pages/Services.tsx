@@ -147,26 +147,27 @@ const Services = () => {
                 <p className="text-xl text-neutral-500 max-w-4xl mx-auto leading-relaxed mb-8">
                   I don't just design pretty interfaces - I build revenue-generating experiences using AI-enhanced UX research. 
                   Proven results across healthcare, fintech, and family tech.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-6">
-              <Link 
-                to="/case-study-herbalink"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                View HerbaLink Case Study
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link 
-                to="/case-study-splittime"
-                className="inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-colors"
-              >
-                View SplitTime Case Study
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+                </p>
+                
+                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                  <Link 
+                    to="/case-study-herbalink"
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200"
+                  >
+                    View HerbaLink Case Study
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link 
+                    to="/case-study-splittime"
+                    className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 px-6 py-3 rounded-lg font-medium transition-all duration-200"
+                  >
+                    View SplitTime Case Study
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
 
                 {/* Results Banner */}
-                <div className="glass-card p-6 max-w-5xl mx-auto">
+                <div className="glass-card p-6 max-w-5xl mx-auto mt-8">
                   <p className="text-lg font-semibold text-neutral-900">
                     <span className="text-success-green">Proven Track Record:</span> 70% faster processing (FinTech) • 65% engagement increase (Healthcare) • 50% faster onboarding (Family Tech)
                   </p>
@@ -433,14 +434,17 @@ const Services = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
-                    className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-4 px-8 text-lg group"
+                    className="bg-blue-vibrant hover:bg-blue-accent focus:bg-blue-accent focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 text-white font-semibold py-4 px-8 text-lg group transition-all duration-200"
                     onClick={() => window.location.href = '/free-audit'}
                   >
                     Get Your Free Audit
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <Link to="/projects">
-                    <Button variant="outline" className="py-4 px-8 text-lg">
+                    <Button 
+                      variant="outline" 
+                      className="py-4 px-8 text-lg focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 transition-all duration-200"
+                    >
                       View All Case Studies
                     </Button>
                   </Link>
