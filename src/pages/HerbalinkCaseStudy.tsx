@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 import RelatedProjects from "@/components/RelatedProjects";
@@ -81,7 +81,9 @@ const HerbalinkCaseStudy: React.FC = () => {
     icon: <Sprout className="h-6 w-6" />
   }];
   return <>
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/portfolio/herbalink" />
+      </Helmet>
       <DynamicSeo 
         type="project"
         title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"

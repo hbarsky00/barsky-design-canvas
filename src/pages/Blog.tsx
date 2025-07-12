@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogPreview from "@/components/blog/BlogPreview";
 import BlogBreadcrumbs from "@/components/seo/BlogBreadcrumbs";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Blog = () => {
@@ -13,7 +13,9 @@ const Blog = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/blog" />
+      </Helmet>
       <DynamicSeo 
         type="page"
         title="UX Design Blog | AI-Enhanced Design Insights"

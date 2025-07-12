@@ -6,7 +6,7 @@ import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
 import SitemapGenerator from "@/components/seo/SitemapGenerator";
 import MetaOptimizer from "@/components/seo/MetaOptimizer";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
@@ -16,7 +16,9 @@ const Index = () => {
   return (
     <>
       {/* Comprehensive SEO Optimization */}
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro" />
+      </Helmet>
       <DynamicSeo type="home" />
       <MetaOptimizer 
         pageType="home"

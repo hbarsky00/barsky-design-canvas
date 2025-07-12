@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicSeo from '@/components/seo/DynamicSeo';
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { CheckCircle, Briefcase, Award, Book, Users, Target, Lightbulb } from 'lucide-react';
@@ -32,7 +32,9 @@ const tools = [
 const About = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/about" />
+      </Helmet>
       <DynamicSeo 
         type="page"
         title="About Hiram Barsky - AI-Enhanced Product Designer"

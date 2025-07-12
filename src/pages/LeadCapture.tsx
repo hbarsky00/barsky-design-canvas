@@ -8,7 +8,10 @@ import EnhancedGlobalSeo from '@/components/seo/EnhancedGlobalSeo';
 const LeadCapture: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <EnhancedGlobalSeo 
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/get-started" />
+      </Helmet>
+      <EnhancedGlobalSeo
         title="Start Your AI-Enhanced Design Project | Get Custom Quote | Hiram Barsky"
         description="Ready to transform your digital product with AI-enhanced UX design? Get a personalized project plan and quote within 24 hours. Specializing in AI integration and user experience."
         

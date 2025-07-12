@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import ShareButtons from "@/components/blog/ShareButtons";
 import RelatedProjects from "@/components/RelatedProjects";
@@ -94,7 +94,9 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     icon: <LineChart className="h-6 w-6" />
   }];
   return <>
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/portfolio/investor-loan-app" />
+      </Helmet>
       <DynamicSeo 
         type="project"
         title="Investor Loan App: Smart Portfolio Management Case Study | Hiram Barsky"

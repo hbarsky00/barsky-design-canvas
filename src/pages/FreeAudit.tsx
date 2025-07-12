@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -82,7 +82,9 @@ const FreeAudit: React.FC = () => {
 
   return (
     <>
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/free-audit" />
+      </Helmet>
       <EnhancedGlobalSeo 
         title="Free UX Conversion Audit - Increase Conversions 40%+ | Hiram Barsky"
         description="Get your free 30-minute UX conversion audit. Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX design. Book now!"

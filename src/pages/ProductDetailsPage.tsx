@@ -34,6 +34,7 @@ const ProductDetailsPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Helmet>
+        <link rel="canonical" href={`https://barskydesign.pro/store/product/${productId}`} />
         <title>{product.name} | Barsky Design - UX Research & Design Agency | Professional Design Resources</title>
         <meta name="description" content={`${product.description} Professional design resource from Barsky Design - UX research and design agency specializing in user-centered design solutions and digital product experiences.`} />
         <meta name="keywords" content={`${product.name}, Barsky Design, UX design resources, design templates, UI kit, design system, user experience design, design agency resources`} />

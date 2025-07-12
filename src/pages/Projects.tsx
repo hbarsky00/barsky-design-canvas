@@ -4,7 +4,7 @@ import DynamicSeo from "@/components/seo/DynamicSeo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AllProjects from "./AllProjects";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Projects = () => {
@@ -12,7 +12,9 @@ const Projects = () => {
   
   return (
     <>
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/projects" />
+      </Helmet>
       <DynamicSeo 
         type="page"
         title="Product Design & Gen AI Portfolio | AI-Powered Web Applications"

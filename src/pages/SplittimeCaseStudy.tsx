@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import SplittimeImageViewer from "@/components/splittime/SplittimeImageViewer";
 import SplittimeHero from "@/components/splittime/SplittimeHero";
 import SplittimeConflictAnalysis from "@/components/splittime/SplittimeConflictAnalysis";
@@ -31,7 +31,9 @@ const SplittimeCaseStudy: React.FC = () => {
     handleImageKeypress
   } = useSplittimeImageViewer();
   return <>
-        <CanonicalTag />
+        <Helmet>
+          <link rel="canonical" href="https://barskydesign.pro/portfolio/splittime" />
+        </Helmet>
         <DynamicSeo 
           type="project"
           title="Splittime: Co-Parenting App Case Study | Hiram Barsky"

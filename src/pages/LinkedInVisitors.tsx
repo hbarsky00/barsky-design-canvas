@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from 'react-helmet-async';
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Target, Award, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -54,6 +55,9 @@ const LinkedInVisitors: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/linkedin-visitors" />
+      </Helmet>
       <EnhancedGlobalSeo 
         title="Turn Your Digital Product Into a Revenue Machine | LinkedIn Exclusive"
         description="Senior Product Designer + Gen AI Developer helping business leaders achieve 40%+ conversion improvements. Free strategy session for LinkedIn professionals."

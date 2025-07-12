@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
-import CanonicalTag from "@/components/CanonicalTag";
+import { Helmet } from "react-helmet-async";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Services = () => {
@@ -119,7 +119,9 @@ const Services = () => {
 
   return (
     <>
-      <CanonicalTag />
+      <Helmet>
+        <link rel="canonical" href="https://barskydesign.pro/services" />
+      </Helmet>
       <DynamicSeo 
         type="service"
         title="Design Systems That Teams Actually Use"
