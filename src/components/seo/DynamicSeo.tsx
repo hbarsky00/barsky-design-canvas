@@ -444,41 +444,69 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   // Default/Home page
-  const homeDescription = "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises.";
-  const truncatedHomeDescription = truncateDescription(homeDescription);
+  const pageCanonicalUrl = canonicalUrl;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Hiram Barsky - Product Designer & Gen AI Developer | New Jersey Web Designer",
+    "description": "Expert Product Designer and Gen AI Developer in New Jersey specializing in UX/UI design, web development, and AI-enhanced solutions for modern businesses.",
+    "url": pageCanonicalUrl,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Barsky Design - Product Designer & Gen AI Developer",
+      "url": baseDomain
+    },
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Hiram Barsky",
+      "jobTitle": "Product Designer & Gen AI Developer",
+      "url": baseDomain
+    }
+  };
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
-      <title>Hiram Barsky - Product Designer & Gen AI Developer | New York</title>
-      <meta name="description" content={truncatedHomeDescription} />
-      <link rel="canonical" href={canonicalUrl} />
+      {/* Enhanced Home Page Meta Tags */}
+      <title>Hiram Barsky - Product Designer & Gen AI Developer | New Jersey Web Designer</title>
+      <meta name="description" content="Expert Product Designer and Gen AI Developer in New Jersey specializing in UX/UI design, web development, and AI-enhanced solutions for modern businesses. 8+ years experience." />
+      <link rel="canonical" href={pageCanonicalUrl} />
       
-      {/* Open Graph Tags */}
+      {/* Enhanced Keywords */}
+      <meta name="keywords" content="Product Designer New Jersey, Web Designer New Jersey, Gen AI Developer, UX Designer New Jersey, UI Designer, Hiram Barsky, Barsky Design, Web Development NJ, AI Integration, User Experience Design, Digital Product Design, Responsive Web Design, Design Systems, Fair Lawn NJ Designer" />
+      
+      {/* Geographic Meta Tags */}
+      <meta name="geo.region" content="US-NJ" />
+      <meta name="geo.placename" content="Fair Lawn, New Jersey" />
+      <meta name="geo.position" content="40.9370;-74.1318" />
+      <meta name="ICBM" content="40.9370, -74.1318" />
+      
+      {/* Open Graph Tags for Home */}
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="Hiram Barsky - Product Designer & Gen AI Developer | New York" />
-      <meta property="og:description" content={truncatedHomeDescription} />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:title" content="Hiram Barsky - Product Designer & Gen AI Developer | New Jersey" />
+      <meta property="og:description" content="Expert Product Designer and Gen AI Developer in New Jersey specializing in UX/UI design, web development, and AI-enhanced solutions for modern businesses." />
+      <meta property="og:url" content={pageCanonicalUrl} />
       <meta property="og:image" content={getPageTypeImage('home')} />
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer" />
+      <meta property="og:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer Portfolio" />
       <meta property="og:site_name" content="Barsky Design" />
-      <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+      <meta property="og:locale" content="en_US" />
       
-      {/* Twitter Card Tags */}
+      {/* Twitter Card Tags for Home */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@hirambarsky" />
-      <meta name="twitter:title" content="Hiram Barsky - Product Designer & Gen AI Developer | New York" />
-      <meta name="twitter:description" content={truncatedHomeDescription} />
+      <meta name="twitter:creator" content="@hirambarsky" />
+      <meta name="twitter:title" content="Hiram Barsky - Product Designer & Gen AI Developer | New Jersey" />
+      <meta name="twitter:description" content="Expert Product Designer and Gen AI Developer in New Jersey specializing in UX/UI design, web development, and AI-enhanced solutions." />
       <meta name="twitter:image" content={getPageTypeImage('home')} />
-      <meta name="twitter:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer" />
+      <meta name="twitter:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer Portfolio" />
       
-      {/* Keywords */}
-      <meta name="keywords" content="UX Designer, UI Designer, Product Designer, Gen AI Developer, Artificial Intelligence, UX Research, Design Systems, New York" />
+      {/* Structured Data for Home */}
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
     </Helmet>
   );
 };
-
 export default DynamicSeo;
