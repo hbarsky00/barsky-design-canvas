@@ -90,7 +90,7 @@ export const validateSocialImage = (
 /**
  * Get social media debugging URLs
  */
-export const getSocialDebugUrls = (pageUrl: string) => {
+export const getSocialDebugUrls = (pageUrl: string): Record<string, string> => {
   const encodedUrl = encodeURIComponent(pageUrl);
   
   return {
