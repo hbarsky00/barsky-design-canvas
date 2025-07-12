@@ -78,10 +78,10 @@ const Footer: React.FC = () => {
             <div className="mt-6">
               <h4 className="text-lg font-semibold mb-4 text-neutral-50">Connect</h4>
               <div className="flex space-x-4" role="list">
-                <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900" aria-label="Connect on LinkedIn (opens in new tab)">
+                <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900" aria-label="Connect on LinkedIn (opens in new tab)">
                   <Linkedin size={24} strokeWidth={2.5} />
                 </a>
-                <a href="https://github.com/hbarsky00/barsky-design-canvas.git" target="_blank" rel="noopener noreferrer" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900" aria-label="View GitHub repository (opens in new tab)">
+                <a href="https://github.com/hbarsky00" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900" aria-label="View GitHub profile (opens in new tab)">
                   <Github size={24} strokeWidth={2.5} />
                 </a>
               </div>

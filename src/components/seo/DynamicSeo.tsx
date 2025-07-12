@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 
@@ -99,6 +99,16 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const lastSpace = truncated.lastIndexOf(' ');
     return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
   };
+
+  // Ensure titles are set in static HTML first, then enhanced by JavaScript
+  useEffect(() => {
+    // Set document title immediately without waiting for render
+    const titleText = props.type === 'home' 
+      ? 'Hiram Barsky - Product Designer & Gen AI Developer'
+      : ('title' in props ? `${props.title} | Barsky Design` : 'Hiram Barsky - Product Designer & Gen AI Developer');
+    
+    document.title = titleText;
+  }, [props]);
 
   // Debug logging to ensure unique meta tags are being set
   console.log('DynamicSeo rendering for:', props.type, 

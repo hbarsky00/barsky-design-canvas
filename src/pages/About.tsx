@@ -1,5 +1,7 @@
 import React from 'react';
 import DynamicSeo from '@/components/seo/DynamicSeo';
+import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
+import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { CheckCircle, Briefcase, Award, Book, Users, Target, Lightbulb } from 'lucide-react';
@@ -37,6 +39,7 @@ const About = () => {
         path="/about"
         canonicalUrl="https://barskydesign.pro/about"
       />
+      <SeoAnalyticsTracker pageTitle="About - Hiram Barsky" pageType="page" />
       
       <Header />
       <main className="flex-grow pt-24">
@@ -196,6 +199,13 @@ const About = () => {
             </div>
           </div>
         </section>
+        
+        {/* Enhanced Internal Linking for SEO */}
+        <InternalLinkingEnhancer 
+          currentPage="about" 
+          breadcrumbs={[{ label: "About", href: "/about" }]}
+          showRelatedLinks={true} 
+        />
       </main>
       <Footer />
     </div>
