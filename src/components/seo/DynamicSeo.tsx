@@ -73,29 +73,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
   // Generate the correct canonical URL based on current location
   const getCanonicalUrl = () => {
-    // Ensure we never include index.html in canonical URLs
-    const pathname = location.pathname === '/' ? '' : location.pathname;
-    return `${baseDomain}${pathname}`;
+    // Use current pathname to ensure canonical URL matches fetched URL
+    return `${baseDomain}${location.pathname}`;
   };
 
   const canonicalUrl = getCanonicalUrl();
-
-  // Force immediate meta tag update for crawlers
-  React.useLayoutEffect(() => {
-    // Remove any existing canonical links that might point to index.html
-    const existingCanonical = document.querySelector('link[rel="canonical"]');
-    if (existingCanonical && existingCanonical.getAttribute('href')?.includes('index.html')) {
-      existingCanonical.remove();
-    }
-    
-    // Create new canonical link immediately
-    const newCanonical = document.createElement('link');
-    newCanonical.rel = 'canonical';
-    newCanonical.href = canonicalUrl;
-    document.head.appendChild(newCanonical);
-    
-    console.log('DynamicSeo: Force-updated canonical URL to:', canonicalUrl);
-  }, [canonicalUrl]);
 
   // Helper function to truncate description to 150-160 characters
   const truncateDescription = (text: string, maxLength: number = 160): string => {
