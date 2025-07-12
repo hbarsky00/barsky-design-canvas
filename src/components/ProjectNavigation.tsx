@@ -20,19 +20,12 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
 }) => {
   const navigate = useNavigate();
   
-  console.log('🔍 ProjectNavigation: Current project ID:', currentProjectId);
-  console.log('🔍 ProjectNavigation: Available projects:', projectsData.map(p => `${p.id}: ${p.title}`));
-  
   // Find current project index
   const currentIndex = projectsData.findIndex(p => p.id === currentProjectId);
-  console.log('🔍 ProjectNavigation: Current index:', currentIndex);
   
   // Get previous and next project (with wrapping)
   const prevProject = currentIndex > 0 ? projectsData[currentIndex - 1] : projectsData[projectsData.length - 1];
   const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : projectsData[0];
-  
-  console.log('🔍 ProjectNavigation: Previous project:', prevProject?.id || 'none', '-', prevProject?.title || 'none');
-  console.log('🔍 ProjectNavigation: Next project:', nextProject?.id || 'none', '-', nextProject?.title || 'none');
   
   // Don't show navigation if there's only one project or current project not found
   if (projectsData.length <= 1 || currentIndex === -1) {
@@ -43,7 +36,6 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.preventDefault();
     e.stopPropagation();
     if (prevProject) {
-      console.log('🔗 Navigating to previous project:', prevProject.id);
       // Use navigate with replace to avoid adding to history stack
       navigate(`/project/${prevProject.id}`, { replace: false });
     }
@@ -53,7 +45,6 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.preventDefault();
     e.stopPropagation();
     if (nextProject) {
-      console.log('🔗 Navigating to next project:', nextProject.id);
       // Use navigate with replace to avoid adding to history stack
       navigate(`/project/${nextProject.id}`, { replace: false });
     }

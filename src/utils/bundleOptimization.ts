@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * Bundle optimization utilities to reduce JavaScript and CSS bundle sizes
  */
@@ -41,7 +43,7 @@ export const removeUnusedCSS = () => {
           );
           if (hasUnusedClass) {
             // Remove unused rule (be careful in production)
-            console.log('Removing unused CSS rule:', rule.selectorText);
+            // Removed unused rule silently
           }
         }
       });
@@ -103,5 +105,3 @@ export const optimizeWebVitals = () => {
     window.addEventListener('load', deferNonCriticalJS);
   }
 };
-
-import React from 'react';

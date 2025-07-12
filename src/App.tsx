@@ -39,6 +39,7 @@ import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
 import { useMobileOptimization } from "@/hooks/useMobileOptimization";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -57,52 +58,54 @@ function App() {
   useMobileOptimization();
   
   return (
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <TooltipProvider>
-          <ImageMaximizerProvider>
-            <Toaster />
-            <BrowserRouter>
-              <ScrollToTop />
-              <main id="main-content" role="main">
-                <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/projects" element={<AllProjects />} />
-                <Route path="/project/:projectId" element={<ProjectDetail />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
-                <Route path="/design-services/web-development" element={<WebDevelopment />} />
-                <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPostPage />} />
-                <Route path="/store" element={<Store />} />
-                <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
-                <Route path="/get-started" element={<LeadCapture />} />
-                <Route path="/admin/leads" element={<AdminDashboard />} />
-                <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
-                <Route path="/free-audit" element={<FreeAudit />} />
-                <Route path="/services/mvp-validation" element={<MvpValidation />} />
-                <Route path="/services/conversion-audit" element={<ConversionAudit />} />
-                <Route path="/services/ai-redesign" element={<AiRedesign />} />
-                <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
-                <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
-                <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
-                <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
-                <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
-                <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
-                <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
-                <Route path="/project/wholesale-distribution" element={<StoryDrivenProjectDetail />} />
-                <Route path="/meta-tag-manager" element={<MetaTagManager />} />
-                <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-            </BrowserRouter>
-          </ImageMaximizerProvider>
-        </TooltipProvider>
-      </HelmetProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <TooltipProvider>
+            <ImageMaximizerProvider>
+              <Toaster />
+              <BrowserRouter>
+                <ScrollToTop />
+                <main id="main-content" role="main">
+                  <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/projects" element={<AllProjects />} />
+                  <Route path="/project/:projectId" element={<ProjectDetail />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
+                  <Route path="/design-services/web-development" element={<WebDevelopment />} />
+                  <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogPostPage />} />
+                  <Route path="/store" element={<Store />} />
+                  <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
+                  <Route path="/get-started" element={<LeadCapture />} />
+                  <Route path="/admin/leads" element={<AdminDashboard />} />
+                  <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
+                  <Route path="/free-audit" element={<FreeAudit />} />
+                  <Route path="/services/mvp-validation" element={<MvpValidation />} />
+                  <Route path="/services/conversion-audit" element={<ConversionAudit />} />
+                  <Route path="/services/ai-redesign" element={<AiRedesign />} />
+                  <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
+                  <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
+                  <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
+                  <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
+                  <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
+                  <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
+                  <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
+                  <Route path="/project/wholesale-distribution" element={<StoryDrivenProjectDetail />} />
+                  <Route path="/meta-tag-manager" element={<MetaTagManager />} />
+                  <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+              </BrowserRouter>
+            </ImageMaximizerProvider>
+          </TooltipProvider>
+        </HelmetProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
