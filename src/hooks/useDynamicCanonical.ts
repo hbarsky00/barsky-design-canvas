@@ -10,35 +10,9 @@ interface CanonicalTagProps {
  * Fixes SEO issues by ensuring each page has its own canonical URL
  */
 export const useDynamicCanonical = ({ url }: CanonicalTagProps = {}) => {
-  const location = useLocation();
-  
-  useEffect(() => {
-    // Remove any existing canonical tags to prevent duplicates
-    const existingCanonical = document.querySelector('link[rel="canonical"]');
-    if (existingCanonical) {
-      existingCanonical.remove();
-    }
-    
-    // Generate the canonical URL
-    const baseUrl = 'https://barskydesign.pro';
-    const canonicalUrl = url || `${baseUrl}${location.pathname}`;
-    
-    // Create and append new canonical tag
-    const canonicalLink = document.createElement('link');
-    canonicalLink.rel = 'canonical';
-    canonicalLink.href = canonicalUrl;
-    document.head.appendChild(canonicalLink);
-    
-    console.log(`✅ Canonical tag set for: ${canonicalUrl}`);
-    
-    // Cleanup function to remove canonical tag when component unmounts
-    return () => {
-      const linkToRemove = document.querySelector(`link[rel="canonical"][href="${canonicalUrl}"]`);
-      if (linkToRemove) {
-        linkToRemove.remove();
-      }
-    };
-  }, [location.pathname, url]);
+  // DISABLED: Canonical tags are now handled by DynamicSeo component to prevent duplicates
+  // This hook is kept for backwards compatibility but does nothing
+  return;
 };
 
 /**
