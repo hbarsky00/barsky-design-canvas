@@ -15,8 +15,8 @@ import BlogPostHeader from "@/components/blog/BlogPostHeader";
 import BlogPostContent from "@/components/blog/BlogPostContent";
 import BlogAuthorBio from "@/components/blog/BlogAuthorBio";
 import RelatedPosts from "@/components/blog/RelatedPosts";
-import BlogPostMeta from "@/components/blog/BlogPostMeta";
 import LoadingState from "@/components/blog/LoadingState";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useRelatedPosts } from "@/hooks/useRelatedPosts";
 
 const BlogPost: React.FC = () => {
@@ -58,7 +58,16 @@ const BlogPost: React.FC = () => {
   
   return (
     <div className="flex flex-col min-h-screen">
-      <BlogPostMeta post={post} />
+      <DynamicSeo
+        type="blog-post"
+        title={post.title}
+        excerpt={post.excerpt}
+        featuredImage={post.coverImage}
+        author={post.author}
+        publishedDate={post.date}
+        tags={post.tags}
+        slug={post.slug}
+      />
       
       <Header />
       
