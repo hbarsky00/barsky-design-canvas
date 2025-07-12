@@ -7,9 +7,16 @@ import React from "react";
 
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 import { debugCanonicalUrl } from "@/utils/seoDebugger";
+import { forceCanonicalFix } from "@/utils/forceCanonicalFix";
 
 const Index = () => {
   usePageIndexing();
+  
+  // Emergency fix for canonical URLs
+  React.useEffect(() => {
+    const observer = forceCanonicalFix();
+    return () => observer?.disconnect();
+  }, []);
   
   // Debug canonical URLs in development
   React.useEffect(() => {
