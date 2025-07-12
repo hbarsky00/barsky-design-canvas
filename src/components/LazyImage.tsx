@@ -16,7 +16,7 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 export const LazyImage: React.FC<LazyImageProps> = ({
   src,
   alt,
-  fallback = '/placeholder.svg',
+  fallback = '',
   priority = false,
   aspectRatio,
   onLoadComplete,

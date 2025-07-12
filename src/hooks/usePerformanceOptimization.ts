@@ -42,7 +42,7 @@ export const usePerformanceOptimization = () => {
     const preloadCriticalImages = () => {
       const criticalImages = [
         '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Avatar
-        '/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png'  // Hero image
+        '/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png'  // Hero heading
       ];
       
       criticalImages.forEach(src => {

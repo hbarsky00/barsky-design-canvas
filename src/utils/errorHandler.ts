@@ -31,8 +31,8 @@ export const setupGlobalErrorHandling = () => {
       const target = event.target as Element;
       if (target.tagName === 'IMG') {
         console.warn('Image failed to load:', (target as HTMLImageElement).src);
-        // Set a fallback image
-        (target as HTMLImageElement).src = '/placeholder.svg';
+        // Remove failed image to prevent repeated errors
+        (target as HTMLImageElement).style.display = 'none';
       } else if (target.tagName === 'SCRIPT') {
         console.warn('Script failed to load:', (target as HTMLScriptElement).src);
       } else if (target.tagName === 'LINK') {

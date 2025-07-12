@@ -10,8 +10,7 @@ interface CanonicalTagProps {
  * Fixes SEO issues by ensuring each page has its own canonical URL
  */
 export const useDynamicCanonical = ({ url }: CanonicalTagProps = {}) => {
-  // DISABLED: Canonical tags are now handled by DynamicSeo component to prevent duplicates
-  // This hook is kept for backwards compatibility but does nothing
+  // COMPLETELY DISABLED: Remove any canonical tag functionality to prevent duplicates
   return;
 };
 
