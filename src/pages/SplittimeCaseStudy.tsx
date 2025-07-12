@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
+import CanonicalTag from "@/components/CanonicalTag";
 import SplittimeImageViewer from "@/components/splittime/SplittimeImageViewer";
 import SplittimeHero from "@/components/splittime/SplittimeHero";
 import SplittimeConflictAnalysis from "@/components/splittime/SplittimeConflictAnalysis";
@@ -30,6 +31,7 @@ const SplittimeCaseStudy: React.FC = () => {
     handleImageKeypress
   } = useSplittimeImageViewer();
   return <>
+        <CanonicalTag />
         <DynamicSeo 
           type="project"
           title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
@@ -39,7 +41,6 @@ const SplittimeCaseStudy: React.FC = () => {
           results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
           technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
           path="/project/splittime"
-          canonicalUrl="https://barskydesign.pro/portfolio/splittime"
         />
       
       <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">

@@ -11,7 +11,6 @@ interface BlogPostSeoProps {
   publishedDate: string;
   tags: string[];
   slug: string;
-  canonicalUrl?: string;
 }
 
 interface PageSeoProps {
@@ -20,7 +19,6 @@ interface PageSeoProps {
   description: string;
   image?: string;
   path: string;
-  canonicalUrl?: string;
 }
 
 interface ProjectSeoProps {
@@ -32,7 +30,6 @@ interface ProjectSeoProps {
   results: string[];
   technologies: string[];
   path: string;
-  canonicalUrl?: string;
 }
 
 interface ServiceSeoProps {
@@ -44,12 +41,11 @@ interface ServiceSeoProps {
   benefits: string[];
   targetAudience: string;
   path: string;
-  canonicalUrl?: string;
+  
 }
 
 interface HomeSeoProps {
   type: 'home';
-  canonicalUrl?: string;
 }
 
 type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | ServiceSeoProps | HomeSeoProps;
@@ -59,38 +55,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const baseUrl = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
   
-  // Generate dynamic canonical URL
-  const getCanonicalUrl = (pathname: string): string => {
-    // Clean pathname to remove any index.html references
-    let cleanPath = pathname.replace('/index.html', '').replace('index.html', '');
-    
-    const routeMappings: Record<string, string> = {
-      '/': '',
-      '/about': '/about', 
-      '/services': '/services',
-      '/projects': '/portfolio',
-      '/contact': '/contact',
-      '/blog': '/blog',
-      '/case-studies/herbalink-mobile-herbalist-ux-design': '/portfolio/herbalink',
-      '/project/herbalink': '/portfolio/herbalink',
-      '/case-study-herbalink': '/portfolio/herbalink',
-      '/case-studies/splittime-coparenting-app-design': '/portfolio/splittime',
-      '/project/splittime': '/portfolio/splittime',
-      '/case-study-splittime': '/portfolio/splittime',
-      '/case-studies/investor-loan-portfolio-management': '/portfolio/investor-loan-app',
-      '/project/investor-loan-app': '/portfolio/investor-loan-app',
-      '/case-study-investor-loan': '/portfolio/investor-loan-app',
-      '/case-studies/wholesale-distribution-ai-solution': '/portfolio/wholesale-distribution',
-      '/project/wholesale-distribution': '/portfolio/wholesale-distribution'
-    };
-    
-    const mappedPath = routeMappings[cleanPath] || cleanPath;
-    return `${baseUrl}${mappedPath}`;
-  };
-  
-  // Use explicit canonical URL if provided, otherwise use path or fallback to dynamic generation
-  const canonicalUrl = props.canonicalUrl || 
-    ('path' in props && props.path ? `${baseUrl}${props.path}` : getCanonicalUrl(location.pathname));
 
   // Helper function to truncate description to 150-160 characters
   const truncateDescription = (text: string, maxLength: number = 160): string => {
@@ -214,7 +178,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   };
 
   if (props.type === 'blog-post') {
-    const blogCanonicalUrl = props.canonicalUrl || `${baseUrl}/blog/${props.slug}`;
     const schema = generateBlogPostSchema(props);
     const truncatedExcerpt = truncateDescription(props.excerpt);
 
@@ -223,13 +186,12 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design Blog</title>
         <meta name="description" content={truncatedExcerpt} />
-        <link rel="canonical" href={blogCanonicalUrl} />
         
         {/* Open Graph Tags for Facebook/LinkedIn */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${props.title} | Barsky Design Blog`} />
         <meta property="og:description" content={truncatedExcerpt} />
-        <meta property="og:url" content={blogCanonicalUrl} />
+        <meta property="og:url" content={`${baseUrl}/blog/${props.slug}`} />
         <meta property="og:image" content={props.featuredImage || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -266,7 +228,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'page') {
-    const pageCanonicalUrl = props.canonicalUrl || `${baseUrl}${props.path}`;
     const schema = generatePageSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -275,13 +236,12 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
-        <link rel="canonical" href={pageCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${props.title} | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={pageCanonicalUrl} />
+        <meta property="og:url" content={`${baseUrl}${props.path}`} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -306,7 +266,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'project') {
-    const projectCanonicalUrl = props.canonicalUrl || `${baseUrl}${props.path}`;
     const schema = generateProjectSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -315,13 +274,12 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
-        <link rel="canonical" href={projectCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={projectCanonicalUrl} />
+        <meta property="og:url" content={`${baseUrl}${props.path}`} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -357,7 +315,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   }
 
   if (props.type === 'service') {
-    const serviceCanonicalUrl = props.canonicalUrl || `${baseUrl}${props.path}`;
     const schema = generateServiceSchema(props);
     const truncatedDescription = truncateDescription(props.description);
 
@@ -366,13 +323,12 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         {/* Basic Meta Tags */}
         <title>{props.serviceName} - Product Design Services | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
-        <link rel="canonical" href={serviceCanonicalUrl} />
         
         {/* Open Graph Tags */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={serviceCanonicalUrl} />
+        <meta property="og:url" content={`${baseUrl}${props.path}`} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -402,20 +358,18 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   // Default/Home page
   const homeDescription = "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises.";
   const truncatedHomeDescription = truncateDescription(homeDescription);
-  const homeCanonicalUrl = props.canonicalUrl || baseUrl;
 
   return (
     <Helmet>
       {/* Basic Meta Tags */}
       <title>Hiram Barsky - Product Designer & Gen AI Developer</title>
       <meta name="description" content={truncatedHomeDescription} />
-      <link rel="canonical" href={homeCanonicalUrl} />
       
       {/* Open Graph Tags */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Hiram Barsky - Product Designer & Gen AI Developer" />
       <meta property="og:description" content={truncatedHomeDescription} />
-      <meta property="og:url" content={homeCanonicalUrl} />
+      <meta property="og:url" content={baseUrl} />
       <meta property="og:image" content={defaultImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

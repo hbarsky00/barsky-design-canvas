@@ -6,6 +6,7 @@ import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
 import SitemapGenerator from "@/components/seo/SitemapGenerator";
 import MetaOptimizer from "@/components/seo/MetaOptimizer";
+import CanonicalTag from "@/components/CanonicalTag";
 
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
@@ -15,7 +16,8 @@ const Index = () => {
   return (
     <>
       {/* Comprehensive SEO Optimization */}
-      <DynamicSeo type="home" canonicalUrl="https://barskydesign.pro" />
+      <CanonicalTag />
+      <DynamicSeo type="home" />
       <MetaOptimizer 
         pageType="home"
         title="Hiram Barsky - Product Designer & Gen AI Developer"

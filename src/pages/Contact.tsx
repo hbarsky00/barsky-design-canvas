@@ -7,16 +7,17 @@ import ContactInformation from '@/components/contact/ContactInformation';
 import ContactForm from '@/components/contact/ContactForm';
 import BlogPreview from '@/components/blog/BlogPreview';
 import DynamicSeo from '@/components/seo/DynamicSeo';
+import CanonicalTag from "@/components/CanonicalTag";
 
 const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <CanonicalTag />
       <DynamicSeo 
         type="page"
         title="Contact Hiram Barsky - AI Design Consultation"
         description="Get in touch for AI-enhanced product design services. Specializing in intelligent web applications and AI-powered user interfaces."
         path="/contact"
-        canonicalUrl="https://barskydesign.pro/contact"
       />
       
       <Header />

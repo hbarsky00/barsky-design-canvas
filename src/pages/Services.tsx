@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
+import CanonicalTag from "@/components/CanonicalTag";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Services = () => {
@@ -118,6 +119,7 @@ const Services = () => {
 
   return (
     <>
+      <CanonicalTag />
       <DynamicSeo 
         type="service"
         title="Design Systems That Teams Actually Use"
@@ -126,7 +128,6 @@ const Services = () => {
         benefits={["40-70% improvement guarantee", "AI-enhanced research", "Proven results"]}
         targetAudience="Startups and Enterprises"
         path="/services"
-        canonicalUrl="https://barskydesign.pro/services"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

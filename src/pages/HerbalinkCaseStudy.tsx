@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
+import CanonicalTag from "@/components/CanonicalTag";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 import RelatedProjects from "@/components/RelatedProjects";
@@ -80,6 +81,7 @@ const HerbalinkCaseStudy: React.FC = () => {
     icon: <Sprout className="h-6 w-6" />
   }];
   return <>
+      <CanonicalTag />
       <DynamicSeo 
         type="project"
         title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"
@@ -89,7 +91,6 @@ const HerbalinkCaseStudy: React.FC = () => {
         results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
         technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
         path="/project/herbalink"
-        canonicalUrl="https://barskydesign.pro/portfolio/herbalink"
       />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">

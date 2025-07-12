@@ -10,7 +10,7 @@ interface BreadcrumbItem {
 interface EnhancedGlobalSeoProps {
   title: string;
   description: string;
-  canonicalUrl: string;
+  
   pageType: 'homepage' | 'project' | 'blog' | 'service' | 'content' | 'portfolio';
   keywords?: string[];
   ogImage?: string;
@@ -21,7 +21,6 @@ interface EnhancedGlobalSeoProps {
 const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
   title,
   description,
-  canonicalUrl,
   pageType,
   keywords = [],
   ogImage = "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
@@ -38,7 +37,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
                pageType === 'portfolio' ? "CollectionPage" : "WebPage",
       "name": title,
       "description": description,
-      "url": canonicalUrl,
+      "url": "https://barskydesign.pro",
       "image": ogImage,
       "author": {
         "@type": "Person",
@@ -132,7 +131,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       {/* Open Graph Tags */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:url" content="https://barskydesign.pro" />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

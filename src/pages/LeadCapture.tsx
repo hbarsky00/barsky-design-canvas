@@ -11,7 +11,7 @@ const LeadCapture: React.FC = () => {
       <EnhancedGlobalSeo 
         title="Start Your AI-Enhanced Design Project | Get Custom Quote | Hiram Barsky"
         description="Ready to transform your digital product with AI-enhanced UX design? Get a personalized project plan and quote within 24 hours. Specializing in AI integration and user experience."
-        canonicalUrl="https://barskydesign.pro/get-started"
+        
         pageType="content"
         keywords={[
           "AI UX design quote", "custom design project", "AI integration consultation",

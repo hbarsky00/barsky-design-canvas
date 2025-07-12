@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import CanonicalTag from "@/components/CanonicalTag";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -81,10 +82,10 @@ const FreeAudit: React.FC = () => {
 
   return (
     <>
+      <CanonicalTag />
       <EnhancedGlobalSeo 
         title="Free UX Conversion Audit - Increase Conversions 40%+ | Hiram Barsky"
         description="Get your free 30-minute UX conversion audit. Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX design. Book now!"
-        canonicalUrl="https://barskydesign.pro/free-audit"
         pageType="content"
         keywords={[
           "free UX audit", "conversion optimization audit", "UX consultation", "AI UX analysis",

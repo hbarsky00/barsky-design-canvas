@@ -33,7 +33,7 @@ const MetaOptimizer: React.FC<MetaOptimizerProps> = ({
       {/* Essential Meta Tags */}
       <title>{optimizedTitle}</title>
       <meta name="description" content={optimizedDescription} />
-      <link rel="canonical" href={url} />
+      
       
       {/* Robots directive */}
       <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />

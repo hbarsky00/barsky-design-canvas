@@ -2,6 +2,7 @@ import React from 'react';
 import DynamicSeo from '@/components/seo/DynamicSeo';
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
+import CanonicalTag from "@/components/CanonicalTag";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { CheckCircle, Briefcase, Award, Book, Users, Target, Lightbulb } from 'lucide-react';
@@ -31,13 +32,13 @@ const tools = [
 const About = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <CanonicalTag />
       <DynamicSeo 
         type="page"
         title="About Hiram Barsky - AI-Enhanced Product Designer"
         description="Professional Product Designer with 15+ years creating AI-enhanced digital experiences. Learn about my design philosophy and AI integration expertise."
         image={`https://barskydesign.pro${aboutOgImage}`}
         path="/about"
-        canonicalUrl="https://barskydesign.pro/about"
       />
       <SeoAnalyticsTracker pageTitle="About - Hiram Barsky" pageType="page" />
       

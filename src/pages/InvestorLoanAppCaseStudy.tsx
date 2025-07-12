@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
+import CanonicalTag from "@/components/CanonicalTag";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import ShareButtons from "@/components/blog/ShareButtons";
 import RelatedProjects from "@/components/RelatedProjects";
@@ -93,6 +94,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     icon: <LineChart className="h-6 w-6" />
   }];
   return <>
+      <CanonicalTag />
       <DynamicSeo 
         type="project"
         title="Investor Loan App: Smart Portfolio Management Case Study | Hiram Barsky"
@@ -102,7 +104,6 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
         results={["60% faster portfolio analysis", "90% automated report generation", "Real-time market insights"]}
         technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
         path="/project/investor-loan-app"
-        canonicalUrl="https://barskydesign.pro/portfolio/investor-loan-app"
       />
       
       <div className="fintech-platform-showcase min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">

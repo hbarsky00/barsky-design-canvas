@@ -30,7 +30,7 @@ const Store: React.FC = () => {
       <EnhancedGlobalSeo 
         title="AI-Enhanced Design Resources | Hiram Barsky | Templates & Accessibility Tools"
         description="Shop AI-enhanced design resources, accessibility-compliant templates, conversion-optimized UI kits, and business-focused design guides. Tools created by an AI-fluent UX designer specializing in WCAG compliance and cross-functional collaboration."
-        canonicalUrl="https://barskydesign.pro/store"
+        
         pageType="content"
         keywords={[
           "AI-enhanced design resources", "accessibility-compliant templates", "conversion-optimized UI kits",

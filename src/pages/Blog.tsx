@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogPreview from "@/components/blog/BlogPreview";
 import BlogBreadcrumbs from "@/components/seo/BlogBreadcrumbs";
+import CanonicalTag from "@/components/CanonicalTag";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Blog = () => {
@@ -12,13 +13,13 @@ const Blog = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
+      <CanonicalTag />
       <DynamicSeo 
         type="page"
         title="UX Design Blog | AI-Enhanced Design Insights"
         description="Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization. Learn about modern design processes, tools like Claude AI and Figma AI, and business-focused design strategies."
         image="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
         path="/blog"
-        canonicalUrl="https://barskydesign.pro/blog"
       />
       
       <Header />
