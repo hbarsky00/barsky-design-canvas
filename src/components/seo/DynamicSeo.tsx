@@ -215,6 +215,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:description" content={truncatedExcerpt} />
         <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={getPageTypeImage('blog', props.featuredImage)} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
@@ -268,6 +269,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={getPageTypeImage('page', props.image)} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
@@ -314,6 +316,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={getPageTypeImage('project', props.image || props.project?.heroImage)} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={projectName} />
@@ -364,6 +367,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={pageCanonicalUrl} />
         <meta property="og:image" content={getPageTypeImage('service', props.image)} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={serviceName} />
@@ -406,6 +410,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       <meta property="og:description" content={truncatedHomeDescription} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={getPageTypeImage('home')} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer" />
