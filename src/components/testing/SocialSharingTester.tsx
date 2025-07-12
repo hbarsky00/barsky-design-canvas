@@ -12,6 +12,9 @@ interface TestResult {
   title?: string;
   description?: string;
   image?: string;
+  canonical?: string;
+  ogUrl?: string;
+  canonicalValid?: boolean;
   message: string;
 }
 
@@ -62,14 +65,19 @@ const SocialSharingTester: React.FC = () => {
       const response = await fetch(url);
       const html = await response.text();
       
-      // Parse meta tags (enhanced version with image validation)
+      // Parse meta tags (enhanced version with image validation and canonical URL checking)
       const ogTitle = html.match(/<meta property="og:title" content="([^"]*)"/) || [];
       const ogDescription = html.match(/<meta property="og:description" content="([^"]*)"/) || [];
       const ogImage = html.match(/<meta property="og:image" content="([^"]*)"/) || [];
+      const ogUrl = html.match(/<meta property="og:url" content="([^"]*)"/) || [];
+      const canonical = html.match(/<link rel="canonical" href="([^"]*)"/) || [];
       const ogImageWidth = html.match(/<meta property="og:image:width" content="([^"]*)"/) || [];
       const ogImageHeight = html.match(/<meta property="og:image:height" content="([^"]*)"/) || [];
       const twitterTitle = html.match(/<meta name="twitter:title" content="([^"]*)"/) || [];
       const twitterCard = html.match(/<meta name="twitter:card" content="([^"]*)"/) || [];
+
+      // Validate canonical URL
+      const canonicalValid = canonical[1] === url || ogUrl[1] === url;
 
       // Validate og:image dimensions if present
       let imageValidation = null;
@@ -78,6 +86,17 @@ const SocialSharingTester: React.FC = () => {
       }
 
       const newResults: TestResult[] = [
+        {
+          platform: 'Canonical URL Validation',
+          url: url,
+          status: canonicalValid ? 'success' : 'error',
+          canonical: canonical[1],
+          ogUrl: ogUrl[1],
+          canonicalValid,
+          message: canonicalValid 
+            ? 'Canonical URL matches test URL' 
+            : `Canonical URL mismatch! Expected: ${url}, Found: ${canonical[1] || 'none'}, og:url: ${ogUrl[1] || 'none'}`
+        },
         {
           platform: 'Open Graph (Facebook/LinkedIn)',
           url: url,
@@ -219,10 +238,19 @@ const SocialSharingTester: React.FC = () => {
                 
                 <p className="text-sm text-gray-600 mb-2">{result.message}</p>
                 
-                {(result.title || result.image) && (
+                {(result.title || result.image || result.canonical) && (
                   <div className="space-y-2 text-sm">
                     {result.title && <p><strong>Title:</strong> {result.title}</p>}
                     {result.description && <p><strong>Description:</strong> {result.description}</p>}
+                    {result.canonical && (
+                      <div>
+                        <p><strong>Canonical URL:</strong> <span className="text-xs break-all">{result.canonical}</span></p>
+                        {result.ogUrl && <p><strong>og:url:</strong> <span className="text-xs break-all">{result.ogUrl}</span></p>}
+                        <p className={`text-xs ${result.canonicalValid ? 'text-green-600' : 'text-red-600'}`}>
+                          <strong>Status:</strong> {result.canonicalValid ? '✓ Valid' : '✗ Invalid'}
+                        </p>
+                      </div>
+                    )}
                     {result.image && (
                       <div>
                         <p><strong>Image URL:</strong> <span className="text-xs break-all">{result.image}</span></p>
