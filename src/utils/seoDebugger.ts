@@ -1,3 +1,5 @@
+import { getCanonicalUrl, validateCanonicalUrl } from './canonicalUrl';
+
 // SEO Debug Utility - helps identify canonical URL issues
 export const debugCanonicalUrl = () => {
   if (typeof window === 'undefined') return;
@@ -5,9 +7,11 @@ export const debugCanonicalUrl = () => {
   const canonicalLinks = document.querySelectorAll('link[rel="canonical"]');
   const ogUrls = document.querySelectorAll('meta[property="og:url"]');
   const currentUrl = window.location.href;
+  const expectedCanonical = getCanonicalUrl();
   
   console.group('🔍 SEO Debug Report');
   console.log('Current URL:', currentUrl);
+  console.log('Expected canonical URL:', expectedCanonical);
   console.log('Found canonical links:', canonicalLinks.length);
   
   const canonicalUrls = Array.from(canonicalLinks).map(link => (link as HTMLLinkElement).href);
@@ -49,7 +53,17 @@ export const debugCanonicalUrl = () => {
     console.log('OG URL:', ogUrlValues[0]);
   }
   
-  if (!hasCanonicalConflicts && !hasOgUrlConflicts && !canonicalOgMismatch) {
+  // Check if canonical URL matches expected
+  const canonicalMatchesExpected = canonicalUrls.length > 0 && 
+    canonicalUrls[0] === expectedCanonical;
+  
+  if (!canonicalMatchesExpected && canonicalUrls.length > 0) {
+    console.error('❌ Canonical URL does not match expected URL!');
+    console.log('Found:', canonicalUrls[0]);
+    console.log('Expected:', expectedCanonical);
+  }
+
+  if (!hasCanonicalConflicts && !hasOgUrlConflicts && !canonicalOgMismatch && canonicalMatchesExpected) {
     console.log('✅ SEO URLs are properly configured');
   }
   
@@ -57,12 +71,14 @@ export const debugCanonicalUrl = () => {
   
   return {
     currentUrl,
+    expectedCanonical,
     canonicalUrls,
     ogUrls: ogUrlValues,
-    hasConflicts: hasCanonicalConflicts || hasOgUrlConflicts || canonicalOgMismatch,
+    hasConflicts: hasCanonicalConflicts || hasOgUrlConflicts || canonicalOgMismatch || !canonicalMatchesExpected,
     hasCanonicalConflicts,
     hasOgUrlConflicts,
-    canonicalOgMismatch
+    canonicalOgMismatch,
+    canonicalMatchesExpected
   };
 };
 

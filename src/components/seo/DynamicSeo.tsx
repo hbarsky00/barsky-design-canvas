@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { getCanonicalUrl, validateCanonicalUrl } from '@/utils/canonicalUrl';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -55,6 +56,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const location = useLocation();
   const baseDomain = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
+  
+  // State to track if router is ready
+  const [isRouterReady, setIsRouterReady] = React.useState(false);
 
   // Dynamic og:image selection based on page type
   const getPageTypeImage = (pageType: string, customImage?: string): string => {
@@ -71,13 +75,10 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return imageMap[pageType] || defaultImage;
   };
 
-  // Generate the correct canonical URL based on current location
-  const getCanonicalUrl = () => {
-    // Use current pathname to ensure canonical URL matches fetched URL
-    return `${baseDomain}${location.pathname}`;
-  };
-
-  const canonicalUrl = getCanonicalUrl();
+  // Generate canonical URL using consolidated utility
+  const canonicalUrl = React.useMemo(() => {
+    return getCanonicalUrl(isRouterReady ? location.pathname : undefined);
+  }, [location.pathname, isRouterReady]);
 
   // Helper function to truncate description to 150-160 characters
   const truncateDescription = (text: string, maxLength: number = 160): string => {
@@ -87,13 +88,32 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
   };
 
-  // Debug logging to show what canonical URL is being set
-  console.log('DynamicSeo canonical URL:', canonicalUrl, 'for page type:', props.type);
-  
-  // Debug logging to verify canonical URL generation
+  // Ensure router is properly initialized before generating canonical URLs
   React.useEffect(() => {
-    console.log('DynamicSeo canonical URL:', canonicalUrl, 'for pathname:', location.pathname, 'page type:', props.type);
-  }, [canonicalUrl, location.pathname, props.type]);
+    // Small delay to ensure React Router has initialized
+    const timer = setTimeout(() => {
+      setIsRouterReady(true);
+    }, 10);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Debug logging and validation
+  React.useEffect(() => {
+    if (isRouterReady) {
+      console.log('🔗 DynamicSeo Debug:', {
+        pageType: props.type,
+        routerPath: location.pathname,
+        canonicalUrl,
+        isValid: validateCanonicalUrl(canonicalUrl)
+      });
+    }
+  }, [canonicalUrl, location.pathname, props.type, isRouterReady]);
+
+  // Don't render meta tags until router is ready
+  if (!isRouterReady) {
+    return null;
+  }
 
   // Generate structured data for blog posts
   const generateBlogPostSchema = (props: BlogPostSeoProps) => {
