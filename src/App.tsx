@@ -62,6 +62,12 @@ function App() {
     import('@/utils/imageOptimization').then(({ preloadCriticalImages }) => {
       preloadCriticalImages();
     });
+    
+    // Enable global image compression
+    import('@/utils/imageCompressionTracker').then(({ enableGlobalImageCompression, monitorImagePerformance }) => {
+      enableGlobalImageCompression();
+      setTimeout(monitorImagePerformance, 2000); // Monitor after images load
+    });
   }, []);
   
   return (

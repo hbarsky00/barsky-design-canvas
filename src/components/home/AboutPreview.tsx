@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 
 const AboutPreview: React.FC = () => {
   const scrollToAbout = () => {
@@ -64,7 +65,7 @@ const AboutPreview: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img
-              src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+              src={getOptimizedImageSrc("/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png")}
               alt="Hiram Barsky - Product Designer"
               className="aspect-square w-80 mx-auto rounded-2xl shadow-2xl object-cover"
               loading="lazy"

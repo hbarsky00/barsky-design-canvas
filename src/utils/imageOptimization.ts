@@ -8,12 +8,12 @@ export interface OptimizedImageMapping {
   aspectRatio: string;
 }
 
-// Critical images that need optimization
+// Critical images that need optimization - ordered by size/impact
 export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {
   // Profile/Avatar images - keep original user photo
   '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png': {
     original: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
-    webp: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Use original for now
+    webp: '/optimized/profile-avatar-compressed.webp',
     width: 208,
     height: 208,
     aspectRatio: '1/1'
@@ -21,26 +21,47 @@ export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {
   // Hero heading image
   '/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png': {
     original: '/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png',
-    webp: '/optimized/hero-heading.webp',
+    webp: '/optimized/hero-heading-compressed.webp',
     width: 600,
     height: 154,
     aspectRatio: '600/154'
   },
-  // Herbalink interface
+  // Large project images (biggest file size impact)
   '/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png': {
     original: '/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png',
-    webp: '/optimized/herbalink-interface.webp',
+    webp: '/optimized/herbalink-interface-compressed.webp',
     width: 800,
     height: 500,
     aspectRatio: '8/5'
   },
-  // Key project images
   '/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png': {
     original: '/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png',
-    webp: '/optimized/project-hero.webp',
+    webp: '/optimized/project-hero-compressed.webp',
     width: 800,
     height: 600,
     aspectRatio: '4/3'
+  },
+  '/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png': {
+    original: '/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png',
+    webp: '/optimized/herbalink-mobile-compressed.webp',
+    width: 800,
+    height: 600,
+    aspectRatio: '4/3'
+  },
+  // Additional large project images
+  '/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png': {
+    original: '/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png',
+    webp: '/optimized/splittime-hero-compressed.webp',
+    width: 800,
+    height: 600,
+    aspectRatio: '4/3'
+  },
+  '/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png': {
+    original: '/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png',
+    webp: '/optimized/healthcare-professional-compressed.webp',
+    width: 600,
+    height: 400,
+    aspectRatio: '3/2'
   }
 };
 

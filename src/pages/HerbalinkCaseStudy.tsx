@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 import herbalinkOgImage from "@/assets/social/herbalink-og.jpg";
 const HerbalinkCaseStudy: React.FC = () => {
   const {
@@ -127,7 +128,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   duration: 0.8
                 }} className="relative">
                   <figure className="project-image-container">
-                    <img src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png" alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")} />
+                    <img src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")} alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")} />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                       Herbalink mobile app interface showcasing the comprehensive wellness platform
                     </figcaption>
