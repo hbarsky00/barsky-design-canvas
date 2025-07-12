@@ -20,6 +20,9 @@ const SeoValidator: React.FC<SeoValidatorProps> = ({ expectedCanonical, onValida
         actualCanonical: debugInfo?.canonicalUrls[0],
         currentUrl: debugInfo?.currentUrl,
         hasConflicts: debugInfo?.hasConflicts,
+        hasCanonicalConflicts: debugInfo?.hasCanonicalConflicts,
+        hasOgUrlConflicts: debugInfo?.hasOgUrlConflicts,
+        canonicalOgMismatch: debugInfo?.canonicalOgMismatch,
         canonicalCount: debugInfo?.canonicalUrls.length || 0,
         ogUrlCount: debugInfo?.ogUrls.length || 0
       };
@@ -66,7 +69,9 @@ const SeoValidator: React.FC<SeoValidatorProps> = ({ expectedCanonical, onValida
         <div style={{ fontSize: '10px', marginTop: '4px' }}>
           Expected: {validationResult.expectedCanonical}<br/>
           Actual: {validationResult.actualCanonical}<br/>
-          Conflicts: {validationResult.hasConflicts ? 'Yes' : 'No'}
+          {validationResult.hasCanonicalConflicts && <span>⚠️ Multiple canonical URLs<br/></span>}
+          {validationResult.hasOgUrlConflicts && <span>⚠️ Multiple og:url tags<br/></span>}
+          {validationResult.canonicalOgMismatch && <span>⚠️ Canonical/OG URL mismatch<br/></span>}
         </div>
       )}
     </div>
