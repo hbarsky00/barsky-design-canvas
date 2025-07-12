@@ -183,6 +183,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <Helmet>
+        {/* Canonical URL */}
+        <link rel="canonical" href={`${baseUrl}/blog/${props.slug}`} />
+        
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design Blog</title>
         <meta name="description" content={truncatedExcerpt} />
@@ -233,6 +236,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <Helmet>
+        {/* Canonical URL */}
+        <link rel="canonical" href={`${baseUrl}${props.path}`} />
+        
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
@@ -271,6 +277,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <Helmet>
+        {/* Canonical URL */}
+        <link rel="canonical" href={`${baseUrl}${props.path}`} />
+        
         {/* Basic Meta Tags */}
         <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
@@ -320,6 +329,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <Helmet>
+        {/* Canonical URL */}
+        <link rel="canonical" href={`${baseUrl}${props.path}`} />
+        
         {/* Basic Meta Tags */}
         <title>{props.serviceName} - Product Design Services | Barsky Design</title>
         <meta name="description" content={truncatedDescription} />
@@ -361,6 +373,9 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
   return (
     <Helmet>
+      {/* Canonical URL */}
+      <link rel="canonical" href={baseUrl} />
+      
       {/* Basic Meta Tags */}
       <title>Hiram Barsky - Product Designer & Gen AI Developer</title>
       <meta name="description" content={truncatedHomeDescription} />
