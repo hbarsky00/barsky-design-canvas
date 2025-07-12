@@ -1,0 +1,30 @@
+module.exports = {
+  include: [
+    "/",
+    "/projects", 
+    "/contact",
+    "/about",
+    "/blog",
+    "/services",
+    "/case-studies/herbalink-mobile-herbalist-ux-design",
+    "/case-studies/splittime-coparenting-app-design",
+    "/case-studies/investor-loan-portfolio-management", 
+    "/case-studies/wholesale-distribution-ai-solution",
+    "/design-services/ux-ui-design",
+    "/design-services/web-development",
+    "/design-services/mobile-app-design",
+    "/store",
+    "/get-started", 
+    "/free-audit",
+    "/services/mvp-validation",
+    "/services/conversion-audit",
+    "/services/ai-redesign",
+    "/linkedin-visitors"
+  ],
+  skipThirdPartyRequests: true,
+  cacheAjaxRequests: false,
+  puppeteerArgs: ["--no-sandbox", "--disable-setuid-sandbox"],
+  crawl: false,
+  waitFor: 1000,
+  destination: "dist"
+};
