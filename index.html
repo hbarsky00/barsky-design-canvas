@@ -20,6 +20,20 @@
     <!-- Basic fallback meta description that will be overridden by DynamicSeo -->
     <meta name="description" content="Expert Product Designer specializing in Gen AI integration, user-centered design solutions, and transforming complex business challenges into intuitive digital experiences." />
     
+    <!-- For dynamic canonical URL generation -->
+    <script>
+      // Get current page URL
+      const currentURL = window.location.href;
+      
+      // Create or update canonical link
+      let canonicalLink = document.querySelector('link[rel="canonical"]');
+      if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.rel = 'canonical';
+        document.head.appendChild(canonicalLink);
+      }
+      canonicalLink.href = currentURL;
+    </script>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" as="image" />
