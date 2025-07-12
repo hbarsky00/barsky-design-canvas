@@ -38,6 +38,7 @@ import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
+import { useMobileOptimization } from "@/hooks/useMobileOptimization";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -50,9 +51,10 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // Apply performance and accessibility optimizations
+  // Apply performance, accessibility, and mobile optimizations
   usePerformanceOptimization();
   useAccessibilityEnhancements();
+  useMobileOptimization();
   
   return (
     <QueryClientProvider client={queryClient}>
