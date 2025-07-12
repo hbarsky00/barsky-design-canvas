@@ -89,7 +89,25 @@ function App() {
                   <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/projects" element={<AllProjects />} />
+                  {/* New SEO-friendly case study URLs */}
+                  <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
+                  <Route path="/case-studies/splittime-coparenting-app-design" element={<SplittimeCaseStudy />} />
+                  <Route path="/case-studies/investor-loan-portfolio-management" element={<InvestorLoanAppCaseStudy />} />
+                  <Route path="/case-studies/wholesale-distribution-ai-solution" element={<StoryDrivenProjectDetail />} />
+                  
+                  {/* Legacy redirects - keep for backwards compatibility */}
+                  <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
+                  <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
+                  <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
+                  <Route path="/project/wholesale-distribution" element={<StoryDrivenProjectDetail />} />
+                  <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
+                  <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
+                  <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
+                  
+                  {/* Generic project route for other projects */}
+                  <Route path="/case-studies/:projectId" element={<ProjectDetail />} />
                   <Route path="/project/:projectId" element={<ProjectDetail />} />
+                  
                   <Route path="/services" element={<Services />} />
                   <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
                   <Route path="/design-services/web-development" element={<WebDevelopment />} />
@@ -108,13 +126,6 @@ function App() {
                   <Route path="/services/conversion-audit" element={<ConversionAudit />} />
                   <Route path="/services/ai-redesign" element={<AiRedesign />} />
                   <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
-                  <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
-                  <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
-                  <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
-                  <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
-                  <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
-                  <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
-                  <Route path="/project/wholesale-distribution" element={<StoryDrivenProjectDetail />} />
                   <Route path="/meta-tag-manager" element={<MetaTagManager />} />
                   <Route path="*" element={<NotFound />} />
                   </Routes>

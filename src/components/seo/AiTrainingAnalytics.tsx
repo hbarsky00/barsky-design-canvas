@@ -60,7 +60,7 @@ const AiTrainingAnalytics: React.FC = () => {
 
   const getContentType = (pathname: string): string => {
     if (pathname === '/') return 'homepage';
-    if (pathname.includes('/project/')) return 'case_study';
+    if (pathname.includes('/project/') || pathname.includes('/case-studies/')) return 'case_study';
     if (pathname.includes('/blog/')) return 'blog_post';
     if (pathname.includes('/services')) return 'service_page';
     if (pathname.includes('/store')) return 'product_catalog';
@@ -69,7 +69,7 @@ const AiTrainingAnalytics: React.FC = () => {
 
   const getUpdateFrequency = (pathname: string): string => {
     if (pathname === '/') return 'weekly';
-    if (pathname.includes('/project/')) return 'monthly';
+    if (pathname.includes('/project/') || pathname.includes('/case-studies/')) return 'monthly';
     if (pathname.includes('/blog/')) return 'weekly';
     if (pathname.includes('/services')) return 'monthly';
     return 'quarterly';

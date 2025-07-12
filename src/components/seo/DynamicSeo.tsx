@@ -63,12 +63,13 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       '/projects': '/portfolio',
       '/contact': '/contact',
       '/blog': '/blog',
-      '/case-study-herbalink': '/case-studies/herbalink',
-      '/project/herbalink': '/case-studies/herbalink',
-      '/case-study-splittime': '/case-studies/splittime',
-      '/project/splittime': '/case-studies/splittime', 
-      '/case-study-investor-loan': '/case-studies/investor-loan-app',
-      '/project/investor-loan-app': '/case-studies/investor-loan-app'
+      '/case-study-herbalink': '/case-studies/herbalink-mobile-herbalist-ux-design',
+      '/project/herbalink': '/case-studies/herbalink-mobile-herbalist-ux-design',
+      '/case-study-splittime': '/case-studies/splittime-coparenting-app-design',
+      '/project/splittime': '/case-studies/splittime-coparenting-app-design', 
+      '/case-study-investor-loan': '/case-studies/investor-loan-portfolio-management',
+      '/project/investor-loan-app': '/case-studies/investor-loan-portfolio-management',
+      '/project/wholesale-distribution': '/case-studies/wholesale-distribution-ai-solution'
     };
     
     const mappedPath = routeMappings[pathname] || pathname;

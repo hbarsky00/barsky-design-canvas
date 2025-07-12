@@ -22,7 +22,7 @@ export const useHeaderNavigation = () => {
 
   // Check if we're on the homepage
   const isHomepage = location.pathname === '/';
-  const isProjectPage = location.pathname.startsWith('/project/');
+  const isProjectPage = location.pathname.startsWith('/project/') || location.pathname.startsWith('/case-studies/');
 
   const scrollToSection = (sectionId: string) => {
     // First check if we're on the homepage

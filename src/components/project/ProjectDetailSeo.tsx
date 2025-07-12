@@ -94,7 +94,15 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   const optimizedDescription = getOptimizedDescription();
   
   // Generate slug for canonical URL
-  const canonicalUrl = `https://barskydesign.pro/project/${project.id}`;
+  // Map to SEO-friendly URLs
+  const projectMapping: Record<string, string> = {
+    'herbalink': 'herbalink-mobile-herbalist-ux-design',
+    'splittime': 'splittime-coparenting-app-design',
+    'investor-loan-app': 'investor-loan-portfolio-management',
+    'wholesale-distribution': 'wholesale-distribution-ai-solution'
+  };
+  const seoFriendlyId = projectMapping[project.id] || project.id;
+  const canonicalUrl = `https://barskydesign.pro/case-studies/${seoFriendlyId}`;
   
   return (
     <Helmet>

@@ -51,7 +51,7 @@ const allCaseStudies: CaseStudy[] = [
     title: "Wholesale Distribution Platform",
     description: "Enterprise B2B platform streamlining wholesale operations and inventory management.",
     image: "/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png",
-    url: "/project/wholesale-distribution",
+    url: "/case-studies/wholesale-distribution-ai-solution",
     category: "Enterprise",
     tags: ["B2B", "Enterprise", "Distribution", "Web Platform"]
   }

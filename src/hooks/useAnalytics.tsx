@@ -28,10 +28,10 @@ export const useAnalytics = () => {
     // Track page view when location changes
     trackPageView(path, title);
     
-    // Track project views specifically for project pages
-    if (path.includes('/project/')) {
+    // Track project views specifically for case study pages
+    if (path.includes('/project/') || path.includes('/case-studies/')) {
       const projectId = path.split('/').pop() || '';
-      trackContentEngagement('project', projectId, title);
+      trackContentEngagement('case_study', projectId, title);
     }
     
     // Send structured data event for improved SEO analytics
@@ -58,7 +58,7 @@ export const useAnalytics = () => {
   // Helper function to determine the site section for analytics
   const getSiteSection = (path: string): string => {
     if (path === '/' || path === '') return 'home';
-    if (path.includes('/project/')) return 'portfolio';
+    if (path.includes('/project/') || path.includes('/case-studies/')) return 'portfolio';
     if (path.includes('/projects')) return 'portfolio-list';
     if (path.includes('/services')) return 'services';
     if (path.includes('/design-services')) return 'design-services';
@@ -68,7 +68,7 @@ export const useAnalytics = () => {
   // Helper function to determine page type for analytics
   const getPageType = (path: string): string => {
     if (path === '/' || path === '') return 'landing';
-    if (path.includes('/project/')) return 'detail';
+    if (path.includes('/project/') || path.includes('/case-studies/')) return 'detail';
     if (path.match(/\/(projects|services|design-services)$/)) return 'category';
     if (path.includes('/contact')) return 'contact';
     return 'content';
@@ -77,7 +77,7 @@ export const useAnalytics = () => {
   // Helper function to infer user journey stage
   const getUserJourney = (path: string): string => {
     if (path === '/' || path === '') return 'discovery';
-    if (path.includes('/projects') || path.includes('/project/')) return 'consideration';
+    if (path.includes('/projects') || path.includes('/project/') || path.includes('/case-studies/')) return 'consideration';
     if (path.includes('/services') || path.includes('/design-services')) return 'evaluation';
     if (path.includes('/contact')) return 'conversion';
     return 'engagement';

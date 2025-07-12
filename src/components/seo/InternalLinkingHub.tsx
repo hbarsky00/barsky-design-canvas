@@ -44,17 +44,17 @@ const InternalLinkingHub: React.FC = () => {
       links: [
         {
           text: "MediTrack Pro - Healthcare App",
-          url: "/project/medication-app",
+          url: "/case-studies/medication-app",
           description: "Medication management mobile app design"
         },
         {
           text: "InvestorConnect - FinTech Platform",
-          url: "/project/investor-loan-app", 
+          url: "/case-studies/investor-loan-portfolio-management", 
           description: "Professional trading platform for investors"
         },
         {
           text: "DataCatalog Pro - Enterprise Tool",
-          url: "/project/dae-search",
+          url: "/case-studies/dae-search",
           description: "AI-powered enterprise data catalog design"
         }
       ]
@@ -66,17 +66,17 @@ const InternalLinkingHub: React.FC = () => {
       links: [
         {
           text: "SplitTime - Co-parenting App",
-          url: "/project/splittime",
+          url: "/case-studies/splittime-coparenting-app-design",
           description: "Family coordination platform design"
         },
         {
           text: "HerbaLink - Telemedicine Platform", 
-          url: "/project/herbalink",
+          url: "/case-studies/herbalink-mobile-herbalist-ux-design",
           description: "Digital healthcare consultation app"
         },
         {
           text: "Barsky Joint - Restaurant Tech",
-          url: "/project/barskyjoint",
+          url: "/case-studies/barskyjoint",
           description: "Dual-format restaurant ordering system"
         }
       ]
@@ -88,12 +88,12 @@ const InternalLinkingHub: React.FC = () => {
       links: [
         {
           text: "Gold2Crypto - Investment Platform",
-          url: "/project/gold2crypto",
+          url: "/case-studies/gold2crypto",
           description: "Cryptocurrency investment transition tool"
         },
         {
           text: "Spectrum Apparel - E-commerce",
-          url: "/project/spectrum", 
+          url: "/case-studies/spectrum", 
           description: "Accessible custom apparel platform"
         },
         {

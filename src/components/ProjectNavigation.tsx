@@ -37,7 +37,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.stopPropagation();
     if (prevProject) {
       // Use navigate with replace to avoid adding to history stack
-      navigate(`/project/${prevProject.id}`, { replace: false });
+      navigate(`/case-studies/${prevProject.id}`, { replace: false });
     }
   };
 
@@ -46,7 +46,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.stopPropagation();
     if (nextProject) {
       // Use navigate with replace to avoid adding to history stack
-      navigate(`/project/${nextProject.id}`, { replace: false });
+      navigate(`/case-studies/${nextProject.id}`, { replace: false });
     }
   };
   

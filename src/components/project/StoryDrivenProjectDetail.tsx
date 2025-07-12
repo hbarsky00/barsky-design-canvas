@@ -23,7 +23,7 @@ const StoryDrivenProjectDetail: React.FC = () => {
         projectName="Wholesale Distribution App"
         results={["95% reduction in manual data entry", "500% faster order processing", "Custom automation solutions"]}
         technologies={["Business Automation", "AI Development", "Custom Software", "Workflow Optimization"]}
-        path="/project/wholesale-distribution"
+        path="/case-studies/wholesale-distribution-ai-solution"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">

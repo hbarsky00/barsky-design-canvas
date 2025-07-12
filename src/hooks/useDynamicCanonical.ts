@@ -56,14 +56,14 @@ export const getCanonicalUrl = (pathname: string): string => {
     '/contact': '/contact',
     '/blog': '/blog',
     
-    // Case Studies - map to clean URLs
-    '/case-study-herbalink': '/case-studies/herbalink',
-    '/project/herbalink': '/case-studies/herbalink',
-    '/case-study-splittime': '/case-studies/splittime', 
-    '/project/splittime': '/case-studies/splittime',
-    '/case-study-investor-loan': '/case-studies/investor-loan-app',
-    '/project/investor-loan-app': '/case-studies/investor-loan-app',
-    '/project/wholesale-distribution': '/case-studies/wholesale-distribution',
+    // Case Studies - map to SEO-friendly URLs
+    '/case-study-herbalink': '/case-studies/herbalink-mobile-herbalist-ux-design',
+    '/project/herbalink': '/case-studies/herbalink-mobile-herbalist-ux-design',
+    '/case-study-splittime': '/case-studies/splittime-coparenting-app-design', 
+    '/project/splittime': '/case-studies/splittime-coparenting-app-design',
+    '/case-study-investor-loan': '/case-studies/investor-loan-portfolio-management',
+    '/project/investor-loan-app': '/case-studies/investor-loan-portfolio-management',
+    '/project/wholesale-distribution': '/case-studies/wholesale-distribution-ai-solution',
     
     // Service pages
     '/design-services/ux-ui-design': '/services/ux-ui-design',
@@ -89,10 +89,22 @@ export const getCanonicalUrl = (pathname: string): string => {
     return `${baseUrl}${pathname}`;
   }
   
-  // Handle project details
+  // Handle project details - map to SEO-friendly URLs
   if (pathname.startsWith('/project/')) {
     const projectId = pathname.replace('/project/', '');
-    return `${baseUrl}/case-studies/${projectId}`;
+    const projectMapping: Record<string, string> = {
+      'herbalink': 'herbalink-mobile-herbalist-ux-design',
+      'splittime': 'splittime-coparenting-app-design',
+      'investor-loan-app': 'investor-loan-portfolio-management',
+      'wholesale-distribution': 'wholesale-distribution-ai-solution'
+    };
+    const seoFriendlyId = projectMapping[projectId] || projectId;
+    return `${baseUrl}/case-studies/${seoFriendlyId}`;
+  }
+  
+  // Handle case studies
+  if (pathname.startsWith('/case-studies/')) {
+    return `${baseUrl}${pathname}`;
   }
   
   // Default to current pathname

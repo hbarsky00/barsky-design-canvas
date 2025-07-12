@@ -12,13 +12,15 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   { path: '/projects', priority: 'high', changeFreq: 'weekly' },
   { path: '/services', priority: 'high', changeFreq: 'monthly' },
   
-  // Project pages - medium priority
-  { path: '/project/splittime', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/project/herbalink', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/project/medication-app', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/project/gold2crypto', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/project/dae-search', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/project/barskyjoint', priority: 'medium', changeFreq: 'monthly' },
+  // Case study pages - high priority for SEO
+  { path: '/case-studies/herbalink-mobile-herbalist-ux-design', priority: 'high', changeFreq: 'monthly' },
+  { path: '/case-studies/splittime-coparenting-app-design', priority: 'high', changeFreq: 'monthly' },
+  { path: '/case-studies/investor-loan-portfolio-management', priority: 'high', changeFreq: 'monthly' },
+  { path: '/case-studies/wholesale-distribution-ai-solution', priority: 'high', changeFreq: 'monthly' },
+  { path: '/case-studies/medication-app', priority: 'medium', changeFreq: 'monthly' },
+  { path: '/case-studies/gold2crypto', priority: 'medium', changeFreq: 'monthly' },
+  { path: '/case-studies/dae-search', priority: 'medium', changeFreq: 'monthly' },
+  { path: '/case-studies/barskyjoint', priority: 'medium', changeFreq: 'monthly' },
   
   // Service pages - medium priority
   { path: '/design-services/ux-ui-design', priority: 'medium', changeFreq: 'monthly' },
