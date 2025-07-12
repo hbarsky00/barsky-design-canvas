@@ -1,6 +1,9 @@
 # Netlify redirects to fix routing issues
-# Redirect any /index.html requests to root
+# Redirect any /index.html requests to root FIRST (must be before catch-all)
 /index.html / 301!
 
-# Handle React Router - serve index.html for all routes
+# Specific redirects for common patterns
+/index.html/* / 301!
+
+# Handle React Router - serve index.html for all routes (LAST)
 /* /index.html 200

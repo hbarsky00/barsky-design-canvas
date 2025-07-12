@@ -7,10 +7,12 @@ export const useRouterReady = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Small delay to ensure router is fully initialized
+    // Wait for React Router to initialize and ensure we're not on index.html
     const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 50);
+      if (location.pathname !== '/index.html') {
+        setIsReady(true);
+      }
+    }, 100); // Longer delay for slower connections
 
     return () => clearTimeout(timer);
   }, [location]);

@@ -89,39 +89,44 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
   };
 
-  // Clean up any index.html canonical URLs when router is ready
+  // Enhanced cleanup and defensive canonical URL generation
   React.useEffect(() => {
-    if (isRouterReady && typeof window !== 'undefined') {
-      // Remove any existing canonical links with index.html
-      const existingCanonicals = document.querySelectorAll('link[rel="canonical"]');
-      existingCanonicals.forEach(link => {
-        if (link.getAttribute('href')?.includes('index.html')) {
-          console.warn('🚨 Removing incorrect canonical URL:', link.getAttribute('href'));
-          link.remove();
-        }
-      });
+    if (!isRouterReady || typeof window === 'undefined') return;
+    
+    // Get clean pathname, fallback to '/' if problematic
+    const pathname = location.pathname === '/index.html' ? '/' : location.pathname;
+    const cleanPath = pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+    
+    // Remove any existing canonical tags to prevent duplicates
+    const existingCanonicals = document.querySelectorAll('link[rel="canonical"]');
+    existingCanonicals.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href?.includes('index.html')) {
+        console.warn('🚨 Removing incorrect canonical URL:', href);
+        link.remove();
+      }
+    });
+    
+    // Create new canonical
+    const canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = `https://barskydesign.pro${cleanPath}`;
+    document.head.appendChild(canonical);
+    
+    // Update Open Graph URL meta tag
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute('content', `https://barskydesign.pro${cleanPath}`);
+    } else {
+      const newOgUrl = document.createElement('meta');
+      newOgUrl.setAttribute('property', 'og:url');
+      newOgUrl.setAttribute('content', `https://barskydesign.pro${cleanPath}`);
+      document.head.appendChild(newOgUrl);
     }
-  }, [isRouterReady]);
-
-  // Force correct canonical URL after component mounts
-  React.useEffect(() => {
-    if (isRouterReady && typeof window !== 'undefined') {
-      // Remove any existing canonical links to prevent duplicates
-      const existingCanonicals = document.querySelectorAll('link[rel="canonical"]');
-      existingCanonicals.forEach(link => {
-        if (link.getAttribute('href')?.includes('index.html')) {
-          console.warn('🚨 Removing incorrect canonical URL:', link.getAttribute('href'));
-          link.remove();
-        }
-      });
-      
-      // Force update document title and URL for debugging
-      setTimeout(() => {
-        const currentCanonicals = document.querySelectorAll('link[rel="canonical"]');
-        console.log('🔍 Current canonical tags after cleanup:', Array.from(currentCanonicals).map(l => l.getAttribute('href')));
-      }, 100);
-    }
-  }, [isRouterReady]);
+    
+    console.log('✅ Canonical URL set to:', canonical.href);
+    console.log('✅ Open Graph URL set to:', `https://barskydesign.pro${cleanPath}`);
+  }, [isRouterReady, location.pathname]);
 
   // Debug logging and validation
   React.useEffect(() => {
