@@ -14,7 +14,6 @@ const Projects = () => {
       <Helmet>
         <title>Product Design & Gen AI Portfolio | Hiram Barsky - AI-Powered Web Applications</title>
         <meta name="description" content="Explore Product Design portfolio featuring Gen AI integration, intelligent web applications, and AI-powered user interfaces. Real case studies demonstrating AI-enhanced design solutions and user experience innovations." />
-        <link rel="canonical" href="https://barskydesign.pro/projects" />
         
         {/* Enhanced indexing signals */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />

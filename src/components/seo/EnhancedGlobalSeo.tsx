@@ -104,7 +104,6 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       {/* Basic Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={canonicalUrl} />
       
       {/* Keywords */}
       {keywords.length > 0 && (

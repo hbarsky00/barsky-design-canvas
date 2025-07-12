@@ -49,9 +49,6 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
       <meta name="twitter:description" content={post.excerpt} />
       <meta name="twitter:image" content={ogImageUrl} />
       
-      {/* Canonical URL */}
-      <link rel="canonical" href={canonicalUrl} />
-      
       {/* Structured data for blog post */}
       <script type="application/ld+json">
         {JSON.stringify({

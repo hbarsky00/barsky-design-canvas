@@ -127,8 +127,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="twitter:creator" content="@barskydesign" />
       <meta name="twitter:site" content="@barskydesign" />
       
-      {/* Canonical and alternate URLs */}
-      <link rel="canonical" href={canonicalUrl} />
+      {/* Alternate URLs */}
       <link rel="alternate" hrefLang="en" href={canonicalUrl} />
       
       {/* Additional SEO meta tags */}

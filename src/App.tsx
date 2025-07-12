@@ -79,7 +79,6 @@ function App() {
             <ImageMaximizerProvider>
               <Toaster />
               <BrowserRouter>
-                <CanonicalTag />
                 <ScrollToTop />
                 <main id="main-content" role="main">
                   <Routes>
