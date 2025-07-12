@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Twitter, Facebook, Linkedin, AtSign, Link, Share2, MessageCircle, Edit3, MoreHorizontal } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 interface ShareButtonsProps {
   title: string;
