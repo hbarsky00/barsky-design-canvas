@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "../AnimatedText";
+import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 interface HeroHeadingProps {
   isVisible: boolean;
 }
@@ -18,7 +19,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({
       duration: 0.8,
       delay: 0.2
     }} className="flex justify-center mb-3">
-        <img alt="Hiram Barsky Product Designer" loading="eager" src="/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png" className="h-[115px] sm:h-[134px] lg:h-[154px] w-auto object-contain" />
+        <img alt="Hiram Barsky Product Designer" loading="eager" src={getOptimizedImageSrc("/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png")} className="h-[115px] sm:h-[134px] lg:h-[154px] w-auto object-contain" />
       </motion.div>
       
       <motion.div initial={{

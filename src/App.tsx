@@ -57,6 +57,13 @@ function App() {
   useAccessibilityEnhancements();
   useMobileOptimization();
   
+  // Preload critical images for better performance
+  React.useEffect(() => {
+    import('@/utils/imageOptimization').then(({ preloadCriticalImages }) => {
+      preloadCriticalImages();
+    });
+  }, []);
+  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
