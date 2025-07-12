@@ -9,6 +9,7 @@ import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 import RelatedProjects from "@/components/RelatedProjects";
+import ShareButtons from "@/components/blog/ShareButtons";
 import herbalinkOgImage from "@/assets/social/herbalink-og.jpg";
 const HerbalinkCaseStudy: React.FC = () => {
   const {
@@ -686,6 +687,35 @@ const HerbalinkCaseStudy: React.FC = () => {
               </motion.div>
             </div>
           </section>
+
+          {/* Share Case Study Section */}
+          <section className="share-case-study py-16 bg-white/80 backdrop-blur-sm">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-8"
+              >
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+                  Share This Case Study
+                </h3>
+                <p className="text-neutral-600 mb-8">
+                  Found this case study helpful? Share it with others who might benefit from seeing how AI-enhanced UX design can transform healthcare accessibility.
+                </p>
+                <ShareButtons 
+                  title="Herbalink: AI-Enhanced Herbalist Platform Case Study"
+                  summary="See how AI-powered matching revolutionized natural healthcare access with 85% user match success rate and 40% faster consultation bookings."
+                  url={window.location.href}
+                  hashtags={["UXDesign", "HealthTech", "AI", "CaseStudy", "MobileUX"]}
+                />
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Related Projects */}
+          <RelatedProjects currentProjectId="herbalink" />
 
           {/* Call to Action */}
           <section className="py-20 bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500 text-white">

@@ -12,6 +12,8 @@ import SplittimeCoordinationSolution from "@/components/splittime/SplittimeCoord
 import SplittimeFamilyInterface from "@/components/splittime/SplittimeFamilyInterface";
 import SplittimeImpactMetrics from "@/components/splittime/SplittimeImpactMetrics";
 import SplittimeCallToAction from "@/components/splittime/SplittimeCallToAction";
+import ShareButtons from "@/components/blog/ShareButtons";
+import RelatedProjects from "@/components/RelatedProjects";
 import { useSplittimeImageViewer } from "@/hooks/useSplittimeImageViewer";
 import splittimeOgImage from "@/assets/social/splittime-og.jpg";
 
@@ -82,6 +84,35 @@ const SplittimeCaseStudy: React.FC = () => {
             onImageClick={openImageViewer}
             onImageKeypress={handleImageKeypress}
           />
+
+          {/* Share Case Study Section */}
+          <section className="share-case-study py-16 bg-white/80 backdrop-blur-sm">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-8"
+              >
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+                  Share This Case Study
+                </h3>
+                <p className="text-neutral-600 mb-8">
+                  Found this case study helpful? Share it with others who might benefit from seeing how thoughtful UX design can transform co-parenting communication.
+                </p>
+                <ShareButtons 
+                  title="Splittime: Co-Parenting App Case Study"
+                  summary="Transforming co-parenting from conflict to collaboration with AI-powered features that reduce communication stress and improve family coordination."
+                  url={window.location.href}
+                  hashtags={["UXDesign", "FamilyTech", "CoParenting", "CaseStudy", "MobileUX"]}
+                />
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Related Projects */}
+          <RelatedProjects currentProjectId="splittime" />
 
           <SplittimeCallToAction />
         </main>

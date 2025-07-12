@@ -7,6 +7,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import ShareButtons from "@/components/blog/ShareButtons";
+import RelatedProjects from "@/components/RelatedProjects";
 import { investorLoanImageCaptions, investorLoanGalleryImages } from "@/data/investorLoanData";
 import investorLoanOgImage from "@/assets/social/investor-loan-og.jpg";
 const InvestorLoanAppCaseStudy: React.FC = () => {
@@ -578,6 +580,35 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
               </motion.div>
             </div>
           </section>
+
+          {/* Share Case Study Section */}
+          <section className="share-case-study py-16 bg-white/80 backdrop-blur-sm">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-8"
+              >
+                <h3 className="text-2xl font-bold text-slate-900 mb-6">
+                  Share This Case Study
+                </h3>
+                <p className="text-slate-600 mb-8">
+                  Found this case study helpful? Share it with others who might benefit from seeing how intelligent design can transform investment portfolio management.
+                </p>
+                <ShareButtons 
+                  title="Investor Loan App: Smart Portfolio Management Case Study"
+                  summary="Automated reporting and portfolio tracking for investors. See how AI integration streamlined complex financial workflows and improved ROI accuracy by 92%."
+                  url={window.location.href}
+                  hashtags={["FinTech", "PortfolioManagement", "UXDesign", "CaseStudy", "AI"]}
+                />
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Related Projects */}
+          <RelatedProjects currentProjectId="investor-loan-app" />
 
           {/* Call to Action */}
           <section className="py-20 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600">
