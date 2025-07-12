@@ -1,42 +1,43 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { generateWebPUrl, getRecommendedSizes } from '@/utils/imageOptimization';
 
-interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface OptimizedImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> {
   src: string;
   alt: string;
-  fallback?: string;
+  webpSrc?: string;
+  fallbackSrc?: string;
   priority?: boolean;
   aspectRatio?: string;
   onLoadComplete?: () => void;
-  webpSrc?: string;
-  context?: 'hero' | 'gallery' | 'thumbnail' | 'avatar' | 'content';
+  sizes?: string;
+  srcSet?: string;
+  lazyLoad?: boolean;
 }
 
 /**
- * Optimized image component with lazy loading and performance enhancements
+ * High-performance optimized image component with WebP support, responsive loading, and SEO optimization
  */
-export const LazyImage: React.FC<LazyImageProps> = ({
+export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   src,
   alt,
-  fallback = '/placeholder.svg',
+  webpSrc,
+  fallbackSrc,
   priority = false,
   aspectRatio,
   onLoadComplete,
   className,
-  webpSrc,
-  context = 'content',
+  sizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  srcSet,
+  lazyLoad = true,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [isInView, setIsInView] = useState(priority);
+  const [isInView, setIsInView] = useState(!lazyLoad || priority);
   const [useWebP, setUseWebP] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  
-  // Auto-generate WebP source if not provided
-  const optimizedWebpSrc = webpSrc || generateWebPUrl(src);
-  
+  const pictureRef = useRef<HTMLElement>(null);
+
   // Check WebP support
   useEffect(() => {
     const checkWebPSupport = () => {
@@ -45,11 +46,13 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       canvas.height = 1;
       return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
     };
+
     setUseWebP(checkWebPSupport());
   }, []);
 
+  // Intersection Observer for lazy loading
   useEffect(() => {
-    if (priority || !('IntersectionObserver' in window)) {
+    if (!lazyLoad || priority || !('IntersectionObserver' in window)) {
       setIsInView(true);
       return;
     }
@@ -62,17 +65,18 @@ export const LazyImage: React.FC<LazyImageProps> = ({
         }
       },
       {
-        rootMargin: '100px', // Increased for better performance
+        rootMargin: '100px', // Start loading 100px before entering viewport
         threshold: 0.01,
       }
     );
 
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
+    const currentRef = pictureRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => observer.disconnect();
-  }, [priority]);
+  }, [lazyLoad, priority]);
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -84,28 +88,35 @@ export const LazyImage: React.FC<LazyImageProps> = ({
     setIsLoaded(true);
   };
 
-  // Generate responsive srcSet
-  const generateSrcSet = (baseSrc: string) => {
+  // Generate optimized src URLs for different screen sizes
+  const generateResponsiveSrc = (baseSrc: string) => {
+    if (srcSet) return srcSet;
+    
+    // Extract file extension and name
     const lastDot = baseSrc.lastIndexOf('.');
     const baseName = baseSrc.substring(0, lastDot);
     const extension = baseSrc.substring(lastDot);
     
-    const widths = [480, 768, 1024, 1280, 1920];
-    return widths
-      .map(width => `${baseName}-${width}w${extension} ${width}w`)
-      .join(', ');
+    // Generate responsive variants
+    return [
+      `${baseName}-480w${extension} 480w`,
+      `${baseName}-768w${extension} 768w`,
+      `${baseName}-1024w${extension} 1024w`,
+      `${baseName}-1280w${extension} 1280w`,
+      `${baseName}-1920w${extension} 1920w`
+    ].join(', ');
   };
 
-  // Get optimal source
-  const getOptimalSrc = () => {
-    if (hasError) return fallback;
-    if (useWebP && optimizedWebpSrc) return optimizedWebpSrc;
+  // Determine the best source to use
+  const getOptimizedSrc = () => {
+    if (hasError) return fallbackSrc || '/placeholder.svg';
+    if (webpSrc && useWebP) return webpSrc;
     return src;
   };
 
   return (
     <picture
-      ref={imgRef}
+      ref={pictureRef}
       className={cn(
         'relative block overflow-hidden bg-neutral-100 dark:bg-neutral-800',
         aspectRatio && `aspect-[${aspectRatio}]`,
@@ -119,10 +130,10 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       )}
 
       {/* WebP source for supporting browsers */}
-      {isInView && optimizedWebpSrc && (
+      {isInView && webpSrc && (
         <source
-          srcSet={generateSrcSet(optimizedWebpSrc)}
-          sizes={getRecommendedSizes(context)}
+          srcSet={generateResponsiveSrc(webpSrc)}
+          sizes={sizes}
           type="image/webp"
         />
       )}
@@ -130,10 +141,11 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       {/* Fallback image */}
       {isInView && (
         <img
-          src={getOptimalSrc()}
+          ref={imgRef}
+          src={getOptimizedSrc()}
           alt={alt}
-          srcSet={!optimizedWebpSrc ? generateSrcSet(src) : undefined}
-          sizes={getRecommendedSizes(context)}
+          srcSet={!webpSrc ? generateResponsiveSrc(src) : undefined}
+          sizes={sizes}
           onLoad={handleLoad}
           onError={handleError}
           loading={priority ? 'eager' : 'lazy'}
