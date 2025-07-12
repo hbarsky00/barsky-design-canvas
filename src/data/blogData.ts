@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 15, 2025",
     readTime: "7 min read",
-    coverImage: "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png",
+    coverImage: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop",
     tags: ["UX Design", "Career", "Job Search", "Portfolio", "Networking"],
     slug: "finding-first-ux-job-guide",
     content: `
@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 8, 2025",
     readTime: "8 min read",
-    coverImage: "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png",
+    coverImage: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop",
     tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
     slug: "design-systems-that-get-used",
     content: `
@@ -120,7 +120,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 28, 2025",
     readTime: "6 min read",
-    coverImage: "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png",
+    coverImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
     tags: ["Portfolio", "UX Design", "Career", "Job Search", "Interview"],
     slug: "portfolio-red-flags-no-interviews",
     content: `
@@ -178,7 +178,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 15, 2025",
     readTime: "9 min read",
-    coverImage: "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png",
+    coverImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
     tags: ["AI", "UX Design", "Future", "Career", "Technology"],
     slug: "ai-enhanced-ux-designer-future",
     content: `
@@ -244,7 +244,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 1, 2025",
     readTime: "7 min read",
-    coverImage: "https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png",
+    coverImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop",
     tags: ["User Research", "Budget", "Methods", "Strategy", "Process"],
     slug: "user-research-shoestring-budget",
     content: `
