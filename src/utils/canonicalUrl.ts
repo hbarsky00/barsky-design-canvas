@@ -1,16 +1,9 @@
-// Consolidated canonical URL utility
+// Consolidated canonical URL utility with robust path handling
 export const getCanonicalUrl = (pathname?: string): string => {
   const baseDomain = 'https://barskydesign.pro';
   
   // Use provided pathname, React Router pathname, or fallback to window.location
   let currentPath = pathname;
-  
-  // Debug: log what we're starting with
-  console.log('🔗 getCanonicalUrl - Starting with:', {
-    providedPathname: pathname,
-    windowPathname: typeof window !== 'undefined' ? window.location.pathname : 'undefined',
-    windowHref: typeof window !== 'undefined' ? window.location.href : 'undefined'
-  });
   
   if (!currentPath) {
     // Try to get from window.location if available
@@ -21,6 +14,12 @@ export const getCanonicalUrl = (pathname?: string): string => {
     }
   }
   
+  // CRITICAL FIX: Strip /index.html if present
+  if (currentPath.endsWith('/index.html')) {
+    currentPath = currentPath.replace('/index.html', '') || '/';
+    console.warn('🚨 STRIPPED index.html from path:', currentPath);
+  }
+  
   // Ensure path starts with /
   if (!currentPath.startsWith('/')) {
     currentPath = '/' + currentPath;
@@ -29,6 +28,12 @@ export const getCanonicalUrl = (pathname?: string): string => {
   // Remove trailing slash except for root
   if (currentPath !== '/' && currentPath.endsWith('/')) {
     currentPath = currentPath.slice(0, -1);
+  }
+  
+  // Validate path doesn't contain invalid patterns
+  if (currentPath.includes('index.html')) {
+    console.error('🚨 INVALID PATH DETECTED:', currentPath);
+    currentPath = '/'; // Fallback to root
   }
   
   const canonicalUrl = `${baseDomain}${currentPath}`;

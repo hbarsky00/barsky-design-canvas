@@ -2,19 +2,27 @@
 export const forceCanonicalFix = () => {
   if (typeof window === 'undefined') return;
   
-  const observer = new MutationObserver(() => {
+  const fixCanonicalUrl = () => {
     const canonicals = document.querySelectorAll('link[rel="canonical"]');
-    const currentPath = window.location.pathname;
+    let currentPath = window.location.pathname;
+    
+    // Strip index.html if present
+    if (currentPath.endsWith('/index.html')) {
+      currentPath = currentPath.replace('/index.html', '') || '/';
+    }
+    
     const correctCanonical = `https://barskydesign.pro${currentPath}`;
     
     canonicals.forEach((canonical) => {
       const href = canonical.getAttribute('href');
-      if (href && href.includes('index.html')) {
+      if (href && (href.includes('index.html') || href !== correctCanonical)) {
         console.warn('🚨 FIXING CANONICAL:', href, '→', correctCanonical);
         canonical.setAttribute('href', correctCanonical);
       }
     });
-  });
+  };
+  
+  const observer = new MutationObserver(fixCanonicalUrl);
   
   // Watch for DOM changes
   observer.observe(document.head, {
@@ -25,19 +33,7 @@ export const forceCanonicalFix = () => {
   });
   
   // Initial fix
-  setTimeout(() => {
-    const canonicals = document.querySelectorAll('link[rel="canonical"]');
-    const currentPath = window.location.pathname;
-    const correctCanonical = `https://barskydesign.pro${currentPath}`;
-    
-    canonicals.forEach((canonical) => {
-      const href = canonical.getAttribute('href');
-      if (href && href.includes('index.html')) {
-        console.warn('🚨 INITIAL FIX CANONICAL:', href, '→', correctCanonical);
-        canonical.setAttribute('href', correctCanonical);
-      }
-    });
-  }, 100);
+  setTimeout(fixCanonicalUrl, 100);
   
   return observer;
 };

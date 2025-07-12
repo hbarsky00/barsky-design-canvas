@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { getCanonicalUrl, validateCanonicalUrl } from '@/utils/canonicalUrl';
+import { useRouterReady } from '@/hooks/useRouterReady';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -57,8 +58,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const baseDomain = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
   
-  // State to track if router is ready
-  const [isRouterReady, setIsRouterReady] = React.useState(false);
+  // Use router ready hook to ensure proper initialization
+  const isRouterReady = useRouterReady();
 
   // Dynamic og:image selection based on page type
   const getPageTypeImage = (pageType: string, customImage?: string): string => {
@@ -88,15 +89,19 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
   };
 
-  // Ensure router is properly initialized before generating canonical URLs
+  // Clean up any index.html canonical URLs when router is ready
   React.useEffect(() => {
-    // Small delay to ensure React Router has initialized
-    const timer = setTimeout(() => {
-      setIsRouterReady(true);
-    }, 10);
-    
-    return () => clearTimeout(timer);
-  }, []);
+    if (isRouterReady && typeof window !== 'undefined') {
+      // Remove any existing canonical links with index.html
+      const existingCanonicals = document.querySelectorAll('link[rel="canonical"]');
+      existingCanonicals.forEach(link => {
+        if (link.getAttribute('href')?.includes('index.html')) {
+          console.warn('🚨 Removing incorrect canonical URL:', link.getAttribute('href'));
+          link.remove();
+        }
+      });
+    }
+  }, [isRouterReady]);
 
   // Force correct canonical URL after component mounts
   React.useEffect(() => {
