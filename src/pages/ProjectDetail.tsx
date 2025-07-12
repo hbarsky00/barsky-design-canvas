@@ -3,9 +3,14 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
+import { useMetaTagOptimization } from "@/hooks/useMetaTagOptimization";
+import MetaTagVerifier from "@/components/seo/MetaTagVerifier";
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
+  
+  // Optimize meta tags for crawlers
+  useMetaTagOptimization();
   
   if (!projectId) {
     return (
@@ -21,6 +26,7 @@ const ProjectDetail = () => {
   return (
     <ImageMaximizerProvider>
       <SimplifiedProjectDetail />
+      <MetaTagVerifier />
     </ImageMaximizerProvider>
   );
 };
