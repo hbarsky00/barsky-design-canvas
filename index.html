@@ -2,16 +2,20 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-321GKNB37Y" 
-            integrity="sha384-5Jvd6H8Hqhb0O2x6Hg8WPZmLg6D5Pj3Ck1KGfL4a0MsU8N9q1g1Hv3C5kMf8T" 
-            crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) - Non-blocking -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-321GKNB37Y');
+      
+      // Load analytics asynchronously
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-321GKNB37Y';
+      script.integrity = 'sha384-5Jvd6H8Hqhb0O2x6Hg8WPZmLg6D5Pj3Ck1KGfL4a0MsU8N9q1g1Hv3C5kMf8T';
+      script.crossOrigin = 'anonymous';
+      document.head.appendChild(script);
     </script>
     
     <meta charset="UTF-8" />
@@ -50,14 +54,22 @@
     <!-- Static canonical tag for immediate recognition -->
     <link rel="canonical" href="https://barskydesign.pro/" />
     
-    <!-- Critical font preloading for performance -->
+    <!-- Optimized font loading - Critical CSS inline, defer full fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" 
-          as="style" onload="this.onload=null;this.rel='stylesheet'"
+    <style>
+      /* Critical font fallback CSS - prevents FOUT */
+      @font-face {
+        font-family: 'Inter-fallback';
+        src: local('Arial'), local('Helvetica'), local('sans-serif');
+        font-display: swap;
+      }
+      body { font-family: 'Inter-fallback', sans-serif; }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" 
+          media="print" onload="this.media='all'; this.onload=null;"
           crossorigin="anonymous">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" 
-                    crossorigin="anonymous"></noscript>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
     
   </head>
   <body>

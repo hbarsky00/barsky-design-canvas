@@ -1,32 +1,25 @@
 /**
- * Real Performance Optimization - Actual fixes, no bloat
+ * Real Performance Optimization - Comprehensive fixes
  */
 
-import { initRealImageOptimization } from './realImageOptimizer';
+import { initImageOptimization } from './imageOptimizer';
 import { initTouchTargetFixes } from './touchTargetFixer';
+import { initAccessibilityFixes } from './accessibilityFixer';
+import { linkValidator } from './externalLinkValidator';
+import { optimizeCriticalResources, deferNonCriticalResources } from './performanceMonitor';
 
 export const initializePerformanceOptimizations = () => {
   if (typeof window === 'undefined') return;
 
-  // Apply real fixes only
-  initRealImageOptimization();
+  // Apply comprehensive fixes
+  initImageOptimization();
   initTouchTargetFixes();
+  initAccessibilityFixes();
+  linkValidator.initMonitoring();
   optimizeCriticalResources();
-};
-
-const optimizeCriticalResources = () => {
-  // Preload only critical assets
-  const criticalAssets = [
-    '/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png', // Favicon
-  ];
-
-  criticalAssets.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    document.head.appendChild(link);
-  });
+  deferNonCriticalResources();
+  
+  console.log('✅ Performance optimizations applied');
 };
 
 
