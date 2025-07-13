@@ -559,7 +559,7 @@
 
   /* Mobile touch targets - ensure 44px minimum with proper spacing */
   @media (hover: none) and (pointer: coarse) {
-    button, [role="button"], .clickable, a[href], [onclick], .interactive {
+    button:not(.nav-link), [role="button"]:not(.nav-link), .clickable:not(.nav-link), a[href]:not(.nav-link), [onclick]:not(.nav-link), .interactive:not(.nav-link) {
       min-height: 48px !important;
       min-width: 48px !important;
       padding: 14px 18px !important;
@@ -569,11 +569,17 @@
       justify-content: center;
     }
     
-    /* Override centering for navigation links - force left alignment */
-    .nav-link, 
+    /* Navigation links with touch-friendly size but left alignment */
+    .nav-link,
     nav .nav-link,
     [role="navigation"] .nav-link,
-    #mobile-navigation .nav-link {
+    #mobile-navigation .nav-link,
+    a.nav-link {
+      min-height: 48px !important;
+      padding: 14px 18px !important;
+      margin: 6px 0 !important;
+      display: flex !important;
+      align-items: center !important;
       justify-content: flex-start !important;
       text-align: left !important;
       width: 100% !important;
