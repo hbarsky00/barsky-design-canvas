@@ -260,11 +260,11 @@
   
   .nav-link::after {
     content: '';
-    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out;
+    @apply absolute left-0 right-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out;
   }
   
   .nav-link:hover::after {
-    @apply w-full;
+    @apply w-full left-0 right-0;
   }
   
   .nav-link.active {
@@ -272,7 +272,7 @@
   }
   
   .nav-link.active::after {
-    @apply w-full;
+    @apply w-full left-0 right-0;
   }
   
   .btn-primary {
