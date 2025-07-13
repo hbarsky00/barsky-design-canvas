@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const LinkedInVisitors: React.FC = () => {
   const businessOutcomes = [
@@ -55,15 +55,15 @@ const LinkedInVisitors: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/linkedin-visitors" />
-      </Helmet>
-      <EnhancedGlobalSeo 
+      <DynamicSeo 
+        type="service"
         title="Turn Your Digital Product Into a Revenue Machine | LinkedIn Exclusive"
         description="Senior Product Designer + Gen AI Developer helping business leaders achieve 40%+ conversion improvements. Free strategy session for LinkedIn professionals."
-        
-        pageType="service"
-        keywords={["UX design ROI", "AI integration business", "conversion optimization", "digital transformation", "startup UX consultant"]}
+        image="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
+        serviceName="LinkedIn Exclusive Design Strategy"
+        benefits={["40%+ conversion improvements", "Free strategy session", "Business-focused design", "AI integration expertise"]}
+        targetAudience="LinkedIn professionals and business leaders"
+        path="/linkedin-visitors"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

@@ -31,9 +31,6 @@ const SplittimeCaseStudy: React.FC = () => {
     handleImageKeypress
   } = useSplittimeImageViewer();
   return <>
-        <Helmet>
-          <link rel="canonical" href="https://barskydesign.pro/portfolio/splittime" />
-        </Helmet>
         <DynamicSeo 
           type="project"
           title="Splittime: Co-Parenting App Case Study | Hiram Barsky"

@@ -3,38 +3,20 @@ import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LeadCaptureForm from '@/components/leads/LeadCaptureForm';
-import EnhancedGlobalSeo from '@/components/seo/EnhancedGlobalSeo';
+import DynamicSeo from '@/components/seo/DynamicSeo';
 
 const LeadCapture: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/get-started" />
-      </Helmet>
-      <EnhancedGlobalSeo
+      <DynamicSeo
+        type="service"
         title="Start Your AI-Enhanced Design Project | Get Custom Quote | Hiram Barsky"
         description="Ready to transform your digital product with AI-enhanced UX design? Get a personalized project plan and quote within 24 hours. Specializing in AI integration and user experience."
-        
-        pageType="content"
-        keywords={[
-          "AI UX design quote", "custom design project", "AI integration consultation",
-          "personalized UX proposal", "AI-enhanced design services", "digital product transformation",
-          "user experience consultation", "AI-powered design solutions"
-        ]}
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "AI-Enhanced UX Design Consultation",
-          "description": "Personalized AI-enhanced UX design services with custom project planning and 24-hour response time",
-          "provider": {
-            "@type": "Person",
-            "name": "Hiram Barsky",
-            "jobTitle": "AI-Fluent UX Designer & Accessibility Specialist"
-          },
-          "serviceType": "UX Design Consultation",
-          "areaServed": "Worldwide",
-          "url": "https://barskydesign.pro/get-started"
-        }}
+        image="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
+        serviceName="AI-Enhanced Design Project"
+        benefits={["24-hour response time", "Personalized project plan", "AI integration expertise", "Custom quote"]}
+        targetAudience="Businesses and startups"
+        path="/get-started"
       />
       
       <Header />

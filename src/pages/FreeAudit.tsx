@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import { Helmet } from "react-helmet-async";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -82,17 +82,15 @@ const FreeAudit: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/free-audit" />
-      </Helmet>
-      <EnhancedGlobalSeo 
+      <DynamicSeo 
+        type="service"
         title="Free UX Conversion Audit - Increase Conversions 40%+ | Hiram Barsky"
         description="Get your free 30-minute UX conversion audit. Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX design. Book now!"
-        pageType="content"
-        keywords={[
-          "free UX audit", "conversion optimization audit", "UX consultation", "AI UX analysis",
-          "website conversion audit", "UX designer consultation", "free design review"
-        ]}
+        image="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
+        serviceName="Free UX Conversion Audit"
+        benefits={["40%+ conversion improvement potential", "AI-enhanced UX analysis", "30-minute consultation", "Actionable recommendations"]}
+        targetAudience="Business owners and product managers"
+        path="/free-audit"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

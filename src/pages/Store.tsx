@@ -12,7 +12,7 @@ import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import { products, categories } from "@/data/productsData";
-import EnhancedGlobalSeo from "@/components/seo/EnhancedGlobalSeo";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const Store: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -28,19 +28,12 @@ const Store: React.FC = () => {
   
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/store" />
-      </Helmet>
-      <EnhancedGlobalSeo 
+      <DynamicSeo 
+        type="page"
         title="AI-Enhanced Design Resources | Hiram Barsky | Templates & Accessibility Tools"
         description="Shop AI-enhanced design resources, accessibility-compliant templates, conversion-optimized UI kits, and business-focused design guides. Tools created by an AI-fluent UX designer specializing in WCAG compliance and cross-functional collaboration."
-        
-        pageType="content"
-        keywords={[
-          "AI-enhanced design resources", "accessibility-compliant templates", "conversion-optimized UI kits",
-          "WCAG design templates", "business-focused design guides", "AI-augmented design tools",
-          "cross-functional design resources", "Claude AI design templates"
-        ]}
+        image="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
+        path="/store"
       />
       
       <Header />

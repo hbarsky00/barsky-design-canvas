@@ -16,9 +16,6 @@ const Index = () => {
   return (
     <>
       {/* Comprehensive SEO Optimization */}
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro" />
-      </Helmet>
       <DynamicSeo type="home" />
       <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" />
       <SitemapGenerator />

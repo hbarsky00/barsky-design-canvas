@@ -13,9 +13,6 @@ const Blog = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/blog" />
-      </Helmet>
       <DynamicSeo 
         type="page"
         title="UX Design Blog | AI-Enhanced Design Insights"
