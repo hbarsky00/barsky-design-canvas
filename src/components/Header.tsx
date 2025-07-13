@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
+import ProfileAvatar from "./header/ProfileAvatar";
 import { Link } from "react-router-dom";
 const Header: React.FC = () => {
   const {
@@ -17,7 +18,8 @@ const Header: React.FC = () => {
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2", isScrolled ? "bg-white shadow-md py-2 dark:bg-gray-900" : "bg-transparent")}>
       <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pr-6 lg:pr-8">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2 justify-start">
+          <div className="flex items-center gap-1 justify-start">
+            <ProfileAvatar />
             <Link to="/" className="text-2xl font-script font-medium text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group">
                 Barsky Design
                 <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out group-hover:w-full"></span>
