@@ -65,7 +65,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 
       {isMobileMenuOpen && (
         <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800 shadow-md z-50">
-          <nav id="mobile-navigation" className="flex flex-col space-y-4 items-start" role="navigation" aria-label="Mobile navigation menu">
+          <nav id="mobile-navigation" className="flex flex-col space-y-4 items-start text-left" role="navigation" aria-label="Mobile navigation menu">
             {links.map((link) => {
               // For external links, use a regular anchor tag
               if (link.href.startsWith('http')) {
