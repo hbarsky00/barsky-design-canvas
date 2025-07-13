@@ -20,12 +20,6 @@ const Index = () => {
         <link rel="canonical" href="https://barskydesign.pro" />
       </Helmet>
       <DynamicSeo type="home" />
-      <MetaOptimizer 
-        pageType="home"
-        title="Hiram Barsky - Product Designer & Gen AI Developer"
-        description="15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises."
-        url="https://barskydesign.pro"
-      />
       <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" />
       <SitemapGenerator />
       
