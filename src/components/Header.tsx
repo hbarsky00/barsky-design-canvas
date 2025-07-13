@@ -19,8 +19,8 @@ const Header: React.FC = () => {
   const isMobile = useIsMobile();
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2", isScrolled ? "bg-white shadow-md py-2 dark:bg-gray-900" : "bg-transparent")}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-left">
-          <div className="flex items-center space-x-0 mx-0 py-0 px-0">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
             <ProfileAvatar />
             {isMobile ? <Link to="/" className="text-2xl font-script font-medium text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group">
                 Barsky Design
