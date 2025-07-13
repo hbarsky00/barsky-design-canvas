@@ -7,6 +7,10 @@ import { initTouchTargetFixes } from './touchTargetFixer';
 import { initAccessibilityFixes } from './accessibilityFixer';
 import { linkValidator } from './externalLinkValidator';
 import { optimizeCriticalResources, deferNonCriticalResources } from './performanceMonitor';
+import { initARIAValidation } from './ariaValidator';
+import { initAnchorTextValidation } from './anchorTextValidator';
+import { initInternalLinkOptimization } from './internalLinkOptimizer';
+import { initNetworkPayloadOptimization } from './networkPayloadOptimizer';
 
 export const initializePerformanceOptimizations = () => {
   if (typeof window === 'undefined') return;
@@ -19,7 +23,22 @@ export const initializePerformanceOptimizations = () => {
   optimizeCriticalResources();
   deferNonCriticalResources();
   
+  // Phase 1: Critical Accessibility & Performance fixes
+  initARIAValidation();
+  initAnchorTextValidation();
+  
+  // Phase 2: SEO & Navigation Optimization
+  initInternalLinkOptimization();
+  
+  // Phase 3: Advanced Performance Tuning
+  initNetworkPayloadOptimization();
+  
   console.log('✅ Performance optimizations applied');
+  console.log('✅ Critical accessibility fixes applied');
+  console.log('✅ Anchor text improvements applied');
+  console.log('✅ Internal link optimization applied');
+  console.log('✅ Network payload optimization applied');
+  console.log('🚀 All priority action plan phases complete');
 };
 
 

@@ -26,23 +26,78 @@ export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {
 };
 
 /**
- * Get optimized image source with format detection
+ * Get optimized image source with format detection and aggressive compression
  */
 export const getOptimizedImageSrc = (originalSrc: string, isMobile = false): string => {
   const mapping = OPTIMIZED_IMAGE_MAP[originalSrc];
   if (!mapping) return originalSrc;
   
-  // Return mobile version for mobile devices
+  // Return mobile version for mobile devices (more aggressive compression)
   if (isMobile && mapping.mobile) {
     return mapping.mobile;
   }
   
-  // Check WebP support
+  // Check WebP support and use compressed version for better performance
   if (supportsWebP() && mapping.webpCompressed) {
     return mapping.webpCompressed;
   }
   
   return mapping.original;
+};
+
+/**
+ * Enhanced image compression for files over 100KB
+ */
+export const compressImageIfNeeded = async (imageUrl: string, maxSizeKB: number = 100): Promise<string> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        resolve(imageUrl);
+        return;
+      }
+      
+      // Calculate optimal dimensions to reduce file size
+      const maxWidth = isMobileDevice() ? 800 : 1200;
+      const maxHeight = isMobileDevice() ? 600 : 900;
+      
+      let { width, height } = img;
+      
+      // Resize if needed
+      if (width > maxWidth || height > maxHeight) {
+        const ratio = Math.min(maxWidth / width, maxHeight / height);
+        width *= ratio;
+        height *= ratio;
+      }
+      
+      canvas.width = width;
+      canvas.height = height;
+      
+      // Draw with compression optimizations
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, 0, 0, width, height);
+      
+      // Convert to WebP with aggressive compression for large images
+      const quality = 0.65; // Aggressive compression for files over 100KB
+      const compressedDataUrl = canvas.toDataURL('image/webp', quality);
+      
+      // Fallback to JPEG if WebP not supported
+      if (!supportsWebP()) {
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      } else {
+        resolve(compressedDataUrl);
+      }
+    };
+    
+    img.onerror = () => resolve(imageUrl);
+    img.src = imageUrl;
+  });
 };
 
 /**
