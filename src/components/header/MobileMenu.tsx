@@ -76,7 +76,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={toggleMobileMenu}
-                    className="nav-link text-lg flex items-center justify-start w-full"
+                    className="nav-link text-lg flex items-center justify-start w-full text-left"
                   >
                     {getIcon(link.name)}
                     {link.name}
@@ -95,7 +95,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     toggleMobileMenu(); // Close menu when clicking a link
                   }}
                   className={cn(
-                    "nav-link text-lg flex items-center justify-start w-full",
+                    "nav-link text-lg flex items-center justify-start w-full text-left",
                     isLinkActive(link.href) && "active"
                   )}
                 >
@@ -108,7 +108,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             <Button
               onClick={openCalendly}
               size="lg"
-              className="mt-4 w-full justify-start"
+              className="mt-4 w-full justify-start text-left"
             >
               <Calendar className="h-5 w-5 mr-2" />
               Schedule a Free Consultation
