@@ -12,9 +12,6 @@ const Projects = () => {
   
   return (
     <>
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/projects" />
-      </Helmet>
       <DynamicSeo 
         type="page"
         title="Product Design & Gen AI Portfolio | AI-Powered Web Applications"

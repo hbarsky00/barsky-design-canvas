@@ -102,6 +102,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     'wholesale-distribution': 'wholesale-distribution-ai-solution'
   };
   const seoFriendlyId = projectMapping[project.id] || project.id;
+  // Canonical URL is now handled by DynamicSeo component
   const canonicalUrl = `https://barskydesign.pro/case-studies/${seoFriendlyId}`;
   
   return (

@@ -25,6 +25,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
     ? getImageUrl(post.coverImage)
     : getImageUrl("/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png");
   
+  // Canonical URL is now handled by DynamicSeo component
   const canonicalUrl = `https://barskydesign.pro/blog/${post.slug}`;
   
   return (

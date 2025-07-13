@@ -32,9 +32,6 @@ const tools = [
 const About = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/about" />
-      </Helmet>
       <DynamicSeo 
         type="page"
         title="About Hiram Barsky - AI-Enhanced Product Designer"

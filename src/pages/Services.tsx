@@ -119,9 +119,6 @@ const Services = () => {
 
   return (
     <>
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/services" />
-      </Helmet>
       <DynamicSeo 
         type="service"
         title="Design Systems That Teams Actually Use"

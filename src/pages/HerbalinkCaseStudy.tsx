@@ -81,9 +81,6 @@ const HerbalinkCaseStudy: React.FC = () => {
     icon: <Sprout className="h-6 w-6" />
   }];
   return <>
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/portfolio/herbalink" />
-      </Helmet>
       <DynamicSeo 
         type="project"
         title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"

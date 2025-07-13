@@ -11,9 +11,6 @@ import DynamicSeo from '@/components/seo/DynamicSeo';
 const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/contact" />
-      </Helmet>
       <DynamicSeo 
         type="page"
         title="Contact Hiram Barsky - AI Design Consultation"

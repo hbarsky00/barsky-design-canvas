@@ -94,9 +94,6 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     icon: <LineChart className="h-6 w-6" />
   }];
   return <>
-      <Helmet>
-        <link rel="canonical" href="https://barskydesign.pro/portfolio/investor-loan-app" />
-      </Helmet>
       <DynamicSeo 
         type="project"
         title="Investor Loan App: Smart Portfolio Management Case Study | Hiram Barsky"

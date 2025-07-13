@@ -185,7 +185,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return (
       <Helmet>
         {/* Canonical URL */}
-        <link rel="canonical" href={`${baseUrl}/blog/${props.slug}`} />
+        <link rel="canonical" href={normalizeUrl(`/blog/${props.slug}`)} />
         
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design Blog</title>
@@ -195,7 +195,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${props.title} | Barsky Design Blog`} />
         <meta property="og:description" content={truncatedExcerpt} />
-        <meta property="og:url" content={`${baseUrl}/blog/${props.slug}`} />
+        <meta property="og:url" content={normalizeUrl(`/blog/${props.slug}`)} />
         <meta property="og:image" content={props.featuredImage || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -238,7 +238,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return (
       <Helmet>
         {/* Canonical URL */}
-        <link rel="canonical" href={`${baseUrl}${props.path}`} />
+        <link rel="canonical" href={normalizeUrl(props.path)} />
         
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design</title>
@@ -248,7 +248,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${props.title} | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={`${baseUrl}${props.path}`} />
+        <meta property="og:url" content={normalizeUrl(props.path)} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -279,7 +279,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return (
       <Helmet>
         {/* Canonical URL */}
-        <link rel="canonical" href={`${baseUrl}${props.path}`} />
+        <link rel="canonical" href={normalizeUrl(props.path)} />
         
         {/* Basic Meta Tags */}
         <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
@@ -289,7 +289,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={`${baseUrl}${props.path}`} />
+        <meta property="og:url" content={normalizeUrl(props.path)} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -331,7 +331,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     return (
       <Helmet>
         {/* Canonical URL */}
-        <link rel="canonical" href={`${baseUrl}${props.path}`} />
+        <link rel="canonical" href={normalizeUrl(props.path)} />
         
         {/* Basic Meta Tags */}
         <title>{props.serviceName} - Product Design Services | Barsky Design</title>
@@ -341,7 +341,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={`${baseUrl}${props.path}`} />
+        <meta property="og:url" content={normalizeUrl(props.path)} />
         <meta property="og:image" content={props.image || defaultImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
