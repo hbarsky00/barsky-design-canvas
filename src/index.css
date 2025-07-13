@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -492,10 +490,47 @@
   animation: gentle-float 6s ease-in-out infinite;
 }
 
-/* Mobile-specific image optimizations */
-@media (max-width: 768px) {
-  .glass-card-elevated {
-    @apply p-3;
+  /* Mobile touch targets - ensure 44px minimum */
+  @media (hover: none) and (pointer: coarse) {
+    button, [role="button"], .clickable, a {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 12px 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Form inputs optimization */
+    input, textarea, select {
+      min-height: 44px;
+      font-size: 16px; /* Prevent zoom on iOS */
+      padding: 8px 12px;
+    }
+  }
+
+  /* Interactive elements hover states */
+  button:hover, [role="button"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Focus states for accessibility */
+  button:focus-visible, [role="button"]:focus-visible, a:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+
+  /* Enhanced glass cards for mobile */
+  @media (max-width: 768px) {
+    .glass-card {
+      padding: 1rem;
+      margin: 0.5rem;
+    }
+
+    .glass-card-elevated {
+      padding: 1.5rem;
+    }
   }
   
   .gallery-image {

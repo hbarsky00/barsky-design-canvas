@@ -11,14 +11,38 @@ export interface OptimizedImageMapping {
   targetSize: string; // Target file size
 }
 
-// DISABLE IMAGE OPTIMIZATION FOR NOW - USE ORIGINAL IMAGES
-export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {};
+// ENABLE IMAGE OPTIMIZATION - PROGRESSIVE ENHANCEMENT
+export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {
+  '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png': {
+    original: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+    webp: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+    webpCompressed: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+    mobile: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+    width: 400,
+    height: 400,
+    aspectRatio: '1:1',
+    targetSize: '50KB'
+  }
+};
 
 /**
- * Get optimized image source - return original for now
+ * Get optimized image source with format detection
  */
 export const getOptimizedImageSrc = (originalSrc: string, isMobile = false): string => {
-  return originalSrc; // Return original until compressed versions are created
+  const mapping = OPTIMIZED_IMAGE_MAP[originalSrc];
+  if (!mapping) return originalSrc;
+  
+  // Return mobile version for mobile devices
+  if (isMobile && mapping.mobile) {
+    return mapping.mobile;
+  }
+  
+  // Check WebP support
+  if (supportsWebP() && mapping.webpCompressed) {
+    return mapping.webpCompressed;
+  }
+  
+  return mapping.original;
 };
 
 /**
@@ -27,6 +51,19 @@ export const getOptimizedImageSrc = (originalSrc: string, isMobile = false): str
 export const isMobileDevice = (): boolean => {
   if (typeof window === 'undefined') return false;
   return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
+/**
+ * Check WebP support
+ */
+export const supportsWebP = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  
+  // Create a test WebP image
+  const webP = new Image();
+  webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+  
+  return webP.height === 2;
 };
 
 /**

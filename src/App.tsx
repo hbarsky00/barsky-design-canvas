@@ -39,6 +39,8 @@ import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
 import { useMobileOptimization } from "@/hooks/useMobileOptimization";
+import { useAccessibilityValidator } from "@/hooks/useAccessibilityValidator";
+import { initializePerformanceOptimizations, reportPerformanceMetrics } from "@/utils/performanceOptimizer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 
@@ -57,6 +59,13 @@ function App() {
   usePerformanceOptimization();
   useAccessibilityEnhancements();
   useMobileOptimization();
+  useAccessibilityValidator();
+  
+  // Initialize comprehensive performance optimizations
+  React.useEffect(() => {
+    initializePerformanceOptimizations();
+    reportPerformanceMetrics();
+  }, []);
   
   // Enable image compression and performance monitoring
   React.useEffect(() => {
