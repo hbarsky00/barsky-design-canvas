@@ -19,6 +19,9 @@ interface MaximizableImageProps {
   allowRemove?: boolean;
   onImageReplace?: (newSrc: string) => void;
   onImageRemove?: () => void;
+  width?: number;
+  height?: number;
+  aspectRatio?: string;
 }
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
   src,
@@ -32,7 +35,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   hideEditButton = false,
   allowRemove = false,
   onImageReplace,
-  onImageRemove
+  onImageRemove,
+  width,
+  height,
+  aspectRatio = "16/9"
 }) => {
   const {
     maximizeImage
@@ -139,19 +145,61 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
     return url;
   };
-  return <figure className={`relative group overflow-hidden cursor-pointer h-auto ${className}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} data-lovable-element="image-container" data-lovable-editable="image-wrapper">
-      {imageError ? <ImageErrorFallback showEditingControls={showEditingControls} originalSrc={currentSrc} /> : isLoomVideo ? <iframe src={getEmbedUrl(currentSrc)} title={imageTitle} className="w-full h-64 md:h-80 lg:h-96 transition-transform duration-300 group-hover:scale-105" frameBorder="0" allowFullScreen onLoad={handleImageLoad} style={{
-      opacity: isUploading ? 0.7 : 1,
-      transition: 'opacity 0.3s ease',
-      display: 'block',
-      maxWidth: '100%'
-    }} /> : <img src={currentSrc} alt={alt} title={imageTitle} loading={priority ? "eager" : "lazy"} onClick={handleMaximize} onKeyDown={handleImageKeypress} onError={handleImageError} onLoad={handleImageLoad} data-lovable-editable="image" data-image-src={currentSrc} data-project-id={projectId} tabIndex={0} role="button" aria-label={`Click to view ${alt} in full screen`} style={{
-      opacity: isUploading ? 0.7 : 1,
-      transition: 'opacity 0.3s ease',
-      display: 'block',
-      maxWidth: '100%',
-      height: 'auto'
-    }} className="w-full h-auto transition-transform duration-300 group-hover:scale-105 object-cover" />}
+  return <figure 
+    className={`relative group overflow-hidden cursor-pointer ${className}`} 
+    onMouseEnter={() => setIsHovered(true)} 
+    onMouseLeave={() => setIsHovered(false)} 
+    data-lovable-element="image-container" 
+    data-lovable-editable="image-wrapper"
+    style={{ aspectRatio: aspectRatio }}
+  >
+      {imageError ? (
+        <ImageErrorFallback showEditingControls={showEditingControls} originalSrc={currentSrc} />
+      ) : isLoomVideo ? (
+        <iframe 
+          src={getEmbedUrl(currentSrc)} 
+          title={imageTitle} 
+          className="w-full h-full transition-transform duration-300 group-hover:scale-105" 
+          frameBorder="0" 
+          allowFullScreen 
+          onLoad={handleImageLoad}
+          style={{
+            opacity: isUploading ? 0.7 : 1,
+            transition: 'opacity 0.3s ease',
+            display: 'block',
+            maxWidth: '100%'
+          }} 
+        />
+      ) : (
+        <img 
+          src={currentSrc} 
+          alt={alt} 
+          title={imageTitle} 
+          width={width}
+          height={height}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+          loading={priority ? "eager" : "lazy"} 
+          onClick={handleMaximize} 
+          onKeyDown={handleImageKeypress} 
+          onError={handleImageError} 
+          onLoad={handleImageLoad} 
+          data-lovable-editable="image" 
+          data-image-src={currentSrc} 
+          data-project-id={projectId} 
+          tabIndex={0} 
+          role="button" 
+          aria-label={`Click to view ${alt} in full screen`} 
+          style={{
+            opacity: isUploading ? 0.7 : 1,
+            transition: 'opacity 0.3s ease',
+            display: 'block',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }} 
+          className="w-full h-full transition-transform duration-300 group-hover:scale-105 object-cover" 
+        />
+      )}
       
       <UploadOverlay isUploading={isUploading} />
       

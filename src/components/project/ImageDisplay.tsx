@@ -10,6 +10,8 @@ interface ImageDisplayProps {
   onImageClick: () => void;
   onImageError: () => void;
   onImageLoad?: () => void;
+  width?: number;
+  height?: number;
 }
 
 const ImageDisplay: React.FC<ImageDisplayProps> = ({
@@ -20,7 +22,9 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({
   refreshKey = 0,
   onImageClick,
   onImageError,
-  onImageLoad
+  onImageLoad,
+  width,
+  height
 }) => {
   const handleImageLoad = () => {
     console.log('✅ Image loaded successfully:', displayedImage.substring(0, 50) + '...');
@@ -43,6 +47,9 @@ const ImageDisplay: React.FC<ImageDisplayProps> = ({
       <img
         src={displayedImage}
         alt={imageAltText}
+        width={width}
+        height={height}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
         className="w-full h-full object-cover"
         loading={priority ? "eager" : "lazy"}
         onLoad={handleImageLoad}

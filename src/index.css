@@ -490,6 +490,46 @@
   animation: gentle-float 6s ease-in-out infinite;
 }
 
+  /* Enhanced responsive image handling */
+  .responsive-image {
+    @apply w-full h-auto object-cover;
+    aspect-ratio: var(--aspect-ratio, 16/9);
+    background: linear-gradient(45deg, hsl(var(--muted)) 0%, hsl(var(--muted)/0.5) 100%);
+  }
+
+  .responsive-image[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+  }
+
+  /* Image loading states */
+  .responsive-image {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .responsive-image[data-loading="true"] {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+
+  /* Mobile-first responsive images */
+  @media (max-width: 768px) {
+    .responsive-image {
+      aspect-ratio: 4/3;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1200px) {
+    .responsive-image {
+      aspect-ratio: 16/10;
+    }
+  }
+
+  @media (min-width: 1201px) {
+    .responsive-image {
+      aspect-ratio: 16/9;
+    }
+  }
+
   /* Mobile touch targets - ensure 44px minimum with proper spacing */
   @media (hover: none) and (pointer: coarse) {
     button, [role="button"], .clickable, a[href], [onclick], .interactive {
