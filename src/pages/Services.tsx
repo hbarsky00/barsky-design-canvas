@@ -150,7 +150,7 @@ const Services = () => {
                   Proven results across healthcare, fintech, and family tech.
                 </p>
                 
-                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <div className="flex justify-center items-center gap-4 mb-8">
                   <Link 
                     to="/case-study-herbalink"
                     className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200"
