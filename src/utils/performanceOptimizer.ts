@@ -51,6 +51,21 @@ const enableImageOptimizations = () => {
   // Enable global compression
   enableGlobalImageCompression();
   
+  // Start external link monitoring
+  import('./externalLinkValidator').then(({ monitorExternalLinks }) => {
+    monitorExternalLinks(300000); // Check every 5 minutes
+  });
+  
+  // Start touch target monitoring
+  import('./touchTargetValidator').then(({ monitorTouchTargets }) => {
+    monitorTouchTargets(true); // Enable auto-fix
+  });
+  
+  // Start image performance monitoring
+  import('./imageAuditor').then(({ monitorImagePerformance }) => {
+    monitorImagePerformance();
+  });
+  
   // Preload critical images
   preloadCriticalImages();
   

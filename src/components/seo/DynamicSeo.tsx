@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { normalizeUrl, BASE_URL } from '@/utils/urlUtils';
+import StaticCanonical from './StaticCanonical';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -183,9 +184,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const truncatedExcerpt = truncateDescription(props.excerpt);
 
     return (
-      <Helmet>
-        {/* Canonical URL */}
-        <link rel="canonical" href={normalizeUrl(`/blog/${props.slug}`)} />
+      <>
+        <StaticCanonical url={normalizeUrl(`/blog/${props.slug}`)} />
+        <Helmet>
+          {/* Canonical URL */}
+          <link rel="canonical" href={normalizeUrl(`/blog/${props.slug}`)} />
         
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design Blog</title>
@@ -227,7 +230,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
-      </Helmet>
+        </Helmet>
+      </>
     );
   }
 
@@ -236,9 +240,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const truncatedDescription = truncateDescription(props.description);
 
     return (
-      <Helmet>
-        {/* Canonical URL */}
-        <link rel="canonical" href={normalizeUrl(props.path)} />
+      <>
+        <StaticCanonical url={normalizeUrl(props.path)} />
+        <Helmet>
+          {/* Canonical URL */}
+          <link rel="canonical" href={normalizeUrl(props.path)} />
         
         {/* Basic Meta Tags */}
         <title>{props.title} | Barsky Design</title>
@@ -268,7 +274,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
-      </Helmet>
+        </Helmet>
+      </>
     );
   }
 
@@ -277,9 +284,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const truncatedDescription = truncateDescription(props.description);
 
     return (
-      <Helmet>
-        {/* Canonical URL */}
-        <link rel="canonical" href={normalizeUrl(props.path)} />
+      <>
+        <StaticCanonical url={normalizeUrl(props.path)} />  
+        <Helmet>
+          {/* Canonical URL */}
+          <link rel="canonical" href={normalizeUrl(props.path)} />
         
         {/* Basic Meta Tags */}
         <title>{props.projectName} - Product Design Case Study | Barsky Design</title>
@@ -320,7 +329,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
-      </Helmet>
+        </Helmet>
+      </>
     );
   }
 
@@ -329,9 +339,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     const truncatedDescription = truncateDescription(props.description);
 
     return (
-      <Helmet>
-        {/* Canonical URL */}
-        <link rel="canonical" href={normalizeUrl(props.path)} />
+      <>
+        <StaticCanonical url={normalizeUrl(props.path)} />
+        <Helmet>
+          {/* Canonical URL */}
+          <link rel="canonical" href={normalizeUrl(props.path)} />
         
         {/* Basic Meta Tags */}
         <title>{props.serviceName} - Product Design Services | Barsky Design</title>
@@ -364,7 +376,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
-      </Helmet>
+        </Helmet>
+      </>
     );
   }
 
@@ -373,9 +386,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const truncatedHomeDescription = truncateDescription(homeDescription);
 
   return (
-    <Helmet>
-      {/* Canonical URL */}
-      <link rel="canonical" href={normalizeUrl('/')} />
+    <>
+      <StaticCanonical url={normalizeUrl('/')} />
+      <Helmet>
+        {/* Canonical URL */}
+        <link rel="canonical" href={normalizeUrl('/')} />
       
       {/* Basic Meta Tags */}
       <title>Hiram Barsky - Product Designer & Gen AI Developer</title>
@@ -403,7 +418,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       
       {/* Keywords */}
       <meta name="keywords" content="UX Designer, UI Designer, Product Designer, Gen AI Developer, Artificial Intelligence, UX Research, Design Systems, New York" />
-    </Helmet>
+      </Helmet>
+    </>
   );
 };
 
