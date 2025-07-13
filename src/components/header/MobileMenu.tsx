@@ -76,7 +76,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={toggleMobileMenu}
-                    className="nav-link text-lg flex items-center justify-start"
+                    className="nav-link text-lg flex items-center"
                   >
                     {getIcon(link.name)}
                     {link.name}
@@ -95,7 +95,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     toggleMobileMenu(); // Close menu when clicking a link
                   }}
                   className={cn(
-                    "nav-link text-lg flex items-center justify-start",
+                    "nav-link text-lg flex items-center",
                     isLinkActive(link.href) && "active"
                   )}
                 >
