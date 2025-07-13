@@ -571,7 +571,6 @@
   .bg-gradient-to-r.from-blue-500.via-indigo-500.to-blue-600 p {
     color: white !important;
   }
-}
 
 /* Nuclear option - Force white text for specific class */
 .force-white-text-override {
