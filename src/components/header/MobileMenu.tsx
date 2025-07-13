@@ -31,21 +31,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
       case "home":
-        return <Home className="h-4 w-4 mr-1" />;
+        return <Home className="h-5 w-5 mr-3" />;
       case "projects":
-        return <Briefcase className="h-4 w-4 mr-1" />;
+        return <Briefcase className="h-5 w-5 mr-3" />;
       case "about":
-        return <User className="h-4 w-4 mr-1" />;
+        return <User className="h-5 w-5 mr-3" />;
       case "services":
-        return <Briefcase className="h-4 w-4 mr-1" />;
+        return <Briefcase className="h-5 w-5 mr-3" />;
       case "store":
-        return <Store className="h-4 w-4 mr-1" />;
+        return <Store className="h-5 w-5 mr-3" />;
       case "blog":
-        return <BookOpen className="h-4 w-4 mr-1" />;
+        return <BookOpen className="h-5 w-5 mr-3" />;
       case "resume":
-        return <FileText className="h-4 w-4 mr-1" />;
+        return <FileText className="h-5 w-5 mr-3" />;
       case "contact":
-        return <Mail className="h-4 w-4 mr-1" />;
+        return <Mail className="h-5 w-5 mr-3" />;
       default:
         return null;
     }
@@ -64,8 +64,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       </button>
 
       {isMobileMenuOpen && (
-        <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800 shadow-md z-50">
-          <nav id="mobile-navigation" className="flex flex-row flex-wrap gap-2 !items-start !justify-start w-full" role="navigation" aria-label="Mobile navigation menu">
+        <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-6 px-4 sm:px-6 border-t dark:border-gray-800 shadow-lg z-50">
+          <nav id="mobile-navigation" className="flex flex-col space-y-3 w-full" role="navigation" aria-label="Mobile navigation menu">
             {links.map((link) => {
               // For external links, use a regular anchor tag
               if (link.href.startsWith('http')) {
@@ -76,7 +76,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={toggleMobileMenu}
-                    className="nav-link text-sm !flex !items-center !justify-center px-3 py-2 rounded-md !text-center whitespace-nowrap"
+                    className="nav-link w-full text-base flex items-center justify-start px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-200 transition-colors"
                   >
                     {getIcon(link.name)}
                     {link.name}
@@ -95,8 +95,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     toggleMobileMenu(); // Close menu when clicking a link
                   }}
                   className={cn(
-                    "nav-link text-sm !flex !items-center !justify-center px-3 py-2 rounded-md !text-center whitespace-nowrap",
-                    isLinkActive(link.href) && "active"
+                    "nav-link w-full text-base flex items-center justify-start px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-700 dark:text-gray-200 transition-colors",
+                    isLinkActive(link.href) && "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300"
                   )}
                 >
                   {getIcon(link.name)}
@@ -107,11 +107,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             
             <Button
               onClick={openCalendly}
-              size="sm" 
-              className="!flex !items-center !justify-center px-3 py-2 text-sm whitespace-nowrap"
+              size="lg"
+              className="w-full mt-2 flex items-center justify-start px-4 py-3 text-base"
             >
-              <Calendar className="h-4 w-4 mr-1" />
-              Book Call
+              <Calendar className="h-5 w-5 mr-3" />
+              Schedule a Free Consultation
             </Button>
           </nav>
         </div>
