@@ -32,9 +32,9 @@ const Header: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {isMobile ? (
-            <div className="flex items-center space-x-3">
-              <ProfileAvatar />
+          <div className="flex items-center space-x-3">
+            <ProfileAvatar />
+            {isMobile ? (
               <Link 
                 to="/" 
                 className="text-xl sm:text-2xl font-script font-medium text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group whitespace-nowrap"
@@ -42,13 +42,10 @@ const Header: React.FC = () => {
                 Barsky Design
                 <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out group-hover:w-full"></span>
               </Link>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-4">
-              <ProfileAvatar />
+            ) : (
               <AnimatedLogo />
-            </div>
-          )}
+            )}
+          </div>
 
           <div className="flex items-center space-x-2">
             <MobileMenu
