@@ -37,7 +37,7 @@ const Header: React.FC = () => {
             {isMobile ? (
               <Link 
                 to="/" 
-                className="text-xl font-bold text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group"
+                className="text-2xl font-script font-medium text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group"
               >
                 Barsky Design
                 <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out group-hover:w-full"></span>
