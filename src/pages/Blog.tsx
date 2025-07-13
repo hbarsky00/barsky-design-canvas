@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogPreview from "@/components/blog/BlogPreview";
 import BlogBreadcrumbs from "@/components/seo/BlogBreadcrumbs";
+import BlogCategories from "@/components/blog/BlogCategories";
+import NewsletterSignup from "@/components/blog/NewsletterSignup";
 import { Helmet } from "react-helmet-async";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
@@ -39,8 +41,16 @@ const Blog = () => {
           </div>
         </section>
         
+        {/* Blog Categories */}
+        <BlogCategories />
+        
         {/* Blog Posts Grid */}
         <BlogPreview maxPosts={9} showTitle={false} />
+        
+        {/* Newsletter Signup */}
+        <div className="max-w-4xl mx-auto px-6">
+          <NewsletterSignup />
+        </div>
       </main>
       <Footer />
     </div>

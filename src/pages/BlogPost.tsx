@@ -17,6 +17,9 @@ import BlogAuthorBio from "@/components/blog/BlogAuthorBio";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import LoadingState from "@/components/blog/LoadingState";
+import SocialShare from "@/components/blog/SocialShare";
+import BlogEngagement from "@/components/blog/BlogEngagement";
+import NewsletterSignup from "@/components/blog/NewsletterSignup";
 import { useRelatedPosts } from "@/hooks/useRelatedPosts";
 
 const BlogPost: React.FC = () => {
@@ -76,6 +79,17 @@ const BlogPost: React.FC = () => {
           <div className="section-container max-w-3xl mx-auto px-4 sm:px-6">
             <BlogPostHeader post={post} />
             <BlogPostContent content={post.content} slug={post.slug} />
+            
+            <BlogEngagement postId={post.id} initialLikes={Math.floor(Math.random() * 50) + 10} />
+            
+            <SocialShare 
+              url={`/blog/${post.slug}`}
+              title={post.title}
+              excerpt={post.excerpt}
+            />
+            
+            <NewsletterSignup />
+            
             <BlogAuthorBio author={post.author} />
             <RelatedPosts posts={relatedPosts} />
           </div>
