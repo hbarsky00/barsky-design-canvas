@@ -26,7 +26,7 @@ const IramText = ({ isDarkMode, letterTransition }: IramTextProps) => {
       }}
       transition={letterTransition}
     >
-      {["i", "r", "a", "m", " ", "B", "a", "r", "s", "k", "y"].map((letter, index) => (
+      {["i", "r", "a", "m"].map((letter, index) => (
         <motion.span
           key={index}
           variants={{
@@ -39,7 +39,7 @@ const IramText = ({ isDarkMode, letterTransition }: IramTextProps) => {
               }
             }
           }}
-          className={letter === " " ? "inline-block w-2" : "inline-block"}
+          className="inline-block"
         >
           {letter}
         </motion.span>

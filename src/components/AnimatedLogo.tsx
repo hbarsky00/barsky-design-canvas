@@ -40,7 +40,9 @@ const AnimatedLogo = () => {
         {/* Logo Container */}
         <HLetter isDarkMode={isDarkMode} letterTransition={letterTransition} />
         <IramText isDarkMode={isDarkMode} letterTransition={letterTransition} />
-        <AnimatedBar />
+        <div className="mx-2">
+          <AnimatedBar />
+        </div>
         <BarskyText isDarkMode={isDarkMode} letterTransition={letterTransition} />
         <DesignerSparkle />
       </motion.div>
