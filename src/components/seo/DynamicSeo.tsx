@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { normalizeUrl, BASE_URL } from '@/utils/urlUtils';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -52,8 +53,8 @@ type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | Servi
 
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const location = useLocation();
-  const baseUrl = 'https://barskydesign.pro';
-  const defaultImage = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png';
+  const baseUrl = BASE_URL;
+  const defaultImage = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`;
   
 
   // Helper function to truncate description to 150-160 characters
@@ -374,7 +375,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   return (
     <Helmet>
       {/* Canonical URL */}
-      <link rel="canonical" href={baseUrl} />
+      <link rel="canonical" href={normalizeUrl('/')} />
       
       {/* Basic Meta Tags */}
       <title>Hiram Barsky - Product Designer & Gen AI Developer</title>
@@ -384,7 +385,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Hiram Barsky - Product Designer & Gen AI Developer" />
       <meta property="og:description" content={truncatedHomeDescription} />
-      <meta property="og:url" content={baseUrl} />
+      <meta property="og:url" content={normalizeUrl('/')} />
       <meta property="og:image" content={defaultImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

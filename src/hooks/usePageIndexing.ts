@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getPageConfig, submitUrlForIndexing } from '@/utils/seoUtils';
+import { getCanonicalUrl } from '@/utils/urlUtils';
 
 export const usePageIndexing = () => {
   const location = useLocation();
@@ -10,10 +11,8 @@ export const usePageIndexing = () => {
     const handlePageIndexing = async () => {
       const config = getPageConfig(location.pathname);
       
-      // Construct proper canonical URL
-      const baseUrl = 'https://barskydesign.pro';
-      const canonicalPath = location.pathname === '/' ? '/' : location.pathname;
-      const canonicalUrl = `${baseUrl}${canonicalPath}`;
+      // Get normalized canonical URL
+      const canonicalUrl = getCanonicalUrl(location.pathname);
       
       // Submit URL for indexing
       await submitUrlForIndexing(canonicalUrl);
