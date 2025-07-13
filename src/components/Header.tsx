@@ -5,6 +5,8 @@ import AnimatedLogo from "./AnimatedLogo";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
 import ProfileAvatar from "./header/ProfileAvatar";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const { 
@@ -16,6 +18,8 @@ const Header: React.FC = () => {
     toggleMobileMenu,
     isLinkActive
   } = useHeaderNavigation();
+  
+  const isMobile = useIsMobile();
 
   return (
     <header
@@ -30,7 +34,13 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <ProfileAvatar />
-            <AnimatedLogo />
+            {isMobile ? (
+              <Link to="/" className="text-xl font-bold text-barsky-blue">
+                Barsky Design
+              </Link>
+            ) : (
+              <AnimatedLogo />
+            )}
           </div>
 
           <div className="flex items-center space-x-2">
