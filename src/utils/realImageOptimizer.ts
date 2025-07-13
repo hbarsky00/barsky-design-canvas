@@ -76,31 +76,30 @@ export const compressImage = async (
 };
 
 /**
- * Optimize all large images on the page
+ * Optimize all images on the page - add proper attributes and lazy loading
  */
 export const optimizePageImages = () => {
   const images = document.querySelectorAll('img');
-  let totalSaved = 0;
   
-  images.forEach(async (img) => {
-    try {
-      // Check if image is large
-      const response = await fetch(img.src);
-      const blob = await response.blob();
-      const sizeKB = blob.size / 1024;
-      
-      if (sizeKB > 100) {
-        console.log(`🔍 Large image found: ${img.src} (${Math.round(sizeKB)}KB)`);
-        totalSaved += sizeKB;
-      }
-    } catch (error) {
-      // Ignore errors for external images
+  images.forEach((img) => {
+    // Add lazy loading
+    if (!img.loading) {
+      img.loading = 'lazy';
     }
+    
+    // Add proper sizing to prevent layout shift
+    if (!img.width && !img.height) {
+      img.style.aspectRatio = 'auto';
+    }
+    
+    // Add proper alt text if missing
+    if (!img.alt) {
+      img.alt = 'Image';
+    }
+    
+    // Optimize for WebP if possible
+    enhanceImageWithWebP(img);
   });
-  
-  if (totalSaved > 0) {
-    console.log(`📊 Total oversized images: ${Math.round(totalSaved)}KB`);
-  }
 };
 
 /**
@@ -128,11 +127,10 @@ export const enhanceImageWithWebP = (img: HTMLImageElement) => {
  * Initialize real image optimization
  */
 export const initRealImageOptimization = () => {
-  // Run optimization check once
-  setTimeout(optimizePageImages, 2000);
-  
-  // Enhance existing images with WebP
-  document.querySelectorAll('img').forEach(enhanceImageWithWebP);
-  
-  console.log('🖼️ Real image optimization initialized');
+  // Run optimization once when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', optimizePageImages);
+  } else {
+    optimizePageImages();
+  }
 };

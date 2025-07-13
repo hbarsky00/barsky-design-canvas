@@ -40,7 +40,7 @@ import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
 import { useMobileOptimization } from "@/hooks/useMobileOptimization";
 import { useAccessibilityValidator } from "@/hooks/useAccessibilityValidator";
-import { initializePerformanceOptimizations, reportPerformanceMetrics } from "@/utils/performanceOptimizer";
+import { initializePerformanceOptimizations } from "@/utils/performanceOptimizer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 
@@ -61,29 +61,11 @@ function App() {
   useMobileOptimization();
   useAccessibilityValidator();
   
-  // Initialize comprehensive performance optimizations
+  // Initialize real performance optimizations
   React.useEffect(() => {
     initializePerformanceOptimizations();
-    reportPerformanceMetrics();
   }, []);
   
-  // Enable image compression and performance monitoring
-  React.useEffect(() => {
-    import('@/utils/imageOptimization').then(({ preloadCriticalImages, trackCompressionStats }) => {
-      preloadCriticalImages();
-      trackCompressionStats();
-    });
-    
-    import('@/utils/imageCleanup').then(({ generateImageCleanupReport }) => {
-      generateImageCleanupReport();
-    });
-    
-    // Enable global image compression
-    import('@/utils/imageCompressionTracker').then(({ enableGlobalImageCompression, monitorImagePerformance }) => {
-      enableGlobalImageCompression();
-      setTimeout(monitorImagePerformance, 2000);
-    });
-  }, []);
   
   return (
     <ErrorBoundary>

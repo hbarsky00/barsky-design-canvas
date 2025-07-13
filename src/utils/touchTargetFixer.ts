@@ -10,43 +10,45 @@ const MINIMUM_SPACING = 8; // 8px minimum spacing between targets
  */
 export const fixTouchTargetSpacing = () => {
   const css = `
-    /* Touch target fixes */
-    button, a, [role="button"], [tabindex="0"] {
+    /* Touch target fixes - ensure all interactive elements are 44px+ */
+    button, a, [role="button"], [tabindex="0"], input[type="submit"], input[type="button"] {
       min-height: ${MINIMUM_SIZE}px !important;
       min-width: ${MINIMUM_SIZE}px !important;
+      padding: 12px 16px !important;
     }
     
-    /* Add spacing between adjacent interactive elements */
-    button + button,
-    a + a,
-    button + a,
-    a + button {
-      margin-left: ${MINIMUM_SPACING}px !important;
+    /* Specific spacing fixes for common problematic areas */
+    .space-x-2 > * + *, .flex.gap-2 > * + * {
+      margin-left: 16px !important;
     }
     
-    /* Flex containers with interactive children */
-    .flex button:not(:last-child),
-    .flex a:not(:last-child) {
-      margin-right: ${MINIMUM_SPACING}px !important;
+    .space-x-4 > * + *, .flex.gap-4 > * + * {
+      margin-left: 24px !important;
     }
     
-    /* Navigation spacing */
-    nav a:not(:last-child) {
-      margin-right: ${MINIMUM_SPACING}px !important;
+    /* Navigation and header spacing */
+    nav button, nav a, header button, header a {
+      margin: 0 8px !important;
+      padding: 12px 16px !important;
     }
     
-    /* Form element spacing */
-    .space-x-2 > *:not(:last-child) {
-      margin-right: ${MINIMUM_SPACING}px !important;
-    }
-    
-    .space-x-4 > *:not(:last-child) {
-      margin-right: 16px !important;
-    }
-    
-    /* Grid gaps */
+    /* Grid and flex layouts */
     .grid {
-      gap: ${MINIMUM_SPACING}px !important;
+      gap: 16px !important;
+    }
+    
+    .flex {
+      gap: 12px !important;
+    }
+    
+    /* Form elements */
+    form button, form input[type="submit"] {
+      margin: 8px 0 !important;
+    }
+    
+    /* Card actions */
+    .card button, .card a {
+      margin: 4px !important;
     }
   `;
   
@@ -61,7 +63,6 @@ export const fixTouchTargetSpacing = () => {
   }
   
   document.head.appendChild(styleElement);
-  console.log('✅ Touch target spacing fixed');
 };
 
 /**
