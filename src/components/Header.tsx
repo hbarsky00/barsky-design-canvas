@@ -20,8 +20,8 @@ const Header: React.FC = () => {
           <div className="flex items-center gap-2 justify-start">
             <Link to="/" className="flex items-center gap-2 text-2xl font-script font-medium text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group">
                 <img 
-                  src="/lovable-uploads/573b1406-8018-4088-b8b6-179796e792d1.png" 
-                  alt="Hiram Barsky" 
+                  src="/lovable-uploads/aa185961-b921-4df6-9ab8-7e66b69857f7.png" 
+                  alt="Barsky UX" 
                   className="w-8 h-8 rounded-full object-cover"
                 />
                 Barsky Design
