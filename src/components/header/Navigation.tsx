@@ -52,7 +52,7 @@ const Navigation: React.FC<NavigationProps> = ({
   };
 
   return (
-    <nav className="hidden md:flex items-center space-x-4">
+    <nav className="hidden md:flex items-center space-x-4 w-full justify-start">
       {links.map((link) => {
         // For external links, use a regular anchor tag
         if (link.href.startsWith('http')) {

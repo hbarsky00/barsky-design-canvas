@@ -256,6 +256,33 @@
   
   .nav-link {
     @apply relative text-[hsl(var(--neutral-500))] hover:text-[hsl(var(--blue-accent))] transition-colors duration-300 text-left;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Navigation container left alignment */
+  nav, 
+  [role="navigation"],
+  .navigation-container {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  /* Mobile navigation full width and left alignment */
+  #mobile-navigation,
+  .mobile-menu,
+  .mobile-navigation {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  /* Desktop navigation left alignment */
+  nav.hidden.md\\:flex {
+    justify-content: flex-start !important;
+    align-items: center !important;
   }
   
   .nav-link::after {
