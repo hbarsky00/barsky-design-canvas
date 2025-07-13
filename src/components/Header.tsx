@@ -22,7 +22,7 @@ const Header: React.FC = () => {
                 <img 
                   src="/lovable-uploads/aa185961-b921-4df6-9ab8-7e66b69857f7.png" 
                   alt="Barsky UX" 
-                  className="w-8 h-8 rounded-full object-cover"
+                  className="w-10 h-10 rounded-full object-cover"
                 />
                 Barsky Design
                 <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out group-hover:w-full"></span>
