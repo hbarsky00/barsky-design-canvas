@@ -542,6 +542,22 @@
       justify-content: center;
     }
     
+    /* Override centering for navigation links - force left alignment */
+    .nav-link, 
+    nav .nav-link,
+    [role="navigation"] .nav-link,
+    #mobile-navigation .nav-link {
+      justify-content: flex-start !important;
+      text-align: left !important;
+      width: 100% !important;
+    }
+    
+    /* Ensure mobile menu container spans full width */
+    #mobile-navigation {
+      width: 100% !important;
+    }
+  }
+    
     /* Form inputs optimization */
     input, textarea, select {
       min-height: 44px;
