@@ -6,6 +6,8 @@
 // Enable all existing optimization systems
 import { enableGlobalImageCompression, monitorImagePerformance } from './imageCompressionTracker';
 import { preloadCriticalImages, trackCompressionStats } from './imageOptimization';
+import { initRealImageOptimization } from './realImageOptimizer';
+import { initTouchTargetFixes } from './touchTargetFixer';
 
 export const initializePerformanceOptimizations = () => {
   if (typeof window === 'undefined') return;
@@ -13,26 +15,23 @@ export const initializePerformanceOptimizations = () => {
   // Critical resource optimization
   optimizeCriticalResources();
   
-  // Image optimization
-  enableImageOptimizations();
+  // Real fixes
+  initRealImageOptimization();
+  initTouchTargetFixes();
   
   // Bundle and asset optimization
   optimizeAssetLoading();
   
-  // Performance monitoring
+  // Minimal performance monitoring
   initializePerformanceMonitoring();
   
-  console.log('🚀 Performance optimizations initialized');
+  console.log('🚀 Real performance fixes applied');
 };
 
-/**
- * Optimize critical resources for faster first paint
- */
 const optimizeCriticalResources = () => {
-  // Preload critical assets
+  // Preload only critical assets
   const criticalAssets = [
     '/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png', // Favicon
-    '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Profile
   ];
 
   criticalAssets.forEach(src => {
@@ -51,29 +50,13 @@ const enableImageOptimizations = () => {
   // Enable global compression
   enableGlobalImageCompression();
   
-  // Start external link monitoring
-  import('./externalLinkValidator').then(({ monitorExternalLinks }) => {
-    monitorExternalLinks(300000); // Check every 5 minutes
-  });
-  
-  // Start touch target monitoring
-  import('./touchTargetValidator').then(({ monitorTouchTargets }) => {
-    monitorTouchTargets(true); // Enable auto-fix
-  });
-  
-  // Start image performance monitoring
-  import('./imageAuditor').then(({ monitorImagePerformance }) => {
-    monitorImagePerformance();
-  });
-  
   // Preload critical images
   preloadCriticalImages();
   
-  // Start monitoring
+  // Run image optimization once on load, not continuously
   setTimeout(() => {
-    monitorImagePerformance();
     trackCompressionStats();
-  }, 2000);
+  }, 3000);
 };
 
 /**
@@ -102,56 +85,14 @@ const optimizeAssetLoading = () => {
 };
 
 /**
- * Initialize performance monitoring
+ * Initialize performance monitoring (minimal, no console spam)
  */
 const initializePerformanceMonitoring = () => {
-  // Monitor Core Web Vitals
-  if ('PerformanceObserver' in window) {
-    try {
-      // Largest Contentful Paint
-      const lcpObserver = new PerformanceObserver((list) => {
-        const lcpEntry = list.getEntries().at(-1);
-        if (lcpEntry) {
-          console.log('🎯 LCP:', Math.round(lcpEntry.startTime), 'ms');
-        }
-      });
-      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
-
-      // First Input Delay
-      const fidObserver = new PerformanceObserver((list) => {
-        list.getEntries().forEach((entry: any) => {
-          console.log('⚡ FID:', Math.round((entry.processingStart || entry.startTime) - entry.startTime), 'ms');
-        });
-      });
-      fidObserver.observe({ type: 'first-input', buffered: true });
-
-      // Cumulative Layout Shift
-      const clsObserver = new PerformanceObserver((list) => {
-        let clsScore = 0;
-        list.getEntries().forEach((entry: any) => {
-          if (!entry.hadRecentInput) {
-            clsScore += (entry.value || 0);
-          }
-        });
-        if (clsScore > 0) {
-          console.log('📐 CLS:', clsScore.toFixed(4));
-        }
-      });
-      clsObserver.observe({ type: 'layout-shift', buffered: true });
-    } catch (error) {
-      console.warn('Performance monitoring not supported:', error);
-    }
-  }
-
-  // Monitor resource loading
+  // Only log critical metrics once on load
   window.addEventListener('load', () => {
     const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-    console.log('📊 Total Load Time:', Math.round(loadTime), 'ms');
-    
-    // Report network payload
-    if ('connection' in navigator && (navigator as any).connection) {
-      const connection = (navigator as any).connection;
-      console.log('🌐 Connection:', connection.effectiveType, connection.downlink + 'Mbps');
+    if (loadTime > 3000) { // Only log if slow
+      console.log('📊 Load Time:', Math.round(loadTime), 'ms');
     }
   });
 };
