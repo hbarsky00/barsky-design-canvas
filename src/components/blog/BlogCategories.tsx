@@ -71,29 +71,24 @@ const BlogCategories: React.FC = () => {
           </p>
         </div>
 
-        {/* Mobile Filter Header */}
+        {/* Mobile: Compact Category Filters */}
         <div className="md:hidden mb-4">
-          <h2 className="text-lg font-semibold text-gray-900 mb-2">Filter by Category</h2>
-        </div>
-
-        {/* Mobile: Horizontal Scrolling Filter Chips */}
-        <div className="md:hidden mb-6">
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
             {categories.map((category) => (
               <Link
                 key={category.slug}
                 to={`/blog/category/${category.slug}`}
-                className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full hover:border-primary hover:bg-primary/5 transition-all duration-200 whitespace-nowrap min-w-fit"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full hover:border-primary hover:bg-primary/5 transition-colors whitespace-nowrap min-w-fit text-xs"
               >
                 <div className="flex-shrink-0">
                   {React.cloneElement(category.icon as React.ReactElement, { 
-                    className: "h-4 w-4 text-gray-600" 
+                    className: "h-3.5 w-3.5 text-gray-500" 
                   })}
                 </div>
-                <span className="text-sm font-medium text-gray-700">
+                <span className="font-medium text-gray-700">
                   {category.name}
                 </span>
-                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                <span className="bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full text-xs leading-none">
                   {category.count}
                 </span>
               </Link>
