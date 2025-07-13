@@ -2,7 +2,6 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
-import ProfileAvatar from "./header/ProfileAvatar";
 import { Link } from "react-router-dom";
 const Header: React.FC = () => {
   const {
@@ -19,7 +18,11 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pr-6 lg:pr-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2 justify-start">
-            <ProfileAvatar />
+            <Link to="/" aria-label="Go to homepage" className="flex items-center justify-center">
+              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[hsl(var(--blue-accent))] to-[hsl(var(--blue-vibrant))] flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="text-white font-bold text-xl">B</div>
+              </div>
+            </Link>
             <Link to="/" className="text-2xl font-script font-medium text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group">
                 Barsky Design
                 <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out group-hover:w-full"></span>
