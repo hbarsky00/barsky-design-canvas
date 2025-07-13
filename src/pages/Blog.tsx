@@ -25,7 +25,7 @@ const Blog = () => {
       
       <Header />
       <main className="flex-grow">
-        <section className="pt-28 pb-8 bg-gradient-to-br from-purple-50 to-blue-100">
+        <section className="pt-20 pb-6 md:pt-28 md:pb-8 bg-gradient-to-br from-purple-50 to-blue-100">
           <div className="max-w-4xl mx-auto px-6">
             {/* SEO Breadcrumbs */}
             <BlogBreadcrumbs />

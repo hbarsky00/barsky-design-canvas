@@ -56,9 +56,9 @@ const categories: Category[] = [
 
 const BlogCategories: React.FC = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-8 md:py-16 bg-white">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 md:mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Tag className="h-6 w-6 text-blue-600" />
             <h2 className="text-3xl font-bold text-gray-900">
