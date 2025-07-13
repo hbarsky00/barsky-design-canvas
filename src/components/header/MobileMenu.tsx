@@ -65,7 +65,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 
       {isMobileMenuOpen && (
         <div className="absolute left-0 right-0 top-full bg-white dark:bg-gray-900 w-full py-4 px-4 sm:px-6 border-t dark:border-gray-800 shadow-md z-50">
-          <nav id="mobile-navigation" className="flex flex-col space-y-4 items-start w-full" role="navigation" aria-label="Mobile navigation menu">
+          <nav id="mobile-navigation" className="flex flex-col space-y-4 !items-start !justify-start w-full" role="navigation" aria-label="Mobile navigation menu">
             {links.map((link) => {
               // For external links, use a regular anchor tag
               if (link.href.startsWith('http')) {
@@ -76,7 +76,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={toggleMobileMenu}
-                    className="nav-link text-lg flex items-center justify-start w-full text-left"
+                    className="nav-link text-lg !flex !items-center !justify-start w-full !text-left"
                   >
                     {getIcon(link.name)}
                     {link.name}
@@ -95,7 +95,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     toggleMobileMenu(); // Close menu when clicking a link
                   }}
                   className={cn(
-                    "nav-link text-lg flex items-center justify-start w-full text-left",
+                    "nav-link text-lg !flex !items-center !justify-start w-full !text-left",
                     isLinkActive(link.href) && "active"
                   )}
                 >
