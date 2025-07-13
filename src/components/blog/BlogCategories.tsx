@@ -58,7 +58,8 @@ const BlogCategories: React.FC = () => {
   return (
     <section className="py-8 md:py-16 bg-white">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-6 md:mb-12">
+        {/* Desktop Title - Hidden on Mobile */}
+        <div className="hidden md:block text-center mb-6 md:mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Tag className="h-6 w-6 text-blue-600" />
             <h2 className="text-3xl font-bold text-gray-900">
@@ -70,7 +71,38 @@ const BlogCategories: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        {/* Mobile Filter Header */}
+        <div className="md:hidden mb-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Filter by Category</h2>
+        </div>
+
+        {/* Mobile: Horizontal Scrolling Filter Chips */}
+        <div className="md:hidden mb-6">
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            {categories.map((category) => (
+              <Link
+                key={category.slug}
+                to={`/blog/category/${category.slug}`}
+                className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full hover:border-primary hover:bg-primary/5 transition-all duration-200 whitespace-nowrap min-w-fit"
+              >
+                <div className="flex-shrink-0">
+                  {React.cloneElement(category.icon as React.ReactElement, { 
+                    className: "h-4 w-4 text-gray-600" 
+                  })}
+                </div>
+                <span className="text-sm font-medium text-gray-700">
+                  {category.name}
+                </span>
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                  {category.count}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop/Tablet: Card Grid Layout */}
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {categories.map((category) => (
             <Link
               key={category.slug}
