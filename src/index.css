@@ -666,14 +666,20 @@ img[loading="eager"] {
   loading: eager;
 }
 
-/* Focus indicators for better accessibility */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid rgb(59 130 246) !important;
+/* Focus indicators for better accessibility - using focus-visible for keyboard navigation only */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid hsl(var(--blue-accent)) !important;
   outline-offset: 2px !important;
+}
+
+/* Remove focus outline for mouse/touch interactions */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none !important;
 }
 
 /* High contrast mode support */
