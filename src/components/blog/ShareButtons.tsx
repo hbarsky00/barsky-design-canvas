@@ -50,9 +50,9 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
     },
   ];
 
-  // Main share buttons (most popular)
-  const mainShareLinks = shareLinks.slice(0, 3); // Twitter, Facebook, LinkedIn
-  const additionalShareLinks = shareLinks.slice(3); // Threads, Medium, Email
+  // Prioritize LinkedIn for mobile
+  const mainShareLinks = shareLinks.filter(link => link.name === 'LinkedIn');
+  const additionalShareLinks = shareLinks.filter(link => ['Twitter', 'Facebook', 'Threads', 'Medium', 'Email'].includes(link.name));
 
   const visibleShareLinks = showAll ? shareLinks : mainShareLinks;
 
@@ -87,7 +87,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
         {!showAll && additionalShareLinks.length > 0 && (
           <Button
             variant="outline"
-            className="share-button hidden sm:flex"
+            className="share-button"
             onClick={() => setShowAll(true)}
             aria-label="Show more share options"
             title="More"

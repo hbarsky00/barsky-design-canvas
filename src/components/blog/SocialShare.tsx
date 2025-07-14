@@ -11,6 +11,7 @@ interface SocialShareProps {
 
 const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
   const { toast } = useToast();
+  const [showMore, setShowMore] = React.useState(false);
   const fullUrl = `${window.location.origin}${url}`;
   
   const copyToClipboard = async () => {
@@ -53,16 +54,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
       </div>
       
       <div className="flex flex-wrap gap-3">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={shareOnTwitter}
-          className="flex items-center gap-2"
-        >
-          <Twitter className="h-4 w-4" />
-          Twitter
-        </Button>
-        
+        {/* Main buttons - always visible */}
         <Button
           variant="outline"
           size="sm"
@@ -70,17 +62,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
           className="flex items-center gap-2"
         >
           <Linkedin className="h-4 w-4" />
-          LinkedIn
-        </Button>
-        
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={shareOnFacebook}
-          className="flex items-center gap-2"
-        >
-          <Facebook className="h-4 w-4" />
-          Facebook
+          <span className="hidden sm:inline">LinkedIn</span>
         </Button>
         
         <Button
@@ -90,8 +72,65 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
           className="flex items-center gap-2"
         >
           <Link2 className="h-4 w-4" />
-          Copy Link
+          <span className="hidden sm:inline">Copy Link</span>
         </Button>
+
+        {/* Mobile: Show additional options inline on larger screens */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={shareOnTwitter}
+          className="hidden sm:flex items-center gap-2"
+        >
+          <Twitter className="h-4 w-4" />
+          Twitter
+        </Button>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={shareOnFacebook}
+          className="hidden sm:flex items-center gap-2"
+        >
+          <Facebook className="h-4 w-4" />
+          Facebook
+        </Button>
+
+        {/* Mobile: More button for additional options */}
+        <div className="sm:hidden relative">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowMore(!showMore)}
+            className="flex items-center gap-2"
+          >
+            <Share2 className="h-4 w-4" />
+            More
+          </Button>
+          
+          {showMore && (
+            <div className="absolute top-full left-0 mt-2 bg-white border rounded-lg shadow-lg p-2 space-y-2 z-10 min-w-[120px]">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => { shareOnTwitter(); setShowMore(false); }}
+                className="w-full justify-start gap-2"
+              >
+                <Twitter className="h-4 w-4" />
+                Twitter
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => { shareOnFacebook(); setShowMore(false); }}
+                className="w-full justify-start gap-2"
+              >
+                <Facebook className="h-4 w-4" />
+                Facebook
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
