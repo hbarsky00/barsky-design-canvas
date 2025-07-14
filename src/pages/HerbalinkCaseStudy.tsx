@@ -346,7 +346,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                         </div>
                         <div>
                           <h4 className="text-lg font-semibold text-neutral-800 mb-2">{barrier.title}</h4>
-                          <p className="text-neutral-600">{barrier.description}</p>
+                          <p className="text-neutral-600 object-cover">{barrier.description}</p>
                         </div>
                       </div>
                     </motion.div>)}
