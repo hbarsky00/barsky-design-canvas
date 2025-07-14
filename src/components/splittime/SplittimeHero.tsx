@@ -130,7 +130,7 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({
                   <p className="text-lg font-medium text-neutral-800 mb-2">
                     Child-First Philosophy
                   </p>
-                  <p className="text-neutral-600 italic">
+                  <p className="text-neutral-600 italic object-cover">
                     "Co-parenting tools should reduce conflict, not create more. When parents can communicate 
                     respectfully and coordinate effectively, children thrive in both homes."
                   </p>
@@ -150,7 +150,7 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({
           delay: 0.2
         }} className="relative">
             <figure className="project-image-container">
-              <img alt="Splittime co-parenting dashboard with shared calendar integration" onClick={() => onImageClick('splittime-hero-1')} tabIndex={0} onKeyDown={e => onImageKeypress(e, 'splittime-hero-1')} role="button" aria-label="Click to view Splittime co-parenting dashboard in full screen" id="splittime-hero-1" src="/lovable-uploads/3b07ead2-8be0-4600-a345-4eb6d08aac8d.jpg" className="clickable-image w-full h-[500px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl object-contain" />
+              <img src="/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png" alt="Splittime co-parenting dashboard with shared calendar integration" className="clickable-image w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl" onClick={() => onImageClick('splittime-hero-1')} tabIndex={0} onKeyDown={e => onImageKeypress(e, 'splittime-hero-1')} role="button" aria-label="Click to view Splittime co-parenting dashboard in full screen" id="splittime-hero-1" />
               <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                 Splittime co-parenting dashboard with shared calendar integration
               </figcaption>
