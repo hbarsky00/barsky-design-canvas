@@ -81,16 +81,7 @@ const HerbalinkCaseStudy: React.FC = () => {
     icon: <Sprout className="h-6 w-6" />
   }];
   return <>
-      <DynamicSeo 
-        type="project"
-        title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"
-        description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access."
-        image={`https://barskydesign.pro${herbalinkOgImage}`}
-        projectName="Herbalink"
-        results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
-        technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
-        path="/project/herbalink"
-      />
+      <DynamicSeo type="project" title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky" description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access." image={`https://barskydesign.pro${herbalinkOgImage}`} projectName="Herbalink" results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]} technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]} path="/project/herbalink" />
       
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         <Header />
@@ -122,14 +113,14 @@ const HerbalinkCaseStudy: React.FC = () => {
               {/* Mobile Layout: Image First */}
               <div className="lg:hidden space-y-8">
                 <motion.div initial={{
-                  opacity: 0,
-                  y: 30
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.8
-                }} className="relative">
+                opacity: 0,
+                y: 30
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.8
+              }} className="relative">
                   <figure className="project-image-container">
                     <img src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")} alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")} />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
@@ -139,15 +130,15 @@ const HerbalinkCaseStudy: React.FC = () => {
                 </motion.div>
                 
                 <motion.div initial={{
-                  opacity: 0,
-                  y: 30
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.8,
-                  delay: 0.2
-                }} className="space-y-8">
+                opacity: 0,
+                y: 30
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.8,
+                delay: 0.2
+              }} className="space-y-8">
                   <div className="flex items-center gap-3 mb-6">
                     <Leaf className="h-10 w-10 text-emerald-600" />
                     <span className="text-emerald-700 font-semibold text-lg">Wellness Journey</span>
@@ -166,12 +157,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                    
                    {/* Share Buttons */}
                    <div className="mt-6">
-                     <ShareButtons 
-                       title="Herbalink: AI-Enhanced Herbalist Platform Case Study"
-                       summary="See how AI-powered matching revolutionized natural healthcare access with 85% user match success rate and 40% faster consultation bookings."
-                       url={window.location.href}
-                       hashtags={["UXDesign", "HealthTech", "AI", "CaseStudy", "MobileUX"]}
-                     />
+                     <ShareButtons title="Herbalink: AI-Enhanced Herbalist Platform Case Study" summary="See how AI-powered matching revolutionized natural healthcare access with 85% user match success rate and 40% faster consultation bookings." url={window.location.href} hashtags={["UXDesign", "HealthTech", "AI", "CaseStudy", "MobileUX"]} />
                    </div>
                   
                   <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-emerald-600 hover:bg-emerald-700" onClick={() => window.open('http://herbalink.live', '_blank')}>
@@ -197,15 +183,15 @@ const HerbalinkCaseStudy: React.FC = () => {
                 
                 {/* Video section for mobile */}
                 <motion.div initial={{
-                  opacity: 0,
-                  y: 30
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.8,
-                  delay: 0.4
-                }} className="mt-8">
+                opacity: 0,
+                y: 30
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.8,
+                delay: 0.4
+              }} className="mt-8">
                   <div className="relative w-full h-0 pb-[56.25%] overflow-hidden shadow-2xl rounded-3xl">
                     <iframe src="https://www.loom.com/embed/a477db12673d4dd687048f5d1235d76e" frameBorder="0" allowFullScreen className="absolute top-0 left-0 w-full h-full rounded-3xl"></iframe>
                   </div>
@@ -244,12 +230,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                    
                    {/* Share Buttons */}
                    <div className="mt-6">
-                     <ShareButtons 
-                       title="Herbalink: AI-Enhanced Herbalist Platform Case Study"
-                       summary="See how AI-powered matching revolutionized natural healthcare access with 85% user match success rate and 40% faster consultation bookings."
-                       url={window.location.href}
-                       hashtags={["UXDesign", "HealthTech", "AI", "CaseStudy", "MobileUX"]}
-                     />
+                     <ShareButtons title="Herbalink: AI-Enhanced Herbalist Platform Case Study" summary="See how AI-powered matching revolutionized natural healthcare access with 85% user match success rate and 40% faster consultation bookings." url={window.location.href} hashtags={["UXDesign", "HealthTech", "AI", "CaseStudy", "MobileUX"]} />
                    </div>
                   
                   <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-emerald-600 hover:bg-emerald-700" onClick={() => window.open('http://herbalink.live', '_blank')}>
@@ -488,7 +469,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   </p>
                 </div>
                 <div className="bg-white rounded-3xl p-8 shadow-xl border border-emerald-200">
-                  <img src="/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png" alt="AI-enhanced development workflow from conversation to deployment" onClick={() => maximizeImage("/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png", "AI-enhanced development workflow from conversation to deployment")} className="w-full h-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover" />
+                  <img alt="AI-enhanced development workflow from conversation to deployment" onClick={() => maximizeImage("/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png", "AI-enhanced development workflow from conversation to deployment")} src="/lovable-uploads/4877fa82-46fd-47bf-a10c-1ed97207e289.png" className="w-full h-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-contain" />
                 </div>
               </motion.div>
 
