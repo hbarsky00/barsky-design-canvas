@@ -13,7 +13,7 @@ import About from "./pages/About";
 import UxUiDesign from "./pages/design-services/UxUiDesign";
 import WebDevelopment from "./pages/design-services/WebDevelopment";
 import MobileAppDesign from "./pages/design-services/MobileAppDesign";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Store from "./pages/Store";
@@ -38,17 +38,9 @@ import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
-// Create QueryClient outside component to avoid React context issues
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 3,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-    },
-  },
-});
 
-function App() {
+function AppMain() {
+  console.log("🚀 App component loading - cache cleared");
   return (
     <ErrorBoundary>
         <HelmetProvider>
@@ -111,4 +103,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppMain;
