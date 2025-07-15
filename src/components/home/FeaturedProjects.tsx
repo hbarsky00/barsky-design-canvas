@@ -57,8 +57,8 @@ const FeaturedProjects: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 w-full h-full">
-                    <div className="flex space-x-3 h-full items-center justify-center w-full">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="flex space-x-3 items-center justify-center">
                       <Link
                         to={`/case-studies/${project.id}`}
                         className="bg-white/90 hover:bg-white text-gray-900 px-6 py-3 rounded-lg font-medium transition-colors h-12 flex items-center justify-center"
