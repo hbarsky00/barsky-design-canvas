@@ -37,7 +37,6 @@ import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
-import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
 import { useMobileOptimization } from "@/hooks/useMobileOptimization";
 import { useAccessibilityValidator } from "@/hooks/useAccessibilityValidator";
@@ -57,14 +56,17 @@ const queryClient = new QueryClient({
 
 function App() {
   // Apply performance, accessibility, and mobile optimizations
-  usePerformanceOptimization();
   useAccessibilityEnhancements();
   useMobileOptimization();
   useAccessibilityValidator();
   
-  // Initialize real performance optimizations
+  // Initialize performance optimizations safely
   React.useEffect(() => {
-    initializePerformanceOptimizations();
+    try {
+      initializePerformanceOptimizations();
+    } catch (error) {
+      console.warn('Performance optimization failed:', error);
+    }
   }, []);
   
   
