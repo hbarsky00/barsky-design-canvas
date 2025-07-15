@@ -1,7 +1,9 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const featuredCaseStudies = [
   {
@@ -144,13 +146,12 @@ const FeaturedCaseStudiesSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-8 py-4 rounded-full text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-          >
-            View All Case Studies
-            <ArrowRight className="w-6 h-6" />
-          </Link>
+          <Button asChild size="lg" className="text-lg">
+            <Link to="/case-studies" className="inline-flex items-center gap-3">
+              View All Case Studies
+              <ArrowRight className="w-6 h-6" />
+            </Link>
+          </Button>
         </motion.div>
       </div>
     </section>
