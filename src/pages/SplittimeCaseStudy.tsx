@@ -1,22 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
 import { Helmet } from "react-helmet-async";
-import SplittimeImageViewer from "@/components/splittime/SplittimeImageViewer";
-import SplittimeHero from "@/components/splittime/SplittimeHero";
-import SplittimeConflictAnalysis from "@/components/splittime/SplittimeConflictAnalysis";
-import SplittimeCoordinationSolution from "@/components/splittime/SplittimeCoordinationSolution";
-import SplittimeFamilyInterface from "@/components/splittime/SplittimeFamilyInterface";
-import SplittimeImpactMetrics from "@/components/splittime/SplittimeImpactMetrics";
-import SplittimeCallToAction from "@/components/splittime/SplittimeCallToAction";
-import ShareButtons from "@/components/blog/ShareButtons";
-import RelatedProjects from "@/components/RelatedProjects";
-import { useSplittimeImageViewer } from "@/hooks/useSplittimeImageViewer";
 import splittimeOgImage from "@/assets/social/splittime-og.jpg";
+
+// Add this right after your imports, before the component
+<Helmet>
+  <title>Splittime Co-Parenting App UX Design Case Study | Barsky Design</title>
+  <meta name="description" content="Co-parenting coordination app UX design. Simplified scheduling, communication, and expense tracking for divorced parents. Reduced conflict through intuitive design and AI-powered scheduling." />
+  <meta property="og:title" content="Splittime Co-Parenting App UX Design Case Study" />
+  <meta property="og:description" content="Co-parenting coordination app UX design. Simplified scheduling, communication, and expense tracking for divorced parents. Reduced conflict through intuitive design and AI-powered scheduling." />
+  <meta property="og:image" content={`https://barskydesign.pro${splittimeOgImage}`} />
+  <meta property="og:url" content="https://barskydesign.pro/case-studies/splittime-coparenting-app-design" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Splittime Co-Parenting App UX Design Case Study" />
+  <meta name="twitter:description" content="Co-parenting coordination app UX design. Simplified scheduling, communication, and expense tracking for divorced parents. Reduced conflict through intuitive design and AI-powered scheduling." />
+  <meta name="twitter:image" content={`https://barskydesign.pro${splittimeOgImage}`} />
+</Helmet>
+
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Splittime Co-Parenting App UX Design Case Study",
+  "description": "Co-parenting coordination app UX design. Simplified scheduling, communication, and expense tracking for divorced parents.",
+  "author": {
+    "@type": "Person",
+    "name": "Hiram Barsky"
+  },
+  "datePublished": "2024",
+  "url": "https://barskydesign.pro/case-studies/splittime-coparenting-app-design"
+})}
+</script>
+
 
 const SplittimeCaseStudy: React.FC = () => {
   const {

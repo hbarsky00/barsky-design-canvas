@@ -13,6 +13,32 @@ import RelatedProjects from "@/components/RelatedProjects";
 import ShareButtons from "@/components/blog/ShareButtons";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import herbalinkOgImage from "@/assets/social/herbalink-og.jpg";
+<Helmet>
+  <title>Herbalink Mobile Herbalist App UX Design Case Study | Barsky Design</title>
+  <meta name="description" content="Mobile-first UX design for Herbalink herbalist consultation platform. Increased user engagement 40% through intuitive interface design, AI-powered herbalist matching, and streamlined booking flow." />
+  <meta property="og:title" content="Herbalink Mobile Herbalist App UX Design Case Study" />
+  <meta property="og:description" content="Mobile-first UX design for Herbalink herbalist consultation platform. Increased user engagement 40% through intuitive interface design, AI-powered herbalist matching, and streamlined booking flow." />
+ <meta property="og:image" content={`https://barskydesign.pro${herbalinkOgImage}`} />
+  <meta property="og:url" content="https://barskydesign.pro/case-studies/herbalink-mobile-herbalist-ux-design" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Herbalink Mobile Herbalist App UX Design Case Study" />
+  <meta name="twitter:description" content="Mobile-first UX design for Herbalink herbalist consultation platform. Increased user engagement 40% through intuitive interface design, AI-powered herbalist matching, and streamlined booking flow." />
+  <meta name="twitter:image" content="https://barskydesign.pro/images/herbalink-case-study-preview.jpg" />
+</Helmet>
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Herbalink Mobile Herbalist App UX Design Case Study",
+  "description": "Mobile-first UX design for Herbalink herbalist consultation platform...",
+  "author": {
+    "@type": "Person",
+    "name": "Hiram Barsky"
+  },
+  "datePublished": "2024",
+  "url": "https://barskydesign.pro/case-studies/herbalink-mobile-herbalist-ux-design"
+})}
+</script>
 const HerbalinkCaseStudy: React.FC = () => {
   const {
     maximizeImage
