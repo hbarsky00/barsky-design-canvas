@@ -1,121 +1,79 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// scripts/validate-sitemap.js
+const fs = require('fs');
+const path = require('path');
+const { XMLParser } = require('fast-xml-parser');
 
-interface SitemapEntry {
-  url: string;
-  lastmod: string;
-  changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority: number;
-}
-
-const SitemapGenerator: React.FC = () => {
-  const location = useLocation();
-
-  const sitemapEntries: SitemapEntry[] = [
-    {
-      url: 'https://barskydesign.pro',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'weekly',
-      priority: 1.0
-    },
-    {
-      url: 'https://barskydesign.pro/about',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/services',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      url: 'https://barskydesign.pro/projects',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'weekly',
-      priority: 0.9
-    },
-    {
-      url: 'https://barskydesign.pro/blog',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'weekly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/contact',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.7
-    },
-    // Case Studies
-    {
-      url: 'https://barskydesign.pro/case-study-herbalink',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/case-study-splittime',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/case-study-investor-loan',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
+const validateSitemap = () => {
+  try {
+    const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
+    
+    if (!fs.existsSync(sitemapPath)) {
+      console.error('❌ Sitemap not found at /public/sitemap.xml');
+      process.exit(1);
     }
-  ];
 
-  useEffect(() => {
-    // Generate and submit sitemap to search engines
-    const generateSitemap = () => {
-      const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapEntries.map(entry => `  <url>
-    <loc>${entry.url}</loc>
-    <lastmod>${entry.lastmod}</lastmod>
-    <changefreq>${entry.changefreq}</changefreq>
-    <priority>${entry.priority}</priority>
-  </url>`).join('\n')}
-</urlset>`;
+    const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
+    const parser = new XMLParser();
+    const parsed = parser.parse(sitemapContent);
 
-      // Submit to search engines
-      if (typeof window !== 'undefined') {
-        // Ping Google
-        const googlePingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent('https://barskydesign.pro/sitemap.xml')}`;
-        
-        // Use a more reliable method for sitemap submission
-        fetch('/api/submit-sitemap', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            sitemap: sitemapXml,
-            urls: sitemapEntries.map(entry => entry.url)
-          })
-        }).catch(error => {
-          console.log('Sitemap submission fallback:', error);
-          // Fallback: Track sitemap generation for analytics
-          if (window.gtag) {
-            window.gtag('event', 'sitemap_generated', {
-              event_category: 'SEO',
-              event_label: 'sitemap_xml',
-              value: sitemapEntries.length
-            });
-          }
-        });
+    // Basic validation
+    if (!parsed.urlset || !parsed.urlset.url) {
+      console.error('❌ Invalid sitemap structure');
+      process.exit(1);
+    }
+
+    const urls = Array.isArray(parsed.urlset.url) ? parsed.urlset.url : [parsed.urlset.url];
+    
+    console.log('✅ Sitemap validation passed');
+    console.log(`📊 Found ${urls.length} URLs in sitemap`);
+    
+    // Validate each URL
+    const issues = [];
+    
+    urls.forEach((urlEntry, index) => {
+      if (!urlEntry.loc) {
+        issues.push(`URL ${index + 1}: Missing location`);
       }
-    };
+      
+      if (urlEntry.priority && (urlEntry.priority < 0 || urlEntry.priority > 1)) {
+        issues.push(`URL ${index + 1}: Invalid priority (${urlEntry.priority})`);
+      }
+      
+      if (urlEntry.changefreq && !['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never'].includes(urlEntry.changefreq)) {
+        issues.push(`URL ${index + 1}: Invalid changefreq (${urlEntry.changefreq})`);
+      }
+    });
 
-    // Generate sitemap on page load
-    generateSitemap();
-  }, [location.pathname]);
+    if (issues.length > 0) {
+      console.warn('⚠️  Sitemap issues found:');
+      issues.forEach(issue => console.warn(`   ${issue}`));
+    } else {
+      console.log('✅ All URLs passed validation');
+    }
 
-  return null; // This component doesn't render anything visible
+    // Check for duplicate URLs
+    const locations = urls.map(url => url.loc);
+    const duplicates = locations.filter((item, index) => locations.indexOf(item) !== index);
+    
+    if (duplicates.length > 0) {
+      console.warn('⚠️  Duplicate URLs found:', duplicates);
+    }
+
+    // Display URL distribution
+    const priorities = urls.map(url => url.priority || 0.5);
+    const avgPriority = (priorities.reduce((a, b) => a + b, 0) / priorities.length).toFixed(2);
+    
+    console.log(`📈 Average priority: ${avgPriority}`);
+    console.log(`🔗 Homepage priority: ${urls.find(u => u.loc.endsWith('barskydesign.pro'))?.priority || 'Not found'}`);
+
+  } catch (error) {
+    console.error('❌ Error validating sitemap:', error.message);
+    process.exit(1);
+  }
 };
 
-export default SitemapGenerator;
+if (require.main === module) {
+  validateSitemap();
+}
+
+module.exports = { validateSitemap };
