@@ -15,7 +15,8 @@ import FloatingConsultationBubble from "@/components/FloatingConsultationBubble"
 const HomepageLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <Header />
+      {/* Temporarily disable Header (uses router context) */}
+      {/* <Header /> */}
       <main className="flex-grow space-y-4">
         {/* Temporarily disable framer-motion components to fix React context issues */}
         {/* <FeaturedCaseStudiesSection /> */}
@@ -23,14 +24,16 @@ const HomepageLayout: React.FC = () => {
         
         <About />
         {/* <ContactForm /> */}
-        <BlogPreview />
+        {/* Temporarily disable BlogPreview (uses Link components) */}
+        {/* <BlogPreview /> */}
         {/* Temporarily disable SeoFaqSection as it uses framer-motion */}
         {/* <SeoFaqSection 
           title="Frequently Asked Questions About AI-Enhanced UX Design"
           faqs={homepageFaqs}
         /> */}
       </main>
-      <Footer />
+      {/* Temporarily disable Footer (uses Link components) */}
+      {/* <Footer /> */}
       {/* <FloatingConsultationBubble /> */}
     </div>
   );
