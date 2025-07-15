@@ -67,6 +67,10 @@ const HeroSection: React.FC = () => {
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg"
               projectId="wholesale-distribution"
               onImageReplace={handleImageReplace}
+              width={1200}
+              height={800}
+              aspectRatio="3/2"
+              priority={true}
             />
             
             <iframe 
@@ -144,6 +148,10 @@ const HeroSection: React.FC = () => {
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-md"
               projectId="wholesale-distribution"
               onImageReplace={handleImageReplace}
+              width={1200}
+              height={800}
+              aspectRatio="3/2"
+              priority={true}
             />
             
             <iframe 
