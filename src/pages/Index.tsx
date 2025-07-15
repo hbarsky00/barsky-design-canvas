@@ -17,7 +17,7 @@ const Index = () => {
     <>
       {/* Comprehensive SEO Optimization */}
       <DynamicSeo type="home" />
-      <SeoAnalyticsTracker pageTitle="Hiram Barsky - UX / UI Product Designer & Gen AI Developer" pageType="home" />
+      <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" />
       <SitemapGenerator />
       
       {/* Page Content */}
