@@ -52,8 +52,22 @@ const FeaturedProjects: React.FC = () => {
         }} className="group relative">
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
                 {/* Project Image */}
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-contain" loading="lazy" />
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="flex space-x-3">
+                      <Link to={`/case-studies/${project.id}`} className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors">
+                        View Case Study
+                      </Link>
+                      {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center">
+                          <Figma className="h-4 w-4 mr-1" />
+                          Live Website
+                        </a>}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Project Content */}
