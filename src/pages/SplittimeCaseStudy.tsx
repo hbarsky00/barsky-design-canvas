@@ -1,4 +1,4 @@
-I'll give you the complete SplittimeCaseStudy.tsx code with proper SEO implementation! 🎯
+I see the issue! There are syntax errors in the code structure. Let me give you the complete, properly formatted SplittimeCaseStudy.tsx file! 🔧
 
 ```typescript
 import React from "react";
@@ -314,5 +314,4 @@ const SplittimeCaseStudy: React.FC = () => {
                   className="relative"
                 >
                   <MaximizableImage 
-                    src="/lovable-uploads/splittime-hero-desktop.png"
-                
+                    src="/lovable-uploads
