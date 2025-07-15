@@ -11,11 +11,29 @@ import { initARIAValidation } from './ariaValidator';
 import { initAnchorTextValidation } from './anchorTextValidator';
 import { initInternalLinkOptimization } from './internalLinkOptimizer';
 import { initNetworkPayloadOptimization } from './networkPayloadOptimizer';
+import { initCriticalCSS } from './criticalCssExtractor';
+import { initServiceWorker } from './serviceWorkerManager';
+import { initCodeSplitting } from './enhancedCodeSplitting';
+import { initAccessibilityEnhancements } from './accessibilityEnhancer';
+import { initPerformanceMonitoring } from './performanceMonitor';
+import { initRenderBlockingElimination } from './renderBlockingEliminator';
 
 export const initializePerformanceOptimizations = () => {
   if (typeof window === 'undefined') return;
 
-  // Apply comprehensive fixes
+  // Phase 1: Critical CSS & Resource Optimization
+  initCriticalCSS();
+  initRenderBlockingElimination();
+  
+  // Phase 2: Enhanced Code Splitting & Caching
+  initCodeSplitting();
+  initServiceWorker();
+  
+  // Phase 3: Performance Monitoring & Accessibility
+  initPerformanceMonitoring();
+  initAccessibilityEnhancements();
+  
+  // Phase 4: Legacy Performance Fixes
   initImageOptimization();
   initTouchTargetFixes();
   initAccessibilityFixes();
@@ -23,22 +41,17 @@ export const initializePerformanceOptimizations = () => {
   optimizeCriticalResources();
   deferNonCriticalResources();
   
-  // Phase 1: Critical Accessibility & Performance fixes
+  // Phase 5: Advanced Optimizations
   initARIAValidation();
   initAnchorTextValidation();
-  
-  // Phase 2: SEO & Navigation Optimization
   initInternalLinkOptimization();
-  
-  // Phase 3: Advanced Performance Tuning
   initNetworkPayloadOptimization();
   
-  console.log('✅ Performance optimizations applied');
-  console.log('✅ Critical accessibility fixes applied');
-  console.log('✅ Anchor text improvements applied');
-  console.log('✅ Internal link optimization applied');
+  console.log('✅ Critical CSS & render blocking elimination applied');
+  console.log('✅ Enhanced code splitting & service worker registered');
+  console.log('✅ Performance monitoring & accessibility enhancements active');
   console.log('✅ Network payload optimization applied');
-  console.log('🚀 All priority action plan phases complete');
+  console.log('🚀 Comprehensive performance & accessibility optimization complete');
 };
 
 
