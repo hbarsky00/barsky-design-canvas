@@ -56,9 +56,9 @@ const HeroSection: React.FC = () => {
             delay: 0.2
           }} className="relative space-y-6">
             <MaximizableImage
-              src={getOptimizedImageSrc("/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png")}
-              alt="QuickFlow Business Dashboard - Mobile interface showing sales analytics and performance tracking"
-              caption="QuickFlow Business Dashboard - Mobile Interface"
+              src={getOptimizedImageSrc("/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png")}
+              alt="QuickFlow Business Dashboard - Full interface showing comprehensive sales analytics and business management features"
+              caption="QuickFlow Business Dashboard - Complete Interface"
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg"
             />
             
@@ -131,9 +131,9 @@ const HeroSection: React.FC = () => {
             delay: 0.2
           }} className="relative space-y-6">
             <MaximizableImage
-              src={getOptimizedImageSrc("/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png")}
-              alt="QuickFlow Business Dashboard - Mobile interface showing sales analytics and performance tracking"
-              caption="QuickFlow Business Dashboard - Mobile Interface"
+              src={getOptimizedImageSrc("/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png")}
+              alt="QuickFlow Business Dashboard - Full interface showing comprehensive sales analytics and business management features"
+              caption="QuickFlow Business Dashboard - Complete Interface"
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-md"
             />
             
