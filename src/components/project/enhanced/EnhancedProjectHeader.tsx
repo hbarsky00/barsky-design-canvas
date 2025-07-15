@@ -42,11 +42,11 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
           className="mb-8"
         >
           <Link 
-            to="/projects" 
+            to="/case-studies" 
             className="inline-flex items-center text-gray-300 hover:text-white transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Projects
+            Back to Case Studies
           </Link>
         </motion.div>
 

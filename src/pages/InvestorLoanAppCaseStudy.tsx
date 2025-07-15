@@ -12,7 +12,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
       caseStudyName="Investor Loan App"
       seoResults={["60% faster portfolio analysis", "90% automated report generation", "Real-time market insights"]}
       technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
-      path="/project/investor-loan-app"
+      path="/case-studies/investor-loan-portfolio-management"
       
       // Clean Content
       caseStudyTitle="Investor Loan App"

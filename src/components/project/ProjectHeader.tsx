@@ -36,9 +36,9 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
           transition={{ duration: 0.6 }}
           className="mb-6 lg:mb-8"
         >
-          <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors">
+          <Link to="/case-studies" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Projects
+            Back to Case Studies
           </Link>
         </motion.div>
 

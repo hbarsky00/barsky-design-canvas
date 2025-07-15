@@ -12,7 +12,7 @@ const HerbalinkCaseStudy: React.FC = () => {
       caseStudyName="Herbalink"
       seoResults={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
       technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
-      path="/project/herbalink"
+      path="/case-studies/herbalink-mobile-herbalist-ux-design"
       
       // Clean Content
       caseStudyTitle="Herbalink Platform"

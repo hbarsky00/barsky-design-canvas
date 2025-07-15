@@ -80,7 +80,7 @@ const CleanCaseStudyTemplate: React.FC<CleanCaseStudyProps> = ({
           className="mb-12"
         >
           <Link
-            to="/projects"
+            to="/case-studies"
             className="inline-flex items-center text-primary hover:text-primary/80 transition-colors font-medium"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -107,8 +107,8 @@ const CleanCaseStudyTemplate: React.FC<CleanCaseStudyProps> = ({
               <div className="max-w-6xl mx-auto">
                 <img
                   src={heroImage}
-                  alt={`${caseStudyTitle} hero image`}
-                  className="w-full min-w-[600px] rounded-xl shadow-elevated"
+                  alt={`${caseStudyTitle} case study hero image`}
+                  className="w-full max-w-5xl min-w-[800px] rounded-xl shadow-elevated mx-auto"
                 />
               </div>
             </motion.div>
@@ -192,8 +192,8 @@ const CleanCaseStudyTemplate: React.FC<CleanCaseStudyProps> = ({
               >
                 <img
                   src={problemImage}
-                  alt="Problem illustration"
-                  className="w-full min-w-[600px] rounded-xl shadow-elevated"
+                  alt="Case study problem illustration"
+                  className="w-full max-w-2xl min-w-[700px] rounded-xl shadow-elevated mx-auto"
                 />
               </motion.div>
             </div>
@@ -238,8 +238,8 @@ const CleanCaseStudyTemplate: React.FC<CleanCaseStudyProps> = ({
                   <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                     <img
                       src={step.image}
-                      alt={`Solution step ${index + 1}`}
-                      className="w-full min-w-[600px] rounded-xl shadow-elevated"
+                      alt={`Case study solution step ${index + 1}`}
+                      className="w-full max-w-2xl min-w-[700px] rounded-xl shadow-elevated mx-auto"
                     />
                   </div>
                 </motion.div>

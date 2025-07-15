@@ -45,11 +45,11 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
             className="mb-10 lg:mb-16"
           >
             <Link 
-              to="/projects" 
+              to="/case-studies" 
               className="glass-button inline-flex items-center text-gray-600 hover:text-gray-900 transition-all duration-300 px-4 py-2 rounded-lg backdrop-blur-sm"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
+              Back to Case Studies
             </Link>
           </motion.div>
 

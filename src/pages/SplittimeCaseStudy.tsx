@@ -12,7 +12,7 @@ const SplittimeCaseStudy: React.FC = () => {
       caseStudyName="Splittime"
       seoResults={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
       technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
-      path="/project/splittime"
+      path="/case-studies/splittime-coparenting-app-design"
       
       // Clean Content
       caseStudyTitle="Splittime"
