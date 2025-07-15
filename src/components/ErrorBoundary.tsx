@@ -16,28 +16,25 @@ export class ErrorBoundary extends Component<Props, State> {
   };
 
   public static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI
     return { hasError: true, error };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    console.error('Error caught by boundary:', error, errorInfo);
   }
 
   public render() {
     if (this.state.hasError) {
       return this.props.fallback || (
-        <div className="min-h-[400px] flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              Something went wrong
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
-              We apologize for the inconvenience. Please try refreshing the page.
+            <h2 className="text-2xl font-bold mb-4">Something went wrong</h2>
+            <p className="text-muted-foreground mb-4">
+              Please try refreshing the page.
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
             >
               Refresh Page
             </button>

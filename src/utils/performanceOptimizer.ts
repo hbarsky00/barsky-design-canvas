@@ -2,56 +2,31 @@
  * Real Performance Optimization - Comprehensive fixes
  */
 
-import { initImageOptimization } from './imageOptimizer';
-import { initTouchTargetFixes } from './touchTargetFixer';
-import { initAccessibilityFixes } from './accessibilityFixer';
+import { unifiedPerformanceManager } from './unifiedPerformanceManager';
+import { accessibilityManager } from './accessibilityManager';
 import { linkValidator } from './externalLinkValidator';
-import { optimizeCriticalResources, deferNonCriticalResources } from './performanceMonitor';
 import { initARIAValidation } from './ariaValidator';
 import { initAnchorTextValidation } from './anchorTextValidator';
 import { initInternalLinkOptimization } from './internalLinkOptimizer';
 import { initNetworkPayloadOptimization } from './networkPayloadOptimizer';
-import { initCriticalCSS } from './criticalCssExtractor';
-import { initServiceWorker } from './serviceWorkerManager';
-import { initCodeSplitting } from './enhancedCodeSplitting';
-import { initAccessibilityEnhancements } from './accessibilityEnhancer';
-import { initPerformanceMonitoring } from './performanceMonitor';
-import { initRenderBlockingElimination } from './renderBlockingEliminator';
 
 export const initializePerformanceOptimizations = () => {
   if (typeof window === 'undefined') return;
 
-  // Phase 1: Critical CSS & Resource Optimization
-  initCriticalCSS();
-  initRenderBlockingElimination();
+  // Phase 1: Unified Performance Management
+  unifiedPerformanceManager.initialize();
   
-  // Phase 2: Enhanced Code Splitting & Caching
-  initCodeSplitting();
-  initServiceWorker();
+  // Phase 2: Unified Accessibility Management
+  accessibilityManager.initialize();
   
-  // Phase 3: Performance Monitoring & Accessibility
-  initPerformanceMonitoring();
-  initAccessibilityEnhancements();
-  
-  // Phase 4: Legacy Performance Fixes
-  initImageOptimization();
-  initTouchTargetFixes();
-  initAccessibilityFixes();
+  // Phase 3: Advanced SEO Optimizations
   linkValidator.initMonitoring();
-  optimizeCriticalResources();
-  deferNonCriticalResources();
-  
-  // Phase 5: Advanced Optimizations
   initARIAValidation();
   initAnchorTextValidation();
   initInternalLinkOptimization();
   initNetworkPayloadOptimization();
   
-  console.log('✅ Critical CSS & render blocking elimination applied');
-  console.log('✅ Enhanced code splitting & service worker registered');
-  console.log('✅ Performance monitoring & accessibility enhancements active');
-  console.log('✅ Network payload optimization applied');
-  console.log('🚀 Comprehensive performance & accessibility optimization complete');
+  console.log('🚀 Unified performance & accessibility optimization complete');
 };
 
 

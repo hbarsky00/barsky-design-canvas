@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { normalizeUrl, BASE_URL } from '@/utils/urlUtils';
+import { getSocialHandles, getSiteConfig } from '@/utils/seoConfigManager';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -54,7 +55,8 @@ type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | Servi
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const location = useLocation();
   const baseUrl = BASE_URL;
-  const defaultImage = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`;
+  const { defaultImage } = getSiteConfig();
+  const { twitter, twitterSite, facebookAppId } = getSocialHandles();
   
 
   // Helper function to truncate description to 150-160 characters
@@ -202,7 +204,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
         <meta property="og:site_name" content="Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+        {facebookAppId && <meta property="fb:app_id" content={facebookAppId} />}
         
         {/* Article-specific Open Graph Tags */}
         <meta property="og:article:author" content={props.author} />
@@ -214,8 +216,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:creator" content="@hirambarsky" />
+        <meta name="twitter:site" content={twitterSite} />
+        <meta name="twitter:creator" content={twitter} />
         <meta name="twitter:title" content={`${props.title} | Barsky Design Blog`} />
         <meta name="twitter:description" content={truncatedExcerpt} />
         <meta name="twitter:image" content={props.featuredImage || defaultImage} />
@@ -257,11 +259,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
         <meta property="og:site_name" content="Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+        {facebookAppId && <meta property="fb:app_id" content={facebookAppId} />}
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
+        <meta name="twitter:site" content={twitterSite} />
         <meta name="twitter:title" content={`${props.title} | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
@@ -300,7 +302,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.projectName} />
         <meta property="og:site_name" content="Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+        {facebookAppId && <meta property="fb:app_id" content={facebookAppId} />}
         
         {/* Project-specific Open Graph Tags */}
         <meta property="og:article:author" content="Hiram Barsky" />
@@ -311,8 +313,8 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:creator" content="@hirambarsky" />
+        <meta name="twitter:site" content={twitterSite} />
+        <meta name="twitter:creator" content={twitter} />
         <meta name="twitter:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
@@ -354,11 +356,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.serviceName} />
         <meta property="og:site_name" content="Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+        {facebookAppId && <meta property="fb:app_id" content={facebookAppId} />}
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
+        <meta name="twitter:site" content={twitterSite} />
         <meta name="twitter:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
         <meta name="twitter:image" content={props.image || defaultImage} />
@@ -400,11 +402,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="Hiram Barsky - Product Designer & Gen AI Developer" />
       <meta property="og:site_name" content="Barsky Design" />
-      <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+      {facebookAppId && <meta property="fb:app_id" content={facebookAppId} />}
       
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@hirambarsky" />
+      <meta name="twitter:site" content={twitterSite} />
       <meta name="twitter:title" content="Hiram Barsky - Product Designer & Gen AI Developer" />
       <meta name="twitter:description" content={truncatedHomeDescription} />
       <meta name="twitter:image" content={defaultImage} />
