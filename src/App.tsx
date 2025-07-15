@@ -49,6 +49,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  // Force cache invalidation - removed usePerformanceOptimization hook
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
