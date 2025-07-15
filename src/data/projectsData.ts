@@ -6,7 +6,7 @@ export const projectsData: ProjectProps[] = [
     id: "wholesale-distribution",
     title: "From Restaurant Chat to Business Solution",
     description: "Real conversation led to custom AI-powered development. How a casual dinner revealed business pain points and sparked my evolution from designer to full-stack developer.",
-    image: "/lovable-uploads/815f0c16-bbe2-44e1-840d-cc93cdcf54cb.png",
+    image: "/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png",
     tags: ["Human Connection", "AI Development", "Story-Driven Design", "Real Solutions", "Designer Evolution"],
     featured: true,
   },
