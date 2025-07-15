@@ -10,7 +10,14 @@ const SeoAnalyticsTracker: React.FC<SeoAnalyticsTrackerProps> = ({
   pageTitle, 
   pageType = 'page' 
 }) => {
-  const location = useLocation();
+  let location;
+  
+  try {
+    location = useLocation();
+  } catch (error) {
+    // If router context is not available, use default location
+    location = { pathname: '/' };
+  }
 
   useEffect(() => {
     // Track page views for SEO analytics

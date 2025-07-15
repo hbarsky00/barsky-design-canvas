@@ -19,7 +19,14 @@ declare global {
  * Hook to track page views and user interactions in Google Analytics
  */
 export const useAnalytics = () => {
-  const location = useLocation();
+  let location;
+  
+  try {
+    location = useLocation();
+  } catch (error) {
+    // If router context is not available, use default location
+    location = { pathname: '/', search: '' };
+  }
 
   useEffect(() => {
     const path = location.pathname + location.search;

@@ -3,11 +3,20 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  let location;
+  
+  try {
+    location = useLocation();
+  } catch (error) {
+    // If router context is not available, just return null
+    return null;
+  }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (location) {
+      window.scrollTo(0, 0);
+    }
+  }, [location?.pathname]);
 
   return null;
 };

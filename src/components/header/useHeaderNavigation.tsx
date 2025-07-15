@@ -7,7 +7,16 @@ export const useHeaderNavigation = () => {
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  
+  let location;
+  
+  try {
+    location = useLocation();
+  } catch (error) {
+    // If router context is not available, use default values
+    location = { pathname: '/' };
+  }
+  
   const navigate = useNavigate();
 
   const navLinks = [

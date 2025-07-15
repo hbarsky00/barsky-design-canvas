@@ -5,9 +5,18 @@ import { getPageConfig, submitUrlForIndexing } from '@/utils/seoUtils';
 import { getCanonicalUrl } from '@/utils/urlUtils';
 
 export const usePageIndexing = () => {
-  const location = useLocation();
+  let location;
+  
+  try {
+    location = useLocation();
+  } catch (error) {
+    // If router context is not available, skip indexing
+    return;
+  }
 
   useEffect(() => {
+    if (!location) return;
+    
     const handlePageIndexing = async () => {
       const config = getPageConfig(location.pathname);
       
@@ -57,5 +66,5 @@ export const usePageIndexing = () => {
     const timer = setTimeout(handlePageIndexing, 1000);
     
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [location?.pathname]);
 };
