@@ -6,6 +6,8 @@ export interface Toast {
   title?: string;
   description?: string;
   variant?: "default" | "destructive";
+  duration?: number;
+  action?: React.ReactNode;
 }
 
 export function useToast() {
@@ -15,10 +17,10 @@ export function useToast() {
     const id = Math.random().toString(36).substr(2, 9);
     setToasts(prev => [...prev, { ...toast, id }]);
     
-    // Auto remove after 3 seconds
+    // Auto remove after duration or 3 seconds
     setTimeout(() => {
       setToasts(prev => prev.filter(t => t.id !== id));
-    }, 3000);
+    }, toast.duration || 3000);
   }, []);
 
   return {
@@ -26,3 +28,5 @@ export function useToast() {
     toast,
   };
 }
+
+export const toast = useToast;
