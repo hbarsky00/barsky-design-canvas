@@ -9,13 +9,13 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
       title="Investor Loan App: Smart Portfolio Management Case Study | Hiram Barsky"
       description="Automated reporting and portfolio tracking for investors. See how AI integration streamlined complex financial workflows."
       image={`https://barskydesign.pro${investorLoanOgImage}`}
-      projectName="Investor Loan App"
+      caseStudyName="Investor Loan App"
       seoResults={["60% faster portfolio analysis", "90% automated report generation", "Real-time market insights"]}
       technologies={["FinTech Platform", "Portfolio Management", "AI Analytics", "Automated Reporting"]}
       path="/project/investor-loan-app"
       
       // Clean Content
-      projectTitle="Investor Loan App"
+      caseStudyTitle="Investor Loan App"
       subtitle="Transforming investment management from spreadsheet chaos to intelligent portfolio tracking"
       heroImage="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
       
@@ -47,7 +47,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
         { value: "92%", label: "Improvement in ROI Accuracy" }
       ]}
       
-      currentProjectId="investor-loan-app"
+      currentCaseStudyId="investor-loan-app"
     />
   );
 };

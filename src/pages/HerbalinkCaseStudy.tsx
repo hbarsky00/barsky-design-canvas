@@ -9,13 +9,13 @@ const HerbalinkCaseStudy: React.FC = () => {
       title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky"
       description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access."
       image={`https://barskydesign.pro${herbalinkOgImage}`}
-      projectName="Herbalink"
+      caseStudyName="Herbalink"
       seoResults={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]}
       technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]}
       path="/project/herbalink"
       
       // Clean Content
-      projectTitle="Herbalink Platform"
+      caseStudyTitle="Herbalink Platform"
       subtitle="Connecting patients with certified herbalists through AI-powered matching"
       heroImage="/lovable-uploads/6ac697d2-0417-49dc-b4de-cb3702484e09.png"
       
@@ -47,7 +47,7 @@ const HerbalinkCaseStudy: React.FC = () => {
         { value: "89%", label: "User Satisfaction" }
       ]}
       
-      currentProjectId="herbalink"
+      currentCaseStudyId="herbalink"
     />
   );
 };

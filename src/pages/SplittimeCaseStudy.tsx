@@ -9,13 +9,13 @@ const SplittimeCaseStudy: React.FC = () => {
       title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
       description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination."
       image={`https://barskydesign.pro${splittimeOgImage}`}
-      projectName="Splittime"
+      caseStudyName="Splittime"
       seoResults={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
       technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
       path="/project/splittime"
       
       // Clean Content
-      projectTitle="Splittime"
+      caseStudyTitle="Splittime"
       subtitle="Transforming co-parenting from conflict to collaboration through better communication"
       heroImage="/lovable-uploads/0152c609-c279-4472-84e0-4b6a0a2b6735.png"
       
@@ -47,7 +47,7 @@ const SplittimeCaseStudy: React.FC = () => {
         { value: "94%", label: "Parent Satisfaction Rate" }
       ]}
       
-      currentProjectId="splittime"
+      currentCaseStudyId="splittime"
     />
   );
 };
