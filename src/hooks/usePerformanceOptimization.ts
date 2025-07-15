@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+
+import React from 'react';
 import { preloadCriticalAssets, optimizeWebVitals } from '@/utils/bundleOptimization';
 import { setupGlobalErrorHandling, safelyExecute } from '@/utils/errorHandler';
 
@@ -6,7 +7,7 @@ import { setupGlobalErrorHandling, safelyExecute } from '@/utils/errorHandler';
  * Hook to implement performance optimizations
  */
 export const usePerformanceOptimization = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     // Setup global error handling first
     setupGlobalErrorHandling();
 
@@ -130,8 +131,12 @@ export const usePerformanceOptimization = () => {
       eliminateRenderBlocking();
       
       // Additional performance optimizations
-      preloadCriticalAssets();
-      optimizeWebVitals();
+      try {
+        preloadCriticalAssets();
+        optimizeWebVitals();
+      } catch (error) {
+        console.warn('Performance optimization failed:', error);
+      }
     });
 
     return cleanup;
