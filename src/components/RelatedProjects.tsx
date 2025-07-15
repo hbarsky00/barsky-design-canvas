@@ -69,24 +69,25 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
   if (relatedProjects.length === 0) return null;
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-16 lg:py-20 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Related Projects
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto">
             Explore more case studies showcasing innovative design solutions across different industries
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Mobile: Single column, Tablet: 2 columns, Desktop: 3 columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {relatedProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -94,47 +95,59 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group"
             >
               <Link
                 to={project.url}
-                className="group block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="block bg-card border border-border rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:-translate-y-1"
               >
-                <div className="relative overflow-hidden">
+                {/* Image Container */}
+                <div className="relative overflow-hidden aspect-[16/10]">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-primary text-primary-foreground px-2 py-1 rounded-md text-xs font-medium">
                       {project.category}
                     </span>
                   </div>
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ExternalLink className="w-5 h-5 text-white" />
+                  
+                  {/* Hover Icon */}
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="bg-background/90 backdrop-blur-sm p-1.5 rounded-full">
+                      <ExternalLink className="w-4 h-4 text-foreground" />
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                {/* Content */}
+                <div className="p-4 sm:p-5 lg:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 line-clamp-2">
                     {project.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                     {project.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-xs font-medium"
+                        className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-xs font-medium"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-700">
+                  {/* CTA */}
+                  <div className="flex items-center text-primary font-medium text-sm sm:text-base group-hover:text-primary/80 transition-colors">
                     <span>View Case Study</span>
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -144,19 +157,20 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
           ))}
         </div>
 
+        {/* View All Projects Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
+          className="text-center mt-8 sm:mt-12"
         >
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             View All Projects
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </Link>
         </motion.div>
       </div>
