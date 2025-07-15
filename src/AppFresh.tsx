@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/toaster";
+
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import AllProjects from "./pages/AllProjects";
@@ -34,20 +33,15 @@ import StoryDrivenProjectDetail from "@/components/project/StoryDrivenProjectDet
 import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
-import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 function AppFresh() {
   console.log("🚀 AppFresh component loading - completely new file");
   return (
-    <ErrorBoundary>
+    <div>
       <HelmetProvider>
-        <TooltipProvider>
-          <ImageMaximizerProvider>
-            <Toaster />
-            <BrowserRouter>
-              <ScrollToTop />
-              <main id="main-content" role="main">
+        <BrowserRouter>
+          <ScrollToTop />
+          <main id="main-content" role="main">
                 <Routes>
                  <Route path="/" element={<Index />} />
                  <Route path="/projects" element={<AllProjects />} />
@@ -91,13 +85,11 @@ function AppFresh() {
                 <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
                 <Route path="/meta-tag-manager" element={<MetaTagManager />} />
                 <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-            </BrowserRouter>
-          </ImageMaximizerProvider>
-        </TooltipProvider>
+            </Routes>
+          </main>
+        </BrowserRouter>
       </HelmetProvider>
-    </ErrorBoundary>
+    </div>
   );
 }
 
