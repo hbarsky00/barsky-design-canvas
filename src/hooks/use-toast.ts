@@ -28,5 +28,3 @@ export function useToast() {
     toast,
   };
 }
-
-export const toast = useToast;
