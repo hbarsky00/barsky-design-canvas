@@ -1,79 +1,113 @@
-// scripts/validate-sitemap.js
-const fs = require('fs');
-const path = require('path');
-const { XMLParser } = require('fast-xml-parser');
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const validateSitemap = () => {
-  try {
-    const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
-    
-    if (!fs.existsSync(sitemapPath)) {
-      console.error('❌ Sitemap not found at /public/sitemap.xml');
-      process.exit(1);
-    }
-
-    const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
-    const parser = new XMLParser();
-    const parsed = parser.parse(sitemapContent);
-
-    // Basic validation
-    if (!parsed.urlset || !parsed.urlset.url) {
-      console.error('❌ Invalid sitemap structure');
-      process.exit(1);
-    }
-
-    const urls = Array.isArray(parsed.urlset.url) ? parsed.urlset.url : [parsed.urlset.url];
-    
-    console.log('✅ Sitemap validation passed');
-    console.log(`📊 Found ${urls.length} URLs in sitemap`);
-    
-    // Validate each URL
-    const issues = [];
-    
-    urls.forEach((urlEntry, index) => {
-      if (!urlEntry.loc) {
-        issues.push(`URL ${index + 1}: Missing location`);
-      }
-      
-      if (urlEntry.priority && (urlEntry.priority < 0 || urlEntry.priority > 1)) {
-        issues.push(`URL ${index + 1}: Invalid priority (${urlEntry.priority})`);
-      }
-      
-      if (urlEntry.changefreq && !['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never'].includes(urlEntry.changefreq)) {
-        issues.push(`URL ${index + 1}: Invalid changefreq (${urlEntry.changefreq})`);
-      }
-    });
-
-    if (issues.length > 0) {
-      console.warn('⚠️  Sitemap issues found:');
-      issues.forEach(issue => console.warn(`   ${issue}`));
-    } else {
-      console.log('✅ All URLs passed validation');
-    }
-
-    // Check for duplicate URLs
-    const locations = urls.map(url => url.loc);
-    const duplicates = locations.filter((item, index) => locations.indexOf(item) !== index);
-    
-    if (duplicates.length > 0) {
-      console.warn('⚠️  Duplicate URLs found:', duplicates);
-    }
-
-    // Display URL distribution
-    const priorities = urls.map(url => url.priority || 0.5);
-    const avgPriority = (priorities.reduce((a, b) => a + b, 0) / priorities.length).toFixed(2);
-    
-    console.log(`📈 Average priority: ${avgPriority}`);
-    console.log(`🔗 Homepage priority: ${urls.find(u => u.loc.endsWith('barskydesign.pro'))?.priority || 'Not found'}`);
-
-  } catch (error) {
-    console.error('❌ Error validating sitemap:', error.message);
-    process.exit(1);
-  }
-};
-
-if (require.main === module) {
-  validateSitemap();
+interface SitemapEntry {
+  url: string;
+  lastmod: string;
+  changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority: number;
 }
 
-module.exports = { validateSitemap };
+const SitemapGenerator: React.FC = () => {
+  const location = useLocation();
+
+  const sitemapEntries: SitemapEntry[] = [
+    {
+      url: 'https://barskydesign.pro',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'weekly',
+      priority: 1.0
+    },
+    {
+      url: 'https://barskydesign.pro/about',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: 'https://barskydesign.pro/services',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      url: 'https://barskydesign.pro/projects',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'weekly',
+      priority: 0.9
+    },
+    {
+      url: 'https://barskydesign.pro/blog',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'weekly',
+      priority: 0.8
+    },
+    {
+      url: 'https://barskydesign.pro/contact',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.7
+    },
+    // Updated case study URLs to match your current routing
+    {
+      url: 'https://barskydesign.pro/case-studies/herbalink-mobile-herbalist-ux-design',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: 'https://barskydesign.pro/case-studies/splittime-coparenting-app-design',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: 'https://barskydesign.pro/case-studies/investor-loan-portfolio-management',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: 'https://barskydesign.pro/case-studies/wholesale-distribution-ai-solution',
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.8
+    }
+  ];
+
+  useEffect(() => {
+    // Only track sitemap data, don't actually submit to search engines
+    const trackSitemapData = () => {
+      if (typeof window !== 'undefined') {
+        // Just track for analytics - much safer approach
+        if (window.gtag) {
+          window.gtag('event', 'sitemap_tracked', {
+            event_category: 'SEO',
+            event_label: 'sitemap_data',
+            value: sitemapEntries.length
+          });
+        }
+
+        // Optional: Log sitemap data for debugging
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Sitemap data tracked:', {
+            totalUrls: sitemapEntries.length,
+            lastUpdate: new Date().toISOString(),
+            currentPage: location.pathname
+          });
+        }
+      }
+    };
+
+    // Track on page load with a small delay
+    const timeoutId = setTimeout(trackSitemapData, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [location.pathname, sitemapEntries.length]);
+
+  // This component doesn't render anything visible
+  return null;
+};
+
+// ✅ CRITICAL: Make sure you have a default export
+export default SitemapGenerator;
