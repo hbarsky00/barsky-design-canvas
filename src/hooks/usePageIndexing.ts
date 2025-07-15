@@ -5,66 +5,64 @@ import { getPageConfig, submitUrlForIndexing } from '@/utils/seoUtils';
 import { getCanonicalUrl } from '@/utils/urlUtils';
 
 export const usePageIndexing = () => {
-  let location;
-  
   try {
-    location = useLocation();
-  } catch (error) {
-    // If router context is not available, skip indexing
-    return;
-  }
+    const location = useLocation();
 
-  useEffect(() => {
-    if (!location) return;
-    
-    const handlePageIndexing = async () => {
-      const config = getPageConfig(location.pathname);
+    useEffect(() => {
+      if (!location) return;
       
-      // Get normalized canonical URL
-      const canonicalUrl = getCanonicalUrl(location.pathname);
-      
-      // Submit URL for indexing
-      await submitUrlForIndexing(canonicalUrl);
-      
-      // Enhanced meta tags for better crawling
-      const addCrawlingHints = () => {
-        // Remove existing crawling hints
-        const existingHints = document.querySelectorAll('meta[name*="crawl"], link[rel="next"], link[rel="prev"]');
-        existingHints.forEach(hint => hint.remove());
+      const handlePageIndexing = async () => {
+        const config = getPageConfig(location.pathname);
         
-        // Add crawling priority hints
-        const crawlMeta = document.createElement('meta');
-        crawlMeta.name = 'crawl-priority';
-        crawlMeta.content = config.priority;
-        document.head.appendChild(crawlMeta);
+        // Get normalized canonical URL
+        const canonicalUrl = getCanonicalUrl(location.pathname);
         
-        // Add fetch priority for high-priority pages
-        if (config.priority === 'high') {
-          const fetchMeta = document.createElement('meta');
-          fetchMeta.name = 'fetch-priority';
-          fetchMeta.content = 'high';
-          document.head.appendChild(fetchMeta);
-        }
+        // Submit URL for indexing
+        await submitUrlForIndexing(canonicalUrl);
         
-        // Canonical URLs are handled by SEO components to prevent duplicates
-        // This hook focuses on indexing signals only
+        // Enhanced meta tags for better crawling
+        const addCrawlingHints = () => {
+          // Remove existing crawling hints
+          const existingHints = document.querySelectorAll('meta[name*="crawl"], link[rel="next"], link[rel="prev"]');
+          existingHints.forEach(hint => hint.remove());
+          
+          // Add crawling priority hints
+          const crawlMeta = document.createElement('meta');
+          crawlMeta.name = 'crawl-priority';
+          crawlMeta.content = config.priority;
+          document.head.appendChild(crawlMeta);
+          
+          // Add fetch priority for high-priority pages
+          if (config.priority === 'high') {
+            const fetchMeta = document.createElement('meta');
+            fetchMeta.name = 'fetch-priority';
+            fetchMeta.content = 'high';
+            document.head.appendChild(fetchMeta);
+          }
+          
+          // Canonical URLs are handled by SEO components to prevent duplicates
+          // This hook focuses on indexing signals only
+        };
+        
+        addCrawlingHints();
+        
+        // Log for debugging
+        console.log('🔍 Page Indexing Enhanced:', {
+          path: location.pathname,
+          priority: config.priority,
+          changeFreq: config.changeFreq,
+          canonicalUrl: canonicalUrl,
+          indexingSignals: 'enhanced'
+        });
       };
-      
-      addCrawlingHints();
-      
-      // Log for debugging
-      console.log('🔍 Page Indexing Enhanced:', {
-        path: location.pathname,
-        priority: config.priority,
-        changeFreq: config.changeFreq,
-        canonicalUrl: canonicalUrl,
-        indexingSignals: 'enhanced'
-      });
-    };
 
-    // Delay execution to ensure page is fully loaded
-    const timer = setTimeout(handlePageIndexing, 1000);
-    
-    return () => clearTimeout(timer);
-  }, [location?.pathname]);
+      // Delay execution to ensure page is fully loaded
+      const timer = setTimeout(handlePageIndexing, 1000);
+      
+      return () => clearTimeout(timer);
+    }, [location?.pathname]);
+  } catch (error) {
+    // If router context is not available, skip indexing entirely
+    console.warn('usePageIndexing: Router context not available', error);
+  }
 };

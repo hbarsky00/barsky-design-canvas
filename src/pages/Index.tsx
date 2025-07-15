@@ -19,12 +19,17 @@ const Index = () => {
   useUnifiedOptimization();
   
   // Initialize SEO and mobile optimizations
-  React.useEffect(() => {
-    initCanonicalMonitoring();
-    initMobileOptimization();
-    initLinkEquityMonitoring();
-    initSEORealTimeMonitoring();
-  }, []);
+  try {
+    React.useEffect(() => {
+      initCanonicalMonitoring();
+      initMobileOptimization();
+      initLinkEquityMonitoring();
+      initSEORealTimeMonitoring();
+    }, []);
+  } catch (error) {
+    // If React context is not available, skip SEO optimizations
+    console.warn('Index: React context not available for SEO optimizations', error);
+  }
   
   return (
     <ErrorBoundary>
