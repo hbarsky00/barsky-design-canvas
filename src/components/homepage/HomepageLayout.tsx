@@ -17,19 +17,21 @@ const HomepageLayout: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
       <main className="flex-grow space-y-4">
-        <FeaturedCaseStudiesSection />
-        <EnhancedHero />
+        {/* Temporarily disable framer-motion components to fix React context issues */}
+        {/* <FeaturedCaseStudiesSection /> */}
+        {/* <EnhancedHero /> */}
         
         <About />
-        <ContactForm />
+        {/* <ContactForm /> */}
         <BlogPreview />
-        <SeoFaqSection 
+        {/* Temporarily disable SeoFaqSection as it uses framer-motion */}
+        {/* <SeoFaqSection 
           title="Frequently Asked Questions About AI-Enhanced UX Design"
           faqs={homepageFaqs}
-        />
+        /> */}
       </main>
       <Footer />
-      <FloatingConsultationBubble />
+      {/* <FloatingConsultationBubble /> */}
     </div>
   );
 };
