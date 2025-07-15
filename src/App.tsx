@@ -38,12 +38,8 @@ import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
-// Remove global QueryClient that might be causing context issues
-
 function App() {
-  // Force cache invalidation - removed usePerformanceOptimization hook
-  
-  // Create QueryClient inside component to avoid context issues
+  // Create QueryClient inside component to ensure proper React context
   const queryClient = React.useMemo(() => new QueryClient({
     defaultOptions: {
       queries: {
