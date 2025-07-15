@@ -17,6 +17,31 @@ import ShareButtons from "@/components/blog/ShareButtons";
 import RelatedProjects from "@/components/RelatedProjects";
 import { useSplittimeImageViewer } from "@/hooks/useSplittimeImageViewer";
 import splittimeOgImage from "@/assets/social/splittime-og.jpg";
+<Helmet>
+  <title>Splittime Co-Parenting App UX Design Case Study | Barsky Design</title>
+  <meta name="description" content="Co-parenting coordination app UX design. Simplified scheduling, communication, and expense tracking for divorced parents. Reduced conflict through intuitive design and AI-powered scheduling." />
+  
+  {/* Open Graph (Facebook, LinkedIn) */}
+  <meta property="og:title" content="Splittime Co-Parenting App UX Design Case Study" />
+  <meta property="og:description" content="Co-parenting coordination app UX design. Simplified scheduling, communication, and expense tracking for divorced parents. Reduced conflict through intuitive design and AI-powered scheduling." />
+  <meta property="og:image" content="https://barskydesign.pro/images/splittime-case-study-preview.jpg" />
+  <meta property="og:url" content="https://barskydesign.pro/case-studies/splittime-coparenting-app-design" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Barsky Design" />
+  
+  {/* Twitter Cards */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Splittime Co-Parenting App UX Design Case Study" />
+  <meta name="twitter:description" content="Co-parenting coordination app UX design. Simplified scheduling, communication, and expense tracking for divorced parents. Reduced conflict through intuitive design and AI-powered scheduling." />
+  <meta name="twitter:image" content="https://barskydesign.pro/images/splittime-case-study-preview.jpg" />
+  <meta name="twitter:creator" content="@hirambarsky" />
+  
+  {/* Additional SEO */}
+  <meta name="keywords" content="co-parenting app, UX design, family tech, divorce app, scheduling app, communication app, mobile app design" />
+  <meta name="author" content="Hiram Barsky" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://barskydesign.pro/case-studies/splittime-coparenting-app-design" />
+</Helmet>
 
 const SplittimeCaseStudy: React.FC = () => {
   const {
