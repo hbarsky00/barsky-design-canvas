@@ -1,7 +1,7 @@
 
 import React from "react";
 import { createRoot } from "react-dom/client";
-import AppFresh from "./AppFresh.tsx";
+import MinimalApp from "./MinimalApp.tsx";
 import "./index.css";
 
 const rootElement = document.getElementById("root");
@@ -10,4 +10,4 @@ if (!rootElement) {
 }
 
 const root = createRoot(rootElement);
-root.render(<AppFresh />);
+root.render(<MinimalApp />);
