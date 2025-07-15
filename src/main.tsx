@@ -1,43 +1,62 @@
 
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 
-// Completely isolated React app - no external dependencies
-function IsolatedApp() {
-  console.log("🔥 IsolatedApp - Zero dependencies test");
-  
+// Ensure React is properly available
+console.log("React version:", React.version);
+console.log("ReactDOM available:", !!ReactDOM);
+
+function App() {
+  console.log("App component rendering");
   const [count, setCount] = React.useState(0);
   
   return (
     <div style={{ 
       padding: '40px', 
-      fontFamily: 'Arial, sans-serif',
-      backgroundColor: '#f5f5f5',
-      minHeight: '100vh'
+      fontFamily: 'system-ui, -apple-system, sans-serif',
+      backgroundColor: '#f8fafc',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
     }}>
-      <h1 style={{ color: '#333', marginBottom: '20px' }}>Isolated React App</h1>
-      <p style={{ color: '#666', fontSize: '18px' }}>
-        ✅ React is working correctly!
-      </p>
+      <h1 style={{ 
+        color: '#1e293b', 
+        marginBottom: '20px',
+        fontSize: '2rem',
+        fontWeight: 'bold'
+      }}>
+        React Application
+      </h1>
       
       <div style={{ 
-        marginTop: '20px',
         padding: '20px', 
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff',
         borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+        textAlign: 'center'
       }}>
-        <h2 style={{ color: '#333', marginBottom: '15px' }}>React Hook Test</h2>
-        <p style={{ color: '#666', marginBottom: '10px' }}>Count: {count}</p>
+        <p style={{ 
+          color: '#64748b', 
+          marginBottom: '15px',
+          fontSize: '1.1rem'
+        }}>
+          Counter: {count}
+        </p>
+        
         <button 
           onClick={() => setCount(count + 1)}
           style={{
-            padding: '8px 16px',
-            backgroundColor: '#007bff',
+            padding: '10px 20px',
+            backgroundColor: '#3b82f6',
             color: 'white',
             border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontSize: '1rem',
+            fontWeight: '500'
           }}
         >
           Increment
@@ -45,18 +64,17 @@ function IsolatedApp() {
       </div>
       
       <div style={{ 
-        marginTop: '20px', 
-        padding: '20px', 
-        backgroundColor: '#fff',
+        marginTop: '30px',
+        padding: '20px',
+        backgroundColor: '#f1f5f9',
         borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        maxWidth: '400px'
       }}>
-        <h2 style={{ color: '#333', marginBottom: '15px' }}>System Status</h2>
-        <ul style={{ color: '#666', lineHeight: '1.6' }}>
-          <li>✅ React: Working</li>
-          <li>✅ DOM: Mounted</li>
-          <li>✅ useState Hook: Working</li>
-          <li>✅ No external dependencies</li>
+        <h3 style={{ color: '#1e293b', marginBottom: '10px' }}>Status:</h3>
+        <ul style={{ color: '#64748b', listStyle: 'none', padding: 0 }}>
+          <li>✅ React: {React.version}</li>
+          <li>✅ useState: Working</li>
+          <li>✅ Component: Rendering</li>
         </ul>
       </div>
     </div>
@@ -68,5 +86,12 @@ if (!rootElement) {
   throw new Error("Root element not found");
 }
 
-const root = createRoot(rootElement);
-root.render(<IsolatedApp />);
+console.log("Creating React root...");
+const root = ReactDOM.createRoot(rootElement);
+
+console.log("Rendering App...");
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
