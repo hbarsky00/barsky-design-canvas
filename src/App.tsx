@@ -42,24 +42,21 @@ import { useAccessibilityValidator } from "@/hooks/useAccessibilityValidator";
 import { initializePerformanceOptimizations } from "@/utils/performanceOptimizer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
-// Create QueryClient with proper configuration
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 3,
-      staleTime: 5 * 60 * 1000, // 5 minutes
+      staleTime: 5 * 60 * 1000,
     },
   },
 });
 
 function App() {
-  // Apply performance, accessibility, and mobile optimizations
   usePerformanceOptimization();
   useAccessibilityEnhancements();
   useMobileOptimization();
   useAccessibilityValidator();
   
-  // Initialize real performance optimizations
   React.useEffect(() => {
     initializePerformanceOptimizations();
   }, []);
@@ -77,14 +74,10 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/projects" element={<AllProjects />} />
-                    
-                    {/* New SEO-friendly case study URLs */}
                     <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
                     <Route path="/case-studies/splittime-coparenting-app-design" element={<SplittimeCaseStudy />} />
                     <Route path="/case-studies/investor-loan-portfolio-management" element={<InvestorLoanAppCaseStudy />} />
                     <Route path="/case-studies/wholesale-distribution-ai-solution" element={<StoryDrivenProjectDetail />} />
-                    
-                    {/* Legacy redirects - keep for backwards compatibility */}
                     <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
                     <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
                     <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
@@ -92,11 +85,8 @@ function App() {
                     <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
                     <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
                     <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
-                    
-                    {/* Generic project route for other projects */}
                     <Route path="/case-studies/:projectId" element={<ProjectDetail />} />
                     <Route path="/project/:projectId" element={<ProjectDetail />} />
-                    
                     <Route path="/services" element={<Services />} />
                     <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
                     <Route path="/design-services/web-development" element={<WebDevelopment />} />
