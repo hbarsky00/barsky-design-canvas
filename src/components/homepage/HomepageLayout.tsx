@@ -22,7 +22,12 @@ const HomepageLayout: React.FC = () => {
         {/* <FeaturedCaseStudiesSection /> */}
         {/* <EnhancedHero /> */}
         
-        <About />
+        {/* Temporarily replace About with simple div to test */}
+        <div className="p-8 text-center">
+          <h1 className="text-4xl font-bold">Simple Test Page</h1>
+          <p className="mt-4 text-lg">This is a minimal test to check if React context is working.</p>
+        </div>
+        {/* <About /> */}
         {/* <ContactForm /> */}
         {/* Temporarily disable BlogPreview (uses Link components) */}
         {/* <BlogPreview /> */}
