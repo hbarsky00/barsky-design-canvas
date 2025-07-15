@@ -52,7 +52,7 @@ const queryClient = new QueryClient({
   },
 });
 
-function App() {
+const App: React.FC = () => {
   // Apply performance, accessibility, and mobile optimizations
   usePerformanceOptimization();
   useAccessibilityEnhancements();
@@ -126,6 +126,6 @@ function App() {
       </QueryClientProvider>
     </ErrorBoundary>
   );
-}
+};
 
 export default App;
