@@ -38,17 +38,17 @@ import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
-function App() {
-  // Create QueryClient inside component to ensure proper React context
-  const queryClient = React.useMemo(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: 3,
-        staleTime: 5 * 60 * 1000, // 5 minutes
-      },
+// Create QueryClient outside component to avoid React context issues
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3,
+      staleTime: 5 * 60 * 1000, // 5 minutes
     },
-  }), []);
+  },
+});
 
+function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
