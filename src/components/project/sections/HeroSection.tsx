@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import MaximizableImage from "../MaximizableImage";
@@ -6,6 +6,11 @@ import ShareButtons from "@/components/blog/ShareButtons";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 
 const HeroSection: React.FC = () => {
+  const [heroImageSrc, setHeroImageSrc] = useState("/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png");
+
+  const handleImageReplace = (newSrc: string) => {
+    setHeroImageSrc(newSrc);
+  };
   return (
     <section className="py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
@@ -56,10 +61,12 @@ const HeroSection: React.FC = () => {
             delay: 0.2
           }} className="relative space-y-6">
             <MaximizableImage
-              src={getOptimizedImageSrc("/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png")}
+              src={getOptimizedImageSrc(heroImageSrc)}
               alt="QuickFlow Business Dashboard - Full interface showing comprehensive sales analytics and business management features"
               caption="QuickFlow Business Dashboard - Complete Interface"
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg"
+              projectId="wholesale-distribution"
+              onImageReplace={handleImageReplace}
             />
             
             <iframe 
@@ -131,10 +138,12 @@ const HeroSection: React.FC = () => {
             delay: 0.2
           }} className="relative space-y-6">
             <MaximizableImage
-              src={getOptimizedImageSrc("/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png")}
+              src={getOptimizedImageSrc(heroImageSrc)}
               alt="QuickFlow Business Dashboard - Full interface showing comprehensive sales analytics and business management features"
               caption="QuickFlow Business Dashboard - Complete Interface"
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-md"
+              projectId="wholesale-distribution"
+              onImageReplace={handleImageReplace}
             />
             
             <iframe 
