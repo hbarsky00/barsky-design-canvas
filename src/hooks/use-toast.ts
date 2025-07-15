@@ -1,5 +1,4 @@
 
-// Basic toast hook implementation
 import { useState, useCallback } from "react";
 
 export interface Toast {
@@ -27,5 +26,3 @@ export function useToast() {
     toast,
   };
 }
-
-export { useToast as toast };

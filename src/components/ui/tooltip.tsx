@@ -1,7 +1,6 @@
-// This file has been temporarily removed to resolve React hook issues
-// It will be restored once the core React setup is working properly
 
-export const Tooltip = () => null;
-export const TooltipTrigger = () => null;
+// Completely disabled tooltip components to prevent React context issues
+export const Tooltip = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+export const TooltipTrigger = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 export const TooltipContent = () => null;
-export const TooltipProvider = () => null;
+export const TooltipProvider = ({ children }: { children: React.ReactNode }) => <>{children}</>;
