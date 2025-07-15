@@ -51,7 +51,6 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
         <HelmetProvider>
           <TooltipProvider>
             <ImageMaximizerProvider>
@@ -108,7 +107,6 @@ function App() {
             </ImageMaximizerProvider>
           </TooltipProvider>
         </HelmetProvider>
-      </QueryClientProvider>
     </ErrorBoundary>
   );
 }
