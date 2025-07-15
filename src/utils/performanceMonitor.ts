@@ -1,3 +1,4 @@
+
 /**
  * Performance Monitor - Track and optimize real metrics
  */
@@ -93,6 +94,29 @@ class PerformanceMonitor {
 
 // Export singleton instance
 export const performanceMonitor = new PerformanceMonitor();
+
+/**
+ * Initialize performance monitoring
+ */
+export const initPerformanceMonitoring = () => {
+  if (typeof window === 'undefined') return;
+  
+  console.log('📊 Performance monitoring initialized');
+  
+  // Log initial metrics after page load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const metrics = performanceMonitor.getMetrics();
+      console.log('Performance metrics:', metrics);
+      
+      if (performanceMonitor.isPerformanceGood()) {
+        console.log('✅ Performance is good');
+      } else {
+        console.log('⚠️ Performance needs improvement');
+      }
+    }, 1000);
+  });
+};
 
 /**
  * Optimize critical resources
