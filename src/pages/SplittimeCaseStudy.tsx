@@ -1,4 +1,4 @@
-I see the issue! There are syntax errors in the code structure. Let me give you the complete, properly formatted SplittimeCaseStudy.tsx file! 🔧
+I see the issue! The file got corrupted during the copy. Let me give you a clean, complete SplittimeCaseStudy.tsx file that will work properly! 🔧
 
 ```typescript
 import React from "react";
@@ -26,7 +26,7 @@ const SplittimeCaseStudy: React.FC = () => {
       icon: <MessageCircle className="h-8 w-8" />
     },
     {
-      title: "Scheduling Conflicts",
+      title: "Scheduling Conflicts", 
       description: "Complex custody schedules, school events, and activities created confusion and missed opportunities for children.",
       icon: <Calendar className="h-8 w-8" />
     },
@@ -64,7 +64,7 @@ const SplittimeCaseStudy: React.FC = () => {
     },
     {
       step: "Schedule",
-      title: "Coordinated Calendar Management",
+      title: "Coordinated Calendar Management", 
       description: "Shared calendar with custody schedules, school events, and activities visible to both parents.",
       image: "/lovable-uploads/splittime-calendar.png"
     },
@@ -165,7 +165,6 @@ const SplittimeCaseStudy: React.FC = () => {
         </div>
         
         <main className="flex-grow">
-          
           {/* Hero Section */}
           <section className="coparenting-hero py-8 lg:py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -179,7 +178,7 @@ const SplittimeCaseStudy: React.FC = () => {
                   className="relative"
                 >
                   <MaximizableImage 
-                    src="/lovable-uploads/splittime-hero-mobile.png"
+                    src="/lovable-uploads/splittime-hero.png"
                     alt="Splittime co-parenting app interface showing calendar, messaging, and expense tracking features"
                     caption="Splittime co-parenting coordination platform interface"
                     className="w-full h-[400px] rounded-3xl shadow-2xl"
@@ -314,4 +313,4 @@ const SplittimeCaseStudy: React.FC = () => {
                   className="relative"
                 >
                   <MaximizableImage 
-                    src="/lovable-uploads
+                    src="/lovable-
