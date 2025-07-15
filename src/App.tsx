@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -37,12 +36,7 @@ import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
-import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
-import { useMobileOptimization } from "@/hooks/useMobileOptimization";
-import { useAccessibilityValidator } from "@/hooks/useAccessibilityValidator";
-import { initializePerformanceOptimizations } from "@/utils/performanceOptimizer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -55,21 +49,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // Apply performance, accessibility, and mobile optimizations
-  useAccessibilityEnhancements();
-  useMobileOptimization();
-  useAccessibilityValidator();
-  
-  // Initialize performance optimizations safely
-  React.useEffect(() => {
-    try {
-      initializePerformanceOptimizations();
-    } catch (error) {
-      console.warn('Performance optimization failed:', error);
-    }
-  }, []);
-  
-  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>

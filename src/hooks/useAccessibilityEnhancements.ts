@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+
+import React from 'react';
 
 /**
  * Hook to enhance accessibility across the application
  */
 export const useAccessibilityEnhancements = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     // Add aria-labels to buttons without accessible names
     const enhanceButtons = () => {
       const buttons = document.querySelectorAll('button:not([aria-label]):not([aria-labelledby])');
