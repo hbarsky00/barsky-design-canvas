@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { normalizeUrl, BASE_URL } from '@/utils/urlUtils';
-import StaticCanonical from './StaticCanonical';
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -185,7 +184,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(`/blog/${props.slug}`)} />
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(`/blog/${props.slug}`)} />
@@ -241,7 +239,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(props.path)} />
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(props.path)} />
@@ -285,7 +282,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(props.path)} />  
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(props.path)} />
@@ -340,7 +336,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(props.path)} />
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(props.path)} />
@@ -387,7 +382,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
   return (
     <>
-      <StaticCanonical url={normalizeUrl('/')} />
       <Helmet>
         {/* Canonical URL */}
         <link rel="canonical" href={normalizeUrl('/')} />

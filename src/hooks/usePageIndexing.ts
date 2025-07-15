@@ -37,8 +37,8 @@ export const usePageIndexing = () => {
           document.head.appendChild(fetchMeta);
         }
         
-        // Skip canonical URL creation - handled by SEO components to prevent duplicates
-        // This prevents the hook from creating additional canonical tags
+        // Canonical URLs are handled by SEO components to prevent duplicates
+        // This hook focuses on indexing signals only
       };
       
       addCrawlingHints();

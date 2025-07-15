@@ -1,4 +1,4 @@
-
+import React from "react";
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
 import DynamicSeo from "@/components/seo/DynamicSeo";
@@ -9,9 +9,21 @@ import MetaOptimizer from "@/components/seo/MetaOptimizer";
 import { Helmet } from "react-helmet-async";
 
 import { usePageIndexing } from "@/hooks/usePageIndexing";
+import { initCanonicalMonitoring } from "@/utils/seoCanonicalMonitor";
+import { initMobileOptimization } from "@/utils/mobileUsabilityOptimizer";
+import { initLinkEquityMonitoring } from "@/utils/linkEquityDistributor";
+import { initSEORealTimeMonitoring } from "@/utils/seoMobileMonitor";
 
 const Index = () => {
   usePageIndexing();
+  
+  // Initialize SEO and mobile optimizations
+  React.useEffect(() => {
+    initCanonicalMonitoring();
+    initMobileOptimization();
+    initLinkEquityMonitoring();
+    initSEORealTimeMonitoring();
+  }, []);
   
   return (
     <>
