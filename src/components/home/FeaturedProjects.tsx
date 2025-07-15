@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useProjectsData } from "@/pages/projects/hooks/useProjectsData";
+import MaximizableImage from "../project/MaximizableImage";
 const FeaturedProjects: React.FC = () => {
   const {
     filteredProjects
@@ -53,7 +54,13 @@ const FeaturedProjects: React.FC = () => {
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
                 {/* Project Image */}
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <MaximizableImage 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                    priority={index < 2}
+                    projectId={project.id}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Hover Overlay */}
