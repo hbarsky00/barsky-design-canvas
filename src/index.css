@@ -57,6 +57,17 @@
     --neutral-200: 214 32% 91%;
     --neutral-500: 215 16% 47%;
     --neutral-900: 222 84% 5%;
+    
+    /* Logo Enhancement Colors */
+    --logo-glow: 217 91% 60%;
+    --logo-accent: 262 83% 58%;
+    --logo-shine: 0 0% 100%;
+    --logo-shadow: 222 84% 5%;
+    
+    /* Brand Gradient Variables */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--blue-vibrant)), hsl(var(--purple-vibrant)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--blue-accent)), hsl(var(--blue-vibrant)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--blue-vibrant) / 0.3), hsl(var(--purple-vibrant) / 0.3));
   }
 
   .dark {
