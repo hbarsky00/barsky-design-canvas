@@ -24,6 +24,7 @@ import TinyMCEDemo from "@/pages/TinyMCEDemo";
 import LeadCapture from "@/pages/LeadCapture";
 import AdminDashboard from "@/pages/AdminDashboard";
 import FreeAudit from "@/pages/FreeAudit";
+import CaseStudies from "@/pages/CaseStudies";
 import MvpValidation from "@/pages/services/MvpValidation";
 import ConversionAudit from "@/pages/services/ConversionAudit";
 import AiRedesign from "@/pages/services/AiRedesign";
@@ -78,8 +79,9 @@ function App() {
                 <ScrollToTop />
                 <main id="main-content" role="main">
                   <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/projects" element={<AllProjects />} />
+                   <Route path="/" element={<Index />} />
+                   <Route path="/projects" element={<AllProjects />} />
+                   <Route path="/case-studies" element={<CaseStudies />} />
                   {/* New SEO-friendly case study URLs */}
                   <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
                   <Route path="/case-studies/splittime-coparenting-app-design" element={<SplittimeCaseStudy />} />
