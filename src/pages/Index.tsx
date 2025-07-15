@@ -15,35 +15,31 @@ import { initLinkEquityMonitoring } from "@/utils/linkEquityDistributor";
 import { initSEORealTimeMonitoring } from "@/utils/seoMobileMonitor";
 
 const Index = () => {
-  usePageIndexing();
-  useUnifiedOptimization();
+  // Temporarily disable hooks that cause React context issues
+  // usePageIndexing();
+  // useUnifiedOptimization();
   
-  // Initialize SEO and mobile optimizations
-  try {
-    React.useEffect(() => {
-      initCanonicalMonitoring();
-      initMobileOptimization();
-      initLinkEquityMonitoring();
-      initSEORealTimeMonitoring();
-    }, []);
-  } catch (error) {
-    // If React context is not available, skip SEO optimizations
-    console.warn('Index: React context not available for SEO optimizations', error);
-  }
+  // Temporarily disable SEO and mobile optimizations
+  // React.useEffect(() => {
+  //   initCanonicalMonitoring();
+  //   initMobileOptimization();
+  //   initLinkEquityMonitoring();
+  //   initSEORealTimeMonitoring();
+  // }, []);
   
   return (
     <ErrorBoundary>
-      {/* Comprehensive SEO Optimization */}
-      <DynamicSeo type="home" />
-      <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" />
-      <SitemapGenerator />
+      {/* Comprehensive SEO Optimization - temporarily disabled */}
+      {/* <DynamicSeo type="home" /> */}
+      {/* <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" /> */}
+      {/* <SitemapGenerator /> */}
       
       {/* Page Content */}
-      <ScrollHandler />
+      {/* <ScrollHandler /> */}
       <HomepageLayout />
       
-      {/* Enhanced Internal Linking for SEO Link Equity */}
-      <InternalLinkingEnhancer currentPage="home" showRelatedLinks={true} />
+      {/* Enhanced Internal Linking for SEO Link Equity - temporarily disabled */}
+      {/* <InternalLinkingEnhancer currentPage="home" showRelatedLinks={true} /> */}
     </ErrorBoundary>
   );
 };

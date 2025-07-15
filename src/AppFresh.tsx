@@ -40,7 +40,8 @@ function AppFresh() {
     <div>
       <HelmetProvider>
         <BrowserRouter>
-          <ScrollToTop />
+          {/* Temporarily disable ScrollToTop to fix React context issues */}
+          {/* <ScrollToTop /> */}
           <main id="main-content" role="main">
                 <Routes>
                  <Route path="/" element={<Index />} />
