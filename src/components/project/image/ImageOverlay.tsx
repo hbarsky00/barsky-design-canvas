@@ -35,7 +35,7 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({
           <label className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg cursor-pointer transition-all duration-200 hover:scale-110" data-lovable-editable="image-replace" data-action="replace-image" style={{
         pointerEvents: 'auto'
       }}>
-            <Upload size={16} />
+            
             <input type="file" accept="image/*" onChange={onImageReplace} className="hidden" disabled={isUploading} data-lovable-input="image-upload" />
           </label>
 
