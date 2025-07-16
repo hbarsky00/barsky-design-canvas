@@ -1,3 +1,4 @@
+
 import React from "react";
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
@@ -15,6 +16,7 @@ import { initLinkEquityMonitoring } from "@/utils/linkEquityDistributor";
 import { initSEORealTimeMonitoring } from "@/utils/seoMobileMonitor";
 
 const Index = () => {
+  console.log("Index component rendering");
   usePageIndexing();
   
   

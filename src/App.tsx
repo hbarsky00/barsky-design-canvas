@@ -50,6 +50,8 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  console.log("App component rendering");
+  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
