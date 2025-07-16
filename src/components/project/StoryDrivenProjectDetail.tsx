@@ -31,9 +31,9 @@ const StoryDrivenProjectDetail: React.FC = () => {
         
         {/* Back Navigation */}
         <div className="pt-20 px-4 sm:px-6 max-w-7xl mx-auto">
-          <Link to="/case-studies" className="inline-flex items-center text-amber-700 hover:text-amber-900 transition-colors font-medium">
+          <Link to="/projects" className="inline-flex items-center text-amber-700 hover:text-amber-900 transition-colors font-medium">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Case Studies
+            Back to Projects
           </Link>
         </div>
 

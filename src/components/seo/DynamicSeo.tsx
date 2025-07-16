@@ -53,15 +53,7 @@ interface HomeSeoProps {
 type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | ServiceSeoProps | HomeSeoProps;
 
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
-  let location;
-  
-  try {
-    location = useLocation();
-  } catch (error) {
-    // If router context is not available, use default location
-    location = { pathname: '/' };
-  }
-  
+  const location = useLocation();
   const baseUrl = BASE_URL;
   const { defaultImage } = getSiteConfig();
   const { twitter, twitterSite, facebookAppId } = getSocialHandles();

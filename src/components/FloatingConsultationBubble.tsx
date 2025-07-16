@@ -4,20 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
 const FloatingConsultationBubble: React.FC = () => {
-  let location;
-  
-  try {
-    location = useLocation();
-  } catch (error) {
-    // If router context is not available, don't show bubble
-    return null;
-  }
-  
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    if (!location) return;
-    
     // Only show on homepage
     if (location.pathname !== "/") {
       setIsVisible(false);
@@ -38,7 +28,7 @@ const FloatingConsultationBubble: React.FC = () => {
     
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [location?.pathname]);
+  }, [location.pathname]);
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
@@ -50,7 +40,7 @@ const FloatingConsultationBubble: React.FC = () => {
     }
   };
 
-  if (!location || location.pathname !== "/") {
+  if (location.pathname !== "/") {
     return null;
   }
 

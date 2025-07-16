@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -9,10 +8,14 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    headers: {
+      'Cache-Control': 'no-cache',
+    }
   },
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
+    mode === 'development' &&
+    componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -20,14 +23,18 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['framer-motion', 'lucide-react'],
+        }
+      }
+    },
     sourcemap: false,
     minify: 'esbuild',
   },
   optimizeDeps: {
-    include: ['react', 'react-dom'],
-    force: true
-  },
-  esbuild: {
-    logOverride: { 'this-is-undefined-in-esm': 'silent' }
+    include: ['react', 'react-dom', 'framer-motion'],
   }
 }));

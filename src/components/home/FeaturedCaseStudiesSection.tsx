@@ -12,7 +12,7 @@ const featuredCaseStudies = [
     subtitle: "AI-Powered Herbal Medicine Platform",
     description: "Revolutionizing healthcare access by connecting patients with certified herbalists through an intelligent matching system.",
     image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
-    url: "/case-studies/herbalink-mobile-herbalist-ux-design",
+    url: "/case-study-herbalink",
     category: "Healthcare",
     impact: "40% faster patient-herbalist matching",
     tags: ["AI", "Healthcare", "Mobile App"]
@@ -23,7 +23,7 @@ const featuredCaseStudies = [
     subtitle: "Smart Scheduling Solution",
     description: "Intelligent time management app that eliminates scheduling conflicts through AI-driven optimization.",
     image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-    url: "/case-studies/splittime-coparenting-app-design",
+    url: "/case-study-splittime",
     category: "Productivity",
     impact: "65% reduction in scheduling conflicts",
     tags: ["AI", "Productivity", "Scheduling"]
@@ -34,7 +34,7 @@ const featuredCaseStudies = [
     subtitle: "FinTech Innovation",
     description: "Streamlined loan application platform for real estate investors with automated approval workflows.",
     image: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-    url: "/case-studies/investor-loan-portfolio-management",
+    url: "/case-study-investor-loan",
     category: "FinTech",
     impact: "50% faster loan approval process",
     tags: ["FinTech", "Real Estate", "Automation"]
@@ -56,7 +56,7 @@ const FeaturedCaseStudiesSection: React.FC = () => {
             Featured Case Studies
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Dive deep into real-world case studies that showcase the power of AI-enhanced design 
+            Dive deep into real-world projects that showcase the power of AI-enhanced design 
             and user-centered solutions across industries
           </p>
         </motion.div>

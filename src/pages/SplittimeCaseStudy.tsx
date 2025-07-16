@@ -1,55 +1,108 @@
 import React from "react";
-import CleanCaseStudyTemplate from "@/components/case-study/CleanCaseStudyTemplate";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import DynamicSeo from "@/components/seo/DynamicSeo";
+import { Helmet } from "react-helmet-async";
+import SplittimeImageViewer from "@/components/splittime/SplittimeImageViewer";
+import SplittimeHero from "@/components/splittime/SplittimeHero";
+import SplittimeConflictAnalysis from "@/components/splittime/SplittimeConflictAnalysis";
+import SplittimeCoordinationSolution from "@/components/splittime/SplittimeCoordinationSolution";
+import SplittimeFamilyInterface from "@/components/splittime/SplittimeFamilyInterface";
+import SplittimeImpactMetrics from "@/components/splittime/SplittimeImpactMetrics";
+import SplittimeCallToAction from "@/components/splittime/SplittimeCallToAction";
+import ShareButtons from "@/components/blog/ShareButtons";
+import RelatedProjects from "@/components/RelatedProjects";
+import { useSplittimeImageViewer } from "@/hooks/useSplittimeImageViewer";
 import splittimeOgImage from "@/assets/social/splittime-og.jpg";
 
 const SplittimeCaseStudy: React.FC = () => {
-  return (
-    <CleanCaseStudyTemplate
-      // SEO Data
-      title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
-      description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination."
-      image={`https://barskydesign.pro${splittimeOgImage}`}
-      caseStudyName="Splittime"
-      seoResults={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
-      technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
-      path="/case-studies/splittime-coparenting-app-design"
+  const {
+    viewerOpen,
+    currentImage,
+    currentZoom,
+    openImageViewer,
+    closeImageViewer,
+    zoomIn,
+    zoomOut,
+    resetZoom,
+    handleImageKeypress
+  } = useSplittimeImageViewer();
+  return <>
+        <DynamicSeo 
+          type="project"
+          title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
+          description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination."
+          image={`https://barskydesign.pro${splittimeOgImage}`}
+          projectName="Splittime"
+          results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
+          technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
+          path="/project/splittime"
+        />
       
-      // Clean Content
-      caseStudyTitle="Splittime"
-      subtitle="Transforming co-parenting from conflict to collaboration through better communication"
-      heroImage="/lovable-uploads/0152c609-c279-4472-84e0-4b6a0a2b6735.png"
-      
-      challenge="Divorced parents struggled with fragmented communication tools that increased conflict and stress"
-      solution="Unified platform with structured communication, shared calendars, and child-focused information sharing"
-      impact="73% reduction in communication conflicts with 89% improved schedule coordination"
-      
-      problemText="Divorced and separated parents struggle with fragmented communication tools that increase conflict and stress. Children suffer when parents can't coordinate effectively, leading to missed events, confusion, and emotional strain on the entire family through scattered conversations across multiple apps."
-      problemImage="/lovable-uploads/839b6de9-4297-414c-9f99-7a3b4d2a74d7.png"
-      
-      solutionSteps={[
-        {
-          text: "Unified communication hub with all co-parenting conversations in one respectful, structured platform designed to reduce misunderstandings and promote positive communication.",
-          image: "/lovable-uploads/0152c609-c279-4472-84e0-4b6a0a2b6735.png"
-        },
-        {
-          text: "Shared family calendar with synchronized scheduling and automatic notifications, reducing conflicts over pickup times and events while keeping both parents informed.",
-          image: "/lovable-uploads/839b6de9-4297-414c-9f99-7a3b4d2a74d7.png"
-        },
-        {
-          text: "Child-centered information hub with medical info, school updates, and activity details accessible to both parents for better child care and coordination.",
-          image: "/lovable-uploads/59ed017e-e0b4-4f9e-8c80-babccd697006.png"
-        }
-      ]}
-      
-      metrics={[
-        { value: "73%", label: "Reduction in Communication Conflicts" },
-        { value: "89%", label: "Improved Schedule Coordination" },
-        { value: "94%", label: "Parent Satisfaction Rate" }
-      ]}
-      
-      currentCaseStudyId="splittime"
-    />
-  );
-};
+      <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
+        <Header />
+        
+        {/* Back Navigation */}
+        <div className="pt-24 px-4 sm:px-6 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
+          >
+            <Link to="/projects" className="inline-flex items-center text-blue-700 hover:text-blue-900 transition-colors font-medium">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Projects
+            </Link>
+          </motion.div>
+        </div>
+        
+        <main className="flex-grow">
+          <SplittimeHero 
+            onImageClick={openImageViewer}
+            onImageKeypress={handleImageKeypress}
+          />
 
+          <SplittimeConflictAnalysis 
+            onImageClick={openImageViewer}
+            onImageKeypress={handleImageKeypress}
+          />
+
+          <SplittimeCoordinationSolution 
+            onImageClick={openImageViewer}
+            onImageKeypress={handleImageKeypress}
+          />
+
+          <SplittimeFamilyInterface 
+            onImageClick={openImageViewer}
+            onImageKeypress={handleImageKeypress}
+          />
+
+          <SplittimeImpactMetrics 
+            onImageClick={openImageViewer}
+            onImageKeypress={handleImageKeypress}
+          />
+
+          <RelatedProjects currentProjectId="splittime" />
+
+          <SplittimeCallToAction />
+        </main>
+        
+        <SplittimeImageViewer
+          viewerOpen={viewerOpen}
+          currentImage={currentImage}
+          currentZoom={currentZoom}
+          onClose={closeImageViewer}
+          onZoomIn={zoomIn}
+          onZoomOut={zoomOut}
+          onResetZoom={resetZoom}
+        />
+        
+        <Footer />
+      </div>
+    </>;
+};
 export default SplittimeCaseStudy;

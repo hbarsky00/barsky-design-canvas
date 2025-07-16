@@ -15,31 +15,21 @@ import FloatingConsultationBubble from "@/components/FloatingConsultationBubble"
 const HomepageLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      {/* Temporarily disable Header (uses router context) */}
-      {/* <Header /> */}
+      <Header />
       <main className="flex-grow space-y-4">
-        {/* Temporarily disable framer-motion components to fix React context issues */}
-        {/* <FeaturedCaseStudiesSection /> */}
-        {/* <EnhancedHero /> */}
+        <FeaturedCaseStudiesSection />
+        <EnhancedHero />
         
-        {/* Temporarily replace About with simple div to test */}
-        <div className="p-8 text-center">
-          <h1 className="text-4xl font-bold">Simple Test Page</h1>
-          <p className="mt-4 text-lg">This is a minimal test to check if React context is working.</p>
-        </div>
-        {/* <About /> */}
-        {/* <ContactForm /> */}
-        {/* Temporarily disable BlogPreview (uses Link components) */}
-        {/* <BlogPreview /> */}
-        {/* Temporarily disable SeoFaqSection as it uses framer-motion */}
-        {/* <SeoFaqSection 
+        <About />
+        <ContactForm />
+        <BlogPreview />
+        <SeoFaqSection 
           title="Frequently Asked Questions About AI-Enhanced UX Design"
           faqs={homepageFaqs}
-        /> */}
+        />
       </main>
-      {/* Temporarily disable Footer (uses Link components) */}
-      {/* <Footer /> */}
-      {/* <FloatingConsultationBubble /> */}
+      <Footer />
+      <FloatingConsultationBubble />
     </div>
   );
 };
