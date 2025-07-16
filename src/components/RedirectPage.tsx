@@ -32,7 +32,7 @@ const RedirectPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center cursor-pointer redirect-page" onClick={handleClick}>
         <div className="text-center space-y-8 p-8 max-w-md mx-auto">
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold">Site is down due to problems with Lovable UI the AI is not meant to build a portfolio site.</h1>
+            <h1 className="font-bold text-2xl">My Site Barsky Design is down due to problems with Lovable UI the AI is not meant to build a portfolio site. I will be redirecting you to my other site http://barskyux.com</h1>
             
           </div>
           
