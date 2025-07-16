@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -39,7 +38,6 @@ import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
-
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -51,8 +49,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  
-  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
