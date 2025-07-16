@@ -17,8 +17,15 @@ const RedirectPage = () => {
         <meta name="description" content="Site is currently being reconstructed. Redirecting to barskyux.com" />
         <meta httpEquiv="refresh" content="5;url=http://barskyux.com" />
         <style>{`
-          * { color: white !important; }
-          .redirect-page * { color: white !important; }
+          .redirect-page * { color: rgb(255, 255, 255) !important; }
+          .redirect-page h1 { color: rgb(255, 255, 255) !important; }
+          .redirect-page p { color: rgb(255, 255, 255) !important; }
+          .redirect-page div { color: rgb(255, 255, 255) !important; }
+          .redirect-page span { color: rgb(255, 255, 255) !important; }
+          .redirect-page > * { color: rgb(255, 255, 255) !important; }
+          .redirect-page > * > * { color: rgb(255, 255, 255) !important; }
+          .redirect-page > * > * > * { color: rgb(255, 255, 255) !important; }
+          .redirect-page > * > * > * > * { color: rgb(255, 255, 255) !important; }
         `}</style>
       </Helmet>
       
