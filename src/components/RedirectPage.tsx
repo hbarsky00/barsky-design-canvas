@@ -30,10 +30,10 @@ const RedirectPage = () => {
         <div className="text-center space-y-8 p-8 max-w-md mx-auto">
           <div className="space-y-4">
             <h1 className="text-4xl font-bold text-white">
-              Site is Being Reconstructed
+              Site is down due to inconsistencies in lovable
             </h1>
-            <p className="text-lg text-gray-300">
-              Redirecting you to our new site...
+            <p className="text-lg text-white">
+              Will be reworking this site. For now visit: http://barskyux.com made in Wordpress
             </p>
           </div>
           
@@ -41,7 +41,7 @@ const RedirectPage = () => {
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
           </div>
           
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-white">
             Click anywhere to go immediately
           </p>
         </div>
