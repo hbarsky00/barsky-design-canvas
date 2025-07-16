@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 const RedirectPage = () => {
   useEffect(() => {
-    // Redirect after 3 seconds
+    // Redirect after 5 seconds
     const timer = setTimeout(() => {
       window.location.href = "http://barskyux.com";
-    }, 3000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
   const handleClick = () => {
@@ -15,7 +15,7 @@ const RedirectPage = () => {
       <Helmet>
         <title>Site is Being Reconstructed</title>
         <meta name="description" content="Site is currently being reconstructed. Redirecting to barskyux.com" />
-        <meta httpEquiv="refresh" content="3;url=http://barskyux.com" />
+        <meta httpEquiv="refresh" content="5;url=http://barskyux.com" />
       </Helmet>
       
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center cursor-pointer" onClick={handleClick}>
@@ -24,7 +24,7 @@ const RedirectPage = () => {
             <h1 className="text-4xl font-bold text-white">
               Site is down due to inconsistencies in lovable
             </h1>
-            <p className="text-lg text-slate-50">
+            <p className="text-lg text-white">
               Will be reworking this site. For now visit: http://barskyux.com made in Wordpress
             </p>
           </div>
@@ -34,7 +34,7 @@ const RedirectPage = () => {
           </div>
           
           <p className="text-sm text-white">
-            Click anywhere to go immediately
+            Click anywhere to go to the updated Barsky Design Site
           </p>
         </div>
       </div>
