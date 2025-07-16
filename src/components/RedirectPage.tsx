@@ -32,19 +32,15 @@ const RedirectPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center cursor-pointer redirect-page" onClick={handleClick}>
         <div className="text-center space-y-8 p-8 max-w-md mx-auto">
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold">
-              Site is down due to inconsistencies in lovable
-            </h1>
-            <p className="text-lg">
-              Will be reworking this site. For now visit: http://barskyux.com made in Wordpress
-            </p>
+            <h1 className="text-4xl font-bold">Site is down due to problems with Lovable UI the AI is not meant to build a portfolio site.</h1>
+            
           </div>
           
           <div className="flex justify-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
           </div>
           
-          <p className="text-sm">
+          <p className="text-sm text-slate-50">
             Click anywhere to go to the updated Barsky Design Site
           </p>
         </div>
