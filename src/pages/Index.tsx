@@ -8,7 +8,7 @@ import SitemapGenerator from "@/components/seo/SitemapGenerator";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 import { usePageIndexing } from "@/hooks/usePageIndexing";
-import { useUnifiedOptimization } from "@/hooks/useUnifiedOptimization";
+
 import { initCanonicalMonitoring } from "@/utils/seoCanonicalMonitor";
 import { initMobileOptimization } from "@/utils/mobileUsabilityOptimizer";
 import { initLinkEquityMonitoring } from "@/utils/linkEquityDistributor";
@@ -16,7 +16,7 @@ import { initSEORealTimeMonitoring } from "@/utils/seoMobileMonitor";
 
 const Index = () => {
   usePageIndexing();
-  useUnifiedOptimization();
+  
   
   // Initialize SEO and mobile optimizations
   React.useEffect(() => {
