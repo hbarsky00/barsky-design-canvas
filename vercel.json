@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "http://barskyux.com",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
