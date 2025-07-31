@@ -9,7 +9,28 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({
   isVisible
 }) => {
   return <div className="relative">
-      
+      <motion.div initial={{
+      opacity: 0,
+      scale: 0.9
+    }} animate={isVisible ? {
+      opacity: 1,
+      scale: 1
+    } : {}} transition={{
+      duration: 0.8,
+      delay: 0.2
+    }} className="flex justify-center mb-3">
+        <img 
+          alt="Hiram Barsky Product Designer" 
+          loading="eager" 
+          src={getOptimizedImageSrc("/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png", isMobileDevice())}
+          srcSet={getResponsiveImageSources("/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png")}
+          sizes="(max-width: 768px) 480px, 600px"
+          className="h-[115px] sm:h-[134px] lg:h-[154px] w-auto object-contain" 
+          width="600"
+          height="154"
+          fetchPriority="high"
+        />
+      </motion.div>
       
       <motion.div initial={{
       opacity: 0,

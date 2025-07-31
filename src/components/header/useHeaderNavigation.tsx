@@ -13,7 +13,6 @@ export const useHeaderNavigation = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
-    { name: "Case Studies", href: "/case-studies" },
     { name: "Services", href: "/services" },
     { name: "Blog", href: "/blog" },
     { name: "About", href: "#about" },

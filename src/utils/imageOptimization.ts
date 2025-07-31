@@ -22,16 +22,6 @@ export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {
     height: 400,
     aspectRatio: '1:1',
     targetSize: '50KB'
-  },
-  '/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png': {
-    original: '/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png',
-    webp: '/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png',
-    webpCompressed: '/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png',
-    mobile: '/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png',
-    width: 1200,
-    height: 800,
-    aspectRatio: '3:2',
-    targetSize: '80KB'
   }
 };
 
@@ -149,8 +139,7 @@ export const preloadCriticalImages = () => {
 
   const criticalImages = [
     '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Profile
-    '/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png', // Hero heading
-    '/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png'  // Hero dashboard image
+    '/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png'  // Hero heading
   ];
 
   criticalImages.forEach(src => {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight } from 'lucide-react';
-import { getContextualLinks } from '@/utils/linkEquityDistributor';
 
 interface BreadcrumbItem {
   label: string;
@@ -68,7 +67,6 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
   };
 
   const contextualLinks = allInternalLinks[currentPage] || [];
-  const linkEquityLinks = getContextualLinks(currentPage);
 
   return (
     <div className="space-y-8">
@@ -116,7 +114,7 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
               Explore More
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
-              {contextualLinks.slice(0, 4).map((link, index) => (
+              {contextualLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, y: 20 }}
@@ -126,7 +124,7 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
                 >
                   <Link
                     to={link.href}
-                    className="group block bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200 mobile-optimized"
+                    className="group block bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200"
                   >
                     <div className="flex justify-between items-start mb-3">
                       <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">

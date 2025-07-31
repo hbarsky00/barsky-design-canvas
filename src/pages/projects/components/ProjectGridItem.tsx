@@ -5,7 +5,6 @@ import { ArrowRight, ExternalLink, Figma, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ProjectProps } from "@/components/ProjectCard";
 import { Badge } from "@/components/ui/badge";
-import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface ProjectGridItemProps {
   project: ProjectProps;
@@ -24,13 +23,11 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
       <div className="bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
         {/* Project Image */}
         <div className="relative overflow-hidden aspect-[16/10]">
-          <MaximizableImage
+          <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full transition-transform duration-500 group-hover:scale-105"
-            projectId={project.id}
-            aspectRatio="16/10"
-            hideEditButton={true}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           

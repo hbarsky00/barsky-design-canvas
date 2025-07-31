@@ -19,59 +19,39 @@ const Footer: React.FC = () => {
           </div>
           
           <nav aria-label="Footer navigation">
-            <h4 className="text-lg font-semibold mb-6 text-neutral-50">Site Map</h4>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h5 className="font-medium mb-3 text-blue-vibrant">Main Pages</h5>
-                <ul className="space-y-2" role="list">
-                  <li>
-                    <Link to="/" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/about" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/services" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      Services
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/contact" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h5 className="font-medium mb-3 text-blue-vibrant">Portfolio</h5>
-                <ul className="space-y-2" role="list">
-                  <li>
-                    <Link to="/projects" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      All Projects
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/case-study-herbalink" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      HerbaLink Case Study
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/case-study-splittime" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      SplitTime Case Study
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/blog" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded mobile-optimized">
-                      Design Blog
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <h4 className="text-lg font-semibold mb-6 text-neutral-50">Navigation</h4>
+            <ul className="space-y-3" role="list">
+              <li>
+                <Link to="/" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                  Contact
+                </Link>
+              </li>
+            </ul>
           </nav>
           
           <div>

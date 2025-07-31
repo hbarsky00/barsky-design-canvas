@@ -44,30 +44,19 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Professional Design System Colors */
-    --navy-primary: 210 20% 25%;
-    --navy-secondary: 220 15% 20%;
-    --blue-accent: 210 15% 35%;
-    --blue-vibrant: 210 20% 40%;
-    --orange-vibrant: 25 30% 50%;
-    --purple-vibrant: 262 20% 45%;
-    --success-green: 142 40% 40%;
-    --neutral-50: 210 20% 98%;
-    --neutral-100: 210 20% 96%;
-    --neutral-200: 214 15% 91%;
-    --neutral-500: 215 10% 47%;
-    --neutral-900: 222 25% 15%;
-    
-    /* Clean Logo Colors */
-    --logo-glow: 210 20% 40%;
-    --logo-accent: 262 20% 45%;
-    --logo-shine: 0 0% 100%;
-    --logo-shadow: 222 25% 15%;
-    
-    /* Professional Gradient Variables */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--neutral-200)), hsl(var(--neutral-100)));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--blue-accent)), hsl(var(--navy-primary)));
-    --gradient-glow: linear-gradient(135deg, hsl(var(--neutral-200) / 0.3), hsl(var(--neutral-100) / 0.3));
+    /* Modern Design System Colors */
+    --navy-primary: 210 65% 15%;
+    --navy-secondary: 220 39% 11%;
+    --blue-accent: 231 48% 48%;
+    --blue-vibrant: 217 91% 60%;
+    --orange-vibrant: 25 95% 53%;
+    --purple-vibrant: 262 83% 58%;
+    --success-green: 142 76% 36%;
+    --neutral-50: 210 40% 98%;
+    --neutral-100: 210 40% 96%;
+    --neutral-200: 214 32% 91%;
+    --neutral-500: 215 16% 47%;
+    --neutral-900: 222 84% 5%;
   }
 
   .dark {

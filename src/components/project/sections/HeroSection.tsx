@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import MaximizableImage from "../MaximizableImage";
@@ -6,11 +6,6 @@ import ShareButtons from "@/components/blog/ShareButtons";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 
 const HeroSection: React.FC = () => {
-  const [heroImageSrc, setHeroImageSrc] = useState("/lovable-uploads/340a0484-22a4-4c70-bf1e-4ec47c317bfb.png");
-
-  const handleImageReplace = (newSrc: string) => {
-    setHeroImageSrc(newSrc);
-  };
   return (
     <section className="py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
@@ -61,16 +56,10 @@ const HeroSection: React.FC = () => {
             delay: 0.2
           }} className="relative space-y-6">
             <MaximizableImage
-              src={getOptimizedImageSrc(heroImageSrc)}
-              alt="QuickFlow Business Dashboard - Full interface showing comprehensive sales analytics and business management features"
-              caption="QuickFlow Business Dashboard - Complete Interface"
+              src={getOptimizedImageSrc("/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png")}
+              alt="QuickFlow Business Dashboard - Mobile interface showing sales analytics and performance tracking"
+              caption="QuickFlow Business Dashboard - Mobile Interface"
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg"
-              projectId="wholesale-distribution"
-              onImageReplace={handleImageReplace}
-              width={1200}
-              height={800}
-              aspectRatio="3/2"
-              priority={true}
             />
             
             <iframe 
@@ -142,16 +131,10 @@ const HeroSection: React.FC = () => {
             delay: 0.2
           }} className="relative space-y-6">
             <MaximizableImage
-              src={getOptimizedImageSrc(heroImageSrc)}
-              alt="QuickFlow Business Dashboard - Full interface showing comprehensive sales analytics and business management features"
-              caption="QuickFlow Business Dashboard - Complete Interface"
+              src={getOptimizedImageSrc("/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png")}
+              alt="QuickFlow Business Dashboard - Mobile interface showing sales analytics and performance tracking"
+              caption="QuickFlow Business Dashboard - Mobile Interface"
               className="w-full h-auto object-contain shadow-xl mx-auto rounded-lg max-w-md"
-              projectId="wholesale-distribution"
-              onImageReplace={handleImageReplace}
-              width={1200}
-              height={800}
-              aspectRatio="3/2"
-              priority={true}
             />
             
             <iframe 

@@ -11,7 +11,6 @@ import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 import RelatedProjects from "@/components/RelatedProjects";
 import ShareButtons from "@/components/blog/ShareButtons";
-import MaximizableImage from "@/components/project/MaximizableImage";
 import herbalinkOgImage from "@/assets/social/herbalink-og.jpg";
 const HerbalinkCaseStudy: React.FC = () => {
   const {
@@ -122,14 +121,12 @@ const HerbalinkCaseStudy: React.FC = () => {
               }} transition={{
                 duration: 0.8
               }} className="relative">
-                  <MaximizableImage 
-                    src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
-                    alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features"
-                    caption="Herbalink mobile app interface showcasing the comprehensive wellness platform"
-                    className="w-full h-[400px] rounded-3xl shadow-2xl"
-                    projectId="herbalink"
-                    aspectRatio="400/300"
-                  />
+                  <figure className="project-image-container">
+                    <img src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")} alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")} />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Herbalink mobile app interface showcasing the comprehensive wellness platform
+                    </figcaption>
+                  </figure>
                 </motion.div>
                 
                 <motion.div initial={{
@@ -267,14 +264,12 @@ const HerbalinkCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.2
               }} className="relative">
-                  <MaximizableImage 
-                    src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png"
-                    alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features"
-                    caption="Herbalink mobile app interface showcasing the comprehensive wellness platform"
-                    className="w-full h-[500px] rounded-3xl shadow-2xl"
-                    projectId="herbalink"
-                    aspectRatio="500/400"
-                  />
+                  <figure className="project-image-container">
+                    <img src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png" alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")} />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Herbalink mobile app interface showcasing the comprehensive wellness platform
+                    </figcaption>
+                  </figure>
                   
                   {/* Video after first image */}
                   <motion.div initial={{
@@ -369,24 +364,18 @@ const HerbalinkCaseStudy: React.FC = () => {
                 duration: 0.8,
                 delay: 0.3
               }} className="relative">
-                  <div className="mb-8">
-                    <MaximizableImage 
-                      src="/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png"
-                      alt="Healthcare professional illustration showing the digital transformation needed to bridge traditional herbal practice with modern accessibility"
-                      caption="Digital transformation bridging traditional herbal practice with modern accessibility"
-                      className="w-full h-[400px] rounded-3xl shadow-2xl"
-                      projectId="herbalink"
-                      aspectRatio="400/300"
-                    />
-                  </div>
-                  <MaximizableImage 
-                    src="/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png"
-                    alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs"
-                    caption="Traditional herbal medicine consultation highlighting accessibility challenges"
-                    className="w-full h-[500px] rounded-3xl shadow-2xl"
-                    projectId="herbalink"
-                    aspectRatio="500/400"
-                  />
+                  <figure className="project-image-container mb-8">
+                    <img src="/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png" alt="Healthcare professional illustration showing the digital transformation needed to bridge traditional herbal practice with modern accessibility" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png", "Digital transformation bridging traditional herbal practice with modern accessibility")} />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Digital transformation bridging traditional herbal practice with modern accessibility
+                    </figcaption>
+                  </figure>
+                  <figure className="project-image-container">
+                    <img src="/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png" alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png", "Traditional herbal medicine consultation highlighting accessibility challenges")} />
+                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      Traditional herbal medicine consultation highlighting accessibility challenges
+                    </figcaption>
+                  </figure>
                 </motion.div>
               </div>
             </div>
@@ -433,13 +422,12 @@ const HerbalinkCaseStudy: React.FC = () => {
               duration: 0.8,
               delay: 0.2
             }} className="mb-16">
-                <MaximizableImage 
-                  src="/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png"
-                  alt="HerbaLink mobile app interface showing Dashboard, Select Herbalist, and Pay for Herbalist screens with comprehensive user flow"
-                  caption="HerbaLink mobile app interface showcasing the complete user journey from dashboard to payment"
-                  className="w-full h-auto rounded-3xl shadow-2xl"
-                  projectId="herbalink"
-                />
+                <figure className="project-image-container">
+                  <img src="/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png" alt="HerbaLink mobile app interface showing Dashboard, Select Herbalist, and Pay for Herbalist screens with comprehensive user flow" className="w-full h-auto object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png", "HerbaLink mobile app interface showcasing complete user journey")} />
+                  <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                    HerbaLink mobile app interface showcasing the complete user journey from dashboard to payment
+                  </figcaption>
+                </figure>
               </motion.div>
               
               <div className="grid lg:grid-cols-3 gap-8">
@@ -481,12 +469,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   </p>
                 </div>
                 <div className="bg-white rounded-3xl p-8 shadow-xl border border-emerald-200">
-                  <MaximizableImage 
-                    src="/lovable-uploads/4877fa82-46fd-47bf-a10c-1ed97207e289.png"
-                    alt="AI-enhanced development workflow from conversation to deployment"
-                    className="w-full h-auto"
-                    projectId="herbalink"
-                  />
+                  <img alt="AI-enhanced development workflow from conversation to deployment" onClick={() => maximizeImage("/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png", "AI-enhanced development workflow from conversation to deployment")} src="/lovable-uploads/4877fa82-46fd-47bf-a10c-1ed97207e289.png" className="w-full h-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-contain" />
                 </div>
               </motion.div>
 
@@ -546,13 +529,12 @@ const HerbalinkCaseStudy: React.FC = () => {
               duration: 0.8,
               delay: 0.3
             }} className="w-full">
-                <MaximizableImage 
-                  src="/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png"
-                  alt="Herbalink key design solutions showing trust-building transparency, personalized matching algorithm, educational integration, and streamlined consultation experience"
-                  caption="Comprehensive design solutions for the herbal wellness platform"
-                  className="w-full rounded-3xl shadow-2xl"
-                  projectId="herbalink"
-                />
+                <figure className="project-image-container">
+                  <img src="/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png" alt="Herbalink key design solutions showing trust-building transparency, personalized matching algorithm, educational integration, and streamlined consultation experience" className="w-full rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png", "Comprehensive design solutions for the herbal wellness platform")} />
+                  <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                    Comprehensive design solutions for the herbal wellness platform
+                  </figcaption>
+                </figure>
               </motion.div>
             </div>
           </section>
@@ -609,16 +591,12 @@ const HerbalinkCaseStudy: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="mb-6">
-                      <MaximizableImage 
-                        src={journey.image}
-                        alt={`${journey.title} - mobile wellness platform interface`}
-                        caption={`${journey.title} - ${journey.description}`}
-                        className="w-full h-64 rounded-2xl"
-                        projectId="herbalink"
-                        aspectRatio="16/9"
-                      />
-                    </div>
+                    <figure className="project-image-container mb-6">
+                      <img src={journey.image} alt={`${journey.title} - mobile wellness platform interface`} className="w-full h-64 object-cover rounded-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage(journey.image, `${journey.title} - mobile wellness platform interface`)} />
+                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                        {journey.title} - {journey.description}
+                      </figcaption>
+                    </figure>
                     
                     <p className="text-neutral-600 leading-relaxed">{journey.description}</p>
                   </motion.div>)}
