@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -43,7 +42,6 @@ import { useAccessibilityValidator } from "@/hooks/useAccessibilityValidator";
 import { initializePerformanceOptimizations } from "@/utils/performanceOptimizer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
-
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,6 +53,12 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  // Apply performance optimizations with error handling
+  try {
+    usePerformanceOptimization();
+  } catch (error) {
+    console.warn('Performance optimization failed:', error);
+  }
   
   return (
     <ErrorBoundary>
