@@ -55,17 +55,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // Apply performance, accessibility, and mobile optimizations
-  usePerformanceOptimization();
-  useAccessibilityEnhancements();
-  useMobileOptimization();
-  useAccessibilityValidator();
-  
-  // Initialize real performance optimizations
-  React.useEffect(() => {
-    initializePerformanceOptimizations();
-  }, []);
-  
   
   return (
     <ErrorBoundary>
