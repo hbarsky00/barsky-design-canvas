@@ -30,16 +30,11 @@ import LinkedInVisitors from "@/pages/LinkedInVisitors";
 import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
-import StoryDrivenProjectDetail from "@/components/project/StoryDrivenProjectDetail";
+import WholesaleDistributionCaseStudy from "@/pages/WholesaleDistributionCaseStudy";
 import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
-import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
-import { useAccessibilityEnhancements } from "@/hooks/useAccessibilityEnhancements";
-import { useMobileOptimization } from "@/hooks/useMobileOptimization";
-import { useAccessibilityValidator } from "@/hooks/useAccessibilityValidator";
-import { initializePerformanceOptimizations } from "@/utils/performanceOptimizer";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Create QueryClient with proper configuration
@@ -53,13 +48,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // Apply performance optimizations with error handling
-  try {
-    usePerformanceOptimization();
-  } catch (error) {
-    console.warn('Performance optimization failed:', error);
-  }
-  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
@@ -77,13 +65,13 @@ function App() {
                   <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
                   <Route path="/case-studies/splittime-coparenting-app-design" element={<SplittimeCaseStudy />} />
                   <Route path="/case-studies/investor-loan-portfolio-management" element={<InvestorLoanAppCaseStudy />} />
-                  <Route path="/case-studies/wholesale-distribution-ai-solution" element={<StoryDrivenProjectDetail />} />
+                  <Route path="/case-studies/wholesale-distribution-ai-solution" element={<WholesaleDistributionCaseStudy />} />
                   
                   {/* Legacy redirects - keep for backwards compatibility */}
                   <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
                   <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
                   <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
-                  <Route path="/project/wholesale-distribution" element={<StoryDrivenProjectDetail />} />
+                  <Route path="/project/wholesale-distribution" element={<WholesaleDistributionCaseStudy />} />
                   <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
                   <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
                   <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
