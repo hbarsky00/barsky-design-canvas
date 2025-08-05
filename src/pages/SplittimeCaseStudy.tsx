@@ -1,20 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
-import { Helmet } from "react-helmet-async";
-import SplittimeImageViewer from "@/components/splittime/SplittimeImageViewer";
+import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
+import ProblemSection from "@/components/case-study/sections/ProblemSection";
+import ImpactSection from "@/components/case-study/sections/ImpactSection";
+import FailuresSection from "@/components/case-study/sections/FailuresSection";
+import ProcessSection from "@/components/case-study/sections/ProcessSection";
 import SplittimeHero from "@/components/splittime/SplittimeHero";
-import SplittimeConflictAnalysis from "@/components/splittime/SplittimeConflictAnalysis";
-import SplittimeCoordinationSolution from "@/components/splittime/SplittimeCoordinationSolution";
-import SplittimeFamilyInterface from "@/components/splittime/SplittimeFamilyInterface";
-import SplittimeImpactMetrics from "@/components/splittime/SplittimeImpactMetrics";
-import SplittimeCallToAction from "@/components/splittime/SplittimeCallToAction";
-import ShareButtons from "@/components/blog/ShareButtons";
-import RelatedProjects from "@/components/RelatedProjects";
 import { useSplittimeImageViewer } from "@/hooks/useSplittimeImageViewer";
 import splittimeOgImage from "@/assets/social/splittime-og.jpg";
 
@@ -30,79 +20,165 @@ const SplittimeCaseStudy: React.FC = () => {
     resetZoom,
     handleImageKeypress
   } = useSplittimeImageViewer();
-  return <>
-        <DynamicSeo 
-          type="project"
-          title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
-          description="Transforming co-parenting from conflict to collaboration. AI-powered features that reduce communication stress and improve family coordination."
-          image={`https://barskydesign.pro${splittimeOgImage}`}
-          projectName="Splittime"
-          results={["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"]}
-          technologies={["React Native", "Family Tech", "Communication Platform", "Scheduling AI"]}
-          path="/project/splittime"
-        />
-      
-      <div className="coparenting-platform-showcase min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
-        <Header />
-        
-        {/* Back Navigation */}
-        <div className="pt-24 px-4 sm:px-6 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <Link to="/projects" className="inline-flex items-center text-blue-700 hover:text-blue-900 transition-colors font-medium">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
-            </Link>
-          </motion.div>
-        </div>
-        
-        <main className="flex-grow">
-          <SplittimeHero 
-            onImageClick={openImageViewer}
-            onImageKeypress={handleImageKeypress}
-          />
 
-          <SplittimeConflictAnalysis 
-            onImageClick={openImageViewer}
-            onImageKeypress={handleImageKeypress}
-          />
+  const problemData = {
+    title: "Co-parenting communication was a battlefield",
+    businessImpact: "Separated parents were spending 73% more time coordinating basic schedules than actually focusing on their children. Every conversation became a potential conflict, leading to emotional exhaustion and inconsistent parenting decisions.",
+    userPain: "Parents reported feeling 'constantly on edge' when texting about pickups, activities, or changes. Simple requests like switching weekends required multiple back-and-forth messages, often escalating into arguments that affected the children.",
+    gapAnalysis: "What parents asked for was 'better scheduling tools.' What they actually needed was a communication layer that removed emotion from logistics while keeping the focus on their children's wellbeing.",
+    metrics: [
+      { label: "Average messages per scheduling change", value: "12", trend: "down" as const },
+      { label: "Conflicts per week", value: "4.2", trend: "down" as const },
+      { label: "Time spent on coordination", value: "3.5 hrs", trend: "down" as const }
+    ]
+  };
 
-          <SplittimeCoordinationSolution 
-            onImageClick={openImageViewer}
-            onImageKeypress={handleImageKeypress}
-          />
+  const impactData = {
+    overview: "By redesigning communication patterns rather than just interfaces, Splittime reduced scheduling-related conflicts by 73% while improving children's emotional stability through more predictable routines.",
+    metrics: [
+      {
+        label: "Scheduling Conflicts",
+        value: "73%",
+        improvement: "Reduction in weekly conflicts",
+        category: "user" as const
+      },
+      {
+        label: "Communication Time",
+        value: "65%",
+        improvement: "Less time on logistics",
+        category: "efficiency" as const
+      },
+      {
+        label: "Plan Changes",
+        value: "89%",
+        improvement: "Successful without conflict",
+        category: "user" as const
+      },
+      {
+        label: "Child Stress Indicators",
+        value: "45%",
+        improvement: "Improvement in stability measures",
+        category: "user" as const
+      }
+    ],
+    timeframe: "4 months post-launch"
+  };
 
-          <SplittimeFamilyInterface 
-            onImageClick={openImageViewer}
-            onImageKeypress={handleImageKeypress}
-          />
+  const failuresData = {
+    introduction: "My initial approach focused on making scheduling 'easier' instead of addressing the underlying communication dysfunction. Here's what didn't work:",
+    failures: [
+      {
+        assumption: "Parents just needed a better calendar app",
+        attempt: "Built a sophisticated shared calendar with color-coding, notifications, and drag-and-drop scheduling features",
+        whyItFailed: "User testing revealed parents were still arguing—now they were arguing over who changed what in the calendar. The tool amplified existing tensions instead of reducing them.",
+        lesson: "Technical solutions can't fix human problems. I needed to design for relationship dynamics, not just task management."
+      },
+      {
+        assumption: "More communication options would help",
+        attempt: "Added chat, voice messages, photo sharing, and video calls to create a 'complete communication suite'",
+        whyItFailed: "Parents reported feeling overwhelmed and more opportunities for conflict. One parent said: 'Now there are five ways for my ex to annoy me instead of just texting.'",
+        lesson: "Reducing communication friction isn't always good. Sometimes friction serves as a necessary boundary in difficult relationships."
+      },
+      {
+        assumption: "Transparency would build trust",
+        attempt: "Created detailed activity logs showing who made changes, when, and what they changed from/to",
+        whyItFailed: "This turned the app into a surveillance tool that increased paranoia rather than trust. Parents started making changes just to 'claim territory' in the interface.",
+        lesson: "Visibility without context breeds suspicion. I needed to focus on outcomes, not process transparency."
+      }
+    ]
+  };
 
-          <SplittimeImpactMetrics 
-            onImageClick={openImageViewer}
-            onImageKeypress={handleImageKeypress}
-          />
+  const processData = {
+    overview: "Instead of building another scheduling app, I focused on designing communication patterns that would naturally reduce conflict while keeping children's needs central to every interaction.",
+    mentalModels: [
+      "Conflict as a systems problem, not a people problem",
+      "Children's emotional needs as the shared constraint that aligns parents",
+      "Successful handoffs in other industries (hospitals, airlines) as design inspiration"
+    ],
+    keyPrinciples: [
+      "Child-centric language: Every feature speaks about children first, logistics second",
+      "Friction where it helps: Make impulsive, emotional responses harder to send",
+      "Async by default: Remove the pressure of immediate responses that escalate conflicts"
+    ],
+    decisions: [
+      {
+        situation: "Parents wanted real-time chat for 'urgent' coordination",
+        options: [
+          "Build instant messaging with read receipts",
+          "Create a delay mechanism for all messages",
+          "Separate 'urgent' from 'planning' communication channels"
+        ],
+        chosenPath: "Built a 24-hour delay on non-emergency messages with child-impact prompting",
+        reasoning: "Most 'urgent' coordination wasn't actually urgent—it was emotional reactivity. The delay gave parents time to cool down and consider how their message would affect their children.",
+        tradeoffs: [
+          "Some legitimate urgent needs would be delayed",
+          "Parents initially resisted the 'friction'",
+          "Had to build robust emergency override system"
+        ]
+      },
+      {
+        situation: "How to handle schedule changes without blame cycles",
+        options: [
+          "Version control showing who changed what",
+          "Required explanations for all changes",
+          "Focus on child impact rather than change ownership"
+        ],
+        chosenPath: "Reframed all changes as 'adjustment proposals' focused on child benefit",
+        reasoning: "Instead of 'Sarah changed pickup from 6pm to 7pm,' the interface said 'Proposed: Give Emma extra time for soccer practice.' This shifted focus from blame to child benefit.",
+        tradeoffs: [
+          "More complex content logic needed",
+          "Some changes genuinely needed ownership clarity",
+          "Required extensive content strategy work"
+        ]
+      }
+    ],
+    personalInsight: "The breakthrough came when I stopped trying to make co-parenting 'easier' and started making it more intentional. The best divorced parents I interviewed all had similar patterns: they treated coordination like a professional handoff, not a personal relationship. This became the design principle that solved everything else."
+  };
 
-          <RelatedProjects currentProjectId="splittime" />
+  const sections = [
+    {
+      id: "problem",
+      title: "The Problem",
+      content: <ProblemSection {...problemData} />
+    },
+    {
+      id: "impact",
+      title: "Quantified Impact",
+      content: <ImpactSection {...impactData} />
+    },
+    {
+      id: "failed",
+      title: "What Didn't Work",
+      content: <FailuresSection {...failuresData} />
+    },
+    {
+      id: "process",
+      title: "My Thought Process",
+      content: <ProcessSection {...processData} />
+    }
+  ];
 
-          <SplittimeCallToAction />
-        </main>
-        
-        <SplittimeImageViewer
-          viewerOpen={viewerOpen}
-          currentImage={currentImage}
-          currentZoom={currentZoom}
-          onClose={closeImageViewer}
-          onZoomIn={zoomIn}
-          onZoomOut={zoomOut}
-          onResetZoom={resetZoom}
-        />
-        
-        <Footer />
-      </div>
-    </>;
+  const heroSection = (
+    <SplittimeHero 
+      onImageClick={openImageViewer}
+      onImageKeypress={handleImageKeypress}
+    />
+  );
+
+  return (
+    <CaseStudyLayout
+      title="Splittime: Co-Parenting App Case Study | Hiram Barsky"
+      description="Transforming co-parenting from conflict to collaboration. Reduced scheduling conflicts by 73% through communication design that puts children first."
+      image={`https://barskydesign.pro${splittimeOgImage}`}
+      projectName="Splittime"
+      results={["73% reduction in scheduling conflicts", "65% less time on logistics", "45% improvement in child stability measures"]}
+      technologies={["React Native", "Family Communication", "Conflict Reduction", "Child-Centered Design"]}
+      path="/project/splittime"
+      heroSection={heroSection}
+      sections={sections}
+      gradientClasses="from-blue-50 via-slate-50 to-indigo-50"
+    />
+  );
 };
+
 export default SplittimeCaseStudy;
