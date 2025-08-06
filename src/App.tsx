@@ -38,6 +38,7 @@ import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SafeErrorBoundary } from "@/components/SafeErrorBoundary";
 import { ForceRefresh } from "@/components/ForceRefresh";
+import CaseStudyPage from "@/components/case-study/CaseStudyPage";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -66,7 +67,10 @@ function App() {
                     <Route path="/" element={<Index />} />
                     <Route path="/projects" element={<AllProjects />} />
                     
-                    {/* New SEO-friendly case study URLs */}
+                    {/* New case study pages */}
+                    <Route path="/case-study/:id" element={<CaseStudyPage />} />
+                    
+                    {/* SEO-friendly case study URLs */}
                     <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
                     <Route path="/case-studies/splittime-coparenting-app-design" element={<SplittimeCaseStudy />} />
                     <Route path="/case-studies/investor-loan-portfolio-management" element={<InvestorLoanAppCaseStudy />} />

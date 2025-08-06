@@ -17,10 +17,9 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pr-6 lg:pr-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2 justify-start">
-            <Link to="/" className="flex items-center gap-2 text-2xl font-script font-medium text-[hsl(var(--blue-accent))] hover:text-[hsl(var(--blue-vibrant))] transition-colors duration-300 relative group">
-                <img alt="Barsky UX" className="w-10 h-10 rounded-full object-contain" src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" />
-                Barsky Design
-                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out group-hover:w-full"></span>
+            <Link to="/" className="flex items-center gap-2 text-2xl font-sans font-medium text-[hsl(var(--blue-accent))]">
+                <img alt="Hiram Barsky" className="w-10 h-10 rounded-full object-contain" src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" />
+                Hiram Barsky
               </Link>
           </div>
 

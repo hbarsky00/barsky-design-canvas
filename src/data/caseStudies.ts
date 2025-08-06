@@ -198,7 +198,7 @@ export const homepageCaseStudyPreviews = [
     tags: ["Health", "Marketplace", "Gen AI"],
     videoThumbnail: "herbalink-thumb.jpg",
     video: "herbalink-demo.mp4",
-    url: "/case-studies/herbalink-mobile-herbalist-ux-design"
+    url: "/case-study/herbalink"
   },
   {
     title: "SplitTime",
@@ -206,7 +206,7 @@ export const homepageCaseStudyPreviews = [
     tags: ["Family Tech", "iOS to Android", "Legal UX"],
     videoThumbnail: "splittime-thumb.jpg",
     video: "splittime-demo.mp4",
-    url: "/case-studies/splittime-coparenting-app-design"
+    url: "/case-study/splittime"
   },
   {
     title: "Business Management App",
@@ -214,7 +214,7 @@ export const homepageCaseStudyPreviews = [
     tags: ["Enterprise", "CRM", "Dashboard"],
     videoThumbnail: "bizmgmt-thumb.jpg",
     video: "bizmgmt-demo.mp4",
-    url: "/case-studies/wholesale-distribution-ai-solution"
+    url: "/case-study/business-management"
   },
   {
     title: "Investment App",
@@ -222,6 +222,6 @@ export const homepageCaseStudyPreviews = [
     tags: ["Finance", "Data Viz", "Mobile"],
     videoThumbnail: "investapp-thumb.jpg",
     video: "investapp-demo.mp4",
-    url: "/case-studies/investor-loan-portfolio-management"
+    url: "/case-study/investment-app"
   }
 ];
