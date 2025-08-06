@@ -1,4 +1,3 @@
-
 export const clearProjectCache = (projectId: string) => {
   if (!projectId) {
     console.warn('⚠️ No projectId provided for cache clearing');
