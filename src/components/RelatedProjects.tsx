@@ -24,7 +24,7 @@ const allCaseStudies: CaseStudy[] = [
     title: "HerbaLink - Herbal Medicine Platform",
     description: "AI-powered platform connecting patients with certified herbalists for personalized wellness solutions.",
     image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
-    url: "/case-study-herbalink",
+    url: "/project/herbalink",
     category: "Healthcare",
     tags: ["AI", "Healthcare", "Mobile App", "UX/UI Design"]
   },
@@ -33,7 +33,7 @@ const allCaseStudies: CaseStudy[] = [
     title: "SplitTime - Smart Scheduling",
     description: "Intelligent time management app that optimizes scheduling and reduces conflicts through AI-driven insights.",
     image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-    url: "/case-study-splittime",
+    url: "/project/splittime",
     category: "Productivity",
     tags: ["AI", "Productivity", "Scheduling", "Mobile App"]
   },
@@ -42,7 +42,7 @@ const allCaseStudies: CaseStudy[] = [
     title: "Investor Loan App - FinTech Solution",
     description: "Streamlined loan application platform for real estate investors with automated approval workflows.",
     image: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-    url: "/case-study-investor-loan",
+    url: "/project/investor-loan-app",
     category: "FinTech",
     tags: ["FinTech", "Real Estate", "Web App", "UX/UI Design"]
   },

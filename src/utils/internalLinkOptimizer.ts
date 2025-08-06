@@ -183,7 +183,7 @@ class InternalLinkOptimizer {
     // Common redirect patterns to fix
     const redirectFixes: Record<string, string> = {
       '/project/': '/case-studies/',
-      '/case-study-': '/case-studies/',
+      '/case-study-': '/project/',
       '/services/': '/design-services/'
     };
     

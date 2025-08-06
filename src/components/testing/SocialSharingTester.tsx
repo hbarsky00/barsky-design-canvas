@@ -156,7 +156,7 @@ const SocialSharingTester: React.FC = () => {
                 Services
               </button>
               <button
-                onClick={() => setTestUrl('https://barskydesign.pro/case-study-splittime')}
+                onClick={() => setTestUrl('https://barskydesign.pro/project/splittime')}
                 className="text-blue-600 hover:underline"
               >
                 Case Study

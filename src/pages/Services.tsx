@@ -32,7 +32,7 @@ const Services = () => {
       ],
       guarantee: "40% better engagement than industry benchmarks or free redesign",
       exampleResult: "Similar to how I helped Herbalink achieve 65% engagement increase through intelligent matching algorithms",
-      caseStudyLink: "/case-study-herbalink"
+      caseStudyLink: "/project/herbalink"
     },
     {
       id: "conversion-audit",
@@ -53,7 +53,7 @@ const Services = () => {
       ],
       guarantee: "Average 40% conversion rate improvement within 60 days",
       exampleResult: "Using the same methodology that helped Splittime reduce user onboarding time by 50%",
-      caseStudyLink: "/case-study-splittime"
+      caseStudyLink: "/project/splittime"
     },
     {
       id: "ai-redesign",
@@ -74,7 +74,7 @@ const Services = () => {
       ],
       guarantee: "Complete digital transformation with measurable ROI",
       exampleResult: "Similar to the Investor Loan App project where I achieved 70% faster processing through AI-enhanced automation",
-      caseStudyLink: "/case-study-investor-loan-app"
+      caseStudyLink: "/project/investor-loan-app"
     }
   ];
 
@@ -82,17 +82,17 @@ const Services = () => {
     {
       title: "Herbalink (Healthcare)",
       results: ["65% increase in user engagement", "45% faster consultation booking", "Mobile-first platform with AI matching"],
-      link: "/case-study-herbalink"
+      link: "/project/herbalink"
     },
     {
       title: "Splittime (Family Tech)",
       results: ["50% reduction in onboarding time", "40% fewer support tickets", "Conflict-reduction through design"],
-      link: "/case-study-splittime"
+      link: "/project/splittime"
     },
     {
       title: "Investor Loan App (FinTech)",
       results: ["70% faster loan processing", "35% improvement in retention", "AI-powered risk assessment"],
-      link: "/case-study-investor-loan-app"
+      link: "/project/investor-loan-app"
     }
   ];
 
@@ -152,14 +152,14 @@ const Services = () => {
                 
                 <div className="flex justify-center items-center gap-4 mb-8">
                   <Link 
-                    to="/case-study-herbalink"
+                    to="/project/herbalink"
                     className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200"
                   >
                     View HerbaLink Case Study
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link 
-                    to="/case-study-splittime"
+                    to="/project/splittime"
                     className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 px-6 py-3 rounded-lg font-medium transition-all duration-200"
                   >
                     View SplitTime Case Study

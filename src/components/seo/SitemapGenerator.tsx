@@ -50,19 +50,19 @@ const SitemapGenerator: React.FC = () => {
     },
     // Case Studies
     {
-      url: 'https://barskydesign.pro/case-study-herbalink',
+      url: 'https://barskydesign.pro/project/herbalink',
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'monthly',
       priority: 0.8
     },
     {
-      url: 'https://barskydesign.pro/case-study-splittime',
+      url: 'https://barskydesign.pro/project/splittime',
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'monthly',
       priority: 0.8
     },
     {
-      url: 'https://barskydesign.pro/case-study-investor-loan',
+      url: 'https://barskydesign.pro/project/investor-loan-app',
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'monthly',
       priority: 0.8

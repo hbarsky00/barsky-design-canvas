@@ -67,26 +67,23 @@ function App() {
                     <Route path="/" element={<Index />} />
                     <Route path="/projects" element={<AllProjects />} />
                     
-                    {/* New case study pages */}
-                    <Route path="/case-study/:id" element={<CaseStudyPage />} />
-                    
-                    {/* SEO-friendly case study URLs */}
-                    <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
-                    <Route path="/case-studies/splittime-coparenting-app-design" element={<SplittimeCaseStudy />} />
-                    <Route path="/case-studies/investor-loan-portfolio-management" element={<InvestorLoanAppCaseStudy />} />
-                    <Route path="/case-studies/wholesale-distribution-ai-solution" element={<WholesaleDistributionCaseStudy />} />
-                    
-                    {/* Legacy redirects - keep for backwards compatibility */}
+                    {/* Standardized project routes using CaseStudyLayout */}
                     <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
                     <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
                     <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
                     <Route path="/project/wholesale-distribution" element={<WholesaleDistributionCaseStudy />} />
+                    
+                    {/* Legacy redirects - keep for backwards compatibility */}
+                    <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
+                    <Route path="/case-studies/splittime-coparenting-app-design" element={<SplittimeCaseStudy />} />
+                    <Route path="/case-studies/investor-loan-portfolio-management" element={<InvestorLoanAppCaseStudy />} />
+                    <Route path="/case-studies/wholesale-distribution-ai-solution" element={<WholesaleDistributionCaseStudy />} />
                     <Route path="/case-study-herbalink" element={<HerbalinkCaseStudy />} />
                     <Route path="/case-study-splittime" element={<SplittimeCaseStudy />} />
                     <Route path="/case-study-investor-loan" element={<InvestorLoanAppCaseStudy />} />
+                    <Route path="/case-study/:id" element={<CaseStudyPage />} />
                     
                     {/* Generic project route for other projects */}
-                    <Route path="/case-studies/:projectId" element={<ProjectDetail />} />
                     <Route path="/project/:projectId" element={<ProjectDetail />} />
                     
                     <Route path="/services" element={<Services />} />

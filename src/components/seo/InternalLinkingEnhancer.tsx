@@ -35,9 +35,9 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
       { title: "About My Background", href: "/about", description: "15+ years of product design experience", category: "About" }
     ],
     projects: [
-      { title: "HerbaLink Case Study", href: "/case-study-herbalink", description: "AI-powered healthcare platform design", category: "Healthcare" },
-      { title: "SplitTime App Design", href: "/case-study-splittime", description: "Smart scheduling application UX", category: "Productivity" },
-      { title: "FinTech Platform", href: "/case-study-investor-loan", description: "Investment loan application design", category: "FinTech" },
+      { title: "HerbaLink Case Study", href: "/project/herbalink", description: "AI-powered healthcare platform design", category: "Healthcare" },
+      { title: "SplitTime App Design", href: "/project/splittime", description: "Smart scheduling application UX", category: "Productivity" },
+      { title: "FinTech Platform", href: "/project/investor-loan-app", description: "Investment loan application design", category: "FinTech" },
       { title: "Design Services", href: "/services", description: "How I can help your project", category: "Services" }
     ],
     services: [

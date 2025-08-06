@@ -148,7 +148,7 @@ const AiRedesign: React.FC = () => {
                       Similar to the Investor Loan App project where I achieved 70% faster processing through AI-enhanced automation, 
                       comprehensive data visualization, and intelligent risk assessment systems that transformed loan management for investors.
                     </p>
-                    <Link to="/case-study-investor-loan-app" className="text-blue-accent hover:text-blue-vibrant font-semibold">
+                    <Link to="/project/investor-loan-app" className="text-blue-accent hover:text-blue-vibrant font-semibold">
                       Read Full Investor Loan App Case Study →
                     </Link>
                   </div>
