@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 
 // Component to force a hard refresh if React modules are corrupted
 export const ForceRefresh: React.FC = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     // Check if React is properly loaded
     try {
       if (!React || !React.useEffect || !React.useState) {
@@ -22,7 +22,9 @@ export const ForceRefresh: React.FC = () => {
       console.log('✅ React modules are healthy');
     } catch (error) {
       console.error('🚨 React error detected:', error);
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
   }, []);
 
