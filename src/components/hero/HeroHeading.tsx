@@ -44,7 +44,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({
     }}>
         
         
-        <AnimatedText text="Turn Your Digital Product Into a Revenue Machine" tag="h1" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 block mb-4 leading-tight" delay={1000} type="word" animation="fade" staggerChildren={0.05} />
+        <AnimatedText text="Design that Solves Real Problems, Fast." tag="h1" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 block mb-4 leading-tight" delay={1000} type="word" animation="fade" staggerChildren={0.05} />
         
         <AnimatedText text="15+ Years Experience • 40%+ Conversion Improvements • AI Integration Expert" tag="div" className="text-lg sm:text-xl font-medium text-gray-700 mb-4 leading-relaxed" delay={1200} type="word" animation="fade" staggerChildren={0.02} />
         

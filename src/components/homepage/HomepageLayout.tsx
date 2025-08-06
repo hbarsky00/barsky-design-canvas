@@ -2,7 +2,7 @@
 import React from "react";
 import Header from "@/components/Header";
 import EnhancedHero from "@/components/hero/EnhancedHero";
-import FeaturedProjects from "@/components/home/FeaturedProjects";
+import VideoCaseStudiesSection from "@/components/home/VideoCaseStudiesSection";
 import About from "@/components/About";
 import ContactForm from "@/components/home/ContactForm";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
@@ -17,8 +17,8 @@ const HomepageLayout: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
       <main className="flex-grow space-y-4">
-        <FeaturedProjects />
         <EnhancedHero />
+        <VideoCaseStudiesSection />
         <ConsolidatedServicesSection />
         <About />
         <ContactForm />

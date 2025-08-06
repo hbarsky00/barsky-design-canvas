@@ -17,9 +17,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
         transition={{ delay: 1.4, duration: 0.5 }}
         className="text-lg mb-8 text-gray-700 font-medium sm:text-xl max-w-4xl mx-auto leading-relaxed"
       >
-        I help startups and enterprises bridge the gap between traditional UX design and cutting-edge AI integration. 
-        While others just make things "look pretty," I create intelligent systems that learn, adapt, and convert—
-        delivering measurable ROI for businesses ready to dominate their market.
+        I help businesses launch smarter digital products — not just pretty UIs, but meaningful impact.
       </motion.p>
       
       {/* Trust Indicators & Certifications */}
