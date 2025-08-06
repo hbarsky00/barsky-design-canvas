@@ -16,10 +16,10 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
   useEffect(() => {
     const handleScroll = () => {
       const sections = navigation.map(nav => 
-        document.querySelector(nav.anchor.substring(1))
+        document.getElementById(nav.anchor.substring(1))
       );
 
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = window.scrollY + 150;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i] as HTMLElement;
@@ -30,10 +30,24 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const throttledHandleScroll = () => {
+      let ticking = false;
+      return () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+    };
+
+    const throttledScroll = throttledHandleScroll();
+    window.addEventListener("scroll", throttledScroll);
     handleScroll(); // Set initial state
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, [navigation]);
 
   const scrollToSection = (anchor: string) => {
@@ -70,23 +84,25 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
         </div>
       </nav>
 
-      {/* Mobile Top Navigation */}
-      <div className="lg:hidden sticky top-16 sm:top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-border px-3 py-3 mb-8">
-        <div className="flex space-x-2 overflow-x-auto scrollbar-hide">
-          {navigation.map((item) => (
-            <motion.button
-              key={item.anchor}
-              onClick={() => scrollToSection(item.anchor)}
-              className={`flex-shrink-0 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                activeSection === item.anchor
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-              whileTap={{ scale: 0.95 }}
-            >
-              {item.label}
-            </motion.button>
-          ))}
+      {/* Mobile Top-Right Navigation */}
+      <div className="lg:hidden fixed top-4 right-4 z-50">
+        <div className="bg-background/95 backdrop-blur-sm rounded-lg p-2 shadow-lg border border-border max-w-[calc(100vw-2rem)]">
+          <div className="flex space-x-1 overflow-x-auto scrollbar-hide">
+            {navigation.map((item) => (
+              <motion.button
+                key={item.anchor}
+                onClick={() => scrollToSection(item.anchor)}
+                className={`flex-shrink-0 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 whitespace-nowrap ${
+                  activeSection === item.anchor
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+              </motion.button>
+            ))}
+          </div>
         </div>
       </div>
     </>
