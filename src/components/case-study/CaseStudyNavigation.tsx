@@ -1,26 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-interface CaseStudyNavigationProps {
-  activeSection: string;
+interface NavItem {
+  label: string;
+  anchor: string;
 }
 
-const navigationItems = [
-  { id: "overview", label: "Overview" },
-  { id: "problem", label: "The Problem" },
-  { id: "impact", label: "Quantified Impact" },
-  { id: "failed", label: "What Didn't Work" },
-  { id: "process", label: "My Thought Process" }
-];
+interface CaseStudyNavigationProps {
+  navigation: NavItem[];
+}
 
-const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ activeSection }) => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
+const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation }) => {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navigation.map(nav => 
+        document.querySelector(nav.anchor.substring(1))
+      );
+
+      const scrollPosition = window.scrollY + 200;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i] as HTMLElement;
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(navigation[i].anchor);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Set initial state
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [navigation]);
+
+  const scrollToSection = (anchor: string) => {
+    const element = document.querySelector(anchor);
     if (element) {
-      const offset = 80;
-      const elementPosition = element.offsetTop - offset;
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 100;
       window.scrollTo({
-        top: elementPosition,
+        top: offsetTop,
         behavior: "smooth"
       });
     }
@@ -29,17 +50,17 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ activeSection
   return (
     <>
       {/* Desktop Sidebar */}
-      <nav className="hidden lg:block fixed left-0 top-1/2 transform -translate-y-1/2 z-40 ml-8">
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/20">
-          <div className="space-y-2">
-            {navigationItems.map((item) => (
+      <nav className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
+        <div className="bg-background/95 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-border">
+          <div className="space-y-1">
+            {navigation.map((item) => (
               <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${
-                  activeSection === item.id
-                    ? "bg-primary text-white shadow-sm"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                key={item.anchor}
+                onClick={() => scrollToSection(item.anchor)}
+                className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 min-w-[160px] ${
+                  activeSection === item.anchor
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               >
                 {item.label}
@@ -50,16 +71,16 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ activeSection
       </nav>
 
       {/* Mobile Top Navigation */}
-      <div className="lg:hidden sticky top-20 z-30 bg-white/90 backdrop-blur-sm border-b border-white/20 px-4 py-3 mb-8">
+      <div className="lg:hidden sticky top-16 sm:top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-border px-3 py-3 mb-8">
         <div className="flex space-x-2 overflow-x-auto scrollbar-hide">
-          {navigationItems.map((item) => (
+          {navigation.map((item) => (
             <motion.button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeSection === item.id
-                  ? "bg-primary text-white shadow-sm"
-                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              key={item.anchor}
+              onClick={() => scrollToSection(item.anchor)}
+              className={`flex-shrink-0 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                activeSection === item.anchor
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
               whileTap={{ scale: 0.95 }}
             >

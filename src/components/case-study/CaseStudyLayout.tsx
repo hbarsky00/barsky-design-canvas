@@ -38,25 +38,14 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
   sections,
   gradientClasses = "from-blue-50 via-slate-50 to-indigo-50"
 }) => {
-  const [activeSection, setActiveSection] = useState("overview");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["overview", "problem", "impact", "failed", "process"];
-      const scrollPosition = window.scrollY + 100;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Create navigation items from sections
+  const navigationItems = [
+    { label: "Overview", anchor: "#overview" },
+    ...sections.map(section => ({
+      label: section.title,
+      anchor: `#${section.id}`
+    }))
+  ];
 
   return (
     <>
@@ -89,12 +78,12 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
           </motion.div>
         </div>
 
-        <div className="flex max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Desktop Sidebar Navigation */}
-          <CaseStudyNavigation activeSection={activeSection} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Navigation */}
+          <CaseStudyNavigation navigation={navigationItems} />
           
           {/* Main Content */}
-          <main className="flex-1 lg:ml-64">
+          <main className="lg:pl-12">
             {/* Hero Section */}
             <section id="overview" className="mb-16">
               {heroSection}

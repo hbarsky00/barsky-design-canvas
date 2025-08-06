@@ -3,7 +3,7 @@ import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { caseStudiesData } from "@/data/caseStudies";
 import CaseStudyHero from "./CaseStudyHero";
-import CaseStudyStickyNav from "./CaseStudyStickyNav";
+import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 
 const CaseStudyPage: React.FC = () => {
@@ -25,9 +25,9 @@ const CaseStudyPage: React.FC = () => {
       <CaseStudyHero caseStudy={caseStudy} />
       
       <div className="relative">
-        <CaseStudyStickyNav navigation={caseStudy.stickyNav} />
+        <CaseStudyNavigation navigation={caseStudy.stickyNav} />
         
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 lg:pl-12 py-16">
           {Object.entries(caseStudy.sections).map(([key, section]) => (
             <CaseStudySection 
               key={key}
