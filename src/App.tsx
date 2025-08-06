@@ -37,6 +37,7 @@ import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SafeErrorBoundary } from "@/components/SafeErrorBoundary";
+import { ForceRefresh } from "@/components/ForceRefresh";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -51,6 +52,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <SafeErrorBoundary>
+      <ForceRefresh />
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
         <HelmetProvider>
