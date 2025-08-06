@@ -52,15 +52,15 @@ const CaseStudyStickyNav: React.FC<CaseStudyStickyNavProps> = ({ navigation }) =
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="sticky top-24 z-40 bg-background/95 backdrop-blur-sm border-b border-border"
+      className="sticky top-16 sm:top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-border"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex space-x-8 py-4 overflow-x-auto">
+      <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex space-x-4 sm:space-x-6 md:space-x-8 py-3 sm:py-4 overflow-x-auto scrollbar-hide">
           {navigation.map((item) => (
             <button
               key={item.anchor}
               onClick={() => scrollToSection(item.anchor)}
-              className={`whitespace-nowrap px-3 py-2 text-sm font-medium transition-colors duration-200 relative ${
+              className={`whitespace-nowrap px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium transition-colors duration-200 relative min-w-fit touch-manipulation ${
                 activeSection === item.anchor
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
