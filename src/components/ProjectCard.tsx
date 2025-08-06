@@ -14,6 +14,8 @@ export interface ProjectProps {
   featured?: boolean;
   link?: string;
   category?: string;
+  video?: string;
+  videoThumbnail?: string;
 }
 
 interface ProjectCardProps {
@@ -22,6 +24,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
+  const [isHovering, setIsHovering] = React.useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -30,18 +34,33 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
       whileHover={{ y: -5 }}
       className="h-full"
     >
-      <Link to={`/case-studies/${project.id}`} className="block h-full">
-        <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group">
+      <Link to={`/project/${project.id}`} className="block h-full">
+        <Card 
+          className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group"
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
           <div className="aspect-video overflow-hidden relative">
-            <img
-              src={project.image}
-              alt={project.title}
-              width="640"
-              height="360"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              loading="lazy"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+            {project.video && isHovering ? (
+              <video
+                src={project.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover transition-all duration-300"
+              />
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                width="640"
+                height="360"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            )}
           </div>
           <CardContent className="p-6 flex flex-col h-full">
             <div className="flex-grow">
