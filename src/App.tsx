@@ -36,6 +36,7 @@ import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { SafeErrorBoundary } from "@/components/SafeErrorBoundary";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -49,8 +50,9 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
+    <SafeErrorBoundary>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
         <HelmetProvider>
           <TooltipProvider>
             <ImageMaximizerProvider>
@@ -109,6 +111,7 @@ function App() {
         </HelmetProvider>
       </QueryClientProvider>
     </ErrorBoundary>
+    </SafeErrorBoundary>
   );
 }
 

@@ -1,10 +1,21 @@
+// Force aggressive cache clearing to prevent React module conflicts
 export const clearProjectCache = (projectId: string) => {
   if (!projectId) {
     console.warn('⚠️ No projectId provided for cache clearing');
     return;
   }
 
-  console.log('🧹 Clearing cache for project:', projectId);
+  console.log('🧹 AGGRESSIVE cache clearing for project:', projectId);
+  
+  // Force clear all module caches
+  if ('caches' in window) {
+    caches.keys().then(names => {
+      names.forEach(name => {
+        console.log('🗑️ Clearing cache:', name);
+        caches.delete(name);
+      });
+    });
+  }
   
   // Clear all cached data for THIS SPECIFIC PROJECT ONLY
   const keysToRemove = [];
@@ -45,6 +56,12 @@ export const clearProjectCache = (projectId: string) => {
   
   // Clear browser image cache for project-specific images only
   clearImageCacheForProject(projectId);
+  
+  // Force reload the entire page to clear React module cache
+  setTimeout(() => {
+    console.log('🔄 Force reloading page to clear React module cache');
+    window.location.reload();
+  }, 1000);
   
   // Dispatch event with project scope
   window.dispatchEvent(new CustomEvent('projectCacheCleared', {
