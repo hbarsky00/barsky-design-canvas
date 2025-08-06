@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 
 const VideoCaseStudiesSection: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   return (
     <section className="py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -29,34 +30,56 @@ const VideoCaseStudiesSection: React.FC = () => {
 
         {/* Case Studies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {homepageCaseStudyPreviews.map((study, index) => (
-            <motion.div
-              key={study.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <Link 
-                to={study.url}
-                className="group block h-full"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+          {homepageCaseStudyPreviews.map((study, index) => {
+            const handleMouseEnter = () => {
+              setHoveredIndex(index);
+              const video = videoRefs.current[index];
+              if (video && window.innerWidth > 768) { // Only on non-mobile devices
+                video.currentTime = 0;
+                video.play().catch(() => {
+                  // Silently handle autoplay failures
+                });
+              }
+            };
+
+            const handleMouseLeave = () => {
+              setHoveredIndex(null);
+              const video = videoRefs.current[index];
+              if (video) {
+                video.pause();
+                video.currentTime = 0;
+              }
+            };
+
+            return (
+              <motion.div
+                key={study.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
+                <Link 
+                  to={study.url}
+                  className="group block h-full"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col group-hover:scale-[1.02]">
-                  {/* Video Thumbnail */}
+                  {/* Video Preview */}
                   <div className="relative aspect-video bg-gray-100 overflow-hidden">
-                    <img
-                      src={`/images/${study.videoThumbnail}`}
-                      alt={`${study.title} case study preview`}
+                    <video
+                      ref={(el) => (videoRefs.current[index] = el)}
+                      poster={`/images/${study.videoThumbnail}`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                        <Play className="w-6 h-6 text-primary ml-1" fill="currentColor" />
-                      </div>
-                    </div>
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                    >
+                      <source src={`/videos/${study.video}`} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
                     {/* Impact Badge */}
                     <div className="absolute top-4 left-4">
                       <Badge variant="secondary" className="bg-white/90 text-gray-900 font-semibold">
@@ -101,9 +124,10 @@ const VideoCaseStudiesSection: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* View All CTA */}
