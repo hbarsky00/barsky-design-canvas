@@ -3,25 +3,30 @@ import * as React from 'react';
 // Component to force a hard refresh if React modules are corrupted
 export const ForceRefresh: React.FC = () => {
   React.useEffect(() => {
-    // Check if React is properly loaded
+    // Add reload prevention - only allow one reload per 5 seconds
+    const lastReload = localStorage.getItem('lastForceReload');
+    const now = Date.now();
+    
+    if (lastReload && (now - parseInt(lastReload)) < 5000) {
+      console.log('⏸️ Skipping ForceRefresh - too recent reload');
+      return;
+    }
+    
+    // Only check for critical React failures, not minor issues
     try {
-      if (!React || !React.useEffect || !React.useState) {
-        console.error('🚨 React hooks not properly loaded - forcing refresh');
-        window.location.reload();
+      if (!React || typeof React.useEffect !== 'function') {
+        console.error('🚨 Critical React failure detected');
+        localStorage.setItem('lastForceReload', now.toString());
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
         return;
       }
       
-      // Test that hooks work
-      const [test] = React.useState(true);
-      if (test === undefined) {
-        console.error('🚨 React useState not working - forcing refresh');
-        window.location.reload();
-        return;
-      }
-      
-      console.log('✅ React modules are healthy');
+      console.log('✅ React core is functional');
     } catch (error) {
       console.error('🚨 React error detected:', error);
+      localStorage.setItem('lastForceReload', now.toString());
       setTimeout(() => {
         window.location.reload();
       }, 100);

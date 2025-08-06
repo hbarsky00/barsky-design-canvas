@@ -103,13 +103,5 @@ const clearImageCacheForProject = (projectId: string) => {
   });
 };
 
-// Enhanced auto-clear with project isolation
-const pathname = window.location.pathname;
-const projectMatch = pathname.match(/\/project\/([^/?]+)/);
-if (projectMatch) {
-  const currentProjectId = projectMatch[1];
-  console.log(`🔍 Auto-clearing cache for current project: ${currentProjectId}`);
-  clearProjectCache(currentProjectId);
-}
-
-// Note: Removed problematic auto-reload logic that was causing infinite refresh loop
+// Export function for manual use only - no auto-execution
+// Cache clearing should only be triggered explicitly when errors occur

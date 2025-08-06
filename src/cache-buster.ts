@@ -1,29 +1,41 @@
-// Cache buster to force Vite to rebuild everything
-// This file forces a complete rebuild when imported
+// Cache utilities - only for manual use when errors occur
+// No auto-execution to prevent refresh loops
 
-console.log('🚀 Cache buster activated at:', new Date().toISOString());
+console.log('🔧 Cache utilities loaded at:', new Date().toISOString());
 
-// Clear all browser caches aggressively
-if (typeof window !== 'undefined') {
-  // Force clear all caches
-  if ('caches' in window) {
-    caches.keys().then(names => {
-      names.forEach(name => {
-        console.log('🗑️ Clearing cache:', name);
-        caches.delete(name);
-      });
-    });
-  }
+// Manual cache clearing function for emergency use
+export const emergencyCacheClear = () => {
+  console.log('🚨 Emergency cache clear triggered');
   
-  // Clear service workers
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(registrations => {
-      registrations.forEach(registration => {
-        console.log('🗑️ Unregistering service worker');
-        registration.unregister();
+  if (typeof window !== 'undefined') {
+    // Clear browser caches
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => {
+          console.log('🗑️ Clearing cache:', name);
+          caches.delete(name);
+        });
       });
-    });
+    }
+    
+    // Clear service workers
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        registrations.forEach(registration => {
+          console.log('🗑️ Unregistering service worker');
+          registration.unregister();
+        });
+      });
+    }
+    
+    // Clear storage
+    try {
+      localStorage.clear();
+      sessionStorage.clear();
+    } catch (e) {
+      console.warn('Could not clear storage:', e);
+    }
   }
-}
+};
 
 export const CACHE_BUST_TIMESTAMP = Date.now();
