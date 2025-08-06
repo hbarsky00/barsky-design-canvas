@@ -1,0 +1,125 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Menu, ArrowUp } from "lucide-react";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
+interface NavItem {
+  label: string;
+  anchor: string;
+}
+
+interface MobileCaseStudyNavigationProps {
+  navigation: NavItem[];
+  activeSection: string;
+  onSectionClick: (anchor: string) => void;
+}
+
+const MobileCaseStudyNavigation: React.FC<MobileCaseStudyNavigationProps> = ({
+  navigation,
+  activeSection,
+  onSectionClick,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSectionClick = (anchor: string) => {
+    onSectionClick(anchor);
+    setIsOpen(false);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsOpen(false);
+  };
+
+  const activeIndex = navigation.findIndex(item => item.anchor === activeSection);
+  const progress = activeIndex >= 0 ? ((activeIndex + 1) / navigation.length) * 100 : 0;
+
+  return (
+    <div className="lg:hidden fixed bottom-6 right-4 z-50">
+      <Drawer open={isOpen} onOpenChange={setIsOpen}>
+        <DrawerTrigger asChild>
+          <motion.button
+            className="relative bg-primary text-primary-foreground rounded-full p-3 shadow-lg border border-border/20 backdrop-blur-sm"
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            {/* Progress ring */}
+            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 48 48">
+              <circle
+                cx="24"
+                cy="24"
+                r="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                opacity="0.2"
+              />
+              <circle
+                cx="24"
+                cy="24"
+                r="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeDasharray={`${2 * Math.PI * 20}`}
+                strokeDashoffset={`${2 * Math.PI * 20 * (1 - progress / 100)}`}
+                className="transition-all duration-300"
+              />
+            </svg>
+            <Menu className="h-5 w-5 relative z-10" />
+          </motion.button>
+        </DrawerTrigger>
+        
+        <DrawerContent className="max-h-[70vh]">
+          <DrawerHeader>
+            <DrawerTitle className="text-center">Navigation</DrawerTitle>
+          </DrawerHeader>
+          
+          <div className="px-4 pb-4">
+            <div className="space-y-2">
+              {navigation.map((item, index) => (
+                <motion.button
+                  key={item.anchor}
+                  onClick={() => handleSectionClick(item.anchor)}
+                  className={`w-full text-left p-4 rounded-lg transition-all duration-200 flex items-center justify-between ${
+                    activeSection === item.anchor
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-muted/50 text-foreground hover:bg-muted"
+                  }`}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <span className="font-medium">{item.label}</span>
+                  {activeSection === item.anchor && (
+                    <div className="w-2 h-2 rounded-full bg-current" />
+                  )}
+                </motion.button>
+              ))}
+              
+              <motion.button
+                onClick={scrollToTop}
+                className="w-full text-left p-4 rounded-lg bg-secondary/50 text-secondary-foreground hover:bg-secondary transition-all duration-200 flex items-center justify-between mt-4"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navigation.length * 0.1 }}
+              >
+                <span className="font-medium">Back to Top</span>
+                <ArrowUp className="h-4 w-4" />
+              </motion.button>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </div>
+  );
+};
+
+export default MobileCaseStudyNavigation;

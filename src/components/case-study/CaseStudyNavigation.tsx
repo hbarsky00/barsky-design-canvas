@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import MobileCaseStudyNavigation from "./MobileCaseStudyNavigation";
 
 interface NavItem {
   label: string;
@@ -84,27 +85,12 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
         </div>
       </nav>
 
-      {/* Mobile Top-Right Navigation */}
-      <div className="lg:hidden fixed top-4 right-4 z-50">
-        <div className="bg-background/95 backdrop-blur-sm rounded-lg p-2 shadow-lg border border-border max-w-[calc(100vw-2rem)]">
-          <div className="flex space-x-1 overflow-x-auto scrollbar-hide">
-            {navigation.map((item) => (
-              <motion.button
-                key={item.anchor}
-                onClick={() => scrollToSection(item.anchor)}
-                className={`flex-shrink-0 px-2 py-1 rounded-md text-xs font-medium transition-all duration-200 whitespace-nowrap ${
-                  activeSection === item.anchor
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.label}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Mobile Navigation with Drawer */}
+      <MobileCaseStudyNavigation
+        navigation={navigation}
+        activeSection={activeSection}
+        onSectionClick={scrollToSection}
+      />
     </>
   );
 };

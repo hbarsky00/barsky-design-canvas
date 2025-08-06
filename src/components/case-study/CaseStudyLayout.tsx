@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import CaseStudyNavigation from "./CaseStudyNavigation";
+import CaseStudyContactSection from "./CaseStudyContactSection";
 
 interface CaseStudySection {
   id: string;
@@ -99,6 +100,8 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
                   </div>
                 </section>
               ))}
+              
+              <CaseStudyContactSection />
             </div>
           </main>
         </div>
