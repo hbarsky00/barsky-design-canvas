@@ -138,7 +138,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 className="w-full h-full object-cover object-center"
               />
               {/* Strong dark overlay for text readability */}
-              <div className="absolute inset-0 bg-black/70"></div>
+              <div className="absolute inset-0 bg-black/75"></div>
             </div>
 
             {/* Left-aligned content with subtle background */}
@@ -146,7 +146,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="max-w-2xl">
                   {/* Subtle backdrop for text contrast */}
-                  <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8 lg:p-12">
+                  <div className="bg-black/30 backdrop-blur-md rounded-2xl p-8 lg:p-12">
                     <motion.div
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -159,7 +159,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                       </h1>
                       
                       {/* High contrast readable subtext */}
-                      <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+                      <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
                         Automated tracking and AI insights replace spreadsheet chaos.
                       </p>
                       
