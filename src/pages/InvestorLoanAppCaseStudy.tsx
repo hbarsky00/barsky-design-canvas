@@ -129,66 +129,57 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
         <main className="flex-grow">
           
           {/* Financial Portfolio Hero */}
-          <section className="relative min-h-[80vh] overflow-hidden">
-            {/* Full-width hero image with overlay */}
+          <section className="relative min-h-screen overflow-hidden">
+            {/* Single focal background image */}
             <div className="absolute inset-0">
               <img 
                 src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
                 alt="Loan Central orderbook interface"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-              
-              {/* Play Demo Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-20">
-                <button 
-                  className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-8 hover:bg-white/30 transition-all duration-300 group"
-                  aria-label="View platform demo"
-                >
-                  <div className="flex items-center gap-4 text-white">
-                    <div className="w-16 h-16 bg-white/30 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <ArrowRight className="w-8 h-8 ml-1" />
-                    </div>
-                    <span className="text-xl font-medium hidden sm:block">View Platform</span>
-                  </div>
-                </button>
-              </div>
+              {/* Strong dark overlay for text readability */}
+              <div className="absolute inset-0 bg-black/70"></div>
             </div>
 
-            {/* Content overlay */}
-            <div className="relative z-10 flex items-center min-h-[80vh] py-20">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-2xl">
+            {/* Left-aligned content layout */}
+            <div className="relative z-10 flex items-center min-h-screen">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div className="max-w-xl">
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="space-y-8"
                   >
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                      Smart Portfolio Management for Serious Investors
+                    {/* Clean sentence-case heading */}
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                      Smart portfolio management for serious investors
                     </h1>
                     
-                    <p className="text-xl text-white/90 leading-relaxed">
-                      Automated tracking and AI-powered insights that replace spreadsheet chaos.
+                    {/* Short high-contrast subtext */}
+                    <p className="text-xl text-gray-200 leading-relaxed max-w-lg">
+                      Automated tracking and AI insights replace spreadsheet chaos.
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    {/* Bold rectangular CTA aligned to headline */}
+                    <div className="pt-4">
                       <Button 
                         size="lg" 
-                        className="font-medium px-8 py-4 text-lg bg-white text-blue-600 hover:bg-white/90"
+                        className="font-semibold px-10 py-4 text-lg bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-lg"
                       >
-                        See the Platform in Action
+                        See the platform in action
+                        <ArrowRight className="ml-3 h-5 w-5" />
                       </Button>
-                      
-                      <div className="sm:mt-0">
-                        <ShareButtons 
-                          title="Investor Loan App: Smart Portfolio Management Case Study"
-                          summary="Smart portfolio management for serious investors with automated tracking and AI-powered insights."
-                          url={window.location.href}
-                          hashtags={["FinTech", "Portfolio", "AI"]}
-                        />
-                      </div>
+                    </div>
+                    
+                    {/* Minimal share buttons below CTA */}
+                    <div className="pt-4">
+                      <ShareButtons 
+                        title="Investor Loan App: Smart Portfolio Management Case Study"
+                        summary="Smart portfolio management for serious investors with automated tracking and AI-powered insights."
+                        url={window.location.href}
+                        hashtags={["FinTech", "Portfolio", "AI"]}
+                      />
                     </div>
                   </motion.div>
                 </div>
