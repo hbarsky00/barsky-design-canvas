@@ -94,7 +94,7 @@ const VideoCaseStudiesSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <section id="projects" className="py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50">
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div

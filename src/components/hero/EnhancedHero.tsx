@@ -39,7 +39,6 @@ const EnhancedHero: React.FC = () => {
             
             <HeroHeading isVisible={isVisible} />
             <HeroDescription isVisible={isVisible} />
-            <HeroSkillsTags isVisible={isVisible} />
             <HeroActionButtons isVisible={isVisible} />
             <HeroSocialLinks isVisible={isVisible} />
           </motion.div>
