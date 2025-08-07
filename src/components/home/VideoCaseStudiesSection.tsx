@@ -8,6 +8,26 @@ import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 const VideoCaseStudiesSection: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const iframeRefs = useRef<(HTMLIFrameElement | null)[]>([]);
+
+  // Extract YouTube video ID from various URL formats
+  const getYouTubeVideoId = (url: string): string => {
+    if (url.includes('youtu.be/')) {
+      return url.split('/').pop()?.split('?')[0] || '';
+    }
+    if (url.includes('youtube.com/watch?v=')) {
+      return url.split('v=')[1]?.split('&')[0] || '';
+    }
+    return '';
+  };
+
+  // Generate YouTube embed URL with hover-specific parameters
+  const getYouTubeEmbedUrl = (url: string, isHovered: boolean): string => {
+    const videoId = getYouTubeVideoId(url);
+    const baseParams = `controls=0&showinfo=0&rel=0&modestbranding=1&mute=1&loop=1&playlist=${videoId}`;
+    const autoplay = isHovered ? '&autoplay=1' : '&autoplay=0';
+    return `https://www.youtube.com/embed/${videoId}?${baseParams}${autoplay}`;
+  };
 
   return (
     <section className="py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -31,23 +51,47 @@ const VideoCaseStudiesSection: React.FC = () => {
         {/* Case Studies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {homepageCaseStudyPreviews.map((study, index) => {
+            const isYouTube = study.video.includes('youtube.com') || study.video.includes('youtu.be');
+
             const handleMouseEnter = () => {
               setHoveredIndex(index);
-              const video = videoRefs.current[index];
-              if (video && window.innerWidth > 768) { // Only on non-mobile devices
-                video.currentTime = 0;
-                video.play().catch(() => {
-                  // Silently handle autoplay failures
-                });
+              
+              if (window.innerWidth > 768) { // Only on non-mobile devices
+                if (isYouTube) {
+                  // Update YouTube iframe src to trigger autoplay
+                  const iframe = iframeRefs.current[index];
+                  if (iframe) {
+                    iframe.src = getYouTubeEmbedUrl(study.video, true);
+                  }
+                } else {
+                  // Handle regular video
+                  const video = videoRefs.current[index];
+                  if (video) {
+                    video.currentTime = 0;
+                    video.play().catch(() => {
+                      // Silently handle autoplay failures
+                    });
+                  }
+                }
               }
             };
 
             const handleMouseLeave = () => {
               setHoveredIndex(null);
-              const video = videoRefs.current[index];
-              if (video) {
-                video.pause();
-                video.currentTime = 0;
+              
+              if (isYouTube) {
+                // Reset YouTube iframe src to stop autoplay
+                const iframe = iframeRefs.current[index];
+                if (iframe) {
+                  iframe.src = getYouTubeEmbedUrl(study.video, false);
+                }
+              } else {
+                // Handle regular video
+                const video = videoRefs.current[index];
+                if (video) {
+                  video.pause();
+                  video.currentTime = 0;
+                }
               }
             };
 
@@ -68,12 +112,10 @@ const VideoCaseStudiesSection: React.FC = () => {
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col group-hover:scale-[1.02]">
                   {/* Video Preview */}
                   <div className="relative aspect-video bg-gray-100 overflow-hidden">
-                    {study.video.includes('youtube.com') || study.video.includes('youtu.be') ? (
+                    {isYouTube ? (
                       <iframe
-                        src={study.video.includes('youtu.be') 
-                          ? `https://www.youtube.com/embed/${study.video.split('/').pop()}?autoplay=0&mute=1&loop=1&playlist=${study.video.split('/').pop()}`
-                          : study.video.replace('watch?v=', 'embed/')
-                        }
+                        ref={(el) => (iframeRefs.current[index] = el)}
+                        src={getYouTubeEmbedUrl(study.video, false)}
                         className="w-full h-full transition-transform duration-300 group-hover:scale-105"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
