@@ -38,14 +38,6 @@ const AnimatedLogo = () => {
         animate={isHovered ? "hover" : "initial"}
       >
         {/* Logo Container */}
-        <img
-          src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
-          alt="Hiram Barsky"
-          className="h-8 w-8 rounded-full border-2 border-[hsl(var(--blue-vibrant))] mr-3 object-cover object-center flex-shrink-0"
-          loading="eager"
-          width="32"
-          height="32"
-        />
         <HLetter isDarkMode={isDarkMode} letterTransition={letterTransition} />
         <IramText isDarkMode={isDarkMode} letterTransition={letterTransition} />
         <div className="mx-1">
