@@ -110,11 +110,7 @@ const HerbalinkCaseStudy: React.FC = () => {
           <section className="relative min-h-screen overflow-hidden">
             {/* Single focal background image */}
             <div className="absolute inset-0">
-              <img 
-                src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")}
-                alt="Herbalink mobile app interface"
-                className="w-full h-full object-cover object-center"
-              />
+              <img src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")} alt="Herbalink mobile app interface" className="w-full h-full object-cover object-center" />
               {/* Strong dark overlay for text readability */}
               <div className="absolute inset-0 bg-black/75"></div>
             </div>
@@ -125,29 +121,28 @@ const HerbalinkCaseStudy: React.FC = () => {
                 <div className="max-w-2xl">
                   {/* Subtle backdrop for text contrast */}
                   <div className="bg-black/70 backdrop-blur-md rounded-2xl p-8 lg:p-12">
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8 }}
-                      className="space-y-6"
-                    >
+                    <motion.div initial={{
+                    opacity: 0,
+                    y: 30
+                  }} animate={{
+                    opacity: 1,
+                    y: 0
+                  }} transition={{
+                    duration: 0.8
+                  }} className="space-y-6">
                       {/* Title case heading with medium weight */}
                       <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight">
                         Connecting Patients with Qualified Herbalists
                       </h1>
                       
                       {/* High contrast readable subtext */}
-                      <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
+                      <p className="text-lg md:text-xl font-medium leading-relaxed text-slate-50">
                         AI-powered matching makes natural healthcare accessible.
                       </p>
                       
                       {/* Bold rectangular CTA button */}
                       <div className="pt-2">
-                        <Button 
-                          size="lg" 
-                          className="font-bold px-8 py-3 text-base bg-emerald-600 hover:bg-emerald-700 text-white border-0 shadow-xl rounded-lg" 
-                          onClick={() => window.open('http://herbalink.live', '_blank')}
-                        >
+                        <Button size="lg" className="font-bold px-8 py-3 text-base bg-emerald-600 hover:bg-emerald-700 text-white border-0 shadow-xl rounded-lg" onClick={() => window.open('http://herbalink.live', '_blank')}>
                           See the App in Action
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
