@@ -119,48 +119,41 @@ const HerbalinkCaseStudy: React.FC = () => {
               <div className="absolute inset-0 bg-black/70"></div>
             </div>
 
-            {/* Left-aligned content layout */}
+            {/* Left-aligned content with subtle background */}
             <div className="relative z-10 flex items-center min-h-screen">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <div className="max-w-xl">
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="space-y-8"
-                  >
-                    {/* Clean sentence-case heading */}
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                      Connecting patients with qualified herbalists
-                    </h1>
-                    
-                    {/* Short high-contrast subtext */}
-                    <p className="text-xl text-gray-200 leading-relaxed max-w-lg">
-                      AI-powered matching makes natural healthcare accessible.
-                    </p>
-                    
-                    {/* Bold rectangular CTA aligned to headline */}
-                    <div className="pt-4">
-                      <Button 
-                        size="lg" 
-                        className="font-semibold px-10 py-4 text-lg bg-emerald-600 hover:bg-emerald-700 text-white border-0 shadow-lg" 
-                        onClick={() => window.open('http://herbalink.live', '_blank')}
-                      >
-                        See the app in action
-                        <ArrowRight className="ml-3 h-5 w-5" />
-                      </Button>
-                    </div>
-                    
-                    {/* Minimal share buttons below CTA */}
-                    <div className="pt-4">
-                      <ShareButtons 
-                        title="Herbalink: AI-Enhanced Herbalist Platform Case Study" 
-                        summary="AI-powered matching that makes natural healthcare accessible to everyone." 
-                        url={window.location.href} 
-                        hashtags={["UXDesign", "HealthTech", "AI"]} 
-                      />
-                    </div>
-                  </motion.div>
+                <div className="max-w-2xl">
+                  {/* Subtle backdrop for text contrast */}
+                  <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8 lg:p-12">
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="space-y-6"
+                    >
+                      {/* Title case heading with medium weight */}
+                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight">
+                        Connecting Patients with Qualified Herbalists
+                      </h1>
+                      
+                      {/* High contrast readable subtext */}
+                      <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+                        AI-powered matching makes natural healthcare accessible.
+                      </p>
+                      
+                      {/* Bold rectangular CTA button */}
+                      <div className="pt-2">
+                        <Button 
+                          size="lg" 
+                          className="font-bold px-8 py-3 text-base bg-emerald-600 hover:bg-emerald-700 text-white border-0 shadow-xl rounded-lg" 
+                          onClick={() => window.open('http://herbalink.live', '_blank')}
+                        >
+                          See the App in Action
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
