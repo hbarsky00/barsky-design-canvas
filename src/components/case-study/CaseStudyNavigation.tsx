@@ -65,14 +65,14 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
   return (
     <>
       {/* Desktop Sidebar */}
-      <nav className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
-        <div className="bg-background/95 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-border">
+      <aside className="hidden lg:block w-64 bg-background/95 backdrop-blur-sm border-r border-border">
+        <div className="sticky top-24 p-6">
           <div className="space-y-1">
             {navigation.map((item) => (
               <button
                 key={item.anchor}
                 onClick={() => scrollToSection(item.anchor)}
-                className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 min-w-[160px] ${
+                className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   activeSection === item.anchor
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -83,7 +83,7 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
             ))}
           </div>
         </div>
-      </nav>
+      </aside>
 
       {/* Mobile Navigation with Drawer */}
       <MobileCaseStudyNavigation

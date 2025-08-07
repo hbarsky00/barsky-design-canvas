@@ -80,30 +80,32 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Navigation */}
-          <CaseStudyNavigation navigation={navigationItems} />
-          
-          {/* Main Content */}
-          <main className="lg:pl-12">
-            {/* Hero Section */}
-            <section id="overview" className="mb-16">
-              {heroSection}
-            </section>
+          <div className="lg:flex lg:gap-8">
+            {/* Navigation */}
+            <CaseStudyNavigation navigation={navigationItems} />
+            
+            {/* Main Content */}
+            <main className="flex-1 min-w-0">
+              {/* Hero Section */}
+              <section id="overview" className="mb-16">
+                {heroSection}
+              </section>
 
-            {/* Case Study Sections */}
-            <div className="space-y-16 pb-16">
-              {sections.map((section) => (
-                <section key={section.id} id={section.id} className="scroll-mt-24">
-                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-sm border border-white/20">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">{section.title}</h2>
-                    {section.content}
-                  </div>
-                </section>
-              ))}
-              
-              <CaseStudyContactSection />
-            </div>
-          </main>
+              {/* Case Study Sections */}
+              <div className="space-y-16 pb-16">
+                {sections.map((section) => (
+                  <section key={section.id} id={section.id} className="scroll-mt-24">
+                    <div className="bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-sm border border-white/20">
+                      <h2 className="text-3xl font-bold text-gray-900 mb-8">{section.title}</h2>
+                      {section.content}
+                    </div>
+                  </section>
+                ))}
+                
+                <CaseStudyContactSection />
+              </div>
+            </main>
+          </div>
         </div>
         
         <Footer />
