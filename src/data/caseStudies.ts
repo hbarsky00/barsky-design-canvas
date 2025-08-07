@@ -31,28 +31,28 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     ],
     sections: {
       "the-problem": {
-        text: "People struggle to find trustworthy herbal practitioners online. The market was fragmented, and users didn't know who to trust or how to book. We needed to create a national, verified directory with seamless scheduling.",
+        text: "Users couldn't find trustworthy herbalists online due to fragmented directories and no verification system. We solved this by creating a national platform with certified practitioners and seamless booking.",
         image: {
           src: "images/herbalink-problem.png",
           alt: "Screenshot showing confusing herbalist directory before redesign"
         }
       },
       "quantified-impact": {
-        text: "✅ 3x increase in booking rates. ✅ Users reported 80% satisfaction with match quality. ✅ 50% faster decision-making thanks to filters and verified reviews.",
+        text: "✅ 3x increase in booking rates ✅ 80% user satisfaction with match quality ✅ 50% faster decision-making through filters and verified reviews.",
         image: {
           src: "images/herbalink-impact.png",
           alt: "Dashboard showing user growth and bookings after relaunch"
         }
       },
       "what-didnt-work": {
-        text: "We initially used a map-first layout that confused users. The expert profile info was buried, and users didn't trust the platform. Switching to a card-based directory and highlighting certifications changed everything.",
+        text: "Map-first layout confused users and buried expert credentials. Switching to card-based directory with prominent certifications immediately built trust and improved conversions.",
         image: {
           src: "images/herbalink-fail.png",
           alt: "Old UI design mockup with confusing map-based layout"
         }
       },
       "my-thought-process": {
-        text: "I focused on trust and clarity. What would *I* need to feel safe booking a health consult online? I designed trust signals, reviews, and proof of practice into the flow before even showing pricing.",
+        text: "I asked: what would make ME trust a health platform? Trust signals, verified reviews, and clear credentials had to come before pricing to build confidence.",
         image: {
           src: "images/herbalink-process.png",
           alt: "Wireframes showing layout for trust elements"
@@ -64,7 +64,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
     videoThumbnail: "splittime-thumb.jpg",
-    tags: ["Family Tech", "iOS to Android", "Legal UX"],
+    tags: ["Family Tech", "iOS→Android", "Legal UX"],
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     stickyNav: [
       { label: "The Problem", anchor: "#the-problem" },
@@ -74,28 +74,28 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     ],
     sections: {
       "the-problem": {
-        text: "Co-parents often fight over miscommunication — pickups, school events, doctor visits. Courts needed a neutral platform to reduce conflict and align on child needs.",
+        text: "Co-parents fought constantly over miscommunication around pickups, events, and appointments. Courts needed a neutral platform to reduce conflict and keep focus on child needs.",
         image: {
           src: "images/splittime-problem.png",
           alt: "Court paperwork and calendar chaos in co-parenting"
         }
       },
       "quantified-impact": {
-        text: "✅ Reduced message volume by 62%. ✅ 300% increase in calendar usage. ✅ 90% of surveyed parents said it helped avoid at least one argument.",
+        text: "✅ 62% reduction in message volume ✅ 300% increase in calendar usage ✅ 90% of parents avoided at least one argument per month.",
         image: {
           src: "images/splittime-impact.png",
           alt: "Graph showing decrease in communication conflict"
         }
       },
       "what-didnt-work": {
-        text: "We originally added chat first, but it amplified conflict. Also, too many features upfront overwhelmed users. Simplifying to calendar + permissions helped.",
+        text: "Chat features amplified conflict instead of reducing it. Too many features overwhelmed stressed parents. Simplifying to calendar + permissions was the breakthrough.",
         image: {
           src: "images/splittime-fail.png",
           alt: "Old UI showing chat-heavy design that was removed"
         }
       },
       "my-thought-process": {
-        text: "This wasn't about UX delight — it was about emotional safety. I talked to family lawyers and judges to understand what both parents needed. I leaned into neutrality and control for each parent.",
+        text: "This wasn't about UX delight—it was emotional safety. I interviewed family lawyers and judges to design for neutrality and equal control for both parents.",
         image: {
           src: "images/splittime-process.png",
           alt: "Sketches exploring user rights and visibility in the app"
@@ -107,7 +107,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     video: "warehouse-demo.mp4",
     videoThumbnail: "bizmgmt-thumb.jpg",
-    tags: ["Enterprise", "CRM", "Dashboard"],
+    tags: ["Enterprise", "Analytics", "Dashboard"],
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     stickyNav: [
       { label: "The Problem", anchor: "#the-problem" },
@@ -117,28 +117,28 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     ],
     sections: {
       "the-problem": {
-        text: "Teams were using 5+ tools to manage sales, inventory, and customer data — none of them integrated. It caused confusion, double entry, and poor reporting.",
+        text: "Teams juggled 5+ disconnected tools for sales, inventory, and customer data causing confusion and double-entry errors. No single source of truth existed for operations.",
         image: {
           src: "images/bizmgmt-problem.png",
           alt: "Flowchart of disconnected tools used before platform"
         }
       },
       "quantified-impact": {
-        text: "✅ Cut manual entry by 68%. ✅ Reduced software costs by 43%. ✅ Increased report accuracy by 89%.",
+        text: "✅ 68% reduction in manual entry errors ✅ 43% decrease in software costs ✅ 89% improvement in report accuracy.",
         image: {
           src: "images/bizmgmt-impact.png",
           alt: "Analytics dashboard showing post-launch metrics"
         }
       },
       "what-didnt-work": {
-        text: "I initially focused on dashboards, but users needed workflows. Data was buried too deep. Adding task-based shortcuts on the home screen fixed this.",
+        text: "Dashboard-first approach buried important workflows. Users needed task shortcuts, not data visualization. Moving workflows to the home screen solved adoption issues immediately.",
         image: {
           src: "images/bizmgmt-fail.png",
           alt: "Wireframe of overly complex original dashboard"
         }
       },
       "my-thought-process": {
-        text: "I ran workshops with ops managers, built a process map, then prototyped how *their day* should look. Then I designed the tool around that reality, not just data structure.",
+        text: "I mapped real operator workflows through workshops before designing features. The tool had to match their actual workday, not idealized data structures.",
         image: {
           src: "images/bizmgmt-process.png",
           alt: "User journey map used to align with operator workflow"
@@ -150,7 +150,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     title: "23% More Engagement: Making Investing Accessible to Beginners",
     video: "investapp-demo.mp4",
     videoThumbnail: "investapp-thumb.jpg",
-    tags: ["Finance", "Data Viz", "Mobile"],
+    tags: ["Finance", "Analytics", "Tutorial"],
     description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
     stickyNav: [
       { label: "The Problem", anchor: "#the-problem" },
@@ -160,28 +160,28 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     ],
     sections: {
       "the-problem": {
-        text: "Beginner investors didn't understand their performance or next steps. They wanted clarity without jargon — a coach, not a trading desk.",
+        text: "Beginner investors felt overwhelmed by jargon and couldn't understand performance or next steps. They needed a coach, not another trading platform.",
         image: {
           src: "images/investapp-problem.png",
           alt: "User research quote about investing confusion"
         }
       },
       "quantified-impact": {
-        text: "✅ 23% increase in engagement. ✅ 17% more re-investment activity. ✅ 12% decrease in drop-off after onboarding.",
+        text: "✅ 23% increase in portfolio engagement ✅ 17% more re-investment activity ✅ 12% decrease in post-onboarding drop-off.",
         image: {
           src: "images/investapp-impact.png",
           alt: "App analytics showing engagement lift"
         }
       },
       "what-didnt-work": {
-        text: "We used traditional line graphs — too much. Swapped in goal-based visuals with context. Also, our onboarding was too technical — reworked to ask questions, not show features.",
+        text: "Traditional line graphs overwhelmed users. Goal-based visuals with context performed better. Technical onboarding scared people away—questions worked better than feature tours.",
         image: {
           src: "images/investapp-fail.png",
           alt: "Overly technical onboarding screens"
         }
       },
       "my-thought-process": {
-        text: "Instead of showing market data, I asked: 'What does *this person* need to feel confident right now?' I designed journeys based on goals, not dashboards.",
+        text: "Instead of market data, I asked: 'What does this person need to feel confident right now?' Goal-based journeys beat dashboard-first design every time.",
         image: {
           src: "images/investapp-process.png",
           alt: "Persona-based flow diagram for investment goals"
@@ -203,7 +203,7 @@ export const homepageCaseStudyPreviews = [
   {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
-    tags: ["Family Tech", "iOS to Android", "Legal UX"],
+    tags: ["Family Tech", "iOS→Android", "Legal UX"],
     videoThumbnail: "splittime-thumb.jpg",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
     url: "/project/splittime"
@@ -211,7 +211,7 @@ export const homepageCaseStudyPreviews = [
   {
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
-    tags: ["Enterprise", "CRM", "Dashboard"],
+    tags: ["Enterprise", "Analytics", "Dashboard"],
     videoThumbnail: "bizmgmt-thumb.jpg",
     video: "warehouse-demo.mp4",
     url: "/project/business-management"
@@ -219,7 +219,7 @@ export const homepageCaseStudyPreviews = [
   {
     title: "23% More Engagement: Making Investing Accessible to Beginners",
     description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
-    tags: ["Finance", "Data Viz", "Mobile"],
+    tags: ["Finance", "Analytics", "Tutorial"],
     videoThumbnail: "investapp-thumb.jpg",
     video: "investapp-demo.mp4",
     url: "/project/investment-app"
