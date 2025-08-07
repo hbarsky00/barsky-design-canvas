@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HeroBackground from "./HeroBackground";
+import HeroLogo from "./HeroLogo";
 import HeroHeading from "./HeroHeading";
 import HeroDescription from "./HeroDescription";
 import HeroSkillsTags from "./HeroSkillsTags";
@@ -26,6 +27,8 @@ const EnhancedHero: React.FC = () => {
       
       <div className="relative w-full py-4 sm:py-6 lg:py-8 z-10">
         <div className="w-full text-center">
+          
+          <HeroLogo isVisible={isVisible} />
           
           {/* Minimal Glass Container */}
           <motion.div
