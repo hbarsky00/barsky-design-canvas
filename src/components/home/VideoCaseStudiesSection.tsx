@@ -58,6 +58,11 @@ const VideoCaseStudiesSection: React.FC = () => {
            url.includes('m.youtube.com');
   };
 
+  // Detect if URL is a Google Drive video
+  const isGoogleDriveVideo = (url: string): boolean => {
+    return url.includes('drive.google.com/file/') && url.includes('/preview');
+  };
+
   // Detect if URL is a standard video file
   const isVideoFile = (url: string): boolean => {
     const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv'];
@@ -116,18 +121,21 @@ const VideoCaseStudiesSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {homepageCaseStudyPreviews.map((study, index) => {
             const isYouTube = isYouTubeVideo(study.video);
+            const isGoogleDrive = isGoogleDriveVideo(study.video);
 
             const handleMouseEnter = () => {
               setHoveredIndex(index);
               
               if (window.innerWidth > 768) { // Only on non-mobile devices
-                if (isYouTube) {
-                  // Update YouTube iframe src to trigger autoplay
-                  const iframe = iframeRefs.current[index];
-                  if (iframe) {
-                    iframe.src = getYouTubeEmbedUrl(study.video, true);
-                  }
-                } else {
+                  if (isYouTube) {
+                    // Update YouTube iframe src to trigger autoplay
+                    const iframe = iframeRefs.current[index];
+                    if (iframe) {
+                      iframe.src = getYouTubeEmbedUrl(study.video, true);
+                    }
+                  } else if (isGoogleDrive) {
+                    // Google Drive videos don't support autoplay, just maintain visual feedback
+                  } else {
                   // Handle regular video
                   const video = videoRefs.current[index];
                   if (video) {
@@ -149,6 +157,8 @@ const VideoCaseStudiesSection: React.FC = () => {
                 if (iframe) {
                   iframe.src = getYouTubeEmbedUrl(study.video, false);
                 }
+              } else if (isGoogleDrive) {
+                // Google Drive videos don't support autoplay control
               } else {
                 // Handle regular video
                 const video = videoRefs.current[index];
@@ -183,6 +193,15 @@ const VideoCaseStudiesSection: React.FC = () => {
                         className="w-full h-full transition-transform duration-300 group-hover:scale-105"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : isGoogleDrive ? (
+                      <iframe
+                        ref={(el) => (iframeRefs.current[index] = el)}
+                        src={study.video}
+                        className="w-full h-full transition-transform duration-300 group-hover:scale-105"
+                        frameBorder="0"
+                        allow="autoplay"
                         allowFullScreen
                       />
                     ) : (
