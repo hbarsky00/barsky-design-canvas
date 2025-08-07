@@ -10,23 +10,87 @@ const VideoCaseStudiesSection: React.FC = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const iframeRefs = useRef<(HTMLIFrameElement | null)[]>([]);
 
-  // Extract YouTube video ID from various URL formats
+  // Enhanced YouTube video ID extraction supporting all URL formats
   const getYouTubeVideoId = (url: string): string => {
+    // Handle youtu.be short URLs
     if (url.includes('youtu.be/')) {
-      return url.split('/').pop()?.split('?')[0] || '';
+      return url.split('youtu.be/')[1]?.split('?')[0]?.split('&')[0] || '';
     }
-    if (url.includes('youtube.com/watch?v=')) {
+    
+    // Handle youtube.com/watch URLs
+    if (url.includes('youtube.com/watch')) {
       return url.split('v=')[1]?.split('&')[0] || '';
     }
+    
+    // Handle YouTube Shorts
+    if (url.includes('youtube.com/shorts/')) {
+      return url.split('shorts/')[1]?.split('?')[0]?.split('&')[0] || '';
+    }
+    
+    // Handle embed URLs that might already be embed format
+    if (url.includes('youtube.com/embed/')) {
+      return url.split('embed/')[1]?.split('?')[0]?.split('&')[0] || '';
+    }
+    
+    // Handle youtube-nocookie.com URLs
+    if (url.includes('youtube-nocookie.com')) {
+      if (url.includes('/embed/')) {
+        return url.split('embed/')[1]?.split('?')[0]?.split('&')[0] || '';
+      }
+      if (url.includes('v=')) {
+        return url.split('v=')[1]?.split('&')[0] || '';
+      }
+    }
+    
+    // Handle mobile YouTube URLs
+    if (url.includes('m.youtube.com')) {
+      return url.split('v=')[1]?.split('&')[0] || '';
+    }
+    
     return '';
   };
 
-  // Generate YouTube embed URL with hover-specific parameters
+  // Detect if URL is a YouTube video (any format)
+  const isYouTubeVideo = (url: string): boolean => {
+    return url.includes('youtube.com') || 
+           url.includes('youtu.be') || 
+           url.includes('youtube-nocookie.com') ||
+           url.includes('m.youtube.com');
+  };
+
+  // Detect if URL is a standard video file
+  const isVideoFile = (url: string): boolean => {
+    const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv'];
+    const urlWithoutParams = url.split('?')[0].toLowerCase();
+    return videoExtensions.some(ext => urlWithoutParams.endsWith(ext));
+  };
+
+  // Generate YouTube embed URL with maximum UI suppression
   const getYouTubeEmbedUrl = (url: string, isHovered: boolean): string => {
     const videoId = getYouTubeVideoId(url);
-    const baseParams = `controls=0&showinfo=0&rel=0&modestbranding=1&mute=1&loop=1&playlist=${videoId}`;
+    if (!videoId) return url;
+    
+    // Comprehensive parameters to hide ALL YouTube UI elements
+    const baseParams = [
+      'controls=0',           // Hide all controls
+      'showinfo=0',          // Hide video info
+      'rel=0',               // Hide related videos
+      'modestbranding=1',    // Hide YouTube logo
+      'iv_load_policy=3',    // Hide annotations
+      'cc_load_policy=0',    // Hide closed captions
+      'disablekb=1',         // Disable keyboard controls
+      'fs=0',                // Disable fullscreen button
+      'playsinline=1',       // Play inline on mobile
+      'mute=1',              // Start muted
+      'loop=1',              // Loop video
+      `playlist=${videoId}`, // Required for looping
+      'enablejsapi=1',       // Enable JS API for better control
+      'origin=' + window.location.origin, // Set origin for security
+      'widget_referrer='     // Remove referrer info
+    ].join('&');
+    
     const autoplay = isHovered ? '&autoplay=1' : '&autoplay=0';
-    return `https://www.youtube.com/embed/${videoId}?${baseParams}${autoplay}`;
+    return `https://www.youtube-nocookie.com/embed/${videoId}?${baseParams}${autoplay}`;
   };
 
   return (
@@ -51,7 +115,7 @@ const VideoCaseStudiesSection: React.FC = () => {
         {/* Case Studies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {homepageCaseStudyPreviews.map((study, index) => {
-            const isYouTube = study.video.includes('youtube.com') || study.video.includes('youtu.be');
+            const isYouTube = isYouTubeVideo(study.video);
 
             const handleMouseEnter = () => {
               setHoveredIndex(index);
