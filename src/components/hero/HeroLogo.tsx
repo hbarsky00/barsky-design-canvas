@@ -24,19 +24,27 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
       }}
       className="flex justify-center md:justify-start mb-8"
     >
-      <Link to="/">
-        <div className="relative group">
+      <Link to="/" className="flex items-center gap-4 group">
+        <div className="relative">
           <img
             src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
-            alt="Barsky Design"
-            className="h-44 w-44 md:h-52 md:w-52 lg:h-56 lg:w-56 rounded-full border-4 border-barsky-blue shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105"
-            style={{
-              imageRendering: 'crisp-edges',
-            }}
+            alt="Hiram Barsky"
+            className="h-20 w-20 md:h-24 md:w-24 lg:h-28 lg:w-28 rounded-full border-4 border-[hsl(var(--blue-vibrant))] shadow-xl object-cover object-center transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
             loading="eager"
-            width="208"
-            height="208"
+            width="112"
+            height="112"
           />
+        </div>
+        <div className="flex flex-col">
+          <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-[hsl(var(--navy-primary))] mb-1">
+            Hiram Barsky
+          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-lg md:text-xl text-[hsl(var(--neutral-500))]">|</span>
+            <span className="text-lg md:text-xl text-[hsl(var(--blue-accent))] font-medium">
+              Product Design + AI
+            </span>
+          </div>
         </div>
       </Link>
     </motion.div>

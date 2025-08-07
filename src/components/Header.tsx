@@ -20,10 +20,13 @@ return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all dur
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-12 sm:h-16">
           <div className="flex items-center gap-2 justify-start min-w-0 flex-1">
-            <Link to="/" className="flex items-center gap-2 text-xl sm:text-2xl font-sans font-medium text-[hsl(var(--blue-accent))] truncate">
-                <img alt="Hiram Barsky" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-contain flex-shrink-0" src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" />
-                <span className="hidden xs:inline sm:inline">Hiram Barsky</span>
-                <span className="inline xs:hidden sm:hidden">H. Barsky</span>
+            <Link to="/" className="flex items-center gap-3 text-lg sm:text-xl font-sans text-[hsl(var(--blue-accent))] truncate">
+                <img alt="Hiram Barsky" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0" src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" />
+                <div className="flex items-center gap-1">
+                  <span className="font-bold text-[hsl(var(--navy-primary))]">Hiram Barsky</span>
+                  <span className="hidden sm:inline text-[hsl(var(--neutral-500))]">|</span>
+                  <span className="hidden sm:inline text-[hsl(var(--blue-accent))]">Product Design + AI</span>
+                </div>
               </Link>
           </div>
 

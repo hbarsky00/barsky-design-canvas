@@ -7,14 +7,20 @@ import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
 import SitemapGenerator from "@/components/seo/SitemapGenerator";
 import MetaOptimizer from "@/components/seo/MetaOptimizer";
 import { Helmet } from "react-helmet-async";
+import PageTransition from "@/components/transitions/PageTransition";
+import { usePageTransition } from "@/hooks/usePageTransition";
 
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Index = () => {
   usePageIndexing();
+  const { isTransitioning } = usePageTransition();
   
   return (
     <>
+      {/* Page Transition Overlay */}
+      <PageTransition isVisible={isTransitioning} />
+      
       {/* Comprehensive SEO Optimization */}
       <DynamicSeo type="home" />
       <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" />
