@@ -62,7 +62,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   },
   "splittime": {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
+    video: "splittime-demo.mp4",
     videoThumbnail: "splittime-thumb.jpg",
     tags: ["Family Tech", "iOS to Android", "Legal UX"],
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
@@ -105,7 +105,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   },
   "business-management": {
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
-    video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
+    video: "bizmgmt-demo.mp4",
     videoThumbnail: "bizmgmt-thumb.jpg",
     tags: ["Enterprise", "CRM", "Dashboard"],
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
@@ -205,7 +205,7 @@ export const homepageCaseStudyPreviews = [
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     tags: ["Family Tech", "iOS to Android", "Legal UX"],
     videoThumbnail: "splittime-thumb.jpg",
-    video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
+    video: "splittime-demo.mp4",
     url: "/project/splittime"
   },
   {
@@ -213,7 +213,7 @@ export const homepageCaseStudyPreviews = [
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     tags: ["Enterprise", "CRM", "Dashboard"],
     videoThumbnail: "bizmgmt-thumb.jpg",
-    video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
+    video: "bizmgmt-demo.mp4",
     url: "/project/business-management"
   },
   {
