@@ -6,29 +6,32 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 duration-300 w-full sm:w-auto [&_svg]:h-5 [&_svg]:w-5 min-h-[44px] min-w-[44px]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 duration-300 w-full sm:w-auto [&_svg]:pointer-events-none [&_svg]:shrink-0 min-h-[44px] min-w-[44px] relative overflow-hidden",
   {
     variants: {
       variant: {
-        default: "bg-blue-600 !text-white hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all duration-300 [&_svg]:!text-white [&_*]:!text-white [&]:!text-white",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-all duration-300",
-        outline:
-          "border-2 border-blue-600 bg-transparent text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 [&_svg]:text-blue-600 hover:[&_svg]:text-white",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-300",
-        ghost: "hover:bg-accent hover:text-accent-foreground transition-all duration-300",
-        link: "text-primary underline-offset-4 hover:underline transition-all duration-300",
+        filled: "bg-primary text-primary-foreground shadow-sm hover:shadow-md hover:bg-primary/90 active:shadow-sm rounded-full",
+        "filled-tonal": "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
+        elevated: "bg-surface-container-low text-primary shadow-md hover:shadow-lg hover:bg-surface-container active:shadow-md rounded-full",
+        outlined: "border border-outline bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
+        text: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
+        destructive: "bg-error text-error-foreground shadow-sm hover:shadow-md hover:bg-error/90 active:shadow-sm rounded-full",
+        // Legacy variants for compatibility
+        default: "bg-primary text-primary-foreground shadow-sm hover:shadow-md hover:bg-primary/90 active:shadow-sm rounded-full",
+        secondary: "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
+        ghost: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
+        link: "text-primary underline-offset-4 hover:underline bg-transparent",
+        outline: "border border-outline bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
       },
       size: {
-        default: "h-auto px-6 py-3 text-base font-medium [&_svg]:h-5 [&_svg]:w-5 min-h-[44px]",
-        sm: "h-9 rounded-md px-3 text-sm font-medium [&_svg]:h-4 [&_svg]:w-4 min-h-[44px] min-w-[44px]",
-        lg: "h-12 px-8 py-3 text-lg font-medium [&_svg]:h-6 [&_svg]:w-6 min-h-[48px]",
-        icon: "h-10 w-10 [&_svg]:h-5 [&_svg]:w-5 min-h-[44px] min-w-[44px]",
+        default: "h-10 px-6 text-sm font-medium [&_svg]:h-4 [&_svg]:w-4 min-h-[44px]",
+        sm: "h-9 px-4 text-sm font-medium [&_svg]:h-4 [&_svg]:w-4 min-h-[44px] min-w-[44px]",
+        lg: "h-12 px-8 text-base font-medium [&_svg]:h-5 [&_svg]:w-5 min-h-[48px]",
+        icon: "h-10 w-10 [&_svg]:h-4 [&_svg]:w-4 min-h-[44px] min-w-[44px]",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "filled",
       size: "default",
     },
   }

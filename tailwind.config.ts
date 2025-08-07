@@ -19,7 +19,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
+				sans: ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'system-ui', 'sans-serif'],
 				script: ['Dancing Script', 'cursive'],
 			},
 			colors: {
@@ -28,18 +28,64 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				
+				/* Material Design 3.0 Primary Colors */
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					container: 'hsl(var(--primary-container))',
+					'on-container': 'hsl(var(--on-primary-container))'
 				},
+				
+				/* Material Design 3.0 Secondary Colors */
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					container: 'hsl(var(--secondary-container))',
+					'on-container': 'hsl(var(--on-secondary-container))'
 				},
+				
+				/* Material Design 3.0 Tertiary Colors */
+				tertiary: {
+					DEFAULT: 'hsl(var(--tertiary))',
+					foreground: 'hsl(var(--tertiary-foreground))',
+					container: 'hsl(var(--tertiary-container))',
+					'on-container': 'hsl(var(--on-tertiary-container))'
+				},
+				
+				/* Material Design 3.0 Error Colors */
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
+				error: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))',
+					container: 'hsl(var(--error-container))',
+					'on-container': 'hsl(var(--on-error-container))'
+				},
+				
+				/* Material Design 3.0 Surface Colors */
+				surface: {
+					DEFAULT: 'hsl(var(--surface))',
+					dim: 'hsl(var(--surface-dim))',
+					bright: 'hsl(var(--surface-bright))',
+					'container-lowest': 'hsl(var(--surface-container-lowest))',
+					'container-low': 'hsl(var(--surface-container-low))',
+					container: 'hsl(var(--surface-container))',
+					'container-high': 'hsl(var(--surface-container-high))',
+					'container-highest': 'hsl(var(--surface-container-highest))',
+					variant: 'hsl(var(--surface-variant))',
+					'on-variant': 'hsl(var(--on-surface-variant))'
+				},
+				
+				/* Material Design 3.0 Outline */
+				outline: {
+					DEFAULT: 'hsl(var(--outline))',
+					variant: 'hsl(var(--outline-variant))'
+				},
+				
+				/* Legacy Compatibility */
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
@@ -124,6 +170,58 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			keyframes: {
+				/* Material Motion - Standard Curves */
+				'material-enter': {
+					from: {
+						opacity: '0',
+						transform: 'scale(0.8) translateY(20px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'scale(1) translateY(0)'
+					}
+				},
+				'material-exit': {
+					from: {
+						opacity: '1',
+						transform: 'scale(1) translateY(0)'
+					},
+					to: {
+						opacity: '0',
+						transform: 'scale(0.8) translateY(-20px)'
+					}
+				},
+				'shared-axis-x': {
+					from: {
+						opacity: '0',
+						transform: 'translateX(30px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'shared-axis-y': {
+					from: {
+						opacity: '0',
+						transform: 'translateY(30px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'container-transform': {
+					from: {
+						transform: 'scale(0.95)',
+						opacity: '0'
+					},
+					to: {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
+				},
+				// Legacy keyframes
 				'accordion-down': {
 					from: {
 						height: '0'
@@ -236,6 +334,14 @@ export default {
 				}
 			},
 			animation: {
+				/* Material Motion Animations */
+				'material-enter': 'material-enter 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+				'material-exit': 'material-exit 0.15s cubic-bezier(0.4, 0, 1, 1)',
+				'shared-axis-x': 'shared-axis-x 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+				'shared-axis-y': 'shared-axis-y 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+				'container-transform': 'container-transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+				
+				// Legacy animations
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out forwards',
