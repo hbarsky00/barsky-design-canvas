@@ -26,11 +26,11 @@ const Header: React.FC = () => {
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300", 
-      "py-2 sm:py-3", 
+      "py-3 sm:py-4", 
       isScrolled ? "bg-white/95 backdrop-blur-sm shadow-lg dark:bg-gray-900/95" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16">
+        <div className="flex justify-between items-center h-16 sm:h-18">
           <div className="flex items-center justify-start min-w-0 flex-1">
             {shouldShowLogo && (
               <div className="transition-opacity duration-300">
