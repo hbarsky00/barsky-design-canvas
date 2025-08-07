@@ -136,7 +136,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                       </h1>
                       
                       {/* High contrast readable subtext */}
-                      <p className="text-lg md:text-xl font-medium leading-relaxed text-slate-50">
+                      <p className="text-lg md:text-xl font-medium leading-relaxed text-white">
                         AI-powered matching makes natural healthcare accessible.
                       </p>
                       
