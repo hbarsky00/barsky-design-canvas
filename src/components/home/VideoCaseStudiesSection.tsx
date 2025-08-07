@@ -60,7 +60,42 @@ const VideoCaseStudiesSection: React.FC = () => {
 
   // Detect if URL is a Google Drive video
   const isGoogleDriveVideo = (url: string): boolean => {
-    return url.includes('drive.google.com/file/') && url.includes('/preview');
+    return url.includes('drive.google.com/file/') || 
+           url.includes('drive.google.com/open?id=') ||
+           url.includes('docs.google.com/file/d/');
+  };
+
+  // Convert Google Drive URL to optimal embed format
+  const getOptimalGoogleDriveUrl = (url: string, enableAutoplay: boolean = false): string => {
+    let fileId = '';
+    
+    // Extract file ID from various Google Drive URL formats
+    if (url.includes('/file/d/')) {
+      const match = url.match(/\/file\/d\/([a-zA-Z0-9-_]+)/);
+      fileId = match ? match[1] : '';
+    } else if (url.includes('id=')) {
+      const match = url.match(/id=([a-zA-Z0-9-_]+)/);
+      fileId = match ? match[1] : '';
+    }
+    
+    if (!fileId) return url;
+    
+    // Create optimized embed URL
+    const baseUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+    const params = new URLSearchParams({
+      usp: 'embed_facebook',
+      rm: 'minimal',
+      controls: '0',
+      showinfo: '0',
+      modestbranding: '1'
+    });
+    
+    if (enableAutoplay) {
+      params.set('autoplay', '1');
+      params.set('mute', '1');
+    }
+    
+    return `${baseUrl}?${params.toString()}`;
   };
 
   // Detect if URL is a standard video file
@@ -133,9 +168,13 @@ const VideoCaseStudiesSection: React.FC = () => {
                     if (iframe) {
                       iframe.src = getYouTubeEmbedUrl(study.video, true);
                     }
-                  } else if (isGoogleDrive) {
-                    // Google Drive videos don't support autoplay, just maintain visual feedback
-                  } else {
+                   } else if (isGoogleDrive) {
+                     // Update Google Drive iframe src to attempt autoplay
+                     const iframe = iframeRefs.current[index];
+                     if (iframe) {
+                       iframe.src = getOptimalGoogleDriveUrl(study.video, true);
+                     }
+                   } else {
                   // Handle regular video
                   const video = videoRefs.current[index];
                   if (video) {
@@ -195,15 +234,15 @@ const VideoCaseStudiesSection: React.FC = () => {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
-                    ) : isGoogleDrive ? (
-                      <iframe
-                        ref={(el) => (iframeRefs.current[index] = el)}
-                        src={study.video}
-                        className="w-full h-full transition-transform duration-300 group-hover:scale-105"
-                        frameBorder="0"
-                        allow="autoplay"
-                        allowFullScreen
-                      />
+                     ) : isGoogleDrive ? (
+                       <iframe
+                         ref={(el) => (iframeRefs.current[index] = el)}
+                         src={getOptimalGoogleDriveUrl(study.video, false)}
+                         className="w-full h-full transition-transform duration-300 group-hover:scale-105"
+                         frameBorder="0"
+                         allow="autoplay; encrypted-media"
+                         allowFullScreen
+                       />
                     ) : (
                       <video
                         ref={(el) => (videoRefs.current[index] = el)}
