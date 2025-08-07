@@ -129,167 +129,69 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
         <main className="flex-grow">
           
           {/* Financial Portfolio Hero */}
-          <section className="real-estate-investment-hero py-8 lg:py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative min-h-[80vh] overflow-hidden">
+            {/* Full-width hero image with overlay */}
+            <div className="absolute inset-0">
+              <img 
+                src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png"
+                alt="Loan Central orderbook interface"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
               
-              {/* Mobile Layout: Image First */}
-              <div className="lg:hidden space-y-8">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                duration: 0.8
-              }} className="relative">
-                  <figure className="project-image-container">
-                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[400px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-cover rounded-3xl" />
-                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                      Low Fidelity Loan Central Order book
-                    </figcaption>
-                  </figure>
-                  
-                  <div className="mt-8">
-                    <figure className="project-image-container">
-                      <img src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" alt="Loan Central My Deals Dashboard interface" className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl" />
-                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                        Low Fidelity Loan Central My Deals Dashboard
-                      </figcaption>
-                    </figure>
-                  </div>
-                </motion.div>
-                
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                duration: 0.8,
-                delay: 0.2
-              }} className="space-y-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Building2 className="h-10 w-10 text-blue-600" />
-                    <span className="text-blue-700 font-semibold text-lg">Investment Portfolio Intelligence</span>
-                  </div>
-                  
-                  <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-                    From Spreadsheet Chaos to
-                    <span className="text-blue-600 block">Investment Intelligence</span>
-                  </h1>
-                  
-                  <p className="text-lg text-slate-600 leading-relaxed">
-                    Transforming investment management from spreadsheet chaos to intelligent portfolio tracking. 
-                     Our platform automates reporting, tracks performance, and provides actionable insights for serious investors.
-                   </p>
-                   
-                   {/* Share Buttons */}
-                   <div className="mt-6">
-                     <ShareButtons 
-                       title="Investor Loan App: Smart Portfolio Management Case Study"
-                       summary="Automated reporting and portfolio tracking for investors. See how AI integration streamlined complex financial workflows and improved ROI accuracy by 92%."
-                       url={window.location.href}
-                       hashtags={["FinTech", "PortfolioManagement", "UXDesign", "CaseStudy", "AI"]}
-                     />
-                   </div>
-                  
-                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <DollarSign className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="text-lg font-medium text-slate-800 mb-2">
-                          Professional Investment Management
-                        </p>
-                        <p className="text-slate-600 italic">
-                          "Investors need data-driven insights, not Excel headaches. When portfolio management becomes automated, 
-                          investors can focus on what matters: finding and securing profitable opportunities."
-                        </p>
-                      </div>
+              {/* Play Demo Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-20">
+                <button 
+                  className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-8 hover:bg-white/30 transition-all duration-300 group"
+                  aria-label="View platform demo"
+                >
+                  <div className="flex items-center gap-4 text-white">
+                    <div className="w-16 h-16 bg-white/30 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <ArrowRight className="w-8 h-8 ml-1" />
                     </div>
+                    <span className="text-xl font-medium hidden sm:block">View Platform</span>
                   </div>
-                </motion.div>
+                </button>
               </div>
+            </div>
 
-              {/* Desktop Layout: Side by Side */}
-              <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-center">
-                <motion.div initial={{
-                opacity: 0,
-                x: -50
-              }} animate={{
-                opacity: 1,
-                x: 0
-              }} transition={{
-                duration: 0.8
-              }} className="space-y-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Building2 className="h-10 w-10 text-blue-600" />
-                    <span className="text-blue-700 font-semibold text-lg">Investment Portfolio Intelligence</span>
-                  </div>
-                  
-                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
-                    From Spreadsheet Chaos to
-                    <span className="text-blue-600 block">Investment Intelligence</span>
-                  </h1>
-                  
-                  <p className="text-xl text-slate-600 leading-relaxed max-w-2xl">
-                    Managing multiple investment properties through fragmented spreadsheets leads to data inconsistencies, 
-                     manual errors, and missed opportunities. Investors spend countless hours on administrative tasks instead of focusing on profitable deals.
-                   </p>
-                   
-                   {/* Share Buttons */}
-                   <div className="mt-6">
-                     <ShareButtons 
-                       title="Investor Loan App: Smart Portfolio Management Case Study"
-                       summary="Automated reporting and portfolio tracking for investors. See how AI integration streamlined complex financial workflows and improved ROI accuracy by 92%."
-                       url={window.location.href}
-                       hashtags={["FinTech", "PortfolioManagement", "UXDesign", "CaseStudy", "AI"]}
-                     />
-                   </div>
-                  
-                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <DollarSign className="h-8 w-8 text-green-600 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="text-lg font-medium text-slate-800 mb-2">
-                          Professional Investment Management
-                        </p>
-                        <p className="text-slate-600 italic">
-                          "Investors need data-driven insights, not Excel headaches. When portfolio management becomes automated, 
-                          investors can focus on what matters: finding and securing profitable opportunities."
-                        </p>
+            {/* Content overlay */}
+            <div className="relative z-10 flex items-center min-h-[80vh] py-20">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-2xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="space-y-8"
+                  >
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                      Smart Portfolio Management for Serious Investors
+                    </h1>
+                    
+                    <p className="text-xl text-white/90 leading-relaxed">
+                      Automated tracking and AI-powered insights that replace spreadsheet chaos.
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button 
+                        size="lg" 
+                        className="font-medium px-8 py-4 text-lg bg-white text-blue-600 hover:bg-white/90"
+                      >
+                        See the Platform in Action
+                      </Button>
+                      
+                      <div className="sm:mt-0">
+                        <ShareButtons 
+                          title="Investor Loan App: Smart Portfolio Management Case Study"
+                          summary="Smart portfolio management for serious investors with automated tracking and AI-powered insights."
+                          url={window.location.href}
+                          hashtags={["FinTech", "Portfolio", "AI"]}
+                        />
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-                
-                <motion.div initial={{
-                opacity: 0,
-                x: 50
-              }} animate={{
-                opacity: 1,
-                x: 0
-              }} transition={{
-                duration: 0.8,
-                delay: 0.2
-              }} className="relative">
-                  <figure className="project-image-container">
-                    <img src="/lovable-uploads/d6b1c238-3889-47b9-b214-ee43ce09eb1a.png" alt="Loan Central orderbook interface showing investment deals and lender allocation details" className="w-full h-[350px] shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl object-contain" />
-                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                      Low Fidelity Loan Central Order book
-                    </figcaption>
-                  </figure>
-                  
-                  <div className="mt-8">
-                    <figure className="project-image-container">
-                      <img src="/lovable-uploads/40f56bea-17cc-4a9c-aa30-11ccbdc6bb52.png" alt="Loan Central My Deals Dashboard interface" className="w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02] rounded-3xl" />
-                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                        Low Fidelity Loan Central My Deals Dashboard
-                      </figcaption>
-                    </figure>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </section>

@@ -4,7 +4,7 @@ import ProblemSection from "@/components/case-study/sections/ProblemSection";
 import ImpactSection from "@/components/case-study/sections/ImpactSection";
 import FailuresSection from "@/components/case-study/sections/FailuresSection";
 import ProcessSection from "@/components/case-study/sections/ProcessSection";
-import HeroSection from "@/components/project/sections/HeroSection";
+import WholesaleHero from "@/components/case-study/sections/WholesaleHero";
 
 const WholesaleDistributionCaseStudy: React.FC = () => {
   const problemData = {
@@ -144,7 +144,7 @@ const WholesaleDistributionCaseStudy: React.FC = () => {
     }
   ];
 
-  const heroSection = <HeroSection />;
+  const heroSection = <WholesaleHero />;
 
   return (
     <CaseStudyLayout

@@ -107,190 +107,71 @@ const HerbalinkCaseStudy: React.FC = () => {
         <main className="flex-grow">
           
           {/* Wellness Journey Hero */}
-          <section className="herbal-wellness-hero py-8 lg:py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative min-h-[80vh] overflow-hidden">
+            {/* Full-width hero image with overlay */}
+            <div className="absolute inset-0">
+              <img 
+                src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")}
+                alt="Herbalink mobile app interface"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
               
-              {/* Mobile Layout: Image First */}
-              <div className="lg:hidden space-y-8">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                duration: 0.8
-              }} className="relative">
-                  <figure className="project-image-container">
-                    <img src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")} alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")} />
-                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                      Herbalink mobile app interface showcasing the comprehensive wellness platform
-                    </figcaption>
-                  </figure>
-                </motion.div>
-                
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                duration: 0.8,
-                delay: 0.2
-              }} className="space-y-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Leaf className="h-10 w-10 text-emerald-600" />
-                    <span className="text-emerald-700 font-semibold text-lg">Wellness Journey</span>
-                  </div>
-                  
-                  <h1 className="text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
-                    Bridging Ancient Wisdom with Modern
-                    <span className="text-emerald-600 block">Accessibility</span>
-                  </h1>
-                  
-                  <p className="text-lg text-neutral-600 leading-relaxed">
-                    Finding qualified herbalists has been nearly impossible for most people. Geographic barriers, 
-                    lack of credential verification, and no way to match individual health needs with practitioner 
-                     expertise left people struggling to access natural healthcare solutions.
-                   </p>
-                   
-                   {/* Share Buttons */}
-                   <div className="mt-6">
-                     <ShareButtons title="Herbalink: AI-Enhanced Herbalist Platform Case Study" summary="See how AI-powered matching revolutionized natural healthcare access with 85% user match success rate and 40% faster consultation bookings." url={window.location.href} hashtags={["UXDesign", "HealthTech", "AI", "CaseStudy", "MobileUX"]} />
-                   </div>
-                  
-                  <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-emerald-600 hover:bg-emerald-700" onClick={() => window.open('http://herbalink.live', '_blank')}>
-                    Visit Live Site
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  
-                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-emerald-200 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <TreePine className="h-8 w-8 text-emerald-600 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="text-lg font-medium text-neutral-800 mb-2">
-                          Wellness Philosophy
-                        </p>
-                        <p className="text-neutral-600 italic">
-                          "Natural healing shouldn't be limited by location or accessibility barriers. 
-                          Technology should serve as a bridge to ancient wisdom, not a replacement for human connection."
-                        </p>
-                      </div>
+              {/* Play Demo Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-20">
+                <button 
+                  onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")}
+                  className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-8 hover:bg-white/30 transition-all duration-300 group"
+                  aria-label="View app interface"
+                >
+                  <div className="flex items-center gap-4 text-white">
+                    <div className="w-16 h-16 bg-white/30 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <ArrowRight className="w-8 h-8 ml-1" />
                     </div>
+                    <span className="text-xl font-medium hidden sm:block">View App</span>
                   </div>
-                </motion.div>
-                
-                {/* Video section for mobile */}
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                duration: 0.8,
-                delay: 0.4
-              }} className="mt-8">
-                  <div className="relative w-full h-0 pb-[56.25%] overflow-hidden shadow-2xl rounded-3xl">
-                    <iframe src="https://www.loom.com/embed/a477db12673d4dd687048f5d1235d76e" frameBorder="0" allowFullScreen className="absolute top-0 left-0 w-full h-full rounded-3xl"></iframe>
-                  </div>
-                  <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                    Booking an Herbalist using Lucid Charts, Lets Create a User Flow
-                  </figcaption>
-                </motion.div>
+                </button>
               </div>
+            </div>
 
-              {/* Desktop Layout: Side by Side */}
-              <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-center">
-                <motion.div initial={{
-                opacity: 0,
-                x: -50
-              }} animate={{
-                opacity: 1,
-                x: 0
-              }} transition={{
-                duration: 0.8
-              }} className="space-y-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Leaf className="h-10 w-10 text-emerald-600" />
-                    <span className="text-emerald-700 font-semibold text-lg">Wellness Journey</span>
-                  </div>
-                  
-                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-neutral-900 leading-tight">
-                    Bridging Ancient Wisdom with Modern
-                    <span className="text-emerald-600 block">Accessibility</span>
-                  </h1>
-                  
-                  <p className="text-xl text-neutral-600 leading-relaxed max-w-2xl">
-                    Finding qualified herbalists has been nearly impossible for most people. Geographic barriers, 
-                    lack of credential verification, and no way to match individual health needs with practitioner 
-                     expertise left people struggling to access natural healthcare solutions.
-                   </p>
-                   
-                   {/* Share Buttons */}
-                   <div className="mt-6">
-                     <ShareButtons title="Herbalink: AI-Enhanced Herbalist Platform Case Study" summary="See how AI-powered matching revolutionized natural healthcare access with 85% user match success rate and 40% faster consultation bookings." url={window.location.href} hashtags={["UXDesign", "HealthTech", "AI", "CaseStudy", "MobileUX"]} />
-                   </div>
-                  
-                  <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group bg-emerald-600 hover:bg-emerald-700" onClick={() => window.open('http://herbalink.live', '_blank')}>
-                    Visit Live Site
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  
-                  <div className="bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-emerald-200 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <TreePine className="h-8 w-8 text-emerald-600 flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="text-lg font-medium text-neutral-800 mb-2">
-                          Wellness Philosophy
-                        </p>
-                        <p className="text-neutral-600 italic">
-                          "Natural healing shouldn't be limited by location or accessibility barriers. 
-                          Technology should serve as a bridge to ancient wisdom, not a replacement for human connection."
-                        </p>
+            {/* Content overlay */}
+            <div className="relative z-10 flex items-center min-h-[80vh] py-20">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-2xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="space-y-8"
+                  >
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                      Connecting Patients with Qualified Herbalists
+                    </h1>
+                    
+                    <p className="text-xl text-white/90 leading-relaxed">
+                      AI-powered matching that makes natural healthcare accessible to everyone.
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button 
+                        size="lg" 
+                        className="font-medium px-8 py-4 text-lg bg-white text-emerald-600 hover:bg-white/90" 
+                        onClick={() => window.open('http://herbalink.live', '_blank')}
+                      >
+                        See the App in Action
+                      </Button>
+                      
+                      <div className="sm:mt-0">
+                        <ShareButtons 
+                          title="Herbalink: AI-Enhanced Herbalist Platform Case Study" 
+                          summary="AI-powered matching that makes natural healthcare accessible to everyone." 
+                          url={window.location.href} 
+                          hashtags={["UXDesign", "HealthTech", "AI"]} 
+                        />
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-                
-                <motion.div initial={{
-                opacity: 0,
-                x: 50
-              }} animate={{
-                opacity: 1,
-                x: 0
-              }} transition={{
-                duration: 0.8,
-                delay: 0.2
-              }} className="relative">
-                  <figure className="project-image-container">
-                    <img src="/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png" alt="Herbalink mobile app interface showing symptom tracker, certified herbalists matching, and wellness services features" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png", "Herbalink mobile app interface")} />
-                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                      Herbalink mobile app interface showcasing the comprehensive wellness platform
-                    </figcaption>
-                  </figure>
-                  
-                  {/* Video after first image */}
-                  <motion.div initial={{
-                  opacity: 0,
-                  y: 30
-                }} animate={{
-                  opacity: 1,
-                  y: 0
-                }} transition={{
-                  duration: 0.8,
-                  delay: 0.4
-                }} className="mt-8">
-                    <div className="relative w-full h-0 pb-[56.25%] overflow-hidden shadow-2xl rounded-3xl">
-                      <iframe src="https://www.loom.com/embed/a477db12673d4dd687048f5d1235d76e" frameBorder="0" allowFullScreen className="absolute top-0 left-0 w-full h-full rounded-3xl"></iframe>
-                    </div>
-                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                      Booking an Herbalist using Lucid Charts, Lets Create a User Flow
-                    </figcaption>
                   </motion.div>
-                  
-                </motion.div>
+                </div>
               </div>
             </div>
           </section>
