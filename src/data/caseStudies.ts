@@ -105,7 +105,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   },
   "business-management": {
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
-    video: "bizmgmt-demo.mp4",
+    video: "warehouse-demo.mp4",
     videoThumbnail: "bizmgmt-thumb.jpg",
     tags: ["Enterprise", "CRM", "Dashboard"],
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
@@ -213,7 +213,7 @@ export const homepageCaseStudyPreviews = [
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     tags: ["Enterprise", "CRM", "Dashboard"],
     videoThumbnail: "bizmgmt-thumb.jpg",
-    video: "bizmgmt-demo.mp4",
+    video: "warehouse-demo.mp4",
     url: "/project/business-management"
   },
   {
