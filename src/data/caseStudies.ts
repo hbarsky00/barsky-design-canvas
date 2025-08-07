@@ -62,7 +62,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   },
   "splittime": {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    video: "splittime-demo.mp4",
+    video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
     videoThumbnail: "splittime-thumb.jpg",
     tags: ["Family Tech", "iOS to Android", "Legal UX"],
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
