@@ -11,7 +11,7 @@ const CallToActionSection: React.FC = () => {
         <p className="text-xl mb-8 opacity-90">
           Let's start with a conversation about your real challenges, not a sales pitch.
         </p>
-        <Button size="lg" variant="default" className="font-semibold px-8 py-4 text-lg">
+        <Button size="lg" variant="high-contrast" className="font-semibold px-8 py-4 text-lg">
           Start the Conversation
         </Button>
       </div>
