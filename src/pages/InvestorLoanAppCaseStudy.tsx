@@ -146,7 +146,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="max-w-2xl">
                   {/* Subtle backdrop for text contrast */}
-                  <div className="bg-black/30 backdrop-blur-md rounded-2xl p-8 lg:p-12">
+                  <div className="bg-black/70 backdrop-blur-md rounded-2xl p-8 lg:p-12">
                     <motion.div
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
