@@ -18,7 +18,7 @@ export interface CaseStudyData {
 
 export const caseStudiesData: Record<string, CaseStudyData> = {
   "herbalink": {
-    title: "HerbaLink",
+    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     video: "herbalink-demo.mp4",
     videoThumbnail: "herbalink-thumb.jpg",
     tags: ["Health", "Marketplace", "Gen AI"],
@@ -61,7 +61,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     }
   },
   "splittime": {
-    title: "SplitTime",
+    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     video: "splittime-demo.mp4",
     videoThumbnail: "splittime-thumb.jpg",
     tags: ["Family Tech", "iOS to Android", "Legal UX"],
@@ -104,7 +104,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     }
   },
   "business-management": {
-    title: "Business Management App",
+    title: "68% Fewer Errors: Streamlining Enterprise Operations",
     video: "bizmgmt-demo.mp4",
     videoThumbnail: "bizmgmt-thumb.jpg",
     tags: ["Enterprise", "CRM", "Dashboard"],
@@ -147,7 +147,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     }
   },
   "investment-app": {
-    title: "Investment App",
+    title: "23% More Engagement: Making Investing Accessible to Beginners",
     video: "investapp-demo.mp4",
     videoThumbnail: "investapp-thumb.jpg",
     tags: ["Finance", "Data Viz", "Mobile"],
@@ -193,7 +193,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
 
 export const homepageCaseStudyPreviews = [
   {
-    title: "HerbaLink",
+    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     tags: ["Health", "Marketplace", "Gen AI"],
     videoThumbnail: "herbalink-thumb.jpg",
@@ -201,7 +201,7 @@ export const homepageCaseStudyPreviews = [
     url: "/project/herbalink"
   },
   {
-    title: "SplitTime",
+    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     tags: ["Family Tech", "iOS to Android", "Legal UX"],
     videoThumbnail: "splittime-thumb.jpg",
@@ -209,7 +209,7 @@ export const homepageCaseStudyPreviews = [
     url: "/project/splittime"
   },
   {
-    title: "Business Management App",
+    title: "68% Fewer Errors: Streamlining Enterprise Operations",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     tags: ["Enterprise", "CRM", "Dashboard"],
     videoThumbnail: "bizmgmt-thumb.jpg",
@@ -217,7 +217,7 @@ export const homepageCaseStudyPreviews = [
     url: "/project/business-management"
   },
   {
-    title: "Investment App",
+    title: "23% More Engagement: Making Investing Accessible to Beginners",
     description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
     tags: ["Finance", "Data Viz", "Mobile"],
     videoThumbnail: "investapp-thumb.jpg",
