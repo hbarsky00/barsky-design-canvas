@@ -31,6 +31,7 @@ import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
 import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
 import WholesaleDistributionCaseStudy from "@/pages/WholesaleDistributionCaseStudy";
+import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
@@ -68,7 +69,8 @@ function App() {
                     <Route path="/projects" element={<Index />} />
                     
                     {/* Standardized project routes using CaseStudyLayout */}
-                    <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
+                    <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+                    <Route path="/project/herbalink-old" element={<HerbalinkCaseStudy />} />
                     <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
                     <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
                     <Route path="/project/wholesale-distribution" element={<WholesaleDistributionCaseStudy />} />
