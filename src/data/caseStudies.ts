@@ -197,7 +197,7 @@ export const homepageCaseStudyPreviews = [
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     tags: ["Health", "Marketplace", "Gen AI"],
     videoThumbnail: "herbalink-thumb.jpg",
-    video: "herbalink-demo.mp4",
+    video: "https://youtu.be/_MEuhzbpJeY",
     url: "/project/herbalink"
   },
   {

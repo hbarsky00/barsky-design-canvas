@@ -68,18 +68,31 @@ const VideoCaseStudiesSection: React.FC = () => {
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col group-hover:scale-[1.02]">
                   {/* Video Preview */}
                   <div className="relative aspect-video bg-gray-100 overflow-hidden">
-                    <video
-                      ref={(el) => (videoRefs.current[index] = el)}
-                      poster={`/images/${study.videoThumbnail}`}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      muted
-                      loop
-                      playsInline
-                      preload="none"
-                    >
-                      <source src={`/videos/${study.video}`} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    {study.video.includes('youtube.com') || study.video.includes('youtu.be') ? (
+                      <iframe
+                        src={study.video.includes('youtu.be') 
+                          ? `https://www.youtube.com/embed/${study.video.split('/').pop()}?autoplay=0&mute=1&loop=1&playlist=${study.video.split('/').pop()}`
+                          : study.video.replace('watch?v=', 'embed/')
+                        }
+                        className="w-full h-full transition-transform duration-300 group-hover:scale-105"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <video
+                        ref={(el) => (videoRefs.current[index] = el)}
+                        poster={`/images/${study.videoThumbnail}`}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        muted
+                        loop
+                        playsInline
+                        preload="none"
+                      >
+                        <source src={`/videos/${study.video}`} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    )}
                     {/* Impact Badge */}
                     <div className="absolute top-4 left-4">
                       <Badge variant="secondary" className="bg-white/90 text-gray-900 font-semibold">
