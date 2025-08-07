@@ -8,6 +8,8 @@ import HeroSkillsTags from "./HeroSkillsTags";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
 import HeroVisualElements from "./HeroVisualElements";
+import HeroAnimatedLogo from "../logo/HeroAnimatedLogo";
+
 const EnhancedHero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   
@@ -26,6 +28,16 @@ const EnhancedHero: React.FC = () => {
       
       <div className="relative w-full py-4 sm:py-6 lg:py-8 z-10">
         <div className="w-full text-center">
+          
+          {/* Hero Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-8 lg:mb-12"
+          >
+            <HeroAnimatedLogo />
+          </motion.div>
           
           {/* Minimal Glass Container */}
           <motion.div
