@@ -86,7 +86,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
         {/* Sweep overlay for slick transition */}
         <motion.div
           aria-hidden
-          initial={{ x: "-100%", opacity: 0.12 }}
+          initial={{ x: "-100%", opacity: 0.22 }}
           whileInView={{ x: "100%", opacity: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeInOut" }}

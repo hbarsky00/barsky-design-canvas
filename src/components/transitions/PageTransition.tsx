@@ -15,7 +15,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ isVisible, children }) 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-[70] flex items-center justify-center"
           style={{
             background: "linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8))",
             backdropFilter: "blur(20px)",

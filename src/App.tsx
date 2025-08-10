@@ -43,6 +43,8 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SafeErrorBoundary } from "@/components/SafeErrorBoundary";
 import { ForceRefresh } from "@/components/ForceRefresh";
 import CaseStudyPage from "@/components/case-study/CaseStudyPage";
+import PageTransition from "@/components/transitions/PageTransition";
+import { usePageTransition } from "@/hooks/usePageTransition";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -53,6 +55,11 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+const GlobalPageTransition: React.FC = () => {
+  const { isTransitioning } = usePageTransition();
+  return <PageTransition isVisible={isTransitioning} />;
+};
 
 function App() {
   return (
@@ -65,6 +72,7 @@ function App() {
             <ImageMaximizerProvider>
               <Toaster />
               <BrowserRouter>
+                <GlobalPageTransition />
                 <ScrollToTop />
                 <main id="main-content" role="main">
                   <Routes>

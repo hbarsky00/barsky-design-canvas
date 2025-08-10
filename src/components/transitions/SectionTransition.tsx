@@ -32,7 +32,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
       {variant === "wipe" && (
         <motion.div
           aria-hidden
-          initial={{ x: "-100%", opacity: 0.15 }}
+          initial={{ x: "-100%", opacity: 0.22 }}
           whileInView={{ x: "100%", opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           viewport={{ once: true }}
