@@ -14,13 +14,19 @@ interface CaseStudyNavigationProps {
 const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation }) => {
   const [activeSection, setActiveSection] = useState("");
 
+  const getHeaderOffset = () => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
+    return headerHeight + 16; // include small margin
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = navigation.map(nav => 
         document.getElementById(nav.anchor.substring(1))
       );
 
-      const scrollPosition = window.scrollY + 150;
+      const scrollPosition = window.scrollY + getHeaderOffset() + 8;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i] as HTMLElement;
@@ -54,7 +60,7 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
   const scrollToSection = (anchor: string) => {
     const element = document.querySelector(anchor);
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 100;
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth"
@@ -66,7 +72,7 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
     <>
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 bg-background/95 backdrop-blur-sm border-r border-border">
-        <div className="sticky top-24 p-6">
+        <div className="sticky p-6" style={{ top: 'calc(var(--header-height, 64px) + 12px)' }}>
           <div className="space-y-1">
             {navigation.map((item) => (
               <button
