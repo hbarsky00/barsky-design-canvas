@@ -42,7 +42,7 @@ const MobileCaseStudyNavigation: React.FC<MobileCaseStudyNavigationProps> = ({
   const progress = activeIndex >= 0 ? ((activeIndex + 1) / navigation.length) * 100 : 0;
 
   return (
-    <div className="lg:hidden fixed bottom-6 right-4 z-50">
+    <div className="lg:hidden fixed bottom-6 left-4 z-50 flex items-center gap-2">
       <Drawer open={isOpen} onOpenChange={setIsOpen}>
         <DrawerTrigger asChild>
           <motion.button
@@ -76,10 +76,19 @@ const MobileCaseStudyNavigation: React.FC<MobileCaseStudyNavigationProps> = ({
             <Menu className="h-5 w-5 relative z-10" />
           </motion.button>
         </DrawerTrigger>
+        <motion.button
+          onClick={() => setIsOpen(true)}
+          className="inline-flex items-center gap-2 bg-muted/60 text-muted-foreground rounded-full px-3 py-1.5 border border-border/40 backdrop-blur-sm"
+          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.05 }}
+          aria-label="Open sections"
+        >
+          <span className="text-sm font-medium">Sections</span>
+        </motion.button>
         
         <DrawerContent className="max-h-[70vh]">
           <DrawerHeader>
-            <DrawerTitle className="text-center">Navigation</DrawerTitle>
+            <DrawerTitle className="text-center">Sections</DrawerTitle>
           </DrawerHeader>
           
           <div className="px-4 pb-4">
