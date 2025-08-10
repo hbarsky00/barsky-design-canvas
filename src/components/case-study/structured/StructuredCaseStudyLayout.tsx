@@ -77,7 +77,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         <Header />
-        <div className="px-4 sm:px-6 max-w-7xl mx-auto" style={{ paddingTop: 'calc(var(--header-height, 64px) + 16px)' }}>
+        <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-4 md:pt-[calc(var(--header-height,64px)+16px)]">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="sticky z-10 mb-12" style={{ top: 'calc(var(--header-height, 64px) + 12px)' }}
+              className="sticky z-10 mb-12 top-3 md:top-[calc(var(--header-height,64px)+12px)]"
             >
               <Card className="p-4 bg-surface/95 backdrop-blur-sm border-outline/20">
                 <nav className="flex flex-wrap justify-center gap-3">

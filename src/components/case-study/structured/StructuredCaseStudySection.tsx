@@ -78,12 +78,11 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   return (
     <motion.section
       id={id}
-      style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`mb-16 ${className}`}
+      className={`mb-16 scroll-mt-4 md:[scroll-margin-top:calc(var(--header-height,64px)+16px)] ${className}`}
     >
       <Card className={`p-8 lg:p-12 ${styles.container} transition-all duration-300 hover:shadow-md`}>
         {/* Section Header */}
