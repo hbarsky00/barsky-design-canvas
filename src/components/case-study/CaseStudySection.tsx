@@ -15,7 +15,7 @@ interface CaseStudySectionProps {
 
 const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content }) => {
   return (
-    <SectionTransition as="section" id={id} className="mb-20 [scroll-margin-top:calc(var(--header-height,64px)+24px)]" variant="wipe">
+    <SectionTransition as="section" id={id} className="mb-20" variant="wipe">
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
         {title}
       </h2>
