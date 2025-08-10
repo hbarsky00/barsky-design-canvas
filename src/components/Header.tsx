@@ -37,14 +37,27 @@ const Header: React.FC = () => {
     window.addEventListener('resize', updateVar);
     return () => window.removeEventListener('resize', updateVar);
   }, [isScrolled]);
+
+  React.useEffect(() => {
+    if (isMobile && isMobileMenuOpen) {
+      const original = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = original;
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMobile, isMobileMenuOpen]);
   return (
     <>
       <header ref={headerRef} className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform pointer-events-none md:pointer-events-auto", 
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform",
+        isMobileMenuOpen ? "pointer-events-auto" : "pointer-events-none md:pointer-events-auto",
         isScrolled ? "py-2 sm:py-2.5" : "py-3 sm:py-4",
-        "-translate-y-full md:translate-y-0",
+        isMobileMenuOpen ? "translate-y-0" : "-translate-y-full md:translate-y-0",
         headerHidden ? "md:-translate-y-full" : "md:translate-y-0",
-        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-lg dark:bg-gray-900/95" : "bg-transparent"
+        (isScrolled || isMobileMenuOpen) ? "bg-white/95 backdrop-blur-sm shadow-lg dark:bg-gray-900/95" : "bg-transparent"
       )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={cn("flex justify-between items-center", isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-18")}>
