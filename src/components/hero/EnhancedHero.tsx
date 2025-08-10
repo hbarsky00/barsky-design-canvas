@@ -8,6 +8,7 @@ import HeroSkillsTags from "./HeroSkillsTags";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
 import HeroVisualElements from "./HeroVisualElements";
+import AnimatedLogo from "@/components/AnimatedLogo";
 const EnhancedHero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   
@@ -20,13 +21,15 @@ const EnhancedHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[35vh] flex items-center overflow-hidden pt-2 md:pt-0 pb-6">
+    <section className="relative min-h-[35vh] flex items-center overflow-hidden pb-6">
       <HeroBackground />
       <HeroVisualElements />
       
       <div className="relative w-full py-4 sm:py-6 lg:py-8 z-10">
         <div className="w-full text-center">
-          
+          <div className="md:hidden flex justify-center mb-3">
+            <AnimatedLogo />
+          </div>
           {/* Minimal Glass Container */}
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
