@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   const isMobile = useIsMobile();
 
   // Show logo when: not on homepage (immediate) OR on homepage after scrolling past hero
-  const shouldShowLogo = isMobile ? true : (!isHomePage || isScrolledPastHero);
+  const shouldShowLogo = true;
 
   const headerRef = React.useRef<HTMLElement | null>(null);
   React.useEffect(() => {
