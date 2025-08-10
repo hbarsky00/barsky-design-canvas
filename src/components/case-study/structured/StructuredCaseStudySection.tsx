@@ -82,7 +82,16 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   }} transition={{
     duration: 0.6
   }} className={`mb-16 scroll-mt-4 md:[scroll-margin-top:calc(var(--header-height,64px)+16px)] ${className}`}>
-      <Card className={`p-8 lg:p-12 ${styles.container} transition-all duration-300 hover:shadow-md`}>
+      <Card className={`relative overflow-hidden p-8 lg:p-12 ${styles.container} transition-all duration-300 hover:shadow-md`}>
+        {/* Sweep overlay for slick transition */}
+        <motion.div
+          aria-hidden
+          initial={{ x: "-100%", opacity: 0.12 }}
+          whileInView={{ x: "100%", opacity: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-tertiary/10"
+        />
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-8">
           

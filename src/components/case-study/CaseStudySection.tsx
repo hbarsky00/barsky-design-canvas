@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import SectionTransition from "@/components/transitions/SectionTransition";
 
 interface CaseStudySectionProps {
   id: string;
@@ -15,14 +15,7 @@ interface CaseStudySectionProps {
 
 const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content }) => {
   return (
-    <motion.section
-      id={id}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true, margin: "-100px" }}
-      className="mb-20"
-    >
+    <SectionTransition as="section" id={id} className="mb-20" variant="wipe">
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
         {title}
       </h2>
@@ -46,7 +39,7 @@ const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content 
           <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
         </div>
       </div>
-    </motion.section>
+    </SectionTransition>
   );
 };
 

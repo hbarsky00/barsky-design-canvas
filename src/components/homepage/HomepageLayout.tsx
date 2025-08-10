@@ -9,20 +9,35 @@ import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
+import SectionTransition from "@/components/transitions/SectionTransition";
 
 const HomepageLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
       <main className="flex-grow space-y-4 pt-[var(--header-height,64px)]">
-        <EnhancedHero />
-        <VideoCaseStudiesSection />
-        <ContactForm />
-        <BlogPreview />
-        <SeoFaqSection 
-          title="Frequently Asked Questions About AI-Enhanced UX Design"
-          faqs={homepageFaqs}
-        />
+        <SectionTransition variant="wipe">
+          <EnhancedHero />
+        </SectionTransition>
+        
+        <SectionTransition variant="wipe" delay={0.05}>
+          <VideoCaseStudiesSection />
+        </SectionTransition>
+        
+        <SectionTransition variant="wipe" delay={0.1}>
+          <ContactForm />
+        </SectionTransition>
+        
+        <SectionTransition variant="wipe" delay={0.15}>
+          <BlogPreview />
+        </SectionTransition>
+        
+        <SectionTransition variant="wipe" delay={0.2}>
+          <SeoFaqSection 
+            title="Frequently Asked Questions About AI-Enhanced UX Design"
+            faqs={homepageFaqs}
+          />
+        </SectionTransition>
       </main>
       <Footer />
       <FloatingConsultationBubble />
