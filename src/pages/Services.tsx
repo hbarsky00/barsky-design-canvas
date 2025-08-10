@@ -445,14 +445,6 @@ const Services = () => {
                     Get Your Free Audit
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                  <Link to="/projects">
-                    <Button 
-                      variant="outline" 
-                      className="py-4 px-8 text-lg focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 transition-all duration-200"
-                    >
-                      View All Case Studies
-                    </Button>
-                  </Link>
                 </div>
               </motion.div>
             </div>

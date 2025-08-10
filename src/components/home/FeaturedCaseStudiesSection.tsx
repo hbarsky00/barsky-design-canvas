@@ -136,22 +136,6 @@ const FeaturedCaseStudiesSection: React.FC = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-16"
-        >
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-8 py-4 rounded-full text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-          >
-            View All Case Studies
-            <ArrowRight className="w-6 h-6" />
-          </Link>
-        </motion.div>
       </div>
     </section>
   );
