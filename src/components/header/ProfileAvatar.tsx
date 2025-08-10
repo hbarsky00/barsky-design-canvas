@@ -2,7 +2,7 @@
 import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
-import { getOptimizedImageSrc, isMobileDevice } from "@/utils/imageOptimization";
+
 
 const ProfileAvatar: React.FC = () => {
   return (
@@ -18,10 +18,10 @@ const ProfileAvatar: React.FC = () => {
         />
         <AvatarFallback>HB</AvatarFallback>
       </Avatar>
-      <div className="hidden md:flex flex-col">
-        <span className="text-sm font-bold text-[hsl(var(--navy-primary))]">Hiram Barsky</span>
-        <span className="text-xs text-[hsl(var(--blue-accent))]">Product Design + AI</span>
-      </div>
+      <ul className="hidden md:flex flex-col font-sans list-none">
+        <li className="text-sm font-bold text-[hsl(var(--navy-primary))]">Hiram Barsky</li>
+        <li className="text-xs text-[hsl(var(--blue-accent))]">Product Design + AI</li>
+      </ul>
     </Link>
   );
 };
