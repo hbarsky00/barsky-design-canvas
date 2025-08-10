@@ -20,7 +20,7 @@ const EnhancedHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[35vh] flex items-center overflow-hidden pt-16 pb-6">
+    <section className="relative min-h-[35vh] flex items-center overflow-hidden pt-2 md:pt-0 pb-6">
       <HeroBackground />
       <HeroVisualElements />
       
