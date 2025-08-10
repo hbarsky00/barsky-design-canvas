@@ -111,7 +111,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools designed for high-stress family situations.",
     tags: ["FamilyTech", "iOS", "Android", "LegalUX", "ConflictReduction"],
-    gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
+    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     heroVideo: {
       src: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
       poster: "/placeholder.svg",
@@ -166,6 +166,143 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         tags: ["NeutralDesign", "FamilyLaw", "ConflictReduction", "UserSafety"]
       }
     ]
+  }
+,
+  "investor-loan-app": {
+    id: "investor-loan-app",
+    title: "Smarter Portfolio Decisions: Investor Loan App",
+    description: "Replaced spreadsheet chaos with a centralized portfolio tool, enabling faster ROI decisions and fewer manual errors.",
+    tags: ["FinTech", "Analytics", "WebApp"],
+    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    heroVideo: {
+      src: "investor-loan-demo.mp4",
+      poster: "/placeholder.svg",
+      alt: "Investor loan app dashboard walkthrough"
+    },
+    sections: [
+      {
+        id: "the-problem",
+        title: "🧩 The Problem",
+        icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
+        variant: "problem",
+        content: "Investors tracked multi-property portfolios in fragmented spreadsheets, creating version conflicts, slow analysis, and costly mistakes.",
+        media: {
+          type: 'image',
+          src: "/placeholder.svg",
+          alt: "Scattered spreadsheets and inconsistent portfolio data",
+          caption: "Fragmented spreadsheets made portfolio analysis error-prone."
+        }
+      },
+      {
+        id: "quantified-impact",
+        title: "📊 Quantified Impact",
+        icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
+        variant: "impact",
+        content: "A unified analytics layer accelerated decision-making and improved accuracy across KPI tracking.",
+        metrics: [
+          { value: "70%", label: "Faster ROI analysis", trend: "up" },
+          { value: "-80%", label: "Manual reconciliation time", trend: "down" },
+          { value: "+35%", label: "Deal evaluation throughput", trend: "up" },
+          { value: "98%", label: "Data consistency across assets", trend: "up" }
+        ]
+      },
+      {
+        id: "what-didnt-work",
+        title: "❌ What Didn't Work",
+        icon: React.createElement(X, { className: "h-6 w-6" }),
+        variant: "failed",
+        content: "Trying to retrofit spreadsheets with automations added complexity without fixing core data integrity issues.",
+        media: {
+          type: 'image',
+          src: "/placeholder.svg",
+          alt: "Overcomplicated spreadsheet automation",
+          caption: "Automating spreadsheets increased complexity without reliability."
+        }
+      },
+      {
+        id: "my-thought-process",
+        title: "🧠 My Thought Process",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content: "Built a source-of-truth model with standardized metrics and scenario tools for confident, faster decisions.",
+        tags: ["FinTechUX", "DecisionSupport", "DataModeling", "Automation"]
+      }
+    ],
+    seoData: {
+      image: "/placeholder.svg",
+      projectName: "Investor Loan App",
+      results: ["70% faster ROI analysis", "Data integrity at scale"],
+      technologies: ["React", "Data Visualization", "Automation"],
+      path: "/project/investor-loan-app"
+    }
+  },
+  "wholesale-distribution": {
+    id: "wholesale-distribution",
+    title: "95% Less Manual Work: Wholesale Distribution Transformation",
+    description: "Turned error-prone Excel operations into an AI-assisted workflow with near-perfect accuracy and speed.",
+    tags: ["Automation", "AI", "Operations", "WebApp"],
+    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    heroVideo: {
+      src: "wholesale-demo.mp4",
+      poster: "/placeholder.svg",
+      alt: "Wholesale operations dashboard walkthrough"
+    },
+    sections: [
+      {
+        id: "the-problem",
+        title: "🧩 The Problem",
+        icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
+        variant: "problem",
+        content: "Teams managed 200+ weekly orders in Excel, leading to 15% errors, slow reconciliation, and risk to key accounts.",
+        media: {
+          type: 'image',
+          src: "/placeholder.svg",
+          alt: "Manual order tracking in spreadsheets",
+          caption: "Excel-based operations caused avoidable errors and delays."
+        }
+      },
+      {
+        id: "quantified-impact",
+        title: "📊 Quantified Impact",
+        icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
+        variant: "impact",
+        content: "A custom system eliminated duplicate entry and surfaced real-time status for every order.",
+        metrics: [
+          { value: "95%", label: "Reduction in manual entry", trend: "down" },
+          { value: "500%", label: "Faster order processing", trend: "up" },
+          { value: "99.7%", label: "Order accuracy", trend: "up" },
+          { value: "+34%", label: "Revenue growth (6 months)", trend: "up" }
+        ]
+      },
+      {
+        id: "what-didnt-work",
+        title: "❌ What Didn't Work",
+        icon: React.createElement(X, { className: "h-6 w-6" }),
+        variant: "failed",
+        content: "Pretty dashboards on top of Excel didn’t fix duplicated data and reconciliation bottlenecks.",
+        media: {
+          type: 'image',
+          src: "/placeholder.svg",
+          alt: "Ineffective dashboard layered over spreadsheets",
+          caption: "Cosmetic UI changes failed to solve process flaws."
+        }
+      },
+      {
+        id: "my-thought-process",
+        title: "🧠 My Thought Process",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content: "Shadowed operations, rebuilt workflows as data pipelines, and automated repetitive work end-to-end.",
+        tags: ["ProcessDesign", "Automation", "DataPipelines", "AIEnablement"]
+      }
+    ],
+    seoData: {
+      image: "/placeholder.svg",
+      projectName: "Wholesale Distribution",
+      results: ["95% less manual work", "500% faster processing", "99.7% accuracy"],
+      technologies: ["React", "Automation", "AI"],
+      path: "/project/wholesale-distribution"
+    }
   }
 };
 

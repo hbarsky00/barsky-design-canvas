@@ -32,6 +32,9 @@ import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
 import InvestorLoanAppCaseStudy from "@/pages/InvestorLoanAppCaseStudy";
 import WholesaleDistributionCaseStudy from "@/pages/WholesaleDistributionCaseStudy";
 import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
+import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
+import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
+import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
 import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
 import MetaTagManager from "@/components/admin/MetaTagManager";
@@ -71,9 +74,9 @@ function App() {
                     {/* Standardized project routes using CaseStudyLayout */}
                     <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
                     <Route path="/project/herbalink-old" element={<HerbalinkCaseStudy />} />
-                    <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
-                    <Route path="/project/investor-loan-app" element={<InvestorLoanAppCaseStudy />} />
-                    <Route path="/project/wholesale-distribution" element={<WholesaleDistributionCaseStudy />} />
+                    <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
+                    <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
+                    <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
                     
                     {/* Legacy redirects - keep for backwards compatibility */}
                     <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<HerbalinkCaseStudy />} />
