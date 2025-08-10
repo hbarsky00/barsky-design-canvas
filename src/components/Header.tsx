@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
-import Navigation from "./header/Navigation";
+import ThemeToggle from "./ThemeToggle";
 import AnimatedLogo from "./AnimatedLogo";
 import { useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -15,7 +15,6 @@ const Header: React.FC = () => {
     isScrolled,
     isScrolledPastHero,
     navLinks,
-    activeSection,
     isMobileMenuOpen,
     handleLinkClick,
     toggleMobileMenu,
@@ -59,12 +58,7 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Navigation 
-              links={navLinks}
-              activeSection={activeSection}
-              handleLinkClick={handleLinkClick}
-              isLinkActive={isLinkActive}
-            />
+            <ThemeToggle />
             <MobileMenu 
               links={navLinks} 
               isMobileMenuOpen={isMobileMenuOpen} 
