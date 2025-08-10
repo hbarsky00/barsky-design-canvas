@@ -19,7 +19,7 @@ const ProfileAvatar: React.FC = () => {
         <AvatarFallback>HB</AvatarFallback>
       </Avatar>
       <ul className="flex flex-col font-sans list-none">
-        <li className="text-sm font-bold text-[hsl(var(--navy-primary))]">Hiram Barsky</li>
+        <li className="text-base font-bold text-[hsl(var(--navy-primary))]">Hiram Barsky</li>
         <li className="text-xs text-[hsl(var(--blue-accent))]">Product Design + AI</li>
       </ul>
     </Link>
