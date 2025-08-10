@@ -59,7 +59,7 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
   const renderContent = () => {
     if (contentType === 'header') {
       return (
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4 sm:mb-6">
           {editedContent.replace(/<[^>]*>/g, '')}
         </h2>
       );
@@ -68,7 +68,7 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
     if (contentType === 'paragraph') {
       return (
         <div 
-          className="text-xl text-gray-600 leading-relaxed prose prose-lg"
+          className="prose text-base sm:text-lg text-gray-600 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: editedContent }}
         />
       );
@@ -77,7 +77,7 @@ const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
     // section type
     return (
       <div 
-        className="prose prose-lg text-gray-600 leading-relaxed max-w-none"
+        className="prose text-gray-600 leading-relaxed max-w-none sm:prose-lg"
         dangerouslySetInnerHTML={{ __html: editedContent }}
       />
     );
