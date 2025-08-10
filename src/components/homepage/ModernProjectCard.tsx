@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Play, ArrowRight, Hash } from "lucide-react";
+import { ArrowRight, Hash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,8 +25,10 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   url,
   className = ""
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [videoSrcLoaded, setVideoSrcLoaded] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isDirectVideo = Boolean(video && /(\.(mp4|webm|ogg)(\?.*)?$)/i.test(video as string));
 
   return (
     <motion.div
@@ -35,53 +37,48 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className={className}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      onHoverStart={() => {
+        setIsHovered(true);
+        if (isDirectVideo) {
+          if (!videoSrcLoaded) setVideoSrcLoaded(video as string);
+          setTimeout(() => {
+            try { videoRef.current?.play(); } catch {}
+          }, 0);
+        }
+      }}
+      onHoverEnd={() => {
+        setIsHovered(false);
+        if (videoRef.current) {
+          videoRef.current.pause();
+          videoRef.current.currentTime = 0;
+        }
+      }}
     >
       <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group">
         {/* Video/Thumbnail Section */}
         <div className="relative aspect-video bg-surface-variant overflow-hidden">
-          {!isPlaying ? (
-            <>
-              <img
-                src={videoThumbnail}
-                alt={title}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              {/* Play Overlay */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isHovered ? 1 : 0.8 }}
-                className="absolute inset-0 bg-scrim/30 flex items-center justify-center"
-              >
-                <Button
-                  variant="filled"
-                  size="lg"
-                  className="bg-surface/90 text-on-surface hover:bg-surface shadow-xl"
-                  onClick={() => video && setIsPlaying(true)}
-                >
-                  <Play className="h-5 w-5 mr-2" />
-                  Preview
-                </Button>
-              </motion.div>
-            </>
-          ) : (
-            <div className="w-full h-full bg-surface-variant flex items-center justify-center">
-              {/* Placeholder for actual video player */}
-              <div className="text-center space-y-4">
-                <div className="text-on-surface-variant">
-                  <Play className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                  <p className="text-body-large">Video would play here</p>
-                  <p className="text-body-small opacity-70">Source: {video}</p>
-                </div>
-                <Button
-                  variant="outline"
-                  onClick={() => setIsPlaying(false)}
-                >
-                  Back to Thumbnail
-                </Button>
-              </div>
-            </div>
+          <img
+            src={videoThumbnail}
+            alt={title}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          {isDirectVideo && (
+            <video
+              ref={videoRef}
+              src={videoSrcLoaded ?? undefined}
+              poster={videoThumbnail}
+              muted
+              playsInline
+              loop
+              preload="none"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`}
+              onCanPlay={() => {
+                if (isHovered) {
+                  try { videoRef.current?.play(); } catch {}
+                }
+              }}
+            />
           )}
         </div>
 
