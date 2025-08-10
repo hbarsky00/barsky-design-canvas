@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
 import ThemeToggle from "./ThemeToggle";
-import AnimatedLogo from "./AnimatedLogo";
+import ProfileAvatar from "./header/ProfileAvatar";
 import { useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
           <div className="flex items-center justify-start min-w-0 flex-1">
             {shouldShowLogo && (
               <div className="transition-opacity duration-300">
-                <AnimatedLogo />
+                <ProfileAvatar />
               </div>
             )}
           </div>
