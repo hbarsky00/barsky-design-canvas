@@ -14,7 +14,7 @@ const HomepageLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
-      <main className="flex-grow space-y-4 pt-[var(--header-height,64px)]">
+      <main className="flex-grow space-y-4 md:pt-[var(--header-height,64px)]">
         <EnhancedHero />
         <VideoCaseStudiesSection />
         <ContactForm />
