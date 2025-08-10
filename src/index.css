@@ -66,6 +66,9 @@
 
     --radius: 0.75rem;
 
+    /* Header height variable for offsets */
+    --header-height: 64px;
+
     /* Sidebar Colors */
     --sidebar-background: 240 8% 95%;
     --sidebar-foreground: 249 18% 22%;

@@ -47,9 +47,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   }));
 
   const scrollToSection = (anchor: string) => {
-    const element = document.querySelector(anchor);
+    const element = document.querySelector(anchor) as HTMLElement | null;
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 100;
+      const rootStyles = getComputedStyle(document.documentElement);
+      const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - (headerHeight + 16);
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth"
@@ -75,9 +77,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         <Header />
-
-        {/* Back Navigation */}
-        <div className="pt-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="px-4 sm:px-6 max-w-7xl mx-auto" style={{ paddingTop: 'calc(var(--header-height, 64px) + 16px)' }}>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="sticky top-20 z-10 mb-12"
+              className="sticky z-10 mb-12" style={{ top: 'calc(var(--header-height, 64px) + 12px)' }}
             >
               <Card className="p-4 bg-surface/95 backdrop-blur-sm border-outline/20">
                 <nav className="flex flex-wrap justify-center gap-3">

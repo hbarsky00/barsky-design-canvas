@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const useHeaderNavigation = () => {
@@ -19,6 +19,19 @@ export const useHeaderNavigation = () => {
     { name: "Resume", href: "https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk" },
     { name: "Contact", href: "#contact" },
   ];
+
+  // Track scroll direction and header visibility
+  const lastYRef = useRef(0);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const isMenuOpenRef = useRef(isMobileMenuOpen);
+
+  useEffect(() => {
+    isMenuOpenRef.current = isMobileMenuOpen;
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) setHeaderHidden(false);
+  }, [isMobileMenuOpen]);
 
   // Check if we're on the homepage
   const isHomepage = location.pathname === '/';
@@ -100,6 +113,11 @@ export const useHeaderNavigation = () => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const heroHeight = window.innerHeight;
+      
+      // Auto-hide header when scrolling down past threshold
+      const goingDown = scrollPosition > lastYRef.current;
+      setHeaderHidden(scrollPosition > 120 && goingDown && !isMenuOpenRef.current);
+      lastYRef.current = scrollPosition;
       
       // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
@@ -197,6 +215,7 @@ export const useHeaderNavigation = () => {
     navLinks,
     handleLinkClick,
     toggleMobileMenu,
-    isLinkActive
+    isLinkActive,
+    headerHidden,
   };
 };

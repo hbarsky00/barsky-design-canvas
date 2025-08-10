@@ -78,6 +78,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   return (
     <motion.section
       id={id}
+      style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

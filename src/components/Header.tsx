@@ -17,20 +17,32 @@ const Header: React.FC = () => {
     isMobileMenuOpen,
     handleLinkClick,
     toggleMobileMenu,
-    isLinkActive
+    isLinkActive,
+    headerHidden,
   } = useHeaderNavigation();
 
   // Show logo when: not on homepage (immediate) OR on homepage after scrolling past hero
   const shouldShowLogo = !isHomePage || isScrolledPastHero;
 
+  const headerRef = React.useRef<HTMLElement | null>(null);
+  React.useEffect(() => {
+    const updateVar = () => {
+      const h = headerRef.current?.offsetHeight || 64;
+      document.documentElement.style.setProperty('--header-height', `${h}px`);
+    };
+    updateVar();
+    window.addEventListener('resize', updateVar);
+    return () => window.removeEventListener('resize', updateVar);
+  }, [isScrolled]);
   return (
-    <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300", 
-      "py-3 sm:py-4", 
-      isScrolled ? "bg-white/95 backdrop-blur-sm shadow-lg dark:bg-gray-900/95" : "bg-transparent"
-    )}>
+      <header ref={headerRef} className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform", 
+        isScrolled ? "py-2 sm:py-2.5" : "py-3 sm:py-4",
+        headerHidden ? "-translate-y-full" : "translate-y-0",
+        isScrolled ? "bg-white/95 backdrop-blur-sm shadow-lg dark:bg-gray-900/95" : "bg-transparent"
+      )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-18">
+        <div className={cn("flex justify-between items-center", isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-18")}>
           <div className="flex items-center justify-start min-w-0 flex-1">
             {shouldShowLogo && (
               <div className="transition-opacity duration-300">
