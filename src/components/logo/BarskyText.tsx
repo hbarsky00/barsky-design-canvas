@@ -10,7 +10,7 @@ interface BarskyTextProps {
 const BarskyText = ({ letterTransition, isDarkMode }: BarskyTextProps) => {
   return (
     <motion.div
-      className="text-2xl font-script text-barsky-blue"
+      className="text-2xl font-sans font-bold text-[hsl(var(--navy-primary))] dark:text-[hsl(var(--neutral-50))]"
       variants={{
         initial: { y: 0 },
         hover: { 
