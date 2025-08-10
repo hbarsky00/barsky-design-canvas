@@ -27,9 +27,6 @@ const EnhancedHero: React.FC = () => {
       
       <div className="relative w-full py-4 sm:py-6 lg:py-8 z-10">
         <div className="w-full text-center">
-          <div className="md:hidden flex justify-center mb-3">
-            <AnimatedLogo />
-          </div>
           {/* Minimal Glass Container */}
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}

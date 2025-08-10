@@ -2,10 +2,10 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
+import Navigation from "./header/Navigation";
 import AnimatedLogo from "./AnimatedLogo";
 import { useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Menu } from "lucide-react";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -38,17 +38,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('resize', updateVar);
   }, [isScrolled]);
 
-  React.useEffect(() => {
-    if (isMobile && isMobileMenuOpen) {
-      const original = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = original;
-      };
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [isMobile, isMobileMenuOpen]);
   return (
     <>
       <header ref={headerRef} className={cn(
@@ -69,7 +58,13 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center gap-3">
+            <Navigation 
+              links={navLinks}
+              activeSection={activeSection}
+              handleLinkClick={handleLinkClick}
+              isLinkActive={isLinkActive}
+            />
             <MobileMenu 
               links={navLinks} 
               isMobileMenuOpen={isMobileMenuOpen} 
