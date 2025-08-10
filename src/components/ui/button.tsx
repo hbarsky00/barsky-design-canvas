@@ -20,6 +20,8 @@ const buttonVariants = cva(
         "high-contrast": "bg-white text-black shadow-lg hover:bg-white/90 active:shadow-md rounded-full border border-white/20",
         "on-dark": "bg-white/10 text-white border border-white/30 shadow-sm hover:bg-white/20 active:bg-white/30 rounded-full backdrop-blur-sm [&_svg]:text-white",
         "on-image": "bg-black/80 text-white border border-white/20 shadow-lg hover:bg-black/90 active:bg-black/70 rounded-full backdrop-blur-sm [&_svg]:text-white",
+        // Brand standard dark button
+        brand: "bg-barsky-blue-dark text-white shadow-sm hover:bg-barsky-blue active:opacity-90 rounded-full [&_svg]:text-white",
         // Legacy variants for compatibility
         default: "bg-primary text-white shadow-sm hover:shadow-md hover:bg-primary/90 active:shadow-sm rounded-full",
         secondary: "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",

@@ -29,7 +29,7 @@ const SplittimeCallToAction: React.FC = () => {
           
           <Button 
             size="lg" 
-            variant="on-dark" 
+            variant="brand" 
             className="font-semibold px-10 py-6 text-lg group" 
             onClick={() => window.location.href = '/contact'}
           >

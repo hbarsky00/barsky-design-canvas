@@ -142,7 +142,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                       
                       {/* Bold rectangular CTA button */}
                       <div className="pt-2">
-                        <Button size="lg" className="font-bold px-8 py-3 text-base bg-emerald-600 hover:bg-emerald-700 text-white border-0 shadow-xl rounded-lg" onClick={() => window.open('http://herbalink.live', '_blank')}>
+                        <Button size="lg" variant="brand" className="font-bold" onClick={() => window.open('http://herbalink.live', '_blank')}>
                           See the App in Action
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
@@ -580,7 +580,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   Your wellness platform deserves the same thoughtful, human-centered approach.
                 </p>
                 
-                <Button size="lg" variant="on-dark" className="font-semibold px-10 py-6 text-lg group" onClick={() => window.location.href = '/contact'}>
+                <Button size="lg" variant="brand" className="font-semibold px-10 py-6 text-lg group" onClick={() => window.location.href = '/contact'}>
                   Start Your Wellness Project
                   <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>

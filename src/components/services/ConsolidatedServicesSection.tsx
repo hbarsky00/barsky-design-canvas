@@ -143,8 +143,9 @@ const ConsolidatedServicesSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
+                variant="brand"
                 asChild
-                className="!text-white [&_*]:!text-white [&_svg]:!text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Link to="/get-started" className="flex items-center justify-center">
                   <Sparkles className="mr-2 h-5 w-5" />

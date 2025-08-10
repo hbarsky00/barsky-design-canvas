@@ -54,7 +54,8 @@ const WholesaleHero: React.FC = () => {
                 <div className="pt-2">
                   <Button 
                     size="lg" 
-                    className="font-bold px-8 py-3 text-base bg-orange-600 hover:bg-orange-700 text-white border-0 shadow-xl rounded-lg"
+                    variant="brand"
+                    className="font-bold"
                   >
                     See the System in Action
                     <ArrowRight className="ml-2 h-4 w-4" />

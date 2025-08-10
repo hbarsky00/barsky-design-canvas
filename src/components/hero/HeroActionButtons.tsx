@@ -38,13 +38,13 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         whileTap={{ scale: 0.98 }}
       >
         <Button 
-          variant="default"
+          variant="brand"
           size="lg" 
           onClick={handleFreeConsultation}
-          className="w-full sm:w-auto relative overflow-hidden group [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+          className="w-full sm:w-auto relative overflow-hidden group font-semibold py-4 px-8 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
         >
           <Sparkles className="mr-2 h-5 w-5" />
-          <span className="text-white">Get Free UX+AI Consultation</span>
+          <span>Get Free UX+AI Consultation</span>
           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
       </motion.div>
