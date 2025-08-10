@@ -87,6 +87,7 @@ const Header: React.FC = () => {
         aria-label="Open menu"
         onClick={toggleMobileMenu}
         className="fixed bottom-4 right-4 z-[60] md:hidden rounded-full p-4 shadow-lg bg-primary text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+        style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
       >
         <Menu className="h-6 w-6" />
       </button>

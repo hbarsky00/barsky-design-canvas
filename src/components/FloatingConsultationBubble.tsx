@@ -54,7 +54,8 @@ const FloatingConsultationBubble: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToContact}
-          className="fixed bottom-6 right-6 z-50 btn-brand shadow-lg"
+          className="fixed z-50 btn-brand shadow-lg right-[5.25rem] sm:right-6"
+          style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
         >
           <MessageCircle className="h-5 w-5" />
           <span className="hidden sm:inline">Book Your Free UX Consultation</span>
