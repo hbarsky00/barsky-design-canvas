@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Hash } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Hash } from "lucide-react";
+
+
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
@@ -12,6 +12,7 @@ import CaseStudyContactSection from "../CaseStudyContactSection";
 import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
 import { EditableVideo } from "./EditableVideo";
 import CaseStudyNavigation from "../CaseStudyNavigation";
+import BackToProjectsFab from "../BackToProjectsFab";
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
@@ -78,24 +79,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         <Header />
-        <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-4 md:pt-[calc(var(--header-height,64px)+16px)]">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <Link to="/projects">
-              <Button variant="text" className="gap-2">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Projects
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
+        <BackToProjectsFab />
 
         <main className="flex-grow">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-[calc(var(--header-height,64px)+16px)]">
             <div className="lg:grid lg:grid-cols-[16rem,1fr] lg:gap-8">
               {/* Desktop sidebar + Mobile FAB navigation */}
               <CaseStudyNavigation navigation={navigationItems} />

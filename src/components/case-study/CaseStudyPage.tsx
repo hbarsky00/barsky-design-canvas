@@ -1,7 +1,7 @@
 import React from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+
 import { caseStudiesData } from "@/data/caseStudies";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +9,7 @@ import CaseStudyHero from "./CaseStudyHero";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
+import BackToProjectsFab from "./BackToProjectsFab";
 
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,27 +23,14 @@ const CaseStudyPage: React.FC = () => {
   return (
     <>
       <Header />
+      <BackToProjectsFab />
       
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="min-h-screen bg-background"
+        className="min-h-screen bg-background pt-[calc(var(--header-height,64px)+8px)]"
       >
-        {/* Back Navigation */}
-        <div className="pt-24 px-4 sm:px-6 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <Link to="/projects" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors font-medium">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
-            </Link>
-          </motion.div>
-        </div>
 
         <CaseStudyHero caseStudy={caseStudy} />
         

@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import VideoPlayer from "./VideoPlayer";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import { CaseStudyData } from "@/data/caseStudies";
 import { Helmet } from "react-helmet-async";
+import BackToProjectsFab from "./BackToProjectsFab";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -55,13 +56,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
         {/* Header with navigation */}
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-            <Link 
-              to="/projects"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span className="hidden sm:inline">Back to Projects</span>
-            </Link>
+            <div />
 
             {/* Mobile Navigation */}
             <Sheet>
@@ -84,6 +79,8 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
             </div>
           </div>
         </header>
+
+        <BackToProjectsFab />
 
         <div className="container mx-auto px-4 py-8">
           <div className="flex gap-8">

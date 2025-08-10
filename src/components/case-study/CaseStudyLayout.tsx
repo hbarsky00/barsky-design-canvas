@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudyContactSection from "./CaseStudyContactSection";
+import BackToProjectsFab from "./BackToProjectsFab";
 
 interface CaseStudySection {
   id: string;
@@ -63,23 +62,10 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
       
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         <Header />
+        <BackToProjectsFab />
         
-        {/* Back Navigation */}
-        <div className="pt-24 px-4 sm:px-6 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <Link to="/projects" className="inline-flex items-center text-primary hover:text-primary/80 transition-colors font-medium">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
-            </Link>
-          </motion.div>
-        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+8px)]">
           <div className="lg:flex lg:gap-8">
             {/* Navigation */}
             <CaseStudyNavigation navigation={navigationItems} />
