@@ -25,7 +25,7 @@ const Header: React.FC = () => {
   const isMobile = useIsMobile();
 
   // Show logo when: not on homepage (immediate) OR on homepage after scrolling past hero
-  const shouldShowLogo = !isHomePage || isScrolledPastHero;
+  const shouldShowLogo = isMobile ? true : (!isHomePage || isScrolledPastHero);
 
   const headerRef = React.useRef<HTMLElement | null>(null);
   React.useEffect(() => {
@@ -53,9 +53,9 @@ const Header: React.FC = () => {
     <>
       <header ref={headerRef} className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform",
-        isMobileMenuOpen ? "pointer-events-auto" : "pointer-events-none md:pointer-events-auto",
+        "pointer-events-auto",
         isScrolled ? "py-2 sm:py-2.5" : "py-3 sm:py-4",
-        isMobileMenuOpen ? "translate-y-0" : "-translate-y-full md:translate-y-0",
+        "translate-y-0",
         headerHidden ? "md:-translate-y-full" : "md:translate-y-0",
         (isScrolled || isMobileMenuOpen) ? "bg-white/95 backdrop-blur-sm shadow-lg dark:bg-gray-900/95" : "bg-transparent"
       )}>
@@ -82,16 +82,6 @@ const Header: React.FC = () => {
       </div>
     </header>
 
-    {isMobile && !isMobileMenuOpen && (
-      <button
-        aria-label="Open menu"
-        onClick={toggleMobileMenu}
-        className="fixed bottom-4 right-4 z-[60] md:hidden rounded-full p-4 shadow-lg bg-primary text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
-        style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
-      >
-        <Menu className="h-6 w-6" />
-      </button>
-    )}
     </>
   );
 };
