@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        filled: "bg-primary text-white shadow-sm hover:shadow-md hover:bg-primary/90 active:shadow-sm rounded-full",
+        filled: "!bg-barsky-blue-dark !text-white shadow-sm hover:bg-barsky-blue active:opacity-90 !rounded-full [&_svg]:!text-white",
         "filled-tonal": "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
         elevated: "bg-surface-container-low text-primary shadow-md hover:shadow-lg hover:bg-surface-container active:shadow-md rounded-full",
         outlined: "border border-outline bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
@@ -23,7 +23,7 @@ const buttonVariants = cva(
         // Brand standard dark button
         brand: "!bg-barsky-blue-dark !text-white shadow-sm hover:bg-barsky-blue active:opacity-90 !rounded-full [&_svg]:!text-white",
         // Legacy variants for compatibility
-        default: "bg-primary text-white shadow-sm hover:shadow-md hover:bg-primary/90 active:shadow-sm rounded-full",
+        default: "!bg-barsky-blue-dark !text-white shadow-sm hover:bg-barsky-blue active:opacity-90 !rounded-full [&_svg]:!text-white",
         secondary: "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
         ghost: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
         link: "text-primary underline-offset-4 hover:underline bg-transparent",
@@ -37,7 +37,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "filled",
+      variant: "brand",
       size: "default",
     },
   }

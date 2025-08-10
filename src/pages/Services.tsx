@@ -151,20 +151,22 @@ const Services = () => {
                 </p>
                 
                 <div className="flex justify-center items-center gap-4 mb-8">
-                  <Link 
-                    to="/project/herbalink"
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200"
-                  >
-                    View HerbaLink Case Study
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link 
-                    to="/project/splittime"
-                    className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 px-6 py-3 rounded-lg font-medium transition-all duration-200"
-                  >
-                    View SplitTime Case Study
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <Button asChild variant="brand" size="lg" className="font-medium">
+                    <Link 
+                      to="/project/herbalink"
+                    >
+                      View HerbaLink Case Study
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="font-medium">
+                    <Link 
+                      to="/project/splittime"
+                    >
+                      View SplitTime Case Study
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
                 </div>
 
                 {/* Results Banner */}
@@ -291,7 +293,7 @@ const Services = () => {
                     {/* CTA Button */}
                     <div className="mt-auto">
                       <Button 
-                        variant="default" 
+                        variant="brand" 
                         className="w-full group mb-3"
                         size="lg"
                         onClick={() => window.location.href = '/free-audit'}
@@ -435,7 +437,9 @@ const Services = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
-                    className="bg-blue-vibrant hover:bg-blue-accent focus:bg-blue-accent focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 text-white font-semibold py-4 px-8 text-lg group transition-all duration-200"
+                    variant="brand" 
+                    size="lg"
+                    className="font-semibold group transition-all duration-200"
                     onClick={() => window.location.href = '/free-audit'}
                   >
                     Get Your Free Audit

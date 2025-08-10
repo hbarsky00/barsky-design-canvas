@@ -50,7 +50,8 @@ const AboutPreview: React.FC = () => {
             <Button 
               onClick={scrollToAbout}
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold"
+              variant="brand"
+              className="font-semibold"
             >
               Learn More About My Process
               <ArrowRight className="ml-2 h-5 w-5" />

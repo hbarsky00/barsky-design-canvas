@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ModernProjectCard from "@/components/homepage/ModernProjectCard";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 
@@ -50,13 +51,12 @@ const VideoCaseStudiesSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <Link
-            to="/projects"
-            className="inline-flex items-center px-8 py-4 bg-primary text-on-primary font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
-          >
-            View All Case Studies
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+          <Button asChild variant="brand" size="lg" className="font-semibold">
+            <Link to="/projects">
+              View All Case Studies
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
         </motion.div>
       </div>
     </section>

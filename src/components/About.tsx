@@ -1,6 +1,7 @@
 
 import React from "react";
 import { CheckCircle, Target, Users, Lightbulb, Search, TrendingUp, Zap, Award, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const achievements = [
   "40%+ conversion rate improvements (verified across 47 client projects)",
@@ -60,18 +61,20 @@ const About: React.FC = () => {
               <p className="mb-4 white-text-nuclear">
                 Join 47+ successful projects that achieved 40%+ conversion improvements through AI-enhanced UX design.
               </p>
-              <button
+              <Button
                 onClick={() => {
                   const contactSection = document.getElementById('contact');
                   if (contactSection) {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2"
+                variant="brand"
+                size="lg"
+                className="font-semibold"
               >
                 Get Free Strategy Session
-                <ArrowRight className="h-4 w-4" />
-              </button>
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
             </div>
             
             <div className="mt-6 p-6 bg-gray-50 rounded-lg">

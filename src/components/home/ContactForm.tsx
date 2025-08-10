@@ -305,8 +305,8 @@ const ContactForm: React.FC = () => {
                     <Button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-3 px-8 transition-colors duration-300 disabled:opacity-50"
                       size="lg"
+                      variant="brand"
                     >
                       {isSubmitting ? (
                         <>
