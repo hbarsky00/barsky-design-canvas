@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Hash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+
 
 interface ModernProjectCardProps {
   title: string;
@@ -54,67 +54,69 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         }
       }}
     >
-      <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group">
-        {/* Video/Thumbnail Section */}
-        <div className="relative aspect-video bg-surface-variant overflow-hidden">
-          <img
-            src={videoThumbnail}
-            alt={title}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          {isDirectVideo && (
-            <video
-              ref={videoRef}
-              src={videoSrcLoaded ?? undefined}
-              poster={videoThumbnail}
-              muted
-              playsInline
-              loop
-              preload="none"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`}
-              onCanPlay={() => {
-                if (isHovered) {
-                  try { videoRef.current?.play(); } catch {}
-                }
-              }}
+      <Link
+        to={url}
+        aria-label={`${title} case study`}
+        className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
+      >
+        <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
+          {/* Video/Thumbnail Section */}
+          <div className="relative aspect-video bg-surface-variant overflow-hidden">
+            <img
+              src={videoThumbnail}
+              alt={title}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
-          )}
-        </div>
-
-        {/* Content Section */}
-        <div className="p-6 space-y-4">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="text-body-small gap-1">
-                <Hash className="h-3 w-3" />
-                {tag}
-              </Badge>
-            ))}
+            {isDirectVideo && (
+              <video
+                ref={videoRef}
+                src={videoSrcLoaded ?? undefined}
+                poster={videoThumbnail}
+                muted
+                playsInline
+                loop
+                preload="none"
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`}
+                onCanPlay={() => {
+                  if (isHovered) {
+                    try { videoRef.current?.play(); } catch {}
+                  }
+                }}
+              />
+            )}
           </div>
 
-          {/* Title */}
-          <h3 className="text-title-large font-bold text-on-surface leading-tight">
-            {title}
-          </h3>
+          {/* Content Section */}
+          <div className="p-6 space-y-4">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="text-body-small gap-1">
+                  <Hash className="h-3 w-3" />
+                  {tag}
+                </Badge>
+              ))}
+            </div>
 
-          {/* Description */}
-          <p className="text-body-medium text-on-surface-variant leading-relaxed">
-            {description}
-          </p>
+            {/* Title */}
+            <h3 className="text-title-large font-bold text-on-surface leading-tight">
+              {title}
+            </h3>
 
-          {/* CTA */}
-          <div className="pt-2">
-            <Link to={url}>
-              <Button variant="text" className="gap-2 text-primary hover:bg-primary-container/50">
-                View Case Study
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
+            {/* Description */}
+            <p className="text-body-medium text-on-surface-variant leading-relaxed">
+              {description}
+            </p>
+
+            {/* CTA visual (entire card is clickable) */}
+            <div className="pt-2 text-primary flex items-center gap-2">
+              <span className="font-medium">View Case Study</span>
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </Link>
     </motion.div>
   );
 };
