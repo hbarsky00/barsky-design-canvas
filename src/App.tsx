@@ -69,7 +69,7 @@ function App() {
                 <main id="main-content" role="main">
                   <Routes>
                     <Route path="/" element={<Index />} />
-                    <Route path="/projects" element={<AllProjects />} />
+                    <Route path="/projects" element={<Index />} />
                     
                     {/* Standardized project routes using CaseStudyLayout */}
                     <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
