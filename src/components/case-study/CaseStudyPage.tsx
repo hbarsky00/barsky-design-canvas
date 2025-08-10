@@ -30,7 +30,7 @@ const CaseStudyPage: React.FC = () => {
         className="min-h-screen bg-background"
       >
         {/* Back Navigation */}
-        <div className="pt-24 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="pt-[calc(var(--header-height,64px)+16px)] px-4 sm:px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

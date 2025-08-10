@@ -78,7 +78,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         <Header />
-        <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-4 md:pt-[calc(var(--header-height,64px)+16px)]">
+        <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-[calc(var(--header-height,64px)+16px)]">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

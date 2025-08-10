@@ -65,7 +65,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
         <Header />
         
         {/* Back Navigation */}
-        <div className="pt-24 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="pt-[calc(var(--header-height,64px)+16px)] px-4 sm:px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
               {/* Case Study Sections */}
               <div className="space-y-20 pb-20">
                 {sections.map((section) => (
-                  <section key={section.id} id={section.id} className="scroll-mt-24">
+                  <section key={section.id} id={section.id} className="[scroll-margin-top:calc(var(--header-height,64px)+24px)]">
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20">
                       <h2 className="text-4xl font-bold text-gray-900 mb-12">{section.title}</h2>
                       {section.content}
