@@ -580,7 +580,7 @@ const HerbalinkCaseStudy: React.FC = () => {
                   Your wellness platform deserves the same thoughtful, human-centered approach.
                 </p>
                 
-                <Button size="lg" variant="default" className="font-semibold px-10 py-6 text-lg group" onClick={() => window.location.href = '/contact'}>
+                <Button size="lg" variant="on-dark" className="font-semibold px-10 py-6 text-lg group" onClick={() => window.location.href = '/contact'}>
                   Start Your Wellness Project
                   <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
