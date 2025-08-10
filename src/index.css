@@ -1025,3 +1025,40 @@ a:focus:not(:focus-visible) {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== GLOBAL FLUID HEADING SCALE (H1–H6) ===== */
+@layer base {
+  /* Shared heading behaviors */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;              /* Better multi-line readability */
+    overflow-wrap: anywhere;         /* Prevent overflow in narrow layouts */
+    hyphens: auto;                   /* Allow hyphenation where supported */
+    margin-block: 0.6em 0.4em;       /* Responsive spacing relative to size */
+    scroll-margin-top: 6rem;         /* Prevent overlap with sticky nav (96px) */
+  }
+
+  /* Fluid sizes and line-heights */
+  h1 { font-size: clamp(28px, 4.5vw, 48px); line-height: 1.15; max-inline-size: 32ch; }
+  h2 { font-size: clamp(24px, 3.5vw, 40px); line-height: 1.15; max-inline-size: 34ch; }
+  h3 { font-size: clamp(20px, 2.8vw, 32px); line-height: 1.15; max-inline-size: 36ch; }
+  h4 { font-size: clamp(18px, 2.2vw, 28px); line-height: 1.2;  max-inline-size: 38ch; }
+  h5 { font-size: clamp(16px, 1.8vw, 22px); line-height: 1.2;  max-inline-size: 40ch; }
+  h6 { font-size: clamp(14px, 1.6vw, 18px); line-height: 1.2;  max-inline-size: 42ch; }
+}
+
+/* Optional: 2-line clamp utility for long headings on small screens */
+@media (max-width: 640px) {
+  .heading-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+@media (min-width: 641px) {
+  .heading-clamp-2 {
+    display: block;
+    -webkit-line-clamp: unset;
+  }
+}
+
