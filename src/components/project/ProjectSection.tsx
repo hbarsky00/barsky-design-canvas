@@ -30,9 +30,9 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       className="mb-12"
     >
       {title && (
-        <div className="flex items-center mb-4 space-x-2">
+        <div className="flex items-center justify-start lg:justify-center mb-4 space-x-2">
           {Icon && <Icon className="h-5 w-5 text-barsky-blue" />}
-          <h2 className="text-2xl font-bold">{title}</h2>
+          <h2 className="text-2xl font-bold text-left lg:text-center">{title}</h2>
         </div>
       )}
       

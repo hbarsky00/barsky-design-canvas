@@ -358,12 +358,12 @@
   }
   
   .section-title {
-    @apply text-4xl sm:text-5xl font-bold mb-12 relative inline-block text-[hsl(var(--navy-primary))];
+    @apply text-4xl sm:text-5xl font-bold mb-12 relative inline-block text-[hsl(var(--navy-primary))] text-left lg:text-center;
   }
   
   .section-title::after {
     content: '';
-    @apply absolute -bottom-3 left-0 w-1/4 h-1 bg-[hsl(var(--blue-vibrant))];
+    @apply absolute -bottom-3 left-0 w-1/4 h-1 bg-[hsl(var(--blue-vibrant))] lg:left-1/2 lg:-translate-x-1/2;
   }
   
   .text-reveal-container {

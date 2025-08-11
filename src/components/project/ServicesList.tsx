@@ -22,7 +22,7 @@ const ServicesList: React.FC = () => {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
-      <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Services Provided</h2>
+      <h2 className="text-2xl font-semibold text-barsky-dark mb-4 text-left lg:text-center">Services Provided</h2>
       <ul className="list-disc pl-5 space-y-2 text-barsky-text">
         {services.map((service, index) => (
           <motion.li 

@@ -15,7 +15,7 @@ const TechnologiesList: React.FC<TechnologiesListProps> = ({ technologies }) => 
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.1 }}
     >
-      <h2 className="text-2xl font-semibold text-barsky-dark mb-4">Technologies Used</h2>
+      <h2 className="text-2xl font-semibold text-barsky-dark mb-4 text-left lg:text-center">Technologies Used</h2>
       <div className="flex flex-wrap gap-2 mb-8">
         {technologies.map((tech, index) => (
           <motion.span 

@@ -117,7 +117,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                     className="mb-20"
                     style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
                   >
-                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
                       {title}
                     </h2>
                     
