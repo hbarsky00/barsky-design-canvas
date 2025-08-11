@@ -82,7 +82,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         <BackToProjectsFab />
 
         <main className="flex-grow">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-[calc(var(--header-height,64px)+16px)]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
             <div className="lg:grid lg:grid-cols-[16rem,1fr] lg:gap-8">
               {/* Desktop sidebar + Mobile FAB navigation */}
               <CaseStudyNavigation navigation={navigationItems} />
@@ -94,7 +94,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="mb-16"
+                  className="mt-2 mb-16"
                 >
                   <Card className="p-8 lg:p-12 bg-surface/80 backdrop-blur-sm border-outline/20">
                     {/* Title and Description */}
