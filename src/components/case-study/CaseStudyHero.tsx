@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
+import IdentityBadge from "@/components/shared/IdentityBadge";
 import VideoPlayer from "./VideoPlayer";
 import { CaseStudyData } from "@/data/caseStudies";
 
@@ -20,17 +20,15 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
           transition={{ duration: 0.4 }}
           className="text-center mb-8"
         >
-          <Link to="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
-            <img 
-              alt="Hiram Barsky" 
-              className="w-10 h-10 rounded-full object-cover border-2 border-border" 
-              src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
-            />
-            <div className="text-left">
-              <div className="text-sm font-medium text-foreground">Hiram Barsky</div>
-              <div className="text-xs text-muted-foreground">Product Designer & Gen AI Developer</div>
-            </div>
-          </Link>
+          <IdentityBadge
+            to="/"
+            imageSrc="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+            name="Hiram Barsky"
+            subtitle="Product Designer & Gen AI Developer"
+            size="md"
+            subtitleStyle="text"
+          />
+
         </motion.div>
 
         <motion.div
