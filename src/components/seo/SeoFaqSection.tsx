@@ -90,7 +90,6 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
             }
           `}
         </script>
-      </div>
     </section>
   );
 };
