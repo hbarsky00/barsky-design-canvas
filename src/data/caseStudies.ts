@@ -216,8 +216,8 @@ export const homepageCaseStudyPreviews = [
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     tags: ["Enterprise", "Analytics", "Dashboard"],
-    videoThumbnail: "bizmgmt-thumb.jpg",
-    video: "warehouse-demo.mp4",
+    videoThumbnail: "",
+    video: "https://share.shots.so/WIa01A8uV6pGHd9q.mp4",
     url: "/project/business-management"
   },
   {

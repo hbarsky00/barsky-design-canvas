@@ -62,28 +62,49 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
-            <img
-              src={videoThumbnail}
-              alt={title}
-              loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            {isDirectVideo && (
+            {videoThumbnail ? (
+              <>
+                <img
+                  src={videoThumbnail}
+                  alt={title}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                {isDirectVideo && (
+                  <video
+                    ref={videoRef}
+                    src={videoSrcLoaded ?? undefined}
+                    poster={videoThumbnail}
+                    muted
+                    playsInline
+                    loop
+                    preload="none"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    onCanPlay={() => {
+                      if (isHovered) {
+                        try { videoRef.current?.play(); } catch {}
+                      }
+                    }}
+                  />
+                )}
+              </>
+            ) : isDirectVideo ? (
               <video
                 ref={videoRef}
-                src={videoSrcLoaded ?? undefined}
-                poster={videoThumbnail}
+                src={video as string}
                 muted
                 playsInline
                 loop
-                preload="none"
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`}
+                preload="metadata"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 onCanPlay={() => {
                   if (isHovered) {
                     try { videoRef.current?.play(); } catch {}
                   }
                 }}
               />
+            ) : (
+              <div className="w-full h-full bg-surface-variant" />
             )}
           </div>
 
