@@ -10,19 +10,15 @@ import BackToProjectsFab from "./BackToProjectsFab";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
-
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
   projectId: string;
 }
-
-const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({ 
-  caseStudy, 
-  projectId 
+const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
+  caseStudy,
+  projectId
 }) => {
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>{caseStudy.title} - Case Study | Hiram Barsky</title>
         <meta name="description" content={caseStudy.description} />
@@ -45,31 +41,18 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
             <main className="flex-1 max-w-4xl">
               <section className="mb-16">
                 {/* Branding */}
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-center mb-8"
-                >
-                  <Link to="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                    <img 
-                      alt="Hiram Barsky" 
-                      className="w-10 h-10 rounded-full object-cover border-2 border-border" 
-                      src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
-                    />
-                    <div className="text-left">
-                      <div className="text-sm font-medium text-foreground">Hiram Barsky</div>
-                      <div className="text-xs text-muted-foreground">Product Designer & Gen AI Developer</div>
-                    </div>
-                  </Link>
-                </motion.div>
+                
 
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-center mb-12"
-                >
+                <motion.div initial={{
+                opacity: 0,
+                y: 30
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.6,
+                delay: 0.2
+              }} className="text-center mb-12">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                     {caseStudy.title}
                   </h1>
@@ -79,44 +62,44 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                   </p>
                   
                   <div className="flex flex-wrap justify-center gap-2 mb-8">
-                    {caseStudy.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="px-3 py-1">
+                    {caseStudy.tags.map(tag => <Badge key={tag} variant="secondary" className="px-3 py-1">
                         {tag}
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
                 </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="mb-16"
-                >
-                  <VideoPlayer 
-                    videoSrc={caseStudy.video}
-                    thumbnailSrc={caseStudy.videoThumbnail}
-                    title={caseStudy.title}
-                  />
+                <motion.div initial={{
+                opacity: 0,
+                scale: 0.95
+              }} animate={{
+                opacity: 1,
+                scale: 1
+              }} transition={{
+                duration: 0.6,
+                delay: 0.2
+              }} className="mb-16">
+                  <VideoPlayer videoSrc={caseStudy.video} thumbnailSrc={caseStudy.videoThumbnail} title={caseStudy.title} />
                 </motion.div>
               </section>
 
               {/* Case Study Sections */}
               {Object.entries(caseStudy.sections).map(([sectionId, section]) => {
-                const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
-                const title = navItem?.label || sectionId.replace('-', ' ');
-
-                return (
-                  <motion.section
-                    key={sectionId}
-                    id={sectionId}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="mb-20"
-                    style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
-                  >
+              const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
+              const title = navItem?.label || sectionId.replace('-', ' ');
+              return <motion.section key={sectionId} id={sectionId} initial={{
+                opacity: 0,
+                y: 30
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                duration: 0.6
+              }} viewport={{
+                once: true,
+                margin: "-100px"
+              }} className="mb-20" style={{
+                scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)'
+              }}>
                     <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
                       {title}
                     </h2>
@@ -140,9 +123,8 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                         <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
                       </div>
                     </div>
-                  </motion.section>
-                );
-              })}
+                  </motion.section>;
+            })}
 
               {/* Contact Section */}
               <CaseStudyContactSection />
@@ -153,8 +135,6 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
         </div>
         <Footer />
       </div>
-    </>
-  );
+    </>;
 };
-
 export default OriginalCaseStudyLayout;
