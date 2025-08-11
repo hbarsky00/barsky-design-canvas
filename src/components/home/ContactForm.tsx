@@ -85,15 +85,13 @@ const ContactForm: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 text-left">
             Get Your Free 30-Minute Conversion Audit
           </h2>
-          <p className="text-xl text-neutral-500 max-w-3xl mx-auto leading-relaxed mb-8">
-            Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX
-          </p>
+          
           
           {/* Social Proof */}
           <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
             <div className="flex items-center gap-1">
-              <span className="text-yellow-500">★★★★★</span>
-              <span>Join 47 five-star clients who've seen 40%+ conversion improvements</span>
+              
+              
             </div>
           </div>
         </motion.div>
@@ -114,17 +112,7 @@ const ContactForm: React.FC = () => {
           duration: 0.8,
           delay: 0.2
         }} className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6">
-                What You'll Get:
-              </h3>
-              <div className="space-y-4">
-                {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-success-green mt-1 flex-shrink-0" />
-                    <span className="text-neutral-500">{benefit}</span>
-                  </div>)}
-              </div>
-            </div>
+            
 
             {/* Contact Info */}
             <div className="glass-card p-6">
