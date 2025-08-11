@@ -216,16 +216,16 @@ export const homepageCaseStudyPreviews = [
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     tags: ["Enterprise", "Analytics", "Dashboard"],
-    videoThumbnail: "",
-    video: "https://share.shots.so/WIa01A8uV6pGHd9q.mp4",
+    videoThumbnail: "bizmgmt-thumb.jpg",
+    video: "",
     url: "/project/business-management"
   },
   {
     title: "23% More Engagement: Making Investing Accessible to Beginners",
     description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
     tags: ["Finance", "Analytics", "Tutorial"],
-    videoThumbnail: "investapp-thumb.jpg",
-    video: "investapp-demo.mp4",
+    videoThumbnail: "",
+    video: "https://share.shots.so/WIa01A8uV6pGHd9q.mp4",
     url: "/project/investment-app"
   }
 ];
