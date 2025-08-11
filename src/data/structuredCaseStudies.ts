@@ -13,6 +13,7 @@ export interface StructuredCaseStudyData {
     alt: string;
   };
   sections: StructuredCaseStudySectionProps[];
+  projectLink?: string;
   gradientClasses?: string;
   seoData?: {
     image: string;
@@ -30,6 +31,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x through AI-powered matching and streamlined UX.",
     tags: ["GenAI", "HealthTech", "iOS", "Android", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    projectLink: "https://example.com",
     heroVideo: {
       src: "herbalink-demo.mp4",
       poster: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",

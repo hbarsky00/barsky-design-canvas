@@ -13,6 +13,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => {
       tags={caseStudyData.tags}
       heroVideo={caseStudyData.heroVideo}
       sections={caseStudyData.sections}
+      projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
       seoData={caseStudyData.seoData}
     />

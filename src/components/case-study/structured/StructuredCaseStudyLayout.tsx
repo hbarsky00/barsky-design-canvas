@@ -12,7 +12,7 @@ import CaseStudyContactSection from "../CaseStudyContactSection";
 import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
 import { EditableVideo } from "./EditableVideo";
 import CaseStudyNavigation from "../CaseStudyNavigation";
-
+import ProjectLinks from "@/components/project/ProjectLinks";
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
@@ -24,6 +24,7 @@ interface StructuredCaseStudyLayoutProps {
     alt: string;
   };
   sections: StructuredCaseStudySectionProps[];
+  projectLink?: string;
   gradientClasses?: string;
   seoData?: {
     image: string;
@@ -40,6 +41,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   tags,
   heroVideo,
   sections,
+  projectLink,
   gradientClasses = "from-primary-container/20 to-secondary-container/20",
   seoData
 }) => {
@@ -116,6 +118,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         </Badge>
                       ))}
                     </div>
+
+                    {/* Visit Live Site */}
+                    {projectLink && (
+                      <div className="flex justify-center">
+                        <ProjectLinks projectLink={projectLink} label="Visit Live Site" variant="outlined" />
+                      </div>
+                    )}
 
                     {/* Hero Video */}
                     {heroVideo && (
