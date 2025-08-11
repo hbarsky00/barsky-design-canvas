@@ -1,8 +1,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+
+import { ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
@@ -64,16 +64,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
       
       {/* Mobile Layout */}
       <div className="lg:hidden">
-        {/* Back Button */}
-        <div className="px-4 sm:px-6 pt-20 pb-4">
-          <Link 
-            to="/projects" 
-            className="glass-button inline-flex items-center text-gray-600 hover:text-gray-900 transition-all duration-300 px-4 py-2 backdrop-blur-sm"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Projects
-          </Link>
-        </div>
 
         {/* Image First on Mobile */}
         <div className="px-4 sm:px-6 pb-8">

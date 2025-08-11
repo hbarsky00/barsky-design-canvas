@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
 import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
 
@@ -30,17 +30,6 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16">
       <div className="w-full px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 lg:mb-8"
-        >
-          <Link to="/projects" className="flex items-center text-barsky-text hover:text-barsky-blue transition-colors">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Projects
-          </Link>
-        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
           <motion.div

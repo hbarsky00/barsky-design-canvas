@@ -9,7 +9,7 @@ import CaseStudyHero from "./CaseStudyHero";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
-import BackToProjectsFab from "./BackToProjectsFab";
+
 
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +23,7 @@ const CaseStudyPage: React.FC = () => {
   return (
     <>
       <Header />
-      <BackToProjectsFab />
+      
       
       <motion.div
         initial={{ opacity: 0 }}

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudyContactSection from "./CaseStudyContactSection";
-import BackToProjectsFab from "./BackToProjectsFab";
+
 
 interface CaseStudySection {
   id: string;
@@ -62,7 +62,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
       
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         <Header />
-        <BackToProjectsFab />
+        
         
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]">

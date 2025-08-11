@@ -6,7 +6,7 @@ import VideoPlayer from "./VideoPlayer";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import { CaseStudyData } from "@/data/caseStudies";
 import { Helmet } from "react-helmet-async";
-import BackToProjectsFab from "./BackToProjectsFab";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
@@ -36,7 +36,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
       <div className="min-h-screen bg-background">
         <Header />
 
-        <BackToProjectsFab />
+        
 
         <div className="container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8">
           <div className="flex gap-8">

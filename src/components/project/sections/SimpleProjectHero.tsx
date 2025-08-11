@@ -1,8 +1,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+
+import { ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
@@ -30,20 +30,6 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
       <div className="relative w-full px-4 sm:px-6 z-10">
         {/* Header with proper spacing from logo */}
         <div className="max-w-7xl mx-auto pt-24 pb-8 lg:pt-28 lg:pb-16">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-10 lg:mb-16"
-          >
-            <Link 
-              to="/projects" 
-              className="glass-button inline-flex items-center text-gray-600 hover:text-gray-900 transition-all duration-300 px-4 py-2 rounded-lg backdrop-blur-sm"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
-            </Link>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}

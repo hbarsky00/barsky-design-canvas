@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine } from "lucide-react";
+import { ArrowRight, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -86,23 +86,6 @@ const HerbalinkCaseStudy: React.FC = () => {
       <div className="wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         <Header />
         
-        {/* Back Navigation */}
-        <div className="pt-20 px-4 sm:px-6 max-w-7xl mx-auto">
-          <motion.div initial={{
-          opacity: 0,
-          y: -20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }} className="mb-8">
-            <Link to="/projects" className="inline-flex items-center text-emerald-700 hover:text-emerald-900 transition-colors font-medium">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
-            </Link>
-          </motion.div>
-        </div>
         
         <main className="flex-grow">
           

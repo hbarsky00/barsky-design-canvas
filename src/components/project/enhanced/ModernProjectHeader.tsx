@@ -1,8 +1,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+
+import { ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
@@ -36,20 +36,6 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
       <div className="relative w-full px-4 sm:px-6 z-10">
         {/* Header with conditional spacing - more padding on desktop, less on mobile */}
         <div className="max-w-7xl mx-auto pt-8 lg:pt-24 pb-8 lg:pb-16">{/* Reduced mobile top padding since image comes first */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-10 lg:mb-16"
-          >
-            <Link 
-              to="/projects" 
-              className="glass-button inline-flex items-center text-gray-600 hover:text-gray-900 transition-all duration-300 px-4 py-2 backdrop-blur-sm"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Projects
-            </Link>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}

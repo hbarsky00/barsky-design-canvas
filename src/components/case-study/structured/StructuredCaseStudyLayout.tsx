@@ -12,7 +12,7 @@ import CaseStudyContactSection from "../CaseStudyContactSection";
 import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
 import { EditableVideo } from "./EditableVideo";
 import CaseStudyNavigation from "../CaseStudyNavigation";
-import BackToProjectsFab from "../BackToProjectsFab";
+
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
@@ -79,7 +79,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         <Header />
-        <BackToProjectsFab />
+        
 
         <main className="flex-grow">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">

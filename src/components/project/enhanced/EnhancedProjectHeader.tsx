@@ -1,8 +1,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+
+import { ExternalLink } from "lucide-react";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
 import { Badge } from "@/components/ui/badge";
@@ -35,20 +35,6 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
       
       <div className="relative max-w-6xl mx-auto px-4 pt-20 pb-8 lg:pt-24 lg:pb-16">
         {/* Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <Link 
-            to="/projects" 
-            className="inline-flex items-center text-gray-300 hover:text-white transition-colors [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Projects
-          </Link>
-        </motion.div>
 
         {/* Main Header Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
