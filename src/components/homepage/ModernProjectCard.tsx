@@ -90,7 +90,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
           {/* Content Section */}
           <div className="p-6 space-y-4">
             {/* Tags */}
-            <div className="flex flex-wrap gap-2">
+            <div className="hidden sm:flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="text-body-small gap-1">
                   <Hash className="h-3 w-3" />

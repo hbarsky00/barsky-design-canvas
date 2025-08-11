@@ -51,10 +51,11 @@ const FloatingConsultationBubble: React.FC = () => {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
+          transition={{ delay: 1, type: "spring", stiffness: 260, damping: 20 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToContact}
-          className="fixed z-50 btn-brand shadow-lg right-[5.25rem] sm:right-6"
+          className="hidden sm:flex fixed z-50 btn-brand shadow-lg right-[5.25rem] sm:right-6"
           style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
         >
           <MessageCircle className="h-5 w-5" />

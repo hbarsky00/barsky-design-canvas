@@ -45,12 +45,12 @@ const HeroVisualElements: React.FC = () => {
       ))}
 
       {/* Animated Grid Pattern */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-30 hidden sm:block">
         <div className="absolute inset-0 bg-grid-gray-900/[0.02] bg-[size:60px_60px] animate-pulse" />
       </div>
 
       {/* Dynamic Light Rays */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden hidden sm:block">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -79,7 +79,7 @@ const HeroVisualElements: React.FC = () => {
             delay: i * 0.7,
             ease: "easeInOut"
           }}
-          className="absolute w-1 h-1 bg-blue-400 rounded-full"
+          className="absolute w-1 h-1 bg-blue-400 rounded-full hidden sm:block"
           style={{
             left: `${20 + i * 10}%`,
             top: `${10 + i * 8}%`,

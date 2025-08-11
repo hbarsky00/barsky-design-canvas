@@ -15,17 +15,22 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 1.4, duration: 0.5 }}
-        className="text-lg mb-8 text-gray-700 font-medium sm:text-xl max-w-4xl mx-auto leading-relaxed"
+        className="text-lg mb-4 sm:mb-8 text-gray-700 font-medium sm:text-xl max-w-4xl mx-auto leading-relaxed"
       >
         I help businesses launch smarter digital products — not just pretty UIs, but meaningful impact.
       </motion.p>
       
-      {/* Trust Indicators & Certifications */}
+      {/* Compact mobile trust line */}
+      <p className="sm:hidden text-sm text-gray-600 mb-6">
+        Google UX Certified · WCAG 2.1 · AI Integration
+      </p>
+      
+      {/* Trust Indicators & Certifications (desktop/tablet) */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 1.6, duration: 0.5 }}
-        className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm text-gray-600 mb-8"
+        className="hidden sm:flex items-center justify-center gap-3 sm:gap-6 text-sm text-gray-600 mb-8"
       >
         <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-lg">
           <span className="text-green-600 font-bold">✓</span>

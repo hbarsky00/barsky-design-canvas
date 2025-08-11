@@ -4,7 +4,7 @@ import ModernProjectCard from "@/components/homepage/ModernProjectCard";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 import SectionHeader from "@/components/shared/SectionHeader";
 const VideoCaseStudiesSection: React.FC = () => {
-  return <section id="projects" className="py-16 bg-gradient-to-br from-primary-container/10 to-secondary-container/10">
+  return <section id="projects" className="py-12 sm:py-16 bg-transparent sm:bg-gradient-to-br sm:from-primary-container/10 sm:to-secondary-container/10">
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div

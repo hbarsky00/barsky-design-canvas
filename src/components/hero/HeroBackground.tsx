@@ -18,7 +18,7 @@ const HeroBackground: React.FC = () => {
           ]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0"
+        className="absolute inset-0 hidden sm:block"
       />
       
       {/* Enhanced Floating Glass Elements */}
@@ -29,7 +29,7 @@ const HeroBackground: React.FC = () => {
           x: [0, 20, 0]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 right-20 w-80 h-80 glass-accent rounded-full blur-3xl opacity-40" 
+        className="absolute top-20 right-20 w-80 h-80 glass-accent rounded-full blur-3xl opacity-40 hidden sm:block" 
       />
       
       <motion.div 
@@ -39,7 +39,7 @@ const HeroBackground: React.FC = () => {
           x: [0, -30, 0]
         }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl opacity-50" 
+        className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl opacity-50 hidden sm:block" 
       />
       
       <motion.div 
@@ -48,11 +48,11 @@ const HeroBackground: React.FC = () => {
           y: [0, -40, 0]
         }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-        className="absolute top-1/2 left-1/4 w-40 h-40 bg-blue-400/10 rounded-full blur-2xl" 
+        className="absolute top-1/2 left-1/4 w-40 h-40 bg-blue-400/10 rounded-full blur-2xl hidden sm:block" 
       />
 
       {/* Animated Dots Pattern */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 hidden sm:block">
         {Array.from({ length: 50 }).map((_, i) => (
           <motion.div
             key={i}
