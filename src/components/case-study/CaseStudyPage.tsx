@@ -29,7 +29,7 @@ const CaseStudyPage: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="min-h-screen bg-background pt-[calc(var(--header-height,64px)+8px)]"
+        className="min-h-screen bg-background pt-[calc(var(--header-height,64px)+12px)]"
       >
 
         <CaseStudyHero caseStudy={caseStudy} />

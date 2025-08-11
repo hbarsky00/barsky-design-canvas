@@ -65,7 +65,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
         <BackToProjectsFab />
         
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+8px)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]">
           <div className="lg:flex lg:gap-8">
             {/* Navigation */}
             <CaseStudyNavigation navigation={navigationItems} />
