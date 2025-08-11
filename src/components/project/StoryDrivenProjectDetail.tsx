@@ -1,7 +1,7 @@
 import React from "react";
-import WholesaleDistributionCaseStudy from "@/pages/WholesaleDistributionCaseStudy";
+import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
 
 const StoryDrivenProjectDetail: React.FC = () => {
-  return <WholesaleDistributionCaseStudy />;
+  return <StructuredWholesaleDistributionCaseStudy />;
 };
 export default StoryDrivenProjectDetail;

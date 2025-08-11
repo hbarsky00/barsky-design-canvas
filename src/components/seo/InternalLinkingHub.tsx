@@ -49,7 +49,7 @@ const InternalLinkingHub: React.FC = () => {
         },
         {
           text: "InvestorConnect - FinTech Platform",
-          url: "/case-studies/investor-loan-portfolio-management", 
+          url: "/project/investor-loan-app", 
           description: "Professional trading platform for investors"
         },
         {
@@ -66,12 +66,12 @@ const InternalLinkingHub: React.FC = () => {
       links: [
         {
           text: "SplitTime - Co-parenting App",
-          url: "/case-studies/splittime-coparenting-app-design",
+          url: "/project/splittime",
           description: "Family coordination platform design"
         },
         {
           text: "HerbaLink - Telemedicine Platform", 
-          url: "/case-studies/herbalink-mobile-herbalist-ux-design",
+          url: "/project/herbalink",
           description: "Digital healthcare consultation app"
         },
         {

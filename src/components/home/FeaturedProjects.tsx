@@ -59,7 +59,7 @@ const FeaturedProjects: React.FC = () => {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <div className="flex space-x-3">
-                      <Link to={`/case-studies/${project.id}`} className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors">
+                      <Link to={`/project/${project.id}`} className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg font-medium transition-colors">
                         View Case Study
                       </Link>
                       {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center">
@@ -98,7 +98,7 @@ const FeaturedProjects: React.FC = () => {
                       <span>•</span>
                       <span>Product Design</span>
                     </div>
-                    <Link to={`/case-studies/${project.id}`} className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center group">
+                    <Link to={`/project/${project.id}`} className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center group">
                       View Case Study
                       <ArrowRight className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-1" />
                     </Link>
