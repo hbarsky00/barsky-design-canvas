@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogData";
+import SectionHeader from "@/components/shared/SectionHeader";
 interface BlogPreviewProps {
   maxPosts?: number;
   showTitle?: boolean;
@@ -14,14 +15,15 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
   const recentPosts = blogPosts.slice(0, maxPosts);
   return <section className="pt-0 pb-12 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
       <div className="section-container">
-        {showTitle && <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 sm:text-3xl text-center">
-              Latest Insights
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Expert perspectives on AI-enhanced design, accessibility, and conversion optimization
-            </p>
-          </div>}
+        {showTitle && (
+          <div className="mb-12">
+            <SectionHeader
+              as="h2"
+              title="Latest Insights"
+              subtitle="Expert perspectives on AI-enhanced design, accessibility, and conversion optimization"
+            />
+          </div>
+        )}
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {recentPosts.map(post => <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">

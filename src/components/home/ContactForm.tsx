@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SectionHeader from "@/components/shared/SectionHeader";
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -71,23 +72,24 @@ const ContactForm: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 30
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} transition={{
-        duration: 0.8
-      }} className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 text-left md:text-center">
-            Get Your Free 30-Minute Conversion Audit
-          </h2>
-          <p className="text-xl text-neutral-500 max-w-3xl mx-auto leading-relaxed mb-8">
-            Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX
-          </p>
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 30
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0
+          }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
+        >
+          <SectionHeader
+            as="h2"
+            title="Get Your Free 30-Minute Conversion Audit"
+            subtitle="Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX"
+          />
           
           {/* Social Proof */}
           <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
