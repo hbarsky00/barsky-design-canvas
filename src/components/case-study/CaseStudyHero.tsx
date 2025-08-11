@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import IdentityBadge from "@/components/shared/IdentityBadge";
 import VideoPlayer from "./VideoPlayer";
 import { CaseStudyData } from "@/data/caseStudies";
+import ProjectLinks from "@/components/project/ProjectLinks";
 
 interface CaseStudyHeroProps {
   caseStudy: CaseStudyData;
@@ -52,6 +53,12 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
               </Badge>
             ))}
           </div>
+
+          {caseStudy.projectLink && (
+            <div className="flex justify-center">
+              <ProjectLinks projectLink={caseStudy.projectLink} />
+            </div>
+          )}
         </motion.div>
 
         <motion.div

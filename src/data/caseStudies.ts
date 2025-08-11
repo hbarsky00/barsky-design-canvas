@@ -3,6 +3,7 @@ export interface CaseStudyData {
   video: string;
   videoThumbnail: string;
   tags: string[];
+  projectLink?: string;
   description: string;
   stickyNav: Array<{ label: string; anchor: string }>;
   sections: {
@@ -23,6 +24,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     videoThumbnail: "herbalink-thumb.jpg",
     tags: ["Health", "Marketplace", "Gen AI"],
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
+    projectLink: "https://herbalink.live",
     stickyNav: [
       { label: "The Problem", anchor: "#the-problem" },
       { label: "Quantified Impact", anchor: "#quantified-impact" },
@@ -66,6 +68,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     videoThumbnail: "splittime-thumb.jpg",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
+    projectLink: "https://splittime.pro",
     stickyNav: [
       { label: "The Problem", anchor: "#the-problem" },
       { label: "Quantified Impact", anchor: "#quantified-impact" },
@@ -109,6 +112,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     videoThumbnail: "bizmgmt-thumb.jpg",
     tags: ["Enterprise", "Analytics", "Dashboard"],
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
+    projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     stickyNav: [
       { label: "The Problem", anchor: "#the-problem" },
       { label: "Quantified Impact", anchor: "#quantified-impact" },

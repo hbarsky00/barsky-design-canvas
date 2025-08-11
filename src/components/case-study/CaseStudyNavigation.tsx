@@ -22,39 +22,45 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navigation.map(nav => 
-        document.getElementById(nav.anchor.substring(1))
-      );
+      const headerOffset = getHeaderOffset();
+      const anchorY = headerOffset + 8;
+      const sections = navigation
+        .map(nav => document.getElementById(nav.anchor.substring(1)))
+        .filter(Boolean) as HTMLElement[];
 
-      const scrollPosition = window.scrollY + getHeaderOffset() + 8;
+      let newActive = navigation[0]?.anchor || "";
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i] as HTMLElement;
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navigation[i].anchor);
-          break;
-        }
+      // Choose the last section whose top is above the anchor line
+      const candidates = sections
+        .map((el, idx) => ({ el, idx, rect: el.getBoundingClientRect() }))
+        .filter(item => item.rect.top - anchorY <= 0);
+
+      if (candidates.length > 0) {
+        const last = candidates[candidates.length - 1];
+        newActive = navigation[last.idx].anchor;
+      } else if (sections.length > 0) {
+        // If we're above the first section, default to the first
+        newActive = navigation[0].anchor;
+      }
+
+      setActiveSection(prev => (prev === newActive ? prev : newActive));
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    const throttledHandleScroll = () => {
-      let ticking = false;
-      return () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            handleScroll();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      };
-    };
-
-    const throttledScroll = throttledHandleScroll();
-    window.addEventListener("scroll", throttledScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     handleScroll(); // Set initial state
 
-    return () => window.removeEventListener("scroll", throttledScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [navigation]);
 
   const scrollToSection = (anchor: string) => {

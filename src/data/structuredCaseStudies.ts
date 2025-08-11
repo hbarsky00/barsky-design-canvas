@@ -31,7 +31,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x through AI-powered matching and streamlined UX.",
     tags: ["GenAI", "HealthTech", "iOS", "Android", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
-    projectLink: "https://example.com",
+    projectLink: "https://herbalink.live",
     heroVideo: {
       src: "herbalink-demo.mp4",
       poster: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
@@ -114,6 +114,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools designed for high-stress family situations.",
     tags: ["FamilyTech", "iOS", "Android", "LegalUX", "ConflictReduction"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    projectLink: "https://splittime.pro",
     heroVideo: {
       src: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
       poster: "/placeholder.svg",
@@ -244,6 +245,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: "Turned error-prone Excel operations into an AI-assisted workflow with near-perfect accuracy and speed.",
     tags: ["Automation", "AI", "Operations", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
       src: "wholesale-demo.mp4",
       poster: "/placeholder.svg",
