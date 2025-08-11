@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-
+import SectionHeader from "@/components/shared/SectionHeader";
 interface FaqItem {
   question: string;
   answer: string;
@@ -21,20 +21,21 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
 }) => {
   return (
     <section className={`py-16 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 ${className}`}>
-      <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
-          <p className="text-lg text-gray-600">
-            Common questions about Product Design Services and Frontend Gen AI Development
-          </p>
+          <SectionHeader
+            as="h2"
+            title={title}
+            subtitle="Common questions about AI-Enhanced UX Design and Frontend Gen AI Development"
+            titleClassName="w-full max-w-none"
+          />
         </motion.div>
 
-        <div className="space-y-6">
+        <div className="max-w-4xl mx-auto px-6">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}

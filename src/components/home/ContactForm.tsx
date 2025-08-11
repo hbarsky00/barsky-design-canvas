@@ -82,7 +82,7 @@ const ContactForm: React.FC = () => {
       }} transition={{
         duration: 0.8
       }} className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 text-left">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 text-left md:text-center">
             Get Your Free 30-Minute Conversion Audit
           </h2>
           <p className="text-xl text-neutral-500 max-w-3xl mx-auto leading-relaxed mb-8">
