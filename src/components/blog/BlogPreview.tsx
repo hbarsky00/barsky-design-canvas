@@ -1,47 +1,32 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogData";
-
 interface BlogPreviewProps {
   maxPosts?: number;
   showTitle?: boolean;
 }
-
-const BlogPreview: React.FC<BlogPreviewProps> = ({ 
-  maxPosts = 3, 
-  showTitle = true 
+const BlogPreview: React.FC<BlogPreviewProps> = ({
+  maxPosts = 3,
+  showTitle = true
 }) => {
   const recentPosts = blogPosts.slice(0, maxPosts);
-
-  return (
-    <section className="pt-0 pb-12 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
+  return <section className="pt-0 pb-12 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
       <div className="section-container">
-        {showTitle && (
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        {showTitle && <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 sm:text-3xl text-center">
               Latest Insights
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Expert perspectives on AI-enhanced design, accessibility, and conversion optimization
             </p>
-          </div>
-        )}
+          </div>}
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {recentPosts.map((post) => (
-            <article 
-              key={post.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-            >
+          {recentPosts.map(post => <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <Link to={`/blog/${post.slug}`} className="block aspect-video w-full overflow-hidden bg-gray-100">
-                <img 
-                  src={post.coverImage} 
-                  alt={post.title}
-                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
-                />
+                <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" />
               </Link>
               
               <div className="p-6">
@@ -65,41 +50,27 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.slice(0, 2).map((tag) => (
-                    <span 
-                      key={tag}
-                      className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                    >
+                  {post.tags.slice(0, 2).map(tag => <span key={tag} className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
                       {tag}
-                    </span>
-                  ))}
+                    </span>)}
                 </div>
                 
-                <Link 
-                  to={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
-                >
+                <Link to={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors">
                   Read More
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
-            </article>
-          ))}
+            </article>)}
         </div>
         
         <div className="text-center mt-12">
           <Link to="/blog">
-            <Button 
-              size="lg"
-              variant="outline"
-            >
+            <Button size="lg" variant="outline">
               View All Posts
             </Button>
           </Link>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default BlogPreview;
