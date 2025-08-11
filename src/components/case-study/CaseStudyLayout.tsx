@@ -82,7 +82,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
                 {sections.map((section) => (
                   <section key={section.id} id={section.id} className="scroll-mt-24">
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20">
-                      <h2 className="text-4xl font-bold text-gray-900 mb-12">{section.title}</h2>
+                      <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">{section.title}</h2>
                       {section.content}
                     </div>
                   </section>
