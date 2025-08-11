@@ -17,7 +17,7 @@ const VideoCaseStudiesSection: React.FC = () => {
       }} transition={{
         duration: 0.6
       }} className="text-center mb-16">
-          <h2 className="text-display-medium font-bold text-on-surface mb-6 text-right">
+          <h2 className="text-display-medium font-bold text-on-surface mb-6 text-center">
             Case Studies That Drive Results
           </h2>
           <p className="text-title-large text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
