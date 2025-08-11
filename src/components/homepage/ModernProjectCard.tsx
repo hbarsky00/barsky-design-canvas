@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Hash } from "lucide-react";
@@ -29,6 +29,79 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   const [videoSrcLoaded, setVideoSrcLoaded] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const isDirectVideo = Boolean(video && /(\.(mp4|webm|ogg)(\?.*)?$)/i.test(video as string));
+  const [capturedThumb, setCapturedThumb] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hasTriedCapture, setHasTriedCapture] = useState(false);
+  const [inView, setInView] = useState(false);
+
+  // Observe when the card enters the viewport
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setInView(true);
+    }, { threshold: 0.2 });
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Capture first frame of direct videos to use as a thumbnail when none is provided
+  useEffect(() => {
+    if (!inView || !isDirectVideo || hasTriedCapture || capturedThumb || !video) return;
+    setHasTriedCapture(true);
+    const url = video as string;
+
+    // Lightly prime the video source for quick capture
+    if (!videoSrcLoaded) setVideoSrcLoaded(url);
+
+    const v = document.createElement('video');
+    v.crossOrigin = 'anonymous';
+    v.muted = true;
+    (v as any).playsInline = true;
+    v.preload = 'auto';
+    v.src = url;
+
+    const cleanup = () => {
+      try { v.remove(); } catch {}
+    };
+
+    const doCapture = () => {
+      try {
+        const seekTo = 0.1;
+        const onSeeked = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            const w = v.videoWidth || 1280;
+            const h = v.videoHeight || 720;
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              ctx.drawImage(v, 0, 0, w, h);
+              const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+              setCapturedThumb(dataUrl);
+            }
+          } catch {}
+          cleanup();
+        };
+        v.addEventListener('seeked', onSeeked, { once: true });
+        try {
+          v.currentTime = seekTo;
+        } catch {
+          onSeeked();
+        }
+      } catch {
+        cleanup();
+      }
+    };
+
+    v.addEventListener('loadeddata', doCapture, { once: true });
+    v.addEventListener('error', cleanup, { once: true });
+
+    // Some browsers require the element to be in the DOM to load
+    document.body.appendChild(v);
+
+    return () => cleanup();
+  }, [inView, isDirectVideo, video, videoSrcLoaded, hasTriedCapture, capturedThumb]);
 
   return (
     <motion.div
@@ -37,6 +110,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className={className}
+      ref={containerRef}
       onHoverStart={() => {
         setIsHovered(true);
         if (isDirectVideo) {
@@ -62,10 +136,10 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
-            {videoThumbnail ? (
+            {videoThumbnail || capturedThumb ? (
               <>
                 <img
-                  src={videoThumbnail}
+                  src={videoThumbnail || capturedThumb || ''}
                   alt={title}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -74,7 +148,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                   <video
                     ref={videoRef}
                     src={videoSrcLoaded ?? undefined}
-                    poster={videoThumbnail}
+                    poster={videoThumbnail || capturedThumb || undefined}
                     muted
                     playsInline
                     loop
@@ -91,7 +165,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
             ) : isDirectVideo ? (
               <video
                 ref={videoRef}
-                src={video as string}
+                src={(video as string) || undefined}
                 muted
                 playsInline
                 loop
