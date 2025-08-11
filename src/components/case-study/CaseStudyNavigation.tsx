@@ -71,23 +71,32 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-64 bg-background/95 backdrop-blur-sm border-r border-border">
-        <div className="sticky p-6" style={{ top: 'calc(var(--header-height, 64px) + 12px)' }}>
-          <div className="space-y-1">
-            {navigation.map((item) => (
-              <button
-                key={item.anchor}
-                onClick={() => scrollToSection(item.anchor)}
-                className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                  activeSection === item.anchor
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+      <aside className="hidden lg:block w-64">
+        <div className="sticky" style={{ top: 'calc(var(--header-height, 64px) + 12px)' }}>
+          <nav aria-label="Case study sections" className="p-4">
+            <div className="rounded-xl border border-border bg-background/80 backdrop-blur shadow-sm animate-fade-in">
+              <div className="px-3 py-4">
+                <p className="px-2 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  On this page
+                </p>
+                <div className="space-y-1.5">
+                  {navigation.map((item) => (
+                    <button
+                      key={item.anchor}
+                      onClick={() => scrollToSection(item.anchor)}
+                      className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover-scale ${
+                        activeSection === item.anchor
+                          ? "text-primary bg-primary/10 ring-1 ring-primary/20"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
       </aside>
 
