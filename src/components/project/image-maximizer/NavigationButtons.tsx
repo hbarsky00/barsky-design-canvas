@@ -30,7 +30,7 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({
         <Button 
           variant="outline"
           size="icon"
-          onClick={onPrev}
+          onClick={(e) => { e.stopPropagation(); onPrev(); }}
           className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 border border-gray-200 shadow-md hover:bg-white z-10 flex items-center justify-center"
           aria-label={`Previous image (${currentIndex} of ${totalImages})`}
         >
@@ -43,7 +43,7 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({
         <Button 
           variant="outline"
           size="icon"
-          onClick={onNext}
+          onClick={(e) => { e.stopPropagation(); onNext(); }}
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 border border-gray-200 shadow-md hover:bg-white z-10 flex items-center justify-center"
           aria-label={`Next image (${(currentIndex || 0) + 2} of ${totalImages})`}
         >

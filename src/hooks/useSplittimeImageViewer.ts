@@ -52,16 +52,6 @@ export const useSplittimeImageViewer = () => {
         case 'Escape':
           closeImageViewer();
           break;
-        case '+':
-        case '=':
-          zoomIn();
-          break;
-        case '-':
-          zoomOut();
-          break;
-        case '0':
-          resetZoom();
-          break;
       }
     };
 

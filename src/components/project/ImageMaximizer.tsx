@@ -77,16 +77,6 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
         case 'Escape':
           onClose();
           break;
-        case '+':
-        case '=':
-          handleZoomIn();
-          break;
-        case '-':
-          handleZoomOut();
-          break;
-        case '0':
-          handleReset();
-          break;
         case 'ArrowLeft':
           if (hasMultipleImages) handlePrevImage();
           break;
@@ -132,12 +122,12 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
           </div>
         )}
         
-        {/* Main Image */}
+        {/* Main Image - click to close */}
         <img
           src={image}
           alt={title}
-          className="max-w-full max-h-[80vh] object-contain transition-transform duration-300"
-          style={{ transform: `scale(${scale})` }}
+          className="max-w-full max-h-[80vh] object-contain transition-transform duration-300 cursor-pointer"
+          onClick={onClose}
         />
         
         {/* Caption */}

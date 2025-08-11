@@ -126,7 +126,7 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
                 variant="ghost"
                 size="sm"
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
-                onClick={() => navigateLightbox('prev')}
+                onClick={(e) => { e.stopPropagation(); navigateLightbox('prev'); }}
               >
                 <ChevronLeft className="h-6 w-6" />
               </Button>
@@ -135,18 +135,19 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
                 variant="ghost"
                 size="sm"
                 className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
-                onClick={() => navigateLightbox('next')}
+                onClick={(e) => { e.stopPropagation(); navigateLightbox('next'); }}
               >
                 <ChevronRight className="h-6 w-6" />
               </Button>
 
               {/* Image */}
               <div className="relative w-full h-full flex items-center justify-center">
-                <img
-                  src={images[selectedImage]}
-                  alt={captions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
-                  className="max-w-full max-h-full object-contain"
-                />
+              <img
+                src={images[selectedImage]}
+                alt={captions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
+                className="max-w-full max-h-full object-contain cursor-pointer"
+                onClick={closeLightbox}
+              />
               </div>
 
               {/* Caption */}

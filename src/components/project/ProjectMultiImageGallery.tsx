@@ -131,7 +131,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
               <img
                 src={images[selectedImage]}
                 alt={imageCaptions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-full object-contain cursor-pointer"
+                onClick={closeLightbox}
               />
             </motion.div>
 
