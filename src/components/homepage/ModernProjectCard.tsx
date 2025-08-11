@@ -100,9 +100,9 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
             </div>
 
             {/* Title */}
-            <h3 className="text-title-large font-bold text-on-surface leading-tight">
+            <h2 className="text-title-large font-bold text-on-surface leading-tight">
               {title}
-            </h3>
+            </h2>
 
             {/* Description */}
             <p className="text-body-medium text-on-surface-variant leading-relaxed">
