@@ -21,7 +21,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   const Tag = as as keyof JSX.IntrinsicElements;
 
   return (
-    <header className={clsx("text-left md:text-center", className)}>
+    <header className={clsx("text-center", className)}>
       <Tag className={clsx("mx-auto max-w-5xl [text-wrap:balance] text-display-medium font-bold text-on-surface", titleClassName)}>
         {title}
       </Tag>
