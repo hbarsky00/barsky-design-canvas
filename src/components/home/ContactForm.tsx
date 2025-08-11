@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -23,15 +22,17 @@ const ContactForm: React.FC = () => {
     projectDescription: '',
     timeline: ''
   });
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!formData.name || !formData.email || !formData.projectType || !formData.budgetRange || !formData.projectDescription) {
       toast({
         title: "Missing Information",
@@ -40,22 +41,20 @@ const ContactForm: React.FC = () => {
       });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
-      const { data, error } = await supabase.functions.invoke('process-free-audit', {
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('process-free-audit', {
         body: formData
       });
-
       if (error) throw error;
-
       setIsSubmitted(true);
       toast({
         title: "Request Submitted!",
-        description: "You'll receive a confirmation email shortly with next steps.",
+        description: "You'll receive a confirmation email shortly with next steps."
       });
-
     } catch (error: any) {
       console.error('Error submitting contact request:', error);
       toast({
@@ -67,28 +66,23 @@ const ContactForm: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-
-  const benefits = [
-    "Live audit of your current website/product",
-    "AI-enhanced user behavior analysis using ChatGPT & Claude AI", 
-    "3 specific improvement recommendations you can implement immediately",
-    "Personalized growth strategy based on your business goals",
-    "No-obligation project timeline and pricing discussion"
-  ];
-
-  return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-blue-50" id="contact">
+  const benefits = ["Live audit of your current website/product", "AI-enhanced user behavior analysis using ChatGPT & Claude AI", "3 specific improvement recommendations you can implement immediately", "Personalized growth strategy based on your business goals", "No-obligation project timeline and pricing discussion"];
+  return <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-blue-50" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6">
+        <motion.div initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} viewport={{
+        once: true
+      }} transition={{
+        duration: 0.8
+      }} className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 text-left">
             Get Your Free 30-Minute Conversion Audit
           </h2>
           <p className="text-xl text-neutral-500 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -108,24 +102,27 @@ const ContactForm: React.FC = () => {
         <div className="grid lg:grid-cols-3 gap-12 items-start">
           
           {/* Benefits Section - Takes 1/3 */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          x: -30
+        }} whileInView={{
+          opacity: 1,
+          x: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.8,
+          delay: 0.2
+        }} className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-6">
                 What You'll Get:
               </h3>
               <div className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-3">
                     <CheckCircle className="h-6 w-6 text-success-green mt-1 flex-shrink-0" />
                     <span className="text-neutral-500">{benefit}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
 
@@ -152,110 +149,64 @@ const ContactForm: React.FC = () => {
           </motion.div>
 
           {/* Contact Form - Takes 2/3 */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-2"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          x: 30
+        }} whileInView={{
+          opacity: 1,
+          x: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.8,
+          delay: 0.4
+        }} className="lg:col-span-2">
             <div className="glass-card-elevated p-8">
-              {isSubmitted ? (
-                <div className="text-center space-y-4">
+              {isSubmitted ? <div className="text-center space-y-4">
                   <CheckCircle className="h-16 w-16 text-success-green mx-auto" />
                   <h3 className="text-2xl font-bold text-neutral-900">Request Submitted!</h3>
                   <p className="text-neutral-500">
                     Thank you for your interest! You'll receive a confirmation email with next steps within 24 hours.
                   </p>
-                  <Button
-                    onClick={() => setIsSubmitted(false)}
-                    variant="outline"
-                    className="mt-4"
-                  >
+                  <Button onClick={() => setIsSubmitted(false)} variant="outline" className="mt-4">
                     Submit Another Request
                   </Button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                </div> : <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Two Column Layout for Form Fields */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name *</Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        required
-                        placeholder="Your full name"
-                        className="w-full"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
-                      />
+                      <Input id="name" type="text" required placeholder="Your full name" className="w-full" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        required
-                        placeholder="your@email.com"
-                        className="w-full"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                      />
+                      <Input id="email" type="email" required placeholder="your@email.com" className="w-full" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="company">Company/Project Name</Label>
-                      <Input
-                        id="company"
-                        type="text"
-                        placeholder="Your company or project name"
-                        className="w-full"
-                        value={formData.company}
-                        onChange={(e) => handleInputChange('company', e.target.value)}
-                      />
+                      <Input id="company" type="text" placeholder="Your company or project name" className="w-full" value={formData.company} onChange={e => handleInputChange('company', e.target.value)} />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="website">Website URL</Label>
-                      <Input
-                        id="website"
-                        type="url"
-                        placeholder="https://yourwebsite.com"
-                        className="w-full"
-                        value={formData.website}
-                        onChange={(e) => handleInputChange('website', e.target.value)}
-                      />
+                      <Input id="website" type="url" placeholder="https://yourwebsite.com" className="w-full" value={formData.website} onChange={e => handleInputChange('website', e.target.value)} />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="(555) 123-4567"
-                        className="w-full"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                      />
+                      <Input id="phone" type="tel" placeholder="(555) 123-4567" className="w-full" value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="timeline">Preferred Meeting Time</Label>
-                      <Input
-                        id="timeline"
-                        type="text"
-                        placeholder="e.g., Weekdays 2-4 PM EST"
-                        className="w-full"
-                        value={formData.timeline}
-                        onChange={(e) => handleInputChange('timeline', e.target.value)}
-                      />
+                      <Input id="timeline" type="text" placeholder="e.g., Weekdays 2-4 PM EST" className="w-full" value={formData.timeline} onChange={e => handleInputChange('timeline', e.target.value)} />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="projectType">Project Type *</Label>
-                      <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
+                      <Select value={formData.projectType} onValueChange={value => handleInputChange('projectType', value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select project type" />
                         </SelectTrigger>
@@ -273,7 +224,7 @@ const ContactForm: React.FC = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="budgetRange">Budget Range *</Label>
-                      <Select value={formData.budgetRange} onValueChange={(value) => handleInputChange('budgetRange', value)}>
+                      <Select value={formData.budgetRange} onValueChange={value => handleInputChange('budgetRange', value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
@@ -291,45 +242,26 @@ const ContactForm: React.FC = () => {
                   {/* Full Width Fields */}
                   <div className="space-y-2">
                     <Label htmlFor="projectDescription">Project Description *</Label>
-                    <Textarea
-                      id="projectDescription"
-                      placeholder="Describe your project, goals, and main challenges..."
-                      rows={4}
-                      className="w-full"
-                      value={formData.projectDescription}
-                      onChange={(e) => handleInputChange('projectDescription', e.target.value)}
-                    />
+                    <Textarea id="projectDescription" placeholder="Describe your project, goals, and main challenges..." rows={4} className="w-full" value={formData.projectDescription} onChange={e => handleInputChange('projectDescription', e.target.value)} />
                   </div>
 
                   <div className="flex justify-center">
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      size="lg"
-                      variant="brand"
-                    >
-                      {isSubmitting ? (
-                        <>
+                    <Button type="submit" disabled={isSubmitting} size="lg" variant="brand">
+                      {isSubmitting ? <>
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                           Submitting...
-                        </>
-                      ) : (
-                        'Book My Free Audit'
-                      )}
+                        </> : 'Book My Free Audit'}
                     </Button>
                   </div>
 
                   <p className="text-sm text-neutral-500 text-center">
                     No spam, no sales pitch - just valuable insights
                   </p>
-                </form>
-              )}
+                </form>}
             </div>
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ContactForm;
