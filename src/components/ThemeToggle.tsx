@@ -12,10 +12,10 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
     setTheme
   } = useTheme();
 
-  // Set theme to light mode on component mount and prevent it from changing
-  useEffect(() => {
-    setTheme("light");
-  }, [setTheme]);
-  return;
+// Set theme to light mode on component mount and prevent it from changing
+useEffect(() => {
+  setTheme("light");
+}, [setTheme]);
+return null;
 };
 export default ThemeToggle;

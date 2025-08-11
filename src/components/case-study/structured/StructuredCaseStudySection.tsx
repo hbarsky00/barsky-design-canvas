@@ -93,9 +93,9 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-tertiary/10"
         />
         {/* Section Header */}
-        <div className="flex items-center justify-center gap-4 mb-8 text-center">
+        <div className="flex items-center justify-start gap-4 mb-8 text-left">
           
-          <h2 className="text-display-small font-bold text-on-surface text-center">
+          <h2 className="text-display-small font-bold text-on-surface align-start">
             {title}
           </h2>
         </div>

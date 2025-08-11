@@ -1062,3 +1062,15 @@ a:focus:not(:focus-visible) {
   }
 }
 
+/* Global layout and heading alignment utilities */
+@layer utilities {
+  /* Page container with consistent gutters and max width */
+  .container-page { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+  /* Start-aligned headings/text for non-hero sections */
+  .align-start { @apply text-left md:text-left; }
+
+  /* Vertical spacing stack for header groups (eyebrow, title, subtitle) */
+  .header-stack { @apply flex flex-col gap-3 md:gap-4; }
+}
+

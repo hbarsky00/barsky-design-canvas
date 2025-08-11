@@ -12,7 +12,7 @@ const Pricing = () => {
   return (
     <section id="pricing" className="py-20 bg-slate-50">
       <div className="section-container">
-        <h2 className="text-3xl font-bold text-center mb-4">Product Design & AI Development Services</h2>
+        <h2 className="text-3xl font-bold align-start mb-4">Product Design & AI Development Services</h2>
         <p className="text-center text-slate-600 max-w-2xl mx-auto mb-12">
           I create intelligent web applications by combining thoughtful Product Design with cutting-edge generative AI integration, bringing your ideas to life through design and technology.
         </p>
@@ -20,7 +20,7 @@ const Pricing = () => {
         <div className="flex justify-center">
           <Card className="shadow-lg w-full max-w-2xl">
             <CardHeader>
-              <h3 className="text-2xl font-bold text-center">Product Design & AI Integration</h3>
+              <h3 className="text-2xl font-bold align-start">Product Design & AI Integration</h3>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-start gap-3">
