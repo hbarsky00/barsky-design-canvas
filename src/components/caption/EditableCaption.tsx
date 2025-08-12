@@ -151,7 +151,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   if (isEditing) {
     return (
       <div className={`editable-caption-container ${className}`} onClick={handleContainerClick}>
-        <div className="flex items-center gap-2 mt-2 px-2">
+        <div className="flex items-center gap-2 mt-2 px-4 sm:px-6">
           <input
             ref={inputRef}
             type="text"
@@ -195,10 +195,10 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
 
   return (
     <div className={`editable-caption-container group ${className}`}>
-      <div className="mt-2 px-2">
+      <div className="mt-2 px-4 sm:px-6">
         <div 
           className={`editable-caption-text text-gray-700 text-sm text-center ${
-            showEditingControls ? 'cursor-pointer hover:text-gray-900 hover:bg-blue-50 rounded-md px-3 py-2 transition-all duration-200 border border-transparent hover:border-blue-200' : ''
+            showEditingControls ? 'cursor-pointer hover:text-gray-900 hover:bg-blue-50 rounded-md py-2 transition-all duration-200 border border-transparent hover:border-blue-200' : ''
           } relative`}
           onClick={handleStartEdit}
         >

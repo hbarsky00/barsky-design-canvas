@@ -302,6 +302,11 @@
     color: rgb(75 85 99) !important;
     margin-bottom: 1rem !important;
   }
+
+  /* Global figcaption horizontal padding for consistent captions */
+  figcaption {
+    @apply px-4 sm:px-6;
+  }
 }
 
 @layer components {

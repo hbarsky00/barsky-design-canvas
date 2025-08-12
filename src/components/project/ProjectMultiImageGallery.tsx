@@ -72,7 +72,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
             
             {imageCaptions[image] && (
-              <figcaption className="p-4 bg-gray-50/80 backdrop-blur-sm">
+              <figcaption className="py-3 bg-gray-50/80 backdrop-blur-sm">
                 <p className="text-gray-700 text-sm leading-relaxed">{imageCaptions[image]}</p>
               </figcaption>
             )}
