@@ -227,68 +227,188 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
 ,
   "investor-loan-app": {
     id: "investor-loan-app",
-    title: "Smarter Portfolio Decisions: Investor Loan App",
-    description: "Replaced spreadsheet chaos with a centralized portfolio tool, enabling faster ROI decisions and fewer manual errors.",
+    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
+    description:
+      "How I led a banking platform redesign that replaced Excel and scaled operations with speed, accuracy, and trust.",
     tags: ["FinTech", "Analytics", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     heroVideo: {
       src: "investor-loan-demo.mp4",
-      poster: "/placeholder.svg",
-      alt: "Investor loan app dashboard walkthrough"
+      poster: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+      alt: "Investor loan platform dashboard"
     },
     sections: [
       {
         id: "the-problem",
-        title: "🧩 The Problem",
+        title: "🧨 The Problem",
         icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
         variant: "problem",
-        content: "Investors tracked multi-property portfolios in fragmented spreadsheets, creating version conflicts, slow analysis, and costly mistakes.",
+        content:
+          "A private banking institution was running its entire investor loan operation in Excel.\n\nThat meant:\n- Manual data entry causing frequent compliance risks\n- No audit trails, search, or collaboration\n- Friction between departments and no scalable infrastructure\n- Loan processing was slow, fragmented, and error-prone\n\nAs the bank grew, this fragile system became the bottleneck.",
         media: {
           type: 'image',
-          src: "/placeholder.svg",
-          alt: "Scattered spreadsheets and inconsistent portfolio data",
-          caption: "Fragmented spreadsheets made portfolio analysis error-prone."
+          src: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
+          alt: "Platform overview",
+          caption: "High-level platform overview for the new loan system."
         }
       },
       {
         id: "quantified-impact",
-        title: "📊 Quantified Impact",
+        title: "📈 Quantified Impact",
         icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
         variant: "impact",
-        content: "A unified analytics layer accelerated decision-making and improved accuracy across KPI tracking.",
+        content: "We launched a new platform in 60 days. Here’s what changed:",
         metrics: [
-          { value: "70%", label: "Faster ROI analysis", trend: "up" },
-          { value: "-80%", label: "Manual reconciliation time", trend: "down" },
-          { value: "+35%", label: "Deal evaluation throughput", trend: "up" },
-          { value: "98%", label: "Data consistency across assets", trend: "up" }
-        ]
+          { value: "85%", label: "Fewer manual entry errors", trend: "up" },
+          { value: "40%", label: "Faster deal processing times", trend: "up" },
+          { value: "80%", label: "User satisfaction (survey)", trend: "up" },
+          { value: "200+", label: "Loan orders processed in 2 months", trend: "up" }
+        ],
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png",
+          alt: "Results metrics",
+          caption: "Key performance metrics after launch."
+        }
       },
       {
         id: "what-didnt-work",
-        title: "❌ What Didn't Work",
+        title: "❌ What Didn’t Work (and What We Fixed)",
         icon: React.createElement(X, { className: "h-6 w-6" }),
         variant: "failed",
-        content: "Trying to retrofit spreadsheets with automations added complexity without fixing core data integrity issues.",
+        content:
+          "Rebuilding Excel as-is carried clutter and confusion. We shifted to modular card + table views with hierarchy and real-time updates.\n\nAutomating without transparency hurt trust. We added visual confirmations, logs, and rollback controls.\n\nDesigning Add Order like a flat form overwhelmed users. We rebuilt it as a guided, interactive workflow with progressive steps, real-time validation, and clear structure.",
         media: {
           type: 'image',
-          src: "/placeholder.svg",
-          alt: "Overcomplicated spreadsheet automation",
-          caption: "Automating spreadsheets increased complexity without reliability."
+          src: "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png",
+          alt: "Project lessons",
+          caption: "Project lessons highlighting issues and fixes."
+        }
+      },
+      {
+        id: "mistake-1",
+        title: "✖ Mistake #1: Rebuilding Excel as-is",
+        icon: React.createElement(X, { className: "h-6 w-6" }),
+        variant: "failed",
+        content:
+          "Why it failed: It carried over the clutter and confusion.\nFix: Shifted to modular card + table views with better hierarchy and real-time updates.",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
+          alt: "Enhanced orderbook",
+          caption: "Enhanced order book with clearer hierarchy and updates."
+        }
+      },
+      {
+        id: "mistake-2",
+        title: "✖ Mistake #2: Automating without transparency",
+        icon: React.createElement(X, { className: "h-6 w-6" }),
+        variant: "failed",
+        content:
+          "Why it failed: Users didn’t trust changes were saved or tracked.\nFix: Introduced visual confirmations, logging, and rollback controls.",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/210badcf-5da6-47c5-9e9c-c4ba3a0c9102.png",
+          alt: "Design system overview",
+          caption: "Design system patterns that improve traceability."
+        }
+      },
+      {
+        id: "mistake-3",
+        title: "✖ Mistake #3: Designing Add Order Like a Flat Form",
+        icon: React.createElement(X, { className: "h-6 w-6" }),
+        variant: "failed",
+        content:
+          "Why it failed: The original flow showed every field at once with no progression or guidance; errors surfaced only after submission.\n\nFix: Rebuilt as a guided, interactive workflow—disabled actions until a lender is selected, grouped inputs into steps, added real-time validation and contextual help, and kept comments and totals always visible.",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
+          alt: "Deal management",
+          caption: "Guided order creation improves clarity and control."
         }
       },
       {
         id: "my-thought-process",
-        title: "🧠 My Thought Process",
+        title: "🧠 How I Thought Through It",
         icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
         variant: "solution",
-        content: "Built a source-of-truth model with standardized metrics and scenario tools for confident, faster decisions.",
-        tags: ["FinTechUX", "DecisionSupport", "DataModeling", "Automation"]
+        content:
+          "My goal wasn’t just usability — it was trust and control.\n\n- Search that acts like Bloomberg: AI-powered, category-based predictive search with real-time filtering and smart defaults.\n- Dynamic loan order book: Add/edit/remove limits in real time, instant totals, live comments, and full change tracking.\n- Collaboration as a native experience: Comment, assign, and build loan orders together in one place.\n- Compliance built into the UX: Validation rules, audit trails, and guardrails make compliance seamless.",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
+          alt: "Search interface",
+          caption: "Predictive, category-based search for fast discovery."
+        }
+      },
+      {
+        id: "before-vs-after",
+        title: "📊 Before vs. After",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content:
+          "Excel System → New Platform:\n- Manual entry, frequent errors → Automated workflows with validation\n- No collaboration → In-app commenting and shared loan orders\n- Flat spreadsheets → Card + table views with live syncing\n- No audit history → Full visual audit logs\n- No search → AI-powered predictive search",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
+          alt: "User workflow",
+          caption: "Streamlined end-to-end workflow across roles."
+        }
+      },
+      {
+        id: "tech-specs",
+        title: "🔧 Tech Specs",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content:
+          "- Performance: Core workflows load in under 2 seconds\n- Accessibility: WCAG 2.1 AA compliant\n- Responsive Design: Tablet and desktop\n- Integrations: CRM, compliance systems, internal messaging\n- Cross-browser Support: Chrome, Safari, Firefox, Edge"
+      },
+      {
+        id: "whats-next",
+        title: "🚀 What’s Next",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content:
+          "1. Mobile app for field loan officers\n2. Predictive analytics for loan performance and risk\n3. Open API for future third-party integrations"
+      },
+      {
+        id: "key-takeaways",
+        title: "💡 Key Takeaways",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content:
+          "What Worked:\n- User testing from day one led to high adoption\n- Familiar mental models enabled a fast learning curve\n- Fast iterations helped course-correct early mistakes\n\nWhat We Overcame:\n- Change resistance from users stuck on Excel\n- Handling complex data without overwhelming the UI\n- Designing within strict regulatory boundaries",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/ec1458b5-d364-498e-a5ec-4122b62195d3.png",
+          alt: "Comprehensive design system",
+          caption: "Design system embedded guardrails and clarity."
+        }
+      },
+      {
+        id: "outcome",
+        title: "🏁 The Outcome",
+        icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
+        variant: "impact",
+        content:
+          "This wasn’t about making a prettier interface. It was about building a smarter, more scalable system that helped the business grow — and gave users clarity, speed, and confidence.\n\n\"I don’t have to double-check every number now. I just trust it.\"",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+          alt: "Loan dashboard",
+          caption: "Outcome: clarity, speed, and user confidence."
+        }
       }
     ],
     seoData: {
-      image: "/placeholder.svg",
+      image: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
       projectName: "Investor Loan App",
-      results: ["70% faster ROI analysis", "Data integrity at scale"],
+      results: [
+        "85% fewer errors",
+        "40% faster processing",
+        "80% satisfaction",
+        "200+ orders in 2 months"
+      ],
       technologies: ["React", "Data Visualization", "Automation"],
       path: "/project/investor-loan-app"
     }
