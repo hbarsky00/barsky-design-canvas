@@ -13,6 +13,9 @@ import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./S
 import { EditableVideo } from "./EditableVideo";
 import CaseStudyNavigation from "../CaseStudyNavigation";
 import ProjectLinks from "@/components/project/ProjectLinks";
+import ProjectNavigation from "@/components/ProjectNavigation";
+import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
+import { useLocation } from "react-router-dom";
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
@@ -49,6 +52,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     label: section.title,
     anchor: `#${section.id}`
   }));
+
+  const { pathname } = useLocation();
+  const currentProjectId = React.useMemo(() => {
+    const parts = pathname.split('/');
+    return parts[parts.length - 1] || '';
+  }, [pathname]);
+
+  const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
 
   const scrollToSection = (anchor: string) => {
     const element = document.querySelector(anchor) as HTMLElement | null;
@@ -166,6 +177,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 >
                   <CaseStudyContactSection />
                 </motion.div>
+
+                {/* Prev/Next Navigation */}
+                <div className="mt-12">
+                  <ProjectNavigation
+                    currentProjectId={currentProjectId}
+                    projectsData={projectsData}
+                  />
+                </div>
               </div>
             </div>
           </div>

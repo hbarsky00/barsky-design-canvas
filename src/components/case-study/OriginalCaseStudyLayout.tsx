@@ -10,6 +10,8 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
+import ProjectNavigation from "@/components/ProjectNavigation";
+import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -20,6 +22,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
   caseStudy, 
   projectId 
 }) => {
+  const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
 
   return (
     <>
@@ -146,6 +149,14 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
 
               {/* Contact Section */}
               <CaseStudyContactSection />
+
+              {/* Prev/Next Navigation */}
+              <div className="mt-12">
+                <ProjectNavigation
+                  currentProjectId={projectId}
+                  projectsData={projectsData}
+                />
+              </div>
             </main>
 
             {/* Desktop Sidebar Navigation */}
