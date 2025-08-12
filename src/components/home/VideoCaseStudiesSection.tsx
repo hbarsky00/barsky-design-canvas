@@ -30,7 +30,7 @@ const VideoCaseStudiesSection: React.FC = () => {
         </motion.div>
 
         {/* Case Studies Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 will-change-transform" style={{ perspective: 1200, transformStyle: "preserve-3d" }}>
           {homepageCaseStudyPreviews.map((study, index) => <ModernProjectCard key={study.title} title={study.title} description={study.description} tags={study.tags} videoThumbnail={study.videoThumbnail} video={study.video} url={study.url} className="" />)}
         </div>
 
