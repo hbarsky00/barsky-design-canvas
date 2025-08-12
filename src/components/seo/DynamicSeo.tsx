@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { normalizeUrl, BASE_URL } from '@/utils/urlUtils';
-import StaticCanonical from './StaticCanonical';
+
 
 interface BlogPostSeoProps {
   type: 'blog-post';
@@ -76,6 +76,12 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
     document.title = titleText;
   }, [props]);
 
+  // Purge any existing canonical links to ensure a single canonical per page
+  useEffect(() => {
+    const existing = document.querySelectorAll('link[rel="canonical"]');
+    existing.forEach((el) => el.parentElement?.removeChild(el));
+  }, [location.pathname]);
+
   // Debug logging to ensure unique meta tags are being set
   console.log('DynamicSeo rendering for:', props.type, 
     props.type === 'home' ? 'Home page' : 
@@ -106,7 +112,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "dateModified": props.publishedDate,
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `${baseUrl}/blog/${props.slug}`
+        "@id": normalizeUrl(`/blog/${props.slug}`)
       },
       "keywords": props.tags.join(', ')
     };
@@ -119,7 +125,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "WebPage",
       "name": props.title,
       "description": props.description,
-      "url": `${baseUrl}${props.path}`,
+      "url": normalizeUrl(props.path),
       "isPartOf": {
         "@type": "WebSite",
         "name": "Hiram Barsky - AI-Enhanced Design",
@@ -135,7 +141,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "CreativeWork",
       "name": props.title,
       "description": props.description,
-      "url": `${baseUrl}${props.path}`,
+      "url": normalizeUrl(props.path),
       "image": props.image || defaultImage,
       "creator": {
         "@type": "Person",
@@ -159,7 +165,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "Service",
       "name": props.serviceName,
       "description": props.description,
-      "url": `${baseUrl}${props.path}`,
+      "url": normalizeUrl(props.path),
       "image": props.image || defaultImage,
       "provider": {
         "@type": "Person",
@@ -185,7 +191,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(`/blog/${props.slug}`)} />
+        
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(`/blog/${props.slug}`)} />
@@ -241,7 +247,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(props.path)} />
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(props.path)} />
@@ -285,7 +290,6 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(props.path)} />  
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(props.path)} />
@@ -340,7 +344,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
     return (
       <>
-        <StaticCanonical url={normalizeUrl(props.path)} />
+        
         <Helmet>
           {/* Canonical URL */}
           <link rel="canonical" href={normalizeUrl(props.path)} />
@@ -387,7 +391,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
 
   return (
     <>
-      <StaticCanonical url={normalizeUrl('/')} />
+      
       <Helmet>
         {/* Canonical URL */}
         <link rel="canonical" href={normalizeUrl('/')} />

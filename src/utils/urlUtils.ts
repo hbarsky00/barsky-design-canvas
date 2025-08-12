@@ -11,18 +11,40 @@ export const BASE_URL = 'https://barskydesign.pro';
  * - Returns consistent canonical format
  */
 export const normalizeUrl = (path: string): string => {
-  // Handle root path variations
-  if (path === '/' || path === '/index.html' || path === '') {
-    return BASE_URL;
+  // Normalize to pathname only and handle absolute/relative inputs
+  try {
+    const u = new URL(path, BASE_URL);
+    path = u.pathname;
+  } catch {
+    // keep original path if URL constructor fails
   }
-  
-  // Remove trailing slash for non-root paths
-  const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
-  
-  // Ensure path starts with /
-  const finalPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
-  
-  return `${BASE_URL}${finalPath}`;
+
+  // Handle root path variations
+  if (path === '' || path === '/' || path === '/index.html' || path === '/index.htm') {
+    return `${BASE_URL}/`;
+  }
+
+  // Strip any trailing index.html from paths
+  path = path.replace(/\/index\.html?$/i, '/');
+
+  // Ensure path starts with '/'
+  if (!path.startsWith('/')) {
+    path = `/${path}`;
+  }
+
+  // Remove extra trailing slashes first
+  path = path.replace(/\/+$/, '');
+
+  // Determine if the last segment looks like a file (has an extension)
+  const lastSegment = path.split('#')[0].split('?')[0].split('/').pop() || '';
+  const isFile = /\.[a-z0-9]+$/i.test(lastSegment);
+
+  // Ensure trailing slash for non-file paths
+  if (!isFile && !path.endsWith('/')) {
+    path = `${path}/`;
+  }
+
+  return `${BASE_URL}${path}`;
 };
 
 /**
