@@ -109,7 +109,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   transition={{ duration: 0.8 }}
                   className="mt-2 mb-16"
                 >
-                  <Card className="p-8 lg:p-12 bg-surface/80 backdrop-blur-sm border-outline/20">
+                  <Card className="p-8 lg:p-12 bg-card border border-border shadow-elevated">
                     {/* Title and Description */}
                     <div className="text-center mb-8">
                       <h1 className="text-display-large font-bold text-on-surface mb-6 leading-tight">
