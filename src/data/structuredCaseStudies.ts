@@ -116,7 +116,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://splittime.pro",
     heroVideo: {
-      src: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
+      src: "",
       poster: "/placeholder.svg",
       alt: "SplitTime co-parenting app demonstration"
     },
