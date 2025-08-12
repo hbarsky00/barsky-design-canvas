@@ -45,6 +45,7 @@ import { ForceRefresh } from "@/components/ForceRefresh";
 import CaseStudyPage from "@/components/case-study/CaseStudyPage";
 import PageTransition from "@/components/transitions/PageTransition";
 import { usePageTransition } from "@/hooks/usePageTransition";
+import { ThemeProvider } from "next-themes";
 
 // Create QueryClient with proper configuration
 const queryClient = new QueryClient({
@@ -67,65 +68,67 @@ function App() {
       <ForceRefresh />
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
-        <HelmetProvider>
-          <TooltipProvider>
-            <ImageMaximizerProvider>
-              <Toaster />
-              <BrowserRouter>
-                <GlobalPageTransition />
-                <ScrollToTop />
-                <main id="main-content" role="main">
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/projects" element={<Index />} />
-                    
-                    {/* Standardized project routes using CaseStudyLayout */}
-                    <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-                    <Route path="/project/herbalink-old" element={<HerbalinkCaseStudy />} />
-                    <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
-                    <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-                    <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
-                    
-                    {/* Legacy redirects - keep for backwards compatibility */}
-                    <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<Navigate to="/project/herbalink" replace />} />
-                    <Route path="/case-studies/splittime-coparenting-app-design" element={<Navigate to="/project/splittime" replace />} />
-                    <Route path="/case-studies/investor-loan-portfolio-management" element={<Navigate to="/project/investor-loan-app" replace />} />
-                    <Route path="/case-studies/wholesale-distribution-ai-solution" element={<Navigate to="/project/wholesale-distribution" replace />} />
-                    <Route path="/case-study-herbalink" element={<Navigate to="/project/herbalink" replace />} />
-                    <Route path="/case-study-splittime" element={<Navigate to="/project/splittime" replace />} />
-                    <Route path="/case-study-investor-loan" element={<Navigate to="/project/investor-loan-app" replace />} />
-                    <Route path="/case-study/:id" element={<Navigate to="/projects" replace />} />
-                    
-                    {/* Generic project route for other projects */}
-                    <Route path="/project/:projectId" element={<ProjectDetail />} />
-                    
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
-                    <Route path="/design-services/web-development" element={<WebDevelopment />} />
-                    <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/blog/:slug" element={<BlogPostPage />} />
-                    <Route path="/store" element={<Store />} />
-                    <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
-                    <Route path="/get-started" element={<LeadCapture />} />
-                    
-                    <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
-                    <Route path="/free-audit" element={<FreeAudit />} />
-                    <Route path="/services/mvp-validation" element={<MvpValidation />} />
-                    <Route path="/services/conversion-audit" element={<ConversionAudit />} />
-                    <Route path="/services/ai-redesign" element={<AiRedesign />} />
-                    <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
-                    
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </main>
-              </BrowserRouter>
-            </ImageMaximizerProvider>
-          </TooltipProvider>
-        </HelmetProvider>
-      </QueryClientProvider>
+          <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false}>
+            <HelmetProvider>
+              <TooltipProvider>
+                <ImageMaximizerProvider>
+                  <Toaster />
+                  <BrowserRouter>
+                    <GlobalPageTransition />
+                    <ScrollToTop />
+                    <main id="main-content" role="main">
+                      <Routes>
+                        <Route path="/" element={<Index />} />
+                        <Route path="/projects" element={<Index />} />
+                        
+                        {/* Standardized project routes using CaseStudyLayout */}
+                        <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+                        <Route path="/project/herbalink-old" element={<HerbalinkCaseStudy />} />
+                        <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
+                        <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
+                        <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
+                        
+                        {/* Legacy redirects - keep for backwards compatibility */}
+                        <Route path="/case-studies/herbalink-mobile-herbalist-ux-design" element={<Navigate to="/project/herbalink" replace />} />
+                        <Route path="/case-studies/splittime-coparenting-app-design" element={<Navigate to="/project/splittime" replace />} />
+                        <Route path="/case-studies/investor-loan-portfolio-management" element={<Navigate to="/project/investor-loan-app" replace />} />
+                        <Route path="/case-studies/wholesale-distribution-ai-solution" element={<Navigate to="/project/wholesale-distribution" replace />} />
+                        <Route path="/case-study-herbalink" element={<Navigate to="/project/herbalink" replace />} />
+                        <Route path="/case-study-splittime" element={<Navigate to="/project/splittime" replace />} />
+                        <Route path="/case-study-investor-loan" element={<Navigate to="/project/investor-loan-app" replace />} />
+                        <Route path="/case-study/:id" element={<Navigate to="/projects" replace />} />
+                        
+                        {/* Generic project route for other projects */}
+                        <Route path="/project/:projectId" element={<ProjectDetail />} />
+                        
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
+                        <Route path="/design-services/web-development" element={<WebDevelopment />} />
+                        <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/blog/:slug" element={<BlogPostPage />} />
+                        <Route path="/store" element={<Store />} />
+                        <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
+                        <Route path="/get-started" element={<LeadCapture />} />
+                        
+                        <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
+                        <Route path="/free-audit" element={<FreeAudit />} />
+                        <Route path="/services/mvp-validation" element={<MvpValidation />} />
+                        <Route path="/services/conversion-audit" element={<ConversionAudit />} />
+                        <Route path="/services/ai-redesign" element={<AiRedesign />} />
+                        <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
+                        
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </main>
+                  </BrowserRouter>
+                </ImageMaximizerProvider>
+              </TooltipProvider>
+            </HelmetProvider>
+          </ThemeProvider>
+        </QueryClientProvider>
     </ErrorBoundary>
     </SafeErrorBoundary>
   );

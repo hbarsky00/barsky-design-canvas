@@ -27,11 +27,20 @@ export class SafeErrorBoundary extends Component<Props, State> {
     
     // Handle React hook errors specifically
     if (error.message.includes('useEffect') || error.message.includes('Cannot read properties of null')) {
-      console.log('🚨 React hook error detected - clearing all caches');
+      console.log('🚨 React hook error detected - clearing caches with reload guard');
+
+      // Prevent reload loops: only allow one reload every 10 seconds
+      const now = Date.now();
+      const lastReload = Number(sessionStorage.getItem('last_reload_ts') || '0');
+      if (now - lastReload < 10000) {
+        console.warn('Skipping auto-reload to avoid loop');
+        return;
+      }
+      sessionStorage.setItem('last_reload_ts', String(now));
       
-      // Clear all local storage
-      localStorage.clear();
-      sessionStorage.clear();
+      // Clear all local/session storage
+      try { localStorage.clear(); } catch {}
+      try { sessionStorage.clear(); } catch {}
       
       // Clear service worker caches
       if ('serviceWorker' in navigator) {
@@ -43,7 +52,7 @@ export class SafeErrorBoundary extends Component<Props, State> {
       // Force page reload after short delay
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 500);
     }
   }
 

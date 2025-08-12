@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import React from "react";
+
 interface ThemeToggleProps {
   className?: string;
 }
-const ThemeToggle: React.FC<ThemeToggleProps> = ({
-  className
-}) => {
-  const {
-    setTheme
-  } = useTheme();
 
-// Set theme to light mode on component mount and prevent it from changing
-useEffect(() => {
-  setTheme("light");
-}, [setTheme]);
-return null;
+// No-op while theme is forced to light via ThemeProvider
+const ThemeToggle: React.FC<ThemeToggleProps> = () => {
+  return null;
 };
+
 export default ThemeToggle;
