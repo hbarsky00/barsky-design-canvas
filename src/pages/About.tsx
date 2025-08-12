@@ -44,10 +44,10 @@ const About = () => {
       <Header />
       <main className="flex-grow pt-24">
         {/* Hero Section */}
-        <section className="py-20 bg-barsky-bg-light">
+        <section className="section-y bg-barsky-bg-light">
           <div className="section-container">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-5xl font-bold mb-6 text-barsky-dark">About Barsky Design</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-barsky-dark">About Barsky Design</h1>
               <p className="text-xl text-barsky-text mb-8">
                 Crafting innovative software solutions that drive technology forward through user-centered design.
               </p>
@@ -56,7 +56,7 @@ const About = () => {
         </section>
 
         {/* Main About Content */}
-        <section className="py-20 bg-white">
+        <section className="section-y bg-white">
           <div className="section-container">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
@@ -147,10 +147,10 @@ const About = () => {
         </section>
 
         {/* Services Section */}
-        <section className="py-20 bg-barsky-bg-light">
+        <section className="section-y bg-barsky-bg-light">
           <div className="section-container">
-            <h2 className="text-3xl font-bold text-center mb-12 text-barsky-dark">What I Do</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <h2 className="text-3xl font-bold text-center mb-8 text-barsky-dark">What I Do</h2>
+            <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="bg-white p-6 rounded-lg shadow-sm border">
                   <h3 className="text-xl font-semibold mb-4 text-barsky-dark">Product Design</h3>
@@ -182,7 +182,7 @@ const About = () => {
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        <section className="section-y bg-white">
           <div className="section-container text-center">
             <h2 className="text-3xl font-bold mb-6 text-barsky-dark">Let's Work Together</h2>
             <p className="text-xl text-barsky-text mb-8 max-w-2xl mx-auto">
