@@ -10,6 +10,7 @@ import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import SectionTransition from "@/components/transitions/SectionTransition";
+import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 
 const HomepageLayout: React.FC = () => {
   return (
@@ -37,6 +38,10 @@ const HomepageLayout: React.FC = () => {
             title="Frequently Asked Questions About AI-Enhanced UX Design"
             faqs={homepageFaqs}
           />
+        </SectionTransition>
+
+        <SectionTransition variant="fade" delay={0.22}>
+          <InternalLinkingEnhancer currentPage="home" showRelatedLinks={true} />
         </SectionTransition>
       </main>
       <Footer />

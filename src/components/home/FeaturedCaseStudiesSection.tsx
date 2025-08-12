@@ -41,25 +41,24 @@ const featuredCaseStudies = [
 
 const FeaturedCaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-gray-50">
-      <div className="container mx-auto px-6">
+    <section className="py-12 bg-transparent">
+      <div className="container px-4 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-8 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="mx-auto max-w-5xl [text-wrap:balance] text-display-medium font-bold text-on-surface mb-2">
             Featured Case Studies
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Dive deep into real-world projects that showcase the power of AI-enhanced design 
-            and user-centered solutions across industries
+          <p className="text-title-large text-on-surface-variant max-w-3xl mx-auto">
+            Dive deep into real-world projects that showcase the power of AI-enhanced design and user-centered solutions across industries
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6">
           {featuredCaseStudies.map((study, index) => (
             <motion.div
               key={study.id}
@@ -71,7 +70,7 @@ const FeaturedCaseStudiesSection: React.FC = () => {
             >
               <Link
                 to={study.url}
-                className="block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
+                className="block rounded-2xl border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
               >
                 {/* Image Section */}
                 <div className="relative overflow-hidden">
@@ -81,12 +80,12 @@ const FeaturedCaseStudiesSection: React.FC = () => {
                     className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                       {study.category}
                     </span>
                   </div>
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ExternalLink className="w-5 h-5 text-white" />
+                    <ExternalLink className="w-5 h-5 text-on-surface-variant" />
                   </div>
                   
                   {/* Impact Badge */}
@@ -102,30 +101,30 @@ const FeaturedCaseStudiesSection: React.FC = () => {
 
                 {/* Content Section */}
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-2xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
                     {study.title}
                   </h3>
-                  <h4 className="text-lg font-medium text-blue-600 mb-3">
+                  <h4 className="text-lg font-medium text-primary mb-3">
                     {study.subtitle}
                   </h4>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-on-surface-variant mb-4 line-clamp-3 hidden sm:block">
                     {study.description}
                   </p>
                   
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {study.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium"
-                      >
+                    <span
+                      key={tag}
+                      className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium"
+                    >
                         {tag}
                       </span>
                     ))}
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700">
+                    <div className="flex items-center text-primary font-semibold group-hover:text-primary/90">
                       <span>Read Case Study</span>
                       <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </div>

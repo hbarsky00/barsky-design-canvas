@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight } from 'lucide-react';
+import SectionHeader from "@/components/shared/SectionHeader";
 
 interface BreadcrumbItem {
   label: string;
@@ -101,48 +102,52 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
         </nav>
       )}
 
-      {/* Contextual Internal Links */}
       {showRelatedLinks && contextualLinks.length > 0 && (
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 mt-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Explore More
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {contextualLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <Link
-                    to={link.href}
-                    className="group block bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200"
+        <section className="py-8 sm:py-12 bg-transparent">
+          <div className="container px-4 mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <SectionHeader
+                as="h2"
+                title="Explore More"
+                subtitle="Discover more content and pages you might find useful."
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6">
+                {contextualLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
-                    <div className="flex justify-between items-start mb-3">
-                      <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
-                        {link.category}
-                      </span>
-                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
-                    </div>
-                    <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                      {link.title}
-                    </h4>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {link.description}
-                    </p>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                    <Link
+                      to={link.href}
+                      className="group block rounded-xl p-6 border transition-all duration-300 bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
+                    >
+                      <div className="flex justify-between items-start mb-3">
+                        <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary/15 text-primary">
+                          {link.category}
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+                      </div>
+                      <h3 className="font-semibold text-on-surface mb-2 group-hover:text-primary transition-colors [text-wrap:balance]">
+                        {link.title}
+                      </h3>
+                      <p className="text-sm text-on-surface-variant leading-relaxed hidden sm:block">
+                        {link.description}
+                      </p>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </section>
       )}
     </div>

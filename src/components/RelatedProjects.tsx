@@ -69,24 +69,24 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
   if (relatedProjects.length === 0) return null;
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="container mx-auto px-6">
+    <section className="py-12 bg-transparent">
+      <div className="container px-4 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="mx-auto max-w-5xl [text-wrap:balance] text-display-medium font-bold text-on-surface mb-2">
             Related Projects
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-title-large text-on-surface-variant max-w-2xl mx-auto">
             Explore more case studies showcasing innovative design solutions across different industries
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {relatedProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -97,7 +97,7 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
             >
               <Link
                 to={project.url}
-                className="group block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="group block rounded-2xl border transition-all duration-300 overflow-hidden bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -106,20 +106,20 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                       {project.category}
                     </span>
                   </div>
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ExternalLink className="w-5 h-5 text-white" />
+                    <ExternalLink className="w-5 h-5 text-on-surface-variant" />
                   </div>
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-on-surface-variant mb-4 line-clamp-2 hidden sm:block">
                     {project.description}
                   </p>
                   
@@ -127,14 +127,14 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
                     {project.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-xs font-medium"
+                        className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-700">
+                  <div className="flex items-center text-primary font-medium group-hover:text-primary/90">
                     <span>View Case Study</span>
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                   </div>
