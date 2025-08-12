@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Hash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-
 interface ModernProjectCardProps {
   title: string;
   description: string;
@@ -15,7 +13,6 @@ interface ModernProjectCardProps {
   url: string;
   className?: string;
 }
-
 const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   title,
   description,
@@ -39,7 +36,9 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
     if (!containerRef.current) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) setInView(true);
-    }, { threshold: 0.2 });
+    }, {
+      threshold: 0.2
+    });
     observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, []);
@@ -52,18 +51,17 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
 
     // Lightly prime the video source for quick capture
     if (!videoSrcLoaded) setVideoSrcLoaded(url);
-
     const v = document.createElement('video');
     v.crossOrigin = 'anonymous';
     v.muted = true;
     (v as any).playsInline = true;
     v.preload = 'auto';
     v.src = url;
-
     const cleanup = () => {
-      try { v.remove(); } catch {}
+      try {
+        v.remove();
+      } catch {}
     };
-
     const doCapture = () => {
       try {
         const seekTo = 0.1;
@@ -83,7 +81,9 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
           } catch {}
           cleanup();
         };
-        v.addEventListener('seeked', onSeeked, { once: true });
+        v.addEventListener('seeked', onSeeked, {
+          once: true
+        });
         try {
           v.currentTime = seekTo;
         } catch {
@@ -93,109 +93,78 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         cleanup();
       }
     };
-
-    v.addEventListener('loadeddata', doCapture, { once: true });
-    v.addEventListener('error', cleanup, { once: true });
+    v.addEventListener('loadeddata', doCapture, {
+      once: true
+    });
+    v.addEventListener('error', cleanup, {
+      once: true
+    });
 
     // Some browsers require the element to be in the DOM to load
     document.body.appendChild(v);
-
     return () => cleanup();
   }, [inView, isDirectVideo, video, videoSrcLoaded, hasTriedCapture, capturedThumb]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className={className}
-      ref={containerRef}
-      onHoverStart={() => {
-        setIsHovered(true);
-        if (isDirectVideo) {
-          if (!videoSrcLoaded) setVideoSrcLoaded(video as string);
-          setTimeout(() => {
-            try { videoRef.current?.play(); } catch {}
-          }, 0);
-        }
-      }}
-      onHoverEnd={() => {
-        setIsHovered(false);
-        if (videoRef.current) {
-          videoRef.current.pause();
-          videoRef.current.currentTime = 0;
-        }
-      }}
-    >
-      <Link
-        to={url}
-        aria-label={`${title} case study`}
-        className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
-      >
+  return <motion.div initial={{
+    opacity: 0,
+    y: 30
+  }} whileInView={{
+    opacity: 1,
+    y: 0
+  }} viewport={{
+    once: true
+  }} transition={{
+    duration: 0.6
+  }} className={className} ref={containerRef} onHoverStart={() => {
+    setIsHovered(true);
+    if (isDirectVideo) {
+      if (!videoSrcLoaded) setVideoSrcLoaded(video as string);
+      setTimeout(() => {
+        try {
+          videoRef.current?.play();
+        } catch {}
+      }, 0);
+    }
+  }} onHoverEnd={() => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }}>
+      <Link to={url} aria-label={`${title} case study`} className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl">
         <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
-            {capturedThumb || videoThumbnail ? (
-              <>
-                <img
-                  src={capturedThumb || videoThumbnail || ''}
-                  alt={title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                {isDirectVideo && (
-                  <video
-                    ref={videoRef}
-                    src={videoSrcLoaded ?? undefined}
-                    poster={capturedThumb || videoThumbnail || undefined}
-                    muted
-                    playsInline
-                    loop
-                    preload="none"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    onCanPlay={() => {
-                      if (isHovered) {
-                        try { videoRef.current?.play(); } catch {}
-                      }
-                    }}
-                  />
-                )}
-              </>
-            ) : isDirectVideo ? (
-              <video
-                ref={videoRef}
-                src={(video as string) || undefined}
-                muted
-                playsInline
-                loop
-                preload="metadata"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                onCanPlay={() => {
-                  if (isHovered) {
-                    try { videoRef.current?.play(); } catch {}
-                  }
-                }}
-              />
-            ) : (
-              <div className="w-full h-full bg-surface-variant" />
-            )}
+            {capturedThumb || videoThumbnail ? <>
+                <img src={capturedThumb || videoThumbnail || ''} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                {isDirectVideo && <video ref={videoRef} src={videoSrcLoaded ?? undefined} poster={capturedThumb || videoThumbnail || undefined} muted playsInline loop preload="none" className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`} onCanPlay={() => {
+              if (isHovered) {
+                try {
+                  videoRef.current?.play();
+                } catch {}
+              }
+            }} />}
+              </> : isDirectVideo ? <video ref={videoRef} src={video as string || undefined} muted playsInline loop preload="metadata" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onCanPlay={() => {
+            if (isHovered) {
+              try {
+                videoRef.current?.play();
+              } catch {}
+            }
+          }} /> : <div className="w-full h-full bg-surface-variant" />}
           </div>
 
           {/* Content Section */}
           <div className="p-6 space-y-4">
             {/* Tags */}
             <div className="hidden sm:flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-body-small gap-1">
+              {tags.map(tag => <Badge key={tag} variant="secondary" className="text-body-small gap-1">
                   <Hash className="h-3 w-3" />
                   {tag}
-                </Badge>
-              ))}
+                </Badge>)}
             </div>
 
             {/* Title */}
-            <h2 className="text-title-large font-extrabold text-primary/90 leading-tight transition-colors duration-200 group-hover:text-primary">
+            <h2 className="text-title-large text-primary/90 leading-tight transition-colors duration-200 group-hover:text-primary font-extrabold">
               {title}
             </h2>
 
@@ -212,8 +181,6 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
           </div>
         </Card>
       </Link>
-    </motion.div>
-  );
+    </motion.div>;
 };
-
 export default ModernProjectCard;
