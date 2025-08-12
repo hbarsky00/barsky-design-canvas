@@ -80,7 +80,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
 
           {/* Text Content */}
           <div className="space-y-6">
-            <p className="text-body-large text-muted-foreground leading-relaxed">
+            <p className="text-body-large text-muted-foreground leading-relaxed whitespace-pre-line">
               {content}
             </p>
 

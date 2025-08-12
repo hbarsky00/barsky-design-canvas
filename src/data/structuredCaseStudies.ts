@@ -31,11 +31,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x through AI-powered matching and streamlined UX.",
     tags: ["GenAI", "HealthTech", "iOS", "Android", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
-    projectLink: "https://herbalink.live",
+    projectLink: "http://herbalink.live",
     heroVideo: {
       src: "herbalink-demo.mp4",
-      poster: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
-      alt: "HerbaLink app demonstration showing herbalist matching process"
+      poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
+      alt: "HerbaLink feature overview"
     },
     sections: [
       {
@@ -43,64 +43,72 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "🧩 The Problem",
         icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
         variant: "problem",
-        content: "Users couldn't find trustworthy herbalists online due to fragmented directories and no verification system. Rural communities especially suffered from lack of access to qualified natural health practitioners, while practitioners struggled to reach patients who needed their expertise.",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png",
-          alt: "Healthcare professional illustration showing the digital transformation needed",
-          caption: "Traditional healthcare gaps in natural medicine accessibility"
-        }
+        content:
+          "People seeking herbal remedies often face conflicting online advice and don't know who to trust. There's no central, verified platform to find qualified herbalists, track symptom improvement, or get tailored guidance. Unlike therapy (where BetterHelp makes it easy to book professionals), herbal care lacked structure, credibility, and outcomes-based support."
+      },
+      {
+        id: "key-gaps",
+        title: "🕳️ Key Gaps",
+        icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
+        variant: "problem",
+        content:
+          "Key gaps:\n- No way to verify herbalist credibility\n- No symptom tracking tied to outcomes\n- No personalized recommendations or guided onboarding"
       },
       {
         id: "quantified-impact",
         title: "📊 Quantified Impact",
         icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
         variant: "impact",
-        content: "The platform delivered measurable improvements across all key metrics, fundamentally changing how users connect with herbalists and transforming the natural healthcare landscape.",
-        metrics: [
-          { value: "3x", label: "Increase in booking rates", trend: "up" },
-          { value: "85%", label: "Users find ideal match in first 3 recommendations", trend: "up" },
-          { value: "78%", label: "User satisfaction with match quality", trend: "up" },
-          { value: "50%", label: "Faster decision-making through improved filters", trend: "up" }
-        ],
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png",
-          alt: "HerbaLink mobile app interface showing complete user journey",
-          caption: "Complete user journey from discovery to booking"
-        }
+        content:
+          "HerbaLink is currently in active development. Even at this early stage, we've seen strong engagement and behavior change — giving us validation and a foundation to scale from.\n\nWe launched Stage 1 with:\n- Symptom tracking and visual logging\n- Verified herbalist booking flow\n- Personalized herb recommendations\n- Community discussion board\n\nNext phases will include:\n- AI-driven symptom-to-herb matching\n- Long-term health tracking and data export\n- Expanded practitioner insights and care plans"
       },
       {
         id: "what-didnt-work",
         title: "❌ What Didn't Work",
         icon: React.createElement(X, { className: "h-6 w-6" }),
         variant: "failed",
-        content: "The initial map-first layout confused users and buried essential trust signals like expert credentials and reviews. Users couldn't quickly assess practitioner quality, leading to decision paralysis and low conversion rates.",
-        media: {
-          type: 'comparison',
-          beforeSrc: "/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png",
-          src: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
-          alt: "UI comparison showing before and after redesign",
-          caption: "Before: Confusing map layout vs After: Clear card-based directory"
-        }
+        content:
+          "Generic Practitioner Discovery: Initial design had a long list of herbalists with no context. Users bounced quickly.\nFix: We added filters (e.g., Stress Relief, Digestive Health), 'Verified' badges, availability, and pricing— all before login.\n\nHidden Symptom Tracker: The tracker was buried and saw minimal use.\nFix: We promoted it to the main nav, added severity sliders, visible progress bars, and linked it to herbal suggestions. Usage tripled."
       },
       {
         id: "my-thought-process",
         title: "🧠 My Thought Process",
         icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
         variant: "solution",
-        content: "I asked myself: what would make ME trust a health platform? Trust signals, verified credentials, and authentic reviews had to come before pricing. The solution became a card-based directory that prioritized transparency and built confidence through clear practitioner verification.",
+        content:
+          "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
         media: {
           type: 'image',
-          src: "/lovable-uploads/4877fa82-46fd-47bf-a10c-1ed97207e289.png",
-          alt: "AI-enhanced development workflow from conversation to deployment",
-          caption: "AI-enhanced development process from concept to live platform"
-        },
-        tags: ["UXDesign", "TrustSignals", "UserResearch", "AIMatching"]
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
+          alt: "HerbaLink user flow from onboarding to booking",
+          caption: "User flow from onboarding to booking and tracking."
+        }
+      },
+      {
+        id: "final-product",
+        title: "🎯 The Final Product",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content:
+          "Users can book verified herbalists by need, rating, and availability; log symptoms and track progress over time; get data-informed herbal suggestions; join a growing community of trusted practitioners and peers.",
+        media: {
+          type: 'image',
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
+          alt: "HerbaLink feature overview",
+          caption: "Feature overview highlighting booking, tracking, and guidance."
+        }
+      },
+      {
+        id: "outcome",
+        title: "🏁 Outcome",
+        icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
+        variant: "impact",
+        content:
+          "We built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights."
       }
     ],
     seoData: {
-      image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
+      image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
       projectName: "HerbaLink",
       results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
       technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
