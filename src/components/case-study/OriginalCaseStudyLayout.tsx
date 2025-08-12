@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import VideoPlayer from "./VideoPlayer";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import { CaseStudyData } from "@/data/caseStudies";
-import { Helmet } from "react-helmet-async";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -26,15 +26,16 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
 
   return (
     <>
-      <Helmet>
-        <title>{caseStudy.title} - Case Study | Hiram Barsky</title>
-        <meta name="description" content={caseStudy.description} />
-        <meta property="og:title" content={`${caseStudy.title} - Case Study`} />
-        <meta property="og:description" content={caseStudy.description} />
-        <meta property="og:image" content={caseStudy.videoThumbnail} />
-        <meta property="og:url" content={`https://hirambarsky.com/project/${projectId}`} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
+        <DynamicSeo
+          type="project"
+          title={caseStudy.title}
+          description={caseStudy.description}
+          image={caseStudy.videoThumbnail}
+          projectName={caseStudy.title}
+          results={[]}
+          technologies={caseStudy.tags}
+          path={`/${projectId}/`}
+        />
 
       <div className="min-h-screen bg-background">
         <Header />

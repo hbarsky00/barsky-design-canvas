@@ -57,6 +57,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const baseUrl = BASE_URL;
   const defaultImage = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`;
   
+  const toAbsoluteUrl = (url?: string): string => {
+    if (!url) return defaultImage;
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    return `${BASE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+  };
 
   // Helper function to truncate description to 150-160 characters
   const truncateDescription = (text: string, maxLength: number = 160): string => {
@@ -94,7 +99,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "@type": "BlogPosting",
       "headline": props.title,
       "description": props.excerpt,
-      "image": props.featuredImage || defaultImage,
+      "image": toAbsoluteUrl(props.featuredImage || defaultImage),
       "author": {
         "@type": "Person",
         "name": props.author,
@@ -142,7 +147,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "name": props.title,
       "description": props.description,
       "url": normalizeUrl(props.path),
-      "image": props.image || defaultImage,
+      "image": toAbsoluteUrl(props.image || defaultImage),
       "creator": {
         "@type": "Person",
         "name": "Hiram Barsky",
@@ -166,7 +171,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
       "name": props.serviceName,
       "description": props.description,
       "url": normalizeUrl(props.path),
-      "image": props.image || defaultImage,
+      "image": toAbsoluteUrl(props.image || defaultImage),
       "provider": {
         "@type": "Person",
         "name": "Hiram Barsky",
@@ -205,7 +210,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:title" content={`${props.title} | Barsky Design Blog`} />
         <meta property="og:description" content={truncatedExcerpt} />
         <meta property="og:url" content={normalizeUrl(`/blog/${props.slug}`)} />
-        <meta property="og:image" content={props.featuredImage || defaultImage} />
+        <meta property="og:image" content={toAbsoluteUrl(props.featuredImage || defaultImage)} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
@@ -226,7 +231,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:creator" content="@hirambarsky" />
         <meta name="twitter:title" content={`${props.title} | Barsky Design Blog`} />
         <meta name="twitter:description" content={truncatedExcerpt} />
-        <meta name="twitter:image" content={props.featuredImage || defaultImage} />
+        <meta name="twitter:image" content={toAbsoluteUrl(props.featuredImage || defaultImage)} />
         <meta name="twitter:image:alt" content={props.title} />
         
         {/* Keywords */}
@@ -260,7 +265,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:title" content={`${props.title} | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={normalizeUrl(props.path)} />
-        <meta property="og:image" content={props.image || defaultImage} />
+        <meta property="og:image" content={toAbsoluteUrl(props.image || defaultImage)} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.title} />
@@ -272,7 +277,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:site" content="@hirambarsky" />
         <meta name="twitter:title" content={`${props.title} | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
-        <meta name="twitter:image" content={props.image || defaultImage} />
+        <meta name="twitter:image" content={toAbsoluteUrl(props.image || defaultImage)} />
         <meta name="twitter:image:alt" content={props.title} />
         
         {/* Structured Data */}
@@ -303,7 +308,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={normalizeUrl(props.path)} />
-        <meta property="og:image" content={props.image || defaultImage} />
+        <meta property="og:image" content={toAbsoluteUrl(props.image || defaultImage)} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.projectName} />
@@ -323,7 +328,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:creator" content="@hirambarsky" />
         <meta name="twitter:title" content={`${props.projectName} - Product Design Case Study | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
-        <meta name="twitter:image" content={props.image || defaultImage} />
+        <meta name="twitter:image" content={toAbsoluteUrl(props.image || defaultImage)} />
         <meta name="twitter:image:alt" content={props.projectName} />
         
         {/* Keywords */}
@@ -358,7 +363,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta property="og:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta property="og:description" content={truncatedDescription} />
         <meta property="og:url" content={normalizeUrl(props.path)} />
-        <meta property="og:image" content={props.image || defaultImage} />
+        <meta property="og:image" content={toAbsoluteUrl(props.image || defaultImage)} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={props.serviceName} />
@@ -370,7 +375,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
         <meta name="twitter:site" content="@hirambarsky" />
         <meta name="twitter:title" content={`${props.serviceName} - Product Design Services | Barsky Design`} />
         <meta name="twitter:description" content={truncatedDescription} />
-        <meta name="twitter:image" content={props.image || defaultImage} />
+        <meta name="twitter:image" content={toAbsoluteUrl(props.image || defaultImage)} />
         <meta name="twitter:image:alt" content={props.serviceName} />
         
         {/* Keywords */}

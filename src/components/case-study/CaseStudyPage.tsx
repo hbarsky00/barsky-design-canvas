@@ -10,6 +10,7 @@ import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +24,16 @@ const CaseStudyPage: React.FC = () => {
   return (
     <>
       <Header />
-      
+      <DynamicSeo
+        type="project"
+        title={caseStudy.title}
+        description={caseStudy.description}
+        image={caseStudy.videoThumbnail}
+        projectName={caseStudy.title}
+        results={[]}
+        technologies={caseStudy.tags}
+        path={`/${id}/`}
+      />
       
       <motion.div
         initial={{ opacity: 0 }}
