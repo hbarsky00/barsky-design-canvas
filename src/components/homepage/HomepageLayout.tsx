@@ -16,23 +16,23 @@ const HomepageLayout: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
       <main className="flex-grow space-y-4 pt-[var(--header-height,64px)]">
-        <SectionTransition variant="wipe">
+        <SectionTransition variant="fade">
           <EnhancedHero />
         </SectionTransition>
         
-        <SectionTransition variant="wipe" delay={0.05}>
+        <SectionTransition variant="fade" delay={0.05}>
           <VideoCaseStudiesSection />
         </SectionTransition>
         
-        <SectionTransition variant="wipe" delay={0.1}>
+        <SectionTransition variant="fade" delay={0.1}>
           <ContactForm />
         </SectionTransition>
         
-        <SectionTransition variant="wipe" delay={0.15}>
+        <SectionTransition variant="fade" delay={0.15}>
           <BlogPreview />
         </SectionTransition>
         
-        <SectionTransition variant="wipe" delay={0.2}>
+        <SectionTransition variant="fade" delay={0.2}>
           <SeoFaqSection 
             title="Frequently Asked Questions About AI-Enhanced UX Design"
             faqs={homepageFaqs}

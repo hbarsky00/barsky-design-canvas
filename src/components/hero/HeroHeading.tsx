@@ -22,9 +22,9 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({
     }}>
         
         
-        <AnimatedText text="Design that Solves Real Problems, Fast." tag="h1" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 block mb-4 leading-tight mx-auto max-w-6xl [text-wrap:balance]" delay={1000} type="word" animation="fade" staggerChildren={0.05} />
+        <AnimatedText text="Product Designer & AI Partner focused on outcomes." tag="h1" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-on-surface block mb-4 leading-tight mx-auto max-w-6xl [text-wrap:balance]" delay={1000} type="word" animation="fade" staggerChildren={0.05} />
         
-        <AnimatedText text="15+ Years Experience • 40%+ Conversion Improvements • AI Integration Expert" tag="h2" className="text-lg sm:text-xl font-medium text-gray-700 mb-4 leading-relaxed text-center mx-auto max-w-3xl [text-wrap:balance]" delay={1200} type="word" animation="fade" staggerChildren={0.02} />
+        <AnimatedText text="Design leader blending UX and AI to ship, scale, and improve conversion." tag="h2" className="text-base sm:text-lg font-medium text-on-surface-variant mb-4 leading-relaxed text-center mx-auto max-w-3xl [text-wrap:balance]" delay={1200} type="word" animation="fade" staggerChildren={0.02} />
         
         <motion.div initial={{
         width: 0
@@ -33,7 +33,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({
       } : {}} transition={{
         duration: 1,
         delay: 1.5
-      }} className="h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mb-2" />
+      }} className="h-0.5 bg-primary/30 mx-auto rounded-full mb-2" />
       </motion.div>
     </div>;
 };

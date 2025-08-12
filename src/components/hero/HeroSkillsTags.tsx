@@ -33,7 +33,7 @@ const HeroSkillsTags: React.FC<HeroSkillsTagsProps> = ({ isVisible }) => {
           >
             <Badge 
               variant="secondary" 
-              className="glass-button px-3 py-1 bg-blue-50/80 text-blue-800 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300 border border-blue-200/30 text-xs"
+              className="glass-button px-3 py-1 bg-secondary/10 text-on-surface hover:bg-secondary/20 backdrop-blur-sm transition-all duration-300 border border-border/50 text-xs"
             >
               {skill}
             </Badge>

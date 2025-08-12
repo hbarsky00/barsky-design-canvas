@@ -40,15 +40,14 @@ const Header: React.FC = () => {
   return (
     <>
       <header ref={headerRef} className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         "pointer-events-auto",
-        isScrolled ? "py-2 sm:py-2.5" : "py-3 sm:py-4",
-        "translate-y-0",
+        "py-3 sm:py-4",
         headerHidden ? "md:-translate-y-full" : "md:translate-y-0",
-        (isScrolled || isMobileMenuOpen) ? "bg-white/95 backdrop-blur-sm shadow-lg dark:bg-gray-900/95" : "bg-transparent"
+        "bg-background border-b border-border shadow-sm"
       )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={cn("flex justify-between items-center", isScrolled ? "h-14 sm:h-16" : "h-16 sm:h-18")}>
+        <div className={cn("flex justify-between items-center", "h-16 sm:h-18")}>
           <div className="flex items-center justify-start min-w-0 flex-1">
             {shouldShowLogo && (
               <div className="transition-opacity duration-300">
