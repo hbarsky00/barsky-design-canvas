@@ -13,13 +13,13 @@ const ProjectContentBox: React.FC<ProjectContentBoxProps> = ({
   className
 }) => {
   return (
-    <div className={cn("p-6 bg-blue-50/50 border border-blue-100", className)}>
-      <div className="prose prose-lg text-gray-700 leading-relaxed">
-        {title && (
-          <h3 className="text-xl font-semibold text-blue-900 mb-4">
-            <strong>{title}</strong>
-          </h3>
-        )}
+      <div className={cn('p-6 bg-card border border-border rounded-xl shadow-elevated', className)}>
+        <div className="prose prose-lg text-muted-foreground leading-relaxed">
+          {title && (
+            <h3 className="text-xl font-semibold text-foreground mb-4">
+              <strong>{title}</strong>
+            </h3>
+          )}
         <div className="space-y-4 [&>p]:text-sm [&>p]:text-gray-700 [&>p]:mb-4 [&>p:last-child]:mb-0">
           {children}
         </div>

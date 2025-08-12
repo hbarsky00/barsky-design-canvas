@@ -17,7 +17,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
       <div className="space-y-6">
         <div>
           <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">User Research</span></h4>
-          <div className="glass-card p-4 layered-depth mb-4">
+          <div className="rounded-xl bg-card border border-border p-4 shadow-sm mb-4">
             <EnhancedContentEditor
               content=""
               contentType="section"
@@ -45,7 +45,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
 
         <div>
           <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Competitive Analysis</span></h4>
-          <div className="glass-card p-4 layered-depth mb-4">
+          <div className="rounded-xl bg-card border border-border p-4 shadow-sm mb-4">
             <EnhancedContentEditor
               content=""
               contentType="section"
@@ -73,7 +73,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
 
         <div>
           <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Key Findings</span></h4>
-          <div className="glass-card p-4 layered-depth mb-4">
+          <div className="rounded-xl bg-card border border-border p-4 shadow-sm mb-4">
             <EnhancedContentEditor
               content=""
               contentType="section"
@@ -105,7 +105,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
           <p>
             Created a comprehensive design system built for natural wellness experiences, emphasizing trust, accessibility, and user empowerment through carefully chosen color palettes and typography that reflect the organic nature of herbal wellness.
           </p>
-          <div className="glass-card p-4 layered-depth">
+          <div className="rounded-xl bg-card border border-border p-4 shadow-sm">
             <EnhancedContentEditor
               content=""
               contentType="section"

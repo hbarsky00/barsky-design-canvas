@@ -68,7 +68,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.2 }}
-      className="glass-card-elevated p-4 sm:p-8 layered-depth"
+      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8"
     >
       <EnhancedContentEditor
         content="What I Did"
@@ -78,13 +78,13 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         projectId={projectId}
       />
       
-      <div className="glass-card p-6 layered-depth bg-blue-50/50 border border-blue-100">
-        <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+      <div className="rounded-xl bg-card border border-border p-6 shadow-sm">
+        <div className="prose prose-lg text-muted-foreground leading-relaxed max-w-none">
           {details.process.split('\n\n').map((paragraph, index) => {
             // Check if this is a main header (like "Design Process & Methodology:")
             if (paragraph.includes(':') && !paragraph.includes('•') && paragraph.length < 80) {
               return (
-                <h3 key={index} className="text-xl font-semibold text-gray-900 mt-8 mb-4 first:mt-0">
+                <h3 key={index} className="text-xl font-semibold text-foreground mt-8 mb-4 first:mt-0">
                   {paragraph.replace(':', '')}
                 </h3>
               );
@@ -93,7 +93,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
             // Check if this is a subheader (like "Key Features & Solutions Created:")
             if (paragraph.endsWith(':') && paragraph.length < 150) {
               return (
-                <h4 key={index} className="text-lg font-medium text-gray-800 mt-6 mb-3">
+                <h4 key={index} className="text-lg font-medium text-foreground mt-6 mb-3">
                   {paragraph}
                 </h4>
               );
@@ -118,10 +118,10 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                       const itemImage = getImageForListItem(itemText);
                       
                       return (
-                        <div key={itemIndex} className="flex flex-col bg-white/50 p-3 rounded-lg border border-blue-100/50">
+                        <div key={itemIndex} className="flex flex-col bg-background p-3 rounded-lg border border-border/50">
                           <div className="flex items-start mb-3">
                             <span className="text-primary mr-3 mt-1 font-bold">•</span>
-                            <span className="text-gray-700 text-sm leading-relaxed">{itemText}</span>
+                            <span className="text-muted-foreground text-sm leading-relaxed">{itemText}</span>
                           </div>
                           {itemImage && (
                             <div className="mt-2">
@@ -143,7 +143,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
             
             // Regular paragraph
             return (
-              <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+              <p key={index} className="mb-4 text-muted-foreground leading-relaxed">
                 {paragraph}
               </p>
             );

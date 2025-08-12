@@ -98,7 +98,7 @@ export const EditableImage: React.FC<EditableImageProps> = ({
 
       {/* Caption */}
       {(caption || editable) && (
-        <div className="mt-3">
+        <figcaption className="mt-3">
           {isEditing ? (
             <Card className="p-3">
               <div className="flex gap-2">
@@ -106,7 +106,7 @@ export const EditableImage: React.FC<EditableImageProps> = ({
                   type="text"
                   value={editCaption}
                   onChange={(e) => setEditCaption(e.target.value)}
-                  className="flex-1 text-body-small text-on-surface-variant bg-transparent border-none outline-none"
+                  className="flex-1 text-sm text-muted-foreground bg-transparent border-none outline-none"
                   placeholder="Add image caption..."
                 />
                 <Button size="sm" onClick={handleCaptionSave}>
@@ -116,7 +116,7 @@ export const EditableImage: React.FC<EditableImageProps> = ({
             </Card>
           ) : (
             <div className="flex items-center justify-between">
-              <p className="text-body-small text-on-surface-variant italic">
+              <p className="text-sm text-muted-foreground italic text-center w-full">
                 {caption || "No caption"}
               </p>
               {editable && (
@@ -131,7 +131,7 @@ export const EditableImage: React.FC<EditableImageProps> = ({
               )}
             </div>
           )}
-        </div>
+        </figcaption>
       )}
     </div>
   );

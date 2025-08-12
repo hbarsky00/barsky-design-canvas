@@ -59,7 +59,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="glass-card-elevated p-4 sm:p-8 layered-depth"
+      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8"
     >
       <EnhancedContentEditor
         content="The Challenge"

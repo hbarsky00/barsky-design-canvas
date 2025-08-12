@@ -34,19 +34,19 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="glass-card-elevated p-4 sm:p-8 layered-depth"
+      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8"
     >
       <h2 className="text-3xl font-bold text-gray-900 mb-6 lg:mb-8 pt-2.5">
         The Result
       </h2>
       
-      <div className="glass-card p-6 layered-depth bg-blue-50/50 border border-blue-100">
-        <div className="prose prose-lg text-gray-600 leading-relaxed max-w-none">
+      <div className="rounded-xl bg-card border border-border p-6 shadow-sm">
+        <div className="prose prose-lg text-muted-foreground leading-relaxed max-w-none">
           {details.result.split('\n\n').map((paragraph, index) => {
             // Check if this is a header (like "Next Steps")
             if (paragraph.includes(':') && !paragraph.includes('•') && paragraph.length < 50) {
               return (
-                <h3 key={index} className="text-xl font-semibold text-gray-900 mt-8 mb-4 first:mt-0">
+                <h3 key={index} className="text-xl font-semibold text-foreground mt-8 mb-4 first:mt-0">
                   {paragraph.replace(':', '')}
                 </h3>
               );
@@ -55,7 +55,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
             // Check if this is a subheader (like "Immediate Priorities:")
             if (paragraph.endsWith(':') && paragraph.length < 100) {
               return (
-                <h4 key={index} className="text-lg font-medium text-gray-800 mt-6 mb-3">
+                <h4 key={index} className="text-lg font-medium text-foreground mt-6 mb-3">
                   {paragraph}
                 </h4>
               );
@@ -80,7 +80,7 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
             
             // Regular paragraph
             return (
-              <p key={index} className="mb-4 text-gray-700">
+              <p key={index} className="mb-4 text-muted-foreground">
                 {paragraph}
               </p>
             );
