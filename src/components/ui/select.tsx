@@ -3,6 +3,7 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { useHoverTilt } from "@/hooks/useHoverTilt"
 
 const Select = SelectPrimitive.Root
 
@@ -13,21 +14,54 @@ const SelectValue = SelectPrimitive.Value
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-base md:text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 opacity-50" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-))
+>(({ className, children, ...props }, ref) => {
+  const tilt = useHoverTilt({ maxTilt: 2, scale: 1.01 });
+
+  const handleMouseMove: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    // @ts-expect-error - pass-through to consumer if provided
+    props.onMouseMove?.(e);
+    // @ts-expect-error HTMLElement narrowing is fine here
+    tilt.onMouseMove(e as any);
+  };
+  const handleMouseLeave: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    // @ts-expect-error - pass-through to consumer if provided
+    props.onMouseLeave?.(e);
+    // @ts-expect-error HTMLElement narrowing is fine here
+    tilt.onMouseLeave(e as any);
+  };
+  const handleFocus: React.FocusEventHandler<HTMLButtonElement> = (e) => {
+    // @ts-expect-error - pass-through to consumer if provided
+    props.onFocus?.(e);
+    // @ts-expect-error HTMLElement narrowing is fine here
+    tilt.onFocus(e as any);
+  };
+  const handleBlur: React.FocusEventHandler<HTMLButtonElement> = (e) => {
+    // @ts-expect-error - pass-through to consumer if provided
+    props.onBlur?.(e);
+    // @ts-expect-error HTMLElement narrowing is fine here
+    tilt.onBlur(e as any);
+  };
+
+  return (
+    <SelectPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-base md:text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 transform-gpu will-change-transform",
+        className
+      )}
+      {...props}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    >
+      {children}
+      <SelectPrimitive.Icon asChild>
+        <ChevronDown className="h-4 w-4 opacity-50" />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  );
+})
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 
 const SelectScrollUpButton = React.forwardRef<

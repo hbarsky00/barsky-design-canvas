@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import { useHoverTilt } from "@/hooks/useHoverTilt"
 
 const inputVariants = cva(
   "flex w-full transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]",
@@ -22,16 +23,60 @@ const inputVariants = cva(
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputVariants> {}
+    VariantProps<typeof inputVariants> {
+  tiltDisabled?: boolean
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, variant, type, ...props }, ref) => {
+  ({ className, variant, type, tiltDisabled, ...props }, ref) => {
+    const tilt = useHoverTilt({ maxTilt: 2, scale: 1.01, disabled: tiltDisabled });
+
+    const handleMouseMove = React.useCallback<React.MouseEventHandler<HTMLInputElement>>(
+      (e) => {
+        props.onMouseMove?.(e);
+        // @ts-expect-error HTMLElement narrowing is fine here
+        tilt.onMouseMove(e as any);
+      },
+      [props.onMouseMove, tilt]
+    );
+
+    const handleMouseLeave = React.useCallback<React.MouseEventHandler<HTMLInputElement>>(
+      (e) => {
+        props.onMouseLeave?.(e);
+        // @ts-expect-error HTMLElement narrowing is fine here
+        tilt.onMouseLeave(e as any);
+      },
+      [props.onMouseLeave, tilt]
+    );
+
+    const handleFocus = React.useCallback<React.FocusEventHandler<HTMLInputElement>>(
+      (e) => {
+        props.onFocus?.(e);
+        // @ts-expect-error HTMLElement narrowing is fine here
+        tilt.onFocus(e as any);
+      },
+      [props.onFocus, tilt]
+    );
+
+    const handleBlur = React.useCallback<React.FocusEventHandler<HTMLInputElement>>(
+      (e) => {
+        props.onBlur?.(e);
+        // @ts-expect-error HTMLElement narrowing is fine here
+        tilt.onBlur(e as any);
+      },
+      [props.onBlur, tilt]
+    );
+
     return (
       <input
         type={type}
-        className={cn(inputVariants({ variant }), className)}
+        className={cn(inputVariants({ variant }), "transform-gpu will-change-transform", className)}
         ref={ref}
         {...props}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
     )
   }

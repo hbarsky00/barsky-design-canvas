@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { EditableImage } from "./EditableImage";
 import { EditableVideo } from "./EditableVideo";
+import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 export interface StructuredCaseStudySectionProps {
   id: string;
   title: string;
@@ -37,6 +38,8 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   className = ""
 }) => {
   // Variant-specific styles removed in favor of neutral card design
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const { containerStyle, childStyle } = useScroll3DTilt(containerRef, { maxTilt: 3, yDistance: 12, childParallax: 8 });
   return <motion.section id={id} initial={{
     opacity: 0,
     y: 30
@@ -48,11 +51,12 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   }} transition={{
     duration: 0.6
   }} className={`mb-16 scroll-mt-4 md:[scroll-margin-top:calc(var(--header-height,64px)+16px)] ${className}`}>
-      <Card className="relative overflow-hidden p-8 lg:p-12 bg-card border border-border shadow-elevated transition-all duration-300 hover:shadow-md">
-        {/* Section Header */}
-        <div className="flex items-center justify-start lg:justify-center gap-4 mb-8 text-left lg:text-center">
-          
-          <h2 className="text-display-small font-bold text-foreground text-left lg:text-center">
+      <motion.div ref={containerRef} style={{ ...containerStyle, transformStyle: "preserve-3d", willChange: "transform" }}>
+        <Card className="relative overflow-hidden p-8 lg:p-12 bg-card border border-border shadow-elevated transition-all duration-300 hover:shadow-md">
+          {/* Section Header */}
+          <div className="flex items-center justify-start lg:justify-center gap-4 mb-8 text-left lg:text-center">
+            
+            <h2 className="text-display-small font-bold text-foreground text-left lg:text-center">
             {title}
           </h2>
         </div>
@@ -62,18 +66,18 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
           {media && (
             <div className="space-y-4">
               {media.type === 'video' ? (
-                <EditableVideo src={media.src} alt={media.alt} caption={media.caption} className="w-full rounded-xl overflow-hidden shadow-elevated" />
+                <motion.div style={childStyle}><EditableVideo src={media.src} alt={media.alt} caption={media.caption} className="w-full rounded-xl overflow-hidden shadow-elevated" /></motion.div>
               ) : media.type === 'comparison' ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <EditableImage src={media.beforeSrc || ''} alt={`Before: ${media.alt}`} caption="Before" className="w-full rounded-lg overflow-hidden shadow-elevated" />
+                    <motion.div style={childStyle}><EditableImage src={media.beforeSrc || ''} alt={`Before: ${media.alt}`} caption="Before" className="w-full rounded-lg overflow-hidden shadow-elevated" /></motion.div>
                   </div>
                   <div className="space-y-2">
-                    <EditableImage src={media.src} alt={`After: ${media.alt}`} caption="After" className="w-full rounded-lg overflow-hidden shadow-elevated" />
+                    <motion.div style={childStyle}><EditableImage src={media.src} alt={`After: ${media.alt}`} caption="After" className="w-full rounded-lg overflow-hidden shadow-elevated" /></motion.div>
                   </div>
                 </div>
               ) : (
-                <EditableImage src={media.src} alt={media.alt} caption={media.caption} className="w-full rounded-xl overflow-hidden shadow-elevated" />
+                <motion.div style={childStyle}><EditableImage src={media.src} alt={media.alt} caption={media.caption} className="w-full rounded-xl overflow-hidden shadow-elevated" /></motion.div>
               )}
             </div>
           )}
@@ -119,7 +123,8 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
             )}
           </div>
         </div>
-      </Card>
+        </Card>
+      </motion.div>
     </motion.section>;
 };
 export default StructuredCaseStudySection;

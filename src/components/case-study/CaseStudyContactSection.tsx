@@ -2,8 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Mail, ArrowRight } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
+import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 
 const CaseStudyContactSection: React.FC = () => {
+  const cardRef = React.useRef<HTMLDivElement>(null);
+  const { containerStyle } = useScroll3DTilt(cardRef, { maxTilt: 2.5, yDistance: 10, childParallax: 6, scaleRange: [0.996, 1, 0.998] });
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -30,9 +33,9 @@ const CaseStudyContactSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-background/80 backdrop-blur-sm rounded-lg p-6 shadow-sm border border-border/30">
+      <motion.div ref={cardRef} style={{ ...containerStyle, transformStyle: "preserve-3d", willChange: "transform" }} className="bg-background/80 backdrop-blur-sm rounded-lg p-6 shadow-sm border border-border/30">
         <ContactForm />
-      </div>
+      </motion.div>
     </motion.section>
   );
 };
