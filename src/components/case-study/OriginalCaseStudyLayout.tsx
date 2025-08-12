@@ -34,7 +34,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
           projectName={caseStudy.title}
           results={[]}
           technologies={caseStudy.tags}
-          path={`/${projectId}/`}
+          path={`/project/${projectId}/`}
         />
 
       <div className="min-h-screen bg-background">

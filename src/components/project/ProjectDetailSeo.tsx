@@ -3,6 +3,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { ProjectProps } from "@/components/ProjectCard";
 import { ProjectDetails } from "@/data/types/project";
+import { normalizeUrl } from "@/utils/urlUtils";
 
 interface ProjectDetailSeoProps {
   project: ProjectProps;
@@ -103,8 +104,8 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
   };
   const seoFriendlyId = projectMapping[project.id] || project.id;
   // Canonical URL is now handled by DynamicSeo component
-  const canonicalUrl = `https://barskydesign.pro/case-studies/${seoFriendlyId}`;
-  
+  const canonicalUrl = normalizeUrl(`/project/${seoFriendlyId}`);
+
   return (
     <Helmet>
       <title>{optimizedTitle}</title>

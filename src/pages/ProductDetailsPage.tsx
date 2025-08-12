@@ -11,6 +11,7 @@ import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import { products } from "@/data/productsData";
+import { normalizeUrl } from "@/utils/urlUtils";
 
 const ProductDetailsPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -40,9 +41,10 @@ const ProductDetailsPage: React.FC = () => {
         <meta name="author" content="Barsky Design - UX Research & Design Agency" />
         
         {/* Open Graph */}
+        <link rel="canonical" href={normalizeUrl(`/store/product/${product.id}`)} />
         <meta property="og:title" content={`${product.name} | Barsky Design Design Resources`} />
         <meta property="og:description" content={`${product.description} Professional design resource from Barsky Design - UX research and design agency.`} />
-        <meta property="og:url" content={`https://barskydesign.pro/store/product/${product.id}`} />
+        <meta property="og:url" content={normalizeUrl(`/store/product/${product.id}`)} />
         <meta property="og:type" content="product" />
         <meta property="og:image" content={`https://barskydesign.pro${product.image}`} />
         <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
