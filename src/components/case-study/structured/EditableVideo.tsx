@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Play, Upload, Edit3, Pause } from "lucide-react";
-import { captureFirstFrame } from "@/utils/videoFirstFrame";
+
 interface EditableVideoProps {
   src: string;
   alt: string;
@@ -29,36 +29,16 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editCaption, setEditCaption] = useState(caption || "");
-  const [autoPoster, setAutoPoster] = useState<string | undefined>(poster);
-
-  // Auto-generate a poster from the first frame when none is provided
-  useEffect(() => {
-    const isDirectVideo = Boolean(src && /(\.(mp4|webm|ogg)(\?.*)?$)/i.test(src));
-    if (!poster && isDirectVideo) {
-      let isMounted = true;
-      captureFirstFrame(src).then((dataUrl) => {
-        if (isMounted && dataUrl) setAutoPoster(dataUrl);
-      }).catch(() => {});
-      return () => { isMounted = false; };
-    } else {
-      setAutoPoster(poster);
-    }
-  }, [src, poster]);
 
   const handleVideoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
+    if (file && onVideoChange) {
+      // In a real implementation, you'd upload to a service
       const url = URL.createObjectURL(file);
-      // Optimistically capture a poster for immediate feedback
-      captureFirstFrame(url).then((dataUrl) => {
-        if (dataUrl) setAutoPoster(dataUrl);
-      }).catch(() => {});
-      if (onVideoChange) {
-        // In a real implementation, you'd upload to a service
-        onVideoChange(url);
-      }
+      onVideoChange(url);
     }
   };
+
   const handleCaptionSave = () => {
     if (onCaptionChange) {
       onCaptionChange(editCaption);
@@ -77,7 +57,7 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
           // Video Thumbnail
           <div className="relative w-full h-full">
             <img
-              src={poster || autoPoster || "/placeholder.svg"}
+              src={poster || "/placeholder.svg"}
               alt={alt}
               className="w-full h-full object-cover"
             />
