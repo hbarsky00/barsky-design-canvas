@@ -15,7 +15,7 @@ const HomepageLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
-      <main className="flex-grow space-y-4 pt-[var(--header-height,64px)]">
+      <main className="flex-grow space-y-2 pt-[var(--header-height,64px)]">
         <SectionTransition variant="fade">
           <EnhancedHero />
         </SectionTransition>
@@ -28,11 +28,11 @@ const HomepageLayout: React.FC = () => {
           <ContactForm />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15}>
+        <SectionTransition variant="fade" delay={0.15} className="hidden md:block">
           <BlogPreview />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.2}>
+        <SectionTransition variant="fade" delay={0.2} className="hidden md:block">
           <SeoFaqSection 
             title="Frequently Asked Questions About AI-Enhanced UX Design"
             faqs={homepageFaqs}

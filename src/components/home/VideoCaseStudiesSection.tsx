@@ -4,7 +4,7 @@ import ModernProjectCard from "@/components/homepage/ModernProjectCard";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 import SectionHeader from "@/components/shared/SectionHeader";
 const VideoCaseStudiesSection: React.FC = () => {
-  return <section id="projects" className="py-12 sm:py-16 bg-transparent sm:bg-gradient-to-br sm:from-primary-container/10 sm:to-secondary-container/10">
+  return <section id="projects" className="py-6 sm:py-10 bg-transparent sm:bg-gradient-to-br sm:from-primary-container/10 sm:to-secondary-container/10">
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
@@ -18,7 +18,7 @@ const VideoCaseStudiesSection: React.FC = () => {
           }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-6 sm:mb-8"
         >
           <SectionHeader
             as="h2"
@@ -30,7 +30,7 @@ const VideoCaseStudiesSection: React.FC = () => {
         </motion.div>
 
         {/* Case Studies Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {homepageCaseStudyPreviews.map((study, index) => <ModernProjectCard key={study.title} title={study.title} description={study.description} tags={study.tags} videoThumbnail={study.videoThumbnail} video={study.video} url={study.url} className="" />)}
         </div>
 

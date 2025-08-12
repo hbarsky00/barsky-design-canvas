@@ -19,14 +19,14 @@ const EnhancedHero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative py-10 sm:py-16 bg-transparent">
+    <section className="relative py-6 sm:py-10 bg-transparent">
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="w-full text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-4 sm:space-y-6"
+            className="space-y-3 sm:space-y-4"
           >
             <HeroHeading isVisible={isVisible} />
             <HeroDescription isVisible={isVisible} />
