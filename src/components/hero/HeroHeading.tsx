@@ -24,7 +24,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({
         
         <AnimatedText text="Product Designer & AI Partner focused on outcomes." tag="h1" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-on-surface block mb-4 leading-tight mx-auto max-w-6xl [text-wrap:balance]" delay={1000} type="word" animation="fade" staggerChildren={0.05} />
         
-        <AnimatedText text="Design leader blending UX and AI to ship, scale, and improve conversion." tag="h2" className="text-base sm:text-lg font-medium text-on-surface-variant mb-4 leading-relaxed text-center mx-auto max-w-3xl [text-wrap:balance]" delay={1200} type="word" animation="fade" staggerChildren={0.02} />
+        
         
         <motion.div initial={{
         width: 0

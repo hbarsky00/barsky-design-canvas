@@ -11,7 +11,7 @@ const ProfileAvatar: React.FC = () => {
       imageSrc="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
       name="Hiram Barsky"
       subtitle="Product Design + AI"
-      size="sm"
+      size="md"
       subtitleStyle="pill"
       className="shrink-0"
     />

@@ -17,7 +17,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
         transition={{ delay: 1.4, duration: 0.5 }}
         className="text-base sm:text-lg mb-4 sm:mb-8 text-on-surface-variant font-medium max-w-4xl mx-auto leading-relaxed"
       >
-        I design, prototype, and ship user experiences that drive real business outcomes.
+        I blend UX and AI to design, prototype, and ship experiences that scale and lift conversion.
       </motion.p>
       
       <p className="text-sm text-on-surface-variant mb-6 text-center">
