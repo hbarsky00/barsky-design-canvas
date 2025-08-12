@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -29,13 +30,12 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, variant, type, tiltDisabled, ...props }, ref) => {
-    const tilt = useHoverTilt({ maxTilt: 2, scale: 1.01, disabled: tiltDisabled });
+    const tilt = useHoverTilt<HTMLInputElement>({ maxTilt: 2, scale: 1.01, disabled: tiltDisabled });
 
     const handleMouseMove = React.useCallback<React.MouseEventHandler<HTMLInputElement>>(
       (e) => {
         props.onMouseMove?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onMouseMove(e as any);
+        tilt.onMouseMove(e);
       },
       [props.onMouseMove, tilt]
     );
@@ -43,8 +43,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const handleMouseLeave = React.useCallback<React.MouseEventHandler<HTMLInputElement>>(
       (e) => {
         props.onMouseLeave?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onMouseLeave(e as any);
+        tilt.onMouseLeave(e);
       },
       [props.onMouseLeave, tilt]
     );
@@ -52,8 +51,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const handleFocus = React.useCallback<React.FocusEventHandler<HTMLInputElement>>(
       (e) => {
         props.onFocus?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onFocus(e as any);
+        tilt.onFocus(e);
       },
       [props.onFocus, tilt]
     );
@@ -61,8 +59,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const handleBlur = React.useCallback<React.FocusEventHandler<HTMLInputElement>>(
       (e) => {
         props.onBlur?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onBlur(e as any);
+        tilt.onBlur(e);
       },
       [props.onBlur, tilt]
     );

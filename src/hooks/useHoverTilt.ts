@@ -1,3 +1,4 @@
+
 import { useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 
@@ -7,7 +8,7 @@ type Options = {
   disabled?: boolean;
 };
 
-export const useHoverTilt = (opts: Options = {}) => {
+export const useHoverTilt = <T extends HTMLElement = HTMLElement>(opts: Options = {}) => {
   const { maxTilt = 2, scale = 1.01, disabled = false } = opts;
   const prefersReduced = useReducedMotion();
   const frame = useRef<number | null>(null);
@@ -20,9 +21,9 @@ export const useHoverTilt = (opts: Options = {}) => {
     el.style.willChange = "transform";
   };
 
-  const onMouseMove: React.MouseEventHandler<HTMLElement> = (e) => {
+  const onMouseMove: React.MouseEventHandler<T> = (e) => {
     if (isDisabled) return;
-    const el = e.currentTarget as HTMLElement;
+    const el = e.currentTarget as unknown as HTMLElement;
     const rect = el.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
@@ -40,21 +41,21 @@ export const useHoverTilt = (opts: Options = {}) => {
     applyTransform(el, 0, 0, 1);
   };
 
-  const onMouseLeave: React.MouseEventHandler<HTMLElement> = (e) => {
+  const onMouseLeave: React.MouseEventHandler<T> = (e) => {
     if (isDisabled) return;
-    reset(e.currentTarget as HTMLElement);
+    reset(e.currentTarget as unknown as HTMLElement);
   };
 
-  const onFocus: React.FocusEventHandler<HTMLElement> = (e) => {
+  const onFocus: React.FocusEventHandler<T> = (e) => {
     if (isDisabled) return;
-    const el = e.currentTarget as HTMLElement;
+    const el = e.currentTarget as unknown as HTMLElement;
     el.style.transition = "transform 150ms ease-out";
     applyTransform(el, 0, 0, scale);
   };
 
-  const onBlur: React.FocusEventHandler<HTMLElement> = (e) => {
+  const onBlur: React.FocusEventHandler<T> = (e) => {
     if (isDisabled) return;
-    reset(e.currentTarget as HTMLElement);
+    reset(e.currentTarget as unknown as HTMLElement);
   };
 
   return { onMouseMove, onMouseLeave, onFocus, onBlur };

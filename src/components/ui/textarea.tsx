@@ -1,3 +1,4 @@
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -10,13 +11,12 @@ export interface TextareaProps
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, tiltDisabled, ...props }, ref) => {
-    const tilt = useHoverTilt({ maxTilt: 2, scale: 1.01, disabled: tiltDisabled });
+    const tilt = useHoverTilt<HTMLTextAreaElement>({ maxTilt: 2, scale: 1.01, disabled: tiltDisabled });
 
     const handleMouseMove = React.useCallback<React.MouseEventHandler<HTMLTextAreaElement>>(
       (e) => {
         props.onMouseMove?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onMouseMove(e as any);
+        tilt.onMouseMove(e);
       },
       [props.onMouseMove, tilt]
     );
@@ -24,8 +24,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const handleMouseLeave = React.useCallback<React.MouseEventHandler<HTMLTextAreaElement>>(
       (e) => {
         props.onMouseLeave?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onMouseLeave(e as any);
+        tilt.onMouseLeave(e);
       },
       [props.onMouseLeave, tilt]
     );
@@ -33,8 +32,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const handleFocus = React.useCallback<React.FocusEventHandler<HTMLTextAreaElement>>(
       (e) => {
         props.onFocus?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onFocus(e as any);
+        tilt.onFocus(e);
       },
       [props.onFocus, tilt]
     );
@@ -42,8 +40,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const handleBlur = React.useCallback<React.FocusEventHandler<HTMLTextAreaElement>>(
       (e) => {
         props.onBlur?.(e);
-        // @ts-expect-error HTMLElement narrowing is fine here
-        tilt.onBlur(e as any);
+        tilt.onBlur(e);
       },
       [props.onBlur, tilt]
     );

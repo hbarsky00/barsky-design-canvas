@@ -1,3 +1,4 @@
+
 import { RefObject } from "react";
 import { useReducedMotion, useScroll, useTransform, MotionValue } from "framer-motion";
 
@@ -9,7 +10,7 @@ type Options = {
 };
 
 export const useScroll3DTilt = (
-  ref: RefObject<Element>,
+  ref: RefObject<HTMLElement>,
   {
     maxTilt = 3,
     yDistance = 12,

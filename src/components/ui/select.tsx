@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
@@ -15,31 +16,23 @@ const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => {
-  const tilt = useHoverTilt({ maxTilt: 2, scale: 1.01 });
+  const tilt = useHoverTilt<HTMLButtonElement>({ maxTilt: 2, scale: 1.01 });
 
   const handleMouseMove: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    // @ts-expect-error - pass-through to consumer if provided
     props.onMouseMove?.(e);
-    // @ts-expect-error HTMLElement narrowing is fine here
-    tilt.onMouseMove(e as any);
+    tilt.onMouseMove(e);
   };
   const handleMouseLeave: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    // @ts-expect-error - pass-through to consumer if provided
     props.onMouseLeave?.(e);
-    // @ts-expect-error HTMLElement narrowing is fine here
-    tilt.onMouseLeave(e as any);
+    tilt.onMouseLeave(e);
   };
   const handleFocus: React.FocusEventHandler<HTMLButtonElement> = (e) => {
-    // @ts-expect-error - pass-through to consumer if provided
     props.onFocus?.(e);
-    // @ts-expect-error HTMLElement narrowing is fine here
-    tilt.onFocus(e as any);
+    tilt.onFocus(e);
   };
   const handleBlur: React.FocusEventHandler<HTMLButtonElement> = (e) => {
-    // @ts-expect-error - pass-through to consumer if provided
     props.onBlur?.(e);
-    // @ts-expect-error HTMLElement narrowing is fine here
-    tilt.onBlur(e as any);
+    tilt.onBlur(e);
   };
 
   return (
