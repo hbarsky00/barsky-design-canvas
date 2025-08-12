@@ -21,7 +21,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import NotFound from "./pages/NotFound";
 import TinyMCEDemo from "@/pages/TinyMCEDemo";
 import LeadCapture from "@/pages/LeadCapture";
-import AdminDashboard from "@/pages/AdminDashboard";
+
 import FreeAudit from "@/pages/FreeAudit";
 import MvpValidation from "@/pages/services/MvpValidation";
 import ConversionAudit from "@/pages/services/ConversionAudit";
@@ -37,7 +37,7 @@ import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseS
 import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
 import BlogPostPage from "@/components/blog/BlogPostPage";
 import ServicePage from "@/components/pages/ServicePage";
-import MetaTagManager from "@/components/admin/MetaTagManager";
+
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { SafeErrorBoundary } from "@/components/SafeErrorBoundary";
@@ -110,14 +110,14 @@ function App() {
                     <Route path="/store" element={<Store />} />
                     <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
                     <Route path="/get-started" element={<LeadCapture />} />
-                    <Route path="/admin/leads" element={<AdminDashboard />} />
+                    
                     <Route path="/tinymce-demo" element={<TinyMCEDemo />} />
                     <Route path="/free-audit" element={<FreeAudit />} />
                     <Route path="/services/mvp-validation" element={<MvpValidation />} />
                     <Route path="/services/conversion-audit" element={<ConversionAudit />} />
                     <Route path="/services/ai-redesign" element={<AiRedesign />} />
                     <Route path="/linkedin-visitors" element={<LinkedInVisitors />} />
-                    <Route path="/meta-tag-manager" element={<MetaTagManager />} />
+                    
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>

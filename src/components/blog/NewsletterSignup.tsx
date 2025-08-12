@@ -18,15 +18,16 @@ const NewsletterSignup: React.FC = () => {
     
     try {
       // Store newsletter signup in leads table
-      const { error } = await supabase
-        .from('leads')
-        .insert({
+      const { data, error } = await supabase.functions.invoke('process-lead', {
+        body: {
           email,
           name: 'Newsletter Subscriber',
           lead_source: 'blog_newsletter',
           project_type: 'Newsletter Subscription',
           notes: 'Subscribed to blog newsletter'
-        });
+        }
+      });
+
 
       if (error) throw error;
 
