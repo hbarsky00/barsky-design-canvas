@@ -136,10 +136,10 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
-            {videoThumbnail || capturedThumb ? (
+            {capturedThumb || videoThumbnail ? (
               <>
                 <img
-                  src={videoThumbnail || capturedThumb || ''}
+                  src={capturedThumb || videoThumbnail || ''}
                   alt={title}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -148,7 +148,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                   <video
                     ref={videoRef}
                     src={videoSrcLoaded ?? undefined}
-                    poster={videoThumbnail || capturedThumb || undefined}
+                    poster={capturedThumb || videoThumbnail || undefined}
                     muted
                     playsInline
                     loop
