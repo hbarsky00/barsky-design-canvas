@@ -109,7 +109,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "business-management": {
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
-    videoThumbnail: "bizmgmt-thumb.jpg",
+    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
     tags: ["Enterprise", "Analytics", "Dashboard"],
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
@@ -216,7 +216,7 @@ export const homepageCaseStudyPreviews = [
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     tags: ["Enterprise", "Analytics", "Dashboard"],
-    videoThumbnail: "bizmgmt-thumb.jpg",
+    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
     url: "/project/business-management"
   },

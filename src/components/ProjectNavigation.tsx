@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 interface ProjectNavigationProps {
   currentProjectId: string;
@@ -56,16 +57,19 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {prevProject && (
           <button
             onClick={handlePrevProject}
-            className="group flex items-center space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors cursor-pointer bg-transparent border-none"
+            className="group flex items-center gap-4 p-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm"
             type="button"
+            aria-label={`Previous project: ${prevProject.title}`}
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            <div className="hidden sm:block relative w-16 h-16 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue">
-              <AspectRatio ratio={1}>
-                <img 
-                  src={prevProject.image} 
+            <div className="hidden sm:block relative w-36 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
+              <AspectRatio ratio={16 / 10}>
+                <OptimizedImage
+                  src={prevProject.image}
                   alt={prevProject.title}
-                  className="object-cover w-full h-full"
+                  loading="lazy"
+                  fallback="/placeholder.svg"
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-[1.03]"
                 />
               </AspectRatio>
             </div>
@@ -94,19 +98,22 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {nextProject && (
           <button
             onClick={handleNextProject}
-            className="group flex items-center justify-end space-x-4 p-2 -m-2 hover:text-barsky-blue transition-colors cursor-pointer bg-transparent border-none w-full"
+            className="group flex items-center justify-end gap-4 p-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
             type="button"
+            aria-label={`Next project: ${nextProject.title}`}
           >
             <div className="text-right">
               <p className="text-sm text-barsky-text/70">Next Project</p>
               <p className="font-medium">{nextProject.title}</p>
             </div>
-            <div className="hidden sm:block relative w-16 h-16 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue">
-              <AspectRatio ratio={1}>
-                <img 
+            <div className="hidden sm:block relative w-36 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
+              <AspectRatio ratio={16 / 10}>
+                <OptimizedImage 
                   src={nextProject.image} 
                   alt={nextProject.title}
-                  className="object-cover w-full h-full"
+                  loading="lazy"
+                  fallback="/placeholder.svg"
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-[1.03]"
                 />
               </AspectRatio>
             </div>
