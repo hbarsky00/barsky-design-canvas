@@ -97,6 +97,8 @@ function App() {
                         <Route path="/case-study-splittime" element={<Navigate to="/project/splittime" replace />} />
                         <Route path="/case-study-investor-loan" element={<Navigate to="/project/investor-loan-app" replace />} />
                         <Route path="/case-study/:id" element={<Navigate to="/projects" replace />} />
+                        {/* Legacy alias for old investment app route */}
+                        <Route path="/project/investment-app" element={<Navigate to="/project/investor-loan-app" replace />} />
                         
                         {/* Generic project route for other projects */}
                         <Route path="/project/:projectId" element={<ProjectDetail />} />

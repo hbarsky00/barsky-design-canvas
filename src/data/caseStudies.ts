@@ -226,6 +226,6 @@ export const homepageCaseStudyPreviews = [
     tags: ["Finance", "Analytics", "Tutorial"],
     videoThumbnail: "",
     video: "https://share.shots.so/WIa01A8uV6pGHd9q.mp4",
-    url: "/project/investment-app"
+    url: "/project/investor-loan-app"
   }
 ];
