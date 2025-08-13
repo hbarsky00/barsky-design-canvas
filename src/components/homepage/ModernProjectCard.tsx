@@ -106,7 +106,9 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   }, [inView, isDirectVideo, video, videoSrcLoaded, hasTriedCapture, capturedThumb]);
   // 3D scroll transforms
   const prefersReducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
+  const {
+    scrollYProgress
+  } = useScroll({
     target: containerRef,
     offset: ["start 80%", "end 20%"]
   });
@@ -115,57 +117,61 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   const scaleTransform = useTransform(scrollYProgress, [0, 0.5, 1], [0.985, 1, 0.985]);
   const mediaY = useTransform(scrollYProgress, [0, 1], [-8, 8]);
   const mediaScale = useTransform(scrollYProgress, [0, 1], [1.03, 1.0]);
-  return <motion.div
-    initial={{
-      opacity: 0,
-      y: 30
-    }}
-    whileInView={{
-      opacity: 1,
-      y: 0
-    }}
-    viewport={{
-      once: true
-    }}
-    transition={{
-      duration: 0.6
-    }}
-    className={`${className} will-change-transform`}
-    ref={containerRef}
-    style={prefersReducedMotion ? undefined : { rotateX, y: yTransform, scale: scaleTransform, transformPerspective: 1000 }}
-    onHoverStart={() => {
-      setIsHovered(true);
-      if (isDirectVideo) {
-        if (!videoSrcLoaded) setVideoSrcLoaded(video as string);
-        setTimeout(() => {
-          try {
-            videoRef.current?.play();
-          } catch {}
-        }, 0);
-      }
-    }}
-    onHoverEnd={() => {
-      setIsHovered(false);
-      if (videoRef.current) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-      }
-    }}
-  >
+  return <motion.div initial={{
+    opacity: 0,
+    y: 30
+  }} whileInView={{
+    opacity: 1,
+    y: 0
+  }} viewport={{
+    once: true
+  }} transition={{
+    duration: 0.6
+  }} className={`${className} will-change-transform`} ref={containerRef} style={prefersReducedMotion ? undefined : {
+    rotateX,
+    y: yTransform,
+    scale: scaleTransform,
+    transformPerspective: 1000
+  }} onHoverStart={() => {
+    setIsHovered(true);
+    if (isDirectVideo) {
+      if (!videoSrcLoaded) setVideoSrcLoaded(video as string);
+      setTimeout(() => {
+        try {
+          videoRef.current?.play();
+        } catch {}
+      }, 0);
+    }
+  }} onHoverEnd={() => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }}>
       <Link to={url} aria-label={`${title} case study`} className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl">
         <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
             {capturedThumb || videoThumbnail ? <>
-                <motion.img src={capturedThumb || videoThumbnail || ''} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : { y: mediaY, scale: mediaScale }} />
-                {isDirectVideo && <motion.video ref={videoRef} src={videoSrcLoaded ?? undefined} poster={capturedThumb || videoThumbnail || undefined} muted playsInline loop preload="none" className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`} style={prefersReducedMotion ? undefined : { y: mediaY, scale: mediaScale }} onCanPlay={() => {
+                <motion.img src={capturedThumb || videoThumbnail || ''} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : {
+              y: mediaY,
+              scale: mediaScale
+            }} />
+                {isDirectVideo && <motion.video ref={videoRef} src={videoSrcLoaded ?? undefined} poster={capturedThumb || videoThumbnail || undefined} muted playsInline loop preload="none" className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`} style={prefersReducedMotion ? undefined : {
+              y: mediaY,
+              scale: mediaScale
+            }} onCanPlay={() => {
               if (isHovered) {
                 try {
                   videoRef.current?.play();
                 } catch {}
               }
             }} />}
-              </> : isDirectVideo ? <motion.video ref={videoRef} src={video as string || undefined} muted playsInline loop preload="metadata" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : { y: mediaY, scale: mediaScale }} onCanPlay={() => {
+              </> : isDirectVideo ? <motion.video ref={videoRef} src={video as string || undefined} muted playsInline loop preload="metadata" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : {
+            y: mediaY,
+            scale: mediaScale
+          }} onCanPlay={() => {
             if (isHovered) {
               try {
                 videoRef.current?.play();
@@ -185,7 +191,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
             </div>
 
             {/* Title */}
-            <h2 className="text-title-large text-primary/90 leading-tight transition-colors duration-200 group-hover:text-primary font-extrabold">
+            <h2 className="text-title-large leading-tight transition-colors duration-200 font-extrabold text-xl text-[#413f65]/90">
               {title}
             </h2>
 
