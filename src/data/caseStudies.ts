@@ -65,7 +65,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "splittime": {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     video: "",
-    videoThumbnail: "splittime-thumb.jpg",
+    videoThumbnail: "images/desktop-signup-1.png",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     projectLink: "https://splittime.pro",
@@ -208,7 +208,7 @@ export const homepageCaseStudyPreviews = [
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
-    videoThumbnail: "splittime-thumb.jpg",
+    videoThumbnail: "images/desktop-signup-1.png",
     video: "https://share.shots.so/GlnqjFOJW3Rhn4p2.mp4",
     url: "/project/splittime"
   },
