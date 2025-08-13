@@ -200,7 +200,7 @@ export const homepageCaseStudyPreviews = [
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     tags: ["Health", "Marketplace", "Gen AI"],
-    videoThumbnail: "/lovable-uploads/dcf17b49-127c-4679-9b17-9b204e664e8a.png?v=" + Date.now(),
+    videoThumbnail: "/lovable-uploads/05265456-ba32-4c5c-8d84-2ad8d7a83deb.png",
     video: "https://share.shots.so/W6ikOt0HenziCxLQ.mp4",
     url: "/project/herbalink"
   },
