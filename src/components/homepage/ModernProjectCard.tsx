@@ -75,7 +75,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
             const ctx = canvas.getContext('2d');
             if (ctx) {
               ctx.drawImage(v, 0, 0, w, h);
-              const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+              const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
               setCapturedThumb(dataUrl);
             }
           } catch {}

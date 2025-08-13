@@ -22,6 +22,7 @@ interface MaximizableImageProps {
   width?: number;
   height?: number;
   aspectRatio?: string;
+  fit?: 'cover' | 'contain';
 }
 const MaximizableImage: React.FC<MaximizableImageProps> = ({
   src,
@@ -38,7 +39,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   onImageRemove,
   width,
   height,
-  aspectRatio = "16/9"
+  aspectRatio,
+  fit = 'cover',
 }) => {
   const {
     maximizeImage
@@ -151,7 +153,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     onMouseLeave={() => setIsHovered(false)} 
     data-lovable-element="image-container" 
     data-lovable-editable="image-wrapper"
-    style={{ aspectRatio: aspectRatio }}
+    style={aspectRatio ? { aspectRatio } : undefined}
   >
       {imageError ? (
         <ImageErrorFallback showEditingControls={showEditingControls} originalSrc={currentSrc} />
@@ -194,10 +196,10 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             transition: 'opacity 0.3s ease',
             display: 'block',
             width: '100%',
-            height: '100%',
-            objectFit: 'cover'
+            height: fit === 'contain' ? 'auto' : '100%',
+            objectFit: fit
           }} 
-          className="w-full h-full transition-transform duration-300 group-hover:scale-105 object-cover" 
+          className={`w-full ${fit === 'contain' ? 'h-auto object-contain' : 'h-full object-cover'} transition-transform duration-300 group-hover:scale-105`} 
         />
       )}
       

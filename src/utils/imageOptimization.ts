@@ -37,9 +37,9 @@ export const getOptimizedImageSrc = (originalSrc: string, isMobile = false): str
     return mapping.mobile;
   }
   
-  // Check WebP support and use compressed version for better performance
-  if (supportsWebP() && mapping.webpCompressed) {
-    return mapping.webpCompressed;
+  // Prefer standard WebP for clarity
+  if (supportsWebP() && mapping.webp) {
+    return mapping.webp;
   }
   
   return mapping.original;
@@ -128,7 +128,7 @@ export const getResponsiveImageSources = (originalSrc: string) => {
   const mapping = OPTIMIZED_IMAGE_MAP[originalSrc];
   if (!mapping) return '';
   
-  return `${mapping.mobile} 480w, ${mapping.webpCompressed} 768w, ${mapping.webp} 1200w`;
+  return `${mapping.mobile} 480w, ${mapping.webp} 768w, ${mapping.webp} 1200w`;
 };
 
 /**
