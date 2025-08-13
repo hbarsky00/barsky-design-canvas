@@ -153,8 +153,8 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
-            {capturedThumb || videoThumbnail ? <>
-                <motion.img src={capturedThumb || videoThumbnail || ''} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : {
+            {videoThumbnail || capturedThumb ? <>
+                <motion.img src={videoThumbnail || capturedThumb || ''} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : {
               y: mediaY,
               scale: mediaScale
             }} />
