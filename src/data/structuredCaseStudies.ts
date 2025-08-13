@@ -247,9 +247,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "A private banking institution was running its entire investor loan operation in Excel.\n\nThat meant:\n- Manual data entry causing frequent compliance risks\n- No audit trails, search, or collaboration\n- Friction between departments and no scalable infrastructure\n- Loan processing was slow, fragmented, and error-prone\n\nAs the bank grew, this fragile system became the bottleneck.",
         media: {
           type: 'image',
-          src: "/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png",
-          alt: "Platform overview",
-          caption: "High-level platform overview for the new loan system."
+          src: "https://barskyux.com/wp-content/uploads/2023/12/excel-document-used-to-save-loan-information.png",
+          alt: "Excel document used to save loan information",
+          caption: "Excel spreadsheet previously used to manage investor loan data."
         }
       },
       {
@@ -266,9 +266,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         ],
         media: {
           type: 'image',
-          src: "/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png",
-          alt: "Results metrics",
-          caption: "Key performance metrics after launch."
+          src: "https://barskyux.com/wp-content/uploads/2023/12/beforeandafter.png",
+          alt: "Before and after metrics comparison for investor loan platform",
+          caption: "Before-and-after visualization highlighting error reduction and speed gains."
         }
       },
       {
@@ -280,9 +280,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Rebuilding Excel as-is carried clutter and confusion. We shifted to modular card + table views with hierarchy and real-time updates.\n\nAutomating without transparency hurt trust. We added visual confirmations, logs, and rollback controls.\n\nDesigning Add Order like a flat form overwhelmed users. We rebuilt it as a guided, interactive workflow with progressive steps, real-time validation, and clear structure.",
         media: {
           type: 'image',
-          src: "/lovable-uploads/27ed3b6b-f807-461f-a731-d28304ab0b2f.png",
-          alt: "Project lessons",
-          caption: "Project lessons highlighting issues and fixes."
+          src: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Central-Orderbook-View.png",
+          alt: "Loan Central order book view in the redesigned platform",
+          caption: "Order book view showing modular cards, hierarchy, and real-time updates."
         }
       },
       {
