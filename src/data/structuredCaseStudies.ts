@@ -300,34 +300,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       },
       {
-        id: "mistake-2",
-        title: "✖ Mistake #2: Automating without transparency",
-        icon: React.createElement(X, { className: "h-6 w-6" }),
-        variant: "failed",
-        content:
-          "Why it failed: Users didn’t trust changes were saved or tracked.\nFix: Introduced visual confirmations, logging, and rollback controls.",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/210badcf-5da6-47c5-9e9c-c4ba3a0c9102.png",
-          alt: "Design system overview",
-          caption: "Design system patterns that improve traceability."
-        }
-      },
-      {
-        id: "mistake-3",
-        title: "✖ Mistake #3: Designing Add Order Like a Flat Form",
-        icon: React.createElement(X, { className: "h-6 w-6" }),
-        variant: "failed",
-        content:
-          "Why it failed: The original flow showed every field at once with no progression or guidance; errors surfaced only after submission.\n\nFix: Rebuilt as a guided, interactive workflow—disabled actions until a lender is selected, grouped inputs into steps, added real-time validation and contextual help, and kept comments and totals always visible.",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/1a7eeadb-eae0-4c00-8a2c-a2ed24372c35.png",
-          alt: "Deal management",
-          caption: "Guided order creation improves clarity and control."
-        }
-      },
-      {
         id: "my-thought-process",
         title: "🧠 How I Thought Through It",
         icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),

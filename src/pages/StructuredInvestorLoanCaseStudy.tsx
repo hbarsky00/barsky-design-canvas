@@ -16,6 +16,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => {
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
       seoData={caseStudyData.seoData}
+      showNavigation={false}
     />
   );
 };

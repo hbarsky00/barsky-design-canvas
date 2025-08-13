@@ -36,6 +36,7 @@ interface StructuredCaseStudyLayoutProps {
     technologies: string[];
     path: string;
   };
+  showNavigation?: boolean;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
@@ -46,7 +47,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   sections,
   projectLink,
   gradientClasses = "from-primary-container/20 to-secondary-container/20",
-  seoData
+  seoData,
+  showNavigation = true
 }) => {
   const navigationItems = sections.map(section => ({
     label: section.title,
@@ -96,9 +98,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
         <main className="flex-grow">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
-            <div className="lg:grid lg:grid-cols-[16rem,1fr] lg:gap-8">
+            <div className={showNavigation ? "lg:grid lg:grid-cols-[16rem,1fr] lg:gap-8" : ""}>
               {/* Desktop sidebar + Mobile FAB navigation */}
-              <CaseStudyNavigation navigation={navigationItems} />
+              {showNavigation && <CaseStudyNavigation navigation={navigationItems} />}
 
               {/* Main content column */}
               <div>
