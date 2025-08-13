@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Heart, Baby } from "lucide-react";
@@ -16,7 +17,7 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({ onImageClick, onImageKeyp
       <div className="absolute inset-0">
         <img 
           src="/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png" 
-          alt="Splittime co-parenting dashboard"
+          alt="Splittime co-parenting dashboard showing neutral communication tools"
           className="w-full h-full object-cover object-center"
         />
         {/* Strong dark overlay for text readability */}
@@ -37,12 +38,12 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({ onImageClick, onImageKeyp
               >
                 {/* Title case heading with medium weight */}
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight">
-                  Helping Co-Parents Communicate with Clarity
+                  40% Less Conflict in Co-Parenting Communication
                 </h1>
                 
                 {/* High contrast readable subtext */}
                 <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
-                  Streamlined tools that reduce conflict and put children first.
+                  Neutral communication tools and stress-aware design that puts children first, reducing conflict by 40% in the first three months.
                 </p>
                 
                 {/* Bold rectangular CTA button */}
