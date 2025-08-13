@@ -31,6 +31,14 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   const [hasTriedCapture, setHasTriedCapture] = useState(false);
   const [inView, setInView] = useState(false);
 
+  // Choose thumbnail with safe priority
+  const thumb = (videoThumbnail && typeof videoThumbnail === "string" && videoThumbnail.length > 0
+    ? videoThumbnail
+    : undefined) ??
+  (capturedThumb && capturedThumb.startsWith("data:")
+    ? capturedThumb
+    : undefined);
+
   // Observe when the card enters the viewport
   useEffect(() => {
     if (!containerRef.current) return;
@@ -153,31 +161,48 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
-            {videoThumbnail || capturedThumb ? <>
-                <motion.img src={videoThumbnail || capturedThumb || ''} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : {
-              y: mediaY,
-              scale: mediaScale
-            }} />
-                {isDirectVideo && <motion.video ref={videoRef} src={videoSrcLoaded ?? undefined} poster={capturedThumb || videoThumbnail || undefined} muted playsInline loop preload="none" className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${isHovered && videoSrcLoaded ? 'opacity-100' : 'opacity-0'}`} style={prefersReducedMotion ? undefined : {
-              y: mediaY,
-              scale: mediaScale
-            }} onCanPlay={() => {
-              if (isHovered) {
-                try {
-                  videoRef.current?.play();
-                } catch {}
-              }
-            }} />}
-              </> : isDirectVideo ? <motion.video ref={videoRef} src={video as string || undefined} muted playsInline loop preload="metadata" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" style={prefersReducedMotion ? undefined : {
-            y: mediaY,
-            scale: mediaScale
-          }} onCanPlay={() => {
-            if (isHovered) {
-              try {
-                videoRef.current?.play();
-              } catch {}
-            }
-          }} /> : <div className="w-full h-full bg-surface-variant" />}
+            {isDirectVideo ? (
+              <motion.video
+                ref={videoRef}
+                key={video}
+                poster={thumb}
+                src={videoSrcLoaded ?? undefined}
+                muted
+                playsInline
+                loop
+                preload="metadata"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                style={prefersReducedMotion ? undefined : {
+                  y: mediaY,
+                  scale: mediaScale
+                }}
+                onCanPlay={() => {
+                  if (isHovered) {
+                    try {
+                      videoRef.current?.play();
+                    } catch {}
+                  }
+                }}
+              />
+            ) : thumb ? (
+              <motion.img
+                src={thumb}
+                alt={title}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                style={prefersReducedMotion ? undefined : {
+                  y: mediaY,
+                  scale: mediaScale
+                }}
+                onError={(e) => {
+                  const el = e.currentTarget as HTMLImageElement;
+                  el.onerror = null;
+                  el.src = "/images/placeholder-thumb.png";
+                }}
+              />
+            ) : (
+              <div className="w-full h-full bg-surface-variant" />
+            )}
           </div>
 
           {/* Content Section */}
