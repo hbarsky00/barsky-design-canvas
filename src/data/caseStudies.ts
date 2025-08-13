@@ -209,7 +209,7 @@ export const homepageCaseStudyPreviews = [
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
     videoThumbnail: "splittime-thumb.jpg",
-    video: "",
+    video: "https://share.shots.so/GlnqjFOJW3Rhn4p2.mp4",
     url: "/project/splittime"
   },
   {
