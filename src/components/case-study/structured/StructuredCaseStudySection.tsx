@@ -16,6 +16,13 @@ export interface StructuredCaseStudySectionProps {
     alt: string;
     caption?: string;
     beforeSrc?: string; // For comparison type
+    videoOptions?: {
+      autoplay?: boolean;
+      loop?: boolean;
+      muted?: boolean;
+      controls?: boolean;
+      playsInline?: boolean;
+    };
   };
   metrics?: Array<{
     value: string;
@@ -66,7 +73,15 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
           {media && (
             <div className="space-y-4">
               {media.type === 'video' ? (
-                <motion.div style={childStyle}><EditableVideo src={media.src} alt={media.alt} caption={media.caption} className="w-full rounded-xl overflow-hidden shadow-elevated" /></motion.div>
+                <motion.div style={childStyle}>
+                  <EditableVideo 
+                    src={media.src} 
+                    alt={media.alt} 
+                    caption={media.caption} 
+                    className="w-full rounded-xl overflow-hidden shadow-elevated" 
+                    videoOptions={media.videoOptions}
+                  />
+                </motion.div>
               ) : media.type === 'comparison' ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">

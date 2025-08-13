@@ -13,6 +13,13 @@ interface EditableVideoProps {
   onVideoChange?: (newSrc: string) => void;
   onCaptionChange?: (newCaption: string) => void;
   editable?: boolean;
+  videoOptions?: {
+    autoplay?: boolean;
+    loop?: boolean;
+    muted?: boolean;
+    controls?: boolean;
+    playsInline?: boolean;
+  };
 }
 
 export const EditableVideo: React.FC<EditableVideoProps> = ({
@@ -23,7 +30,8 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
   className = "",
   onVideoChange,
   onCaptionChange,
-  editable = false
+  editable = false,
+  videoOptions
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);

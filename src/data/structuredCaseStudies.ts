@@ -44,7 +44,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
         variant: "problem",
         content:
-          "People seeking herbal remedies often face conflicting online advice and don't know who to trust. There's no central, verified platform to find qualified herbalists, track symptom improvement, or get tailored guidance. Unlike therapy (where BetterHelp makes it easy to book professionals), herbal care lacked structure, credibility, and outcomes-based support."
+          "People seeking herbal remedies often face conflicting online advice and don't know who to trust. There's no central, verified platform to find qualified herbalists, track symptom improvement, or get tailored guidance. Unlike therapy (where BetterHelp makes it easy to book professionals), herbal care lacked structure, credibility, and outcomes-based support.",
+        media: {
+          type: 'image',
+          src: "https://barskyux.com/wp-content/uploads/2025/07/featureimage-1.png",
+          alt: "HerbaLink feature image illustrating the problem context"
+        }
       },
       {
         id: "key-gaps",
@@ -60,7 +65,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
         variant: "impact",
         content:
-          "HerbaLink is currently in active development. Even at this early stage, we've seen strong engagement and behavior change — giving us validation and a foundation to scale from.\n\nWe launched Stage 1 with:\n- Symptom tracking and visual logging\n- Verified herbalist booking flow\n- Personalized herb recommendations\n- Community discussion board\n\nNext phases will include:\n- AI-driven symptom-to-herb matching\n- Long-term health tracking and data export\n- Expanded practitioner insights and care plans"
+          "HerbaLink is currently in active development. Even at this early stage, we've seen strong engagement and behavior change — giving us validation and a foundation to scale from.\n\nWe launched Stage 1 with:\n- Symptom tracking and visual logging\n- Verified herbalist booking flow\n- Personalized herb recommendations\n- Community discussion board\n\nNext phases will include:\n- AI-driven symptom-to-herb matching\n- Long-term health tracking and data export\n- Expanded practitioner insights and care plans",
+        media: {
+          type: 'video',
+          src: "https://barskyux.com/wp-content/uploads/2025/07/herbalink_promo_video.mp4",
+          alt: "HerbaLink promo video demonstrating quantified impact",
+          videoOptions: { autoplay: true, loop: true, muted: true, controls: false, playsInline: true }
+        }
       },
       {
         id: "what-didnt-work",
@@ -68,7 +79,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         icon: React.createElement(X, { className: "h-6 w-6" }),
         variant: "failed",
         content:
-          "Generic Practitioner Discovery: Initial design had a long list of herbalists with no context. Users bounced quickly.\nFix: We added filters (e.g., Stress Relief, Digestive Health), 'Verified' badges, availability, and pricing— all before login.\n\nHidden Symptom Tracker: The tracker was buried and saw minimal use.\nFix: We promoted it to the main nav, added severity sliders, visible progress bars, and linked it to herbal suggestions. Usage tripled."
+          "Generic Practitioner Discovery: Initial design had a long list of herbalists with no context. Users bounced quickly.\nFix: We added filters (e.g., Stress Relief, Digestive Health), 'Verified' badges, availability, and pricing— all before login.\n\nHidden Symptom Tracker: The tracker was buried and saw minimal use.\nFix: We promoted it to the main nav, added severity sliders, visible progress bars, and linked it to herbal suggestions. Usage tripled.",
+        media: {
+          type: 'image',
+          src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
+          alt: "HerbaLink practitioner demo screen illustrating what didn’t work"
+        }
       },
       {
         id: "my-thought-process",
