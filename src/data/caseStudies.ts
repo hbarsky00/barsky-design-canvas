@@ -21,7 +21,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "herbalink": {
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     video: "https://share.shots.so/W6ikOt0HenziCxLQ.mp4",
-    videoThumbnail: "",
+    videoThumbnail: "/src/assets/herbalink-thumbnail.jpg",
     tags: ["Health", "Marketplace", "Gen AI"],
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     projectLink: "https://herbalink.live",
@@ -200,7 +200,7 @@ export const homepageCaseStudyPreviews = [
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     tags: ["Health", "Marketplace", "Gen AI"],
-    videoThumbnail: "",
+    videoThumbnail: "/src/assets/herbalink-thumbnail.jpg",
     video: "https://share.shots.so/W6ikOt0HenziCxLQ.mp4",
     url: "/project/herbalink"
   },
