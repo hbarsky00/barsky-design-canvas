@@ -166,11 +166,11 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                 ref={videoRef}
                 key={video}
                 poster={thumb}
-                src={videoSrcLoaded ?? undefined}
+                src={video as string}
                 muted
                 playsInline
                 loop
-                preload="metadata"
+                preload="none"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 style={prefersReducedMotion ? undefined : {
                   y: mediaY,
