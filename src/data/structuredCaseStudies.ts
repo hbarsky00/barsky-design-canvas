@@ -33,7 +33,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "http://herbalink.live",
     heroVideo: {
-      src: "herbalink-demo.mp4",
+      src: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
       poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
       alt: "HerbaLink feature overview"
     },
