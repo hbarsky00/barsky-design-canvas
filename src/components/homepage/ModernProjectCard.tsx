@@ -158,7 +158,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
     }
   }}>
       <Link to={url} aria-label={`${title} case study`} className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl">
-        <Card className="overflow-hidden bg-surface/80 backdrop-blur-sm border-outline/20 hover:shadow-xl transition-all duration-300 group cursor-pointer">
+        <Card className="overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-200/80 hover:shadow-xl hover:shadow-gray-200/20 transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
             {isDirectVideo ? (
@@ -215,13 +215,13 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                 </Badge>)}
             </div>
 
-            {/* Title */}
-            <h2 className="text-title-large leading-tight transition-colors duration-200 font-extrabold text-xl text-[#413f65]/90">
+            {/* Title - Made Much Bolder and More Prominent */}
+            <h2 className="text-2xl font-black leading-tight transition-colors duration-200 text-slate-900 dark:text-white group-hover:text-primary">
               {title}
             </h2>
 
             {/* Description */}
-            <p className="text-body-medium text-on-surface-variant leading-relaxed">
+            <p className="text-body-medium text-gray-600 dark:text-gray-300 leading-relaxed">
               {description}
             </p>
 

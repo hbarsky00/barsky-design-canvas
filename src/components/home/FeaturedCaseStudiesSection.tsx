@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -55,7 +56,7 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
     >
       <Link
         to={study.url}
-        className="block rounded-2xl border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
+        className="block rounded-2xl border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-white/95 border-gray-200/80 hover:border-primary/30 hover:shadow-lg hover:shadow-gray-200/20"
       >
         {/* Image Section */}
         <div className="relative overflow-hidden">
@@ -86,13 +87,14 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
 
         {/* Content Section */}
         <div className="p-6">
-          <h3 className="text-2xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
+          {/* Title - Made Much Bolder and More Prominent */}
+          <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
             {study.title}
           </h3>
-          <h4 className="text-lg font-medium text-primary mb-3">
+          <h4 className="text-lg font-semibold text-primary mb-3">
             {study.subtitle}
           </h4>
-          <p className="text-on-surface-variant mb-4 line-clamp-3 hidden sm:block">
+          <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 hidden sm:block">
             {study.description}
           </p>
           
@@ -122,7 +124,7 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
 
 const FeaturedCaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-12 bg-transparent">
+    <section className="py-12 bg-gray-50/30">
       <div className="container px-4 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
