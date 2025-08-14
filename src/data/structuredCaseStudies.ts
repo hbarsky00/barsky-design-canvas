@@ -47,8 +47,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "People seeking herbal remedies often face conflicting online advice and don't know who to trust. There's no central, verified platform to find qualified herbalists, track symptom improvement, or get tailored guidance. Unlike therapy (where BetterHelp makes it easy to book professionals), herbal care lacked structure, credibility, and outcomes-based support.",
         media: {
           type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/07/featureimage-1.png",
-          alt: "HerbaLink feature image illustrating the problem context"
+          src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistopening.jpg",
+          alt: "Herbalist consultation scene illustrating the problem context of finding qualified practitioners"
         }
       },
       {
