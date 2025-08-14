@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -55,12 +56,23 @@ const FloatingConsultationBubble: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToContact}
-          className="hidden sm:flex fixed z-50 btn-brand shadow-lg right-[5.25rem] sm:right-6"
-          style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
+          className="fixed z-50 btn-brand shadow-lg
+                   right-4 bottom-4
+                   sm:right-6 sm:bottom-6
+                   flex items-center justify-center
+                   min-w-[44px] min-h-[44px]
+                   px-3 py-2 sm:px-4 sm:py-3
+                   text-sm sm:text-base
+                   rounded-full sm:rounded-lg
+                   max-w-[calc(100vw-2rem)] sm:max-w-none"
+          style={{ 
+            bottom: "calc(1rem + env(safe-area-inset-bottom))",
+            right: "calc(1rem + env(safe-area-inset-right))"
+          }}
         >
-          <MessageCircle className="h-5 w-5" />
-          <span className="hidden sm:inline">Book Your Free UX Consultation</span>
-          <span className="sm:hidden">Free Consultation</span>
+          <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+          <span className="hidden xs:inline sm:hidden ml-1 truncate">Free UX</span>
+          <span className="hidden sm:inline ml-2 truncate">Book Your Free UX Consultation</span>
         </motion.button>
       )}
     </AnimatePresence>
