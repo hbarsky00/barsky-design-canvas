@@ -10,17 +10,6 @@ const BioSection: React.FC = () => {
 
   return (
     <section id="bio-section" className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-muted/30 relative">
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
-        <SectionNavigation
-          onNavigateUp={navigateUp}
-          onNavigateDown={navigateDown}
-          canNavigateUp={canNavigateUp}
-          canNavigateDown={canNavigateDown}
-          upLabel="Back to top"
-          downLabel="View projects"
-        />
-      </div>
-
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,6 +38,17 @@ const BioSection: React.FC = () => {
             />
           </div>
         </motion.div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <SectionNavigation
+          onNavigateUp={navigateUp}
+          onNavigateDown={navigateDown}
+          canNavigateUp={canNavigateUp}
+          canNavigateDown={canNavigateDown}
+          upLabel="Back to top"
+          downLabel="View projects"
+        />
       </div>
     </section>
   );
