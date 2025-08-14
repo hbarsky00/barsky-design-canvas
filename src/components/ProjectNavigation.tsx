@@ -1,9 +1,7 @@
 
 import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { cn } from "@/lib/utils";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useNavigate } from "react-router-dom";
 import { OptimizedImage } from "@/components/OptimizedImage";
 
 interface ProjectNavigationProps {
@@ -37,7 +35,6 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.preventDefault();
     e.stopPropagation();
     if (prevProject) {
-      // Use navigate with replace to avoid adding to history stack
       navigate(`/project/${prevProject.id}`, { replace: false });
     }
   };
@@ -46,32 +43,29 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
     e.preventDefault();
     e.stopPropagation();
     if (nextProject) {
-      // Use navigate with replace to avoid adding to history stack
       navigate(`/project/${nextProject.id}`, { replace: false });
     }
   };
   
   return (
-    <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+    <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 gap-8">
       <div className="flex-1">
         {prevProject && (
           <button
             onClick={handlePrevProject}
-            className="group flex items-center gap-4 p-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm"
+            className="group flex items-center gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm"
             type="button"
             aria-label={`Previous project: ${prevProject.title}`}
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            <div className="hidden sm:block relative w-36 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
-              <AspectRatio ratio={16 / 10}>
-                <OptimizedImage
-                  src={prevProject.image}
-                  alt={prevProject.title}
-                  loading="lazy"
-                  fallback="/placeholder.svg"
-                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-[1.03]"
-                />
-              </AspectRatio>
+            <div className="hidden sm:block relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
+              <OptimizedImage
+                src={prevProject.image}
+                alt={prevProject.title}
+                loading="lazy"
+                fallback="/placeholder.svg"
+                className="object-cover w-auto h-[300px] transition-transform duration-300 group-hover:scale-[1.03]"
+              />
             </div>
             <div>
               <p className="text-sm text-barsky-text/70">Previous Project</p>
@@ -81,24 +75,11 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         )}
       </div>
       
-      <div className="hidden md:block">
-        <Link
-          to="/projects"
-          className={cn(
-            "inline-flex items-center justify-center h-10 px-4 py-2 text-sm",
-            "rounded-md border border-gray-200 dark:border-gray-800",
-            "hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          )}
-        >
-          All Projects
-        </Link>
-      </div>
-      
       <div className="flex-1 text-right">
         {nextProject && (
           <button
             onClick={handleNextProject}
-            className="group flex items-center justify-end gap-4 p-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
+            className="group flex items-center justify-end gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
             type="button"
             aria-label={`Next project: ${nextProject.title}`}
           >
@@ -106,16 +87,14 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
               <p className="text-sm text-barsky-text/70">Next Project</p>
               <p className="font-medium">{nextProject.title}</p>
             </div>
-            <div className="hidden sm:block relative w-36 rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
-              <AspectRatio ratio={16 / 10}>
-                <OptimizedImage 
-                  src={nextProject.image} 
-                  alt={nextProject.title}
-                  loading="lazy"
-                  fallback="/placeholder.svg"
-                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-[1.03]"
-                />
-              </AspectRatio>
+            <div className="hidden sm:block relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
+              <OptimizedImage 
+                src={nextProject.image} 
+                alt={nextProject.title}
+                loading="lazy"
+                fallback="/placeholder.svg"
+                className="object-cover w-auto h-[300px] transition-transform duration-300 group-hover:scale-[1.03]"
+              />
             </div>
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </button>
