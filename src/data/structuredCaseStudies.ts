@@ -179,9 +179,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         content: "Research and discovery process with comprehensive user research methodology.",
         media: {
           type: 'image',
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Research-and-Discovery-2.png?fit=2400%2C1770&ssl=1",
-          alt: "Research and discovery artifacts and insights",
-          caption: "Research synthesis revealed core pain points and opportunities."
+          src: "https://barskyux.com/wp-content/uploads/2024/01/Wireframing-Concepts.jpg",
+          alt: "Splittime Wireframing Concepts",
+          caption: "Wireframes established core structure and user flows early."
         }
       },
       {
