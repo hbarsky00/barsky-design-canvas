@@ -1,7 +1,14 @@
-
 export interface ImageTextItem {
   text: string;
   image?: string;
+  type?: 'text' | 'image';
+  content?: {
+    text?: string;
+    image?: {
+      src: string;
+      alt: string;
+    };
+  };
 }
 
 export interface ImageSectionConfig {

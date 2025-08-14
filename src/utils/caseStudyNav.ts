@@ -20,6 +20,10 @@ export const generateCaseStudyNavigation = (caseStudy: CaseStudyData): Navigatio
   ];
 };
 
+export const getCaseStudyNavItems = (caseStudy: CaseStudyData): NavigationItem[] => {
+  return generateCaseStudyNavigation(caseStudy);
+};
+
 export const getCaseStudyImage = (caseStudy: CaseStudyData): string => {
   return caseStudy.image || "/api/placeholder/800/600";
 };
