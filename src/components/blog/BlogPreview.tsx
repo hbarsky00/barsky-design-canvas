@@ -1,78 +1,133 @@
+
 import React from "react";
-import { Link } from "react-router-dom";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { blogPosts } from "@/data/blogData";
-import SectionHeader from "@/components/shared/SectionHeader";
-interface BlogPreviewProps {
-  maxPosts?: number;
-  showTitle?: boolean;
-}
-const BlogPreview: React.FC<BlogPreviewProps> = ({
-  maxPosts = 3,
-  showTitle = true
-}) => {
-  const recentPosts = blogPosts.slice(0, maxPosts);
-  return <section className="pt-0 pb-12 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
-      <div className="section-container">
-        {showTitle && (
-          <div className="mb-12">
-            <SectionHeader
-              as="h2"
-              title="Latest Insights"
-              subtitle="Expert perspectives on AI-enhanced design, accessibility, and conversion optimization"
-            />
-          </div>
-        )}
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {recentPosts.map(post => <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <Link to={`/blog/${post.slug}`} className="block aspect-video w-full overflow-hidden bg-gray-100">
-                <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" />
-              </Link>
-              
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
-                    <span>{post.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
+import { Card, CardContent } from "@/components/ui/card";
+import { OptimizedImage } from "@/components/OptimizedImage";
+import { Link } from "react-router-dom";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+
+const BlogPreview: React.FC = () => {
+  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
+
+  const featuredPosts = [
+    {
+      id: "ai-ux-design-future",
+      title: "The Future of AI in UX Design",
+      excerpt: "How artificial intelligence is revolutionizing user experience design and what it means for designers.",
+      image: "/lovable-uploads/ai-ux-design.jpg",
+      date: "2024-01-15",
+      readTime: "5 min read",
+      slug: "ai-ux-design-future"
+    },
+    {
+      id: "design-system-best-practices",
+      title: "Building Scalable Design Systems",
+      excerpt: "Essential principles and practices for creating design systems that grow with your product.",
+      image: "/lovable-uploads/design-system.jpg",
+      date: "2024-01-10",
+      readTime: "8 min read",
+      slug: "design-system-best-practices"
+    },
+    {
+      id: "user-research-methods",
+      title: "Modern User Research Methods",
+      excerpt: "A comprehensive guide to user research techniques that drive product decisions.",
+      image: "/lovable-uploads/user-research.jpg",
+      date: "2024-01-05",
+      readTime: "6 min read",
+      slug: "user-research-methods"
+    }
+  ];
+
+  return (
+    <section className="py-8 md:py-12 bg-background relative">
+      <div className="container px-4 mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest Insights</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Thoughts on design, technology, and the future of digital experiences.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {featuredPosts.map((post, index) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                  <OptimizedImage
+                    src={post.image}
+                    alt={post.title}
+                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                    fallback="/placeholder.svg"
+                  />
+                </div>
+                <CardContent className="p-6">
+                  <div className="flex items-center text-sm text-muted-foreground mb-3">
+                    <Calendar size={16} className="mr-2" />
+                    <span>{new Date(post.date).toLocaleDateString()}</span>
+                    <span className="mx-2">•</span>
                     <span>{post.readTime}</span>
                   </div>
-                </div>
-                
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-                  {post.title}
-                </h3>
-                
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.slice(0, 2).map(tag => <span key={tag} className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                      {tag}
-                    </span>)}
-                </div>
-                
-                <Link to={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors">
-                  Read More
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </article>)}
+                  <h3 className="text-xl font-semibold mb-3 line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
+                  >
+                    Read More
+                    <ArrowRight size={16} className="ml-2" />
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
-        
-        <div className="text-center mt-12">
-          <Link to="/blog">
-            <Button size="lg" variant="outline">
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <Button asChild size="lg">
+            <Link to="/blog">
               View All Posts
-            </Button>
-          </Link>
-        </div>
+              <ArrowRight size={16} className="ml-2" />
+            </Link>
+          </Button>
+        </motion.div>
       </div>
-    </section>;
+
+      <SectionNavigation
+        onNavigateUp={navigateUp}
+        onNavigateDown={navigateDown}
+        canNavigateUp={canNavigateUp}
+        canNavigateDown={canNavigateDown}
+        upLabel="Back to contact"
+        downLabel="View FAQ"
+      />
+    </section>
+  );
 };
+
 export default BlogPreview;

@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
 import BioSection from "@/components/hero/BioSection";
 import VideoCaseStudiesSection from "@/components/home/VideoCaseStudiesSection";
-import ContactForm from "@/components/home/ContactForm";
+import HomepageContactForm from "@/components/home/ContactForm";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
@@ -43,8 +43,8 @@ const HomepageLayout: React.FC = () => {
           <VideoCaseStudiesSection />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12" id="contact">
-          <ContactForm />
+        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12">
+          <HomepageContactForm />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12" id="blog-preview">
@@ -55,6 +55,7 @@ const HomepageLayout: React.FC = () => {
           <SeoFaqSection 
             title="Frequently Asked Questions About AI-Enhanced UX Design"
             faqs={homepageFaqs}
+            showNavigation={true}
           />
         </SectionTransition>
 
