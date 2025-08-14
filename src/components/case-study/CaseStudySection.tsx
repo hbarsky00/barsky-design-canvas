@@ -3,9 +3,20 @@ import React from "react";
 import SectionTransition from "@/components/transitions/SectionTransition";
 
 interface CaseStudySectionProps {
-  id: string;
-  title: string;
-  content: {
+  section?: {
+    type: string;
+    title?: string;
+    content: {
+      text?: string;
+      image?: string;
+      images?: string[];
+    };
+  };
+  index?: number;
+  // Legacy props for backward compatibility
+  id?: string;
+  title?: string;
+  content?: {
     text: string;
     image: {
       src: string;
@@ -14,11 +25,30 @@ interface CaseStudySectionProps {
   };
 }
 
-const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content }) => {
+const CaseStudySection: React.FC<CaseStudySectionProps> = ({ 
+  section, 
+  index = 0,
+  id,
+  title,
+  content
+}) => {
+  // Handle both new and legacy prop structures
+  const sectionData = section || {
+    type: 'content',
+    title: title || '',
+    content: {
+      text: content?.text || '',
+      image: content?.image?.src || ''
+    }
+  };
+
+  const sectionId = id || `section-${index}`;
+  const sectionTitle = sectionData.title || title || '';
+
   return (
-    <SectionTransition as="section" id={id} className="mb-20" variant="wipe">
+    <SectionTransition as="section" id={sectionId} className="mb-20" variant="wipe">
       <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-8 text-left lg:text-center">
-        {title}
+        {sectionTitle}
       </h2>
       
       <div className="space-y-8">
@@ -27,7 +57,9 @@ const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content 
             <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
               <div className="text-center">
                 <p className="text-muted-foreground mb-2">Image Placeholder</p>
-                <p className="text-sm text-muted-foreground">{content.image.alt}</p>
+                <p className="text-sm text-muted-foreground">
+                  {content?.image?.alt || sectionTitle}
+                </p>
               </div>
             </div>
           </div>
@@ -36,7 +68,7 @@ const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content 
 
         <div className="space-y-6">
           <p className="text-lg text-muted-foreground leading-relaxed">
-            {content.text}
+            {sectionData.content.text || content?.text || ''}
           </p>
         </div>
       </div>

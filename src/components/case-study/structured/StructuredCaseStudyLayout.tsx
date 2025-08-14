@@ -9,27 +9,63 @@ import ProjectNavigation from "@/components/project/ProjectNavigation";
 import { StructuredCaseStudy } from "@/data/types/structuredCaseStudy";
 
 interface StructuredCaseStudyLayoutProps {
-  caseStudy: StructuredCaseStudy;
+  caseStudy?: StructuredCaseStudy;
+  // Legacy props for backward compatibility
+  title?: string;
+  description?: string;
+  tags?: string[];
+  heroVideo?: {
+    src: string;
+    poster?: string;
+  };
+  sections?: any[];
+  projectLink?: string;
+  gradientClasses?: string;
+  seoData?: {
+    title?: string;
+    description?: string;
+  };
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
-  caseStudy
+  caseStudy,
+  title,
+  description,
+  tags,
+  heroVideo,
+  sections,
+  projectLink,
+  gradientClasses,
+  seoData
 }) => {
+  // Use caseStudy data if provided, otherwise use individual props
+  const data = caseStudy || {
+    id: 'structured-case-study',
+    title: title || '',
+    description: description || '',
+    tags: tags || [],
+    heroVideo,
+    sections: sections || [],
+    projectLink,
+    gradientClasses,
+    seoData
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       <main>
         <CaseStudyHero 
-          title={caseStudy.title}
-          description={caseStudy.description}
-          tags={caseStudy.tags}
-          videoSrc={caseStudy.heroVideo?.src}
-          posterSrc={caseStudy.heroVideo?.poster}
+          title={data.title}
+          description={data.description}
+          tags={data.tags}
+          heroVideo={data.heroVideo}
+          gradientClasses={data.gradientClasses}
         />
         
         <div className="container mx-auto px-4 py-16">
-          {caseStudy.sections.map((section, index) => (
+          {data.sections.map((section, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -38,21 +74,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <CaseStudySection
-                id={`section-${index}`}
-                title={section.title || ''}
-                content={{
-                  text: section.content.text || '',
-                  image: {
-                    src: section.content.image || '/api/placeholder/800/600',
-                    alt: section.title || 'Case study image'
-                  }
-                }}
+                section={section}
+                index={index}
               />
             </motion.div>
           ))}
         </div>
         
-        <ProjectNavigation currentProjectId={caseStudy.id} />
+        <ProjectNavigation currentProjectId={data.id} />
       </main>
       
       <Footer />

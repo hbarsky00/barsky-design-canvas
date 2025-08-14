@@ -1,4 +1,24 @@
 
+export interface ImageTextItem {
+  text: string;
+  image?: string;
+}
+
+export interface ImageSectionConfig {
+  beforeHeader?: string;
+  afterHeader?: string;
+  [key: string]: any;
+}
+
+export interface ImageConfig {
+  hero?: string;
+  challenge?: string[];
+  process?: ImageSectionConfig;
+  solution?: string[];
+  results?: string[];
+  [key: string]: any;
+}
+
 export interface ProjectDetails {
   challenge: string;
   process: string;
@@ -24,25 +44,24 @@ export interface ProjectDetails {
   
   // Image galleries
   challengeGalleryImages?: string[];
+  processGalleryImages?: string[];
   resultGalleryImages?: string[];
   galleryImages?: string[];
   extraImages?: string[];
   servicesGalleryImages?: string[];
+  availableImages?: string[];
+  
+  // Enhanced gallery content
+  challengeGalleryContent?: ImageTextItem[];
   
   // Image configuration
-  imageConfig?: {
-    hero?: string;
-    challenge?: string[];
-    process?: {
-      beforeHeader?: string;
-      [key: string]: any;
-    };
-    solution?: string[];
-    results?: string[];
-  };
+  imageConfig?: ImageConfig;
   
   // Image captions
   imageCaptions?: Record<string, string>;
+  
+  // AI features
+  useAiCaptions?: boolean;
 }
 
 export interface ProjectProps {
@@ -51,5 +70,5 @@ export interface ProjectProps {
   description: string;
   image: string;
   tags: string[];
-  link?: string; // Add missing link property
+  link?: string;
 }

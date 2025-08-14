@@ -1,28 +1,23 @@
 
+import React from "react";
 import HomepageLayout from "@/components/homepage/HomepageLayout";
-import ScrollHandler from "@/components/homepage/ScrollHandler";
-import AutoSeo from "@/components/seo/AutoSeo";
-import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
-import SitemapGenerator from "@/components/seo/SitemapGenerator";
-import { usePageIndexing } from "@/hooks/usePageIndexing";
+import FeaturedProjects from "@/components/home/FeaturedProjects";
 
-const Index = () => {
-  usePageIndexing();
-  
+const Index: React.FC = () => {
   return (
-    <>
-      {/* Auto-detecting SEO - will use homepage fallbacks */}
-      <AutoSeo 
-        fallbackTitle="Hiram Barsky - Product Designer & Gen AI Developer"
-        fallbackDescription="15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises."
-      />
-      <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" />
-      <SitemapGenerator />
-      
-      {/* Page Content */}
-      <ScrollHandler />
-      <HomepageLayout />
-    </>
+    <HomepageLayout>
+      <main className="container mx-auto px-4 py-20">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+            Product Designer & Developer
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Creating exceptional digital experiences through thoughtful design and innovative solutions.
+          </p>
+        </div>
+        <FeaturedProjects />
+      </main>
+    </HomepageLayout>
   );
 };
 

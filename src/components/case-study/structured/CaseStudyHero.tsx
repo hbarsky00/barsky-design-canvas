@@ -7,6 +7,8 @@ interface CaseStudyHeroProps {
   title: string;
   description: string;
   tags: string[];
+  videoSrc?: string;
+  posterSrc?: string;
   heroVideo?: {
     src: string;
     poster?: string;
@@ -18,9 +20,14 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
   title,
   description,
   tags,
+  videoSrc,
+  posterSrc,
   heroVideo,
   gradientClasses = "from-background to-muted/50"
 }) => {
+  // Use videoSrc/posterSrc if provided, otherwise use heroVideo
+  const video = videoSrc ? { src: videoSrc, poster: posterSrc } : heroVideo;
+
   return (
     <div className={`bg-gradient-to-br ${gradientClasses} py-20`}>
       <div className="container mx-auto px-4">
@@ -46,15 +53,15 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
             ))}
           </div>
 
-          {heroVideo && (
+          {video && (
             <div className="relative max-w-4xl mx-auto">
               <video
                 className="w-full h-auto rounded-lg shadow-2xl"
-                poster={heroVideo.poster}
+                poster={video.poster}
                 controls
                 playsInline
               >
-                <source src={heroVideo.src} type="video/mp4" />
+                <source src={video.src} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
