@@ -27,7 +27,7 @@ const SplittimeCaseStudy: React.FC = () => {
     businessImpact: "Separated parents struggle to coordinate childcare without conflict. Texts, emails, and ad-hoc tools often fuel miscommunication and emotional escalation — hurting both parents and children. Existing co-parenting tools focus on logistics but fail to actively reduce tension.",
     userPain: "Parents reported constant stress from fragmented communication across multiple platforms, leading to missed information, scheduling conflicts, and children being caught in the middle of disputes.",
     gapAnalysis: "Existing solutions treat co-parenting like business collaboration, ignoring the high-stress, emotionally charged nature of post-separation family coordination. Tools needed to actively de-escalate rather than just organize.",
-    wireframingImage: "/lovable-uploads/wireframing-concepts-splittime.jpg",
+    wireframingImage: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/iMh4BEwy33n8p2KC-PDr3.png",
     metrics: [
       { label: "Conflict incidents per week", value: "8.3", trend: "down" as const },
       { label: "Missed/double-booked events", value: "25%", trend: "down" as const },
