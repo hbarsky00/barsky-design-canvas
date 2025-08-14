@@ -6,6 +6,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
+import { useGlobalSeo } from "@/hooks/useGlobalSeo";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -24,12 +25,19 @@ import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 
 const queryClient = new QueryClient();
 
+// Global SEO component that applies auto-detection
+const GlobalSEO: React.FC = () => {
+  useGlobalSeo();
+  return null;
+};
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <ImageMaximizerProvider>
           <Router>
+            <GlobalSEO />
             <ScrollToTop />
             <Routes>
               {/* Home route */}
