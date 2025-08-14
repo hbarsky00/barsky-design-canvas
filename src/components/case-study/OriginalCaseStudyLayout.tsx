@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -6,12 +7,13 @@ import VideoPlayer from "./VideoPlayer";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import { CaseStudyData } from "@/data/caseStudies";
 import DynamicSeo from "@/components/seo/DynamicSeo";
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
+import Section3DOverlay from "@/components/transitions/Section3DOverlay";
+import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -23,6 +25,28 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
   projectId 
 }) => {
   const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
+
+  // Build sections for keyboard navigation
+  const keyboardSections = React.useMemo(() => {
+    const navSections = [
+      { id: 'hero-section', title: 'Overview' },
+      ...Object.entries(caseStudy.sections).map(([sectionId, section]) => {
+        const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
+        const title = navItem?.label || sectionId.replace('-', ' ');
+        return { id: sectionId, title };
+      }),
+      { id: 'contact-section', title: 'Contact' },
+      { id: 'project-navigation', title: 'More Projects' }
+    ];
+    return navSections;
+  }, [caseStudy]);
+
+  // Add keyboard navigation
+  const {
+    isTransitioning,
+    transitionDirection,
+    transitionVariation,
+  } = useCaseStudyKeyboardNavigation(keyboardSections);
 
   return (
     <>
@@ -38,16 +62,21 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
         />
 
       <div className="min-h-screen bg-background">
-        <Header />
+        {/* 3D Transition Overlay */}
+        <Section3DOverlay 
+          isVisible={isTransitioning} 
+          direction={transitionDirection}
+          variation={transitionVariation}
+        />
 
-        
+        <Header />
 
         <div className="container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8">
           <div className="flex gap-8">
             <CaseStudyNavigation navigation={caseStudy.stickyNav} />
             {/* Main Content */}
             <main className="flex-1 max-w-4xl">
-              <section className="mb-16">
+              <section id="hero-section" className="mb-16">
                 {/* Branding */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -149,10 +178,12 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
               })}
 
               {/* Contact Section */}
-              <CaseStudyContactSection />
+              <div id="contact-section">
+                <CaseStudyContactSection />
+              </div>
 
               {/* Prev/Next Navigation */}
-              <div className="mt-12">
+              <div id="project-navigation" className="mt-12">
                 <ProjectNavigation
                   currentProjectId={projectId}
                   projectsData={projectsData}

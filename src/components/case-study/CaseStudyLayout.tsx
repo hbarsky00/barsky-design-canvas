@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -5,7 +6,8 @@ import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudyContactSection from "./CaseStudyContactSection";
-
+import Section3DOverlay from "@/components/transitions/Section3DOverlay";
+import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 
 interface CaseStudySection {
   id: string;
@@ -47,6 +49,26 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
     }))
   ];
 
+  // Build sections for keyboard navigation
+  const keyboardSections = React.useMemo(() => {
+    const navSections = [
+      { id: 'overview', title: 'Overview' },
+      ...sections.map(section => ({
+        id: section.id,
+        title: section.title
+      })),
+      { id: 'contact-section', title: 'Contact' }
+    ];
+    return navSections;
+  }, [sections]);
+
+  // Add keyboard navigation
+  const {
+    isTransitioning,
+    transitionDirection,
+    transitionVariation,
+  } = useCaseStudyKeyboardNavigation(keyboardSections);
+
   return (
     <>
       <DynamicSeo 
@@ -61,10 +83,15 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
       />
       
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
+        {/* 3D Transition Overlay */}
+        <Section3DOverlay 
+          isVisible={isTransitioning} 
+          direction={transitionDirection}
+          variation={transitionVariation}
+        />
+
         <Header />
         
-        
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]">
           <div className="lg:flex lg:gap-8">
             {/* Navigation */}
@@ -88,7 +115,9 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
                   </section>
                 ))}
                 
-                <CaseStudyContactSection />
+                <div id="contact-section">
+                  <CaseStudyContactSection />
+                </div>
               </div>
             </main>
           </div>

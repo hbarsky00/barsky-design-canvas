@@ -1,7 +1,7 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Hash } from "lucide-react";
-
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -16,6 +16,8 @@ import ProjectLinks from "@/components/project/ProjectLinks";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import { useLocation } from "react-router-dom";
+import Section3DOverlay from "@/components/transitions/Section3DOverlay";
+import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
@@ -63,6 +65,27 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
   const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
 
+  // Build sections for keyboard navigation
+  const keyboardSections = React.useMemo(() => {
+    const navSections = [
+      { id: 'hero-section', title: 'Overview' },
+      ...sections.map(section => ({
+        id: section.id,
+        title: section.title
+      })),
+      { id: 'contact-section', title: 'Contact' },
+      { id: 'project-navigation', title: 'More Projects' }
+    ];
+    return navSections;
+  }, [sections]);
+
+  // Add keyboard navigation
+  const {
+    isTransitioning,
+    transitionDirection,
+    transitionVariation,
+  } = useCaseStudyKeyboardNavigation(keyboardSections);
+
   const scrollToSection = (anchor: string) => {
     const element = document.querySelector(anchor) as HTMLElement | null;
     if (element) {
@@ -93,6 +116,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       )}
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
+        {/* 3D Transition Overlay */}
+        <Section3DOverlay 
+          isVisible={isTransitioning} 
+          direction={transitionDirection}
+          variation={transitionVariation}
+        />
+
         <Header />
         
 
@@ -106,6 +136,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               <div>
                 {/* Hero Section */}
                 <motion.section
+                  id="hero-section"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
@@ -171,6 +202,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
                 {/* Contact Section */}
                 <motion.div
+                  id="contact-section"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -181,7 +213,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </motion.div>
 
                 {/* Prev/Next Navigation */}
-                <div className="mt-12">
+                <div id="project-navigation" className="mt-12">
                   <ProjectNavigation
                     currentProjectId={currentProjectId}
                     projectsData={projectsData}
