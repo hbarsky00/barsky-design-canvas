@@ -24,9 +24,7 @@ const ContactForm: React.FC = () => {
     projectDescription: '',
     timeline: ''
   });
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -73,39 +71,21 @@ const ContactForm: React.FC = () => {
 
   const benefits = ["Live audit of your current website/product", "AI-enhanced user behavior analysis using ChatGPT & Claude AI", "3 specific improvement recommendations you can implement immediately", "Personalized growth strategy based on your business goals", "No-obligation project timeline and pricing discussion"];
 
-  return <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-blue-50" id="contact">
+  return (
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-blue-50" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Full Width Form Layout */}
+        {/* Updated Layout: Contact Info + Form */}
         <div className="grid lg:grid-cols-3 gap-12 items-start">
           
-          {/* Benefits Section - Takes 1/3 */}
-          <motion.div initial={{
-          opacity: 0,
-          x: -30
-        }} whileInView={{
-          opacity: 1,
-          x: 0
-        }} viewport={{
-          once: true
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2
-        }} className="space-y-8">
-            <div>
-              <SectionHeader
-                as="h2"
-                title="What You'll Get"
-                titleClassName="text-display-medium text-on-surface"
-              />
-              <div className="space-y-4 mt-6 text-center">
-                {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-success-green mt-1 flex-shrink-0" />
-                    <span className="text-neutral-500">{benefit}</span>
-                  </div>)}
-              </div>
-            </div>
-
+          {/* Contact Info Section - Takes 1/3 */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
+          >
             {/* Contact Info */}
             <div className="glass-card p-6">
               <h4 className="text-xl font-bold text-neutral-900 mb-4">
@@ -129,20 +109,16 @@ const ContactForm: React.FC = () => {
           </motion.div>
 
           {/* Contact Form - Takes 2/3 */}
-          <motion.div initial={{
-          opacity: 0,
-          x: 30
-        }} whileInView={{
-          opacity: 1,
-          x: 0
-        }} viewport={{
-          once: true
-        }} transition={{
-          duration: 0.8,
-          delay: 0.4
-        }} className="lg:col-span-2">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="lg:col-span-2"
+          >
             <div className="glass-card-elevated p-8">
-              {isSubmitted ? <div className="text-center space-y-4">
+              {isSubmitted ? (
+                <div className="text-center space-y-4">
                   <CheckCircle className="h-16 w-16 text-success-green mx-auto" />
                   <h3 className="text-2xl font-bold text-neutral-900">Request Submitted!</h3>
                   <p className="text-neutral-500">
@@ -151,7 +127,9 @@ const ContactForm: React.FC = () => {
                   <Button onClick={() => setIsSubmitted(false)} variant="outline" className="mt-4">
                     Submit Another Request
                   </Button>
-                </div> : <form onSubmit={handleSubmit} className="space-y-6">
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Two Column Layout for Form Fields */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -222,27 +200,40 @@ const ContactForm: React.FC = () => {
                   {/* Full Width Fields */}
                   <div className="space-y-2">
                     <Label htmlFor="projectDescription">Project Description *</Label>
-                    <Textarea id="projectDescription" placeholder="Describe your project, goals, and main challenges..." rows={4} className="w-full" value={formData.projectDescription} onChange={e => handleInputChange('projectDescription', e.target.value)} />
+                    <Textarea
+                      id="projectDescription"
+                      placeholder="Describe your project, goals, and main challenges..."
+                      rows={4}
+                      className="w-full"
+                      value={formData.projectDescription}
+                      onChange={(e) => handleInputChange('projectDescription', e.target.value)}
+                    />
                   </div>
 
                   <div className="flex justify-center">
                     <Button type="submit" disabled={isSubmitting} size="lg" variant="brand">
-                      {isSubmitting ? <>
+                      {isSubmitting ? (
+                        <>
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                           Submitting...
-                        </> : 'Book My Free Audit'}
+                        </>
+                      ) : (
+                        'Book My Free Audit'
+                      )}
                     </Button>
                   </div>
 
                   <p className="text-sm text-neutral-500 text-center">
                     No spam, no sales pitch - just valuable insights
                   </p>
-                </form>}
+                </form>
+              )}
             </div>
           </motion.div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 
 export default ContactForm;
