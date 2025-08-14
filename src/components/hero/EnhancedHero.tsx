@@ -35,14 +35,14 @@ const EnhancedHero: React.FC = () => {
   const buttonsY = useTransform(scrollYProgress, [0, 1], [12, -12]);
 
   return (
-    <section ref={sectionRef} className="relative py-4 sm:py-6 bg-transparent" style={{ perspective: "1000px" }}>
+    <section ref={sectionRef} className="relative py-12 sm:py-16 lg:py-20 bg-transparent" style={{ perspective: "1000px" }}>
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="w-full text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-2 sm:space-y-3"
+            className="space-y-4 sm:space-y-6 lg:space-y-8"
             style={{
               rotateX: prefersReducedMotion ? 0 : tiltX,
               y: prefersReducedMotion ? 0 : contentY,
@@ -60,7 +60,7 @@ const EnhancedHero: React.FC = () => {
             <motion.div style={{ y: prefersReducedMotion ? 0 : buttonsY }}>
               <HeroActionButtons isVisible={isVisible} />
             </motion.div>
-            <div className="hidden sm:block pt-2">
+            <div className="hidden sm:block pt-4 lg:pt-6">
               <HeroSocialLinks isVisible={isVisible} />
             </div>
           </motion.div>

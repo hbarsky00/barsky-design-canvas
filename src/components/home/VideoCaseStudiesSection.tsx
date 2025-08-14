@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import ModernProjectCard from "@/components/homepage/ModernProjectCard";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 import SectionHeader from "@/components/shared/SectionHeader";
+
 const VideoCaseStudiesSection: React.FC = () => {
-  return <section id="projects" className="py-6 sm:py-10 bg-gray-50/30">
+  return (
+    <section id="projects" className="py-4 sm:py-6">
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
@@ -32,11 +34,24 @@ const VideoCaseStudiesSection: React.FC = () => {
 
         {/* Case Studies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 will-change-transform" style={{ perspective: 1200, transformStyle: "preserve-3d" }}>
-          {homepageCaseStudyPreviews.map((study, index) => <ModernProjectCard key={study.title} title={study.title} description={study.description} tags={study.tags} videoThumbnail={study.videoThumbnail} video={study.video} url={study.url} className="" />)}
+          {homepageCaseStudyPreviews.map((study, index) => (
+            <ModernProjectCard
+              key={study.title}
+              title={study.title}
+              description={study.description}
+              tags={study.tags}
+              videoThumbnail={study.videoThumbnail}
+              video={study.video}
+              url={study.url}
+              className=""
+            />
+          ))}
         </div>
 
         {/* View All CTA */}
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default VideoCaseStudiesSection;
