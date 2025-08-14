@@ -1,11 +1,9 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { CharacterAnimatedTextProps } from "./AnimatedTextTypes";
 import { characterAnimation } from "./CharacterAnimationVariants";
 import { useAnimatedText } from "./useAnimatedText";
-
 export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
   text,
   tag = "div",
@@ -18,7 +16,10 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
   onComplete,
   type
 }) => {
-  const { elementRef, isVisible } = useAnimatedText({
+  const {
+    elementRef,
+    isVisible
+  } = useAnimatedText({
     text,
     delay,
     staggerChildren,
@@ -26,59 +27,34 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
     animateOnce,
     onComplete
   });
-
   const Tag = tag as any;
-  
+
   // Render characters or words based on type
   const renderElements = () => {
     if (type === "character") {
-      return text.split("").map((char, index) => (
-        <motion.span
-          key={`char-${index}`}
-          custom={index}
-          variants={characterAnimation[animation]}
-          className={animation === "typewriter" ? "inline-block" : ""}
-          style={{ 
-            display: "inline-block",
-            whiteSpace: animation === "typewriter" ? "pre" : "normal"
-          }}
-        >
+      return text.split("").map((char, index) => <motion.span key={`char-${index}`} custom={index} variants={characterAnimation[animation]} className={animation === "typewriter" ? "inline-block" : ""} style={{
+        display: "inline-block",
+        whiteSpace: animation === "typewriter" ? "pre" : "normal"
+      }}>
           {char}
-        </motion.span>
-      ));
-    } else { // type === "word"
-      return text.split(" ").map((word, index) => (
-        <motion.span
-          key={`word-${index}`}
-          custom={index}
-          variants={characterAnimation[animation]}
-          className="inline-block mr-[0.25em]"
-        >
+        </motion.span>);
+    } else {
+      // type === "word"
+      return text.split(" ").map((word, index) => <motion.span key={`word-${index}`} custom={index} variants={characterAnimation[animation]} className="inline-block mr-[0.25em]">
           {word}
-        </motion.span>
-      ));
+        </motion.span>);
     }
   };
-
-  return (
-    <Tag 
-      ref={elementRef}
-      className={cn("inline-block", className)}
-    >
-      <motion.span
-        initial="hidden"
-        animate={isVisible ? "visible" : "hidden"}
-        variants={{
-          hidden: {},
-          visible: {
-            transition: {
-              staggerChildren: staggerChildren
-            }
-          }
-        }}
-      >
+  return <Tag ref={elementRef} className={cn("inline-block", className)}>
+      <motion.span initial="hidden" animate={isVisible ? "visible" : "hidden"} variants={{
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: staggerChildren
+        }
+      }
+    }}>
         {renderElements()}
       </motion.span>
-    </Tag>
-  );
+    </Tag>;
 };
