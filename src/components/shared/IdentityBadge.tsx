@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -71,7 +72,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
       <div
         className={cn(
           "relative rounded-full p-[2px] bg-gradient-to-tr",
-          "from-[hsl(var(--blue-vibrant))] via-[hsl(var(--blue-accent))] to-[hsl(var(--navy-primary))]",
+          "from-blue-600 via-blue-500 to-slate-800",
+          "dark:from-blue-400 dark:via-blue-300 dark:to-slate-600",
           "transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
         )}
       >
@@ -92,9 +94,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
           className={cn(
             s.name,
             "font-semibold tracking-tight leading-none",
-            "bg-clip-text text-transparent",
-            "bg-gradient-to-r from-[hsl(var(--navy-primary))] via-[hsl(var(--navy-primary))] to-[hsl(var(--blue-accent))]",
-            "dark:from-[hsl(var(--foreground))] dark:via-[hsl(var(--foreground))] dark:to-[hsl(var(--blue-accent))]"
+            "text-slate-800 dark:text-slate-100"
           )}
         >
           {name}
@@ -106,8 +106,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
               className={cn(
                 s.subtitle,
                 "inline-flex items-center rounded-full mt-1 px-2.5 py-0.5",
-                "border border-[hsl(var(--blue-accent))]/25",
-                "bg-[hsl(var(--blue-accent))]/10 text-[hsl(var(--blue-accent))]"
+                "border border-blue-500/25",
+                "bg-blue-500/10 text-blue-600 dark:text-blue-400"
               )}
             >
               {subtitle}
@@ -116,7 +116,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
             <span
               className={cn(
                 s.subtitle,
-                "mt-0.5 text-[hsl(var(--blue-accent))] opacity-90"
+                "mt-0.5 text-blue-600 dark:text-blue-400 opacity-90"
               )}
             >
               {subtitle}
