@@ -17,7 +17,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
   const recentPosts = blogPosts.slice(0, maxPosts);
 
   return (
-    <section className="pt-0 pb-12 bg-white">
+    <section className="pt-16 pb-12 bg-white">
       <div className="section-container">
         {showTitle && (
           <div className="mb-12">
