@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
@@ -35,7 +34,7 @@ const EnhancedHero: React.FC = () => {
   const buttonsY = useTransform(scrollYProgress, [0, 1], [12, -12]);
 
   return (
-    <section ref={sectionRef} className="relative py-12 sm:py-16 lg:py-20 bg-transparent" style={{ perspective: "1000px" }}>
+    <section ref={sectionRef} className="relative py-8 pb-4 sm:py-16 lg:py-20 bg-transparent" style={{ perspective: "1000px" }}>
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="w-full text-center">
           <motion.div

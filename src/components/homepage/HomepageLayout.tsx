@@ -21,13 +21,13 @@ const HomepageLayout: React.FC = () => {
         volume={0.15}
       />
       <Header />
-      <main className="flex-grow space-y-8 md:space-y-12 pt-[var(--header-height,64px)]">
+      <main className="flex-grow space-y-4 md:space-y-12 pt-[var(--header-height,64px)]">
         
         <SectionTransition variant="fade">
           <EnhancedHero />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.05} className="bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.05} className="bg-muted/30 py-0 md:py-12">
           <VideoCaseStudiesSection />
         </SectionTransition>
         
