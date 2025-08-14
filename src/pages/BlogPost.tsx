@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -8,6 +9,7 @@ import { trackPageView, trackContentEngagement } from "@/lib/analytics";
 import { useToast } from "@/components/ui/use-toast";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import { homepageFaqs } from "@/data/seoFaqs";
+import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 
 // Import refactored components
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
@@ -20,6 +22,7 @@ import SocialShare from "@/components/blog/SocialShare";
 import BlogEngagement from "@/components/blog/BlogEngagement";
 import NewsletterSignup from "@/components/blog/NewsletterSignup";
 import { useRelatedPosts } from "@/hooks/useRelatedPosts";
+import { useBlogKeyboardNavigation } from "@/hooks/useBlogKeyboardNavigation";
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -34,6 +37,13 @@ const BlogPost: React.FC = () => {
     post?.tags || [],
     3
   );
+
+  // Add keyboard navigation
+  const { 
+    isTransitioning, 
+    transitionDirection, 
+    transitionVariation
+  } = useBlogKeyboardNavigation();
   
   useEffect(() => {
     setIsLoading(true);
@@ -60,6 +70,13 @@ const BlogPost: React.FC = () => {
   
   return (
     <div className="flex flex-col min-h-screen">
+      {/* 3D Transition Overlay */}
+      <Section3DOverlay 
+        isVisible={isTransitioning} 
+        direction={transitionDirection}
+        variation={transitionVariation}
+      />
+
       <DynamicSeo 
         type="blog-post"
         title={post.title}
@@ -76,31 +93,51 @@ const BlogPost: React.FC = () => {
       <main className="flex-grow">
         <article className="py-20">
           <div className="section-container max-w-3xl mx-auto px-4 sm:px-6">
-            <BlogPostHeader post={post} />
-            <BlogPostContent content={post.content} slug={post.slug} />
+            <div id="blog-header">
+              <BlogPostHeader post={post} />
+            </div>
             
-            <BlogEngagement postId={post.id} initialLikes={Math.floor(Math.random() * 50) + 10} />
+            <div id="blog-content">
+              <BlogPostContent content={post.content} slug={post.slug} />
+            </div>
             
-            <SocialShare 
-              url={`/blog/${post.slug}`}
-              title={post.title}
-              excerpt={post.excerpt}
-            />
+            <div id="blog-engagement">
+              <BlogEngagement postId={post.id} initialLikes={Math.floor(Math.random() * 50) + 10} />
+            </div>
             
-            <NewsletterSignup />
+            <div id="blog-social-share">
+              <SocialShare 
+                url={`/blog/${post.slug}`}
+                title={post.title}
+                excerpt={post.excerpt}
+              />
+            </div>
             
-            <BlogAuthorBio author={post.author} />
-            <RelatedPosts posts={relatedPosts} />
+            <div id="blog-newsletter">
+              <NewsletterSignup />
+            </div>
+            
+            <div id="blog-author">
+              <BlogAuthorBio author={post.author} />
+            </div>
+            
+            <div id="blog-related">
+              <RelatedPosts posts={relatedPosts} />
+            </div>
           </div>
         </article>
         
         {/* FAQ Section */}
-        <SeoFaqSection 
-          title="Design Blog & Content Questions"
-          faqs={homepageFaqs}
-        />
+        <div id="blog-faq">
+          <SeoFaqSection 
+            title="Design Blog & Content Questions"
+            faqs={homepageFaqs}
+          />
+        </div>
         
-        <ServicesCallToAction />
+        <div id="blog-services-cta">
+          <ServicesCallToAction />
+        </div>
       </main>
       
       <Footer />
