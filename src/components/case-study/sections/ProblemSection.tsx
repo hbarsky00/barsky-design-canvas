@@ -1,3 +1,4 @@
+
 import React from "react";
 import { AlertTriangle, TrendingDown, Clock } from "lucide-react";
 
@@ -6,6 +7,7 @@ interface ProblemSectionProps {
   businessImpact: string;
   userPain: string;
   gapAnalysis: string;
+  wireframingImage?: string;
   metrics?: Array<{
     label: string;
     value: string;
@@ -18,6 +20,7 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
   businessImpact,
   userPain,
   gapAnalysis,
+  wireframingImage,
   metrics = []
 }) => {
   const getTrendIcon = (trend: string) => {
@@ -39,10 +42,21 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
         </div>
         <div className="flex-1">
           <h3 className="text-xl font-semibold text-gray-900 mb-4">{title}</h3>
-          <div className="prose prose-lg text-gray-700 max-w-none">
-            <p className="mb-6">{businessImpact}</p>
-          </div>
         </div>
+      </div>
+
+      {wireframingImage && (
+        <div className="mb-8">
+          <img
+            src={wireframingImage}
+            alt="Wireframing concepts and design process"
+            className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
+          />
+        </div>
+      )}
+
+      <div className="prose prose-lg text-gray-700 max-w-none">
+        <p className="mb-6">{businessImpact}</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
