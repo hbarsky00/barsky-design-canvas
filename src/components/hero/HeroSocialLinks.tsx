@@ -12,35 +12,41 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 1.3 }}
-      className="flex items-center justify-center space-x-4 pt-4"
+      transition={{ duration: 0.6, delay: 2.0 }}
+      className="flex items-center justify-center space-x-6 pt-4 lg:pt-6"
     >
-      <span className="text-sm text-gray-500">Connect with me:</span>
-      <div className="flex space-x-3">
-        <a 
+      <span className="text-base lg:text-lg text-gray-500 font-medium">Connect with me:</span>
+      <div className="flex space-x-4 lg:space-x-5">
+        <motion.a 
           href="https://www.linkedin.com/in/hiram-barsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-3 hover:bg-blue-100/80 rounded-lg transition-all duration-300 floating-element [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          className="glass-button p-4 lg:p-5 hover:bg-blue-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          whileHover={{ scale: 1.1, y: -2 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <Linkedin className="h-5 w-5 text-gray-600" />
-        </a>
-        <a 
+          <Linkedin className="h-6 w-6 lg:h-7 lg:w-7 text-gray-600" />
+        </motion.a>
+        <motion.a 
           href="https://figma.com/@hirambarsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-3 hover:bg-purple-100/80 rounded-lg transition-all duration-300 floating-element [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          className="glass-button p-4 lg:p-5 hover:bg-purple-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          whileHover={{ scale: 1.1, y: -2 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <Figma className="h-5 w-5 text-gray-600" />
-        </a>
-        <a 
+          <Figma className="h-6 w-6 lg:h-7 lg:w-7 text-gray-600" />
+        </motion.a>
+        <motion.a 
           href="https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk"
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-3 hover:bg-green-100/80 rounded-lg transition-all duration-300 floating-element [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          className="glass-button p-4 lg:p-5 hover:bg-green-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          whileHover={{ scale: 1.1, y: -2 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <Download className="h-5 w-5 text-gray-600" />
-        </a>
+          <Download className="h-6 w-6 lg:h-7 lg:w-7 text-gray-600" />
+        </motion.a>
       </div>
     </motion.div>
   );

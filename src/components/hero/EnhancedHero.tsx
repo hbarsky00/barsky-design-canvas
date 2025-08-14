@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
@@ -5,6 +6,8 @@ import HeroHeading from "./HeroHeading";
 import HeroDescription from "./HeroDescription";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
+import HeroLogo from "./HeroLogo";
+import AnimatedBackground from "./AnimatedBackground";
 
 const EnhancedHero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,52 +22,80 @@ const EnhancedHero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Scroll-driven 3D/parallax values
+  // Scroll-driven parallax values
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const tiltX = useTransform(scrollYProgress, [0, 0.5, 1], ["6deg", "0deg", "-4deg"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [12, -12]);
-  const contentScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.995, 1, 0.997]);
-
-  const headingY = useTransform(scrollYProgress, [0, 1], [8, -8]);
-  const descY = useTransform(scrollYProgress, [0, 1], [10, -10]);
-  const buttonsY = useTransform(scrollYProgress, [0, 1], [12, -12]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
   return (
-    <section ref={sectionRef} className="relative py-8 pb-4 sm:py-16 lg:py-20 bg-transparent" style={{ perspective: "1000px" }}>
-      <div className="container px-4 mx-auto max-w-6xl">
-        <div className="w-full text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-4 sm:space-y-6 lg:space-y-8"
-            style={{
-              rotateX: prefersReducedMotion ? 0 : tiltX,
-              y: prefersReducedMotion ? 0 : contentY,
-              scale: prefersReducedMotion ? 1 : contentScale,
-              transformStyle: "preserve-3d",
-              willChange: "transform",
-            }}
-          >
-            <motion.div style={{ y: prefersReducedMotion ? 0 : headingY }}>
-              <HeroHeading isVisible={isVisible} />
-            </motion.div>
-            <motion.div style={{ y: prefersReducedMotion ? 0 : descY }}>
+    <section 
+      ref={sectionRef} 
+      className="relative min-h-screen flex items-center justify-center bg-transparent overflow-hidden"
+      style={{ perspective: "1000px" }}
+    >
+      {/* Animated Background */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{ y: prefersReducedMotion ? 0 : backgroundY }}
+      >
+        <AnimatedBackground />
+      </motion.div>
+
+      <div className="container px-4 mx-auto max-w-6xl relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center"
+          style={{ y: prefersReducedMotion ? 0 : contentY }}
+        >
+          {/* Logo with enhanced spacing */}
+          <div className="mb-8 lg:mb-12">
+            <HeroLogo isVisible={isVisible} />
+          </div>
+
+          {/* Main content with generous spacing */}
+          <div className="space-y-6 lg:space-y-10">
+            <HeroHeading isVisible={isVisible} />
+            
+            <div className="space-y-4 lg:space-y-6">
               <HeroDescription isVisible={isVisible} />
-            </motion.div>
-            <motion.div style={{ y: prefersReducedMotion ? 0 : buttonsY }}>
+            </div>
+            
+            <div className="pt-4 lg:pt-8">
               <HeroActionButtons isVisible={isVisible} />
-            </motion.div>
-            <div className="hidden sm:block pt-4 lg:pt-6">
+            </div>
+            
+            <div className="hidden sm:block pt-6 lg:pt-10">
               <HeroSocialLinks isVisible={isVisible} />
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1 h-3 bg-gray-400 rounded-full mt-2"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

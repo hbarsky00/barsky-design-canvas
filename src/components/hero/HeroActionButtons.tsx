@@ -29,27 +29,27 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: 1.1 }}
-      className="flex flex-col sm:flex-row justify-center gap-3 mt-6"
+      transition={{ duration: 0.8, delay: 1.8 }}
+      className="flex flex-col sm:flex-row justify-center gap-4 lg:gap-6"
     >
       <motion.div
-        whileHover={{ scale: 1.05, y: -2 }}
+        whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.98 }}
       >
         <Button 
           variant="brand"
           size="lg" 
           onClick={handleFreeConsultation}
-          className="w-full sm:w-auto relative overflow-hidden group font-bold py-4 px-8 text-base shadow-lg hover:shadow-xl transition-all duration-300"
+          className="w-full sm:w-auto relative overflow-hidden group font-bold py-5 lg:py-6 px-8 lg:px-10 text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          <Sparkles className="mr-2 h-5 w-5" />
+          <Sparkles className="mr-2 h-5 w-5 lg:h-6 lg:w-6" />
           <span>Get Free UX+AI Consultation</span>
-          <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="ml-2 h-5 w-5 lg:h-6 lg:w-6 group-hover:translate-x-1 transition-transform" />
         </Button>
       </motion.div>
       
       <motion.div
-        whileHover={{ scale: 1.05, y: -2 }}
+        whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.98 }}
         className="hidden sm:block"
       >
@@ -57,10 +57,10 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="outline"
           size="lg"
           onClick={handleViewResults}
-          className="w-full sm:w-auto relative overflow-hidden group border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 py-4 px-8 text-base font-semibold transition-all duration-300"
+          className="w-full sm:w-auto relative overflow-hidden group border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 py-5 lg:py-6 px-8 lg:px-10 text-base lg:text-lg font-semibold transition-all duration-300 backdrop-blur-sm"
         >
           <span className="font-medium">See Case Studies & ROI</span>
-          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
       </motion.div>
     </motion.div>

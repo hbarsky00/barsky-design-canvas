@@ -18,34 +18,35 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
   ];
 
   return (
-    <div className="relative mb-3">
+    <div className="relative">
       <motion.p 
         initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 1.4, duration: 0.5 }}
-        className="text-lg sm:text-xl mb-4 text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto leading-relaxed"
+        transition={{ delay: 1.2, duration: 0.6 }}
+        className="text-xl sm:text-2xl lg:text-3xl mb-6 lg:mb-8 text-gray-600 dark:text-gray-300 font-medium max-w-4xl mx-auto leading-relaxed"
       >
         From user research to AI-enhanced interfaces that drive measurable business results
       </motion.p>
       
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 1.6, duration: 0.5 }}
-        className="flex flex-wrap justify-center gap-2 mb-0"
+        transition={{ delay: 1.4, duration: 0.6 }}
+        className="flex flex-wrap justify-center gap-3 lg:gap-4"
       >
         {credentials.map((credential, index) => (
           <motion.div
             key={credential.text}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isVisible ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 1.8 + index * 0.1, duration: 0.4 }}
+            transition={{ delay: 1.6 + index * 0.1, duration: 0.4 }}
+            whileHover={{ scale: 1.05, y: -2 }}
           >
             <Badge 
               variant="secondary" 
-              className={`${credential.color} px-3 py-1.5 font-medium text-xs flex items-center gap-1.5 shadow-sm hover:shadow-md transition-all duration-300`}
+              className={`${credential.color} px-4 py-2 lg:px-5 lg:py-3 font-medium text-sm lg:text-base flex items-center gap-2 shadow-sm hover:shadow-md transition-all duration-300 backdrop-blur-sm`}
             >
-              <credential.icon className="h-3 w-3" />
+              <credential.icon className="h-4 w-4 lg:h-5 lg:w-5" />
               {credential.text}
             </Badge>
           </motion.div>
