@@ -158,9 +158,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         variant: "problem",
         content: "Separated parents face significant challenges in coordinating childcare responsibilities, often leading to miscommunication, scheduling conflicts, and increased tension. Traditional communication methods like text messages and emails can exacerbate these issues, especially when co-parenting relationships are already strained.",
         media: {
-          type: 'image',
-          src: "https://via.placeholder.com/1200x700.png?text=The+Problem+Test+Image",
-          alt: "Splittime – The Problem placeholder"
+          type: 'video',
+          src: "https://barskyux.com/wp-content/uploads/2024/01/parentapp-1.mp4",
+          alt: "Splittime parent app demonstration",
+          videoOptions: { 
+            autoplay: true, 
+            loop: true, 
+            muted: true, 
+            controls: false, 
+            playsInline: true 
+          }
         }
       },
       {
