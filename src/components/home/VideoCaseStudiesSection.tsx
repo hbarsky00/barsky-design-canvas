@@ -53,14 +53,16 @@ const VideoCaseStudiesSection: React.FC = () => {
         </div>
       </div>
 
-      <SectionNavigation
-        onNavigateUp={navigateUp}
-        onNavigateDown={navigateDown}
-        canNavigateUp={canNavigateUp}
-        canNavigateDown={canNavigateDown}
-        upLabel="Previous section"
-        downLabel="Contact"
-      />
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <SectionNavigation
+          onNavigateUp={navigateUp}
+          onNavigateDown={navigateDown}
+          canNavigateUp={canNavigateUp}
+          canNavigateDown={canNavigateDown}
+          upLabel="Previous section"
+          downLabel="Contact"
+        />
+      </div>
     </section>
   );
 };

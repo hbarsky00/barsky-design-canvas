@@ -23,7 +23,7 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
   className = ""
 }) => {
   return (
-    <div className={`flex flex-col items-center justify-center space-y-8 py-8 ${className}`}>
+    <div className={`flex flex-col items-center justify-center space-y-8 ${className}`}>
       {/* Up Navigation Arrow */}
       {canNavigateUp && onNavigateUp && (
         <motion.button
