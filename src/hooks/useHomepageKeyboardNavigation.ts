@@ -1,10 +1,10 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export const useHomepageKeyboardNavigation = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   
-  // Define sections in order (skip hidden sections on mobile if needed)
+  // Define sections in order
   const sections = [
     { id: 'hero', element: null as HTMLElement | null },
     { id: 'bio-section', element: null as HTMLElement | null },
@@ -21,7 +21,7 @@ export const useHomepageKeyboardNavigation = () => {
     return headerHeight + 16;
   };
 
-  const scrollToSection = (index: number) => {
+  const scrollToSection = useCallback((index: number) => {
     if (index < 0 || index >= sections.length) return;
     
     const sectionId = sections[index].id;
@@ -33,40 +33,71 @@ export const useHomepageKeyboardNavigation = () => {
         top: offsetTop,
         behavior: "smooth"
       });
+      // Immediately update the current section index
       setCurrentSectionIndex(index);
     }
-  };
+  }, [sections]);
 
-  const navigateUp = () => {
+  const navigateUp = useCallback(() => {
     const newIndex = Math.max(0, currentSectionIndex - 1);
     scrollToSection(newIndex);
-  };
+  }, [currentSectionIndex, scrollToSection]);
 
-  const navigateDown = () => {
+  const navigateDown = useCallback(() => {
     const newIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
     scrollToSection(newIndex);
-  };
+  }, [currentSectionIndex, scrollToSection, sections.length]);
 
-  // Track current section based on scroll position
+  // Improved scroll tracking with better section detection
   useEffect(() => {
-    const handleScroll = () => {
-      const headerOffset = getHeaderOffset();
-      const scrollPosition = window.scrollY + headerOffset + 100;
+    let ticking = false;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i].id);
-        if (element && element.offsetTop <= scrollPosition) {
-          setCurrentSectionIndex(i);
-          break;
+    const handleScroll = () => {
+      if (ticking) return;
+      
+      ticking = true;
+      requestAnimationFrame(() => {
+        const headerOffset = getHeaderOffset();
+        const scrollPosition = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const viewportCenter = scrollPosition + viewportHeight / 2;
+
+        let newSectionIndex = 0;
+        let minDistance = Infinity;
+
+        // Find the section whose center is closest to the viewport center
+        for (let i = 0; i < sections.length; i++) {
+          const element = document.getElementById(sections[i].id);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const elementTop = scrollPosition + rect.top;
+            const elementCenter = elementTop + rect.height / 2;
+            const distance = Math.abs(viewportCenter - elementCenter);
+
+            if (distance < minDistance) {
+              minDistance = distance;
+              newSectionIndex = i;
+            }
+          }
         }
-      }
+
+        // Only update if the section actually changed
+        setCurrentSectionIndex(prev => {
+          if (prev !== newSectionIndex) {
+            return newSectionIndex;
+          }
+          return prev;
+        });
+
+        ticking = false;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Set initial state
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [sections]);
 
   // Handle keyboard events
   useEffect(() => {
@@ -92,7 +123,7 @@ export const useHomepageKeyboardNavigation = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSectionIndex]);
+  }, [navigateUp, navigateDown]);
 
   return {
     currentSectionIndex,

@@ -8,20 +8,13 @@ import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNaviga
 const MinimalHero: React.FC = () => {
   const { navigateDown, canNavigateDown } = useHomepageKeyboardNavigation();
 
-  const scrollToBioSection = () => {
-    const bioSection = document.getElementById('bio-section');
-    if (bioSection) {
-      bioSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section 
       id="hero"
       className="min-h-screen flex flex-col px-4 sm:px-6 bg-white relative"
     >
       {/* Main Hero Content */}
-      <div className="flex-1 flex items-center justify-center cursor-pointer" onClick={scrollToBioSection}>
+      <div className="flex-1 flex items-center justify-center cursor-pointer" onClick={navigateDown}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
