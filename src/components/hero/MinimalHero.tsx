@@ -5,7 +5,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const MinimalHero: React.FC = () => {
   return (
-    <section className="py-16 px-4 sm:px-6">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Top Section - Name, Website, Location, and Photo */}
         <motion.div

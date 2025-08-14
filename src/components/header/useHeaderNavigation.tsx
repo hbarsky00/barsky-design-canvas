@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -134,10 +133,10 @@ export const useHeaderNavigation = () => {
         return;
       }
       
-      // For homepage, show navigation only after scrolling past the name section
-      // This corresponds to roughly 50-60% of hero height where the name is positioned
-      const nameScrollThreshold = heroHeight * 0.6;
-      setIsScrolledPastHero(scrollPosition > nameScrollThreshold);
+      // For homepage, hide header completely on first section and only show when scrolling to second section
+      // Changed threshold from 0.6 to 0.95 to create slideshow effect
+      const slideScrollThreshold = heroHeight * 0.95;
+      setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
 
       // Home section logic - set as active when near the top of the page
       if (location.pathname === '/' && scrollPosition < 200) {
