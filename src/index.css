@@ -1,168 +1,110 @@
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap");
+@import "./styles/overlay-transitions.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Material Design 3.0 Light Theme */
-    --background: 253 100% 99%;
-    --foreground: 209 23% 12%;
-
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    --card-foreground: 209 23% 12%;
-
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 209 23% 12%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
 
-    /* Material Design 3.0 Primary Colors */
-    --primary: 258 100% 59%;
-    --primary-foreground: 0 0% 100%;
-    --primary-container: 264 100% 96%;
-    --on-primary-container: 248 100% 11%;
-
-    /* Material Design 3.0 Secondary Colors */
-    --secondary: 264 15% 77%;
-    --secondary-foreground: 249 18% 22%;
-    --secondary-container: 264 20% 94%;
-    --on-secondary-container: 249 18% 12%;
-
-    /* Material Design 3.0 Tertiary Colors */
-    --tertiary: 342 75% 68%;
-    --tertiary-foreground: 0 0% 100%;
-    --tertiary-container: 342 100% 96%;
-    --on-tertiary-container: 342 100% 11%;
-
-    /* Material Design 3.0 Error Colors */
-    --destructive: 0 100% 42%;
-    --destructive-foreground: 0 0% 100%;
-    --error-container: 0 100% 95%;
-    --on-error-container: 0 100% 12%;
-
-    /* Material Design 3.0 Surface Colors */
-    --surface: 253 100% 99%;
-    --surface-dim: 240 10% 94%;
-    --surface-bright: 253 100% 99%;
-    --surface-container-lowest: 0 0% 100%;
-    --surface-container-low: 240 9% 97%;
-    --surface-container: 240 8% 95%;
-    --surface-container-high: 240 6% 93%;
-    --surface-container-highest: 240 5% 91%;
-    --surface-variant: 248 7% 92%;
-    --on-surface-variant: 249 12% 47%;
-
-    /* Material Design 3.0 Outline */
-    --outline: 249 10% 74%;
-    --outline-variant: 248 7% 84%;
-
-    /* Legacy Compatibility */
-    --muted: 240 8% 95%;
-    --muted-foreground: 249 12% 47%;
-    --accent: 264 15% 77%;
-    --accent-foreground: 249 18% 22%;
-    --border: 249 10% 74%;
-    --input: 248 7% 84%;
-    --ring: 258 100% 59%;
-
-    --radius: 0.75rem;
-
-    /* Header height variable for offsets */
-    --header-height: 64px;
-
-    /* Sidebar Colors */
-    --sidebar-background: 240 8% 95%;
-    --sidebar-foreground: 249 18% 22%;
-    --sidebar-primary: 258 100% 59%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 264 15% 77%;
-    --sidebar-accent-foreground: 249 18% 22%;
-    --sidebar-border: 249 10% 74%;
-    --sidebar-ring: 258 100% 59%;
-
-    /* Modern Design System Colors - Updated for Material 3.0 */
-    --navy-primary: 248 100% 11%;
-    --navy-secondary: 249 18% 12%;
-    --blue-accent: 258 100% 59%;
-    --blue-vibrant: 223 100% 59%;
-    --orange-vibrant: 25 100% 59%;
-    --purple-vibrant: 258 100% 59%;
-    --success-green: 142 76% 36%;
-    --neutral-50: 240 9% 97%;
-    --neutral-100: 240 8% 95%;
-    --neutral-200: 240 6% 93%;
-    --neutral-500: 249 12% 47%;
-    --neutral-900: 209 23% 12%;
+    /* Custom tokens for enhanced design system */
+    --blue-accent: 217 91% 60%;
+    --purple-accent: 256 92% 79%;
+    --tertiary: 256 92% 79%;
+    --tertiary-foreground: 222.2 84% 4.9%;
+    
+    /* Typography scale tokens */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+    
+    /* Display sizes for hero content */
+    --text-display-small: 2.5rem;
+    --text-display-medium: 3.5rem;
+    --text-display-large: 4.5rem;
+    
+    /* Line heights */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Spacing scale */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
   }
 
   .dark {
-    /* Material Design 3.0 Dark Theme */
-    --background: 248 12% 6%;
-    --foreground: 258 10% 90%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
 
-    --card: 249 18% 12%;
-    --card-foreground: 258 10% 90%;
-
-    --popover: 249 18% 12%;
-    --popover-foreground: 258 10% 90%;
-
-    /* Material Design 3.0 Primary Colors - Dark */
-    --primary: 264 80% 78%;
-    --primary-foreground: 248 100% 11%;
-    --primary-container: 248 100% 19%;
-    --on-primary-container: 264 100% 90%;
-
-    /* Material Design 3.0 Secondary Colors - Dark */
-    --secondary: 264 22% 49%;
-    --secondary-foreground: 264 100% 90%;
-    --secondary-container: 249 18% 19%;
-    --on-secondary-container: 264 20% 86%;
-
-    /* Material Design 3.0 Tertiary Colors - Dark */
-    --tertiary: 342 47% 78%;
-    --tertiary-foreground: 342 100% 11%;
-    --tertiary-container: 342 100% 19%;
-    --on-tertiary-container: 342 100% 90%;
-
-    /* Material Design 3.0 Error Colors - Dark */
-    --destructive: 0 93% 73%;
-    --destructive-foreground: 0 100% 12%;
-    --error-container: 0 100% 19%;
-    --on-error-container: 0 100% 90%;
-
-    /* Material Design 3.0 Surface Colors - Dark */
-    --surface: 248 12% 6%;
-    --surface-dim: 248 12% 6%;
-    --surface-bright: 249 18% 22%;
-    --surface-container-lowest: 248 24% 4%;
-    --surface-container-low: 249 18% 12%;
-    --surface-container: 249 15% 16%;
-    --surface-container-high: 249 15% 20%;
-    --surface-container-highest: 249 15% 24%;
-    --surface-variant: 249 12% 20%;
-    --on-surface-variant: 249 7% 70%;
-
-    /* Material Design 3.0 Outline - Dark */
-    --outline: 249 10% 40%;
-    --outline-variant: 249 12% 32%;
-
-    /* Legacy Compatibility */
-    --muted: 249 15% 16%;
-    --muted-foreground: 249 7% 70%;
-    --accent: 264 22% 49%;
-    --accent-foreground: 264 100% 90%;
-    --border: 249 10% 40%;
-    --input: 249 12% 32%;
-    --ring: 264 80% 78%;
-
-    /* Sidebar Colors - Dark */
-    --sidebar-background: 249 15% 16%;
-    --sidebar-foreground: 258 10% 90%;
-    --sidebar-primary: 264 80% 78%;
-    --sidebar-primary-foreground: 248 100% 11%;
-    --sidebar-accent: 264 22% 49%;
-    --sidebar-accent-foreground: 264 100% 90%;
-    --sidebar-border: 249 10% 40%;
-    --sidebar-ring: 264 80% 78%;
+    /* Custom dark theme tokens */
+    --blue-accent: 217 91% 60%;
+    --purple-accent: 256 92% 79%;
+    --tertiary: 256 92% 79%;
+    --tertiary-foreground: 222.2 84% 4.9%;
   }
 }
 
@@ -170,917 +112,22 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: hsl(var(--surface));
-    min-height: 100vh;
-    font-size: 16px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* UNIVERSAL PROJECT PARAGRAPH TEXT STYLING - MAXIMUM COVERAGE */
-  /* This ensures ALL paragraph text across ALL project components uses consistent styling */
-  
-  /* Target all paragraph elements universally */
-  p {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* Target all div elements that contain paragraph-like text */
-  div p,
-  section p,
-  article p,
-  main p,
-  aside p,
-  nav p,
-  header p,
-  footer p {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* Target all component-specific classes */
-  .prose p,
-  .prose.prose-lg p,
-  .prose.prose-slate p,
-  .prose.prose-slate.max-w-none p,
-  .prose.prose-slate.max-w-none.dark\:prose-invert p,
-  .text-content p,
-  .whitespace-pre-wrap p,
-  .project-content p,
-  .glass-card-elevated p,
-  .case-study-section p,
-  .mobile-section-spacing p,
-  .process-card p,
-  .glass-card p,
-  .layered-depth p,
-  .floating-element p,
-  .before-after-container p,
-  .metric-card p,
-  .gallery-image p,
-  .image-gallery-grid p,
-  .case-study-container p,
-  .case-study-hero p {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* Target React component rendered content */
-  [class*="text-"] p,
-  [class*="prose"] p,
-  [class*="leading-"] p,
-  [class*="text-gray"] p,
-  [class*="text-slate"] p,
-  [class*="text-neutral"] p,
-  [class*="section"] p,
-  [class*="project"] p,
-  [class*="challenge"] p,
-  [class*="process"] p,
-  [class*="result"] p,
-  [data-testid*="project"] p,
-  [data-testid*="section"] p,
-  [data-testid*="content"] p,
-  [id*="project"] p,
-  [id*="section"] p,
-  [id*="content"] p {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* Target motion components and animated elements */
-  motion\.div p,
-  motion\.section p,
-  div[class*="space-y"] p,
-  div[class*="max-w"] p,
-  section[class*="space-y"] p {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* Target any remaining paragraph-like text elements */
-  .text-lg,
-  .text-base,
-  .leading-relaxed,
-  .leading-loose {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-  }
-
-  /* Special targeting for image-text gallery content */
-  [class*="image-text"] p,
-  [class*="gallery"] p,
-  [class*="content-section"] p {
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    color: rgb(75 85 99) !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* Global figcaption horizontal padding for consistent captions */
-  figcaption {
-    @apply px-4 sm:px-6;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-@layer components {
-  /* Material Design 3.0 Accessibility Utilities */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
+/* Custom typography classes using semantic tokens */
+.text-display-small { font-size: var(--text-display-small); line-height: var(--leading-tight); }
+.text-display-medium { font-size: var(--text-display-medium); line-height: var(--leading-tight); }
+.text-display-large { font-size: var(--text-display-large); line-height: var(--leading-tight); }
 
-  .focus-visible {
-    outline: 2px solid hsl(var(--primary));
-    outline-offset: 2px;
-  }
-
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .glass-card,
-    .glass-card-elevated,
-    .glass-nav,
-    .glass-button {
-      background: hsl(var(--surface)) !important;
-      border: 2px solid hsl(var(--outline)) !important;
-      backdrop-filter: none !important;
-    }
-  }
-
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    ::before,
-    ::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-
-  /* Touch target minimum size */
-  .touch-target {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-
-  /* Standard vertical spacing utility for sections */
-  .section-y {
-    @apply py-8 sm:py-12 lg:py-16;
-  }
-  
-  .section-title {
-    @apply text-4xl sm:text-5xl font-bold mb-12 relative inline-block text-[hsl(var(--navy-primary))] text-left lg:text-center;
-  }
-  
-  .section-title::after {
-    content: '';
-    @apply absolute -bottom-3 left-0 w-1/4 h-1 bg-[hsl(var(--blue-vibrant))] lg:left-1/2 lg:-translate-x-1/2;
-  }
-  
-  .text-reveal-container {
-    @apply relative overflow-hidden;
-  }
-  
-  .text-reveal {
-    @apply animate-text-reveal opacity-0;
-    animation-fill-mode: forwards;
-  }
-  
-  .nav-link {
-    @apply relative text-[hsl(var(--neutral-500))] hover:text-[hsl(var(--blue-accent))] transition-colors duration-300 text-left;
-    justify-content: flex-start !important;
-    text-align: left !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  /* Navigation container left alignment */
-  nav, 
-  [role="navigation"],
-  .navigation-container {
-    justify-content: flex-start !important;
-    text-align: left !important;
-  }
-
-  /* Mobile navigation full width and left alignment */
-  #mobile-navigation,
-  .mobile-menu,
-  .mobile-navigation {
-    width: 100% !important;
-    justify-content: flex-start !important;
-    text-align: left !important;
-  }
-
-  /* Desktop navigation left alignment */
-  nav.hidden.md\\:flex {
-    justify-content: flex-start !important;
-    align-items: center !important;
-  }
-  
-  .nav-link::after {
-    content: '';
-    @apply absolute left-0 right-0 bottom-0 w-0 h-0.5 bg-[hsl(var(--blue-vibrant))] transition-all duration-300 ease-in-out;
-  }
-  
-  .nav-link:hover::after {
-    @apply w-full left-0 right-0;
-  }
-  
-  .nav-link.active {
-    @apply text-[hsl(var(--blue-accent))];
-  }
-  
-  .nav-link.active::after {
-    @apply w-full left-0 right-0;
-  }
-  
-  .btn-primary {
-    @apply bg-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-accent))] text-white font-semibold py-3 px-6 transition-colors duration-300 inline-block shadow-lg;
-  }
-  
-   .btn-outline {
-     @apply border-2 border-[hsl(var(--blue-vibrant))] text-[hsl(var(--blue-vibrant))] hover:bg-[hsl(var(--blue-vibrant))] hover:text-white font-semibold py-3 px-6 transition-colors duration-300 inline-block;
-   }
-
-   /* Forced brand button - consistent on dark backgrounds */
-   .btn-brand {
-     @apply !bg-[hsl(var(--blue-vibrant))] !text-white !rounded-full inline-flex items-center justify-center gap-2 min-h-[44px] min-w-[44px] px-6 py-3 font-semibold transition-all duration-300 shadow-sm hover:shadow-md;
-   }
-   .btn-brand:hover { @apply !bg-[hsl(var(--blue-accent))]; }
-   .btn-brand svg { @apply !text-white; }
-
-  /* Share button with proper icon hover state */
-  .share-button {
-    @apply hover:bg-[hsl(var(--primary))] hover:text-white hover:border-[hsl(var(--primary))];
-    @apply border-2 border-muted-foreground/20 text-muted-foreground bg-background;
-    @apply transition-all duration-300 ease-in-out;
-    @apply hover:shadow-lg hover:scale-105 hover:-translate-y-0.5;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary/20;
-    @apply active:scale-95 cursor-pointer;
-    @apply w-6 h-6 sm:w-10 sm:h-10 p-0 rounded-full;
-    @apply flex items-center justify-center;
-  }
-  
-  .share-button svg {
-    @apply transition-all duration-300 stroke-current fill-none;
-    color: inherit !important;
-    stroke: currentColor !important;
-  }
-  
-  .share-button:hover svg {
-    color: white !important;
-    stroke: white !important;
-  }
-
-  /* Hide scrollbar for horizontal scroll */
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
-  }
-
-  .color-swatch {
-    @apply h-24 rounded-md shadow-md transition-all duration-300 hover:scale-105 cursor-pointer;
-  }
-
-  /* Glass Morphism Components */
-  .glass-card {
-    @apply bg-white/20 backdrop-blur-md border border-white/30 shadow-glass;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .glass-card-elevated {
-    @apply glass-card shadow-elevated-lg;
-    transform: translateZ(0);
-  }
-
-  .glass-nav {
-    @apply bg-white/10 backdrop-blur-xl border-b border-white/20;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-  }
-
-  .glass-button {
-    @apply bg-white/20 backdrop-blur-sm border border-white/30 transition-all duration-300 hover:bg-white/30 hover:scale-[1.02] hover:shadow-lg;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-  }
-
-  .glass-button:not(.btn):not(button) {
-    @apply hover:scale-105;
-  }
-
-  .glass-accent {
-    @apply bg-blue-500/20 backdrop-blur-md border border-blue-300/30;
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.1));
-  }
-
-  .floating-element {
-    @apply transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-elevated;
-  }
-
-  .layered-depth {
-    position: relative;
-    transform-style: preserve-3d;
-  }
-
-  .layered-depth::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
-    z-index: -1;
-    transform: translateZ(-1px);
-  }
-
-  /* Mobile-Optimized Components - Reduced padding */
-  .mobile-optimized-padding {
-    @apply p-2 md:p-3 lg:p-4;
-  }
-
-  .mobile-image-container {
-    @apply p-1 sm:p-2;
-  }
-
-  .mobile-gallery-grid {
-    @apply gap-2 sm:gap-3 md:gap-4;
-  }
-
-  .mobile-section-spacing {
-    @apply space-y-2 sm:space-y-3 md:space-y-4;
-  }
-
-  /* Case Study Layout Components - Reduced padding */
-  .case-study-container {
-    @apply max-w-full mx-auto px-4 sm:px-6;
-  }
-
-  .case-study-hero {
-    @apply glass-card-elevated py-8 border-b border-white/20;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(248, 250, 252, 0.1));
-  }
-
-  .case-study-section {
-    @apply py-6 border-b border-white/10 last:border-b-0;
-  }
-
-  .process-card {
-    @apply glass-card p-4 floating-element layered-depth;
-  }
-
-  .metric-card {
-    @apply glass-card p-3 text-center floating-element;
-  }
-
-  .metric-number {
-    @apply text-3xl font-bold text-[hsl(var(--success-green))] mb-2;
-  }
-
-  .metric-label {
-    @apply text-sm text-[hsl(var(--neutral-500))] uppercase tracking-wide;
-  }
-
-  .image-gallery-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mobile-gallery-grid;
-  }
-
-  .gallery-image {
-    @apply shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden floating-element;
-  }
-
-  .before-after-container {
-    @apply glass-card p-3 layered-depth;
-  }
-
-  /* Project h1 elements - Center aligned */
-  .prose h1,
-  .prose.prose-lg h1,
-  .prose.prose-slate h1,
-  .prose.prose-slate.max-w-none h1,
-  .prose.prose-slate.max-w-none.dark\:prose-invert h1,
-  .glass-card-elevated h1,
-  .case-study-section h1,
-  .mobile-section-spacing h1 {
-    @apply text-center;
-  }
-
-  /* Project h2 elements - Center aligned */
-  .prose h2,
-  .prose.prose-lg h2,
-  .prose.prose-slate h2,
-  .prose.prose-slate.max-w-none h2,
-  .prose.prose-slate.max-w-none.dark\:prose-invert h2,
-  .glass-card-elevated h2,
-  .case-study-section h2,
-  .mobile-section-spacing h2 {
-    @apply text-center;
-  }
-
-  /* Project h3 elements - Left aligned */
-  .prose h3,
-  .prose.prose-lg h3,
-  .prose.prose-slate h3,
-  .prose.prose-slate.max-w-none h3,
-  .prose.prose-slate.max-w-none.dark\:prose-invert h3,
-  .glass-card-elevated h3,
-  .case-study-section h3,
-  .mobile-section-spacing h3 {
-    @apply text-left;
-  }
+/* Navigation styles */
+.nav-link {
+  @apply px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200;
 }
 
-  /* Material Design 3.0 Typography Scale */
-.text-display-large {
-  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal leading-tight tracking-tight;
+.nav-link.active {
+  @apply text-foreground bg-muted;
 }
-
-.text-display-medium {
-  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight tracking-tight;
-}
-
-.text-display-small {
-  @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight;
-}
-
-.text-headline-large {
-  @apply text-xl sm:text-2xl md:text-3xl font-normal leading-tight;
-}
-
-.text-headline-medium {
-  @apply text-lg sm:text-xl md:text-2xl font-normal leading-tight;
-}
-
-.text-headline-small {
-  @apply text-base sm:text-lg md:text-xl font-normal leading-tight;
-}
-
-.text-title-large {
-  @apply text-base sm:text-lg font-medium leading-tight;
-}
-
-.text-title-medium {
-  @apply text-sm sm:text-base font-medium leading-tight;
-}
-
-.text-title-small {
-  @apply text-xs sm:text-sm font-medium leading-tight;
-}
-
-.text-body-large {
-  @apply text-base sm:text-lg font-normal leading-relaxed;
-}
-
-.text-body-medium {
-  @apply text-sm sm:text-base font-normal leading-relaxed;
-}
-
-.text-body-small {
-  @apply text-xs sm:text-sm font-normal leading-relaxed;
-}
-
-.text-label-large {
-  @apply text-xs sm:text-sm font-medium leading-tight tracking-wide;
-}
-
-.text-label-medium {
-  @apply text-xs font-medium leading-tight tracking-wide;
-}
-
-.text-label-small {
-  @apply text-xs font-medium leading-tight tracking-wider;
-}
-
-/* Legacy Typography (for compatibility) */
-.text-display {
-  @apply text-display-medium;
-}
-
-.text-heading-1 {
-  @apply text-headline-large;
-}
-
-.text-heading-2 {
-  @apply text-headline-medium;
-}
-
-.text-heading-3 {
-  @apply text-headline-small;
-}
-
-.text-body {
-  @apply text-body-medium;
-}
-
-/* Refined animations */
-@keyframes gentle-float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(0.5deg); }
-}
-
-.gentle-float {
-  animation: gentle-float 6s ease-in-out infinite;
-}
-
-  /* Enhanced responsive image handling */
-  .responsive-image {
-    @apply w-full h-auto object-cover;
-    aspect-ratio: var(--aspect-ratio, 16/9);
-    background: linear-gradient(45deg, hsl(var(--muted)) 0%, hsl(var(--muted)/0.5) 100%);
-  }
-
-  .responsive-image[width][height] {
-    aspect-ratio: attr(width) / attr(height);
-  }
-
-  /* Image loading states */
-  .responsive-image {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .responsive-image[data-loading="true"] {
-    opacity: 0.7;
-    transform: scale(0.98);
-  }
-
-  /* Mobile-first responsive images */
-  @media (max-width: 768px) {
-    .responsive-image {
-      aspect-ratio: 4/3;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 1200px) {
-    .responsive-image {
-      aspect-ratio: 16/10;
-    }
-  }
-
-  @media (min-width: 1201px) {
-    .responsive-image {
-      aspect-ratio: 16/9;
-    }
-  }
-
-  /* Mobile touch targets - ensure 44px minimum with proper spacing */
-  @media (hover: none) and (pointer: coarse) {
-    button:not(.nav-link), [role="button"]:not(.nav-link), .clickable:not(.nav-link), a[href]:not(.nav-link), [onclick]:not(.nav-link), .interactive:not(.nav-link) {
-      min-height: 48px !important;
-      min-width: 48px !important;
-      padding: 14px 18px !important;
-      margin: 6px !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center;
-    }
-    
-    /* Navigation links with touch-friendly size but left alignment */
-    .nav-link,
-    nav .nav-link,
-    [role="navigation"] .nav-link,
-    #mobile-navigation .nav-link,
-    a.nav-link {
-      min-height: 48px !important;
-      padding: 14px 18px !important;
-      margin: 6px 0 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: flex-start !important;
-      text-align: left !important;
-      width: 100% !important;
-    }
-    
-    /* Ensure mobile menu container spans full width */
-    #mobile-navigation {
-      width: 100% !important;
-    }
-    
-    /* Form inputs optimization */
-    input, textarea, select {
-      min-height: 44px;
-      font-size: 16px; /* Prevent zoom on iOS */
-      padding: 8px 12px;
-    }
-  }
-
-  /* Interactive elements hover states */
-  button:hover, [role="button"]:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Focus states for accessibility */
-  button:focus-visible, [role="button"]:focus-visible, a:focus-visible {
-    outline: 2px solid hsl(var(--primary));
-    outline-offset: 2px;
-  }
-
-  /* Enhanced glass cards for mobile */
-  @media (max-width: 768px) {
-    .glass-card {
-      padding: 1rem;
-      margin: 0.5rem;
-    }
-
-    .glass-card-elevated {
-      padding: 1.5rem;
-    }
-  }
-  
-  .gallery-image {
-    @apply shadow-md;
-  }
-
-  .layered-depth {
-    transform: none;
-  }
-  
-  .floating-element:hover {
-    @apply scale-100 translate-y-0;
-  }
-  
-  .force-white-text {
-    color: white !important;
-  }
-  
-  /* Override paragraph text color in blue background sections - High Specificity */
-  motion\.div[class*="bg-gradient-to-r"][class*="blue"] p,
-  div[class*="bg-gradient-to-r"][class*="blue"] p,
-  section[class*="bg-gradient-to-r"][class*="blue"] p,
-  [class*="bg-gradient-to-r"][class*="from-blue-500"] p,
-  [class*="bg-gradient-to-r"][class*="to-indigo-500"] p,
-  [class*="bg-gradient-to-r"][class*="via-indigo-500"] p,
-  [class*="bg-gradient-to-r"][class*="to-blue-600"] p,
-  div.mt-16[class*="bg-gradient-to-r"] p,
-  motion\.div.mt-16[class*="bg-gradient-to-r"] p {
-    color: white !important;
-    font-size: 18px !important;
-    line-height: 1.625 !important;
-    font-weight: 400 !important;
-    margin-bottom: 1rem !important;
-  }
-  
-  /* Even more specific - target the exact classes */
-  .bg-gradient-to-r.from-blue-500.to-indigo-500 p,
-  .bg-gradient-to-r.from-blue-500.via-indigo-500.to-blue-600 p {
-    color: white !important;
-  }
-
-/* Nuclear option - Force white text for specific class */
-.force-white-text-override {
-  color: white !important;
-  font-size: 18px !important;
-  line-height: 1.625 !important;
-  font-weight: 400 !important;
-  margin-bottom: 1rem !important;
-}
-
-/* NUCLEAR WHITE TEXT CLASS - MAXIMUM SPECIFICITY */
-.white-text-nuclear {
-  color: #ffffff !important;
-  font-size: inherit !important;
-  line-height: inherit !important;
-  font-weight: inherit !important;
-  margin-bottom: inherit !important;
-}
-
-p.white-text-nuclear,
-div p.white-text-nuclear,
-section p.white-text-nuclear,
-[class*="bg-gradient"] p.white-text-nuclear {
-  color: #ffffff !important;
-}
-
-/* Button hover state fixes - Global */
-button[class*="bg-blue"]:hover,
-.btn:hover,
-[role="button"]:hover {
-  transform: none !important;
-}
-
-button:not(.glass-button):hover {
-  scale: 1 !important;
-}
-
-/* Ensure all buttons have proper hover states */
-button, 
-[role="button"],
-.btn {
-  transition: all 0.3s ease !important;
-}
-
-/* Fix floating elements that are also buttons */
-button.floating-element:hover,
-[role="button"].floating-element:hover {
-  transform: none !important;
-  scale: 1 !important;
-}
-
-/* ===== ACCESSIBILITY & PERFORMANCE ENHANCEMENTS ===== */
-
-/* Enhanced color contrast for WCAG compliance */
-.text-gray-400 {
-  color: rgb(75 85 99) !important; /* Improved contrast */
-}
-
-.text-gray-500 {
-  color: rgb(55 65 81) !important; /* Better contrast */
-}
-
-.text-slate-400 {
-  color: rgb(71 85 105) !important; /* Enhanced readability */
-}
-
-/* Skip link for keyboard navigation */
-.sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-.focus\:not-sr-only:focus {
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  padding: 0.5rem 1rem !important;
-  margin: 0 !important;
-  overflow: visible !important;
-  clip: auto !important;
-  white-space: normal !important;
-  background-color: rgb(37 99 235) !important;
-  color: white !important;
-  text-decoration: none !important;
-  border-radius: 0.25rem !important;
-  z-index: 9999 !important;
-}
-
-/* Image performance optimizations */
-img {
-  loading: lazy;
-  height: auto;
-  max-width: 100%;
-  border-radius: 0 !important; /* Remove all rounded corners from images */
-}
-
-/* Remove rounded corners from all image-related elements */
-img[class*="rounded-"],
-figure img,
-div img,
-.glass-card img,
-.gallery-image img,
-.project-image-container img,
-[class*="image"] img {
-  border-radius: 0 !important;
-}
-
-/* Remove rounded corners from MaximizableImage containers */
-figure[data-lovable-element="image-container"],
-.maximizable-image-container {
-  border-radius: 0 !important;
-}
-
-/* Remove rounded corners from iframe videos */
-iframe {
-  border-radius: 0 !important;
-}
-
-img[loading="eager"] {
-  loading: eager;
-}
-
-/* Focus indicators for better accessibility - using focus-visible for keyboard navigation only */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid hsl(var(--blue-accent)) !important;
-  outline-offset: 2px !important;
-}
-
-/* Remove focus outline for mouse/touch interactions */
-button:focus:not(:focus-visible),
-a:focus:not(:focus-visible) {
-  outline: none !important;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .text-gray-400,
-  .text-gray-500,
-  .text-slate-400 {
-    color: rgb(17 24 39) !important;
-  }
-  
-  button,
-  .btn {
-    border: 2px solid currentColor !important;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ===== GLOBAL FLUID HEADING SCALE (H1–H6) ===== */
-@layer base {
-  /* Shared heading behaviors */
-  h1, h2, h3, h4, h5, h6 {
-    text-wrap: balance;              /* Better multi-line readability */
-    overflow-wrap: anywhere;         /* Prevent overflow in narrow layouts */
-    hyphens: auto;                   /* Allow hyphenation where supported */
-    margin-block: 0.6em 0.4em;       /* Responsive spacing relative to size */
-    scroll-margin-top: 6rem;         /* Prevent overlap with sticky nav (96px) */
-  }
-
-  /* Fluid sizes and line-heights */
-  h1 { font-size: clamp(28px, 4.5vw, 48px); line-height: 1.15; max-inline-size: 32ch; }
-  h2 { font-size: clamp(24px, 3.5vw, 40px); line-height: 1.15; max-inline-size: 34ch; }
-  h3 { font-size: clamp(20px, 2.8vw, 32px); line-height: 1.15; max-inline-size: 36ch; }
-  h4 { font-size: clamp(18px, 2.2vw, 28px); line-height: 1.2;  max-inline-size: 38ch; }
-  h5 { font-size: clamp(16px, 1.8vw, 22px); line-height: 1.2;  max-inline-size: 40ch; }
-  h6 { font-size: clamp(14px, 1.6vw, 18px); line-height: 1.2;  max-inline-size: 42ch; }
-}
-
-/* Optional: 2-line clamp utility for long headings on small screens */
-@media (max-width: 640px) {
-  .heading-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-}
-@media (min-width: 641px) {
-  .heading-clamp-2 {
-    display: block;
-    -webkit-line-clamp: unset;
-  }
-}
-
-/* Global layout and heading alignment utilities */
-@layer utilities {
-  /* Page container with consistent gutters and max width */
-  .container-page { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
-
-  /* Start-aligned headings/text for non-hero sections */
-  .align-start { @apply text-left md:text-left; }
-
-  /* Vertical spacing stack for header groups (eyebrow, title, subtitle) */
-  .header-stack { @apply flex flex-col gap-3 md:gap-4; }
-}
-

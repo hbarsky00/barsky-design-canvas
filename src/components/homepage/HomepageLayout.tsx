@@ -11,6 +11,7 @@ import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import SectionTransition from "@/components/transitions/SectionTransition";
+import SectionTransitionOverlay from "@/components/transitions/SectionTransitionOverlay";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
@@ -19,8 +20,8 @@ import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNaviga
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
   
-  // Initialize keyboard navigation
-  useHomepageKeyboardNavigation();
+  // Initialize keyboard navigation and get overlay state
+  const { isOverlayActive } = useHomepageKeyboardNavigation();
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
@@ -29,6 +30,10 @@ const HomepageLayout: React.FC = () => {
         volume={0.15}
       />
       {isScrolledPastHero && <Header />}
+      
+      {/* Section Transition Overlay */}
+      <SectionTransitionOverlay isActive={isOverlayActive} />
+      
       <main className="flex-grow space-y-4 md:space-y-12">
         
         <SectionTransition variant="fade">

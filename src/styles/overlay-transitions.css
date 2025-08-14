@@ -1,0 +1,61 @@
+
+/* Section Transition Overlay Variables and Styles */
+:root {
+  --overlay-duration: 260ms;
+  --overlay-ease: cubic-bezier(.2,.8,.2,1);
+  --overlay-blur: 4px;
+  --overlay-dark: rgba(17,24,39,0.92);
+  --overlay-light: rgba(255,255,255,0.92);
+  --overlay-dark-edge: rgba(17,24,39,0.75);
+  --overlay-light-edge: rgba(255,255,255,0.75);
+}
+
+/* Overlay default styles */
+[data-transition-overlay] {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60; /* Above content, below modals */
+  opacity: 0;
+  backdrop-filter: blur(0px);
+  transition: 
+    opacity var(--overlay-duration) var(--overlay-ease),
+    backdrop-filter var(--overlay-duration) var(--overlay-ease);
+  
+  /* Default to dark theme gradient */
+  background: radial-gradient(
+    120% 120% at 50% 50%, 
+    var(--overlay-dark) 0%, 
+    var(--overlay-dark) 40%, 
+    var(--overlay-dark-edge) 100%
+  );
+}
+
+/* Light theme override */
+.light [data-transition-overlay] {
+  background: radial-gradient(
+    120% 120% at 50% 50%, 
+    var(--overlay-light) 0%, 
+    var(--overlay-light) 40%, 
+    var(--overlay-light-edge) 100%
+  );
+}
+
+/* Active overlay state */
+[data-transition-overlay].active {
+  pointer-events: auto;
+  opacity: 1;
+  backdrop-filter: blur(var(--overlay-blur));
+}
+
+/* Prevent scroll during transition */
+.transition-lock {
+  overflow: hidden !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  [data-transition-overlay] {
+    transition: none !important;
+  }
+}
