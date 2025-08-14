@@ -34,6 +34,16 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
     }
   };
 
+  const handleImageLoad = () => {
+    console.log('✅ Wireframing image loaded successfully:', wireframingImage);
+  };
+
+  const handleImageError = () => {
+    console.error('❌ Wireframing image failed to load:', wireframingImage);
+  };
+
+  console.log('🖼️ ProblemSection: wireframingImage prop:', wireframingImage);
+
   return (
     <div className="space-y-8">
       <div className="flex items-start space-x-4">
@@ -46,11 +56,14 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
       </div>
 
       {wireframingImage && (
-        <div className="mb-8">
+        <div className="mb-8 bg-gray-50 p-4 rounded-lg border-2 border-dashed border-gray-200">
           <img
             src={wireframingImage}
             alt="Wireframing concepts and design process"
             className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            style={{ minHeight: '200px', backgroundColor: '#f3f4f6' }}
           />
         </div>
       )}
