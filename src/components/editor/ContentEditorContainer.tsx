@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ContentTextEditor } from './ContentTextEditor';
 import ContentImageManager from './ContentImageManager';
 import { useContentEditorState } from './useContentEditorState';
@@ -29,6 +29,8 @@ const ContentEditorContainer: React.FC<ContentEditorContainerProps> = ({
   projectId,
   imageCaptions = {}
 }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   // Always call the hook, but pass undefined handlers if not provided
   const {
     localImages,
@@ -45,12 +47,18 @@ const ContentEditorContainer: React.FC<ContentEditorContainerProps> = ({
   // Only show image manager if we have image-related functionality
   const showImageManager = onImageAdd || onImageReplace || onImageRemove || images.length > 0;
 
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+  };
+
   return (
     <>
       <ContentTextEditor
-        content={content}
-        contentType={contentType}
+        initialContent={content}
+        isEditing={isEditing}
+        onEditToggle={handleEditToggle}
         onSave={onSave}
+        placeholder={`Edit ${contentType} content...`}
       />
 
       {showImageManager && (
