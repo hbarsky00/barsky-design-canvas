@@ -1,3 +1,4 @@
+
 import React from "react";
 import clsx from "clsx";
 
@@ -22,12 +23,12 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
   return (
     <header className={clsx("text-center", className)}>
-      <Tag className={clsx("mx-auto max-w-5xl [text-wrap:balance] text-display-medium font-bold text-on-surface", titleClassName)}>
+      <Tag className={clsx("mx-auto max-w-5xl [text-wrap:balance] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-on-surface", titleClassName)}>
         {title}
       </Tag>
       {subtitle ? (
         <p className={clsx(
-          "mt-4 mx-auto max-w-3xl leading-relaxed [text-wrap:balance] text-title-large text-on-surface-variant",
+          "mt-4 mx-auto max-w-3xl leading-relaxed [text-wrap:balance] text-lg sm:text-xl md:text-2xl text-on-surface-variant",
           subtitleClassName
         )}>
           {subtitle}

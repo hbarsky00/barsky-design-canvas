@@ -37,8 +37,8 @@ const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({
             as="h2"
             title="Case Studies That Drive Results"
             subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
-            titleClassName="text-display-medium font-bold text-on-surface"
-            subtitleClassName="text-title-large text-on-surface-variant"
+            titleClassName="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-on-surface"
+            subtitleClassName="text-lg sm:text-xl md:text-2xl text-on-surface-variant"
           />
         </motion.div>
 
