@@ -24,7 +24,7 @@ const About: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <h2 className="section-title">Why Clients Choose Barsky Design</h2>
+            <h2 className="section-title">Why Work With Me</h2>
             <p className="text-barsky-text mb-6 leading-relaxed">
               After 15+ years designing digital products, I discovered that combining traditional UX research with AI creates breakthrough results. While other designers guess, I use AI-powered user insights to deliver:
             </p>

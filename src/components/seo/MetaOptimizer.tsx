@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -48,7 +49,7 @@ const MetaOptimizer: React.FC<MetaOptimizerProps> = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={optimizedTitle} />
-      <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+      <meta property="og:site_name" content="Hiram Barsky Design - AI-Enhanced Design" />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -62,7 +63,7 @@ const MetaOptimizer: React.FC<MetaOptimizerProps> = ({
       
       {/* Additional SEO Meta Tags */}
       <meta name="author" content="Hiram Barsky" />
-      <meta name="publisher" content="Hiram Barsky" />
+      <meta name="publisher" content="Hiram Barsky Design" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
       <meta name="language" content="English" />

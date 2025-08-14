@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 const ServicesStructuredData = () => {
   return (
     <Helmet>
-      <title>Professional Design Services | Product Design | Web & Mobile App Development | Hiram Barsky</title>
+      <title>Professional Design Services | Product Design | Web & Mobile App Development | Hiram Barsky Design</title>
       <meta name="description" content="Expert Product Design and development services for websites and mobile applications. Specializing in user-centered design, responsive web development, and AI-driven design solutions." />
       <meta name="keywords" content="Website Design Services, App Design Services, AI Driven Design Services, Product Design Services, Mobile App Development Services, Design Systems Development, Responsive Web Design, Cross-platform Design Solutions" />
       
@@ -17,7 +17,7 @@ const ServicesStructuredData = () => {
             "serviceType": "Design Services",
             "provider": {
               "@type": "ProfessionalService",
-              "name": "Hiram Barsky Design Services",
+              "name": "Hiram Barsky Design",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "New York",

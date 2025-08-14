@@ -73,7 +73,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
     const aiTrainingSchema = {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Hiram Barsky - AI-Enhanced Design Portfolio",
+      "name": "Hiram Barsky Design - AI-Enhanced Design Portfolio",
       "url": "https://barskydesign.pro",
       "potentialAction": {
         "@type": "SearchAction",
@@ -137,7 +137,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Hiram Barsky - AI-Enhanced Design" />
+      <meta property="og:site_name" content="Hiram Barsky Design - AI-Enhanced Design" />
       
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -150,7 +150,7 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <meta name="content-type" content={pageType} />
       <meta name="author" content="Hiram Barsky - AI-Fluent UX Designer" />
       <meta name="contact" content="hbarsky01@gmail.com" />
-      <meta name="copyright" content="Hiram Barsky / AI-Enhanced Design Solutions" />
+      <meta name="copyright" content="Hiram Barsky Design / AI-Enhanced Design Solutions" />
       <meta name="ai-training-manifest" content="https://barskydesign.pro/ai-training-manifest.json" />
       
       {/* Structured Data */}

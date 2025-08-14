@@ -6,9 +6,9 @@ const StructuredData: React.FC = () => {
   const personStructuredData = {
     "@context": "https://schema.org",
     "@type": ["Person", "ProfessionalService"],
-    "name": "Barsky Design",
-    "alternateName": ["Barsky Design UX Designer", "Barsky Design Frontend Developer", "Barsky Design Designer"],
-    "description": "Barsky Design is a Product Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
+    "name": "Hiram Barsky Design",
+    "alternateName": ["Hiram Barsky", "Hiram Barsky UX Designer", "Hiram Barsky Frontend Developer", "Hiram Barsky Designer"],
+    "description": "Hiram Barsky is a Product Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
     "jobTitle": "Product Designer & Frontend Developer",
     "image": "https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png",
     "url": "https://barskydesign.pro",
@@ -40,7 +40,7 @@ const StructuredData: React.FC = () => {
     },
     "sameAs": [
       "https://twitter.com/barskydesign",
-      "https://www.linkedin.com/company/barsky-design",
+      "https://www.linkedin.com/company/hiram-barsky-design",
       "https://instagram.com/barskydesign"
     ],
     "priceRange": "$$",
@@ -59,15 +59,15 @@ const StructuredData: React.FC = () => {
     "hasCredential": {
       "@type": "EducationalOccupationalCredential",
       "name": "Product Designer & Frontend Developer",
-      "description": "Barsky Design specializes in creating user-centered digital experiences through comprehensive design and development expertise"
+      "description": "Hiram Barsky Design specializes in creating user-centered digital experiences through comprehensive design and development expertise"
     },
     "worksFor": {
       "@type": "Organization",
-      "name": "Barsky Design Services",
+      "name": "Hiram Barsky Design",
       "url": "https://barskydesign.pro",
       "founder": {
         "@type": "Person",
-        "name": "Barsky Design"
+        "name": "Hiram Barsky"
       }
     },
     "makesOffer": [
@@ -76,10 +76,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "User Research",
-          "description": "Comprehensive user research to understand user needs and behaviors by Barsky Design.",
+          "description": "Comprehensive user research to understand user needs and behaviors by Hiram Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Barsky Design"
+            "name": "Hiram Barsky"
           }
         }
       },
@@ -88,10 +88,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "Wireframing & Prototyping",
-          "description": "Strategic wireframing and interactive prototyping for optimal user experience by Barsky Design.",
+          "description": "Strategic wireframing and interactive prototyping for optimal user experience by Hiram Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Barsky Design"
+            "name": "Hiram Barsky"
           }
         }
       },
@@ -100,10 +100,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "Visual Design & Design Systems",
-          "description": "Beautiful visual design and scalable design systems by Barsky Design.",
+          "description": "Beautiful visual design and scalable design systems by Hiram Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Barsky Design"
+            "name": "Hiram Barsky"
           }
         }
       },
@@ -112,10 +112,10 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "React Development",
-          "description": "Modern React applications with TypeScript by Barsky Design.",
+          "description": "Modern React applications with TypeScript by Hiram Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Barsky Design"
+            "name": "Hiram Barsky"
           }
         }
       },
@@ -124,17 +124,17 @@ const StructuredData: React.FC = () => {
         "itemOffered": {
           "@type": "Service",
           "name": "Responsive Design Implementation",
-          "description": "Mobile-first responsive web development by Barsky Design.",
+          "description": "Mobile-first responsive web development by Hiram Barsky Design.",
           "provider": {
             "@type": "Person",
-            "name": "Barsky Design"
+            "name": "Hiram Barsky"
           }
         }
       }
     ],
     "owns": {
       "@type": "WebSite",
-      "name": "Barsky Design Services",
+      "name": "Hiram Barsky Design",
       "url": "https://barskydesign.pro",
       "about": "Product Design and frontend development services"
     }
@@ -143,29 +143,29 @@ const StructuredData: React.FC = () => {
   const websiteStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Barsky Design - Product Designer & Frontend Developer",
-    "alternateName": "Barsky Design Portfolio",
+    "name": "Hiram Barsky Design - Product Designer & Frontend Developer",
+    "alternateName": "Hiram Barsky Design Portfolio",
     "url": "https://barskydesign.pro",
-    "description": "Barsky Design is a Product Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
+    "description": "Hiram Barsky is a Product Designer & Frontend Developer creating user-centered digital experiences through user research, wireframing, prototyping, and responsive frontend development.",
     "author": {
       "@type": "Person",
-      "name": "Barsky Design"
+      "name": "Hiram Barsky"
     },
     "creator": {
       "@type": "Person",
-      "name": "Barsky Design"
+      "name": "Hiram Barsky"
     },
     "publisher": {
       "@type": "Person",
-      "name": "Barsky Design"
+      "name": "Hiram Barsky"
     },
     "copyrightHolder": {
       "@type": "Person",
-      "name": "Barsky Design"
+      "name": "Hiram Barsky"
     },
     "mainEntity": {
       "@type": "Person",
-      "name": "Barsky Design"
+      "name": "Hiram Barsky"
     },
     "potentialAction": {
       "@type": "SearchAction",
