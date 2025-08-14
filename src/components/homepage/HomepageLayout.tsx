@@ -1,4 +1,3 @@
-
 import React from "react";
 import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
@@ -20,8 +19,8 @@ import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNaviga
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
   
-  // Initialize keyboard navigation with 3D transitions
-  const { isTransitioning, transitionDirection } = useHomepageKeyboardNavigation();
+  // Initialize keyboard navigation with refined transitions
+  const { isTransitioning, transitionDirection, transitionVariation } = useHomepageKeyboardNavigation();
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
@@ -30,10 +29,11 @@ const HomepageLayout: React.FC = () => {
         volume={0.15}
       />
       
-      {/* 3D Overlay for section transitions */}
+      {/* Refined, subtle overlay for section transitions */}
       <Section3DOverlay 
         isVisible={isTransitioning} 
-        direction={transitionDirection} 
+        direction={transitionDirection}
+        variation={transitionVariation}
       />
       
       {isScrolledPastHero && <Header />}

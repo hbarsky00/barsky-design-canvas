@@ -4,7 +4,7 @@ import { use3DTransition } from "./use3DTransition";
 
 export const useHomepageKeyboardNavigation = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const { isTransitioning, direction, triggerTransition } = use3DTransition();
+  const { isTransitioning, direction, variation, triggerTransition } = use3DTransition();
   
   // Define sections in order
   const sections = [
@@ -147,8 +147,9 @@ export const useHomepageKeyboardNavigation = () => {
     scrollToSection,
     canNavigateUp: currentSectionIndex > 0,
     canNavigateDown: currentSectionIndex < sections.length - 1,
-    // Expose 3D transition state
+    // Expose refined transition state
     isTransitioning,
     transitionDirection: direction,
+    transitionVariation: variation,
   };
 };
