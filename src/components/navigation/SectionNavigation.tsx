@@ -23,11 +23,11 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
   className = ""
 }) => {
   return (
-    <div className={`fixed inset-x-0 pointer-events-none z-40 ${className}`}>
+    <div className={`absolute inset-x-0 ${className}`}>
       {/* Up Navigation Arrow */}
       {canNavigateUp && onNavigateUp && (
         <motion.div
-          className="absolute top-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer hover:text-gray-600 transition-colors pointer-events-auto"
+          className="absolute top-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
@@ -46,7 +46,7 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
       {/* Down Navigation Arrow */}
       {canNavigateDown && onNavigateDown && (
         <motion.div
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer hover:text-gray-600 transition-colors pointer-events-auto"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
