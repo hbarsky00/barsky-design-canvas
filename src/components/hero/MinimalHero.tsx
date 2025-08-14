@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Mail, Linkedin, Calendar } from "lucide-react";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { NavigationProps } from "@/types/navigation";
 
@@ -54,6 +55,51 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
               </Avatar>
             </div>
           </div>
+        </motion.div>
+
+        {/* Contact Icons Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex justify-center items-center space-x-6 sm:space-x-8 mt-8"
+        >
+          <motion.a
+            href="mailto:hbarsky01@gmail.com"
+            aria-label="Email Hiram Barsky"
+            className="p-3 sm:p-4 rounded-xl hover:bg-blue-50 transition-all duration-300"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Mail className="h-7 w-7 sm:h-8 sm:w-8 lg:h-9 lg:w-9 text-gray-600 hover:text-blue-600 transition-colors" />
+          </motion.a>
+
+          <motion.a
+            href="https://www.linkedin.com/in/hiram-barsky/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit LinkedIn"
+            className="p-3 sm:p-4 rounded-xl hover:bg-blue-50 transition-all duration-300"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Linkedin className="h-7 w-7 sm:h-8 sm:w-8 lg:h-9 lg:w-9 text-gray-600 hover:text-blue-600 transition-colors" />
+          </motion.a>
+
+          <motion.a
+            href="https://calendly.com/barskyuxdesignservices/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Book Appointment"
+            className="p-3 sm:p-4 rounded-xl hover:bg-green-50 transition-all duration-300"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Calendar className="h-7 w-7 sm:h-8 sm:w-8 lg:h-9 lg:w-9 text-gray-600 hover:text-green-600 transition-colors" />
+          </motion.a>
         </motion.div>
       </div>
 
