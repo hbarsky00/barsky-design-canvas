@@ -1,170 +1,133 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, ChevronRight } from 'lucide-react';
-import SectionHeader from "@/components/shared/SectionHeader";
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
-interface BreadcrumbItem {
-  label: string;
-  href: string;
-}
-
-interface InternalLink {
-  title: string;
-  href: string;
-  description: string;
-  category: string;
-}
-
 interface InternalLinkingEnhancerProps {
   currentPage: string;
-  breadcrumbs?: BreadcrumbItem[];
   showRelatedLinks?: boolean;
+  className?: string;
 }
 
-const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({ 
-  currentPage, 
-  breadcrumbs = [], 
-  showRelatedLinks = true 
+const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
+  currentPage,
+  showRelatedLinks = false,
+  className = ""
 }) => {
-  const { navigateUp, canNavigateUp } = useHomepageKeyboardNavigation();
+  const { navigateUp, canNavigateUp, isMobile } = useHomepageKeyboardNavigation();
 
-  // Comprehensive internal linking strategy
-  const allInternalLinks: Record<string, InternalLink[]> = {
-    home: [
-      { title: "View My Portfolio", href: "/projects", description: "Explore featured design projects and case studies", category: "Portfolio" },
-      { title: "UX Design Services", href: "/services", description: "Professional design services for startups and enterprises", category: "Services" },
-      { title: "Design Process Blog", href: "/blog", description: "Insights on UX design and AI integration", category: "Content" },
-      { title: "About My Background", href: "/about", description: "15+ years of product design experience", category: "About" }
-    ],
-    projects: [
-      { title: "HerbaLink Case Study", href: "/project/herbalink", description: "AI-powered healthcare platform design", category: "Healthcare" },
-      { title: "SplitTime App Design", href: "/project/splittime", description: "Smart scheduling application UX", category: "Productivity" },
-      { title: "FinTech Platform", href: "/project/investor-loan-app", description: "Investment loan application design", category: "FinTech" },
-      { title: "Design Services", href: "/services", description: "How I can help your project", category: "Services" }
-    ],
-    services: [
-      { title: "Portfolio Examples", href: "/projects", description: "See my design work in action", category: "Portfolio" },
-      { title: "Design Process", href: "/blog", description: "Learn about my methodology", category: "Content" },
-      { title: "Get Started", href: "/contact", description: "Discuss your project needs", category: "Contact" },
-      { title: "My Background", href: "/about", description: "Experience and expertise", category: "About" }
-    ],
-    blog: [
-      { title: "Case Studies", href: "/projects", description: "Real-world design examples", category: "Portfolio" },
-      { title: "Design Services", href: "/services", description: "Professional UX consulting", category: "Services" },
-      { title: "Work With Me", href: "/contact", description: "Start your design project", category: "Contact" },
-      { title: "Designer Profile", href: "/about", description: "Background and experience", category: "About" }
-    ],
-    about: [
-      { title: "Featured Projects", href: "/projects", description: "Examples of my work", category: "Portfolio" },
-      { title: "UX Services", href: "/services", description: "How I can help you", category: "Services" },
-      { title: "Design Insights", href: "/blog", description: "Thoughts on design and AI", category: "Content" },
-      { title: "Start a Project", href: "/contact", description: "Let's work together", category: "Contact" }
-    ],
-    contact: [
-      { title: "View My Work", href: "/projects", description: "See examples of successful projects", category: "Portfolio" },
-      { title: "Service Options", href: "/services", description: "Available design services", category: "Services" },
-      { title: "My Approach", href: "/about", description: "Design philosophy and process", category: "About" },
-      { title: "Design Resources", href: "/blog", description: "Helpful articles and insights", category: "Content" }
-    ]
-  };
+  const relatedLinks = [
+    {
+      title: "UX Design Services",
+      description: "Comprehensive design solutions for modern businesses",
+      href: "/services",
+      internal: true
+    },
+    {
+      title: "Latest Blog Posts",
+      description: "Insights on design, technology, and business growth",
+      href: "/blog",
+      internal: true
+    },
+    {
+      title: "Case Studies",
+      description: "Real projects with measurable results",
+      href: "#projects",
+      internal: true
+    },
+    {
+      title: "AI-Enhanced Design Process",
+      description: "How I leverage AI to deliver better results faster",
+      href: "/blog/ai-enhanced-design-process",
+      internal: true
+    }
+  ];
 
-  const contextualLinks = allInternalLinks[currentPage] || [];
+  if (!showRelatedLinks) {
+    return null;
+  }
 
   return (
-    <section id="internal-linking" className="min-h-screen flex flex-col justify-center relative">
-      <div className="space-y-8 py-16">
-        {/* Breadcrumbs for better navigation hierarchy */}
-        {breadcrumbs.length > 0 && (
-          <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex items-center space-x-2 text-sm">
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              {breadcrumbs.map((item, index) => (
-                <li key={index} className="flex items-center space-x-2">
-                  <ChevronRight className="w-4 h-4 text-muted-foreground" />
-                  {index === breadcrumbs.length - 1 ? (
-                    <span className="text-foreground font-medium">{item.label}</span>
-                  ) : (
-                    <Link 
-                      to={item.href}
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </nav>
-        )}
-
-        {showRelatedLinks && contextualLinks.length > 0 && (
-          <div className="container px-4 mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <SectionHeader
-                as="h2"
-                title="Explore More"
-                subtitle="Discover more content and pages you might find useful."
-              />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6">
-                {contextualLinks.map((link, index) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
+    <section id="internal-linking" className={`py-8 md:py-12 relative ${className}`}>
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
+            Explore More Resources
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {relatedLinks.map((link, index) => (
+              <motion.div
+                key={link.href}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+              >
+                {link.internal ? (
+                  <Link
+                    to={link.href}
+                    className="block p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200"
                   >
-                    <Link
-                      to={link.href}
-                      className="group block rounded-xl p-6 border transition-all duration-300 bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
-                    >
-                      <div className="flex justify-between items-start mb-3">
-                        <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary/15 text-primary">
-                          {link.category}
-                        </span>
-                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                          {link.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {link.description}
+                        </p>
                       </div>
-                      <h3 className="font-semibold text-on-surface mb-2 group-hover:text-primary transition-colors [text-wrap:balance]">
-                        {link.title}
-                      </h3>
-                      <p className="text-sm text-on-surface-variant leading-relaxed hidden sm:block">
-                        {link.description}
-                      </p>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                      <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-200 flex-shrink-0 ml-4" />
+                    </div>
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                          {link.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {link.description}
+                        </p>
+                      </div>
+                      <ExternalLink className="h-5 w-5 text-gray-400 group-hover:text-blue-600 transition-colors flex-shrink-0 ml-4" />
+                    </div>
+                  </a>
+                )}
+              </motion.div>
+            ))}
           </div>
-        )}
+        </motion.div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <SectionNavigation
-          onNavigateUp={navigateUp}
-          canNavigateUp={canNavigateUp}
-          canNavigateDown={false}
-          upLabel="FAQ section"
-          downLabel=""
-        />
-      </div>
+      {/* Hide navigation arrows on mobile - only show on desktop */}
+      {!isMobile && (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <SectionNavigation
+            onNavigateUp={navigateUp}
+            canNavigateUp={canNavigateUp}
+            canNavigateDown={false}
+            upLabel="Previous section"
+          />
+        </div>
+      )}
     </section>
   );
 };

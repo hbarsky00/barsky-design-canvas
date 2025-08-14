@@ -1,21 +1,27 @@
-
 import { useState, useEffect, useCallback } from "react";
 import { use3DTransition } from "./use3DTransition";
+import { useIsMobile } from "./use-mobile";
 
 export const useHomepageKeyboardNavigation = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const { isTransitioning, direction, variation, triggerTransition } = use3DTransition();
+  const isMobile = useIsMobile();
   
-  // Define sections in order
-  const sections = [
+  // Define sections in order - filter based on mobile visibility
+  const allSections = [
     { id: 'hero', element: null as HTMLElement | null },
     { id: 'bio-section', element: null as HTMLElement | null },
     { id: 'projects', element: null as HTMLElement | null },
     { id: 'contact', element: null as HTMLElement | null },
-    { id: 'blog-preview', element: null as HTMLElement | null },
-    { id: 'faq-section', element: null as HTMLElement | null },
+    { id: 'blog-preview', element: null as HTMLElement | null, hiddenOnMobile: true },
+    { id: 'faq-section', element: null as HTMLElement | null, hiddenOnMobile: true },
     { id: 'internal-linking', element: null as HTMLElement | null }
   ];
+
+  // Filter sections based on mobile visibility
+  const sections = isMobile 
+    ? allSections.filter(section => !section.hiddenOnMobile)
+    : allSections;
 
   const getHeaderOffset = () => {
     const rootStyles = getComputedStyle(document.documentElement);
@@ -151,5 +157,7 @@ export const useHomepageKeyboardNavigation = () => {
     isTransitioning,
     transitionDirection: direction,
     transitionVariation: variation,
+    // Add mobile state
+    isMobile,
   };
 };

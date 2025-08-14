@@ -8,7 +8,7 @@ import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 const VideoCaseStudiesSection: React.FC = () => {
-  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
+  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown, isMobile } = useHomepageKeyboardNavigation();
 
   return (
     <section id="projects" className="py-4 sm:py-6 min-h-screen flex flex-col justify-center relative bg-white">
@@ -53,16 +53,19 @@ const VideoCaseStudiesSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <SectionNavigation
-          onNavigateUp={navigateUp}
-          onNavigateDown={navigateDown}
-          canNavigateUp={canNavigateUp}
-          canNavigateDown={canNavigateDown}
-          upLabel="Previous section"
-          downLabel="Contact"
-        />
-      </div>
+      {/* Hide navigation arrows on mobile - only show on desktop */}
+      {!isMobile && (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <SectionNavigation
+            onNavigateUp={navigateUp}
+            onNavigateDown={navigateDown}
+            canNavigateUp={canNavigateUp}
+            canNavigateDown={canNavigateDown}
+            upLabel="Previous section"
+            downLabel="Contact"
+          />
+        </div>
+      )}
     </section>
   );
 };
