@@ -91,7 +91,7 @@ const BlogPost: React.FC = () => {
       <Header />
       
       <main className="flex-grow">
-        <article className="py-20">
+        <article className="pt-32 pb-20">
           <div className="section-container max-w-3xl mx-auto px-4 sm:px-6">
             <div id="blog-header" className="relative z-10">
               <BlogPostHeader post={post} />
