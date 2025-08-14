@@ -6,14 +6,14 @@ import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 const MinimalHero: React.FC = () => {
-  const { navigateDown, canNavigateDown, isTransitioning } = useHomepageKeyboardNavigation();
+  const { navigateDown, canNavigateDown } = useHomepageKeyboardNavigation();
 
   return (
     <section 
       id="hero"
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white relative"
     >
-      <div className="max-w-6xl mx-auto cursor-pointer" onClick={isTransitioning ? undefined : navigateDown}>
+      <div className="max-w-6xl mx-auto cursor-pointer" onClick={navigateDown}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,7 +59,6 @@ const MinimalHero: React.FC = () => {
           canNavigateUp={false}
           canNavigateDown={canNavigateDown}
           downLabel="Continue"
-          disabled={isTransitioning}
         />
       </div>
     </section>

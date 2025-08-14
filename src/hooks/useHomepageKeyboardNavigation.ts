@@ -1,10 +1,8 @@
 
 import { useState, useEffect, useCallback } from "react";
-import { useSectionTransitionOverlay } from "./useSectionTransitionOverlay";
 
 export const useHomepageKeyboardNavigation = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const { isTransitioning, isOverlayActive, transitionToSection, canNavigate } = useSectionTransitionOverlay();
   
   // Define sections in order
   const sections = [
@@ -41,33 +39,21 @@ export const useHomepageKeyboardNavigation = () => {
   }, [sections]);
 
   const navigateUp = useCallback(() => {
-    if (!canNavigate) return;
-    
     const newIndex = Math.max(0, currentSectionIndex - 1);
-    const sectionId = sections[newIndex].id;
-    
-    transitionToSection(sectionId, () => {
-      scrollToSection(newIndex);
-    });
-  }, [currentSectionIndex, scrollToSection, transitionToSection, canNavigate, sections]);
+    scrollToSection(newIndex);
+  }, [currentSectionIndex, scrollToSection]);
 
   const navigateDown = useCallback(() => {
-    if (!canNavigate) return;
-    
     const newIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
-    const sectionId = sections[newIndex].id;
-    
-    transitionToSection(sectionId, () => {
-      scrollToSection(newIndex);
-    });
-  }, [currentSectionIndex, scrollToSection, transitionToSection, canNavigate, sections.length]);
+    scrollToSection(newIndex);
+  }, [currentSectionIndex, scrollToSection, sections.length]);
 
   // Improved scroll tracking with better section detection
   useEffect(() => {
     let ticking = false;
 
     const handleScroll = () => {
-      if (ticking || isTransitioning) return;
+      if (ticking) return;
       
       ticking = true;
       requestAnimationFrame(() => {
@@ -111,16 +97,15 @@ export const useHomepageKeyboardNavigation = () => {
     handleScroll(); // Set initial state
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections, isTransitioning]);
+  }, [sections]);
 
   // Handle keyboard events
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // Only handle if not typing in an input/textarea and navigation is available
+      // Only handle if not typing in an input/textarea
       if (event.target instanceof HTMLInputElement || 
           event.target instanceof HTMLTextAreaElement ||
-          event.target instanceof HTMLSelectElement ||
-          !canNavigate) {
+          event.target instanceof HTMLSelectElement) {
         return;
       }
 
@@ -138,7 +123,7 @@ export const useHomepageKeyboardNavigation = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigateUp, navigateDown, canNavigate]);
+  }, [navigateUp, navigateDown]);
 
   return {
     currentSectionIndex,
@@ -146,9 +131,7 @@ export const useHomepageKeyboardNavigation = () => {
     navigateUp,
     navigateDown,
     scrollToSection,
-    canNavigateUp: currentSectionIndex > 0 && canNavigate,
-    canNavigateDown: currentSectionIndex < sections.length - 1 && canNavigate,
-    isTransitioning,
-    isOverlayActive
+    canNavigateUp: currentSectionIndex > 0,
+    canNavigateDown: currentSectionIndex < sections.length - 1
   };
 };
