@@ -1,3 +1,4 @@
+
 import React from 'react';
 import DynamicSeo from '@/components/seo/DynamicSeo';
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
@@ -203,7 +204,6 @@ const About = () => {
         {/* Enhanced Internal Linking for SEO */}
         <InternalLinkingEnhancer 
           currentPage="about" 
-          breadcrumbs={[{ label: "About", href: "/about" }]}
           showRelatedLinks={true} 
         />
       </main>
