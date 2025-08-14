@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ContentTextEditor from './ContentTextEditor';
+import { ContentTextEditor } from './ContentTextEditor';
 import ContentImageManager from './ContentImageManager';
 import { useContentEditorState } from './useContentEditorState';
 
