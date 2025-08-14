@@ -11,6 +11,7 @@ import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import SectionTransition from "@/components/transitions/SectionTransition";
+import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
@@ -19,8 +20,8 @@ import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNaviga
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
   
-  // Initialize keyboard navigation
-  useHomepageKeyboardNavigation();
+  // Initialize keyboard navigation with 3D transitions
+  const { isTransitioning, transitionDirection } = useHomepageKeyboardNavigation();
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
@@ -28,6 +29,13 @@ const HomepageLayout: React.FC = () => {
         src="/audio/shove-it-deftones.mp3" 
         volume={0.15}
       />
+      
+      {/* 3D Overlay for section transitions */}
+      <Section3DOverlay 
+        isVisible={isTransitioning} 
+        direction={transitionDirection} 
+      />
+      
       {isScrolledPastHero && <Header />}
       <main className="flex-grow space-y-4 md:space-y-12">
         

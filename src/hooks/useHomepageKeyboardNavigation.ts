@@ -1,8 +1,10 @@
 
 import { useState, useEffect, useCallback } from "react";
+import { use3DTransition } from "./use3DTransition";
 
 export const useHomepageKeyboardNavigation = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const { isTransitioning, direction, triggerTransition } = use3DTransition();
   
   // Define sections in order
   const sections = [
@@ -39,21 +41,33 @@ export const useHomepageKeyboardNavigation = () => {
   }, [sections]);
 
   const navigateUp = useCallback(() => {
+    if (isTransitioning) return;
+    
     const newIndex = Math.max(0, currentSectionIndex - 1);
-    scrollToSection(newIndex);
-  }, [currentSectionIndex, scrollToSection]);
+    if (newIndex !== currentSectionIndex) {
+      triggerTransition('up', () => {
+        scrollToSection(newIndex);
+      });
+    }
+  }, [currentSectionIndex, scrollToSection, isTransitioning, triggerTransition]);
 
   const navigateDown = useCallback(() => {
+    if (isTransitioning) return;
+    
     const newIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
-    scrollToSection(newIndex);
-  }, [currentSectionIndex, scrollToSection, sections.length]);
+    if (newIndex !== currentSectionIndex) {
+      triggerTransition('down', () => {
+        scrollToSection(newIndex);
+      });
+    }
+  }, [currentSectionIndex, scrollToSection, sections.length, isTransitioning, triggerTransition]);
 
   // Improved scroll tracking with better section detection
   useEffect(() => {
     let ticking = false;
 
     const handleScroll = () => {
-      if (ticking) return;
+      if (ticking || isTransitioning) return;
       
       ticking = true;
       requestAnimationFrame(() => {
@@ -97,7 +111,7 @@ export const useHomepageKeyboardNavigation = () => {
     handleScroll(); // Set initial state
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections]);
+  }, [sections, isTransitioning]);
 
   // Handle keyboard events
   useEffect(() => {
@@ -132,6 +146,9 @@ export const useHomepageKeyboardNavigation = () => {
     navigateDown,
     scrollToSection,
     canNavigateUp: currentSectionIndex > 0,
-    canNavigateDown: currentSectionIndex < sections.length - 1
+    canNavigateDown: currentSectionIndex < sections.length - 1,
+    // Expose 3D transition state
+    isTransitioning,
+    transitionDirection: direction,
   };
 };
