@@ -115,9 +115,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Users can book verified herbalists by need, rating, and availability; log symptoms and track progress over time; get data-informed herbal suggestions; join a growing community of trusted practitioners and peers.",
         media: {
           type: 'image',
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
-          alt: "HerbaLink feature overview",
-          caption: "Feature overview highlighting booking, tracking, and guidance."
+          src: "https://barskyux.com/wp-content/uploads/2025/07/Video-call-with-herbalink.png",
+          alt: "HerbaLink video consultation interface showing herbalist-patient interaction",
+          caption: "Video consultation interface connecting users with certified herbalists for personalized guidance."
         }
       },
       {
