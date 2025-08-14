@@ -1,4 +1,3 @@
-
 import React from "react";
 import Header from "@/components/Header";
 import EnhancedHero from "@/components/hero/EnhancedHero";
@@ -11,12 +10,18 @@ import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import SectionTransition from "@/components/transitions/SectionTransition";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
+import BackgroundAudio from "@/components/audio/BackgroundAudio";
 
 const HomepageLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <BackgroundAudio 
+        src="/audio/shove-it-deftones.mp3" 
+        volume={0.15}
+      />
       <Header />
       <main className="flex-grow space-y-2 pt-[var(--header-height,64px)]">
+        
         <SectionTransition variant="fade">
           <EnhancedHero />
         </SectionTransition>
