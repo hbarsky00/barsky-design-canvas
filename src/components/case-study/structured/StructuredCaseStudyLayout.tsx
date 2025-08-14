@@ -145,10 +145,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   <Card className="p-8 lg:p-12 bg-card border border-border shadow-elevated">
                     {/* Title and Description */}
                     <div className="text-center mb-8">
-                      <h1 className="text-display-large font-bold text-on-surface mb-6 leading-tight">
+                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
                         {title}
                       </h1>
-                      <p className="text-headline-small text-on-surface-variant max-w-4xl mx-auto leading-relaxed">
+                      <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
                         {description}
                       </p>
                     </div>

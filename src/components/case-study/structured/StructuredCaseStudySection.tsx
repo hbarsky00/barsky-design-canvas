@@ -92,11 +92,11 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
       <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
-          <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg}`}>
-            <Icon className={`h-8 w-8 md:h-9 md:w-9 lg:h-10 lg:w-10 ${styles.iconColor}`} />
+          <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg} flex items-center justify-center`}>
+            <Icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 ${styles.iconColor}`} />
           </div>
           <div className="flex-1">
-            <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold mb-4 ${styles.titleColor}`}>
+            <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold ${styles.titleColor}`}>
               {title}
             </h2>
           </div>
