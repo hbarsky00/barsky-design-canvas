@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import SectionHeader from "@/components/shared/SectionHeader";
+
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,12 +27,14 @@ const ContactForm: React.FC = () => {
   const {
     toast
   } = useToast();
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.projectType || !formData.budgetRange || !formData.projectDescription) {
@@ -67,11 +70,13 @@ const ContactForm: React.FC = () => {
       setIsSubmitting(false);
     }
   };
+
   const benefits = ["Live audit of your current website/product", "AI-enhanced user behavior analysis using ChatGPT & Claude AI", "3 specific improvement recommendations you can implement immediately", "Personalized growth strategy based on your business goals", "No-obligation project timeline and pricing discussion"];
+
   return <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-blue-50" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
+        {/* Social Proof */}
         <motion.div
           initial={{
             opacity: 0,
@@ -83,15 +88,8 @@ const ContactForm: React.FC = () => {
           }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
-          <SectionHeader
-            as="h2"
-            title="Get Your Free 30-Minute Conversion Audit"
-            subtitle="Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX"
-          />
-          
-          {/* Social Proof */}
           <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
             <div className="flex items-center gap-1">
               <span className="text-yellow-500">★★★★★</span>
@@ -117,10 +115,12 @@ const ContactForm: React.FC = () => {
           delay: 0.2
         }} className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6">
-                What You'll Get:
-              </h3>
-              <div className="space-y-4">
+              <SectionHeader
+                as="h2"
+                title="What You'll Get"
+                titleClassName="text-display-medium text-on-surface"
+              />
+              <div className="space-y-4 mt-6">
                 {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-3">
                     <CheckCircle className="h-6 w-6 text-success-green mt-1 flex-shrink-0" />
                     <span className="text-neutral-500">{benefit}</span>
@@ -266,4 +266,5 @@ const ContactForm: React.FC = () => {
       </div>
     </section>;
 };
+
 export default ContactForm;

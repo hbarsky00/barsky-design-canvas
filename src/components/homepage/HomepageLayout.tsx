@@ -3,6 +3,7 @@ import React from "react";
 import Header from "@/components/Header";
 import EnhancedHero from "@/components/hero/EnhancedHero";
 import VideoCaseStudiesSection from "@/components/home/VideoCaseStudiesSection";
+import ContactForm from "@/components/home/ContactForm";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
@@ -30,18 +31,22 @@ const HomepageLayout: React.FC = () => {
           <VideoCaseStudiesSection />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.1} className="hidden md:block bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.1} className="bg-background py-8 md:py-12">
+          <ContactForm />
+        </SectionTransition>
+        
+        <SectionTransition variant="fade" delay={0.15} className="hidden md:block bg-muted/30 py-8 md:py-12">
           <BlogPreview />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15} className="hidden md:block bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12">
           <SeoFaqSection 
             title="Frequently Asked Questions About AI-Enhanced UX Design"
             faqs={homepageFaqs}
           />
         </SectionTransition>
 
-        <SectionTransition variant="fade" delay={0.2} className="bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.22} className="bg-muted/30 py-8 md:py-12">
           <InternalLinkingEnhancer currentPage="home" showRelatedLinks={true} />
         </SectionTransition>
       </main>
