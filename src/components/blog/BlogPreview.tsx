@@ -4,16 +4,20 @@ import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/data/blogData";
 import SectionHeader from "@/components/shared/SectionHeader";
+
 interface BlogPreviewProps {
   maxPosts?: number;
   showTitle?: boolean;
 }
+
 const BlogPreview: React.FC<BlogPreviewProps> = ({
   maxPosts = 3,
   showTitle = true
 }) => {
   const recentPosts = blogPosts.slice(0, maxPosts);
-  return <section className="pt-0 pb-12 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
+
+  return (
+    <section className="pt-0 pb-12 bg-white">
       <div className="section-container">
         {showTitle && (
           <div className="mb-12">
@@ -73,6 +77,8 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
           </Link>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default BlogPreview;
