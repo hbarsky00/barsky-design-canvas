@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -18,6 +19,7 @@ import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetai
 // Structured case study imports
 import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
+import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,7 @@ function App() {
               {/* Structured case studies - these override the generic ProjectDetail routing */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
+              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
