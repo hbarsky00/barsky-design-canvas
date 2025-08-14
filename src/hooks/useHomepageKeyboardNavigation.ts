@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from "react";
 import { use3DTransition } from "./use3DTransition";
 import { useIsMobile } from "./use-mobile";
@@ -14,7 +13,7 @@ export const useHomepageKeyboardNavigation = () => {
     { id: 'bio-section', element: null as HTMLElement | null },
     { id: 'projects', element: null as HTMLElement | null },
     { id: 'contact', element: null as HTMLElement | null },
-    { id: 'blog-preview', element: null as HTMLElement | null, hiddenOnMobile: true },
+    { id: 'blog-preview', element: null as HTMLElement | null },
     { id: 'faq-section', element: null as HTMLElement | null, hiddenOnMobile: true },
     { id: 'internal-linking', element: null as HTMLElement | null }
   ];

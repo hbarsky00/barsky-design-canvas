@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -13,7 +14,7 @@ export const useHeaderNavigation = () => {
     { name: "Home", href: "/" },
     { name: "Projects", href: "#projects" },
     { name: "Services", href: "/services" },
-    { name: "Blog", href: "/blog" },
+    { name: "Blog", href: "#blog-preview" },
     { name: "About", href: "#about" },
     { name: "Resume", href: "https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk" },
     { name: "Contact", href: "#contact" },

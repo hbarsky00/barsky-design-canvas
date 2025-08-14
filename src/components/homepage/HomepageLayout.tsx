@@ -87,7 +87,7 @@ const HomepageLayout: React.FC = () => {
           />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12" id="blog-preview">
+        <SectionTransition variant="fade" delay={0.2} className="bg-background py-8 md:py-12" id="blog-preview">
           <BlogPreview />
         </SectionTransition>
         
