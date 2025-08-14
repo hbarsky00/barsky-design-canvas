@@ -1,115 +1,45 @@
 
-import React from "react";
-import Header from "@/components/Header";
-import MinimalHero from "@/components/hero/MinimalHero";
-import BioSection from "@/components/hero/BioSection";
-import VideoCaseStudiesSection from "@/components/home/VideoCaseStudiesSection";
-import ContactForm from "@/components/home/ContactForm";
-import SeoFaqSection from "@/components/seo/SeoFaqSection";
-import BlogPreview from "@/components/blog/BlogPreview";
-import { homepageFaqs } from "@/data/seoFaqs";
-import Footer from "@/components/Footer";
-import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
-import SectionTransition from "@/components/transitions/SectionTransition";
-import Section3DOverlay from "@/components/transitions/Section3DOverlay";
-import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
-import BackgroundAudio from "@/components/audio/BackgroundAudio";
-import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
-import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+import React, { useState, useEffect } from "react";
+import { NavigationProps } from "@/types/navigation";
 
-const HomepageLayout: React.FC = () => {
-  const { isScrolledPastHero } = useHeaderNavigation();
+interface HomepageLayoutProps {
+  children: React.ReactNode;
+}
+
+const HomepageLayout: React.FC<HomepageLayoutProps> = ({ children }) => {
+  const [currentSection, setCurrentSection] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Centralized keyboard navigation - single source of truth
-  const { 
-    isTransitioning, 
-    transitionDirection, 
-    transitionVariation,
-    navigateUp,
-    navigateDown,
-    canNavigateUp,
-    canNavigateDown,
-    isMobile
-  } = useHomepageKeyboardNavigation();
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  const navigateUp = () => {
+    if (currentSection > 0) {
+      setCurrentSection(currentSection - 1);
+    }
+  };
+
+  const navigateDown = () => {
+    const maxSections = 5; // Adjust based on your sections
+    if (currentSection < maxSections - 1) {
+      setCurrentSection(currentSection + 1);
+    }
+  };
+
+  const canNavigateUp = currentSection > 0;
+  const canNavigateDown = currentSection < 4; // Adjust based on your sections
 
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <BackgroundAudio 
-        src="/audio/shove-it-deftones.mp3" 
-        volume={0.15}
-      />
-      
-      {/* Refined, subtle overlay for section transitions */}
-      <Section3DOverlay 
-        isVisible={isTransitioning} 
-        direction={transitionDirection}
-        variation={transitionVariation}
-      />
-      
-      {isScrolledPastHero && <Header />}
-      <main className="flex-grow space-y-4 md:space-y-12">
-        
-        <SectionTransition variant="fade">
-          <MinimalHero 
-            navigateDown={navigateDown}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
-        </SectionTransition>
-        
-        <SectionTransition variant="fade" delay={0.05}>
-          <BioSection 
-            navigateUp={navigateUp}
-            navigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
-        </SectionTransition>
-        
-        <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
-          <VideoCaseStudiesSection 
-            navigateUp={navigateUp}
-            navigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
-        </SectionTransition>
-        
-        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12" id="contact">
-          <ContactForm 
-            navigateUp={navigateUp}
-            navigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
-        </SectionTransition>
-        
-        <SectionTransition variant="fade" delay={0.2} className="bg-background py-8 md:py-12" id="blog-preview">
-          <BlogPreview />
-        </SectionTransition>
-        
-        <SectionTransition variant="fade" delay={0.25} className="hidden md:block bg-muted/30 py-8 md:py-12" id="faq-section">
-          <SeoFaqSection 
-            title="Frequently Asked Questions About AI-Enhanced UX Design"
-            faqs={homepageFaqs}
-          />
-        </SectionTransition>
-
-        <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12" id="internal-linking">
-          <InternalLinkingEnhancer 
-            currentPage="home" 
-            showRelatedLinks={true}
-            navigateUp={navigateUp}
-            canNavigateUp={canNavigateUp}
-            isMobile={isMobile}
-          />
-        </SectionTransition>
-      </main>
-      <Footer />
-      <FloatingConsultationBubble />
+    <div className="min-h-screen bg-background">
+      {children}
     </div>
   );
 };
