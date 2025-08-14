@@ -91,7 +91,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
     <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
       <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
         {/* Header */}
-        <div className="flex items-start gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-8">
           <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg}`}>
             <Icon className={`h-6 w-6 ${styles.iconColor}`} />
           </div>
