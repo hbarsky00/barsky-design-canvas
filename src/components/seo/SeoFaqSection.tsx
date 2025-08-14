@@ -36,7 +36,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
             as="h2"
             title={title}
             subtitle="Common questions about AI-Enhanced UX Design and Frontend Gen AI Development"
-            titleClassName="w-full max-w-none"
+            titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface"
           />
         </motion.div>
 

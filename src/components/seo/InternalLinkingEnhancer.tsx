@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import SectionHeader from "@/components/shared/SectionHeader";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { NavigationProps } from "@/types/navigation";
 
@@ -61,9 +62,12 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
-            Explore More Resources
-          </h2>
+          <SectionHeader
+            as="h2"
+            title="Explore More Resources"
+            titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface"
+            className="mb-6"
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {relatedLinks.map((link, index) => (

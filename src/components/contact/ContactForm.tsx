@@ -90,6 +90,7 @@ const ContactForm: React.FC = () => {
           as="h2"
           title="Get In Touch"
           subtitle="Ready to start your project? Let's discuss your needs and create something amazing together."
+          titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface"
           className="mb-12"
         />
 

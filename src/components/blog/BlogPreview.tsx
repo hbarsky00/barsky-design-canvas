@@ -26,6 +26,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
               as="h2"
               title="Latest Insights"
               subtitle="Expert perspectives on AI-enhanced design, accessibility, and conversion optimization"
+              titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface"
             />
           </div>
         )}
