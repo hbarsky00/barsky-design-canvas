@@ -24,9 +24,9 @@ const BioSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="text-left"
         >
-          <div className="space-y-12 text-5xl md:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
+          <div className="space-y-12 font-bold text-foreground leading-snug" style={{ fontSize: '38px' }}>
             <AnimatedText
               text="Product Design Leader with Enterprise and Startup experience since 2012. FinTech, Healthcare, AdTech veteran."
               type="word"
