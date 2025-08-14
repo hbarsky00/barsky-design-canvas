@@ -2,10 +2,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { ChevronDown } from "lucide-react";
 
 const MinimalHero: React.FC = () => {
+  const scrollToBioSection = () => {
+    const bioSection = document.getElementById('bio-section');
+    if (bioSection) {
+      bioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white">
+    <section 
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white cursor-pointer relative"
+      onClick={scrollToBioSection}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Top Section - Name, Website, Location, and Photo */}
         <motion.div
@@ -24,6 +35,7 @@ const MinimalHero: React.FC = () => {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xl sm:text-2xl text-blue-600 hover:text-blue-700 transition-colors duration-200 mb-2 inline-block"
+              onClick={(e) => e.stopPropagation()}
             >
               barskydesign.pro
             </a>
@@ -47,6 +59,22 @@ const MinimalHero: React.FC = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+      >
+        <p className="text-sm mb-2">Click to continue</p>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ChevronDown size={24} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

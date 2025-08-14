@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const BioSection: React.FC = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-muted/30">
+    <section id="bio-section" className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-muted/30">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

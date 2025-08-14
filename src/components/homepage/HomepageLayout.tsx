@@ -13,16 +13,19 @@ import FloatingConsultationBubble from "@/components/FloatingConsultationBubble"
 import SectionTransition from "@/components/transitions/SectionTransition";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
+import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 
 const HomepageLayout: React.FC = () => {
+  const { isScrolledPastHero } = useHeaderNavigation();
+
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <BackgroundAudio 
         src="/audio/shove-it-deftones.mp3" 
         volume={0.15}
       />
-      <Header />
-      <main className="flex-grow space-y-4 md:space-y-12 pt-[var(--header-height,64px)]">
+      {isScrolledPastHero && <Header />}
+      <main className="flex-grow space-y-4 md:space-y-12">
         
         <SectionTransition variant="fade">
           <MinimalHero />
