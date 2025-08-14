@@ -1,7 +1,7 @@
 
 import React from "react";
 import Header from "@/components/Header";
-import EnhancedHero from "@/components/hero/EnhancedHero";
+import MinimalHero from "@/components/hero/MinimalHero";
 import VideoCaseStudiesSection from "@/components/home/VideoCaseStudiesSection";
 import ContactForm from "@/components/home/ContactForm";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
@@ -24,7 +24,7 @@ const HomepageLayout: React.FC = () => {
       <main className="flex-grow space-y-4 md:space-y-12 pt-[var(--header-height,64px)]">
         
         <SectionTransition variant="fade">
-          <EnhancedHero />
+          <MinimalHero />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.05} className="bg-muted/30 py-0 md:py-12">
