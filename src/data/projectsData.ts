@@ -1,53 +1,46 @@
 
-import { ProjectProps } from "@/components/ProjectCard";
+export interface ProjectProps {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+}
 
 export const projectsData: ProjectProps[] = [
   {
-    id: "wholesale-distribution",
-    title: "From Restaurant Chat to Business Solution",
-    description: "Real conversation led to custom AI-powered development. How a casual dinner revealed business pain points and sparked my evolution from designer to full-stack developer.",
-    image: "/lovable-uploads/b9e82187-de02-414c-aef2-4c99ea1b1a0c.png",
-    tags: ["Human Connection", "AI Development", "Story-Driven Design", "Real Solutions", "Designer Evolution"],
-    featured: true,
-  },
-  {
-    id: "herbalink",
-    title: "HerbaLink",
-    description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
-    image: "/lovable-uploads/54ddb7c1-ce60-4077-b56c-ae4640252d52.png",
-    videoThumbnail: "herbalink-thumb.jpg",
-    video: "herbalink-demo.mp4",
-    tags: ["Health", "Marketplace", "Gen AI"],
-    featured: true,
-  },
-  {
     id: "splittime",
-    title: "SplitTime",
-    description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
-    image: "/lovable-uploads/8fb40d7a-8ac6-404e-a3ce-43746775a75c.png",
-    videoThumbnail: "splittime-thumb.jpg",
-    video: "splittime-demo.mp4",
-    tags: ["Family Tech", "iOS to Android", "Legal UX"],
-    featured: true,
+    title: "SplitTime - Time Tracking App",
+    description: "A modern time tracking application for freelancers and teams",
+    image: "/api/placeholder/800/600",
+    tags: ["Mobile App", "Time Tracking", "Productivity"]
+  },
+  {
+    id: "herbalink", 
+    title: "HerbaLink - Health Platform",
+    description: "Connecting patients with herbal medicine practitioners",
+    image: "/api/placeholder/800/600",
+    tags: ["Healthcare", "Platform", "Mobile"]
+  },
+  {
+    id: "investor-loan-app",
+    title: "Investor Loan Application", 
+    description: "Streamlined loan application process for real estate investors",
+    image: "/api/placeholder/800/600",
+    tags: ["FinTech", "Real Estate", "Application"]
+  },
+  {
+    id: "wholesale-distribution",
+    title: "Wholesale Distribution System",
+    description: "Modern B2B platform for wholesale distribution management", 
+    image: "/api/placeholder/800/600",
+    tags: ["B2B", "Distribution", "Enterprise"]
   },
   {
     id: "business-management",
-    title: "Business Management App",
-    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
-    image: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-    video: "bizmgmt-demo.mp4",
-    tags: ["Enterprise", "CRM", "Dashboard"],
-    featured: true,
-  },
-  {
-    id: "investment-app",
-    title: "Investment App",
-    description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
-    image: "/lovable-uploads/investment-app-thumb.png",
-    videoThumbnail: "investapp-thumb.jpg",
-    video: "investapp-demo.mp4",
-    tags: ["Finance", "Data Viz", "Mobile"],
-    featured: true,
+    title: "Business Management Suite",
+    description: "Comprehensive business management platform for SMEs",
+    image: "/api/placeholder/800/600", 
+    tags: ["Business", "Management", "Enterprise"]
   }
 ];
