@@ -26,20 +26,20 @@ const BioSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="space-y-8 text-3xl md:text-4xl font-bold text-foreground leading-relaxed">
+          <div className="space-y-12 text-5xl md:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
             <AnimatedText
               text="Product Design Leader with Enterprise and Startup experience since 2012. FinTech, Healthcare, AdTech veteran."
-              type="character"
+              type="word"
               animation="slide"
-              staggerChildren={0.02}
+              staggerChildren={0.08}
               duration={0.5}
               className="block"
             />
             <AnimatedText
               text="I simplify complex systems and raise the bar of design while delivering measurable business impact."
-              type="character"
+              type="word"
               animation="slide"
-              staggerChildren={0.02}
+              staggerChildren={0.08}
               duration={0.5}
               delay={1000}
               className="block"
