@@ -57,7 +57,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
         variant: "problem",
         content:
-          "The booking interface directly addresses three critical gaps in the herbal wellness market:\n\n• **No way to verify herbalist credibility** - Our platform displays verified credentials, specializations, and expert backgrounds upfront\n• **No symptom tracking tied to outcomes** - Structured consultation types (Initial, Follow-up, Quick Check-in) create clear treatment pathways\n• **No personalized recommendations or guided onboarding** - Health focus areas guide users to the right herbalist match and consultation type",
+          "The booking interface directly addresses three critical gaps in the herbal wellness market:\n\n• **No way to verify herbalist credibility** - Our platform displays verified credentials, specializations, and expert backgrounds upfront\n\n• **No symptom tracking tied to outcomes** - Structured consultation types (Initial, Follow-up, Quick Check-in) create clear treatment pathways\n\n• **No personalized recommendations or guided onboarding** - Health focus areas guide users to the right herbalist match and consultation type",
         media: {
           type: 'image',
           src: "https://barskyux.com/wp-content/uploads/2025/07/Book-a-Consultation.jpg",
@@ -479,7 +479,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "🧩 Problem",
         icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
         variant: "problem",
-        content: "The client operates a wholesale food distribution business, manufacturing some products in-house while sourcing others from suppliers. They struggled with Intuit's billing complexities, inaccurate payment collection for B2B customers, and unreliable QuickBooks integration with minimal customer support.\n\nKey Pain Points:\n\n• Billing inaccuracies and frequent wholesale order total errors\n• QuickBooks sync failures with no reliable technical support\n• Overly complex interface for daily wholesale operations\n• Poor mobile experience for managing deliveries on-the-go\n• Difficulty tracking products from multiple sources\n• Complex wholesale pricing structures and credit terms"
+        content: "The client operates a wholesale food distribution business, manufacturing some products in-house while sourcing others from suppliers. They struggled with Intuit's billing complexities, inaccurate payment collection for B2B customers, and unreliable QuickBooks integration with minimal customer support.\n\nKey Pain Points:\n\n• Billing inaccuracies and frequent wholesale order total errors\n\n• QuickBooks sync failures with no reliable technical support\n\n• Overly complex interface for daily wholesale operations\n\n• Poor mobile experience for managing deliveries on-the-go\n\n• Difficulty tracking products from multiple sources\n\n• Complex wholesale pricing structures and credit terms"
       },
       {
         id: "impact-snapshot",
@@ -513,14 +513,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "🎯 Solution / Key Features",
         icon: React.createElement(Settings, { className: "h-6 w-6" }),
         variant: "solution",
-        content: "**Driver Management**\nProblem Solved: Real-time driver visibility and workload balance.\n\n• Live status tracking (Online/Offline)\n• Average response time monitoring (12m)\n• Driver assignment and workload distribution\n• Quick action buttons for common tasks\n\n**Delivery Interface**\nProblem Solved: Streamlined wholesale order fulfillment.\n\n• Clear order details and delivery instructions\n• One-tap navigation and calling for business locations\n• Simple \"Start Delivery\" workflow for bulk orders\n\n**Order Management**\nProblem Solved: Accurate wholesale billing and order tracking.\n\n• Full order lifecycle visibility\n• Revenue tracking and pending/delivered status\n• Automated billing for B2B pricing tiers\n\n**Customer Management**\nProblem Solved: Efficient B2B relationship and credit management.\n\n• Customer profiles with active credit accounts\n• Business type categorization\n• Easy addition of new accounts\n\n**Inventory Management**\nProblem Solved: Track products from multiple sources.\n\n• Product catalog with SKU tracking\n• Low stock alerts\n• Pricing management for manufactured and sourced products"
+        content: "**Driver Management**\nProblem Solved: Real-time driver visibility and workload balance.\n\n• Live status tracking (Online/Offline)\n\n• Average response time monitoring (12m)\n\n• Driver assignment and workload distribution\n\n• Quick action buttons for common tasks\n\n**Delivery Interface**\nProblem Solved: Streamlined wholesale order fulfillment.\n\n• Clear order details and delivery instructions\n\n• One-tap navigation and calling for business locations\n\n• Simple \"Start Delivery\" workflow for bulk orders\n\n**Order Management**\nProblem Solved: Accurate wholesale billing and order tracking.\n\n• Full order lifecycle visibility\n\n• Revenue tracking and pending/delivered status\n\n• Automated billing for B2B pricing tiers\n\n**Customer Management**\nProblem Solved: Efficient B2B relationship and credit management.\n\n• Customer profiles with active credit accounts\n\n• Business type categorization\n\n• Easy addition of new accounts\n\n**Inventory Management**\nProblem Solved: Track products from multiple sources.\n\n• Product catalog with SKU tracking\n\n• Low stock alerts\n\n• Pricing management for manufactured and sourced products"
       },
       {
         id: "results",
         title: "📈 Results",
         icon: React.createElement(CheckCircle, { className: "h-6 w-6" }),
         variant: "impact",
-        content: "• 50% reduction in wholesale billing errors\n• 35% faster bulk order processing time\n• 90% user satisfaction rate\n• Zero training time for new staff\n• 100% uptime (no QuickBooks downtime)\n• $200/month saved in subscription fees\n• 40% reduction in admin tasks\n• Better inventory accuracy\n\n\"This system has completely changed how we operate our wholesale business. No more billing errors with our restaurant clients, and I can manage everything from my phone while I'm out making deliveries.\" — Client"
+        content: "• 50% reduction in wholesale billing errors\n\n• 35% faster bulk order processing time\n\n• 90% user satisfaction rate\n\n• Zero training time for new staff\n\n• 100% uptime (no QuickBooks downtime)\n\n• $200/month saved in subscription fees\n\n• 40% reduction in admin tasks\n\n• Better inventory accuracy\n\n\"This system has completely changed how we operate our wholesale business. No more billing errors with our restaurant clients, and I can manage everything from my phone while I'm out making deliveries.\" — Client"
       },
       {
         id: "challenges-fixes",
@@ -534,7 +534,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "🚀 Next Steps",
         icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
         variant: "solution",
-        content: "**Phase 2 Considerations:**\n\n• Advanced analytics dashboard\n• POS system integration\n• Automated B2B communication\n• Multi-location support\n• Supplier integration\n• Inventory forecasting\n\n**Success Metrics to Track:**\n\n• Wholesale order accuracy rates\n• B2B customer retention\n• Driver efficiency metrics\n• Revenue growth\n• Inventory turnover rates"
+        content: "**Phase 2 Considerations:**\n\n• Advanced analytics dashboard\n\n• POS system integration\n\n• Automated B2B communication\n\n• Multi-location support\n\n• Supplier integration\n\n• Inventory forecasting\n\n**Success Metrics to Track:**\n\n• Wholesale order accuracy rates\n\n• B2B customer retention\n\n• Driver efficiency metrics\n\n• Revenue growth\n\n• Inventory turnover rates"
       }
     ],
     seoData: {
