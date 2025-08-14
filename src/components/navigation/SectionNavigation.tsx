@@ -23,43 +23,46 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
   className = ""
 }) => {
   return (
-    <div className={`absolute inset-x-0 ${className}`}>
+    <div className={`flex flex-col items-center justify-center space-y-8 py-8 ${className}`}>
       {/* Up Navigation Arrow */}
       {canNavigateUp && onNavigateUp && (
-        <motion.div
-          className="absolute top-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
+        <motion.button
+          className="group flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
           onClick={onNavigateUp}
+          aria-label={upLabel}
         >
           <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="mb-2"
           >
-            <ChevronUp size={24} />
+            <ChevronUp size={20} className="group-hover:scale-110 transition-transform duration-200" />
           </motion.div>
-          <p className="text-sm mt-2">{upLabel}</p>
-        </motion.div>
+          <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity">{upLabel}</span>
+        </motion.button>
       )}
 
       {/* Down Navigation Arrow */}
       {canNavigateDown && onNavigateDown && (
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
+        <motion.button
+          className="group flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
           onClick={onNavigateDown}
+          aria-label={downLabel}
         >
-          <p className="text-sm mb-2">{downLabel}</p>
+          <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity mb-2">{downLabel}</span>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ChevronDown size={24} />
+            <ChevronDown size={20} className="group-hover:scale-110 transition-transform duration-200" />
           </motion.div>
-        </motion.div>
+        </motion.button>
       )}
     </div>
   );
