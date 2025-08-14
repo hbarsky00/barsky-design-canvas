@@ -5,11 +5,17 @@ import ModernProjectCard from "@/components/homepage/ModernProjectCard";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 import SectionHeader from "@/components/shared/SectionHeader";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+import { NavigationProps } from "@/types/navigation";
 
-const VideoCaseStudiesSection: React.FC = () => {
-  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown, isMobile } = useHomepageKeyboardNavigation();
+interface VideoCaseStudiesSectionProps extends NavigationProps {}
 
+const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({ 
+  navigateUp, 
+  navigateDown, 
+  canNavigateUp, 
+  canNavigateDown, 
+  isMobile 
+}) => {
   return (
     <section id="projects" className="py-4 sm:py-6 min-h-screen flex flex-col justify-center relative bg-white">
       <div className="container px-4 mx-auto max-w-7xl">

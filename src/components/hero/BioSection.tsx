@@ -2,11 +2,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "@/components/AnimatedText";
-import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+import { NavigationProps } from "@/types/navigation";
 
-const BioSection: React.FC = () => {
-  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
+interface BioSectionProps extends NavigationProps {}
 
+const BioSection: React.FC<BioSectionProps> = ({ 
+  navigateUp, 
+  navigateDown, 
+  canNavigateUp, 
+  canNavigateDown,
+  isMobile 
+}) => {
   return (
     <section id="bio-section" className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-muted/30 relative">
       <div className="max-w-5xl mx-auto">

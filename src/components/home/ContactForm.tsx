@@ -1,237 +1,206 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { CheckCircle, Loader2, Mail, Phone, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
+import { Send } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import SectionHeader from "@/components/shared/SectionHeader";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { NavigationProps } from "@/types/navigation";
+import { 
+  Form,
+  FormControl, 
+  FormField, 
+  FormItem, 
+  FormLabel, 
+  FormMessage 
+} from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
-const ContactForm: React.FC = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    website: '',
-    phone: '',
-    projectType: '',
-    budgetRange: '',
-    projectDescription: '',
-    timeline: ''
-  });
+const contactFormSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  subject: z.string().min(3, {
+    message: "Subject must be at least 3 characters.",
+  }),
+  message: z.string().min(10, {
+    message: "Message must be at least 10 characters.",
+  }),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+interface ContactFormProps extends NavigationProps {}
+
+const ContactForm: React.FC<ContactFormProps> = ({ 
+  navigateUp, 
+  navigateDown, 
+  canNavigateUp, 
+  canNavigateDown,
+  isMobile 
+}) => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.projectType || !formData.budgetRange || !formData.projectDescription) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
-        variant: "destructive"
-      });
-      return;
-    }
+  const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
+    
     try {
-      const {
-        data,
-        error
-      } = await supabase.functions.invoke('process-free-audit', {
-        body: formData
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: values,
       });
+      
       if (error) throw error;
-      setIsSubmitted(true);
+      
       toast({
-        title: "Request Submitted!",
-        description: "You'll receive a confirmation email shortly with next steps."
+        title: "Thanks for reaching out!",
+        description: "Your message has been received. I'll get back to you soon.",
+        duration: 5000,
       });
-    } catch (error: any) {
-      console.error('Error submitting contact request:', error);
+      
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
       toast({
-        title: "Submission Failed",
-        description: "There was an error submitting your request. Please try again.",
-        variant: "destructive"
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+        duration: 5000,
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const benefits = ["Live audit of your current website/product", "AI-enhanced user behavior analysis using ChatGPT & Claude AI", "3 specific improvement recommendations you can implement immediately", "Personalized growth strategy based on your business goals", "No-obligation project timeline and pricing discussion"];
-
+  
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-blue-50" id="contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Updated Layout: Contact Info + Form */}
-        <div className="grid lg:grid-cols-3 gap-12 items-start">
-          
-          {/* Contact Info Section - Takes 1/3 */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
-            {/* Contact Info */}
-            <div className="glass-card p-6">
-              <h4 className="text-xl font-bold text-neutral-900 mb-4">
-                Contact Information:
-              </h4>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-blue-accent" />
-                  <span className="text-neutral-500">hbarsky01@gmail.com</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-blue-accent" />
-                  <span className="text-neutral-500">(201) 668-4754</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Clock className="h-5 w-5 text-blue-accent" />
-                  <span className="text-neutral-500">You'll hear back within 24 hours</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+    <section id="contact" className="min-h-screen flex flex-col justify-center py-16 bg-muted/30 relative">
+      <div className="container px-4 mx-auto max-w-4xl">
+        <SectionHeader
+          as="h2"
+          title="Get In Touch"
+          subtitle="Ready to start your project? Let's discuss your needs and create something amazing together."
+          className="mb-12"
+        />
 
-          {/* Contact Form - Takes 2/3 */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="lg:col-span-2"
-          >
-            <div className="glass-card-elevated p-8">
-              {isSubmitted ? (
-                <div className="text-center space-y-4">
-                  <CheckCircle className="h-16 w-16 text-success-green mx-auto" />
-                  <h3 className="text-2xl font-bold text-neutral-900">Request Submitted!</h3>
-                  <p className="text-neutral-500">
-                    Thank you for your interest! You'll receive a confirmation email with next steps within 24 hours.
-                  </p>
-                  <Button onClick={() => setIsSubmitted(false)} variant="outline" className="mt-4">
-                    Submit Another Request
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Two Column Layout for Form Fields */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
-                      <Input id="name" type="text" required placeholder="Your full name" className="w-full" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
-                      <Input id="email" type="email" required placeholder="your@email.com" className="w-full" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="company">Company/Project Name</Label>
-                      <Input id="company" type="text" placeholder="Your company or project name" className="w-full" value={formData.company} onChange={e => handleInputChange('company', e.target.value)} />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="website">Website URL</Label>
-                      <Input id="website" type="url" placeholder="https://yourwebsite.com" className="w-full" value={formData.website} onChange={e => handleInputChange('website', e.target.value)} />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input id="phone" type="tel" placeholder="(555) 123-4567" className="w-full" value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="timeline">Preferred Meeting Time</Label>
-                      <Input id="timeline" type="text" placeholder="e.g., Weekdays 2-4 PM EST" className="w-full" value={formData.timeline} onChange={e => handleInputChange('timeline', e.target.value)} />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="projectType">Project Type *</Label>
-                      <Select value={formData.projectType} onValueChange={value => handleInputChange('projectType', value)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select project type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Website Redesign">Website Redesign</SelectItem>
-                          <SelectItem value="Mobile App Design">Mobile App Design</SelectItem>
-                          <SelectItem value="UX Audit">UX Audit</SelectItem>
-                          <SelectItem value="AI Integration">AI Integration</SelectItem>
-                          <SelectItem value="E-commerce">E-commerce Platform</SelectItem>
-                          <SelectItem value="SaaS Platform">SaaS Platform</SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="budgetRange">Budget Range *</Label>
-                      <Select value={formData.budgetRange} onValueChange={value => handleInputChange('budgetRange', value)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select budget range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="<$5k">Less than $5,000</SelectItem>
-                          <SelectItem value="$5k-$10k">$5,000 - $10,000</SelectItem>
-                          <SelectItem value="$10k-$20k">$10,000 - $20,000</SelectItem>
-                          <SelectItem value="$20k-$50k">$20,000 - $50,000</SelectItem>
-                          <SelectItem value="$50k+">$50,000+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  {/* Full Width Fields */}
-                  <div className="space-y-2">
-                    <Label htmlFor="projectDescription">Project Description *</Label>
-                    <Textarea
-                      id="projectDescription"
-                      placeholder="Describe your project, goals, and main challenges..."
-                      rows={4}
-                      className="w-full"
-                      value={formData.projectDescription}
-                      onChange={(e) => handleInputChange('projectDescription', e.target.value)}
-                    />
-                  </div>
-
-                  <div className="flex justify-center">
-                    <Button type="submit" disabled={isSubmitting} size="lg" variant="brand">
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                          Submitting...
-                        </>
-                      ) : (
-                        'Book My Free Audit'
-                      )}
-                    </Button>
-                  </div>
-
-                  <p className="text-sm text-neutral-500 text-center">
-                    No spam, no sales pitch - just valuable insights
-                  </p>
-                </form>
-              )}
-            </div>
-          </motion.div>
+        <div className="max-w-2xl mx-auto">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Name</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="Your name" 
+                        {...field} 
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Email</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="your@email.com" 
+                        type="email" 
+                        {...field} 
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="subject"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Subject</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="Subject of your message" 
+                        {...field} 
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Message</FormLabel>
+                    <FormControl>
+                      <Textarea 
+                        placeholder="Your message..." 
+                        rows={5}
+                        {...field}
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <Button 
+                type="submit" 
+                size="lg"
+                className="w-full flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
+              </Button>
+            </form>
+          </Form>
         </div>
       </div>
+
+      {!isMobile && (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <SectionNavigation
+            onNavigateUp={navigateUp}
+            onNavigateDown={navigateDown}
+            canNavigateUp={canNavigateUp}
+            canNavigateDown={canNavigateDown}
+            upLabel="Projects"
+            downLabel="Blog preview"
+          />
+        </div>
+      )}
     </section>
   );
 };

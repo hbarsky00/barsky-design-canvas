@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+import { NavigationProps } from "@/types/navigation";
 
-interface InternalLinkingEnhancerProps {
+interface InternalLinkingEnhancerProps extends NavigationProps {
   currentPage: string;
   showRelatedLinks?: boolean;
   className?: string;
@@ -15,10 +15,11 @@ interface InternalLinkingEnhancerProps {
 const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
   currentPage,
   showRelatedLinks = false,
-  className = ""
+  className = "",
+  navigateUp,
+  canNavigateUp,
+  isMobile
 }) => {
-  const { navigateUp, canNavigateUp, isMobile } = useHomepageKeyboardNavigation();
-
   const relatedLinks = [
     {
       title: "UX Design Services",

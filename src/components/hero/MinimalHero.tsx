@@ -3,11 +3,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+import { NavigationProps } from "@/types/navigation";
 
-const MinimalHero: React.FC = () => {
-  const { navigateDown, canNavigateDown } = useHomepageKeyboardNavigation();
+interface MinimalHeroProps extends NavigationProps {}
 
+const MinimalHero: React.FC<MinimalHeroProps> = ({ 
+  navigateDown, 
+  canNavigateDown,
+  isMobile 
+}) => {
   return (
     <section 
       id="hero"

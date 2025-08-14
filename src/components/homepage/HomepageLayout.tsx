@@ -1,3 +1,4 @@
+
 import React from "react";
 import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
@@ -19,8 +20,17 @@ import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNaviga
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
   
-  // Initialize keyboard navigation with refined transitions
-  const { isTransitioning, transitionDirection, transitionVariation } = useHomepageKeyboardNavigation();
+  // Centralized keyboard navigation - single source of truth
+  const { 
+    isTransitioning, 
+    transitionDirection, 
+    transitionVariation,
+    navigateUp,
+    navigateDown,
+    canNavigateUp,
+    canNavigateDown,
+    isMobile
+  } = useHomepageKeyboardNavigation();
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
@@ -40,19 +50,41 @@ const HomepageLayout: React.FC = () => {
       <main className="flex-grow space-y-4 md:space-y-12">
         
         <SectionTransition variant="fade">
-          <MinimalHero />
+          <MinimalHero 
+            navigateDown={navigateDown}
+            canNavigateDown={canNavigateDown}
+            isMobile={isMobile}
+          />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.05}>
-          <BioSection />
+          <BioSection 
+            navigateUp={navigateUp}
+            navigateDown={navigateDown}
+            canNavigateUp={canNavigateUp}
+            canNavigateDown={canNavigateDown}
+            isMobile={isMobile}
+          />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
-          <VideoCaseStudiesSection />
+          <VideoCaseStudiesSection 
+            navigateUp={navigateUp}
+            navigateDown={navigateDown}
+            canNavigateUp={canNavigateUp}
+            canNavigateDown={canNavigateDown}
+            isMobile={isMobile}
+          />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12" id="contact">
-          <ContactForm />
+          <ContactForm 
+            navigateUp={navigateUp}
+            navigateDown={navigateDown}
+            canNavigateUp={canNavigateUp}
+            canNavigateDown={canNavigateDown}
+            isMobile={isMobile}
+          />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12" id="blog-preview">
@@ -67,7 +99,13 @@ const HomepageLayout: React.FC = () => {
         </SectionTransition>
 
         <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12" id="internal-linking">
-          <InternalLinkingEnhancer currentPage="home" showRelatedLinks={true} />
+          <InternalLinkingEnhancer 
+            currentPage="home" 
+            showRelatedLinks={true}
+            navigateUp={navigateUp}
+            canNavigateUp={canNavigateUp}
+            isMobile={isMobile}
+          />
         </SectionTransition>
       </main>
       <Footer />
