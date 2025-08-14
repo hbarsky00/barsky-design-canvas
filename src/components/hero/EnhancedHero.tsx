@@ -4,9 +4,9 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 
 import HeroHeading from "./HeroHeading";
 import HeroDescription from "./HeroDescription";
-import HeroSkillsTags from "./HeroSkillsTags";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
+
 const EnhancedHero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -35,14 +35,14 @@ const EnhancedHero: React.FC = () => {
   const buttonsY = useTransform(scrollYProgress, [0, 1], [12, -12]);
 
   return (
-    <section ref={sectionRef} className="relative py-6 sm:py-10 bg-transparent" style={{ perspective: "1000px" }}>
+    <section ref={sectionRef} className="relative py-4 sm:py-6 bg-transparent" style={{ perspective: "1000px" }}>
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="w-full text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-3 sm:space-y-4"
+            className="space-y-2 sm:space-y-3"
             style={{
               rotateX: prefersReducedMotion ? 0 : tiltX,
               y: prefersReducedMotion ? 0 : contentY,
@@ -60,7 +60,7 @@ const EnhancedHero: React.FC = () => {
             <motion.div style={{ y: prefersReducedMotion ? 0 : buttonsY }}>
               <HeroActionButtons isVisible={isVisible} />
             </motion.div>
-            <div className="hidden sm:block">
+            <div className="hidden sm:block pt-2">
               <HeroSocialLinks isVisible={isVisible} />
             </div>
           </motion.div>
