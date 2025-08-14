@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -32,7 +31,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       {title && (
         <div className="flex items-center justify-start lg:justify-center mb-4 space-x-3">
           {Icon && <Icon className="h-7 w-7 md:h-8 md:w-8 text-barsky-blue" />}
-          <h2 className="text-2xl font-bold text-left lg:text-center mx-auto max-w-5xl [text-wrap:balance]">{title}</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-left lg:text-center mx-auto max-w-5xl [text-wrap:balance]">{title}</h2>
         </div>
       )}
       

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -96,7 +95,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
             <Icon className={`h-8 w-8 md:h-9 md:w-9 lg:h-10 lg:w-10 ${styles.iconColor}`} />
           </div>
           <div className="flex-1">
-            <h2 className={`text-headline-large font-bold mb-4 ${styles.titleColor}`}>
+            <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${styles.titleColor}`}>
               {title}
             </h2>
           </div>
