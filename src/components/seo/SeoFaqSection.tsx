@@ -19,17 +19,19 @@ interface SeoFaqSectionProps {
   title: string;
   faqs: FAQ[];
   showNavigation?: boolean;
+  className?: string;
 }
 
 const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({ 
   title, 
   faqs, 
-  showNavigation = false 
+  showNavigation = false,
+  className = ""
 }) => {
   const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
 
   return (
-    <section className="py-8 md:py-12 bg-muted/30 relative">
+    <section className={`py-8 md:py-12 bg-muted/30 relative ${className}`}>
       <div className="container px-4 mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

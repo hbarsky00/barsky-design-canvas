@@ -10,11 +10,13 @@ import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNaviga
 interface InternalLinkingEnhancerProps {
   currentPage: string;
   showRelatedLinks?: boolean;
+  breadcrumbs?: Array<{ label: string; href: string; }>;
 }
 
 const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
   currentPage,
-  showRelatedLinks = true
+  showRelatedLinks = true,
+  breadcrumbs
 }) => {
   const { navigateUp, canNavigateUp } = useHomepageKeyboardNavigation();
 
