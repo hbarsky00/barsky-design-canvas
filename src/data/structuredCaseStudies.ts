@@ -245,8 +245,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       technologies: ["iOS", "Android", "WebApp"],
       path: "/project/splittime"
     }
-  }
-,
+  },
   "investor-loan-app": {
     id: "investor-loan-app",
     title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
@@ -309,30 +308,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         id: "mistake-1",
-        title: "✖ Mistake #1: Rebuilding Excel as-is",
+        title: "✖ Mistake #1: The Wrong Focus on Search Criteria",
         icon: React.createElement(X, { className: "h-6 w-6" }),
         variant: "failed",
         content:
-          "Why it failed: It carried over the clutter and confusion.\nFix: Shifted to modular card + table views with better hierarchy and real-time updates.",
+          "Why it failed: We initially focused on building complex search filters and criteria matching, thinking users needed advanced discovery tools like they had in Excel.\nFix: Users actually needed fast, predictive search that understood their workflow. We pivoted to AI-powered search with smart defaults and contextual suggestions that anticipated what they were looking for.",
         media: {
           type: 'image',
           src: "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
           alt: "Enhanced orderbook",
           caption: "Enhanced order book with clearer hierarchy and updates."
-        }
-      },
-      {
-        id: "my-thought-process",
-        title: "🧠 How I Thought Through It",
-        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
-        variant: "solution",
-        content:
-          "My goal wasn't just usability — it was trust and control.\n\n- Search that acts like Bloomberg: AI-powered, category-based predictive search with real-time filtering and smart defaults.\n- Dynamic loan order book: Add/edit/remove limits in real time, instant totals, live comments, and full change tracking.\n- Collaboration as a native experience: Comment, assign, and build loan orders together in one place.\n- Compliance built into the UX: Validation rules, audit trails, and guardrails make compliance seamless.",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
-          alt: "Search interface",
-          caption: "Predictive, category-based search for fast discovery."
         }
       },
       {
