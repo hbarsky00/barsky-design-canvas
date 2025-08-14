@@ -10,7 +10,7 @@ interface SimpleContentSectionProps {
   content: string;
   additionalText?: string;
   images?: string[];
-  galleryContent?: ImageTextItem[];
+  galleryContent?: ImageTextItem[]; // New prop for enhanced gallery
   imageCaptions?: Record<string, string>;
   projectId?: string;
   onTextSave?: (textKey: string, content: string) => void;
@@ -28,14 +28,6 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
 }) => {
   // Use enhanced gallery if available, otherwise fall back to legacy image display
   const useEnhancedGallery = galleryContent && galleryContent.length > 0;
-
-  // Convert galleryContent to the expected format if needed
-  const normalizedGalleryContent = galleryContent?.map(item => ({
-    text: item.text || item.content?.text || '',
-    image: item.image || item.content?.image?.src,
-    type: item.type,
-    content: item.content
-  })) || [];
 
   return (
     <motion.section
@@ -59,7 +51,7 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
 
       {useEnhancedGallery ? (
         <ImageTextGallery
-          items={normalizedGalleryContent}
+          items={galleryContent}
           imageCaptions={imageCaptions}
           projectId={projectId}
           sectionName={title}

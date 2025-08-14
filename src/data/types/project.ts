@@ -1,75 +1,51 @@
-export interface ImageTextItem {
-  text: string;
-  image?: string;
-  type?: 'text' | 'image';
-  content?: {
-    text?: string;
-    image?: {
-      src: string;
-      alt: string;
-    };
-  };
+export interface ProjectDetails {
+  challenge: string;
+  challengeAdditionalText?: string; // Text that appears between challenge images
+  process: string;
+  result: string;
+  technologies: string[];
+  duration: string;
+  client: string;
+  role: string;
+  projectLink?: string;
+  caseStudyLink?: string;
+  useAiCaptions?: boolean;
+  imageCaptions?: Record<string, string>; // Manual image captions
+  
+  imageConfig?: ImageConfig;
+  
+  // Enhanced gallery support with text sections
+  challengeGalleryContent?: ImageTextItem[];
+  processGalleryContent?: ImageTextItem[];
+  resultGalleryContent?: ImageTextItem[];
+  
+  availableImages?: string[];
+  challengeGalleryImages?: string[];
+  processImage?: string;
+  processBottomImage?: string;
+  processGalleryImages?: string[];
+  resultGalleryImages?: string[];
+  servicesGalleryImages?: string[];
+  galleryImages?: string[];
+  extraImages?: string[];
+  challengeImage?: string;
+  challengeBottomImage?: string;
+  resultImage?: string;
+}
+
+export interface ImageConfig {
+  challenge?: ImageSectionConfig;
+  process?: ImageSectionConfig;
+  result?: ImageSectionConfig;
 }
 
 export interface ImageSectionConfig {
   beforeHeader?: string;
   afterHeader?: string;
-  [key: string]: any;
 }
 
-export interface ImageConfig {
-  hero?: string;
-  challenge?: string[];
-  process?: ImageSectionConfig;
-  solution?: string[];
-  results?: string[];
-  [key: string]: any;
-}
-
-export interface ProjectDetails {
-  challenge: string;
-  process: string;
-  result: string;
-  duration: string;
-  client: string;
-  role: string;
-  technologies: string[];
-  
-  // Links
-  projectLink?: string;
-  caseStudyLink?: string;
-  
-  // Additional text content
-  challengeAdditionalText?: string;
-  
-  // Individual images
-  challengeImage?: string;
-  processImage?: string;
-  processBottomImage?: string;
-  resultImage?: string;
-  challengeBottomImage?: string;
-  
-  // Image galleries
-  challengeGalleryImages?: string[];
-  processGalleryImages?: string[];
-  resultGalleryImages?: string[];
-  galleryImages?: string[];
-  extraImages?: string[];
-  servicesGalleryImages?: string[];
-  availableImages?: string[];
-  
-  // Enhanced gallery content
-  challengeGalleryContent?: ImageTextItem[];
-  
-  // Image configuration
-  imageConfig?: ImageConfig;
-  
-  // Image captions
-  imageCaptions?: Record<string, string>;
-  
-  // AI features
-  useAiCaptions?: boolean;
-}
+// Export ProjectImageConfig as an alias for ImageConfig
+export type ProjectImageConfig = ImageConfig;
 
 export interface ProjectProps {
   id: string;
@@ -77,5 +53,12 @@ export interface ProjectProps {
   description: string;
   image: string;
   tags: string[];
-  link?: string;
+  date?: string;
+}
+
+export interface ImageTextItem {
+  type: 'image' | 'text' | 'video';
+  content: string; // For images: image path, for text: text content, for video: video URL
+  caption?: string; // Only for images and videos
+  textKey?: string; // Only for text sections, used for saving
 }

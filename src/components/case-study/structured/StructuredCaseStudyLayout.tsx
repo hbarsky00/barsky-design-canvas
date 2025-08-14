@@ -1,34 +1,17 @@
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CaseStudyHero from "./CaseStudyHero";
 import CaseStudySection from "./CaseStudySection";
 import ProjectNavigation from "@/components/project/ProjectNavigation";
-import { StructuredCaseStudy } from "@/data/types/structuredCaseStudy";
+import { StructuredCaseStudy, CaseStudySection as CaseStudySectionType } from "@/data/types/structuredCaseStudy";
+import AutoSeo from "@/components/seo/AutoSeo";
 
-interface StructuredCaseStudyLayoutProps {
-  caseStudy?: StructuredCaseStudy;
-  // Legacy props for backward compatibility
-  title?: string;
-  description?: string;
-  tags?: string[];
-  heroVideo?: {
-    src: string;
-    poster?: string;
-  };
-  sections?: any[];
-  projectLink?: string;
-  gradientClasses?: string;
-  seoData?: {
-    title?: string;
-    description?: string;
-  };
-}
+interface StructuredCaseStudyLayoutProps extends Omit<StructuredCaseStudy, 'id'> {}
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
-  caseStudy,
   title,
   description,
   tags,
@@ -38,52 +21,60 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   gradientClasses,
   seoData
 }) => {
-  // Use caseStudy data if provided, otherwise use individual props
-  const data = caseStudy || {
-    id: 'structured-case-study',
-    title: title || '',
-    description: description || '',
-    tags: tags || [],
-    heroVideo,
-    sections: sections || [],
-    projectLink,
-    gradientClasses,
-    seoData
-  };
+  const heroImageUrl = heroVideo?.poster || sections.find(s => s.type === 'hero')?.content.image;
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Auto-detecting SEO with fallbacks from seoData */}
+      <AutoSeo 
+        fallbackTitle={seoData?.title || title}
+        fallbackDescription={seoData?.description || description}
+        fallbackImage={heroImageUrl}
+      />
+      
+      {/* SEO data attributes for auto-detection */}
+      <div 
+        data-page-title={seoData?.title || title}
+        data-page-description={seoData?.description || description}
+        data-page-image={heroImageUrl}
+        style={{ display: 'none' }}
+      />
+      
       <Navigation />
       
-      <main>
-        <CaseStudyHero 
-          title={data.title}
-          description={data.description}
-          tags={data.tags}
-          heroVideo={data.heroVideo}
-          gradientClasses={data.gradientClasses}
-        />
-        
-        <div className="container mx-auto px-4 py-16">
-          {data.sections.map((section, index) => (
-            <motion.div
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section data-hero className="relative overflow-hidden">
+          <CaseStudyHero
+            title={title}
+            description={description}
+            tags={tags}
+            heroVideo={heroVideo}
+            gradientClasses={gradientClasses}
+          />
+        </section>
+
+        {/* Case Study Sections */}
+        <div className="space-y-0">
+          {sections.map((section: CaseStudySectionType, index: number) => (
+            <CaseStudySection
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <CaseStudySection
-                section={section}
-                index={index}
-              />
-            </motion.div>
+              section={section}
+              index={index}
+            />
           ))}
         </div>
-        
-        <ProjectNavigation currentProjectId={data.id} />
+
+        {/* Project Navigation */}
+        {projectLink && (
+          <section className="py-20 bg-muted/50">
+            <div className="container mx-auto px-4">
+              <ProjectNavigation currentProjectId={projectLink} />
+            </div>
+          </section>
+        )}
       </main>
-      
+
       <Footer />
     </div>
   );
