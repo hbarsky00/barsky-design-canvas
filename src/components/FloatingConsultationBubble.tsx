@@ -6,7 +6,7 @@ import { MessageCircle } from "lucide-react";
 
 const FloatingConsultationBubble: React.FC = () => {
   const location = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Only show on homepage
@@ -16,11 +16,21 @@ const FloatingConsultationBubble: React.FC = () => {
     }
 
     const handleScroll = () => {
+      const heroSection = document.getElementById("hero");
       const contactSection = document.getElementById("contact");
-      if (contactSection) {
-        const rect = contactSection.getBoundingClientRect();
-        const isInContactSection = rect.top <= window.innerHeight && rect.bottom >= 0;
-        setIsVisible(!isInContactSection);
+      
+      if (heroSection && contactSection) {
+        const heroRect = heroSection.getBoundingClientRect();
+        const contactRect = contactSection.getBoundingClientRect();
+        
+        // Check if user has scrolled past the hero section
+        const hasScrolledPastHero = heroRect.bottom <= 0;
+        
+        // Check if user is in the contact section
+        const isInContactSection = contactRect.top <= window.innerHeight && contactRect.bottom >= 0;
+        
+        // Show button if scrolled past hero but not in contact section
+        setIsVisible(hasScrolledPastHero && !isInContactSection);
       }
     };
 
@@ -52,7 +62,7 @@ const FloatingConsultationBubble: React.FC = () => {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
-          transition={{ delay: 1, type: "spring", stiffness: 260, damping: 20 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 260, damping: 20 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToContact}
