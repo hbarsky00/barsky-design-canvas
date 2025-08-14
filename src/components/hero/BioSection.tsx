@@ -9,7 +9,18 @@ const BioSection: React.FC = () => {
   const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
 
   return (
-    <section id="bio-section" className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-muted/30 relative">
+    <section id="bio-section" className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-muted/30 relative">
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+        <SectionNavigation
+          onNavigateUp={navigateUp}
+          onNavigateDown={navigateDown}
+          canNavigateUp={canNavigateUp}
+          canNavigateDown={canNavigateDown}
+          upLabel="Back to top"
+          downLabel="View projects"
+        />
+      </div>
+
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,7 +29,7 @@ const BioSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-left"
         >
-          <div className="space-y-6 md:space-y-12 font-bold text-foreground leading-snug text-display-small [text-wrap:balance]">
+          <div className="space-y-6 md:space-y-12 font-bold text-foreground leading-snug text-display-medium [text-wrap:balance]">
             <AnimatedText
               text="Product Design Leader with Enterprise and Startup experience since 2012. FinTech, Healthcare, AdTech veteran."
               type="word"
@@ -38,17 +49,6 @@ const BioSection: React.FC = () => {
             />
           </div>
         </motion.div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <SectionNavigation
-          onNavigateUp={navigateUp}
-          onNavigateDown={navigateDown}
-          canNavigateUp={canNavigateUp}
-          canNavigateDown={canNavigateDown}
-          upLabel="Back to top"
-          downLabel="View projects"
-        />
       </div>
     </section>
   );
