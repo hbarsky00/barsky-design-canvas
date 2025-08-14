@@ -1,143 +1,114 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Edit3, Save, X } from 'lucide-react';
+import { Save, Edit3, X, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ReactQuillEditor from './ReactQuillEditor';
-import { shouldShowEditingControls } from '@/utils/devModeDetection';
+import { createSanitizedHtmlProps } from '@/utils/htmlSanitizer';
 
 interface ContentTextEditorProps {
-  content: string;
-  contentType: 'paragraph' | 'header' | 'section';
+  initialContent: string;
   onSave: (content: string) => void;
+  isEditing: boolean;
+  onEditToggle: () => void;
+  placeholder?: string;
   className?: string;
+  minHeight?: string;
 }
 
-const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
-  content,
-  contentType,
+export const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
+  initialContent,
   onSave,
-  className = ""
+  isEditing,
+  onEditToggle,
+  placeholder = "Click to edit content...",
+  className = "",
+  minHeight = "120px"
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(content);
-  const showEditingControls = shouldShowEditingControls();
+  const [content, setContent] = useState(initialContent);
+  const [isLoading, setIsLoading] = useState(false);
+  const editorRef = useRef<HTMLDivElement>(null);
 
-  const handleSave = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('ContentTextEditor: Save button clicked');
-    onSave(editedContent);
-    setIsEditing(false);
-  };
+  useEffect(() => {
+    setContent(initialContent);
+  }, [initialContent]);
 
-  const handleCancel = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('ContentTextEditor: Cancel button clicked');
-    setEditedContent(content);
-    setIsEditing(false);
-  };
-
-  const getEditorHeight = () => {
-    switch (contentType) {
-      case 'header': return 150;
-      case 'paragraph': return 200;
-      case 'section': return 300;
-      default: return 200;
+  const handleSave = async () => {
+    setIsLoading(true);
+    try {
+      await onSave(content);
+      onEditToggle();
+    } catch (error) {
+      console.error('Error saving content:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const getPlaceholder = () => {
-    switch (contentType) {
-      case 'header': return 'Edit header text...';
-      case 'paragraph': return 'Edit paragraph content...';
-      case 'section': return 'Edit section content...';
-      default: return 'Start editing...';
-    }
+  const handleCancel = () => {
+    setContent(initialContent);
+    onEditToggle();
   };
 
-  const renderContent = () => {
-    if (contentType === 'header') {
-      return (
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4 sm:mb-6">
-          {editedContent.replace(/<[^>]*>/g, '')}
-        </h2>
-      );
-    }
-    
-    if (contentType === 'paragraph') {
-      return (
-        <div 
-          className="prose text-base sm:text-lg text-gray-600 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: editedContent }}
-        />
-      );
-    }
-    
-    // section type
+  if (isEditing) {
     return (
-      <div 
-        className="prose text-gray-600 leading-relaxed max-w-none sm:prose-lg"
-        dangerouslySetInnerHTML={{ __html: editedContent }}
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className={`relative ${className}`}
+      >
+        <div
+          ref={editorRef}
+          contentEditable
+          className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          style={{ minHeight }}
+          onInput={(e) => setContent(e.currentTarget.innerHTML)}
+          {...createSanitizedHtmlProps(content)}
+          suppressContentEditableWarning={true}
+        />
+        
+        <div className="flex gap-2 mt-2">
+          <Button
+            onClick={handleSave}
+            disabled={isLoading}
+            size="sm"
+            className="bg-green-600 hover:bg-green-700"
+          >
+            <Check className="h-4 w-4 mr-1" />
+            {isLoading ? 'Saving...' : 'Save'}
+          </Button>
+          <Button
+            onClick={handleCancel}
+            disabled={isLoading}
+            variant="outline"
+            size="sm"
+          >
+            <X className="h-4 w-4 mr-1" />
+            Cancel
+          </Button>
+        </div>
+      </motion.div>
     );
-  };
+  }
 
   return (
-    <div className={`relative group ${className}`}>
-      {!isEditing ? (
-        <div className="group/content relative">
-          {renderContent()}
-          
-          {showEditingControls && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsEditing(true)}
-              className="absolute top-0 right-0 opacity-0 group-hover/content:opacity-100 transition-opacity duration-200"
-            >
-              <Edit3 className="h-4 w-4" />
-            </Button>
-          )}
-        </div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-4"
-        >
-          <ReactQuillEditor
-            initialValue={editedContent}
-            onEditorChange={setEditedContent}
-            height={getEditorHeight()}
-            placeholder={getPlaceholder()}
-          />
-          
-          <div className="flex justify-center space-x-2 relative z-10">
-            <Button
-              onClick={handleSave}
-              size="sm"
-              className="bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-2 cursor-pointer"
-              type="button"
-            >
-              <Save className="h-4 w-4 mr-2" />
-              Save
-            </Button>
-            <Button
-              onClick={handleCancel}
-              variant="outline"
-              size="sm"
-              className="cursor-pointer"
-              type="button"
-            >
-              <X className="h-4 w-4 mr-2" />
-              Cancel
-            </Button>
-          </div>
-        </motion.div>
-      )}
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={`relative group cursor-pointer ${className}`}
+      onClick={onEditToggle}
+    >
+      <div
+        className="min-h-[120px] p-4 rounded-lg border border-transparent group-hover:border-gray-300 group-hover:bg-gray-50 transition-all duration-200"
+        style={{ minHeight }}
+        {...createSanitizedHtmlProps(content || placeholder)}
+      />
+      
+      <Button
+        variant="ghost"
+        size="sm"
+        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        <Edit3 className="h-4 w-4" />
+      </Button>
+    </motion.div>
   );
 };
-
-export default ContentTextEditor;
