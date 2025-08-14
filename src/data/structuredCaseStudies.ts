@@ -156,7 +156,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "🧩 The Problem",
         icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
         variant: "problem",
-        content: "Separated parents face significant challenges in coordinating childcare responsibilities, often leading to miscommunication, scheduling conflicts, and increased tension. Traditional communication methods like text messages and emails can exacerbate these issues, especially when co-parenting relationships are already strained."
+        content: "Separated parents face significant challenges in coordinating childcare responsibilities, often leading to miscommunication, scheduling conflicts, and increased tension. Traditional communication methods like text messages and emails can exacerbate these issues, especially when co-parenting relationships are already strained.",
+        media: {
+          type: 'image',
+          src: "https://via.placeholder.com/1200x700.png?text=The+Problem+Test+Image",
+          alt: "Splittime – The Problem placeholder"
+        }
       },
       {
         id: "competitive-analysis",
