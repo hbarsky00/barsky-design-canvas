@@ -46,21 +46,21 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
         </div>
       </div>
 
+      <div className="prose prose-lg text-gray-700 max-w-none">
+        <p className="mb-6">{businessImpact}</p>
+      </div>
+
       {wireframingImage && (
         <div className="mb-8">
           <MaximizableImage
             src={wireframingImage}
-            alt="Wireframing concepts and design process"
+            alt="Splittime Wireframing Concepts"
             caption="Wireframes established core structure and user flows early."
             className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
             projectId="splittime"
           />
         </div>
       )}
-
-      <div className="prose prose-lg text-gray-700 max-w-none">
-        <p className="mb-6">{businessImpact}</p>
-      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-gray-50 rounded-lg p-6">
