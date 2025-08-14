@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -29,6 +30,7 @@ function App() {
       <HelmetProvider>
         <ImageMaximizerProvider>
           <Router>
+            <ScrollToTop />
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
