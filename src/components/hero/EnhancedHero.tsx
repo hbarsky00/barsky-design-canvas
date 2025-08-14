@@ -6,7 +6,6 @@ import HeroHeading from "./HeroHeading";
 import HeroDescription from "./HeroDescription";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
-import HeroLogo from "./HeroLogo";
 import AnimatedBackground from "./AnimatedBackground";
 
 const EnhancedHero: React.FC = () => {
@@ -53,11 +52,6 @@ const EnhancedHero: React.FC = () => {
           className="text-center"
           style={{ y: prefersReducedMotion ? 0 : contentY }}
         >
-          {/* Logo with enhanced spacing */}
-          <div className="mb-8 lg:mb-12">
-            <HeroLogo isVisible={isVisible} />
-          </div>
-
           {/* Main content with generous spacing */}
           <div className="space-y-6 lg:space-y-10">
             <HeroHeading isVisible={isVisible} />
