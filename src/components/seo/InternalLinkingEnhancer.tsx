@@ -1,8 +1,11 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import SectionHeader from "@/components/shared/SectionHeader";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 interface BreadcrumbItem {
   label: string;
@@ -27,6 +30,8 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
   breadcrumbs = [], 
   showRelatedLinks = true 
 }) => {
+  const { navigateUp, canNavigateUp } = useHomepageKeyboardNavigation();
+
   // Comprehensive internal linking strategy
   const allInternalLinks: Record<string, InternalLink[]> = {
     home: [
@@ -70,40 +75,40 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
   const contextualLinks = allInternalLinks[currentPage] || [];
 
   return (
-    <div className="space-y-8">
-      {/* Breadcrumbs for better navigation hierarchy */}
-      {breadcrumbs.length > 0 && (
-        <nav aria-label="Breadcrumb" className="mb-8">
-          <ol className="flex items-center space-x-2 text-sm">
-            <li>
-              <Link 
-                to="/" 
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Home
-              </Link>
-            </li>
-            {breadcrumbs.map((item, index) => (
-              <li key={index} className="flex items-center space-x-2">
-                <ChevronRight className="w-4 h-4 text-muted-foreground" />
-                {index === breadcrumbs.length - 1 ? (
-                  <span className="text-foreground font-medium">{item.label}</span>
-                ) : (
-                  <Link 
-                    to={item.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                )}
+    <section id="internal-linking" className="min-h-screen flex flex-col justify-center relative">
+      <div className="space-y-8 py-16">
+        {/* Breadcrumbs for better navigation hierarchy */}
+        {breadcrumbs.length > 0 && (
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex items-center space-x-2 text-sm">
+              <li>
+                <Link 
+                  to="/" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Home
+                </Link>
               </li>
-            ))}
-          </ol>
-        </nav>
-      )}
+              {breadcrumbs.map((item, index) => (
+                <li key={index} className="flex items-center space-x-2">
+                  <ChevronRight className="w-4 h-4 text-muted-foreground" />
+                  {index === breadcrumbs.length - 1 ? (
+                    <span className="text-foreground font-medium">{item.label}</span>
+                  ) : (
+                    <Link 
+                      to={item.href}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
 
-      {showRelatedLinks && contextualLinks.length > 0 && (
-        <section className="py-8 sm:py-12 bg-transparent">
+        {showRelatedLinks && contextualLinks.length > 0 && (
           <div className="container px-4 mx-auto max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -148,9 +153,19 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
               </div>
             </motion.div>
           </div>
-        </section>
-      )}
-    </div>
+        )}
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <SectionNavigation
+          onNavigateUp={navigateUp}
+          canNavigateUp={canNavigateUp}
+          canNavigateDown={false}
+          upLabel="FAQ section"
+          downLabel=""
+        />
+      </div>
+    </section>
   );
 };
 

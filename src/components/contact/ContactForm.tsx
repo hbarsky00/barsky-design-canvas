@@ -1,7 +1,11 @@
+
 import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import SectionHeader from "@/components/shared/SectionHeader";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 import { 
   Form,
   FormControl, 
@@ -37,6 +41,7 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 const ContactForm: React.FC = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
   
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -79,94 +84,116 @@ const ContactForm: React.FC = () => {
   };
   
   return (
-    <div id="contact-form">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Name</FormLabel>
-                <FormControl>
-                  <Input 
-                    placeholder="Your name" 
-                    {...field} 
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Email</FormLabel>
-                <FormControl>
-                  <Input 
-                    placeholder="your@email.com" 
-                    type="email" 
-                    {...field} 
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-          <FormField
-            control={form.control}
-            name="subject"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Subject</FormLabel>
-                <FormControl>
-                  <Input 
-                    placeholder="Subject of your message" 
-                    {...field} 
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem className="mb-6">
-                <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Message</FormLabel>
-                <FormControl>
-                  <Textarea 
-                    placeholder="Your message..." 
-                    rows={5}
-                    {...field}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-          <Button 
-            type="submit" 
-            size="lg"
-            className="w-full flex items-center justify-center gap-2"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
-          </Button>
-        </form>
-      </Form>
-    </div>
+    <section id="contact" className="min-h-screen flex flex-col justify-center py-16 bg-muted/30 relative">
+      <div className="container px-4 mx-auto max-w-4xl">
+        <SectionHeader
+          as="h2"
+          title="Get In Touch"
+          subtitle="Ready to start your project? Let's discuss your needs and create something amazing together."
+          className="mb-12"
+        />
+
+        <div className="max-w-2xl mx-auto">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Name</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="Your name" 
+                        {...field} 
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Email</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="your@email.com" 
+                        type="email" 
+                        {...field} 
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="subject"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Subject</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="Subject of your message" 
+                        {...field} 
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem className="mb-6">
+                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Message</FormLabel>
+                    <FormControl>
+                      <Textarea 
+                        placeholder="Your message..." 
+                        rows={5}
+                        {...field}
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <Button 
+                type="submit" 
+                size="lg"
+                className="w-full flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
+              </Button>
+            </form>
+          </Form>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <SectionNavigation
+          onNavigateUp={navigateUp}
+          onNavigateDown={navigateDown}
+          canNavigateUp={canNavigateUp}
+          canNavigateDown={canNavigateDown}
+          upLabel="Projects"
+          downLabel="Blog preview"
+        />
+      </div>
+    </section>
   );
 };
 

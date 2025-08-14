@@ -2,6 +2,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/shared/SectionHeader";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+
 interface FaqItem {
   question: string;
   answer: string;
@@ -19,8 +22,10 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
   faqs,
   className = ""
 }) => {
+  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
+
   return (
-    <section className={`py-16 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 ${className}`}>
+    <section id="faq-section" className={`min-h-screen flex flex-col justify-center py-16 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 relative ${className}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,6 +73,17 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
               )}
             </motion.div>
           ))}
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          <SectionNavigation
+            onNavigateUp={navigateUp}
+            onNavigateDown={navigateDown}
+            canNavigateUp={canNavigateUp}
+            canNavigateDown={canNavigateDown}
+            upLabel="Blog preview"
+            downLabel="Explore more"
+          />
         </div>
 
         {/* Structured Data for FAQ */}
