@@ -1,98 +1,83 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
-import { Linkedin, Github } from "lucide-react";
+import { Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-  return <footer className="bg-neutral-900 text-neutral-50 py-12" role="contentinfo" aria-label="Site footer">
-      <div className="section-container">
-        <div className="grid md:grid-cols-3 gap-10">
-          <div>
-            <h3 className="font-bold mb-6 text-neutral-50 text-xl">
-              Hiram <span className="text-blue-vibrant">Barsky</span>
-            </h3>
-            <p className="mb-6 leading-relaxed text-slate-50">
-              Product Designer & Gen AI Developer creating intelligent, user-centered digital experiences.
+  const openCalendly = () => {
+    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+  };
+
+  return (
+    <footer className="bg-muted/50 border-t border-border">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+            <h3 className="font-bold text-xl text-foreground mb-4">Barsky Design</h3>
+            <p className="text-muted-foreground mb-4">
+              Product Designer & Gen AI Developer creating intuitive digital experiences.
             </p>
-            <p className="nuclear-white text-sm text-slate-50">
-              &copy; {currentYear} Hiram Barsky. All rights reserved.
-            </p>
+            <Button onClick={openCalendly} size="sm">
+              <Calendar className="h-4 w-4 mr-2" />
+              Book a Consultation
+            </Button>
           </div>
           
-          <nav aria-label="Footer navigation">
-            <h4 className="text-lg font-semibold mb-6 text-neutral-50">Navigation</h4>
-            <ul className="space-y-3" role="list">
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Navigation</h4>
+            <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/projects" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                <Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
+                <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">
                   Services
                 </Link>
               </li>
-              <li>
-                <Link to="/blog" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
-                  Contact
-                </Link>
-              </li>
             </ul>
-          </nav>
+          </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-neutral-50">Contact</h4>
-            <ul className="space-y-3" role="list">
-              <li className="flex items-center gap-2">
-                <span className="text-blue-vibrant font-medium" aria-label="Email address">Email:</span>
-                <a href="mailto:hbarsky01@gmail.com" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
-                  hbarsky01@gmail.com
+            <h4 className="font-semibold text-foreground mb-4">Connect</h4>
+            <ul className="space-y-2">
+              <li>
+                <a 
+                  href="https://linkedin.com/in/hirambarsky" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  LinkedIn
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-blue-vibrant font-medium" aria-label="Phone number">Phone:</span>
-                <a href="tel:2016684754" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900 rounded">
-                  (201) 668-4754
+              <li>
+                <a 
+                  href="mailto:contact@barskydesign.pro"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Email
                 </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-blue-vibrant font-medium" aria-label="Location">Location:</span>
-                <span className="text-neutral-50">New York, NY</span>
               </li>
             </ul>
-            
-            <div className="mt-6">
-              <h4 className="text-lg font-semibold mb-4 text-neutral-50">Connect</h4>
-              <div className="flex space-x-4" role="list">
-                <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900" aria-label="Connect on LinkedIn (opens in new tab)">
-                  <Linkedin size={24} strokeWidth={2.5} />
-                </a>
-                <a href="https://github.com/hbarsky00" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-vibrant focus:ring-offset-2 focus:ring-offset-neutral-900" aria-label="View GitHub profile (opens in new tab)">
-                  <Github size={24} strokeWidth={2.5} />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
         
-        <div className="border-t border-neutral-700 mt-12 pt-8 text-center text-neutral-200 text-sm">
-          <p>Engineered with precision and passion</p>
+        <div className="border-t border-border mt-8 pt-8 text-center">
+          <p className="text-muted-foreground text-sm">
+            © 2024 Barsky Design. All rights reserved.
+          </p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

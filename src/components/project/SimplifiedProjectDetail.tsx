@@ -44,20 +44,20 @@ const SimplifiedProjectDetail: React.FC = () => {
         fallbackImage={project.image}
       />
       
-      {/* SEO data attributes for auto-detection */}
-      <div 
-        data-page-title={`${project.title} - Product Design Case Study`}
-        data-page-description={project.description}
-        data-page-image={project.image}
-        style={{ display: 'none' }}
-      />
-      
       <Navigation />
       
       <main className="pt-20">
         {/* Project Header */}
         <section data-hero className="py-20 bg-gradient-to-br from-background to-muted/50">
-          <ProjectHeader project={project} details={details} />
+          <ProjectHeader 
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            tags={project.tags}
+            imageCaptions={{}}
+            imageList={[project.image]}
+            currentIndex={0}
+          />
         </section>
 
         {/* Project Content */}
