@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import AnimatedText from "@/components/AnimatedText";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 const BioSection: React.FC = () => {
@@ -10,15 +9,6 @@ const BioSection: React.FC = () => {
 
   return (
     <section id="bio-section" className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-muted/30 relative">
-      {/* Back to top navigation - positioned above the paragraphs */}
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
-        <SectionNavigation
-          onNavigateUp={navigateUp}
-          canNavigateUp={canNavigateUp}
-          upLabel="Back to top"
-        />
-      </div>
-
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,15 +37,6 @@ const BioSection: React.FC = () => {
             />
           </div>
         </motion.div>
-      </div>
-
-      {/* View projects navigation - positioned at the bottom */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <SectionNavigation
-          onNavigateDown={navigateDown}
-          canNavigateDown={canNavigateDown}
-          downLabel="View projects"
-        />
       </div>
     </section>
   );
