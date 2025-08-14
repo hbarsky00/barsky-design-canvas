@@ -125,78 +125,58 @@ export const useHomepageKeyboardNavigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [sections, isTransitioning]);
 
-  // Enhanced keyboard event handling with mobile support
+  // Enhanced keyboard event handling with better mobile support and aggressive capturing
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // Only handle if not typing in an input/textarea
-      if (event.target instanceof HTMLInputElement || 
-          event.target instanceof HTMLTextAreaElement ||
-          event.target instanceof HTMLSelectElement) {
+      // Check if we're typing in form elements
+      const target = event.target as HTMLElement;
+      if (target && (
+        target instanceof HTMLInputElement || 
+        target instanceof HTMLTextAreaElement ||
+        target instanceof HTMLSelectElement ||
+        target.isContentEditable
+      )) {
         return;
       }
 
-      // Enhanced mobile keyboard detection
-      const isMobileKeyboard = isMobile && isTouchDevice();
+      // Handle arrow key navigation with aggressive event capturing
+      const isArrowKey = ['ArrowUp', 'ArrowDown', 'Up', 'Down'].includes(event.key);
+      const isWASDKey = ['w', 'W', 's', 'S'].includes(event.key);
       
-      switch (event.key) {
-        case 'ArrowUp':
-        case 'Up': // Fallback for older browsers
-          event.preventDefault();
-          event.stopPropagation();
-          navigateUp();
-          break;
-        case 'ArrowDown':
-        case 'Down': // Fallback for older browsers
-          event.preventDefault();
-          event.stopPropagation();
-          navigateDown();
-          break;
-        // Additional mobile-friendly keys
-        case 'w':
-        case 'W':
-          if (!isMobileKeyboard) {
-            event.preventDefault();
-            navigateUp();
-          }
-          break;
-        case 's':
-        case 'S':
-          if (!isMobileKeyboard) {
-            event.preventDefault();
-            navigateDown();
-          }
-          break;
-      }
-    };
-
-    // Use both keydown and keyup for better mobile support
-    const handleKeyUp = (event: KeyboardEvent) => {
-      if (isMobile && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+      if (isArrowKey) {
+        // Always prevent default for arrow keys to avoid conflicts
         event.preventDefault();
         event.stopPropagation();
+        event.stopImmediatePropagation();
+        
+        if (event.key === 'ArrowUp' || event.key === 'Up') {
+          navigateUp();
+        } else if (event.key === 'ArrowDown' || event.key === 'Down') {
+          navigateDown();
+        }
+      } else if (isWASDKey && !isMobile) {
+        // WASD keys for desktop only
+        event.preventDefault();
+        event.stopPropagation();
+        
+        if (event.key === 'w' || event.key === 'W') {
+          navigateUp();
+        } else if (event.key === 's' || event.key === 'S') {
+          navigateDown();
+        }
       }
     };
 
-    // Enhanced event listeners with better mobile support
+    // Use capture phase with highest priority to intercept events before they reach cards
     document.addEventListener('keydown', handleKeyDown, { 
       passive: false,
       capture: true 
     });
-    
-    if (isMobile) {
-      document.addEventListener('keyup', handleKeyUp, { 
-        passive: false,
-        capture: true 
-      });
-    }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown, true);
-      if (isMobile) {
-        document.removeEventListener('keyup', handleKeyUp, true);
-      }
     };
-  }, [navigateUp, navigateDown, isMobile, isTouchDevice]);
+  }, [navigateUp, navigateDown, isMobile]);
 
   // Add touch/swipe gesture support for mobile
   useEffect(() => {

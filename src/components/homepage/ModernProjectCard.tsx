@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Hash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+
 interface ModernProjectCardProps {
   title: string;
   description: string;
@@ -13,6 +14,7 @@ interface ModernProjectCardProps {
   url: string;
   className?: string;
 }
+
 const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   title,
   description,
@@ -112,6 +114,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
     document.body.appendChild(v);
     return () => cleanup();
   }, [inView, isDirectVideo, video, videoSrcLoaded, hasTriedCapture, capturedThumb]);
+
   // 3D scroll transforms
   const prefersReducedMotion = useReducedMotion();
   const {
@@ -125,22 +128,9 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   const scaleTransform = useTransform(scrollYProgress, [0, 0.5, 1], [0.985, 1, 0.985]);
   const mediaY = useTransform(scrollYProgress, [0, 1], [-8, 8]);
   const mediaScale = useTransform(scrollYProgress, [0, 1], [1.03, 1.0]);
-  return <motion.div initial={{
-    opacity: 0,
-    y: 30
-  }} whileInView={{
-    opacity: 1,
-    y: 0
-  }} viewport={{
-    once: true
-  }} transition={{
-    duration: 0.6
-  }} className={`${className} will-change-transform`} ref={containerRef} style={prefersReducedMotion ? undefined : {
-    rotateX,
-    y: yTransform,
-    scale: scaleTransform,
-    transformPerspective: 1000
-  }} onHoverStart={() => {
+
+  // Enhanced event handlers that don't interfere with navigation
+  const handleMouseEnter = () => {
     setIsHovered(true);
     if (isDirectVideo) {
       if (!videoSrcLoaded) setVideoSrcLoaded(video as string);
@@ -150,14 +140,65 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         } catch {}
       }, 0);
     }
-  }} onHoverEnd={() => {
+  };
+
+  const handleMouseLeave = () => {
     setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
-  }}>
-      <Link to={url} aria-label={`${title} case study`} className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl">
+  };
+
+  // Keyboard event handler that allows navigation to pass through
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    // Allow arrow keys to pass through for navigation
+    if (['ArrowUp', 'ArrowDown', 'Up', 'Down'].includes(event.key)) {
+      // Don't prevent default or stop propagation for arrow keys
+      return;
+    }
+    
+    // Handle Enter key for card activation
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      // Navigate to the URL programmatically
+      window.location.href = url;
+    }
+  };
+
+  return (
+    <motion.div 
+      initial={{
+        opacity: 0,
+        y: 30
+      }} 
+      whileInView={{
+        opacity: 1,
+        y: 0
+      }} 
+      viewport={{
+        once: true
+      }} 
+      transition={{
+        duration: 0.6
+      }} 
+      className={`${className} will-change-transform`} 
+      ref={containerRef} 
+      style={prefersReducedMotion ? undefined : {
+        rotateX,
+        y: yTransform,
+        scale: scaleTransform,
+        transformPerspective: 1000
+      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Link 
+        to={url} 
+        aria-label={`${title} case study`} 
+        className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
+        onKeyDown={handleKeyDown}
+      >
         <Card className="overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-200/80 hover:shadow-xl hover:shadow-gray-200/20 transition-all duration-300 group cursor-pointer">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
@@ -209,10 +250,12 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
           <div className="p-6 space-y-4">
             {/* Tags */}
             <div className="hidden sm:flex flex-wrap gap-2">
-              {tags.map(tag => <Badge key={tag} variant="secondary" className="text-body-small gap-1">
+              {tags.map(tag => 
+                <Badge key={tag} variant="secondary" className="text-body-small gap-1">
                   <Hash className="h-3 w-3" />
                   {tag}
-                </Badge>)}
+                </Badge>
+              )}
             </div>
 
             {/* Title - Made Much Bolder and More Prominent */}
@@ -233,6 +276,8 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
           </div>
         </Card>
       </Link>
-    </motion.div>;
+    </motion.div>
+  );
 };
+
 export default ModernProjectCard;
