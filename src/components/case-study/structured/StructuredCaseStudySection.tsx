@@ -93,7 +93,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg}`}>
-            <Icon className={`h-6 w-6 ${styles.iconColor}`} />
+            <Icon className={`h-8 w-8 md:h-9 md:w-9 lg:h-10 lg:w-10 ${styles.iconColor}`} />
           </div>
           <div className="flex-1">
             <h2 className={`text-headline-large font-bold mb-4 ${styles.titleColor}`}>
