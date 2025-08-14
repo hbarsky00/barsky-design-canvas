@@ -57,7 +57,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
         variant: "problem",
         content:
-          "Key gaps:\n- No way to verify herbalist credibility\n- No symptom tracking tied to outcomes\n- No personalized recommendations or guided onboarding"
+          "The booking interface directly addresses three critical gaps in the herbal wellness market:\n\n• **No way to verify herbalist credibility** - Our platform displays verified credentials, specializations, and expert backgrounds upfront\n• **No symptom tracking tied to outcomes** - Structured consultation types (Initial, Follow-up, Quick Check-in) create clear treatment pathways\n• **No personalized recommendations or guided onboarding** - Health focus areas guide users to the right herbalist match and consultation type",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/c871430a-1e49-4ac9-bd16-08797ea94e50.png",
+          alt: "HerbaLink consultation booking interface showing herbalist verification and guided selection process",
+          caption: "Consultation booking interface addressing key gaps with verified herbalists, structured consultation types, and personalized health focus areas."
+        }
       },
       {
         id: "quantified-impact",
@@ -83,7 +89,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         media: {
           type: 'image',
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
-          alt: "HerbaLink practitioner demo screen illustrating what didn’t work"
+          alt: "HerbaLink practitioner demo screen illustrating what didn't work"
         }
       },
       {
@@ -273,7 +279,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "📈 Quantified Impact",
         icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
         variant: "impact",
-        content: "We launched a new platform in 60 days. Here’s what changed:",
+        content: "We launched a new platform in 60 days. Here's what changed:",
         metrics: [
           { value: "85%", label: "Fewer manual entry errors", trend: "up" },
           { value: "40%", label: "Faster deal processing times", trend: "up" },
@@ -289,7 +295,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         id: "what-didnt-work",
-        title: "❌ What Didn’t Work (and What We Fixed)",
+        title: "❌ What Didn't Work (and What We Fixed)",
         icon: React.createElement(X, { className: "h-6 w-6" }),
         variant: "failed",
         content:
@@ -321,7 +327,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
         variant: "solution",
         content:
-          "My goal wasn’t just usability — it was trust and control.\n\n- Search that acts like Bloomberg: AI-powered, category-based predictive search with real-time filtering and smart defaults.\n- Dynamic loan order book: Add/edit/remove limits in real time, instant totals, live comments, and full change tracking.\n- Collaboration as a native experience: Comment, assign, and build loan orders together in one place.\n- Compliance built into the UX: Validation rules, audit trails, and guardrails make compliance seamless.",
+          "My goal wasn't just usability — it was trust and control.\n\n- Search that acts like Bloomberg: AI-powered, category-based predictive search with real-time filtering and smart defaults.\n- Dynamic loan order book: Add/edit/remove limits in real time, instant totals, live comments, and full change tracking.\n- Collaboration as a native experience: Comment, assign, and build loan orders together in one place.\n- Compliance built into the UX: Validation rules, audit trails, and guardrails make compliance seamless.",
         media: {
           type: 'image',
           src: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
@@ -353,7 +359,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         id: "whats-next",
-        title: "🚀 What’s Next",
+        title: "🚀 What's Next",
         icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
         variant: "solution",
         content:
@@ -379,7 +385,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
         variant: "impact",
         content:
-          "This wasn’t about making a prettier interface. It was about building a smarter, more scalable system that helped the business grow — and gave users clarity, speed, and confidence.\n\n\"I don’t have to double-check every number now. I just trust it.\"",
+          "This wasn't about making a prettier interface. It was about building a smarter, more scalable system that helped the business grow — and gave users clarity, speed, and confidence.\n\n\"I don't have to double-check every number now. I just trust it.\"",
         media: {
           type: 'image',
           src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
@@ -445,7 +451,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "❌ What Didn't Work",
         icon: React.createElement(X, { className: "h-6 w-6" }),
         variant: "failed",
-        content: "Pretty dashboards on top of Excel didn’t fix duplicated data and reconciliation bottlenecks.",
+        content: "Pretty dashboards on top of Excel didn't fix duplicated data and reconciliation bottlenecks.",
         media: {
           type: 'image',
           src: "/placeholder.svg",
