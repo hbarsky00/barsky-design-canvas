@@ -1,23 +1,24 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { LucideIcon } from "lucide-react";
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { EditableImage } from "./EditableImage";
+import MaximizableImage from "@/components/project/MaximizableImage";
 import { EditableVideo } from "./EditableVideo";
-import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 
 export interface StructuredCaseStudySectionProps {
   id: string;
   title: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
+  variant: "problem" | "solution" | "impact" | "failed";
   content: string;
   media?: {
-    type: 'image' | 'video' | 'comparison';
+    type: "image" | "video";
     src: string;
     alt: string;
     caption?: string;
-    beforeSrc?: string; // For comparison type
     videoOptions?: {
       autoplay?: boolean;
       loop?: boolean;
@@ -29,154 +30,156 @@ export interface StructuredCaseStudySectionProps {
   metrics?: Array<{
     value: string;
     label: string;
-    trend?: 'up' | 'down' | 'neutral';
+    trend: "up" | "down" | "neutral";
   }>;
   tags?: string[];
-  variant?: 'problem' | 'impact' | 'failed' | 'solution';
-  className?: string;
 }
 
 const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   id,
   title,
-  icon,
+  icon: Icon,
+  variant,
   content,
   media,
   metrics,
   tags,
-  variant = 'problem',
-  className = ""
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const { containerStyle, childStyle } = useScroll3DTilt(containerRef, { maxTilt: 3, yDistance: 12, childParallax: 8 });
+  const getVariantStyles = (variant: string) => {
+    switch (variant) {
+      case "problem":
+        return {
+          cardClass: "border-red-200 bg-red-50/50",
+          iconBg: "bg-red-100",
+          iconColor: "text-red-600",
+          titleColor: "text-red-900"
+        };
+      case "solution":
+        return {
+          cardClass: "border-blue-200 bg-blue-50/50",
+          iconBg: "bg-blue-100",
+          iconColor: "text-blue-600",
+          titleColor: "text-blue-900"
+        };
+      case "impact":
+        return {
+          cardClass: "border-green-200 bg-green-50/50",
+          iconBg: "bg-green-100",
+          iconColor: "text-green-600",
+          titleColor: "text-green-900"
+        };
+      case "failed":
+        return {
+          cardClass: "border-amber-200 bg-amber-50/50",
+          iconBg: "bg-amber-100",
+          iconColor: "text-amber-600",
+          titleColor: "text-amber-900"
+        };
+      default:
+        return {
+          cardClass: "border-border bg-card",
+          iconBg: "bg-primary/10",
+          iconColor: "text-primary",
+          titleColor: "text-on-surface"
+        };
+    }
+  };
+
+  const styles = getVariantStyles(variant);
 
   return (
-    <motion.section 
-      id={id} 
-      initial={{
-        opacity: 0,
-        y: 30
-      }} 
-      whileInView={{
-        opacity: 1,
-        y: 0
-      }} 
-      viewport={{
-        once: true
-      }} 
-      transition={{
-        duration: 0.6
-      }} 
-      className={`mb-16 scroll-mt-4 md:[scroll-margin-top:calc(var(--header-height,64px)+16px)] ${className}`}
-    >
-      <motion.div ref={containerRef} style={{ ...containerStyle, transformStyle: "preserve-3d", willChange: "transform" }}>
-        <Card className="relative overflow-hidden p-8 lg:p-12 bg-card border border-border shadow-elevated transition-all duration-300 hover:shadow-md">
-          {/* Section Header */}
-          <div className="flex items-center justify-start lg:justify-center gap-4 mb-8 text-left lg:text-center">
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 text-primary">
-                {icon}
-              </div>
-              <h2 className="text-display-small font-bold text-foreground text-left lg:text-center">
-                {title}
-              </h2>
-            </div>
+    <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+      <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
+        {/* Header */}
+        <div className="flex items-start gap-4 mb-8">
+          <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg}`}>
+            <Icon className={`h-6 w-6 ${styles.iconColor}`} />
           </div>
+          <div className="flex-1">
+            <h2 className={`text-headline-large font-bold mb-4 ${styles.titleColor}`}>
+              {title}
+            </h2>
+          </div>
+        </div>
 
-          <div className="space-y-8">
-            {/* Media first - full width */}
-            {media && (
-              <div className="space-y-4">
-                {media.type === 'video' ? (
-                  <motion.div style={childStyle}>
-                    <EditableVideo 
-                      src={media.src} 
-                      alt={media.alt} 
-                      caption={media.caption} 
-                      className="w-full rounded-xl overflow-hidden shadow-elevated" 
-                      videoOptions={media.videoOptions}
-                    />
-                  </motion.div>
-                ) : media.type === 'comparison' ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <motion.div style={childStyle}>
-                        <EditableImage 
-                          src={media.beforeSrc || ''} 
-                          alt={`Before: ${media.alt}`} 
-                          caption="Before" 
-                          className="w-full rounded-lg overflow-hidden shadow-elevated" 
-                        />
-                      </motion.div>
-                    </div>
-                    <div className="space-y-2">
-                      <motion.div style={childStyle}>
-                        <EditableImage 
-                          src={media.src} 
-                          alt={`After: ${media.alt}`} 
-                          caption="After" 
-                          className="w-full rounded-lg overflow-hidden shadow-elevated" 
-                        />
-                      </motion.div>
-                    </div>
-                  </div>
-                ) : (
-                  <motion.div style={childStyle}>
-                    <EditableImage 
-                      src={media.src} 
-                      alt={media.alt} 
-                      caption={media.caption} 
-                      className="w-full rounded-xl overflow-hidden shadow-elevated" 
-                    />
-                  </motion.div>
-                )}
-              </div>
-            )}
-
-            {/* Text Content */}
-            <div className="space-y-6">
-              <p className="text-body-large text-muted-foreground leading-relaxed whitespace-pre-line">
-                {content}
+        {/* Content */}
+        <div className="space-y-8">
+          {/* Main content */}
+          <div className="prose prose-lg max-w-none text-on-surface-variant">
+            {content.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-4 last:mb-0">
+                {paragraph.split('\n').map((line, lineIndex) => (
+                  <React.Fragment key={lineIndex}>
+                    {line.includes('**') ? (
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: line
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+                        }}
+                      />
+                    ) : (
+                      line
+                    )}
+                    {lineIndex < paragraph.split('\n').length - 1 && <br />}
+                  </React.Fragment>
+                ))}
               </p>
+            ))}
+          </div>
 
-              {/* Metrics Display */}
-              {metrics && metrics.length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {metrics.map((metric, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="bg-surface-container rounded-xl p-4 text-center"
-                    >
-                      <div className="text-title-large font-bold text-primary mb-1">
-                        {metric.value}
-                      </div>
-                      <div className="text-body-small text-on-surface-variant">
-                        {metric.label}
-                      </div>
-                    </motion.div>
-                  ))}
+          {/* Metrics */}
+          {metrics && metrics.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {metrics.map((metric, index) => (
+                <div key={index} className="text-center p-4 bg-card rounded-lg border border-border">
+                  <div className="text-display-small font-bold text-on-surface mb-2">
+                    {metric.value}
+                  </div>
+                  <div className="text-body-small text-on-surface-variant">
+                    {metric.label}
+                  </div>
                 </div>
-              )}
+              ))}
+            </div>
+          )}
 
-              {/* Tags */}
-              {tags && tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-body-small">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
+          {/* Media */}
+          {media && (
+            <div className="space-y-4">
+              {media.type === "image" ? (
+                <MaximizableImage
+                  src={media.src}
+                  alt={media.alt}
+                  caption={media.caption}
+                  className="w-full rounded-lg shadow-lg"
+                  projectId="case-study"
+                />
+              ) : (
+                <EditableVideo
+                  src={media.src}
+                  alt={media.alt}
+                  caption={media.caption}
+                  className="w-full rounded-lg shadow-lg"
+                  videoOptions={media.videoOptions}
+                />
               )}
             </div>
-          </div>
-        </Card>
-      </motion.div>
-    </motion.section>
+          )}
+
+          {/* Tags */}
+          {tags && tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <Badge key={tag} variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
+        </div>
+      </Card>
+    </section>
   );
 };
 
