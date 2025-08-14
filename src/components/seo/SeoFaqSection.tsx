@@ -26,6 +26,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
 
   return (
     <section id="faq-section" className={`min-h-screen flex flex-col justify-center py-16 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 relative ${className}`}>
+      <div className="container px-4 mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +41,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
           />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="space-y-6">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -74,38 +75,39 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
             </motion.div>
           ))}
         </div>
+      </div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <SectionNavigation
-            onNavigateUp={navigateUp}
-            onNavigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            upLabel="Blog preview"
-            downLabel="Explore more"
-          />
-        </div>
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <SectionNavigation
+          onNavigateUp={navigateUp}
+          onNavigateDown={navigateDown}
+          canNavigateUp={canNavigateUp}
+          canNavigateDown={canNavigateDown}
+          upLabel="Blog preview"
+          downLabel="Explore more"
+        />
+      </div>
 
-        {/* Structured Data for FAQ */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                ${faqs.map(faq => `
-                {
-                  "@type": "Question",
-                  "name": "${faq.question}",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "${faq.answer.replace(/"/g, '\\"')}"
-                  }
-                }`).join(',')}
-              ]
-            }
-          `}
-        </script>
+      {/* Structured Data for FAQ */}
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ${faqs.map(faq => `
+              {
+                "@type": "Question",
+                "name": "${faq.question}",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "${faq.answer.replace(/"/g, '\\"')}"
+                }
+              }`).join(',')}
+            ]
+          }
+        `}
+      </script>
     </section>
   );
 };
