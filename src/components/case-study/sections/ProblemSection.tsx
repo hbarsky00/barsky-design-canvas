@@ -51,8 +51,9 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
           <MaximizableImage
             src={wireframingImage}
             alt="Wireframing concepts and design process"
-            caption="Wireframing concepts and design process"
+            caption="Early wireframing concepts showing the design process for co-parenting communication tools"
             className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
+            projectId="splittime"
           />
         </div>
       )}
