@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertCircle, TrendingUp, X, Lightbulb } from "lucide-react";
+import { AlertCircle, TrendingUp, X, Lightbulb, Settings, Truck, Package, Users, BarChart3, CheckCircle } from "lucide-react";
 import { StructuredCaseStudySectionProps } from "@/components/case-study/structured/StructuredCaseStudySection";
 
 export interface StructuredCaseStudyData {
@@ -459,6 +459,90 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       results: ["95% less manual work", "500% faster processing", "99.7% accuracy"],
       technologies: ["React", "Automation", "AI"],
       path: "/project/wholesale-distribution"
+    }
+  },
+  "business-management": {
+    id: "business-management",
+    title: "68% Fewer Errors: Streamlining Enterprise Operations",
+    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
+    tags: ["Enterprise", "Operations", "WebApp", "Mobile"],
+    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
+    heroVideo: {
+      src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
+      poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/businessmanagement.png?fit=768%2C576&ssl=1",
+      alt: "Business management system overview"
+    },
+    sections: [
+      {
+        id: "problem",
+        title: "🧩 Problem",
+        icon: React.createElement(AlertCircle, { className: "h-6 w-6" }),
+        variant: "problem",
+        content: "The client operates a wholesale food distribution business, manufacturing some products in-house while sourcing others from suppliers. They struggled with Intuit's billing complexities, inaccurate payment collection for B2B customers, and unreliable QuickBooks integration with minimal customer support.\n\nKey Pain Points:\n\n• Billing inaccuracies and frequent wholesale order total errors\n• QuickBooks sync failures with no reliable technical support\n• Overly complex interface for daily wholesale operations\n• Poor mobile experience for managing deliveries on-the-go\n• Difficulty tracking products from multiple sources\n• Complex wholesale pricing structures and credit terms"
+      },
+      {
+        id: "impact-snapshot",
+        title: "📊 Impact Snapshot",
+        icon: React.createElement(TrendingUp, { className: "h-6 w-6" }),
+        variant: "impact",
+        content: "Comprehensive system transformation delivered immediate results across all business operations.",
+        metrics: [
+          { value: "−50%", label: "billing errors", trend: "down" },
+          { value: "+35%", label: "processing speed", trend: "up" },
+          { value: "90%", label: "satisfaction", trend: "up" },
+          { value: "0", label: "training hours", trend: "neutral" },
+          { value: "100%", label: "uptime", trend: "up" }
+        ]
+      },
+      {
+        id: "process-flow",
+        title: "🔄 Process Flow",
+        icon: React.createElement(BarChart3, { className: "h-6 w-6" }),
+        variant: "solution",
+        content: "Mobile-first wholesale flow from order to reconciliation:",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/quickflow_process_flow.svg",
+          alt: "Mobile-first wholesale flow from order to reconciliation",
+          caption: "Mobile-first wholesale flow from order to reconciliation."
+        }
+      },
+      {
+        id: "solution-key-features",
+        title: "🎯 Solution / Key Features",
+        icon: React.createElement(Settings, { className: "h-6 w-6" }),
+        variant: "solution",
+        content: "**Driver Management**\nProblem Solved: Real-time driver visibility and workload balance.\n\n• Live status tracking (Online/Offline)\n• Average response time monitoring (12m)\n• Driver assignment and workload distribution\n• Quick action buttons for common tasks\n\n**Delivery Interface**\nProblem Solved: Streamlined wholesale order fulfillment.\n\n• Clear order details and delivery instructions\n• One-tap navigation and calling for business locations\n• Simple \"Start Delivery\" workflow for bulk orders\n\n**Order Management**\nProblem Solved: Accurate wholesale billing and order tracking.\n\n• Full order lifecycle visibility\n• Revenue tracking and pending/delivered status\n• Automated billing for B2B pricing tiers\n\n**Customer Management**\nProblem Solved: Efficient B2B relationship and credit management.\n\n• Customer profiles with active credit accounts\n• Business type categorization\n• Easy addition of new accounts\n\n**Inventory Management**\nProblem Solved: Track products from multiple sources.\n\n• Product catalog with SKU tracking\n• Low stock alerts\n• Pricing management for manufactured and sourced products"
+      },
+      {
+        id: "results",
+        title: "📈 Results",
+        icon: React.createElement(CheckCircle, { className: "h-6 w-6" }),
+        variant: "impact",
+        content: "• 50% reduction in wholesale billing errors\n• 35% faster bulk order processing time\n• 90% user satisfaction rate\n• Zero training time for new staff\n• 100% uptime (no QuickBooks downtime)\n• $200/month saved in subscription fees\n• 40% reduction in admin tasks\n• Better inventory accuracy\n\n\"This system has completely changed how we operate our wholesale business. No more billing errors with our restaurant clients, and I can manage everything from my phone while I'm out making deliveries.\" — Client"
+      },
+      {
+        id: "challenges-fixes",
+        title: "⚠️ Challenges & Fixes",
+        icon: React.createElement(X, { className: "h-6 w-6" }),
+        variant: "failed",
+        content: "**Replacing Complex Third-Party Integrations**\nSolution: Built an all-in-one system with native accounting features.\n\n**Complex Data Visualization**\nSolution: Progressive disclosure and color-coded cards.\n\n**Mobile Screen Real Estate**\nSolution: Tab-based navigation with clear visual hierarchy."
+      },
+      {
+        id: "next-steps",
+        title: "🚀 Next Steps",
+        icon: React.createElement(Lightbulb, { className: "h-6 w-6" }),
+        variant: "solution",
+        content: "**Phase 2 Considerations:**\n\n• Advanced analytics dashboard\n• POS system integration\n• Automated B2B communication\n• Multi-location support\n• Supplier integration\n• Inventory forecasting\n\n**Success Metrics to Track:**\n\n• Wholesale order accuracy rates\n• B2B customer retention\n• Driver efficiency metrics\n• Revenue growth\n• Inventory turnover rates"
+      }
+    ],
+    seoData: {
+      image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/businessmanagement.png?fit=768%2C576&ssl=1",
+      projectName: "Business Management System",
+      results: ["68% fewer errors", "35% faster processing", "90% satisfaction", "100% uptime"],
+      technologies: ["React", "Mobile", "Enterprise", "Operations"],
+      path: "/project/business-management"
     }
   }
 };
