@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -64,7 +63,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
                 alt={prevProject.title}
                 loading="lazy"
                 fallback="/placeholder.svg"
-                className="object-contain w-[250px] h-[250px] transition-transform duration-300 group-hover:scale-[1.03]"
+                className="object-cover w-[250px] h-[250px] transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
             <div>
@@ -93,7 +92,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
                 alt={nextProject.title}
                 loading="lazy"
                 fallback="/placeholder.svg"
-                className="object-contain w-[250px] h-[250px] transition-transform duration-300 group-hover:scale-[1.03]"
+                className="object-cover w-[250px] h-[250px] transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
