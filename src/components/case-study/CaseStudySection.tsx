@@ -1,3 +1,4 @@
+
 import React from "react";
 import SectionTransition from "@/components/transitions/SectionTransition";
 
@@ -16,7 +17,7 @@ interface CaseStudySectionProps {
 const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content }) => {
   return (
     <SectionTransition as="section" id={id} className="mb-20" variant="wipe">
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+      <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-8 text-left lg:text-center">
         {title}
       </h2>
       

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -79,7 +80,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
           cardClass: "border-border bg-card",
           iconBg: "bg-primary/10",
           iconColor: "text-primary",
-          titleColor: "text-on-surface"
+          titleColor: "text-foreground"
         };
     }
   };
@@ -95,7 +96,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
             <Icon className={`h-8 w-8 md:h-9 md:w-9 lg:h-10 lg:w-10 ${styles.iconColor}`} />
           </div>
           <div className="flex-1">
-            <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${styles.titleColor}`}>
+            <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold mb-4 ${styles.titleColor}`}>
               {title}
             </h2>
           </div>
@@ -104,7 +105,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
         {/* Content */}
         <div className="space-y-8">
           {/* Main content */}
-          <div className="prose prose-lg max-w-none text-on-surface-variant">
+          <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300">
             {content.split('\n\n').map((paragraph, index) => (
               <p key={index} className="mb-4 last:mb-0">
                 {paragraph.split('\n').map((line, lineIndex) => (
@@ -132,10 +133,10 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {metrics.map((metric, index) => (
                 <div key={index} className="text-center p-4 bg-card rounded-lg border border-border">
-                  <div className="text-display-small font-bold text-on-surface mb-2">
+                  <div className="text-2xl font-bold text-foreground mb-2">
                     {metric.value}
                   </div>
-                  <div className="text-body-small text-on-surface-variant">
+                  <div className="text-sm text-gray-600 dark:text-gray-300">
                     {metric.label}
                   </div>
                 </div>
