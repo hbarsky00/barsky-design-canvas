@@ -58,13 +58,13 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
             aria-label={`Previous project: ${prevProject.title}`}
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            <div className="hidden sm:block relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
+            <div className="hidden sm:block relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-[250px] h-[250px]">
               <OptimizedImage
                 src={prevProject.image}
                 alt={prevProject.title}
                 loading="lazy"
                 fallback="/placeholder.svg"
-                className="object-cover w-auto h-[300px] transition-transform duration-300 group-hover:scale-[1.03]"
+                className="object-contain w-[250px] h-[250px] transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
             <div>
@@ -87,13 +87,13 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
               <p className="text-sm text-barsky-text/70">Next Project</p>
               <p className="font-medium">{nextProject.title}</p>
             </div>
-            <div className="hidden sm:block relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md">
+            <div className="hidden sm:block relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-[250px] h-[250px]">
               <OptimizedImage 
                 src={nextProject.image} 
                 alt={nextProject.title}
                 loading="lazy"
                 fallback="/placeholder.svg"
-                className="object-cover w-auto h-[300px] transition-transform duration-300 group-hover:scale-[1.03]"
+                className="object-contain w-[250px] h-[250px] transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
             <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
