@@ -11,7 +11,7 @@ const VideoCaseStudiesSection: React.FC = () => {
   const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
 
   return (
-    <section id="projects" className="py-4 sm:py-6 min-h-screen flex flex-col justify-center relative">
+    <section id="projects" className="py-4 sm:py-6 min-h-screen flex flex-col justify-center relative bg-white">
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
