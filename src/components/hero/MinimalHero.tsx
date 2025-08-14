@@ -12,7 +12,7 @@ const MinimalHero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 mb-12"
+          className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8"
         >
           {/* Left Side - Text Content */}
           <div className="flex-1">
@@ -44,25 +44,6 @@ const MinimalHero: React.FC = () => {
                 <AvatarFallback>HB</AvatarFallback>
               </Avatar>
             </div>
-          </div>
-        </motion.div>
-
-        {/* Bio Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl"
-        >
-          <div className="space-y-4 text-lg sm:text-xl text-gray-700 leading-relaxed">
-            <p>
-              Product Design Leader with Enterprise and Startup experience since 2012.
-              FinTech, Healthcare, AdTech veteran.
-            </p>
-            <p>
-              I simplify complex systems and raise the bar of design while delivering
-              measurable business impact.
-            </p>
           </div>
         </motion.div>
       </div>

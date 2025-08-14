@@ -2,6 +2,7 @@
 import React from "react";
 import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
+import BioSection from "@/components/hero/BioSection";
 import VideoCaseStudiesSection from "@/components/home/VideoCaseStudiesSection";
 import ContactForm from "@/components/home/ContactForm";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
@@ -27,26 +28,30 @@ const HomepageLayout: React.FC = () => {
           <MinimalHero />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.05} className="bg-muted/30 py-0 md:py-12">
+        <SectionTransition variant="fade" delay={0.05}>
+          <BioSection />
+        </SectionTransition>
+        
+        <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
           <VideoCaseStudiesSection />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.1} className="bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12">
           <ContactForm />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15} className="hidden md:block bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12">
           <BlogPreview />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.25} className="hidden md:block bg-muted/30 py-8 md:py-12">
           <SeoFaqSection 
             title="Frequently Asked Questions About AI-Enhanced UX Design"
             faqs={homepageFaqs}
           />
         </SectionTransition>
 
-        <SectionTransition variant="fade" delay={0.22} className="bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12">
           <InternalLinkingEnhancer currentPage="home" showRelatedLinks={true} />
         </SectionTransition>
       </main>
