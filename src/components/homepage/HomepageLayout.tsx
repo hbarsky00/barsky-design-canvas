@@ -14,9 +14,13 @@ import SectionTransition from "@/components/transitions/SectionTransition";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
+import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
+  
+  // Initialize keyboard navigation
+  useHomepageKeyboardNavigation();
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
@@ -39,22 +43,22 @@ const HomepageLayout: React.FC = () => {
           <VideoCaseStudiesSection />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12" id="contact">
           <ContactForm />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.2} className="hidden md:block bg-background py-8 md:py-12" id="blog-preview">
           <BlogPreview />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.25} className="hidden md:block bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.25} className="hidden md:block bg-muted/30 py-8 md:py-12" id="faq-section">
           <SeoFaqSection 
             title="Frequently Asked Questions About AI-Enhanced UX Design"
             faqs={homepageFaqs}
           />
         </SectionTransition>
 
-        <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12" id="internal-linking">
           <InternalLinkingEnhancer currentPage="home" showRelatedLinks={true} />
         </SectionTransition>
       </main>

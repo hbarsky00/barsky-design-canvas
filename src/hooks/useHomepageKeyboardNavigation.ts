@@ -1,0 +1,106 @@
+
+import { useState, useEffect } from "react";
+
+export const useHomepageKeyboardNavigation = () => {
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  
+  // Define sections in order (skip hidden sections on mobile if needed)
+  const sections = [
+    { id: 'hero', element: null as HTMLElement | null },
+    { id: 'bio-section', element: null as HTMLElement | null },
+    { id: 'projects', element: null as HTMLElement | null },
+    { id: 'contact', element: null as HTMLElement | null },
+    { id: 'blog-preview', element: null as HTMLElement | null },
+    { id: 'faq-section', element: null as HTMLElement | null },
+    { id: 'internal-linking', element: null as HTMLElement | null }
+  ];
+
+  const getHeaderOffset = () => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
+    return headerHeight + 16;
+  };
+
+  const scrollToSection = (index: number) => {
+    if (index < 0 || index >= sections.length) return;
+    
+    const sectionId = sections[index].id;
+    const element = document.getElementById(sectionId);
+    
+    if (element) {
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth"
+      });
+      setCurrentSectionIndex(index);
+    }
+  };
+
+  const navigateUp = () => {
+    const newIndex = Math.max(0, currentSectionIndex - 1);
+    scrollToSection(newIndex);
+  };
+
+  const navigateDown = () => {
+    const newIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
+    scrollToSection(newIndex);
+  };
+
+  // Track current section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const headerOffset = getHeaderOffset();
+      const scrollPosition = window.scrollY + headerOffset + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i].id);
+        if (element && element.offsetTop <= scrollPosition) {
+          setCurrentSectionIndex(i);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Set initial state
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle keyboard events
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Only handle if not typing in an input/textarea
+      if (event.target instanceof HTMLInputElement || 
+          event.target instanceof HTMLTextAreaElement ||
+          event.target instanceof HTMLSelectElement) {
+        return;
+      }
+
+      switch (event.key) {
+        case 'ArrowUp':
+          event.preventDefault();
+          navigateUp();
+          break;
+        case 'ArrowDown':
+          event.preventDefault();
+          navigateDown();
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSectionIndex]);
+
+  return {
+    currentSectionIndex,
+    sections,
+    navigateUp,
+    navigateDown,
+    scrollToSection,
+    canNavigateUp: currentSectionIndex > 0,
+    canNavigateDown: currentSectionIndex < sections.length - 1
+  };
+};

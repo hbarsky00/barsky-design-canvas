@@ -1,20 +1,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ChevronUp, ChevronDown } from "lucide-react";
 import AnimatedText from "@/components/AnimatedText";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 const BioSection: React.FC = () => {
-  const scrollToHero = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
 
   return (
     <section id="bio-section" className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-muted/30 relative">
@@ -48,39 +40,14 @@ const BioSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Up Navigation Arrow */}
-      <motion.div
-        className="absolute top-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        onClick={scrollToHero}
-      >
-        <motion.div
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <ChevronUp size={24} />
-        </motion.div>
-        <p className="text-sm mt-2">Back to top</p>
-      </motion.div>
-
-      {/* Down Navigation Arrow */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 cursor-pointer"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        onClick={scrollToProjects}
-      >
-        <p className="text-sm mb-2">View projects</p>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <ChevronDown size={24} />
-        </motion.div>
-      </motion.div>
+      <SectionNavigation
+        onNavigateUp={navigateUp}
+        onNavigateDown={navigateDown}
+        canNavigateUp={canNavigateUp}
+        canNavigateDown={canNavigateDown}
+        upLabel="Back to top"
+        downLabel="View projects"
+      />
     </section>
   );
 };

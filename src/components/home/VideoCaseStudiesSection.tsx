@@ -1,12 +1,17 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import ModernProjectCard from "@/components/homepage/ModernProjectCard";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 import SectionHeader from "@/components/shared/SectionHeader";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 const VideoCaseStudiesSection: React.FC = () => {
+  const { navigateUp, navigateDown, canNavigateUp, canNavigateDown } = useHomepageKeyboardNavigation();
+
   return (
-    <section id="projects" className="py-4 sm:py-6">
+    <section id="projects" className="py-4 sm:py-6 min-h-screen flex flex-col justify-center relative">
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
@@ -46,9 +51,16 @@ const VideoCaseStudiesSection: React.FC = () => {
             />
           ))}
         </div>
-
-        {/* View All CTA */}
       </div>
+
+      <SectionNavigation
+        onNavigateUp={navigateUp}
+        onNavigateDown={navigateDown}
+        canNavigateUp={canNavigateUp}
+        canNavigateDown={canNavigateDown}
+        upLabel="Previous section"
+        downLabel="Contact"
+      />
     </section>
   );
 };
