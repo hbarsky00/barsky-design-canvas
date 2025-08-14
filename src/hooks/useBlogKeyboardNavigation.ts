@@ -32,6 +32,11 @@ export const useBlogKeyboardNavigation = () => {
     return headerHeight + 16;
   };
 
+  // Enhanced mobile detection
+  const isTouchDevice = useCallback(() => {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  }, []);
+
   const scrollToSection = useCallback((index: number) => {
     if (index < 0 || index >= sections.length) return;
     
@@ -69,11 +74,6 @@ export const useBlogKeyboardNavigation = () => {
       });
     }
   }, [currentSectionIndex, scrollToSection, sections.length, isTransitioning, triggerTransition]);
-
-  // Enhanced mobile detection
-  const isTouchDevice = useCallback(() => {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  }, []);
 
   // Track current section on scroll
   useEffect(() => {
@@ -124,30 +124,33 @@ export const useBlogKeyboardNavigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [sections, isTransitioning]);
 
-  // Keyboard event handling
+  // Enhanced keyboard event handling with mobile support
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      // Only handle if not typing in an input/textarea
       if (event.target instanceof HTMLInputElement || 
           event.target instanceof HTMLTextAreaElement ||
           event.target instanceof HTMLSelectElement) {
         return;
       }
 
+      // Enhanced mobile keyboard detection
       const isMobileKeyboard = isMobile && isTouchDevice();
       
       switch (event.key) {
         case 'ArrowUp':
-        case 'Up':
+        case 'Up': // Fallback for older browsers
           event.preventDefault();
           event.stopPropagation();
           navigateUp();
           break;
         case 'ArrowDown':
-        case 'Down':
+        case 'Down': // Fallback for older browsers
           event.preventDefault();
           event.stopPropagation();
           navigateDown();
           break;
+        // Additional mobile-friendly keys
         case 'w':
         case 'W':
           if (!isMobileKeyboard) {
@@ -165,17 +168,36 @@ export const useBlogKeyboardNavigation = () => {
       }
     };
 
+    // Use both keydown and keyup for better mobile support
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (isMobile && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    // Enhanced event listeners with better mobile support
     document.addEventListener('keydown', handleKeyDown, { 
       passive: false,
       capture: true 
     });
+    
+    if (isMobile) {
+      document.addEventListener('keyup', handleKeyUp, { 
+        passive: false,
+        capture: true 
+      });
+    }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown, true);
+      if (isMobile) {
+        document.removeEventListener('keyup', handleKeyUp, true);
+      }
     };
   }, [navigateUp, navigateDown, isMobile, isTouchDevice]);
 
-  // Touch/swipe gesture support for mobile
+  // Add touch/swipe gesture support for mobile
   useEffect(() => {
     if (!isMobile || !isTouchDevice()) return;
 
@@ -198,18 +220,22 @@ export const useBlogKeyboardNavigation = () => {
         const deltaY = startY - endY;
         const deltaTime = endTime - startTime;
 
+        // Check if it's a valid swipe gesture
         if (Math.abs(deltaY) > minSwipeDistance && deltaTime < maxSwipeTime) {
           event.preventDefault();
           
           if (deltaY > 0) {
+            // Swipe up - go to next section
             navigateDown();
           } else {
+            // Swipe down - go to previous section
             navigateUp();
           }
         }
       }
     };
 
+    // Add touch event listeners with passive: false for preventDefault
     document.addEventListener('touchstart', handleTouchStart, { passive: true });
     document.addEventListener('touchend', handleTouchEnd, { passive: false });
 

@@ -93,19 +93,19 @@ const BlogPost: React.FC = () => {
       <main className="flex-grow">
         <article className="py-20">
           <div className="section-container max-w-3xl mx-auto px-4 sm:px-6">
-            <div id="blog-header">
+            <div id="blog-header" className="relative z-10">
               <BlogPostHeader post={post} />
             </div>
             
-            <div id="blog-content">
+            <div id="blog-content" className="relative z-0">
               <BlogPostContent content={post.content} slug={post.slug} />
             </div>
             
-            <div id="blog-engagement">
+            <div id="blog-engagement" className="relative z-0">
               <BlogEngagement postId={post.id} initialLikes={Math.floor(Math.random() * 50) + 10} />
             </div>
             
-            <div id="blog-social-share">
+            <div id="blog-social-share" className="relative z-0">
               <SocialShare 
                 url={`/blog/${post.slug}`}
                 title={post.title}
@@ -113,29 +113,29 @@ const BlogPost: React.FC = () => {
               />
             </div>
             
-            <div id="blog-newsletter">
+            <div id="blog-newsletter" className="relative z-0">
               <NewsletterSignup />
             </div>
             
-            <div id="blog-author">
+            <div id="blog-author" className="relative z-0">
               <BlogAuthorBio author={post.author} />
             </div>
             
-            <div id="blog-related">
+            <div id="blog-related" className="relative z-0">
               <RelatedPosts posts={relatedPosts} />
             </div>
           </div>
         </article>
         
         {/* FAQ Section */}
-        <div id="blog-faq">
+        <div id="blog-faq" className="relative z-0">
           <SeoFaqSection 
             title="Design Blog & Content Questions"
             faqs={homepageFaqs}
           />
         </div>
         
-        <div id="blog-services-cta">
+        <div id="blog-services-cta" className="relative z-0">
           <ServicesCallToAction />
         </div>
       </main>
