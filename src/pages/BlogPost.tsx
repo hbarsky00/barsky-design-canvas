@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -23,7 +22,7 @@ import NewsletterSignup from "@/components/blog/NewsletterSignup";
 import { useRelatedPosts } from "@/hooks/useRelatedPosts";
 
 const BlogPost: React.FC = () => {
-  const { postId } = useParams<{ postId: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [post, setPost] = useState<BlogPost | null>(null);
@@ -40,12 +39,12 @@ const BlogPost: React.FC = () => {
     setIsLoading(true);
     
     // Find the post based on slug
-    const foundPost = blogPosts.find(p => p.slug === postId);
+    const foundPost = blogPosts.find(p => p.slug === slug);
     
     if (foundPost) {
       setPost(foundPost);
       // Track page view and content engagement
-      trackPageView(`/blog/${postId}`, `${foundPost.title} | Hiram Barsky Blog`);
+      trackPageView(`/blog/${slug}`, `${foundPost.title} | Hiram Barsky Blog`);
       trackContentEngagement('blog', foundPost.id, foundPost.title);
     } else {
       // If post not found, redirect to blog list
@@ -53,7 +52,7 @@ const BlogPost: React.FC = () => {
     }
     
     setIsLoading(false);
-  }, [postId, navigate]);
+  }, [slug, navigate]);
   
   if (isLoading || !post) {
     return <LoadingState />;
