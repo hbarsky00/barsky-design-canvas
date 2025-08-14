@@ -22,7 +22,7 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
   // Override columns prop when there are exactly 2 images
   const getGridCols = () => {
     if (images.length === 2) {
-      return "md:grid-cols-2"; // Force 2 columns for exactly 2 images
+      return "md:grid-cols-2";
     }
     
     const gridCols = {
@@ -69,6 +69,8 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="gallery-image group"
             onClick={() => openLightbox(index)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <div className="relative aspect-[4/3] overflow-hidden">
               <img
@@ -121,11 +123,11 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
                 <X className="h-5 w-5" />
               </Button>
 
-              {/* Navigation Buttons */}
+              {/* Navigation Buttons - positioned at top */}
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
+                className="absolute left-4 top-4 z-10 bg-black/50 text-white hover:bg-black/70"
                 onClick={(e) => { e.stopPropagation(); navigateLightbox('prev'); }}
               >
                 <ChevronLeft className="h-6 w-6" />
@@ -134,31 +136,47 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white hover:bg-black/70"
+                className="absolute right-16 top-4 z-10 bg-black/50 text-white hover:bg-black/70"
                 onClick={(e) => { e.stopPropagation(); navigateLightbox('next'); }}
               >
                 <ChevronRight className="h-6 w-6" />
               </Button>
 
-              {/* Image */}
-              <div className="relative w-full h-full flex items-center justify-center">
-              <img
-                src={images[selectedImage]}
-                alt={captions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
-                className="max-w-full max-h-full object-contain cursor-pointer"
-                onClick={closeLightbox}
-              />
-              </div>
+              {/* Image with transition */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedImage}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ 
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="relative w-full h-full flex items-center justify-center"
+                >
+                  <img
+                    src={images[selectedImage]}
+                    alt={captions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
+                    className="max-w-full max-h-full object-contain cursor-pointer"
+                    onClick={closeLightbox}
+                  />
+                </motion.div>
+              </AnimatePresence>
 
               {/* Caption */}
               {captions[images[selectedImage]] && (
-                <div className="absolute bottom-4 left-4 right-4 bg-black/70 text-white p-4">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute bottom-4 left-4 right-4 bg-black/70 text-white p-4"
+                >
                   <p className="text-center">{captions[images[selectedImage]]}</p>
-                </div>
+                </motion.div>
               )}
 
               {/* Image Counter */}
-              <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 text-sm">
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 text-sm rounded">
                 {selectedImage + 1} / {images.length}
               </div>
             </motion.div>

@@ -43,9 +43,9 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
     if (images.length === 1) {
       return "grid-cols-1";
     } else if (images.length === 2) {
-      return "grid-cols-2 gap-8"; // Always 2 columns for 2 images, even on mobile
+      return "grid-cols-2 gap-8";
     } else {
-      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"; // Default layout for 3+ images
+      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
     }
   };
 
@@ -61,6 +61,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="glass-card layered-depth group relative overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
             onClick={() => openLightbox(index)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <img
               src={image}
@@ -92,7 +94,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
           >
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-20"
             >
               <X className="h-8 w-8" />
             </button>
@@ -104,42 +106,54 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                     e.stopPropagation();
                     navigateImage('prev');
                   }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10"
+                  className="absolute left-4 top-4 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors"
                 >
-                  <ChevronLeft className="h-8 w-8" />
+                  <ChevronLeft className="h-6 w-6" />
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigateImage('next');
                   }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10"
+                  className="absolute right-16 top-4 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors"
                 >
-                  <ChevronRight className="h-8 w-8" />
+                  <ChevronRight className="h-6 w-6" />
                 </button>
               </>
             )}
 
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="max-w-5xl max-h-[90vh] w-full h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={images[selectedImage]}
-                alt={imageCaptions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
-                className="max-w-full max-h-full object-contain cursor-pointer"
-                onClick={closeLightbox}
-              />
-            </motion.div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedImage}
+                initial={{ opacity: 0, scale: 0.8, x: 100 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.8, x: -100 }}
+                transition={{ 
+                  duration: 0.4,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="max-w-5xl max-h-[90vh] w-full h-full flex items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={images[selectedImage]}
+                  alt={imageCaptions[images[selectedImage]] || `Gallery image ${selectedImage + 1}`}
+                  className="max-w-full max-h-full object-contain cursor-pointer"
+                  onClick={closeLightbox}
+                />
+              </motion.div>
+            </AnimatePresence>
 
             {imageCaptions[images[selectedImage]] && (
-              <div className="absolute bottom-4 left-4 right-4 text-center">
-                <p className="text-white text-lg">{imageCaptions[images[selectedImage]]}</p>
-              </div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute bottom-4 left-4 right-4 text-center"
+              >
+                <p className="text-white text-lg bg-black/50 rounded-lg px-4 py-2 backdrop-blur-sm">
+                  {imageCaptions[images[selectedImage]]}
+                </p>
+              </motion.div>
             )}
           </motion.div>
         )}

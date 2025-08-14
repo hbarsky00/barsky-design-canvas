@@ -35,10 +35,14 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, x: 300 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, x: -300 }}
+            transition={{ 
+              duration: 0.5,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            className="w-full"
           >
             <MaximizableImage
               src={images[currentIndex]}
@@ -56,7 +60,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm"
+              className="absolute left-4 top-4 bg-white/80 backdrop-blur-sm hover:bg-white/90 z-10"
               onClick={prevImage}
             >
               <ChevronLeft className="h-4 w-4" />
@@ -65,7 +69,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm"
+              className="absolute right-4 top-4 bg-white/80 backdrop-blur-sm hover:bg-white/90 z-10"
               onClick={nextImage}
             >
               <ChevronRight className="h-4 w-4" />
@@ -77,12 +81,14 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
       {images.length > 1 && (
         <div className="flex justify-center mt-4 space-x-2">
           {images.map((_, index) => (
-            <button
+            <motion.button
               key={index}
-              className={`w-2 h-2 transition-colors ${
-                index === currentIndex ? "bg-blue-500" : "bg-gray-300"
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "bg-blue-500 scale-125" : "bg-gray-300 hover:bg-gray-400"
               }`}
               onClick={() => setCurrentIndex(index)}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
             />
           ))}
         </div>
