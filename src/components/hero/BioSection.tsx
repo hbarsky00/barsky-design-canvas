@@ -18,7 +18,7 @@ const BioSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-left"
         >
-          <div className="space-y-6 md:space-y-12 font-bold text-foreground leading-snug text-lg sm:text-xl md:text-2xl lg:text-3xl [text-wrap:balance]">
+          <div className="space-y-6 md:space-y-12 font-bold text-foreground leading-snug text-display-small [text-wrap:balance]">
             <AnimatedText
               text="Product Design Leader with Enterprise and Startup experience since 2012. FinTech, Healthcare, AdTech veteran."
               type="word"
