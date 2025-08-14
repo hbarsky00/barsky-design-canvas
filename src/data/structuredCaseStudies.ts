@@ -60,7 +60,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "The booking interface directly addresses three critical gaps in the herbal wellness market:\n\n• **No way to verify herbalist credibility** - Our platform displays verified credentials, specializations, and expert backgrounds upfront\n• **No symptom tracking tied to outcomes** - Structured consultation types (Initial, Follow-up, Quick Check-in) create clear treatment pathways\n• **No personalized recommendations or guided onboarding** - Health focus areas guide users to the right herbalist match and consultation type",
         media: {
           type: 'image',
-          src: "/lovable-uploads/c871430a-1e49-4ac9-bd16-08797ea94e50.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/07/Book-a-Consultation.jpg",
           alt: "HerbaLink consultation booking interface showing herbalist verification and guided selection process",
           caption: "Consultation booking interface addressing key gaps with verified herbalists, structured consultation types, and personalized health focus areas."
         }
