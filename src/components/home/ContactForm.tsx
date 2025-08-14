@@ -76,28 +76,6 @@ const ContactForm: React.FC = () => {
   return <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-blue-50" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Social Proof */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0
-          }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-16 text-center"
-        >
-          <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
-            <div className="flex items-center gap-1">
-              <span className="text-yellow-500">★★★★★</span>
-              <span>Join 47 five-star clients who've seen 40%+ conversion improvements</span>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Full Width Form Layout */}
         <div className="grid lg:grid-cols-3 gap-12 items-start">
           
@@ -120,7 +98,7 @@ const ContactForm: React.FC = () => {
                 title="What You'll Get"
                 titleClassName="text-display-medium text-on-surface"
               />
-              <div className="space-y-4 mt-6">
+              <div className="space-y-4 mt-6 text-center">
                 {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-3">
                     <CheckCircle className="h-6 w-6 text-success-green mt-1 flex-shrink-0" />
                     <span className="text-neutral-500">{benefit}</span>
