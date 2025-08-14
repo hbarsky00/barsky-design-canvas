@@ -46,3 +46,39 @@ export const seoFaqs = [
     keywords: ["Design Pricing", "UX Rates", "Project Quotes", "Consultation"]
   }
 ];
+
+// Export the main FAQ array as homepageFaqs for backward compatibility
+export const homepageFaqs = seoFaqs;
+
+// Export project-specific FAQs
+export const projectFaqs = [
+  {
+    question: "What types of projects do you showcase in your portfolio?",
+    answer: "My portfolio showcases AI-enhanced Product Design projects across various industries including healthcare, fintech, e-commerce, and SaaS platforms. Each case study demonstrates the integration of traditional UX methodology with cutting-edge AI technology.\n\nI focus on projects that show measurable business impact - improved conversion rates, enhanced user engagement, and successful AI implementation. You'll see examples of responsive web applications, mobile interfaces, and AI-powered user experiences.",
+    keywords: ["Portfolio Projects", "AI Integration", "Case Studies", "Cross-Industry Experience"]
+  },
+  {
+    question: "How do you approach case study documentation?",
+    answer: "My case studies follow a structured approach that highlights both the design process and business impact. Each project includes:\n\n• Problem definition and user research insights\n• AI-enhanced design process and methodology\n• Visual design evolution and key decisions\n• Technical implementation and AI integration\n• Measurable results and business outcomes\n\nI believe in transparent documentation that shows not just the final result, but the strategic thinking and problem-solving approach that led to success.",
+    keywords: ["Case Studies", "Design Process", "Business Impact", "Documentation"]
+  },
+  {
+    question: "Can you work on projects similar to what you've shown?",
+    answer: "Absolutely! My portfolio demonstrates a range of capabilities and approaches that can be adapted to your specific needs. Whether you need AI integration, accessibility improvements, conversion optimization, or complete product design, I can leverage similar methodologies.\n\nI specialize in taking proven design patterns and AI implementations from successful projects and adapting them to new contexts. Each project is unique, but the underlying principles and technologies remain consistent.",
+    keywords: ["Custom Projects", "Adaptable Solutions", "Proven Methodologies", "AI Implementation"]
+  }
+];
+
+// Export services-specific FAQs
+export const servicesFaqs = [
+  {
+    question: "What is included in your UX Design service?",
+    answer: "My UX Design service includes comprehensive user research, information architecture, wireframing, prototyping, and usability testing. I integrate AI-powered insights throughout the process to make data-driven design decisions.\n\nDeliverables typically include user personas, journey maps, wireframes, interactive prototypes, and detailed design specifications. I also provide accessibility compliance documentation and performance optimization recommendations.",
+    keywords: ["UX Design", "User Research", "Prototyping", "AI Integration"]
+  },
+  {
+    question: "How does AI integration work in your projects?",
+    answer: "AI integration is woven throughout my design and development process. I use AI for user research synthesis, design iteration, automated testing, and creating intelligent user interfaces that adapt to user behavior.\n\nTechnically, I implement AI through APIs like OpenAI and Claude, create custom AI-powered features, and build interfaces that learn from user interactions. This results in more personalized and effective user experiences.",
+    keywords: ["AI Integration", "OpenAI API", "Claude AI", "Adaptive Interfaces"]
+  }
+];
