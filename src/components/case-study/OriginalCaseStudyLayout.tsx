@@ -1,199 +1,102 @@
-
-import React from "react";
-import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
-import VideoPlayer from "./VideoPlayer";
-import CaseStudyContactSection from "./CaseStudyContactSection";
-import { CaseStudyData } from "@/data/caseStudies";
-import DynamicSeo from "@/components/seo/DynamicSeo";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import CaseStudyNavigation from "./CaseStudyNavigation";
-import ProjectNavigation from "@/components/ProjectNavigation";
-import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
-import Section3DOverlay from "@/components/transitions/Section3DOverlay";
-import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 interface OriginalCaseStudyLayoutProps {
-  caseStudy: CaseStudyData;
-  projectId: string;
+  title: string;
+  description: string;
+  image: string;
+  projectName: string;
+  results: string[];
+  technologies: string[];
+  liveLink?: string;
+  githubLink?: string;
+  children: React.ReactNode;
 }
 
-const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({ 
-  caseStudy, 
-  projectId 
+const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
+  title,
+  description,
+  image,
+  projectName,
+  results,
+  technologies,
+  liveLink,
+  githubLink,
+  children
 }) => {
-  const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
-
-  // Build sections for keyboard navigation
-  const keyboardSections = React.useMemo(() => {
-    const navSections = [
-      { id: 'hero-section', title: 'Overview' },
-      ...Object.entries(caseStudy.sections).map(([sectionId, section]) => {
-        const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
-        const title = navItem?.label || sectionId.replace('-', ' ');
-        return { id: sectionId, title };
-      }),
-      { id: 'contact-section', title: 'Contact' },
-      { id: 'project-navigation', title: 'More Projects' }
-    ];
-    return navSections;
-  }, [caseStudy]);
-
-  // Add keyboard navigation
-  const {
-    isTransitioning,
-    transitionDirection,
-    transitionVariation,
-  } = useCaseStudyKeyboardNavigation(keyboardSections);
-
   return (
     <>
-        <DynamicSeo
-          type="project"
-          title={caseStudy.title}
-          description={caseStudy.description}
-          image={caseStudy.videoThumbnail}
-          projectName={caseStudy.title}
-          results={[]}
-          technologies={caseStudy.tags}
-          path={`/project/${projectId}/`}
-        />
-
-      <div className="min-h-screen bg-background">
-        {/* 3D Transition Overlay */}
-        <Section3DOverlay 
-          isVisible={isTransitioning} 
-          direction={transitionDirection}
-          variation={transitionVariation}
-        />
-
+      <SEO
+        title={title}
+        description={description}
+        image={image}
+        type="article"
+      />
+      
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
+        
+        <main className="pt-24 pb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+                {title}
+              </h1>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {description}
+              </p>
+            </motion.div>
 
-        <div className="container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8">
-          <div className="flex gap-8">
-            <CaseStudyNavigation navigation={caseStudy.stickyNav} />
-            {/* Main Content */}
-            <main className="flex-1 max-w-4xl">
-              <section id="hero-section" className="mb-16">
-                {/* Branding */}
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-center mb-8"
-                >
-                  <Link to="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                    <img 
-                      alt="Hiram Barsky" 
-                      className="w-10 h-10 rounded-full object-cover border-2 border-border" 
-                      src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
-                    />
-                    <div className="text-left">
-                      <div className="text-sm font-medium text-foreground">Hiram Barsky</div>
-                      <div className="text-xs text-muted-foreground">Product Designer & Gen AI Developer</div>
-                    </div>
-                  </Link>
-                </motion.div>
+            {children}
 
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-center mb-12"
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                    {caseStudy.title}
-                  </h1>
-                  
-                  <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                    {caseStudy.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap justify-center gap-2 mb-8">
-                    {caseStudy.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="px-3 py-1">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="mb-16"
-                >
-                  <VideoPlayer 
-                    videoSrc={caseStudy.video}
-                    thumbnailSrc={caseStudy.videoThumbnail}
-                    title={caseStudy.title}
-                  />
-                </motion.div>
-              </section>
-
-              {/* Case Study Sections */}
-              {Object.entries(caseStudy.sections).map(([sectionId, section]) => {
-                const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
-                const title = navItem?.label || sectionId.replace('-', ' ');
-
-                return (
-                  <motion.section
-                    key={sectionId}
-                    id={sectionId}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="mb-20"
-                    style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
-                  >
-                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
-                      {title}
-                    </h2>
-                    
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                      <div className="space-y-6">
-                        <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                          {section.text}
-                        </p>
-                      </div>
-                      
-                      <div className="relative">
-                        <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
-                          <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
-                            <div className="text-center">
-                              <p className="text-muted-foreground mb-2">Image Placeholder</p>
-                              <p className="text-sm text-muted-foreground">{section.image.alt}</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
-                      </div>
-                    </div>
-                  </motion.section>
-                );
-              })}
-
-              {/* Contact Section */}
-              <div id="contact-section">
-                <CaseStudyContactSection />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mt-16 text-center"
+            >
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Explore the Project
+              </h2>
+              <div className="flex items-center justify-center space-x-4">
+                {liveLink && (
+                  <Button asChild>
+                    <Link to={liveLink} target="_blank" className="flex items-center space-x-2">
+                      <span>View Live</span>
+                      <ExternalLink className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                )}
+                {githubLink && (
+                  <Button asChild variant="outline">
+                    <Link to={githubLink} target="_blank" className="flex items-center space-x-2">
+                      <span>GitHub Repo</span>
+                      <Github className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                )}
               </div>
-
-              {/* Prev/Next Navigation */}
-              <div id="project-navigation" className="mt-12">
-                <ProjectNavigation
-                  currentProjectId={projectId}
-                  projectsData={projectsData}
-                />
-              </div>
-            </main>
-
-            {/* Desktop Sidebar Navigation */}
+              <Button asChild variant="ghost" className="mt-8">
+                <Link to="/projects" className="flex items-center space-x-2">
+                  <ArrowLeft className="h-4 w-4" />
+                  <span>Back to Projects</span>
+                </Link>
+              </Button>
+            </motion.div>
           </div>
-        </div>
+        </main>
+        
         <Footer />
       </div>
     </>

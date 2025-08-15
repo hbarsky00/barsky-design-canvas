@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
+import SEO from "@/components/SEO";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
@@ -75,15 +74,12 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
 
   return (
     <>
-      <DynamicSeo 
-        type="project"
+      <SEO
         title={title}
         description={description}
         image={image}
-        projectName={projectName}
-        results={results}
-        technologies={technologies}
-        path={path}
+        type="article"
+        url={`https://barskydesign.pro${path}`}
       />
       
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
