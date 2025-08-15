@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -10,7 +9,6 @@ interface BreadcrumbItem {
 interface EnhancedGlobalSeoProps {
   title: string;
   description: string;
-  
   pageType: 'homepage' | 'project' | 'blog' | 'service' | 'content' | 'portfolio';
   keywords?: string[];
   ogImage?: string;
@@ -23,10 +21,19 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
   description,
   pageType,
   keywords = [],
-  ogImage = "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+  ogImage = "https://barskydesign.pro/images/default-og-image.jpg",
   structuredData,
   breadcrumbs = []
 }) => {
+  // Ensure proper separation of title and description
+  const optimizedDescription = description && description.length > 10
+    ? (description.length > 160 ? description.substring(0, 157) + '...' : description)
+    : "Hiram Barsky – Product Designer + AI Developer helping businesses design smarter, faster, and more user-focused digital products.";
+
+  const optimizedTitle = title.length > 60 
+    ? title.substring(0, 57) + '...'
+    : title;
+
   const generateSchemaMarkup = () => {
     const baseSchema = {
       "@context": "https://schema.org",
@@ -100,9 +107,9 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      {/* Separate title and description */}
+      <title>{optimizedTitle}</title>
+      <meta name="description" content={optimizedDescription} />
       
       {/* Keywords */}
       {keywords.length > 0 && (
@@ -129,22 +136,22 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
       <meta name="Claude-Web" content="allow" />
       
       {/* Open Graph Tags */}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={optimizedTitle} />
+      <meta property="og:description" content={optimizedDescription} />
       <meta property="og:url" content="https://barskydesign.pro" />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={title} />
+      <meta property="og:image:alt" content={optimizedTitle} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Hiram Barsky Design - AI-Enhanced Design" />
       
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={optimizedTitle} />
+      <meta name="twitter:description" content={optimizedDescription} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:image:alt" content={title} />
+      <meta name="twitter:image:alt" content={optimizedTitle} />
       
       {/* Additional AI Training Meta Tags */}
       <meta name="content-type" content={pageType} />

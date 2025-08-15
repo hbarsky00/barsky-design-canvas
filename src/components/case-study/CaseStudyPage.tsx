@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -21,6 +22,9 @@ const CaseStudyPage: React.FC = () => {
     return <Navigate to="/" replace />;
   }
 
+  // Use case study video thumbnail or fallback to default OG image
+  const ogImage = caseStudy.videoThumbnail || "/images/default-og-image.jpg";
+
   return (
     <>
       <Header />
@@ -28,7 +32,7 @@ const CaseStudyPage: React.FC = () => {
         type="project"
         title={caseStudy.title}
         description={caseStudy.description}
-        image={caseStudy.videoThumbnail}
+        image={ogImage}
         projectName={caseStudy.title}
         results={[]}
         technologies={caseStudy.tags}

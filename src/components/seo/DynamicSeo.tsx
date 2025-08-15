@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { normalizeUrl } from '@/utils/urlUtils';
@@ -29,7 +28,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = ({
   type = 'page',
   title,
   description,
-  image = '/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png',
+  image = '/images/default-og-image.jpg',
   path = '/',
   projectName,
   serviceName,
@@ -48,7 +47,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = ({
   const baseUrl = 'https://barskydesign.pro';
   const canonicalUrl = normalizeUrl(path);
   
-  // Use featuredImage if provided, otherwise fall back to image prop
+  // Use featuredImage if provided, otherwise fall back to image prop, then default
   const socialImage = featuredImage || image;
   
   // Ensure absolute image URL
@@ -56,11 +55,11 @@ const DynamicSeo: React.FC<DynamicSeoProps> = ({
     ? socialImage 
     : `${baseUrl}${socialImage.startsWith('/') ? '' : '/'}${socialImage}`;
   
-  // Optimize title and description lengths
+  // Optimize title and description lengths and ensure separation
   const optimizedTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
   const optimizedDescription = (excerpt || description).length > 160 
     ? (excerpt || description).substring(0, 157) + '...' 
-    : (excerpt || description);
+    : (excerpt || description) || "Hiram Barsky – Product Designer + AI Developer helping businesses design smarter, faster, and more user-focused digital products.";
   
   // Generate structured data for different content types
   const generateStructuredData = () => {
@@ -144,7 +143,7 @@ const DynamicSeo: React.FC<DynamicSeoProps> = ({
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
+      {/* Separate title and description */}
       <title>{optimizedTitle}</title>
       <meta name="description" content={optimizedDescription} />
       <link rel="canonical" href={canonicalUrl} />

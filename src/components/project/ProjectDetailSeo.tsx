@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -30,72 +29,45 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     return `${baseUrl}${imagePath}`;
   };
   
-  // Use the project's hero image for social media sharing
-  const socialMediaImage = getImageUrl(project.image);
+  // Use the project's hero image or fallback to your circular headshot
+  const socialMediaImage = project.image 
+    ? getImageUrl(project.image)
+    : getImageUrl("/images/default-og-image.jpg");
   
-  // Generate concise, problem-focused titles (50-60 chars)
+  // Generate separate, optimized titles and descriptions
   const getOptimizedTitle = () => {
-    if (project.id === 'herbalink') {
-      return "Herbalink: AI-Enhanced UX Design for Wellness | Hiram Barsky - Product Designer & Gen AI Developer";
-    }
-    if (project.id === 'investor-loan-app') {
-      return "Investor Loan App: AI-Enhanced FinTech UX | Hiram Barsky - Product Designer & Gen AI Developer";
-    }
-    if (project.id === 'medication-app') {
-      return "Healthcare App: AI-Powered UX Design | Hiram Barsky - Product Designer & Gen AI Developer";
-    }
-    if (project.id === 'splittime') {
-      return "Splittime: AI-Powered Co-Parenting App Design | Hiram Barsky - Product Designer & Gen AI Developer";
-    }
-    if (project.id === 'gold2crypto') {
-      return "Gold2Crypto: AI-Enhanced Trading UX | Hiram Barsky - Product Designer & Gen AI Developer";
-    }
-    if (project.id === 'dae-search') {
-      return "DAE Search: AI-Powered Data Discovery | Hiram Barsky - Product Designer & Gen AI Developer";
-    }
-    if (project.id === 'barskyjoint') {
-      return "BarskyJoint: AI-Enhanced Cannabis Platform | Hiram Barsky - Product Designer & Gen AI Developer";
-    }
-    if (project.id === 'wholesale-distribution') {
-      return "Wholesale Distribution: From Designer to Gen AI Developer | Hiram Barsky Case Study";
-    }
-    return `${project.title.substring(0, 35)} | Hiram Barsky - Product Designer & Gen AI Developer`;
+    // Use project title directly - no more than 60 characters
+    return project.title.length > 60 
+      ? project.title.substring(0, 57) + '...'
+      : project.title;
   };
   
-  // Generate concise, results-focused descriptions (150-160 chars)
   const getOptimizedDescription = () => {
+    // Use project description separately from title
+    if (project.description && project.description.length > 10) {
+      return project.description.length > 160 
+        ? project.description.substring(0, 157) + '...'
+        : project.description;
+    }
+    
+    // Fallback descriptions based on project ID
     if (project.id === 'herbalink') {
-      return "Discover how Gen AI integration and UX design created a wellness platform connecting users with certified herbalists. 78% user satisfaction through AI-powered matching and mobile-first design.";
+      return "Discover how Gen AI integration and UX design created a wellness platform connecting users with certified herbalists.";
     }
     if (project.id === 'investor-loan-app') {
-      return "FinTech platform transforming real estate investment management through AI-powered portfolio tracking, automated reporting, and intelligent UX design.";
-    }
-    if (project.id === 'medication-app') {
-      return "Healthcare app UX design: AI-enhanced medication tracking solution improving patient adherence and care coordination through intelligent design approach.";
+      return "FinTech platform transforming real estate investment management through AI-powered portfolio tracking and automated reporting.";
     }
     if (project.id === 'splittime') {
-      return "See how AI-enhanced UX design reduced co-parenting scheduling conflicts by 73%. Family-centered platform transforming separated parent communication through intelligent design.";
+      return "See how AI-enhanced UX design reduced co-parenting scheduling conflicts by 73% through family-centered platform design.";
     }
-    if (project.id === 'gold2crypto') {
-      return "Crypto trading platform with AI-enhanced UX design: Investment app interface solving complexity issues and improving user confidence in digital asset trading.";
-    }
-    if (project.id === 'dae-search') {
-      return "AI-powered search platform UX design: Data discovery interface improving findability and user efficiency through strategic information architecture and intelligent design.";
-    }
-    if (project.id === 'barskyjoint') {
-      return "Cannabis e-commerce platform with AI-enhanced UX design: Platform interface solving regulatory compliance and user trust issues in regulated market space.";
-    }
-    if (project.id === 'wholesale-distribution') {
-      return "Real conversation to custom AI-powered business solution. How UX expertise evolved into full-stack Gen AI development for wholesale distribution challenges.";
-    }
-    return `${project.title} Product Design case study by Hiram Barsky - Product Designer & Gen AI Developer specializing in AI-enhanced user-centered solutions.`;
+    
+    return "Product design case study showcasing UX research, design process, and AI-enhanced solutions by Hiram Barsky.";
   };
   
   const optimizedTitle = getOptimizedTitle();
   const optimizedDescription = getOptimizedDescription();
   
-  // Generate slug for canonical URL
-  // Map to SEO-friendly URLs
+  // Generate SEO-friendly URL
   const projectMapping: Record<string, string> = {
     'herbalink': 'herbalink-mobile-herbalist-ux-design',
     'splittime': 'splittime-coparenting-app-design',
@@ -103,12 +75,12 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     'wholesale-distribution': 'wholesale-distribution-ai-solution'
   };
   const seoFriendlyId = projectMapping[project.id] || project.id;
-  // Canonical URL is now handled by DynamicSeo component
   const canonicalUrl = normalizeUrl(`/project/${seoFriendlyId}`);
 
   return (
     <Helmet>
-      <title>{optimizedTitle}</title>
+      {/* Separate title and description */}
+      <title>{optimizedTitle} | Hiram Barsky Design</title>
       <meta name="description" content={optimizedDescription} />
       <meta name="keywords" content={`Hiram Barsky, Product Designer, Gen AI developer, ${tags.join(', ')}, user experience design, digital product design, design case study, UX consulting`} />
       <meta name="author" content="Hiram Barsky - Product Designer & Gen AI Developer" />
@@ -118,7 +90,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       
-      {/* Enhanced Open Graph - Using project hero image */}
+      {/* Enhanced Open Graph - Using project image or headshot fallback */}
       <meta property="og:title" content={optimizedTitle} />
       <meta property="og:description" content={optimizedDescription} />
       <meta property="og:type" content="website" />
@@ -129,7 +101,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta property="og:site_name" content="Hiram Barsky - Product Designer & Gen AI Developer" />
       <meta property="og:locale" content="en_US" />
       
-      {/* Enhanced Twitter Card - Using project hero image */}
+      {/* Enhanced Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={optimizedTitle} />
       <meta name="twitter:description" content={optimizedDescription} />
