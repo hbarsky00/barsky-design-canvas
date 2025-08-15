@@ -59,7 +59,7 @@ export interface StructuredCaseStudyLayoutProps {
     src: string;
     poster?: string;
   };
-  sections: CaseStudySection[];
+  sections: StructuredCaseStudySectionProps[];
   projectLink?: string;
   gradientClasses?: string;
   seoData: {

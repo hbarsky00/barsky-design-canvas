@@ -6,7 +6,7 @@ import CaseStudySection from "../CaseStudySection";
 import CaseStudyNavigation from "../CaseStudyNavigation";
 import AutoSeo from "@/components/seo/AutoSeo";
 import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
-import { CaseStudySection as CaseStudySectionType } from "@/data/types/caseStudy";
+import { StructuredCaseStudySectionProps } from "@/data/types/caseStudy";
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
@@ -16,7 +16,7 @@ interface StructuredCaseStudyLayoutProps {
     src: string;
     poster?: string;
   };
-  sections: CaseStudySectionType[];
+  sections: StructuredCaseStudySectionProps[];
   projectLink?: string;
   gradientClasses?: string;
   seoData: {
