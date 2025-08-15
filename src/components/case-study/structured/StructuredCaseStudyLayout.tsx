@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
 import CaseStudyContactSection from "../CaseStudyContactSection";
+import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
 import { EditableVideo } from "./EditableVideo";
 import CaseStudyNavigation from "../CaseStudyNavigation";
@@ -44,12 +45,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   gradientClasses = "from-primary-container/20 to-secondary-container/20",
   showNavigation = true
 }) => {
+  // Get current URL for sharing
+  const { pathname } = useLocation();
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${pathname}`;
+
   const navigationItems = sections.map(section => ({
     label: section.title,
     anchor: `#${section.id}`
   }));
 
-  const { pathname } = useLocation();
   const currentProjectId = React.useMemo(() => {
     const parts = pathname.split('/');
     return parts[parts.length - 1] || '';
@@ -112,7 +116,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="mt-2 mb-16"
+                  className="mt-2 mb-8"
                 >
                   <Card className="p-8 lg:p-12 bg-card border border-border shadow-elevated">
                     {/* Title and Description */}
@@ -137,14 +141,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
                     {/* Visit Live Site */}
                     {projectLink && (
-                      <div className="flex justify-center">
+                      <div className="flex justify-center mb-8">
                         <ProjectLinks projectLink={projectLink} label="Visit Live Site" variant="outlined" />
                       </div>
                     )}
 
                     {/* Hero Video */}
                     {heroVideo && (
-                      <div className="max-w-4xl mx-auto" data-hero-image>
+                      <div className="max-w-4xl mx-auto mb-8" data-hero-image>
                         <EditableVideo
                           src={heroVideo.src}
                           alt={heroVideo.alt}
@@ -154,6 +158,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         />
                       </div>
                     )}
+
+                    {/* Share Toolbar - Under Hero Content */}
+                    <div className="flex justify-center">
+                      <CaseStudyShareToolbar 
+                        url={currentUrl}
+                        title={title}
+                        className="flex-wrap justify-center"
+                      />
+                    </div>
                   </Card>
                 </motion.section>
 
@@ -183,6 +196,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 >
                   <CaseStudyContactSection />
                 </motion.div>
+
+                {/* Share Toolbar - At Bottom */}
+                <div className="mt-12 pt-8 border-t border-border/20 flex justify-center">
+                  <CaseStudyShareToolbar 
+                    url={currentUrl}
+                    title={title}
+                    className="flex-wrap justify-center"
+                  />
+                </div>
 
                 {/* Prev/Next Navigation */}
                 <div id="project-navigation" className="mt-12">

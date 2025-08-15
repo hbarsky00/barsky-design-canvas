@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudyContactSection from "./CaseStudyContactSection";
+import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 
@@ -40,6 +41,9 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
   sections,
   gradientClasses = "from-blue-50 via-slate-50 to-indigo-50"
 }) => {
+  // Get current URL for sharing
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${path}`;
+
   // Create navigation items from sections
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
@@ -100,8 +104,17 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
             {/* Main Content */}
             <main className="flex-1 min-w-0">
               {/* Hero Section */}
-              <section id="overview" className="mb-16">
+              <section id="overview" className="mb-8">
                 {heroSection}
+                
+                {/* Share Toolbar - Under Title */}
+                <div className="mt-6 flex justify-center lg:justify-start">
+                  <CaseStudyShareToolbar 
+                    url={currentUrl}
+                    title={title}
+                    className="flex-wrap justify-center lg:justify-start"
+                  />
+                </div>
               </section>
 
               {/* Case Study Sections */}
@@ -117,6 +130,15 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
                 
                 <div id="contact-section">
                   <CaseStudyContactSection />
+                </div>
+                
+                {/* Share Toolbar - At Bottom */}
+                <div className="mt-12 pt-8 border-t border-white/20 flex justify-center">
+                  <CaseStudyShareToolbar 
+                    url={currentUrl}
+                    title={title}
+                    className="flex-wrap justify-center"
+                  />
                 </div>
               </div>
             </main>

@@ -1,3 +1,4 @@
+
 import React from "react";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import ProblemSection from "@/components/case-study/sections/ProblemSection";
@@ -7,6 +8,9 @@ import ProcessSection from "@/components/case-study/sections/ProcessSection";
 import WholesaleHero from "@/components/case-study/sections/WholesaleHero";
 
 const WholesaleDistributionCaseStudy: React.FC = () => {
+  // Optimized hero image for social sharing
+  const heroImage = "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png";
+
   const problemData = {
     title: "A casual dinner conversation revealed a business hemorrhaging efficiency",
     businessImpact: "A restaurant owner was manually tracking 200+ wholesale orders weekly using Excel spreadsheets. This led to 15% order errors, 3-hour daily reconciliation tasks, and constant stress about missed deliveries that could damage customer relationships.",
@@ -20,7 +24,7 @@ const WholesaleDistributionCaseStudy: React.FC = () => {
   };
 
   const impactData = {
-    overview: "By building a custom AI-powered business solution instead of just fixing their Excel problems, we eliminated 95% of manual data entry and reduced order processing time by 500%.",
+    overview: "Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers.",
     metrics: [
       {
         label: "Manual Data Entry",
@@ -148,13 +152,13 @@ const WholesaleDistributionCaseStudy: React.FC = () => {
 
   return (
     <CaseStudyLayout
-      title="Wholesale Distribution: Excel to Custom App Case Study | Hiram Barsky"
-      description="From Excel spreadsheets to AI-powered business solution. How a casual dinner conversation led to 95% reduction in manual work and 500% faster processing."
-      image="https://barskydesign.pro/lovable-uploads/wholesale-hero.png"
+      title="68% Fewer Errors: Streamlining Enterprise Operations | Hiram Barsky"
+      description="Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers."
+      image={heroImage}
       projectName="Wholesale Distribution App"
       results={["95% reduction in manual data entry", "500% faster order processing", "34% revenue growth in 6 months"]}
-      technologies={["Business Automation", "AI Development", "Custom Software", "Process Optimization"]}
-      path="/case-studies/wholesale-distribution-ai-solution"
+      technologies={["Business Automation", "AI Development", "Custom Software", "Process Optimization", "Enterprise", "Analytics", "Dashboard"]}
+      path="/project/wholesale-distribution"
       heroSection={heroSection}
       sections={sections}
       gradientClasses="from-orange-50 via-amber-50 to-yellow-50"

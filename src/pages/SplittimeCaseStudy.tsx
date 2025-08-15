@@ -7,7 +7,6 @@ import FailuresSection from "@/components/case-study/sections/FailuresSection";
 import ProcessSection from "@/components/case-study/sections/ProcessSection";
 import SplittimeHero from "@/components/splittime/SplittimeHero";
 import { useSplittimeImageViewer } from "@/hooks/useSplittimeImageViewer";
-import splittimeOgImage from "@/assets/social/splittime-og.jpg";
 
 const SplittimeCaseStudy: React.FC = () => {
   const {
@@ -21,6 +20,9 @@ const SplittimeCaseStudy: React.FC = () => {
     resetZoom,
     handleImageKeypress
   } = useSplittimeImageViewer();
+
+  // Optimized hero image for social sharing
+  const heroImage = "https://barskydesign.pro/images/desktop-signup-1.png";
 
   const problemData = {
     title: "Separated parents struggle to coordinate childcare without conflict",
@@ -36,7 +38,7 @@ const SplittimeCaseStudy: React.FC = () => {
   };
 
   const impactData = {
-    overview: "Post-launch data from Splittime showed measurable improvements in co-parenting coordination and conflict reduction, with parents reporting improved focus on children over disputes.",
+    overview: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
     metrics: [
       {
         label: "Conflict Incidents",
@@ -169,9 +171,9 @@ const SplittimeCaseStudy: React.FC = () => {
 
   return (
     <CaseStudyLayout
-      title="Splittime: 40% Less Conflict in Co-Parenting | Hiram Barsky"
-      description="Reduced co-parenting conflict by 40% through neutral communication tools and stress-aware design that puts children first."
-      image={`https://barskydesign.pro${splittimeOgImage}`}
+      title="40% Less Conflict: Designing Neutral Co-Parenting Tools | Hiram Barsky"
+      description="Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes."
+      image={heroImage}
       projectName="Splittime"
       results={["40% fewer conflict incidents", "30% faster scheduling resolution", "25% reduction in missed events", "78% improved child-focused communication"]}
       technologies={["FamilyTech", "iOS", "Android", "LegalUX", "ConflictReduction"]}

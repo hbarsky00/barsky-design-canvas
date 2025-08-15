@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 const InvestmentAppCaseStudy: React.FC = () => {
-  // Placeholder OG image - using a more generic approach
-  const investmentAppOgImage = "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png";
+  // Optimized hero image for social sharing (1200x630)
+  const heroImage = "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png";
 
   const sections = [
     {
@@ -93,12 +93,12 @@ const InvestmentAppCaseStudy: React.FC = () => {
 
   return (
     <CaseStudyLayout
-      title="Investment App: Making Finance Accessible to Beginners | Hiram Barsky"
-      description="23% increase in portfolio engagement through simplified design and educational approach. See how UX design made investing accessible to beginners."
-      image={`https://barskydesign.pro${investmentAppOgImage}`}
+      title="23% More Engagement: Making Investing Accessible to Beginners | Hiram Barsky"
+      description="Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios."
+      image={heroImage}
       projectName="Investment App"
       results={["23% increase in engagement", "67% improvement in investment knowledge", "Simplified onboarding process"]}
-      technologies={["FinTech", "Educational UX", "Mobile Design", "Investment Platform"]}
+      technologies={["FinTech", "Educational UX", "Mobile Design", "Investment Platform", "Analytics", "Tutorial"]}
       path="/project/investment-app"
       heroSection={heroSection}
       sections={sections}

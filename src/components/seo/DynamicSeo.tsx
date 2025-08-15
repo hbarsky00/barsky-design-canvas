@@ -1,435 +1,179 @@
 
-import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
-import { normalizeUrl, BASE_URL } from '@/utils/urlUtils';
+import React from "react";
+import { Helmet } from "react-helmet-async";
 
-
-interface BlogPostSeoProps {
-  type: 'blog-post';
-  title: string;
-  excerpt: string;
-  featuredImage?: string;
-  author: string;
-  publishedDate: string;
-  tags: string[];
-  slug: string;
-}
-
-interface PageSeoProps {
-  type: 'page';
+interface DynamicSeoProps {
+  type: "home" | "project" | "blog" | "about" | "services";
   title: string;
   description: string;
   image?: string;
+  projectName?: string;
+  results?: string[];
+  technologies?: string[];
   path: string;
+  author?: string;
+  publishedDate?: string;
+  tags?: string[];
 }
 
-interface ProjectSeoProps {
-  type: 'project';
-  title: string;
-  description: string;
-  image?: string;
-  projectName: string;
-  results: string[];
-  technologies: string[];
-  path: string;
-}
-
-interface ServiceSeoProps {
-  type: 'service';
-  title: string;
-  description: string;
-  image?: string;
-  serviceName: string;
-  benefits: string[];
-  targetAudience: string;
-  path: string;
+const DynamicSeo: React.FC<DynamicSeoProps> = ({
+  type,
+  title,
+  description,
+  image,
+  projectName,
+  results = [],
+  technologies = [],
+  path,
+  author = "Hiram Barsky",
+  publishedDate,
+  tags = []
+}) => {
+  // Get the current domain
+  const currentDomain = typeof window !== 'undefined' ? window.location.origin : 'https://barskydesign.pro';
+  const canonicalUrl = `${currentDomain}${path}`;
   
-}
-
-interface HomeSeoProps {
-  type: 'home';
-}
-
-type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | ServiceSeoProps | HomeSeoProps;
-
-const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
-  const location = useLocation();
-  const baseUrl = BASE_URL;
-  const defaultImage = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`;
-  
-  const toAbsoluteUrl = (url?: string): string => {
-    if (!url) return defaultImage;
-    if (url.startsWith('http://') || url.startsWith('https://')) return url;
-    return `${BASE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
-  };
-
-  // Helper function to truncate description to 150-160 characters
-  const truncateDescription = (text: string, maxLength: number = 160): string => {
-    if (text.length <= maxLength) return text;
-    const truncated = text.substring(0, maxLength);
-    const lastSpace = truncated.lastIndexOf(' ');
-    return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
-  };
-
-  // Ensure titles are set in static HTML first, then enhanced by JavaScript
-  useEffect(() => {
-    // Set document title immediately without waiting for render
-    const titleText = props.type === 'home' 
-      ? 'Hiram Barsky Design - Product Designer & Gen AI Developer'
-      : ('title' in props ? `${props.title} | Hiram Barsky Design` : 'Hiram Barsky Design - Product Designer & Gen AI Developer');
+  // Ensure image URL is absolute and optimized for social sharing
+  const getOptimizedImageUrl = (imagePath?: string) => {
+    if (!imagePath) return `${currentDomain}/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png`; // Default image
     
-    document.title = titleText;
-  }, [props]);
+    if (imagePath.startsWith('http')) {
+      return imagePath; // Already absolute
+    }
+    
+    // Make relative URLs absolute
+    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+    return `${currentDomain}${cleanPath}`;
+  };
 
-  // Purge any existing canonical links to ensure a single canonical per page
-  useEffect(() => {
-    const existing = document.querySelectorAll('link[rel="canonical"]');
-    existing.forEach((el) => el.parentElement?.removeChild(el));
-  }, [location.pathname]);
-
-  // Debug logging to ensure unique meta tags are being set
-  console.log('DynamicSeo rendering for:', props.type, 
-    props.type === 'home' ? 'Home page' : 
-    'title' in props ? props.title : 'No title provided');
-
-  // Generate structured data for blog posts
-  const generateBlogPostSchema = (props: BlogPostSeoProps) => {
-    return {
+  const optimizedImage = getOptimizedImageUrl(image);
+  
+  // Generate structured data based on type
+  const getStructuredData = () => {
+    const baseStructuredData = {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": props.title,
-      "description": props.excerpt,
-      "image": toAbsoluteUrl(props.featuredImage || defaultImage),
+      "url": canonicalUrl,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+      },
       "author": {
         "@type": "Person",
-        "name": props.author,
-        "url": `${baseUrl}/about`
+        "name": author,
+        "jobTitle": "Product Designer & Gen AI Developer",
+        "url": "https://barskydesign.pro",
+        "sameAs": [
+          "https://www.linkedin.com/in/hirambarsky",
+          "https://twitter.com/barskydesign"
+        ]
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Hiram Barsky Design - AI-Enhanced Design",
+        "name": "Barsky Design",
         "logo": {
           "@type": "ImageObject",
-          "url": `${baseUrl}/logo.png`
+          "url": `${currentDomain}/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png`
         }
-      },
-      "datePublished": props.publishedDate,
-      "dateModified": props.publishedDate,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": normalizeUrl(`/blog/${props.slug}`)
-      },
-      "keywords": props.tags.join(', ')
+      }
     };
-  };
 
-  // Generate structured data for regular pages
-  const generatePageSchema = (props: PageSeoProps) => {
+    if (type === "project") {
+      return {
+        ...baseStructuredData,
+        "@type": "CreativeWork",
+        "name": projectName || title,
+        "description": description,
+        "image": {
+          "@type": "ImageObject",
+          "url": optimizedImage,
+          "width": 1200,
+          "height": 630
+        },
+        "datePublished": publishedDate || new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0],
+        "keywords": [...technologies, ...tags].join(', '),
+        "about": {
+          "@type": "Thing",
+          "name": "User Experience Design",
+          "description": "Product design and development case study"
+        }
+      };
+    }
+
+    if (type === "blog") {
+      return {
+        ...baseStructuredData,
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": description,
+        "image": optimizedImage,
+        "datePublished": publishedDate || new Date().toISOString(),
+        "dateModified": new Date().toISOString(),
+        "keywords": tags.join(', ')
+      };
+    }
+
     return {
-      "@context": "https://schema.org",
+      ...baseStructuredData,
       "@type": "WebPage",
-      "name": props.title,
-      "description": props.description,
-      "url": normalizeUrl(props.path),
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Hiram Barsky Design - AI-Enhanced Design",
-        "url": baseUrl
-      }
+      "name": title,
+      "description": description
     };
   };
 
-  // Generate structured data for project pages
-  const generateProjectSchema = (props: ProjectSeoProps) => {
-    return {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "name": props.title,
-      "description": props.description,
-      "url": normalizeUrl(props.path),
-      "image": toAbsoluteUrl(props.image || defaultImage),
-      "creator": {
-        "@type": "Person",
-        "name": "Hiram Barsky",
-        "url": `${baseUrl}/about`
-      },
-      "about": props.projectName,
-      "keywords": [...props.technologies, "UX Design", "AI Integration"].join(', '),
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Hiram Barsky Design - AI-Enhanced Design",
-        "url": baseUrl
-      }
-    };
-  };
-
-  // Generate structured data for service pages
-  const generateServiceSchema = (props: ServiceSeoProps) => {
-    return {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": props.serviceName,
-      "description": props.description,
-      "url": normalizeUrl(props.path),
-      "image": toAbsoluteUrl(props.image || defaultImage),
-      "provider": {
-        "@type": "Person",
-        "name": "Hiram Barsky",
-        "url": `${baseUrl}/about`
-      },
-      "audience": {
-        "@type": "Audience",
-        "audienceType": props.targetAudience
-      },
-      "serviceType": "Design & Development",
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Hiram Barsky Design - AI-Enhanced Design",
-        "url": baseUrl
-      }
-    };
-  };
-
-  if (props.type === 'blog-post') {
-    const schema = generateBlogPostSchema(props);
-    const truncatedExcerpt = truncateDescription(props.excerpt);
-
-    return (
-      <>
-        
-        <Helmet>
-          {/* Canonical URL */}
-          <link rel="canonical" href={normalizeUrl(`/blog/${props.slug}`)} />
-        
-        {/* Basic Meta Tags */}
-        <title>{props.title} | Hiram Barsky Design Blog</title>
-        <meta name="description" content={truncatedExcerpt} />
-        
-        {/* Open Graph Tags for Facebook/LinkedIn */}
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${props.title} | Hiram Barsky Design Blog`} />
-        <meta property="og:description" content={truncatedExcerpt} />
-        <meta property="og:url" content={normalizeUrl(`/blog/${props.slug}`)} />
-        <meta property="og:image" content={toAbsoluteUrl(props.featuredImage || defaultImage)} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={props.title} />
-        <meta property="og:site_name" content="Hiram Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
-        
-        {/* Article-specific Open Graph Tags */}
-        <meta property="og:article:author" content={props.author} />
-        <meta property="og:article:published_time" content={props.publishedDate} />
-        <meta property="og:article:section" content="Design & Technology" />
-        {props.tags.map(tag => (
-          <meta key={tag} property="og:article:tag" content={tag} />
-        ))}
-        
-        {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.title} | Hiram Barsky Design Blog`} />
-        <meta name="twitter:description" content={truncatedExcerpt} />
-        <meta name="twitter:image" content={toAbsoluteUrl(props.featuredImage || defaultImage)} />
-        <meta name="twitter:image:alt" content={props.title} />
-        
-        {/* Keywords */}
-        <meta name="keywords" content={`${props.tags.join(', ')}, Hiram Barsky, Product Designer, Gen AI Developer, UX Design, Blog`} />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-        </Helmet>
-      </>
-    );
-  }
-
-  if (props.type === 'page') {
-    const schema = generatePageSchema(props);
-    const truncatedDescription = truncateDescription(props.description);
-
-    return (
-      <>
-        <Helmet>
-          {/* Canonical URL */}
-          <link rel="canonical" href={normalizeUrl(props.path)} />
-        
-        {/* Basic Meta Tags */}
-        <title>{props.title} | Hiram Barsky Design</title>
-        <meta name="description" content={truncatedDescription} />
-        
-        {/* Open Graph Tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${props.title} | Hiram Barsky Design`} />
-        <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={normalizeUrl(props.path)} />
-        <meta property="og:image" content={toAbsoluteUrl(props.image || defaultImage)} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={props.title} />
-        <meta property="og:site_name" content="Hiram Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
-        
-        {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.title} | Hiram Barsky Design`} />
-        <meta name="twitter:description" content={truncatedDescription} />
-        <meta name="twitter:image" content={toAbsoluteUrl(props.image || defaultImage)} />
-        <meta name="twitter:image:alt" content={props.title} />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-        </Helmet>
-      </>
-    );
-  }
-
-  if (props.type === 'project') {
-    const schema = generateProjectSchema(props);
-    const truncatedDescription = truncateDescription(props.description);
-
-    return (
-      <>
-        <Helmet>
-          {/* Canonical URL */}
-          <link rel="canonical" href={normalizeUrl(props.path)} />
-        
-        {/* Basic Meta Tags */}
-        <title>{props.projectName} - Product Design Case Study | Hiram Barsky Design</title>
-        <meta name="description" content={truncatedDescription} />
-        
-        {/* Open Graph Tags */}
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${props.projectName} - Product Design Case Study | Hiram Barsky Design`} />
-        <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={normalizeUrl(props.path)} />
-        <meta property="og:image" content={toAbsoluteUrl(props.image || defaultImage)} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={props.projectName} />
-        <meta property="og:site_name" content="Hiram Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
-        
-        {/* Project-specific Open Graph Tags */}
-        <meta property="og:article:author" content="Hiram Barsky" />
-        <meta property="og:article:section" content="Case Studies" />
-        {props.technologies.map(tech => (
-          <meta key={tech} property="og:article:tag" content={tech} />
-        ))}
-        
-        {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:creator" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.projectName} - Product Design Case Study | Hiram Barsky Design`} />
-        <meta name="twitter:description" content={truncatedDescription} />
-        <meta name="twitter:image" content={toAbsoluteUrl(props.image || defaultImage)} />
-        <meta name="twitter:image:alt" content={props.projectName} />
-        
-        {/* Keywords */}
-        <meta name="keywords" content={`${props.technologies.join(', ')}, Case Study, UX Design, AI Integration, Hiram Barsky`} />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-        </Helmet>
-      </>
-    );
-  }
-
-  if (props.type === 'service') {
-    const schema = generateServiceSchema(props);
-    const truncatedDescription = truncateDescription(props.description);
-
-    return (
-      <>
-        
-        <Helmet>
-          {/* Canonical URL */}
-          <link rel="canonical" href={normalizeUrl(props.path)} />
-        
-        {/* Basic Meta Tags */}
-        <title>{props.serviceName} - Product Design Services | Hiram Barsky Design</title>
-        <meta name="description" content={truncatedDescription} />
-        
-        {/* Open Graph Tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${props.serviceName} - Product Design Services | Hiram Barsky Design`} />
-        <meta property="og:description" content={truncatedDescription} />
-        <meta property="og:url" content={normalizeUrl(props.path)} />
-        <meta property="og:image" content={toAbsoluteUrl(props.image || defaultImage)} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={props.serviceName} />
-        <meta property="og:site_name" content="Hiram Barsky Design" />
-        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
-        
-        {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@hirambarsky" />
-        <meta name="twitter:title" content={`${props.serviceName} - Product Design Services | Hiram Barsky Design`} />
-        <meta name="twitter:description" content={truncatedDescription} />
-        <meta name="twitter:image" content={toAbsoluteUrl(props.image || defaultImage)} />
-        <meta name="twitter:image:alt" content={props.serviceName} />
-        
-        {/* Keywords */}
-        <meta name="keywords" content={`${props.serviceName}, UX Design, AI Integration, Product Design, Hiram Barsky`} />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-        </Helmet>
-      </>
-    );
-  }
-
-  // Default/Home page
-  const homeDescription = "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises.";
-  const truncatedHomeDescription = truncateDescription(homeDescription);
+  // Generate keywords
+  const keywords = [
+    "Hiram Barsky",
+    "Product Designer",
+    "Gen AI Developer",
+    "UX Design",
+    "User Experience",
+    ...technologies,
+    ...tags
+  ].join(', ');
 
   return (
-    <>
-      
-      <Helmet>
-        {/* Canonical URL */}
-        <link rel="canonical" href={normalizeUrl('/')} />
-      
+    <Helmet>
       {/* Basic Meta Tags */}
-      <title>Hiram Barsky Design - Product Designer & Gen AI Developer</title>
-      <meta name="description" content={truncatedHomeDescription} />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      <meta name="author" content={author} />
+      <link rel="canonical" href={canonicalUrl} />
       
-      {/* Open Graph Tags */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="Hiram Barsky Design - Product Designer & Gen AI Developer" />
-      <meta property="og:description" content={truncatedHomeDescription} />
-      <meta property="og:url" content={normalizeUrl('/')} />
-      <meta property="og:image" content={defaultImage} />
+      {/* Enhanced indexing directives */}
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      
+      {/* Open Graph Meta Tags */}
+      <meta property="og:type" content={type === "blog" ? "article" : "website"} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:image" content={optimizedImage} />
+      <meta property="og:image:alt" content={`${projectName || title} - Hiram Barsky Case Study`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Hiram Barsky Design - Product Designer & Gen AI Developer" />
-      <meta property="og:site_name" content="Hiram Barsky Design" />
-      <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+      <meta property="og:site_name" content="Hiram Barsky - Product Designer & Gen AI Developer" />
+      <meta property="og:locale" content="en_US" />
       
-      {/* Twitter Card Tags */}
+      {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@hirambarsky" />
-      <meta name="twitter:title" content="Hiram Barsky Design - Product Designer & Gen AI Developer" />
-      <meta name="twitter:description" content={truncatedHomeDescription} />
-      <meta name="twitter:image" content={defaultImage} />
-      <meta name="twitter:image:alt" content="Hiram Barsky Design - Product Designer & Gen AI Developer" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={optimizedImage} />
+      <meta name="twitter:creator" content="@barskydesign" />
+      <meta name="twitter:site" content="@barskydesign" />
       
-      {/* Keywords */}
-      <meta name="keywords" content="UX Designer, UI Designer, Product Designer, Gen AI Developer, Artificial Intelligence, UX Research, Design Systems, New York" />
-      </Helmet>
-    </>
+      {/* Additional Meta Tags */}
+      <meta name="theme-color" content="#3B82F6" />
+      <meta name="format-detection" content="telephone=no" />
+      
+      {/* Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(getStructuredData(), null, 2)}
+      </script>
+    </Helmet>
   );
 };
 
