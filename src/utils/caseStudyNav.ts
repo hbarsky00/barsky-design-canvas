@@ -20,9 +20,15 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
     const legacy = (caseStudiesData as any)[id];
 
     const title: string = structured?.title || legacy?.title || p.title || id;
+
+    // Prefer a thumbnail derived from heroVideo when available
+    const structuredThumb =
+      typeof structured?.heroVideo === "string"
+        ? structured.heroVideo.replace(".mp4", "-thumbnail.jpg")
+        : "";
+
     const image: string =
-      structured?.hero?.image ||
-      (typeof structured?.hero?.video === 'string' ? structured.hero.video.replace('.mp4', '-thumbnail.jpg') : '') ||
+      structuredThumb ||
       legacy?.videoThumbnail ||
       p.videoThumbnail ||
       "/placeholder.svg";
@@ -31,14 +37,20 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
   });
 
   // 2) Add any structured case studies not in homepage list
-  Object.values(structuredCaseStudies).forEach((cs) => {
+  Object.values(structuredCaseStudies).forEach((cs: any) => {
     if (items.has(cs.id)) return;
-    const image = cs.hero?.image || (typeof cs.hero?.video === 'string' ? cs.hero.video.replace('.mp4', '-thumbnail.jpg') : '') || "/placeholder.svg";
+
+    const structuredThumb =
+      typeof cs?.heroVideo === "string"
+        ? cs.heroVideo.replace(".mp4", "-thumbnail.jpg")
+        : "";
+
+    const image = structuredThumb || "/placeholder.svg";
     items.set(cs.id, { id: cs.id, title: cs.title, image });
   });
 
   // 3) Add any legacy case studies not in homepage list
-  Object.entries(caseStudiesData).forEach(([id, cs]) => {
+  Object.entries(caseStudiesData).forEach(([id, cs]: any) => {
     if (items.has(id)) return;
     const image = cs.videoThumbnail || "/placeholder.svg";
     items.set(id, { id, title: cs.title, image });
