@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -37,9 +38,6 @@ const BlogPost: React.FC = () => {
         image={blogPost.image}
         url={postUrl}
         type="article"
-        author={blogPost.author}
-        publishedDate={blogPost.date}
-        tags={blogPost.tags}
       />
 
       <div className="flex flex-col min-h-screen bg-white">
@@ -104,7 +102,7 @@ const BlogPost: React.FC = () => {
 
                 {/* Blog Post Content (Main Content) */}
                 <div className="lg:w-3/4">
-                  <BlogPostContent content={blogPost.content} />
+                  <BlogPostContent content={blogPost.content} slug={blogPost.id} />
 
                   {/* Author Bio */}
                   <AuthorBio author={blogPost.author} bio={blogPost.authorBio} image={blogPost.authorImage} />

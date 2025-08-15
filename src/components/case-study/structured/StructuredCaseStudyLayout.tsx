@@ -1,6 +1,7 @@
+
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github, Calendar, Clock, User } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Calendar, Clock, User, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
@@ -14,6 +15,7 @@ interface StructuredCaseStudyLayoutProps {
   projectName: string;
   results: string[];
   technologies: string[];
+  tags?: string[];
   path: string;
   sections: {
     id: string;

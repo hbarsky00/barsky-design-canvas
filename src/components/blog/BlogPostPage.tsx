@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
@@ -21,7 +22,7 @@ import NewsletterSignup from '@/components/blog/NewsletterSignup';
 
 const BlogPostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const blogPost = blogPosts[id || ""];
+  const blogPost = blogPosts.find(post => post.id === id);
 
   if (!blogPost) {
     return <Navigate to="/blog" replace />;
@@ -34,8 +35,6 @@ const BlogPostPage: React.FC = () => {
         description={blogPost.description}
         image={blogPost.image}
         type="article"
-        publishedDate={blogPost.date}
-        tags={blogPost.tags}
       />
       
       <div className="min-h-screen bg-white">
@@ -92,7 +91,7 @@ const BlogPostPage: React.FC = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="prose prose-lg max-w-none mb-8"
                   >
-                    <BlogPostContent content={blogPost.content} />
+                    <BlogPostContent content={blogPost.content} slug={blogPost.id} />
                   </motion.div>
 
                   <motion.div
@@ -138,7 +137,7 @@ const BlogPostPage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                <RelatedPosts currentPost={blogPost} />
+                <RelatedPosts tags={blogPost.tags} currentPostId={blogPost.id} />
               </motion.div>
             </div>
           </section>
