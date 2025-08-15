@@ -1,3 +1,4 @@
+
 export interface CaseStudyData {
   title: string;
   video: string;
@@ -64,7 +65,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   },
   "splittime": {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    video: "",
+    video: "https://share.shots.so/GlnqjFOJW3Rhn4p2.mp4",
     videoThumbnail: "images/desktop-signup-1.png",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
@@ -152,8 +153,8 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   },
   "investment-app": {
     title: "23% More Engagement: Making Investing Accessible to Beginners",
-    video: "investapp-demo.mp4",
-    videoThumbnail: "investapp-thumb.jpg",
+    video: "https://share.shots.so/WIa01A8uV6pGHd9q.mp4",
+    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
     tags: ["Finance", "Analytics", "Tutorial"],
     description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
     stickyNav: [
@@ -216,7 +217,7 @@ export const homepageCaseStudyPreviews = [
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     tags: ["Enterprise", "Analytics", "Dashboard"],
-    videoThumbnail: "",
+    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
     url: "/project/business-management"
   },
