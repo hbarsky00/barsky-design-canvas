@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Users, Brain, Target, BarChart3, Zap, Settings } from "lucide-react";
@@ -71,7 +70,7 @@ const Services = () => {
       tags: ["#Enterprise", "#Analytics", "#Dashboard"],
       image: "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",
       description: "One dashboard for dispatch, inventory, and reporting; removes duplicate entry and clarifies daily priorities.",
-      link: "/project/investor-loan-app"
+      link: "/project/business-management"
     },
     {
       id: "investment",
@@ -80,7 +79,7 @@ const Services = () => {
       tags: ["#Finance", "#Analytics", "#Tutorial"],
       image: "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",
       description: "Goal-based onboarding, tutorials, and real-time insights that keep first-time investors engaged.",
-      link: "/project/investor-loan-app"
+      link: "/project/investment-app"
     }
   ];
 
