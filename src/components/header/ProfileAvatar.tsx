@@ -8,7 +8,7 @@ const ProfileAvatar: React.FC = () => {
     <IdentityBadge
       to="/"
       ariaLabel="Go to homepage"
-      imageSrc="/lovable-uploads/6a382e66-1489-49cf-9809-b2165cdc7823.png"
+      imageSrc="/lovable-uploads/78032197-3673-4153-8d7b-6376818c5feb.png"
       name="Hiram Barsky"
       subtitle="Product Design + AI"
       size="md"
