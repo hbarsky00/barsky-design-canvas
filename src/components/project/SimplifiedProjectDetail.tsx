@@ -1,8 +1,8 @@
 
 import React from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { caseStudiesData } from "@/data/structuredCaseStudies";
-import OriginalCaseStudyLayout from "./OriginalCaseStudyLayout";
+import { caseStudiesData } from "@/data/caseStudies";
+import OriginalCaseStudyLayout from "@/components/case-study/OriginalCaseStudyLayout";
 import StoryDrivenProjectDetail from "./StoryDrivenProjectDetail";
 import InvestmentAppCaseStudy from "@/pages/InvestmentAppCaseStudy";
 
