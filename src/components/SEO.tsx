@@ -25,6 +25,9 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const baseUrl = 'https://barskydesign.pro';
   
+  // Use your profile photo as the fallback instead of the illustration
+  const profilePhotoFallback = `${baseUrl}/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png`;
+  
   // Auto-detect content if not provided
   const detectedTitle = React.useMemo(() => {
     if (title) return title;
@@ -52,7 +55,7 @@ const SEO: React.FC<SEOProps> = ({
       return image.startsWith('http') ? image : `${baseUrl}${image}`;
     }
     
-    // Auto-detect images from page content
+    // Auto-detect images from page content, but exclude the old illustration
     const heroSelectors = [
       '[data-hero-image] img',
       '.hero img',
@@ -63,14 +66,16 @@ const SEO: React.FC<SEOProps> = ({
 
     for (const selector of heroSelectors) {
       const img = document.querySelector(selector) as HTMLImageElement;
-      if (img?.src && !img.src.includes('e8d40a32-b582-44f6-b417-48bdd5c5b6eb')) {
+      if (img?.src && 
+          !img.src.includes('e8d40a32-b582-44f6-b417-48bdd5c5b6eb') &&
+          !img.src.includes('0021bf49-27e4-46b8-b948-ecdcd831a773')) {
         return img.src.startsWith('http') ? img.src : `${baseUrl}${img.src}`;
       }
     }
     
-    // Fallback to hero image, not the illustration
-    return `${baseUrl}/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png`;
-  }, [image, baseUrl]);
+    // Fallback to your profile photo instead of the illustration
+    return profilePhotoFallback;
+  }, [image, baseUrl, profilePhotoFallback]);
 
   const canonicalUrl = url || `${baseUrl}${window.location.pathname}`;
   
@@ -103,7 +108,7 @@ const SEO: React.FC<SEOProps> = ({
         "url": baseUrl,
         "logo": {
           "@type": "ImageObject",
-          "url": `${baseUrl}/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png`
+          "url": profilePhotoFallback
         }
       },
       "mainEntityOfPage": {
@@ -122,7 +127,7 @@ const SEO: React.FC<SEOProps> = ({
     }
 
     return baseSchema;
-  }, [optimizedTitle, optimizedDescription, canonicalUrl, detectedImage, author, baseUrl, type, publishedDate, tags]);
+  }, [optimizedTitle, optimizedDescription, canonicalUrl, detectedImage, author, baseUrl, type, publishedDate, tags, profilePhotoFallback]);
 
   return (
     <Helmet>

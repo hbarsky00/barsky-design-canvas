@@ -1,18 +1,14 @@
 
-import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
-import { caseStudiesData } from '@/data/caseStudies';
-import OriginalCaseStudyLayout from '@/components/case-study/OriginalCaseStudyLayout';
+import React from "react";
+import { useParams, Navigate } from "react-router-dom";
+import { caseStudiesData } from "@/data/structuredCaseStudies";
+import OriginalCaseStudyLayout from "./OriginalCaseStudyLayout";
 import StoryDrivenProjectDetail from "./StoryDrivenProjectDetail";
 import InvestmentAppCaseStudy from "@/pages/InvestmentAppCaseStudy";
 
-// Lazy load the case study components
+// Lazy load the case study components that exist
 const HerbalinkCaseStudy = React.lazy(() => import('@/pages/HerbalinkCaseStudy'));
 const SplittimeCaseStudy = React.lazy(() => import('@/pages/SplittimeCaseStudy'));
-const MedicationAppCaseStudy = React.lazy(() => import('@/pages/MedicationAppCaseStudy'));
-const Gold2CryptoCaseStudy = React.lazy(() => import('@/pages/Gold2CryptoCaseStudy'));
-const DaeSearchCaseStudy = React.lazy(() => import('@/pages/DaeSearchCaseStudy'));
-const BarskyJointCaseStudy = React.lazy(() => import('@/pages/BarskyJointCaseStudy'));
 
 const SimplifiedProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -42,34 +38,6 @@ const SimplifiedProjectDetail: React.FC = () => {
     
     case 'investment-app':
       return <InvestmentAppCaseStudy />;
-    
-    case 'medication-app':
-      return (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <MedicationAppCaseStudy />
-        </React.Suspense>
-      );
-    
-    case 'gold2crypto':
-      return (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <Gold2CryptoCaseStudy />
-        </React.Suspense>
-      );
-    
-    case 'dae-search':
-      return (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <DaeSearchCaseStudy />
-        </React.Suspense>
-      );
-    
-    case 'barskyjoint':
-      return (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <BarskyJointCaseStudy />
-        </React.Suspense>
-      );
     
     default:
       // Fallback to original layout for any remaining case studies
