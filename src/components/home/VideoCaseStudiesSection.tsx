@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -144,15 +143,15 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
             {study.impact}
           </div>
 
-          {/* CTA Buttons - Both now use outline variant */}
-          <div className="flex flex-col gap-3 pt-2">
-            <Button asChild variant="outline" className="w-full">
+          {/* CTA Buttons - Updated to two-column layout */}
+          <div className="flex flex-row gap-3 pt-2">
+            <Button asChild variant="outline" className="flex-1">
               <Link to={study.url}>
                 View Case Study
               </Link>
             </Button>
             {study.liveUrl && (
-              <Button asChild variant="outline" className="w-full">
+              <Button asChild variant="outline" className="flex-1">
                 <a 
                   href={study.liveUrl} 
                   target="_blank" 
