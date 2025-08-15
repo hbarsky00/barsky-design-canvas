@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +14,7 @@ import ProjectNavigation from "@/components/ProjectNavigation";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
+import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -159,15 +161,13 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                       </div>
                       
                       <div className="relative">
-                        <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
-                          <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
-                            <div className="text-center">
-                              <p className="text-muted-foreground mb-2">Image Placeholder</p>
-                              <p className="text-sm text-muted-foreground">{section.image.alt}</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+                        <MaximizableImage
+                          src={section.image.src}
+                          alt={section.image.alt}
+                          caption={section.image.alt}
+                          className="shadow-elevated w-full glass-card layered-depth rounded-lg"
+                          projectId={projectId}
+                        />
                       </div>
                     </div>
                   </motion.section>
