@@ -1,26 +1,16 @@
 
 import React from "react";
-import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
-import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
+import StructuredCaseStudyLayout from "@/components/case-study/StructuredCaseStudyLayout";
+import { structuredCaseStudies } from "@/data/structuredCaseStudies";
 
 const StructuredBusinessManagementCaseStudy: React.FC = () => {
-  const caseStudyData = getStructuredCaseStudy("business-management");
+  const caseStudy = structuredCaseStudies['business-management'];
   
-  if (!caseStudyData) {
+  if (!caseStudy) {
     return <div>Case study not found</div>;
   }
 
-  return (
-    <StructuredCaseStudyLayout
-      title={caseStudyData.title}
-      description={caseStudyData.description}
-      tags={caseStudyData.tags}
-      heroVideo={caseStudyData.heroVideo}
-      sections={caseStudyData.sections}
-      projectLink={caseStudyData.projectLink}
-      gradientClasses={caseStudyData.gradientClasses}
-    />
-  );
+  return <StructuredCaseStudyLayout caseStudy={caseStudy} />;
 };
 
 export default StructuredBusinessManagementCaseStudy;
