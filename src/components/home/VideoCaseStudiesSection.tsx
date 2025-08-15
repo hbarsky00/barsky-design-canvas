@@ -75,7 +75,7 @@ const caseStudies: CaseStudy[] = [
     title: "23% More Engagement: Making Investing Accessible to Beginners",
     description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
     impact: "+23% Engagement Increase",
-    url: "/project/investor-loan-app",
+    url: "/project/investment-app",
     liveUrl: "https://investor-loan-app.com",
     images: {
       primary: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
