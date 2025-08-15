@@ -5,7 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
+import SEOManager from "@/components/seo/SEOManager";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -15,12 +15,9 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
-import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
-// Structured case study imports
-import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
-import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
-import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
+// Rich case study imports - restore your original content
+import CaseStudyPage from "@/components/case-study/CaseStudyPage";
 
 const queryClient = new QueryClient();
 
@@ -31,8 +28,8 @@ function App() {
         <ImageMaximizerProvider>
           <Router>
             <ScrollToTop />
-            {/* Global SEO - runs on every route change */}
-            <UnifiedSEO />
+            {/* Isolated SEO Manager - no layout impact */}
+            <SEOManager />
             
             <Routes>
               {/* Home route */}
@@ -41,13 +38,12 @@ function App() {
               {/* Projects listing */}
               <Route path="/projects" element={<Projects />} />
               
-              {/* Structured case studies - these override the generic ProjectDetail routing */}
-              <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
-              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
-              
-              {/* Generic project detail for other projects */}
-              <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
+              {/* Rich case studies - restored to original system */}
+              <Route path="/case-studies/:id" element={<CaseStudyPage />} />
+              <Route path="/project/herbalink" element={<CaseStudyPage />} />
+              <Route path="/project/splittime" element={<CaseStudyPage />} />
+              <Route path="/project/business-management" element={<CaseStudyPage />} />
+              <Route path="/project/investment-app" element={<CaseStudyPage />} />
               
               {/* Other routes */}
               <Route path="/services" element={<Services />} />

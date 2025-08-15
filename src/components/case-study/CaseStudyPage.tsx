@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -10,12 +11,12 @@ import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 
-import DynamicSeo from "@/components/seo/DynamicSeo";
-
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   
-  const caseStudy = caseStudiesData[id || ""];
+  // Handle both /case-studies/:id and /project/:id routing
+  const projectId = id || window.location.pathname.split('/').pop();
+  const caseStudy = caseStudiesData[projectId || ""];
 
   if (!caseStudy) {
     return <Navigate to="/" replace />;
@@ -24,16 +25,6 @@ const CaseStudyPage: React.FC = () => {
   return (
     <>
       <Header />
-      <DynamicSeo
-        type="project"
-        title={caseStudy.title}
-        description={caseStudy.description}
-        image={caseStudy.videoThumbnail}
-        projectName={caseStudy.title}
-        results={[]}
-        technologies={caseStudy.tags}
-        path={`/${id}/`}
-      />
       
       <motion.div
         initial={{ opacity: 0 }}
@@ -41,7 +32,6 @@ const CaseStudyPage: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="min-h-screen bg-background pt-[calc(var(--header-height,64px)+12px)]"
       >
-
         <CaseStudyHero caseStudy={caseStudy} />
         
         <div className="relative">
