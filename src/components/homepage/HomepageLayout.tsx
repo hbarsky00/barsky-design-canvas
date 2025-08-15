@@ -68,23 +68,11 @@ const HomepageLayout: React.FC = () => {
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
-          <VideoCaseStudiesSection 
-            navigateUp={navigateUp}
-            navigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
+          <VideoCaseStudiesSection />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12" id="contact">
-          <ContactForm 
-            navigateUp={navigateUp}
-            navigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
+          <ContactForm />
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.2} className="bg-background py-8 md:py-12" id="blog-preview">
@@ -102,9 +90,6 @@ const HomepageLayout: React.FC = () => {
           <InternalLinkingEnhancer 
             currentPage="home" 
             showRelatedLinks={true}
-            navigateUp={navigateUp}
-            canNavigateUp={canNavigateUp}
-            isMobile={isMobile}
           />
         </SectionTransition>
       </main>
