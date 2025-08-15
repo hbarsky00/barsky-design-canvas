@@ -1,8 +1,12 @@
+
 {
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/index.html",
+      "missing": [
+        { "type": "file" }
+      ]
     }
   ],
   "headers": [
