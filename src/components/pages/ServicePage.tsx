@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import DynamicSeo from '@/components/seo/DynamicSeo';
+import SEO from '@/components/SEO';
 import { usePageMetadata } from '@/hooks/usePageMetadata';
 
 const ServicePage: React.FC = () => {
@@ -18,12 +19,12 @@ const ServicePage: React.FC = () => {
 
   return (
     <>
-      <DynamicSeo
-        type="page"
+      <SEO
         title={pageData.title}
         description={pageData.description}
         image={pageData.image}
-        path="/services"
+        type="website"
+        url="https://barskydesign.pro/services"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">

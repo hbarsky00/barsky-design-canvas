@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
+import SEO from "@/components/SEO";
 
 const AiRedesign: React.FC = () => {
   const processBreakdown = [
@@ -14,7 +14,7 @@ const AiRedesign: React.FC = () => {
       title: "Complete UX Research with AI Insights",
       tasks: [
         "AI-powered user behavior analysis and research synthesis",
-        "Advanced competitive intelligence using machine learning",
+        "Advanced competitive intelligence using machine learning", 
         "User persona development with predictive analytics",
         "Comprehensive accessibility and performance audit"
       ]
@@ -88,14 +88,11 @@ const AiRedesign: React.FC = () => {
 
   return (
     <>
-      <DynamicSeo 
-        type="service"
+      <SEO
         title="AI-Enhanced Redesign - Complete Digital Transformation"
         description="Transform your digital presence with AI-powered redesign. Same approach that helped Investor Loan App achieve 70% faster processing. $18,500 investment."
-        serviceName="AI-Enhanced Redesign"
-        benefits={["Complete digital transformation", "AI integration", "90-day support"]}
-        targetAudience="Enterprise Organizations"
-        path="/services/ai-redesign"
+        type="website"
+        url="https://barskydesign.pro/services/ai-redesign"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

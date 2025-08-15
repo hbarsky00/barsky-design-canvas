@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
+import SEO from "@/components/SEO";
 
 const ConversionAudit: React.FC = () => {
   const processBreakdown = [
@@ -67,14 +67,11 @@ const ConversionAudit: React.FC = () => {
 
   return (
     <>
-      <DynamicSeo 
-        type="service"
+      <SEO
         title="Conversion Optimization Audit - Double Your Conversions in 7 Days"
         description="Get a comprehensive UX audit in 7 days. Same methodology that helped Splittime reduce onboarding time by 50%. $2,500 investment."
-        serviceName="Conversion Optimization Audit"
-        benefits={["40% conversion rate improvement", "7-day delivery", "AI-enhanced analysis"]}
-        targetAudience="Existing Product Owners"
-        path="/services/conversion-audit"
+        type="website"
+        url="https://barskydesign.pro/services/conversion-audit"
       />
       
       <div className="flex flex-col min-h-screen overflow-x-hidden">

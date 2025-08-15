@@ -1,5 +1,6 @@
+
 import React from 'react';
-import DynamicSeo from '@/components/seo/DynamicSeo';
+import SEO from '@/components/SEO';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServicesCallToAction from '@/components/services/ServicesCallToAction';
@@ -7,14 +8,10 @@ import ServicesCallToAction from '@/components/services/ServicesCallToAction';
 const UxUiDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <DynamicSeo 
-        type="service"
+      <SEO
         title="UX Research & User Testing Services"
         description="AI-enhanced user research that uncovers insights traditional methods miss. Get actionable data that drives 40%+ conversion improvements."
-        serviceName="UX & UI Design"
-        benefits={["40%+ conversion improvements", "Data-driven insights", "User-centered design"]}
-        targetAudience="Startups and Enterprise"
-        path="/design-services/ux-ui-design"
+        type="website"
       />
       
       <Header />
