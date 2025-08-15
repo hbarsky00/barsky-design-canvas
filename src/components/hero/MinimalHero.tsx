@@ -156,9 +156,9 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
         </motion.div>
       </div>
 
-      {/* Continue Button with fade-out animation when hidden */}
+      {/* Continue Button with proper full-width centering */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 inset-x-0 px-4"
         animate={{ 
           opacity: showContinueButton ? 1 : 0,
           scale: showContinueButton ? 1 : 0.8,
@@ -170,12 +170,14 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           visibility: showContinueButton ? 'visible' : 'hidden'
         }}
       >
-        <SectionNavigation
-          onNavigateDown={handleNavigateDown}
-          canNavigateUp={false}
-          canNavigateDown={canNavigateDown}
-          downLabel="Continue"
-        />
+        <div className="flex justify-center w-full">
+          <SectionNavigation
+            onNavigateDown={handleNavigateDown}
+            canNavigateUp={false}
+            canNavigateDown={canNavigateDown}
+            downLabel="Continue"
+          />
+        </div>
       </motion.div>
     </section>
   );

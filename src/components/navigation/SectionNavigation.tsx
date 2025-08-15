@@ -37,7 +37,7 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
           {/* Up Navigation Arrow */}
           {canNavigateUp && onNavigateUp && (
             <motion.button
-              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg"
+              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg min-w-[80px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
@@ -47,31 +47,31 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
               <motion.div
                 animate={{ y: [0, -4, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="mb-2 flex justify-center"
+                className="mb-2 flex justify-center w-full"
               >
-                <ChevronUp size={20} className="group-hover:scale-110 transition-transform duration-200" />
+                <ChevronUp size={20} className="group-hover:scale-110 transition-transform duration-200 mx-auto" />
               </motion.div>
-              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity text-center">{upLabel}</span>
+              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity text-center w-full">{upLabel}</span>
             </motion.button>
           )}
 
           {/* Down Navigation Arrow */}
           {canNavigateDown && onNavigateDown && (
             <motion.button
-              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg"
+              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg min-w-[80px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
               onClick={onNavigateDown}
               aria-label={downLabel}
             >
-              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity mb-2 text-center">{downLabel}</span>
+              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity mb-2 text-center w-full">{downLabel}</span>
               <motion.div
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="flex justify-center"
+                className="flex justify-center w-full"
               >
-                <ChevronDown size={20} className="group-hover:scale-110 transition-transform duration-200" />
+                <ChevronDown size={20} className="group-hover:scale-110 transition-transform duration-200 mx-auto" />
               </motion.div>
             </motion.button>
           )}
