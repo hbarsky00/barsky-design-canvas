@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BlogPost } from "@/data/blogData";
 import { Calendar, Clock } from "lucide-react";
-import ShareButtons from "./ShareButtons";
+import MinimalShareToolbar from "./MinimalShareToolbar";
 
 interface BlogPostHeaderProps {
   post: BlogPost;
@@ -33,6 +33,13 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-barsky-dark dark:text-white">
         {post.title}
       </h1>
+
+      {/* Minimal Share Toolbar - Under Title */}
+      <MinimalShareToolbar 
+        url={window.location.href}
+        title={post.title}
+        className="mb-6"
+      />
       
       {/* Cover Image */}
       {post.coverImage && (
@@ -53,14 +60,6 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
           <span>{post.readTime}</span>
         </div>
       </div>
-      
-      {/* Share buttons */}
-      <ShareButtons 
-        title={post.title} 
-        summary={post.excerpt} 
-        url={window.location.href} 
-        hashtags={post.tags} 
-      />
     </header>
   );
 };

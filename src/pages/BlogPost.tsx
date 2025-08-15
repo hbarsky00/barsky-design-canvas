@@ -18,8 +18,7 @@ import BlogAuthorBio from "@/components/blog/BlogAuthorBio";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import DynamicSeo from "@/components/seo/DynamicSeo";
 import LoadingState from "@/components/blog/LoadingState";
-import SocialShare from "@/components/blog/SocialShare";
-import BlogEngagement from "@/components/blog/BlogEngagement";
+import MinimalShareToolbar from "@/components/blog/MinimalShareToolbar";
 import NewsletterSignup from "@/components/blog/NewsletterSignup";
 import { useRelatedPosts } from "@/hooks/useRelatedPosts";
 import { useBlogKeyboardNavigation } from "@/hooks/useBlogKeyboardNavigation";
@@ -101,15 +100,11 @@ const BlogPost: React.FC = () => {
               <BlogPostContent content={post.content} slug={post.slug} />
             </div>
             
-            <div id="blog-engagement" className="relative z-0">
-              <BlogEngagement postId={post.id} initialLikes={Math.floor(Math.random() * 50) + 10} />
-            </div>
-            
-            <div id="blog-social-share" className="relative z-0">
-              <SocialShare 
-                url={`/blog/${post.slug}`}
+            {/* Minimal Share Toolbar at Bottom of Article */}
+            <div id="blog-bottom-share" className="relative z-0 py-8 border-t border-gray-200">
+              <MinimalShareToolbar 
+                url={window.location.href}
                 title={post.title}
-                excerpt={post.excerpt}
               />
             </div>
             
