@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -7,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { EditableVideo } from "./EditableVideo";
+import PlaceholderImage from "./PlaceholderImage";
 
 export interface StructuredCaseStudySectionProps {
   id: string;
@@ -144,8 +144,8 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
             </div>
           )}
 
-          {/* Media */}
-          {media && (
+          {/* Media or Placeholder */}
+          {media ? (
             <div className="space-y-4">
               {media.type === "image" ? (
                 <MaximizableImage
@@ -164,6 +164,10 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                   videoOptions={media.videoOptions}
                 />
               )}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <PlaceholderImage title={title} />
             </div>
           )}
 
