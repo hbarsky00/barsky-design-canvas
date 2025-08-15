@@ -21,9 +21,10 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
     return `${baseUrl}${imagePath}`;
   };
   
+  // Use your profile image instead of the illustration
   const ogImageUrl = post.coverImage 
     ? getImageUrl(post.coverImage)
-    : getImageUrl("/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png");
+    : getImageUrl("/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png");
   
   // Canonical URL is now handled by DynamicSeo component
   const canonicalUrl = `https://barskydesign.pro/blog/${post.slug}`;
@@ -67,7 +68,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
             "name": "Barsky Design Services",
             "logo": {
               "@type": "ImageObject",
-              "url": getImageUrl("/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png")
+              "url": getImageUrl("/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png")
             }
           },
           "datePublished": post.date,

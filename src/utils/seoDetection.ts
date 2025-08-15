@@ -9,7 +9,8 @@ interface PageSEOData {
 }
 
 const BASE_URL = 'https://barskydesign.pro';
-const DEFAULT_IMAGE = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`;
+// Updated to use your actual profile image instead of the illustration
+const DEFAULT_IMAGE = `${BASE_URL}/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png`;
 
 /**
  * Converts relative URLs to absolute URLs
@@ -127,6 +128,7 @@ const extractHeroImage = (): string => {
     }
   }
 
+  // Return your profile image as fallback instead of the illustration
   return DEFAULT_IMAGE;
 };
 
