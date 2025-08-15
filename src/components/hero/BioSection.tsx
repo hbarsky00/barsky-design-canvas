@@ -3,18 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { NavigationProps } from "@/types/navigation";
 
-interface BioSectionProps extends NavigationProps {}
-
-const BioSection: React.FC<BioSectionProps> = ({ 
-  navigateUp, 
-  navigateDown, 
-  canNavigateUp, 
-  canNavigateDown,
-  isMobile 
-}) => {
+const BioSection: React.FC = () => {
   return (
     <section 
       id="bio-section"
@@ -80,18 +70,6 @@ const BioSection: React.FC<BioSectionProps> = ({
             </div>
           </Card>
         </motion.div>
-      </div>
-
-      {/* Navigation - positioned at bottom */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <SectionNavigation
-          onNavigateUp={navigateUp}
-          onNavigateDown={navigateDown}
-          canNavigateUp={canNavigateUp}
-          canNavigateDown={canNavigateDown}
-          upLabel="Back to top"
-          downLabel="See projects"
-        />
       </div>
     </section>
   );

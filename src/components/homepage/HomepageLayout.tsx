@@ -1,3 +1,4 @@
+
 import React from "react";
 import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
@@ -61,13 +62,7 @@ const HomepageLayout: React.FC = () => {
         
         <SectionTransition variant="fade" delay={0.05}>
           <section id="bio-section" tabIndex={-1}>
-            <BioSection 
-              navigateUp={navigateUp}
-              navigateDown={navigateDown}
-              canNavigateUp={canNavigateUp}
-              canNavigateDown={canNavigateDown}
-              isMobile={isMobile}
-            />
+            <BioSection />
           </section>
         </SectionTransition>
         
