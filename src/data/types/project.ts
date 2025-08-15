@@ -12,10 +12,12 @@ export interface ImageConfig {
 }
 
 export interface ImageTextItem {
-  text: string;
-  image?: string;
-  type?: 'text' | 'image';
-  content?: string;
+  type: 'text' | 'image' | 'video';
+  content: string;
+  caption?: string; // For images and videos
+  textKey?: string; // For text sections, used for saving
+  text?: string; // Legacy support
+  image?: string; // Legacy support
 }
 
 export interface ProjectDetails {
