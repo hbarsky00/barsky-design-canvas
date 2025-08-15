@@ -1,138 +1,199 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
-import { CaseStudyData } from '@/data/caseStudies';
+import React from "react";
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
+import VideoPlayer from "./VideoPlayer";
+import CaseStudyContactSection from "./CaseStudyContactSection";
+import { CaseStudyData } from "@/data/caseStudies";
+import DynamicSeo from "@/components/seo/DynamicSeo";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import CaseStudyNavigation from "./CaseStudyNavigation";
+import ProjectNavigation from "@/components/ProjectNavigation";
+import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
+import Section3DOverlay from "@/components/transitions/Section3DOverlay";
+import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 
-export interface OriginalCaseStudyLayoutProps {
+interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
   projectId: string;
 }
 
-const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
-  caseStudy,
-  projectId
+const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({ 
+  caseStudy, 
+  projectId 
 }) => {
+  const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
+
+  // Build sections for keyboard navigation
+  const keyboardSections = React.useMemo(() => {
+    const navSections = [
+      { id: 'hero-section', title: 'Overview' },
+      ...Object.entries(caseStudy.sections).map(([sectionId, section]) => {
+        const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
+        const title = navItem?.label || sectionId.replace('-', ' ');
+        return { id: sectionId, title };
+      }),
+      { id: 'contact-section', title: 'Contact' },
+      { id: 'project-navigation', title: 'More Projects' }
+    ];
+    return navSections;
+  }, [caseStudy]);
+
+  // Add keyboard navigation
+  const {
+    isTransitioning,
+    transitionDirection,
+    transitionVariation,
+  } = useCaseStudyKeyboardNavigation(keyboardSections);
+
   return (
     <>
-      <SEO
-        title={caseStudy.title}
-        description={caseStudy.description}
-        image={caseStudy.videoThumbnail}
-        type="article"
-        url={`https://barskydesign.pro/project/${projectId}`}
-      />
-      
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50">
+        <DynamicSeo
+          type="project"
+          title={caseStudy.title}
+          description={caseStudy.description}
+          image={caseStudy.videoThumbnail}
+          projectName={caseStudy.title}
+          results={[]}
+          technologies={caseStudy.tags}
+          path={`/project/${projectId}/`}
+        />
+
+      <div className="min-h-screen bg-background">
+        {/* 3D Transition Overlay */}
+        <Section3DOverlay 
+          isVisible={isTransitioning} 
+          direction={transitionDirection}
+          variation={transitionVariation}
+        />
+
         <Header />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]">
-          <main className="flex-1 min-w-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
-            >
-              <Button asChild variant="ghost" className="mb-6">
-                <Link to="/projects" className="flex items-center gap-2">
-                  <ArrowLeft className="h-4 w-4" />
-                  Back to Projects
-                </Link>
-              </Button>
-              
-              <h1 className="text-4xl font-extrabold text-gray-900 mb-4">{caseStudy.title}</h1>
-              <p className="text-lg text-gray-600 max-w-3xl">{caseStudy.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mt-4">
-                {caseStudy.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
 
-            {caseStudy.video && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-12"
-              >
-                <video
-                  src={caseStudy.video}
-                  poster={caseStudy.videoThumbnail}
-                  controls
-                  className="w-full rounded-lg shadow-lg"
+        <div className="container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8">
+          <div className="flex gap-8">
+            <CaseStudyNavigation navigation={caseStudy.stickyNav} />
+            {/* Main Content */}
+            <main className="flex-1 max-w-4xl">
+              <section id="hero-section" className="mb-16">
+                {/* Branding */}
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-center mb-8"
                 >
-                  Your browser does not support the video tag.
-                </video>
-              </motion.div>
-            )}
+                  <Link to="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                    <img 
+                      alt="Hiram Barsky" 
+                      className="w-10 h-10 rounded-full object-cover border-2 border-border" 
+                      src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
+                    />
+                    <div className="text-left">
+                      <div className="text-sm font-medium text-foreground">Hiram Barsky</div>
+                      <div className="text-xs text-muted-foreground">Product Designer & Gen AI Developer</div>
+                    </div>
+                  </Link>
+                </motion.div>
 
-            <div className="space-y-16 pb-20">
-              {caseStudy.stickyNav.map((navItem, index) => {
-                const sectionKey = navItem.anchor.replace('#', '');
-                const section = caseStudy.sections[sectionKey];
-                
-                if (!section) return null;
-                
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-center mb-12"
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+                    {caseStudy.title}
+                  </h1>
+                  
+                  <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                    {caseStudy.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap justify-center gap-2 mb-8">
+                    {caseStudy.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="px-3 py-1">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="mb-16"
+                >
+                  <VideoPlayer 
+                    videoSrc={caseStudy.video}
+                    thumbnailSrc={caseStudy.videoThumbnail}
+                    title={caseStudy.title}
+                  />
+                </motion.div>
+              </section>
+
+              {/* Case Study Sections */}
+              {Object.entries(caseStudy.sections).map(([sectionId, section]) => {
+                const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
+                const title = navItem?.label || sectionId.replace('-', ' ');
+
                 return (
-                  <section key={sectionKey} id={sectionKey} className="scroll-mt-24">
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.1 }}
-                      className="bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-sm border border-white/20"
-                    >
-                      <h2 className="text-3xl font-bold text-gray-900 mb-8">{navItem.label}</h2>
-                      
-                      <div className="grid lg:grid-cols-2 gap-8 items-start">
-                        <div className="prose prose-lg text-gray-600">
-                          <p>{section.text}</p>
-                        </div>
-                        
-                        {section.image && (
-                          <div className="lg:order-first">
-                            <img
-                              src={section.image.src}
-                              alt={section.image.alt}
-                              className="w-full rounded-lg shadow-md"
-                              loading="lazy"
-                            />
-                          </div>
-                        )}
+                  <motion.section
+                    key={sectionId}
+                    id={sectionId}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="mb-20"
+                    style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
+                  >
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+                      {title}
+                    </h2>
+                    
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                      <div className="space-y-6">
+                        <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                          {section.text}
+                        </p>
                       </div>
-                    </motion.div>
-                  </section>
+                      
+                      <div className="relative">
+                        <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                          <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                            <div className="text-center">
+                              <p className="text-muted-foreground mb-2">Image Placeholder</p>
+                              <p className="text-sm text-muted-foreground">{section.image.alt}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+                      </div>
+                    </div>
+                  </motion.section>
                 );
               })}
-            </div>
-            
-            {caseStudy.projectLink && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-center pb-16"
-              >
-                <Button asChild size="lg">
-                  <Link to={caseStudy.projectLink} target="_blank" rel="noopener noreferrer">
-                    View Live Project
-                  </Link>
-                </Button>
-              </motion.div>
-            )}
-          </main>
+
+              {/* Contact Section */}
+              <div id="contact-section">
+                <CaseStudyContactSection />
+              </div>
+
+              {/* Prev/Next Navigation */}
+              <div id="project-navigation" className="mt-12">
+                <ProjectNavigation
+                  currentProjectId={projectId}
+                  projectsData={projectsData}
+                />
+              </div>
+            </main>
+
+            {/* Desktop Sidebar Navigation */}
+          </div>
         </div>
-        
         <Footer />
       </div>
     </>

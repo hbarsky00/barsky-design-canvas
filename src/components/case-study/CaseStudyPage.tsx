@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -10,7 +9,8 @@ import CaseStudyHero from "./CaseStudyHero";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
-import SEO from "@/components/SEO";
+
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,12 +24,15 @@ const CaseStudyPage: React.FC = () => {
   return (
     <>
       <Header />
-      <SEO
-        title={`${caseStudy.title} | Case Study`}
+      <DynamicSeo
+        type="project"
+        title={caseStudy.title}
         description={caseStudy.description}
         image={caseStudy.videoThumbnail}
-        type="article"
-        tags={caseStudy.tags}
+        projectName={caseStudy.title}
+        results={[]}
+        technologies={caseStudy.tags}
+        path={`/${id}/`}
       />
       
       <motion.div

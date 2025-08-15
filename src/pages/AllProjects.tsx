@@ -1,55 +1,68 @@
+
 import React from "react";
-import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
-import SEO from '@/components/SEO';
 import Header from "@/components/Header";
+import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
+import DynamicSeo from "@/components/seo/DynamicSeo";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
-import ProjectGrid from "@/components/project/ProjectGrid";
+import ServicesCallToAction from "@/components/services/ServicesCallToAction";
+import BlogPreview from "@/components/blog/BlogPreview";
+
+import { useProjectsData } from "./projects/hooks/useProjectsData";
+import { projectFaqs } from "@/data/seoFaqs";
 
 const AllProjects = () => {
+  const { currentProjects, resetFilters } = useProjectsData();
+  
+  const breadcrumbs = [
+    { name: "Home", url: "https://barskydesign.pro" },
+    { name: "Projects", url: "https://barskydesign.pro/projects" }
+  ];
+
   return (
-    <>
-      <SEO
-        title="Product Design & Gen AI Portfolio | AI-Powered Web Applications"
-        description="Explore Product Design portfolio featuring Gen AI integration, intelligent web applications, and AI-powered user interfaces. Real case studies demonstrating AI-enhanced design solutions."
-        image="/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
-        type="website"
-        url="https://barskydesign.pro/projects"
+    <div className="flex flex-col min-h-screen px-5">
+      <DynamicSeo 
+        type="page"
+        title="AI-Enhanced Design Portfolio - Project Case Studies"
+        description="Explore AI-powered product design projects with real case studies and measurable results. See how AI integration transforms user experiences."
+        image="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png"
+        path="/projects"
       />
       
-      <div className="flex flex-col min-h-screen">
-        <Header />
+      <Header />
+      
+      <main className="flex-grow">
+        <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-8 sm:py-12 pt-24 sm:pt-28">
+          <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              AI-Enhanced Design Portfolio
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+              Explore my portfolio of Product Design projects featuring Gen AI integration and intelligent web applications. 
+              Each case study demonstrates the fusion of thoughtful design with cutting-edge AI technology, 
+              creating user-centered experiences that leverage the power of artificial intelligence.
+            </p>
+          </div>
+        </section>
+
+        <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <EnhancedProjectGrid 
+            projects={currentProjects}
+            resetFilters={resetFilters}
+          />
+        </div>
         
-        <main className="flex-grow bg-white">
-          <section className="py-12">
-            <div className="container mx-auto px-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-8"
-              >
-                <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
-                  <ArrowLeft className="mr-2 h-5 w-5" />
-                  Back to Home
-                </Link>
-                <h1 className="text-3xl font-semibold text-gray-900 mt-4">
-                  Product Design & Gen AI Portfolio
-                </h1>
-                <p className="text-gray-600 mt-2">
-                  Explore our case studies featuring AI-enhanced web applications and user interfaces.
-                </p>
-              </motion.div>
-              
-              <ProjectGrid />
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+        <ServicesCallToAction />
+        <BlogPreview />
+        <SeoFaqSection 
+          title="AI-Enhanced Product Design Project Questions"
+          faqs={projectFaqs}
+          className="mt-16"
+        />
+      </main>
+      
+      <Footer />
+    </div>
   );
 };
 

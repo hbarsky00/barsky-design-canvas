@@ -1,22 +1,26 @@
-
-import { Suspense, lazy } from "react";
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import Index from "./pages/Index";
+import { Toaster } from "@/components/ui/toaster";
+import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
+import ScrollToTop from "@/components/ScrollToTop";
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
 
-// Lazy load pages for better performance
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
-const Projects = lazy(() => import("./pages/Projects"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Blog = lazy(() => import("./pages/Blog"));
-const BlogPost = lazy(() => import("./pages/BlogPost"));
-const CaseStudyPage = lazy(() => import("./components/case-study/CaseStudyPage"));
-const UxUiDesign = lazy(() => import("./pages/design-services/UxUiDesign"));
-const WebDevelopment = lazy(() => import("./pages/design-services/WebDevelopment"));
-const MobileAppDesign = lazy(() => import("./pages/design-services/MobileAppDesign"));
+// Page imports
+import Index from "@/pages/Index";
+import Projects from "@/pages/Projects";
+import Services from "@/pages/Services";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
+import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
+
+// Structured case study imports
+import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
+import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
+import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 
 const queryClient = new QueryClient();
 
@@ -24,59 +28,40 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <TooltipProvider>
-          <Toaster />
-          <BrowserRouter>
+        <ImageMaximizerProvider>
+          <Router>
+            <ScrollToTop />
+            {/* Global SEO - runs on every route change */}
+            <UnifiedSEO />
+            
             <Routes>
+              {/* Home route */}
               <Route path="/" element={<Index />} />
-              <Route path="/project/:projectId" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <ProjectDetail />
-                </Suspense>
-              } />
-              <Route path="/projects" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Projects />
-                </Suspense>
-              } />
-              <Route path="/contact" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Contact />
-                </Suspense>
-              } />
-              <Route path="/blog" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Blog />
-                </Suspense>
-              } />
-              <Route path="/blog/:slug" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <BlogPost />
-                </Suspense>
-              } />
-              <Route path="/case-studies/:id" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <CaseStudyPage />
-                </Suspense>
-              } />
-              <Route path="/design-services/ux-ui-design" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <UxUiDesign />
-                </Suspense>
-              } />
-              <Route path="/design-services/web-development" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <WebDevelopment />
-                </Suspense>
-              } />
-              <Route path="/design-services/mobile-app-design" element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <MobileAppDesign />
-                </Suspense>
-              } />
+              
+              {/* Projects listing */}
+              <Route path="/projects" element={<Projects />} />
+              
+              {/* Structured case studies - these override the generic ProjectDetail routing */}
+              <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
+              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
+              
+              {/* Generic project detail for other projects */}
+              <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
+              
+              {/* Other routes */}
+              <Route path="/services" element={<Services />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              
+              {/* Catch all - redirect to home */}
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
+          </Router>
+          <Toaster />
+        </ImageMaximizerProvider>
       </HelmetProvider>
     </QueryClientProvider>
   );
