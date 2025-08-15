@@ -8,7 +8,7 @@ interface HeroLogoProps {
 }
 
 const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
-  const imageUrl = `/lovable-uploads/78032197-3673-4153-8d7b-6376818c5feb.png?t=${Date.now()}`;
+  const imageUrl = `/lovable-uploads/325d731b-d2fd-40e0-979d-6af8e498503f.png`;
   console.log('HeroLogo: Loading image from:', imageUrl);
 
   return (
