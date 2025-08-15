@@ -8,6 +8,9 @@ interface HeroLogoProps {
 }
 
 const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
+  const imageUrl = `/lovable-uploads/78032197-3673-4153-8d7b-6376818c5feb.png?t=${Date.now()}`;
+  console.log('HeroLogo: Loading image from:', imageUrl);
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -25,7 +28,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
     >
       <IdentityBadge
         to="/"
-        imageSrc="/lovable-uploads/78032197-3673-4153-8d7b-6376818c5feb.png?v=2"
+        imageSrc={imageUrl}
         name="Hiram Barsky"
         subtitle="Product Design + AI"
         size="lg"

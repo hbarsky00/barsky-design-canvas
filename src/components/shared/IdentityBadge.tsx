@@ -58,6 +58,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
   const s = sizeMap[size];
   const Wrapper: any = to ? Link : "div";
 
+  console.log('IdentityBadge: Attempting to load image:', imageSrc);
+
   return (
     <Wrapper
       {...(to ? { to } : {})}
@@ -84,6 +86,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
             loading="eager"
             width={s.imgWH}
             height={s.imgWH}
+            onLoad={() => console.log('Image loaded successfully:', imageSrc)}
+            onError={(e) => console.error('Image failed to load:', imageSrc, e)}
           />
           <AvatarFallback>{getInitials(name)}</AvatarFallback>
         </Avatar>
