@@ -1,4 +1,3 @@
-
 import React from "react";
 import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
@@ -20,7 +19,7 @@ import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNaviga
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
   
-  // Centralized keyboard navigation - single source of truth
+  // Enhanced keyboard navigation with case study support
   const { 
     isTransitioning, 
     transitionDirection, 
@@ -29,7 +28,8 @@ const HomepageLayout: React.FC = () => {
     navigateDown,
     canNavigateUp,
     canNavigateDown,
-    isMobile
+    isMobile,
+    isInCaseStudyMode
   } = useHomepageKeyboardNavigation();
 
   return (
@@ -50,47 +50,59 @@ const HomepageLayout: React.FC = () => {
       <main className="flex-grow space-y-4 md:space-y-12">
         
         <SectionTransition variant="fade">
-          <MinimalHero 
-            navigateDown={navigateDown}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
+          <section id="hero" tabIndex={-1}>
+            <MinimalHero 
+              navigateDown={navigateDown}
+              canNavigateDown={canNavigateDown}
+              isMobile={isMobile}
+            />
+          </section>
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.05}>
-          <BioSection 
-            navigateUp={navigateUp}
-            navigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            isMobile={isMobile}
-          />
+          <section id="bio-section" tabIndex={-1}>
+            <BioSection 
+              navigateUp={navigateUp}
+              navigateDown={navigateDown}
+              canNavigateUp={canNavigateUp}
+              canNavigateDown={canNavigateDown}
+              isMobile={isMobile}
+            />
+          </section>
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
           <VideoCaseStudiesSection />
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12" id="contact">
-          <ContactForm />
+        <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12">
+          <section id="contact" tabIndex={-1}>
+            <ContactForm />
+          </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.2} className="bg-background py-8 md:py-12" id="blog-preview">
-          <BlogPreview />
+        <SectionTransition variant="fade" delay={0.2} className="bg-background py-8 md:py-12">
+          <section id="blog-preview" tabIndex={-1}>
+            <BlogPreview />
+          </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.25} className="hidden md:block bg-muted/30 py-8 md:py-12" id="faq-section">
-          <SeoFaqSection 
-            title="Frequently Asked Questions About AI-Enhanced UX Design"
-            faqs={homepageFaqs}
-          />
+        <SectionTransition variant="fade" delay={0.25} className="hidden md:block bg-muted/30 py-8 md:py-12">
+          <section id="faq-section" tabIndex={-1}>
+            <SeoFaqSection 
+              title="Frequently Asked Questions About AI-Enhanced UX Design"
+              faqs={homepageFaqs}
+            />
+          </section>
         </SectionTransition>
 
-        <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12" id="internal-linking">
-          <InternalLinkingEnhancer 
-            currentPage="home" 
-            showRelatedLinks={true}
-          />
+        <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12">
+          <section id="internal-linking" tabIndex={-1}>
+            <InternalLinkingEnhancer 
+              currentPage="home" 
+              showRelatedLinks={true}
+            />
+          </section>
         </SectionTransition>
       </main>
       <Footer />

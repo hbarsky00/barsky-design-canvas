@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -103,11 +102,13 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
   return (
     <motion.div
+      id={`case-study-${index + 1}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-gray-50 overflow-hidden"
+      className="case-study-card bg-gray-50 overflow-hidden"
+      tabIndex={-1}
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
@@ -242,7 +243,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section id="projects" className="py-12 bg-white">
+    <section id="projects" className="py-12 bg-white" tabIndex={-1}>
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
