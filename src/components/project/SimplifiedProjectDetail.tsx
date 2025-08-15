@@ -37,12 +37,14 @@ const SimplifiedProjectDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Auto-detecting SEO */}
       <AutoSeo 
         fallbackTitle={`${project.title} - Product Design Case Study`}
         fallbackDescription={project.description}
         fallbackImage={project.image}
       />
       
+      {/* SEO data attributes for auto-detection */}
       <div 
         data-page-title={`${project.title} - Product Design Case Study`}
         data-page-description={project.description}
@@ -53,20 +55,15 @@ const SimplifiedProjectDetail: React.FC = () => {
       <Navigation />
       
       <main className="pt-20">
+        {/* Project Header */}
         <section data-hero className="py-20 bg-gradient-to-br from-background to-muted/50">
-          <ProjectHeader
-            title={project.title}
-            description={project.description}
-            image={project.image}
-            tags={project.tags}
-            imageCaptions={{}}
-            imageList={[project.image]}
-            currentIndex={0}
-          />
+          <ProjectHeader project={project} details={details} />
         </section>
 
+        {/* Project Content */}
         <ProjectContent details={details} />
 
+        {/* Project Navigation */}
         <section className="py-20 bg-muted/50">
           <div className="container mx-auto px-4">
             <ProjectNavigation currentProjectId={project.id} />
