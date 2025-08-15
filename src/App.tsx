@@ -5,7 +5,6 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -31,8 +30,6 @@ function App() {
         <ImageMaximizerProvider>
           <Router>
             <ScrollToTop />
-            {/* Global SEO - runs on every route change */}
-            <UnifiedSEO />
             
             <Routes>
               {/* Home route */}

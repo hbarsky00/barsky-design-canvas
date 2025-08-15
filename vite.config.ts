@@ -3,6 +3,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import prerender from "vite-plugin-prerender";
+import routes from "./scripts/prerender-routes.mjs";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -16,6 +18,15 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    mode === 'production' && prerender({
+      staticDir: "dist",
+      routes,
+      renderAfterDocumentEvent: "app-rendered",
+      minify: {
+        collapseWhitespace: false,
+        removeComments: false
+      }
+    })
   ].filter(Boolean),
   resolve: {
     alias: {
@@ -36,9 +47,5 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion'],
-  },
-  // Enable static generation for prerendering
-  define: {
-    'process.env.VITE_PRERENDER': JSON.stringify(mode === 'production' ? 'true' : 'false'),
   }
 }));
