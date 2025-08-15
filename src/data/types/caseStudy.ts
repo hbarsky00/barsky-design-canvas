@@ -52,23 +52,21 @@ export interface CaseStudyNavItem {
 }
 
 export interface StructuredCaseStudyLayoutProps {
-  caseStudyData: {
+  title: string;
+  description: string;
+  tags: string[];
+  heroVideo: {
+    src: string;
+    poster?: string;
+  };
+  sections: CaseStudySection[];
+  projectLink?: string;
+  gradientClasses?: string;
+  seoData: {
     title: string;
     description: string;
-    tags: string[];
-    heroVideo: {
-      src: string;
-      poster?: string;
-    };
-    sections: CaseStudySection[];
-    projectLink: string;
-    gradientClasses: string;
-    seoData: {
-      title: string;
-      description: string;
-      keywords: string[];
-      ogImage?: string;
-    };
+    keywords: string[];
+    ogImage?: string;
   };
   nextProject?: CaseStudyNavItem;
 }

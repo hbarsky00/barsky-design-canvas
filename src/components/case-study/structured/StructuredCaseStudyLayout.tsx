@@ -6,14 +6,47 @@ import CaseStudySection from "../CaseStudySection";
 import CaseStudyNavigation from "../CaseStudyNavigation";
 import AutoSeo from "@/components/seo/AutoSeo";
 import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
-import { StructuredCaseStudyLayoutProps } from "@/data/types/caseStudy";
+import { CaseStudySection as CaseStudySectionType } from "@/data/types/caseStudy";
+
+interface StructuredCaseStudyLayoutProps {
+  title: string;
+  description: string;
+  tags: string[];
+  heroVideo: {
+    src: string;
+    poster?: string;
+  };
+  sections: CaseStudySectionType[];
+  projectLink?: string;
+  gradientClasses?: string;
+  seoData: {
+    title: string;
+    description: string;
+    keywords: string[];
+    ogImage?: string;
+  };
+  nextProject?: {
+    image: string;
+    projectName: string;
+    results: string[];
+    technologies: string[];
+    path: string;
+    title?: string;
+    description?: string;
+  };
+}
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
-  caseStudyData,
+  title,
+  description,
+  tags,
+  heroVideo,
+  sections,
+  projectLink,
+  gradientClasses = "from-blue-50 via-slate-50 to-indigo-50",
+  seoData,
   nextProject
 }) => {
-  const { title, description, tags, heroVideo, sections, projectLink, gradientClasses, seoData } = caseStudyData;
-
   return (
     <>
       <AutoSeo 
@@ -24,7 +57,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       />
       <SeoAnalyticsTracker pageTitle={seoData.title} pageType="case-study" />
       
-      <div className={`min-h-screen ${gradientClasses}`}>
+      <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         {/* Hero Section */}
         <CaseStudyHero 
           title={title}
