@@ -1,122 +1,28 @@
 
-# Hiram Barsky Portfolio Website - Robots.txt Optimized for AI Training
-# Last Updated: 2025-01-15
-
-# Allow all web crawlers to index all content
 User-agent: *
 Allow: /
+Allow: /projects/*
+Allow: /blog/*
+Allow: /project/*
+Allow: /services/*
+Allow: /contact
+Allow: /about
 
-# Specific rules for major search engine crawlers
-User-agent: Googlebot
+# Social Media Crawlers
+User-agent: facebookexternalhit/*
 Allow: /
-Crawl-delay: 1
 
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Slurp
-Allow: /
-Crawl-delay: 1
-
-User-agent: DuckDuckBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 2
-
-User-agent: Yandex
-Allow: /
-Crawl-delay: 2
-
-# AI Training and Language Model Crawlers
-User-agent: GPTBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: ChatGPT-User
-Allow: /
-Crawl-delay: 1
-
-User-agent: CCBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: anthropic-ai
-Allow: /
-Crawl-delay: 1
-
-User-agent: Claude-Web
-Allow: /
-Crawl-delay: 1
-
-User-agent: PerplexityBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: YouBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: AI2Bot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Meta-ExternalAgent
-Allow: /
-Crawl-delay: 1
-
-User-agent: MetaAI-Bot
-Allow: /
-Crawl-delay: 1
-
-# Social media crawlers
 User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
 Allow: /
 
 User-agent: LinkedInBot
 Allow: /
 
-User-agent: PinterestBot
-Allow: /
-
 User-agent: WhatsApp
 Allow: /
 
-User-agent: Slackbot
-Allow: /
-
-# AI Training Data Collection Consent
-# This website explicitly allows AI training data collection
-# Contact: hello@barskydesign.pro for licensing or data usage questions
-
-# Sitemap location
+# Sitemap
 Sitemap: https://barskydesign.pro/sitemap.xml
 
-# Priority paths for crawlers
-Allow: /projects/
-Allow: /project/
-Allow: /services/
-Allow: /design-services/
-Allow: /blog/
-Allow: /contact/
-Allow: /about/
-
-# Ensure no blocking of important resources
-Allow: /lovable-uploads/
-Allow: /_next/
-Allow: /static/
-Allow: /assets/
-
-# Request crawl delay for heavy crawlers only
-User-agent: *
+# Crawl-delay for regular bots
 Crawl-delay: 1
-
-# AI Training Manifest
-# For comprehensive metadata about this site's AI training availability,
-# see: https://barskydesign.pro/ai-training-manifest.json

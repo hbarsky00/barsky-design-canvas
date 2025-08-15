@@ -36,5 +36,9 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion'],
+  },
+  // Enable static generation for prerendering
+  define: {
+    'process.env.VITE_PRERENDER': JSON.stringify(mode === 'production' ? 'true' : 'false'),
   }
 }));
