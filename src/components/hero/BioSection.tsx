@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedText from "@/components/AnimatedText";
@@ -28,11 +29,11 @@ const BioSection: React.FC<BioSectionProps> = ({
     ]
   ];
 
-  // Switch text every 5 seconds
+  // Switch text every 10 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prev) => (prev === 0 ? 1 : 0));
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);

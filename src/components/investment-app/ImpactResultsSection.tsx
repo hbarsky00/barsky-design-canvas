@@ -75,7 +75,7 @@ const ImpactResultsSection: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={ {{ once: true }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="bg-white/70 backdrop-blur-sm p-12 rounded-3xl text-center max-w-5xl mx-auto border border-blue-200 shadow-xl"
         >
