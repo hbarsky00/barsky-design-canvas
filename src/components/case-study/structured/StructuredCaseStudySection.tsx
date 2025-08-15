@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -105,29 +104,32 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
 
         {/* Content */}
         <div className="space-y-8">
-          {/* Media or Placeholder - moved to appear directly after header */}
+          {/* Media or Placeholder - with proper containment */}
           {media ? (
-            <div className="space-y-4">
+            <div className="w-full max-w-full overflow-hidden">
               {media.type === "image" ? (
-                <MaximizableImage
-                  src={media.src}
-                  alt={media.alt}
-                  caption={media.caption}
-                  className="w-full rounded-lg shadow-lg"
-                  projectId="case-study"
-                />
+                <div className="w-full max-w-full">
+                  <MaximizableImage
+                    src={media.src}
+                    alt={media.alt}
+                    caption={media.caption}
+                    className="w-full max-w-full rounded-lg shadow-lg"
+                    projectId="case-study"
+                    fit="contain"
+                  />
+                </div>
               ) : (
                 <EditableVideo
                   src={media.src}
                   alt={media.alt}
                   caption={media.caption}
-                  className="w-full rounded-lg shadow-lg"
+                  className="w-full max-w-full rounded-lg shadow-lg"
                   videoOptions={media.videoOptions}
                 />
               )}
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="w-full max-w-full">
               <PlaceholderImage title={title} />
             </div>
           )}
