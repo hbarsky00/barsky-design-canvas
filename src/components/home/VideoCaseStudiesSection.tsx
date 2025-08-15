@@ -63,7 +63,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
       secondary: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
       alt: "Business management app showing driver and inventory management"
     },
