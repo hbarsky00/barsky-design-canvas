@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Linkedin, Calendar } from "lucide-react";
@@ -13,13 +13,44 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
   canNavigateDown,
   isMobile 
 }) => {
+  const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
+  const [showContinueButton, setShowContinueButton] = useState(true);
+
+  // Track scroll position to hide continue button permanently
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const heroHeight = window.innerHeight;
+      
+      // If user scrolls past 20% of hero section, hide continue button permanently
+      if (scrollPosition > heroHeight * 0.2 && showContinueButton) {
+        setShowContinueButton(false);
+        setHasScrolledPastHero(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showContinueButton]);
+
+  const handleNavigateDown = () => {
+    // Hide continue button immediately when clicked
+    setShowContinueButton(false);
+    setHasScrolledPastHero(true);
+    
+    // Navigate to next section
+    if (navigateDown) {
+      navigateDown();
+    }
+  };
+
   return (
     <section 
       id="hero"
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white relative
                  pt-safe-top pb-safe-bottom"
     >
-      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full" onClick={navigateDown}>
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full" onClick={handleNavigateDown}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,14 +151,27 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
         </motion.div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      {/* Continue Button with fade-out animation when hidden */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        animate={{ 
+          opacity: showContinueButton ? 1 : 0,
+          scale: showContinueButton ? 1 : 0.8,
+          y: showContinueButton ? 0 : 20
+        }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        style={{ 
+          pointerEvents: showContinueButton ? 'auto' : 'none',
+          visibility: showContinueButton ? 'visible' : 'hidden'
+        }}
+      >
         <SectionNavigation
-          onNavigateDown={navigateDown}
+          onNavigateDown={handleNavigateDown}
           canNavigateUp={false}
           canNavigateDown={canNavigateDown}
           downLabel="Continue"
         />
-      </div>
+      </motion.div>
     </section>
   );
 };

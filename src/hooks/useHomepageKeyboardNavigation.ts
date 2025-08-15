@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from "react";
 import { use3DTransition } from "./use3DTransition";
 import { useIsMobile } from "./use-mobile";
@@ -61,7 +60,8 @@ export const useHomepageKeyboardNavigation = () => {
   const getHeaderOffset = () => {
     const rootStyles = getComputedStyle(document.documentElement);
     const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
-    return headerHeight + 16;
+    // Reduced offset for cleaner transitions
+    return headerHeight;
   };
 
   const scrollToSection = useCallback((index: number) => {
@@ -72,7 +72,13 @@ export const useHomepageKeyboardNavigation = () => {
     const element = document.getElementById(sectionId);
     
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+      // For hero section, scroll to absolute top
+      let offsetTop;
+      if (sectionId === 'hero') {
+        offsetTop = 0;
+      } else {
+        offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+      }
       
       // Check for reduced motion preference
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -82,8 +88,12 @@ export const useHomepageKeyboardNavigation = () => {
         behavior: prefersReducedMotion ? 'auto' : 'smooth'
       });
       
-      // Update URL hash
-      window.history.replaceState(null, '', `#${sectionId}`);
+      // Update URL hash (except for hero)
+      if (sectionId !== 'hero') {
+        window.history.replaceState(null, '', `#${sectionId}`);
+      } else {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
       
       // Focus the section after scrolling
       setTimeout(() => {
@@ -142,7 +152,7 @@ export const useHomepageKeyboardNavigation = () => {
     });
   }, [currentSectionIndex, scrollToSection, isTransitioning, triggerTransition, isInCaseStudyMode, getActiveSections, isNavigationBlocked]);
 
-  // Enhanced scroll tracking
+  // Enhanced scroll tracking with better section detection
   useEffect(() => {
     let ticking = false;
 
@@ -153,7 +163,9 @@ export const useHomepageKeyboardNavigation = () => {
       requestAnimationFrame(() => {
         const scrollPosition = window.scrollY;
         const viewportHeight = window.innerHeight;
-        const viewportCenter = scrollPosition + viewportHeight / 2;
+        
+        // Use a more precise center point for section detection
+        const detectionPoint = scrollPosition + viewportHeight * 0.4;
 
         // First, check if we're in the projects section area
         const projectsElement = document.getElementById('projects');
@@ -162,7 +174,7 @@ export const useHomepageKeyboardNavigation = () => {
           const projectsTop = scrollPosition + projectsRect.top;
           const projectsBottom = projectsTop + projectsRect.height;
           
-          const isInProjectsArea = viewportCenter >= projectsTop && viewportCenter <= projectsBottom;
+          const isInProjectsArea = detectionPoint >= projectsTop && detectionPoint <= projectsBottom;
           
           if (isInProjectsArea) {
             // Check if we're specifically over a case study card
@@ -174,7 +186,7 @@ export const useHomepageKeyboardNavigation = () => {
                 const elementTop = scrollPosition + rect.top;
                 const elementCenter = elementTop + rect.height / 2;
                 
-                if (Math.abs(viewportCenter - elementCenter) < rect.height / 2) {
+                if (Math.abs(detectionPoint - elementCenter) < rect.height / 2) {
                   setIsInCaseStudyMode(true);
                   setCurrentSectionIndex(i);
                   foundCaseStudy = true;
@@ -206,7 +218,7 @@ export const useHomepageKeyboardNavigation = () => {
                 const rect = element.getBoundingClientRect();
                 const elementTop = scrollPosition + rect.top;
                 const elementCenter = elementTop + rect.height / 2;
-                const distance = Math.abs(viewportCenter - elementCenter);
+                const distance = Math.abs(detectionPoint - elementCenter);
 
                 if (distance < minDistance) {
                   minDistance = distance;
