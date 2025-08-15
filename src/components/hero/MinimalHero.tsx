@@ -76,9 +76,14 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           <div className="order-2">
             <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
                          xl:text-8xl 2xl:text-9xl
-                         font-bold text-gray-900 mb-4 sm:mb-6 xl:mb-8 2xl:mb-12 leading-tight">
+                         font-bold text-gray-900 mb-3 sm:mb-4 xl:mb-6 2xl:mb-8 leading-tight">
               Hiram Barsky
             </h1>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl 
+                         xl:text-6xl 2xl:text-7xl
+                         font-medium text-gray-900 mb-4 sm:mb-6 xl:mb-8 2xl:mb-12">
+              Product Designer + AI
+            </h2>
             <a 
               href="https://barskydesign.pro" 
               target="_blank" 
