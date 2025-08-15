@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -14,31 +15,24 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
-import ProjectDetail from "@/pages/ProjectDetail";
+import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
 // Structured case study imports
 import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
-import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
-import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
 
 const queryClient = new QueryClient();
 
 function App() {
-  React.useEffect(() => {
-    // Dispatch event for prerendering
-    queueMicrotask(() => {
-      document.dispatchEvent(new Event("app-rendered"));
-    });
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <ImageMaximizerProvider>
           <Router>
             <ScrollToTop />
+            {/* Global SEO - runs on every route change */}
+            <UnifiedSEO />
             
             <Routes>
               {/* Home route */}
@@ -51,11 +45,9 @@ function App() {
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
-              <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-              <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
               
               {/* Generic project detail for other projects */}
-              <Route path="/project/:projectId" element={<ProjectDetail />} />
+              <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
               
               {/* Other routes */}
               <Route path="/services" element={<Services />} />

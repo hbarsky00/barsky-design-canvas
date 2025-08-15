@@ -7,17 +7,20 @@ const StructuredHerbalinkCaseStudy: React.FC = () => {
   const caseStudyData = getStructuredCaseStudy("herbalink");
   
   if (!caseStudyData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Case Study Not Found</h1>
-          <p className="text-gray-600">The HerbaLink case study could not be loaded.</p>
-        </div>
-      </div>
-    );
+    return <div>Case study not found</div>;
   }
 
-  return <StructuredCaseStudyLayout caseStudy={caseStudyData} />;
+  return (
+    <StructuredCaseStudyLayout
+      title={caseStudyData.title}
+      description={caseStudyData.description}
+      tags={caseStudyData.tags}
+      heroVideo={caseStudyData.heroVideo}
+      sections={caseStudyData.sections}
+      projectLink={caseStudyData.projectLink}
+      gradientClasses={caseStudyData.gradientClasses}
+    />
+  );
 };
 
 export default StructuredHerbalinkCaseStudy;
