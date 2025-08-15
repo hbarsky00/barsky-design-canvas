@@ -6,10 +6,6 @@ import { applySEOForPage, PageSEOData } from '@/utils/seoAutoDetector';
 import { BASE_URL } from '@/utils/urlUtils';
 
 interface AutoSeoProps {
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  ogImage?: string;
   fallbackTitle?: string;
   fallbackDescription?: string;
   fallbackImage?: string;
@@ -19,10 +15,6 @@ interface AutoSeoProps {
  * Auto-detecting SEO component that uses DOM inspection to generate meta tags
  */
 const AutoSeo: React.FC<AutoSeoProps> = ({
-  title: propTitle,
-  description: propDescription,
-  keywords = [],
-  ogImage: propOgImage,
   fallbackTitle = 'Hiram Barsky - Product Designer & Gen AI Developer',
   fallbackDescription = 'Expert Product Designer specializing in Gen AI integration and user-centered design solutions.',
   fallbackImage = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`
@@ -34,26 +26,15 @@ const AutoSeo: React.FC<AutoSeoProps> = ({
     // Wait for component mount and DOM updates
     const detectAndApply = () => {
       try {
-        // Use provided props or fall back to auto-detection
-        if (propTitle && propDescription) {
-          setSeoData({
-            title: propTitle,
-            description: propDescription,
-            image: propOgImage || fallbackImage,
-            url: `${BASE_URL}${location.pathname}`,
-            type: 'article'
-          });
-        } else {
-          const detectedData = applySEOForPage();
-          setSeoData(detectedData);
-        }
+        const detectedData = applySEOForPage();
+        setSeoData(detectedData);
       } catch (error) {
         console.error('AutoSeo detection failed:', error);
         // Use fallbacks
         setSeoData({
-          title: propTitle || fallbackTitle,
-          description: propDescription || fallbackDescription,
-          image: propOgImage || fallbackImage,
+          title: fallbackTitle,
+          description: fallbackDescription,
+          image: fallbackImage,
           url: `${BASE_URL}${location.pathname}`,
           type: 'website'
         });
@@ -63,24 +44,23 @@ const AutoSeo: React.FC<AutoSeoProps> = ({
     // Small delay to ensure DOM is ready
     const timeoutId = setTimeout(detectAndApply, 50);
     return () => clearTimeout(timeoutId);
-  }, [location.pathname, propTitle, propDescription, propOgImage, fallbackTitle, fallbackDescription, fallbackImage]);
+  }, [location.pathname, fallbackTitle, fallbackDescription, fallbackImage]);
 
   if (!seoData) {
     // Return basic fallback meta tags while detecting
     return (
       <Helmet>
-        <title>{propTitle || fallbackTitle}</title>
-        <meta name="description" content={propDescription || fallbackDescription} />
-        {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+        <title>{fallbackTitle}</title>
+        <meta name="description" content={fallbackDescription} />
         <link rel="canonical" href={`${BASE_URL}${location.pathname}`} />
-        <meta property="og:title" content={propTitle || fallbackTitle} />
-        <meta property="og:description" content={propDescription || fallbackDescription} />
-        <meta property="og:image" content={propOgImage || fallbackImage} />
+        <meta property="og:title" content={fallbackTitle} />
+        <meta property="og:description" content={fallbackDescription} />
+        <meta property="og:image" content={fallbackImage} />
         <meta property="og:url" content={`${BASE_URL}${location.pathname}`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={propTitle || fallbackTitle} />
-        <meta name="twitter:description" content={propDescription || fallbackDescription} />
-        <meta name="twitter:image" content={propOgImage || fallbackImage} />
+        <meta name="twitter:title" content={fallbackTitle} />
+        <meta name="twitter:description" content={fallbackDescription} />
+        <meta name="twitter:image" content={fallbackImage} />
       </Helmet>
     );
   }
@@ -90,7 +70,6 @@ const AutoSeo: React.FC<AutoSeoProps> = ({
       {/* Basic Meta Tags */}
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
-      {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
       <link rel="canonical" href={seoData.url} />
       
       {/* Open Graph Tags */}

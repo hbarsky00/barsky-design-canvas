@@ -1,10 +1,9 @@
-
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface SeoAnalyticsTrackerProps {
   pageTitle?: string;
-  pageType?: 'home' | 'page' | 'blog-post' | 'project' | 'service' | 'case-study';
+  pageType?: 'home' | 'page' | 'blog-post' | 'project' | 'service';
 }
 
 const SeoAnalyticsTracker: React.FC<SeoAnalyticsTrackerProps> = ({ 

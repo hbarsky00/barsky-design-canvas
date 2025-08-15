@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { EditableVideo } from "./EditableVideo";
 
-interface StructuredCaseStudySectionComponentProps {
+export interface StructuredCaseStudySectionProps {
   id: string;
   title: string;
   icon: LucideIcon;
@@ -35,7 +35,7 @@ interface StructuredCaseStudySectionComponentProps {
   tags?: string[];
 }
 
-const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionComponentProps> = ({
+const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   id,
   title,
   icon: Icon,
