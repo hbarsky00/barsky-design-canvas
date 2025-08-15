@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 
 const keyResults = [
   "40% conversion rate improvements",
-  "60% faster design-to-development cycles", 
-  "WCAG 2.1 accessibility compliance",
-  "47 successful projects completed"
+  "60% faster design cycles", 
+  "WCAG 2.1 compliance",
+  "47 successful projects"
 ];
 
 const coreSkills = [
@@ -26,7 +26,7 @@ const About: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="section-title text-center mb-8">Why Work With Me</h2>
           
-          {/* Condensed Introduction */}
+          {/* Streamlined Introduction */}
           <div className="text-center mb-12">
             <p className="text-xl text-barsky-text mb-6 leading-relaxed">
               Lead UX Designer with 15+ years creating AI-enhanced digital experiences. 
@@ -45,7 +45,7 @@ const About: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Core Skills */}
+            {/* Core Skills - Condensed */}
             <div className="bg-white p-6 rounded-lg border">
               <h3 className="font-bold text-barsky-dark mb-4">Core Expertise</h3>
               <div className="grid grid-cols-2 gap-2">
@@ -58,7 +58,7 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Essential Tools */}
+            {/* Essential Tools - Reduced */}
             <div className="bg-white p-6 rounded-lg border">
               <h3 className="font-bold text-barsky-dark mb-4">AI-Enhanced Toolkit</h3>
               <div className="flex flex-wrap gap-2">
@@ -71,7 +71,7 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Single Service Focus */}
+          {/* Single Focused CTA */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 text-center">
             <h3 className="text-2xl font-bold mb-3">Ready to 10x Your Conversions?</h3>
             <p className="mb-6 text-lg">
