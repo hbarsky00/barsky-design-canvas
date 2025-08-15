@@ -16,6 +16,10 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => {
       sections={caseStudyData.sections}
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
+      seoTitle="Investor Loan Portfolio Management Platform UX Design | Hiram Barsky"
+      seoDescription="Modernized Excel-based loan management with intuitive portfolio dashboard, real-time analytics, and streamlined investor workflows."
+      seoImage="https://barskydesign.pro/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
+      projectName="Investor Loan Portfolio Management Platform"
     />
   );
 };

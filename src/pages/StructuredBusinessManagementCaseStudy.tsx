@@ -19,6 +19,10 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => {
       sections={caseStudyData.sections}
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
+      seoTitle="68% Fewer Errors: Enterprise Operations Management Platform | Hiram Barsky"
+      seoDescription="Streamlined enterprise operations and reduced manual entry errors by 68% with unified business management dashboard and automated workflows."
+      seoImage="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png"
+      projectName="Enterprise Business Management Platform"
     />
   );
 };

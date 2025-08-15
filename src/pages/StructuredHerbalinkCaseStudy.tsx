@@ -19,6 +19,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => {
       sections={caseStudyData.sections}
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
+      seoTitle="3x More Bookings: Herbalink Herbalist Marketplace UX Design | Hiram Barsky"
+      seoDescription="Connected users to certified herbalists nationwide and increased booking rates by 3x through Gen AI-enhanced UX design and trusted marketplace features."
+      seoImage="https://barskydesign.pro/images/herbalink-promo.png"
+      projectName="Herbalink - Herbalist Marketplace Platform"
     />
   );
 };

@@ -16,6 +16,10 @@ const StructuredWholesaleDistributionCaseStudy: React.FC = () => {
       sections={caseStudyData.sections}
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
+      seoTitle="Wholesale Distribution AI Solution: Inventory & Order Management | Hiram Barsky"
+      seoDescription="Transformed wholesale distribution operations with AI-powered inventory management, automated ordering, and real-time supply chain optimization."
+      seoImage="https://barskydesign.pro/lovable-uploads/f48ad284-cc5f-4f72-a88b-f4c0142f6814.png"
+      projectName="Wholesale Distribution AI Management Platform"
     />
   );
 };

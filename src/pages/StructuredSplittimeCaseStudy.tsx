@@ -16,6 +16,10 @@ const StructuredSplittimeCaseStudy: React.FC = () => {
       sections={caseStudyData.sections}
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
+      seoTitle="40% Less Conflict: Splittime Co-Parenting App Design | Hiram Barsky"
+      seoDescription="Reduced co-parenting conflict by 40% through neutral communication tools and clear scheduling features designed for family court compliance."
+      seoImage="https://barskydesign.pro/images/desktop-signup-1.png"
+      projectName="Splittime - Co-Parenting Communication Platform"
     />
   );
 };

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Hash } from "lucide-react";
@@ -7,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
@@ -33,6 +32,11 @@ interface StructuredCaseStudyLayoutProps {
   projectLink?: string;
   gradientClasses?: string;
   showNavigation?: boolean;
+  // SEO-specific props
+  seoTitle?: string;
+  seoDescription?: string;
+  seoImage?: string;
+  projectName?: string;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
@@ -43,7 +47,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   sections,
   projectLink,
   gradientClasses = "from-primary-container/20 to-secondary-container/20",
-  showNavigation = true
+  showNavigation = true,
+  seoTitle,
+  seoDescription,
+  seoImage,
+  projectName
 }) => {
   // Get current URL for sharing
   const { pathname } = useLocation();
@@ -61,7 +69,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
   const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
 
-  // Build sections for keyboard navigation
   const keyboardSections = React.useMemo(() => {
     const navSections = [
       { id: 'hero-section', title: 'Overview' },
@@ -75,7 +82,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     return navSections;
   }, [sections]);
 
-  // Add keyboard navigation
   const {
     isTransitioning,
     transitionDirection,
@@ -84,13 +90,17 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
   return (
     <>
-      {/* Unified SEO - automatically detects page content */}
-      <UnifiedSEO />
-      
-      {/* Hidden meta tags for SEO detection */}
-      <meta name="page-title" content={title} />
-      <meta name="page-description" content={description} />
-      {heroVideo && <meta name="page-image" content={heroVideo.poster} />}
+      {/* Enhanced SEO with specific case study data */}
+      <DynamicSeo 
+        type="project"
+        title={seoTitle || title}
+        description={seoDescription || description}
+        image={seoImage || heroVideo?.poster}
+        projectName={projectName || title}
+        results={[]}
+        technologies={tags}
+        path={pathname}
+      />
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         {/* 3D Transition Overlay */}
