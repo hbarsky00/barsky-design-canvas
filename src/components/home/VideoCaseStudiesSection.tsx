@@ -32,7 +32,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/lovable-uploads/404ab206-06fb-4dad-9c91-e38d0f76949f.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/07/herbalinkpromofrontpage.png",
       secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
       alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
