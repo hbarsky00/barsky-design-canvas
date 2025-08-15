@@ -3,60 +3,58 @@ import { ProjectDetails } from "@/data/types/project";
 
 export const projectDetailsData: Record<string, ProjectDetails> = {
   "herbalink": {
-    challenge: "HerbaLink needed a complete digital transformation to connect herb enthusiasts with quality suppliers while building trust in an unregulated market.",
-    process: "Conducted extensive user research, created wireframes, and developed a comprehensive platform with supplier verification, product catalog, and secure transactions.",
-    result: "Delivered a trusted marketplace that increased supplier visibility by 300% and improved user engagement through intuitive design and robust verification systems.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe API"],
-    duration: "6 months",
-    client: "HerbaLink",
-    role: "Lead Product Designer & Developer",
+    challenge: "Creating a trusted platform for herb enthusiasts to connect with quality suppliers in a market plagued by misinformation and unverified products.",
+    process: "Conducted user research with herbalists and suppliers, designed an intuitive verification system, and created educational content workflows.",
+    result: "Delivered a comprehensive marketplace that combines e-commerce with educational resources, featuring supplier verification and user reviews.",
+    technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
+    duration: "3 months",
+    client: "HerbaLink Startup",
+    role: "Lead UX Designer",
     useAiCaptions: false,
-    imageCaptions: {},
-    // Add default values for missing properties
-    challengeGalleryImages: [],
-    processGalleryImages: [],
-    resultGalleryImages: [],
-    galleryImages: [],
-    extraImages: [],
-    servicesGalleryImages: [],
-    availableImages: []
+    imageCaptions: {}
   },
   "splittime": {
-    challenge: "SplitTime needed to revolutionize time tracking for remote teams with an intuitive interface that would actually encourage usage rather than create friction.",
-    process: "Designed user-centered workflows, implemented real-time collaboration features, and created an analytics dashboard that provides actionable insights.",
-    result: "Achieved 95% user adoption rate and 40% improvement in project delivery times through streamlined time tracking and automated reporting.",
+    challenge: "Designing an intuitive time tracking solution for remote teams struggling with productivity measurement and project management.",
+    process: "Analyzed existing time tracking tools, conducted user interviews with remote workers, and prototyped streamlined workflows.",
+    result: "Created a revolutionary time tracking platform with intuitive workflows that increased team productivity by 40%.",
     technologies: ["React", "TypeScript", "Firebase", "Chart.js"],
     duration: "4 months",
-    client: "SplitTime",
-    role: "UX/UI Designer & Frontend Developer",
+    client: "SplitTime Inc",
+    role: "Product Designer",
     useAiCaptions: false,
-    imageCaptions: {},
-    // Add default values for missing properties
-    challengeGalleryImages: [],
-    processGalleryImages: [],
-    resultGalleryImages: [],
-    galleryImages: [],
-    extraImages: [],
-    servicesGalleryImages: [],
-    availableImages: []
+    imageCaptions: {}
   },
   "wholesale-distribution": {
-    challenge: "A wholesale distribution company needed to modernize their legacy system and create a seamless ordering experience for B2B clients.",
-    process: "Redesigned the entire user journey, implemented inventory management, and created automated workflows for order processing and fulfillment.",
-    result: "Reduced order processing time by 60% and increased customer satisfaction scores to 4.8/5 through improved user experience and reliability.",
-    technologies: ["React", "Node.js", "MongoDB", "AWS"],
-    duration: "8 months",
-    client: "Wholesale Distribution Corp",
-    role: "Senior Product Designer & Technical Lead",
+    challenge: "Modernizing a traditional B2B ordering system for a wholesale distribution company struggling with manual processes and outdated technology.",
+    process: "Mapped existing workflows, interviewed stakeholders, designed user-centered interfaces, and implemented AI-powered automation features.",
+    result: "Delivered a modern B2B platform that reduced manual tasks by 70% and streamlined operations through intelligent automation.",
+    technologies: ["React", "Node.js", "AI Integration", "PostgreSQL"],
+    duration: "6 months",
+    client: "Distribution Corp",
+    role: "Lead Product Designer",
     useAiCaptions: false,
-    imageCaptions: {},
-    // Add default values for missing properties
-    challengeGalleryImages: [],
-    processGalleryImages: [],
-    resultGalleryImages: [],
-    galleryImages: [],
-    extraImages: [],
-    servicesGalleryImages: [],
-    availableImages: []
+    imageCaptions: {}
+  },
+  "business-management": {
+    challenge: "Creating a comprehensive business management solution for small businesses struggling with fragmented tools and processes.",
+    process: "Conducted market research, designed modular architecture, and created intuitive workflows for various business functions.",
+    result: "Built an all-in-one business management platform that unified operations and improved efficiency for small business owners.",
+    technologies: ["React", "Express.js", "MongoDB", "AWS"],
+    duration: "5 months",
+    client: "Business Solutions Ltd",
+    role: "Senior UX Designer",
+    useAiCaptions: false,
+    imageCaptions: {}
+  },
+  "investor-loan-app": {
+    challenge: "Designing a sophisticated loan management platform for investors dealing with complex portfolio tracking and risk assessment.",
+    process: "Analyzed financial workflows, created data visualization systems, and designed secure user interfaces for sensitive financial data.",
+    result: "Delivered a comprehensive investor loan application that simplified portfolio management and improved risk assessment capabilities.",
+    technologies: ["React", "TypeScript", "D3.js", "Secure APIs"],
+    duration: "4 months",
+    client: "Investment Partners",
+    role: "Lead UX/UI Designer",
+    useAiCaptions: false,
+    imageCaptions: {}
   }
 };

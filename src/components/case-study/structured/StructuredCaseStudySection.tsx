@@ -1,190 +1,92 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
+import { StructuredCaseStudySectionProps } from "@/data/types/caseStudy";
+import ImageMaximizer from "@/components/ImageMaximizer";
 
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import MaximizableImage from "@/components/project/MaximizableImage";
-import { EditableVideo } from "./EditableVideo";
-import PlaceholderImage from "./PlaceholderImage";
-
-export interface StructuredCaseStudySectionProps {
-  id: string;
-  title: string;
-  icon: LucideIcon;
-  variant: "problem" | "solution" | "impact" | "failed";
-  content: string;
-  media?: {
-    type: "image" | "video";
-    src: string;
-    alt: string;
-    caption?: string;
-    videoOptions?: {
-      autoplay?: boolean;
-      loop?: boolean;
-      muted?: boolean;
-      controls?: boolean;
-      playsInline?: boolean;
-    };
-  };
-  metrics?: Array<{
-    value: string;
-    label: string;
-    trend: "up" | "down" | "neutral";
-  }>;
-  tags?: string[];
+interface StructuredCaseStudySectionComponentProps {
+  section: StructuredCaseStudySectionProps;
+  index: number;
 }
 
-const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
-  id,
-  title,
-  icon: Icon,
-  variant,
-  content,
-  media,
-  metrics,
-  tags,
+const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionComponentProps> = ({
+  section,
+  index
 }) => {
-  const getVariantStyles = (variant: string) => {
-    switch (variant) {
-      case "problem":
-        return {
-          cardClass: "border-red-200 bg-red-50/50",
-          iconBg: "bg-red-100",
-          iconColor: "text-red-600",
-          titleColor: "text-red-900"
-        };
-      case "solution":
-        return {
-          cardClass: "border-blue-200 bg-blue-50/50",
-          iconBg: "bg-blue-100",
-          iconColor: "text-blue-600",
-          titleColor: "text-blue-900"
-        };
-      case "impact":
-        return {
-          cardClass: "border-green-200 bg-green-50/50",
-          iconBg: "bg-green-100",
-          iconColor: "text-green-600",
-          titleColor: "text-green-900"
-        };
-      case "failed":
-        return {
-          cardClass: "border-amber-200 bg-amber-50/50",
-          iconBg: "bg-amber-100",
-          iconColor: "text-amber-600",
-          titleColor: "text-amber-900"
-        };
-      default:
-        return {
-          cardClass: "border-border bg-card",
-          iconBg: "bg-primary/10",
-          iconColor: "text-primary",
-          titleColor: "text-foreground"
-        };
-    }
-  };
-
-  const styles = getVariantStyles(variant);
-
   return (
-    <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-      <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg} flex items-center justify-center`}>
-            <Icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 ${styles.iconColor}`} />
-          </div>
-          <div className="flex-1">
-            <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold ${styles.titleColor}`}>
-              {title}
-            </h2>
-          </div>
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="mb-16"
+    >
+      {section.title && (
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
+          {section.title}
+        </h2>
+      )}
+
+      {/* Content Section */}
+      {section.type === 'content' && section.content && (
+        <div className="prose prose-lg max-w-none">
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            {section.content}
+          </p>
         </div>
+      )}
 
-        {/* Content */}
-        <div className="space-y-8">
-          {/* Media or Placeholder - moved to appear directly after header */}
-          {media ? (
-            <div className="space-y-4">
-              {media.type === "image" ? (
-                <MaximizableImage
-                  src={media.src}
-                  alt={media.alt}
-                  caption={media.caption}
-                  className="w-full rounded-lg shadow-lg"
-                  projectId="case-study"
-                />
-              ) : (
-                <EditableVideo
-                  src={media.src}
-                  alt={media.alt}
-                  caption={media.caption}
-                  className="w-full rounded-lg shadow-lg"
-                  videoOptions={media.videoOptions}
-                />
-              )}
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <PlaceholderImage title={title} />
-            </div>
-          )}
-
-          {/* Main content - moved after media */}
-          <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300">
-            {content.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-4 last:mb-0">
-                {paragraph.split('\n').map((line, lineIndex) => (
-                  <React.Fragment key={lineIndex}>
-                    {line.includes('**') ? (
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: line
-                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                            .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-                        }}
-                      />
-                    ) : (
-                      line
-                    )}
-                    {lineIndex < paragraph.split('\n').length - 1 && <br />}
-                  </React.Fragment>
-                ))}
-              </p>
-            ))}
-          </div>
-
-          {/* Metrics */}
-          {metrics && metrics.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {metrics.map((metric, index) => (
-                <div key={index} className="text-center p-4 bg-card rounded-lg border border-border">
-                  <div className="text-2xl font-bold text-foreground mb-2">
-                    {metric.value}
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300">
-                    {metric.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Tags */}
-          {tags && tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <Badge key={tag} variant="secondary">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          )}
+      {/* Gallery Section */}
+      {section.type === 'gallery' && section.images && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {section.images.map((image, idx) => (
+            <ImageMaximizer
+              key={idx}
+              src={image}
+              alt={`${section.title} - Image ${idx + 1}`}
+              className="rounded-lg overflow-hidden"
+            />
+          ))}
         </div>
-      </Card>
-    </section>
+      )}
+
+      {/* Video Section */}
+      {section.type === 'video' && section.videoSrc && (
+        <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
+          <video
+            src={section.videoSrc}
+            poster={section.videoPoster}
+            controls
+            className="w-full h-full object-cover"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
+
+      {/* Metrics Section */}
+      {section.type === 'metrics' && section.metrics && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {section.metrics.map((metric, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="text-center p-6 bg-background border border-border rounded-lg"
+            >
+              <div className="text-4xl font-bold text-primary mb-2">
+                {metric.value}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                {metric.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
+    </motion.section>
   );
 };
 

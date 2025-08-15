@@ -7,9 +7,15 @@ interface ImageMaximizerProps {
   src: string;
   alt: string;
   className?: string;
+  caption?: string;
 }
 
-const ImageMaximizer: React.FC<ImageMaximizerProps> = ({ src, alt, className = '' }) => {
+const ImageMaximizer: React.FC<ImageMaximizerProps> = ({ 
+  src, 
+  alt, 
+  className = '',
+  caption 
+}) => {
   const [isMaximized, setIsMaximized] = useState(false);
 
   const handleImageClick = () => {
@@ -28,6 +34,10 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({ src, alt, className = '
           <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
       </div>
+
+      {caption && (
+        <p className="text-sm text-gray-600 mt-2 text-center">{caption}</p>
+      )}
 
       <AnimatePresence>
         {isMaximized && (

@@ -9,22 +9,18 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import SEO from "@/components/seo/SEO";
+import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
+import StructuredCaseStudySection from "./StructuredCaseStudySection";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudy: StructuredCaseStudy;
-  children: React.ReactNode;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
-  caseStudy,
-  children,
+  caseStudy
 }) => {
-  console.log('StructuredCaseStudyLayout - caseStudy:', caseStudy);
-  
   const navItems = getCaseStudyNavItems();
-  console.log('StructuredCaseStudyLayout - navItems:', navItems);
   
-  // Add safety check for caseStudy
   if (!caseStudy || !caseStudy.id) {
     console.error('StructuredCaseStudyLayout - Invalid caseStudy:', caseStudy);
     return <div>Error: Invalid case study data</div>;
@@ -38,8 +34,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     <div className="min-h-screen bg-background">
       <SEO
         type="article"
-        title={caseStudy.title}
-        description={caseStudy.seoData?.description || `Case study: ${caseStudy.title}`}
+        title={`${caseStudy.title} - Case Study`}
+        description={caseStudy.seoData?.description || caseStudy.description}
         url={`https://barskydesign.pro/project/${caseStudy.id}`}
         image={caseStudy.seoData?.image || caseStudy.heroVideo?.poster || "https://barskydesign.pro/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png"}
       />
@@ -47,10 +43,22 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       <Header />
       
       <main className="container mx-auto px-4 pt-24 pb-16">
-        {children}
+        {/* Hero Section */}
+        <StructuredCaseStudyHero caseStudy={caseStudy} />
+        
+        {/* Case Study Sections */}
+        <div className="max-w-4xl mx-auto mt-16 space-y-16">
+          {caseStudy.sections.map((section, index) => (
+            <StructuredCaseStudySection 
+              key={section.id}
+              section={section}
+              index={index}
+            />
+          ))}
+        </div>
         
         {/* Case Study Navigation */}
-        <div className="flex justify-between items-center mt-16 pt-8 border-t border-border">
+        <div className="flex justify-between items-center mt-16 pt-8 border-t border-border max-w-4xl mx-auto">
           {prevItem ? (
             <Link to={`/project/${prevItem.id}`}>
               <Button variant="ghost" className="group">
