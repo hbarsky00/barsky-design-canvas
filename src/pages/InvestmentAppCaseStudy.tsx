@@ -284,6 +284,30 @@ const InvestmentAppCaseStudy: React.FC = () => {
                 </p>
               </motion.div>
               
+              {/* AI-Enhanced Development Workflow */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="mb-16"
+              >
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-4">AI-Enhanced Development Workflow</h3>
+                  <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+                    From user needs analysis to deployed solution - how AI amplifies every step of the educational investment platform development process.
+                  </p>
+                </div>
+                <div className="bg-white rounded-3xl p-8 shadow-xl border border-blue-200">
+                  <img 
+                    alt="AI-enhanced development workflow for investment education platform" 
+                    onClick={() => maximizeImage("/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png", "AI-enhanced development workflow for investment education platform")}
+                    src="/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png" 
+                    className="w-full h-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-contain" 
+                  />
+                </div>
+              </motion.div>
+
               <div className="grid lg:grid-cols-3 gap-8 mb-16">
                 {educationalFeatures.map((feature, index) => (
                   <motion.div 
@@ -313,6 +337,47 @@ const InvestmentAppCaseStudy: React.FC = () => {
                   By prioritizing education and simplicity, users build genuine investment knowledge 
                   and confidence rather than just following recommendations they don't understand.
                 </p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Key Design Solutions */}
+          <section className="key-design-solutions py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-16"
+              >
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
+                  Key Design Solutions
+                </h2>
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Comprehensive approach to building trust, education, and streamlined user experience 
+                  in the investment learning platform.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="w-full"
+              >
+                <figure className="project-image-container">
+                  <img 
+                    src="/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png" 
+                    alt="Investment app key design solutions showing educational transparency, simplified interface design, risk management guidance, and progressive learning experience" 
+                    className="w-full rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                    onClick={() => maximizeImage("/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png", "Comprehensive design solutions for the investment learning platform")}
+                  />
+                  <figcaption className="text-sm text-neutral-600 italic mt-2 text-center">
+                    Comprehensive design solutions for the investment learning platform
+                  </figcaption>
+                </figure>
               </motion.div>
             </div>
           </section>
