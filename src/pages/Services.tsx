@@ -48,34 +48,38 @@ const Services = () => {
   const caseStudies = [
     {
       id: "herbalink",
-      title: "AI symptom tracking plus a certified-herbalist marketplace. Personalized matches, instant availability, and a frictionless booking flow.",
+      title: "3x More Bookings: Matching Users to the Right Herbalist Faster",
       metric: "+3× Bookings",
       tags: ["#HealthTech", "#Marketplace", "#AI-Driven Matching"],
-      image: "/lovable-uploads/76e9e0a1-af7f-4588-b47e-b71433a25b12.png",
+      image: "https://barskyux.com/wp-content/uploads/2025/08/promoimage2.png",
+      description: "AI symptom tracking plus a certified-herbalist marketplace. Personalized matches, instant availability, and a frictionless booking flow.",
       link: "/project/herbalink"
     },
     {
       id: "splittime",
-      title: "Shared calendars, neutral messaging, and reminders that remove friction from co-parenting.",
+      title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
       metric: "−40% Conflict",
       tags: ["#Family Tech", "#iOS→Android", "#Legal UX"],
-      image: "/lovable-uploads/24e4c9dc-e7c4-4d46-b8a3-f85afaef9b77.png",
+      image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
+      description: "Shared calendars, neutral messaging, and reminders that remove friction from co-parenting.",
       link: "/project/splittime"
     },
     {
       id: "business-ops",
-      title: "One dashboard for dispatch, inventory, and reporting; removes duplicate entry and clarifies daily priorities.",
+      title: "68% Fewer Errors: Streamlining Enterprise Operations",
       metric: "−68% Errors",
       tags: ["#Enterprise", "#Analytics", "#Dashboard"],
       image: "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",
+      description: "One dashboard for dispatch, inventory, and reporting; removes duplicate entry and clarifies daily priorities.",
       link: "/project/investor-loan-app"
     },
     {
       id: "investment",
-      title: "Goal-based onboarding, tutorials, and real-time insights that keep first-time investors engaged.",
+      title: "23% More Engagement: Making Investing Accessible to Beginners",
       metric: "+23% Engagement",
       tags: ["#Finance", "#Analytics", "#Tutorial"],
       image: "/lovable-uploads/4d0f57b5-653d-42fb-88c0-f942d18a6a84.png",
+      description: "Goal-based onboarding, tutorials, and real-time insights that keep first-time investors engaged.",
       link: "/project/investor-loan-app"
     }
   ];
@@ -265,8 +269,11 @@ const Services = () => {
                           </span>
                         ))}
                       </div>
-                      <p className="text-neutral-600 mb-4 leading-relaxed">
+                      <h3 className="text-lg font-semibold text-neutral-900 mb-2">
                         {study.title}
+                      </h3>
+                      <p className="text-neutral-600 mb-4 leading-relaxed">
+                        {study.description}
                       </p>
                       <div className="flex items-center justify-between">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-success-green/10 text-success-green">
