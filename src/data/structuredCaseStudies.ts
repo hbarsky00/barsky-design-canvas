@@ -166,3 +166,7 @@ export function getStructuredCaseStudy(id: string): StructuredCaseStudyData | nu
 export function getAllStructuredCaseStudies(): StructuredCaseStudyData[] {
   return Object.values(structuredCaseStudies);
 }
+
+export function getStructuredCaseStudiesMap(): Record<string, StructuredCaseStudyData> {
+  return structuredCaseStudies;
+}

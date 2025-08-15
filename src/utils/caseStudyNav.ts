@@ -1,10 +1,11 @@
+
 export interface CaseStudyNavItem {
   id: string;
   title: string;
   image: string;
 }
 
-import { structuredCaseStudies } from "@/data/structuredCaseStudies";
+import { getAllStructuredCaseStudies, getStructuredCaseStudiesMap } from "@/data/structuredCaseStudies";
 import { caseStudiesData, homepageCaseStudyPreviews } from "@/data/caseStudies";
 
 // Build a unified, ordered list of case studies for prev/next navigation
@@ -15,7 +16,9 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
   homepageCaseStudyPreviews.forEach((p) => {
     const id = (p.url?.split("/").pop() || "").trim();
     if (!id) return;
-    const structured = (structuredCaseStudies as any)[id];
+    
+    const structuredCaseStudiesMap = getStructuredCaseStudiesMap();
+    const structured = structuredCaseStudiesMap[id];
     const legacy = (caseStudiesData as any)[id];
 
     const title: string = structured?.title || legacy?.title || p.title || id;
@@ -30,7 +33,8 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
   });
 
   // 2) Add any structured case studies not in homepage list
-  Object.values(structuredCaseStudies).forEach((cs) => {
+  const allStructuredCaseStudies = getAllStructuredCaseStudies();
+  allStructuredCaseStudies.forEach((cs) => {
     if (items.has(cs.id)) return;
     const image = cs.seoData?.image || cs.heroVideo?.poster || "/placeholder.svg";
     items.set(cs.id, { id: cs.id, title: cs.title, image });
