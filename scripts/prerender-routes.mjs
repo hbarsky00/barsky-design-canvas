@@ -1,11 +1,15 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Function to extract blog slugs from blogData.ts
 function getBlogRoutes() {
   try {
-    const blogDataPath = path.join(process.cwd(), 'src', 'data', 'blogData.ts');
+    const blogDataPath = path.join(__dirname, '..', 'src', 'data', 'blogData.ts');
     const content = fs.readFileSync(blogDataPath, 'utf-8');
     
     // Extract blog post slugs using regex
@@ -16,14 +20,18 @@ function getBlogRoutes() {
     });
   } catch (error) {
     console.warn('Could not extract blog routes:', error.message);
-    return [];
+    return [
+      '/blog/finding-first-ux-job-guide',
+      '/blog/ai-accessibility-design-2024',
+      '/blog/conversion-optimization-techniques'
+    ];
   }
 }
 
 // Function to extract case study routes from structuredCaseStudies.ts
 function getCaseStudyRoutes() {
   try {
-    const caseStudyPath = path.join(process.cwd(), 'src', 'data', 'structuredCaseStudies.ts');
+    const caseStudyPath = path.join(__dirname, '..', 'src', 'data', 'structuredCaseStudies.ts');
     const content = fs.readFileSync(caseStudyPath, 'utf-8');
     
     // Extract case study IDs from the object keys
@@ -38,7 +46,8 @@ function getCaseStudyRoutes() {
       '/project/herbalink',
       '/project/splittime', 
       '/project/business-management',
-      '/project/investor-loan-app'
+      '/project/investor-loan-app',
+      '/project/wholesale-distribution'
     ];
   }
 }

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +5,7 @@ import { Link } from "react-router-dom";
 import VideoPlayer from "./VideoPlayer";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import { CaseStudyData } from "@/data/caseStudies";
-import DynamicSeo from "@/components/seo/DynamicSeo";
+import SEO from "@/components/seo/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
@@ -50,15 +49,13 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
 
   return (
     <>
-        <DynamicSeo
-          type="project"
+        <SEO
+          type="article"
           title={caseStudy.title}
           description={caseStudy.description}
+          url={`https://barskydesign.pro/project/${projectId}/`}
           image={caseStudy.videoThumbnail}
-          projectName={caseStudy.title}
-          results={[]}
-          technologies={caseStudy.tags}
-          path={`/project/${projectId}/`}
+          tags={caseStudy.tags}
         />
 
       <div className="min-h-screen bg-background">
