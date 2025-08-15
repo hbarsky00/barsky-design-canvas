@@ -11,7 +11,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { LinkButton } from "@/components/ui/link-button";
-import { ProjectImage } from '@/components/project/ProjectImage';
+import ProjectImage from '@/components/project/ProjectImage';
 
 const StructuredBusinessManagementCaseStudy: React.FC = () => {
   const seoProps = {
