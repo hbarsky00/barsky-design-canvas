@@ -1,3 +1,4 @@
+
 export interface CaseStudyNavItem {
   id: string;
   title: string;
@@ -20,8 +21,7 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
 
     const title: string = structured?.title || legacy?.title || p.title || id;
     const image: string =
-      structured?.seoData?.image ||
-      structured?.heroVideo?.poster ||
+      structured?.heroImage ||
       legacy?.videoThumbnail ||
       p.videoThumbnail ||
       "/placeholder.svg";
@@ -30,14 +30,14 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
   });
 
   // 2) Add any structured case studies not in homepage list
-  Object.values(structuredCaseStudies).forEach((cs) => {
+  Object.values(structuredCaseStudies).forEach((cs: any) => {
     if (items.has(cs.id)) return;
-    const image = cs.seoData?.image || cs.heroVideo?.poster || "/placeholder.svg";
+    const image = cs.heroImage || "/placeholder.svg";
     items.set(cs.id, { id: cs.id, title: cs.title, image });
   });
 
   // 3) Add any legacy case studies not in homepage list
-  Object.entries(caseStudiesData).forEach(([id, cs]) => {
+  Object.entries(caseStudiesData).forEach(([id, cs]: any) => {
     if (items.has(id)) return;
     const image = cs.videoThumbnail || "/placeholder.svg";
     items.set(id, { id, title: cs.title, image });

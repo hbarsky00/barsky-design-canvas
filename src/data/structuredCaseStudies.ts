@@ -242,3 +242,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudy> = {
     ]
   }
 };
+
+// Add a small helper to retrieve a case study by id (used by pages)
+export const getStructuredCaseStudy = (id: string): StructuredCaseStudy | undefined => {
+  return structuredCaseStudies[id];
+};
