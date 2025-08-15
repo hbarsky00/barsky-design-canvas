@@ -10,7 +10,7 @@ interface SimpleContentSectionProps {
   content: string;
   additionalText?: string;
   images?: string[];
-  galleryContent?: ImageTextItem[]; // New prop for enhanced gallery
+  galleryContent?: ImageTextItem[];
   imageCaptions?: Record<string, string>;
   projectId?: string;
   onTextSave?: (textKey: string, content: string) => void;

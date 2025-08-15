@@ -3,13 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "../MaximizableImage";
 import TextSection from "./TextSection";
-
-interface ImageTextItem {
-  type: 'image' | 'text' | 'video';
-  content: string; // For images: image path, for text: text content, for video: video URL
-  caption?: string; // Only for images and videos
-  textKey?: string; // Only for text sections, used for saving
-}
+import { ImageTextItem } from "@/data/types/project";
 
 interface ImageTextGalleryProps {
   items: ImageTextItem[];
