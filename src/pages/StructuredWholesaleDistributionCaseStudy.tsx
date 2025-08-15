@@ -8,15 +8,12 @@ const StructuredWholesaleDistributionCaseStudy: React.FC = () => {
   if (!caseStudyData) return <div>Case study not found</div>;
 
   return (
-    <StructuredCaseStudyLayout
-      title={caseStudyData.title}
-      description={caseStudyData.description}
-      tags={caseStudyData.tags}
-      heroVideo={caseStudyData.heroVideo}
-      sections={caseStudyData.sections}
-      projectLink={caseStudyData.projectLink}
-      gradientClasses={caseStudyData.gradientClasses}
-    />
+    <StructuredCaseStudyLayout caseStudy={caseStudyData}>
+      <div>
+        <h1>{caseStudyData.title}</h1>
+        <p>{caseStudyData.description}</p>
+      </div>
+    </StructuredCaseStudyLayout>
   );
 };
 

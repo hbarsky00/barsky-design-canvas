@@ -11,15 +11,12 @@ const StructuredHerbalinkCaseStudy: React.FC = () => {
   }
 
   return (
-    <StructuredCaseStudyLayout
-      title={caseStudyData.title}
-      description={caseStudyData.description}
-      tags={caseStudyData.tags}
-      heroVideo={caseStudyData.heroVideo}
-      sections={caseStudyData.sections}
-      projectLink={caseStudyData.projectLink}
-      gradientClasses={caseStudyData.gradientClasses}
-    />
+    <StructuredCaseStudyLayout caseStudy={caseStudyData}>
+      <div>
+        <h1>{caseStudyData.title}</h1>
+        <p>{caseStudyData.description}</p>
+      </div>
+    </StructuredCaseStudyLayout>
   );
 };
 

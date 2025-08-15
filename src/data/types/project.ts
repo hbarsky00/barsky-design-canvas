@@ -14,6 +14,8 @@ export interface ImageConfig {
 export interface ImageTextItem {
   text: string;
   image?: string;
+  type?: 'text' | 'image';
+  content?: string;
 }
 
 export interface ProjectDetails {

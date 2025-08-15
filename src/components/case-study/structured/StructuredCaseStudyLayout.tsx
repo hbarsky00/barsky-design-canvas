@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
-import SEO from "@/seo/SEO";
+import SEO from "@/components/seo/SEO";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudy: StructuredCaseStudy;
@@ -19,8 +19,18 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   caseStudy,
   children,
 }) => {
+  console.log('StructuredCaseStudyLayout - caseStudy:', caseStudy);
+  
   const navItems = getCaseStudyNavItems();
-  const currentIndex = navItems.findIndex((item) => item.id === caseStudy.id);
+  console.log('StructuredCaseStudyLayout - navItems:', navItems);
+  
+  // Add safety check for caseStudy
+  if (!caseStudy || !caseStudy.id) {
+    console.error('StructuredCaseStudyLayout - Invalid caseStudy:', caseStudy);
+    return <div>Error: Invalid case study data</div>;
+  }
+
+  const currentIndex = navItems.findIndex((item) => item && item.id === caseStudy.id);
   const prevItem = currentIndex > 0 ? navItems[currentIndex - 1] : null;
   const nextItem = currentIndex < navItems.length - 1 ? navItems[currentIndex + 1] : null;
 
