@@ -11,8 +11,14 @@ export interface ImageConfig {
   results?: ImageSectionConfig;
 }
 
+export interface ImageTextItem {
+  text: string;
+  image?: string;
+}
+
 export interface ProjectDetails {
   challenge: string;
+  challengeAdditionalText?: string;
   process: string;
   result: string;
   technologies?: string[];
@@ -23,8 +29,24 @@ export interface ProjectDetails {
   caseStudyLink?: string;
   useAiCaptions: boolean;
   imageCaptions: Record<string, string>;
+  
+  // Image properties
   challengeImage?: string;
+  challengeBottomImage?: string;
+  processImage?: string;
+  processBottomImage?: string;
+  resultImage?: string;
+  
+  // Gallery properties
   challengeGalleryImages?: string[];
   processGalleryImages?: string[];
   resultGalleryImages?: string[];
+  galleryImages?: string[];
+  extraImages?: string[];
+  servicesGalleryImages?: string[];
+  availableImages?: string[];
+  
+  // Enhanced content
+  challengeGalleryContent?: ImageTextItem[];
+  imageConfig?: ImageConfig;
 }

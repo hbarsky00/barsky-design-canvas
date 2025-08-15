@@ -3,9 +3,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import prerender from "vite-plugin-prerender";
 
-// Static routes list instead of importing .mjs
+// Static routes list for future prerendering
 const routes = [
   "/",
   "/projects", 
@@ -38,15 +37,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    mode === 'production' && prerender({
-      staticDir: "dist",
-      routes,
-      captureAfterDocumentEvent: "app-rendered",
-      minify: {
-        collapseWhitespace: false,
-        removeComments: false
-      }
-    })
+    // TODO: Add prerender plugin back when ES module issues are resolved
   ].filter(Boolean),
   resolve: {
     alias: {

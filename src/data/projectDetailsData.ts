@@ -11,7 +11,15 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     client: "HerbaLink",
     role: "Lead Product Designer & Developer",
     useAiCaptions: false,
-    imageCaptions: {}
+    imageCaptions: {},
+    // Add default values for missing properties
+    challengeGalleryImages: [],
+    processGalleryImages: [],
+    resultGalleryImages: [],
+    galleryImages: [],
+    extraImages: [],
+    servicesGalleryImages: [],
+    availableImages: []
   },
   "splittime": {
     challenge: "SplitTime needed to revolutionize time tracking for remote teams with an intuitive interface that would actually encourage usage rather than create friction.",
@@ -22,7 +30,15 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     client: "SplitTime",
     role: "UX/UI Designer & Frontend Developer",
     useAiCaptions: false,
-    imageCaptions: {}
+    imageCaptions: {},
+    // Add default values for missing properties
+    challengeGalleryImages: [],
+    processGalleryImages: [],
+    resultGalleryImages: [],
+    galleryImages: [],
+    extraImages: [],
+    servicesGalleryImages: [],
+    availableImages: []
   },
   "wholesale-distribution": {
     challenge: "A wholesale distribution company needed to modernize their legacy system and create a seamless ordering experience for B2B clients.",
@@ -33,6 +49,14 @@ export const projectDetailsData: Record<string, ProjectDetails> = {
     client: "Wholesale Distribution Corp",
     role: "Senior Product Designer & Technical Lead",
     useAiCaptions: false,
-    imageCaptions: {}
+    imageCaptions: {},
+    // Add default values for missing properties
+    challengeGalleryImages: [],
+    processGalleryImages: [],
+    resultGalleryImages: [],
+    galleryImages: [],
+    extraImages: [],
+    servicesGalleryImages: [],
+    availableImages: []
   }
 };

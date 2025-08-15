@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -7,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
-import SEO from "@/components/seo/SEO";
+import SEO from "@/seo/SEO";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudy: StructuredCaseStudy;
