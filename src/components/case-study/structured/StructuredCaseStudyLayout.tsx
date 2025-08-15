@@ -33,6 +33,7 @@ interface StructuredCaseStudyLayoutProps {
   projectLink?: string;
   gradientClasses?: string;
   showNavigation?: boolean;
+  heroAsImage?: boolean;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
@@ -43,7 +44,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   sections,
   projectLink,
   gradientClasses = "from-primary-container/20 to-secondary-container/20",
-  showNavigation = true
+  showNavigation = true,
+  heroAsImage = false
 }) => {
   // Get current URL for sharing
   const { pathname } = useLocation();
@@ -146,16 +148,27 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       </div>
                     )}
 
-                    {/* Hero Video */}
+                    {/* Hero Media */}
                     {heroVideo && (
                       <div className="max-w-4xl mx-auto mb-8" data-hero-image>
-                        <EditableVideo
-                          src={heroVideo.src}
-                          alt={heroVideo.alt}
-                          poster={heroVideo.poster}
-                          caption="Project demonstration video"
-                          className="w-full"
-                        />
+                        {heroAsImage ? (
+                          <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-2xl">
+                            <img
+                              src={heroVideo.poster}
+                              alt={heroVideo.alt || 'Project hero image'}
+                              className="w-full h-full object-cover"
+                              loading="eager"
+                            />
+                          </div>
+                        ) : (
+                          <EditableVideo
+                            src={heroVideo.src}
+                            alt={heroVideo.alt}
+                            poster={heroVideo.poster}
+                            caption="Project demonstration video"
+                            className="w-full"
+                          />
+                        )}
                       </div>
                     )}
 

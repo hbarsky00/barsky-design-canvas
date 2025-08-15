@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Zap, BarChart4, XCircle, Sparkles, Settings, Truck, Package, Users, Target, CheckCircle2, AlertTriangle, Rocket, Wrench, Badge, Search, Eye, TrendingUp, Shield } from "lucide-react";
 import { StructuredCaseStudySectionProps } from "@/components/case-study/structured/StructuredCaseStudySection";
@@ -35,7 +34,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "http://herbalink.live",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
-      poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
       alt: "HerbaLink feature overview"
     },
     sections: [
@@ -139,7 +138,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/herbalink"
     }
   },
-  
   "splittime": {
     id: "splittime",
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
