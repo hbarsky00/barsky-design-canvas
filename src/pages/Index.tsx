@@ -1,31 +1,20 @@
 
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
-import DynamicSeo from "@/components/seo/DynamicSeo";
-
-import SeoAnalyticsTracker from "@/components/seo/SeoAnalyticsTracker";
-import SitemapGenerator from "@/components/seo/SitemapGenerator";
-import { Helmet } from "react-helmet-async";
-
-
-
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
 import { usePageIndexing } from "@/hooks/usePageIndexing";
 
 const Index = () => {
   usePageIndexing();
   
-  
   return (
     <>
-      {/* Comprehensive SEO Optimization */}
-      <DynamicSeo type="home" />
-      <SeoAnalyticsTracker pageTitle="Hiram Barsky - Product Designer & Gen AI Developer" pageType="home" />
-      <SitemapGenerator />
+      {/* Unified SEO System - automatically detects page content */}
+      <UnifiedSEO />
       
       {/* Page Content */}
       <ScrollHandler />
       <HomepageLayout />
-      
     </>
   );
 };

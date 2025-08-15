@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
 import CaseStudyContactSection from "../CaseStudyContactSection";
 import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
 import { EditableVideo } from "./EditableVideo";
@@ -31,13 +31,6 @@ interface StructuredCaseStudyLayoutProps {
   sections: StructuredCaseStudySectionProps[];
   projectLink?: string;
   gradientClasses?: string;
-  seoData?: {
-    image: string;
-    projectName: string;
-    results: string[];
-    technologies: string[];
-    path: string;
-  };
   showNavigation?: boolean;
 }
 
@@ -49,7 +42,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   sections,
   projectLink,
   gradientClasses = "from-primary-container/20 to-secondary-container/20",
-  seoData,
   showNavigation = true
 }) => {
   const navigationItems = sections.map(section => ({
@@ -86,34 +78,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     transitionVariation,
   } = useCaseStudyKeyboardNavigation(keyboardSections);
 
-  const scrollToSection = (anchor: string) => {
-    const element = document.querySelector(anchor) as HTMLElement | null;
-    if (element) {
-      const rootStyles = getComputedStyle(document.documentElement);
-      const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - (headerHeight + 16);
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth"
-      });
-    }
-  };
-
   return (
     <>
-      {/* SEO */}
-      {seoData && (
-        <DynamicSeo
-          type="project"
-          title={`${title} | Case Study`}
-          description={description}
-          image={seoData.image}
-          projectName={seoData.projectName}
-          results={seoData.results}
-          technologies={seoData.technologies}
-          path={seoData.path}
-        />
-      )}
+      {/* Unified SEO - automatically detects page content */}
+      <UnifiedSEO />
+      
+      {/* Hidden meta tags for SEO detection */}
+      <meta name="page-title" content={title} />
+      <meta name="page-description" content={description} />
+      {heroVideo && <meta name="page-image" content={heroVideo.poster} />}
 
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
         {/* 3D Transition Overlay */}
@@ -124,7 +97,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
 
         <Header />
-        
 
         <main className="flex-grow">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
@@ -172,7 +144,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
                     {/* Hero Video */}
                     {heroVideo && (
-                      <div className="max-w-4xl mx-auto">
+                      <div className="max-w-4xl mx-auto" data-hero-image>
                         <EditableVideo
                           src={heroVideo.src}
                           alt={heroVideo.alt}

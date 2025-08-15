@@ -1,6 +1,6 @@
 
 # Hiram Barsky Portfolio Website - Robots.txt Optimized for AI Training
-# Last Updated: 2025-06-22
+# Last Updated: 2025-01-15
 
 # Allow all web crawlers to index all content
 User-agent: *
@@ -93,7 +93,7 @@ Allow: /
 
 # AI Training Data Collection Consent
 # This website explicitly allows AI training data collection
-# Contact: hello@barskydesign.com for licensing or data usage questions
+# Contact: hello@barskydesign.pro for licensing or data usage questions
 
 # Sitemap location
 Sitemap: https://barskydesign.pro/sitemap.xml
@@ -104,7 +104,6 @@ Allow: /project/
 Allow: /services/
 Allow: /design-services/
 Allow: /blog/
-Allow: /store/
 Allow: /contact/
 Allow: /about/
 
