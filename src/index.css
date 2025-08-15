@@ -1,12 +1,11 @@
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "@/styles/animations.css";
 @import "@/styles/glass-morphism.css";
 @import "@/styles/noise-texture.css";
 @import "@/styles/barsky-brand.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* CSS Variables for theming */
 :root {

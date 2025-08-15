@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, DollarSign, BarChart3, PieChart, Calculator, Shield, Clock, Target, Users, CheckCircle2, Building2, LineChart, Smartphone, Zap, Star, Sprout } from "lucide-react";
@@ -9,10 +8,12 @@ import DynamicSeo from "@/components/seo/DynamicSeo";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { getOptimizedImageSrc } from "@/utils/imageOptimization";
 import RelatedProjects from "@/components/RelatedProjects";
-import investmentAppOgImage from "@/assets/social/investment-app-og.jpg";
 
 const InvestmentAppCaseStudy: React.FC = () => {
   const { maximizeImage } = useImageMaximizer();
+
+  // Placeholder OG image - using a more generic approach
+  const investmentAppOgImage = "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png";
 
   const investmentBarriers = [
     {
