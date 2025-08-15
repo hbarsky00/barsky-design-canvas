@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -34,7 +33,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/07/herbalinkpromofrontpage.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/promoimage2.png",
       secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
       alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
@@ -95,7 +94,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
         <img 
           src={study.images.primary} 
           alt={study.images.alt}
-          className="w-full h-auto max-h-48 lg:max-h-64 object-contain rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+          className="w-full h-auto max-h-48 lg:max-h-64 object-contain"
         />
       </div>
     );
@@ -107,7 +106,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-gray-50 rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300"
+      className="bg-gray-50 overflow-hidden"
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
