@@ -127,12 +127,12 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl font-bold text-gray-900 leading-tight">
+          <h3 className="text-2xl font-bold text-gray-900 leading-tight break-words">
             {study.title}
           </h3>
 
           {/* Description */}
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-gray-600 text-lg leading-relaxed break-words">
             {study.description}
           </p>
 
@@ -165,33 +165,23 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
         </div>
       </div>
 
-      {/* Desktop Layout: Progressive Image-Heavy Split */}
-      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 min-h-[560px] xl:min-h-[600px] 2xl:min-h-[640px]" 
-           style={{
-             gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)', // 60/40 ratio for lg+ screens
-           }}>
+      {/* Desktop Layout: Image-Heavy Split with Flexible Heights */}
+      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 items-start
+                      [grid-template-columns:minmax(0,3fr)_minmax(0,2fr)]
+                      2xl:[grid-template-columns:minmax(0,16fr)_minmax(0,9fr)]">
         
-        {/* Ultra-wide adjustment */}
-        <style jsx>{`
-          @media (min-width: 1536px) {
-            .hidden.lg\\:grid {
-              grid-template-columns: minmax(0, 16fr) minmax(0, 9fr) !important; /* 64/36 ratio */
-            }
-          }
-        `}</style>
-
         {/* Images Section - Enhanced sizing with nudge toward content */}
         <div className="relative bg-gray-50 p-4 xl:p-5 2xl:p-6 flex items-center" 
              style={{ marginRight: '-24px' }}>
-          <div className="w-full h-full min-h-[560px] xl:min-h-[600px] 2xl:min-h-[640px] flex items-center justify-center">
+          <div className="w-full min-h-[560px] xl:min-h-[600px] 2xl:min-h-[640px] flex items-center justify-center">
             {renderImage()}
           </div>
         </div>
 
-        {/* Content Section - Constrained width with vertical centering */}
-        <div className="bg-gray-50 flex flex-col justify-center p-6 xl:p-7" 
+        {/* Content Section - Flexible height with proper constraints */}
+        <div className="bg-gray-50 flex flex-col justify-start p-6 xl:p-7 min-w-0" 
              style={{ paddingLeft: '0px' }}>
-          <div className="max-w-[600px] space-y-3">
+          <div className="max-w-[600px] space-y-3 break-words">
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-3">
               {study.tags.map((tag) => (
@@ -202,12 +192,12 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
             </div>
 
             {/* Title */}
-            <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4">
+            <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words">
               {study.title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-600 text-lg leading-relaxed mb-4">
+            <p className="text-gray-600 text-lg leading-relaxed mb-4 break-words">
               {study.description}
             </p>
 
