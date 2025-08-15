@@ -27,7 +27,7 @@ const CaseStudyPage: React.FC = () => {
     <>
       <Header />
       <SEO
-        title={`${caseStudy.title} | Case Study`}
+        title={caseStudy.title}
         description={caseStudy.description}
         image={caseStudy.videoThumbnail}
         type="article"
