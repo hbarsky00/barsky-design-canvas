@@ -25,7 +25,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
     >
       <IdentityBadge
         to="/"
-        imageSrc="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+        imageSrc="https://barskyux.com/wp-content/uploads/2024/11/hiram-profile-pic.jpg"
         name="Hiram Barsky"
         subtitle="Product Design + AI"
         size="lg"
