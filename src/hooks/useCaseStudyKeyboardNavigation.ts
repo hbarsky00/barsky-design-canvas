@@ -212,11 +212,11 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
           event.preventDefault();
           
           if (deltaY > 0) {
-            // Swipe up - go to next section
-            navigateDown();
-          } else {
-            // Swipe down - go to previous section
+            // Swipe up (finger moves up, content should go up) - go to previous section
             navigateUp();
+          } else {
+            // Swipe down (finger moves down, content should go down) - go to next section
+            navigateDown();
           }
         }
       }
