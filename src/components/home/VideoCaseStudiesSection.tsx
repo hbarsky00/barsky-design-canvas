@@ -94,7 +94,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
         <img 
           src={study.images.primary} 
           alt={study.images.alt}
-          className="w-full h-auto max-h-48 lg:max-h-64 object-contain"
+          className="w-full h-auto object-contain"
         />
       </div>
     );
@@ -165,59 +165,78 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
         </div>
       </div>
 
-      {/* Desktop Layout: 50/50 Split */}
-      <div className="hidden lg:grid lg:grid-cols-2 min-h-[400px]">
-        {/* Images Section - Consistent background */}
-        <div className="relative bg-gray-50 p-8 flex items-center">
-          {renderImage()}
+      {/* Desktop Layout: Progressive Image-Heavy Split */}
+      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 min-h-[560px] xl:min-h-[600px] 2xl:min-h-[640px]" 
+           style={{
+             gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 2fr)', // 60/40 ratio for lg+ screens
+           }}>
+        
+        {/* Ultra-wide adjustment */}
+        <style jsx>{`
+          @media (min-width: 1536px) {
+            .hidden.lg\\:grid {
+              grid-template-columns: minmax(0, 16fr) minmax(0, 9fr) !important; /* 64/36 ratio */
+            }
+          }
+        `}</style>
+
+        {/* Images Section - Enhanced sizing with nudge toward content */}
+        <div className="relative bg-gray-50 p-4 xl:p-5 2xl:p-6 flex items-center" 
+             style={{ marginRight: '-24px' }}>
+          <div className="w-full h-full min-h-[560px] xl:min-h-[600px] 2xl:min-h-[640px] flex items-center justify-center">
+            {renderImage()}
+          </div>
         </div>
 
-        {/* Content Section - Same background */}
-        <div className="bg-gray-50 flex flex-col justify-center space-y-6 p-8">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {study.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
-                #{tag}
-              </Badge>
-            ))}
-          </div>
+        {/* Content Section - Constrained width with vertical centering */}
+        <div className="bg-gray-50 flex flex-col justify-center p-6 xl:p-7" 
+             style={{ paddingLeft: '0px' }}>
+          <div className="max-w-[600px] space-y-3">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-3">
+              {study.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                  #{tag}
+                </Badge>
+              ))}
+            </div>
 
-          {/* Title */}
-          <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
-            {study.title}
-          </h3>
+            {/* Title */}
+            <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4">
+              {study.title}
+            </h3>
 
-          {/* Description */}
-          <p className="text-gray-600 text-lg leading-relaxed">
-            {study.description}
-          </p>
+            {/* Description */}
+            <p className="text-gray-600 text-lg leading-relaxed mb-4">
+              {study.description}
+            </p>
 
-          {/* Impact Metrics */}
-          <div className="text-2xl font-bold text-primary">
-            {study.impact}
-          </div>
+            {/* Impact Metrics */}
+            <div className="text-2xl font-bold text-primary mb-6">
+              {study.impact}
+            </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <Button asChild variant="default" className="flex-1 sm:flex-none">
-              <Link to={study.url}>
-                View Case Study
-              </Link>
-            </Button>
-            {study.liveUrl && (
-              <Button asChild variant="outline" className="flex-1 sm:flex-none">
-                <a 
-                  href={study.liveUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  View Live
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild variant="default" className="flex-1 sm:flex-none">
+                <Link to={study.url}>
+                  View Case Study
+                </Link>
               </Button>
-            )}
+              {study.liveUrl && (
+                <Button asChild variant="outline" className="flex-1 sm:flex-none">
+                  <a 
+                    href={study.liveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    View Live
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>
