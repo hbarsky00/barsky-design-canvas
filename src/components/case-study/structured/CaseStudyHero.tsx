@@ -7,73 +7,63 @@ interface CaseStudyHeroProps {
   title: string;
   description: string;
   tags: string[];
-  heroVideo?: {
+  heroVideo: {
     src: string;
     poster?: string;
   };
-  videoSrc?: string;
-  posterSrc?: string;
 }
 
-const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ 
-  title, 
-  description, 
-  tags, 
-  heroVideo,
-  videoSrc,
-  posterSrc 
+const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
+  title,
+  description,
+  tags,
+  heroVideo
 }) => {
-  // Support both new and legacy prop structures
-  const video = heroVideo || (videoSrc ? { src: videoSrc, poster: posterSrc } : undefined);
-
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Video */}
-      {video && (
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            poster={video.poster}
-          >
-            <source src={video.src} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-      )}
-
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+    <section className="relative py-20 px-4">
+      <div className="container mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6"
+          className="max-w-4xl mx-auto"
         >
-          {/* Tags */}
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {tags.map((tag, index) => (
-              <Badge key={index} variant="secondary" className="bg-white/20 text-white border-white/30">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+            {title}
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+            {description}
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            {tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-sm">
                 {tag}
               </Badge>
             ))}
           </div>
+        </motion.div>
 
-          {/* Title */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            {title}
-          </h1>
-
-          {/* Description */}
-          <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-            {description}
-          </p>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-5xl mx-auto"
+        >
+          <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-2xl">
+            <video
+              src={heroVideo.src}
+              poster={heroVideo.poster}
+              className="w-full h-full object-cover"
+              controls
+              muted
+              playsInline
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
