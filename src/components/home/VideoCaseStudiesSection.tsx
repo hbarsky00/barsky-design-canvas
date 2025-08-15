@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -89,55 +88,16 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
   const renderImages = () => {
     const imageClasses = "rounded-lg shadow-lg transition-transform duration-300 hover:scale-105";
     
-    switch (study.layout) {
-      case "side-by-side":
-        return (
-          <div className="flex gap-4 h-full">
-            <img 
-              src={study.images.primary} 
-              alt={study.images.alt}
-              className={`${imageClasses} flex-1 object-cover`}
-            />
-            {study.images.secondary && (
-              <img 
-                src={study.images.secondary} 
-                alt={study.images.alt}
-                className={`${imageClasses} flex-1 object-cover`}
-              />
-            )}
-          </div>
-        );
-      
-      case "web-mobile":
-        return (
-          <div className="flex gap-4 h-full items-center justify-center">
-            <img 
-              src={study.images.primary} 
-              alt={study.images.alt}
-              className={`${imageClasses} h-64 w-auto object-contain`}
-            />
-            {study.images.secondary && (
-              <img 
-                src={study.images.secondary} 
-                alt={study.images.alt}
-                className={`${imageClasses} h-48 w-auto object-contain`}
-              />
-            )}
-          </div>
-        );
-      
-      case "single-centered":
-      default:
-        return (
-          <div className="flex justify-center h-full">
-            <img 
-              src={study.images.primary} 
-              alt={study.images.alt}
-              className={`${imageClasses} max-h-64 w-auto object-contain`}
-            />
-          </div>
-        );
-    }
+    // Always show only the primary image, regardless of layout type
+    return (
+      <div className="flex justify-center h-full">
+        <img 
+          src={study.images.primary} 
+          alt={study.images.alt}
+          className={`${imageClasses} max-h-64 w-auto object-contain`}
+        />
+      </div>
+    );
   };
 
   return (
