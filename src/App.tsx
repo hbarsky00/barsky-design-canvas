@@ -25,6 +25,15 @@ import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 const queryClient = new QueryClient();
 
 function App() {
+  React.useEffect(() => {
+    // Trigger render event for pre-rendering after initial load
+    setTimeout(() => {
+      if (typeof window !== 'undefined' && window.document) {
+        window.document.dispatchEvent(new Event('render-event'));
+      }
+    }, 1000);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>

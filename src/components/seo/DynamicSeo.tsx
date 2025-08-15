@@ -1,234 +1,146 @@
 
-import React from "react";
-import { Helmet } from "react-helmet-async";
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { normalizeUrl } from '@/utils/urlUtils';
 
 interface DynamicSeoProps {
-  type: "home" | "project" | "blog" | "blog-post" | "about" | "services" | "service" | "page";
+  type?: 'home' | 'page' | 'blog' | 'project' | 'service';
   title: string;
   description: string;
   image?: string;
+  path?: string;
   projectName?: string;
   results?: string[];
   technologies?: string[];
-  path: string;
-  author?: string;
-  publishedDate?: string;
-  tags?: string[];
-  excerpt?: string;
-  featuredImage?: string;
-  slug?: string;
-  serviceName?: string;
-  benefits?: string[];
-  targetAudience?: string;
+  noIndex?: boolean;
 }
 
 const DynamicSeo: React.FC<DynamicSeoProps> = ({
-  type,
+  type = 'page',
   title,
   description,
-  image,
+  image = '/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png',
+  path = '/',
   projectName,
   results = [],
   technologies = [],
-  path,
-  author = "Hiram Barsky",
-  publishedDate,
-  tags = [],
-  excerpt,
-  featuredImage,
-  slug,
-  serviceName,
-  benefits = [],
-  targetAudience
+  noIndex = false
 }) => {
-  // Get the current domain
-  const currentDomain = typeof window !== 'undefined' ? window.location.origin : 'https://barskydesign.pro';
-  const canonicalUrl = `${currentDomain}${path}`;
+  const baseUrl = 'https://barskydesign.pro';
+  const canonicalUrl = normalizeUrl(path);
   
-  // Use excerpt or description
-  const metaDescription = excerpt || description;
+  // Ensure absolute image URL
+  const absoluteImageUrl = image.startsWith('http') 
+    ? image 
+    : `${baseUrl}${image.startsWith('/') ? '' : '/'}${image}`;
   
-  // Use featuredImage or image
-  const metaImage = featuredImage || image;
+  // Optimize title and description lengths
+  const optimizedTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+  const optimizedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
   
-  // Ensure image URL is absolute and optimized for social sharing
-  const getOptimizedImageUrl = (imagePath?: string) => {
-    if (!imagePath) return `${currentDomain}/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png`; // Default image
-    
-    if (imagePath.startsWith('http')) {
-      return imagePath; // Already absolute
-    }
-    
-    // Make relative URLs absolute
-    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-    return `${currentDomain}${cleanPath}`;
-  };
-
-  const optimizedImage = getOptimizedImageUrl(metaImage);
-  
-  // Generate structured data based on type
-  const getStructuredData = () => {
-    const baseStructuredData = {
-      "@context": "https://schema.org",
-      "url": canonicalUrl,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": canonicalUrl
-      },
-      "author": {
-        "@type": "Person",
-        "name": author,
-        "jobTitle": "Product Designer & Gen AI Developer",
-        "url": "https://barskydesign.pro",
-        "sameAs": [
-          "https://www.linkedin.com/in/hirambarsky",
-          "https://twitter.com/barskydesign"
-        ]
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Barsky Design",
-        "logo": {
-          "@type": "ImageObject",
-          "url": `${currentDomain}/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png`
-        }
-      }
-    };
-
-    if (type === "project") {
+  // Generate structured data for projects
+  const generateStructuredData = () => {
+    if (type === 'project' && projectName) {
       return {
-        ...baseStructuredData,
+        "@context": "https://schema.org",
         "@type": "CreativeWork",
-        "name": projectName || title,
-        "description": metaDescription,
+        "name": projectName,
+        "description": optimizedDescription,
+        "url": canonicalUrl,
         "image": {
           "@type": "ImageObject",
-          "url": optimizedImage,
+          "url": absoluteImageUrl,
           "width": 1200,
           "height": 630
         },
-        "datePublished": publishedDate || new Date().toISOString().split('T')[0],
-        "dateModified": new Date().toISOString().split('T')[0],
-        "keywords": [...technologies, ...tags].join(', '),
-        "about": {
-          "@type": "Thing",
-          "name": "User Experience Design",
-          "description": "Product design and development case study"
+        "author": {
+          "@type": "Person",
+          "name": "Hiram Barsky",
+          "jobTitle": "Product Designer & Gen AI Developer"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Barsky Design",
+          "url": baseUrl
+        },
+        "keywords": technologies.join(', ')
+      };
+    }
+    
+    if (type === 'blog') {
+      return {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": optimizedTitle,
+        "description": optimizedDescription,
+        "url": canonicalUrl,
+        "image": absoluteImageUrl,
+        "author": {
+          "@type": "Person",
+          "name": "Hiram Barsky"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Barsky Design",
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${baseUrl}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`
+          }
+        },
+        "datePublished": new Date().toISOString(),
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
         }
       };
     }
-
-    if (type === "blog" || type === "blog-post") {
-      return {
-        ...baseStructuredData,
-        "@type": "BlogPosting",
-        "headline": title,
-        "description": metaDescription,
-        "image": optimizedImage,
-        "datePublished": publishedDate || new Date().toISOString(),
-        "dateModified": new Date().toISOString(),
-        "keywords": tags.join(', ')
-      };
-    }
-
-    if (type === "service" || type === "services") {
-      return {
-        ...baseStructuredData,
-        "@type": "Service",
-        "name": serviceName || title,
-        "description": metaDescription,
-        "provider": {
-          "@type": "Person",
-          "name": author,
-          "url": "https://barskydesign.pro"
-        },
-        "serviceType": "Design & Development",
-        "audience": targetAudience ? {
-          "@type": "Audience",
-          "name": targetAudience
-        } : undefined
-      };
-    }
-
-    return {
-      ...baseStructuredData,
-      "@type": "WebPage",
-      "name": title,
-      "description": metaDescription
-    };
+    
+    return null;
   };
 
-  // Generate keywords
-  const keywords = [
-    "Hiram Barsky",
-    "Product Designer",
-    "Gen AI Developer",
-    "UX Design",
-    "User Experience",
-    ...technologies,
-    ...tags
-  ].join(', ');
-
-  // Determine OG type
-  const getOgType = () => {
-    if (type === "blog" || type === "blog-post") return "article";
-    return "website";
-  };
+  const structuredData = generateStructuredData();
 
   return (
     <Helmet>
       {/* Basic Meta Tags */}
-      <title>{title}</title>
-      <meta name="description" content={metaDescription} />
-      <meta name="keywords" content={keywords} />
-      <meta name="author" content={author} />
+      <title>{optimizedTitle}</title>
+      <meta name="description" content={optimizedDescription} />
       <link rel="canonical" href={canonicalUrl} />
       
-      {/* Enhanced indexing directives */}
-      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      {/* Robots */}
+      <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
       
-      {/* Open Graph Meta Tags */}
-      <meta property="og:type" content={getOgType()} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={metaDescription} />
+      {/* Open Graph */}
+      <meta property="og:type" content={type === 'home' ? 'website' : 'article'} />
+      <meta property="og:title" content={optimizedTitle} />
+      <meta property="og:description" content={optimizedDescription} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content={optimizedImage} />
-      <meta property="og:image:alt" content={`${projectName || serviceName || title} - Hiram Barsky Case Study`} />
+      <meta property="og:image" content={absoluteImageUrl} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Hiram Barsky - Product Designer & Gen AI Developer" />
+      <meta property="og:image:alt" content={optimizedTitle} />
+      <meta property="og:site_name" content="Hiram Barsky Design" />
       <meta property="og:locale" content="en_US" />
       
-      {/* Article specific OG tags */}
-      {(type === "blog" || type === "blog-post") && publishedDate && (
-        <meta property="article:published_time" content={publishedDate} />
-      )}
-      {(type === "blog" || type === "blog-post") && author && (
-        <meta property="article:author" content={author} />
-      )}
-      {(type === "blog" || type === "blog-post") && tags.length > 0 && 
-        tags.map(tag => (
-          <meta key={tag} property="article:tag" content={tag} />
-        ))
-      }
-      
-      {/* Twitter Card Meta Tags */}
+      {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={optimizedImage} />
-      <meta name="twitter:creator" content="@barskydesign" />
-      <meta name="twitter:site" content="@barskydesign" />
+      <meta name="twitter:title" content={optimizedTitle} />
+      <meta name="twitter:description" content={optimizedDescription} />
+      <meta name="twitter:image" content={absoluteImageUrl} />
+      <meta name="twitter:image:alt" content={optimizedTitle} />
+      <meta name="twitter:site" content="@hirambarsky" />
+      <meta name="twitter:creator" content="@hirambarsky" />
       
-      {/* Additional Meta Tags */}
+      {/* Additional Meta */}
+      <meta name="author" content="Hiram Barsky" />
       <meta name="theme-color" content="#3B82F6" />
-      <meta name="format-detection" content="telephone=no" />
       
       {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(getStructuredData(), null, 2)}
-      </script>
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData, null, 2)}
+        </script>
+      )}
     </Helmet>
   );
 };
