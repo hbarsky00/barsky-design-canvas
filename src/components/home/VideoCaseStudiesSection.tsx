@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -5,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface CaseStudy {
   id: string;
@@ -85,20 +87,86 @@ const caseStudies: CaseStudy[] = [
 ];
 
 const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index }) => {
+  const isMobile = useIsMobile();
+
   const renderImages = () => {
-    const imageClasses = "rounded-lg shadow-lg transition-transform duration-300 hover:scale-105";
+    const baseImageClasses = "rounded-lg shadow-lg transition-transform duration-300 hover:scale-105";
     
-    // Always show only the primary image, regardless of layout type
-    return (
-      <div className="flex justify-center h-full">
-        <img 
-          src={study.images.primary} 
-          alt={study.images.alt}
-          className={`${imageClasses} max-h-64 w-auto object-contain`}
-        />
-      </div>
-    );
+    switch (study.layout) {
+      case "side-by-side":
+        if (study.images.secondary) {
+          return (
+            <div className="flex gap-4 justify-center items-center h-full">
+              <img 
+                src={study.images.primary} 
+                alt={study.images.alt}
+                className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain flex-1`}
+              />
+              <img 
+                src={study.images.secondary} 
+                alt={study.images.alt}
+                className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain flex-1`}
+              />
+            </div>
+          );
+        }
+        return (
+          <div className="flex justify-center h-full">
+            <img 
+              src={study.images.primary} 
+              alt={study.images.alt}
+              className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
+            />
+          </div>
+        );
+      
+      case "web-mobile":
+        if (study.images.secondary) {
+          return (
+            <div className="flex gap-4 justify-center items-end h-full">
+              <img 
+                src={study.images.primary} 
+                alt={study.images.alt}
+                className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
+              />
+              <img 
+                src={study.images.secondary} 
+                alt={study.images.alt}
+                className={`${baseImageClasses} max-h-32 lg:max-h-40 w-auto object-contain`}
+              />
+            </div>
+          );
+        }
+        return (
+          <div className="flex justify-center h-full">
+            <img 
+              src={study.images.primary} 
+              alt={study.images.alt}
+              className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
+            />
+          </div>
+        );
+      
+      case "single-centered":
+      default:
+        return (
+          <div className="flex justify-center h-full">
+            <img 
+              src={study.images.primary} 
+              alt={study.images.alt}
+              className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
+            />
+          </div>
+        );
+    }
   };
+
+  const gradientClasses = [
+    "from-blue-50 to-blue-100",
+    "from-purple-50 to-purple-100", 
+    "from-green-50 to-green-100",
+    "from-orange-50 to-orange-100"
+  ];
 
   return (
     <motion.div
@@ -108,18 +176,76 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300"
     >
-      <div className="grid lg:grid-cols-2 gap-8 p-8">
-        {/* Images Section */}
-        <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 min-h-[280px] flex items-center">
+      {/* Mobile Layout: Stacked */}
+      <div className="lg:hidden">
+        {/* Image Section - Full Width on Mobile */}
+        <div className={`relative bg-gradient-to-br ${gradientClasses[index]} p-6 min-h-[240px] flex items-center`}>
           {renderImages()}
         </div>
 
-        {/* Content Section */}
-        <div className="flex flex-col justify-center space-y-6">
+        {/* Content Section - Continues gradient background */}
+        <div className={`bg-gradient-to-b ${gradientClasses[index]} to-white p-8 space-y-6`}>
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {study.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="text-xs font-medium">
+              <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                #{tag}
+              </Badge>
+            ))}
+          </div>
+
+          {/* Title */}
+          <h3 className="text-2xl font-bold text-gray-900 leading-tight">
+            {study.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-gray-600 text-lg leading-relaxed">
+            {study.description}
+          </p>
+
+          {/* Impact Metrics */}
+          <div className="text-2xl font-bold text-primary">
+            {study.impact}
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col gap-3 pt-2">
+            <Button asChild variant="filled" className="w-full">
+              <Link to={study.url}>
+                View Case Study
+              </Link>
+            </Button>
+            {study.liveUrl && (
+              <Button asChild variant="outlined" className="w-full">
+                <a 
+                  href={study.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2"
+                >
+                  View Live
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout: 50/50 Split */}
+      <div className="hidden lg:grid lg:grid-cols-2 min-h-[400px]">
+        {/* Images Section - Continuous gradient background */}
+        <div className={`relative bg-gradient-to-br ${gradientClasses[index]} p-8 flex items-center`}>
+          {renderImages()}
+        </div>
+
+        {/* Content Section - Continues gradient background */}
+        <div className={`bg-gradient-to-br ${gradientClasses[index]} flex flex-col justify-center space-y-6 p-8`}>
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2">
+            {study.tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
                 #{tag}
               </Badge>
             ))}
@@ -142,7 +268,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <Button asChild variant="brand" className="flex-1 sm:flex-none">
+            <Button asChild variant="filled" className="flex-1 sm:flex-none">
               <Link to={study.url}>
                 View Case Study
               </Link>
