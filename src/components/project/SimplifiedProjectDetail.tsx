@@ -6,6 +6,14 @@ import OriginalCaseStudyLayout from '@/components/case-study/OriginalCaseStudyLa
 import StoryDrivenProjectDetail from "./StoryDrivenProjectDetail";
 import InvestmentAppCaseStudy from "@/pages/InvestmentAppCaseStudy";
 
+// Lazy load the case study components
+const HerbalinkCaseStudy = React.lazy(() => import('@/pages/HerbalinkCaseStudy'));
+const SplittimeCaseStudy = React.lazy(() => import('@/pages/SplittimeCaseStudy'));
+const MedicationAppCaseStudy = React.lazy(() => import('@/pages/MedicationAppCaseStudy'));
+const Gold2CryptoCaseStudy = React.lazy(() => import('@/pages/Gold2CryptoCaseStudy'));
+const DaeSearchCaseStudy = React.lazy(() => import('@/pages/DaeSearchCaseStudy'));
+const BarskyJointCaseStudy = React.lazy(() => import('@/pages/BarskyJointCaseStudy'));
+
 const SimplifiedProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   
@@ -13,29 +21,71 @@ const SimplifiedProjectDetail: React.FC = () => {
     return <Navigate to="/projects" replace />;
   }
 
-  // Use the new story-driven component for wholesale-distribution
-  if (projectId === 'wholesale-distribution') {
-    return <StoryDrivenProjectDetail />;
-  }
+  // Route to specific case study components
+  switch (projectId) {
+    case 'herbalink':
+      return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <HerbalinkCaseStudy />
+        </React.Suspense>
+      );
+    
+    case 'splittime':
+      return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <SplittimeCaseStudy />
+        </React.Suspense>
+      );
+    
+    case 'wholesale-distribution':
+      return <StoryDrivenProjectDetail />;
+    
+    case 'investment-app':
+      return <InvestmentAppCaseStudy />;
+    
+    case 'medication-app':
+      return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <MedicationAppCaseStudy />
+        </React.Suspense>
+      );
+    
+    case 'gold2crypto':
+      return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Gold2CryptoCaseStudy />
+        </React.Suspense>
+      );
+    
+    case 'dae-search':
+      return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <DaeSearchCaseStudy />
+        </React.Suspense>
+      );
+    
+    case 'barskyjoint':
+      return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <BarskyJointCaseStudy />
+        </React.Suspense>
+      );
+    
+    default:
+      // Fallback to original layout for any remaining case studies
+      const caseStudy = caseStudiesData[projectId];
+      
+      if (!caseStudy) {
+        return <Navigate to="/projects" replace />;
+      }
 
-  // Use the new dedicated component for investment-app
-  if (projectId === 'investment-app') {
-    return <InvestmentAppCaseStudy />;
+      return (
+        <OriginalCaseStudyLayout 
+          caseStudy={caseStudy}
+          projectId={projectId}
+        />
+      );
   }
-
-  // Check if this project has case study data
-  const caseStudy = caseStudiesData[projectId];
-  
-  if (!caseStudy) {
-    return <Navigate to="/projects" replace />;
-  }
-
-  return (
-    <OriginalCaseStudyLayout 
-      caseStudy={caseStudy}
-      projectId={projectId}
-    />
-  );
 };
 
 export default SimplifiedProjectDetail;
