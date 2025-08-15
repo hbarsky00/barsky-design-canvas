@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { NavigationProps } from "@/types/navigation";
 
-interface InternalLinkingEnhancerProps extends NavigationProps {
+interface InternalLinkingEnhancerProps {
   currentPage: string;
   showRelatedLinks?: boolean;
   className?: string;
@@ -16,10 +14,7 @@ interface InternalLinkingEnhancerProps extends NavigationProps {
 const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
   currentPage,
   showRelatedLinks = false,
-  className = "",
-  navigateUp,
-  canNavigateUp,
-  isMobile
+  className = ""
 }) => {
   const relatedLinks = [
     {
@@ -121,18 +116,6 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
           </div>
         </motion.div>
       </div>
-
-      {/* Hide navigation arrows on mobile - only show on desktop */}
-      {!isMobile && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <SectionNavigation
-            onNavigateUp={navigateUp}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={false}
-            upLabel="Previous section"
-          />
-        </div>
-      )}
     </section>
   );
 };

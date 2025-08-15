@@ -4,18 +4,8 @@ import { motion } from "framer-motion";
 import ModernProjectCard from "@/components/homepage/ModernProjectCard";
 import { homepageCaseStudyPreviews } from "@/data/caseStudies";
 import SectionHeader from "@/components/shared/SectionHeader";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { NavigationProps } from "@/types/navigation";
 
-interface VideoCaseStudiesSectionProps extends NavigationProps {}
-
-const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({ 
-  navigateUp, 
-  navigateDown, 
-  canNavigateUp, 
-  canNavigateDown, 
-  isMobile 
-}) => {
+const VideoCaseStudiesSection: React.FC = () => {
   return (
     <section id="projects" className="py-4 sm:py-6 min-h-screen flex flex-col justify-center relative bg-white">
       <div className="container px-4 mx-auto max-w-7xl">
@@ -58,20 +48,6 @@ const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({
           ))}
         </div>
       </div>
-
-      {/* Hide navigation arrows on mobile - only show on desktop */}
-      {!isMobile && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <SectionNavigation
-            onNavigateUp={navigateUp}
-            onNavigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            upLabel="Previous section"
-            downLabel="Contact"
-          />
-        </div>
-      )}
     </section>
   );
 };
