@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -28,7 +29,7 @@ const caseStudies: CaseStudy[] = [
     id: "herbalink",
     tags: ["Health", "Marketplace", "Gen AI"],
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
-    description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
+    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
     impact: "+3x Booking Rate Increase",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
@@ -43,7 +44,7 @@ const caseStudies: CaseStudy[] = [
     id: "splittime",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
+    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
     impact: "-40% Conflict Reduction",
     url: "/project/splittime",
     liveUrl: "https://splittime.pro",
@@ -58,7 +59,7 @@ const caseStudies: CaseStudy[] = [
     id: "business-management",
     tags: ["Enterprise", "Analytics", "Dashboard"],
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
-    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
+    description: "Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers.",
     impact: "-68% Manual Entry Errors",
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
@@ -73,7 +74,7 @@ const caseStudies: CaseStudy[] = [
     id: "investment-app",
     tags: ["Finance", "Analytics", "Tutorial"],
     title: "23% More Engagement: Making Investing Accessible to Beginners",
-    description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
+    description: "Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios.",
     impact: "+23% Engagement Increase",
     url: "/project/investment-app",
     liveUrl: "https://investor-loan-app.com",
