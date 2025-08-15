@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedText from "@/components/AnimatedText";
@@ -22,10 +21,9 @@ const BioSection: React.FC<BioSectionProps> = ({
       "Product Design Leader with Enterprise and Startup experience since 2012. FinTech, Healthcare, AdTech veteran.",
       "I simplify complex systems and raise the bar of design while delivering measurable business impact."
     ],
-    // New text set
+    // New text set (removed middle paragraph)
     [
       "Lead UX Designer with 15+ years in banking, healthcare, and enterprise tech, delivering measurable results—25% higher customer satisfaction at PNC, 40% more engagement after a mobile redesign, and 15% fewer errors at Bank of America.",
-      "I specialize in turning complex workflows into intuitive, accessible experiences using Design Thinking, scalable systems, and data-driven design. My work spans AI-powered apps, ServiceNow redesigns, enterprise dashboards, and mobile banking platforms for companies like PNC, Bank of America, Deloitte, TCS, KPMG, and Express Scripts.",
       "I thrive on solving tough problems, mentoring teams, and driving adoption for high-impact digital products."
     ]
   ];
