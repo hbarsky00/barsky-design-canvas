@@ -1,9 +1,7 @@
 
-#!/usr/bin/env node
-
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+import { execSync } from 'child_process';
+import fs from 'fs';
+import path from 'path';
 
 console.log('🏗️  Building React app with pre-rendering...');
 
@@ -18,7 +16,7 @@ try {
   execSync('vite build', { stdio: 'inherit' });
   console.log('✅ Vite build completed');
 
-  // Verify pre-rendered files
+  // Verify build files
   const distDir = 'dist';
   if (fs.existsSync(distDir)) {
     const getAllFiles = (dirPath, arrayOfFiles = []) => {
@@ -36,7 +34,7 @@ try {
     };
 
     const allFiles = getAllFiles(distDir);
-    const htmlFiles = allFiles.filter(file => file.endsWith('index.html'));
+    const htmlFiles = allFiles.filter(file => file.endsWith('.html'));
     
     console.log(`📄 Generated ${htmlFiles.length} HTML files:`);
     htmlFiles.forEach(file => {
@@ -44,8 +42,8 @@ try {
       console.log(`  - ${relativePath}`);
     });
 
-    // Verify meta tags in some key files
-    const keyFiles = ['index.html', 'project/herbalink/index.html', 'blog/index.html'];
+    // Verify meta tags in key files
+    const keyFiles = ['index.html'];
     keyFiles.forEach(file => {
       const filePath = path.join(distDir, file);
       if (fs.existsSync(filePath)) {
@@ -57,7 +55,7 @@ try {
     });
   }
 
-  console.log('🎉 Build with pre-rendering complete!');
+  console.log('🎉 Build complete!');
 } catch (error) {
   console.error('❌ Build failed:', error.message);
   process.exit(1);
