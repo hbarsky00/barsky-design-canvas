@@ -1,18 +1,18 @@
 
 import HomepageLayout from "@/components/homepage/HomepageLayout";
 import ScrollHandler from "@/components/homepage/ScrollHandler";
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
-import { usePageIndexing } from "@/hooks/usePageIndexing";
+import SEO from "@/components/seo/SEO";
 
 const Index = () => {
-  usePageIndexing();
-  
   return (
     <>
-      {/* Unified SEO System - automatically detects page content */}
-      <UnifiedSEO />
+      <SEO
+        type="website"
+        title="Hiram Barsky – Product Designer & Gen AI Developer"
+        description="Expert product designer specializing in AI-enhanced user experiences, design systems, and Gen AI integration for startups and enterprises."
+        url="https://barskydesign.pro"
+      />
       
-      {/* Page Content */}
       <ScrollHandler />
       <HomepageLayout />
     </>

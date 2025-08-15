@@ -1,38 +1,20 @@
 
 import React from "react";
-import { motion } from "framer-motion";
-import { Hash } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import Header from "@/components/Header";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
-import CaseStudyContactSection from "../CaseStudyContactSection";
-import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
-import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
-import { EditableVideo } from "./EditableVideo";
-import CaseStudyNavigation from "../CaseStudyNavigation";
-import ProjectLinks from "@/components/project/ProjectLinks";
-import ProjectNavigation from "@/components/ProjectNavigation";
-import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
-import { useLocation } from "react-router-dom";
-import Section3DOverlay from "@/components/transitions/Section3DOverlay";
-import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
+import Navigation from "@/components/Navigation";
+import SEO from "@/components/seo/SEO";
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
   description: string;
   tags: string[];
-  heroVideo?: {
-    src: string;
-    poster: string;
-    alt: string;
-  };
-  sections: StructuredCaseStudySectionProps[];
+  heroVideo?: string;
+  sections: any[];
   projectLink?: string;
   gradientClasses?: string;
-  showNavigation?: boolean;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
@@ -42,181 +24,126 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   heroVideo,
   sections,
   projectLink,
-  gradientClasses = "from-primary-container/20 to-secondary-container/20",
-  showNavigation = true
+  gradientClasses = "from-blue-50 to-purple-50"
 }) => {
-  // Get current URL for sharing
-  const { pathname } = useLocation();
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${pathname}`;
-
-  const navigationItems = sections.map(section => ({
-    label: section.title,
-    anchor: `#${section.id}`
-  }));
-
-  const currentProjectId = React.useMemo(() => {
-    const parts = pathname.split('/');
-    return parts[parts.length - 1] || '';
-  }, [pathname]);
-
-  const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
-
-  // Build sections for keyboard navigation
-  const keyboardSections = React.useMemo(() => {
-    const navSections = [
-      { id: 'hero-section', title: 'Overview' },
-      ...sections.map(section => ({
-        id: section.id,
-        title: section.title
-      })),
-      { id: 'contact-section', title: 'Contact' },
-      { id: 'project-navigation', title: 'More Projects' }
-    ];
-    return navSections;
-  }, [sections]);
-
-  // Add keyboard navigation
-  const {
-    isTransitioning,
-    transitionDirection,
-    transitionVariation,
-  } = useCaseStudyKeyboardNavigation(keyboardSections);
+  // Extract project ID from current URL for SEO
+  const currentPath = window.location.pathname;
+  const projectId = currentPath.split('/').pop() || '';
+  
+  // Generate hero image from video or use fallback
+  const heroImage = heroVideo ? 
+    heroVideo.replace('.mp4', '-thumbnail.jpg') : 
+    '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png';
 
   return (
     <>
-      {/* Unified SEO - automatically detects page content */}
-      <UnifiedSEO />
+      <SEO
+        type="article"
+        title={`${title} | Hiram Barsky Case Study`}
+        description={description}
+        url={`https://barskydesign.pro${currentPath}`}
+        image={heroImage}
+        tags={tags}
+      />
       
-      {/* Hidden meta tags for SEO detection */}
-      <meta name="page-title" content={title} />
-      <meta name="page-description" content={description} />
-      {heroVideo && <meta name="page-image" content={heroVideo.poster} />}
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        
+        {/* Hero Section */}
+        <section className={`bg-gradient-to-br ${gradientClasses} py-20 px-4`}>
+          <div className="container mx-auto max-w-4xl">
+            <Link to="/projects" className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-8 transition-colors">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Projects
+            </Link>
+            
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              {title}
+            </h1>
+            
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+              {description}
+            </p>
+            
+            <div className="flex flex-wrap gap-2 mb-8">
+              {tags.map((tag, index) => (
+                <span key={index} className="px-3 py-1 bg-white/70 text-gray-700 rounded-full text-sm font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            {projectLink && (
+              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+                <a href={projectLink} target="_blank" rel="noopener noreferrer">
+                  View Live Project <ExternalLink className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+            )}
+          </div>
+        </section>
 
-      <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
-        {/* 3D Transition Overlay */}
-        <Section3DOverlay 
-          isVisible={isTransitioning} 
-          direction={transitionDirection}
-          variation={transitionVariation}
-        />
-
-        <Header />
-
-        <main className="flex-grow">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
-            <div className={showNavigation ? "lg:grid lg:grid-cols-[16rem,1fr] lg:gap-8" : ""}>
-              {/* Desktop sidebar + Mobile FAB navigation */}
-              {showNavigation && <CaseStudyNavigation navigation={navigationItems} />}
-
-              {/* Main content column */}
-              <div>
-                {/* Hero Section */}
-                <motion.section
-                  id="hero-section"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="mt-2 mb-8"
+        {/* Hero Video */}
+        {heroVideo && (
+          <section className="py-16 px-4">
+            <div className="container mx-auto max-w-4xl">
+              <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full h-full object-cover"
                 >
-                  <Card className="p-8 lg:p-12 bg-card border border-border shadow-elevated">
-                    {/* Title and Description */}
-                    <div className="text-center mb-8">
-                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-                        {title}
-                      </h1>
-                      <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                        {description}
-                      </p>
-                    </div>
+                  <source src={heroVideo} type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </section>
+        )}
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-8">
-                      {tags.map((tag) => (
-                        <Badge key={tag} variant="secondary" className="gap-1">
-                          <Hash className="h-3 w-3" />
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Visit Live Site */}
-                    {projectLink && (
-                      <div className="flex justify-center mb-8">
-                        <ProjectLinks projectLink={projectLink} label="Visit Live Site" variant="outlined" />
-                      </div>
-                    )}
-
-                    {/* Hero Video */}
-                    {heroVideo && (
-                      <div className="max-w-4xl mx-auto mb-8" data-hero-image>
-                        <EditableVideo
-                          src={heroVideo.src}
-                          alt={heroVideo.alt}
-                          poster={heroVideo.poster}
-                          caption="Project demonstration video"
-                          className="w-full"
-                        />
-                      </div>
-                    )}
-
-                    {/* Share Toolbar - Under Hero Content */}
-                    <div className="flex justify-center">
-                      <CaseStudyShareToolbar 
-                        url={currentUrl}
-                        title={title}
-                        className="flex-wrap justify-center"
+        {/* Content Sections */}
+        {sections.map((section, index) => (
+          <section key={index} className="py-16 px-4">
+            <div className="container mx-auto max-w-4xl">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className={index % 2 === 0 ? "lg:order-1" : "lg:order-2"}>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                    {section.title}
+                  </h2>
+                  <div className="prose prose-lg text-gray-700">
+                    {section.content}
+                  </div>
+                </div>
+                
+                <div className={index % 2 === 0 ? "lg:order-2" : "lg:order-1"}>
+                  {section.image && (
+                    <div className="relative">
+                      <img 
+                        src={section.image} 
+                        alt={section.title}
+                        className="w-full rounded-lg shadow-lg"
                       />
                     </div>
-                  </Card>
-                </motion.section>
-
-                {/* Case Study Sections */}
-                <div className="space-y-16">
-                  {sections.map((section, index) => (
-                    <motion.div
-                      key={section.id}
-                      initial={{ opacity: 0, y: 50 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                    >
-                      <StructuredCaseStudySection {...section} />
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Contact Section */}
-                <motion.div
-                  id="contact-section"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="mt-20"
-                >
-                  <CaseStudyContactSection />
-                </motion.div>
-
-                {/* Share Toolbar - At Bottom */}
-                <div className="mt-12 pt-8 border-t border-border/20 flex justify-center">
-                  <CaseStudyShareToolbar 
-                    url={currentUrl}
-                    title={title}
-                    className="flex-wrap justify-center"
-                  />
-                </div>
-
-                {/* Prev/Next Navigation */}
-                <div id="project-navigation" className="mt-12">
-                  <ProjectNavigation
-                    currentProjectId={currentProjectId}
-                    projectsData={projectsData}
-                  />
+                  )}
+                  {section.video && (
+                    <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg">
+                      <video 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      >
+                        <source src={section.video} type="video/mp4" />
+                      </video>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
-        </main>
+          </section>
+        ))}
 
         <Footer />
       </div>
