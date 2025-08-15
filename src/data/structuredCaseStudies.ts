@@ -482,8 +482,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
-      poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/businessmanagement.png?fit=768%2C576&ssl=1",
-      alt: "Business management system overview"
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      alt: "Business management system promotional overview"
     },
     sections: [
       {
@@ -550,7 +550,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       }
     ],
     seoData: {
-      image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/businessmanagement.png?fit=768%2C576&ssl=1",
+      image: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
       projectName: "Business Management System",
       results: ["68% fewer errors", "35% faster processing", "90% satisfaction", "100% uptime"],
       technologies: ["React", "Mobile", "Enterprise", "Operations"],
