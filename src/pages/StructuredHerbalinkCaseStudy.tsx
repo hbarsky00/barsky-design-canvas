@@ -1,3 +1,4 @@
+
 import React from "react";
 import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
@@ -18,7 +19,6 @@ const StructuredHerbalinkCaseStudy: React.FC = () => {
       sections={caseStudyData.sections}
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
-      seoData={caseStudyData.seoData}
     />
   );
 };
