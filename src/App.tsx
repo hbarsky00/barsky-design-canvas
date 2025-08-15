@@ -16,11 +16,6 @@ import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
-// Structured case study imports
-import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
-import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
-import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
-
 const queryClient = new QueryClient();
 
 function App() {
@@ -38,12 +33,7 @@ function App() {
               {/* Projects listing */}
               <Route path="/projects" element={<Projects />} />
               
-              {/* Structured case studies - these override the generic ProjectDetail routing */}
-              <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
-              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
-              
-              {/* Generic project detail for other projects */}
+              {/* All project details now use SimplifiedProjectDetail with original data */}
               <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
               
               {/* Other routes */}
