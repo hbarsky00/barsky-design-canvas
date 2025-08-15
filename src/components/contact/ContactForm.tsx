@@ -104,7 +104,7 @@ const ContactForm: React.FC = () => {
                       <Input 
                         placeholder="Your name" 
                         {...field} 
-                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none"
                       />
                     </FormControl>
                     <FormMessage />
@@ -123,7 +123,7 @@ const ContactForm: React.FC = () => {
                         placeholder="your@email.com" 
                         type="email" 
                         {...field} 
-                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none"
                       />
                     </FormControl>
                     <FormMessage />
@@ -141,7 +141,7 @@ const ContactForm: React.FC = () => {
                       <Input 
                         placeholder="Subject of your message" 
                         {...field} 
-                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none"
                       />
                     </FormControl>
                     <FormMessage />
@@ -160,7 +160,7 @@ const ContactForm: React.FC = () => {
                         placeholder="Your message..." 
                         rows={5}
                         {...field}
-                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none"
                       />
                     </FormControl>
                     <FormMessage />

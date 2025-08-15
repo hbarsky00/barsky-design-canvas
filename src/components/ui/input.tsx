@@ -6,14 +6,14 @@ import { cn } from "@/lib/utils"
 import { useHoverTilt } from "@/hooks/useHoverTilt"
 
 const inputVariants = cva(
-  "flex w-full transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]",
+  "flex w-full transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]",
   {
     variants: {
       variant: {
-        filled: "bg-surface-container text-foreground rounded-t border-b-2 border-outline focus-visible:border-primary px-4 py-3 hover:bg-surface-container-high",
-        outlined: "border border-outline bg-surface text-foreground rounded focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary px-4 py-3 hover:border-outline-variant",
+        filled: "bg-surface-container text-foreground rounded-t border-b-2 border-outline focus:border-outline px-4 py-3 hover:bg-surface-container-high",
+        outlined: "border border-outline bg-surface text-foreground rounded focus:border-outline px-4 py-3 hover:border-outline-variant",
         // Legacy variant
-        default: "border border-outline bg-surface text-foreground rounded focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary px-4 py-3 hover:border-outline-variant",
+        default: "border border-outline bg-surface text-foreground rounded focus:border-outline px-4 py-3 hover:border-outline-variant",
       },
     },
     defaultVariants: {

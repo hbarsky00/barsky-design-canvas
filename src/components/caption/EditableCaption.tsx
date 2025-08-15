@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Edit2, Check, X } from 'lucide-react';
 import { shouldShowEditingControls } from '@/utils/devModeDetection';
@@ -158,7 +157,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
             value={tempCaption}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="editable-caption-input flex-1 px-3 py-2 text-sm border-2 border-blue-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+            className="editable-caption-input flex-1 px-3 py-2 text-sm border-2 border-blue-400 rounded-md focus:outline-none bg-white"
             placeholder="Enter image caption..."
             disabled={isSaving}
             autoComplete="off"

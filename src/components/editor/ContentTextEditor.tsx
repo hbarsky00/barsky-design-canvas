@@ -58,7 +58,7 @@ export const ContentTextEditor: React.FC<ContentTextEditorProps> = ({
         <div
           ref={editorRef}
           contentEditable
-          className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none resize-none"
           style={{ minHeight }}
           onInput={(e) => setContent(e.currentTarget.innerHTML)}
           {...createSanitizedHtmlProps(content)}

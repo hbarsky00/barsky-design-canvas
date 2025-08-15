@@ -88,6 +88,21 @@ body {
   touch-action: manipulation;
 }
 
+/* Global focus style removal - Remove all focus indicators */
+*, *:before, *:after {
+  outline: none !important;
+}
+
+button:focus, input:focus, textarea:focus, select:focus, a:focus,
+button:focus-visible, input:focus-visible, textarea:focus-visible, 
+select:focus-visible, a:focus-visible,
+[tabindex]:focus, [tabindex]:focus-visible,
+[role="button"]:focus, [role="button"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  ring: none !important;
+}
+
 /* Mobile-specific utilities */
 @layer utilities {
   .pt-safe-top {
@@ -158,14 +173,4 @@ body {
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-}
-
-/* Mobile-specific focus styles */
-@media (hover: none) and (pointer: coarse) {
-  button:focus,
-  a:focus,
-  [tabindex]:focus {
-    outline: 2px solid hsl(var(--primary));
-    outline-offset: 2px;
-  }
 }
