@@ -1,4 +1,3 @@
-
 import React from "react";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import InvestmentAppHero from "@/components/investment-app/InvestmentAppHero";
@@ -8,6 +7,7 @@ import KeyDesignSolutionsSection from "@/components/investment-app/KeyDesignSolu
 import InvestmentJourneySection from "@/components/investment-app/InvestmentJourneySection";
 import ImpactResultsSection from "@/components/investment-app/ImpactResultsSection";
 import RelatedProjects from "@/components/RelatedProjects";
+import MaximizableImage from "@/components/project/MaximizableImage";
 import { ArrowRight, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -15,8 +15,31 @@ import { motion } from "framer-motion";
 const InvestmentAppCaseStudy: React.FC = () => {
   // Optimized hero image for social sharing (1200x630)
   const heroImage = "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png";
+  const mainAppImage = "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png";
 
   const sections = [
+    {
+      id: "main-image",
+      title: "",
+      content: (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-8"
+        >
+          <MaximizableImage
+            src={mainAppImage}
+            alt="Investment app interface showing simplified portfolio tracking with clean design and educational elements for beginner investors"
+            caption="Educational design that makes investing accessible to everyone"
+            className="shadow-elevated-lg w-full glass-card layered-depth rounded-lg"
+            projectId="investment-app"
+            priority={true}
+          />
+        </motion.div>
+      )
+    },
     {
       id: "barriers",
       title: "Investment Accessibility Gap",
