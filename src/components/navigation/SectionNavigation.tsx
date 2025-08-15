@@ -37,7 +37,7 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
           {/* Up Navigation Arrow */}
           {canNavigateUp && onNavigateUp && (
             <motion.button
-              className="group flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
+              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
@@ -47,28 +47,29 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
               <motion.div
                 animate={{ y: [0, -4, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="mb-2"
+                className="mb-2 flex justify-center"
               >
                 <ChevronUp size={20} className="group-hover:scale-110 transition-transform duration-200" />
               </motion.div>
-              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity">{upLabel}</span>
+              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity text-center">{upLabel}</span>
             </motion.button>
           )}
 
           {/* Down Navigation Arrow */}
           {canNavigateDown && onNavigateDown && (
             <motion.button
-              className="group flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
+              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
               onClick={onNavigateDown}
               aria-label={downLabel}
             >
-              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity mb-2">{downLabel}</span>
+              <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity mb-2 text-center">{downLabel}</span>
               <motion.div
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="flex justify-center"
               >
                 <ChevronDown size={20} className="group-hover:scale-110 transition-transform duration-200" />
               </motion.div>
