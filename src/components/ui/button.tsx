@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        filled: "!bg-barsky-blue-dark !text-white shadow-sm hover:bg-barsky-blue active:opacity-90 !rounded-full [&_svg]:!text-white",
+        filled: "!bg-barsky-blue !text-white shadow-sm hover:bg-barsky-blue-dark !rounded-full [&_svg]:!text-white",
         "filled-tonal": "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
         elevated: "bg-surface-container-low text-primary shadow-md hover:shadow-lg hover:bg-surface-container active:shadow-md rounded-full",
         outlined: "border border-outline bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
@@ -20,10 +20,10 @@ const buttonVariants = cva(
         "high-contrast": "bg-white text-black shadow-lg hover:bg-white/90 active:shadow-md rounded-full border border-white/20",
         "on-dark": "bg-white/10 text-white border border-white/30 shadow-sm hover:bg-white/20 active:bg-white/30 rounded-full backdrop-blur-sm [&_svg]:text-white",
         "on-image": "bg-black/80 text-white border border-white/20 shadow-lg hover:bg-black/90 active:bg-black/70 rounded-full backdrop-blur-sm [&_svg]:text-white",
-        // Brand standard dark button
-        brand: "!bg-barsky-blue-dark !text-white shadow-sm hover:bg-barsky-blue active:opacity-90 !rounded-full [&_svg]:!text-white",
+        // Brand standard button - now more visible
+        brand: "!bg-barsky-blue !text-white shadow-sm hover:bg-barsky-blue-dark !rounded-full [&_svg]:!text-white",
         // Legacy variants for compatibility
-        default: "!bg-barsky-blue-dark !text-white shadow-sm hover:bg-barsky-blue active:opacity-90 !rounded-full [&_svg]:!text-white",
+        default: "!bg-barsky-blue !text-white shadow-sm hover:bg-barsky-blue-dark !rounded-full [&_svg]:!text-white",
         secondary: "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
         ghost: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
         link: "text-primary underline-offset-4 hover:underline bg-transparent",
