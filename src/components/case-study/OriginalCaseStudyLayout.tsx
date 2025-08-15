@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import VideoPlayer from "./VideoPlayer";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import { CaseStudyData } from "@/data/caseStudies";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
@@ -13,8 +14,6 @@ import ProjectNavigation from "@/components/ProjectNavigation";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
-import TemplateLockManager from "./TemplateLockManager";
-import SafeSEOManager from "@/components/seo/SafeSEOManager";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -50,9 +49,18 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
   } = useCaseStudyKeyboardNavigation(keyboardSections);
 
   return (
-    <TemplateLockManager templateType="original-case-study">
-      <SafeSEOManager />
-      
+    <>
+        <DynamicSeo
+          type="project"
+          title={caseStudy.title}
+          description={caseStudy.description}
+          image={caseStudy.videoThumbnail}
+          projectName={caseStudy.title}
+          results={[]}
+          technologies={caseStudy.tags}
+          path={`/project/${projectId}/`}
+        />
+
       <div className="min-h-screen bg-background">
         {/* 3D Transition Overlay */}
         <Section3DOverlay 
@@ -64,11 +72,11 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
         <Header />
 
         <div className="container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8">
-          <div className="flex gap-8" data-protect="structure">
+          <div className="flex gap-8">
             <CaseStudyNavigation navigation={caseStudy.stickyNav} />
             {/* Main Content */}
-            <main className="flex-1 max-w-4xl" data-protect="structure">
-              <section id="hero-section" className="mb-16" data-protect="structure">
+            <main className="flex-1 max-w-4xl">
+              <section id="hero-section" className="mb-16">
                 {/* Branding */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -126,59 +134,56 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                 </motion.div>
               </section>
 
-              {/* Case Study Sections - TEMPLATE LOCKED */}
-              <div data-protect="structure">
-                {Object.entries(caseStudy.sections).map(([sectionId, section]) => {
-                  const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
-                  const title = navItem?.label || sectionId.replace('-', ' ');
+              {/* Case Study Sections */}
+              {Object.entries(caseStudy.sections).map(([sectionId, section]) => {
+                const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
+                const title = navItem?.label || sectionId.replace('-', ' ');
 
-                  return (
-                    <motion.section
-                      key={sectionId}
-                      id={sectionId}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      className="mb-20"
-                      style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
-                      data-protect="structure"
-                    >
-                      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
-                        {title}
-                      </h2>
+                return (
+                  <motion.section
+                    key={sectionId}
+                    id={sectionId}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="mb-20"
+                    style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
+                  >
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+                      {title}
+                    </h2>
+                    
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                      <div className="space-y-6">
+                        <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                          {section.text}
+                        </p>
+                      </div>
                       
-                      <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-6">
-                          <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                            {section.text}
-                          </p>
-                        </div>
-                        
-                        <div className="relative">
-                          <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
-                            <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
-                              <div className="text-center">
-                                <p className="text-muted-foreground mb-2">Image Placeholder</p>
-                                <p className="text-sm text-muted-foreground">{section.image.alt}</p>
-                              </div>
+                      <div className="relative">
+                        <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                          <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                            <div className="text-center">
+                              <p className="text-muted-foreground mb-2">Image Placeholder</p>
+                              <p className="text-sm text-muted-foreground">{section.image.alt}</p>
                             </div>
                           </div>
-                          <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
                         </div>
+                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
                       </div>
-                    </motion.section>
-                  );
-                })}
-              </div>
+                    </div>
+                  </motion.section>
+                );
+              })}
 
               {/* Contact Section */}
-              <div id="contact-section" data-protect="structure">
+              <div id="contact-section">
                 <CaseStudyContactSection />
               </div>
 
               {/* Prev/Next Navigation */}
-              <div id="project-navigation" className="mt-12" data-protect="structure">
+              <div id="project-navigation" className="mt-12">
                 <ProjectNavigation
                   currentProjectId={projectId}
                   projectsData={projectsData}
@@ -191,7 +196,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
         </div>
         <Footer />
       </div>
-    </TemplateLockManager>
+    </>
   );
 };
 
