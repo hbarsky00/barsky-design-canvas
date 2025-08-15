@@ -1,9 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDebounce } from "@/hooks/useDebounce";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { useEditorContext } from "@/context/EditorContext";
-import { useToast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
+
+import React, { useEffect, useState, useRef } from "react";
 import { useOpenAiCaptions } from "@/hooks/useOpenAiCaptions";
 
 // Helper to ensure a single, clean sentence
@@ -36,14 +32,6 @@ interface EditableCaptionProps {
 
 const EditableCaption: React.FC<EditableCaptionProps> = (props) => {
   const { imageSrc, initialCaption = "", projectId } = props;
-  const [caption, setCaption] = useState(initialCaption);
-  const [isEditing, setIsEditing] = useState(false);
-  const debouncedCaption = useDebounce(caption, 500);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { user } = useUser();
-  const { toast } = useToast();
-  const { setForceRefresh } = useEditorContext();
-
   const [autoCaption, setAutoCaption] = useState<string>(initialCaption || "");
   const [isAutoGenerating, setIsAutoGenerating] = useState(false);
   const hasTriggeredRef = useRef(false);
@@ -71,27 +59,26 @@ const EditableCaption: React.FC<EditableCaptionProps> = (props) => {
         if (oneSentence) {
           setAutoCaption(oneSentence);
 
-          window.dispatchEvent(
-            new CustomEvent("editable-caption:generated", {
-              detail: { imageSrc, caption: oneSentence, projectId: context },
-            })
-          );
+          // Notify parent component of caption change
+          if (props.onCaptionChange) {
+            props.onCaptionChange(oneSentence);
+          }
         }
+      } catch (error) {
+        console.error('Failed to generate caption:', error);
       } finally {
         setIsAutoGenerating(false);
       }
     };
 
     run();
-  }, [imageSrc, projectId, generateCaption, autoCaption]);
+  }, [imageSrc, projectId, generateCaption, autoCaption, props]);
 
   const displayedCaption =
     isAutoGenerating ? "Generating caption..." : autoCaption || "";
 
   return (
-    <>
-      <figcaption className={props.className || ""}>{displayedCaption}</figcaption>
-    </>
+    <figcaption className={props.className || ""}>{displayedCaption}</figcaption>
   );
 };
 
