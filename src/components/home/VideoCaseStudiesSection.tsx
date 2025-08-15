@@ -89,84 +89,17 @@ const caseStudies: CaseStudy[] = [
 const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index }) => {
   const isMobile = useIsMobile();
 
-  const renderImages = () => {
-    const baseImageClasses = "rounded-lg shadow-lg transition-transform duration-300 hover:scale-105";
-    
-    switch (study.layout) {
-      case "side-by-side":
-        if (study.images.secondary) {
-          return (
-            <div className="flex gap-4 justify-center items-center h-full">
-              <img 
-                src={study.images.primary} 
-                alt={study.images.alt}
-                className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain flex-1`}
-              />
-              <img 
-                src={study.images.secondary} 
-                alt={study.images.alt}
-                className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain flex-1`}
-              />
-            </div>
-          );
-        }
-        return (
-          <div className="flex justify-center h-full">
-            <img 
-              src={study.images.primary} 
-              alt={study.images.alt}
-              className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
-            />
-          </div>
-        );
-      
-      case "web-mobile":
-        if (study.images.secondary) {
-          return (
-            <div className="flex gap-4 justify-center items-end h-full">
-              <img 
-                src={study.images.primary} 
-                alt={study.images.alt}
-                className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
-              />
-              <img 
-                src={study.images.secondary} 
-                alt={study.images.alt}
-                className={`${baseImageClasses} max-h-32 lg:max-h-40 w-auto object-contain`}
-              />
-            </div>
-          );
-        }
-        return (
-          <div className="flex justify-center h-full">
-            <img 
-              src={study.images.primary} 
-              alt={study.images.alt}
-              className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
-            />
-          </div>
-        );
-      
-      case "single-centered":
-      default:
-        return (
-          <div className="flex justify-center h-full">
-            <img 
-              src={study.images.primary} 
-              alt={study.images.alt}
-              className={`${baseImageClasses} max-h-48 lg:max-h-64 w-auto object-contain`}
-            />
-          </div>
-        );
-    }
+  const renderImage = () => {
+    return (
+      <div className="flex justify-center h-full">
+        <img 
+          src={study.images.primary} 
+          alt={study.images.alt}
+          className="w-full h-auto max-h-48 lg:max-h-64 object-contain rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+    );
   };
-
-  const gradientClasses = [
-    "from-blue-50 to-blue-100",
-    "from-purple-50 to-purple-100", 
-    "from-green-50 to-green-100",
-    "from-orange-50 to-orange-100"
-  ];
 
   return (
     <motion.div
@@ -174,17 +107,17 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300"
+      className="bg-gray-50 rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300"
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
         {/* Image Section - Full Width on Mobile */}
-        <div className={`relative bg-gradient-to-br ${gradientClasses[index]} p-6 min-h-[240px] flex items-center`}>
-          {renderImages()}
+        <div className="relative bg-gray-50 p-6 min-h-[240px] flex items-center">
+          {renderImage()}
         </div>
 
-        {/* Content Section - Continues gradient background */}
-        <div className={`bg-gradient-to-b ${gradientClasses[index]} to-white p-8 space-y-6`}>
+        {/* Content Section - Same background */}
+        <div className="bg-gray-50 p-8 space-y-6">
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {study.tags.map((tag) => (
@@ -211,13 +144,13 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
           {/* CTA Buttons */}
           <div className="flex flex-col gap-3 pt-2">
-            <Button asChild variant="filled" className="w-full">
+            <Button asChild variant="default" className="w-full">
               <Link to={study.url}>
                 View Case Study
               </Link>
             </Button>
             {study.liveUrl && (
-              <Button asChild variant="outlined" className="w-full">
+              <Button asChild variant="outline" className="w-full">
                 <a 
                   href={study.liveUrl} 
                   target="_blank" 
@@ -235,13 +168,13 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
       {/* Desktop Layout: 50/50 Split */}
       <div className="hidden lg:grid lg:grid-cols-2 min-h-[400px]">
-        {/* Images Section - Continuous gradient background */}
-        <div className={`relative bg-gradient-to-br ${gradientClasses[index]} p-8 flex items-center`}>
-          {renderImages()}
+        {/* Images Section - Consistent background */}
+        <div className="relative bg-gray-50 p-8 flex items-center">
+          {renderImage()}
         </div>
 
-        {/* Content Section - Continues gradient background */}
-        <div className={`bg-gradient-to-br ${gradientClasses[index]} flex flex-col justify-center space-y-6 p-8`}>
+        {/* Content Section - Same background */}
+        <div className="bg-gray-50 flex flex-col justify-center space-y-6 p-8">
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {study.tags.map((tag) => (
@@ -268,13 +201,13 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <Button asChild variant="filled" className="flex-1 sm:flex-none">
+            <Button asChild variant="default" className="flex-1 sm:flex-none">
               <Link to={study.url}>
                 View Case Study
               </Link>
             </Button>
             {study.liveUrl && (
-              <Button asChild variant="outlined" className="flex-1 sm:flex-none">
+              <Button asChild variant="outline" className="flex-1 sm:flex-none">
                 <a 
                   href={study.liveUrl} 
                   target="_blank" 
@@ -295,7 +228,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section id="projects" className="py-12 bg-gradient-to-br from-gray-50/50 to-white">
+    <section id="projects" className="py-12 bg-white">
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
