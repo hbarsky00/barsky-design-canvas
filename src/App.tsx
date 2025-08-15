@@ -29,7 +29,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/project/:id" element={
+              <Route path="/project/:projectId" element={
                 <Suspense fallback={<div>Loading...</div>}>
                   <ProjectDetail />
                 </Suspense>
