@@ -5,7 +5,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -15,8 +15,8 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    componentTagger(),
-  ],
+    mode === 'development' && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -37,4 +37,4 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion'],
   }
-});
+}));

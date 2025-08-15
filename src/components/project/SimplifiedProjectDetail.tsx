@@ -4,6 +4,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { caseStudiesData } from '@/data/caseStudies';
 import OriginalCaseStudyLayout from '@/components/case-study/OriginalCaseStudyLayout';
 import StoryDrivenProjectDetail from "./StoryDrivenProjectDetail";
+import InvestmentAppCaseStudy from "@/pages/InvestmentAppCaseStudy";
 
 const SimplifiedProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -17,7 +18,12 @@ const SimplifiedProjectDetail: React.FC = () => {
     return <StoryDrivenProjectDetail />;
   }
 
-  // Check if this project has case study data - ALL case studies now use original data
+  // Use the new dedicated component for investment-app
+  if (projectId === 'investment-app') {
+    return <InvestmentAppCaseStudy />;
+  }
+
+  // Check if this project has case study data
   const caseStudy = caseStudiesData[projectId];
   
   if (!caseStudy) {

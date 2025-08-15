@@ -1,6 +1,5 @@
-
 import React from 'react';
-import SEO from '@/components/seo/SEO';
+import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServicesCallToAction from '@/components/services/ServicesCallToAction';
@@ -8,11 +7,14 @@ import ServicesCallToAction from '@/components/services/ServicesCallToAction';
 const UxUiDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <DynamicSeo 
         type="service"
         title="UX Research & User Testing Services"
         description="AI-enhanced user research that uncovers insights traditional methods miss. Get actionable data that drives 40%+ conversion improvements."
-        url="https://barskydesign.pro/design-services/ux-ui-design"
+        serviceName="UX & UI Design"
+        benefits={["40%+ conversion improvements", "Data-driven insights", "User-centered design"]}
+        targetAudience="Startups and Enterprise"
+        path="/design-services/ux-ui-design"
       />
       
       <Header />

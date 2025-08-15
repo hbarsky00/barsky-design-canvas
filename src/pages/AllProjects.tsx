@@ -1,7 +1,8 @@
+
 import React from "react";
 import Header from "@/components/Header";
 import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
-import SEO from "@/components/seo/SEO";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
 import ServicesCallToAction from "@/components/services/ServicesCallToAction";
@@ -20,13 +21,12 @@ const AllProjects = () => {
 
   return (
     <div className="flex flex-col min-h-screen px-5">
-      <SEO 
-        type="website"
+      <DynamicSeo 
+        type="page"
         title="AI-Enhanced Design Portfolio - Project Case Studies"
         description="Explore AI-powered product design projects with real case studies and measurable results. See how AI integration transforms user experiences."
-        url="https://barskydesign.pro/projects"
         image="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png"
-        tags={["AI Design", "Product Design", "Case Studies", "Portfolio"]}
+        path="/projects"
       />
       
       <Header />

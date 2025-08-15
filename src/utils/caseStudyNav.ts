@@ -1,4 +1,3 @@
-
 export interface CaseStudyNavItem {
   id: string;
   title: string;
@@ -20,15 +19,9 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
     const legacy = (caseStudiesData as any)[id];
 
     const title: string = structured?.title || legacy?.title || p.title || id;
-
-    // Prefer a thumbnail derived from heroVideo when available
-    const structuredThumb =
-      typeof structured?.heroVideo === "string"
-        ? structured.heroVideo.replace(".mp4", "-thumbnail.jpg")
-        : "";
-
     const image: string =
-      structuredThumb ||
+      structured?.seoData?.image ||
+      structured?.heroVideo?.poster ||
       legacy?.videoThumbnail ||
       p.videoThumbnail ||
       "/placeholder.svg";
@@ -37,20 +30,14 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
   });
 
   // 2) Add any structured case studies not in homepage list
-  Object.values(structuredCaseStudies).forEach((cs: any) => {
+  Object.values(structuredCaseStudies).forEach((cs) => {
     if (items.has(cs.id)) return;
-
-    const structuredThumb =
-      typeof cs?.heroVideo === "string"
-        ? cs.heroVideo.replace(".mp4", "-thumbnail.jpg")
-        : "";
-
-    const image = structuredThumb || "/placeholder.svg";
+    const image = cs.seoData?.image || cs.heroVideo?.poster || "/placeholder.svg";
     items.set(cs.id, { id: cs.id, title: cs.title, image });
   });
 
   // 3) Add any legacy case studies not in homepage list
-  Object.entries(caseStudiesData).forEach(([id, cs]: any) => {
+  Object.entries(caseStudiesData).forEach(([id, cs]) => {
     if (items.has(id)) return;
     const image = cs.videoThumbnail || "/placeholder.svg";
     items.set(id, { id, title: cs.title, image });

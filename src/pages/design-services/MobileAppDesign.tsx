@@ -1,6 +1,6 @@
 
 import React from 'react';
-import SEO from '@/components/seo/SEO';
+import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServicesCallToAction from '@/components/services/ServicesCallToAction';
@@ -8,12 +8,15 @@ import ServicesCallToAction from '@/components/services/ServicesCallToAction';
 const MobileAppDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <SEO 
+      <DynamicSeo 
         type="service"
         title="Mobile App Design Services"
         description="Design mobile apps that users love and businesses succeed with. iOS and Android platforms with AI-enhanced UX research."
-        url="https://barskydesign.pro/design-services/mobile-app-design"
         image="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+        serviceName="Mobile App Design"
+        benefits={["iOS & Android platforms", "User-centered design", "AI-enhanced research"]}
+        targetAudience="App Entrepreneurs and Companies"
+        path="/design-services/mobile-app-design"
       />
       
       <Header />

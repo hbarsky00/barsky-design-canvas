@@ -10,7 +10,7 @@ import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 
-import SEO from "@/components/seo/SEO";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,13 +24,15 @@ const CaseStudyPage: React.FC = () => {
   return (
     <>
       <Header />
-      <SEO
-        type="article"
+      <DynamicSeo
+        type="project"
         title={caseStudy.title}
         description={caseStudy.description}
-        url={`https://barskydesign.pro/${id}/`}
         image={caseStudy.videoThumbnail}
-        tags={caseStudy.tags}
+        projectName={caseStudy.title}
+        results={[]}
+        technologies={caseStudy.tags}
+        path={`/${id}/`}
       />
       
       <motion.div

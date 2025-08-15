@@ -1,25 +1,29 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/seo/SEO';
+import DynamicSeo from '@/components/seo/DynamicSeo';
+import { usePageMetadata } from '@/hooks/usePageMetadata';
 
 const ServicePage: React.FC = () => {
+  const { metadata, loading } = usePageMetadata('/services');
+
   const defaultMetadata = {
     title: 'Design Services - AI-Enhanced Product Design',
     description: 'Expert product design services specializing in Gen AI integration, UX research, UI design, and user-centered solutions that drive business growth and user satisfaction.',
-    image: 'https://barskydesign.pro/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png'
+    image: undefined as string | undefined
   };
+
+  const pageData = metadata || defaultMetadata;
 
   return (
     <>
-      <SEO
-        type="service"
-        title={defaultMetadata.title}
-        description={defaultMetadata.description}
-        url="https://barskydesign.pro/services"
-        image={defaultMetadata.image}
+      <DynamicSeo
+        type="page"
+        title={pageData.title}
+        description={pageData.description}
+        image={pageData.image}
+        path="/services"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -37,7 +41,7 @@ const ServicePage: React.FC = () => {
                 Design Services
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                {defaultMetadata.description}
+                {pageData.description}
               </p>
             </motion.div>
 

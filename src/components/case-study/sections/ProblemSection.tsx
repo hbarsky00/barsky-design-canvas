@@ -9,8 +9,6 @@ interface ProblemSectionProps {
   userPain: string;
   gapAnalysis: string;
   wireframingImage?: string;
-  sectionImage?: string;
-  projectId?: string;
   metrics?: Array<{
     label: string;
     value: string;
@@ -24,8 +22,6 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
   userPain,
   gapAnalysis,
   wireframingImage,
-  sectionImage,
-  projectId,
   metrics = []
 }) => {
   const getTrendIcon = (trend: string) => {
@@ -41,24 +37,14 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-start space-x-4">
         <div className="flex-shrink-0 p-3 bg-red-100 rounded-lg">
           <AlertTriangle className="h-6 w-6 text-red-600" />
         </div>
-        <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
-      </div>
-
-      {sectionImage && (
-        <div className="mb-8">
-          <MaximizableImage
-            src={sectionImage}
-            alt="Problem Analysis"
-            caption="Understanding the core challenges users faced when seeking herbalist services."
-            className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
-            projectId={projectId}
-          />
+        <div className="flex-1">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">{title}</h3>
         </div>
-      )}
+      </div>
 
       <div className="prose prose-lg text-gray-700 max-w-none">
         <p className="mb-6">{businessImpact}</p>
@@ -68,10 +54,10 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
         <div className="mb-8">
           <MaximizableImage
             src={wireframingImage}
-            alt="Wireframing Concepts"
+            alt="Splittime Wireframing Concepts"
             caption="Wireframes established core structure and user flows early."
             className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
-            projectId={projectId}
+            projectId="splittime"
           />
         </div>
       )}

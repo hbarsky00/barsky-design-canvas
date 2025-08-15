@@ -1,7 +1,5 @@
-
 import React from "react";
 import { TrendingUp, Target, Award } from "lucide-react";
-import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface ImpactMetric {
   label: string;
@@ -14,16 +12,12 @@ interface ImpactSectionProps {
   overview: string;
   metrics: ImpactMetric[];
   timeframe?: string;
-  sectionImage?: string;
-  projectId?: string;
 }
 
 const ImpactSection: React.FC<ImpactSectionProps> = ({
   overview,
   metrics,
-  timeframe = "6 months post-launch",
-  sectionImage,
-  projectId
+  timeframe = "6 months post-launch"
 }) => {
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -53,18 +47,6 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({
 
   return (
     <div className="space-y-8">
-      {sectionImage && (
-        <div className="mb-8">
-          <MaximizableImage
-            src={sectionImage}
-            alt="Impact Results"
-            caption="Measurable improvements achieved through strategic design decisions."
-            className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
-            projectId={projectId}
-          />
-        </div>
-      )}
-
       <div className="prose prose-lg text-gray-700 max-w-none">
         <p>{overview}</p>
         {timeframe && (

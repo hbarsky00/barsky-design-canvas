@@ -1,5 +1,6 @@
+
 import React from "react";
-import SEO from "@/components/seo/SEO";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogPreview from "@/components/blog/BlogPreview";
@@ -14,13 +15,12 @@ const Blog = () => {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <SEO 
-        type="website"
+      <DynamicSeo 
+        type="page"
         title="UX Design Blog | AI-Enhanced Design Insights"
         description="Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization. Learn about modern design processes, tools like Claude AI and Figma AI, and business-focused design strategies."
-        url="https://barskydesign.pro/blog"
         image="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
-        tags={["UX Design", "AI Design", "Blog", "Design Insights"]}
+        path="/blog"
       />
       
       <Header />

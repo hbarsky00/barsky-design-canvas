@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -14,12 +15,12 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
+import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
-// Individual Case Study Pages
-import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
-import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
-import InvestmentAppCaseStudy from "@/pages/InvestmentAppCaseStudy";
-import WholesaleDistributionCaseStudy from "@/pages/WholesaleDistributionCaseStudy";
+// Structured case study imports
+import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
+import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
+import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,8 @@ function App() {
         <ImageMaximizerProvider>
           <Router>
             <ScrollToTop />
+            {/* Global SEO - runs on every route change */}
+            <UnifiedSEO />
             
             <Routes>
               {/* Home route */}
@@ -38,12 +41,13 @@ function App() {
               {/* Projects listing */}
               <Route path="/projects" element={<Projects />} />
               
-              {/* Individual Case Study Routes - Restored to original detailed pages */}
-              <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
-              <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
-              <Route path="/project/investment-app" element={<InvestmentAppCaseStudy />} />
-              <Route path="/project/wholesale-distribution" element={<WholesaleDistributionCaseStudy />} />
-              <Route path="/project/business-management" element={<WholesaleDistributionCaseStudy />} />
+              {/* Structured case studies - these override the generic ProjectDetail routing */}
+              <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
+              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
+              
+              {/* Generic project detail for other projects */}
+              <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
               
               {/* Other routes */}
               <Route path="/services" element={<Services />} />

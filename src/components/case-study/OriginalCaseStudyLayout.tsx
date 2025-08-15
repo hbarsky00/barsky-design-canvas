@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import VideoPlayer from "./VideoPlayer";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import { CaseStudyData } from "@/data/caseStudies";
-import SEO from "@/components/seo/SEO";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
@@ -14,7 +14,6 @@ import ProjectNavigation from "@/components/ProjectNavigation";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
-import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -51,13 +50,15 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
 
   return (
     <>
-        <SEO
-          type="article"
+        <DynamicSeo
+          type="project"
           title={caseStudy.title}
           description={caseStudy.description}
-          url={`https://barskydesign.pro/project/${projectId}/`}
           image={caseStudy.videoThumbnail}
-          tags={caseStudy.tags}
+          projectName={caseStudy.title}
+          results={[]}
+          technologies={caseStudy.tags}
+          path={`/project/${projectId}/`}
         />
 
       <div className="min-h-screen bg-background">
@@ -161,13 +162,15 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                       </div>
                       
                       <div className="relative">
-                        <MaximizableImage
-                          src={section.image.src}
-                          alt={section.image.alt}
-                          caption={section.image.alt}
-                          className="shadow-elevated w-full glass-card layered-depth rounded-lg"
-                          projectId={projectId}
-                        />
+                        <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                          <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                            <div className="text-center">
+                              <p className="text-muted-foreground mb-2">Image Placeholder</p>
+                              <p className="text-sm text-muted-foreground">{section.image.alt}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
                       </div>
                     </div>
                   </motion.section>

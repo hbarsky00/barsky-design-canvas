@@ -1,3 +1,4 @@
+
 import React from "react";
 import CaseStudyLayout from "@/components/case-study/CaseStudyLayout";
 import ProblemSection from "@/components/case-study/sections/ProblemSection";
@@ -5,13 +6,10 @@ import ImpactSection from "@/components/case-study/sections/ImpactSection";
 import FailuresSection from "@/components/case-study/sections/FailuresSection";
 import ProcessSection from "@/components/case-study/sections/ProcessSection";
 import WholesaleHero from "@/components/case-study/sections/WholesaleHero";
-import MaximizableImage from "@/components/project/MaximizableImage";
-import { motion } from "framer-motion";
 
 const WholesaleDistributionCaseStudy: React.FC = () => {
   // Optimized hero image for social sharing
-  const heroImage = "https://barskydesign.pro/lovable-uploads/warehouse-fallback.jpg";
-  const mainAppImage = "/lovable-uploads/warehouse-fallback.jpg";
+  const heroImage = "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png";
 
   const problemData = {
     title: "A casual dinner conversation revealed a business hemorrhaging efficiency",
@@ -128,28 +126,6 @@ const WholesaleDistributionCaseStudy: React.FC = () => {
   };
 
   const sections = [
-    {
-      id: "main-image",
-      title: "",
-      content: (
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <MaximizableImage
-            src={mainAppImage}
-            alt="Wholesale distribution automation dashboard showing streamlined order management and inventory tracking"
-            caption="The AI-powered dashboard that eliminated 95% of manual data entry"
-            className="shadow-elevated-lg w-full glass-card layered-depth rounded-lg"
-            projectId="wholesale-distribution"
-            priority={true}
-          />
-        </motion.div>
-      )
-    },
     {
       id: "problem",
       title: "The Problem",

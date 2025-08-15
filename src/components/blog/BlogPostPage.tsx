@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/seo/SEO';
+import DynamicSeo from '@/components/seo/DynamicSeo';
 import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
 import { blogPosts } from '@/data/blogData';
 import { InternalLinkEnhancer, RelatedPosts } from './InternalLinkEnhancer';
@@ -66,15 +67,17 @@ const BlogPostPage: React.FC = () => {
 
   return (
     <>
-      <SEO
-        type="article"
+      <DynamicSeo
+        type="blog-post"
         title={seoData.title}
         description={seoData.description}
-        url={`https://barskydesign.pro${seoData.path}`}
-        image={seoData.featuredImage}
+        excerpt={seoData.description}
+        featuredImage={seoData.featuredImage}
+        author={seoData.author}
         publishedDate={seoData.publishedDate}
         tags={seoData.tags}
-        author={seoData.author}
+        slug={seoData.slug}
+        path={seoData.path}
       />
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
