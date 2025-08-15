@@ -142,9 +142,9 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
             {study.impact}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Both now use outline variant */}
           <div className="flex flex-col gap-3 pt-2">
-            <Button asChild variant="default" className="w-full">
+            <Button asChild variant="outline" className="w-full">
               <Link to={study.url}>
                 View Case Study
               </Link>
@@ -212,9 +212,9 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
               {study.impact}
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Both now use outline variant */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <Button asChild variant="default" className="flex-1 sm:flex-none">
+              <Button asChild variant="outline" className="flex-1 sm:flex-none">
                 <Link to={study.url}>
                   View Case Study
                 </Link>

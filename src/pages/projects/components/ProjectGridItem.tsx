@@ -5,6 +5,7 @@ import { ArrowRight, ExternalLink, Figma, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ProjectProps } from "@/components/ProjectCard";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface ProjectGridItemProps {
   project: ProjectProps;
@@ -31,26 +32,27 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
-          {/* Hover Overlay */}
+          {/* Hover Overlay - Updated with standardized buttons */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div className="flex space-x-3">
-              <Link 
-                to={`/project/${project.id}`}
-                className="bg-white/90 hover:bg-white text-gray-900 px-4 py-2 font-medium transition-colors flex items-center [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
-              >
-                <Eye className="h-4 w-4 mr-1" />
-                View Case Study
-              </Link>
+              <Button asChild variant="outline" className="bg-white/90 hover:bg-white border-gray-300">
+                <Link to={`/project/${project.id}`} className="flex items-center">
+                  <Eye className="h-4 w-4 mr-1" />
+                  View Case Study
+                </Link>
+              </Button>
               {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 font-medium transition-colors flex items-center [&_svg]:stroke-2 [&_svg]:stroke-white [&_svg]:fill-none"
-                >
-                  <Figma className="h-4 w-4 mr-1" />
-                  Live Demo
-                </a>
+                <Button asChild variant="outline" className="bg-blue-50/90 hover:bg-blue-100 border-blue-300 text-blue-700 hover:text-blue-800">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center"
+                  >
+                    <Figma className="h-4 w-4 mr-1" />
+                    Live Demo
+                  </a>
+                </Button>
               )}
             </div>
           </div>
@@ -95,13 +97,15 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
               <span>•</span>
               <span>Product Design</span>
             </div>
-            <Link 
-              to={`/project/${project.id}`}
-              className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center group [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
-            >
-              View Case Study
-              <ArrowRight className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <Button asChild variant="outline" size="sm" className="text-xs">
+              <Link 
+                to={`/project/${project.id}`}
+                className="flex items-center group"
+              >
+                View Case Study
+                <ArrowRight className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
