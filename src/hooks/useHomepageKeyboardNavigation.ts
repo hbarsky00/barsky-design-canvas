@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useCallback } from "react";
 import { use3DTransition } from "./use3DTransition";
 import { useIsMobile } from "./use-mobile";
@@ -60,16 +61,22 @@ export const useHomepageKeyboardNavigation = () => {
   const getHeaderOffset = () => {
     const rootStyles = getComputedStyle(document.documentElement);
     const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
-    // Reduced offset for cleaner transitions
     return headerHeight;
   };
 
-  const scrollToSection = useCallback((index: number) => {
-    const activeSections = getActiveSections();
-    if (index < 0 || index >= activeSections.length) return;
+  const scrollToSection = useCallback((index: number, forceMode?: 'major' | 'casestudy') => {
+    const mode = forceMode || (isInCaseStudyMode ? 'casestudy' : 'major');
+    const sections = mode === 'casestudy' ? caseStudySections : getActiveSections();
     
-    const sectionId = activeSections[index].id;
+    if (index < 0 || index >= sections.length) {
+      console.warn(`Invalid section index: ${index}, max: ${sections.length - 1}`);
+      return;
+    }
+    
+    const sectionId = sections[index].id;
     const element = document.getElementById(sectionId);
+    
+    console.log(`Scrolling to section: ${sectionId}, mode: ${mode}, element found:`, !!element);
     
     if (element) {
       // For hero section, scroll to absolute top
@@ -101,55 +108,77 @@ export const useHomepageKeyboardNavigation = () => {
       }, prefersReducedMotion ? 0 : 300);
       
       setCurrentSectionIndex(index);
+    } else {
+      console.warn(`Element not found for section: ${sectionId}`);
     }
-  }, [getActiveSections]);
+  }, [getActiveSections, isInCaseStudyMode]);
 
   const navigateUp = useCallback(() => {
     if (isTransitioning || isNavigationBlocked()) return;
     
-    const activeSections = getActiveSections();
-    let newIndex = currentSectionIndex - 1;
+    console.log(`Navigate up - current mode: ${isInCaseStudyMode ? 'casestudy' : 'major'}, index: ${currentSectionIndex}`);
     
     // If we're at the first case study and in case study mode, go back to projects section
     if (isInCaseStudyMode && currentSectionIndex === 0) {
       setIsInCaseStudyMode(false);
       const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
-      newIndex = projectsIndex;
-    } else if (newIndex >= 0) {
-      // Normal navigation within current mode
+      triggerTransition('up', () => {
+        scrollToSection(projectsIndex, 'major');
+      });
     } else {
-      return; // Can't go up further
+      // Normal navigation within current mode
+      const newIndex = currentSectionIndex - 1;
+      if (newIndex >= 0) {
+        triggerTransition('up', () => {
+          scrollToSection(newIndex);
+        });
+      }
     }
-    
-    triggerTransition('up', () => {
-      scrollToSection(newIndex);
-    });
-  }, [currentSectionIndex, scrollToSection, isTransitioning, triggerTransition, isInCaseStudyMode, getActiveSections, isNavigationBlocked]);
+  }, [currentSectionIndex, scrollToSection, isTransitioning, triggerTransition, isInCaseStudyMode, isNavigationBlocked]);
 
   const navigateDown = useCallback(() => {
     if (isTransitioning || isNavigationBlocked()) return;
     
+    console.log(`Navigate down - current mode: ${isInCaseStudyMode ? 'casestudy' : 'major'}, index: ${currentSectionIndex}`);
+    
     const activeSections = getActiveSections();
-    let newIndex = currentSectionIndex + 1;
     
     // If we're in the projects section and not in case study mode, enter case study mode
     if (!isInCaseStudyMode && activeSections[currentSectionIndex]?.id === 'projects') {
+      console.log('Entering case study mode from projects section');
       setIsInCaseStudyMode(true);
-      newIndex = 0; // First case study
-    } else if (isInCaseStudyMode && newIndex >= caseStudySections.length) {
-      // Exit case study mode and go to next major section
-      setIsInCaseStudyMode(false);
-      const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
-      newIndex = projectsIndex + 1;
-    } else if (newIndex < activeSections.length) {
-      // Normal navigation within current mode
+      triggerTransition('down', () => {
+        scrollToSection(0, 'casestudy'); // Go to first case study
+      });
+    } else if (isInCaseStudyMode) {
+      const newIndex = currentSectionIndex + 1;
+      if (newIndex >= caseStudySections.length) {
+        // Exit case study mode and go to next major section
+        console.log('Exiting case study mode, going to next major section');
+        setIsInCaseStudyMode(false);
+        const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
+        const nextMajorIndex = projectsIndex + 1;
+        if (nextMajorIndex < majorSections.length) {
+          triggerTransition('down', () => {
+            scrollToSection(nextMajorIndex, 'major');
+          });
+        }
+      } else {
+        // Navigate to next case study
+        console.log(`Navigating to case study ${newIndex + 1}`);
+        triggerTransition('down', () => {
+          scrollToSection(newIndex, 'casestudy');
+        });
+      }
     } else {
-      return; // Can't go down further
+      // Normal navigation within major sections
+      const newIndex = currentSectionIndex + 1;
+      if (newIndex < activeSections.length) {
+        triggerTransition('down', () => {
+          scrollToSection(newIndex);
+        });
+      }
     }
-    
-    triggerTransition('down', () => {
-      scrollToSection(newIndex);
-    });
   }, [currentSectionIndex, scrollToSection, isTransitioning, triggerTransition, isInCaseStudyMode, getActiveSections, isNavigationBlocked]);
 
   // Enhanced scroll tracking with better section detection
@@ -179,27 +208,43 @@ export const useHomepageKeyboardNavigation = () => {
           if (isInProjectsArea) {
             // Check if we're specifically over a case study card
             let foundCaseStudy = false;
+            let closestCaseStudy = { index: -1, distance: Infinity };
+            
             for (let i = 0; i < caseStudySections.length; i++) {
               const caseStudyElement = document.getElementById(caseStudySections[i].id);
               if (caseStudyElement) {
                 const rect = caseStudyElement.getBoundingClientRect();
                 const elementTop = scrollPosition + rect.top;
-                const elementCenter = elementTop + rect.height / 2;
+                const elementBottom = elementTop + rect.height;
                 
-                if (Math.abs(detectionPoint - elementCenter) < rect.height / 2) {
+                // Check if detection point is within this case study
+                if (detectionPoint >= elementTop && detectionPoint <= elementBottom) {
                   setIsInCaseStudyMode(true);
                   setCurrentSectionIndex(i);
                   foundCaseStudy = true;
                   break;
                 }
+                
+                // Track closest case study for fallback
+                const elementCenter = elementTop + rect.height / 2;
+                const distance = Math.abs(detectionPoint - elementCenter);
+                if (distance < closestCaseStudy.distance) {
+                  closestCaseStudy = { index: i, distance };
+                }
               }
             }
             
             if (!foundCaseStudy) {
-              // We're in projects area but not over a specific case study
-              setIsInCaseStudyMode(false);
-              const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
-              setCurrentSectionIndex(projectsIndex);
+              // If we're close to a case study (within 100px), use case study mode
+              if (closestCaseStudy.distance < 100) {
+                setIsInCaseStudyMode(true);
+                setCurrentSectionIndex(closestCaseStudy.index);
+              } else {
+                // We're in projects area but not near a specific case study
+                setIsInCaseStudyMode(false);
+                const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
+                setCurrentSectionIndex(projectsIndex);
+              }
             }
           } else {
             // We're outside projects area, use major section logic
