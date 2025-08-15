@@ -79,12 +79,14 @@ const BlogPost: React.FC = () => {
       <DynamicSeo 
         type="blog-post"
         title={post.title}
+        description={post.excerpt}
         excerpt={post.excerpt}
         featuredImage={post.coverImage ? `https://barskydesign.pro${post.coverImage}` : undefined}
         author={post.author}
         publishedDate={post.date}
         tags={post.tags}
         slug={post.slug}
+        path={`/blog/${post.slug}`}
       />
       
       <Header />

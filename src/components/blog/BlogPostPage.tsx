@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -46,27 +47,37 @@ const BlogPostPage: React.FC = () => {
 
   const seoData = metadata ? {
     title: metadata.title,
-    excerpt: metadata.excerpt,
+    description: metadata.excerpt,
     featuredImage: metadata.featuredImage,
     author: metadata.author,
     publishedDate: metadata.publishedDate,
     tags: metadata.tags,
-    slug: slug || ''
+    slug: slug || '',
+    path: `/blog/${slug}`
   } : {
     title: staticPost!.title,
-    excerpt: staticPost!.excerpt,
+    description: staticPost!.excerpt,
     featuredImage: staticPost!.coverImage,
     author: staticPost!.author,
     publishedDate: staticPost!.date,
     tags: staticPost!.tags,
-    slug: staticPost!.slug
+    slug: staticPost!.slug,
+    path: `/blog/${staticPost!.slug}`
   };
 
   return (
     <>
       <DynamicSeo
         type="blog-post"
-        {...seoData}
+        title={seoData.title}
+        description={seoData.description}
+        excerpt={seoData.description}
+        featuredImage={seoData.featuredImage}
+        author={seoData.author}
+        publishedDate={seoData.publishedDate}
+        tags={seoData.tags}
+        slug={seoData.slug}
+        path={seoData.path}
       />
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
