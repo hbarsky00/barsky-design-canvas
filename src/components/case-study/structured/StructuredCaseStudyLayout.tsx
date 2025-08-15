@@ -150,14 +150,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
                     {/* Hero Media */}
                     {heroVideo && (
-                      <div className="max-w-4xl mx-auto mb-8" data-hero-image>
+                      <div className="w-full max-w-4xl mx-auto mb-8" data-hero-image>
                         {heroAsImage ? (
-                          <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-2xl">
+                          <div className="relative w-full max-w-full overflow-hidden rounded-lg shadow-2xl">
                             <img
                               src={heroVideo.poster}
                               alt={heroVideo.alt || 'Project hero image'}
-                              className="w-full h-full object-cover"
+                              className="w-full h-auto max-w-full object-contain"
                               loading="eager"
+                              style={{ maxHeight: '70vh' }}
                             />
                           </div>
                         ) : (
