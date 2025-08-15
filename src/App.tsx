@@ -14,7 +14,12 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
-import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
+
+// Individual Case Study Pages
+import HerbalinkCaseStudy from "@/pages/HerbalinkCaseStudy";
+import SplittimeCaseStudy from "@/pages/SplittimeCaseStudy";
+import InvestmentAppCaseStudy from "@/pages/InvestmentAppCaseStudy";
+import WholesaleDistributionCaseStudy from "@/pages/WholesaleDistributionCaseStudy";
 
 const queryClient = new QueryClient();
 
@@ -33,8 +38,12 @@ function App() {
               {/* Projects listing */}
               <Route path="/projects" element={<Projects />} />
               
-              {/* All project details now use SimplifiedProjectDetail with original data */}
-              <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
+              {/* Individual Case Study Routes - Restored to original detailed pages */}
+              <Route path="/project/herbalink" element={<HerbalinkCaseStudy />} />
+              <Route path="/project/splittime" element={<SplittimeCaseStudy />} />
+              <Route path="/project/investment-app" element={<InvestmentAppCaseStudy />} />
+              <Route path="/project/wholesale-distribution" element={<WholesaleDistributionCaseStudy />} />
+              <Route path="/project/business-management" element={<WholesaleDistributionCaseStudy />} />
               
               {/* Other routes */}
               <Route path="/services" element={<Services />} />
