@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownCircle } from "lucide-react";
@@ -7,14 +8,11 @@ import FloatingElement from "./animations/FloatingElement";
 import ShakeElement from "./animations/ShakeElement";
 import BounceWrapper from "./animations/BounceWrapper";
 import HeroLogo from "./hero/HeroLogo";
-import ProfileImageUploader from "./ProfileImageUploader";
 import { Button } from "@/components/ui/button";
-import { shouldShowEditingControls } from "@/utils/devModeDetection";
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showHeroLogo, setShowHeroLogo] = useState(true);
-  const showEditingControls = shouldShowEditingControls();
   
   useEffect(() => {
     // Delay to allow page to load
@@ -151,12 +149,9 @@ const Hero: React.FC = () => {
                 <ArrowDownCircle className="w-10 h-10 text-barsky-blue" />
               </Link>
             </BounceWrapper>
-          </FloatingElement>
+          </div>
         </div>
       </div>
-      
-      {/* Temporary profile image uploader */}
-      {showEditingControls && <ProfileImageUploader />}
     </section>
   );
 };
