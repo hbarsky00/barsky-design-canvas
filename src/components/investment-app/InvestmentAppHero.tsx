@@ -40,7 +40,7 @@ const InvestmentAppHero: React.FC = () => {
         className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
       >
         Educational design that turns investment complexity into confidence, with 23% more engagement from beginner investors.
-      </p>
+      </motion.p>
 
       {/* Project Link */}
       <motion.div

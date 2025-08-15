@@ -50,7 +50,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <div className="flex items-center space-x-3 mb-4">
+          <div className="flex items-center gap-3 mb-4">
             <Brain className="h-6 w-6 text-blue-600" />
             <h4 className="text-lg font-semibold text-blue-900">Mental Models Used</h4>
           </div>
@@ -65,7 +65,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         </div>
 
         <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-          <div className="flex items-center space-x-3 mb-4">
+          <div className="flex items-center gap-3 mb-4">
             <Compass className="h-6 w-6 text-purple-600" />
             <h4 className="text-lg font-semibold text-purple-900">Guiding Principles</h4>
           </div>
@@ -81,10 +81,10 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
       </div>
 
       <div className="space-y-6">
-        <h4 className="text-xl font-semibold text-gray-900 flex items-center space-x-2">
+        <div className="flex items-center gap-3">
           <Zap className="h-6 w-6 text-yellow-600" />
-          <span>Key Decision Points</span>
-        </h4>
+          <h4 className="text-xl font-semibold text-gray-900">Key Decision Points</h4>
+        </div>
 
         {decisions.map((decision, index) => (
           <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
@@ -137,13 +137,11 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
       </div>
 
       <div className="bg-white border border-blue-200 rounded-lg p-6 shadow-sm">
-        <div className="flex items-start space-x-3">
-          <Brain className="h-6 w-6 text-blue-600 mt-1" />
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-2">Personal Insight</h4>
-            <p className="text-gray-900 font-medium">{personalInsight}</p>
-          </div>
+        <div className="flex items-center gap-3">
+          <Brain className="h-6 w-6 text-blue-600" />
+          <h4 className="font-semibold text-gray-900">Personal Insight</h4>
         </div>
+        <p className="text-gray-900 font-medium mt-2">{personalInsight}</p>
       </div>
     </div>
   );

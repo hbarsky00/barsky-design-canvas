@@ -46,18 +46,16 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
         {failures.map((failure, index) => (
           <div key={index} className="border border-red-200 rounded-lg overflow-hidden">
             <div className="bg-red-50 p-6">
-              <div className="flex items-start space-x-4">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="flex-shrink-0 p-2 bg-red-100 rounded-lg">
                   <X className="h-5 w-5 text-red-600" />
                 </div>
-                <div className="flex-1">
-                  <h4 className="text-lg font-semibold text-red-900 mb-2">
-                    Failed Assumption #{index + 1}
-                  </h4>
-                  <p className="text-red-800 font-medium mb-2">{failure.assumption}</p>
-                  <p className="text-red-700">{failure.attempt}</p>
-                </div>
+                <h4 className="text-lg font-semibold text-red-900">
+                  Failed Assumption #{index + 1}
+                </h4>
               </div>
+              <p className="text-red-800 font-medium mb-2">{failure.assumption}</p>
+              <p className="text-red-700">{failure.attempt}</p>
             </div>
 
             {failure.image && (
@@ -94,16 +92,14 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
       </div>
 
       <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
-        <div className="flex items-start space-x-3">
-          <Lightbulb className="h-6 w-6 text-amber-600 mt-1" />
-          <div>
-            <h4 className="font-semibold text-amber-900 mb-2">Key Takeaway</h4>
-            <p className="text-amber-800">
-              These failures weren't setbacks—they were essential data points that led to the right solution. 
-              Each "no" got us closer to the "yes" that actually worked.
-            </p>
-          </div>
+        <div className="flex items-center gap-3">
+          <Lightbulb className="h-6 w-6 text-amber-600" />
+          <h4 className="font-semibold text-amber-900">Key Takeaway</h4>
         </div>
+        <p className="text-amber-800 mt-2">
+          These failures weren't setbacks—they were essential data points that led to the right solution. 
+          Each "no" got us closer to the "yes" that actually worked.
+        </p>
       </div>
     </div>
   );
