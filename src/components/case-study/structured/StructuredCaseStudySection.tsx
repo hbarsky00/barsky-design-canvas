@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -104,7 +105,34 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
 
         {/* Content */}
         <div className="space-y-8">
-          {/* Main content */}
+          {/* Media or Placeholder - moved to appear directly after header */}
+          {media ? (
+            <div className="space-y-4">
+              {media.type === "image" ? (
+                <MaximizableImage
+                  src={media.src}
+                  alt={media.alt}
+                  caption={media.caption}
+                  className="w-full rounded-lg shadow-lg"
+                  projectId="case-study"
+                />
+              ) : (
+                <EditableVideo
+                  src={media.src}
+                  alt={media.alt}
+                  caption={media.caption}
+                  className="w-full rounded-lg shadow-lg"
+                  videoOptions={media.videoOptions}
+                />
+              )}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <PlaceholderImage title={title} />
+            </div>
+          )}
+
+          {/* Main content - moved after media */}
           <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300">
             {content.split('\n\n').map((paragraph, index) => (
               <p key={index} className="mb-4 last:mb-0">
@@ -141,33 +169,6 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-
-          {/* Media or Placeholder */}
-          {media ? (
-            <div className="space-y-4">
-              {media.type === "image" ? (
-                <MaximizableImage
-                  src={media.src}
-                  alt={media.alt}
-                  caption={media.caption}
-                  className="w-full rounded-lg shadow-lg"
-                  projectId="case-study"
-                />
-              ) : (
-                <EditableVideo
-                  src={media.src}
-                  alt={media.alt}
-                  caption={media.caption}
-                  className="w-full rounded-lg shadow-lg"
-                  videoOptions={media.videoOptions}
-                />
-              )}
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <PlaceholderImage title={title} />
             </div>
           )}
 
