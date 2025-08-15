@@ -21,7 +21,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "herbalink": {
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     video: "https://share.shots.so/W6ikOt0HenziCxLQ.mp4",
-    videoThumbnail: "images/herbalink-promo.png",
+    videoThumbnail: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
     tags: ["Health", "Marketplace", "Gen AI"],
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     projectLink: "https://herbalink.live",
