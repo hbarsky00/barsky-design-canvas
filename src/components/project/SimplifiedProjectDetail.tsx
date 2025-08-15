@@ -57,7 +57,15 @@ const SimplifiedProjectDetail: React.FC = () => {
       <main className="pt-20">
         {/* Project Header */}
         <section data-hero className="py-20 bg-gradient-to-br from-background to-muted/50">
-          <ProjectHeader project={project} details={details} />
+          <ProjectHeader
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            tags={project.tags}
+            imageCaptions={{}}
+            imageList={[]}
+            currentIndex={0}
+          />
         </section>
 
         {/* Project Content */}
