@@ -16,6 +16,8 @@ const HerbalinkCaseStudy: React.FC = () => {
     businessImpact: "Users couldn't find trustworthy herbalists online due to fragmented directories and no verification system. This led to hesitation in booking appointments and uncertainty about practitioner qualifications, creating barriers to accessing natural healthcare.",
     userPain: "People interested in herbal medicine struggled to find qualified practitioners they could trust. Existing directories were incomplete, lacked credential verification, and provided no way to assess practitioner quality or specialties.",
     gapAnalysis: "The market had wellness platforms and general practitioner directories, but no specialized platform connecting users to verified herbalists with transparent credentials and booking capabilities.",
+    sectionImage: "/lovable-uploads/images/herbalink-problem.png",
+    projectId: "herbalink",
     metrics: [
       { label: "User trust in online directories", value: "23%", trend: "up" as const },
       { label: "Average search time for herbalists", value: "3.2 hrs", trend: "down" as const },
@@ -25,6 +27,8 @@ const HerbalinkCaseStudy: React.FC = () => {
 
   const impactData = {
     overview: "Created a national platform with certified practitioners and seamless booking, which increased booking rates by 3x through verified credentials and streamlined user experience.",
+    sectionImage: "/lovable-uploads/images/herbalink-impact.png",
+    projectId: "herbalink",
     metrics: [
       {
         label: "Booking Rates",
@@ -56,6 +60,8 @@ const HerbalinkCaseStudy: React.FC = () => {
 
   const failuresData = {
     introduction: "Early iterations focused on complex mapping interfaces and buried the most important trust signals users needed:",
+    sectionImage: "/lovable-uploads/images/herbalink-fail.png",
+    projectId: "herbalink",
     failures: [
       {
         assumption: "Users wanted a map-first interface to find local herbalists",
@@ -80,6 +86,8 @@ const HerbalinkCaseStudy: React.FC = () => {
 
   const processData = {
     overview: "The breakthrough came when I realized this wasn't about building a directory—it was about creating a trust platform that happened to connect users with herbalists.",
+    sectionImage: "/lovable-uploads/images/herbalink-process.png",
+    projectId: "herbalink",
     mentalModels: [
       "Trust-building as the primary user journey, not location-finding",
       "Credentials as the foundation for all other platform features",

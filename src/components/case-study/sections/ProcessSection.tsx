@@ -1,5 +1,7 @@
+
 import React from "react";
 import { Brain, Compass, Zap, Scale } from "lucide-react";
+import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface DecisionPoint {
   situation: string;
@@ -15,6 +17,8 @@ interface ProcessSectionProps {
   keyPrinciples: string[];
   decisions: DecisionPoint[];
   personalInsight: string;
+  sectionImage?: string;
+  projectId?: string;
 }
 
 const ProcessSection: React.FC<ProcessSectionProps> = ({
@@ -22,10 +26,24 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
   mentalModels,
   keyPrinciples,
   decisions,
-  personalInsight
+  personalInsight,
+  sectionImage,
+  projectId
 }) => {
   return (
     <div className="space-y-8">
+      {sectionImage && (
+        <div className="mb-8">
+          <MaximizableImage
+            src={sectionImage}
+            alt="Design Process"
+            caption="Strategic thinking and decision-making process that led to the solution."
+            className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+            projectId={projectId}
+          />
+        </div>
+      )}
+
       <div className="prose prose-lg text-gray-700 max-w-none">
         <p>{overview}</p>
       </div>

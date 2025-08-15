@@ -1,5 +1,7 @@
+
 import React from "react";
 import { X, AlertCircle, Lightbulb } from "lucide-react";
+import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface Failure {
   assumption: string;
@@ -12,14 +14,30 @@ interface Failure {
 interface FailuresSectionProps {
   introduction: string;
   failures: Failure[];
+  sectionImage?: string;
+  projectId?: string;
 }
 
 const FailuresSection: React.FC<FailuresSectionProps> = ({
   introduction,
-  failures
+  failures,
+  sectionImage,
+  projectId
 }) => {
   return (
     <div className="space-y-8">
+      {sectionImage && (
+        <div className="mb-8">
+          <MaximizableImage
+            src={sectionImage}
+            alt="Failed Approaches"
+            caption="Learning from iterations that didn't work led to better solutions."
+            className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+            projectId={projectId}
+          />
+        </div>
+      )}
+
       <div className="prose prose-lg text-gray-700 max-w-none">
         <p>{introduction}</p>
       </div>
@@ -44,10 +62,12 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
 
             {failure.image && (
               <div className="px-6 py-4 bg-gray-50">
-                <img 
-                  src={failure.image} 
+                <MaximizableImage
+                  src={failure.image}
                   alt={`Failed approach ${index + 1}`}
+                  caption={`Iteration ${index + 1} that didn't work as expected.`}
                   className="w-full h-48 object-cover rounded-lg"
+                  projectId={projectId}
                 />
               </div>
             )}

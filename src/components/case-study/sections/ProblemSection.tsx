@@ -9,6 +9,8 @@ interface ProblemSectionProps {
   userPain: string;
   gapAnalysis: string;
   wireframingImage?: string;
+  sectionImage?: string;
+  projectId?: string;
   metrics?: Array<{
     label: string;
     value: string;
@@ -22,6 +24,8 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
   userPain,
   gapAnalysis,
   wireframingImage,
+  sectionImage,
+  projectId,
   metrics = []
 }) => {
   const getTrendIcon = (trend: string) => {
@@ -46,6 +50,18 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
         </div>
       </div>
 
+      {sectionImage && (
+        <div className="mb-8">
+          <MaximizableImage
+            src={sectionImage}
+            alt="Problem Analysis"
+            caption="Understanding the core challenges users faced when seeking herbalist services."
+            className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+            projectId={projectId}
+          />
+        </div>
+      )}
+
       <div className="prose prose-lg text-gray-700 max-w-none">
         <p className="mb-6">{businessImpact}</p>
       </div>
@@ -54,10 +70,10 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
         <div className="mb-8">
           <MaximizableImage
             src={wireframingImage}
-            alt="Splittime Wireframing Concepts"
+            alt="Wireframing Concepts"
             caption="Wireframes established core structure and user flows early."
             className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
-            projectId="splittime"
+            projectId={projectId}
           />
         </div>
       )}

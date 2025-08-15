@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Leaf, Users, Shield } from "lucide-react";
+import { Leaf } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ProjectLinks from "@/components/project/ProjectLinks";
 
@@ -42,30 +42,6 @@ const HerbalinkHero: React.FC = () => {
         Connected users to certified herbalists across the country and increased booking rates by 3x 
         through verified credentials and streamlined user experience.
       </motion.p>
-
-      {/* Key Metrics */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
-      >
-        <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm border">
-          <Users className="w-8 h-8 text-emerald-600 mb-3" />
-          <div className="text-3xl font-bold text-gray-900">3x</div>
-          <div className="text-sm text-gray-600">Booking Rate Increase</div>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm border">
-          <Shield className="w-8 h-8 text-emerald-600 mb-3" />
-          <div className="text-3xl font-bold text-gray-900">80%</div>
-          <div className="text-sm text-gray-600">User Trust Rating</div>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm border">
-          <Leaf className="w-8 h-8 text-emerald-600 mb-3" />
-          <div className="text-3xl font-bold text-gray-900">400%</div>
-          <div className="text-sm text-gray-600">Practitioner Growth</div>
-        </div>
-      </motion.div>
 
       {/* Project Link */}
       <motion.div
