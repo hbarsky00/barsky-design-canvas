@@ -31,7 +31,7 @@ function App() {
               <Route path="/" element={<Index />} />
               <Route path="/project/:projectId" element={
                 <Suspense fallback={<div>Loading...</div>}>
-                  <ProjectDetail />
+                  <CaseStudyPage />
                 </Suspense>
               } />
               <Route path="/projects" element={

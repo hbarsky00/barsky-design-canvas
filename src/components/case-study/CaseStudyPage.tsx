@@ -13,9 +13,11 @@ import CaseStudyContactSection from "./CaseStudyContactSection";
 import SEO from "@/components/SEO";
 
 const CaseStudyPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id, projectId } = useParams<{ id: string; projectId: string }>();
   
-  const caseStudy = caseStudiesData[id || ""];
+  // Handle both /case-studies/:id and /project/:projectId routes
+  const caseStudyId = id || projectId;
+  const caseStudy = caseStudiesData[caseStudyId || ""];
 
   if (!caseStudy) {
     return <Navigate to="/" replace />;
