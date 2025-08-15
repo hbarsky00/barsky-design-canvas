@@ -25,13 +25,12 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
     >
       <IdentityBadge
         to="/"
-        imageSrc="/lovable-uploads/78032197-3673-4153-8d7b-6376818c5feb.png"
+        imageSrc="/lovable-uploads/78032197-3673-4153-8d7b-6376818c5feb.png?v=2"
         name="Hiram Barsky"
         subtitle="Product Design + AI"
         size="lg"
         subtitleStyle="text"
       />
-
     </motion.div>
   );
 };
