@@ -26,7 +26,7 @@ const BioSection: React.FC = () => {
                 <Badge variant="outline" className="mb-6 px-4 py-2 text-sm font-medium">
                   About Me
                 </Badge>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 text-center">
                   Product Designer & AI Developer
                 </h2>
               </div>
@@ -39,18 +39,18 @@ const BioSection: React.FC = () => {
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
-                  <div>
+                  <div className="text-center">
                     <h3 className="font-semibold text-lg text-gray-900 mb-3">My Approach</h3>
-                    <p>
+                    <p className="text-center">
                       I believe great design happens at the intersection of user needs and business goals. 
                       Every project starts with understanding your users and ends with measurable improvements 
                       to your product's performance.
                     </p>
                   </div>
                   
-                  <div>
+                  <div className="text-center">
                     <h3 className="font-semibold text-lg text-gray-900 mb-3">What I Bring</h3>
-                    <p>
+                    <p className="text-center">
                       15+ years of experience in UX/UI design, combined with modern AI development skills. 
                       I create design systems that scale, conduct user research that informs decisions, 
                       and build prototypes that validate concepts.
@@ -58,9 +58,9 @@ const BioSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-blue-50/50 rounded-lg p-6 mt-8">
+                <div className="bg-blue-50/50 rounded-lg p-6 mt-8 text-center">
                   <h3 className="font-semibold text-lg text-gray-900 mb-3">Recent Focus</h3>
-                  <p>
+                  <p className="text-center">
                     Currently specializing in AI-enhanced user experiences and helping businesses 
                     integrate intelligent features that genuinely improve user workflows without 
                     adding complexity.
