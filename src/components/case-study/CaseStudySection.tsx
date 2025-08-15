@@ -24,19 +24,7 @@ const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content 
       <div className="space-y-8">
         <div className="relative">
           <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
-            <img
-              src={content.image.src}
-              alt={content.image.alt}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                // Fallback to placeholder if image fails to load
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const fallback = target.nextElementSibling as HTMLElement;
-                if (fallback) fallback.style.display = 'flex';
-              }}
-            />
-            <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center" style={{ display: 'none' }}>
+            <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
               <div className="text-center">
                 <p className="text-muted-foreground mb-2">Image Placeholder</p>
                 <p className="text-sm text-muted-foreground">{content.image.alt}</p>

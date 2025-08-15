@@ -1,146 +1,167 @@
 
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
-import { useParams, Navigate } from 'react-router-dom';
-import { Badge } from '@/components/ui/badge';
-
-import { blogPosts } from '@/data/blogPosts';
-import BlogPostContent from '@/components/blog/BlogPostContent';
-import RelatedPosts from '@/components/blog/RelatedPosts';
-import BlogPostShare from '@/components/blog/BlogPostShare';
-import TableOfContents from '@/components/blog/TableOfContents';
-import BlogPostNavigation from '@/components/blog/BlogPostNavigation';
-import BlogPostEngagement from '@/components/blog/BlogPostEngagement';
-import AuthorBio from '@/components/blog/AuthorBio';
-import NewsletterSignup from '@/components/blog/NewsletterSignup';
+import DynamicSeo from '@/components/seo/DynamicSeo';
+import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
+import { blogPosts } from '@/data/blogData';
+import { InternalLinkEnhancer, RelatedPosts } from './InternalLinkEnhancer';
+import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
 
 const BlogPostPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const blogPost = blogPosts.find(post => post.id === id);
+  const { slug } = useParams<{ slug: string }>();
+  const { metadata, loading } = useBlogPostMetadata(slug || '');
+  
+  // Fallback to static blog data if database doesn't have the post
+  const staticPost = blogPosts.find(post => post.slug === slug);
+  const post = metadata || staticPost;
 
-  if (!blogPost) {
-    return <Navigate to="/blog" replace />;
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-lg text-gray-600">Loading blog post...</p>
+        </div>
+        <Footer />
+      </>
+    );
   }
+
+  if (!post) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Post Not Found</h1>
+            <p className="text-gray-600">The blog post you're looking for doesn't exist.</p>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  const seoData = metadata ? {
+    title: metadata.title,
+    description: metadata.excerpt,
+    featuredImage: metadata.featuredImage,
+    author: metadata.author,
+    publishedDate: metadata.publishedDate,
+    tags: metadata.tags,
+    slug: slug || '',
+    path: `/blog/${slug}`
+  } : {
+    title: staticPost!.title,
+    description: staticPost!.excerpt,
+    featuredImage: staticPost!.coverImage,
+    author: staticPost!.author,
+    publishedDate: staticPost!.date,
+    tags: staticPost!.tags,
+    slug: staticPost!.slug,
+    path: `/blog/${staticPost!.slug}`
+  };
 
   return (
     <>
-      <SEO
-        title={`${blogPost.title} | Blog`}
-        description={blogPost.description}
-        image={blogPost.image}
-        type="article"
+      <DynamicSeo
+        type="blog-post"
+        title={seoData.title}
+        description={seoData.description}
+        excerpt={seoData.description}
+        featuredImage={seoData.featuredImage}
+        author={seoData.author}
+        publishedDate={seoData.publishedDate}
+        tags={seoData.tags}
+        slug={seoData.slug}
+        path={seoData.path}
       />
       
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
         
-        <main className="pt-[calc(var(--header-height,64px)+12px)]">
-          <BlogPostNavigation />
-
-          <section className="relative py-16">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-8"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <Link to="/blog" className="text-blue-500 hover:underline flex items-center">
-                    <ArrowLeft className="mr-2 h-5 w-5" />
-                    Back to Blog
-                  </Link>
-                  <BlogPostShare blogPost={blogPost} />
+        <main className="pt-24 pb-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.article
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden"
+            >
+              {/* Featured Image */}
+              {(metadata?.featuredImage || staticPost?.coverImage) && (
+                <div className="w-full h-96 overflow-hidden">
+                  <img
+                    src={metadata?.featuredImage || staticPost?.coverImage}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">{blogPost.title}</h1>
-
-                <div className="flex items-center text-gray-500 space-x-4 mb-6">
-                  <div className="flex items-center">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    <span>{blogPost.date}</span>
+              )}
+              
+              {/* Article Content */}
+              <div className="p-8 lg:p-12">
+                {/* SEO Breadcrumbs */}
+                <BlogBreadcrumbs 
+                  currentTitle={post.title} 
+                  currentSlug={slug}
+                />
+                
+                <header className="mb-8">
+                  <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                    {post.title}
+                  </h1>
+                  
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
+                    <span>By {metadata?.author || staticPost?.author}</span>
+                    <span>•</span>
+                    <time dateTime={metadata?.publishedDate || staticPost?.date}>
+                      {metadata?.publishedDate || staticPost?.date}
+                    </time>
+                    <span>•</span>
+                    <span>{staticPost?.readTime || '5 min read'}</span>
                   </div>
-                  <div className="flex items-center">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>{blogPost.author}</span>
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {(metadata?.tags || staticPost?.tags || []).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <div className="flex items-center">
-                    <Clock className="mr-2 h-4 w-4" />
-                    <span>{blogPost.readTime}</span>
-                  </div>
+                </header>
+                
+                {/* Article Body */}
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-8">
+                    {metadata?.excerpt || staticPost?.excerpt}
+                  </p>
+                  
+                  {/* Enhanced blog content with internal SEO links */}
+                  {staticPost?.content && (
+                    <div className="prose prose-lg max-w-none">
+                      <InternalLinkEnhancer 
+                        content={staticPost.content} 
+                        currentSlug={staticPost.slug} 
+                      />
+                    </div>
+                  )}
+                  
+                  {/* Related posts section for additional internal linking */}
+                  {staticPost && (
+                    <RelatedPosts currentSlug={staticPost.slug} maxPosts={3} />
+                  )}
                 </div>
-
-                <div className="space-x-2">
-                  {blogPost.tags.map((tag) => (
-                    <Badge key={tag}>{tag}</Badge>
-                  ))}
-                </div>
-              </motion.div>
-
-              <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-                <div className="lg:col-span-9">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="prose prose-lg max-w-none mb-8"
-                  >
-                    <BlogPostContent content={blogPost.content} slug={blogPost.id} />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="mb-8"
-                  >
-                    <BlogPostEngagement />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                  >
-                    <AuthorBio />
-                  </motion.div>
-                </div>
-
-                <aside className="lg:col-span-3">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="mb-8"
-                  >
-                    <TableOfContents content={blogPost.content} />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                  >
-                    <NewsletterSignup />
-                  </motion.div>
-                </aside>
               </div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                <RelatedPosts tags={blogPost.tags} currentPostId={blogPost.id} />
-              </motion.div>
-            </div>
-          </section>
+            </motion.article>
+          </div>
         </main>
         
         <Footer />
