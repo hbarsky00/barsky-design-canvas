@@ -76,6 +76,10 @@ const Store: React.FC = () => {
     setFilteredProducts(sortedProducts);
   }, [selectedCategory, searchQuery, sortOrder, products]);
 
+  const handleSortChange = (value: string) => {
+    setSortOrder(value as "asc" | "desc");
+  };
+
   const handleAddToCart = (product: Product) => {
     addToCart(product);
   };
@@ -86,7 +90,7 @@ const Store: React.FC = () => {
       <SEO
         title="Store"
         description="Browse our wide selection of products."
-        url="https://barskydesign.pro/store/"
+        url="https://barskydesign.pro/store"
       />
       <motion.div
         initial={{ opacity: 0 }}
@@ -118,7 +122,7 @@ const Store: React.FC = () => {
                   ))}
                 </SelectContent>
               </Select>
-              <Select onValueChange={setSortOrder}>
+              <Select onValueChange={handleSortChange}>
                 <SelectTrigger className="w-[120px]">
                   <SelectValue placeholder="Sort" />
                 </SelectTrigger>

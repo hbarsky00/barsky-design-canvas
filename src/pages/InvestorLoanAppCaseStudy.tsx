@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -58,6 +59,8 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
               id: projectId,
               title: "Investor Loan App",
               image: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
+              description: "Investment management platform with portfolio tracking and analytics",
+              tags: tags
             }}
             imageCaptions={details.imageCaptions}
             projectId={projectId}

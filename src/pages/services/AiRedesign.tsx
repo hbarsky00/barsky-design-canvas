@@ -1,124 +1,128 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Zap, Target, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/seo/SEO";
 
-const AiRedesign: React.FC = () => {
+const AiRedesign = () => {
   return (
     <>
-      <Header />
       <SEO
-        title="AI-Powered Redesign Services | Barsky Design"
-        description="Revolutionize your website with our AI-driven redesign services. Enhance UX, boost conversions, and stay ahead of the competition."
-        keywords="AI redesign, website redesign, UX design, conversion optimization"
+        type="service"
+        title="AI-Powered Website Redesign Services"
+        description="Transform your website with AI-enhanced design solutions that improve user experience and conversion rates."
+        url="https://barskydesign.pro/services/ai-redesign"
       />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto py-12"
-      >
-        <section className="mb-8 text-center">
-          <h1 className="text-4xl font-bold mb-4">
-            Revolutionize Your Website with AI-Powered Redesign
-          </h1>
-          <p className="text-gray-600">
-            Unlock the potential of your online presence with intelligent,
-            data-driven design solutions.
-          </p>
-        </section>
+      
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <Header />
+        
+        <main className="pt-24 pb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+                AI-Powered Website Redesign
+              </h1>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Transform your website with AI-enhanced design solutions that improve user experience and conversion rates.
+              </p>
+            </motion.div>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <CheckCircle className="mr-2 text-green-500" />{" "}
-                Data-Driven Insights
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              Leverage AI analytics to understand user behavior and identify
-              areas for improvement.
-            </CardContent>
-          </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white rounded-lg shadow-md p-8"
+              >
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  AI-Driven Analysis
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Leverage artificial intelligence to analyze user behavior patterns and identify optimization opportunities.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    User Journey Analysis
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Conversion Funnel Optimization
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Performance Metrics
+                  </li>
+                </ul>
+              </motion.div>
 
-          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Zap className="mr-2 text-yellow-500" /> Enhanced User
-                Experience
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              Create intuitive and engaging interfaces that keep visitors on
-              your site longer.
-            </CardContent>
-          </Card>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white rounded-lg shadow-md p-8"
+              >
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  Smart Design Systems
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Create intelligent design systems that adapt to user preferences and business goals.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Adaptive UI Components
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Personalized Experiences
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Accessibility Compliance
+                  </li>
+                </ul>
+              </motion.div>
 
-          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Target className="mr-2 text-blue-500" /> Conversion
-                Optimization
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              Turn more visitors into customers with strategically designed
-              conversion paths.
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <TrendingUp className="mr-2 text-purple-500" /> Competitive
-                Advantage
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              Stay ahead of the curve with a website that adapts to the latest
-              design trends and technologies.
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <CheckCircle className="mr-2 text-green-500" /> Personalized
-                Experiences
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              Tailor content and layouts to individual user preferences for
-              maximum impact.
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Zap className="mr-2 text-yellow-500" /> Continuous Improvement
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              AI algorithms continuously refine your website design based on
-              real-time performance data.
-            </CardContent>
-          </Card>
-        </section>
-
-        <section className="text-center mt-8">
-          <Button variant="secondary" size="lg">
-            Get a Free AI Redesign Consultation
-          </Button>
-        </section>
-      </motion.div>
-      <Footer />
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white rounded-lg shadow-md p-8"
+              >
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  Continuous Optimization
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Implement AI-powered testing and optimization for ongoing performance improvements.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    A/B Testing Automation
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Real-time Analytics
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Performance Monitoring
+                  </li>
+                </ul>
+              </motion.div>
+            </div>
+          </div>
+        </main>
+        
+        <Footer />
+      </div>
     </>
   );
 };
