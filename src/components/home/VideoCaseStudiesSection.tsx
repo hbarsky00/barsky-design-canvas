@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -165,23 +166,28 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
         </div>
       </div>
 
-      {/* Desktop Layout: Image-Heavy Split with Flexible Heights */}
-      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 items-start
-                      [grid-template-columns:minmax(0,3fr)_minmax(0,2fr)]
-                      2xl:[grid-template-columns:minmax(0,16fr)_minmax(0,9fr)]">
+      {/* Desktop Layout: Flexible Image-Heavy Split with Smart Alignment */}
+      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 items-center
+                      [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
+                      2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
         
-        {/* Images Section - Enhanced sizing with nudge toward content */}
+        {/* Images Section - Flexible height with target guidelines */}
         <div className="relative bg-gray-50 p-4 xl:p-5 2xl:p-6 flex items-center" 
              style={{ marginRight: '-24px' }}>
-          <div className="w-full min-h-[560px] xl:min-h-[600px] 2xl:min-h-[640px] flex items-center justify-center">
+          <div className="w-full min-h-[480px] xl:min-h-[520px] 2xl:min-h-[560px] flex items-center justify-center">
             {renderImage()}
           </div>
         </div>
 
-        {/* Content Section - Flexible height with proper constraints */}
-        <div className="bg-gray-50 flex flex-col justify-start p-6 xl:p-7 min-w-0" 
-             style={{ paddingLeft: '0px' }}>
-          <div className="max-w-[600px] space-y-3 break-words">
+        {/* Content Section - Flexible height with minimum padding and width enforcement */}
+        <div className="bg-gray-50 flex flex-col justify-center p-6 xl:p-7 min-w-0" 
+             style={{ 
+               paddingLeft: '24px',
+               paddingRight: '24px',
+               wordWrap: 'break-word',
+               whiteSpace: 'normal'
+             }}>
+          <div className="w-full max-w-[600px] space-y-4 break-words">
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-3">
               {study.tags.map((tag) => (
@@ -192,12 +198,12 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
             </div>
 
             {/* Title */}
-            <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words">
+            <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere">
               {study.title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-600 text-lg leading-relaxed mb-4 break-words">
+            <p className="text-gray-600 text-lg leading-relaxed mb-4 break-words overflow-wrap-anywhere">
               {study.description}
             </p>
 
@@ -207,7 +213,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <Button asChild variant="default" className="flex-1 sm:flex-none">
                 <Link to={study.url}>
                   View Case Study
