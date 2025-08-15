@@ -37,7 +37,7 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
           {/* Up Navigation Arrow */}
           {canNavigateUp && onNavigateUp && (
             <motion.button
-              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
+              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
@@ -58,7 +58,7 @@ const SectionNavigation: React.FC<SectionNavigationProps> = ({
           {/* Down Navigation Arrow */}
           {canNavigateDown && onNavigateDown && (
             <motion.button
-              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg p-2"
+              className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
