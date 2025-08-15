@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, DollarSign, BarChart3, PieChart, Calculator, Shield, Clock, Target, Users, CheckCircle2, Building2, LineChart, Smartphone, Zap, Star, Sprout } from "lucide-react";
@@ -125,7 +126,7 @@ const InvestmentAppCaseStudy: React.FC = () => {
             <div className="absolute inset-0">
               <img 
                 src={getOptimizedImageSrc("/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png")} 
-                alt="Investment app interface showing simplified portfolio tracking" 
+                alt="Investment app interface showing simplified portfolio tracking with clean design and educational elements for beginner investors" 
                 className="w-full h-full object-cover object-center" 
               />
               {/* Strong dark overlay for text readability */}
@@ -187,11 +188,11 @@ const InvestmentAppCaseStudy: React.FC = () => {
                   <span className="text-red-600 font-semibold text-lg">Investment Accessibility Gap</span>
                 </div>
                 
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
                   Why Traditional Investment Apps Fail Beginners
                 </h2>
                 
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
                   Despite growing interest in personal investing, most platforms create unnecessary barriers 
                   that prevent beginners from building wealth and financial literacy.
                 </p>
@@ -199,7 +200,7 @@ const InvestmentAppCaseStudy: React.FC = () => {
               
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div className="space-y-8">
-                  <h3 className="text-2xl font-bold text-gray-900">Critical Accessibility Barriers:</h3>
+                  <h3 className="text-2xl font-bold text-neutral-900">Critical Accessibility Barriers:</h3>
                   
                   {investmentBarriers.map((barrier, index) => (
                     <motion.div 
@@ -215,8 +216,8 @@ const InvestmentAppCaseStudy: React.FC = () => {
                           {barrier.icon}
                         </div>
                         <div>
-                          <h4 className="text-lg font-semibold text-gray-800 mb-2">{barrier.title}</h4>
-                          <p className="text-gray-600">{barrier.description}</p>
+                          <h4 className="text-lg font-semibold text-neutral-800 mb-2">{barrier.title}</h4>
+                          <p className="text-neutral-600">{barrier.description}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -228,17 +229,29 @@ const InvestmentAppCaseStudy: React.FC = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className="relative"
+                  className="space-y-8"
                 >
-                  <figure className="project-image-container mb-8">
+                  <figure className="project-image-container">
                     <img 
                       src="/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png" 
                       alt="Complex investment interface showing overwhelming data and jargon that intimidates beginning investors" 
-                      className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                      onClick={() => maximizeImage("/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png", "Complex investment interface highlighting accessibility challenges")}
+                      className="w-full h-[300px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                      onClick={() => maximizeImage("/lovable-uploads/fb6ed4d4-7b7a-4d99-9eac-be0b810e97f0.png", "Traditional investment interfaces overwhelm beginners with complexity")}
                     />
-                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                    <figcaption className="text-sm text-neutral-600 italic mt-2 text-center">
                       Traditional investment interfaces overwhelm beginners with complexity
+                    </figcaption>
+                  </figure>
+
+                  <figure className="project-image-container">
+                    <img 
+                      src="/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png" 
+                      alt="Cluttered investment platform dashboard showing information overload for new users" 
+                      className="w-full h-[300px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                      onClick={() => maximizeImage("/lovable-uploads/539fc1c8-ca24-465a-b189-653e03404112.png", "Information overload prevents beginners from taking action")}
+                    />
+                    <figcaption className="text-sm text-neutral-600 italic mt-2 text-center">
+                      Information overload prevents beginners from taking action
                     </figcaption>
                   </figure>
                 </motion.div>
@@ -261,11 +274,11 @@ const InvestmentAppCaseStudy: React.FC = () => {
                   <span className="text-blue-600 font-semibold text-lg">Educational Design Innovation</span>
                 </div>
                 
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
                   Learning-First Investment Experience
                 </h2>
                 
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
                   Our educational approach transforms complex financial concepts into accessible, 
                   confidence-building experiences that help users learn while they invest.
                 </p>
@@ -282,8 +295,8 @@ const InvestmentAppCaseStudy: React.FC = () => {
                     className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300"
                   >
                     <div className="text-4xl mb-6 text-center">{feature.visual}</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{feature.title}</h3>
-                    <p className="text-gray-600 text-center leading-relaxed">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">{feature.title}</h3>
+                    <p className="text-neutral-600 text-center leading-relaxed">{feature.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -319,11 +332,11 @@ const InvestmentAppCaseStudy: React.FC = () => {
                   <span className="text-purple-600 font-semibold text-lg">Platform Experience</span>
                 </div>
                 
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
                   Guided Investment Learning Journey
                 </h2>
                 
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
                   Designed specifically for investment beginners, the platform guides users through 
                   learning, planning, investing, and tracking progress with confidence-building design.
                 </p>
@@ -345,7 +358,7 @@ const InvestmentAppCaseStudy: React.FC = () => {
                       </div>
                       <div>
                         <span className="text-sm font-medium text-blue-600 uppercase tracking-wide">{journey.step}</span>
-                        <h3 className="text-xl font-bold text-gray-900">{journey.title}</h3>
+                        <h3 className="text-xl font-bold text-neutral-900">{journey.title}</h3>
                       </div>
                     </div>
                     
@@ -356,12 +369,12 @@ const InvestmentAppCaseStudy: React.FC = () => {
                         className="w-full h-64 object-cover rounded-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                         onClick={() => maximizeImage(journey.image, `${journey.title} - investment education platform interface`)}
                       />
-                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                      <figcaption className="text-sm text-neutral-600 italic mt-2 text-center">
                         {journey.title} - {journey.description}
                       </figcaption>
                     </figure>
                     
-                    <p className="text-gray-600 leading-relaxed">{journey.description}</p>
+                    <p className="text-neutral-600 leading-relaxed">{journey.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -383,11 +396,11 @@ const InvestmentAppCaseStudy: React.FC = () => {
                   <span className="text-green-600 font-semibold text-lg">Educational Impact</span>
                 </div>
                 
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+                <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
                   Measurable Learning & Engagement Improvements
                 </h2>
                 
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-12">
                   Beginner investors report significant increases in financial confidence, investment knowledge, 
                   and ongoing platform engagement through our educational-first approach.
                 </p>
@@ -407,7 +420,7 @@ const InvestmentAppCaseStudy: React.FC = () => {
                       {metric.icon}
                     </div>
                     <div className="text-4xl font-bold text-green-600 mb-2">{metric.metric}</div>
-                    <div className="text-sm text-gray-600 uppercase tracking-wide">{metric.label}</div>
+                    <div className="text-sm text-neutral-600 uppercase tracking-wide">{metric.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -422,7 +435,7 @@ const InvestmentAppCaseStudy: React.FC = () => {
               >
                 <div className="mb-8">
                   <DollarSign className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                  <p className="text-2xl text-gray-700 italic leading-relaxed mb-6">
+                  <p className="text-2xl text-neutral-700 italic leading-relaxed mb-6">
                     "I was intimidated by investing for years, but this app made it feel approachable and educational. 
                     I actually understand what I'm investing in now, and I've been consistently growing my portfolio 
                     for 8 months. The educational approach gave me the confidence to start and the knowledge to continue."
@@ -434,9 +447,9 @@ const InvestmentAppCaseStudy: React.FC = () => {
                     <Users className="h-8 w-8 text-white" />
                   </div>
                   <div className="text-left">
-                    <p className="font-bold text-gray-900 text-lg">Sarah Chen</p>
+                    <p className="font-bold text-neutral-900 text-lg">Sarah Chen</p>
                     <p className="text-blue-600 font-medium">First-Time Investor</p>
-                    <p className="text-sm text-gray-500">Started with $500, now managing $3,200 portfolio</p>
+                    <p className="text-sm text-neutral-500">Started with $500, now managing $3,200 portfolio</p>
                   </div>
                 </div>
               </motion.div>
