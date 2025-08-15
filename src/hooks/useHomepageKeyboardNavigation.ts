@@ -83,6 +83,12 @@ export const useHomepageKeyboardNavigation = () => {
       let offsetTop;
       if (sectionId === 'hero') {
         offsetTop = 0;
+      } else if (mode === 'casestudy') {
+        // For case studies, scroll to the center of the card for better visibility
+        const rect = element.getBoundingClientRect();
+        const elementCenter = window.pageYOffset + rect.top + (rect.height / 2);
+        const viewportCenter = window.innerHeight / 2;
+        offsetTop = elementCenter - viewportCenter;
       } else {
         offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
       }
@@ -123,10 +129,37 @@ export const useHomepageKeyboardNavigation = () => {
       setIsInCaseStudyMode(false);
       const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
       triggerTransition('up', () => {
-        scrollToSection(projectsIndex, 'major');
+        setTimeout(() => {
+          setCurrentSectionIndex(projectsIndex);
+          scrollToSection(projectsIndex, 'major');
+        }, 0);
       });
+    } else if (!isInCaseStudyMode) {
+      // If we're at the contact section (after projects), we should go to the last case study
+      const activeSections = getActiveSections();
+      const contactIndex = activeSections.findIndex(s => s.id === 'contact');
+      
+      if (currentSectionIndex === contactIndex) {
+        // Go to last case study
+        setIsInCaseStudyMode(true);
+        const lastCaseStudyIndex = caseStudySections.length - 1;
+        triggerTransition('up', () => {
+          setTimeout(() => {
+            setCurrentSectionIndex(lastCaseStudyIndex);
+            scrollToSection(lastCaseStudyIndex, 'casestudy');
+          }, 0);
+        });
+      } else {
+        // Normal navigation within major sections
+        const newIndex = currentSectionIndex - 1;
+        if (newIndex >= 0) {
+          triggerTransition('up', () => {
+            scrollToSection(newIndex);
+          });
+        }
+      }
     } else {
-      // Normal navigation within current mode
+      // Normal navigation within case studies
       const newIndex = currentSectionIndex - 1;
       if (newIndex >= 0) {
         triggerTransition('up', () => {
@@ -134,7 +167,7 @@ export const useHomepageKeyboardNavigation = () => {
         });
       }
     }
-  }, [currentSectionIndex, scrollToSection, isTransitioning, triggerTransition, isInCaseStudyMode, isNavigationBlocked]);
+  }, [currentSectionIndex, scrollToSection, isTransitioning, triggerTransition, isInCaseStudyMode, isNavigationBlocked, getActiveSections]);
 
   const navigateDown = useCallback(() => {
     if (isTransitioning || isNavigationBlocked()) return;
@@ -148,21 +181,26 @@ export const useHomepageKeyboardNavigation = () => {
       console.log('Entering case study mode from projects section');
       setIsInCaseStudyMode(true);
       triggerTransition('down', () => {
-        scrollToSection(0, 'casestudy'); // Go to first case study
+        setTimeout(() => {
+          setCurrentSectionIndex(0);
+          scrollToSection(0, 'casestudy'); // Go to first case study
+        }, 0);
       });
     } else if (isInCaseStudyMode) {
       const newIndex = currentSectionIndex + 1;
       if (newIndex >= caseStudySections.length) {
-        // Exit case study mode and go to next major section
-        console.log('Exiting case study mode, going to next major section');
+        // Exit case study mode and go to next major section (contact)
+        console.log('Exiting case study mode, going to contact section');
         setIsInCaseStudyMode(false);
         const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
-        const nextMajorIndex = projectsIndex + 1;
-        if (nextMajorIndex < majorSections.length) {
-          triggerTransition('down', () => {
-            scrollToSection(nextMajorIndex, 'major');
-          });
-        }
+        const contactIndex = projectsIndex + 1;
+        
+        triggerTransition('down', () => {
+          setTimeout(() => {
+            setCurrentSectionIndex(contactIndex);
+            scrollToSection(contactIndex, 'major');
+          }, 0);
+        });
       } else {
         // Navigate to next case study
         console.log(`Navigating to case study ${newIndex + 1}`);
