@@ -16,6 +16,21 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    // Add custom plugin to generate static SEO files
+    {
+      name: 'generate-static-seo',
+      writeBundle() {
+        if (mode === 'production') {
+          try {
+            // Dynamic import to avoid TypeScript issues
+            const { spawn } = require('child_process');
+            spawn('node', ['scripts/generateStaticSEO.js'], { stdio: 'inherit' });
+          } catch (error) {
+            console.warn('Failed to generate static SEO files:', error);
+          }
+        }
+      }
+    }
   ].filter(Boolean),
   resolve: {
     alias: {
