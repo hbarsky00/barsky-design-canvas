@@ -3,8 +3,8 @@ import React from "react";
 import IdentityBadge from "@/components/shared/IdentityBadge";
 
 const ProfileAvatar: React.FC = () => {
-  // Using your new uploaded headshot with correct Lovable path
-  const imageUrl = '/lovable-uploads/f956968d-5248-4275-b0b3-dbea23c0d1b6.png';
+  // Using your working external image URL
+  const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   
   return (
     <div className="relative">
