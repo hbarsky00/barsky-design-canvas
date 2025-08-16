@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import VideoPlayer from "../VideoPlayer";
-import ProjectLinks from "@/components/project/ProjectLinks";
+import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 
@@ -49,8 +49,8 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           </div>
 
           {caseStudyData.projectLink && (
-            <div className="flex justify-center">
-              <ProjectLinks projectLink={caseStudyData.projectLink} />
+            <div className="flex justify-center max-w-md mx-auto">
+              <ProjectActionsCompact liveUrl={caseStudyData.projectLink} />
             </div>
           )}
         </motion.div>

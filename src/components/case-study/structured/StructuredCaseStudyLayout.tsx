@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -83,15 +84,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   caseStudyData={caseStudyData}
                   heroAsImage={heroAsImage}
                 />
-                
-                {/* Share Toolbar - Under Title */}
-                <div className="mt-6 flex justify-center lg:justify-start">
-                  <CaseStudyShareToolbar 
-                    url={currentUrl}
-                    title={caseStudyData.title}
-                    className="flex-wrap justify-center lg:justify-start"
-                  />
-                </div>
               </section>
 
               {/* Case Study Sections - Apply cs-card class */}
