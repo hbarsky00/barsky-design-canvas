@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Send, Sparkles } from 'lucide-react';
+import { rateLimiter } from '@/utils/securityMonitor';
 
 interface LeadFormData {
   name: string;
@@ -40,6 +42,20 @@ const LeadCaptureForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Simple client-side rate limiting based on email if available, else a generic key
+    const limiterKey = formData.email ? `lead_form_${formData.email}` : 'lead_form_anonymous';
+    if (rateLimiter.isRateLimited(limiterKey)) {
+      const remaining = rateLimiter.getRemainingAttempts(limiterKey);
+      toast({
+        title: "Too many attempts",
+        description: remaining > 0
+          ? `Please wait a bit before trying again. Remaining attempts in this window: ${remaining}.`
+          : "Please wait 15 minutes before trying again.",
+        variant: "destructive"
+      });
+      return;
+    }
     
     if (!formData.name || !formData.email || !formData.project_description) {
       toast({
