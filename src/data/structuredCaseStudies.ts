@@ -130,7 +130,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       }
     ],
     seoData: {
-      image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
+      image: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
       projectName: "HerbaLink",
       results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
       technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
