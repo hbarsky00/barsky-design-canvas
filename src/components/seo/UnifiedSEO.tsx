@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { usePageMetadata } from '@/hooks/usePageMetadata';
 import { SEO_CONSTANTS } from '@/utils/seoConstants';
+import { getStructuredCaseStudy } from '@/data/structuredCaseStudies';
 
 interface PageSEOData {
   title: string;
@@ -19,24 +20,57 @@ const UnifiedSEO: React.FC = () => {
   const { metadata, loading } = usePageMetadata(location.pathname);
   const [seoData, setSeoData] = useState<PageSEOData | null>(null);
 
-  // Skip SEO for case study routes - they have their own StructuredCaseStudySEO
-  const shouldSkipSEO = location.pathname.startsWith('/project/');
-
   useEffect(() => {
-    if (shouldSkipSEO) {
-      setSeoData(null);
-      return;
-    }
-
     const generateSEOData = () => {
       try {
-        // Database-first approach
+        const canonicalUrl = `${SEO_CONSTANTS.BASE_URL}${location.pathname}`;
+        
+        // Handle case study pages specially
+        if (location.pathname.startsWith('/project/')) {
+          const projectId = location.pathname.split('/')[2];
+          const caseStudy = getStructuredCaseStudy(projectId);
+          
+          if (caseStudy) {
+            const data: PageSEOData = {
+              title: caseStudy.title,
+              description: caseStudy.description,
+              image: caseStudy.seoData?.image || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
+              canonicalUrl: canonicalUrl,
+              pageType: 'project',
+            };
+            
+            data.schemaData = {
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              "headline": caseStudy.title,
+              "description": caseStudy.description,
+              "url": canonicalUrl,
+              "image": data.image,
+              "author": {
+                "@type": "Person",
+                "name": SEO_CONSTANTS.AUTHOR,
+                "url": SEO_CONSTANTS.BASE_URL
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": SEO_CONSTANTS.SITE_NAME,
+                "url": SEO_CONSTANTS.BASE_URL
+              }
+            };
+            
+            setSeoData(data);
+            document.title = `${data.title} | ${SEO_CONSTANTS.SITE_NAME}`;
+            return;
+          }
+        }
+
+        // Database-first approach for other pages
         if (metadata) {
           const data: PageSEOData = {
             title: metadata.title || getDefaultTitle(location.pathname),
             description: metadata.description || getDefaultDescription(location.pathname),
             image: metadata.image || getPageImage() || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-            canonicalUrl: `${SEO_CONSTANTS.BASE_URL}${location.pathname}`,
+            canonicalUrl: canonicalUrl,
             pageType: getPageType(location.pathname),
           };
           
@@ -51,7 +85,7 @@ const UnifiedSEO: React.FC = () => {
           title: getDefaultTitle(location.pathname),
           description: getDefaultDescription(location.pathname),
           image: getPageImage() || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-          canonicalUrl: `${SEO_CONSTANTS.BASE_URL}${location.pathname}`,
+          canonicalUrl: canonicalUrl,
           pageType: getPageType(location.pathname),
         };
 
@@ -75,7 +109,7 @@ const UnifiedSEO: React.FC = () => {
     if (!loading) {
       generateSEOData();
     }
-  }, [location.pathname, metadata, loading, shouldSkipSEO]);
+  }, [location.pathname, metadata, loading]);
 
   const getDefaultTitle = (pathname: string): string => {
     if (pathname === '/') return 'Hiram Barsky - Product Designer & Gen AI Developer';  
@@ -120,6 +154,7 @@ const UnifiedSEO: React.FC = () => {
   const getPageType = (pathname: string): PageSEOData['pageType'] => {
     if (pathname === '/') return 'home';
     if (pathname.startsWith('/blog/')) return 'blog';
+    if (pathname.startsWith('/project/')) return 'project';
     if (pathname.includes('service')) return 'service';
     return 'page';
   };
@@ -158,8 +193,7 @@ const UnifiedSEO: React.FC = () => {
     return baseSchema;
   };
 
-  // Don't render anything for case study routes
-  if (!seoData || shouldSkipSEO) return null;
+  if (!seoData) return null;
 
   return (
     <Helmet>
@@ -185,10 +219,6 @@ const UnifiedSEO: React.FC = () => {
       <meta name="twitter:image" content={seoData.image} />
       <meta name="twitter:site" content={SEO_CONSTANTS.TWITTER_HANDLE} />
       <meta name="twitter:creator" content={SEO_CONSTANTS.TWITTER_HANDLE} />
-      
-      {/* LinkedIn Cache Busting */}
-      <meta property="og:updated_time" content={new Date().toISOString()} />
-      <meta name="linkedin:owner" content="hirambarsky" />
       
       {/* Additional SEO meta tags */}
       <meta name="author" content={SEO_CONSTANTS.AUTHOR} />

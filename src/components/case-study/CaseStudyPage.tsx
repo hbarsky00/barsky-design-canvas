@@ -11,9 +11,6 @@ import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 
-// Use LegacyCaseStudySEO for legacy case studies
-import LegacyCaseStudySEO from "@/components/seo/LegacyCaseStudySEO";
-
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   
@@ -26,13 +23,7 @@ const CaseStudyPage: React.FC = () => {
   return (
     <>
       <Header />
-      <LegacyCaseStudySEO 
-        title={caseStudy.title}
-        description={caseStudy.description}
-        image={caseStudy.videoThumbnail}
-        path={`/${id}/`}
-        technologies={caseStudy.tags}
-      />
+      {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
       <motion.div
         initial={{ opacity: 0 }}

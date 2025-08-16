@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import StructuredCaseStudySEO from "@/components/seo/StructuredCaseStudySEO";
 import CaseStudyNavigation from "../CaseStudyNavigation";
 import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
@@ -26,7 +25,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   const isProjectPage = useProjectPageDetection();
   
   // Get current URL for sharing
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${caseStudyData.seoData?.path}`;
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : `${window.location.origin}${caseStudyData.seoData?.path}`;
 
   // Create navigation items from sections
   const navigationItems = [
@@ -59,7 +58,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
   return (
     <>
-      <StructuredCaseStudySEO caseStudy={caseStudyData} />
+      {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
       <div className={`min-h-screen bg-gradient-to-br ${caseStudyData.gradientClasses || "from-blue-50 via-slate-50 to-indigo-50"} ${isProjectPage ? 'projects-page' : ''}`}>
         {/* 3D Transition Overlay */}

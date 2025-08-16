@@ -1,8 +1,14 @@
+
 /**
  * URL normalization utilities for consistent canonical URLs across the application
  */
 
-export const BASE_URL = 'https://barskydesign.pro';
+const getDynamicBaseUrl = (): string => {
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  return process.env.REACT_APP_BASE_URL || 'https://barskydesign.pro';
+};
 
 /**
  * Normalizes a URL path to ensure consistency across the application
@@ -11,6 +17,8 @@ export const BASE_URL = 'https://barskydesign.pro';
  * - Returns consistent canonical format
  */
 export const normalizeUrl = (path: string): string => {
+  const BASE_URL = getDynamicBaseUrl();
+  
   // Normalize to pathname only and handle absolute/relative inputs
   try {
     const u = new URL(path, BASE_URL);
