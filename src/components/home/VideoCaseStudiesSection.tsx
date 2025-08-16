@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -90,13 +91,15 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
 
   const renderImage = () => {
     return (
-      <div className="flex justify-center h-full">
-        <img 
-          src={study.images.primary} 
-          alt={study.images.alt}
-          className="w-full h-auto object-contain"
-        />
-      </div>
+      <Link to={study.url} className="block h-full group">
+        <div className="flex justify-center h-full cursor-pointer">
+          <img 
+            src={study.images.primary} 
+            alt={study.images.alt}
+            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      </Link>
     );
   };
 
@@ -112,7 +115,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
-        {/* Image Section - Full Width on Mobile */}
+        {/* Image Section - Full Width on Mobile - Now Clickable */}
         <div className="relative bg-gray-50 p-6 min-h-[240px] flex items-center">
           {renderImage()}
         </div>
@@ -172,7 +175,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
                       [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
                       2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
         
-        {/* Images Section - Flexible height with target guidelines */}
+        {/* Images Section - Flexible height with target guidelines - Now Clickable */}
         <div className="relative bg-gray-50 p-4 xl:p-5 2xl:p-6 flex items-center" 
              style={{ marginRight: '-24px' }}>
           <div className="w-full min-h-[480px] xl:min-h-[520px] 2xl:min-h-[560px] flex items-center justify-center">
