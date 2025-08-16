@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Brain, Compass, Zap, Scale } from "lucide-react";
 
@@ -38,8 +39,8 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
           </div>
           <ul className="space-y-2">
             {mentalModels.map((model, index) => (
-              <li key={index} className="text-blue-800 flex items-start space-x-2">
-                <span className="text-blue-600 mt-1">•</span>
+              <li key={index} className="text-blue-800 flex items-center space-x-2">
+                <span className="text-blue-600">•</span>
                 <span>{model}</span>
               </li>
             ))}
@@ -53,8 +54,8 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
           </div>
           <ul className="space-y-2">
             {keyPrinciples.map((principle, index) => (
-              <li key={index} className="text-purple-800 flex items-start space-x-2">
-                <span className="text-purple-600 mt-1">•</span>
+              <li key={index} className="text-purple-800 flex items-center space-x-2">
+                <span className="text-purple-600">•</span>
                 <span>{principle}</span>
               </li>
             ))}
@@ -100,8 +101,8 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
                 <p className="text-gray-700">{decision.reasoning}</p>
               </div>
 
-              <div className="flex items-start space-x-3">
-                <Scale className="h-5 w-5 text-gray-600 mt-0.5" />
+              <div className="flex items-center space-x-3">
+                <Scale className="h-5 w-5 text-gray-600" />
                 <div>
                   <h6 className="font-medium text-gray-900 mb-2">Tradeoffs Accepted:</h6>
                   <ul className="space-y-1">
@@ -119,8 +120,8 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
       </div>
 
       <div className="bg-white border border-blue-200 rounded-lg p-6 shadow-sm">
-        <div className="flex items-start space-x-3">
-          <Brain className="h-6 w-6 text-blue-600 mt-1" />
+        <div className="flex items-center space-x-3">
+          <Brain className="h-6 w-6 text-blue-600" />
           <div>
             <h4 className="font-semibold text-gray-900 mb-2">Personal Insight</h4>
             <p className="text-gray-900 font-medium">{personalInsight}</p>

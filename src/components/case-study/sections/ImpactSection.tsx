@@ -1,3 +1,4 @@
+
 import React from "react";
 import { TrendingUp, Target, Award } from "lucide-react";
 
@@ -76,8 +77,8 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({
       </div>
 
       <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-        <div className="flex items-start space-x-3">
-          <TrendingUp className="h-6 w-6 text-green-600 mt-1" />
+        <div className="flex items-center space-x-3">
+          <TrendingUp className="h-6 w-6 text-green-600" />
           <div>
             <h4 className="font-semibold text-green-900 mb-2">Bottom Line Impact</h4>
             <p className="text-green-800">

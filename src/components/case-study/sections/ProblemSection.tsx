@@ -37,7 +37,7 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
 
   return (
     <div className="space-y-8">
-      <div className="flex items-start space-x-4">
+      <div className="flex items-center space-x-4">
         <div className="flex-shrink-0 p-3 bg-red-100 rounded-lg">
           <AlertTriangle className="h-6 w-6 text-red-600" />
         </div>
