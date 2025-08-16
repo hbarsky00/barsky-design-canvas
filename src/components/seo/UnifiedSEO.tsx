@@ -75,7 +75,7 @@ const UnifiedSEO: React.FC = () => {
           if (blogPost) {
             enhancedSeoData = {
               title: blogPost.title,
-              description: blogPost.excerpt || blogPost.meta_description || enhancedSeoData.description,
+              description: blogPost.excerpt || enhancedSeoData.description,
               canonical: normalizeUrl(pathname),
               image: blogPost.featured_image || enhancedSeoData.image,
               type: 'article',
@@ -92,11 +92,11 @@ const UnifiedSEO: React.FC = () => {
           
           if (pageMetadata) {
             enhancedSeoData = {
-              title: pageMetadata.title,
-              description: pageMetadata.description,
+              title: pageMetadata.seo_title,
+              description: pageMetadata.seo_description,
               canonical: normalizeUrl(pathname),
               image: pageMetadata.featured_image || enhancedSeoData.image,
-              type: pageMetadata.page_type === 'article' ? 'article' : 'website'
+              type: 'website'
             };
           } else {
             // Update canonical for pages without database entries
