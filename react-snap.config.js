@@ -10,6 +10,8 @@ module.exports = {
     "/case-studies/splittime-coparenting-app-design",
     "/case-studies/investor-loan-portfolio-management", 
     "/case-studies/wholesale-distribution-ai-solution",
+    "/project/wholesale-distribution",
+    "/project/investment-app",
     "/design-services/ux-ui-design",
     "/design-services/web-development",
     "/design-services/mobile-app-design",
