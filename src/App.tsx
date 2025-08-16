@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,9 +5,6 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
-import SecurityHeaders from "@/components/security/SecurityHeaders";
-
-// Removed global UnifiedSEO import to prevent conflicts
 
 // Page imports
 import Index from "@/pages/Index";
@@ -19,7 +15,6 @@ import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
-import AuthPage from "@/pages/Auth";
 
 // Structured case study imports
 import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
@@ -32,11 +27,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <SecurityHeaders />
         <ImageMaximizerProvider>
           <Router>
             <ScrollToTop />
-            {/* Removed global UnifiedSEO to avoid meta tag conflicts; rely on page-level SEO components */}
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
@@ -58,9 +51,6 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
-
-              {/* Auth */}
-              <Route path="/auth" element={<AuthPage />} />
               
               {/* Catch all - redirect to home */}
               <Route path="*" element={<Navigate to="/" replace />} />
