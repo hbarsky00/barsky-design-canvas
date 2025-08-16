@@ -1,3 +1,4 @@
+
 interface PageSEOData {
   title: string;
   description: string;
@@ -8,7 +9,7 @@ interface PageSEOData {
 }
 
 const BASE_URL = 'https://barskydesign.pro';
-// Use a reliable profile photo from your domain
+// Use your actual profile photo as default - this is a reliable local image
 const DEFAULT_IMAGE = 'https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png';
 
 /**
