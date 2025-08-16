@@ -71,9 +71,9 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
                 className="w-full h-full object-cover"
               />
             </div>
-          ) : caseStudyData.heroVideo?.src ? (
+          ) : caseStudyData.heroVideo?.mp4 ? (
             <VideoPlayer 
-              videoSrc={caseStudyData.heroVideo.src}
+              videoSrc={caseStudyData.heroVideo.mp4}
               thumbnailSrc={caseStudyData.heroVideo.poster || caseStudyData.seoData?.image || ''}
               title={caseStudyData.title}
             />
