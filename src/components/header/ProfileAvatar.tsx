@@ -2,23 +2,19 @@
 import React from "react";
 import IdentityBadge from "@/components/shared/IdentityBadge";
 
+
 const ProfileAvatar: React.FC = () => {
-  // Using your working external image URL
-  const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
-  
   return (
-    <div className="relative">
-      <IdentityBadge
-        to="/"
-        ariaLabel="Go to homepage"
-        imageSrc={imageUrl}
-        name="Hiram Barsky"
-        subtitle="Product Design + AI"
-        size="md"
-        subtitleStyle="pill"
-        className="shrink-0"
-      />
-    </div>
+    <IdentityBadge
+      to="/"
+      ariaLabel="Go to homepage"
+      imageSrc="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+      name="Hiram Barsky"
+      subtitle="Product Design + AI"
+      size="md"
+      subtitleStyle="pill"
+      className="shrink-0"
+    />
   );
 };
 

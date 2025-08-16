@@ -54,7 +54,7 @@ const SplittimeCoordinationSolution: React.FC<SplittimeCoordinationSolutionProps
           ))}
         </div>
         
-        {/* Mobile Promo Image */}
+        {/* Co-parenting App Interface Video */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
@@ -64,14 +64,18 @@ const SplittimeCoordinationSolution: React.FC<SplittimeCoordinationSolutionProps
         >
           <figure className="project-video-container">
             <div className="relative w-full rounded-lg overflow-hidden shadow-xl bg-gray-100">
-              <img
-                src="https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png"
-                alt="SplitTime mobile application promotional image"
-                className="w-full h-auto object-cover rounded-lg"
-              />
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src="https://www.loom.com/embed/0bf47ee2418c46dd9196ec72afad5a39?sid=c5f0df22-3e30-4ac2-8ffe-39e5cfb4b08d"
+                  className="absolute inset-0 w-full h-full rounded-lg"
+                  frameBorder="0"
+                  allowFullScreen
+                  title="First rendition of design for Splittime app"
+                />
+              </div>
             </div>
             <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-              SplitTime mobile application promotional image
+              First rendition of design for Splittime app
             </figcaption>
           </figure>
         </motion.div>

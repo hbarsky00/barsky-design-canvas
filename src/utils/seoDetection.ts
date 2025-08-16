@@ -9,8 +9,7 @@ interface PageSEOData {
 }
 
 const BASE_URL = 'https://barskydesign.pro';
-// Updated to use your circular headshot as the default OG image
-const DEFAULT_IMAGE = `${BASE_URL}/images/default-og-image.jpg`;
+const DEFAULT_IMAGE = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`;
 
 /**
  * Converts relative URLs to absolute URLs
@@ -30,11 +29,6 @@ const truncateDescription = (text: string, maxLength: number = 160): string => {
   const lastSpace = truncated.lastIndexOf(' ');
   return lastSpace > 0 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
 };
-
-/**
- * Default fallback description for all pages
- */
-const DEFAULT_DESCRIPTION = "Hiram Barsky – Product Designer + AI Developer helping businesses design smarter, faster, and more user-focused digital products.";
 
 /**
  * Extracts title from page content in order of preference
@@ -63,7 +57,7 @@ const extractTitle = (pathname: string): string => {
 };
 
 /**
- * Extracts description from page content - separate from title
+ * Extracts description from page content
  */
 const extractDescription = (pathname: string): string => {
   // Check for explicit description meta tag
@@ -72,25 +66,21 @@ const extractDescription = (pathname: string): string => {
     return truncateDescription(descMeta.getAttribute('content') || '');
   }
 
-  // Look for first paragraph after H1 (separate from title)
+  // Look for first paragraph after H1
   const h1 = document.querySelector('h1');
   if (h1) {
     let nextElement = h1.nextElementSibling;
     while (nextElement) {
       if (nextElement.tagName === 'P' && nextElement.textContent?.trim()) {
-        const description = nextElement.textContent.trim();
-        // Ensure it's different from the title
-        if (description !== h1.textContent?.trim()) {
-          return truncateDescription(description);
-        }
+        return truncateDescription(nextElement.textContent.trim());
       }
       nextElement = nextElement.nextElementSibling;
     }
   }
 
-  // Fallback descriptions based on path (separate from titles)
+  // Fallback descriptions based on path
   if (pathname === '/') {
-    return DEFAULT_DESCRIPTION;
+    return '15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for startups and enterprises.';
   }
   if (pathname.startsWith('/project/')) {
     return 'Product design case study showcasing UX research, design process, and AI-enhanced solutions by Hiram Barsky.';
@@ -102,11 +92,11 @@ const extractDescription = (pathname: string): string => {
     return 'Professional product design and Gen AI development services for startups and enterprises.';
   }
 
-  return DEFAULT_DESCRIPTION;
+  return 'Expert product design and Gen AI development services specializing in user-centered digital experiences.';
 };
 
 /**
- * Extracts hero image from page content - prioritizes project/blog featured images
+ * Extracts hero image from page content
  */
 const extractHeroImage = (): string => {
   // Check for explicit hero image meta tag
@@ -115,9 +105,8 @@ const extractHeroImage = (): string => {
     return toAbsoluteUrl(imageMeta.getAttribute('content') || '');
   }
 
-  // Look for featured images in project/blog contexts
-  const featuredSelectors = [
-    '[data-featured-image] img',
+  // Look for hero images in common containers
+  const heroSelectors = [
     '[data-hero-image] img',
     '.hero img',
     '[class*="hero"] img',
@@ -125,7 +114,7 @@ const extractHeroImage = (): string => {
     'video[poster]'
   ];
 
-  for (const selector of featuredSelectors) {
+  for (const selector of heroSelectors) {
     const element = document.querySelector(selector);
     if (element) {
       if (element.tagName === 'VIDEO') {
@@ -138,7 +127,6 @@ const extractHeroImage = (): string => {
     }
   }
 
-  // Return your circular headshot as fallback
   return DEFAULT_IMAGE;
 };
 
@@ -258,13 +246,12 @@ export const applySEOForPage = (): PageSEOData => {
 
   const schemaData = generateSchema(seoData);
 
-  console.log('🔍 SEO Detection (Updated):', {
+  console.log('🔍 SEO Detection:', {
     pathname,
     title,
     description: description.substring(0, 50) + '...',
     image,
-    pageType,
-    defaultImage: DEFAULT_IMAGE
+    pageType
   });
 
   return {

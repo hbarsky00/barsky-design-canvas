@@ -1,6 +1,6 @@
 
 import { useCallback } from 'react';
-import { ImageStorageService } from '@/services/imageStorage';
+import { VercelBlobStorageService } from '@/services/vercelBlobStorage';
 import { toast } from 'sonner';
 
 interface UseImageUploadHandlerProps {
@@ -46,9 +46,9 @@ export const useImageUploadHandler = ({
     toast.info('Uploading image...');
     
     try {
-      console.log('📤 Starting image upload for replacement (Supabase Storage):', file.name);
+      console.log('📤 Starting image upload for replacement:', file.name);
       
-      const newImageUrl = await ImageStorageService.uploadImage(file, projectId, currentSrc);
+      const newImageUrl = await VercelBlobStorageService.uploadImage(file, projectId, currentSrc);
       
       if (newImageUrl) {
         console.log('✅ Image uploaded successfully:', newImageUrl);
@@ -60,12 +60,16 @@ export const useImageUploadHandler = ({
         // Call the replacement callback
         onImageReplace(newImageUrl);
         
-        toast.success('Image uploaded and replaced successfully!');
+        if (newImageUrl.startsWith('blob:')) {
+          toast.success('Image replaced successfully! (Using local preview - configure Vercel Blob for permanent storage)');
+        } else {
+          toast.success('Image uploaded and replaced successfully!');
+        }
         console.log('🎉 Image replacement completed successfully');
       } else {
         console.error('❌ Upload failed - no URL returned');
         setImageError(true);
-        toast.error('Image upload failed. Please check your Supabase Storage configuration.');
+        toast.error('Image upload failed. Please check your Vercel Blob configuration.');
       }
     } catch (error) {
       console.error('❌ Error uploading image:', error);

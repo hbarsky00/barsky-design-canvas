@@ -15,14 +15,18 @@ const SpittimeResearchContent: React.FC = () => {
           </p>
         </div>
         
-        {/* Mobile Promo Image */}
+        {/* Research Video */}
         <div>
           <div className="relative w-full rounded-lg overflow-hidden shadow-lg bg-gray-100">
-            <img
-              src="https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png"
-              alt="SplitTime mobile application promotional image"
-              className="w-full h-auto object-cover rounded-lg"
-            />
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                src="https://www.loom.com/embed/0bf47ee2418c46dd9196ec72afad5a39?sid=c5f0df22-3e30-4ac2-8ffe-39e5cfb4b08d"
+                className="absolute inset-0 w-full h-full rounded-lg"
+                frameBorder="0"
+                allowFullScreen
+                title="Splittime Research Process Video"
+              />
+            </div>
           </div>
         </div>
       </div>

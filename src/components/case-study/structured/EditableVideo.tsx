@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -14,8 +13,6 @@ interface EditableVideoProps {
   onVideoChange?: (newSrc: string) => void;
   onCaptionChange?: (newCaption: string) => void;
   editable?: boolean;
-  // FIXED: Add context prop to prevent cross-contamination
-  imageContext?: string;
   videoOptions?: {
     autoplay?: boolean;
     loop?: boolean;
@@ -34,14 +31,14 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
   onVideoChange,
   onCaptionChange,
   editable = false,
-  imageContext = "default",
   videoOptions
 }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editCaption, setEditCaption] = useState(caption || "");
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVideoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && onVideoChange) {
       // In a real implementation, you'd upload to a service
@@ -57,41 +54,6 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
     setIsEditing(false);
   };
 
-  // FIXED: Use context-specific image source to prevent cross-contamination
-  const getContextualImageSrc = () => {
-    // Use different image URLs based on context to prevent persistence conflicts
-    if (imageContext === "problem") {
-      return "https://barskyux.com/wp-content/uploads/2025/08/splittime-problem-section.png";
-    } else if (imageContext === "solution") {
-      return "https://barskyux.com/wp-content/uploads/2025/08/featureimage1.png";
-    } else if (imageContext === "hero") {
-      return poster || "https://barskyux.com/wp-content/uploads/2025/08/splittime-hero-poster.png";
-    }
-    return src;
-  };
-
-  const getContextualAlt = () => {
-    if (imageContext === "problem") {
-      return "SplitTime problem section illustration";
-    } else if (imageContext === "solution") {
-      return "SplitTime feature showcase image";
-    } else if (imageContext === "hero") {
-      return "SplitTime hero video poster";
-    }
-    return alt;
-  };
-
-  const getContextualCaption = () => {
-    if (imageContext === "problem") {
-      return caption || "Traditional expense splitting methods are complex and error-prone";
-    } else if (imageContext === "solution") {
-      return caption || "SplitTime's intuitive interface simplifies group expense management";
-    } else if (imageContext === "hero") {
-      return caption || "SplitTime hero demonstration";
-    }
-    return caption || "";
-  };
-
   return (
     <div className={`relative group ${className}`}>
       <motion.div
@@ -99,39 +61,115 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
         onHoverEnd={() => setIsHovered(false)}
         className="relative overflow-hidden rounded-xl bg-surface-container aspect-video"
       >
-        <div className="relative w-full h-full">
-          <img
-            src={getContextualImageSrc()}
-            alt={getContextualAlt()}
-            className="w-full h-full object-contain"
-            // FIXED: Add context-specific data attributes to prevent cross-contamination
-            data-image-context={imageContext}
-            data-original-src={getContextualImageSrc()}
-          />
-          {editable && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isHovered ? 1 : 0 }}
-              className="absolute top-4 right-4 flex gap-2"
-            >
-              <Button
-                size="sm"
-                variant="filled"
-                className="bg-surface/90 text-on-surface shadow-lg"
-                onClick={() => document.getElementById(`upload-image-${imageContext}-${src}`)?.click()}
+        {videoOptions?.autoplay ? (
+          // Autoplay video mode
+          <div className="relative w-full h-full">
+            <video
+              src={src}
+              title={alt}
+              poster={poster}
+              autoPlay
+              loop={videoOptions?.loop ?? true}
+              muted={videoOptions?.muted ?? true}
+              playsInline={videoOptions?.playsInline ?? true}
+              controls={videoOptions?.controls ?? false}
+              className="w-full h-full object-cover"
+            />
+            {editable && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                className="absolute top-4 right-4 flex gap-2"
               >
-                <Upload className="h-4 w-4" />
-              </Button>
-              <input
-                id={`upload-image-${imageContext}-${src}`}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImageUpload}
+                <Button
+                  size="sm"
+                  variant="filled"
+                  className="bg-surface/90 text-on-surface shadow-lg"
+                  onClick={() => document.getElementById(`upload-video-${src}`)?.click()}
+                >
+                  <Upload className="h-4 w-4" />
+                </Button>
+                <input
+                  id={`upload-video-${src}`}
+                  type="file"
+                  accept="video/*"
+                  className="hidden"
+                  onChange={handleVideoUpload}
+                />
+              </motion.div>
+            )}
+          </div>
+        ) : (
+          !isPlaying ? (
+            // Video Thumbnail
+            <div className="relative w-full h-full">
+              <img
+                src={poster || "/placeholder.svg"}
+                alt={alt}
+                className="w-full h-full object-cover"
               />
-            </motion.div>
-          )}
-        </div>
+              {/* Play Overlay */}
+              <div className="absolute inset-0 bg-scrim/30 flex items-center justify-center">
+                <Button
+                  size="lg"
+                  variant="filled"
+                  className="bg-surface/90 text-on-surface hover:bg-surface shadow-xl"
+                  onClick={() => setIsPlaying(true)}
+                >
+                  <Play className="h-6 w-6 mr-2" />
+                  Play Demo
+                </Button>
+              </div>
+              
+              {/* Edit Controls */}
+              {editable && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isHovered ? 1 : 0 }}
+                  className="absolute top-4 right-4 flex gap-2"
+                >
+                  <Button
+                    size="sm"
+                    variant="filled"
+                    className="bg-surface/90 text-on-surface shadow-lg"
+                    onClick={() => document.getElementById(`upload-video-${src}`)?.click()}
+                  >
+                    <Upload className="h-4 w-4" />
+                  </Button>
+                  <input
+                    id={`upload-video-${src}`}
+                    type="file"
+                    accept="video/*"
+                    className="hidden"
+                    onChange={handleVideoUpload}
+                  />
+                </motion.div>
+              )}
+            </div>
+          ) : (
+            // Video Player (manual play)
+            <div className="relative w-full h-full bg-surface-variant">
+              <video
+                src={src}
+                title={alt}
+                controls
+                playsInline
+                autoPlay
+                className="w-full h-full object-cover"
+              >
+                Your browser does not support the video tag.
+              </video>
+              <Button
+                variant="outline"
+                onClick={() => setIsPlaying(false)}
+                className="gap-2 absolute top-4 right-4"
+              >
+                <Pause className="h-4 w-4" />
+                Back to Thumbnail
+              </Button>
+            </div>
+          )
+        )}
       </motion.div>
 
       {/* Caption */}
@@ -145,7 +183,7 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
                   value={editCaption}
                   onChange={(e) => setEditCaption(e.target.value)}
                   className="flex-1 text-body-small text-on-surface-variant bg-transparent border-none outline-none"
-                  placeholder="Add image caption..."
+                  placeholder="Add video caption..."
                 />
                 <Button size="sm" onClick={handleCaptionSave}>
                   Save
@@ -154,8 +192,8 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
             </Card>
           ) : (
             <div className="flex items-center justify-between">
-              <p className="text-sm text-gray-600 italic mt-2 text-center w-full">
-                {getContextualCaption()}
+              <p className="text-body-small text-on-surface-variant italic">
+                {caption || "No caption"}
               </p>
               {editable && (
                 <Button

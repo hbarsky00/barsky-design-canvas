@@ -1,6 +1,6 @@
 
 import { useCallback } from 'react';
-import { ImageStorageService } from '@/services/imageStorage';
+import { VercelBlobStorageService } from '@/services/vercelBlobStorage';
 import { toast } from 'sonner';
 
 interface UseSectionImageUploadProps {
@@ -38,15 +38,15 @@ export const useSectionImageUpload = ({ projectId, sectionKey, onImageAdded }: U
                 return;
               }
 
-              toast.info('Uploading image...');
-              console.log('📤 Uploading section image to Supabase Storage:', file.name);
+              toast.info('Uploading image to Vercel Blob...');
+              console.log('📤 Uploading section image to Vercel Blob:', file.name);
               
-              const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, `section-${sectionKey}-${Date.now()}`);
+              const uploadedUrl = await VercelBlobStorageService.uploadImage(file, projectId, `section-${sectionKey}-${Date.now()}`);
               
               if (uploadedUrl) {
                 resolve(uploadedUrl);
               } else {
-                toast.error('Image upload failed. Please check your Supabase Storage configuration.');
+                toast.error('Image upload failed. Please check your Vercel Blob configuration.');
                 reject(new Error('Upload failed'));
               }
             } catch (error) {

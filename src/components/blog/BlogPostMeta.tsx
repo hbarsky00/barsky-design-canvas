@@ -21,24 +21,22 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
     return `${baseUrl}${imagePath}`;
   };
   
-  // Use blog featured image or fallback to your circular headshot
   const ogImageUrl = post.coverImage 
     ? getImageUrl(post.coverImage)
-    : getImageUrl("/images/default-og-image.jpg");
+    : getImageUrl("/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png");
   
-  // Canonical URL
+  // Canonical URL is now handled by DynamicSeo component
   const canonicalUrl = `https://barskydesign.pro/blog/${post.slug}`;
   
   return (
     <Helmet>
-      {/* Separate title and description */}
       <title>{post.title} | Barsky Design Blog</title>
-      <meta name="description" content={post.excerpt || "Insights on product design, UX research, and AI integration in digital product development."} />
+      <meta name="description" content={post.excerpt} />
       <meta name="keywords" content={post.tags.join(', ') + ", Website Design Services, App Design Services, AI Driven Design Services, Product Design Services"} />
       
       {/* Open Graph meta tags */}
-      <meta property="og:title" content={post.title} />
-      <meta property="og:description" content={post.excerpt || "Insights on product design, UX research, and AI integration in digital product development."} />
+      <meta property="og:title" content={`${post.title} | Hiram Barsky`} />
+      <meta property="og:description" content={post.excerpt} />
       <meta property="og:image" content={ogImageUrl} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
@@ -49,7 +47,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
       {/* Twitter Card meta tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={post.title} />
-      <meta name="twitter:description" content={post.excerpt || "Insights on product design, UX research, and AI integration in digital product development."} />
+      <meta name="twitter:description" content={post.excerpt} />
       <meta name="twitter:image" content={ogImageUrl} />
       
       {/* Structured data for blog post */}
@@ -58,7 +56,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           "headline": post.title,
-          "description": post.excerpt || "Insights on product design, UX research, and AI integration in digital product development.",
+          "description": post.excerpt,
           "image": ogImageUrl,
           "author": {
             "@type": "Person",
@@ -69,7 +67,7 @@ const BlogPostMeta: React.FC<BlogPostMetaProps> = ({ post }) => {
             "name": "Barsky Design Services",
             "logo": {
               "@type": "ImageObject",
-              "url": getImageUrl("/images/default-og-image.jpg")
+              "url": getImageUrl("/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png")
             }
           },
           "datePublished": post.date,

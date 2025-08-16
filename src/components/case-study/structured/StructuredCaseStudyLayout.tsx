@@ -1,43 +1,38 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Hash } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
-import IdentityBadge from "@/components/shared/IdentityBadge";
+import { Card } from "@/components/ui/card";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
+import CaseStudyContactSection from "../CaseStudyContactSection";
+import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
+import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
 import { EditableVideo } from "./EditableVideo";
+import CaseStudyNavigation from "../CaseStudyNavigation";
 import ProjectLinks from "@/components/project/ProjectLinks";
-import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
-import { shouldShowEditingControls } from "@/utils/devModeDetection";
-
-interface HeroVideo {
-  poster?: string;
-  videoSrc?: string;
-  fallbackImage?: string;
-}
-
-interface ProjectLink {
-  live?: string;
-  github?: string;
-  behance?: string;
-  figma?: string;
-}
-
-interface Section {
-  id: string;
-  type: string;
-  title: string;
-  content: string;
-  image?: string;
-  imageCaption?: string;
-}
+import ProjectNavigation from "@/components/ProjectNavigation";
+import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
+import { useLocation } from "react-router-dom";
+import Section3DOverlay from "@/components/transitions/Section3DOverlay";
+import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 
 interface StructuredCaseStudyLayoutProps {
   title: string;
   description: string;
   tags: string[];
-  heroVideo?: HeroVideo;
-  sections: Section[];
-  projectLink?: ProjectLink;
+  heroVideo?: {
+    src: string;
+    poster: string;
+    alt: string;
+  };
+  sections: StructuredCaseStudySectionProps[];
+  projectLink?: string;
   gradientClasses?: string;
+  showNavigation?: boolean;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
@@ -47,135 +42,185 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   heroVideo,
   sections,
   projectLink,
-  gradientClasses = "from-blue-600 via-purple-600 to-teal-600"
+  gradientClasses = "from-primary-container/20 to-secondary-container/20",
+  showNavigation = true
 }) => {
-  const textRef = React.useRef<HTMLDivElement>(null);
-  const videoRef = React.useRef<HTMLDivElement>(null);
-  const { containerStyle: textStyle } = useScroll3DTilt(textRef, { maxTilt: 2.5, yDistance: 10, childParallax: 6 });
-  const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
-  
-  const showEditingControls = shouldShowEditingControls();
+  // Get current URL for sharing
+  const { pathname } = useLocation();
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${pathname}`;
+
+  const navigationItems = sections.map(section => ({
+    label: section.title,
+    anchor: `#${section.id}`
+  }));
+
+  const currentProjectId = React.useMemo(() => {
+    const parts = pathname.split('/');
+    return parts[parts.length - 1] || '';
+  }, [pathname]);
+
+  const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
+
+  // Build sections for keyboard navigation
+  const keyboardSections = React.useMemo(() => {
+    const navSections = [
+      { id: 'hero-section', title: 'Overview' },
+      ...sections.map(section => ({
+        id: section.id,
+        title: section.title
+      })),
+      { id: 'contact-section', title: 'Contact' },
+      { id: 'project-navigation', title: 'More Projects' }
+    ];
+    return navSections;
+  }, [sections]);
+
+  // Add keyboard navigation
+  const {
+    isTransitioning,
+    transitionDirection,
+    transitionVariation,
+  } = useCaseStudyKeyboardNavigation(keyboardSections);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted">
-      {/* Hero Section */}
-      <section className="pt-8 pb-16 bg-gradient-to-br from-background to-muted" style={{ perspective: "1000px" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Branding */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-8"
-          >
-            <IdentityBadge
-              to="/"
-              imageSrc="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
-              name="Hiram Barsky"
-              subtitle="Product Designer & Gen AI Developer"
-              size="md"
-              subtitleStyle="text"
-            />
-          </motion.div>
+    <>
+      {/* Unified SEO - automatically detects page content */}
+      <UnifiedSEO />
+      
+      {/* Hidden meta tags for SEO detection */}
+      <meta name="page-title" content={title} />
+      <meta name="page-description" content={description} />
+      {heroVideo && <meta name="page-image" content={heroVideo.poster} />}
 
-          <motion.div
-            ref={textRef}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-12"
-            style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              {title}
-            </h1>
-            
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              {description}
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              {tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="px-3 py-1">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+      <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
+        {/* 3D Transition Overlay */}
+        <Section3DOverlay 
+          isVisible={isTransitioning} 
+          direction={transitionDirection}
+          variation={transitionVariation}
+        />
 
-            {projectLink && (
-              <div className="flex justify-center">
-                <ProjectLinks projectLink={projectLink} />
-              </div>
-            )}
-          </motion.div>
+        <Header />
 
-          {/* FIXED: Hero Video with proper context */}
-          <motion.div
-            ref={videoRef}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
-            style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-          >
-            <EditableVideo 
-              src={heroVideo?.videoSrc || ""}
-              poster={heroVideo?.poster}
-              alt="Case study hero video"
-              caption="Case study demonstration"
-              editable={showEditingControls}
-              imageContext="hero"
-            />
-          </motion.div>
-        </div>
-      </section>
+        <main className="flex-grow">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
+            <div className={showNavigation ? "lg:grid lg:grid-cols-[16rem,1fr] lg:gap-8" : ""}>
+              {/* Desktop sidebar + Mobile FAB navigation */}
+              {showNavigation && <CaseStudyNavigation navigation={navigationItems} />}
 
-      {/* Sections */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-16">
-            {sections.map((section, index) => (
-              <motion.div
-                key={section.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
-              >
-                <div className="flex-1 space-y-6">
-                  <div className="space-y-4">
-                    <Badge variant="outline" className="px-3 py-1">
-                      {section.type.charAt(0).toUpperCase() + section.type.slice(1)}
-                    </Badge>
-                    <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                      {section.title}
-                    </h2>
-                  </div>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    {section.content}
-                  </p>
+              {/* Main content column */}
+              <div>
+                {/* Hero Section */}
+                <motion.section
+                  id="hero-section"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="mt-2 mb-8"
+                >
+                  <Card className="p-8 lg:p-12 bg-card border border-border shadow-elevated">
+                    {/* Title and Description */}
+                    <div className="text-center mb-8">
+                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+                        {title}
+                      </h1>
+                      <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                        {description}
+                      </p>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap justify-center gap-2 mb-8">
+                      {tags.map((tag) => (
+                        <Badge key={tag} variant="secondary" className="gap-1">
+                          <Hash className="h-3 w-3" />
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {/* Visit Live Site */}
+                    {projectLink && (
+                      <div className="flex justify-center mb-8">
+                        <ProjectLinks projectLink={projectLink} label="Visit Live Site" variant="outlined" />
+                      </div>
+                    )}
+
+                    {/* Hero Video */}
+                    {heroVideo && (
+                      <div className="max-w-4xl mx-auto mb-8" data-hero-image>
+                        <EditableVideo
+                          src={heroVideo.src}
+                          alt={heroVideo.alt}
+                          poster={heroVideo.poster}
+                          caption="Project demonstration video"
+                          className="w-full"
+                        />
+                      </div>
+                    )}
+
+                    {/* Share Toolbar - Under Hero Content */}
+                    <div className="flex justify-center">
+                      <CaseStudyShareToolbar 
+                        url={currentUrl}
+                        title={title}
+                        className="flex-wrap justify-center"
+                      />
+                    </div>
+                  </Card>
+                </motion.section>
+
+                {/* Case Study Sections */}
+                <div className="space-y-16">
+                  {sections.map((section, index) => (
+                    <motion.div
+                      key={section.id}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                    >
+                      <StructuredCaseStudySection {...section} />
+                    </motion.div>
+                  ))}
                 </div>
 
-                {section.image && (
-                  <div className="flex-1">
-                    {/* FIXED: Pass proper context to prevent cross-contamination */}
-                    <EditableVideo
-                      src={section.image}
-                      alt={section.imageCaption || `${section.title} illustration`}
-                      caption={section.imageCaption}
-                      editable={showEditingControls}
-                      imageContext={section.type}
-                      className="w-full"
-                    />
-                  </div>
-                )}
-              </motion.div>
-            ))}
+                {/* Contact Section */}
+                <motion.div
+                  id="contact-section"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mt-20"
+                >
+                  <CaseStudyContactSection />
+                </motion.div>
+
+                {/* Share Toolbar - At Bottom */}
+                <div className="mt-12 pt-8 border-t border-border/20 flex justify-center">
+                  <CaseStudyShareToolbar 
+                    url={currentUrl}
+                    title={title}
+                    className="flex-wrap justify-center"
+                  />
+                </div>
+
+                {/* Prev/Next Navigation */}
+                <div id="project-navigation" className="mt-12">
+                  <ProjectNavigation
+                    currentProjectId={currentProjectId}
+                    projectsData={projectsData}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </main>
+
+        <Footer />
+      </div>
+    </>
   );
 };
 

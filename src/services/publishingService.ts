@@ -1,5 +1,5 @@
 import { supabase } from '@/integrations/supabase/client';
-import { ImageStorageService } from './imageStorage';
+import { VercelBlobStorageService } from './vercelBlobStorage';
 import { fetchChangesFromDatabase, clearChangesFromDatabase } from '@/hooks/database/operations';
 import { processChangesData } from '@/hooks/database/dataProcessor';
 import { ImageProcessor } from './publishing/imageProcessor';
@@ -68,7 +68,7 @@ export class PublishingService {
           imageEntries: Object.keys(oldImageReplacements).length
         });
 
-        // Process images using Supabase Storage
+        // Process images using Vercel Blob
         const { publishedImageMappings, oldImagesToCleanup, failedUploads } = await ImageProcessor.processImages(
           devChanges.imageReplacements,
           oldImageReplacements,
@@ -195,13 +195,15 @@ export class PublishingService {
           console.log('🛡️ Preserving dev mode changes for continued editing');
         }
 
-        // Clean up old images using Supabase Storage
+        // Clean up old images using Vercel Blob
         try {
           if (oldImagesToCleanup.length > 0) {
-            await Promise.all(oldImagesToCleanup.map(url => ImageStorageService.deleteImage(url)));
+            await Promise.all(oldImagesToCleanup.map(VercelBlobStorageService.deleteImage));
+            VercelBlobStorageService.clearImageCache(oldImagesToCleanup);
           }
+          await VercelBlobStorageService.cleanupProjectImages(projectId, Object.values(finalImageReplacements));
         } catch (error) {
-          console.warn('⚠️ Supabase Storage cleanup failed:', error);
+          console.warn('⚠️ Vercel Blob cleanup failed:', error);
         }
 
         // Ensure navigation stays consistent

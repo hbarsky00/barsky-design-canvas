@@ -1,6 +1,6 @@
 
 import { useState, useCallback } from 'react';
-import { ImageStorageService } from '@/services/imageStorage';
+import { VercelBlobStorageService } from '@/services/vercelBlobStorage';
 import { toast } from 'sonner';
 
 interface UseImageReplacementProps {
@@ -45,9 +45,9 @@ export const useImageReplacement = ({
     toast.info('Uploading new image...');
     
     try {
-      console.log('📤 Replacing image via Supabase Storage:', file.name);
+      console.log('📤 Replacing image:', file.name);
       
-      const newImageUrl = await ImageStorageService.uploadImage(
+      const newImageUrl = await VercelBlobStorageService.uploadImage(
         file, 
         projectId, 
         originalSrc || `replacement-${Date.now()}`

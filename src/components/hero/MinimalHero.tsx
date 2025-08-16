@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -56,15 +55,15 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
+          className="flex flex-col items-center text-center gap-8 sm:gap-10 xl:gap-16 2xl:gap-20"
         >
-          {/* Avatar - More gradual size increases */}
+          {/* Avatar - Centered and much larger on desktop */}
           <div className="flex justify-center order-1">
             <div className="relative">
               <Avatar className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
-                               xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 shadow-lg">
+                               xl:h-64 xl:w-64 2xl:h-80 2xl:w-80 shadow-lg">
                 <AvatarImage
-                  src="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp"
+                  src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
                   alt="Hiram Barsky profile photo"
                   className="object-cover"
                 />
@@ -73,52 +72,53 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             </div>
           </div>
 
-          {/* Content - More proportional text scaling */}
+          {/* Content - Centered with much larger text on desktop */}
           <div className="order-2">
             <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
-                         xl:text-7xl 2xl:text-8xl
-                         font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight">
+                         xl:text-8xl 2xl:text-9xl
+                         font-bold text-gray-900 mb-3 sm:mb-4 xl:mb-6 2xl:mb-8 leading-tight">
               Hiram Barsky
             </h1>
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl 
-                         xl:text-5xl 2xl:text-6xl
-                         font-medium text-gray-900 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7">
+                         xl:text-6xl 2xl:text-7xl
+                         font-medium text-gray-900 mb-4 sm:mb-6 xl:mb-8 2xl:mb-12">
               Product Designer + AI
             </h2>
             <a 
               href="https://barskydesign.pro" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-blue-600 hover:text-blue-700 
-                       transition-colors duration-200 mb-2 lg:mb-3 xl:mb-4 2xl:mb-5 inline-block font-medium"
+              className="text-lg xs:text-xl sm:text-2xl xl:text-4xl 2xl:text-5xl text-blue-600 hover:text-blue-700 
+                       transition-colors duration-200 mb-3 xl:mb-6 2xl:mb-8 inline-block font-medium"
               onClick={(e) => e.stopPropagation()}
             >
               barskydesign.pro
             </a>
-            <p className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-600">
+            <p className="text-base sm:text-lg xl:text-2xl 2xl:text-3xl text-gray-600">
               Clifton, NJ
             </p>
           </div>
         </motion.div>
 
-        {/* Contact Icons Row - Reasonable sizing with better proportions */}
+        {/* Contact Icons Row - Much larger on desktop */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex justify-center items-center space-x-6 sm:space-x-8 lg:space-x-10 xl:space-x-12 2xl:space-x-14
-                     mt-6 sm:mt-8 lg:mt-10 xl:mt-12 2xl:mt-14 order-3"
+          className="flex justify-center items-center space-x-6 sm:space-x-8 xl:space-x-16 2xl:space-x-20
+                     mt-8 sm:mt-12 xl:mt-20 2xl:mt-24 order-3"
         >
           <motion.a
             href="mailto:hbarsky01@gmail.com"
             aria-label="Email Hiram Barsky"
-            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl hover:bg-blue-50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg"
+            className="p-3 sm:p-4 xl:p-8 2xl:p-10 rounded-xl hover:bg-blue-50 transition-all duration-300
+                       min-w-[44px] min-h-[44px] xl:min-w-[80px] xl:min-h-[80px] 2xl:min-w-[100px] 2xl:min-h-[100px]
+                       flex items-center justify-center hover:scale-110 hover:shadow-lg"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <Mail className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
+            <Mail className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20 
                            text-gray-600 hover:text-blue-600 transition-colors" />
           </motion.a>
 
@@ -127,13 +127,14 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit LinkedIn"
-            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl hover:bg-blue-50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg"
+            className="p-3 sm:p-4 xl:p-8 2xl:p-10 rounded-xl hover:bg-blue-50 transition-all duration-300
+                       min-w-[44px] min-h-[44px] xl:min-w-[80px] xl:min-h-[80px] 2xl:min-w-[100px] 2xl:min-h-[100px]
+                       flex items-center justify-center hover:scale-110 hover:shadow-lg"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <Linkedin className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
+            <Linkedin className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20 
                                text-gray-600 hover:text-blue-600 transition-colors" />
           </motion.a>
 
@@ -142,13 +143,14 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Book Appointment"
-            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl hover:bg-green-50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg"
+            className="p-3 sm:p-4 xl:p-8 2xl:p-10 rounded-xl hover:bg-green-50 transition-all duration-300
+                       min-w-[44px] min-h-[44px] xl:min-w-[80px] xl:min-h-[80px] 2xl:min-w-[100px] 2xl:min-h-[100px]
+                       flex items-center justify-center hover:scale-110 hover:shadow-lg"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <Calendar className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
+            <Calendar className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-16 xl:w-16 2xl:h-20 2xl:w-20 
                                text-gray-600 hover:text-green-600 transition-colors" />
           </motion.a>
         </motion.div>
@@ -182,4 +184,3 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
 };
 
 export default MinimalHero;
-

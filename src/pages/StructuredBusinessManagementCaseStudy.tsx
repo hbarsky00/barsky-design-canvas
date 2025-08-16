@@ -19,7 +19,6 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => {
       sections={caseStudyData.sections}
       projectLink={caseStudyData.projectLink}
       gradientClasses={caseStudyData.gradientClasses}
-      heroAsImage={true}
     />
   );
 };
