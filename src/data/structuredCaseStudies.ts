@@ -1,5 +1,6 @@
+
 import React from "react";
-import { Zap, BarChart4, XCircle, Sparkles, Settings, Truck, Package, Users, Target, CheckCircle2, AlertTriangle, Rocket, Wrench, Badge, Search, Eye, TrendingUp, Shield } from "lucide-react";
+import { Zap, BarChart4, XCircle, Sparkles, Settings, Truck, Package, Users, Target, CheckCircle2, AlertTriangle, Rocket, Wrench, Badge, Search, Eye, TrendingUp, Shield, TrendingDown, DollarSign, BookOpen, Lightbulb } from "lucide-react";
 import { StructuredCaseStudySectionProps } from "@/components/case-study/structured/StructuredCaseStudySection";
 
 export interface StructuredCaseStudyData {
@@ -25,6 +26,88 @@ export interface StructuredCaseStudyData {
 }
 
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
+  "investment-app": {
+    id: "investment-app",
+    title: "23% More Engagement: Making Investing Accessible to Beginners",
+    description: "Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios.",
+    tags: ["FinTech", "Educational UX", "Mobile Design", "Investment Platform", "Analytics", "Tutorial"],
+    gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
+    heroVideo: {
+      src: "",
+      poster: "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+      alt: "Investment app feature overview showing beginner-friendly interface"
+    },
+    sections: [
+      {
+        id: "the-problem",
+        title: "The Problem",
+        icon: AlertTriangle,
+        variant: "problem",
+        content: "Most investing platforms overwhelm beginners with complex jargon, confusing interfaces, and lack educational guidance. New investors often feel lost navigating traditional platforms designed for experienced traders.\n\nKey barriers included:\n• Complex financial terminology without explanation\n• Overwhelming interface with too many advanced features\n• No clear guidance on how to start or what to invest in\n• Lack of educational content integrated into the platform\n• No goal-setting or progress tracking for beginners",
+        media: {
+          type: 'image',
+          src: "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+          alt: "Investment app dashboard showing simplified, beginner-friendly interface",
+          caption: "Simplified investment dashboard designed specifically for beginners."
+        }
+      },
+      {
+        id: "quantified-impact",
+        title: "Quantified Impact",
+        icon: BarChart4,
+        variant: "impact",
+        content: "The redesigned platform delivered significant improvements in user engagement and investment knowledge.",
+        metrics: [
+          { value: "23%", label: "Increase in user engagement", trend: "up" },
+          { value: "67%", label: "Improvement in investment knowledge", trend: "up" },
+          { value: "45%", label: "Faster onboarding completion", trend: "up" },
+          { value: "89%", label: "User satisfaction rate", trend: "up" }
+        ]
+      },
+      {
+        id: "what-didnt-work",
+        title: "What Didn't Work",
+        icon: XCircle,
+        variant: "failed",
+        content: "**Complex Feature Discovery**: Initial design tried to expose all investment options upfront, overwhelming new users.\n\n**Fix**: Implemented progressive disclosure with guided learning paths that introduce features gradually.\n\n**Generic Educational Content**: Static help articles didn't connect to user actions or current market context.\n\n**Fix**: Created contextual tutorials and real-time explanations tied to specific investment decisions and market movements."
+      },
+      {
+        id: "solution-approach",
+        title: "Educational Design Innovation",
+        icon: BookOpen,
+        variant: "solution",
+        content: "I designed the platform around educational principles, making complex investing concepts accessible through:\n\n• **Guided Onboarding**: Step-by-step introduction to investing basics\n• **Goal-Based Investing**: Clear financial goal setting with progress tracking\n• **Contextual Learning**: Just-in-time education when users need it\n• **Performance Insights**: Real-time portfolio analysis with explanations\n• **Community Features**: Learning from other beginner investors",
+        media: {
+          type: 'image',
+          src: "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+          alt: "Investment app onboarding flow showing educational approach",
+          caption: "Educational onboarding flow that builds confidence through learning."
+        }
+      },
+      {
+        id: "key-features",
+        title: "Key Design Solutions",
+        icon: Lightbulb,
+        variant: "solution",
+        content: "**Simplified Dashboard**: Clean interface focusing on essential information with optional advanced features.\n\n**Goal Tracking**: Visual progress indicators showing how investments align with personal financial goals.\n\n**Educational Tooltips**: Contextual explanations for financial terms and concepts without leaving the workflow.\n\n**Performance Visualization**: Charts and graphs that explain market movements in beginner-friendly language.\n\n**Achievement System**: Gamified learning milestones to encourage continued engagement and education.",
+        tags: ["UX Design", "Educational Design", "Data Visualization", "Gamification"]
+      },
+      {
+        id: "results",
+        title: "Educational Impact",
+        icon: TrendingUp,
+        variant: "impact",
+        content: "The platform successfully transformed how beginners approach investing:\n\n• Users completed investment education modules 3x more frequently\n• Average portfolio diversity increased by 40% as users learned about different asset classes\n• Support tickets decreased by 55% due to better in-app guidance\n• User retention improved by 34% in the first three months\n\n**User Feedback**: \"Finally, an investing app that teaches instead of intimidates. I actually understand what I'm investing in now.\" - Beta User"
+      }
+    ],
+    seoData: {
+      image: "https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+      projectName: "Investment App",
+      results: ["23% increase in engagement", "67% improvement in investment knowledge", "Simplified onboarding process"],
+      technologies: ["FinTech", "Educational UX", "Mobile Design", "Investment Platform", "Analytics", "Tutorial"],
+      path: "/project/investment-app"
+    }
+  },
   "herbalink": {
     id: "herbalink",
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
