@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { generateSitemapXML, submitSitemapToSearchEngines } from '@/utils/sitemapGeneration';
 
 interface SitemapEntry {
   url: string;
@@ -11,108 +12,25 @@ interface SitemapEntry {
 const SitemapGenerator: React.FC = () => {
   const location = useLocation();
 
-  const sitemapEntries: SitemapEntry[] = [
-    {
-      url: 'https://barskydesign.pro',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'weekly',
-      priority: 1.0
-    },
-    {
-      url: 'https://barskydesign.pro/about',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/services',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.9
-    },
-    {
-      url: 'https://barskydesign.pro/projects',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'weekly',
-      priority: 0.9
-    },
-    {
-      url: 'https://barskydesign.pro/blog',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'weekly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/contact',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.7
-    },
-    // Case Studies
-    {
-      url: 'https://barskydesign.pro/project/herbalink',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/project/splittime',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: 'https://barskydesign.pro/project/investor-loan-app',
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority: 0.8
-    }
-  ];
-
+  // Client-side sitemap submission using utilities
   useEffect(() => {
-    // Generate and submit sitemap to search engines
-    const generateSitemap = () => {
-      const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapEntries.map(entry => `  <url>
-    <loc>${entry.url}</loc>
-    <lastmod>${entry.lastmod}</lastmod>
-    <changefreq>${entry.changefreq}</changefreq>
-    <priority>${entry.priority}</priority>
-  </url>`).join('\n')}
-</urlset>`;
-
-      // Submit to search engines
-      if (typeof window !== 'undefined') {
-        // Ping Google
-        const googlePingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent('https://barskydesign.pro/sitemap.xml')}`;
-        
-        // Use a more reliable method for sitemap submission
-        fetch('/api/submit-sitemap', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            sitemap: sitemapXml,
-            urls: sitemapEntries.map(entry => entry.url)
-          })
-        }).catch(error => {
-          console.log('Sitemap submission fallback:', error);
-          // Fallback: Track sitemap generation for analytics
-          if (window.gtag) {
-            window.gtag('event', 'sitemap_generated', {
-              event_category: 'SEO',
-              event_label: 'sitemap_xml',
-              value: sitemapEntries.length
-            });
-          }
-        });
+    const run = async () => {
+      try {
+        const sitemapXml = generateSitemapXML();
+        console.log('[Sitemap] Generated XML length:', sitemapXml.length);
+        await submitSitemapToSearchEngines();
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'sitemap_submitted', {
+            event_category: 'SEO',
+            value: 1,
+          });
+        }
+      } catch (error) {
+        console.error('[Sitemap] Submission failed:', error);
       }
     };
 
-    // Generate sitemap on page load
-    generateSitemap();
+    run();
   }, [location.pathname]);
 
   return null; // This component doesn't render anything visible
