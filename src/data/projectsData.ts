@@ -14,7 +14,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "HerbaLink",
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
-    image: "/lovable-uploads/54ddb7c1-ce60-4077-b56c-ae4640252d52.png",
+    image: "/lovable-uploads/0733fede-9de2-483a-8bb8-09538b044e33.png",
     videoThumbnail: "herbalink-thumb.jpg",
     video: "herbalink-demo.mp4",
     tags: ["Health", "Marketplace", "Gen AI"],
