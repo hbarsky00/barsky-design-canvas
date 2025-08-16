@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { usePageMetadata } from '@/hooks/usePageMetadata';
@@ -18,21 +18,41 @@ interface PageSEOData {
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
   const { metadata, loading } = usePageMetadata(location.pathname);
-  const [seoData, setSeoData] = useState<PageSEOData | null>(null);
+  
+  // Generate immediate canonical URL - available synchronously on first render
+  const immediateCanonicalUrl = useMemo(() => {
+    const canonical = normalizeUrl(location.pathname);
+    console.log('🚀 UnifiedSEO - IMMEDIATE CANONICAL GENERATED:', {
+      pathname: location.pathname,
+      canonical: canonical,
+      timestamp: new Date().toISOString(),
+      note: 'Available on first render for scrapers'
+    });
+    return canonical;
+  }, [location.pathname]);
+
+  // Initialize seoData with immediate canonical instead of null
+  const [seoData, setSeoData] = useState<PageSEOData>(() => ({
+    title: getDefaultTitle(location.pathname),
+    description: getDefaultDescription(location.pathname),
+    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
+    canonicalUrl: immediateCanonicalUrl,
+    pageType: getPageType(location.pathname),
+  }));
 
   useEffect(() => {
     const generateSEOData = () => {
       try {
-        console.log('🚀 UnifiedSEO - Starting SEO generation for:', location.pathname);
+        console.log('🔄 UnifiedSEO - Enhancing SEO data for:', location.pathname);
         
-        // Generate canonical URL using simplified logic
-        const canonicalUrl = normalizeUrl(location.pathname);
+        // Use the immediate canonical URL we already generated
+        const canonicalUrl = immediateCanonicalUrl;
         
-        console.log('🔗 UnifiedSEO - CANONICAL URL GENERATION:', {
+        console.log('🔗 UnifiedSEO - CANONICAL URL CONFIRMATION:', {
           originalPathname: location.pathname,
           canonicalUrl: canonicalUrl,
           baseUrl: SEO_CONSTANTS.BASE_URL,
-          source: 'UnifiedSEO (ONLY SOURCE)',
+          source: 'UnifiedSEO (Enhanced)',
           timestamp: new Date().toISOString()
         });
         
@@ -84,7 +104,7 @@ const UnifiedSEO: React.FC = () => {
             
             setSeoData(data);
             document.title = `${data.title} | ${SEO_CONSTANTS.SITE_NAME}`;
-            console.log('✅ UnifiedSEO - Project SEO Generated:', {
+            console.log('✅ UnifiedSEO - Enhanced Project SEO Generated:', {
               title: data.title,
               canonical: data.canonicalUrl,
               pageType: data.pageType
@@ -106,7 +126,7 @@ const UnifiedSEO: React.FC = () => {
           data.schemaData = generateSchema(data);
           setSeoData(data);
           document.title = data.title;
-          console.log('✅ UnifiedSEO - Database SEO Generated:', {
+          console.log('✅ UnifiedSEO - Enhanced Database SEO Generated:', {
             title: data.title,
             canonical: data.canonicalUrl,
             pageType: data.pageType
@@ -114,7 +134,7 @@ const UnifiedSEO: React.FC = () => {
           return;
         }
 
-        // Fallback for pages without database entries
+        // Fallback for pages without database entries - enhance existing seoData
         const fallbackData: PageSEOData = {
           title: getDefaultTitle(location.pathname),
           description: getDefaultDescription(location.pathname),
@@ -126,7 +146,7 @@ const UnifiedSEO: React.FC = () => {
         fallbackData.schemaData = generateSchema(fallbackData);
         setSeoData(fallbackData);
         document.title = fallbackData.title;
-        console.log('✅ UnifiedSEO - Fallback SEO Generated:', {
+        console.log('✅ UnifiedSEO - Enhanced Fallback SEO Generated:', {
           title: fallbackData.title,
           canonical: fallbackData.canonicalUrl,
           pageType: fallbackData.pageType
@@ -134,25 +154,25 @@ const UnifiedSEO: React.FC = () => {
         
       } catch (error) {
         console.error('❌ UnifiedSEO - SEO generation error:', error);
-        // Ultimate fallback with proper URL normalization
-        const fallbackCanonical = normalizeUrl(location.pathname);
-        setSeoData({
+        // Keep the immediate canonical URL even in error cases
+        setSeoData(prevData => ({
+          ...prevData,
           title: 'Hiram Barsky Design - Product Designer & Gen AI Developer',
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
           image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-          canonicalUrl: fallbackCanonical,
+          canonicalUrl: immediateCanonicalUrl,
           pageType: 'page'
-        });
-        console.log('🔄 UnifiedSEO - Emergency fallback applied:', fallbackCanonical);
+        }));
+        console.log('🔄 UnifiedSEO - Emergency fallback applied with canonical:', immediateCanonicalUrl);
       }
     };
 
     if (!loading) {
       generateSEOData();
     }
-  }, [location.pathname, metadata, loading]);
+  }, [location.pathname, metadata, loading, immediateCanonicalUrl]);
 
-  const getDefaultTitle = (pathname: string): string => {
+  function getDefaultTitle(pathname: string): string {
     if (pathname === '/') return 'Hiram Barsky - Product Designer & Gen AI Developer';  
     if (pathname.startsWith('/blog/')) return 'Blog Post | Hiram Barsky Design';
     if (pathname === '/projects') return 'Product Design Portfolio | Hiram Barsky Design';
@@ -165,9 +185,9 @@ const UnifiedSEO: React.FC = () => {
       return `${service?.replace('-', ' ')} | Hiram Barsky Design`;
     }
     return 'Hiram Barsky Design - Product Designer & Gen AI Developer';
-  };
+  }
 
-  const getDefaultDescription = (pathname: string): string => {
+  function getDefaultDescription(pathname: string): string {
     if (pathname === '/') return SEO_CONSTANTS.DEFAULT_DESCRIPTION;
     if (pathname.startsWith('/blog/')) return 'Insights on product design, UX research, and AI integration in digital product development.';
     if (pathname === '/projects') return 'Explore Product Design portfolio featuring Gen AI integration, intelligent web applications, and AI-powered user interfaces.';
@@ -177,7 +197,7 @@ const UnifiedSEO: React.FC = () => {
     if (pathname === '/blog') return 'Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization.';
     if (pathname.startsWith('/design-services/')) return 'Professional design services and Gen AI development for digital product experiences.';
     return SEO_CONSTANTS.DEFAULT_DESCRIPTION;
-  };
+  }
 
   const getPageImage = (): string | null => {
     // Try to find page-specific images from DOM
@@ -248,16 +268,14 @@ const UnifiedSEO: React.FC = () => {
     return baseSchema;
   };
 
-  if (!seoData) {
-    console.log('⏳ UnifiedSEO - No SEO data yet, waiting...');
-    return null;
-  }
-
-  console.log('🎯 UnifiedSEO - RENDERING SEO TAGS:', {
+  // CRITICAL: Always render SEO tags - never return null
+  // This ensures scrapers like LinkedIn always see canonical URLs
+  console.log('🎯 UnifiedSEO - RENDERING SEO TAGS (ALWAYS):', {
     title: seoData.title,
     canonical: seoData.canonicalUrl,
     image: seoData.image,
-    pageType: seoData.pageType
+    pageType: seoData.pageType,
+    note: 'Available immediately for scrapers'
   });
 
   return (
