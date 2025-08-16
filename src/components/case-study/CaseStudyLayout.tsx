@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -8,7 +9,6 @@ import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
-import DynamicSeo from "@/components/seo/DynamicSeo";
 
 interface CaseStudySection {
   id: string;
@@ -77,16 +77,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
 
   return (
     <>
-      <DynamicSeo 
-        type="project"
-        title={title}
-        description={description}
-        image={image}
-        projectName={projectName}
-        results={results}
-        technologies={technologies}
-        path={path}
-      />
+      {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses} ${isProjectPage ? 'projects-page' : ''}`}>
         {/* 3D Transition Overlay */}

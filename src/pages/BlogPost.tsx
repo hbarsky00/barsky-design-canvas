@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,7 +8,6 @@ import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
 import { blogPosts } from '@/data/blogData';
 import { InternalLinkEnhancer, RelatedPosts } from '@/components/blog/InternalLinkEnhancer';
 import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
-import DynamicSeo from '@/components/seo/DynamicSeo';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -66,18 +66,7 @@ const BlogPostPage: React.FC = () => {
 
   return (
     <>
-      <DynamicSeo
-        type="blog-post"
-        title={seoData.title}
-        description={seoData.description}
-        excerpt={seoData.description}
-        featuredImage={seoData.featuredImage}
-        author={seoData.author}
-        publishedDate={seoData.publishedDate}
-        tags={seoData.tags}
-        slug={seoData.slug}
-        path={seoData.path}
-      />
+      {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
