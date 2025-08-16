@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { fetchPageMetadata, fetchBlogPost } from "@/hooks/database/operations";
 import { normalizeUrl } from "@/utils/seo/canonicalUtils";
 import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
+import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 
 interface SEOData {
   title: string;
@@ -100,21 +101,45 @@ const UnifiedSEO: React.FC = () => {
             };
           }
         } else {
-          // Handle other pages
-          console.log('📄 Loading page metadata for:', pathname);
-          const pageMetadata = await fetchPageMetadata(pathname);
-          
-          if (pageMetadata) {
-            enhancedSeoData = {
-              title: pageMetadata.seo_title,
-              description: pageMetadata.seo_description,
-              canonical: normalizeUrl(pathname),
-              image: pageMetadata.featured_image || enhancedSeoData.image,
-              type: 'website'
-            };
+          // Handle project pages first
+          if (pathname.startsWith('/project/')) {
+            const projectId = pathname.replace('/project/', '').replace('/', '');
+            console.log('🎯 Loading project page SEO for:', projectId);
+            
+            // Try to get structured case study data
+            const caseStudyData = getStructuredCaseStudy(projectId);
+            
+            if (caseStudyData) {
+              enhancedSeoData = {
+                title: caseStudyData.title,
+                description: caseStudyData.description,
+                canonical: normalizeUrl(pathname),
+                image: caseStudyData.seoData?.image || enhancedSeoData.image,
+                type: 'website'
+              };
+              console.log('✨ Using structured case study SEO data for project:', projectId);
+            } else {
+              // Fallback to generic project data
+              enhancedSeoData.canonical = normalizeUrl(pathname);
+              console.log('⚠️ No structured case study found for project:', projectId);
+            }
           } else {
-            // Update canonical for pages without database entries
-            enhancedSeoData.canonical = normalizeUrl(pathname);
+            // Handle other pages
+            console.log('📄 Loading page metadata for:', pathname);
+            const pageMetadata = await fetchPageMetadata(pathname);
+            
+            if (pageMetadata) {
+              enhancedSeoData = {
+                title: pageMetadata.seo_title,
+                description: pageMetadata.seo_description,
+                canonical: normalizeUrl(pathname),
+                image: pageMetadata.featured_image || enhancedSeoData.image,
+                type: 'website'
+              };
+            } else {
+              // Update canonical for pages without database entries
+              enhancedSeoData.canonical = normalizeUrl(pathname);
+            }
           }
         }
 
