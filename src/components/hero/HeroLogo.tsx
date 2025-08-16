@@ -8,8 +8,8 @@ interface HeroLogoProps {
 }
 
 const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
-  // Using your new uploaded headshot
-  const imageUrl = '/lovable-uploads/f956968d-5248-4275-b0b3-dbea23c0d1b6.png';
+  // Using the correct Supabase Storage URL - this should work
+  const imageUrl = 'https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/f956968d-5248-4275-b0b3-dbea23c0d1b6.png';
   
   console.log('HeroLogo: Using image URL:', imageUrl);
   
