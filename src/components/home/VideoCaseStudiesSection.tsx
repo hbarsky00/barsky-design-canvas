@@ -48,7 +48,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/splittime",
     liveUrl: "https://splittime.pro",
     images: {
-      primary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png",
       secondary: "images/desktop-signup-1.png",
       alt: "SplitTime web and mobile views showing scheduling features"
     },
