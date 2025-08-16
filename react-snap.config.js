@@ -1,32 +1,39 @@
+
 module.exports = {
+  crawl: true,
   include: [
     "/",
+    "/about",
     "/projects", 
     "/contact",
-    "/about",
-    "/blog",
-    "/services",
-    "/case-studies/herbalink-mobile-herbalist-ux-design",
+    "/case-studies/herbalink-ai-herbalist-platform",
     "/case-studies/splittime-coparenting-app-design",
     "/case-studies/investor-loan-portfolio-management", 
     "/case-studies/wholesale-distribution-ai-solution",
+    "/project/business-management",
     "/project/wholesale-distribution",
     "/project/investment-app",
+    "/project/herbalink",
+    "/project/splittime",
+    "/project/investor-loan-app",
     "/design-services/ux-ui-design",
     "/design-services/web-development",
     "/design-services/mobile-app-design",
-    "/store",
-    "/get-started", 
-    "/free-audit",
-    "/services/mvp-validation",
-    "/services/conversion-audit",
-    "/services/ai-redesign",
-    "/linkedin-visitors"
+    "/design-services/ai-automation",
+    "/design-services/conversion-optimization",
+    "/blog/ai-ux-design-trends",
+    "/blog/conversion-rate-optimization",
+    "/blog/mobile-first-design",
+    "/blog/user-research-methods",
+    "/blog/design-system-benefits"
   ],
   skipThirdPartyRequests: true,
   cacheAjaxRequests: false,
-  puppeteerArgs: ["--no-sandbox", "--disable-setuid-sandbox"],
-  crawl: false,
+  preloadImages: false,
+  minifyHtml: { 
+    removeComments: true,
+    collapseWhitespace: true
+  },
   waitFor: 1000,
   destination: "dist"
 };
