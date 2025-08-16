@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -26,7 +24,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   const isProjectPage = useProjectPageDetection();
   
   // Get current URL for sharing with safety check
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : `${typeof window !== 'undefined' ? window.location.origin : 'https://barskydesign.pro'}${caseStudyData.seoData?.path}`;
+  const currentUrl = typeof window !== 'undefined' && window.location 
+    ? window.location.href 
+    : `https://barskydesign.pro${caseStudyData.seoData?.path || ''}`;
 
   // Create navigation items from sections
   const navigationItems = [
@@ -120,4 +120,3 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 };
 
 export default StructuredCaseStudyLayout;
-
