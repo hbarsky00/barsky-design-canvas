@@ -1,23 +1,14 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactInformation from '@/components/contact/ContactInformation';
 import ContactForm from '@/components/contact/ContactForm';
 import BlogPreview from '@/components/blog/BlogPreview';
-import DynamicSeo from '@/components/seo/DynamicSeo';
 
 const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <DynamicSeo 
-        type="page"
-        title="Contact Hiram Barsky - AI Design Consultation"
-        description="Get in touch for AI-enhanced product design services. Specializing in intelligent web applications and AI-powered user interfaces."
-        path="/contact"
-      />
-      
       <Header />
       <main className="flex-grow pt-16">
         <section className="py-12 dark:bg-gray-900">

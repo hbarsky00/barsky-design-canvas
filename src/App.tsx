@@ -7,7 +7,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
 
-// Removed global UnifiedSEO import to prevent conflicts
+// Global SEO component
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -33,7 +34,8 @@ function App() {
         <ImageMaximizerProvider>
           <Router>
             <ScrollToTop />
-            {/* Removed global UnifiedSEO to avoid meta tag conflicts; rely on page-level SEO components */}
+            {/* Global Unified SEO System */}
+            <UnifiedSEO />
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
@@ -68,4 +70,3 @@ function App() {
 }
 
 export default App;
-
