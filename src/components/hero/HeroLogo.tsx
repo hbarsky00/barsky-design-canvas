@@ -8,10 +8,18 @@ interface HeroLogoProps {
 }
 
 const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
-  // Your uploaded headshot image URL
-  const imageUrl = 'https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/ed0e5085-ca47-4b76-9a2f-dba63d0d7e4c.png';
+  // Using the working image URL from previous diff
+  const imageUrl = 'https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png';
   
   console.log('HeroLogo: Using image URL:', imageUrl);
+  
+  // Test image loading
+  React.useEffect(() => {
+    const img = new Image();
+    img.onload = () => console.log('✅ HeroLogo image loaded successfully');
+    img.onerror = (e) => console.error('❌ HeroLogo image failed to load:', e);
+    img.src = imageUrl;
+  }, [imageUrl]);
   
   return (
     <motion.div
