@@ -11,6 +11,7 @@ import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
+import StructuredCaseStudySection from "./StructuredCaseStudySection";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -96,16 +97,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 {caseStudyData.sections.map((section) => (
                   <section key={section.id} id={section.id} className="scroll-mt-24">
                     <div className="bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20">
-                      <h2 className="text-4xl font-bold text-gray-900 mb-12 text-left lg:text-center">
-                        {section.title}
-                      </h2>
-                      <div className="prose prose-lg max-w-none">
-                        {section.content.map((paragraph, index) => (
-                          <p key={index} className="text-lg text-muted-foreground leading-relaxed mb-6">
-                            {paragraph}
-                          </p>
-                        ))}
-                      </div>
+                      <StructuredCaseStudySection {...section} />
                     </div>
                   </section>
                 ))}

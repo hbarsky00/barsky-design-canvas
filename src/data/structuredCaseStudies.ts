@@ -36,7 +36,6 @@ export interface StructuredCaseStudyData extends Omit<ProjectProps, 'href'> {
     content: string[];
   }>;
   gradientClasses?: string;
-  projectLink?: string;
 }
 
 export const structuredCaseStudies: StructuredCaseStudyData[] = [
