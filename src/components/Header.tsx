@@ -1,3 +1,4 @@
+
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
@@ -50,7 +51,7 @@ const Header: React.FC = () => {
         <div className={cn("flex justify-between items-center", "h-16 sm:h-18")}>
           <div className="flex items-center justify-start min-w-0 flex-1">
             {shouldShowLogo && (
-              <div className="transition-opacity duration-300">
+              <div className="transition-opacity duration-300 flex items-center">
                 <ProfileAvatar />
               </div>
             )}
