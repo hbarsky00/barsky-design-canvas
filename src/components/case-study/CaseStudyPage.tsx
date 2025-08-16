@@ -10,9 +10,7 @@ import CaseStudyHero from "./CaseStudyHero";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudySection from "./CaseStudySection";
 import CaseStudyContactSection from "./CaseStudyContactSection";
-
-// Use StructuredCaseStudySEO instead of DynamicSeo for consistency
-import StructuredCaseStudySEO from "@/components/seo/StructuredCaseStudySEO";
+import LegacyCaseStudySEO from "@/components/seo/LegacyCaseStudySEO";
 
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,26 +21,16 @@ const CaseStudyPage: React.FC = () => {
     return <Navigate to="/" replace />;
   }
 
-  // Transform legacy case study data to match StructuredCaseStudyData format
-  const structuredCaseStudyData = {
-    id: id || "",
-    title: caseStudy.title,
-    description: caseStudy.description,
-    tags: caseStudy.tags,
-    sections: [], // Legacy sections handled separately
-    seoData: {
-      image: caseStudy.videoThumbnail || "/images/default-og-image.jpg",
-      projectName: caseStudy.title,
-      results: [],
-      technologies: caseStudy.tags,
-      path: `/${id}/`
-    }
-  };
-
   return (
     <>
       <Header />
-      <StructuredCaseStudySEO caseStudy={structuredCaseStudyData} />
+      <LegacyCaseStudySEO 
+        title={caseStudy.title}
+        description={caseStudy.description}
+        image={caseStudy.videoThumbnail || "/images/default-og-image.jpg"}
+        tags={caseStudy.tags}
+        path={`/${id}/`}
+      />
       
       <motion.div
         initial={{ opacity: 0 }}
