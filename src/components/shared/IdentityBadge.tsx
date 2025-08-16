@@ -58,7 +58,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
   const s = sizeMap[size];
   const Wrapper: any = to ? Link : "div";
 
-  console.log('IdentityBadge: Attempting to load image:', imageSrc);
+  console.log('🔍 IdentityBadge: Image URL being used:', imageSrc);
+  console.log('🔍 IdentityBadge: Component size:', size);
 
   return (
     <Wrapper
@@ -86,10 +87,21 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
             loading="eager"
             width={s.imgWH}
             height={s.imgWH}
-            onLoad={() => console.log('Image loaded successfully:', imageSrc)}
-            onError={(e) => console.error('Image failed to load:', imageSrc, e)}
+            onLoad={() => {
+              console.log('✅ IdentityBadge: Image loaded successfully!', imageSrc);
+            }}
+            onError={(e) => {
+              console.error('❌ IdentityBadge: Image failed to load!', imageSrc);
+              console.error('❌ Error details:', e);
+              // Test if the URL is accessible
+              fetch(imageSrc, { method: 'HEAD', mode: 'no-cors' })
+                .then(() => console.log('🌐 URL is accessible via fetch'))
+                .catch(err => console.error('🌐 URL fetch failed:', err));
+            }}
           />
-          <AvatarFallback>{getInitials(name)}</AvatarFallback>
+          <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
+            {getInitials(name)}
+          </AvatarFallback>
         </Avatar>
       </div>
 
