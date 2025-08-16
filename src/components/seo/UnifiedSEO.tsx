@@ -21,41 +21,55 @@ interface SEOData {
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
   
-  // Generate immediate canonical URL safely
+  // Generate immediate canonical URL with enhanced debugging
   const immediateCanonical = useMemo(() => {
-    // Ensure location and pathname exist before accessing
-    if (!location || !location.pathname) {
-      return 'https://barskydesign.pro/';
-    }
-    return normalizeUrl(location.pathname);
+    const pathname = location?.pathname || '/';
+    const canonical = normalizeUrl(pathname);
+    
+    // Enhanced debugging for canonical generation
+    console.log('🔥 CANONICAL DEBUG - IMMEDIATE GENERATION:', {
+      pathname,
+      canonical,
+      locationExists: !!location,
+      timestamp: new Date().toISOString(),
+      userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'SSR',
+      isLinkedInBot: typeof navigator !== 'undefined' && navigator.userAgent.includes('LinkedInBot'),
+      isScraper: typeof navigator !== 'undefined' && /bot|crawler|spider|scraper/i.test(navigator.userAgent)
+    });
+    
+    return canonical;
   }, [location?.pathname]);
 
   // Initialize seoData with immediate canonical URL
-  const [seoData, setSeoData] = useState<SEOData>(() => ({
-    title: "Hiram Barsky - UX/UI Designer & Developer",
-    description: "Professional UX/UI design and development services by Hiram Barsky. Specializing in user-centered design and modern web applications.",
-    canonical: immediateCanonical,
-    image: "https://barskydesign.pro/images/profile-hero.jpg",
-    type: 'website'
-  }));
-
-  console.log('🚀 UnifiedSEO - IMMEDIATE CANONICAL GENERATED:', {
-    pathname: location?.pathname || 'undefined',
-    canonical: immediateCanonical,
-    timestamp: new Date().toISOString(),
-    note: "Available on first render for scrapers"
+  const [seoData, setSeoData] = useState<SEOData>(() => {
+    const initialData = {
+      title: "Hiram Barsky - UX/UI Designer & Developer",
+      description: "Professional UX/UI design and development services by Hiram Barsky. Specializing in user-centered design and modern web applications.",
+      canonical: immediateCanonical,
+      image: "https://barskydesign.pro/images/profile-hero.jpg",
+      type: 'website' as const
+    };
+    
+    console.log('🚀 UnifiedSEO - INITIAL SEO DATA:', {
+      ...initialData,
+      timestamp: new Date().toISOString(),
+      note: "IMMEDIATE - Available for scrapers on first render"
+    });
+    
+    return initialData;
   });
 
   useEffect(() => {
     const loadSEOData = async () => {
-      // Additional safety check
-      if (!location || !location.pathname) {
-        console.warn('⚠️ UnifiedSEO: location or pathname not available yet');
-        return;
-      }
-
-      const pathname = location.pathname;
-      console.log('🔍 UnifiedSEO: Loading SEO data for:', pathname);
+      const pathname = location?.pathname || '/';
+      
+      console.log('🔍 ENHANCED SEO LOADING DEBUG:', {
+        pathname,
+        immediateCanonical,
+        currentSeoCanonical: seoData.canonical,
+        timestamp: new Date().toISOString(),
+        loadingStarted: true
+      });
 
       try {
         let enhancedSeoData: SEOData = {
@@ -104,11 +118,24 @@ const UnifiedSEO: React.FC = () => {
           }
         }
 
-        console.log('✅ UnifiedSEO: Final SEO data:', enhancedSeoData);
+        console.log('✅ FINAL SEO DATA COMPLETE:', {
+          ...enhancedSeoData,
+          timestamp: new Date().toISOString(),
+          canonicalChanged: enhancedSeoData.canonical !== seoData.canonical,
+          previousCanonical: seoData.canonical,
+          newCanonical: enhancedSeoData.canonical
+        });
+        
         setSeoData(enhancedSeoData);
 
       } catch (error) {
-        console.error('❌ UnifiedSEO: Error loading SEO data:', error);
+        console.error('❌ SEO DATA ERROR - FALLING BACK TO IMMEDIATE CANONICAL:', {
+          error,
+          pathname,
+          fallbackCanonical: immediateCanonical,
+          timestamp: new Date().toISOString()
+        });
+        
         // On error, at least update the canonical URL
         setSeoData(prev => ({
           ...prev,
@@ -122,11 +149,25 @@ const UnifiedSEO: React.FC = () => {
 
   const structuredData = generateStructuredData(seoData);
 
+  // Final debug before render
+  console.log('🎯 FINAL RENDER - CANONICAL URL:', {
+    canonical: seoData.canonical,
+    title: seoData.title,
+    pathname: location?.pathname,
+    timestamp: new Date().toISOString(),
+    renderNumber: Math.random()
+  });
+
   return (
     <Helmet>
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
+      
+      {/* Force scrapers to see canonical immediately */}
+      <meta property="og:url" content={seoData.canonical} />
+      <meta name="robots" content="index,follow" />
+      <meta name="googlebot" content="index,follow" />
       
       {/* Open Graph */}
       <meta property="og:title" content={seoData.title} />
