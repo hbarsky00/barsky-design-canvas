@@ -17,10 +17,10 @@ export const usePageIndexing = () => {
       // Submit URL for indexing
       await submitUrlForIndexing(canonicalUrl);
       
-      // Enhanced meta tags for better crawling
+      // Enhanced meta tags for better crawling - BUT NO CANONICAL TAGS
       const addCrawlingHints = () => {
-        // Remove existing crawling hints
-        const existingHints = document.querySelectorAll('meta[name*="crawl"], link[rel="next"], link[rel="prev"]');
+        // Remove existing crawling hints (but NOT canonical tags - UnifiedSEO handles those)
+        const existingHints = document.querySelectorAll('meta[name*="crawl"]:not([rel="canonical"]), link[rel="next"], link[rel="prev"]');
         existingHints.forEach(hint => hint.remove());
         
         // Add crawling priority hints
@@ -37,8 +37,7 @@ export const usePageIndexing = () => {
           document.head.appendChild(fetchMeta);
         }
         
-        // Skip canonical URL creation - handled by SEO components to prevent duplicates
-        // This prevents the hook from creating additional canonical tags
+        // IMPORTANT: Do NOT create canonical tags here - UnifiedSEO is the ONLY source
       };
       
       addCrawlingHints();
@@ -49,7 +48,7 @@ export const usePageIndexing = () => {
         priority: config.priority,
         changeFreq: config.changeFreq,
         canonicalUrl: canonicalUrl,
-        indexingSignals: 'enhanced'
+        note: 'Canonical handled by UnifiedSEO only'
       });
     };
 

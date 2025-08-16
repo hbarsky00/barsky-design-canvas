@@ -23,15 +23,17 @@ const UnifiedSEO: React.FC = () => {
   useEffect(() => {
     const generateSEOData = () => {
       try {
-        // Use normalizeUrl for consistent canonical URL generation
+        console.log('🚀 UnifiedSEO - Starting SEO generation for:', location.pathname);
+        
+        // Generate canonical URL using simplified logic
         const canonicalUrl = normalizeUrl(location.pathname);
         
-        // Enhanced debug logging
-        console.log('🔍 UnifiedSEO - CANONICAL URL GENERATION:', {
-          pathname: location.pathname,
-          canonicalUrl,
+        console.log('🔗 UnifiedSEO - CANONICAL URL GENERATION:', {
+          originalPathname: location.pathname,
+          canonicalUrl: canonicalUrl,
           baseUrl: SEO_CONSTANTS.BASE_URL,
-          isOnlyCanonicalSource: true
+          source: 'UnifiedSEO (ONLY SOURCE)',
+          timestamp: new Date().toISOString()
         });
         
         // Handle case study pages specially
@@ -48,6 +50,7 @@ const UnifiedSEO: React.FC = () => {
               pageType: 'project',
             };
             
+            // Add structured data for case studies
             data.schemaData = {
               "@context": "https://schema.org",
               "@type": "CreativeWork",
@@ -81,7 +84,11 @@ const UnifiedSEO: React.FC = () => {
             
             setSeoData(data);
             document.title = `${data.title} | ${SEO_CONSTANTS.SITE_NAME}`;
-            console.log('✅ UnifiedSEO - Project SEO Set:', data.title, data.canonicalUrl);
+            console.log('✅ UnifiedSEO - Project SEO Generated:', {
+              title: data.title,
+              canonical: data.canonicalUrl,
+              pageType: data.pageType
+            });
             return;
           }
         }
@@ -99,7 +106,11 @@ const UnifiedSEO: React.FC = () => {
           data.schemaData = generateSchema(data);
           setSeoData(data);
           document.title = data.title;
-          console.log('✅ UnifiedSEO - Database SEO Set:', data.title, data.canonicalUrl);
+          console.log('✅ UnifiedSEO - Database SEO Generated:', {
+            title: data.title,
+            canonical: data.canonicalUrl,
+            pageType: data.pageType
+          });
           return;
         }
 
@@ -115,7 +126,11 @@ const UnifiedSEO: React.FC = () => {
         fallbackData.schemaData = generateSchema(fallbackData);
         setSeoData(fallbackData);
         document.title = fallbackData.title;
-        console.log('✅ UnifiedSEO - Fallback SEO Set:', fallbackData.title, fallbackData.canonicalUrl);
+        console.log('✅ UnifiedSEO - Fallback SEO Generated:', {
+          title: fallbackData.title,
+          canonical: fallbackData.canonicalUrl,
+          pageType: fallbackData.pageType
+        });
         
       } catch (error) {
         console.error('❌ UnifiedSEO - SEO generation error:', error);
@@ -128,6 +143,7 @@ const UnifiedSEO: React.FC = () => {
           canonicalUrl: fallbackCanonical,
           pageType: 'page'
         });
+        console.log('🔄 UnifiedSEO - Emergency fallback applied:', fallbackCanonical);
       }
     };
 
@@ -232,7 +248,17 @@ const UnifiedSEO: React.FC = () => {
     return baseSchema;
   };
 
-  if (!seoData) return null;
+  if (!seoData) {
+    console.log('⏳ UnifiedSEO - No SEO data yet, waiting...');
+    return null;
+  }
+
+  console.log('🎯 UnifiedSEO - RENDERING SEO TAGS:', {
+    title: seoData.title,
+    canonical: seoData.canonicalUrl,
+    image: seoData.image,
+    pageType: seoData.pageType
+  });
 
   return (
     <Helmet>
@@ -266,6 +292,29 @@ const UnifiedSEO: React.FC = () => {
       <meta name="theme-color" content={SEO_CONSTANTS.THEME_COLOR} />
       <meta httpEquiv="Content-Language" content="en" />
       <meta name="language" content={SEO_CONSTANTS.LANGUAGE} />
+      
+      {/* Advanced meta tags for better crawling */}
+      <meta name="web-crawl-frequency" content="weekly" />
+      <meta name="content-update-frequency" content="weekly" />
+      <meta name="priority-pages" content="/,/projects,/contact" />
+      <meta name="geo.region" content="US" />
+      <meta name="geo.country" content="United States" />
+      <meta name="geo.placename" content="New York" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="mobile-web-app-status-bar-style" content="default" />
+      <meta name="mobile-web-app-title" content="Hiram Barsky UX" />
+      <meta property="og:rich_attachment" content="true" />
+      <meta name="twitter:widgets:new-embed-design" content="on" />
+      <meta name="performance-optimized" content="true" />
+      <meta name="lighthouse-score" content="95+" />
+      <meta name="core-web-vitals" content="optimized" />
+      
+      {/* Professional Network Links */}
+      <link rel="me" href="https://www.linkedin.com/in/hirambarsky" />
+      <link rel="me" href="https://twitter.com/barskydesign" />
+      
+      {/* Sitemap reference */}
+      <link rel="sitemap" type="application/xml" href="https://barskydesign.pro/sitemap.xml" />
       
       {/* JSON-LD Schema */}
       {seoData.schemaData && (

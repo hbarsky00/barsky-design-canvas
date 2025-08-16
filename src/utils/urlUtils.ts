@@ -1,72 +1,76 @@
 
 /**
- * URL normalization utilities for consistent canonical URLs across the application
+ * Simplified URL normalization utilities for consistent canonical URLs
  */
 
+const PRODUCTION_BASE_URL = 'https://barskydesign.pro';
+
+/**
+ * Gets the base URL - always returns production domain for canonical URLs
+ */
 const getDynamicBaseUrl = (): string => {
-  if (typeof window !== 'undefined') {
-    const origin = window.location.origin;
-    // Always use production domain for canonical URLs regardless of current environment
-    if (origin.includes('lovable.app') || origin.includes('localhost')) {
-      return 'https://barskydesign.pro';
-    }
-    return origin;
-  }
-  return process.env.REACT_APP_BASE_URL || 'https://barskydesign.pro';
+  // Always use production domain for canonical URLs regardless of environment
+  return PRODUCTION_BASE_URL;
 };
 
 /**
- * Normalizes a URL path to ensure consistency across the application
+ * Normalizes a URL path to ensure consistency - SIMPLIFIED VERSION
  * - Always returns production canonical URLs
- * - Removes trailing slashes except for root path
- * - Handles index.html variations
- * - Returns consistent canonical format
+ * - Handles trailing slashes correctly
+ * - No complex path manipulation
  */
 export const normalizeUrl = (path: string): string => {
   const BASE_URL = getDynamicBaseUrl();
   
-  // Normalize to pathname only and handle absolute/relative inputs
-  try {
-    const u = new URL(path, BASE_URL);
-    path = u.pathname;
-  } catch {
-    // keep original path if URL constructor fails
+  console.log('🔧 normalizeUrl - Input path:', path);
+  
+  // Clean the path first
+  let cleanPath = path;
+  
+  // Handle absolute URLs - extract pathname only
+  if (path.startsWith('http')) {
+    try {
+      const url = new URL(path);
+      cleanPath = url.pathname;
+    } catch (error) {
+      console.warn('⚠️ normalizeUrl - Invalid URL, using as-is:', path);
+      cleanPath = path;
+    }
   }
-
-  // Handle root path variations
-  if (path === '' || path === '/' || path === '/index.html' || path === '/index.htm') {
-    return `${BASE_URL}/`;
+  
+  // Ensure path starts with /
+  if (!cleanPath.startsWith('/')) {
+    cleanPath = `/${cleanPath}`;
   }
-
-  // Strip any trailing index.html from paths
-  path = path.replace(/\/index\.html?$/i, '/');
-
-  // Ensure path starts with '/'
-  if (!path.startsWith('/')) {
-    path = `/${path}`;
+  
+  // Handle root path - should be just /
+  if (cleanPath === '/' || cleanPath === '/index.html' || cleanPath === '/index.htm') {
+    const result = `${BASE_URL}/`;
+    console.log('✅ normalizeUrl - Root path result:', result);
+    return result;
   }
-
-  // Remove extra trailing slashes first
-  path = path.replace(/\/+$/, '');
-
-  // Determine if the last segment looks like a file (has an extension)
-  const lastSegment = path.split('#')[0].split('?')[0].split('/').pop() || '';
-  const isFile = /\.[a-z0-9]+$/i.test(lastSegment);
-
-  // Ensure trailing slash for non-file paths
-  if (!isFile && !path.endsWith('/')) {
-    path = `${path}/`;
+  
+  // Remove trailing index.html variations
+  cleanPath = cleanPath.replace(/\/index\.html?$/i, '/');
+  
+  // For non-root paths, ensure they end with / for consistency
+  if (!cleanPath.endsWith('/') && !cleanPath.includes('.')) {
+    cleanPath = `${cleanPath}/`;
   }
-
-  // Always return production canonical URL
-  return `${BASE_URL}${path}`;
+  
+  const result = `${BASE_URL}${cleanPath}`;
+  console.log('✅ normalizeUrl - Final result:', result);
+  return result;
 };
 
 /**
  * Gets the canonical URL for the current pathname
  */
 export const getCanonicalUrl = (pathname: string): string => {
-  return normalizeUrl(pathname);
+  console.log('🔍 getCanonicalUrl - Input pathname:', pathname);
+  const result = normalizeUrl(pathname);
+  console.log('🔍 getCanonicalUrl - Output canonical:', result);
+  return result;
 };
 
 /**
