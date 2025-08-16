@@ -12,13 +12,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => {
 
   return (
     <StructuredCaseStudyLayout
-      title={caseStudyData.title}
-      description={caseStudyData.description}
-      tags={caseStudyData.tags}
-      heroVideo={caseStudyData.heroVideo}
-      sections={caseStudyData.sections}
-      projectLink={caseStudyData.projectLink}
-      gradientClasses={caseStudyData.gradientClasses}
+      caseStudyData={caseStudyData}
       heroAsImage={true}
     />
   );

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
+import StructuredCaseStudySEO from "@/components/seo/StructuredCaseStudySEO";
 import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import StructuredCaseStudySection, { StructuredCaseStudySectionProps } from "./StructuredCaseStudySection";
@@ -19,34 +19,21 @@ import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import { useLocation } from "react-router-dom";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
+import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 
 interface StructuredCaseStudyLayoutProps {
-  title: string;
-  description: string;
-  tags: string[];
-  heroVideo?: {
-    src: string;
-    poster: string;
-    alt: string;
-  };
-  sections: StructuredCaseStudySectionProps[];
-  projectLink?: string;
-  gradientClasses?: string;
+  caseStudyData: StructuredCaseStudyData;
   showNavigation?: boolean;
   heroAsImage?: boolean;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
-  title,
-  description,
-  tags,
-  heroVideo,
-  sections,
-  projectLink,
-  gradientClasses = "from-primary-container/20 to-secondary-container/20",
+  caseStudyData,
   showNavigation = true,
   heroAsImage = false
 }) => {
+  const { title, description, tags, heroVideo, sections, projectLink, gradientClasses } = caseStudyData;
+  
   // Get current URL for sharing
   const { pathname } = useLocation();
   const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${pathname}`;
@@ -86,15 +73,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
   return (
     <>
-      {/* Unified SEO - automatically detects page content */}
-      <UnifiedSEO />
-      
-      {/* Hidden meta tags for SEO detection */}
-      <meta name="page-title" content={title} />
-      <meta name="page-description" content={description} />
-      {heroVideo && <meta name="page-image" content={heroVideo.poster} />}
+      {/* Structured Case Study SEO */}
+      <StructuredCaseStudySEO caseStudy={caseStudyData} />
 
-      <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
+      <div className={`min-h-screen bg-gradient-to-br ${gradientClasses || "from-primary-container/20 to-secondary-container/20"}`}>
         {/* 3D Transition Overlay */}
         <Section3DOverlay 
           isVisible={isTransitioning} 
