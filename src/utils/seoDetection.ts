@@ -1,4 +1,3 @@
-
 interface PageSEOData {
   title: string;
   description: string;
@@ -9,8 +8,8 @@ interface PageSEOData {
 }
 
 const BASE_URL = 'https://barskydesign.pro';
-// Updated to use your circular headshot as the default OG image
-const DEFAULT_IMAGE = `${BASE_URL}/images/default-og-image.jpg`;
+// Updated to use your actual profile photo instead of illustration
+const DEFAULT_IMAGE = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
 
 /**
  * Converts relative URLs to absolute URLs
@@ -32,9 +31,9 @@ const truncateDescription = (text: string, maxLength: number = 160): string => {
 };
 
 /**
- * Default fallback description for all pages
+ * Improved default description for better SEO and social sharing
  */
-const DEFAULT_DESCRIPTION = "Hiram Barsky – Product Designer + AI Developer helping businesses design smarter, faster, and more user-focused digital products.";
+const DEFAULT_DESCRIPTION = "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for businesses looking to transform their products with intelligent design solutions.";
 
 /**
  * Extracts title from page content in order of preference
@@ -258,7 +257,7 @@ export const applySEOForPage = (): PageSEOData => {
 
   const schemaData = generateSchema(seoData);
 
-  console.log('🔍 SEO Detection (Updated):', {
+  console.log('🔍 SEO Detection (Updated with Profile Photo):', {
     pathname,
     title,
     description: description.substring(0, 50) + '...',

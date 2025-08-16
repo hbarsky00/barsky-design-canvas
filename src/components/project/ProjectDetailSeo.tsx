@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { ProjectProps } from "@/components/ProjectCard";
@@ -29,10 +30,10 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
     return `${baseUrl}${imagePath}`;
   };
   
-  // Use the project's hero image or fallback to your circular headshot
+  // Use the project's hero image or fallback to your actual profile photo
   const socialMediaImage = project.image 
     ? getImageUrl(project.image)
-    : getImageUrl("/images/default-og-image.jpg");
+    : 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   
   // Generate separate, optimized titles and descriptions
   const getOptimizedTitle = () => {
@@ -90,7 +91,7 @@ const ProjectDetailSeo: React.FC<ProjectDetailSeoProps> = ({
       <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       
-      {/* Enhanced Open Graph - Using project image or headshot fallback */}
+      {/* Enhanced Open Graph - Using project image or profile photo fallback */}
       <meta property="og:title" content={optimizedTitle} />
       <meta property="og:description" content={optimizedDescription} />
       <meta property="og:type" content="website" />

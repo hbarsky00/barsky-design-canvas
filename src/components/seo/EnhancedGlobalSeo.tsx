@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -21,14 +22,14 @@ const EnhancedGlobalSeo: React.FC<EnhancedGlobalSeoProps> = ({
   description,
   pageType,
   keywords = [],
-  ogImage = "https://barskydesign.pro/images/default-og-image.jpg",
+  ogImage = "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp",
   structuredData,
   breadcrumbs = []
 }) => {
   // Ensure proper separation of title and description
   const optimizedDescription = description && description.length > 10
     ? (description.length > 160 ? description.substring(0, 157) + '...' : description)
-    : "Hiram Barsky – Product Designer + AI Developer helping businesses design smarter, faster, and more user-focused digital products.";
+    : "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for businesses looking to transform their products with intelligent design solutions.";
 
   const optimizedTitle = title.length > 60 
     ? title.substring(0, 57) + '...'
