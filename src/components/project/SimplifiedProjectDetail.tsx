@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 import CaseStudyContactSection from "@/components/case-study/CaseStudyContactSection";
-import StructuredCaseStudyContent from "@/components/case-study/structured/StructuredCaseStudyContent";
+import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
 
 const SimplifiedProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -22,22 +22,7 @@ const SimplifiedProjectDetail: React.FC = () => {
   }
 
   return (
-    <>
-      <Header />
-      {/* SEO is now handled globally by UnifiedSEO in App.tsx - no conflicts */}
-      
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="min-h-screen bg-background pt-[calc(var(--header-height,64px)+12px)]"
-      >
-        <StructuredCaseStudyContent caseStudyData={caseStudyData} />
-        <CaseStudyContactSection />
-      </motion.div>
-      
-      <Footer />
-    </>
+    <StructuredCaseStudyLayout caseStudyData={caseStudyData} />
   );
 };
 
