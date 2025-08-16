@@ -19,7 +19,15 @@ const UnifiedSEO: React.FC = () => {
   const { metadata, loading } = usePageMetadata(location.pathname);
   const [seoData, setSeoData] = useState<PageSEOData | null>(null);
 
+  // Skip SEO for case study routes - they have their own StructuredCaseStudySEO
+  const shouldSkipSEO = location.pathname.startsWith('/project/');
+
   useEffect(() => {
+    if (shouldSkipSEO) {
+      setSeoData(null);
+      return;
+    }
+
     const generateSEOData = () => {
       try {
         // Database-first approach
@@ -67,25 +75,27 @@ const UnifiedSEO: React.FC = () => {
     if (!loading) {
       generateSEOData();
     }
-  }, [location.pathname, metadata, loading]);
+  }, [location.pathname, metadata, loading, shouldSkipSEO]);
 
   const getDefaultTitle = (pathname: string): string => {
     if (pathname === '/') return 'Hiram Barsky - Product Designer & Gen AI Developer';  
-    if (pathname.startsWith('/project/')) return 'Case Study | Hiram Barsky Design';
     if (pathname.startsWith('/blog/')) return 'Blog Post | Hiram Barsky Design';
     if (pathname === '/projects') return 'Product Design Portfolio | Hiram Barsky Design';
     if (pathname === '/services') return 'Design Services | Hiram Barsky Design';
     if (pathname === '/contact') return 'Contact | Hiram Barsky Design';
+    if (pathname === '/about') return 'About | Hiram Barsky Design';
+    if (pathname === '/blog') return 'UX Design Blog | Hiram Barsky Design';
     return 'Hiram Barsky Design - Product Designer & Gen AI Developer';
   };
 
   const getDefaultDescription = (pathname: string): string => {
     if (pathname === '/') return SEO_CONSTANTS.DEFAULT_DESCRIPTION;
-    if (pathname.startsWith('/project/')) return 'Product design case study showcasing UX research, design process, and AI-enhanced solutions by Hiram Barsky.';
     if (pathname.startsWith('/blog/')) return 'Insights on product design, UX research, and AI integration in digital product development.';
     if (pathname === '/projects') return 'Explore Product Design portfolio featuring Gen AI integration, intelligent web applications, and AI-powered user interfaces.';
     if (pathname === '/services') return 'Professional product design and Gen AI development services for startups and enterprises.';
     if (pathname === '/contact') return 'Get in touch for AI-enhanced product design services and consultation.';
+    if (pathname === '/about') return 'Learn about Hiram Barsky, Product Designer and Gen AI Developer specializing in AI-enhanced user experiences.';
+    if (pathname === '/blog') return 'Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization.';
     return SEO_CONSTANTS.DEFAULT_DESCRIPTION;
   };
 
@@ -109,7 +119,6 @@ const UnifiedSEO: React.FC = () => {
 
   const getPageType = (pathname: string): PageSEOData['pageType'] => {
     if (pathname === '/') return 'home';
-    if (pathname.startsWith('/project/')) return 'project';
     if (pathname.startsWith('/blog/')) return 'blog';
     if (pathname.includes('service')) return 'service';
     return 'page';
@@ -118,7 +127,7 @@ const UnifiedSEO: React.FC = () => {
   const generateSchema = (data: PageSEOData) => {
     const baseSchema = {
       "@context": "https://schema.org",
-      "@type": data.pageType === 'home' ? 'Person' : data.pageType === 'project' ? 'CreativeWork' : 'WebPage',
+      "@type": data.pageType === 'home' ? 'Person' : 'WebPage',
       "name": data.title,
       "description": data.description,
       "url": data.canonicalUrl,
@@ -149,7 +158,8 @@ const UnifiedSEO: React.FC = () => {
     return baseSchema;
   };
 
-  if (!seoData) return null;
+  // Don't render anything for case study routes
+  if (!seoData || shouldSkipSEO) return null;
 
   return (
     <Helmet>
