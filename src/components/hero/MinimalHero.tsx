@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -62,7 +63,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
               <Avatar className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
                                xl:h-64 xl:w-64 2xl:h-80 2xl:w-80 shadow-lg">
                 <AvatarImage
-                  src="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+                  src="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp"
                   alt="Hiram Barsky profile photo"
                   className="object-cover"
                 />
