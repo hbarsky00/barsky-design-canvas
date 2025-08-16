@@ -113,3 +113,6 @@ verify_jwt = false
 [functions.process-lead]
 verify_jwt = false
 
+[functions.seo-handler]
+verify_jwt = false
+
