@@ -19,10 +19,20 @@ export default defineConfig(({ mode }) => ({
     // Add custom plugin to generate static SEO files
     {
       name: 'generate-static-seo',
+      buildStart() {
+        // Run in both development and production
+        try {
+          const { spawn } = require('child_process');
+          spawn('node', ['scripts/generateStaticSEO.js'], { stdio: 'inherit' });
+          console.log('Static SEO files generated');
+        } catch (error) {
+          console.warn('Failed to generate static SEO files:', error);
+        }
+      },
       writeBundle() {
+        // Also run after build for production
         if (mode === 'production') {
           try {
-            // Dynamic import to avoid TypeScript issues
             const { spawn } = require('child_process');
             spawn('node', ['scripts/generateStaticSEO.js'], { stdio: 'inherit' });
           } catch (error) {

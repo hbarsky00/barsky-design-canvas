@@ -29,44 +29,133 @@ const baseHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
 const BASE_URL = 'https://barskydesign.pro';
 const DEFAULT_IMAGE = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
 
-// Create a simple mapping of case study SEO data
-const caseStudySEOData = {
-  'investment-app': {
+// Comprehensive SEO data for all routes
+const allPagesSEOData = {
+  // Homepage
+  '/': {
+    title: 'Hiram Barsky Design - AI-Enhanced UX Design & Research',
+    description: '15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for businesses looking to transform their products with intelligent design solutions.',
+    image: DEFAULT_IMAGE,
+    url: BASE_URL
+  },
+
+  // Project pages
+  '/project/investment-app': {
     title: '23% More Engagement: Making Investing Accessible to Beginners - Hiram Barsky Design',
     description: 'Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios.',
     image: 'https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png',
     url: `${BASE_URL}/project/investment-app`
   },
-  'splittime': {
+  '/project/splittime': {
     title: 'Splittime Case Study - Hiram Barsky Design',
     description: 'Comprehensive case study of the Splittime project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/splittime`
   },
-  'business-management': {
+  '/project/business-management': {
     title: 'Business Management Case Study - Hiram Barsky Design', 
     description: 'Comprehensive case study of the Business Management project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/business-management`
   },
-  'herbal-ink': {
+  '/project/herbalink': {
     title: 'Herbal Ink Case Study - Hiram Barsky Design',
     description: 'Comprehensive case study of the Herbal Ink project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
-    url: `${BASE_URL}/project/herbal-ink`
+    url: `${BASE_URL}/project/herbalink`
   },
-  'investor-loan': {
+  '/project/investor-loan': {
     title: 'Investor Loan Case Study - Hiram Barsky Design',
     description: 'Comprehensive case study of the Investor Loan project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/investor-loan`
   },
-  'wholesale-distribution': {
+  '/project/wholesale-distribution': {
     title: 'Wholesale Distribution Case Study - Hiram Barsky Design',
     description: 'Comprehensive case study of the Wholesale Distribution project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/wholesale-distribution`
+  },
+
+  // Main pages
+  '/projects': {
+    title: 'UX Design Portfolio - Hiram Barsky Design',
+    description: 'Explore my portfolio of AI-enhanced UX design projects. Case studies showcasing user research, design systems, and digital transformation across fintech, healthcare, and enterprise software.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/projects`
+  },
+  '/services': {
+    title: 'UX Design Services - AI-Enhanced Digital Experiences',
+    description: 'Professional UX design services specializing in AI integration, user research, design systems, and digital transformation. 15+ years of experience creating user-centered solutions.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/services`
+  },
+  '/about': {
+    title: 'About Hiram Barsky - AI-Enhanced UX Designer & Researcher',
+    description: 'Meet Hiram Barsky, a UX designer with 15+ years of experience in AI-enhanced digital experiences, user research, and design systems. Based in Clifton, NJ.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/about`
+  },
+  '/contact': {
+    title: 'Contact Hiram Barsky Design - Let\'s Transform Your Product',
+    description: 'Ready to enhance your digital product with AI-powered UX design? Contact Hiram Barsky for user research, design systems, and digital transformation services.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/contact`
+  },
+  '/blog': {
+    title: 'UX Design Blog - AI & Digital Experience Insights',
+    description: 'Expert insights on AI-enhanced UX design, user research methodologies, design systems, and digital transformation strategies from 15+ years of experience.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/blog`
+  },
+
+  // Design service pages
+  '/design-services/ux-research': {
+    title: 'UX Research Services - Data-Driven Design Insights',
+    description: 'Professional UX research services including user interviews, usability testing, persona development, and journey mapping to inform design decisions with real user insights.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/design-services/ux-research`
+  },
+  '/design-services/design-systems': {
+    title: 'Design Systems Services - Scalable UI Components',
+    description: 'Create cohesive, scalable design systems with reusable components, style guides, and documentation to ensure consistent user experiences across your product.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/design-services/design-systems`
+  },
+  '/design-services/ai-integration': {
+    title: 'AI Integration UX Design - Intelligent User Experiences',
+    description: 'Specialized in designing AI-enhanced user experiences, from chatbots and recommendation systems to predictive interfaces and machine learning integration.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/design-services/ai-integration`
+  },
+  '/design-services/prototyping': {
+    title: 'UX Prototyping Services - Interactive Design Validation',
+    description: 'High-fidelity interactive prototypes for user testing and stakeholder validation. Rapid iteration and user feedback integration to perfect your product experience.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/design-services/prototyping`
+  },
+  '/design-services/user-testing': {
+    title: 'User Testing Services - Validate Design Decisions',
+    description: 'Comprehensive user testing services including moderated sessions, A/B testing, and usability audits to validate design decisions with real user behavior.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/design-services/user-testing`
+  },
+  '/design-services/consultation': {
+    title: 'UX Design Consultation - Strategic Design Guidance',
+    description: 'Strategic UX consultation to align design with business goals, optimize user journeys, and implement best practices for digital transformation.',
+    image: DEFAULT_IMAGE,
+    url: `${BASE_URL}/design-services/consultation`
   }
+};
+
+// Legacy mapping for backward compatibility
+const caseStudySEOData = {
+  'investment-app': allPagesSEOData['/project/investment-app'],
+  'splittime': allPagesSEOData['/project/splittime'],
+  'business-management': allPagesSEOData['/project/business-management'],
+  'herbal-ink': allPagesSEOData['/project/herbalink'],
+  'investor-loan': allPagesSEOData['/project/investor-loan'],
+  'wholesale-distribution': allPagesSEOData['/project/wholesale-distribution']
 };
 
 // Function to inject SEO meta tags
@@ -98,7 +187,7 @@ function injectSEOTags(html, seoData) {
   return html.replace('</head>', `${metaTags}\n  </head>`);
 }
 
-// Generate static HTML files for each project
+// Generate static HTML files for ALL routes
 function generateStaticSEOFiles() {
   const distDir = path.join(__dirname, '../dist');
   
@@ -107,35 +196,27 @@ function generateStaticSEOFiles() {
     fs.mkdirSync(distDir, { recursive: true });
   }
 
-  // Generate files for each case study
-  caseStudyIds.forEach(id => {
-    const seoData = caseStudySEOData[id];
-    if (!seoData) {
-      console.warn(`No SEO data found for case study: ${id}`);
-      return;
+  // Generate files for ALL pages
+  Object.entries(allPagesSEOData).forEach(([route, seoData]) => {
+    let filePath;
+    
+    if (route === '/') {
+      // Homepage
+      filePath = path.join(distDir, 'index.html');
+    } else {
+      // All other routes
+      const routeDir = path.join(distDir, route.slice(1)); // Remove leading slash
+      fs.mkdirSync(routeDir, { recursive: true });
+      filePath = path.join(routeDir, 'index.html');
     }
 
-    const projectDir = path.join(distDir, 'project', id);
-    fs.mkdirSync(projectDir, { recursive: true });
-
     const htmlWithSEO = injectSEOTags(baseHtml, seoData);
-    fs.writeFileSync(path.join(projectDir, 'index.html'), htmlWithSEO);
+    fs.writeFileSync(filePath, htmlWithSEO);
     
-    console.log(`Generated static SEO file for: /project/${id}`);
+    console.log(`Generated static SEO file for: ${route}`);
   });
 
-  // Generate homepage with default SEO
-  const homepageSEO = {
-    title: 'Hiram Barsky Design - AI-Enhanced UX Design & Research',
-    description: '15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for businesses looking to transform their products with intelligent design solutions.',
-    image: DEFAULT_IMAGE,
-    url: BASE_URL
-  };
-  
-  const homepageHtml = injectSEOTags(baseHtml, homepageSEO);
-  fs.writeFileSync(path.join(distDir, 'index.html'), homepageHtml);
-  
-  console.log('Generated static SEO file for homepage');
+  console.log(`Generated ${Object.keys(allPagesSEOData).length} static SEO files`);
 }
 
 // Run the script
