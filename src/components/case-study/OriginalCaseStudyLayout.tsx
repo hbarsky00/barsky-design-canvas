@@ -14,6 +14,7 @@ import ProjectNavigation from "@/components/ProjectNavigation";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
+import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -24,6 +25,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
   caseStudy, 
   projectId 
 }) => {
+  const isProjectPage = useProjectPageDetection();
   const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
 
   // Build sections for keyboard navigation
@@ -41,7 +43,6 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
     return navSections;
   }, [caseStudy]);
 
-  // Add keyboard navigation
   const {
     isTransitioning,
     transitionDirection,
@@ -61,7 +62,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
           path={`/project/${projectId}/`}
         />
 
-      <div className="min-h-screen bg-background">
+      <div className={`min-h-screen bg-background ${isProjectPage ? 'projects-page' : ''}`}>
         {/* 3D Transition Overlay */}
         <Section3DOverlay 
           isVisible={isTransitioning} 
@@ -71,11 +72,12 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
 
         <Header />
 
-        <div className="container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8">
+        <div className={isProjectPage ? "projects-wrap" : "container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8"}>
           <div className="flex gap-8">
             <CaseStudyNavigation navigation={caseStudy.stickyNav} />
             {/* Main Content */}
             <main className="flex-1 max-w-4xl">
+              {/* Hero Section - No cs-card class */}
               <section id="hero-section" className="mb-16">
                 {/* Branding */}
                 <motion.div
@@ -134,7 +136,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                 </motion.div>
               </section>
 
-              {/* Case Study Sections */}
+              {/* Case Study Sections - Apply cs-card class */}
               {Object.entries(caseStudy.sections).map(([sectionId, section]) => {
                 const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
                 const title = navItem?.label || sectionId.replace('-', ' ');
@@ -147,7 +149,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="mb-20"
+                    className={`mb-20 ${isProjectPage ? 'cs-card' : ''}`}
                     style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
                   >
                     <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
@@ -177,13 +179,13 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                 );
               })}
 
-              {/* Contact Section */}
-              <div id="contact-section">
+              {/* Contact Section - Apply cs-card class */}
+              <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
                 <CaseStudyContactSection />
               </div>
 
-              {/* Prev/Next Navigation */}
-              <div id="project-navigation" className="mt-12">
+              {/* Prev/Next Navigation - Apply cs-card class */}
+              <div id="project-navigation" className={`mt-12 ${isProjectPage ? 'cs-card' : ''}`}>
                 <ProjectNavigation
                   currentProjectId={projectId}
                   projectsData={projectsData}

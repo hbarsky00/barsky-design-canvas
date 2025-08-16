@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -9,6 +8,7 @@ import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
+import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
@@ -22,6 +22,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   caseStudyData,
   heroAsImage = false
 }) => {
+  const isProjectPage = useProjectPageDetection();
+  
   // Get current URL for sharing
   const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${caseStudyData.seoData?.path}`;
 
@@ -58,7 +60,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     <>
       <StructuredCaseStudySEO caseStudy={caseStudyData} />
       
-      <div className={`min-h-screen bg-gradient-to-br ${caseStudyData.gradientClasses || "from-blue-50 via-slate-50 to-indigo-50"}`}>
+      <div className={`min-h-screen bg-gradient-to-br ${caseStudyData.gradientClasses || "from-blue-50 via-slate-50 to-indigo-50"} ${isProjectPage ? 'projects-page' : ''}`}>
         {/* 3D Transition Overlay */}
         <Section3DOverlay 
           isVisible={isTransitioning} 
@@ -68,14 +70,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
         <Header />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]">
+        <div className={isProjectPage ? "projects-wrap" : "max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]"}>
           <div className="lg:flex lg:gap-8">
             {/* Navigation */}
             <CaseStudyNavigation navigation={navigationItems} />
             
             {/* Main Content */}
             <main className="flex-1 min-w-0">
-              {/* Hero Section */}
+              {/* Hero Section - No cs-card class */}
               <section id="overview" className="mb-8">
                 <StructuredCaseStudyHero 
                   caseStudyData={caseStudyData}
@@ -92,17 +94,17 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </div>
               </section>
 
-              {/* Case Study Sections */}
+              {/* Case Study Sections - Apply cs-card class */}
               <div className="space-y-20 pb-20">
                 {caseStudyData.sections.map((section) => (
                   <section key={section.id} id={section.id} className="scroll-mt-24">
-                    <div className="bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20">
+                    <div className={`bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20 ${isProjectPage ? 'cs-card' : ''}`}>
                       <StructuredCaseStudySection {...section} />
                     </div>
                   </section>
                 ))}
                 
-                <div id="contact-section">
+                <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
                   <CaseStudyContactSection />
                 </div>
                 

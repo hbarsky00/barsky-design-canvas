@@ -169,3 +169,87 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
+/* PROJECT PAGE SPECIFIC STYLES */
+/* ---- Container gutters for /projects/ ---- */
+.projects-page .projects-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 0.5rem;   /* mobile 8px */
+  padding-right: 0.5rem;
+  padding-top: calc(var(--header-height, 64px) + 12px);
+}
+
+@media (min-width: 640px) {   /* tablet */
+  .projects-page .projects-wrap { 
+    padding-left: 1rem; 
+    padding-right: 1rem; 
+  }   /* 16px */
+}
+
+@media (min-width: 1024px) {  /* desktop */
+  .projects-page .projects-wrap { 
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem; 
+  } /* 24px */
+}
+
+/* ---- Hero sections remain untouched ---- */
+.projects-page .hero,
+.projects-page .hero * { 
+  /* no overrides - hero sections keep their existing styling */ 
+}
+
+/* ---- All sections AFTER hero ---- */
+.projects-page .cs-card {
+  /* widen visually on mobile */
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+
+  /* tighter inner padding */
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+@media (min-width: 640px) {
+  .projects-page .cs-card {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-page .cs-card {
+    padding-left: 1.25rem;  /* 20px */
+    padding-right: 1.25rem;
+  }
+}
+
+/* Optional: tighter vertical rhythm inside cards */
+.projects-page .cs-card h1,
+.projects-page .cs-card h2,
+.projects-page .cs-card h3 { 
+  margin-bottom: 0.75rem; 
+}
+
+.projects-page .cs-card p {  
+  margin-top: 0.75rem; 
+}
+
+.projects-page .cs-card .row { 
+  margin-top: 1rem; 
+}
+
+@media (min-width: 640px) { 
+  .projects-page .cs-card .row { 
+    margin-top: 1.25rem; 
+  } 
+}

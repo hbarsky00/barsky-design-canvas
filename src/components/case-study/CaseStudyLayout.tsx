@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -9,6 +8,7 @@ import CaseStudyContactSection from "./CaseStudyContactSection";
 import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
+import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 
 interface CaseStudySection {
   id: string;
@@ -41,6 +41,8 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
   sections,
   gradientClasses = "from-blue-50 via-slate-50 to-indigo-50"
 }) => {
+  const isProjectPage = useProjectPageDetection();
+  
   // Get current URL for sharing
   const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${path}`;
 
@@ -86,7 +88,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
         path={path}
       />
       
-      <div className={`min-h-screen bg-gradient-to-br ${gradientClasses}`}>
+      <div className={`min-h-screen bg-gradient-to-br ${gradientClasses} ${isProjectPage ? 'projects-page' : ''}`}>
         {/* 3D Transition Overlay */}
         <Section3DOverlay 
           isVisible={isTransitioning} 
@@ -96,14 +98,14 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
 
         <Header />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]">
+        <div className={isProjectPage ? "projects-wrap" : "max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]"}>
           <div className="lg:flex lg:gap-8">
             {/* Navigation */}
             <CaseStudyNavigation navigation={navigationItems} />
             
             {/* Main Content */}
             <main className="flex-1 min-w-0">
-              {/* Hero Section */}
+              {/* Hero Section - No cs-card class */}
               <section id="overview" className="mb-8">
                 {heroSection}
                 
@@ -117,18 +119,18 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
                 </div>
               </section>
 
-              {/* Case Study Sections */}
+              {/* Case Study Sections - Apply cs-card class */}
               <div className="space-y-20 pb-20">
                 {sections.map((section) => (
                   <section key={section.id} id={section.id} className="scroll-mt-24">
-                    <div className="bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20">
+                    <div className={`bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20 ${isProjectPage ? 'cs-card' : ''}`}>
                       <h2 className="text-4xl font-bold text-gray-900 mb-12 text-left lg:text-center">{section.title}</h2>
                       {section.content}
                     </div>
                   </section>
                 ))}
                 
-                <div id="contact-section">
+                <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
                   <CaseStudyContactSection />
                 </div>
                 
