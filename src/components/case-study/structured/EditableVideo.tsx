@@ -65,7 +65,7 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
           <img
             src="https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png"
             alt="SplitTime mobile application promotional image"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
           {editable && (
             <motion.div
