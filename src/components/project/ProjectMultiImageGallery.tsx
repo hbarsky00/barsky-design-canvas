@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { getCaptionClasses } from "@/utils/captionStyles";
 
 interface ProjectMultiImageGalleryProps {
   images: string[];
@@ -38,7 +39,6 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
     }
   };
 
-  // Dynamic grid layout based on image count
   const getGridLayout = () => {
     if (images.length === 1) {
       return "grid-cols-1";
@@ -74,8 +74,12 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
             
             {imageCaptions[image] && (
-              <figcaption className="py-3 bg-gray-50/80 backdrop-blur-sm">
-                <p className="text-gray-700 text-sm leading-relaxed">{imageCaptions[image]}</p>
+              <figcaption className={getCaptionClasses({ 
+                variant: 'card', 
+                alignment: 'left',
+                className: "absolute bottom-0 left-0 right-0 m-3 backdrop-blur-md"
+              })}>
+                {imageCaptions[image]}
               </figcaption>
             )}
           </motion.figure>
@@ -150,9 +154,13 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 className="absolute bottom-4 left-4 right-4 text-center"
               >
-                <p className="text-white text-lg bg-black/50 rounded-lg px-4 py-2 backdrop-blur-sm">
+                <div className={getCaptionClasses({ 
+                  variant: 'card', 
+                  alignment: 'center',
+                  className: "inline-block backdrop-blur-md"
+                })}>
                   {imageCaptions[images[selectedImage]]}
-                </p>
+                </div>
               </motion.div>
             )}
           </motion.div>

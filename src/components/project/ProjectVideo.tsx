@@ -1,3 +1,4 @@
+
 import React from "react";
 import EditableCaption from "../caption/EditableCaption";
 
@@ -16,10 +17,8 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
   className = "",
   projectId
 }) => {
-  // Check if the source is a Loom video URL
   const isLoomVideo = src.includes('loom.com/share/');
   
-  // Convert Loom share URL to embed URL
   const getEmbedUrl = (url: string) => {
     if (isLoomVideo) {
       const videoId = url.split('loom.com/share/')[1]?.split('?')[0];
@@ -61,7 +60,9 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
         imageSrc={src}
         initialCaption={caption || ''}
         projectId={projectId}
-        className="project-video-caption"
+        variant="subtle"
+        size="xs"
+        alignment="center"
       />
     </figure>
   );

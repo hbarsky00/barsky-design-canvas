@@ -72,7 +72,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   // Handle upload start and completion
   const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Only allow uploads in dev mode
     if (!showEditingControls) {
       event.target.value = '';
       return;
@@ -91,8 +90,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       setIsUploading(false);
       setImageError(true);
     }
-
-    // Always clear the input
     event.target.value = '';
   };
 
@@ -119,7 +116,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   };
 
   const handleImageRemove = () => {
-    // Only allow removal in dev mode
     if (onImageRemove && showEditingControls) {
       console.log('🗑️ Removing image:', currentSrc);
       onImageRemove();
@@ -138,13 +134,9 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     setIsUploading(false);
   };
 
-  // Use alt text as the title instead of caption to avoid HTML
   const imageTitle = alt || 'Image';
-
-  // Check if the source is a Loom video URL
   const isLoomVideo = currentSrc.includes('loom.com/share/');
 
-  // Convert Loom share URL to embed URL
   const getEmbedUrl = (url: string) => {
     if (isLoomVideo) {
       const videoId = url.split('loom.com/share/')[1]?.split('?')[0];
@@ -231,7 +223,9 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
         imageSrc={currentSrc} 
         initialCaption={caption || ''} 
         projectId={projectId} 
-        className="maximizable-image-caption" 
+        variant="default"
+        size="xs"
+        alignment="center"
       />
     </figure>
   );

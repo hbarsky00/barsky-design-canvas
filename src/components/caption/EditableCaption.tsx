@@ -1,16 +1,16 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useOpenAiCaptions } from "@/hooks/useOpenAiCaptions";
+import { getCaptionClasses, CaptionVariant, CaptionSize } from "@/utils/captionStyles";
+import { cn } from "@/lib/utils";
 
 // Helper to ensure a single, clean sentence
 const toOneSentence = (text: string) => {
   if (!text) return "";
-  // Split on sentence boundaries and return the first meaningful sentence
   const first = text
     .replace(/\s+/g, " ")
     .trim()
     .split(/(?<=[.!?])\s+/)[0];
-  // Ensure it ends with a period for consistency
   return first.endsWith(".") || first.endsWith("!") || first.endsWith("?")
     ? first
     : `${first}.`;
@@ -27,11 +27,22 @@ interface EditableCaptionProps {
   initialCaption?: string;
   projectId?: string;
   className?: string;
+  variant?: CaptionVariant;
+  size?: CaptionSize;
+  alignment?: 'left' | 'center';
   onCaptionChange?: (newCaption: string) => void;
 }
 
-const EditableCaption: React.FC<EditableCaptionProps> = (props) => {
-  const { imageSrc, initialCaption = "", projectId } = props;
+const EditableCaption: React.FC<EditableCaptionProps> = ({
+  imageSrc,
+  initialCaption = "",
+  projectId,
+  className,
+  variant = 'default',
+  size = 'xs',
+  alignment = 'center',
+  onCaptionChange
+}) => {
   const [autoCaption, setAutoCaption] = useState<string>(initialCaption || "");
   const [isAutoGenerating, setIsAutoGenerating] = useState(false);
   const hasTriggeredRef = useRef(false);
@@ -58,10 +69,8 @@ const EditableCaption: React.FC<EditableCaptionProps> = (props) => {
 
         if (oneSentence) {
           setAutoCaption(oneSentence);
-
-          // Notify parent component of caption change
-          if (props.onCaptionChange) {
-            props.onCaptionChange(oneSentence);
+          if (onCaptionChange) {
+            onCaptionChange(oneSentence);
           }
         }
       } catch (error) {
@@ -72,13 +81,21 @@ const EditableCaption: React.FC<EditableCaptionProps> = (props) => {
     };
 
     run();
-  }, [imageSrc, projectId, generateCaption, autoCaption, props]);
+  }, [imageSrc, projectId, generateCaption, autoCaption, onCaptionChange]);
 
-  const displayedCaption =
-    isAutoGenerating ? "Generating caption..." : autoCaption || "";
+  const displayedCaption = isAutoGenerating ? "Generating caption..." : autoCaption || "";
+
+  const captionClasses = getCaptionClasses({
+    variant,
+    size,
+    alignment,
+    className
+  });
 
   return (
-    <figcaption className={props.className || ""}>{displayedCaption}</figcaption>
+    <figcaption className={captionClasses}>
+      {displayedCaption}
+    </figcaption>
   );
 };
 

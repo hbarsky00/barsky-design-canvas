@@ -1,9 +1,11 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Upload, Edit3, Maximize2 } from "lucide-react";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import { getCaptionClasses } from "@/utils/captionStyles";
 
 interface EditableImageProps {
   src: string;
@@ -32,7 +34,6 @@ export const EditableImage: React.FC<EditableImageProps> = ({
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && onImageChange) {
-      // In a real implementation, you'd upload to a service
       const url = URL.createObjectURL(file);
       onImageChange(url);
     }
@@ -52,7 +53,6 @@ export const EditableImage: React.FC<EditableImageProps> = ({
         onHoverEnd={() => setIsHovered(false)}
         className="relative overflow-hidden rounded-xl bg-surface-container"
       >
-        {/* Image */}
         <img
           src={src || "/placeholder.svg"}
           alt={alt}
@@ -60,7 +60,6 @@ export const EditableImage: React.FC<EditableImageProps> = ({
           onClick={() => maximizeImage(src, alt)}
         />
 
-        {/* Overlay Controls */}
         {editable && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -96,17 +95,16 @@ export const EditableImage: React.FC<EditableImageProps> = ({
         )}
       </motion.div>
 
-      {/* Caption */}
       {(caption || editable) && (
-        <figcaption className="mt-3">
+        <div className="mt-3">
           {isEditing ? (
-            <Card className="p-3">
+            <Card className={getCaptionClasses({ variant: 'card', alignment: 'left' })}>
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={editCaption}
                   onChange={(e) => setEditCaption(e.target.value)}
-                  className="flex-1 text-sm text-muted-foreground bg-transparent border-none outline-none"
+                  className="flex-1 text-xs bg-transparent border-none outline-none placeholder-gray-500"
                   placeholder="Add image caption..."
                 />
                 <Button size="sm" onClick={handleCaptionSave}>
@@ -116,22 +114,22 @@ export const EditableImage: React.FC<EditableImageProps> = ({
             </Card>
           ) : (
             <div className="flex items-center justify-between">
-              <p className="text-sm text-muted-foreground italic text-center w-full">
+              <figcaption className={getCaptionClasses({ variant: 'default', alignment: 'center' })}>
                 {caption || "No caption"}
-              </p>
+              </figcaption>
               {editable && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsEditing(true)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity ml-2"
                 >
                   <Edit3 className="h-3 w-3" />
                 </Button>
               )}
             </div>
           )}
-        </figcaption>
+        </div>
       )}
     </div>
   );
