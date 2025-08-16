@@ -7,7 +7,7 @@ const ProfileAvatar: React.FC = () => {
   const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   
   return (
-    <div className="relative flex items-center">
+    <div className="relative">
       <IdentityBadge
         to="/"
         ariaLabel="Go to homepage"

@@ -214,33 +214,6 @@ export type Database = {
         }
         Relationships: []
       }
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          created_at: string | null
-          email: string | null
-          full_name: string | null
-          id: string
-          updated_at: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          full_name?: string | null
-          id: string
-          updated_at?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          full_name?: string | null
-          id?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
       published_projects: {
         Row: {
           content_blocks: Json
@@ -268,33 +241,6 @@ export type Database = {
           published_at?: string
           text_content?: Json
           updated_at?: string
-        }
-        Relationships: []
-      }
-      security_audit_log: {
-        Row: {
-          details: Json | null
-          id: string
-          operation: string
-          table_name: string
-          timestamp: string
-          user_id: string | null
-        }
-        Insert: {
-          details?: Json | null
-          id?: string
-          operation: string
-          table_name: string
-          timestamp?: string
-          user_id?: string | null
-        }
-        Update: {
-          details?: Json | null
-          id?: string
-          operation?: string
-          table_name?: string
-          timestamp?: string
-          user_id?: string | null
         }
         Relationships: []
       }
