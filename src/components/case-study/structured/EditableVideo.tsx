@@ -14,6 +14,8 @@ interface EditableVideoProps {
   onVideoChange?: (newSrc: string) => void;
   onCaptionChange?: (newCaption: string) => void;
   editable?: boolean;
+  // FIXED: Add context prop to prevent cross-contamination
+  imageContext?: string;
   videoOptions?: {
     autoplay?: boolean;
     loop?: boolean;
@@ -32,6 +34,7 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
   onVideoChange,
   onCaptionChange,
   editable = false,
+  imageContext = "default",
   videoOptions
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -54,6 +57,41 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
     setIsEditing(false);
   };
 
+  // FIXED: Use context-specific image source to prevent cross-contamination
+  const getContextualImageSrc = () => {
+    // Use different image URLs based on context to prevent persistence conflicts
+    if (imageContext === "problem") {
+      return "https://barskyux.com/wp-content/uploads/2025/08/splittime-problem-section.png";
+    } else if (imageContext === "solution") {
+      return "https://barskyux.com/wp-content/uploads/2025/08/featureimage1.png";
+    } else if (imageContext === "hero") {
+      return poster || "https://barskyux.com/wp-content/uploads/2025/08/splittime-hero-poster.png";
+    }
+    return src;
+  };
+
+  const getContextualAlt = () => {
+    if (imageContext === "problem") {
+      return "SplitTime problem section illustration";
+    } else if (imageContext === "solution") {
+      return "SplitTime feature showcase image";
+    } else if (imageContext === "hero") {
+      return "SplitTime hero video poster";
+    }
+    return alt;
+  };
+
+  const getContextualCaption = () => {
+    if (imageContext === "problem") {
+      return caption || "Traditional expense splitting methods are complex and error-prone";
+    } else if (imageContext === "solution") {
+      return caption || "SplitTime's intuitive interface simplifies group expense management";
+    } else if (imageContext === "hero") {
+      return caption || "SplitTime hero demonstration";
+    }
+    return caption || "";
+  };
+
   return (
     <div className={`relative group ${className}`}>
       <motion.div
@@ -63,9 +101,12 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
       >
         <div className="relative w-full h-full">
           <img
-            src="https://barskyux.com/wp-content/uploads/2025/08/featureimage1.png"
-            alt="SplitTime feature showcase image"
+            src={getContextualImageSrc()}
+            alt={getContextualAlt()}
             className="w-full h-full object-contain"
+            // FIXED: Add context-specific data attributes to prevent cross-contamination
+            data-image-context={imageContext}
+            data-original-src={getContextualImageSrc()}
           />
           {editable && (
             <motion.div
@@ -77,12 +118,12 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
                 size="sm"
                 variant="filled"
                 className="bg-surface/90 text-on-surface shadow-lg"
-                onClick={() => document.getElementById(`upload-image-${src}`)?.click()}
+                onClick={() => document.getElementById(`upload-image-${imageContext}-${src}`)?.click()}
               >
                 <Upload className="h-4 w-4" />
               </Button>
               <input
-                id={`upload-image-${src}`}
+                id={`upload-image-${imageContext}-${src}`}
                 type="file"
                 accept="image/*"
                 className="hidden"
@@ -114,7 +155,7 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
           ) : (
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-600 italic mt-2 text-center w-full">
-                {caption || "SplitTime feature showcase image"}
+                {getContextualCaption()}
               </p>
               {editable && (
                 <Button
