@@ -5,13 +5,19 @@
 
 const getDynamicBaseUrl = (): string => {
   if (typeof window !== 'undefined') {
-    return window.location.origin;
+    const origin = window.location.origin;
+    // Always use production domain for canonical URLs regardless of current environment
+    if (origin.includes('lovable.app') || origin.includes('localhost')) {
+      return 'https://barskydesign.pro';
+    }
+    return origin;
   }
   return process.env.REACT_APP_BASE_URL || 'https://barskydesign.pro';
 };
 
 /**
  * Normalizes a URL path to ensure consistency across the application
+ * - Always returns production canonical URLs
  * - Removes trailing slashes except for root path
  * - Handles index.html variations
  * - Returns consistent canonical format
@@ -52,6 +58,7 @@ export const normalizeUrl = (path: string): string => {
     path = `${path}/`;
   }
 
+  // Always return production canonical URL
   return `${BASE_URL}${path}`;
 };
 

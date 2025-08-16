@@ -1,6 +1,5 @@
 
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { useParams, useNavigate } from "react-router-dom";
 import { trackPageView } from "@/lib/analytics";
 import Header from "@/components/Header";
@@ -11,7 +10,6 @@ import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import { products } from "@/data/productsData";
-import { normalizeUrl } from "@/utils/urlUtils";
 
 const ProductDetailsPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -34,64 +32,7 @@ const ProductDetailsPage: React.FC = () => {
   
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <Helmet>
-        <title>{product.name} | Barsky Design - UX Research & Design Agency | Professional Design Resources</title>
-        <meta name="description" content={`${product.description} Professional design resource from Barsky Design - UX research and design agency specializing in user-centered design solutions and digital product experiences.`} />
-        <meta name="keywords" content={`${product.name}, Barsky Design, UX design resources, design templates, UI kit, design system, user experience design, design agency resources`} />
-        <meta name="author" content="Barsky Design - UX Research & Design Agency" />
-        
-        {/* Open Graph */}
-        <link rel="canonical" href={normalizeUrl(`/store/product/${product.id}`)} />
-        <meta property="og:title" content={`${product.name} | Barsky Design Design Resources`} />
-        <meta property="og:description" content={`${product.description} Professional design resource from Barsky Design - UX research and design agency.`} />
-        <meta property="og:url" content={normalizeUrl(`/store/product/${product.id}`)} />
-        <meta property="og:type" content="product" />
-        <meta property="og:image" content={`https://barskydesign.pro${product.image}`} />
-        <meta property="og:site_name" content="Barsky Design - UX Research & Design Agency" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${product.name} | Barsky Design`} />
-        <meta name="twitter:description" content={`${product.description} Professional design resource from Barsky Design.`} />
-        <meta name="twitter:image" content={`https://barskydesign.pro${product.image}`} />
-        <meta name="twitter:creator" content="@barskydesign" />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Product",
-              "name": "${product.name}",
-              "description": "${product.description}",
-              "image": "https://barskydesign.pro${product.image}",
-              "url": "https://barskydesign.pro/store/product/${product.id}",
-              "brand": {
-                "@type": "Organization",
-                "name": "Barsky Design",
-                "description": "Professional UX research and design agency"
-              },
-              "offers": {
-                "@type": "Offer",
-                "price": "${product.price}",
-                "priceCurrency": "USD",
-                "availability": "https://schema.org/InStock",
-                "seller": {
-                  "@type": "Organization",
-                  "name": "Barsky Design"
-                }
-              },
-              "category": "Design Resources",
-              "provider": {
-                "@type": "Organization",
-                "name": "Barsky Design",
-                "description": "UX research and design agency specializing in user-centered design solutions"
-              }
-            }
-          `}
-        </script>
-        
-      </Helmet>
+      {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
       <Header />
       <main className="flex-grow pt-24">

@@ -1,7 +1,12 @@
 
 const getDynamicBaseUrl = (): string => {
   if (typeof window !== 'undefined') {
-    return window.location.origin;
+    const origin = window.location.origin;
+    // Ensure we're using the production domain for canonical URLs
+    if (origin.includes('lovable.app') || origin.includes('localhost')) {
+      return 'https://barskydesign.pro';
+    }
+    return origin;
   }
   return process.env.REACT_APP_BASE_URL || 'https://barskydesign.pro';
 };

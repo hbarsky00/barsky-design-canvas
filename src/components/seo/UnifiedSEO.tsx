@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { usePageMetadata } from '@/hooks/usePageMetadata';
 import { SEO_CONSTANTS } from '@/utils/seoConstants';
 import { getStructuredCaseStudy } from '@/data/structuredCaseStudies';
+import { normalizeUrl } from '@/utils/urlUtils';
 
 interface PageSEOData {
   title: string;
@@ -23,7 +24,15 @@ const UnifiedSEO: React.FC = () => {
   useEffect(() => {
     const generateSEOData = () => {
       try {
-        const canonicalUrl = `${SEO_CONSTANTS.BASE_URL}${location.pathname}`;
+        // Use normalizeUrl for consistent canonical URL generation
+        const canonicalUrl = normalizeUrl(location.pathname);
+        
+        // Debug logging to track canonical generation
+        console.log('🔍 SEO Debug:', {
+          pathname: location.pathname,
+          canonicalUrl,
+          baseUrl: SEO_CONSTANTS.BASE_URL
+        });
         
         // Handle case study pages specially
         if (location.pathname.startsWith('/project/')) {
@@ -45,7 +54,16 @@ const UnifiedSEO: React.FC = () => {
               "headline": caseStudy.title,
               "description": caseStudy.description,
               "url": canonicalUrl,
-              "image": data.image,
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": canonicalUrl
+              },
+              "image": {
+                "@type": "ImageObject",
+                "url": data.image,
+                "width": 1200,
+                "height": 630
+              },
               "author": {
                 "@type": "Person",
                 "name": SEO_CONSTANTS.AUTHOR,
@@ -55,7 +73,9 @@ const UnifiedSEO: React.FC = () => {
                 "@type": "Organization",
                 "name": SEO_CONSTANTS.SITE_NAME,
                 "url": SEO_CONSTANTS.BASE_URL
-              }
+              },
+              "datePublished": new Date().toISOString().split('T')[0],
+              "dateModified": new Date().toISOString().split('T')[0]
             };
             
             setSeoData(data);
@@ -95,12 +115,13 @@ const UnifiedSEO: React.FC = () => {
         
       } catch (error) {
         console.error('SEO generation error:', error);
-        // Ultimate fallback
+        // Ultimate fallback with proper URL normalization
+        const fallbackCanonical = normalizeUrl(location.pathname);
         setSeoData({
           title: 'Hiram Barsky Design - Product Designer & Gen AI Developer',
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
           image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-          canonicalUrl: `${SEO_CONSTANTS.BASE_URL}${location.pathname}`,
+          canonicalUrl: fallbackCanonical,
           pageType: 'page'
         });
       }
@@ -119,6 +140,10 @@ const UnifiedSEO: React.FC = () => {
     if (pathname === '/contact') return 'Contact | Hiram Barsky Design';
     if (pathname === '/about') return 'About | Hiram Barsky Design';
     if (pathname === '/blog') return 'UX Design Blog | Hiram Barsky Design';
+    if (pathname.startsWith('/design-services/')) {
+      const service = pathname.split('/').pop();
+      return `${service?.replace('-', ' ')} | Hiram Barsky Design`;
+    }
     return 'Hiram Barsky Design - Product Designer & Gen AI Developer';
   };
 
@@ -130,6 +155,7 @@ const UnifiedSEO: React.FC = () => {
     if (pathname === '/contact') return 'Get in touch for AI-enhanced product design services and consultation.';
     if (pathname === '/about') return 'Learn about Hiram Barsky, Product Designer and Gen AI Developer specializing in AI-enhanced user experiences.';
     if (pathname === '/blog') return 'Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization.';
+    if (pathname.startsWith('/design-services/')) return 'Professional design services and Gen AI development for digital product experiences.';
     return SEO_CONSTANTS.DEFAULT_DESCRIPTION;
   };
 
@@ -166,7 +192,16 @@ const UnifiedSEO: React.FC = () => {
       "name": data.title,
       "description": data.description,
       "url": data.canonicalUrl,
-      "image": data.image,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": data.canonicalUrl
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": data.image,
+        "width": 1200,
+        "height": 630
+      },
       "author": {
         "@type": "Person",
         "name": SEO_CONSTANTS.AUTHOR,
