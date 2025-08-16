@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
@@ -12,7 +11,7 @@ const MobileAppDesign = () => {
         type="service"
         title="Mobile App Design Services"
         description="Design mobile apps that users love and businesses succeed with. iOS and Android platforms with AI-enhanced UX research."
-        image="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+        image="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp"
         serviceName="Mobile App Design"
         benefits={["iOS & Android platforms", "User-centered design", "AI-enhanced research"]}
         targetAudience="App Entrepreneurs and Companies"
