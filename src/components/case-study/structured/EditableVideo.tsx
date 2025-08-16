@@ -63,8 +63,8 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
       >
         <div className="relative w-full h-full">
           <img
-            src="https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png"
-            alt="SplitTime mobile application promotional image"
+            src="https://barskyux.com/wp-content/uploads/2025/08/featureimage1.png"
+            alt="SplitTime feature showcase image"
             className="w-full h-full object-contain"
           />
           {editable && (
@@ -114,7 +114,7 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
           ) : (
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-600 italic mt-2 text-center w-full">
-                {caption || "SplitTime mobile application promotional image"}
+                {caption || "SplitTime feature showcase image"}
               </p>
               {editable && (
                 <Button
