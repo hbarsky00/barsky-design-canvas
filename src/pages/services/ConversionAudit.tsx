@@ -1,134 +1,212 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { CheckCircle, Star, TrendingUp, BarChart3, Target, Eye, Zap } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import ContactSection from "@/components/ContactSection";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, ArrowRight, BarChart3, Target, Users } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import ServicePage from '@/components/pages/ServicePage';
 
 const ConversionAudit: React.FC = () => {
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <Header />
+    <ServicePage
+      title="Conversion Rate Optimization Audit"
+      description="Identify exactly what's preventing visitors from converting with our comprehensive CRO audit and actionable improvement plan."
+    >
+      <div className="space-y-8">
+        {/* Results Preview */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="text-center p-6 bg-green-50 rounded-lg">
+            <BarChart3 className="w-8 h-8 text-green-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">47%</div>
+            <div className="text-sm text-gray-600">Average Conversion Increase</div>
+          </div>
+          <div className="text-center p-6 bg-blue-50 rounded-lg">
+            <Target className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">23</div>
+            <div className="text-sm text-gray-600">Optimization Opportunities Found</div>
+          </div>
+          <div className="text-center p-6 bg-purple-50 rounded-lg">
+            <Users className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">3-5 days</div>
+            <div className="text-sm text-gray-600">Audit Completion</div>
+          </div>
+        </div>
 
-        <main className="pt-24 pb-16">
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
-          >
-            {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h1 className="text-4xl font-extrabold text-gray-900 mb-6">
-                Unlock Hidden Growth: Conversion Rate Optimization Audit
-              </h1>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                Is your website underperforming? Discover untapped potential with our
-                expert conversion audit. We analyze user behavior, identify bottlenecks,
-                and provide actionable strategies to boost your conversion rates.
-              </p>
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                Get Your Free Audit
-              </Button>
+        {/* Audit Areas */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Comprehensive Audit Areas</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                category: "User Experience Analysis",
+                items: [
+                  "Navigation flow optimization",
+                  "Page loading speed analysis", 
+                  "Mobile responsiveness review",
+                  "User journey mapping"
+                ]
+              },
+              {
+                category: "Conversion Funnel Review",
+                items: [
+                  "Landing page effectiveness",
+                  "Form optimization opportunities",
+                  "Checkout process analysis",
+                  "Call-to-action placement"
+                ]
+              },
+              {
+                category: "Content & Messaging",
+                items: [
+                  "Value proposition clarity",
+                  "Content relevance scoring",
+                  "Trust signal effectiveness",
+                  "Urgency and scarcity elements"
+                ]
+              },
+              {
+                category: "Technical Performance",
+                items: [
+                  "Page speed optimization",
+                  "SEO conversion factors",
+                  "Analytics implementation",
+                  "Error identification"
+                ]
+              }
+            ].map((section, index) => (
+              <div key={index} className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{section.category}</h3>
+                <ul className="space-y-2">
+                  {section.items.map((item, itemIndex) => (
+                    <li key={itemIndex} className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700 text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Deliverables */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">What You'll Receive</h2>
+          
+          <div className="space-y-4">
+            {[
+              {
+                title: "Executive Summary Report",
+                description: "High-level overview of findings and potential revenue impact",
+                deliverable: "PDF Report"
+              },
+              {
+                title: "Detailed Audit Findings",
+                description: "Comprehensive analysis of all identified issues and opportunities",
+                deliverable: "50+ Page Report"
+              },
+              {
+                title: "Prioritized Action Plan",
+                description: "Step-by-step roadmap ranked by impact and effort required",
+                deliverable: "Implementation Guide"
+              },
+              {
+                title: "Wireframes & Mockups",
+                description: "Visual representations of recommended changes and improvements",
+                deliverable: "Design Files"
+              },
+              {
+                title: "Strategy Session",
+                description: "60-minute call to review findings and discuss implementation",
+                deliverable: "Video Call + Recording"
+              }
+            ].map((item, index) => (
+              <div key={index} className="border border-gray-200 p-6 rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                  <Badge variant="outline" className="text-blue-700 border-blue-200">
+                    {item.deliverable}
+                  </Badge>
+                </div>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Pricing */}
+        <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white p-8 rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Investment & ROI</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold mb-3">Complete CRO Audit</h4>
+              <div className="text-3xl font-bold mb-2">$1,497</div>
+              <p className="text-sm opacity-90 mb-4">One-time investment</p>
+              <Badge className="bg-white/20 text-white border-white/30">
+                Average ROI: 400%+ within 3 months
+              </Badge>
             </div>
-
-            {/* Benefits Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              <div className="flex items-start space-x-3">
-                <CheckCircle className="text-green-500 h-6 w-6" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Increased Revenue
-                  </h3>
-                  <p className="text-gray-600">
-                    Optimize your sales funnel and turn more visitors into paying customers.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <TrendingUp className="text-purple-500 h-6 w-6" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Improved User Experience
-                  </h3>
-                  <p className="text-gray-600">
-                    Enhance website usability and create a seamless journey for your users.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <BarChart3 className="text-amber-500 h-6 w-6" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Data-Driven Insights
-                  </h3>
-                  <p className="text-gray-600">
-                    Make informed decisions based on comprehensive analytics and user behavior
-                    data.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Key Features Section */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12 mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                What Our Audit Includes
-              </h2>
-              <ul className="space-y-4">
-                <li className="flex items-center space-x-3">
-                  <Target className="text-blue-500 h-5 w-5" />
-                  <span className="text-gray-700">
-                    In-depth analysis of your website's key performance indicators (KPIs)
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <Eye className="text-blue-500 h-5 w-5" />
-                  <span className="text-gray-700">
-                    Comprehensive review of user flow and navigation
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <Zap className="text-blue-500 h-5 w-5" />
-                  <span className="text-gray-700">
-                    Identification of friction points and areas for improvement
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <Star className="text-blue-500 h-5 w-5" />
-                  <span className="text-gray-700">
-                    Personalized recommendations to optimize conversion paths
-                  </span>
-                </li>
+            <div>
+              <h4 className="font-semibold mb-3">Typical Results</h4>
+              <ul className="space-y-2 text-sm">
+                <li>• 47% average conversion increase</li>
+                <li>• $50K+ additional annual revenue</li>
+                <li>• 23+ optimization opportunities</li>
+                <li>• 3-month implementation timeline</li>
               </ul>
             </div>
+          </div>
+        </section>
 
-            {/* Call to Action Section */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Ready to Transform Your Website?
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                Take the first step towards higher conversions. Request your free audit today!
-              </p>
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                Request a Free Audit
-              </Button>
-            </div>
-          </motion.section>
+        {/* Process */}
+        <section>
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">Audit Process & Timeline</h3>
+          <div className="space-y-4">
+            {[
+              { step: "1", title: "Discovery Call", desc: "30-minute consultation to understand your goals and challenges", time: "Day 1" },
+              { step: "2", title: "Data Collection", desc: "Analytics review, heatmap analysis, and user session recordings", time: "Days 1-2" },
+              { step: "3", title: "Comprehensive Analysis", desc: "Detailed audit of all conversion factors and user experience elements", time: "Days 3-4" },
+              { step: "4", title: "Report Creation", desc: "Compile findings into actionable recommendations with visual mockups", time: "Day 5" },
+              { step: "5", title: "Strategy Session", desc: "60-minute presentation of findings and implementation planning", time: "Day 6" }
+            ].map((item, index) => (
+              <div key={index} className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                  {item.step}
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-900">{item.title}</h4>
+                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                  <span className="text-xs text-blue-600 font-medium">{item.time}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          {/* Contact Section */}
-          <ContactSection />
-        </main>
-
-        <Footer />
+        {/* CTA */}
+        <section className="text-center">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+            Ready to Unlock Your Website's Revenue Potential?
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Get a comprehensive audit that shows you exactly how to increase conversions and revenue.
+          </p>
+          <Button 
+            size="lg"
+            className="bg-green-600 hover:bg-green-700"
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
+            Start My Audit Today
+            <ArrowRight className="h-5 w-5 ml-2" />
+          </Button>
+        </section>
       </div>
-    </>
+    </ServicePage>
   );
 };
 

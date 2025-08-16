@@ -1,175 +1,205 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { CheckCircle, Star, Target, Users, TrendingUp, Eye, Zap } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import ContactSection from "@/components/ContactSection";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, ArrowRight, Lightbulb, Users, TrendingUp } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import ServicePage from '@/components/pages/ServicePage';
 
 const MvpValidation: React.FC = () => {
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <Header />
+    <ServicePage
+      title="MVP Validation & User Testing"
+      description="Validate your product idea with real users before investing in full development. Save time, money, and ensure market fit."
+    >
+      <div className="space-y-8">
+        {/* Key Benefits */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="text-center p-6 bg-green-50 rounded-lg">
+            <Lightbulb className="w-8 h-8 text-green-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">85%</div>
+            <div className="text-sm text-gray-600">Faster Time to Market</div>
+          </div>
+          <div className="text-center p-6 bg-blue-50 rounded-lg">
+            <Users className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">50+</div>
+            <div className="text-sm text-gray-600">User Interviews</div>
+          </div>
+          <div className="text-center p-6 bg-purple-50 rounded-lg">
+            <TrendingUp className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">70%</div>
+            <div className="text-sm text-gray-600">Reduced Development Risk</div>
+          </div>
+        </div>
 
-        <main className="pt-24 pb-16">
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+        {/* Validation Process */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Comprehensive Validation Process</h2>
+          
+          <div className="space-y-6">
+            {[
+              {
+                phase: "Market Research & Analysis",
+                description: "Deep dive into your target market, competitors, and user needs to validate demand.",
+                deliverables: ["Market size analysis", "Competitor benchmarking", "User persona development"]
+              },
+              {
+                phase: "Prototype Development",
+                description: "Create interactive prototypes and wireframes to test core functionality and user flows.",
+                deliverables: ["Interactive prototypes", "User flow diagrams", "Feature prioritization"]
+              },
+              {
+                phase: "User Testing & Interviews",
+                description: "Conduct moderated user testing sessions and interviews to gather qualitative insights.",
+                deliverables: ["50+ user interviews", "Usability testing reports", "User feedback synthesis"]
+              },
+              {
+                phase: "Data-Driven Recommendations",
+                description: "Analyze all findings and provide actionable recommendations for product development.",
+                deliverables: ["Validation report", "Product roadmap", "Go-to-market strategy"]
+              }
+            ].map((phase, index) => (
+              <div key={index} className="border-l-4 border-green-600 pl-6 py-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{phase.phase}</h3>
+                <p className="text-gray-700 mb-3">{phase.description}</p>
+                <div className="grid md:grid-cols-3 gap-2">
+                  {phase.deliverables.map((deliverable, deliverableIndex) => (
+                    <div key={deliverableIndex} className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      <span className="text-sm text-gray-600">{deliverable}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* What You Get */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Validation Package</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              "Market research & competitive analysis",
+              "Interactive prototype development",
+              "50+ user interviews & testing sessions",
+              "Detailed validation report",
+              "Product development roadmap",
+              "Go-to-market strategy",
+              "Risk assessment & mitigation plan",
+              "Investor-ready presentation deck"
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-700">{item}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Success Stories */}
+        <section className="bg-gray-50 p-8 rounded-lg">
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">Validation Success Stories</h3>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">FinTech Startup</h4>
+              <p className="text-gray-600 text-sm mb-3">
+                Validated lending platform concept, identified key user pain points, and pivoted features 
+                before development. Saved $200K+ in unnecessary features.
+              </p>
+              <Badge variant="secondary" className="bg-green-100 text-green-800">
+                70% faster launch
+              </Badge>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">E-commerce Platform</h4>
+              <p className="text-gray-600 text-sm mb-3">
+                User testing revealed critical UX issues in checkout flow. Post-validation improvements 
+                led to 45% increase in conversion rates.
+              </p>
+              <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                45% conversion boost
+              </Badge>
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing */}
+        <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-8 rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Investment & Timeline</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold mb-3">Complete MVP Validation</h4>
+              <div className="text-3xl font-bold mb-2">$7,997</div>
+              <p className="text-sm opacity-90 mb-4">Or 3 payments of $2,799</p>
+              <Badge className="bg-white/20 text-white border-white/30">
+                ROI: Save $50K+ in development costs
+              </Badge>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-3">Project Timeline</h4>
+              <ul className="space-y-2 text-sm">
+                <li>• Week 1-2: Market research & prototype</li>
+                <li>• Week 3-4: User testing & interviews</li>
+                <li>• Week 5: Analysis & recommendations</li>
+                <li>• Week 6: Final report & presentation</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Preview */}
+        <section>
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">Common Questions</h3>
+          <div className="space-y-4">
+            {[
+              {
+                q: "What if my idea doesn't validate?",
+                a: "That's valuable information! We'll help you pivot or refine your concept based on user feedback, potentially saving you thousands in development costs."
+              },
+              {
+                q: "How do you recruit test users?",
+                a: "We use a combination of your existing network, professional recruiting services, and our database of qualified participants who match your target demographics."
+              },
+              {
+                q: "Can you help with technical feasibility?",
+                a: "Yes! Our validation includes technical architecture review and feasibility assessment to ensure your MVP can be built efficiently."
+              }
+            ].map((faq, index) => (
+              <div key={index} className="border border-gray-200 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">{faq.q}</h4>
+                <p className="text-gray-600 text-sm">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="text-center">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+            Ready to Validate Your Product Idea?
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Don't risk building something nobody wants. Let's validate your MVP with real users first.
+          </p>
+          <Button 
+            size="lg"
+            className="bg-purple-600 hover:bg-purple-700"
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
-            {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Validate Your MVP with Expert Design & User Testing
-              </h1>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                De-risk your startup by validating your Minimum Viable Product (MVP) with our proven design and user testing methodologies.
-              </p>
-              <Button size="lg">Get a Free Consultation</Button>
-            </div>
-
-            {/* Key Benefits */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              <div className="flex items-start space-x-3">
-                <CheckCircle className="h-6 w-6 text-green-500" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Reduce Development Costs</h3>
-                  <p className="text-gray-600">Identify and fix critical usability issues early to avoid costly rework.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <Star className="h-6 w-6 text-yellow-500" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Improve User Satisfaction</h3>
-                  <p className="text-gray-600">Ensure your MVP meets user needs and expectations for a delightful experience.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <Target className="h-6 w-6 text-blue-500" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Increase Conversion Rates</h3>
-                  <p className="text-gray-600">Optimize your MVP for maximum user engagement and conversion.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <Users className="h-6 w-6 text-purple-500" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Gain Actionable Insights</h3>
-                  <p className="text-gray-600">Receive detailed reports and recommendations based on real user feedback.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <TrendingUp className="h-6 w-6 text-teal-500" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Accelerate Time to Market</h3>
-                  <p className="text-gray-600">Launch a validated MVP faster and with greater confidence.</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <Eye className="h-6 w-6 text-orange-500" />
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Enhance Product Vision</h3>
-                  <p className="text-gray-600">Refine your product roadmap based on user-centered design principles.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Our Approach */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our MVP Validation Approach</h2>
-              <div className="space-y-6">
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  We employ a comprehensive approach to MVP validation, combining expert design with rigorous user testing to ensure your product resonates with your target audience.
-                </p>
-                <ul className="list-disc list-inside text-gray-600">
-                  <li><strong>Design Review:</strong> Expert evaluation of your MVP's design and usability.</li>
-                  <li><strong>User Testing:</strong> Real-world testing with your target users to gather actionable feedback.</li>
-                  <li><strong>Data Analysis:</strong> In-depth analysis of user behavior and feedback to identify key areas for improvement.</li>
-                  <li><strong>Iterative Refinement:</strong> Collaborative refinement of your MVP based on testing results.</li>
-                </ul>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Our goal is to help you launch a validated MVP that meets user needs, drives engagement, and achieves your business objectives.
-                </p>
-              </div>
-            </div>
-
-            {/* Who is this for? */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Who is MVP Validation For?</h2>
-              <div className="space-y-6">
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Our MVP validation service is ideal for:
-                </p>
-                <ul className="list-disc list-inside text-gray-600">
-                  <li><strong>Startups:</strong> Validating your core product idea before investing heavily in development.</li>
-                  <li><strong>Product Teams:</strong> Ensuring new features and products meet user needs and expectations.</li>
-                  <li><strong>Entrepreneurs:</strong> De-risking your business by validating your MVP with real users.</li>
-                </ul>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  If you're looking to launch a successful product, our MVP validation service can help you get there.
-                </p>
-              </div>
-            </div>
-
-            {/* Case Studies & Testimonials */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Success Stories</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Example Case Study */}
-                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <div className="p-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      Validated a Fintech MVP, resulting in a 40% increase in user engagement.
-                    </h3>
-                    <p className="text-gray-600">
-                      "The MVP validation process helped us identify critical usability issues and improve our product's overall user experience."
-                    </p>
-                    <div className="mt-4">
-                      <Badge variant="secondary">Fintech</Badge>
-                      <Badge variant="secondary">User Testing</Badge>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Example Testimonial */}
-                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <div className="p-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      "The insights we gained from user testing were invaluable."
-                    </h3>
-                    <p className="text-gray-600">
-                      "Thanks to the MVP validation, we were able to launch a product that truly meets our users' needs."
-                    </p>
-                    <div className="mt-4">
-                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
-                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
-                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
-                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
-                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Call to Action */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Ready to Validate Your MVP?</h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                Get a free consultation and learn how our MVP validation service can help you launch a successful product.
-              </p>
-              <Button size="lg">Get a Free Consultation</Button>
-            </div>
-          </motion.section>
-        </main>
-
-        <ContactSection />
-        <Footer />
+            Start Validation Process
+            <ArrowRight className="h-5 w-5 ml-2" />
+          </Button>
+        </section>
       </div>
-    </>
+    </ServicePage>
   );
 };
 

@@ -1,182 +1,149 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { CheckCircle, Star, Zap, Sparkles, Target, TrendingUp, Eye } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import ContactSection from "@/components/ContactSection";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, ArrowRight, Zap, Target, TrendingUp } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import ServicePage from '@/components/pages/ServicePage';
 
 const AiRedesign: React.FC = () => {
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <Header />
+    <ServicePage
+      title="AI-Powered Website Redesign"
+      description="Transform your website with cutting-edge AI tools and data-driven design decisions that boost conversions by 40%+."
+    >
+      <div className="space-y-8">
+        {/* Hero Benefits */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="text-center p-6 bg-blue-50 rounded-lg">
+            <Zap className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">3x</div>
+            <div className="text-sm text-gray-600">Faster Design Process</div>
+          </div>
+          <div className="text-center p-6 bg-green-50 rounded-lg">
+            <Target className="w-8 h-8 text-green-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">40%+</div>
+            <div className="text-sm text-gray-600">Conversion Increase</div>
+          </div>
+          <div className="text-center p-6 bg-purple-50 rounded-lg">
+            <TrendingUp className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">2-3 weeks</div>
+            <div className="text-sm text-gray-600">Delivery Timeline</div>
+          </div>
+        </div>
 
-        <main className="pt-24 pb-16">
-          <motion.section
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+        {/* AI-Powered Process */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Our AI-Enhanced Process</h2>
+          
+          <div className="space-y-6">
+            {[
+              {
+                phase: "AI Analysis & Research",
+                description: "Advanced analytics tools analyze user behavior, competitor strategies, and conversion optimization opportunities.",
+                tools: ["Hotjar AI", "Google Analytics Intelligence", "Competitor Analysis AI"]
+              },
+              {
+                phase: "Intelligent Design Generation", 
+                description: "AI-powered design tools create multiple layout variations optimized for your specific audience and goals.",
+                tools: ["Figma AI Assistant", "Midjourney for Graphics", "Copy.ai for Content"]
+              },
+              {
+                phase: "Data-Driven Optimization",
+                description: "Machine learning algorithms predict the best performing elements and automatically suggest improvements.",
+                tools: ["A/B Testing AI", "Conversion Prediction Models", "User Experience AI"]
+              },
+              {
+                phase: "AI-Powered Development",
+                description: "Automated code generation and optimization tools ensure fast, clean, and SEO-friendly implementation.",
+                tools: ["GitHub Copilot", "AI Code Optimization", "Performance AI Tools"]
+              }
+            ].map((phase, index) => (
+              <div key={index} className="border-l-4 border-blue-600 pl-6 py-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{phase.phase}</h3>
+                <p className="text-gray-700 mb-3">{phase.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {phase.tools.map((tool, toolIndex) => (
+                    <Badge key={toolIndex} variant="secondary" className="bg-blue-100 text-blue-800 text-xs">
+                      {tool}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* What's Included */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Redesign Package</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              "AI-powered user research & analysis",
+              "Competitor intelligence report",
+              "Custom design system creation",
+              "Mobile-first responsive design",
+              "Performance optimization",
+              "SEO-friendly development",
+              "Conversion rate optimization",
+              "3 months of post-launch support"
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-700">{item}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Pricing */}
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Investment & Timeline</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold mb-3">Complete AI Website Redesign</h4>
+              <div className="text-3xl font-bold mb-2">$4,997</div>
+              <p className="text-sm opacity-90 mb-4">Or 3 payments of $1,799</p>
+              <Badge className="bg-white/20 text-white border-white/30">
+                Includes 3 months support
+              </Badge>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-3">Project Timeline</h4>
+              <ul className="space-y-2 text-sm">
+                <li>• Week 1: AI Analysis & Strategy</li>
+                <li>• Week 2-3: Design & Prototyping</li>
+                <li>• Week 4-5: Development & Testing</li>
+                <li>• Week 6: Launch & Optimization</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="text-center">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+            Ready to Revolutionize Your Website?
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Schedule a free consultation to discuss your project and see how AI can transform your online presence.
+          </p>
+          <Button 
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-700"
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
-            {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                AI-Powered Website Redesign
-              </h1>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                Transform your website into a lead-generating machine with our AI-driven redesign services.
-              </p>
-              <Button size="lg">Get a Free Consultation</Button>
-            </div>
-
-            {/* Key Features */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {/* Feature 1 */}
-              <div className="bg-white rounded-2xl shadow-xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <Zap className="text-blue-500 h-6 w-6" />
-                  <h3 className="text-xl font-semibold text-gray-900">AI-Driven Analysis</h3>
-                </div>
-                <p className="text-gray-600">
-                  We use AI to analyze your website's performance, identify areas for improvement, and create a data-backed redesign strategy.
-                </p>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="bg-white rounded-2xl shadow-xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <Sparkles className="text-purple-500 h-6 w-6" />
-                  <h3 className="text-xl font-semibold text-gray-900">Personalized Design</h3>
-                </div>
-                <p className="text-gray-600">
-                  Our AI algorithms generate personalized design recommendations based on your brand, target audience, and business goals.
-                </p>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="bg-white rounded-2xl shadow-xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <Target className="text-green-500 h-6 w-6" />
-                  <h3 className="text-xl font-semibold text-gray-900">Conversion Optimization</h3>
-                </div>
-                <p className="text-gray-600">
-                  We optimize your website for conversions, ensuring that your visitors are more likely to become customers.
-                </p>
-              </div>
-            </div>
-
-            {/* Benefits Section */}
-            <div className="bg-gray-50 rounded-2xl py-12 px-6 mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-                Benefits of AI-Powered Redesign
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Benefit 1 */}
-                <div className="flex items-start gap-4">
-                  <CheckCircle className="text-green-500 h-6 w-6" />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Increased Conversions</h3>
-                    <p className="text-gray-600">
-                      Our AI-driven redesigns are proven to increase conversion rates, helping you generate more leads and sales.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Benefit 2 */}
-                <div className="flex items-start gap-4">
-                  <Star className="text-yellow-500 h-6 w-6" />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Improved User Experience</h3>
-                    <p className="text-gray-600">
-                      We create a seamless and intuitive user experience that keeps your visitors engaged and coming back for more.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Benefit 3 */}
-                <div className="flex items-start gap-4">
-                  <TrendingUp className="text-blue-500 h-6 w-6" />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Data-Driven Results</h3>
-                    <p className="text-gray-600">
-                      Our redesigns are based on data, not guesswork, ensuring that you get the best possible results.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Benefit 4 */}
-                <div className="flex items-start gap-4">
-                  <Eye className="text-purple-500 h-6 w-6" />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Modern Design</h3>
-                    <p className="text-gray-600">
-                      We use the latest design trends and technologies to create a website that looks great and performs even better.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonials */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-                What Our Clients Say
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Testimonial 1 */}
-                <div className="bg-white rounded-2xl shadow-xl p-6">
-                  <p className="text-gray-600 italic mb-4">
-                    "The AI-powered redesign transformed our website into a lead-generating machine. We've seen a significant increase in conversions since the redesign."
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Client"
-                      className="w-10 h-10 rounded-full"
-                    />
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900">John Doe</h4>
-                      <p className="text-gray-500">CEO, Example Company</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testimonial 2 */}
-                <div className="bg-white rounded-2xl shadow-xl p-6">
-                  <p className="text-gray-600 italic mb-4">
-                    "We were amazed by the personalized design recommendations generated by the AI algorithms. Our new website is not only beautiful but also highly effective."
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Client"
-                      className="w-10 h-10 rounded-full"
-                    />
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900">Jane Smith</h4>
-                      <p className="text-gray-500">Marketing Manager, Another Company</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Call to Action */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                Ready to transform your website?
-              </h2>
-              <Button size="lg">Get a Free Consultation</Button>
-            </div>
-          </motion.section>
-        </main>
-
-        <ContactSection />
-        <Footer />
+            Get Free Consultation
+            <ArrowRight className="h-5 w-5 ml-2" />
+          </Button>
+        </section>
       </div>
-    </>
+    </ServicePage>
   );
 };
 

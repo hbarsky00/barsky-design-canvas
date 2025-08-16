@@ -8,6 +8,7 @@ import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
+import DynamicSeo from "@/components/seo/DynamicSeo";
 
 interface CaseStudySection {
   id: string;

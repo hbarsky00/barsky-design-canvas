@@ -49,16 +49,6 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
 
   return (
     <>
-        <DynamicSeo
-          type="project"
-          title={caseStudy.title}
-          description={caseStudy.description}
-          image={caseStudy.videoThumbnail}
-          projectName={caseStudy.title}
-          results={[]}
-          technologies={caseStudy.tags}
-          path={`/project/${projectId}/`}
-        />
 
       <div className={`min-h-screen bg-background ${isProjectPage ? 'projects-page' : ''}`}>
         {/* 3D Transition Overlay */}

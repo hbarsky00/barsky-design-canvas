@@ -1,209 +1,121 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { CheckCircle, Star, Clock, Users, TrendingUp, Eye, Zap, Target } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
+import React from 'react';
+import { motion } from 'framer-motion';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, ArrowRight, Linkedin, Users, TrendingUp } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import ServicePage from '@/components/pages/ServicePage';
+import LinkedInAuditForm from '@/components/forms/LinkedInAuditForm';
 
 const LinkedInVisitors: React.FC = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    if (!name || !email || !message) {
-      toast.error("Please fill in all fields.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from("linkedin_lead_capture")
-        .insert([
-          {
-            name,
-            email,
-            message,
-          },
-        ]);
-
-      if (error) {
-        console.error("Supabase error:", error);
-        toast.error("Failed to submit the form. Please try again.");
-      } else {
-        toast.success("Form submitted successfully!");
-        setName("");
-        setEmail("");
-        setMessage("");
-      }
-    } catch (err) {
-      console.error("Unexpected error:", err);
-      toast.error("An unexpected error occurred. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <Header />
+    <ServicePage
+      title="LinkedIn Profile Optimization"
+      description="Transform your LinkedIn profile into a lead-generating machine that attracts your ideal clients and converts visitors into conversations."
+    >
+      <div className="space-y-8">
+        {/* Hero Stats */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="text-center p-6 bg-blue-50 rounded-lg">
+            <Users className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">3x</div>
+            <div className="text-sm text-gray-600">More Profile Views</div>
+          </div>
+          <div className="text-center p-6 bg-green-50 rounded-lg">
+            <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">150%</div>
+            <div className="text-sm text-gray-600">Increase in Connection Requests</div>
+          </div>
+          <div className="text-center p-6 bg-purple-50 rounded-lg">
+            <Linkedin className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-gray-900">5x</div>
+            <div className="text-sm text-gray-600">More Inbound Messages</div>
+          </div>
+        </div>
 
-        <main className="pt-24 pb-16">
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-4xl mx-auto px-6 lg:px-8"
-          >
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="px-6 py-12 lg:px-12">
-                <header className="text-center mb-8">
-                  <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                    Unlock Exclusive Insights
-                  </h1>
-                  <p className="text-lg text-gray-600">
-                    Share your details to receive personalized content and
-                    connect with me on LinkedIn.
-                  </p>
-                </header>
+        {/* What's Included */}
+        <section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">LinkedIn Profile Transformation</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              "Strategic headline optimization",
+              "Compelling summary rewrite", 
+              "Experience section enhancement",
+              "Skills & endorsements audit",
+              "Professional photo guidelines",
+              "Content strategy recommendations",
+              "Connection request templates",
+              "Monthly performance review"
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-700">{item}</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Full Name
-                    </label>
-                    <div className="mt-1">
-                      <Input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Your Name"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
+        {/* Results Preview */}
+        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg">
+          <h3 className="text-xl font-semibold mb-4">Before vs. After Results</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold mb-3 text-red-200">❌ Before Optimization</h4>
+              <ul className="space-y-2 text-sm">
+                <li>• Generic headline and summary</li>
+                <li>• Low profile visibility</li>
+                <li>• Few meaningful connections</li>
+                <li>• Minimal inbound inquiries</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-3 text-green-200">✅ After Optimization</h4>
+              <ul className="space-y-2 text-sm">
+                <li>• Compelling, keyword-rich profile</li>
+                <li>• 3x more profile views</li>
+                <li>• Quality connection requests</li>
+                <li>• Regular client inquiries</li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Email Address
-                    </label>
-                    <div className="mt-1">
-                      <Input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Your Email"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Message (Optional)
-                    </label>
-                    <div className="mt-1">
-                      <Textarea
-                        id="message"
-                        rows={4}
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="How can I help you?"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          Submitting...
-                          <Clock className="ml-2 h-5 w-5 animate-spin" />
-                        </>
-                      ) : (
-                        "Submit & Connect"
-                      )}
-                    </Button>
-                  </div>
-                </form>
-
-                <div className="mt-8 border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-medium text-gray-900">
-                    Why Connect?
-                  </h3>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-center text-gray-600">
-                      <CheckCircle className="mr-2 h-5 w-5 text-green-500" />
-                      Get exclusive content and insights
-                    </li>
-                    <li className="flex items-center text-gray-600">
-                      <Star className="mr-2 h-5 w-5 text-yellow-500" />
-                      Stay updated on the latest trends
-                    </li>
-                    <li className="flex items-center text-gray-600">
-                      <TrendingUp className="mr-2 h-5 w-5 text-blue-500" />
-                      Learn about new strategies and techniques
-                    </li>
-                    <li className="flex items-center text-gray-600">
-                      <Users className="mr-2 h-5 w-5 text-purple-500" />
-                      Expand your professional network
-                    </li>
-                    <li className="flex items-center text-gray-600">
-                      <Eye className="mr-2 h-5 w-5 text-orange-500" />
-                      See behind-the-scenes project insights
-                    </li>
-                    <li className="flex items-center text-gray-600">
-                      <Zap className="mr-2 h-5 w-5 text-teal-500" />
-                      Get quick answers to your burning questions
-                    </li>
-                    <li className="flex items-center text-gray-600">
-                      <Target className="mr-2 h-5 w-5 text-red-500" />
-                      Achieve your business goals faster
-                    </li>
-                  </ul>
-                </div>
+        {/* Pricing */}
+        <section>
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">Investment & Timeline</h3>
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Complete LinkedIn Optimization</h4>
+                <div className="text-3xl font-bold text-blue-600 mb-2">$497</div>
+                <p className="text-gray-600 text-sm mb-4">One-time investment</p>
+                <Badge variant="secondary" className="bg-green-100 text-green-800">
+                  Typically pays for itself with 1 new client
+                </Badge>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Timeline</h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>• Initial consultation: 30 minutes</li>
+                  <li>• Profile audit & strategy: 24-48 hours</li>
+                  <li>• Content creation: 2-3 days</li>
+                  <li>• Revisions & finalization: 1-2 days</li>
+                  <li>• <strong>Total turnaround: 5-7 days</strong></li>
+                </ul>
               </div>
             </div>
-          </motion.section>
-        </main>
+          </div>
+        </section>
 
-        <Footer />
+        {/* Form */}
+        <section>
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">Ready to Transform Your LinkedIn Presence?</h3>
+          <LinkedInAuditForm />
+        </section>
       </div>
-    </>
+    </ServicePage>
   );
 };
 
