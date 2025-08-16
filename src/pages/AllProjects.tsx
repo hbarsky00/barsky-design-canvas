@@ -1,68 +1,50 @@
-
 import React from "react";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
-import EnhancedProjectGrid from "./projects/components/EnhancedProjectGrid";
-import DynamicSeo from "@/components/seo/DynamicSeo";
-import SeoFaqSection from "@/components/seo/SeoFaqSection";
 import Footer from "@/components/Footer";
-import ServicesCallToAction from "@/components/services/ServicesCallToAction";
-import BlogPreview from "@/components/blog/BlogPreview";
+import ProjectCard from "@/components/ProjectCard";
+import { projectsData } from "@/data/projectsData";
 
-import { useProjectsData } from "./projects/hooks/useProjectsData";
-import { projectFaqs } from "@/data/seoFaqs";
-
-const AllProjects = () => {
-  const { currentProjects, resetFilters } = useProjectsData();
-  
-  const breadcrumbs = [
-    { name: "Home", url: "https://barskydesign.pro" },
-    { name: "Projects", url: "https://barskydesign.pro/projects" }
-  ];
-
+const AllProjects: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen px-5">
-      <DynamicSeo 
-        type="page"
-        title="AI-Enhanced Design Portfolio - Project Case Studies"
-        description="Explore AI-powered product design projects with real case studies and measurable results. See how AI integration transforms user experiences."
-        image="https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png"
-        path="/projects"
-      />
-      
+    <>
       <Header />
       
-      <main className="flex-grow">
-        <section className="bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30 py-8 sm:py-12 pt-24 sm:pt-28">
-          <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              AI-Enhanced Design Portfolio
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Explore my portfolio of Product Design projects featuring Gen AI integration and intelligent web applications. 
-              Each case study demonstrates the fusion of thoughtful design with cutting-edge AI technology, 
-              creating user-centered experiences that leverage the power of artificial intelligence.
-            </p>
-          </div>
-        </section>
-
-        <div className="max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <EnhancedProjectGrid 
-            projects={currentProjects}
-            resetFilters={resetFilters}
-          />
-        </div>
+      <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <main className="pt-24 pb-16">
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center mb-12"
+            >
+              <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl mb-4">
+                Explore Our Projects
+              </h1>
+              <p className="text-lg text-gray-600">
+                A curated selection of our most impactful work.
+              </p>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projectsData.map((project) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <ProjectCard project={project} />
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        </main>
         
-        <ServicesCallToAction />
-        <BlogPreview />
-        <SeoFaqSection 
-          title="AI-Enhanced Product Design Project Questions"
-          faqs={projectFaqs}
-          className="mt-16"
-        />
-      </main>
-      
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

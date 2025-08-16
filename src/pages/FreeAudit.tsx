@@ -1,369 +1,290 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, Clock, Mail, Phone, Star, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CheckCircle, Star, TrendingUp, Users, Zap, Shield, Target, BarChart3, Eye } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
-import { Helmet } from "react-helmet-async";
-import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 const FreeAudit: React.FC = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+  const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    website: '',
-    phone: '',
-    projectType: '',
-    budgetRange: '',
-    projectDescription: '',
-    timeline: ''
-  });
-  const { toast } = useToast();
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.projectType || !formData.budgetRange || !formData.projectDescription) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
-        variant: "destructive"
-      });
+    setIsSubmitting(true);
+
+    if (!name || !email || !website || !message) {
+      toast.error("Please fill in all fields.");
+      setIsSubmitting(false);
       return;
     }
 
-    setIsSubmitting(true);
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
-      const { data, error } = await supabase.functions.invoke('process-free-audit', {
-        body: formData
-      });
+      const { data, error } = await supabase
+        .from("free_audit_requests")
+        .insert([
+          {
+            name,
+            email,
+            website,
+            message,
+            submitted_at: new Date().toISOString(),
+          },
+        ]);
 
-      if (error) throw error;
+      if (error) {
+        console.error("Supabase error:", error);
+        toast.error("Failed to submit request. Please try again.");
+      } else {
+        toast.success("Request submitted successfully!");
+        setName("");
+        setEmail("");
+        setWebsite("");
+        setMessage("");
 
-      setIsSubmitted(true);
-      toast({
-        title: "Request Submitted!",
-        description: "You'll receive a confirmation email shortly with next steps.",
-      });
-
-    } catch (error: any) {
-      console.error('Error submitting audit request:', error);
-      toast({
-        title: "Submission Failed",
-        description: "There was an error submitting your request. Please try again.",
-        variant: "destructive"
-      });
+        // Reset the form using the ref
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      toast.error("An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const benefits = [
-    "Live audit of your current website/product",
-    "AI-enhanced user behavior analysis using ChatGPT & Claude AI",
-    "3 specific improvement recommendations you can implement immediately",
-    "Personalized growth strategy based on your business goals",
-    "No-obligation project timeline and pricing discussion"
-  ];
-
   return (
     <>
-      <DynamicSeo 
-        type="service"
-        title="Free UX Conversion Audit - Increase Conversions 40%+ | Hiram Barsky"
-        description="Get your free 30-minute UX conversion audit. Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX design. Book now!"
-        image="https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png"
-        serviceName="Free UX Conversion Audit"
-        benefits={["40%+ conversion improvement potential", "AI-enhanced UX analysis", "30-minute consultation", "Actionable recommendations"]}
-        targetAudience="Business owners and product managers"
-        path="/free-audit"
-      />
-      
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
-        
-        <main className="flex-grow pt-20">
-          <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              
-              {/* Hero Section */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-                  Get Your Free 30-Minute Conversion Audit
-                </h1>
-                <p className="text-xl text-neutral-500 max-w-3xl mx-auto leading-relaxed mb-8">
-                  Discover exactly how to increase your conversions by 40%+ using AI-enhanced UX
-                </p>
-                
-                {/* Social Proof */}
-                <div className="flex items-center justify-center gap-2 text-sm text-neutral-500 mb-8">
-                  <div className="flex items-center gap-1">
-                    <span className="text-yellow-500">★★★★★</span>
-                    <span>Join 47 five-star clients who've seen 40%+ conversion improvements</span>
-                  </div>
+
+        <main className="pt-24 pb-16">
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
+          >
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                Get a Free Website Conversion Audit
+              </h1>
+              <p className="text-lg text-gray-600">
+                Let us analyze your website and provide actionable insights to
+                improve conversions and user experience.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Benefits Section */}
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="text-green-500 h-6 w-6" />
+                  <h2 className="text-2xl font-semibold text-gray-900">
+                    Why Get an Audit?
+                  </h2>
                 </div>
-              </motion.div>
 
-              <div className="grid lg:grid-cols-2 gap-12 items-start">
-                
-                {/* Benefits Section */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="space-y-8"
-                >
-                  <div>
-                    <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-                      What You'll Get:
-                    </h2>
-                    <div className="space-y-4">
-                      {benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-6 w-6 text-success-green mt-1 flex-shrink-0" />
-                          <span className="text-neutral-500">{benefit}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Contact Info */}
-                  <div className="glass-card p-6">
-                    <h3 className="text-xl font-bold text-neutral-900 mb-4">
-                      Contact Information:
-                    </h3>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <Mail className="h-5 w-5 text-blue-accent" />
-                        <span className="text-neutral-500">hbarsky01@gmail.com</span>
+                <div className="bg-white rounded-2xl shadow-xl p-6">
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <Star className="text-yellow-500 h-5 w-5 mt-0.5" />
+                      <div>
+                        <h3 className="font-medium text-gray-900">
+                          Identify Conversion Opportunities
+                        </h3>
+                        <p className="text-gray-600">
+                          Uncover hidden opportunities to turn more visitors into
+                          customers.
+                        </p>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <Phone className="h-5 w-5 text-blue-accent" />
-                        <span className="text-neutral-500">(201) 668-4754</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <TrendingUp className="text-blue-500 h-5 w-5 mt-0.5" />
+                      <div>
+                        <h3 className="font-medium text-gray-900">
+                          Improve User Experience
+                        </h3>
+                        <p className="text-gray-600">
+                          Enhance your website's usability for a smoother user
+                          journey.
+                        </p>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <Clock className="h-5 w-5 text-blue-accent" />
-                        <span className="text-neutral-500">You'll hear back within 24 hours</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Users className="text-purple-500 h-5 w-5 mt-0.5" />
+                      <div>
+                        <h3 className="font-medium text-gray-900">
+                          Understand User Behavior
+                        </h3>
+                        <p className="text-gray-600">
+                          Gain insights into how users interact with your site.
+                        </p>
                       </div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Booking Form */}
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="glass-card-elevated p-8"
-                >
-                  {isSubmitted ? (
-                    <div className="text-center space-y-4">
-                      <CheckCircle className="h-16 w-16 text-success-green mx-auto" />
-                      <h3 className="text-2xl font-bold text-neutral-900">Request Submitted!</h3>
-                      <p className="text-neutral-500">
-                        Thank you for your interest! You'll receive a confirmation email with next steps within 24 hours.
-                      </p>
-                      <Button
-                        onClick={() => setIsSubmitted(false)}
-                        variant="outline"
-                        className="mt-4"
-                      >
-                        Submit Another Request
-                      </Button>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          type="text"
-                          required
-                          placeholder="Your full name"
-                          className="w-full"
-                          value={formData.name}
-                          onChange={(e) => handleInputChange('name', e.target.value)}
-                        />
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Zap className="text-orange-500 h-5 w-5 mt-0.5" />
+                      <div>
+                        <h3 className="font-medium text-gray-900">
+                          Boost Website Performance
+                        </h3>
+                        <p className="text-gray-600">
+                          Optimize your site for speed and efficiency.
+                        </p>
                       </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          required
-                          placeholder="your@email.com"
-                          className="w-full"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange('email', e.target.value)}
-                        />
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Shield className="text-indigo-500 h-5 w-5 mt-0.5" />
+                      <div>
+                        <h3 className="font-medium text-gray-900">
+                          Ensure Security and Compliance
+                        </h3>
+                        <p className="text-gray-600">
+                          Protect your website and user data.
+                        </p>
                       </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="company">Company/Project Name</Label>
-                        <Input
-                          id="company"
-                          type="text"
-                          placeholder="Your company or project name"
-                          className="w-full"
-                          value={formData.company}
-                          onChange={(e) => handleInputChange('company', e.target.value)}
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="website">Website URL</Label>
-                        <Input
-                          id="website"
-                          type="url"
-                          placeholder="https://yourwebsite.com"
-                          className="w-full"
-                          value={formData.website}
-                          onChange={(e) => handleInputChange('website', e.target.value)}
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="(555) 123-4567"
-                          className="w-full"
-                          value={formData.phone}
-                          onChange={(e) => handleInputChange('phone', e.target.value)}
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="projectType">Project Type *</Label>
-                        <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select project type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Website Redesign">Website Redesign</SelectItem>
-                            <SelectItem value="Mobile App Design">Mobile App Design</SelectItem>
-                            <SelectItem value="UX Audit">UX Audit</SelectItem>
-                            <SelectItem value="AI Integration">AI Integration</SelectItem>
-                            <SelectItem value="E-commerce">E-commerce Platform</SelectItem>
-                            <SelectItem value="SaaS Platform">SaaS Platform</SelectItem>
-                            <SelectItem value="Other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="budgetRange">Budget Range *</Label>
-                        <Select value={formData.budgetRange} onValueChange={(value) => handleInputChange('budgetRange', value)}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select budget range" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="<$5k">Less than $5,000</SelectItem>
-                            <SelectItem value="$5k-$10k">$5,000 - $10,000</SelectItem>
-                            <SelectItem value="$10k-$20k">$10,000 - $20,000</SelectItem>
-                            <SelectItem value="$20k-$50k">$20,000 - $50,000</SelectItem>
-                            <SelectItem value="$50k+">$50,000+</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="projectDescription">Project Description *</Label>
-                        <Textarea
-                          id="projectDescription"
-                          placeholder="Describe your project, goals, and main challenges..."
-                          rows={4}
-                          className="w-full"
-                          value={formData.projectDescription}
-                          onChange={(e) => handleInputChange('projectDescription', e.target.value)}
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="timeline">Preferred Meeting Time</Label>
-                        <Input
-                          id="timeline"
-                          type="text"
-                          placeholder="e.g., Weekdays 2-4 PM EST, or any specific dates"
-                          className="w-full"
-                          value={formData.timeline}
-                          onChange={(e) => handleInputChange('timeline', e.target.value)}
-                        />
-                      </div>
-
-                      <Button 
-                        type="submit" 
-                        disabled={isSubmitting}
-                        className="w-full bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-3 px-6 transition-colors duration-300 disabled:opacity-50"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                            Submitting...
-                          </>
-                        ) : (
-                          'Book My Free Audit'
-                        )}
-                      </Button>
-
-                      <p className="text-sm text-neutral-500 text-center">
-                        No spam, no sales pitch - just valuable insights
-                      </p>
-                    </form>
-                  )}
-                </motion.div>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
-              {/* Bottom CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-center mt-16"
-              >
-                <div className="glass-card p-8 max-w-2xl mx-auto">
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <Star className="h-5 w-5 text-yellow-500" />
-                    <Star className="h-5 w-5 text-yellow-500" />
-                    <Star className="h-5 w-5 text-yellow-500" />
-                    <Star className="h-5 w-5 text-yellow-500" />
-                    <Star className="h-5 w-5 text-yellow-500" />
+              {/* Form Section */}
+              <div className="bg-white rounded-2xl shadow-xl p-6">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+                  Request Your Free Audit
+                </h2>
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Your Name
+                    </label>
+                    <Input
+                      type="text"
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="mt-1"
+                      required
+                    />
                   </div>
-                  <p className="text-neutral-500 italic">
-                    "Hiram's AI-enhanced research revealed user pain points we never considered. 
-                    The audit insights led to a 45% improvement in our conversion rate."
-                  </p>
-                  <p className="text-sm text-neutral-500 mt-2">
-                    - Sarah Chen, Founder, Herbalink
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Email Address
+                    </label>
+                    <Input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="mt-1"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="website"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Website URL
+                    </label>
+                    <Input
+                      type="url"
+                      id="website"
+                      value={website}
+                      onChange={(e) => setWebsite(e.target.value)}
+                      className="mt-1"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Tell us about your website and goals
+                    </label>
+                    <Textarea
+                      id="message"
+                      rows={4}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="mt-1"
+                      required
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting..." : "Request Free Audit"}
+                  </Button>
+                </form>
+              </div>
+            </div>
+
+            {/* What We Analyze Section */}
+            <div className="mt-16">
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+                What We Analyze
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <Target className="text-blue-500 h-8 w-8 mx-auto mb-2" />
+                  <h3 className="font-medium text-gray-900">
+                    Goal Alignment
+                  </h3>
+                  <p className="text-gray-600">
+                    Ensuring your website aligns with your business objectives.
                   </p>
                 </div>
-              </motion.div>
-
+                <div className="text-center">
+                  <BarChart3 className="text-green-500 h-8 w-8 mx-auto mb-2" />
+                  <h3 className="font-medium text-gray-900">
+                    Conversion Funnels
+                  </h3>
+                  <p className="text-gray-600">
+                    Analyzing the steps users take to complete a desired action.
+                  </p>
+                </div>
+                <div className="text-center">
+                  <Eye className="text-purple-500 h-8 w-8 mx-auto mb-2" />
+                  <h3 className="font-medium text-gray-900">
+                    User Experience (UX)
+                  </h3>
+                  <p className="text-gray-600">
+                    Evaluating the ease and enjoyment of using your website.
+                  </p>
+                </div>
+              </div>
             </div>
-          </section>
+          </motion.section>
         </main>
-        
+
         <Footer />
       </div>
     </>

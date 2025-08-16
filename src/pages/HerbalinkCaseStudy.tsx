@@ -1,545 +1,217 @@
 import React from "react";
-
 import { motion } from "framer-motion";
-import { ArrowRight, Leaf, Heart, Smartphone, Users, MapPin, Shield, Zap, Star, CheckCircle2, Sprout, TreePine } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
-import { Helmet } from "react-helmet-async";
-import { useImageMaximizer } from "@/context/ImageMaximizerContext";
-import { getOptimizedImageSrc } from "@/utils/imageOptimization";
-import RelatedProjects from "@/components/RelatedProjects";
-import ShareButtons from "@/components/blog/ShareButtons";
-import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
-import herbalinkOgImage from "@/assets/social/herbalink-og.jpg";
+import VideoPlayer from "@/components/case-study/VideoPlayer";
+import CaseStudyContactSection from "@/components/case-study/CaseStudyContactSection";
+import { Link } from "react-router-dom";
 
 const HerbalinkCaseStudy: React.FC = () => {
-  const isProjectPage = useProjectPageDetection();
-  const { maximizeImage } = useImageMaximizer();
-  
-  const healthBarriers = [{
-    title: "Geographic Limitations",
-    description: "Traditional herbalist consultations required in-person visits, leaving rural communities without access to qualified practitioners.",
-    icon: <MapPin className="h-8 w-8" />
-  }, {
-    title: "Credential Verification",
-    description: "No standardized way to verify herbalist qualifications, leading to uncertainty about practitioner expertise.",
-    icon: <Shield className="h-8 w-8" />
-  }, {
-    title: "Personalized Matching",
-    description: "Word-of-mouth referrals couldn't account for individual health needs, treatment preferences, and communication styles.",
-    icon: <Users className="h-8 w-8" />
-  }];
-  const matchingFeatures = [{
-    title: "Health Profile Analysis",
-    description: "Analyzes user health concerns, preferences, and goals to create comprehensive wellness profiles.",
-    visual: "🌿"
-  }, {
-    title: "Herbalist Specialization Matching",
-    description: "Considers practitioner expertise, treatment approaches, and communication styles for optimal pairing.",
-    visual: "🔍"
-  }, {
-    title: "Compatibility Scoring",
-    description: "AI-powered algorithm generates compatibility scores based on multiple wellness factors.",
-    visual: "⭐"
-  }];
-  const platformJourney = [{
-    step: "Discover",
-    title: "Browse Herbalist Profiles",
-    description: "Explore certified practitioners with detailed specializations, reviews, and treatment philosophies.",
-    image: "/lovable-uploads/6ac697d2-0417-49dc-b4de-cb3702484e09.png"
-  }, {
-    step: "Connect",
-    title: "Smart Matching Recommendations",
-    description: "Receive personalized herbalist suggestions based on your health profile and preferences.",
-    image: "/lovable-uploads/8c5f2c56-320c-4d0c-9ea9-beb831b8077f.png"
-  }, {
-    title: "Book",
-    description: "One-tap booking with real-time availability, automated confirmations, and calendar integration.",
-    image: "/lovable-uploads/67facb2d-d64e-44c8-9f6a-ae33a0db8adc.png"
-  }, {
-    step: "Heal",
-    title: "Ongoing Wellness Journey",
-    description: "Track progress, receive follow-up care, and build lasting relationships with your herbalist.",
-    image: "/lovable-uploads/2c0494f7-e624-472c-87b4-0fac92ac54e0.png"
-  }];
-  const wellnessImpact = [{
-    metric: "78%",
-    label: "Users Found Their Ideal Herbalist",
-    icon: <Heart className="h-6 w-6" />
-  }, {
-    metric: "65%",
-    label: "Increase in Consultation Completion",
-    icon: <CheckCircle2 className="h-6 w-6" />
-  }, {
-    metric: "89%",
-    label: "User Satisfaction Rate",
-    icon: <Star className="h-6 w-6" />
-  }, {
-    metric: "3x",
-    label: "Growth in Herbalist Community",
-    icon: <Sprout className="h-6 w-6" />
-  }];
-  
-  return <>
-      <DynamicSeo type="project" title="Herbalink: AI-Enhanced Herbalist Platform Case Study | Hiram Barsky" description="85% of users find their ideal herbalist match within 3 recommendations. See how AI-powered matching revolutionized natural healthcare access." image={`https://barskydesign.pro${herbalinkOgImage}`} projectName="Herbalink" results={["85% user match success rate", "40% faster consultation bookings", "AI-powered herbalist matching"]} technologies={["React Native", "AI Matching", "Mobile UX", "Healthcare Platform"]} path="/project/herbalink" />
-      
-      <div className={`wellness-platform-showcase min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 ${isProjectPage ? 'projects-page' : ''}`}>
+  return (
+    <>
+      <div className="min-h-screen bg-background">
         <Header />
-        
-        <div className={isProjectPage ? "projects-wrap" : ""}>
-          <main className="flex-grow">
-            
-            {/* Wellness Journey Hero - No cs-card class */}
-            <section className="relative min-h-screen overflow-hidden">
-              <div className="absolute inset-0">
-                <img src={getOptimizedImageSrc("/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png")} alt="Herbalink mobile app interface" className="w-full h-full object-cover object-center" />
-                <div className="absolute inset-0 bg-black/75"></div>
-              </div>
 
-              <div className="relative z-10 flex items-center min-h-screen">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                  <div className="max-w-2xl">
-                    <div className="bg-black/70 backdrop-blur-md rounded-2xl p-8 lg:p-12">
-                      <motion.div initial={{
-                      opacity: 0,
-                      y: 30
-                    }} animate={{
-                      opacity: 1,
-                      y: 0
-                    }} transition={{
-                      duration: 0.8
-                    }} className="space-y-6">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight">
-                          Connecting Patients with Qualified Herbalists
-                        </h1>
-                        
-                        <p className="text-lg md:text-xl font-medium leading-relaxed text-white">
-                          AI-powered matching makes natural healthcare accessible.
-                        </p>
-                        
-                        <div className="pt-2">
-                          <Button size="lg" variant="brand" className="font-bold" onClick={() => window.open('http://herbalink.live', '_blank')}>
-                            See the App in Action
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        </div>
-                      </motion.div>
+        <main className="container mx-auto px-4 pt-[calc(var(--header-height,64px)+12px)] pb-8">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-center mb-8"
+          >
+            <Link to="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+              <img 
+                alt="Hiram Barsky" 
+                className="w-10 h-10 rounded-full object-cover border-2 border-border" 
+                src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
+              />
+              <div className="text-left">
+                <div className="text-sm font-medium text-foreground">Hiram Barsky</div>
+                <div className="text-xs text-muted-foreground">Product Designer & Gen AI Developer</div>
+              </div>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center mb-12"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              HerbaLink: Streamlining Cannabis Distribution with AI-Powered Efficiency
+            </h1>
+            
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              Revolutionizing cannabis distribution through AI-driven logistics and compliance solutions.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              <Badge variant="secondary" className="px-3 py-1">
+                UX Design
+              </Badge>
+              <Badge variant="secondary" className="px-3 py-1">
+                UI Design
+              </Badge>
+              <Badge variant="secondary" className="px-3 py-1">
+                Product Design
+              </Badge>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-16"
+          >
+            <VideoPlayer 
+              videoSrc="https://res.cloudinary.com/hilnmyskv/video/upload/v1708719963/HerbaLink_Case_Study_Video_Final_v2_mjy39q.mp4"
+              thumbnailSrc="/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png"
+              title="HerbaLink Case Study"
+            />
+          </motion.div>
+
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mb-20"
+            style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+              Overview
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  HerbaLink is a pioneering platform designed to revolutionize the cannabis distribution industry by leveraging AI-driven logistics and compliance solutions. This innovative system addresses the critical need for streamlined operations, regulatory adherence, and enhanced efficiency in a rapidly evolving market.
+                </p>
+              </div>
+              
+              <div className="relative">
+                <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                  <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-muted-foreground mb-2">Image Placeholder</p>
+                      <p className="text-sm text-muted-foreground">HerbaLink Interface</p>
                     </div>
                   </div>
                 </div>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
               </div>
-            </section>
-
-            {/* Healthcare Gap Analysis - Apply cs-card class */}
-            <section className={`healthcare-accessibility-gap py-20 bg-white/60 backdrop-blur-sm ${isProjectPage ? 'cs-card' : ''}`}>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8
-              }} className="text-center mb-16">
-                  <div className="flex items-center justify-center gap-3 mb-6">
-                    <Heart className="h-10 w-10 text-red-500" />
-                    <span className="text-red-600 font-semibold text-lg">Healthcare Accessibility Gap</span>
-                  </div>
-                  
-                  <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
-                    Traditional Barriers to Natural Healthcare
-                  </h2>
-                  
-                  <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-                    Despite growing interest in natural health solutions, people faced significant barriers 
-                    accessing qualified herbalists and personalized herbal care.
-                  </p>
-                </motion.div>
-                
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                  <div className="space-y-8">
-                    <h3 className="text-2xl font-bold text-neutral-900">Critical Access Barriers:</h3>
-                    
-                    {healthBarriers.map((barrier, index) => <motion.div key={index} initial={{
-                    opacity: 0,
-                    y: 30
-                  }} whileInView={{
-                    opacity: 1,
-                    y: 0
-                  }} viewport={{
-                    once: true
-                  }} transition={{
-                    duration: 0.6,
-                    delay: index * 0.1
-                  }} className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-2xl border border-red-200">
-                        <div className="flex items-start gap-4">
-                          <div className="text-red-500 flex-shrink-0">
-                            {barrier.icon}
-                          </div>
-                          <div>
-                            <h4 className="text-lg font-semibold text-neutral-800 mb-2">{barrier.title}</h4>
-                            <p className="text-neutral-600 object-cover">{barrier.description}</p>
-                          </div>
-                        </div>
-                      </motion.div>)}
-                  </div>
-                  
-                  <motion.div initial={{
-                  opacity: 0,
-                  scale: 0.95
-                }} whileInView={{
-                  opacity: 1,
-                  scale: 1
-                }} viewport={{
-                  once: true
-                }} transition={{
-                  duration: 0.8,
-                  delay: 0.3
-                }} className="relative">
-                    <figure className="project-image-container mb-8">
-                      <img src="/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png" alt="Healthcare professional illustration showing the digital transformation needed to bridge traditional herbal practice with modern accessibility" className="w-full h-[400px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/635f7690-e7c5-4e2f-8260-099c3bde45ca.png", "Digital transformation bridging traditional herbal practice with modern accessibility")} />
-                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                        Digital transformation bridging traditional herbal practice with modern accessibility
-                      </figcaption>
-                    </figure>
-                    <figure className="project-image-container">
-                      <img src="/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png" alt="Traditional herbal medicine consultation showing the gap between ancient practices and modern accessibility needs" className="w-full h-[500px] object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/89eee613-3026-4f07-a961-8171af9bbe97.png", "Traditional herbal medicine consultation highlighting accessibility challenges")} />
-                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                        Traditional herbal medicine consultation highlighting accessibility challenges
-                      </figcaption>
-                    </figure>
-                  </motion.div>
-                </div>
-              </div>
-            </section>
-
-            {/* AI Matching Innovation - Apply cs-card class */}
-            <section className={`intelligent-matching-system py-20 bg-gradient-to-br from-emerald-50 to-teal-50 ${isProjectPage ? 'cs-card' : ''}`}>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8
-              }} className="text-center mb-16">
-                  <div className="flex items-center justify-center gap-3 mb-6">
-                    <Zap className="h-10 w-10 text-blue-500" />
-                    <span className="text-blue-600 font-semibold text-lg">AI Matching Innovation</span>
-                  </div>
-                  
-                  <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
-                    Intelligent Herbalist-User Connection
-                  </h2>
-                  
-                  <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-                    Our AI-powered matching system analyzes health profiles, treatment preferences, and practitioner 
-                    specializations to create meaningful, personalized connections in natural healthcare.
-                  </p>
-                </motion.div>
-                
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8,
-                delay: 0.2
-              }} className="mb-16">
-                  <figure className="project-image-container">
-                    <img src="/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png" alt="HerbaLink mobile app interface showing Dashboard, Select Herbalist, and Pay for Herbalist screens with comprehensive user flow" className="w-full h-auto object-cover rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/0afc5405-ec7b-4938-a467-96cf505b98d8.png", "HerbaLink mobile app interface showcasing complete user journey")} />
-                    <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                      HerbaLink mobile app interface showcasing the complete user journey from dashboard to payment
-                    </figcaption>
-                  </figure>
-                </motion.div>
-                
-                <div className="grid lg:grid-cols-3 gap-8">
-                  {matchingFeatures.map((feature, index) => <motion.div key={index} initial={{
-                opacity: 0,
-                y: 50
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8,
-                delay: index * 0.2
-              }} className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-emerald-200 hover:shadow-xl transition-all duration-300">
-                      <div className="text-4xl mb-6 text-center">{feature.visual}</div>
-                      <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">{feature.title}</h3>
-                      <p className="text-neutral-600 text-center leading-relaxed">{feature.description}</p>
-                    </motion.div>)}
-                </div>
-                
-                {/* Process Flow Chart */}
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8,
-                delay: 0.4
-              }} className="mt-16 mb-16">
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-4">AI-Enhanced Development Workflow</h3>
-                    <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-                      From human conversation to deployed solution - how AI amplifies every step of the development process.
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-3xl p-8 shadow-xl border border-emerald-200">
-                    <img alt="AI-enhanced development workflow from conversation to deployment" onClick={() => maximizeImage("/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png", "AI-enhanced development workflow from conversation to deployment")} src="/lovable-uploads/4877fa82-46fd-47bf-a10c-1ed97207e289.png" className="w-full h-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02] object-contain" />
-                  </div>
-                </motion.div>
-
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8,
-                delay: 0.6
-              }} className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 p-8 rounded-3xl text-white text-center">
-                  <h3 className="text-2xl font-bold mb-4">Matching Algorithm Results</h3>
-                  <p className="text-lg opacity-90 max-w-3xl mx-auto white-text-nuclear">
-                    85% of users find their ideal herbalist match within the first 3 recommendations, 
-                    leading to more successful consultations and better health outcomes.
-                  </p>
-                </motion.div>
-              </div>
-            </section>
-
-            {/* Key Design Solutions - Apply cs-card class */}
-            <section className={`key-design-solutions py-20 bg-white ${isProjectPage ? 'cs-card' : ''}`}>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8
-              }} className="text-center mb-16">
-                  <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
-                    Key Design Solutions
-                  </h2>
-                  <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-                    Comprehensive approach to building trust, personalization, and streamlined user experience 
-                    in the herbal wellness platform.
-                  </p>
-                </motion.div>
-                
-                <motion.div initial={{
-                opacity: 0,
-                scale: 0.95
-              }} whileInView={{
-                opacity: 1,
-                scale: 1
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8,
-                delay: 0.3
-              }} className="w-full">
-                  <figure className="project-image-container">
-                    <img src="/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png" alt="Herbalink key design solutions showing trust-building transparency, personalized matching algorithm, educational integration, and streamlined consultation experience" className="w-full rounded-3xl shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage("/lovable-uploads/cccd3630-bf92-4251-aad7-b49cdc354ccf.png", "Comprehensive design solutions for the herbal wellness platform")} />
-                  <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                    Comprehensive design solutions for the herbal wellness platform
-                  </figcaption>
-                </figure>
-              </motion.div>
             </div>
-          </section>
+          </motion.section>
 
-            {/* Platform Experience - Apply cs-card class */}
-            <section className={`mobile-consultation-platform py-20 bg-white ${isProjectPage ? 'cs-card' : ''}`}>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8
-              }} className="text-center mb-16">
-                  <div className="flex items-center justify-center gap-3 mb-6">
-                    <Smartphone className="h-10 w-10 text-purple-500" />
-                    <span className="text-purple-600 font-semibold text-lg">Platform Experience</span>
-                  </div>
-                  
-                  <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
-                    Mobile-First Wellness Journey
-                  </h2>
-                  
-                  <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-                    Designed for accessibility and ease of use, enabling users to connect with herbalists, 
-                    book consultations, and manage their wellness journey from anywhere.
-                  </p>
-                </motion.div>
-                
-                <div className="grid lg:grid-cols-2 gap-8">
-                  {platformJourney.map((journey, index) => <motion.div key={index} initial={{
-                opacity: 0,
-                x: index % 2 === 0 ? -50 : 50
-              }} whileInView={{
-                opacity: 1,
-                x: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8,
-                delay: index * 0.1
-              }} className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl border border-emerald-200">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold">
-                          {index + 1}
-                        </div>
-                        <div>
-                          <span className="text-sm font-medium text-emerald-600 uppercase tracking-wide">{journey.step}</span>
-                          <h3 className="text-xl font-bold text-neutral-900">{journey.title}</h3>
-                        </div>
-                      </div>
-                      
-                      <figure className="project-image-container mb-6">
-                        <img src={journey.image} alt={`${journey.title} - mobile wellness platform interface`} className="w-full h-64 object-cover rounded-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onClick={() => maximizeImage(journey.image, `${journey.title} - mobile wellness platform interface`)} />
-                      <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                        {journey.title} - {journey.description}
-                      </figcaption>
-                    </figure>
-                      
-                      <p className="text-neutral-600 leading-relaxed">{journey.description}</p>
-                    </motion.div>)}
-                </div>
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mb-20"
+            style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+              Challenge
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  The cannabis distribution industry faces significant challenges, including complex regulatory landscapes, logistical inefficiencies, and the need for secure, transparent operations. Existing systems often lack the sophistication to handle these demands, leading to increased costs, compliance risks, and operational bottlenecks.
+                </p>
               </div>
-            </section>
-
-            {/* Wellness Impact - Apply cs-card class */}
-            <section className={`community-wellness-impact py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 ${isProjectPage ? 'cs-card' : ''}`}>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8
-              }} className="text-center mb-16">
-                  <div className="flex items-center justify-center gap-3 mb-6">
-                    <Sprout className="h-10 w-10 text-green-500" />
-                    <span className="text-green-600 font-semibold text-lg">Wellness Impact</span>
+              
+              <div className="relative">
+                <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                  <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-muted-foreground mb-2">Image Placeholder</p>
+                      <p className="text-sm text-muted-foreground">HerbaLink Interface</p>
+                    </div>
                   </div>
-                  
-                  <h2 className="text-4xl sm:text-5xl font-bold text-neutral-900 mb-8">
-                    Growing a Healthier Community
-                  </h2>
-                  
-                  <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-12">
-                    Measurable improvements in health accessibility, user satisfaction, and practitioner community growth 
-                    demonstrate the platform's positive impact on natural healthcare access.
-                  </p>
-                </motion.div>
-                
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                  {wellnessImpact.map((impact, index) => <motion.div key={index} initial={{
-                opacity: 0,
-                y: 50
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8,
-                delay: index * 0.1
-              }} className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl text-center shadow-lg border border-emerald-200">
-                      <div className="flex justify-center mb-4 text-emerald-500">
-                        {impact.icon}
-                      </div>
-                      <div className="text-4xl font-bold text-emerald-600 mb-2">{impact.metric}</div>
-                      <div className="text-sm text-neutral-600 uppercase tracking-wide">{impact.label}</div>
-                    </motion.div>)}
                 </div>
-
-                {/* User testimonial would go here */}
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
               </div>
-            </section>
-
-            {/* Related Projects - Apply cs-card class */}
-            <div className={isProjectPage ? 'cs-card' : ''}>
-              <RelatedProjects currentProjectId="herbalink" />
             </div>
+          </motion.section>
 
-            {/* Call to Action - Apply cs-card class */}
-            <section className={`py-20 bg-gradient-to-r from-emerald-500 via-teal-500 to-green-600 ${isProjectPage ? 'cs-card' : ''}`}>
-              <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.8
-              }}>
-                  <div className="flex items-center justify-center gap-3 mb-6">
-                    <TreePine className="h-10 w-10 text-white" />
-                    <span className="font-semibold text-lg text-white">Natural Healthcare Innovation</span>
-                  </div>
-                  
-                  <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
-                    Ready to Transform Healthcare Access?
-                  </h2>
-                  
-                  <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed white-text-nuclear">
-                    Let's create platforms that connect people with qualified practitioners and make healthcare more accessible. 
-                    Your vision for better health outcomes deserves intelligent, user-centered design.
-                  </p>
-                  
-                  <Button size="lg" variant="brand" className="font-semibold px-10 py-6 text-lg group" onClick={() => window.location.href = '/contact'}>
-                    Start Your HealthTech Project
-                    <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </motion.div>
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mb-20"
+            style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+              Solution
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  HerbaLink offers a comprehensive solution by integrating AI-driven logistics, real-time compliance monitoring, and a secure, transparent platform for all stakeholders. The system optimizes distribution routes, automates regulatory reporting, and provides actionable insights to improve decision-making and operational efficiency.
+                </p>
               </div>
-            </section>
-          </main>
-        </div>
-        
+              
+              <div className="relative">
+                <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                  <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-muted-foreground mb-2">Image Placeholder</p>
+                      <p className="text-sm text-muted-foreground">HerbaLink Interface</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+              </div>
+            </div>
+          </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mb-20"
+            style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+              Results
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  Early adopters of HerbaLink have reported significant improvements in operational efficiency, a reduction in compliance-related risks, and enhanced transparency across their distribution networks. The platform's AI-driven insights have enabled better decision-making, leading to increased profitability and a stronger competitive position in the market.
+                </p>
+              </div>
+              
+              <div className="relative">
+                <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                  <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-muted-foreground mb-2">Image Placeholder</p>
+                      <p className="text-sm text-muted-foreground">HerbaLink Interface</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+              </div>
+            </div>
+          </motion.section>
+
+          <CaseStudyContactSection />
+        </main>
+
         <Footer />
       </div>
-    </>;
+    </>
+  );
 };
+
 export default HerbalinkCaseStudy;

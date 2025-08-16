@@ -1,313 +1,172 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Clock, DollarSign, Rocket, Users, Target, Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { CheckCircle, Star, Target, Users, TrendingUp, Eye, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DynamicSeo from "@/components/seo/DynamicSeo";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import ContactSection from "@/components/ContactSection";
 
 const MvpValidation: React.FC = () => {
-  const weeklyBreakdown = [
-    {
-      week: "Week 1",
-      title: "AI-Powered Discovery",
-      tasks: [
-        "Competitive analysis using Claude AI (saves 2 weeks of manual research)",
-        "User persona development with ChatGPT data synthesis",
-        "Market opportunity assessment and validation",
-        "Technical feasibility review with development team"
-      ]
-    },
-    {
-      week: "Week 2",
-      title: "Strategic Design",
-      tasks: [
-        "User journey mapping with conversion optimization",
-        "Wireframe creation with accessibility considerations",
-        "Information architecture optimization",
-        "Initial usability testing setup and execution"
-      ]
-    },
-    {
-      week: "Week 3",
-      title: "High-Fidelity Execution",
-      tasks: [
-        "Visual design system creation (like Herbalink's mobile-first approach)",
-        "Interactive prototype development",
-        "Developer handoff documentation",
-        "Launch readiness checklist and optimization recommendations"
-      ]
-    }
-  ];
-
-  const deliverables = [
-    "Complete Figma design system with reusable components",
-    "Interactive prototype ready for development",
-    "AI-generated user insights report (25+ pages)",
-    "Technical specifications and developer documentation",
-    "Conversion optimization recommendations",
-    "30-day post-launch support and consultation calls"
-  ];
-
-  const perfectFor = [
-    "Funded startups with validated business models",
-    "Teams needing rapid market entry",
-    "Entrepreneurs with technical co-founders ready to build",
-    "Companies requiring investor-ready prototypes"
-  ];
-
   return (
     <>
-      <DynamicSeo 
-        type="service"
-        title="MVP Validation Package - 3 Weeks to Launch-Ready Design"
-        description="Get your startup MVP validated and designed in 3 weeks. Same process that helped Herbalink achieve 65% engagement increase. $8,500 investment."
-        serviceName="MVP Validation Package"
-        benefits={["40% better engagement guarantee", "3-week delivery", "AI-powered research"]}
-        targetAudience="Funded Startups"
-        path="/services/mvp-validation"
-      />
-      
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
-        
-        <main className="flex-grow pt-20">
-          {/* Hero Section */}
-          <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
-                <div className="flex justify-center mb-6">
-                  <Rocket className="h-16 w-16 text-blue-vibrant" />
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
-                  MVP Validation Package
-                </h1>
-                <p className="text-xl text-neutral-500 max-w-3xl mx-auto leading-relaxed mb-8">
-                  From Idea to Launch-Ready Design in 3 Weeks
-                </p>
-                
-                <div className="flex items-center justify-center gap-4 mb-8">
-                  <div className="flex items-center gap-2 bg-success-green/10 px-4 py-2 rounded-lg">
-                    <DollarSign className="h-5 w-5 text-success-green" />
-                    <span className="text-2xl font-bold text-neutral-900">$8,500</span>
-                  </div>
-                  <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-lg">
-                    <Clock className="h-5 w-5 text-blue-accent" />
-                    <span className="font-medium text-blue-accent">3 weeks</span>
-                  </div>
-                </div>
-              </motion.div>
 
-              {/* Success Story Callout */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="glass-card-elevated p-8 mb-16 border-l-4 border-success-green"
-              >
-                <div className="flex items-start gap-4">
-                  <Target className="h-8 w-8 text-success-green flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="text-xl font-bold text-neutral-900 mb-2">Success Story</h3>
-                    <p className="text-neutral-500 mb-4">
-                      Using this exact process, I helped Herbalink achieve a 65% increase in user engagement 
-                      and 45% faster consultation booking through intelligent matching algorithms and mobile-first design.
+        <main className="pt-24 pb-16">
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+          >
+            {/* Hero Section */}
+            <div className="text-center mb-16">
+              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Validate Your MVP with Expert Design & User Testing
+              </h1>
+              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                De-risk your startup by validating your Minimum Viable Product (MVP) with our proven design and user testing methodologies.
+              </p>
+              <Button size="lg">Get a Free Consultation</Button>
+            </div>
+
+            {/* Key Benefits */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              <div className="flex items-start space-x-3">
+                <CheckCircle className="h-6 w-6 text-green-500" />
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Reduce Development Costs</h3>
+                  <p className="text-gray-600">Identify and fix critical usability issues early to avoid costly rework.</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Star className="h-6 w-6 text-yellow-500" />
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Improve User Satisfaction</h3>
+                  <p className="text-gray-600">Ensure your MVP meets user needs and expectations for a delightful experience.</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Target className="h-6 w-6 text-blue-500" />
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Increase Conversion Rates</h3>
+                  <p className="text-gray-600">Optimize your MVP for maximum user engagement and conversion.</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Users className="h-6 w-6 text-purple-500" />
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Gain Actionable Insights</h3>
+                  <p className="text-gray-600">Receive detailed reports and recommendations based on real user feedback.</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <TrendingUp className="h-6 w-6 text-teal-500" />
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Accelerate Time to Market</h3>
+                  <p className="text-gray-600">Launch a validated MVP faster and with greater confidence.</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Eye className="h-6 w-6 text-orange-500" />
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Enhance Product Vision</h3>
+                  <p className="text-gray-600">Refine your product roadmap based on user-centered design principles.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Our Approach */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our MVP Validation Approach</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  We employ a comprehensive approach to MVP validation, combining expert design with rigorous user testing to ensure your product resonates with your target audience.
+                </p>
+                <ul className="list-disc list-inside text-gray-600">
+                  <li><strong>Design Review:</strong> Expert evaluation of your MVP's design and usability.</li>
+                  <li><strong>User Testing:</strong> Real-world testing with your target users to gather actionable feedback.</li>
+                  <li><strong>Data Analysis:</strong> In-depth analysis of user behavior and feedback to identify key areas for improvement.</li>
+                  <li><strong>Iterative Refinement:</strong> Collaborative refinement of your MVP based on testing results.</li>
+                </ul>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Our goal is to help you launch a validated MVP that meets user needs, drives engagement, and achieves your business objectives.
+                </p>
+              </div>
+            </div>
+
+            {/* Who is this for? */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Who is MVP Validation For?</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Our MVP validation service is ideal for:
+                </p>
+                <ul className="list-disc list-inside text-gray-600">
+                  <li><strong>Startups:</strong> Validating your core product idea before investing heavily in development.</li>
+                  <li><strong>Product Teams:</strong> Ensuring new features and products meet user needs and expectations.</li>
+                  <li><strong>Entrepreneurs:</strong> De-risking your business by validating your MVP with real users.</li>
+                </ul>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  If you're looking to launch a successful product, our MVP validation service can help you get there.
+                </p>
+              </div>
+            </div>
+
+            {/* Case Studies & Testimonials */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Success Stories</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Example Case Study */}
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                  <div className="p-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                      Validated a Fintech MVP, resulting in a 40% increase in user engagement.
+                    </h3>
+                    <p className="text-gray-600">
+                      "The MVP validation process helped us identify critical usability issues and improve our product's overall user experience."
                     </p>
-                    <Link to="/project/herbalink" className="text-blue-accent hover:text-blue-vibrant font-semibold">
-                      Read Full Herbalink Case Study →
-                    </Link>
+                    <div className="mt-4">
+                      <Badge variant="secondary">Fintech</Badge>
+                      <Badge variant="secondary">User Testing</Badge>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            </div>
-          </section>
 
-          {/* Perfect For Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Perfect For
-                </h2>
-              </motion.div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                {perfectFor.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6 flex items-start gap-3"
-                  >
-                    <CheckCircle className="h-6 w-6 text-success-green flex-shrink-0 mt-1" />
-                    <span className="text-neutral-500">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Week-by-Week Breakdown */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Week-by-Week Breakdown
-                </h2>
-              </motion.div>
-
-              <div className="space-y-8">
-                {weeklyBreakdown.map((week, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                    className="glass-card p-8"
-                  >
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-blue-vibrant text-white rounded-full flex items-center justify-center font-bold">
-                        {index + 1}
-                      </div>
-                      <div>
-                        <span className="text-blue-accent font-medium">{week.week}</span>
-                        <h3 className="text-2xl font-bold text-neutral-900">{week.title}</h3>
-                      </div>
+                {/* Example Testimonial */}
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                  <div className="p-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                      "The insights we gained from user testing were invaluable."
+                    </h3>
+                    <p className="text-gray-600">
+                      "Thanks to the MVP validation, we were able to launch a product that truly meets our users' needs."
+                    </p>
+                    <div className="mt-4">
+                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
+                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
+                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
+                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
+                      <Star className="h-4 w-4 text-yellow-500 inline-block mr-1" />
                     </div>
-                    <ul className="space-y-3 ml-16">
-                      {week.tasks.map((task, taskIndex) => (
-                        <li key={taskIndex} className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-vibrant rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-neutral-500">{task}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </section>
 
-          {/* Deliverables Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  What You'll Receive
-                </h2>
-              </motion.div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                {deliverables.map((deliverable, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="glass-card p-6 flex items-start gap-3"
-                  >
-                    <CheckCircle className="h-6 w-6 text-success-green flex-shrink-0 mt-1" />
-                    <span className="text-neutral-500">{deliverable}</span>
-                  </motion.div>
-                ))}
-              </div>
+            {/* Call to Action */}
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Ready to Validate Your MVP?</h2>
+              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                Get a free consultation and learn how our MVP validation service can help you launch a successful product.
+              </p>
+              <Button size="lg">Get a Free Consultation</Button>
             </div>
-          </section>
-
-          {/* Guarantee Section */}
-          <section className="py-16 bg-gradient-to-br from-neutral-50 to-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="glass-card-elevated p-8"
-              >
-                <Zap className="h-12 w-12 text-yellow-500 mx-auto mb-6" />
-                <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-                  Performance Guarantee
-                </h2>
-                <p className="text-xl text-neutral-500 leading-relaxed">
-                  If your MVP doesn't achieve 40% better engagement than industry benchmarks within 60 days, 
-                  I'll redesign it for free. Based on proven results like Herbalink's 65% engagement increase.
-                </p>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Investment & CTA Section */}
-          <section className="py-16 bg-gradient-to-br from-blue-50 to-neutral-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-                  Ready to Validate Your MVP?
-                </h2>
-                <div className="mb-8">
-                  <p className="text-xl text-neutral-500 mb-4">
-                    <strong>Timeline:</strong> 3 weeks from kickoff
-                  </p>
-                  <p className="text-xl text-neutral-500 mb-4">
-                    <strong>Investment:</strong> $8,500 (payment plan available)
-                  </p>
-                  <p className="text-xl text-neutral-500">
-                    <strong>Includes:</strong> All deliverables + 30-day support
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    className="bg-blue-vibrant hover:bg-blue-accent text-white font-semibold py-4 px-8 text-lg group"
-                    onClick={() => window.location.href = '/contact'}
-                  >
-                    Book Free Consultation
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="py-4 px-8 text-lg"
-                    onClick={() => window.location.href = '/free-audit'}
-                  >
-                    Learn More
-                  </Button>
-                </div>
-              </motion.div>
-            </div>
-          </section>
+          </motion.section>
         </main>
-        
+
+        <ContactSection />
         <Footer />
       </div>
     </>
