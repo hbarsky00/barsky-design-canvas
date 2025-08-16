@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Zap, BarChart4, XCircle, Sparkles, Settings, Truck, Package, Users, Target, CheckCircle2, AlertTriangle, Rocket, Wrench, Badge, Search, Eye, TrendingUp, Shield } from "lucide-react";
 import { StructuredCaseStudySectionProps } from "@/components/case-study/structured/StructuredCaseStudySection";
@@ -35,7 +34,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "http://herbalink.live",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
-      poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/featureimage-1.png?fit=768%2C576&ssl=1",
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
       alt: "HerbaLink feature overview"
     },
     sections: [
@@ -48,8 +47,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "People seeking herbal remedies often face conflicting online advice and don't know who to trust. There's no central, verified platform to find qualified herbalists, track symptom improvement, or get tailored guidance. Unlike therapy (where BetterHelp makes it easy to book professionals), herbal care lacked structure, credibility, and outcomes-based support.",
         media: {
           type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistopening.jpg",
-          alt: "Herbalist consultation scene illustrating the problem context of finding qualified practitioners"
+          src: "https://barskyux.com/wp-content/uploads/2025/08/herbalinknewwayofbooking.png",
+          alt: "HerbaLink modern booking interface illustrating the solution to trust and verification challenges"
         }
       },
       {
@@ -61,9 +60,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "The booking interface directly addresses three critical gaps in the herbal wellness market:\n\n• **No way to verify herbalist credibility** - Our platform displays verified credentials, specializations, and expert backgrounds upfront\n\n• **No symptom tracking tied to outcomes** - Structured consultation types (Initial, Follow-up, Quick Check-in) create clear treatment pathways\n\n• **No personalized recommendations or guided onboarding** - Health focus areas guide users to the right herbalist match and consultation type",
         media: {
           type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/07/Book-a-Consultation.jpg",
-          alt: "HerbaLink consultation booking interface showing herbalist verification and guided selection process",
-          caption: "Consultation booking interface addressing key gaps with verified herbalists, structured consultation types, and personalized health focus areas."
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Screenshot-2025-08-15-at-3.26.57-PM-scaled.png",
+          alt: "HerbaLink updated consultation booking interface showing enhanced verification and selection process",
+          caption: "Updated consultation booking interface addressing key gaps with verified herbalists, structured consultation types, and personalized health focus areas."
         }
       },
       {
@@ -115,11 +114,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         content:
           "Users can book verified herbalists by need, rating, and availability; log symptoms and track progress over time; get data-informed herbal suggestions; join a growing community of trusted practitioners and peers.",
         media: {
-          type: 'video',
-          src: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runRHCuVK5VOW8_Realistic_smartphone_scr_9b96c59b-7daa-46c0-8666-b9b3ad7a90a4_2.mp4",
-          alt: "HerbaLink final product demonstration video showing the complete user experience",
-          caption: "Complete HerbaLink experience connecting users with certified herbalists through intuitive mobile interface.",
-          videoOptions: { autoplay: true, loop: true, muted: true, controls: true, playsInline: true }
+          type: 'image',
+          src: "https://barskyux.com/wp-content/uploads/2025/08/conversationwithherbalistandsymptomtracker.png",
+          alt: "HerbaLink conversation with herbalist and symptom tracker interface",
+          caption: "Complete HerbaLink experience showing conversation with herbalist and symptom tracking functionality."
         }
       },
       {
@@ -139,7 +137,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/herbalink"
     }
   },
-  
   "splittime": {
     id: "splittime",
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
@@ -484,8 +481,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
-      poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/businessmanagement.png?fit=768%2C576&ssl=1",
-      alt: "Business management system overview"
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      alt: "Business management system promotional overview"
     },
     sections: [
       {
@@ -552,7 +549,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       }
     ],
     seoData: {
-      image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/businessmanagement.png?fit=768%2C576&ssl=1",
+      image: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
       projectName: "Business Management System",
       results: ["68% fewer errors", "35% faster processing", "90% satisfaction", "100% uptime"],
       technologies: ["React", "Mobile", "Enterprise", "Operations"],

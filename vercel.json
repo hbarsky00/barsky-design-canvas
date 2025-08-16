@@ -1,8 +1,12 @@
+
 {
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/index.html",
+      "missing": [
+        { "type": "file" }
+      ]
     }
   ],
   "headers": [
@@ -29,15 +33,6 @@
       "headers": [
         {
           "key": "Cache-Control", 
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/lovable-uploads/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
         }
       ]

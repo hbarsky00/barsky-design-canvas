@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -16,25 +15,24 @@ const MetaOptimizer: React.FC<MetaOptimizerProps> = ({
   title,
   description,
   url,
-  image = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png',
+  image = 'https://barskydesign.pro/images/default-og-image.jpg',
   noIndex = false
 }) => {
-  // Ensure description is optimal length (150-160 characters)
-  const optimizedDescription = description.length > 160 
-    ? description.substring(0, 157) + '...'
-    : description;
+  // Ensure description is optimal length and separate from title
+  const optimizedDescription = description && description.length > 10
+    ? (description.length > 160 ? description.substring(0, 157) + '...' : description)
+    : "Hiram Barsky – Product Designer + AI Developer helping businesses design smarter, faster, and more user-focused digital products.";
 
-  // Ensure title is optimal length (50-60 characters)
+  // Ensure title is optimal length
   const optimizedTitle = title.length > 60 
     ? title.substring(0, 57) + '...'
     : title;
 
   return (
     <Helmet>
-      {/* Essential Meta Tags */}
+      {/* Separate title and description */}
       <title>{optimizedTitle}</title>
       <meta name="description" content={optimizedDescription} />
-      
       
       {/* Robots directive */}
       <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />

@@ -8,6 +8,9 @@ interface HeroLogoProps {
 }
 
 const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
+  // Using your working external image URL
+  const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
+  
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -25,13 +28,12 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
     >
       <IdentityBadge
         to="/"
-        imageSrc="/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png"
+        imageSrc={imageUrl}
         name="Hiram Barsky"
         subtitle="Product Design + AI"
         size="lg"
         subtitleStyle="text"
       />
-
     </motion.div>
   );
 };

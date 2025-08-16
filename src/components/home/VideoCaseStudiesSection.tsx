@@ -33,9 +33,9 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
       secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-      alt: "HerbaLink mobile app promo showing symptom tracker and herbalist finder"
+      alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
     layout: "side-by-side"
   },
@@ -48,7 +48,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/splittime",
     liveUrl: "https://splittime.pro",
     images: {
-      primary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png",
       secondary: "images/desktop-signup-1.png",
       alt: "SplitTime web and mobile views showing scheduling features"
     },
@@ -63,7 +63,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
       secondary: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
       alt: "Business management app showing driver and inventory management"
     },

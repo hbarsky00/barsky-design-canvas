@@ -33,6 +33,7 @@ interface StructuredCaseStudyLayoutProps {
   projectLink?: string;
   gradientClasses?: string;
   showNavigation?: boolean;
+  heroAsImage?: boolean;
 }
 
 const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
@@ -43,7 +44,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   sections,
   projectLink,
   gradientClasses = "from-primary-container/20 to-secondary-container/20",
-  showNavigation = true
+  showNavigation = true,
+  heroAsImage = false
 }) => {
   // Get current URL for sharing
   const { pathname } = useLocation();
@@ -146,16 +148,28 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       </div>
                     )}
 
-                    {/* Hero Video */}
+                    {/* Hero Media */}
                     {heroVideo && (
-                      <div className="max-w-4xl mx-auto mb-8" data-hero-image>
-                        <EditableVideo
-                          src={heroVideo.src}
-                          alt={heroVideo.alt}
-                          poster={heroVideo.poster}
-                          caption="Project demonstration video"
-                          className="w-full"
-                        />
+                      <div className="w-full max-w-4xl mx-auto mb-8" data-hero-image>
+                        {heroAsImage ? (
+                          <div className="relative w-full max-w-full overflow-hidden rounded-lg shadow-2xl">
+                            <img
+                              src={heroVideo.poster}
+                              alt={heroVideo.alt || 'Project hero image'}
+                              className="w-full h-auto max-w-full object-contain"
+                              loading="eager"
+                              style={{ maxHeight: '70vh' }}
+                            />
+                          </div>
+                        ) : (
+                          <EditableVideo
+                            src={heroVideo.src}
+                            alt={heroVideo.alt}
+                            poster={heroVideo.poster}
+                            caption="Project demonstration video"
+                            className="w-full"
+                          />
+                        )}
                       </div>
                     )}
 

@@ -5,7 +5,6 @@ import { ArrowDownCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedText from "./AnimatedText";
 import FloatingElement from "./animations/FloatingElement";
-import ShakeElement from "./animations/ShakeElement";
 import BounceWrapper from "./animations/BounceWrapper";
 import HeroLogo from "./hero/HeroLogo";
 import { Button } from "@/components/ui/button";

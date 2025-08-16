@@ -1,27 +1,21 @@
 
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { ImageStorageService } from '@/services/imageStorage';
 import { toast } from 'sonner';
 
-interface UseSectionImageUploadProps {
-  projectId?: string;
-  sectionKey: string;
-  onImageAdded: (imageSrc: string) => void;
-}
+export const useProfileImageUpload = () => {
+  const [isUploading, setIsUploading] = useState(false);
 
-export const useSectionImageUpload = ({ projectId, sectionKey, onImageAdded }: UseSectionImageUploadProps) => {
-  const handleAddImage = useCallback(async () => {
-    if (!projectId) return;
-    
+  const uploadProfileImage = useCallback(async () => {
     try {
-      console.log('📁 Opening file picker for section image...');
+      console.log('📁 Opening file picker for profile image...');
       
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'image/*';
       input.style.display = 'none';
       
-      const selectedImageSrc = await new Promise<string>((resolve, reject) => {
+      const uploadedUrl = await new Promise<string>((resolve, reject) => {
         input.onchange = async (event) => {
           const file = (event.target as HTMLInputElement).files?.[0];
           if (file) {
@@ -38,21 +32,29 @@ export const useSectionImageUpload = ({ projectId, sectionKey, onImageAdded }: U
                 return;
               }
 
-              toast.info('Uploading image...');
-              console.log('📤 Uploading section image to Supabase Storage:', file.name);
+              setIsUploading(true);
+              toast.info('Uploading profile image...');
+              console.log('📤 Uploading profile image to Supabase Storage:', file.name);
               
-              const uploadedUrl = await ImageStorageService.uploadImage(file, projectId, `section-${sectionKey}-${Date.now()}`);
+              const uploadedUrl = await ImageStorageService.uploadImage(
+                file, 
+                'profile', 
+                `profile-image-${Date.now()}`
+              );
               
               if (uploadedUrl) {
+                console.log('✅ Profile image uploaded successfully:', uploadedUrl);
                 resolve(uploadedUrl);
               } else {
                 toast.error('Image upload failed. Please check your Supabase Storage configuration.');
                 reject(new Error('Upload failed'));
               }
             } catch (error) {
-              console.error('❌ Error uploading section image:', error);
+              console.error('❌ Error uploading profile image:', error);
               toast.error('Image upload failed. Please try again.');
               reject(error);
+            } finally {
+              setIsUploading(false);
             }
           } else {
             reject(new Error('No file selected'));
@@ -68,17 +70,27 @@ export const useSectionImageUpload = ({ projectId, sectionKey, onImageAdded }: U
         document.body.removeChild(input);
       });
       
-      onImageAdded(selectedImageSrc);
-      toast.success('Image uploaded and added successfully!');
+      // Store the uploaded URL in localStorage for persistence
+      localStorage.setItem('profileImageUrl', uploadedUrl);
+      toast.success('Profile image uploaded successfully!');
+      
+      // Trigger a refresh of profile components
+      window.dispatchEvent(new CustomEvent('profileImageUpdated', {
+        detail: { imageUrl: uploadedUrl }
+      }));
+      
+      return uploadedUrl;
     } catch (error) {
-      console.log('❌ Image upload cancelled or failed:', error);
+      console.log('❌ Profile image upload cancelled or failed:', error);
       if (error instanceof Error && error.message !== 'File selection cancelled') {
-        toast.error('Failed to add image');
+        toast.error('Failed to upload profile image');
       }
+      return null;
     }
-  }, [projectId, sectionKey, onImageAdded]);
+  }, []);
 
   return {
-    handleAddImage
+    uploadProfileImage,
+    isUploading
   };
 };
