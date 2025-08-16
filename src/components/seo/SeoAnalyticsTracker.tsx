@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -30,12 +31,23 @@ const SeoAnalyticsTracker: React.FC<SeoAnalyticsTrackerProps> = ({
         event_category: 'SEO',
         event_label: pageType,
         page_title: pageTitle,
-        page_path: location.pathname
+        page_path: location.pathname,
+        seo_optimized: true,
+        has_structured_data: ['project', 'blog-post'].includes(pageType)
+      });
+
+      // Track SEO performance metrics
+      window.gtag('event', 'seo_page_load', {
+        event_category: 'SEO Performance',
+        page_type: pageType,
+        has_meta_description: document.querySelector('meta[name="description"]') ? 'yes' : 'no',
+        has_og_image: document.querySelector('meta[property="og:image"]') ? 'yes' : 'no',
+        has_canonical: document.querySelector('link[rel="canonical"]') ? 'yes' : 'no'
       });
     }
 
-    // Track core web vitals for SEO performance
-    if ('web-vital' in window) {
+    // Enhanced Core Web Vitals tracking for SEO performance
+    if ('web-vital' in window || typeof window !== 'undefined') {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
           if (entry.entryType === 'navigation') {
@@ -46,14 +58,20 @@ const SeoAnalyticsTracker: React.FC<SeoAnalyticsTrackerProps> = ({
               window.gtag('event', 'page_load_performance', {
                 event_category: 'SEO Performance',
                 value: Math.round(navigationEntry.loadEventEnd - navigationEntry.loadEventStart),
-                custom_parameter_page_type: pageType
+                page_type: pageType,
+                dom_content_loaded: Math.round(navigationEntry.domContentLoadedEventEnd - navigationEntry.domContentLoadedEventStart),
+                first_contentful_paint: 'performance' in window ? Math.round(performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint')?.startTime || 0) : 0
               });
             }
           }
         }
       });
       
-      observer.observe({ entryTypes: ['navigation'] });
+      try {
+        observer.observe({ entryTypes: ['navigation'] });
+      } catch (error) {
+        console.log('Performance observer not supported');
+      }
       
       return () => observer.disconnect();
     }

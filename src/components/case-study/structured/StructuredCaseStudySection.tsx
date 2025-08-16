@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -90,13 +91,13 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   return (
     <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
       <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg} flex items-center justify-center`}>
+        {/* Header - Fixed alignment to start (top) */}
+        <div className="flex items-start gap-4 mb-8">
+          <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg} flex items-center justify-center mt-1`}>
             <Icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 ${styles.iconColor}`} />
           </div>
-          <div className="flex-1">
-            <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold ${styles.titleColor}`}>
+          <div className="flex-1 min-w-0">
+            <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold leading-tight ${styles.titleColor}`}>
               {title}
             </h2>
           </div>
