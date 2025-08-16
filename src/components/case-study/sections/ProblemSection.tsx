@@ -1,4 +1,3 @@
-
 import React from "react";
 import { AlertTriangle, TrendingDown, Clock } from "lucide-react";
 import MaximizableImage from "@/components/project/MaximizableImage";
@@ -37,12 +36,12 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center space-x-4">
-        <div className="flex-shrink-0 p-3 bg-red-100 rounded-lg">
+      <div className="flex items-start space-x-4">
+        <div className="flex-shrink-0 p-3 bg-red-100 rounded-lg mt-1">
           <AlertTriangle className="h-6 w-6 text-red-600" />
         </div>
         <div className="flex-1">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">{title}</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4 leading-tight">{title}</h3>
         </div>
       </div>
 
