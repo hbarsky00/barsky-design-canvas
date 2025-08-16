@@ -1,10 +1,12 @@
 
-import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
-import { caseStudiesData } from '@/data/caseStudies';
-import OriginalCaseStudyLayout from '@/components/case-study/OriginalCaseStudyLayout';
-import StoryDrivenProjectDetail from "./StoryDrivenProjectDetail";
-import StructuredInvestmentAppCaseStudy from "@/pages/StructuredInvestmentAppCaseStudy";
+import React from "react";
+import { useParams, Navigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
+import CaseStudyContactSection from "@/components/case-study/CaseStudyContactSection";
+import StructuredCaseStudyContent from "@/components/case-study/structured/StructuredCaseStudyContent";
 
 const SimplifiedProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -13,28 +15,29 @@ const SimplifiedProjectDetail: React.FC = () => {
     return <Navigate to="/projects" replace />;
   }
 
-  // Use the new story-driven component for wholesale-distribution
-  if (projectId === 'wholesale-distribution') {
-    return <StoryDrivenProjectDetail />;
-  }
-
-  // Use the new structured component for investment-app
-  if (projectId === 'investment-app') {
-    return <StructuredInvestmentAppCaseStudy />;
-  }
-
-  // Check if this project has case study data
-  const caseStudy = caseStudiesData[projectId];
+  const caseStudyData = getStructuredCaseStudy(projectId);
   
-  if (!caseStudy) {
+  if (!caseStudyData) {
     return <Navigate to="/projects" replace />;
   }
 
   return (
-    <OriginalCaseStudyLayout 
-      caseStudy={caseStudy}
-      projectId={projectId}
-    />
+    <>
+      <Header />
+      {/* SEO is now handled globally by UnifiedSEO in App.tsx - no conflicts */}
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="min-h-screen bg-background pt-[calc(var(--header-height,64px)+12px)]"
+      >
+        <StructuredCaseStudyContent caseStudyData={caseStudyData} />
+        <CaseStudyContactSection />
+      </motion.div>
+      
+      <Footer />
+    </>
   );
 };
 

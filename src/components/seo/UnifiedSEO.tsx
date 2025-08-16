@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
@@ -27,11 +26,12 @@ const UnifiedSEO: React.FC = () => {
         // Use normalizeUrl for consistent canonical URL generation
         const canonicalUrl = normalizeUrl(location.pathname);
         
-        // Debug logging to track canonical generation
-        console.log('🔍 SEO Debug:', {
+        // Enhanced debug logging
+        console.log('🔍 UnifiedSEO - CANONICAL URL GENERATION:', {
           pathname: location.pathname,
           canonicalUrl,
-          baseUrl: SEO_CONSTANTS.BASE_URL
+          baseUrl: SEO_CONSTANTS.BASE_URL,
+          isOnlyCanonicalSource: true
         });
         
         // Handle case study pages specially
@@ -67,7 +67,8 @@ const UnifiedSEO: React.FC = () => {
               "author": {
                 "@type": "Person",
                 "name": SEO_CONSTANTS.AUTHOR,
-                "url": SEO_CONSTANTS.BASE_URL
+                "url": SEO_CONSTANTS.BASE_URL,
+                "sameAs": SEO_CONSTANTS.SOCIAL_PROFILES
               },
               "publisher": {
                 "@type": "Organization",
@@ -80,6 +81,7 @@ const UnifiedSEO: React.FC = () => {
             
             setSeoData(data);
             document.title = `${data.title} | ${SEO_CONSTANTS.SITE_NAME}`;
+            console.log('✅ UnifiedSEO - Project SEO Set:', data.title, data.canonicalUrl);
             return;
           }
         }
@@ -97,6 +99,7 @@ const UnifiedSEO: React.FC = () => {
           data.schemaData = generateSchema(data);
           setSeoData(data);
           document.title = data.title;
+          console.log('✅ UnifiedSEO - Database SEO Set:', data.title, data.canonicalUrl);
           return;
         }
 
@@ -112,9 +115,10 @@ const UnifiedSEO: React.FC = () => {
         fallbackData.schemaData = generateSchema(fallbackData);
         setSeoData(fallbackData);
         document.title = fallbackData.title;
+        console.log('✅ UnifiedSEO - Fallback SEO Set:', fallbackData.title, fallbackData.canonicalUrl);
         
       } catch (error) {
-        console.error('SEO generation error:', error);
+        console.error('❌ UnifiedSEO - SEO generation error:', error);
         // Ultimate fallback with proper URL normalization
         const fallbackCanonical = normalizeUrl(location.pathname);
         setSeoData({
