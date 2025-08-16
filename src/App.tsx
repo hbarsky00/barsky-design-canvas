@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -20,10 +19,18 @@ import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
+// Service page imports
+import UxUiDesign from "@/pages/design-services/UxUiDesign";
+import MobileAppDesign from "@/pages/design-services/MobileAppDesign";
+import WebDevelopment from "@/pages/design-services/WebDevelopment";
+
 // Structured case study imports
 import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
+import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
+import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
+import StructuredInvestmentAppCaseStudy from "@/pages/StructuredInvestmentAppCaseStudy";
 
 const queryClient = new QueryClient();
 
@@ -47,9 +54,17 @@ function App() {
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
+              <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
+              <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
+              <Route path="/project/investment-app" element={<StructuredInvestmentAppCaseStudy />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
+              
+              {/* Service pages */}
+              <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
+              <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
+              <Route path="/design-services/web-development" element={<WebDevelopment />} />
               
               {/* Other routes */}
               <Route path="/services" element={<Services />} />

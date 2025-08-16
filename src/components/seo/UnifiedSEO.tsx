@@ -186,6 +186,10 @@ const UnifiedSEO: React.FC = () => {
       <meta name="twitter:site" content={SEO_CONSTANTS.TWITTER_HANDLE} />
       <meta name="twitter:creator" content={SEO_CONSTANTS.TWITTER_HANDLE} />
       
+      {/* LinkedIn Cache Busting */}
+      <meta property="og:updated_time" content={new Date().toISOString()} />
+      <meta name="linkedin:owner" content="hirambarsky" />
+      
       {/* Additional SEO meta tags */}
       <meta name="author" content={SEO_CONSTANTS.AUTHOR} />
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />

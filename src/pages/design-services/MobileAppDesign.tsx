@@ -1,5 +1,5 @@
+
 import React from 'react';
-import DynamicSeo from '@/components/seo/DynamicSeo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ServicesCallToAction from '@/components/services/ServicesCallToAction';
@@ -7,17 +7,6 @@ import ServicesCallToAction from '@/components/services/ServicesCallToAction';
 const MobileAppDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <DynamicSeo 
-        type="service"
-        title="Mobile App Design Services"
-        description="Design mobile apps that users love and businesses succeed with. iOS and Android platforms with AI-enhanced UX research."
-        image="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp"
-        serviceName="Mobile App Design"
-        benefits={["iOS & Android platforms", "User-centered design", "AI-enhanced research"]}
-        targetAudience="App Entrepreneurs and Companies"
-        path="/design-services/mobile-app-design"
-      />
-      
       <Header />
       <main className="flex-grow pt-24">
         <div className="container mx-auto px-4 py-8">
