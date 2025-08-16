@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { StructuredCaseStudyData } from '@/data/structuredCaseStudies';
@@ -14,7 +13,7 @@ const StructuredCaseStudySEO: React.FC<StructuredCaseStudySEOProps> = ({ caseStu
   const seoTitle = title;
   const seoDescription = description;
   // Use a reliable fallback image that we know exists
-  const seoImage = seoData?.image || 'https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png';
+  const seoImage = seoData?.image || 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   const canonicalUrl = `https://barskydesign.pro${seoData?.path || ''}`;
   
   return (

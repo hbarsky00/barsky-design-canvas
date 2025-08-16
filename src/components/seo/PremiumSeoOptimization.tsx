@@ -20,7 +20,7 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
       "url": "https://barskydesign.pro",
       "email": "hbarsky01@gmail.com",
       "telephone": "+1-201-668-4754",
-      "image": "https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
+      "image": "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp",
       "sameAs": [
         "https://www.linkedin.com/in/hirambarsky",
         "https://twitter.com/barskydesign",

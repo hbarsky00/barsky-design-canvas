@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -18,7 +17,7 @@ const LegacyCaseStudySEO: React.FC<LegacyCaseStudySEOProps> = ({
   technologies 
 }) => {
   const seoTitle = `${title} | Hiram Barsky Design`;
-  const seoImage = image || 'https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png';
+  const seoImage = image || 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   const canonicalUrl = `https://barskydesign.pro${path || ''}`;
   
   return (

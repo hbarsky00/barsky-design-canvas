@@ -13,7 +13,7 @@ const Services = () => {
         type="service"
         title="Product Design & Gen AI Development Services | UX/UI Design"
         description="Professional product design and Gen AI development services for startups and enterprises. Specializing in UX research, design systems, AI integration, and user-centered digital product development."
-        image="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png"
+        image="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp"
         path="/services"
         serviceName="Product Design & Gen AI Development"
         benefits={[

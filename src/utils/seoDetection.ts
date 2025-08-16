@@ -9,7 +9,7 @@ interface PageSEOData {
 
 const BASE_URL = 'https://barskydesign.pro';
 // Use a reliable profile photo from your domain
-const DEFAULT_IMAGE = 'https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png';
+const DEFAULT_IMAGE = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
 
 /**
  * Converts relative URLs to absolute URLs
