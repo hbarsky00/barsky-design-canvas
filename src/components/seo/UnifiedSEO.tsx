@@ -1,345 +1,162 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
-import { usePageMetadata } from '@/hooks/usePageMetadata';
-import { SEO_CONSTANTS } from '@/utils/seoConstants';
-import { getStructuredCaseStudy } from '@/data/structuredCaseStudies';
-import { normalizeUrl } from '@/utils/urlUtils';
 
-interface PageSEOData {
+import React, { useState, useEffect, useMemo } from "react";
+import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
+import { fetchPageMetadata, fetchBlogPost } from "@/hooks/database/operations";
+import { normalizeUrl } from "@/utils/seo/canonicalUtils";
+import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
+
+interface SEOData {
   title: string;
   description: string;
-  image: string;
-  canonicalUrl: string;
-  pageType: 'home' | 'project' | 'blog' | 'service' | 'page';
-  schemaData?: any;
+  canonical: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
 }
 
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
-  const { metadata, loading } = usePageMetadata(location.pathname);
   
-  // Generate immediate canonical URL - available synchronously on first render
-  const immediateCanonicalUrl = useMemo(() => {
-    const canonical = normalizeUrl(location.pathname);
-    console.log('🚀 UnifiedSEO - IMMEDIATE CANONICAL GENERATED:', {
-      pathname: location.pathname,
-      canonical: canonical,
-      timestamp: new Date().toISOString(),
-      note: 'Available on first render for scrapers'
-    });
-    return canonical;
-  }, [location.pathname]);
+  // Generate immediate canonical URL safely
+  const immediateCanonical = useMemo(() => {
+    // Ensure location and pathname exist before accessing
+    if (!location || !location.pathname) {
+      return 'https://barskydesign.pro/';
+    }
+    return normalizeUrl(location.pathname);
+  }, [location?.pathname]);
 
-  // Initialize seoData with immediate canonical instead of null
-  const [seoData, setSeoData] = useState<PageSEOData>(() => ({
-    title: getDefaultTitle(location.pathname),
-    description: getDefaultDescription(location.pathname),
-    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-    canonicalUrl: immediateCanonicalUrl,
-    pageType: getPageType(location.pathname),
+  // Initialize seoData with immediate canonical URL
+  const [seoData, setSeoData] = useState<SEOData>(() => ({
+    title: "Hiram Barsky - UX/UI Designer & Developer",
+    description: "Professional UX/UI design and development services by Hiram Barsky. Specializing in user-centered design and modern web applications.",
+    canonical: immediateCanonical,
+    image: "https://barskydesign.pro/images/profile-hero.jpg",
+    type: 'website'
   }));
 
+  console.log('🚀 UnifiedSEO - IMMEDIATE CANONICAL GENERATED:', {
+    pathname: location?.pathname || 'undefined',
+    canonical: immediateCanonical,
+    timestamp: new Date().toISOString(),
+    note: "Available on first render for scrapers"
+  });
+
   useEffect(() => {
-    const generateSEOData = () => {
+    const loadSEOData = async () => {
+      // Additional safety check
+      if (!location || !location.pathname) {
+        console.warn('⚠️ UnifiedSEO: location or pathname not available yet');
+        return;
+      }
+
+      const pathname = location.pathname;
+      console.log('🔍 UnifiedSEO: Loading SEO data for:', pathname);
+
       try {
-        console.log('🔄 UnifiedSEO - Enhancing SEO data for:', location.pathname);
-        
-        // Use the immediate canonical URL we already generated
-        const canonicalUrl = immediateCanonicalUrl;
-        
-        console.log('🔗 UnifiedSEO - CANONICAL URL CONFIRMATION:', {
-          originalPathname: location.pathname,
-          canonicalUrl: canonicalUrl,
-          baseUrl: SEO_CONSTANTS.BASE_URL,
-          source: 'UnifiedSEO (Enhanced)',
-          timestamp: new Date().toISOString()
-        });
-        
-        // Handle case study pages specially
-        if (location.pathname.startsWith('/project/')) {
-          const projectId = location.pathname.split('/')[2];
-          const caseStudy = getStructuredCaseStudy(projectId);
+        let enhancedSeoData: SEOData = {
+          title: "Hiram Barsky - UX/UI Designer & Developer",
+          description: "Professional UX/UI design and development services by Hiram Barsky. Specializing in user-centered design and modern web applications.",
+          canonical: immediateCanonical,
+          image: "https://barskydesign.pro/images/profile-hero.jpg",
+          type: 'website'
+        };
+
+        // Handle blog posts
+        if (pathname.startsWith('/blog/') && pathname !== '/blog') {
+          const slug = pathname.replace('/blog/', '');
+          console.log('📝 Loading blog post SEO for slug:', slug);
           
-          if (caseStudy) {
-            const data: PageSEOData = {
-              title: caseStudy.title,
-              description: caseStudy.description,
-              image: caseStudy.seoData?.image || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-              canonicalUrl: canonicalUrl,
-              pageType: 'project',
+          const blogPost = await fetchBlogPost(slug);
+          if (blogPost) {
+            enhancedSeoData = {
+              title: blogPost.title,
+              description: blogPost.excerpt || blogPost.meta_description || enhancedSeoData.description,
+              canonical: normalizeUrl(pathname),
+              image: blogPost.featured_image || enhancedSeoData.image,
+              type: 'article',
+              publishedTime: blogPost.created_at,
+              modifiedTime: blogPost.updated_at,
+              author: "Hiram Barsky",
+              tags: blogPost.tags
             };
-            
-            // Add structured data for case studies
-            data.schemaData = {
-              "@context": "https://schema.org",
-              "@type": "CreativeWork",
-              "headline": caseStudy.title,
-              "description": caseStudy.description,
-              "url": canonicalUrl,
-              "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": canonicalUrl
-              },
-              "image": {
-                "@type": "ImageObject",
-                "url": data.image,
-                "width": 1200,
-                "height": 630
-              },
-              "author": {
-                "@type": "Person",
-                "name": SEO_CONSTANTS.AUTHOR,
-                "url": SEO_CONSTANTS.BASE_URL,
-                "sameAs": SEO_CONSTANTS.SOCIAL_PROFILES
-              },
-              "publisher": {
-                "@type": "Organization",
-                "name": SEO_CONSTANTS.SITE_NAME,
-                "url": SEO_CONSTANTS.BASE_URL
-              },
-              "datePublished": new Date().toISOString().split('T')[0],
-              "dateModified": new Date().toISOString().split('T')[0]
+          }
+        } else {
+          // Handle other pages
+          console.log('📄 Loading page metadata for:', pathname);
+          const pageMetadata = await fetchPageMetadata(pathname);
+          
+          if (pageMetadata) {
+            enhancedSeoData = {
+              title: pageMetadata.title,
+              description: pageMetadata.description,
+              canonical: normalizeUrl(pathname),
+              image: pageMetadata.featured_image || enhancedSeoData.image,
+              type: pageMetadata.page_type === 'article' ? 'article' : 'website'
             };
-            
-            setSeoData(data);
-            document.title = `${data.title} | ${SEO_CONSTANTS.SITE_NAME}`;
-            console.log('✅ UnifiedSEO - Enhanced Project SEO Generated:', {
-              title: data.title,
-              canonical: data.canonicalUrl,
-              pageType: data.pageType
-            });
-            return;
+          } else {
+            // Update canonical for pages without database entries
+            enhancedSeoData.canonical = normalizeUrl(pathname);
           }
         }
 
-        // Database-first approach for other pages
-        if (metadata) {
-          const data: PageSEOData = {
-            title: metadata.title || getDefaultTitle(location.pathname),
-            description: metadata.description || getDefaultDescription(location.pathname),
-            image: metadata.image || getPageImage() || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-            canonicalUrl: canonicalUrl,
-            pageType: getPageType(location.pathname),
-          };
-          
-          data.schemaData = generateSchema(data);
-          setSeoData(data);
-          document.title = data.title;
-          console.log('✅ UnifiedSEO - Enhanced Database SEO Generated:', {
-            title: data.title,
-            canonical: data.canonicalUrl,
-            pageType: data.pageType
-          });
-          return;
-        }
+        console.log('✅ UnifiedSEO: Final SEO data:', enhancedSeoData);
+        setSeoData(enhancedSeoData);
 
-        // Fallback for pages without database entries - enhance existing seoData
-        const fallbackData: PageSEOData = {
-          title: getDefaultTitle(location.pathname),
-          description: getDefaultDescription(location.pathname),
-          image: getPageImage() || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-          canonicalUrl: canonicalUrl,
-          pageType: getPageType(location.pathname),
-        };
-
-        fallbackData.schemaData = generateSchema(fallbackData);
-        setSeoData(fallbackData);
-        document.title = fallbackData.title;
-        console.log('✅ UnifiedSEO - Enhanced Fallback SEO Generated:', {
-          title: fallbackData.title,
-          canonical: fallbackData.canonicalUrl,
-          pageType: fallbackData.pageType
-        });
-        
       } catch (error) {
-        console.error('❌ UnifiedSEO - SEO generation error:', error);
-        // Keep the immediate canonical URL even in error cases
-        setSeoData(prevData => ({
-          ...prevData,
-          title: 'Hiram Barsky Design - Product Designer & Gen AI Developer',
-          description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
-          image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-          canonicalUrl: immediateCanonicalUrl,
-          pageType: 'page'
+        console.error('❌ UnifiedSEO: Error loading SEO data:', error);
+        // On error, at least update the canonical URL
+        setSeoData(prev => ({
+          ...prev,
+          canonical: immediateCanonical
         }));
-        console.log('🔄 UnifiedSEO - Emergency fallback applied with canonical:', immediateCanonicalUrl);
       }
     };
 
-    if (!loading) {
-      generateSEOData();
-    }
-  }, [location.pathname, metadata, loading, immediateCanonicalUrl]);
+    loadSEOData();
+  }, [location?.pathname, immediateCanonical]);
 
-  function getDefaultTitle(pathname: string): string {
-    if (pathname === '/') return 'Hiram Barsky - Product Designer & Gen AI Developer';  
-    if (pathname.startsWith('/blog/')) return 'Blog Post | Hiram Barsky Design';
-    if (pathname === '/projects') return 'Product Design Portfolio | Hiram Barsky Design';
-    if (pathname === '/services') return 'Design Services | Hiram Barsky Design';
-    if (pathname === '/contact') return 'Contact | Hiram Barsky Design';
-    if (pathname === '/about') return 'About | Hiram Barsky Design';
-    if (pathname === '/blog') return 'UX Design Blog | Hiram Barsky Design';
-    if (pathname.startsWith('/design-services/')) {
-      const service = pathname.split('/').pop();
-      return `${service?.replace('-', ' ')} | Hiram Barsky Design`;
-    }
-    return 'Hiram Barsky Design - Product Designer & Gen AI Developer';
-  }
-
-  function getDefaultDescription(pathname: string): string {
-    if (pathname === '/') return SEO_CONSTANTS.DEFAULT_DESCRIPTION;
-    if (pathname.startsWith('/blog/')) return 'Insights on product design, UX research, and AI integration in digital product development.';
-    if (pathname === '/projects') return 'Explore Product Design portfolio featuring Gen AI integration, intelligent web applications, and AI-powered user interfaces.';
-    if (pathname === '/services') return 'Professional product design and Gen AI development services for startups and enterprises.';
-    if (pathname === '/contact') return 'Get in touch for AI-enhanced product design services and consultation.';
-    if (pathname === '/about') return 'Learn about Hiram Barsky, Product Designer and Gen AI Developer specializing in AI-enhanced user experiences.';
-    if (pathname === '/blog') return 'Expert insights on AI-enhanced UX design, accessibility compliance, and conversion optimization.';
-    if (pathname.startsWith('/design-services/')) return 'Professional design services and Gen AI development for digital product experiences.';
-    return SEO_CONSTANTS.DEFAULT_DESCRIPTION;
-  }
-
-  const getPageImage = (): string | null => {
-    // Try to find page-specific images from DOM
-    const selectors = [
-      '[data-featured-image] img',
-      '[data-hero-image] img', 
-      '.hero img',
-      'section:first-of-type img'
-    ];
-
-    for (const selector of selectors) {
-      const img = document.querySelector(selector) as HTMLImageElement;
-      if (img?.src) {
-        return img.src.startsWith('http') ? img.src : `${SEO_CONSTANTS.BASE_URL}${img.src}`;
-      }
-    }
-    return null;
-  };
-
-  const getPageType = (pathname: string): PageSEOData['pageType'] => {
-    if (pathname === '/') return 'home';
-    if (pathname.startsWith('/blog/')) return 'blog';
-    if (pathname.startsWith('/project/')) return 'project';
-    if (pathname.includes('service')) return 'service';
-    return 'page';
-  };
-
-  const generateSchema = (data: PageSEOData) => {
-    const baseSchema = {
-      "@context": "https://schema.org",
-      "@type": data.pageType === 'home' ? 'Person' : 'WebPage',
-      "name": data.title,
-      "description": data.description,
-      "url": data.canonicalUrl,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": data.canonicalUrl
-      },
-      "image": {
-        "@type": "ImageObject",
-        "url": data.image,
-        "width": 1200,
-        "height": 630
-      },
-      "author": {
-        "@type": "Person",
-        "name": SEO_CONSTANTS.AUTHOR,
-        "url": SEO_CONSTANTS.BASE_URL,
-        "sameAs": SEO_CONSTANTS.SOCIAL_PROFILES
-      }
-    };
-
-    if (data.pageType === 'home') {
-      return {
-        ...baseSchema,
-        "@type": "Person",
-        "jobTitle": "Product Designer & Gen AI Developer",
-        "email": "hbarsky01@gmail.com",
-        "knowsAbout": [
-          "Product Design",
-          "Gen AI Integration", 
-          "User Experience Design",
-          "AI-Enhanced Digital Products"
-        ]
-      };
-    }
-
-    return baseSchema;
-  };
-
-  // CRITICAL: Always render SEO tags - never return null
-  // This ensures scrapers like LinkedIn always see canonical URLs
-  console.log('🎯 UnifiedSEO - RENDERING SEO TAGS (ALWAYS):', {
-    title: seoData.title,
-    canonical: seoData.canonicalUrl,
-    image: seoData.image,
-    pageType: seoData.pageType,
-    note: 'Available immediately for scrapers'
-  });
+  const structuredData = generateStructuredData(seoData);
 
   return (
     <Helmet>
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
-      <link rel="canonical" href={seoData.canonicalUrl} />
+      <link rel="canonical" href={seoData.canonical} />
       
-      {/* Open Graph Tags */}
+      {/* Open Graph */}
       <meta property="og:title" content={seoData.title} />
       <meta property="og:description" content={seoData.description} />
-      <meta property="og:url" content={seoData.canonicalUrl} />
-      <meta property="og:type" content={seoData.pageType === 'home' ? 'website' : 'article'} />
-      <meta property="og:image" content={seoData.image} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content={SEO_CONSTANTS.SITE_NAME} />
-      <meta property="og:locale" content={SEO_CONSTANTS.LOCALE} />
+      <meta property="og:url" content={seoData.canonical} />
+      <meta property="og:type" content={seoData.type} />
+      {seoData.image && <meta property="og:image" content={seoData.image} />}
       
-      {/* Twitter Card Tags */}
+      {/* Article specific meta tags */}
+      {seoData.type === 'article' && (
+        <>
+          {seoData.publishedTime && <meta property="article:published_time" content={seoData.publishedTime} />}
+          {seoData.modifiedTime && <meta property="article:modified_time" content={seoData.modifiedTime} />}
+          {seoData.author && <meta property="article:author" content={seoData.author} />}
+          {seoData.tags && seoData.tags.map(tag => (
+            <meta key={tag} property="article:tag" content={tag} />
+          ))}
+        </>
+      )}
+      
+      {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seoData.title} />
       <meta name="twitter:description" content={seoData.description} />
-      <meta name="twitter:image" content={seoData.image} />
-      <meta name="twitter:site" content={SEO_CONSTANTS.TWITTER_HANDLE} />
-      <meta name="twitter:creator" content={SEO_CONSTANTS.TWITTER_HANDLE} />
+      {seoData.image && <meta name="twitter:image" content={seoData.image} />}
       
-      {/* Additional SEO meta tags */}
-      <meta name="author" content={SEO_CONSTANTS.AUTHOR} />
-      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <meta name="theme-color" content={SEO_CONSTANTS.THEME_COLOR} />
-      <meta httpEquiv="Content-Language" content="en" />
-      <meta name="language" content={SEO_CONSTANTS.LANGUAGE} />
-      
-      {/* Advanced meta tags for better crawling */}
-      <meta name="web-crawl-frequency" content="weekly" />
-      <meta name="content-update-frequency" content="weekly" />
-      <meta name="priority-pages" content="/,/projects,/contact" />
-      <meta name="geo.region" content="US" />
-      <meta name="geo.country" content="United States" />
-      <meta name="geo.placename" content="New York" />
-      <meta name="mobile-web-app-capable" content="yes" />
-      <meta name="mobile-web-app-status-bar-style" content="default" />
-      <meta name="mobile-web-app-title" content="Hiram Barsky UX" />
-      <meta property="og:rich_attachment" content="true" />
-      <meta name="twitter:widgets:new-embed-design" content="on" />
-      <meta name="performance-optimized" content="true" />
-      <meta name="lighthouse-score" content="95+" />
-      <meta name="core-web-vitals" content="optimized" />
-      
-      {/* Professional Network Links */}
-      <link rel="me" href="https://www.linkedin.com/in/hirambarsky" />
-      <link rel="me" href="https://twitter.com/barskydesign" />
-      
-      {/* Sitemap reference */}
-      <link rel="sitemap" type="application/xml" href="https://barskydesign.pro/sitemap.xml" />
-      
-      {/* JSON-LD Schema */}
-      {seoData.schemaData && (
-        <script type="application/ld+json">
-          {JSON.stringify(seoData.schemaData, null, 2)}
-        </script>
-      )}
+      {/* Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
     </Helmet>
   );
 };
