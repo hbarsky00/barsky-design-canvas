@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -5,7 +6,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
+
+// Removed global UnifiedSEO import to prevent conflicts
 
 // Page imports
 import Index from "@/pages/Index";
@@ -31,9 +33,7 @@ function App() {
         <ImageMaximizerProvider>
           <Router>
             <ScrollToTop />
-            {/* Global SEO - runs on every route change */}
-            <UnifiedSEO />
-            
+            {/* Removed global UnifiedSEO to avoid meta tag conflicts; rely on page-level SEO components */}
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
@@ -68,3 +68,4 @@ function App() {
 }
 
 export default App;
+
