@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 
 export const saveChangeToDatabase = async (
@@ -78,5 +77,51 @@ export const clearChangesFromDatabase = async (projectId: string) => {
   } catch (error) {
     console.error('❌ Error clearing changes from database:', error);
     return false;
+  }
+};
+
+export const fetchPageMetadata = async (path: string) => {
+  try {
+    console.log('📖 Fetching page metadata for path:', path);
+
+    const { data, error } = await supabase
+      .from('page_metadata')
+      .select('*')
+      .eq('path', path)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      console.error('❌ Database fetch error for page metadata:', error);
+      return null;
+    }
+
+    console.log('✅ Page metadata fetched:', data);
+    return data;
+  } catch (error) {
+    console.error('❌ Error fetching page metadata:', error);
+    return null;
+  }
+};
+
+export const fetchBlogPost = async (slug: string) => {
+  try {
+    console.log('📖 Fetching blog post for slug:', slug);
+
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('*')
+      .eq('slug', slug)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      console.error('❌ Database fetch error for blog post:', error);
+      return null;
+    }
+
+    console.log('✅ Blog post fetched:', data);
+    return data;
+  } catch (error) {
+    console.error('❌ Error fetching blog post:', error);
+    return null;
   }
 };
