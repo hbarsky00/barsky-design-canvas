@@ -8,8 +8,8 @@ interface PageSEOData {
 }
 
 const BASE_URL = 'https://barskydesign.pro';
-// Updated to use your actual profile photo instead of illustration
-const DEFAULT_IMAGE = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
+// Use a reliable profile photo from your domain
+const DEFAULT_IMAGE = 'https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png';
 
 /**
  * Converts relative URLs to absolute URLs
@@ -137,7 +137,7 @@ const extractHeroImage = (): string => {
     }
   }
 
-  // Return your circular headshot as fallback
+  // Return your profile photo as fallback - using a reliable URL
   return DEFAULT_IMAGE;
 };
 
@@ -257,7 +257,7 @@ export const applySEOForPage = (): PageSEOData => {
 
   const schemaData = generateSchema(seoData);
 
-  console.log('🔍 SEO Detection (Updated with Profile Photo):', {
+  console.log('🔍 SEO Detection (Updated with Reliable Images):', {
     pathname,
     title,
     description: description.substring(0, 50) + '...',

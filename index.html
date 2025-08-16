@@ -2,67 +2,58 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) - Non-blocking -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-321GKNB37Y');
-      
-      // Load analytics asynchronously
-      var script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-321GKNB37Y';
-      script.integrity = 'sha384-5Jvd6H8Hqhb0O2x6Hg8WPZmLg6D5Pj3Ck1KGfL4a0MsU8N9q1g1Hv3C5kMf8T';
-      script.crossOrigin = 'anonymous';
-      document.head.appendChild(script);
-    </script>
-    
     <meta charset="UTF-8" />
-    <link rel="icon" href="/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" type="image/png" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="generator" content="Lovable" />
+
+    <!-- Viewport meta tag optimized for modern mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
     <title>Hiram Barsky - Product Designer & Gen AI Developer</title>
     
-    <!-- Basic description - can be overridden by React Helmet -->
+    <!-- Basic description and image - can be overridden by React Helmet -->
     <meta name="description" content="15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for businesses looking to transform their products with intelligent design solutions." />
+    <meta property="og:image" content="https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     
     <!-- Preload critical resources -->
     <link rel="preload" href="/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png" as="image" />
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
     
-    <!-- Preload hero images for featured projects -->
-    <link rel="preload" href="/lovable-uploads/b9e82187-de02-414c-aef2-4c99ea1b1a0c.png" as="image" />
-    <link rel="preload" href="/lovable-uploads/54ddb7c1-ce60-4077-b56c-ae4640252d52.png" as="image" />
+    <!-- Theme meta tag -->
+    <meta name="theme-color" content="#000000" />
     
-    <!-- Resource hints for performance -->
-    <link rel="prefetch" href="/lovable-uploads/8fb40d7a-8ac6-404e-a3ce-43746775a75c.png" as="image" />
-    <link rel="prefetch" href="/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png" as="image" />
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     
-    <!-- DNS prefetch for external domains -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     
-    <!-- Static canonical tag for immediate recognition -->
+    <!-- Web app manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple-specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Barsky Design" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Microsoft specific meta tags -->
+    <meta name="msapplication-TileColor" content="#000000" />
+    
+    <!-- Additional SEO and Performance Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Canonical URL - will be overridden by React Helmet for specific pages -->
     <link rel="canonical" href="https://barskydesign.pro/" />
-    
-    <!-- Optimized font loading - Critical CSS inline, defer full fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <style>
-      /* Critical font fallback CSS - prevents FOUT */
-      @font-face {
-        font-family: 'Inter-fallback';
-        src: local('Arial'), local('Helvetica'), local('sans-serif');
-        font-display: swap;
-      }
-      body { font-family: 'Inter-fallback', sans-serif; }
-    </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" 
-          media="print" onload="this.media='all'; this.onload=null;"
-          crossorigin="anonymous">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
-    
   </head>
   <body>
     <div id="root"></div>
