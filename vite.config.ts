@@ -33,6 +33,8 @@ export default defineConfig(({ mode }) => ({
     },
     sourcemap: false,
     minify: 'esbuild',
+    // Enable prerendering for project pages
+    emptyOutDir: true,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion'],

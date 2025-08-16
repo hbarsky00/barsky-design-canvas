@@ -51,6 +51,15 @@ try {
         const hasOgTitle = content.includes('property="og:title"');
         const hasOgImage = content.includes('property="og:image"');
         console.log(`🔍 ${file}: OG tags ${hasOgTitle && hasOgImage ? '✅' : '❌'}`);
+        
+        // Check for static meta tags (should be removed)
+        const hasStaticTitle = content.includes('<title>Hiram Barsky Design');
+        const hasStaticOG = content.includes('content="Hiram Barsky Design - Product Designer');
+        if (hasStaticTitle || hasStaticOG) {
+          console.log(`⚠️ ${file}: Still contains static meta tags that should be dynamic`);
+        } else {
+          console.log(`✅ ${file}: Static meta tags properly removed`);
+        }
       }
     });
   }
