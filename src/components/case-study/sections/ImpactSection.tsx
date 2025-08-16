@@ -61,9 +61,9 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({
             key={index} 
             className={`border rounded-lg p-6 ${getCategoryColor(metric.category)}`}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-start space-x-3">
-                <div className="mt-0.5">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-3">
+                <div>
                   {getCategoryIcon(metric.category)}
                 </div>
                 <h4 className="font-semibold text-gray-900 leading-tight">{metric.label}</h4>
@@ -79,10 +79,10 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({
       </div>
 
       <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-        <div className="flex items-start space-x-3">
-          <TrendingUp className="h-6 w-6 text-green-600 mt-0.5" />
+        <div className="flex items-center space-x-3">
+          <TrendingUp className="h-6 w-6 text-green-600" />
           <div>
-            <h4 className="font-semibold text-green-900 mb-2 leading-tight">Bottom Line Impact</h4>
+            <h4 className="font-semibold text-green-900 leading-tight">Bottom Line Impact</h4>
             <p className="text-green-800">
               These improvements directly contributed to measurable business outcomes, 
               validating the design decisions and strategic approach taken.
