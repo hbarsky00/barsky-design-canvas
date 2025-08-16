@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import IdentityBadge from "@/components/shared/IdentityBadge";
 import VideoPlayer from "../VideoPlayer";
-import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import ProjectLinks from "@/components/project/ProjectLinks";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
+import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 
 interface StructuredCaseStudyHeroProps {
   caseStudyData: StructuredCaseStudyData;
@@ -14,7 +14,7 @@ interface StructuredCaseStudyHeroProps {
 }
 
 const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({ 
-  caseStudyData, 
+  caseStudyData,
   heroAsImage = false 
 }) => {
   const textRef = React.useRef<HTMLDivElement>(null);
@@ -73,7 +73,6 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           )}
         </motion.div>
 
-        {/* Hero Content - Image or Video */}
         <motion.div
           ref={videoRef}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -83,14 +82,14 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
           {heroAsImage && caseStudyData.heroImage ? (
-            <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-2xl">
-              <img
-                src={caseStudyData.heroImage}
-                alt={`${caseStudyData.title} hero image`}
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl">
+              <img 
+                src={caseStudyData.heroImage} 
+                alt={caseStudyData.title}
                 className="w-full h-full object-cover"
               />
             </div>
-          ) : caseStudyData.video && caseStudyData.videoThumbnail ? (
+          ) : caseStudyData.video ? (
             <VideoPlayer 
               videoSrc={caseStudyData.video}
               thumbnailSrc={caseStudyData.videoThumbnail}
