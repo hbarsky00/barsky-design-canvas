@@ -54,49 +54,49 @@ function extractCaseStudyData(content) {
   const caseStudies = {};
   
   // Extract herbalink data
-  const herbalinkMatch = content.match(/"herbalink":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  const herbalinkMatch = content.match(/"herbalink":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
   if (herbalinkMatch) {
     caseStudies.herbalink = {
       title: herbalinkMatch[1],
       description: herbalinkMatch[2],
-      seoTitle: herbalinkMatch[3],
-      seoDescription: herbalinkMatch[4],
+      seoTitle: `${herbalinkMatch[4]} - ${herbalinkMatch[3]} - Hiram Barsky Design`,
+      seoDescription: herbalinkMatch[2],
       image: herbalinkMatch[5]
     };
   }
   
   // Extract splittime data
-  const splittimeMatch = content.match(/"splittime":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  const splittimeMatch = content.match(/"splittime":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
   if (splittimeMatch) {
     caseStudies.splittime = {
       title: splittimeMatch[1],
       description: splittimeMatch[2],
-      seoTitle: splittimeMatch[3],
-      seoDescription: splittimeMatch[4],
+      seoTitle: `${splittimeMatch[4]} - ${splittimeMatch[3]} - Hiram Barsky Design`,
+      seoDescription: splittimeMatch[2],
       image: splittimeMatch[5]
     };
   }
   
   // Extract investment-app data
-  const investmentMatch = content.match(/"investment-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  const investmentMatch = content.match(/"investment-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
   if (investmentMatch) {
     caseStudies['investment-app'] = {
       title: investmentMatch[1],
       description: investmentMatch[2],
-      seoTitle: investmentMatch[3],
-      seoDescription: investmentMatch[4],
+      seoTitle: `${investmentMatch[4]} - ${investmentMatch[3]} - Hiram Barsky Design`,
+      seoDescription: investmentMatch[2],
       image: investmentMatch[5]
     };
   }
   
   // Extract investor-loan-app data
-  const investorLoanMatch = content.match(/"investor-loan-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  const investorLoanMatch = content.match(/"investor-loan-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
   if (investorLoanMatch) {
     caseStudies['investor-loan-app'] = {
       title: investorLoanMatch[1],
       description: investorLoanMatch[2],
-      seoTitle: investorLoanMatch[3],
-      seoDescription: investorLoanMatch[4],
+      seoTitle: `${investorLoanMatch[4]} - ${investorLoanMatch[3]} - Hiram Barsky Design`,
+      seoDescription: investorLoanMatch[2],
       image: investorLoanMatch[5]
     };
   }
