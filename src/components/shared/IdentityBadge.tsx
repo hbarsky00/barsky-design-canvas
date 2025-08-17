@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,7 @@ interface IdentityBadgeProps {
   subtitleStyle?: "text" | "pill";
   className?: string;
   ariaLabel?: string;
+  videoSrc?: string;
 }
 
 const sizeMap = {
@@ -54,9 +55,31 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
   subtitleStyle = "text",
   className,
   ariaLabel,
+  videoSrc,
 }) => {
   const s = sizeMap[size];
   const Wrapper: any = to ? Link : "div";
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoSrc) {
+      setIsHovered(true);
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoSrc) {
+      setIsHovered(false);
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    }
+  };
 
   console.log('🔍 IdentityBadge: Image URL being used:', imageSrc);
   console.log('🔍 IdentityBadge: Component size:', size);
@@ -79,14 +102,20 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
           "dark:from-blue-400 dark:via-blue-300 dark:to-slate-600",
           "transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
         )}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <Avatar className={cn("rounded-full bg-background", s.avatar)}>
+        <Avatar className={cn("rounded-full bg-background overflow-hidden", s.avatar)}>
           <AvatarImage
             src={imageSrc}
             alt={`${name} profile photo`}
             loading="eager"
             width={s.imgWH}
             height={s.imgWH}
+            className={cn(
+              "transition-opacity duration-300",
+              videoSrc && isHovered ? "opacity-0" : "opacity-100"
+            )}
             onLoad={() => {
               console.log('✅ IdentityBadge: Image loaded successfully!', imageSrc);
             }}
@@ -99,6 +128,24 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
                 .catch(err => console.error('🌐 URL fetch failed:', err));
             }}
           />
+          
+          {videoSrc && (
+            <video
+              ref={videoRef}
+              className={cn(
+                "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
+                isHovered ? "opacity-100" : "opacity-0"
+              )}
+              autoPlay={false}
+              loop
+              muted
+              playsInline
+              preload="metadata"
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+          )}
+          
           <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
             {getInitials(name)}
           </AvatarFallback>
