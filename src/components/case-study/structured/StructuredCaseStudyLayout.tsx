@@ -96,7 +96,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   </section>
                 ))}
                 
-                <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
+                <div className={isProjectPage ? 'cs-card' : ''}>
                   <CaseStudyContactSection />
                 </div>
                 
