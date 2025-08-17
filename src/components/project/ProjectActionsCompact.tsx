@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Share2, Link as LinkIcon, ExternalLink } from "lucide-react";
+import { Linkedin, Link as LinkIcon, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface ProjectActionsCompactProps {
@@ -39,45 +39,17 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
     }
   };
 
-  const handleShare = async () => {
+  const handleLinkedInShare = () => {
     const shareUrl = projectPageUrl || liveUrl;
-    const shareTitle = projectTitle || "Check out this project";
-    const shareText = projectDescription;
-
-    if (navigator.share) {
-      try {
-        const shareData: ShareData = { 
-          title: shareTitle,
-          url: shareUrl
-        };
-        
-        if (shareText) {
-          shareData.text = shareText;
-        }
-        
-        await navigator.share(shareData);
-        onShare?.();
-        return;
-      } catch (error) {
-        // User cancelled or share failed, fallback to copy
-      }
-    }
+    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
     
-    // Fallback to copy project page URL if Web Share API not supported
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      toast({
-        title: "Link copied!",
-        description: "Project page URL copied to clipboard",
-      });
-      onShare?.();
-    } catch (error) {
-      toast({
-        title: "Share failed",
-        description: "Unable to share or copy link",
-        variant: "destructive"
-      });
-    }
+    window.open(
+      linkedinUrl,
+      '_blank',
+      'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
+    );
+    
+    onShare?.();
   };
 
   if (!liveUrl) return null;
@@ -97,12 +69,12 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
 
       <div className="flex items-center gap-3 sm:gap-4">
         <button
-          onClick={handleShare}
+          onClick={handleLinkedInShare}
           className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-background text-foreground shadow-md border border-border hover:bg-muted transition-colors active:scale-[.95]"
-          aria-label="Share project page"
-          title="Share Project Page"
+          aria-label="Share on LinkedIn"
+          title="Share on LinkedIn"
         >
-          <Share2 className="h-4 w-4 sm:h-5 sm:w-5" />
+          <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
 
         <button
