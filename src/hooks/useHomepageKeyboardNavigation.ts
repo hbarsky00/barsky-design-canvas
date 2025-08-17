@@ -181,29 +181,32 @@ export const useHomepageKeyboardNavigation = () => {
       console.log('Entering case study mode from projects section');
       setIsInCaseStudyMode(true);
       triggerTransition('down', () => {
-        setTimeout(() => {
-          setCurrentSectionIndex(0);
-          scrollToSection(0, 'casestudy'); // Go to first case study
-        }, 0);
+        setCurrentSectionIndex(0);
+        scrollToSection(0, 'casestudy'); // Go to first case study
       });
     } else if (isInCaseStudyMode) {
       const newIndex = currentSectionIndex + 1;
       if (newIndex >= caseStudySections.length) {
-        // Exit case study mode and go to next major section (contact)
+        // Exit case study mode and go to contact section
         console.log('Exiting case study mode, going to contact section');
-        setIsInCaseStudyMode(false);
-        const contactIndex = majorSections.findIndex(s => s.id === 'contact');
-        
-        triggerTransition('down', () => {
-          setTimeout(() => {
+        const contactElement = document.getElementById('contact');
+        if (contactElement) {
+          setIsInCaseStudyMode(false);
+          // Find contact index in major sections array
+          const contactIndex = majorSections.findIndex(s => s.id === 'contact');
+          
+          triggerTransition('down', () => {
             setCurrentSectionIndex(contactIndex);
             scrollToSection(contactIndex, 'major');
-          }, 0);
-        });
+          });
+        } else {
+          console.warn('Contact section not found');
+        }
       } else {
         // Navigate to next case study
         console.log(`Navigating to case study ${newIndex + 1}`);
         triggerTransition('down', () => {
+          setCurrentSectionIndex(newIndex);
           scrollToSection(newIndex, 'casestudy');
         });
       }
