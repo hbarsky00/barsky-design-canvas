@@ -16,28 +16,6 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    // Add custom plugin to generate static SEO files AFTER build
-    {
-      name: 'generate-static-seo',
-      writeBundle() {
-        // Run after build completes to read from dist/index.html
-        setTimeout(() => {
-          try {
-            const { spawn } = require('child_process');
-            const child = spawn('node', ['scripts/generateStaticSEO.js'], { stdio: 'inherit' });
-            child.on('close', (code: number | null) => {
-              if (code === 0) {
-                console.log('✅ Static SEO files generated successfully');
-              } else {
-                console.warn('⚠️ Static SEO generation failed with code:', code);
-              }
-            });
-          } catch (error) {
-            console.warn('Failed to generate static SEO files:', error);
-          }
-        }, 100); // Small delay to ensure dist files are written
-      }
-    }
   ].filter(Boolean),
   resolve: {
     alias: {
