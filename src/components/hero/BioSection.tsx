@@ -3,14 +3,29 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
+import { NavigationProps } from "@/types/navigation";
 
-const BioSection: React.FC = () => {
+interface BioSectionProps extends NavigationProps {}
+
+const BioSection: React.FC<BioSectionProps> = ({ 
+  navigateDown, 
+  canNavigateDown,
+  isMobile 
+}) => {
+  const handleNavigateDown = () => {
+    if (navigateDown) {
+      navigateDown();
+    }
+  };
+
   return (
     <section 
       id="bio-section"
       className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-gradient-to-br from-blue-50/30 to-indigo-50/30 relative
-                 pt-safe-top pb-safe-bottom"
+                 pt-safe-top pb-safe-bottom cursor-pointer"
       tabIndex={-1}
+      onClick={handleNavigateDown}
     >
       <div className="max-w-4xl mx-auto w-full">
         <motion.div
@@ -71,6 +86,24 @@ const BioSection: React.FC = () => {
           </Card>
         </motion.div>
       </div>
+
+      {/* Navigation Arrow */}
+      <motion.div 
+        className="absolute bottom-8 inset-x-0 px-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.8 }}
+      >
+        <div className="flex justify-center w-full">
+          <SectionNavigation
+            onNavigateDown={handleNavigateDown}
+            canNavigateUp={false}
+            canNavigateDown={canNavigateDown}
+            downLabel="View Case Studies"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };

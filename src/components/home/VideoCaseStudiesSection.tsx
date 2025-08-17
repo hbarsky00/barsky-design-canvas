@@ -6,7 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
+import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { NavigationProps } from "@/types/navigation";
 
 interface CaseStudy {
   id: string;
@@ -91,8 +93,25 @@ const caseStudies: CaseStudy[] = [
   }
 ];
 
-const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index }) => {
+const CaseStudyCard: React.FC<{ 
+  study: CaseStudy; 
+  index: number; 
+  onNavigateDown?: () => void;
+  canNavigateDown?: boolean;
+}> = ({ study, index, onNavigateDown, canNavigateDown }) => {
   const isMobile = useIsMobile();
+
+  const handleCaseStudyClick = (e: React.MouseEvent) => {
+    // Don't navigate if clicking on buttons or links
+    const target = e.target as HTMLElement;
+    if (target.closest('button') || target.closest('a')) {
+      return;
+    }
+    
+    if (onNavigateDown) {
+      onNavigateDown();
+    }
+  };
 
   const renderMedia = () => {
     if (study.video) {
@@ -138,8 +157,9 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="case-study-card bg-gray-50 overflow-hidden"
+      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative"
       tabIndex={-1}
+      onClick={handleCaseStudyClick}
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
@@ -268,11 +288,36 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
           </div>
         </div>
       </div>
+
+      {/* Navigation Arrow */}
+      {onNavigateDown && (
+        <motion.div 
+          className="absolute bottom-4 right-4 z-10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <SectionNavigation
+            onNavigateDown={onNavigateDown}
+            canNavigateUp={false}
+            canNavigateDown={canNavigateDown}
+            downLabel={index === 3 ? "Contact" : "Next Case Study"}
+            className="bg-white/90 backdrop-blur-sm shadow-lg"
+          />
+        </motion.div>
+      )}
     </motion.div>
   );
 };
 
-const VideoCaseStudiesSection: React.FC = () => {
+interface VideoCaseStudiesSectionProps extends NavigationProps {}
+
+const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({ 
+  navigateDown, 
+  canNavigateDown,
+  isMobile 
+}) => {
   return (
     <section id="projects" className="py-12 bg-white" tabIndex={-1}>
       <div className="container px-4 mx-auto max-w-7xl">
@@ -296,7 +341,13 @@ const VideoCaseStudiesSection: React.FC = () => {
         {/* Case Studies Grid */}
         <div className="space-y-12">
           {caseStudies.map((study, index) => (
-            <CaseStudyCard key={study.id} study={study} index={index} />
+            <CaseStudyCard 
+              key={study.id} 
+              study={study} 
+              index={index} 
+              onNavigateDown={navigateDown}
+              canNavigateDown={canNavigateDown}
+            />
           ))}
         </div>
       </div>
