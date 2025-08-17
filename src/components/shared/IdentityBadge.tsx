@@ -88,6 +88,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
     <Wrapper
       {...(to ? { to } : {})}
       aria-label={ariaLabel}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       className={cn(
         "inline-flex items-center",
         s.gap,
@@ -102,8 +104,6 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
           "dark:from-blue-400 dark:via-blue-300 dark:to-slate-600",
           "transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
         )}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <Avatar className={cn("rounded-full bg-background overflow-hidden", s.avatar)}>
           <AvatarImage
