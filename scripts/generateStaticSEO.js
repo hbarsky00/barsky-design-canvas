@@ -53,53 +53,39 @@ function extractBlogData(content) {
 function extractCaseStudyData(content) {
   const caseStudies = {};
   
-  // Extract herbalink data
-  const herbalinkMatch = content.match(/"herbalink":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
-  if (herbalinkMatch) {
-    caseStudies.herbalink = {
-      title: herbalinkMatch[1],
-      description: herbalinkMatch[2],
-      seoTitle: `${herbalinkMatch[4]} - ${herbalinkMatch[3]} - Hiram Barsky Design`,
-      seoDescription: herbalinkMatch[2],
-      image: herbalinkMatch[5]
-    };
-  }
-  
-  // Extract splittime data
-  const splittimeMatch = content.match(/"splittime":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
-  if (splittimeMatch) {
-    caseStudies.splittime = {
-      title: splittimeMatch[1],
-      description: splittimeMatch[2],
-      seoTitle: `${splittimeMatch[4]} - ${splittimeMatch[3]} - Hiram Barsky Design`,
-      seoDescription: splittimeMatch[2],
-      image: splittimeMatch[5]
-    };
-  }
-  
-  // Extract investment-app data
-  const investmentMatch = content.match(/"investment-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
-  if (investmentMatch) {
-    caseStudies['investment-app'] = {
-      title: investmentMatch[1],
-      description: investmentMatch[2],
-      seoTitle: `${investmentMatch[4]} - ${investmentMatch[3]} - Hiram Barsky Design`,
-      seoDescription: investmentMatch[2],
-      image: investmentMatch[5]
-    };
-  }
-  
-  // Extract investor-loan-app data
-  const investorLoanMatch = content.match(/"investor-loan-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?projectName:\s*"([^"]*)"[\s\S]*?results:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
-  if (investorLoanMatch) {
-    caseStudies['investor-loan-app'] = {
-      title: investorLoanMatch[1],
-      description: investorLoanMatch[2],
-      seoTitle: `${investorLoanMatch[4]} - ${investorLoanMatch[3]} - Hiram Barsky Design`,
-      seoDescription: investorLoanMatch[2],
-      image: investorLoanMatch[5]
-    };
-  }
+  // Helper to extract first result from results array
+  const extractFirstResult = (arrContent) => {
+    if (!arrContent) return '';
+    const match = arrContent.match(/"([^"]+)"/);
+    return match ? match[1] : '';
+  };
+
+  const ids = ['herbalink', 'splittime', 'investment-app', 'investor-loan-app'];
+
+  ids.forEach((id) => {
+    const regex = new RegExp(`"${id}":\\s*{[\\s\\S]*?title:\\s*"([^"]*)"[\\s\\S]*?description:\\s*"([^"]*)"[\\s\\S]*?seoData:\\s*{[\\s\\S]*?projectName:\\s*"([^"]*)"[\\s\\S]*?results:\\s*\\[([\\s\\S]*?)\\][\\s\\S]*?image:\\s*"([^"]*)"[\\s\\S]*?}`, 'm');
+    const match = content.match(regex);
+    if (match) {
+      const title = match[1];
+      const description = match[2];
+      const projectName = match[3];
+      const resultsArrayContent = match[4] || '';
+      const image = match[5];
+      const firstResult = extractFirstResult(resultsArrayContent);
+
+      const seoTitle = firstResult
+        ? `${firstResult} - ${projectName} - Hiram Barsky Design`
+        : `${title} - Hiram Barsky Design`;
+
+      caseStudies[id] = {
+        title,
+        description,
+        seoTitle,
+        seoDescription: description,
+        image
+      };
+    }
+  });
   
   return caseStudies;
 }
@@ -145,7 +131,8 @@ const allPagesSEOData = {
           title: data.seoTitle || data.title,
           description: data.seoDescription || data.description,
           image: data.image || DEFAULT_IMAGE,
-          url: `${BASE_URL}${route}`
+          url: `${BASE_URL}${route}`,
+          type: 'article'
         };
       }
     });
@@ -216,7 +203,8 @@ const allPagesSEOData = {
         title: `${post.title} - Hiram Barsky Design`,
         description: post.excerpt,
         image: blogImage,
-        url: `${BASE_URL}${route}`
+        url: `${BASE_URL}${route}`,
+        type: 'article'
       };
     });
     
@@ -274,6 +262,7 @@ const caseStudySEOData = {
 
 // Function to inject SEO meta tags
 function injectSEOTags(html, seoData) {
+  const type = seoData.type || 'website';
   const metaTags = `
     <title>${seoData.title}</title>
     <meta name="description" content="${seoData.description}" />
@@ -284,7 +273,7 @@ function injectSEOTags(html, seoData) {
     <meta property="og:description" content="${seoData.description}" />
     <meta property="og:image" content="${seoData.image}" />
     <meta property="og:url" content="${seoData.url}" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="${type}" />
     <meta property="og:site_name" content="Hiram Barsky Design" />
     
     <!-- Twitter Card -->
