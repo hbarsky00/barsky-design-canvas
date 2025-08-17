@@ -55,7 +55,8 @@ const caseStudies: CaseStudy[] = [
       secondary: "images/desktop-signup-1.png",
       alt: "SplitTime web and mobile views showing scheduling features"
     },
-    layout: "web-mobile"
+    layout: "web-mobile",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
   },
   {
     id: "business-management",
@@ -70,7 +71,8 @@ const caseStudies: CaseStudy[] = [
       secondary: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
       alt: "Business management app showing driver and inventory management"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runotBezsgewiQ_transition_this_mockup_i_1dfa0b37-ac57-43c8-962d-5270ac3b12b7_0.mp4"
   },
   {
     id: "investment-app",
@@ -84,7 +86,8 @@ const caseStudies: CaseStudy[] = [
       primary: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
       alt: "Investment app dashboard showing portfolio management"
     },
-    layout: "single-centered"
+    layout: "single-centered",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.run-k_yGBABxKo_transition_from_earlier__3c541216-e2df-4f59-8722-5610fc712f6d_3.mp4"
   }
 ];
 
