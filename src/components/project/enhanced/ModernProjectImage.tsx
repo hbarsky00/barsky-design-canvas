@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ProjectProps } from "@/components/ProjectCard";
-import MaximizableImage from "../MaximizableImage";
+import VideoHoverImage from "../VideoHoverImage";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
 
 interface ModernProjectImageProps {
@@ -47,6 +47,14 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
 
   console.log('🎨 ModernProjectImage: Rendering with final image src:', project.image);
 
+  // Get video for Herbalink project specifically
+  const getProjectVideo = () => {
+    if (projectId === "herbalink") {
+      return "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4";
+    }
+    return undefined;
+  };
+
   return (
     <motion.div
       key={`hero-image-${imageKey}-${project.image}`}
@@ -56,10 +64,11 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
       transition={{ duration: 0.8 }}
       className="floating-element"
     >
-      <MaximizableImage
+      <VideoHoverImage
         src={project.image}
         alt={project.title}
         caption={imageCaptions[project.image] || project.title}
+        videoSrc={getProjectVideo()}
         imageList={[project.image]}
         currentIndex={0}
         priority={true}
