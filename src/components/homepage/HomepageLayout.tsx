@@ -74,7 +74,6 @@ const HomepageLayout: React.FC = () => {
           <section id="case-studies" tabIndex={-1}>
             <VideoCaseStudiesSection 
               navigateDown={navigateDown}
-              canNavigateDown={canNavigateDown}
               isMobile={isMobile}
             />
           </section>

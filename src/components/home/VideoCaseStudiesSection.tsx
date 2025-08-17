@@ -97,8 +97,7 @@ const CaseStudyCard: React.FC<{
   study: CaseStudy; 
   index: number; 
   onNavigateDown?: () => void;
-  canNavigateDown?: boolean;
-}> = ({ study, index, onNavigateDown, canNavigateDown }) => {
+}> = ({ study, index, onNavigateDown }) => {
   const isMobile = useIsMobile();
 
   const handleCaseStudyClick = (e: React.MouseEvent) => {
@@ -157,7 +156,7 @@ const CaseStudyCard: React.FC<{
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative"
+      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative min-h-screen flex flex-col justify-center"
       tabIndex={-1}
       onClick={handleCaseStudyClick}
     >
@@ -289,24 +288,6 @@ const CaseStudyCard: React.FC<{
         </div>
       </div>
 
-      {/* Navigation Arrow */}
-      {onNavigateDown && (
-        <motion.div 
-          className="absolute bottom-4 right-4 z-10"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <SectionNavigation
-            onNavigateDown={onNavigateDown}
-            canNavigateUp={false}
-            canNavigateDown={canNavigateDown}
-            downLabel={index === 3 ? "Contact" : "Next Case Study"}
-            className="bg-white/90 backdrop-blur-sm shadow-lg"
-          />
-        </motion.div>
-      )}
     </motion.div>
   );
 };
@@ -314,8 +295,7 @@ const CaseStudyCard: React.FC<{
 interface VideoCaseStudiesSectionProps extends NavigationProps {}
 
 const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({ 
-  navigateDown, 
-  canNavigateDown,
+  navigateDown,
   isMobile 
 }) => {
   return (
@@ -346,7 +326,6 @@ const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({
               study={study} 
               index={index} 
               onNavigateDown={navigateDown}
-              canNavigateDown={canNavigateDown}
             />
           ))}
         </div>
