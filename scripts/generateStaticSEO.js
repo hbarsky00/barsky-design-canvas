@@ -9,6 +9,46 @@ const __dirname = path.dirname(__filename);
 const structuredCaseStudiesPath = path.join(__dirname, '../src/data/structuredCaseStudies.ts');
 const structuredCaseStudiesContent = fs.readFileSync(structuredCaseStudiesPath, 'utf8');
 
+// Read the blog data
+const blogDataPath = path.join(__dirname, '../src/data/blogData.ts');
+const blogDataContent = fs.readFileSync(blogDataPath, 'utf8');
+
+// Extract blog posts data
+function extractBlogData(content) {
+  const blogPosts = [];
+  
+  // Extract all blog post objects from the array
+  const blogPostsMatch = content.match(/export const blogPosts: BlogPost\[\] = \[([\s\S]*?)\];/);
+  if (blogPostsMatch) {
+    const postsContent = blogPostsMatch[1];
+    
+    // Find individual blog post objects
+    const postMatches = postsContent.match(/{\s*id:\s*"([^"]*)"[\s\S]*?title:\s*"([^"]*)"[\s\S]*?excerpt:\s*"([^"]*)"[\s\S]*?coverImage:\s*"([^"]*)"[\s\S]*?slug:\s*"([^"]*)"[\s\S]*?}/g);
+    
+    if (postMatches) {
+      postMatches.forEach(postMatch => {
+        const idMatch = postMatch.match(/id:\s*"([^"]*)"/);
+        const titleMatch = postMatch.match(/title:\s*"([^"]*)"/);
+        const excerptMatch = postMatch.match(/excerpt:\s*"([^"]*)"/);
+        const imageMatch = postMatch.match(/coverImage:\s*"([^"]*)"/);
+        const slugMatch = postMatch.match(/slug:\s*"([^"]*)"/);
+        
+        if (idMatch && titleMatch && excerptMatch && imageMatch && slugMatch) {
+          blogPosts.push({
+            id: idMatch[1],
+            title: titleMatch[1],
+            excerpt: excerptMatch[1],
+            coverImage: imageMatch[1],
+            slug: slugMatch[1]
+          });
+        }
+      });
+    }
+  }
+  
+  return blogPosts;
+}
+
 // Extract individual case study data
 function extractCaseStudyData(content) {
   const caseStudies = {};
@@ -65,7 +105,9 @@ function extractCaseStudyData(content) {
 }
 
 const extractedCaseStudies = extractCaseStudyData(structuredCaseStudiesContent);
+const extractedBlogPosts = extractBlogData(blogDataContent);
 console.log('Extracted case studies:', Object.keys(extractedCaseStudies));
+console.log('Extracted blog posts:', extractedBlogPosts.length);
 
 // Base HTML template
 const baseHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
@@ -158,6 +200,28 @@ const allPagesSEOData = {
     image: DEFAULT_IMAGE,
     url: `${BASE_URL}/blog`
   },
+
+  // Blog post pages - dynamically generated from blog data
+  ...(() => {
+    const blogPages = {};
+    
+    // Generate SEO data for each extracted blog post
+    extractedBlogPosts.forEach(post => {
+      const route = `/blog/${post.slug}`;
+      const blogImage = post.coverImage.startsWith('/') 
+        ? `${BASE_URL}${post.coverImage}` 
+        : post.coverImage;
+        
+      blogPages[route] = {
+        title: `${post.title} - Hiram Barsky Design`,
+        description: post.excerpt,
+        image: blogImage,
+        url: `${BASE_URL}${route}`
+      };
+    });
+    
+    return blogPages;
+  })(),
 
   // Design service pages
   '/design-services/ux-research': {
