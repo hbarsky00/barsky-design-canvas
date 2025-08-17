@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
@@ -114,12 +115,27 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="mb-16"
+                  className="mb-8"
                 >
                   <VideoPlayer 
                     videoSrc={caseStudy.video}
                     thumbnailSrc={caseStudy.videoThumbnail}
                     title={caseStudy.title}
+                  />
+                </motion.div>
+
+                {/* Project Actions */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="mb-16"
+                >
+                  <ProjectActionsCompact
+                    liveUrl={caseStudy.projectLink || ""}
+                    projectTitle={caseStudy.title}
+                    projectDescription={caseStudy.description}
+                    projectPageUrl={window.location.href}
                   />
                 </motion.div>
               </section>

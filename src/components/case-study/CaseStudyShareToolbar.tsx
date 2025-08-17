@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Share2, Link } from "lucide-react";
+import { Linkedin, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -17,21 +17,15 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
 }) => {
   const { toast } = useToast();
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: title,
-          url: url,
-        });
-      } catch (error) {
-        // User cancelled share, fallback to copy
-        handleCopyLink();
-      }
-    } else {
-      // Fallback to copy link
-      handleCopyLink();
-    }
+  const handleLinkedInShare = () => {
+    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    
+    // Open LinkedIn sharing dialog in popup
+    window.open(
+      linkedinUrl,
+      '_blank',
+      'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
+    );
   };
 
   const handleCopyLink = async () => {
@@ -56,12 +50,12 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
       <Button
         variant="default"
         size="sm"
-        onClick={handleShare}
+        onClick={handleLinkedInShare}
         className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4"
-        aria-label="Share case study"
+        aria-label="Share on LinkedIn"
       >
-        <Share2 className="h-4 w-4" />
-        <span className="text-sm font-medium">Share Case Study</span>
+        <Linkedin className="h-4 w-4" />
+        <span className="text-sm font-medium">Share on LinkedIn</span>
       </Button>
 
       <Button
