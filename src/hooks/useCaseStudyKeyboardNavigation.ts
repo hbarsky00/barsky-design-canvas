@@ -65,50 +65,67 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
   // Track current section on scroll
   useEffect(() => {
     let ticking = false;
+    let scrollDetectionDelay: number | null = null;
 
     const handleScroll = () => {
       if (ticking || isTransitioning) return;
       
-      ticking = true;
-      requestAnimationFrame(() => {
-        const headerOffset = getHeaderOffset();
-        const scrollPosition = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const viewportCenter = scrollPosition + viewportHeight / 2;
+      // Clear any existing delay
+      if (scrollDetectionDelay) {
+        clearTimeout(scrollDetectionDelay);
+      }
+      
+      // Add a small delay to prevent immediate section switching during navigation
+      scrollDetectionDelay = window.setTimeout(() => {
+        if (isTransitioning) return;
+        
+        ticking = true;
+        requestAnimationFrame(() => {
+          const headerOffset = getHeaderOffset();
+          const scrollPosition = window.scrollY;
+          const viewportHeight = window.innerHeight;
+          const viewportCenter = scrollPosition + viewportHeight / 2;
 
-        let newSectionIndex = 0;
-        let minDistance = Infinity;
+          let newSectionIndex = 0;
+          let minDistance = Infinity;
 
-        for (let i = 0; i < sections.length; i++) {
-          const element = document.getElementById(sections[i].id);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            const elementTop = scrollPosition + rect.top;
-            const elementCenter = elementTop + rect.height / 2;
-            const distance = Math.abs(viewportCenter - elementCenter);
+          for (let i = 0; i < sections.length; i++) {
+            const element = document.getElementById(sections[i].id);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              const elementTop = scrollPosition + rect.top;
+              // Use element top instead of center for better detection of contact section
+              const elementPosition = elementTop + rect.height * 0.3; // 30% into the element
+              const distance = Math.abs(viewportCenter - elementPosition);
 
-            if (distance < minDistance) {
-              minDistance = distance;
-              newSectionIndex = i;
+              if (distance < minDistance) {
+                minDistance = distance;
+                newSectionIndex = i;
+              }
             }
           }
-        }
 
-        setCurrentSectionIndex(prev => {
-          if (prev !== newSectionIndex) {
-            return newSectionIndex;
-          }
-          return prev;
+          setCurrentSectionIndex(prev => {
+            if (prev !== newSectionIndex) {
+              return newSectionIndex;
+            }
+            return prev;
+          });
+
+          ticking = false;
         });
-
-        ticking = false;
-      });
+      }, 100); // 100ms delay to prevent rapid section switching
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollDetectionDelay) {
+        clearTimeout(scrollDetectionDelay);
+      }
+    };
   }, [sections, isTransitioning]);
 
   // Enhanced keyboard event handling with mobile support
