@@ -22,6 +22,7 @@ interface CaseStudy {
     alt: string;
   };
   layout: "side-by-side" | "single-centered" | "web-mobile";
+  video?: string;
 }
 
 const caseStudies: CaseStudy[] = [
@@ -38,7 +39,8 @@ const caseStudies: CaseStudy[] = [
       secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
       alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runb361YvBdSZI_have_the_stop_talking_an_fd3d694f-098b-4d4d-b224-0fb170b09eab_1.mp4"
   },
   {
     id: "splittime",
@@ -89,7 +91,26 @@ const caseStudies: CaseStudy[] = [
 const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index }) => {
   const isMobile = useIsMobile();
 
-  const renderImage = () => {
+  const renderMedia = () => {
+    if (study.video) {
+      return (
+        <Link to={study.url} className="block h-full group">
+          <div className="flex justify-center h-full cursor-pointer">
+            <video 
+              src={study.video}
+              poster={study.images.primary}
+              className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              muted
+              loop
+              playsInline
+              onMouseEnter={(e) => e.currentTarget.play()}
+              onMouseLeave={(e) => e.currentTarget.pause()}
+            />
+          </div>
+        </Link>
+      );
+    }
+    
     return (
       <Link to={study.url} className="block h-full group">
         <div className="flex justify-center h-full cursor-pointer">
@@ -117,7 +138,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
       <div className="lg:hidden">
         {/* Image Section - Full Width on Mobile - Now Clickable */}
         <div className="relative bg-gray-50 p-6 min-h-[240px] flex items-center">
-          {renderImage()}
+          {renderMedia()}
         </div>
 
         {/* Content Section - Same background */}
@@ -179,7 +200,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
         <div className="relative bg-gray-50 p-4 xl:p-5 2xl:p-6 flex items-center" 
              style={{ marginRight: '-24px' }}>
           <div className="w-full min-h-[480px] xl:min-h-[520px] 2xl:min-h-[560px] flex items-center justify-center">
-            {renderImage()}
+            {renderMedia()}
           </div>
         </div>
 
