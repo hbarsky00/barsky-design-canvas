@@ -87,7 +87,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               </section>
 
               {/* Case Study Sections - Apply cs-card class */}
-              <div className="space-y-20 pb-20">
+              <div className="space-y-12 pb-12">
                 {caseStudyData.sections.map((section) => (
                   <section key={section.id} id={section.id} className="scroll-mt-24">
                     <div className={`bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20 ${isProjectPage ? 'cs-card' : ''}`}>
@@ -96,12 +96,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   </section>
                 ))}
                 
-                <div className={isProjectPage ? 'cs-card' : ''}>
+                <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
                   <CaseStudyContactSection />
                 </div>
                 
                 {/* Share Toolbar - At Bottom */}
-                <div className="mt-12 pt-8 border-t border-white/20 flex justify-center">
+                <div className="pt-6 border-t border-white/20 flex justify-center">
                   <CaseStudyShareToolbar 
                     url={currentUrl}
                     title={caseStudyData.title}

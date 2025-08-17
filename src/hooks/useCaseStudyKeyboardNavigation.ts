@@ -43,7 +43,7 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
       // Reset navigation state after scroll completion
       setTimeout(() => {
         setIsNavigating(false);
-      }, 800); // Longer delay to ensure scroll completion
+      }, 2000); // Much longer delay to prevent scroll detection interference
     }
   }, [sections]);
 
