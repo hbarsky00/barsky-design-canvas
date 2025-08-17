@@ -106,7 +106,7 @@ const DEFAULT_IMAGE = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250
 const allPagesSEOData = {
   // Homepage
   '/': {
-    title: 'Hiram Barsky Design - AI-Enhanced UX Design & Research',
+    title: 'Hiram Barsky - UX/UI Designer & AI Developer',
     description: '15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for businesses looking to transform their products with intelligent design solutions.',
     image: DEFAULT_IMAGE,
     url: BASE_URL

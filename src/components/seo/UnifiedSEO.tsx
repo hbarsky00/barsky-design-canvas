@@ -44,7 +44,7 @@ const UnifiedSEO: React.FC = () => {
   // Initialize seoData with immediate canonical URL
   const [seoData, setSeoData] = useState<SEOData>(() => {
     const initialData = {
-      title: "Hiram Barsky - UX/UI Designer & Developer",
+      title: "Hiram Barsky - UX/UI Designer & AI Developer",
       description: "Professional UX/UI design and development services by Hiram Barsky. Specializing in user-centered design and modern web applications.",
       canonical: immediateCanonical,
       image: "https://barskydesign.pro/images/profile-hero.jpg",
@@ -74,7 +74,7 @@ const UnifiedSEO: React.FC = () => {
 
       try {
         let enhancedSeoData: SEOData = {
-          title: "Hiram Barsky - UX/UI Designer & Developer",
+          title: "Hiram Barsky - UX/UI Designer & AI Developer",
           description: "Professional UX/UI design and development services by Hiram Barsky. Specializing in user-centered design and modern web applications.",
           canonical: immediateCanonical,
           image: "https://barskydesign.pro/images/profile-hero.jpg",
