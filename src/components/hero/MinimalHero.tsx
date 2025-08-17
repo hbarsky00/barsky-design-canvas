@@ -25,7 +25,6 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
   const handleMouseEnter = () => {
     setIsHovering(true);
     if (videoRef.current) {
-      videoRef.current.currentTime = 0;
       videoRef.current.play().catch(console.error);
     }
   };
@@ -104,6 +103,8 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
                   muted
                   playsInline
                   preload="metadata"
+                  loop
+                  autoPlay={false}
                 />
               </div>
             </div>
