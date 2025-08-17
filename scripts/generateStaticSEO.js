@@ -22,14 +22,8 @@ const caseStudyIds = [...caseStudiesDataStr.matchAll(/"([^"]+)":\s*{/g)].map(mat
 
 console.log('Found case study IDs:', caseStudyIds);
 
-// Base HTML template - read from dist after Vite build
-let baseHtml;
-try {
-  baseHtml = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf8');
-} catch (error) {
-  console.error('Could not read dist/index.html. Make sure vite build has completed first.');
-  process.exit(1);
-}
+// Base HTML template
+const baseHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
 
 // SEO constants
 const BASE_URL = 'https://barskydesign.pro';
@@ -53,32 +47,32 @@ const allPagesSEOData = {
     url: `${BASE_URL}/project/investment-app`
   },
   '/project/splittime': {
-    title: '40% Less Conflict: Designing Neutral Co-Parenting Tools - Hiram Barsky Design',
-    description: 'Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools designed for high-stress family situations.',
-    image: 'https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1',
+    title: 'Splittime Case Study - Hiram Barsky Design',
+    description: 'Comprehensive case study of the Splittime project showcasing UX design and development process.',
+    image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/splittime`
   },
   '/project/business-management': {
-    title: '50% Faster Workflows: Streamlining Operations for Growth - Hiram Barsky Design', 
-    description: 'Streamlined business management workflows through intuitive design and automated processes, resulting in 50% faster task completion.',
+    title: 'Business Management Case Study - Hiram Barsky Design', 
+    description: 'Comprehensive case study of the Business Management project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/business-management`
   },
   '/project/herbalink': {
-    title: '3x More Bookings: How I Connected Users to Certified Herbalists - Hiram Barsky Design',
-    description: 'Connected users to certified herbalists across the country and increased booking rates by 3x through AI-powered matching and streamlined UX.',
-    image: 'https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png',
+    title: 'Herbal Ink Case Study - Hiram Barsky Design',
+    description: 'Comprehensive case study of the Herbal Ink project showcasing UX design and development process.',
+    image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/herbalink`
   },
-  '/project/investor-loan-app': {
-    title: 'Investor Loan App Case Study - Streamlined Investment Financing - Hiram Barsky Design',
-    description: 'Designed streamlined investment financing platform that simplifies loan applications and reduces approval times for real estate investors.',
+  '/project/investor-loan': {
+    title: 'Investor Loan Case Study - Hiram Barsky Design',
+    description: 'Comprehensive case study of the Investor Loan project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
-    url: `${BASE_URL}/project/investor-loan-app`
+    url: `${BASE_URL}/project/investor-loan`
   },
   '/project/wholesale-distribution': {
-    title: 'Wholesale Distribution Platform - Supply Chain Management UX - Hiram Barsky Design',
-    description: 'Designed comprehensive wholesale distribution platform that optimizes supply chain management and improves vendor relationships.',
+    title: 'Wholesale Distribution Case Study - Hiram Barsky Design',
+    description: 'Comprehensive case study of the Wholesale Distribution project showcasing UX design and development process.',
     image: DEFAULT_IMAGE,
     url: `${BASE_URL}/project/wholesale-distribution`
   },
@@ -166,16 +160,6 @@ const caseStudySEOData = {
 
 // Function to inject SEO meta tags
 function injectSEOTags(html, seoData) {
-  // Remove any existing meta tags we're about to replace
-  let cleanHtml = html
-    .replace(/<title>.*?<\/title>/g, '')
-    .replace(/<meta name="description"[^>]*>/g, '')
-    .replace(/<link rel="canonical"[^>]*>/g, '')
-    .replace(/<meta property="og:[^"]*"[^>]*>/g, '')
-    .replace(/<meta name="twitter:[^"]*"[^>]*>/g, '')
-    .replace(/<meta name="author"[^>]*>/g, '')
-    .replace(/<meta name="robots"[^>]*>/g, '');
-  
   const metaTags = `
     <title>${seoData.title}</title>
     <meta name="description" content="${seoData.description}" />
@@ -200,7 +184,7 @@ function injectSEOTags(html, seoData) {
     <meta name="author" content="Hiram Barsky" />
     <meta name="robots" content="index, follow" />`;
 
-  return cleanHtml.replace('</head>', `${metaTags}\n  </head>`);
+  return html.replace('</head>', `${metaTags}\n  </head>`);
 }
 
 // Generate static HTML files for ALL routes

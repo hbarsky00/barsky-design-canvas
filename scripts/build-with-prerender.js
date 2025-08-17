@@ -16,11 +16,6 @@ try {
   execSync('vite build', { stdio: 'inherit' });
   console.log('✅ Vite build completed');
 
-  // Run react-snap to generate static HTML files
-  console.log('🔄 Running react-snap to generate static HTML files...');
-  execSync('npx react-snap', { stdio: 'inherit' });
-  console.log('✅ React-snap completed');
-
   // Verify build files
   const distDir = 'dist';
   if (fs.existsSync(distDir)) {
@@ -47,32 +42,23 @@ try {
       console.log(`  - ${relativePath}`);
     });
 
-    // Verify meta tags in important project files
-    const projectFiles = htmlFiles.filter(file => 
-      file.includes('project/splittime') || 
-      file.includes('project/herbalink') ||
-      file.includes('project/business-management') ||
-      file === path.join(distDir, 'index.html')
-    );
-    
-    console.log('\n🔍 Verifying SEO meta tags in key files:');
-    projectFiles.forEach(file => {
-      if (fs.existsSync(file)) {
-        const content = fs.readFileSync(file, 'utf8');
+    // Verify meta tags in key files
+    const keyFiles = ['index.html'];
+    keyFiles.forEach(file => {
+      const filePath = path.join(distDir, file);
+      if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, 'utf8');
         const hasOgTitle = content.includes('property="og:title"');
         const hasOgImage = content.includes('property="og:image"');
-        const hasCanonical = content.includes('rel="canonical"');
-        const relativePath = path.relative(distDir, file);
+        console.log(`🔍 ${file}: OG tags ${hasOgTitle && hasOgImage ? '✅' : '❌'}`);
         
-        console.log(`  ${relativePath}:`);
-        console.log(`    📝 Title tag: ${content.includes('<title>') ? '✅' : '❌'}`);
-        console.log(`    🏷️  OG tags: ${hasOgTitle && hasOgImage ? '✅' : '❌'}`);
-        console.log(`    🔗 Canonical: ${hasCanonical ? '✅' : '❌'}`);
-        
-        // Check if page has proper project-specific content
-        if (file.includes('splittime')) {
-          const hasSplittimeContent = content.includes('Splittime') || content.includes('splittime');
-          console.log(`    📄 Splittime content: ${hasSplittimeContent ? '✅' : '❌'}`);
+        // Check for static meta tags (should be removed)
+        const hasStaticTitle = content.includes('<title>Hiram Barsky Design');
+        const hasStaticOG = content.includes('content="Hiram Barsky Design - Product Designer');
+        if (hasStaticTitle || hasStaticOG) {
+          console.log(`⚠️ ${file}: Still contains static meta tags that should be dynamic`);
+        } else {
+          console.log(`✅ ${file}: Static meta tags properly removed`);
         }
       }
     });
