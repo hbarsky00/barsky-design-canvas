@@ -156,10 +156,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         content:
           "HerbaLink is currently in active development. Even at this early stage, we've seen strong engagement and behavior change — giving us validation and a foundation to scale from.\n\nWe launched Stage 1 with:\n- Symptom tracking and visual logging\n- Verified herbalist booking flow\n- Personalized herb recommendations\n- Community discussion board\n\nNext phases will include:\n- AI-driven symptom-to-herb matching\n- Long-term health tracking and data export\n- Expanded practitioner insights and care plans",
         media: {
-          type: 'video',
-          src: "https://barskyux.com/wp-content/uploads/2025/07/herbalink_promo_video.mp4",
-          alt: "HerbaLink promo video demonstrating quantified impact",
-          videoOptions: { autoplay: true, loop: true, muted: true, controls: false, playsInline: true }
+          type: 'image',
+          src: "https://barskyux.com/wp-content/uploads/2025/08/symptomtrackermobile.png",
+          alt: "HerbaLink symptom tracker mobile interface demonstrating quantified impact"
         }
       },
       {
