@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
+import socialHoverVideo from "@/assets/social-hover-video.mp4";
 
 interface CaseStudy {
   id: string;
@@ -88,15 +89,42 @@ const caseStudies: CaseStudy[] = [
 
 const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, index }) => {
   const isMobile = useIsMobile();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   const renderImage = () => {
     return (
       <Link to={study.url} className="block h-full group">
-        <div className="flex justify-center h-full cursor-pointer">
+        <div 
+          className="flex justify-center h-full cursor-pointer relative"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <img 
             src={study.images.primary} 
             alt={study.images.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+          <video
+            ref={videoRef}
+            src={socialHoverVideo}
+            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105 absolute inset-0 opacity-0 group-hover:opacity-100"
+            muted
+            loop
+            playsInline
+            preload="metadata"
           />
         </div>
       </Link>
