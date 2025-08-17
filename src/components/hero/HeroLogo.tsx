@@ -28,7 +28,6 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
       className="flex justify-center md:justify-start mb-8 pointer-events-none"
     >
       <IdentityBadge
-        to="/"
         imageSrc={imageUrl}
         videoSrc={videoUrl}
         name="Hiram Barsky"
