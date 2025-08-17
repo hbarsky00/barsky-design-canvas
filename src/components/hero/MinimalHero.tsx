@@ -66,7 +66,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
 
   return (
     <section 
-      id="hero"
+      id="intro"
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white relative
                  pt-safe-top pb-safe-bottom"
     >
@@ -188,6 +188,26 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             <Calendar className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
                                text-gray-600 hover:text-green-600 transition-colors" />
           </motion.a>
+
+          {/* Skip to Contact Button */}
+          <motion.button
+            onClick={(e) => {
+              e.stopPropagation();
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            aria-label="Skip to Contact section"
+            className="px-4 py-2 sm:px-5 sm:py-3 lg:px-6 lg:py-4 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6
+                       bg-primary text-white rounded-full hover:bg-primary/90 transition-all duration-300
+                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg
+                       text-sm sm:text-base lg:text-lg font-medium"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Skip to Contact
+          </motion.button>
         </motion.div>
       </div>
 

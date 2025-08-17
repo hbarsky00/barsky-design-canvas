@@ -16,6 +16,7 @@ import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
+import QuickNavigation from "@/components/navigation/QuickNavigation";
 
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
@@ -51,7 +52,7 @@ const HomepageLayout: React.FC = () => {
       <main className="flex-grow space-y-4 md:space-y-12">
         
         <SectionTransition variant="fade">
-          <section id="hero" tabIndex={-1}>
+          <section id="intro" tabIndex={-1}>
             <MinimalHero 
               navigateDown={navigateDown}
               canNavigateDown={canNavigateDown}
@@ -61,13 +62,15 @@ const HomepageLayout: React.FC = () => {
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.05}>
-          <section id="bio-section" tabIndex={-1}>
+          <section id="bio" tabIndex={-1}>
             <BioSection />
           </section>
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
-          <VideoCaseStudiesSection />
+          <section id="case-studies" tabIndex={-1}>
+            <VideoCaseStudiesSection />
+          </section>
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.15} className="bg-muted/30 py-8 md:py-12">
@@ -77,13 +80,13 @@ const HomepageLayout: React.FC = () => {
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.2} className="bg-background py-8 md:py-12">
-          <section id="blog-preview" tabIndex={-1}>
+          <section id="blog" tabIndex={-1}>
             <BlogPreview />
           </section>
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.25} className="hidden md:block bg-muted/30 py-8 md:py-12">
-          <section id="faq-section" tabIndex={-1}>
+          <section id="faq" tabIndex={-1}>
             <SeoFaqSection 
               title="Frequently Asked Questions About AI-Enhanced UX Design"
               faqs={homepageFaqs}
@@ -102,6 +105,7 @@ const HomepageLayout: React.FC = () => {
       </main>
       <Footer />
       <FloatingConsultationBubble />
+      <QuickNavigation />
     </div>
   );
 };

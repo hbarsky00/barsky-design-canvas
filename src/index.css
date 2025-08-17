@@ -170,6 +170,18 @@ html {
   overflow-x: hidden;
 }
 
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Section scroll margin for header offset */
+#intro, #bio, #case-studies, #contact, #blog, #faq {
+  scroll-margin-top: 96px;
+}
+
 /* PROJECT PAGE SPECIFIC STYLES */
 /* ---- Container gutters for /projects/ ---- */
 .projects-page .projects-wrap {

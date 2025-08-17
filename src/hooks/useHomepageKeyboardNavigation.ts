@@ -32,14 +32,14 @@ export const useHomepageKeyboardNavigation = () => {
       
       if (!inCaseStudy) {
         setIsInCaseStudyMode(false);
-        // Track major sections
+        // Track major sections with updated IDs
         const majorElements = [
-          { id: 'hero', element: document.getElementById('hero') },
-          { id: 'bio-section', element: document.getElementById('bio-section') },
-          { id: 'projects', element: document.getElementById('projects') },
+          { id: 'intro', element: document.getElementById('intro') },
+          { id: 'bio', element: document.getElementById('bio') },
+          { id: 'case-studies', element: document.getElementById('case-studies') },
           { id: 'contact', element: document.getElementById('contact') },
-          { id: 'faq-section', element: document.getElementById('faq-section') },
-          { id: 'blog-preview', element: document.getElementById('blog-preview') },
+          { id: 'blog', element: document.getElementById('blog') },
+          { id: 'faq', element: document.getElementById('faq') },
         ];
         
         majorElements.forEach((section, index) => {
