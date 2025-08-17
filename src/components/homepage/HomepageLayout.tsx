@@ -16,7 +16,6 @@ import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
-import QuickNavigation from "@/components/navigation/QuickNavigation";
 
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
@@ -105,7 +104,6 @@ const HomepageLayout: React.FC = () => {
       </main>
       <Footer />
       <FloatingConsultationBubble />
-      <QuickNavigation />
     </div>
   );
 };

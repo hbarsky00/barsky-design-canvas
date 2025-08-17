@@ -8,11 +8,14 @@ export const useHomepageKeyboardNavigation = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const lastNavigationTime = useRef(0);
 
-  // Define homepage sections in order
+  // Define homepage sections in order - includes individual case studies
   const sections = [
     { id: 'intro', element: null as HTMLElement | null },
     { id: 'bio', element: null as HTMLElement | null },
-    { id: 'case-studies', element: null as HTMLElement | null },
+    { id: 'case-study-1', element: null as HTMLElement | null },
+    { id: 'case-study-2', element: null as HTMLElement | null },
+    { id: 'case-study-3', element: null as HTMLElement | null },
+    { id: 'case-study-4', element: null as HTMLElement | null },
     { id: 'contact', element: null as HTMLElement | null },
     { id: 'blog', element: null as HTMLElement | null },
     { id: 'faq', element: null as HTMLElement | null },
@@ -105,38 +108,18 @@ export const useHomepageKeyboardNavigation = () => {
       
       const scrollPosition = window.scrollY + 200;
       
-      // Check if we're in a case study section
-      const caseStudyElements = [
-        document.getElementById('case-study-1'),
-        document.getElementById('case-study-2'),
-        document.getElementById('case-study-3'),
-        document.getElementById('case-study-4'),
-      ];
+      // Track all sections including individual case studies
+      const currentSections = getCurrentSections();
       
-      let inCaseStudy = false;
-      caseStudyElements.forEach((element, index) => {
-        if (!element) return;
-        const rect = element.getBoundingClientRect();
+      currentSections.forEach((section, index) => {
+        if (!section.element) return;
+        const rect = section.element.getBoundingClientRect();
         if (rect.top <= 200 && rect.bottom >= 200) {
-          setIsInCaseStudyMode(true);
           setCurrentSectionIndex(index);
-          inCaseStudy = true;
+          // Set case study mode if we're on a case study section
+          setIsInCaseStudyMode(section.id.startsWith('case-study-'));
         }
       });
-      
-      if (!inCaseStudy) {
-        setIsInCaseStudyMode(false);
-        // Track major sections
-        const currentSections = getCurrentSections();
-        
-        currentSections.forEach((section, index) => {
-          if (!section.element) return;
-          const rect = section.element.getBoundingClientRect();
-          if (rect.top <= 200 && rect.bottom >= 200) {
-            setCurrentSectionIndex(index);
-          }
-        });
-      }
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
