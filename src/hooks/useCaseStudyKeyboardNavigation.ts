@@ -54,8 +54,8 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
   const navigateDown = useCallback(() => {
     if (isTransitioning) return;
     
-    const newIndex = Math.min(sections.length - 1, currentSectionIndex + 1);
-    if (newIndex !== currentSectionIndex) {
+    const newIndex = currentSectionIndex + 1;
+    if (newIndex < sections.length) {
       triggerTransition('down', () => {
         scrollToSection(newIndex);
       });
