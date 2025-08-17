@@ -13,7 +13,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ thumbnailSrc, title }) => {
       <img
         src={thumbnailSrc}
         alt={`${title} promotional image`}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     </div>
   );
