@@ -41,8 +41,36 @@ const UnifiedSEO: React.FC = () => {
     return canonical;
   }, [location?.pathname]);
 
-  // Initialize seoData with immediate canonical URL
+  // Initialize seoData with immediate canonical URL and project data
   const [seoData, setSeoData] = useState<SEOData>(() => {
+    const pathname = location?.pathname || '/';
+    
+    // Check if this is a project page and load structured case study data immediately
+    if (pathname.startsWith('/project/')) {
+      const projectId = pathname.replace('/project/', '').replace('/', '');
+      const caseStudyData = getStructuredCaseStudy(projectId);
+      
+      if (caseStudyData) {
+        const projectSeoData = {
+          title: caseStudyData.title,
+          description: caseStudyData.description,
+          canonical: immediateCanonical,
+          image: caseStudyData.seoData?.image || "https://barskydesign.pro/images/profile-hero.jpg",
+          type: 'website' as const
+        };
+        
+        console.log('🚀 UnifiedSEO - IMMEDIATE PROJECT SEO DATA:', {
+          ...projectSeoData,
+          projectId,
+          timestamp: new Date().toISOString(),
+          note: "IMMEDIATE PROJECT DATA - Available for scrapers on first render"
+        });
+        
+        return projectSeoData;
+      }
+    }
+    
+    // Default data for non-project pages or fallback
     const initialData = {
       title: "Hiram Barsky - UX/UI Designer & AI Developer",
       description: "Professional UX/UI design and development services by Hiram Barsky. Specializing in user-centered design and modern web applications.",
