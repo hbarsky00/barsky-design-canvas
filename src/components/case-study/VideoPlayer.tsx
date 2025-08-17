@@ -13,7 +13,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ thumbnailSrc, title }) => {
       <img
         src={thumbnailSrc}
         alt={`${title} promotional image`}
-        className="w-full h-auto object-contain"
+        className="w-full h-auto object-contain image-high-quality"
       />
     </div>
   );

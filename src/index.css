@@ -3,6 +3,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Image Quality Enhancement */
+@layer utilities {
+  .image-render-crisp-edges {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .image-clarity-enhanced {
+    filter: contrast(1.03) saturate(1.02) brightness(1.01);
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  
+  .image-high-quality {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    filter: contrast(1.04) saturate(1.03) brightness(1.01);
+    transition: filter 0.2s ease;
+  }
+  
+  .image-high-quality:hover {
+    filter: contrast(1.06) saturate(1.04) brightness(1.02);
+  }
+}
+
 /* CSS Variables for theming */
 :root {
   --background: 0 0% 100%;

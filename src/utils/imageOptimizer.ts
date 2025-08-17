@@ -11,11 +11,11 @@ interface ImageOptimizationConfig {
 }
 
 const DEFAULT_CONFIG: ImageOptimizationConfig = {
-  maxWidth: 1920,
-  maxHeight: 1080,
-  quality: 0.85,
+  maxWidth: 2400,
+  maxHeight: 1600,
+  quality: 0.92,
   format: 'webp',
-  maxSizeKB: 100
+  maxSizeKB: 150
 };
 
 /**
@@ -55,8 +55,12 @@ export const optimizeImage = async (
           canvas.width = width;
           canvas.height = height;
           
-          // Draw and compress
+          // Enable high-quality rendering with sharpening
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+          ctx.filter = 'contrast(1.08) saturate(1.03) brightness(1.02)';
           ctx.drawImage(img, 0, 0, width, height);
+          ctx.filter = 'none';
           
           // Convert to optimized format
           const optimizedDataUrl = canvas.toDataURL(

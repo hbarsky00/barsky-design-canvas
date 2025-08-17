@@ -28,10 +28,16 @@ export const compressImageFile = async (file: File, maxSizeKB: number = 1000): P
       canvas.width = width;
       canvas.height = height;
       
-      // Draw and compress
-      ctx?.drawImage(img, 0, 0, width, height);
+      // Enable high-quality rendering with clarity enhancement
+      if (ctx) {
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.filter = 'contrast(1.06) saturate(1.02) brightness(1.01)';
+        ctx.drawImage(img, 0, 0, width, height);
+        ctx.filter = 'none';
+      }
       
-      // Convert to blob with reasonable quality
+      // Convert to blob with high quality
       canvas.toBlob((blob) => {
         if (!blob) {
           reject(new Error('Failed to compress image'));
@@ -47,7 +53,7 @@ export const compressImageFile = async (file: File, maxSizeKB: number = 1000): P
         console.log(`📷 Image compressed: ${finalSizeKB.toFixed(2)}KB`);
         
         resolve(compressedFile);
-      }, 'image/jpeg', 0.8);
+      }, 'image/jpeg', 0.92);
     };
     
     img.onerror = () => reject(new Error('Failed to load image for compression'));

@@ -18,11 +18,11 @@ export const compressImage = async (
   options: ImageOptimizationOptions = {}
 ): Promise<File> => {
   const {
-    maxWidth = 1920,
-    maxHeight = 1080,
-    quality = 0.8,
+    maxWidth = 2400,
+    maxHeight = 1600,
+    quality = 0.9,
     format = 'webp',
-    maxSizeKB = 500
+    maxSizeKB = 800
   } = options;
 
   return new Promise((resolve, reject) => {
@@ -39,8 +39,14 @@ export const compressImage = async (
       canvas.width = newWidth;
       canvas.height = newHeight;
 
-      // Draw and compress
-      ctx?.drawImage(img, 0, 0, newWidth, newHeight);
+      // Enable high-quality rendering with sharpening
+      if (ctx) {
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.filter = 'contrast(1.05) saturate(1.02)';
+        ctx.drawImage(img, 0, 0, newWidth, newHeight);
+        ctx.filter = 'none';
+      }
       
       canvas.toBlob(
         (blob) => {

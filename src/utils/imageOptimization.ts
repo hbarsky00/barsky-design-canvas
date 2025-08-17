@@ -83,13 +83,18 @@ export const compressImageIfNeeded = async (imageUrl: string, maxSizeKB: number 
       ctx.imageSmoothingQuality = 'high';
       ctx.drawImage(img, 0, 0, width, height);
       
-      // Convert to WebP with aggressive compression for large images
-      const quality = 0.65; // Aggressive compression for files over 100KB
+      // Add image sharpening for better clarity
+      ctx.filter = 'contrast(1.1) saturate(1.05)';
+      ctx.drawImage(img, 0, 0, width, height);
+      ctx.filter = 'none';
+      
+      // Use higher quality for better clarity
+      const quality = 0.88; // Higher quality for better clarity
       const compressedDataUrl = canvas.toDataURL('image/webp', quality);
       
       // Fallback to JPEG if WebP not supported
       if (!supportsWebP()) {
-        resolve(canvas.toDataURL('image/jpeg', quality));
+        resolve(canvas.toDataURL('image/jpeg', 0.9));
       } else {
         resolve(compressedDataUrl);
       }

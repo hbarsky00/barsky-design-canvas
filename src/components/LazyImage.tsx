@@ -89,8 +89,13 @@ export const LazyImage: React.FC<LazyImageProps> = ({
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
           decoding="async"
+          style={{
+            imageRendering: 'crisp-edges',
+            filter: 'contrast(1.02) saturate(1.01)',
+          }}
           className={cn(
             'w-full h-full object-cover transition-opacity duration-300',
+            'image-high-quality',
             isLoaded ? 'opacity-100' : 'opacity-0'
           )}
           {...props}
