@@ -116,6 +116,3 @@ verify_jwt = false
 [functions.seo-handler]
 verify_jwt = false
 
-[functions.prerender-proxy]
-verify_jwt = false
-
