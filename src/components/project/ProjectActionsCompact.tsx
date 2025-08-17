@@ -43,6 +43,7 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
     const shareUrl = projectPageUrl || liveUrl;
     const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
     
+    // Open LinkedIn sharing dialog in popup
     window.open(
       linkedinUrl,
       '_blank',
