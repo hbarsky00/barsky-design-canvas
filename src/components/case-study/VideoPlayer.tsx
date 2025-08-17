@@ -9,11 +9,11 @@ interface VideoPlayerProps {
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ thumbnailSrc, title }) => {
   return (
-    <div className="relative aspect-video bg-muted rounded-lg overflow-hidden shadow-2xl">
+    <div className="relative bg-muted rounded-lg overflow-hidden shadow-2xl">
       <img
         src={thumbnailSrc}
         alt={`${title} promotional image`}
-        className="w-full h-full object-contain"
+        className="w-full h-auto object-contain"
       />
     </div>
   );
