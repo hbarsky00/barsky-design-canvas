@@ -99,7 +99,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
             <video 
               src={study.video}
               poster={study.images.primary}
-              className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
               muted
               loop
               playsInline
