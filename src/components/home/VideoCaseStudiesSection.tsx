@@ -156,7 +156,7 @@ const CaseStudyCard: React.FC<{
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative min-h-screen flex flex-col justify-center"
+      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative py-12 lg:py-16"
       tabIndex={-1}
       onClick={handleCaseStudyClick}
     >
