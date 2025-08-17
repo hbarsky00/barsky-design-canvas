@@ -1,23 +1,20 @@
 
-import React, { useState } from "react";
-import { Share2, Link as LinkIcon, Bookmark, ExternalLink } from "lucide-react";
+import React from "react";
+import { Share2, Link as LinkIcon, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface ProjectActionsCompactProps {
   liveUrl: string;
   onShare?: () => void;
   onCopy?: () => void;
-  onSave?: () => void;
 }
 
 const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
   liveUrl,
   onShare,
-  onCopy,
-  onSave
+  onCopy
 }) => {
   const { toast } = useToast();
-  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleCopy = async () => {
     try {
@@ -53,15 +50,6 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
     handleCopy();
   };
 
-  const handleSave = () => {
-    setIsBookmarked(!isBookmarked);
-    toast({
-      title: isBookmarked ? "Bookmark removed" : "Project bookmarked!",
-      description: isBookmarked ? "Removed from reading list" : "Added to reading list",
-    });
-    onSave?.();
-  };
-
   if (!liveUrl) return null;
 
   return (
@@ -82,7 +70,7 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
           onClick={handleShare}
           className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-background text-foreground shadow-md border border-border hover:bg-muted transition-colors active:scale-[.95]"
           aria-label="Share project"
-          title="Share project"
+          title="Share Project"
         >
           <Share2 className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
@@ -91,22 +79,9 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
           onClick={handleCopy}
           className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-background text-foreground shadow-md border border-border hover:bg-muted transition-colors active:scale-[.95]"
           aria-label="Copy project link"
-          title="Copy Link"
+          title="Copy Project Link"
         >
           <LinkIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-        </button>
-
-        <button
-          onClick={handleSave}
-          className={`inline-flex items-center justify-center w-11 h-11 rounded-full shadow-md border transition-colors active:scale-[.95] ${
-            isBookmarked 
-              ? 'bg-primary text-primary-foreground border-primary' 
-              : 'bg-background text-foreground border-border hover:bg-muted'
-          }`}
-          aria-label={isBookmarked ? "Remove bookmark" : "Bookmark project"}
-          title={isBookmarked ? "Remove bookmark" : "Save project"}
-        >
-          <Bookmark className={`h-4 w-4 sm:h-5 sm:w-5 ${isBookmarked ? 'fill-current' : ''}`} />
         </button>
       </div>
     </div>

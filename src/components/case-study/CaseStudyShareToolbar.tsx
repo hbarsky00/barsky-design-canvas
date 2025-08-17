@@ -1,6 +1,6 @@
 
-import React, { useState } from "react";
-import { Share2, Link, Bookmark } from "lucide-react";
+import React from "react";
+import { Share2, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,7 +16,6 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
   className = "" 
 }) => {
   const { toast } = useToast();
-  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -51,13 +50,6 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
     }
   };
 
-  const handleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
-    toast({
-      title: isBookmarked ? "Bookmark removed" : "Case study bookmarked!",
-      description: isBookmarked ? "Removed from reading list" : "Added to reading list",
-    });
-  };
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
@@ -69,7 +61,7 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
         aria-label="Share case study"
       >
         <Share2 className="h-4 w-4" />
-        <span className="text-sm font-medium">Share</span>
+        <span className="text-sm font-medium">Share Case Study</span>
       </Button>
 
       <Button
@@ -77,25 +69,10 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
         size="sm"
         onClick={handleCopyLink}
         className="flex items-center gap-2 h-9 px-4"
-        aria-label="Copy link"
+        aria-label="Copy case study link"
       >
         <Link className="h-4 w-4" />
-        <span className="text-sm">Copy Link</span>
-      </Button>
-
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={handleBookmark}
-        className={`flex items-center gap-2 h-9 px-4 ${
-          isBookmarked 
-            ? 'border-primary text-primary hover:bg-primary/10' 
-            : ''
-        }`}
-        aria-label={isBookmarked ? "Remove bookmark" : "Bookmark case study"}
-      >
-        <Bookmark className={`h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
-        <span className="text-sm">Save</span>
+        <span className="text-sm">Copy Case Study Link</span>
       </Button>
     </div>
   );
