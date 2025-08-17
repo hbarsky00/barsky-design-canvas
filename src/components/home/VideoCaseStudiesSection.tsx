@@ -40,7 +40,7 @@ const caseStudies: CaseStudy[] = [
       alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
     layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runb361YvBdSZI_have_the_stop_talking_an_fd3d694f-098b-4d4d-b224-0fb170b09eab_1.mp4"
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4"
   },
   {
     id: "splittime",
