@@ -9,18 +9,63 @@ const __dirname = path.dirname(__filename);
 const structuredCaseStudiesPath = path.join(__dirname, '../src/data/structuredCaseStudies.ts');
 const structuredCaseStudiesContent = fs.readFileSync(structuredCaseStudiesPath, 'utf8');
 
-// Extract the structured case studies data using a simple regex
-const caseStudiesMatch = structuredCaseStudiesContent.match(/export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = ({[\s\S]*?});/);
-if (!caseStudiesMatch) {
-  console.error('Could not extract structured case studies data');
-  process.exit(1);
+// Extract individual case study data
+function extractCaseStudyData(content) {
+  const caseStudies = {};
+  
+  // Extract herbalink data
+  const herbalinkMatch = content.match(/"herbalink":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  if (herbalinkMatch) {
+    caseStudies.herbalink = {
+      title: herbalinkMatch[1],
+      description: herbalinkMatch[2],
+      seoTitle: herbalinkMatch[3],
+      seoDescription: herbalinkMatch[4],
+      image: herbalinkMatch[5]
+    };
+  }
+  
+  // Extract splittime data
+  const splittimeMatch = content.match(/"splittime":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  if (splittimeMatch) {
+    caseStudies.splittime = {
+      title: splittimeMatch[1],
+      description: splittimeMatch[2],
+      seoTitle: splittimeMatch[3],
+      seoDescription: splittimeMatch[4],
+      image: splittimeMatch[5]
+    };
+  }
+  
+  // Extract investment-app data
+  const investmentMatch = content.match(/"investment-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  if (investmentMatch) {
+    caseStudies['investment-app'] = {
+      title: investmentMatch[1],
+      description: investmentMatch[2],
+      seoTitle: investmentMatch[3],
+      seoDescription: investmentMatch[4],
+      image: investmentMatch[5]
+    };
+  }
+  
+  // Extract investor-loan-app data
+  const investorLoanMatch = content.match(/"investor-loan-app":\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?seoData:\s*{[\s\S]*?title:\s*"([^"]*)"[\s\S]*?description:\s*"([^"]*)"[\s\S]*?image:\s*"([^"]*)"[\s\S]*?}/);
+  if (investorLoanMatch) {
+    caseStudies['investor-loan-app'] = {
+      title: investorLoanMatch[1],
+      description: investorLoanMatch[2],
+      seoTitle: investorLoanMatch[3],
+      seoDescription: investorLoanMatch[4],
+      image: investorLoanMatch[5]
+    };
+  }
+  
+  return caseStudies;
 }
 
-// Parse the case studies data (simplified extraction)
-const caseStudiesDataStr = caseStudiesMatch[1];
-const caseStudyIds = [...caseStudiesDataStr.matchAll(/"([^"]+)":\s*{/g)].map(match => match[1]);
-
-console.log('Found case study IDs:', caseStudyIds);
+const extractedCaseStudies = extractCaseStudyData(structuredCaseStudiesContent);
+console.log('Extracted case studies:', Object.keys(extractedCaseStudies));
 
 // Base HTML template
 const baseHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
@@ -39,43 +84,48 @@ const allPagesSEOData = {
     url: BASE_URL
   },
 
-  // Project pages
-  '/project/investment-app': {
-    title: '23% More Engagement: Making Investing Accessible to Beginners - Hiram Barsky Design',
-    description: 'Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios.',
-    image: 'https://barskydesign.pro/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png',
-    url: `${BASE_URL}/project/investment-app`
-  },
-  '/project/splittime': {
-    title: 'Splittime Case Study - Hiram Barsky Design',
-    description: 'Comprehensive case study of the Splittime project showcasing UX design and development process.',
-    image: DEFAULT_IMAGE,
-    url: `${BASE_URL}/project/splittime`
-  },
-  '/project/business-management': {
-    title: 'Business Management Case Study - Hiram Barsky Design', 
-    description: 'Comprehensive case study of the Business Management project showcasing UX design and development process.',
-    image: DEFAULT_IMAGE,
-    url: `${BASE_URL}/project/business-management`
-  },
-  '/project/herbalink': {
-    title: 'Herbal Ink Case Study - Hiram Barsky Design',
-    description: 'Comprehensive case study of the Herbal Ink project showcasing UX design and development process.',
-    image: DEFAULT_IMAGE,
-    url: `${BASE_URL}/project/herbalink`
-  },
-  '/project/investor-loan': {
-    title: 'Investor Loan Case Study - Hiram Barsky Design',
-    description: 'Comprehensive case study of the Investor Loan project showcasing UX design and development process.',
-    image: DEFAULT_IMAGE,
-    url: `${BASE_URL}/project/investor-loan`
-  },
-  '/project/wholesale-distribution': {
-    title: 'Wholesale Distribution Case Study - Hiram Barsky Design',
-    description: 'Comprehensive case study of the Wholesale Distribution project showcasing UX design and development process.',
-    image: DEFAULT_IMAGE,
-    url: `${BASE_URL}/project/wholesale-distribution`
-  },
+  // Project pages - dynamically generated from structured case studies
+  ...(() => {
+    const projectPages = {};
+    
+    // Generate SEO data for each extracted case study
+    Object.entries(extractedCaseStudies).forEach(([id, data]) => {
+      const routeMapping = {
+        'herbalink': '/project/herbalink',
+        'splittime': '/project/splittime',
+        'investment-app': '/project/investment-app',
+        'investor-loan-app': '/project/investor-loan'
+      };
+      
+      const route = routeMapping[id];
+      if (route) {
+        projectPages[route] = {
+          title: data.seoTitle || data.title,
+          description: data.seoDescription || data.description,
+          image: data.image || DEFAULT_IMAGE,
+          url: `${BASE_URL}${route}`
+        };
+      }
+    });
+    
+    // Add fallback for any missing projects
+    const fallbackProjects = {
+      '/project/business-management': {
+        title: 'Business Management Case Study - Hiram Barsky Design', 
+        description: 'Comprehensive case study of the Business Management project showcasing UX design and development process.',
+        image: DEFAULT_IMAGE,
+        url: `${BASE_URL}/project/business-management`
+      },
+      '/project/wholesale-distribution': {
+        title: 'Wholesale Distribution Case Study - Hiram Barsky Design',
+        description: 'Comprehensive case study of the Wholesale Distribution project showcasing UX design and development process.',
+        image: DEFAULT_IMAGE,
+        url: `${BASE_URL}/project/wholesale-distribution`
+      }
+    };
+    
+    return { ...projectPages, ...fallbackProjects };
+  })(),
 
   // Main pages
   '/projects': {
