@@ -25,7 +25,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
         delay: 0.2,
         ease: "easeOut"
       }}
-      className="flex justify-center md:justify-start mb-8 pointer-events-none"
+      className="flex justify-center md:justify-start mb-8"
     >
       <IdentityBadge
         to="/"
@@ -35,7 +35,6 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
         subtitle="Product Design + AI"
         size="lg"
         subtitleStyle="text"
-        className="pointer-events-auto"
       />
     </motion.div>
   );
