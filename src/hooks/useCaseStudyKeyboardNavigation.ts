@@ -10,6 +10,7 @@ interface CaseStudySection {
 
 export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const [isNavigating, setIsNavigating] = useState(false);
   const { isTransitioning, direction, variation, triggerTransition } = use3DTransition();
   const isMobile = useIsMobile();
 
@@ -27,6 +28,7 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
   const scrollToSection = useCallback((index: number) => {
     if (index < 0 || index >= sections.length) return;
     
+    setIsNavigating(true);
     const sectionId = sections[index].id;
     const element = document.getElementById(sectionId);
     
@@ -37,6 +39,11 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
         behavior: "smooth"
       });
       setCurrentSectionIndex(index);
+      
+      // Reset navigation state after scroll completion
+      setTimeout(() => {
+        setIsNavigating(false);
+      }, 800); // Longer delay to ensure scroll completion
     }
   }, [sections]);
 
@@ -68,16 +75,16 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
     let scrollDetectionDelay: number | null = null;
 
     const handleScroll = () => {
-      if (ticking || isTransitioning) return;
+      if (ticking || isTransitioning || isNavigating) return;
       
       // Clear any existing delay
       if (scrollDetectionDelay) {
         clearTimeout(scrollDetectionDelay);
       }
       
-      // Add a small delay to prevent immediate section switching during navigation
+      // Add a larger delay to prevent immediate section switching during navigation
       scrollDetectionDelay = window.setTimeout(() => {
-        if (isTransitioning) return;
+        if (isTransitioning || isNavigating) return;
         
         ticking = true;
         requestAnimationFrame(() => {
@@ -114,7 +121,7 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
 
           ticking = false;
         });
-      }, 100); // 100ms delay to prevent rapid section switching
+      }, 400); // 400ms delay to prevent rapid section switching during navigation
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -126,7 +133,7 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
         clearTimeout(scrollDetectionDelay);
       }
     };
-  }, [sections, isTransitioning]);
+  }, [sections, isTransitioning, isNavigating]);
 
   // Enhanced keyboard event handling with mobile support
   useEffect(() => {
