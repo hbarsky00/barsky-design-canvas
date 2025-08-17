@@ -16,20 +16,19 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
-    // SEO generation temporarily disabled for Vercel compatibility
-    // Will be re-enabled once deployment is stable
-    ...(mode === 'development' ? [{
-      name: 'generate-static-seo-dev',
-      async buildStart() {
+    // Static SEO generation for all modes
+    {
+      name: 'generate-static-seo',
+      async buildEnd() {
         try {
           const { spawn } = await import('child_process');
           spawn('node', ['scripts/generateStaticSEO.js'], { stdio: 'inherit' });
-          console.log('Static SEO files generated (dev mode)');
+          console.log('Static SEO files generated');
         } catch (error) {
           console.warn('Failed to generate static SEO files:', error);
         }
       }
-    }] : [])
+    }
   ].filter(Boolean),
   resolve: {
     alias: {
