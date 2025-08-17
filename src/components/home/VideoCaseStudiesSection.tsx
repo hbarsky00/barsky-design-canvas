@@ -104,10 +104,11 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = ({ study, i
               loop
               playsInline
               onMouseEnter={(e) => e.currentTarget.play()}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.pause();
-                    e.currentTarget.currentTime = 0;
-                  }}
+              onMouseLeave={(e) => {
+                e.currentTarget.pause();
+                e.currentTarget.currentTime = 0;
+                e.currentTarget.load();
+              }}
             />
           </div>
         </Link>
