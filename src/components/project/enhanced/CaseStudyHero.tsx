@@ -93,7 +93,7 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative overflow-hidden shadow-2xl">
+            <div className="relative bg-white overflow-hidden shadow-2xl">
               <MaximizableImage
                 src={heroImage}
                 alt={title}
