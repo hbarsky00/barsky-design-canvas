@@ -171,7 +171,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         media: {
           type: 'image',
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
-          alt: "HerbaLink practitioner demo screen illustrating what didn't work"
+          alt: "Early concept of the 'Book an Herbalist' feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach."
         }
       },
       {
