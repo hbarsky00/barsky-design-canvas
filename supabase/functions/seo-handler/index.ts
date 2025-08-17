@@ -21,6 +21,35 @@ const DEFAULT_IMAGE =
   "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp";
 
 // Known crawler/bot user agents
+// Additional per-route SEO mappings
+const PROJECT_IMAGE_MAP: Record<string, string> = {
+  "investment-app": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+  "herbalink": "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
+  "splittime": "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+  "investor-loan-app": "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+  "wholesale-distribution": "/placeholder.svg",
+  "business-management": "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+};
+
+const BLOG_IMAGE_MAP: Record<string, string> = {
+  "finding-first-ux-job-guide": "/blog-finding-ux-job.jpg",
+  "design-systems-that-get-used": "/blog-design-systems.jpg",
+  "portfolio-red-flags-no-interviews": "/blog-portfolio-red-flags.jpg",
+  "ai-enhanced-ux-designer-future": "/blog-ai-enhanced-ux.jpg",
+  "user-research-shoestring-budget": "/blog-user-research-budget.jpg",
+  "built-product-without-real-data": "/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
+  "building-products-nobody-asked-for": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop",
+  "wireframes-to-wow-visual-hierarchy": "/blog-images/visual-hierarchy-psychology.png",
+};
+
+function toAbsoluteImage(url: string): string {
+  if (!url) return DEFAULT_IMAGE;
+  if (/^https?:\/\//i.test(url)) return url;
+  // Ensure we have a single leading slash
+  const path = url.startsWith("/") ? url : `/${url}`;
+  return `${BASE_URL}${path}`;
+}
+
 const BOT_UA = [
   /facebookexternalhit/i,
   /Twitterbot/i,
@@ -63,34 +92,86 @@ function resolveCanonical(urlParam: string | null, pathParam: string | null): st
 }
 
 function getSeoForPath(pathname: string) {
-  // Default values
+  // Normalize
+  const clean = pathname === "/" || pathname === "" ? "/" : pathname.replace(/\/+$/, "");
+
+  // Defaults
   let title = `${SITE_NAME} — Portfolio`;
   let description = DEFAULT_DESC;
   let image = DEFAULT_IMAGE;
   let type: "website" | "article" = "website";
 
-  if (pathname === "/" || pathname === "") {
-    title = `Hiram Barsky — Product Design & AI`;
+  // Sections mapping
+  const SECTION_SEO: Record<string, { title: string; description: string; image?: string }> = {
+    "/": { title: "Hiram Barsky — Product Design & AI", description: DEFAULT_DESC, image: DEFAULT_IMAGE },
+    "/projects": { title: `Case Studies & Projects — ${SITE_NAME}`, description: "Explore selected work in product design, UX, and AI." },
+    "/services": { title: `Design & AI Services — ${SITE_NAME}`, description: "UX research, design systems, and AI integration services." },
+    "/about": { title: `About — ${SITE_NAME}`, description: "Designer and builder focused on impactful, AI-enhanced experiences." },
+    "/blog": { title: `Blog — ${SITE_NAME}`, description: "Articles on product design, UX, and AI." },
+    "/contact": { title: `Contact — ${SITE_NAME}`, description: "Get in touch to discuss product design, UX, and AI initiatives." },
+  };
+
+  // Direct section hits
+  if (SECTION_SEO[clean]) {
+    title = SECTION_SEO[clean].title;
+    description = SECTION_SEO[clean].description;
+    image = SECTION_SEO[clean].image ? toAbsoluteImage(SECTION_SEO[clean].image) : DEFAULT_IMAGE;
+    return { title, description, image, type };
+  }
+
+  // Home fallback
+  if (clean === "/") {
+    title = "Hiram Barsky — Product Design & AI";
     description = DEFAULT_DESC;
-  } else if (pathname.startsWith("/project/")) {
-    const slug = pathname.replace("/project/", "").replace(/\/+$/, "");
+    image = DEFAULT_IMAGE;
+    return { title, description, image, type };
+  }
+
+  // Design services (and subsections)
+  if (clean === "/design-services" || clean.startsWith("/design-services/")) {
+    const sub = clean === "/design-services" ? "" : clean.replace("/design-services/", "");
+    const human = sub ? titleCaseFromSlug(sub) : "Design Services";
+    title = sub ? `Design Services: ${human} — ${SITE_NAME}` : `Design Services — ${SITE_NAME}`;
+    description = sub
+      ? `${human} service details, outcomes, and approach.`
+      : "UX research, design systems, prototypes, and AI-assisted delivery.";
+    image = DEFAULT_IMAGE;
+    return { title, description, image, type };
+  }
+
+  // Project detail
+  if (clean.startsWith("/project/")) {
+    const slug = clean.replace("/project/", "");
     const human = titleCaseFromSlug(slug || "Case Study");
     title = `${human} — Case Study | ${SITE_NAME}`;
     description = `Case study: ${human}. Outcomes, process, metrics, and visuals.`;
     type = "article";
-    // If you have a convention for project images, set here (fallback to default)
-    image = DEFAULT_IMAGE;
-  } else if (pathname.startsWith("/blog/")) {
-    const slug = pathname.replace("/blog/", "").replace(/\/+$/, "");
+    const mapped = PROJECT_IMAGE_MAP[slug];
+    image = mapped ? toAbsoluteImage(mapped) : DEFAULT_IMAGE;
+    return { title, description, image, type };
+  }
+
+  // Blog post
+  if (clean.startsWith("/blog/")) {
+    const slug = clean.replace("/blog/", "");
     const human = titleCaseFromSlug(slug || "Article");
     title = `${human} — ${SITE_NAME}`;
     description = `Article: ${human} — insights on product design and AI.`;
     type = "article";
-  } else if (pathname.includes("contact")) {
-    title = `Contact — ${SITE_NAME}`;
-    description = `Get in touch to discuss product design, UX, and AI initiatives.`;
+    const mapped = BLOG_IMAGE_MAP[slug];
+    image = mapped ? toAbsoluteImage(mapped) : DEFAULT_IMAGE;
+    return { title, description, image, type };
   }
 
+  // Contact catch-all
+  if (clean.includes("contact")) {
+    title = `Contact — ${SITE_NAME}`;
+    description = `Get in touch to discuss product design, UX, and AI initiatives.`;
+    image = DEFAULT_IMAGE;
+    return { title, description, image, type };
+  }
+
+  // Fallback
   return { title, description, image, type };
 }
 
