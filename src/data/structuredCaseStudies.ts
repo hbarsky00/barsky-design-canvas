@@ -117,7 +117,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "http://herbalink.live",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
-      poster: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink feature overview"
     },
     sections: [
@@ -213,7 +213,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       }
     ],
     seoData: {
-      image: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
+      image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       projectName: "HerbaLink",
       results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
       technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
