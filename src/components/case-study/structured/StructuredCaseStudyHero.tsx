@@ -72,11 +72,11 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
           {heroAsImage && caseStudyData.seoData?.image ? (
-            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative w-full rounded-lg overflow-hidden shadow-2xl">
               <img 
                 src={caseStudyData.seoData.image} 
                 alt={caseStudyData.title}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain"
               />
             </div>
           ) : caseStudyData.heroVideo?.src ? (
