@@ -192,8 +192,7 @@ export const useHomepageKeyboardNavigation = () => {
         // Exit case study mode and go to next major section (contact)
         console.log('Exiting case study mode, going to contact section');
         setIsInCaseStudyMode(false);
-        const projectsIndex = majorSections.findIndex(s => s.id === 'projects');
-        const contactIndex = projectsIndex + 1;
+        const contactIndex = majorSections.findIndex(s => s.id === 'contact');
         
         triggerTransition('down', () => {
           setTimeout(() => {
