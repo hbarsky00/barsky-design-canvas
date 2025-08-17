@@ -1,11 +1,13 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import VideoPlayer from "../VideoPlayer";
 import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
+import { getCanonicalUrl } from "@/utils/urlUtils";
 
 interface StructuredCaseStudyHeroProps {
   caseStudyData: StructuredCaseStudyData;
@@ -16,6 +18,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
   caseStudyData,
   heroAsImage = false 
 }) => {
+  const location = useLocation();
   const textRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLDivElement>(null);
   const { containerStyle: textStyle } = useScroll3DTilt(textRef, { maxTilt: 2.5, yDistance: 10, childParallax: 6 });
@@ -54,7 +57,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
                 liveUrl={caseStudyData.projectLink}
                 projectTitle={caseStudyData.title}
                 projectDescription={caseStudyData.description}
-                projectPageUrl={window.location.href}
+                projectPageUrl={getCanonicalUrl(location.pathname)}
               />
             </div>
           )}
