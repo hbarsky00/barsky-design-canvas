@@ -50,7 +50,12 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
 
           {caseStudyData.projectLink && (
             <div className="flex justify-center max-w-md mx-auto">
-              <ProjectActionsCompact liveUrl={caseStudyData.projectLink} />
+              <ProjectActionsCompact 
+                liveUrl={caseStudyData.projectLink}
+                projectTitle={caseStudyData.title}
+                projectDescription={caseStudyData.description}
+                projectPageUrl={window.location.href}
+              />
             </div>
           )}
         </motion.div>
