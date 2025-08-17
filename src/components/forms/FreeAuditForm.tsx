@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const FreeAuditForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -23,8 +24,25 @@ const FreeAuditForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Process lead data through Supabase edge function
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        website: formData.website,
+        company: formData.company,
+        project_description: formData.goals,
+        notes: formData.challenges,
+        lead_source: 'free_audit_form',
+        project_type: 'UX Audit'
+      };
+
+      const { error } = await supabase.functions.invoke('process-lead', {
+        body: leadData
+      });
+
+      if (error) {
+        throw error;
+      }
       
       toast({
         title: "Audit Request Submitted!",
@@ -41,6 +59,7 @@ const FreeAuditForm: React.FC = () => {
         challenges: ''
       });
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: "Submission Error",
         description: "Please try again or contact us directly.",

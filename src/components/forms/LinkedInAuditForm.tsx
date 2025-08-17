@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Linkedin, ArrowRight } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const LinkedInAuditForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,25 @@ const LinkedInAuditForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Process lead data through Supabase edge function
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        website: formData.linkedinUrl,
+        project_description: `LinkedIn Profile Optimization - Industry: ${formData.industry}. Goals: ${formData.goals}`,
+        notes: formData.currentChallenges,
+        lead_source: 'linkedin_audit_form',
+        project_type: 'LinkedIn Optimization',
+        budget_range: '$497'
+      };
+
+      const { error } = await supabase.functions.invoke('process-lead', {
+        body: leadData
+      });
+
+      if (error) {
+        throw error;
+      }
       
       toast({
         title: "LinkedIn Audit Request Submitted!",
@@ -40,6 +59,7 @@ const LinkedInAuditForm: React.FC = () => {
         currentChallenges: ''
       });
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: "Submission Error",
         description: "Please try again or contact us directly.",
