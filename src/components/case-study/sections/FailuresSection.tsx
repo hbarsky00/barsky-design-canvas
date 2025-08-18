@@ -1,5 +1,5 @@
 import React from "react";
-import { X, AlertCircle, Lightbulb } from "lucide-react";
+import { X, Lightbulb, ChevronUp } from "lucide-react";
 
 interface Failure {
   assumption: string;
@@ -34,7 +34,7 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
                 </div>
                 <div className="flex-1">
                   <h4 className="text-lg font-semibold text-red-900 mb-2">
-                    Failed Assumption #{index + 1}
+                    Mistake #{index + 1}
                   </h4>
                   <p className="text-red-800 font-medium mb-2">{failure.assumption}</p>
                   <p className="text-red-700">{failure.attempt}</p>
@@ -52,19 +52,11 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
               </div>
             )}
 
-            <div className="p-6 space-y-4">
-              <div className="flex items-start space-x-3">
-                <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5" />
-                <div>
-                  <h5 className="font-medium text-gray-900 mb-1">Why It Failed</h5>
-                  <p className="text-gray-700">{failure.whyItFailed}</p>
-                </div>
-              </div>
-
+            <div className="p-6">
               <div className="flex items-start space-x-3">
                 <Lightbulb className="h-5 w-5 text-blue-600 mt-0.5" />
                 <div>
-                  <h5 className="font-medium text-gray-900 mb-1">What I Learned</h5>
+                  <h5 className="font-medium text-gray-900 mb-1">What didn't work</h5>
                   <p className="text-gray-700">{failure.lesson}</p>
                 </div>
               </div>
@@ -84,6 +76,17 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Back to Top Button */}
+      <div className="mt-8 flex justify-center">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-gray-700 hover:text-gray-900"
+        >
+          <ChevronUp className="h-4 w-4" />
+          <span>Back to Top</span>
+        </button>
       </div>
     </div>
   );

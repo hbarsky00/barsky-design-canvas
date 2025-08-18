@@ -32,7 +32,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   // Create navigation items from sections
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
-    { label: "Project Overview", anchor: "#project-overview" },
     ...caseStudyData.sections.map(section => ({
       label: section.title,
       anchor: `#${section.id}`
@@ -43,7 +42,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   const keyboardSections = React.useMemo(() => {
     const navSections = [
       { id: 'overview', title: 'Overview' },
-      { id: 'project-overview', title: 'Project Overview' },
       ...caseStudyData.sections.map(section => ({
         id: section.id,
         title: section.title
@@ -81,18 +79,18 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             
             {/* Main Content */}
             <main className="flex-1 min-w-0">
-              {/* Hero Section - No cs-card class */}
-              <section id="overview" className="mb-8">
+              {/* Hero Section - No navigation anchor */}
+              <div className="mb-8">
                 <StructuredCaseStudyHero 
                   caseStudyData={caseStudyData}
                   heroAsImage={heroAsImage}
                 />
-              </section>
+              </div>
 
               {/* Overview Section */}
-              <div className="mb-8">
+              <section id="overview" className="mb-8">
                 <StructuredCaseStudyOverview projectId={caseStudyData.id} />
-              </div>
+              </section>
 
               {/* Case Study Sections - Apply cs-card class */}
               <div className="space-y-12 pb-12">
