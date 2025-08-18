@@ -7,7 +7,7 @@ interface IdeationSectionProps {
 
 const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
   return (
-    <section id="ideation" className="py-20 md:py-24">
+    <section id="ideation" className="w-full bg-[hsl(var(--neutral-band))] py-20 md:py-24">
       <div className="mx-auto max-w-[1120px] px-5 md:px-8">
         {/* Header */}
         <div className="text-center">

@@ -28,9 +28,9 @@
   }
 }
 
-/* CSS Variables for theming */
+/* CSS Variables - Neutral System */
 :root {
-  --background: 0 0% 100%;
+  --background: 200 6% 96%;
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;
   --card-foreground: 222.2 84% 4.9%;
@@ -40,7 +40,7 @@
   --primary-foreground: 210 40% 98%;
   --secondary: 210 40% 96%;
   --secondary-foreground: 222.2 84% 4.9%;
-  --muted: 210 40% 96%;
+  --muted: 200 8% 90%;
   --muted-foreground: 215.4 16.3% 46.9%;
   --accent: 210 40% 96%;
   --accent-foreground: 222.2 84% 4.9%;
@@ -56,6 +56,31 @@
   --chart-4: 43 74% 66%;
   --chart-5: 27 87% 67%;
 
+  /* Neutral tinted bands */
+  --neutral-band: 200 10% 92%;
+  --key-insights-bg: 200 10% 92%;
+  --problem-bg: 200 10% 92%;
+  
+  /* Typography scale with line-heights */
+  --h1-desktop: 2.75rem; /* 44px */
+  --h1-tablet: 2rem; /* 32px */
+  --h1-mobile: 1.75rem; /* 28px */
+  --h1-lh-desktop: 1.10;
+  --h1-lh-tablet: 1.12;
+  --h1-lh-mobile: 1.15;
+  
+  --h2-desktop: 2.5rem; /* 40px */
+  --h2-tablet: 2rem; /* 32px */
+  --h2-mobile: 1.75rem; /* 28px */
+  --h2-lh-desktop: 1.12;
+  --h2-lh-tablet: 1.14;
+  --h2-lh-mobile: 1.16;
+  
+  --body-desktop: 1.25rem; /* 20px */
+  --body-tablet: 1.125rem; /* 18px */
+  --body-mobile: 1rem; /* 16px */
+  --body-lh: 1.45;
+
   /* Barsky Brand Colors */
   --barsky-blue: 221.2 83.2% 53.3%;
   --barsky-dark: 222.2 84% 4.9%;
@@ -64,12 +89,6 @@
   --barsky-bg-light: 210 40% 98%;
   --barsky-accent: 45 100% 51%;
   --barsky-accent-light: 45 100% 96%;
-  
-  /* Problem section background */
-  --problem-bg: 190 60% 96%;
-  
-  /* Key Insights section background */
-  --key-insights-bg: 220 14% 96%;
 
   /* Mobile Safe Area Support */
   --safe-area-inset-top: env(safe-area-inset-top, 0px);
