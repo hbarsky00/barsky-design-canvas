@@ -16,6 +16,8 @@ import ProblemCallout from "../ProblemCallout";
 import KeyInsightsRow from "../KeyInsightsRow";
 import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
 import IdeationSection from "../IdeationSection";
+import MyThoughtProcessSection from "../MyThoughtProcessSection";
+import CaseStudyTeaserSection from "../CaseStudyTeaserSection";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -33,12 +35,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ? window.location.href 
     : `https://barskydesign.pro${caseStudyData.seoData?.path || ''}`;
 
-  // Create navigation items from sections
+  // Create navigation items from sections in correct order
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+    { label: "My Thought Process", anchor: "#my-thought-process" },
     ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
     ...caseStudyData.sections.map(section => ({
       label: section.title,
@@ -53,6 +56,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
+      { id: 'my-thought-process', title: 'My Thought Process' },
       ...(caseStudyData.ideationSection ? [{ id: 'ideation', title: 'Ideation' }] : []),
       ...caseStudyData.sections.map(section => ({
         id: section.id,
@@ -85,16 +89,17 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
         <Header />
         
-        <div className={isProjectPage ? "projects-wrap" : "max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]"}>
-          <div className="lg:flex lg:gap-8">
-            {/* Navigation */}
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
+          {/* Mobile Navigation Only */}
+          <div className="lg:hidden">
             <CaseStudyNavigation 
               navigation={navigationItems} 
               currentSectionIndex={keyboardNav.currentSectionIndex}
             />
-            
-            {/* Main Content */}
-            <main className="flex-1 min-w-0">
+          </div>
+          
+          {/* Main Content - Single Column */}
+          <main className="w-full">
               {/* Hero Section - No navigation anchor */}
               <div className="mb-8">
                 <StructuredCaseStudyHero 
@@ -132,6 +137,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </div>
               )}
 
+              {/* My Thought Process Section */}
+              <div className="mb-8 -mx-4 sm:-mx-6">
+                <MyThoughtProcessSection projectId={caseStudyData.id} />
+              </div>
+
               {/* Ideation Section */}
               {caseStudyData.ideationSection && (
                 <div className="mb-8 -mx-4 sm:-mx-6">
@@ -162,8 +172,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   />
                 </div>
               </div>
+              
+              {/* Case Study Teaser Section */}
+              <CaseStudyTeaserSection projectId={caseStudyData.id} />
             </main>
-          </div>
         </div>
         
         <Footer />

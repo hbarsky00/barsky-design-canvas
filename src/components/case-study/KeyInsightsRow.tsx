@@ -34,9 +34,12 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-8"
         >
+          <div className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold tracking-wide text-neutral-700 uppercase mb-4">
+            KEY INSIGHTS
+          </div>
           <h2 
             id="key-insights-label"
-            className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight text-foreground mb-4"
+            className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold leading-tight text-foreground mb-4 tracking-[-0.01em]"
           >
             Key insights
           </h2>

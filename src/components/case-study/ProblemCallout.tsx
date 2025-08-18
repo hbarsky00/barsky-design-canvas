@@ -23,12 +23,12 @@ const ProblemCallout: React.FC<ProblemCalloutProps> = ({ eyebrow, statement }) =
         >
           <div 
             id="problem-label"
-            className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-primary mb-6"
+            className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold tracking-wide text-neutral-700 uppercase mb-6"
           >
             {eyebrow}
           </div>
           
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight text-foreground max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold leading-tight text-foreground max-w-4xl mx-auto tracking-[-0.01em]">
             {statement}
           </h2>
         </motion.div>
