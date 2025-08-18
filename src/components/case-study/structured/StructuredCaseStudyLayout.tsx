@@ -12,6 +12,7 @@ import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
+import ProblemCallout from "../ProblemCallout";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -32,6 +33,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   // Create navigation items from sections
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
+    ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...caseStudyData.sections.map(section => ({
       label: section.title,
       anchor: `#${section.id}`
@@ -42,6 +44,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   const keyboardSections = React.useMemo(() => {
     const navSections = [
       { id: 'overview', title: 'Overview' },
+      ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...caseStudyData.sections.map(section => ({
         id: section.id,
         title: section.title
@@ -49,7 +52,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
-  }, [caseStudyData.sections]);
+  }, [caseStudyData.sections, caseStudyData.problemCallout]);
 
   // Add keyboard navigation
   const keyboardNav = useCaseStudyKeyboardNavigation(keyboardSections);
@@ -95,6 +98,16 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               <section id="overview" className="mb-8">
                 <StructuredCaseStudyOverview projectId={caseStudyData.id} />
               </section>
+
+              {/* Problem Callout Section */}
+              {caseStudyData.problemCallout && (
+                <div className="mb-8 -mx-4 sm:-mx-6">
+                  <ProblemCallout
+                    eyebrow={caseStudyData.problemCallout.eyebrow}
+                    statement={caseStudyData.problemCallout.statement}
+                  />
+                </div>
+              )}
 
               {/* Case Study Sections - Apply cs-card class */}
               <div className="space-y-12 pb-12">

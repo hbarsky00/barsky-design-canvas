@@ -13,6 +13,10 @@ export interface StructuredCaseStudyData {
     poster: string;
     alt: string;
   };
+  problemCallout?: {
+    eyebrow: string;
+    statement: string;
+  };
   sections: StructuredCaseStudySectionProps[];
   projectLink?: string;
   gradientClasses?: string;
@@ -38,20 +42,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink feature overview"
     },
+    problemCallout: {
+      eyebrow: "Problem to Solve",
+      statement: "People seeking herbal care can't confidently find vetted practitioners or guidance—leading to misinformation, safety risks, and abandoned care."
+    },
     sections: [
-      {
-        id: "the-problem",
-        title: "The Problem",
-        icon: AlertTriangle,
-        variant: "problem",
-        content:
-          "People seeking herbal remedies often face conflicting online advice and don't know who to trust. There's no central, verified platform to find qualified herbalists, track symptom improvement, or get tailored guidance. Unlike therapy (where BetterHelp makes it easy to book professionals), herbal care lacked structure, credibility, and outcomes-based support.",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/08/herbalinknewwayofbooking.png",
-          alt: "HerbaLink modern booking interface illustrating the solution to trust and verification challenges"
-        }
-      },
       {
         id: "key-gaps",
         title: "Key Gaps",
@@ -150,26 +145,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
       alt: "Splittime co-parenting app hero overview"
     },
+    problemCallout: {
+      eyebrow: "Problem to Solve",
+      statement: "Co-parents lack a single source of truth for schedules, expenses, and decisions—causing miscommunication, missed pickups, and ongoing conflict."
+    },
     sections: [
-      {
-        id: "the-problem",
-        title: "The Problem",
-        icon: AlertTriangle,
-        variant: "problem",
-        content: "Separated parents face significant challenges in coordinating childcare responsibilities, often leading to miscommunication, scheduling conflicts, and increased tension. Traditional communication methods like text messages and emails can exacerbate these issues, especially when co-parenting relationships are already strained.",
-        media: {
-          type: 'video',
-          src: "https://barskyux.com/wp-content/uploads/2024/01/parentapp-1.mp4",
-          alt: "Splittime parent app demonstration",
-          videoOptions: { 
-            autoplay: true, 
-            loop: true, 
-            muted: true, 
-            controls: false, 
-            playsInline: true 
-          }
-        }
-      },
       {
         id: "competitive-analysis",
         title: "Competitive Analysis",
@@ -270,21 +250,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
       alt: "Investor loan platform dashboard"
     },
+    problemCallout: {
+      eyebrow: "Problem to Solve",
+      statement: "Loan teams rely on error-prone spreadsheets with no audit trail—creating compliance risk, slow processing, and low trust in the data."
+    },
     sections: [
-      {
-        id: "the-problem",
-        title: "The Problem",
-        icon: AlertTriangle,
-        variant: "problem",
-        content:
-          "A private banking institution was running its entire investor loan operation in Excel.\n\nThat meant:\n- Manual data entry causing frequent compliance risks\n- No audit trails, search, or collaboration\n- Friction between departments and no scalable infrastructure\n- Loan processing was slow, fragmented, and error-prone\n\nAs the bank grew, this fragile system became the bottleneck.",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2023/12/excel-document-used-to-save-loan-information.png",
-          alt: "Excel document used to save loan information",
-          caption: "Excel spreadsheet previously used to manage investor loan data."
-        }
-      },
       {
         id: "quantified-impact",
         title: "Quantified Impact",
@@ -485,14 +455,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
       alt: "Business management system promotional overview"
     },
+    problemCallout: {
+      eyebrow: "Problem to Solve",
+      statement: "Small businesses juggle disconnected tools for scheduling, invoicing, and tasks—wasting hours weekly and leaking revenue."
+    },
     sections: [
-      {
-        id: "problem",
-        title: "Problem",
-        icon: AlertTriangle,
-        variant: "problem",
-        content: "The client operates a wholesale food distribution business, manufacturing some products in-house while sourcing others from suppliers. They struggled with Intuit's billing complexities, inaccurate payment collection for B2B customers, and unreliable QuickBooks integration with minimal customer support.\n\nKey Pain Points:\n\n• Billing inaccuracies and frequent wholesale order total errors\n\n• QuickBooks sync failures with no reliable technical support\n\n• Overly complex interface for daily wholesale operations\n\n• Poor mobile experience for managing deliveries on-the-go\n\n• Difficulty tracking products from multiple sources\n\n• Complex wholesale pricing structures and credit terms"
-      },
       {
         id: "impact-snapshot",
         title: "Impact Snapshot",

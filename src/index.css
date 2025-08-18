@@ -64,6 +64,9 @@
   --barsky-bg-light: 210 40% 98%;
   --barsky-accent: 45 100% 51%;
   --barsky-accent-light: 45 100% 96%;
+  
+  /* Problem section background */
+  --problem-bg: 190 60% 96%;
 
   /* Mobile Safe Area Support */
   --safe-area-inset-top: env(safe-area-inset-top, 0px);
