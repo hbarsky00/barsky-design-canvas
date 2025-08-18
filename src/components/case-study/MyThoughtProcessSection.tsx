@@ -45,7 +45,7 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
                     className="w-full rounded-lg"
                   />
                   {image.caption && (
-                    <div className="flex justify-center">
+                    <div className="content-rail-left">
                       <Badge variant="secondary" className="text-xs px-3 py-1">
                         {image.caption}
                       </Badge>

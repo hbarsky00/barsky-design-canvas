@@ -86,9 +86,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
         <Header />
         
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
+        <div className="section-container pt-[calc(var(--header-height,64px)+12px)]">
           {/* Hero Section */}
-          <div className="center-content mb-12">
+          <div className="mb-12">
             <StructuredCaseStudyHero 
               caseStudyData={caseStudyData}
               heroAsImage={heroAsImage}
@@ -96,13 +96,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           </div>
 
           {/* Overview Section */}
-          <section id="overview" className="section-snap center-content mb-12 py-8">
+          <section id="overview" className="section-snap mb-12 py-8">
             <StructuredCaseStudyOverview projectId={caseStudyData.id} />
           </section>
 
           {/* Research Section */}
           {caseStudyData.researchSection && (
-            <section id="research" className="section-snap left-content mb-12">
+            <section id="research" className="section-snap mb-12">
               <ResearchSectionTwoCol researchSection={caseStudyData.researchSection} />
             </section>
           )}
@@ -110,60 +110,58 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Problem Callout Section - Full width band */}
           {caseStudyData.problemCallout && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <section id="problem" className="section-snap py-12 md:py-16">
-                  <ProblemCallout
-                    eyebrow={caseStudyData.problemCallout.eyebrow}
-                    statement={caseStudyData.problemCallout.statement}
-                  />
-                </section>
-              </div>
+              <section id="problem" className="section-snap py-12 md:py-16">
+                <ProblemCallout
+                  eyebrow={caseStudyData.problemCallout.eyebrow}
+                  statement={caseStudyData.problemCallout.statement}
+                />
+              </section>
             </div>
           )}
 
           {/* Key Insights Section */}
           {caseStudyData.keyInsights && (
-            <section id="key-insights" className="section-snap left-content mb-12 py-8">
+            <section id="key-insights" className="section-snap mb-12 py-8">
               <KeyInsightsRow insights={caseStudyData.keyInsights} />
             </section>
           )}
 
           {/* My Thought Process Section */}
-          <MyThoughtProcessSection 
-            content="I focused on creating a streamlined approach that balanced user needs with technical constraints. My decision criteria centered on usability, scalability, and measurable impact. Through iterative validation loops, I refined the solution based on real user feedback and performance metrics."
-            images={[
-              {
-                src: "https://barskyux.com/wp-content/uploads/2025/08/thoughtprocess.jpg",
-                alt: "Design thinking process diagram",
-                caption: "Decision framework and validation approach"
-              }
-            ]}
-          />
+          <section className="section-snap mb-12 py-8">
+            <MyThoughtProcessSection 
+              content="I focused on creating a streamlined approach that balanced user needs with technical constraints. My decision criteria centered on usability, scalability, and measurable impact. Through iterative validation loops, I refined the solution based on real user feedback and performance metrics."
+              images={[
+                {
+                  src: "https://barskyux.com/wp-content/uploads/2025/08/thoughtprocess.jpg",
+                  alt: "Design thinking process diagram",
+                  caption: "Decision framework and validation approach"
+                }
+              ]}
+            />
+          </section>
 
           {/* Ideation Section - Full width band */}
           {caseStudyData.ideationSection && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <section id="ideation" className="section-snap py-12 md:py-16">
-                  <IdeationSection ideationData={caseStudyData.ideationSection} />
-                </section>
-              </div>
+              <section id="ideation" className="section-snap py-12 md:py-16">
+                <IdeationSection ideationData={caseStudyData.ideationSection} />
+              </section>
             </div>
           )}
 
           {/* What Didn't Work Section */}
-          <section id="what-didnt-work" className="section-snap left-content py-12 md:py-16">
+          <section id="what-didnt-work" className="section-snap py-12 md:py-16">
             <div className="space-y-8">
-              <div className="space-y-4">
+              <div className="space-y-4 content-rail-center">
                 <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
                   What Didn't Work
                 </Badge>
-                <h2 className="text-3xl md:text-4xl font-semibold">
+                <h2 className="text-section-title">
                   Learning from Failures
                 </h2>
               </div>
               
-              <div className="prose prose-lg max-w-none">
+              <div className="content-rail-left">
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   Initial approaches that didn't meet user needs and how we pivoted to better solutions.
                 </p>
@@ -194,14 +192,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
           {/* The Final Product Section - Full width band */}
           <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <section id="the-final-product" className="section-snap py-12 md:py-16">
+            <section id="the-final-product" className="section-snap py-12 md:py-16">
+              <div className="section-container">
                 <div className="space-y-8">
-                  <div className="space-y-4">
+                  <div className="space-y-4 content-rail-center">
                     <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
                       The Final Product
                     </Badge>
-                    <h2 className="text-3xl md:text-4xl font-semibold text-left">
+                    <h2 className="text-section-title">
                       Refined Solution
                     </h2>
                   </div>
@@ -223,28 +221,28 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     </div>
                   </div>
                   
-                  <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl">
+                  <p className="text-lg text-muted-foreground leading-relaxed content-rail-left">
                     The final solution successfully balanced user needs with technical constraints, 
                     delivering a streamlined experience that improved key metrics while maintaining scalability.
                   </p>
                 </div>
-              </section>
-            </div>
+              </div>
+            </section>
           </div>
 
           {/* Outcome / Results Section */}
-          <section id="outcome-results" className="section-snap left-content py-12 md:py-16">
+          <section id="outcome-results" className="section-snap py-12 md:py-16">
             <div className="space-y-8">
-              <div className="space-y-4">
+              <div className="space-y-4 content-rail-center">
                 <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
                   Outcome / Results
                 </Badge>
-                <h2 className="text-3xl md:text-4xl font-semibold">
+                <h2 className="text-section-title">
                   Measurable Impact
                 </h2>
               </div>
               
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-8 content-rail">
                 <div className="text-center space-y-2">
                   <div className="text-3xl md:text-4xl font-bold text-primary">40%</div>
                   <div className="text-sm text-muted-foreground uppercase tracking-wide">fewer conflicts</div>
@@ -262,12 +260,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           </section>
           
           {/* Contact Section */}
-          <section id="contact-section" className="section-snap center-content py-12 md:py-16">
+          <section id="contact-section" className="section-snap py-12 md:py-16">
             <CaseStudyContactSection />
           </section>
           
           {/* Share Toolbar */}
-          <div className="py-6 border-t border-border/20 center-content">
+          <div className="py-6 border-t border-border/20">
             <CaseStudyShareToolbar 
               url={currentUrl}
               title={caseStudyData.title}
