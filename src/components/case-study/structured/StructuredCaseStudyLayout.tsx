@@ -11,6 +11,7 @@ import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
+import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -31,6 +32,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   // Create navigation items from sections
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
+    { label: "Project Overview", anchor: "#project-overview" },
     ...caseStudyData.sections.map(section => ({
       label: section.title,
       anchor: `#${section.id}`
@@ -41,6 +43,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   const keyboardSections = React.useMemo(() => {
     const navSections = [
       { id: 'overview', title: 'Overview' },
+      { id: 'project-overview', title: 'Project Overview' },
       ...caseStudyData.sections.map(section => ({
         id: section.id,
         title: section.title
@@ -85,6 +88,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   heroAsImage={heroAsImage}
                 />
               </section>
+
+              {/* Overview Section */}
+              <div className="mb-8">
+                <StructuredCaseStudyOverview projectId={caseStudyData.id} />
+              </div>
 
               {/* Case Study Sections - Apply cs-card class */}
               <div className="space-y-12 pb-12">
