@@ -7,17 +7,17 @@ interface IdeationSectionProps {
 
 const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
   return (
-    <section id="ideation" className="py-20 md:py-24">
-      <div className="mx-auto max-w-[1120px] px-5 md:px-8">
+    <section id="ideation" className="section-spacing">
+      <div className="mx-auto max-w-[1120px] px-6 md:px-10">
         {/* Header */}
         <div className="text-center">
-          <span className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold tracking-wide text-neutral-700">
+          <span className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-eyebrow text-neutral-700 header-spacing">
             IDEATION
           </span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-semibold leading-tight">
+          <h2 className="text-section-title max-w-[72ch] mx-auto text-center">
             Multiple iterations
           </h2>
-          <p className="mt-3 md:mt-4 text-neutral-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-neutral-600 max-w-[72ch] mx-auto content-spacing text-center">
             {ideationData.subhead}
           </p>
         </div>
@@ -29,7 +29,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
               key={index}
               className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-7 shadow-none h-full"
             >
-              <div className="text-sm font-semibold">{bubble.title}</div>
+              <div className="text-subsection-title">{bubble.title}</div>
               <div className="text-sm text-neutral-600">{bubble.description}</div>
             </div>
           ))}

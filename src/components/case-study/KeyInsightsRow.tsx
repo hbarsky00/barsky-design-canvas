@@ -16,7 +16,7 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
     <section 
       id="key-insights" 
       aria-labelledby="key-insights-label"
-      className="w-full bg-[hsl(var(--key-insights-bg))] py-16 md:py-24"
+      className="w-full bg-[hsl(var(--key-insights-bg))] section-spacing"
     >
       {/* Alias anchors for backward compatibility */}
       <div id="key-gaps" aria-hidden="true" className="absolute"></div>
@@ -26,7 +26,7 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
       <div id="key-takeaways" aria-hidden="true" className="absolute"></div>
       <div id="solution-key-features" aria-hidden="true" className="absolute"></div>
       
-      <div className="max-w-[1120px] mx-auto px-5 md:px-8">
+      <div className="max-w-[1120px] mx-auto px-6 md:px-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
         >
           <h2 
             id="key-insights-label"
-            className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight text-foreground mb-4"
+            className="text-section-title text-foreground mb-4 max-w-[72ch] mx-auto text-center"
           >
             Key insights
           </h2>

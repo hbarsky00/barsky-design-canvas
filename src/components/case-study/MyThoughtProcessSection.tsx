@@ -17,8 +17,8 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
   images
 }) => {
   return (
-    <section id="my-thought-process" className="scroll-mt-24 section-snap py-12 md:py-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="my-thought-process" className="scroll-mt-24 section-snap section-spacing">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,12 +26,12 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
           viewport={{ once: true }}
           className="space-y-8"
         >
-          <div className="space-y-4">
-            <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
+          <div className="space-y-4 text-center">
+            <div className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-eyebrow text-neutral-700 header-spacing">
+              APPROACH & DECISION MAKING
+            </div>
+            <h2 className="text-section-title max-w-[72ch] mx-auto text-center">
               My Thought Process
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-semibold text-left">
-              Approach & Decision Making
             </h2>
           </div>
 

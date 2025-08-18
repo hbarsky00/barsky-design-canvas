@@ -11,9 +11,9 @@ const ProblemCallout: React.FC<ProblemCalloutProps> = ({ eyebrow, statement }) =
     <section 
       id="problem" 
       aria-labelledby="problem-label"
-      className="w-full bg-[hsl(190_60%_96%)] py-16 lg:py-24"
+      className="w-full bg-[hsl(190_60%_96%)] section-spacing"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -23,12 +23,12 @@ const ProblemCallout: React.FC<ProblemCalloutProps> = ({ eyebrow, statement }) =
         >
           <div 
             id="problem-label"
-            className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-primary mb-6"
+            className="text-eyebrow text-primary header-spacing"
           >
             {eyebrow}
           </div>
           
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight text-foreground max-w-4xl mx-auto">
+          <h2 className="text-section-title text-foreground max-w-[72ch] mx-auto text-center">
             {statement}
           </h2>
         </motion.div>

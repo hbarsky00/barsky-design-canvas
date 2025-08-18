@@ -76,6 +76,32 @@
   --safe-area-inset-right: env(safe-area-inset-right, 0px);
   --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
   --safe-area-inset-left: env(safe-area-inset-left, 0px);
+
+  /* Typography Scale Variables */
+  --font-size-hero-h1-mobile: 34px;
+  --line-height-hero-h1-mobile: 1.12;
+  --font-size-hero-h1-md: 44px;
+  --line-height-hero-h1-md: 1.12;
+  --font-size-hero-h1-lg: 56px;
+  --line-height-hero-h1-lg: 1.1;
+  --font-size-hero-h1-xl: 64px;
+  --line-height-hero-h1-xl: 1.08;
+  
+  --font-size-section-title-mobile: 26px;
+  --line-height-section-title-mobile: 1.2;
+  --font-size-section-title-md: 32px;
+  --line-height-section-title-md: 1.18;
+  --font-size-section-title-lg: 40px;
+  --line-height-section-title-lg: 1.16;
+  
+  --font-size-subsection-title-mobile: 18px;
+  --line-height-subsection-title: 1.25;
+  --font-size-subsection-title-md: 20px;
+  --font-size-subsection-title-lg: 22px;
+  
+  --font-size-eyebrow-mobile: 12px;
+  --font-size-eyebrow-md: 13px;
+  --font-size-eyebrow-lg: 14px;
 }
 
 .dark {
@@ -205,6 +231,141 @@ select:focus-visible, a:focus-visible,
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+  }
+
+  /* Typography Scale Utilities */
+  .text-hero-h1 {
+    font-size: var(--font-size-hero-h1-mobile);
+    line-height: var(--line-height-hero-h1-mobile);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .text-hero-h1 {
+      font-size: var(--font-size-hero-h1-md);
+      line-height: var(--line-height-hero-h1-md);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .text-hero-h1 {
+      font-size: var(--font-size-hero-h1-lg);
+      line-height: var(--line-height-hero-h1-lg);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .text-hero-h1 {
+      font-size: var(--font-size-hero-h1-xl);
+      line-height: var(--line-height-hero-h1-xl);
+    }
+  }
+
+  .text-section-title {
+    font-size: var(--font-size-section-title-mobile);
+    line-height: var(--line-height-section-title-mobile);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .text-section-title {
+      font-size: var(--font-size-section-title-md);
+      line-height: var(--line-height-section-title-md);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .text-section-title {
+      font-size: var(--font-size-section-title-lg);
+      line-height: var(--line-height-section-title-lg);
+    }
+  }
+
+  .text-subsection-title {
+    font-size: var(--font-size-subsection-title-mobile);
+    line-height: var(--line-height-subsection-title);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .text-subsection-title {
+      font-size: var(--font-size-subsection-title-md);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .text-subsection-title {
+      font-size: var(--font-size-subsection-title-lg);
+    }
+  }
+
+  .text-eyebrow {
+    font-size: var(--font-size-eyebrow-mobile);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .text-eyebrow {
+      font-size: var(--font-size-eyebrow-md);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .text-eyebrow {
+      font-size: var(--font-size-eyebrow-lg);
+    }
+  }
+
+  /* Standard section spacing */
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing {
+      padding-top: 7rem;
+      padding-bottom: 5rem;
+    }
+  }
+
+  /* Header group spacing */
+  .header-spacing {
+    margin-bottom: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .header-spacing {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .content-spacing {
+    margin-top: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .content-spacing {
+      margin-top: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .content-spacing {
+      margin-top: 1.25rem;
+    }
   }
 }
 

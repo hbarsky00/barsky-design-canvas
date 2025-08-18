@@ -26,7 +26,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
 
   return (
     <section className="pt-8 pb-16 bg-gradient-to-br from-background to-muted" style={{ perspective: "1000px" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <motion.div
           ref={textRef}
           initial={{ opacity: 0, y: 30 }}
@@ -35,11 +35,11 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           className="text-center mb-12 mt-8"
           style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
-          <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] leading-tight md:leading-tight font-bold text-foreground mb-6">
+          <h1 className="text-hero-h1 text-foreground mb-6 max-w-[72ch] mx-auto text-center">
             {caseStudyData.title}
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-[72ch] mx-auto text-center">
             {caseStudyData.description}
           </p>
           
