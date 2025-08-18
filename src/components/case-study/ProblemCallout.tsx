@@ -11,7 +11,7 @@ const ProblemCallout: React.FC<ProblemCalloutProps> = ({ eyebrow, statement }) =
     <section 
       id="problem" 
       aria-labelledby="problem-label"
-      className="w-full bg-[hsl(var(--neutral-band))] py-16 lg:py-24"
+      className="w-full bg-[hsl(190_60%_96%)] py-16 lg:py-24"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div 
