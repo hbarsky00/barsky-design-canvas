@@ -8,16 +8,16 @@ interface IdeationSectionProps {
 const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
   return (
     <section id="ideation" className="section-spacing">
-      <div className="mx-auto max-w-[1120px] px-6 md:px-10">
+      <div className="section-container">
         {/* Header */}
         <div className="text-center">
           <span className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-eyebrow text-neutral-700 header-spacing">
             IDEATION
           </span>
-          <h2 className="text-section-title max-w-[72ch] mx-auto text-center">
+          <h2 className="text-section-title content-rail-center">
             Multiple iterations
           </h2>
-          <p className="text-lg md:text-xl text-neutral-600 max-w-[72ch] mx-auto content-spacing text-center">
+          <p className="text-lg md:text-xl text-neutral-600 content-spacing content-rail-center">
             {ideationData.subhead}
           </p>
         </div>

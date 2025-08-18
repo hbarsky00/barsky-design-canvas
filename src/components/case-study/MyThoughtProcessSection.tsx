@@ -18,7 +18,7 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
 }) => {
   return (
     <section id="my-thought-process" className="scroll-mt-24 section-snap section-spacing">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
             <div className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-eyebrow text-neutral-700 header-spacing">
               APPROACH & DECISION MAKING
             </div>
-            <h2 className="text-section-title max-w-[72ch] mx-auto text-center">
+            <h2 className="text-section-title content-rail-center">
               My Thought Process
             </h2>
           </div>
@@ -56,8 +56,8 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
             </div>
           )}
 
-          <div className="prose prose-lg max-w-none text-left">
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl">
+          <div className="content-rail-left">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               {content}
             </p>
           </div>

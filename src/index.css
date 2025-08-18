@@ -406,9 +406,21 @@ html {
   text-align: left;
 }
 
-/* Section container utility for consistent responsive padding */
+/* Layout Normalization - Section Shell & Content Rails */
 .section-container {
-  @apply px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-7xl mx-auto;
+  @apply max-w-[1280px] mx-auto px-6 md:px-10;
+}
+
+.content-rail {
+  @apply max-w-[72ch] mx-auto;
+}
+
+.content-rail-left {
+  @apply max-w-[72ch] mx-auto text-left;
+}
+
+.content-rail-center {
+  @apply max-w-[72ch] mx-auto text-center;
 }
 
 /* Section scroll margin for header offset */
