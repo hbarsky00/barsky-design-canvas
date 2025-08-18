@@ -67,6 +67,9 @@
   
   /* Problem section background */
   --problem-bg: 190 60% 96%;
+  
+  /* Key Insights section background */
+  --key-insights-bg: 220 14% 96%;
 
   /* Mobile Safe Area Support */
   --safe-area-inset-top: env(safe-area-inset-top, 0px);

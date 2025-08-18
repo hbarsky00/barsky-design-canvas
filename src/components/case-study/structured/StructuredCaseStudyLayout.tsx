@@ -13,6 +13,7 @@ import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
 import ProblemCallout from "../ProblemCallout";
+import KeyInsightsRow from "../KeyInsightsRow";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -34,6 +35,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
+    ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
     ...caseStudyData.sections.map(section => ({
       label: section.title,
       anchor: `#${section.id}`
@@ -45,6 +47,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     const navSections = [
       { id: 'overview', title: 'Overview' },
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
+      ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
       ...caseStudyData.sections.map(section => ({
         id: section.id,
         title: section.title
@@ -106,6 +109,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     eyebrow={caseStudyData.problemCallout.eyebrow}
                     statement={caseStudyData.problemCallout.statement}
                   />
+                </div>
+              )}
+
+              {/* Key Insights Section */}
+              {caseStudyData.keyInsights && (
+                <div className="mb-8 -mx-4 sm:-mx-6">
+                  <KeyInsightsRow insights={caseStudyData.keyInsights} />
                 </div>
               )}
 

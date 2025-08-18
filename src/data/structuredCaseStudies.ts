@@ -17,6 +17,11 @@ export interface StructuredCaseStudyData {
     eyebrow: string;
     statement: string;
   };
+  keyInsights?: {
+    number: number;
+    title: string;
+    description: string;
+  }[];
   sections: StructuredCaseStudySectionProps[];
   projectLink?: string;
   gradientClasses?: string;
@@ -46,21 +51,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Problem to Solve",
       statement: "People seeking herbal care can't confidently find vetted practitioners or guidance—leading to misinformation, safety risks, and abandoned care."
     },
+    keyInsights: [
+      { number: 1, title: "Trust signals first", description: "Verified practitioners and clear bios drive confidence." },
+      { number: 2, title: "Personalization", description: "Intake and history enable better practitioner matching." },
+      { number: 3, title: "Continuity of care", description: "Booking, notes, and follow-ups keep users engaged." }
+    ],
     sections: [
-      {
-        id: "key-gaps",
-        title: "Key Gaps",
-        icon: Search,
-        variant: "problem",
-        content:
-          "The booking interface directly addresses three critical gaps in the herbal wellness market:\n\n• **No way to verify herbalist credibility** - Our platform displays verified credentials, specializations, and expert backgrounds upfront\n\n• **No symptom tracking tied to outcomes** - Structured consultation types (Initial, Follow-up, Quick Check-in) create clear treatment pathways\n\n• **No personalized recommendations or guided onboarding** - Health focus areas guide users to the right herbalist match and consultation type",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png",
-          alt: "HerbaLink updated consultation booking interface showing enhanced verification and selection process",
-          caption: "Updated consultation booking interface addressing key gaps with verified herbalists, structured consultation types, and personalized health focus areas."
-        }
-      },
       {
         id: "quantified-impact",
         title: "Quantified Impact",
@@ -149,6 +145,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Problem to Solve",
       statement: "Co-parents lack a single source of truth for schedules, expenses, and decisions—causing miscommunication, missed pickups, and ongoing conflict."
     },
+    keyInsights: [
+      { number: 1, title: "Single source of truth", description: "One shared schedule and ledger eliminates disputes." },
+      { number: 2, title: "Consent & clarity", description: "Approvals and change logs build trust between co-parents." },
+      { number: 3, title: "Calm communication", description: "Neutral templates reduce conflict and decision fatigue." }
+    ],
     sections: [
       {
         id: "competitive-analysis",
@@ -197,19 +198,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         content: "Testing revealed that users particularly valued features that helped them communicate more effectively with their co-parent. The tone analysis feature received especially positive feedback, with users reporting it helped them \"step back\" from emotional responses."
       },
       {
-        id: "key-features",
-        title: "Key Features",
-        icon: Target,
-        variant: "solution",
-        content: "I designed a child-focused dashboard that centralizes information about medical appointments, school events, activities, and emergency contacts, ensuring that both parents have equal access to critical information about their children.\n\nThe visual design strategy deliberately employs a calming color palette dominated by blues and grays to reduce emotional responses during potentially stressful interactions. Typography and spacing were carefully selected to maximize readability in high-stress situations, when cognitive capacity may be reduced.",
-        media: {
-          type: 'image',
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/DashboardPRIMARY.png",
-          alt: "Child-focused dashboard centralizing critical family info",
-          caption: "Dashboard centralizes family info for equal access across parents."
-        }
-      },
-      {
         id: "the-results",
         title: "The Results",
         icon: TrendingUp,
@@ -254,6 +242,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Problem to Solve",
       statement: "Loan teams rely on error-prone spreadsheets with no audit trail—creating compliance risk, slow processing, and low trust in the data."
     },
+    keyInsights: [
+      { number: 1, title: "Trust through validation", description: "Real-time checks prevent errors and rework." },
+      { number: 2, title: "Predictive findability", description: "Bloomberg-style search beats complex filters." },
+      { number: 3, title: "Guided orders", description: "Stepwise flows reduce mistakes vs. flat forms." }
+    ],
     sections: [
       {
         id: "quantified-impact",
@@ -331,20 +324,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         variant: "solution",
         content:
           "1. Mobile app for field loan officers\n2. Predictive analytics for loan performance and risk\n3. Open API for future third-party integrations"
-      },
-      {
-        id: "key-takeaways",
-        title: "Key Takeaways",
-        icon: Sparkles,
-        variant: "solution",
-        content:
-          "What Worked:\n- User testing from day one led to high adoption\n- Familiar mental models enabled a fast learning curve\n- Fast iterations helped course-correct early mistakes\n\nWhat We Overcame:\n- Change resistance from users stuck on Excel\n- Handling complex data without overwhelming the UI\n- Designing within strict regulatory boundaries",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/ec1458b5-d364-498e-a5ec-4122b62195d3.png",
-          alt: "Comprehensive design system",
-          caption: "Design system embedded guardrails and clarity."
-        }
       },
       {
         id: "outcome",
@@ -459,6 +438,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Problem to Solve",
       statement: "Small businesses juggle disconnected tools for scheduling, invoicing, and tasks—wasting hours weekly and leaking revenue."
     },
+    keyInsights: [
+      { number: 1, title: "One platform", description: "Consolidating core ops cuts tool chaos." },
+      { number: 2, title: "Automation wins", description: "Recurring invoices and reminders save hours weekly." },
+      { number: 3, title: "Priority at a glance", description: "A single dashboard surfaces what needs attention now." }
+    ],
     sections: [
       {
         id: "impact-snapshot",
@@ -486,13 +470,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "Mobile-first wholesale flow from order to reconciliation",
           caption: "Mobile-first wholesale flow from order to reconciliation."
         }
-      },
-      {
-        id: "solution-key-features",
-        title: "Solution / Key Features",
-        icon: Wrench,
-        variant: "solution",
-        content: "**Driver Management**\nProblem Solved: Real-time driver visibility and workload balance.\n\n• Live status tracking (Online/Offline)\n\n• Average response time monitoring (12m)\n\n• Driver assignment and workload distribution\n\n• Quick action buttons for common tasks\n\n**Delivery Interface**\nProblem Solved: Streamlined wholesale order fulfillment.\n\n• Clear order details and delivery instructions\n\n• One-tap navigation and calling for business locations\n\n• Simple \"Start Delivery\" workflow for bulk orders\n\n**Order Management**\nProblem Solved: Accurate wholesale billing and order tracking.\n\n• Full order lifecycle visibility\n\n• Revenue tracking and pending/delivered status\n\n• Automated billing for B2B pricing tiers\n\n**Customer Management**\nProblem Solved: Efficient B2B relationship and credit management.\n\n• Customer profiles with active credit accounts\n\n• Business type categorization\n\n• Easy addition of new accounts\n\n**Inventory Management**\nProblem Solved: Track products from multiple sources.\n\n• Product catalog with SKU tracking\n\n• Low stock alerts\n\n• Pricing management for manufactured and sourced products"
       },
       {
         id: "results",
