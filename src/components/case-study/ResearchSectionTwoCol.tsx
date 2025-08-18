@@ -33,13 +33,13 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
         {/* Header - Centered above grid */}
         <div className="text-center mb-8 sm:mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 text-xs font-semibold tracking-wide uppercase mb-4 min-touch">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold tracking-wide uppercase mb-4 min-touch">
             RESEARCH
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-foreground mb-4 tracking-[-0.01em]">
+          <h2 className="text-responsive-xl font-bold text-foreground mb-4">
             Gathering insights
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-responsive-base text-muted-foreground max-w-3xl mx-auto">
             {researchSection.subhead}
           </p>
         </div>
@@ -91,7 +91,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm p-4 md:p-6">
+              <div className="rounded-[28px] border border-neutral-200 bg-white/70 backdrop-blur-sm shadow-sm p-4 md:p-6">
                 <div className="scroll-area flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto overscroll-contain">
                   {/* Primary image (legacy support) */}
                   {researchSection.researchImage && (

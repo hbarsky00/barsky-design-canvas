@@ -69,12 +69,7 @@
   --problem-bg: 190 60% 96%;
   
   /* Key Insights section background */
-  --key-insights-bg: 0 0% 100%;
-  
-  /* Neutral system backgrounds */
-  --neutral-canvas: 0 0% 100%;
-  --neutral-tinted: 210 40% 96%;
-  --neutral-border: 214.3 31.8% 91.4%;
+  --key-insights-bg: 220 14% 96%;
 
   /* Mobile Safe Area Support */
   --safe-area-inset-top: env(safe-area-inset-top, 0px);

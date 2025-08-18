@@ -14,7 +14,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
           <span className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold tracking-wide text-neutral-700">
             IDEATION
           </span>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-[2.5rem] font-semibold leading-tight tracking-[-0.01em]">
+          <h2 className="mt-4 text-3xl md:text-4xl font-semibold leading-tight">
             Multiple iterations
           </h2>
           <p className="mt-3 md:mt-4 text-neutral-600 max-w-3xl mx-auto">

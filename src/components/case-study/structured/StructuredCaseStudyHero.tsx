@@ -25,7 +25,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
 
   return (
-    <section className="pt-20 md:pt-24 pb-10 md:pb-12 bg-gradient-to-br from-background to-muted" style={{ perspective: "1000px" }}>
+    <section className="pt-8 pb-16 bg-gradient-to-br from-background to-muted" style={{ perspective: "1000px" }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={textRef}
@@ -35,11 +35,11 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           className="text-center mb-12 mt-8"
           style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
-          <h1 className="text-2xl md:text-3xl lg:text-[2.75rem] leading-[1.1] font-semibold text-foreground mb-6 max-w-[18ch] mx-auto tracking-[-0.01em]">
+          <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] leading-tight md:leading-tight font-bold text-foreground mb-6">
             {caseStudyData.title}
           </h1>
           
-          <p className="text-base md:text-lg lg:text-xl text-muted-foreground mb-8 max-w-[68ch] mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
             {caseStudyData.description}
           </p>
           
