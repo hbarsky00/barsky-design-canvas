@@ -185,6 +185,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         variant: "impact",
         content:
           "We built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights."
+        type: 'image',
+          src: "https://barskyux.com/wp-content/uploads/2025/08/symptomtrackermobile.png",
+          alt: "Before and After User Experience",
+          caption: "Before and After User Experience."
       }
     ],
     seoData: {
