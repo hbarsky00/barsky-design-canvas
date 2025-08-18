@@ -2,6 +2,7 @@
 import React from "react";
 import { AlertTriangle, TrendingDown, Clock } from "lucide-react";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import CaseStudySectionHeader from "../CaseStudySectionHeader";
 
 interface ProblemSectionProps {
   title: string;
@@ -37,14 +38,11 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center space-x-4">
-        <div className="flex-shrink-0 p-3 bg-red-100 rounded-lg">
-          <AlertTriangle className="h-6 w-6 text-red-600" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-xl font-semibold text-gray-900 leading-tight">{title}</h3>
-        </div>
-      </div>
+      <CaseStudySectionHeader
+        title={title}
+        icon={AlertTriangle}
+        variant="problem"
+      />
 
       <div className="prose prose-lg text-gray-700 max-w-none">
         <p className="mb-6">{businessImpact}</p>

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { EditableVideo } from "./EditableVideo";
 import PlaceholderImage from "./PlaceholderImage";
+import CaseStudySectionHeader from "../CaseStudySectionHeader";
 
 export interface StructuredCaseStudySectionProps {
   id: string;
@@ -91,17 +92,12 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   return (
     <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
       <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
-        {/* Header - Perfect icon alignment */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg} flex items-center justify-center`}>
-            <Icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 ${styles.iconColor}`} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold leading-tight ${styles.titleColor}`}>
-              {title}
-            </h2>
-          </div>
-        </div>
+        <CaseStudySectionHeader
+          title={title}
+          icon={Icon}
+          variant={variant}
+          className="mb-8"
+        />
 
         {/* Content */}
         <div className="space-y-8">

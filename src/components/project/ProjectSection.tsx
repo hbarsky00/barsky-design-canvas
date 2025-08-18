@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import MaximizableImage from "./MaximizableImage";
+import CaseStudySectionHeader from "@/components/case-study/CaseStudySectionHeader";
 
 interface ProjectSectionProps {
   title: string;
@@ -29,11 +30,17 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       transition={{ duration: 0.8 }}
       className="mb-12"
     >
-      {title && (
-        <div className="flex items-center justify-start lg:justify-center mb-4 space-x-3">
-          {Icon && <Icon className="h-7 w-7 md:h-8 md:w-8 text-barsky-blue" />}
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-left lg:text-center mx-auto max-w-5xl [text-wrap:balance]">{title}</h2>
-        </div>
+      {title && Icon && (
+        <CaseStudySectionHeader
+          title={title}
+          icon={Icon}
+          variant="default"
+          className="justify-start lg:justify-center mb-4"
+        />
+      )}
+      
+      {title && !Icon && (
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-left lg:text-center mx-auto max-w-5xl [text-wrap:balance] mb-4">{title}</h2>
       )}
       
       {content && (
