@@ -16,9 +16,9 @@ const CaseStudyContactSection: React.FC = () => {
       className="bg-gradient-to-br from-primary/5 to-secondary/5 border border-border/50 rounded-lg p-8 mt-16 scroll-mt-24"
     >
       <div className="max-w-2xl mx-auto text-center mb-8">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <Mail className="h-6 w-6 text-primary" />
-          <h3 className="text-2xl font-bold text-foreground">Interested in Similar Work?</h3>
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <Mail className="h-6 w-6 text-primary flex-shrink-0" />
+          <h3 className="text-2xl font-bold text-foreground leading-none">Interested in Similar Work?</h3>
         </div>
         
         <p className="text-muted-foreground mb-6 leading-relaxed">
