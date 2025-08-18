@@ -12,8 +12,8 @@ export interface EmergingTheme {
 export interface ResearchSection {
   subhead: string;
   emergingThemes: EmergingTheme[];
-  researchImage: string;
-  researchImageAlt: string;
+  researchImage?: string;
+  researchImageAlt?: string;
   researchImages?: { src: string; alt: string; }[];
 }
 
@@ -81,15 +81,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
             drove: "Verification badges, linked credentials, and sourced education content."
           }
         ],
-        researchImage: "https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif",
-        researchImageAlt: "AHG directory — grid of herbal schools (scroll demo)",
         researchImages: [
           {
             src: "https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif",
             alt: "AHG directory — grid of herbal schools (scroll demo)"
           },
           {
-            src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding_Zocdoc_iOS.mp4ac53.jpg",
+            src: "/lovable-uploads/64065530-c72c-4ef3-814f-8c1c85aeacbf.png",
             alt: "Zocdoc iOS onboarding — profile details screen"
           }
         ]

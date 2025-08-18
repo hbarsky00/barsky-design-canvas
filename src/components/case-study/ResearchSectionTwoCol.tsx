@@ -10,8 +10,8 @@ interface EmergingTheme {
 interface ResearchSection {
   subhead: string;
   emergingThemes: EmergingTheme[];
-  researchImage: string;
-  researchImageAlt: string;
+  researchImage?: string;
+  researchImageAlt?: string;
   researchImages?: { src: string; alt: string; }[];
 }
 
@@ -93,20 +93,22 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
             >
               <div className="rounded-[28px] border border-neutral-200 bg-white/70 backdrop-blur-sm shadow-sm p-4 md:p-6">
                 <div className="scroll-area flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto overscroll-contain">
-                  {/* Primary image */}
-                  <figure className="flex-1 min-h-0">
-                    <img
-                      src={researchSection.researchImage}
-                      srcSet={`${researchSection.researchImage} 1x, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x`}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      alt={researchSection.researchImageAlt}
-                      className="w-full h-full object-contain rounded-2xl border border-neutral-200"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </figure>
+                  {/* Primary image (legacy support) */}
+                  {researchSection.researchImage && (
+                    <figure className="flex-1 min-h-0">
+                      <img
+                        src={researchSection.researchImage}
+                        srcSet={`${researchSection.researchImage} 1x, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={researchSection.researchImageAlt || "Research image"}
+                        className="w-full h-full object-contain rounded-2xl border border-neutral-200"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  )}
                   
-                  {/* Additional images if available */}
+                  {/* Additional images */}
                   {researchSection.researchImages?.map((image, index) => (
                     <figure key={index} className="flex-1 min-h-0">
                       <img
