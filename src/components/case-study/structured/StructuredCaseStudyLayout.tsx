@@ -15,6 +15,7 @@ import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
 import ProblemCallout from "../ProblemCallout";
 import KeyInsightsRow from "../KeyInsightsRow";
 import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
+import IdeationSection from "../IdeationSection";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -38,6 +39,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+    ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
     ...caseStudyData.sections.map(section => ({
       label: section.title,
       anchor: `#${section.id}`
@@ -51,6 +53,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
+      ...(caseStudyData.ideationSection ? [{ id: 'ideation', title: 'Ideation' }] : []),
       ...caseStudyData.sections.map(section => ({
         id: section.id,
         title: section.title
@@ -126,6 +129,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               {caseStudyData.keyInsights && (
                 <div className="mb-8 -mx-4 sm:-mx-6">
                   <KeyInsightsRow insights={caseStudyData.keyInsights} />
+                </div>
+              )}
+
+              {/* Ideation Section */}
+              {caseStudyData.ideationSection && (
+                <div className="mb-8 -mx-4 sm:-mx-6">
+                  <IdeationSection ideationData={caseStudyData.ideationSection} />
                 </div>
               )}
 

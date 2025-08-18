@@ -17,6 +17,23 @@ export interface ResearchSection {
   researchImages?: { src: string; alt: string; }[];
 }
 
+export interface IdeationBubble {
+  title: string;
+  description: string;
+}
+
+export interface IdeationIteration {
+  label: string;
+  imageSrc: string;
+  alt: string;
+}
+
+export interface IdeationSection {
+  subhead: string;
+  bubbles: IdeationBubble[];
+  iterations: IdeationIteration[];
+}
+
 export interface StructuredCaseStudyData {
   id: string;
   title: string;
@@ -37,6 +54,7 @@ export interface StructuredCaseStudyData {
     title: string;
     description: string;
   }[];
+  ideationSection?: IdeationSection;
   sections: StructuredCaseStudySectionProps[];
   projectLink?: string;
   gradientClasses?: string;
@@ -101,6 +119,22 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 2, title: "Personalization", description: "Intake and history enable better practitioner matching." },
       { number: 3, title: "Continuity of care", description: "Booking, notes, and follow-ups keep users engaged." }
     ],
+    ideationSection: {
+      subhead: "We explored profile, safety, matching, and booking flows—tight loops to validate trust and speed.",
+      bubbles: [
+        { title: "Profile essentials", description: "What users need at a glance" },
+        { title: "Safety info", description: "Contraindications and dosage clarity" },
+        { title: "Match criteria", description: "Condition, modality, availability" },
+        { title: "Booking flow", description: "Fewer steps, clearer expectations" }
+      ],
+      iterations: [
+        { label: "Iteration 1", imageSrc: "/media/herbalink/ideation-1.jpg", alt: "First iteration of HerbaLink profile design" },
+        { label: "Iteration 2", imageSrc: "/media/herbalink/ideation-2.jpg", alt: "Second iteration focusing on safety information" },
+        { label: "Iteration 3", imageSrc: "/media/herbalink/ideation-3.jpg", alt: "Third iteration with match criteria refinements" },
+        { label: "Iteration 4", imageSrc: "/media/herbalink/ideation-4.jpg", alt: "Fourth iteration streamlining booking flow" },
+        { label: "Iteration 5", imageSrc: "/media/herbalink/ideation-5.jpg", alt: "Final iteration combining all improvements" }
+      ]
+    },
     sections: [
       {
         id: "what-didnt-work",
@@ -210,6 +244,22 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 2, title: "Consent & clarity", description: "Approvals and change logs build trust between co-parents." },
       { number: 3, title: "Calm communication", description: "Neutral templates reduce conflict and decision fatigue." }
     ],
+    ideationSection: {
+      subhead: "We tested calendar, approvals, expenses, and messaging to reduce conflict and missed handoffs.",
+      bubbles: [
+        { title: "Today's schedule", description: "Hand-offs, locations, changes" },
+        { title: "Approvals", description: "Requests, confirmations, history" },
+        { title: "Expenses", description: "Shared ledger with receipts" },
+        { title: "Messaging", description: "Tone-safe templates" }
+      ],
+      iterations: [
+        { label: "Iteration 1", imageSrc: "/media/splittime/ideation-1.jpg", alt: "First iteration of Splittime calendar view" },
+        { label: "Iteration 2", imageSrc: "/media/splittime/ideation-2.jpg", alt: "Second iteration with approval flows" },
+        { label: "Iteration 3", imageSrc: "/media/splittime/ideation-3.jpg", alt: "Third iteration adding expense tracking" },
+        { label: "Iteration 4", imageSrc: "/media/splittime/ideation-4.jpg", alt: "Fourth iteration with messaging templates" },
+        { label: "Iteration 5", imageSrc: "/media/splittime/ideation-5.jpg", alt: "Final iteration with unified interface" }
+      ]
+    },
     sections: [
       {
         id: "what-i-did",
@@ -309,6 +359,22 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 2, title: "Predictive findability", description: "Bloomberg-style search beats complex filters." },
       { number: 3, title: "Guided orders", description: "Stepwise flows reduce mistakes vs. flat forms." }
     ],
+    ideationSection: {
+      subhead: "We shaped deal findability, order building, validation, and collaboration around compliance.",
+      bubbles: [
+        { title: "Deal summary", description: "Status, limits, totals" },
+        { title: "Predictive search", description: "Category-aware, smart defaults" },
+        { title: "Order builder", description: "Guided steps, fewer errors" },
+        { title: "Audit & comments", description: "History and collaboration" }
+      ],
+      iterations: [
+        { label: "Iteration 1", imageSrc: "/media/investment/ideation-1.jpg", alt: "First iteration of deal summary interface" },
+        { label: "Iteration 2", imageSrc: "/media/investment/ideation-2.jpg", alt: "Second iteration with predictive search" },
+        { label: "Iteration 3", imageSrc: "/media/investment/ideation-3.jpg", alt: "Third iteration of guided order builder" },
+        { label: "Iteration 4", imageSrc: "/media/investment/ideation-4.jpg", alt: "Fourth iteration with audit and comments" },
+        { label: "Iteration 5", imageSrc: "/media/investment/ideation-5.jpg", alt: "Final iteration with integrated workflow" }
+      ]
+    },
     sections: [
       {
         id: "what-didnt-work",
@@ -399,6 +465,27 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: "wholesale-demo.mp4",
       poster: "/placeholder.svg",
       alt: "Wholesale operations dashboard walkthrough"
+    },
+    keyInsights: [
+      { number: 1, title: "Process over interface", description: "Fixing workflows beats pretty dashboards on broken systems." },
+      { number: 2, title: "Data pipelines win", description: "Automated flows eliminate human error and speed." },
+      { number: 3, title: "End-to-end thinking", description: "From order to reconciliation in one unified system." }
+    ],
+    ideationSection: {
+      subhead: "We prototyped order capture, validation, routing, and reconciliation to eliminate Excel entirely.",
+      bubbles: [
+        { title: "Order capture", description: "Smart forms, auto-completion" },
+        { title: "Validation", description: "Real-time checks, error prevention" },
+        { title: "Routing", description: "Automated workflows, approvals" },
+        { title: "Reconciliation", description: "Live tracking, instant totals" }
+      ],
+      iterations: [
+        { label: "Iteration 1", imageSrc: "/media/wholesale/ideation-1.jpg", alt: "First iteration of order capture interface" },
+        { label: "Iteration 2", imageSrc: "/media/wholesale/ideation-2.jpg", alt: "Second iteration with validation features" },
+        { label: "Iteration 3", imageSrc: "/media/wholesale/ideation-3.jpg", alt: "Third iteration adding routing automation" },
+        { label: "Iteration 4", imageSrc: "/media/wholesale/ideation-4.jpg", alt: "Fourth iteration with reconciliation dashboard" },
+        { label: "Iteration 5", imageSrc: "/media/wholesale/ideation-5.jpg", alt: "Final iteration with complete pipeline" }
+      ]
     },
     sections: [
       {
@@ -493,6 +580,22 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 2, title: "Automation wins", description: "Recurring invoices and reminders save hours weekly." },
       { number: 3, title: "Priority at a glance", description: "A single dashboard surfaces what needs attention now." }
     ],
+    ideationSection: {
+      subhead: "We iterated on a simple \"run the day\" loop—dashboard, tasks, invoices, and scheduling.",
+      bubbles: [
+        { title: "Dashboard KPIs", description: "Cash flow and alerts" },
+        { title: "Tasks", description: "Today, overdue, owners" },
+        { title: "Invoices", description: "Draft → sent → paid" },
+        { title: "Scheduling", description: "Availability and bookings" }
+      ],
+      iterations: [
+        { label: "Iteration 1", imageSrc: "/media/biz/ideation-1.jpg", alt: "First iteration of business dashboard" },
+        { label: "Iteration 2", imageSrc: "/media/biz/ideation-2.jpg", alt: "Second iteration with task management" },
+        { label: "Iteration 3", imageSrc: "/media/biz/ideation-3.jpg", alt: "Third iteration adding invoice workflow" },
+        { label: "Iteration 4", imageSrc: "/media/biz/ideation-4.jpg", alt: "Fourth iteration with scheduling integration" },
+        { label: "Iteration 5", imageSrc: "/media/biz/ideation-5.jpg", alt: "Final iteration with unified operations" }
+      ]
+    },
     sections: [
       {
         id: "impact-snapshot",
