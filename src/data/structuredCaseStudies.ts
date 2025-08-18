@@ -14,6 +14,7 @@ export interface ResearchSection {
   emergingThemes: EmergingTheme[];
   researchImage: string;
   researchImageAlt: string;
+  researchImages?: { src: string; alt: string; }[];
 }
 
 export interface StructuredCaseStudyData {
@@ -61,28 +62,34 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink feature overview"
     },
-    researchSection: {
-      subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
-      emergingThemes: [
-        {
-          eyebrow: "ESSENTIALS TO KNOW",
-          insight: "People want indications, contraindications, and dosage at a glance.",
-          drove: "Safety blocks on profiles and treatment pages."
-        },
-        {
-          eyebrow: "PERSONALIZATION",
-          insight: "Matching must consider condition, modality, and availability.",
-          drove: "Intake → match scoring, filters, and instant booking."
-        },
-        {
-          eyebrow: "TRUST & TRANSPARENCY",
-          insight: "Credentials and sources must be visible.",
-          drove: "Verification badges, linked credentials, and sourced education content."
-        }
-      ],
-      researchImage: "https://barskyux.com/wp-content/uploads/2025/08/conversationwithherbalistandsymptomtracker.png",
-      researchImageAlt: "Practitioner profile + booking flow research artifact"
-    },
+      researchSection: {
+        subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
+        emergingThemes: [
+          {
+            eyebrow: "ESSENTIALS TO KNOW",
+            insight: "People want indications, contraindications, and dosage at a glance.",
+            drove: "Safety blocks on profiles and treatment pages."
+          },
+          {
+            eyebrow: "PERSONALIZATION",
+            insight: "Matching must consider condition, modality, and availability.",
+            drove: "Intake → match scoring, filters, and instant booking."
+          },
+          {
+            eyebrow: "TRUST & TRANSPARENCY",
+            insight: "Credentials and sources must be visible.",
+            drove: "Verification badges, linked credentials, and sourced education content."
+          }
+        ],
+        researchImage: "https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif",
+        researchImageAlt: "AHG directory — grid of herbal schools (scroll demo)",
+        researchImages: [
+          {
+            src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding_Zocdoc_iOS.mp4ac53.jpg",
+            alt: "Zocdoc iOS onboarding — profile details screen"
+          }
+        ]
+      },
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement: "People seeking herbal care can't confidently find vetted practitioners or guidance—leading to misinformation, safety risks, and abandoned care."
@@ -183,8 +190,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "In-app templates and reminders that keep language neutral."
         }
       ],
-      researchImage: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-01-28-at-9.38.41%E2%80%AFAM-e1748467110283.png?fit=800%2C367&ssl=1",
-      researchImageAlt: "Calendar + expense/message artifact research"
+        researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
+        researchImageAlt: "Research artifact — TOP (replace this URL)",
+        researchImages: [
+          {
+            src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
+            alt: "Research artifact — BOTTOM (replace this URL)"
+          }
+        ]
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
@@ -276,8 +289,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Stepwise flow; actions disabled until lender selection; real-time feedback."
         }
       ],
-      researchImage: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-      researchImageAlt: "Deals list + predictive search results"
+        researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
+        researchImageAlt: "Research artifact — TOP (replace this URL)",
+        researchImages: [
+          {
+            src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
+            alt: "Research artifact — BOTTOM (replace this URL)"
+          }
+        ]
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
@@ -454,8 +473,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "'Today' view with aging statuses and alerts."
         }
       ],
-      researchImage: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-      researchImageAlt: "Dashboard + invoice preview research artifact"
+      researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
+      researchImageAlt: "Research artifact — TOP (replace this URL)",
+      researchImages: [
+        {
+          src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
+          alt: "Research artifact — BOTTOM (replace this URL)"
+        }
+      ]
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
