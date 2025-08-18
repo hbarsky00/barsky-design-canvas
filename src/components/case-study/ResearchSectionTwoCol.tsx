@@ -98,7 +98,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                     <figure className="flex-1 min-h-0">
                       <img
                         src={researchSection.researchImage}
-                        srcSet={`${researchSection.researchImage} 1x, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x`}
+                        srcSet={`${researchSection.researchImage} 1x${researchSection.researchImage.includes('.') ? `, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt={researchSection.researchImageAlt || "Research image"}
                         className="w-full h-full object-contain rounded-2xl border border-neutral-200"
@@ -113,7 +113,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                     <figure key={index} className="flex-1 min-h-0">
                       <img
                         src={image.src}
-                        srcSet={`${image.src} 1x, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x`}
+                        srcSet={`${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt={image.alt}
                         className="w-full h-full object-contain rounded-2xl border border-neutral-200"
