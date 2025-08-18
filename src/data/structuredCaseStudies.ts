@@ -87,8 +87,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
             alt: "AHG directory — grid of herbal schools (scroll demo)"
           },
           {
-            src: "/lovable-uploads/64065530-c72c-4ef3-814f-8c1c85aeacbf.png",
-            alt: "Zocdoc iOS onboarding — profile details screen"
+            src: "/src/assets/zocdoc-signup.png",
+            alt: "Zocdoc signup screen interface"
           }
         ]
       },
