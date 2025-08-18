@@ -85,6 +85,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         researchImageAlt: "AHG directory — grid of herbal schools (scroll demo)",
         researchImages: [
           {
+            src: "https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif",
+            alt: "AHG directory — grid of herbal schools (scroll demo)"
+          },
+          {
             src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding_Zocdoc_iOS.mp4ac53.jpg",
             alt: "Zocdoc iOS onboarding — profile details screen"
           }
