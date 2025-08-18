@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CaseStudyNavigation from "../CaseStudyNavigation";
 import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
@@ -16,6 +15,8 @@ import ProblemCallout from "../ProblemCallout";
 import KeyInsightsRow from "../KeyInsightsRow";
 import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
 import IdeationSection from "../IdeationSection";
+import MyThoughtProcessSection from "../MyThoughtProcessSection";
+import { Badge } from "@/components/ui/badge";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -75,7 +76,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     <>
       {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
-      <div className={`min-h-screen bg-gradient-to-br ${caseStudyData.gradientClasses || "from-blue-50 via-slate-50 to-indigo-50"} ${isProjectPage ? 'projects-page' : ''}`}>
+      <div className={`min-h-screen bg-muted/30 ${isProjectPage ? 'projects-page' : ''}`}>
         {/* 3D Transition Overlay */}
         <Section3DOverlay 
           isVisible={isTransitioning} 
@@ -85,84 +86,193 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
         <Header />
         
-        <div className={isProjectPage ? "projects-wrap" : "max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]"}>
-          <div className="lg:flex lg:gap-8">
-            {/* Navigation */}
-            <CaseStudyNavigation 
-              navigation={navigationItems} 
-              currentSectionIndex={keyboardNav.currentSectionIndex}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-[calc(var(--header-height,64px)+12px)]">
+          {/* Hero Section */}
+          <div className="center-content mb-12">
+            <StructuredCaseStudyHero 
+              caseStudyData={caseStudyData}
+              heroAsImage={heroAsImage}
             />
-            
-            {/* Main Content */}
-            <main className="flex-1 min-w-0">
-              {/* Hero Section - No navigation anchor */}
-              <div className="mb-8">
-                <StructuredCaseStudyHero 
-                  caseStudyData={caseStudyData}
-                  heroAsImage={heroAsImage}
-                />
-              </div>
+          </div>
 
-              {/* Overview Section */}
-              <section id="overview" className="mb-8">
-                <StructuredCaseStudyOverview projectId={caseStudyData.id} />
-              </section>
+          {/* Overview Section */}
+          <section id="overview" className="section-snap center-content mb-12 py-8">
+            <StructuredCaseStudyOverview projectId={caseStudyData.id} />
+          </section>
 
-              {/* Research Section */}
-              {caseStudyData.researchSection && (
-                <div className="mb-8 -mx-4 sm:-mx-6">
-                  <ResearchSectionTwoCol researchSection={caseStudyData.researchSection} />
-                </div>
-              )}
+          {/* Research Section */}
+          {caseStudyData.researchSection && (
+            <section id="research" className="section-snap left-content mb-12">
+              <ResearchSectionTwoCol researchSection={caseStudyData.researchSection} />
+            </section>
+          )}
 
-              {/* Problem Callout Section */}
-              {caseStudyData.problemCallout && (
-                <div className="mb-8 -mx-4 sm:-mx-6">
+          {/* Problem Callout Section - Full width band */}
+          {caseStudyData.problemCallout && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <section id="problem" className="section-snap py-12 md:py-16">
                   <ProblemCallout
                     eyebrow={caseStudyData.problemCallout.eyebrow}
                     statement={caseStudyData.problemCallout.statement}
                   />
-                </div>
-              )}
+                </section>
+              </div>
+            </div>
+          )}
 
-              {/* Key Insights Section */}
-              {caseStudyData.keyInsights && (
-                <div className="mb-8 -mx-4 sm:-mx-6">
-                  <KeyInsightsRow insights={caseStudyData.keyInsights} />
-                </div>
-              )}
+          {/* Key Insights Section */}
+          {caseStudyData.keyInsights && (
+            <section id="key-insights" className="section-snap left-content mb-12 py-8">
+              <KeyInsightsRow insights={caseStudyData.keyInsights} />
+            </section>
+          )}
 
-              {/* Ideation Section */}
-              {caseStudyData.ideationSection && (
-                <div className="mb-8 -mx-4 sm:-mx-6">
+          {/* My Thought Process Section */}
+          <MyThoughtProcessSection 
+            content="I focused on creating a streamlined approach that balanced user needs with technical constraints. My decision criteria centered on usability, scalability, and measurable impact. Through iterative validation loops, I refined the solution based on real user feedback and performance metrics."
+            images={[
+              {
+                src: "https://barskyux.com/wp-content/uploads/2025/08/thoughtprocess.jpg",
+                alt: "Design thinking process diagram",
+                caption: "Decision framework and validation approach"
+              }
+            ]}
+          />
+
+          {/* Ideation Section - Full width band */}
+          {caseStudyData.ideationSection && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <section id="ideation" className="section-snap py-12 md:py-16">
                   <IdeationSection ideationData={caseStudyData.ideationSection} />
-                </div>
-              )}
+                </section>
+              </div>
+            </div>
+          )}
 
-              {/* Case Study Sections - Apply cs-card class */}
-              <div className="space-y-12 pb-12">
-                {caseStudyData.sections.map((section) => (
-                  <section key={section.id} id={section.id} className="scroll-mt-24">
-                    <div className={`bg-white/80 backdrop-blur-sm rounded-lg p-12 shadow-sm border border-white/20 ${isProjectPage ? 'cs-card' : ''}`}>
-                      <StructuredCaseStudySection {...section} />
+          {/* What Didn't Work Section */}
+          <section id="what-didnt-work" className="section-snap left-content py-12 md:py-16">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
+                  What Didn't Work
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-semibold">
+                  Learning from Failures
+                </h2>
+              </div>
+              
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Initial approaches that didn't meet user needs and how we pivoted to better solutions.
+                </p>
+                
+                <ul className="space-y-4 list-none pl-0">
+                  <li className="flex flex-col space-y-2">
+                    <span className="text-base">• Complex navigation structure confused users</span>
+                    <span className="text-sm text-primary font-medium pl-4">
+                      Fix: Simplified to 3 main sections with clear visual hierarchy
+                    </span>
+                  </li>
+                  <li className="flex flex-col space-y-2">
+                    <span className="text-base">• Too many form fields in initial onboarding</span>
+                    <span className="text-sm text-primary font-medium pl-4">
+                      Fix: Progressive disclosure with optional advanced settings
+                    </span>
+                  </li>
+                  <li className="flex flex-col space-y-2">
+                    <span className="text-base">• Real-time updates caused performance issues</span>
+                    <span className="text-sm text-primary font-medium pl-4">
+                      Fix: Intelligent batching and optimistic updates
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* The Final Product Section - Full width band */}
+          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <section id="the-final-product" className="section-snap py-12 md:py-16">
+                <div className="space-y-8">
+                  <div className="space-y-4">
+                    <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
+                      The Final Product
+                    </Badge>
+                    <h2 className="text-3xl md:text-4xl font-semibold text-left">
+                      Refined Solution
+                    </h2>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-8 mb-6">
+                    <div className="space-y-4">
+                      <img 
+                        src="https://barskyux.com/wp-content/uploads/2025/08/finalproduct1.jpg" 
+                        alt="Final product desktop view"
+                        className="w-full rounded-lg shadow-sm"
+                      />
                     </div>
-                  </section>
-                ))}
-                
-                <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
-                  <CaseStudyContactSection />
+                    <div className="space-y-4">
+                      <img 
+                        src="https://barskyux.com/wp-content/uploads/2025/08/finalproduct2.jpg" 
+                        alt="Final product mobile view"
+                        className="w-full rounded-lg shadow-sm"
+                      />
+                    </div>
+                  </div>
+                  
+                  <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl">
+                    The final solution successfully balanced user needs with technical constraints, 
+                    delivering a streamlined experience that improved key metrics while maintaining scalability.
+                  </p>
                 </div>
-                
-                {/* Share Toolbar - At Bottom */}
-                <div className="pt-6 border-t border-white/20 flex justify-center">
-                  <CaseStudyShareToolbar 
-                    url={currentUrl}
-                    title={caseStudyData.title}
-                    className="flex-wrap justify-center"
-                  />
+              </section>
+            </div>
+          </div>
+
+          {/* Outcome / Results Section */}
+          <section id="outcome-results" className="section-snap left-content py-12 md:py-16">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
+                  Outcome / Results
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-semibold">
+                  Measurable Impact
+                </h2>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="text-center space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-primary">40%</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wide">fewer conflicts</div>
+                </div>
+                <div className="text-center space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-primary">30%</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wide">faster scheduling resolution</div>
+                </div>
+                <div className="text-center space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-primary">25%</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wide">fewer missed/double-booked events</div>
                 </div>
               </div>
-            </main>
+            </div>
+          </section>
+          
+          {/* Contact Section */}
+          <section id="contact-section" className="section-snap center-content py-12 md:py-16">
+            <CaseStudyContactSection />
+          </section>
+          
+          {/* Share Toolbar */}
+          <div className="py-6 border-t border-border/20 center-content">
+            <CaseStudyShareToolbar 
+              url={currentUrl}
+              title={caseStudyData.title}
+              className="flex-wrap justify-center"
+            />
           </div>
         </div>
         

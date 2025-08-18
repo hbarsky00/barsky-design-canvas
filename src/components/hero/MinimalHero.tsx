@@ -225,12 +225,13 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           visibility: showContinueButton ? 'visible' : 'hidden'
         }}
       >
-        <div className="flex justify-center w-full">
+        <div className="flex flex-col items-center space-y-2">
+          <span className="text-sm text-white/80 font-medium">Continue</span>
           <SectionNavigation
             onNavigateDown={handleNavigateDown}
             canNavigateUp={false}
             canNavigateDown={canNavigateDown}
-            downLabel="Continue"
+            downLabel=""
           />
         </div>
       </motion.div>

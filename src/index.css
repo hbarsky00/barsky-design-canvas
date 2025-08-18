@@ -215,17 +215,34 @@ select:focus-visible, a:focus-visible,
   }
 }
 
-/* Ensure proper mobile scrolling */
+/* Ensure proper mobile scrolling with snap behavior */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-snap-type: y proximity;
 }
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
+}
+
+/* Section snap points for smooth scrolling */
+.section-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* Alignment utilities */
+.center-content {
+  text-align: center;
+}
+
+.left-content {
+  text-align: left;
 }
 
 /* Section container utility for consistent responsive padding */

@@ -15,7 +15,7 @@ const ProfileAvatar: React.FC = () => {
         imageSrc={imageUrl}
         videoSrc={videoUrl}
         name="Hiram Barsky"
-        subtitle="Product Design + AI"
+        subtitle="Product Designer + AI"
         size="md"
         subtitleStyle="pill"
         className="shrink-0"
