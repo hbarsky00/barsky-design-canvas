@@ -75,21 +75,6 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runotBezsgewiQ_transition_this_mockup_i_1dfa0b37-ac57-43c8-962d-5270ac3b12b7_0.mp4"
-  },
-  {
-    id: "investment-app",
-    tags: ["Finance", "Analytics", "Tutorial"],
-    title: "23% More Engagement: Making Investing Accessible to Beginners",
-    description: "Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios.",
-    impact: "+23% Engagement Increase",
-    url: "/project/investment-app",
-    liveUrl: "https://investor-loan-app.com",
-    images: {
-      primary: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-      alt: "Investment app dashboard showing portfolio management"
-    },
-    layout: "single-centered",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.run-k_yGBABxKo_transition_from_earlier__3c541216-e2df-4f59-8722-5610fc712f6d_3.mp4"
   }
 ];
 

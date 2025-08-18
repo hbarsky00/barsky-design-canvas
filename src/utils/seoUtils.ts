@@ -17,7 +17,7 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   { path: '/case-studies/splittime-coparenting-app-design', priority: 'high', changeFreq: 'monthly' },
   { path: '/case-studies/investor-loan-portfolio-management', priority: 'high', changeFreq: 'monthly' },
   { path: '/case-studies/wholesale-distribution-ai-solution', priority: 'high', changeFreq: 'monthly' },
-  { path: '/case-studies/investment-app-educational-design', priority: 'high', changeFreq: 'monthly' },
+  
   { path: '/case-studies/business-management-solution', priority: 'high', changeFreq: 'monthly' },
   { path: '/case-studies/medication-app', priority: 'medium', changeFreq: 'monthly' },
   { path: '/case-studies/gold2crypto', priority: 'medium', changeFreq: 'monthly' },

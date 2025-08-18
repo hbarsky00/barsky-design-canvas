@@ -32,7 +32,6 @@ import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessMan
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
 import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
-import StructuredInvestmentAppCaseStudy from "@/pages/StructuredInvestmentAppCaseStudy";
 
 const queryClient = new QueryClient();
 
@@ -61,7 +60,6 @@ function App() {
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
               <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
-              <Route path="/project/investment-app" element={<StructuredInvestmentAppCaseStudy />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />

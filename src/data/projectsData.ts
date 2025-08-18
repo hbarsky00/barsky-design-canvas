@@ -39,15 +39,5 @@ export const projectsData: ProjectProps[] = [
     video: "bizmgmt-demo.mp4",
     tags: ["Enterprise", "CRM", "Dashboard"],
     featured: true,
-  },
-  {
-    id: "investment-app",
-    title: "Investment App",
-    description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
-    image: "/lovable-uploads/investment-app-thumb.png",
-    videoThumbnail: "investapp-thumb.jpg",
-    video: "investapp-demo.mp4",
-    tags: ["Finance", "Data Viz", "Mobile"],
-    featured: true,
   }
 ];

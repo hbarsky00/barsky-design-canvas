@@ -149,49 +149,6 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
         }
       }
     }
-  },
-  "investment-app": {
-    title: "23% More Engagement: Making Investing Accessible to Beginners",
-    video: "investapp-demo.mp4",
-    videoThumbnail: "investapp-thumb.jpg",
-    tags: ["Finance", "Analytics", "Tutorial"],
-    description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
-    stickyNav: [
-      { label: "The Problem", anchor: "#the-problem" },
-      { label: "Quantified Impact", anchor: "#quantified-impact" },
-      { label: "What Didn't Work", anchor: "#what-didnt-work" },
-      { label: "My Thought Process", anchor: "#my-thought-process" }
-    ],
-    sections: {
-      "the-problem": {
-        text: "Beginner investors felt overwhelmed by jargon and couldn't understand performance or next steps. They needed a coach, not another trading platform.",
-        image: {
-          src: "images/investapp-problem.png",
-          alt: "User research quote about investing confusion"
-        }
-      },
-      "quantified-impact": {
-        text: "✅ 23% increase in portfolio engagement ✅ 17% more re-investment activity ✅ 12% decrease in post-onboarding drop-off.",
-        image: {
-          src: "images/investapp-impact.png",
-          alt: "App analytics showing engagement lift"
-        }
-      },
-      "what-didnt-work": {
-        text: "Traditional line graphs overwhelmed users. Goal-based visuals with context performed better. Technical onboarding scared people away—questions worked better than feature tours.",
-        image: {
-          src: "images/investapp-fail.png",
-          alt: "Overly technical onboarding screens"
-        }
-      },
-      "my-thought-process": {
-        text: "Instead of market data, I asked: 'What does this person need to feel confident right now?' Goal-based journeys beat dashboard-first design every time.",
-        image: {
-          src: "images/investapp-process.png",
-          alt: "Persona-based flow diagram for investment goals"
-        }
-      }
-    }
   }
 };
 
@@ -219,13 +176,5 @@ export const homepageCaseStudyPreviews = [
     videoThumbnail: "",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
     url: "/project/business-management"
-  },
-  {
-    title: "23% More Engagement: Making Investing Accessible to Beginners",
-    description: "Helped users track, plan, and grow their investments, leading to 23% increase in portfolio engagement.",
-    tags: ["Finance", "Analytics", "Tutorial"],
-    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-    video: "https://share.shots.so/WIa01A8uV6pGHd9q.mp4",
-    url: "/project/investment-app"
   }
 ];
