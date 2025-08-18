@@ -87,7 +87,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
             alt: "AHG directory — grid of herbal schools (scroll demo)"
           },
           {
-            src: "/src/assets/zocdoc-signup.png",
+            src: "/zocdoc-signup.png",
             alt: "Zocdoc signup screen interface"
           }
         ]
