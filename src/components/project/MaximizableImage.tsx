@@ -104,7 +104,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 
   const handleMaximize = () => {
     if (!imageError) {
-      maximizeImage(currentSrc, alt, imageList, currentIndex);
+      maximizeImage(currentSrc, caption || alt, imageList, currentIndex);
     }
   };
 
