@@ -52,11 +52,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   }, [caseStudyData.sections]);
 
   // Add keyboard navigation
+  const keyboardNav = useCaseStudyKeyboardNavigation(keyboardSections);
   const {
     isTransitioning,
     transitionDirection,
     transitionVariation,
-  } = useCaseStudyKeyboardNavigation(keyboardSections);
+  } = keyboardNav;
 
   return (
     <>
@@ -75,7 +76,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         <div className={isProjectPage ? "projects-wrap" : "max-w-7xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+12px)]"}>
           <div className="lg:flex lg:gap-8">
             {/* Navigation */}
-            <CaseStudyNavigation navigation={navigationItems} />
+            <CaseStudyNavigation 
+              navigation={navigationItems} 
+              currentSectionIndex={keyboardNav.currentSectionIndex}
+            />
             
             {/* Main Content */}
             <main className="flex-1 min-w-0">

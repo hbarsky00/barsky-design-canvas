@@ -9,9 +9,13 @@ interface NavItem {
 
 interface CaseStudyNavigationProps {
   navigation: NavItem[];
+  currentSectionIndex?: number; // From keyboard navigation
 }
 
-const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation }) => {
+const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ 
+  navigation, 
+  currentSectionIndex 
+}) => {
   const [activeSection, setActiveSection] = useState("");
 
   const getHeaderOffset = () => {
@@ -20,7 +24,25 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
     return headerHeight + 16; // include small margin
   };
 
+  // Sync with keyboard navigation if provided
   useEffect(() => {
+    if (currentSectionIndex !== undefined) {
+      // Convert keyboard navigation index to navigation anchor
+      // Index 0 = hero (no navigation item), Index 1+ = actual navigation items
+      if (currentSectionIndex === 0) {
+        // Hero section - no active navigation item or default to first
+        setActiveSection(navigation[0]?.anchor || "");
+      } else if (currentSectionIndex > 0 && currentSectionIndex - 1 < navigation.length) {
+        // Regular section - subtract 1 to account for hero section
+        setActiveSection(navigation[currentSectionIndex - 1].anchor);
+      }
+    }
+  }, [currentSectionIndex, navigation]);
+
+  useEffect(() => {
+    // Only use scroll detection if no keyboard navigation is provided
+    if (currentSectionIndex !== undefined) return;
+    
     const handleScroll = () => {
       const headerOffset = getHeaderOffset();
       const anchorY = headerOffset + 8;
@@ -61,7 +83,7 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({ navigation })
     handleScroll(); // Set initial state
 
     return () => window.removeEventListener("scroll", onScroll);
-  }, [navigation]);
+  }, [navigation, currentSectionIndex]);
 
   const scrollToSection = (anchor: string) => {
     const element = document.querySelector(anchor);

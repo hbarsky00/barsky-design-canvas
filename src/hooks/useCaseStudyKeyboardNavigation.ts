@@ -9,6 +9,12 @@ interface CaseStudySection {
 }
 
 export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => {
+  // Add virtual "hero" section at index 0, shift all other sections by 1
+  const allSections = [
+    { id: 'hero', title: 'Hero' },
+    ...sections
+  ];
+  
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [isNavigating, setIsNavigating] = useState(false);
   const { isTransitioning, direction, variation, triggerTransition } = use3DTransition();
@@ -26,26 +32,36 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
   }, []);
 
   const scrollToSection = useCallback((index: number) => {
-    if (index < 0 || index >= sections.length) return;
+    if (index < 0 || index >= allSections.length) return;
     
     setIsNavigating(true);
-    const sectionId = sections[index].id;
-    const element = document.getElementById(sectionId);
+    setCurrentSectionIndex(index);
     
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+    // Handle hero section (index 0) - scroll to top
+    if (index === 0) {
       window.scrollTo({
-        top: offsetTop,
+        top: 0,
         behavior: "smooth"
       });
-      setCurrentSectionIndex(index);
+    } else {
+      // Handle regular sections (index 1+) - find the actual section
+      const sectionId = allSections[index].id;
+      const element = document.getElementById(sectionId);
       
-      // Reset navigation state after scroll completion
-      setTimeout(() => {
-        setIsNavigating(false);
-      }, 2000); // Much longer delay to prevent scroll detection interference
+      if (element) {
+        const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
     }
-  }, [sections]);
+    
+    // Reset navigation state after scroll completion
+    setTimeout(() => {
+      setIsNavigating(false);
+    }, 2000);
+  }, [allSections]);
 
   const navigateUp = useCallback(() => {
     if (isTransitioning) return;
@@ -62,19 +78,19 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
     if (isTransitioning) return;
     
     const newIndex = currentSectionIndex + 1;
-    if (newIndex < sections.length) {
+    if (newIndex < allSections.length) {
       triggerTransition('down', () => {
         scrollToSection(newIndex);
       });
     }
-  }, [currentSectionIndex, scrollToSection, sections.length, isTransitioning, triggerTransition]);
+  }, [currentSectionIndex, scrollToSection, allSections.length, isTransitioning, triggerTransition]);
 
   // Track current section on scroll
   useEffect(() => {
     let ticking = false;
     let scrollDetectionDelay: number | null = null;
 
-    const handleScroll = () => {
+        const handleScroll = () => {
       if (ticking || isTransitioning || isNavigating) return;
       
       // Clear any existing delay
@@ -88,20 +104,26 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
         
         ticking = true;
         requestAnimationFrame(() => {
-          const headerOffset = getHeaderOffset();
           const scrollPosition = window.scrollY;
           const viewportHeight = window.innerHeight;
           const viewportCenter = scrollPosition + viewportHeight / 2;
 
-          let newSectionIndex = 0;
+          // If we're near the top of the page (first 300px), stay in hero section
+          if (scrollPosition < 300) {
+            setCurrentSectionIndex(0); // Hero section
+            ticking = false;
+            return;
+          }
+
+          let newSectionIndex = 1; // Start from index 1 (first real section after hero)
           let minDistance = Infinity;
 
-          for (let i = 0; i < sections.length; i++) {
-            const element = document.getElementById(sections[i].id);
+          // Check actual sections (skip hero at index 0)
+          for (let i = 1; i < allSections.length; i++) {
+            const element = document.getElementById(allSections[i].id);
             if (element) {
               const rect = element.getBoundingClientRect();
               const elementTop = scrollPosition + rect.top;
-              // Use element top instead of center for better detection of contact section
               const elementPosition = elementTop + rect.height * 0.3; // 30% into the element
               const distance = Math.abs(viewportCenter - elementPosition);
 
@@ -133,7 +155,7 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
         clearTimeout(scrollDetectionDelay);
       }
     };
-  }, [sections, isTransitioning, isNavigating]);
+  }, [allSections, isTransitioning, isNavigating]);
 
   // Enhanced keyboard event handling with mobile support
   useEffect(() => {
@@ -262,7 +284,7 @@ export const useCaseStudyKeyboardNavigation = (sections: CaseStudySection[]) => 
     navigateDown,
     scrollToSection,
     canNavigateUp: currentSectionIndex > 0,
-    canNavigateDown: currentSectionIndex < sections.length - 1,
+    canNavigateDown: currentSectionIndex < allSections.length - 1,
     isTransitioning,
     transitionDirection: direction,
     transitionVariation: variation,
