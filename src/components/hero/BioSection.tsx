@@ -3,7 +3,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { NavigationProps } from "@/types/navigation";
 
 interface BioSectionProps extends NavigationProps {}
@@ -87,23 +86,6 @@ const BioSection: React.FC<BioSectionProps> = ({
         </motion.div>
       </div>
 
-      {/* Navigation Arrow */}
-      <motion.div 
-        className="absolute bottom-8 inset-x-0 px-4"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-      >
-        <div className="flex justify-center w-full">
-          <SectionNavigation
-            onNavigateDown={handleNavigateDown}
-            canNavigateUp={false}
-            canNavigateDown={canNavigateDown}
-            downLabel="View Case Studies"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };
