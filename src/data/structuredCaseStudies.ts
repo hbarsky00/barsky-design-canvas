@@ -3,6 +3,19 @@ import React from "react";
 import { Zap, BarChart4, XCircle, Sparkles, Settings, Truck, Package, Users, Target, CheckCircle2, AlertTriangle, Rocket, Wrench, Badge, Search, Eye, TrendingUp, Shield, TrendingDown, DollarSign, BookOpen, Lightbulb } from "lucide-react";
 import { StructuredCaseStudySectionProps } from "@/components/case-study/structured/StructuredCaseStudySection";
 
+export interface EmergingTheme {
+  eyebrow: string;
+  insight: string;
+  drove: string;
+}
+
+export interface ResearchSection {
+  subhead: string;
+  emergingThemes: EmergingTheme[];
+  researchImage: string;
+  researchImageAlt: string;
+}
+
 export interface StructuredCaseStudyData {
   id: string;
   title: string;
@@ -13,6 +26,7 @@ export interface StructuredCaseStudyData {
     poster: string;
     alt: string;
   };
+  researchSection?: ResearchSection;
   problemCallout?: {
     eyebrow: string;
     statement: string;
@@ -46,6 +60,28 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
       poster: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink feature overview"
+    },
+    researchSection: {
+      subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
+      emergingThemes: [
+        {
+          eyebrow: "ESSENTIALS TO KNOW",
+          insight: "People want indications, contraindications, and dosage at a glance.",
+          drove: "Safety blocks on profiles and treatment pages."
+        },
+        {
+          eyebrow: "PERSONALIZATION",
+          insight: "Matching must consider condition, modality, and availability.",
+          drove: "Intake → match scoring, filters, and instant booking."
+        },
+        {
+          eyebrow: "TRUST & TRANSPARENCY",
+          insight: "Credentials and sources must be visible.",
+          drove: "Verification badges, linked credentials, and sourced education content."
+        }
+      ],
+      researchImage: "https://barskyux.com/wp-content/uploads/2025/08/conversationwithherbalistandsymptomtracker.png",
+      researchImageAlt: "Practitioner profile + booking flow research artifact"
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
@@ -128,6 +164,28 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
       alt: "Splittime co-parenting app hero overview"
     },
+    researchSection: {
+      subhead: "Interviews and walkthroughs with co-parents revealed decision fatigue from fragmented schedules, expenses, and agreements.",
+      emergingThemes: [
+        {
+          eyebrow: "ESSENTIALS TO KNOW",
+          insight: "Families need today's pickups, locations, and changes at a glance.",
+          drove: "Shared calendar + unified timeline for events, notes, and expenses."
+        },
+        {
+          eyebrow: "CONFIRMATIONS & APPROVALS",
+          insight: "Changes were often disputed or missed.",
+          drove: "Request/approve flows with stamped history and notifications."
+        },
+        {
+          eyebrow: "TONE-SAFE COMMUNICATION",
+          insight: "Escalations came from ad-hoc texts.",
+          drove: "In-app templates and reminders that keep language neutral."
+        }
+      ],
+      researchImage: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-01-28-at-9.38.41%E2%80%AFAM-e1748467110283.png?fit=800%2C367&ssl=1",
+      researchImageAlt: "Calendar + expense/message artifact research"
+    },
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement: "Co-parents lack a single source of truth for schedules, expenses, and decisions—causing miscommunication, missed pickups, and ongoing conflict."
@@ -138,32 +196,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Calm communication", description: "Neutral templates reduce conflict and decision fatigue." }
     ],
     sections: [
-      {
-        id: "competitive-analysis",
-        title: "Competitive Analysis",
-        icon: BarChart4,
-        variant: "impact",
-        content: "Despite current offerings, a significant gap was found in features addressing conflict resolution, emotional support, and clear, structured communication. Users often reported that existing tools, while functional, lacked mechanisms to de-escalate tension or provide guidance in high-conflict situations.",
-        media: {
-          type: 'image',
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-01-28-at-9.38.41%E2%80%AFAM-e1748467110283.png?fit=800%2C367&ssl=1",
-          alt: "Competitive analysis comparison of co-parenting tools",
-          caption: "Competitive analysis highlighted missing conflict-resolution features."
-        }
-      },
-      {
-        id: "research-and-discovery",
-        title: "Research and Discovery",
-        icon: Search,
-        variant: "solution",
-        content: "Research and discovery process with comprehensive user research methodology.",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2024/01/Wireframing-Concepts.jpg",
-          alt: "Splittime Wireframing Concepts",
-          caption: "Wireframes established core structure and user flows early."
-        }
-      },
       {
         id: "what-i-did",
         title: "What I Did",
@@ -224,6 +256,28 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: "investor-loan-demo.mp4",
       poster: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
       alt: "Investor loan platform dashboard"
+    },
+    researchSection: {
+      subhead: "Shadowing loan officers and error-log reviews showed spreadsheet mistakes, slow retrieval, and no audit trail.",
+      emergingThemes: [
+        {
+          eyebrow: "ACCURACY & AUDIT",
+          insight: "Copy/paste errors and unclear totals created compliance risk.",
+          drove: "Inline validation, calculated totals, and immutable change history."
+        },
+        {
+          eyebrow: "FINDABILITY",
+          insight: "Officers struggled to locate deals/borrowers across files.",
+          drove: "Predictive, category-aware search with contextual filters."
+        },
+        {
+          eyebrow: "GUIDED ORDERS",
+          insight: "Flat forms caused premature inputs and rework.",
+          drove: "Stepwise flow; actions disabled until lender selection; real-time feedback."
+        }
+      ],
+      researchImage: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+      researchImageAlt: "Deals list + predictive search results"
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
@@ -380,6 +434,28 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
       poster: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
       alt: "Business management system promotional overview"
+    },
+    researchSection: {
+      subhead: "Surveys and workflow audits showed owners switching between disconnected tools and duplicating data.",
+      emergingThemes: [
+        {
+          eyebrow: "CONSOLIDATION",
+          insight: "Scheduling, invoicing, and tasks lived in separate systems.",
+          drove: "Unified dashboard with linked records."
+        },
+        {
+          eyebrow: "AUTOMATION",
+          insight: "Recurring work (invoices, reminders) was manual.",
+          drove: "Recurrence, templates, and smart reminders."
+        },
+        {
+          eyebrow: "VISIBILITY & PRIORITY",
+          insight: "Hard to see what needs attention now.",
+          drove: "'Today' view with aging statuses and alerts."
+        }
+      ],
+      researchImage: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      researchImageAlt: "Dashboard + invoice preview research artifact"
     },
     problemCallout: {
       eyebrow: "Problem to Solve",

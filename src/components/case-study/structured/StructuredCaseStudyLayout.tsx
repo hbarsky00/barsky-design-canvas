@@ -14,6 +14,7 @@ import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
 import ProblemCallout from "../ProblemCallout";
 import KeyInsightsRow from "../KeyInsightsRow";
+import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -34,6 +35,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   // Create navigation items from sections
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
+    ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
     ...caseStudyData.sections.map(section => ({
@@ -46,6 +48,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   const keyboardSections = React.useMemo(() => {
     const navSections = [
       { id: 'overview', title: 'Overview' },
+      ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
       ...caseStudyData.sections.map(section => ({
@@ -55,7 +58,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
-  }, [caseStudyData.sections, caseStudyData.problemCallout]);
+  }, [caseStudyData.sections, caseStudyData.problemCallout, caseStudyData.researchSection]);
 
   // Add keyboard navigation
   const keyboardNav = useCaseStudyKeyboardNavigation(keyboardSections);
@@ -101,6 +104,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               <section id="overview" className="mb-8">
                 <StructuredCaseStudyOverview projectId={caseStudyData.id} />
               </section>
+
+              {/* Research Section */}
+              {caseStudyData.researchSection && (
+                <div className="mb-8 -mx-4 sm:-mx-6">
+                  <ResearchSectionTwoCol researchSection={caseStudyData.researchSection} />
+                </div>
+              )}
 
               {/* Problem Callout Section */}
               {caseStudyData.problemCallout && (
