@@ -58,19 +58,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     ],
     sections: [
       {
-        id: "quantified-impact",
-        title: "Quantified Impact",
-        icon: BarChart4,
-        variant: "impact",
-        content:
-          "HerbaLink is currently in active development. Even at this early stage, we've seen strong engagement and behavior change — giving us validation and a foundation to scale from.\n\nWe launched Stage 1 with:\n- Symptom tracking and visual logging\n- Verified herbalist booking flow\n- Personalized herb recommendations\n- Community discussion board\n\nNext phases will include:\n- AI-driven symptom-to-herb matching\n- Long-term health tracking and data export\n- Expanded practitioner insights and care plans",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/08/symptomtrackermobile.png",
-          alt: "HerbaLink symptom tracker mobile interface demonstrating quantified impact"
-        }
-      },
-      {
         id: "what-didnt-work",
         title: "What Didn't Work",
         icon: XCircle,
@@ -249,27 +236,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     ],
     sections: [
       {
-        id: "quantified-impact",
-        title: "Quantified Impact",
-        icon: BarChart4,
-        variant: "impact",
-        content: "We launched a new platform in 60 days. Here's what changed:",
-        metrics: [
-          { value: "85%", label: "Fewer manual entry errors", trend: "up" },
-          { value: "40%", label: "Faster deal processing times", trend: "up" },
-          { value: "80%", label: "User satisfaction (survey)", trend: "up" },
-          { value: "200+", label: "Loan orders processed in 2 months", trend: "up" }
-        ],
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2023/12/beforeandafter.png",
-          alt: "Before and after metrics comparison for investor loan platform",
-          caption: "Before-and-after visualization highlighting error reduction and speed gains."
-        }
-      },
-      {
         id: "what-didnt-work",
-        title: "What Didn't Work (and What We Fixed)",
+        title: "What Didn't Work",
         icon: XCircle,
         variant: "failed",
         content:
@@ -283,7 +251,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         id: "mistake-1",
-        title: "Mistake #1: The Wrong Focus on Search Criteria",
+        title: "Mistake #1",
         icon: AlertTriangle,
         variant: "failed",
         content:
@@ -308,14 +276,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "User workflow",
           caption: "Streamlined end-to-end workflow across roles."
         }
-      },
-      {
-        id: "tech-specs",
-        title: "Tech Specs",
-        icon: Settings,
-        variant: "solution",
-        content:
-          "- Performance: Core workflows load in under 2 seconds\n- Accessibility: WCAG 2.1 AA compliant\n- Responsive Design: Tablet and desktop\n- Integrations: CRM, compliance systems, internal messaging\n- Cross-browser Support: Chrome, Safari, Firefox, Edge"
       },
       {
         id: "whats-next",
@@ -378,19 +338,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "Manual order tracking in spreadsheets",
           caption: "Excel-based operations caused avoidable errors and delays."
         }
-      },
-      {
-        id: "quantified-impact",
-        title: "Quantified Impact",
-        icon: BarChart4,
-        variant: "impact",
-        content: "A custom system eliminated duplicate entry and surfaced real-time status for every order.",
-        metrics: [
-          { value: "95%", label: "Reduction in manual entry", trend: "down" },
-          { value: "500%", label: "Faster order processing", trend: "up" },
-          { value: "99.7%", label: "Order accuracy", trend: "up" },
-          { value: "+34%", label: "Revenue growth (6 months)", trend: "up" }
-        ]
       },
       {
         id: "what-didnt-work",
