@@ -21,6 +21,7 @@ import SprintZeroSection from "../SprintZeroSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { Badge } from "@/components/ui/badge";
+import FloatingEmailButton from "@/components/FloatingEmailButton";
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -431,6 +432,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       </div>
       
       <Footer />
+      <FloatingEmailButton />
     </>
   );
 };

@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 import CaseStudyContactSection from "@/components/case-study/CaseStudyContactSection";
 import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
+import FloatingEmailButton from "@/components/FloatingEmailButton";
 
 const SimplifiedProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -22,7 +23,10 @@ const SimplifiedProjectDetail: React.FC = () => {
   }
 
   return (
-    <StructuredCaseStudyLayout caseStudyData={caseStudyData} />
+    <>
+      <StructuredCaseStudyLayout caseStudyData={caseStudyData} />
+      <FloatingEmailButton />
+    </>
   );
 };
 
