@@ -84,26 +84,23 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
             )}
           </motion.div>
 
-          {/* Full-width white background container for hero image */}
-          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white py-8 md:py-12">
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="floating-element max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
-            >
-              <figure className="project-image-container">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                />
-                <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
-                  {imageCaptions[project.image] || project.title}
-                </figcaption>
-              </figure>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="floating-element max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8"
+          >
+            <figure className="project-image-container">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+              />
+              <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
+                {imageCaptions[project.image] || project.title}
+              </figcaption>
+            </figure>
+          </motion.div>
         </div>
       </div>
     </div>

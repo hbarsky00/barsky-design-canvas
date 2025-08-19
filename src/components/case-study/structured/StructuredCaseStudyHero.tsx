@@ -63,16 +63,14 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           )}
         </motion.div>
 
-        {/* Full-width white background container for hero media */}
-        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white py-8 md:py-12">
-          <motion.div
-            ref={videoRef}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
-            style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-          >
+        <motion.div
+          ref={videoRef}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8"
+          style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+        >
             {heroAsImage && caseStudyData.seoData?.image ? (
               <div className="relative w-full bg-white rounded-lg overflow-hidden shadow-2xl">
                 <img 
@@ -88,8 +86,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
                 title={caseStudyData.title}
               />
             ) : null}
-          </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
