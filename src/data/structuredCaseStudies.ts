@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Zap, BarChart4, XCircle, Sparkles, Settings, Truck, Package, Users, Target, CheckCircle2, AlertTriangle, Rocket, Wrench, Badge, Search, Eye, TrendingUp, Shield, TrendingDown, DollarSign, BookOpen, Lightbulb } from "lucide-react";
 import { StructuredCaseStudySectionProps } from "@/components/case-study/structured/StructuredCaseStudySection";
@@ -141,36 +140,36 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink feature overview"
     },
-      researchSection: {
-        subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
-        emergingThemes: [
-          {
-            eyebrow: "ESSENTIALS TO KNOW",
-            insight: "People want indications, contraindications, and dosage at a glance.",
-            drove: "Safety blocks on profiles and treatment pages."
-          },
-          {
-            eyebrow: "PERSONALIZATION",
-            insight: "Matching must consider condition, modality, and availability.",
-            drove: "Intake → match scoring, filters, and instant booking."
-          },
-          {
-            eyebrow: "TRUST & TRANSPARENCY",
-            insight: "Credentials and sources must be visible.",
-            drove: "Verification badges, linked credentials, and sourced education content."
-          }
-        ],
-        researchImages: [
-          {
-            src: "https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif",
-            alt: "AHG directory — grid of herbal schools (scroll demo)"
-          },
-          {
-            src: "/zocdoc-signup.png",
-            alt: "Zocdoc signup screen interface"
-          }
-        ]
-      },
+    researchSection: {
+      subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
+      emergingThemes: [
+        {
+          eyebrow: "ESSENTIALS TO KNOW",
+          insight: "People want indications, contraindications, and dosage at a glance.",
+          drove: "Safety blocks on profiles and treatment pages."
+        },
+        {
+          eyebrow: "PERSONALIZATION",
+          insight: "Matching must consider condition, modality, and availability.",
+          drove: "Intake → match scoring, filters, and instant booking."
+        },
+        {
+          eyebrow: "TRUST & TRANSPARENCY",
+          insight: "Credentials and sources must be visible.",
+          drove: "Verification badges, linked credentials, and sourced education content."
+        }
+      ],
+      researchImages: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif",
+          alt: "AHG directory — grid of herbal schools (scroll demo)"
+        },
+        {
+          src: "/zocdoc-signup.png",
+          alt: "Zocdoc signup screen interface"
+        }
+      ]
+    },
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement: "People seeking herbal care can't confidently find vetted practitioners or guidance—leading to misinformation, safety risks, and abandoned care."
@@ -193,6 +192,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 2", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/herbalistopening.jpg", alt: "Second iteration focusing on safety information" },
         { label: "Iteration 3", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Herbalinkpromo.jpg", alt: "Third iteration with match criteria refinements" },
         { label: "Iteration 4", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Book-Herablist-Symptom-Tracker-and-My-Profile.png", alt: "Fourth iteration streamlining booking flow" }
+      ]
+    },
+    myThoughtProcessSection: {
+      content: "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
+      images: [
+        {
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
+          alt: "HerbaLink user flow from onboarding to booking",
+          caption: "User flow from onboarding to booking and tracking."
+        }
       ]
     },
     userTestingSection: {
@@ -245,32 +254,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       ]
     },
-    sections: [
-      {
-        id: "what-didnt-work",
-        title: "What Didn't Work",
-        icon: XCircle,
-        variant: "failed",
-        content:
-          "Generic Practitioner Discovery: Initial design had a long list of herbalists with no context. Users bounced quickly.\nFix: We added filters (e.g., Stress Relief, Digestive Health), 'Verified' badges, availability, and pricing— all before login.\n\nHidden Symptom Tracker: The tracker was buried and saw minimal use.\nFix: We promoted it to the main nav, added severity sliders, visible progress bars, and linked it to herbal suggestions. Usage tripled.",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
-          alt: "HerbaLink early 'Book an Herbalist' concept",
-          caption: "Early concept of the ‘Book an Herbalist’ feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach."
-        }
-    }
-    ],
-    myThoughtProcessSection: {
-      content: "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
-      images: [
-        {
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
-          alt: "HerbaLink user flow from onboarding to booking",
-          caption: "User flow from onboarding to booking and tracking."
-        }
-      ]
-    },
     whatDidntWorkSection: {
       title: "What Didn't Work",
       description: "Early prototypes focused too heavily on complex categorization systems and overwhelming information architecture. Users needed simple, guided discovery rather than comprehensive databases.",
@@ -284,14 +267,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     sections: [],
-  seoData: {
-    image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-    projectName: "HerbaLink",
-    results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
-    technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
-    path: "/project/herbalink"
-  }
-},
+    seoData: {
+      image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
+      projectName: "HerbaLink",
+      results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
+      technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
+      path: "/project/herbalink"
+    }
+  },
   "splittime": {
     id: "splittime",
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
