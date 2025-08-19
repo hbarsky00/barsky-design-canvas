@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
+import SingleCaseStudyPreview from "./SingleCaseStudyPreview";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
@@ -46,13 +47,17 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
   // Get current URL for sharing
   const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://barskydesign.pro${path}`;
 
+  // Extract projectId from path
+  const projectId = path.split('/').pop() || '';
+  
   // Create navigation items from sections
   const navigationItems = [
     { label: "Overview", anchor: "#overview" },
     ...sections.map(section => ({
       label: section.title,
       anchor: `#${section.id}`
-    }))
+    })),
+    { label: "More Work", anchor: "#more-work" }
   ];
 
   // Build sections for keyboard navigation
@@ -63,6 +68,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
         id: section.id,
         title: section.title
       })),
+      { id: 'more-work', title: 'More Work' },
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
@@ -120,6 +126,9 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
                     </div>
                   </section>
                 ))}
+                
+                {/* More Work Section */}
+                <SingleCaseStudyPreview currentProjectId={projectId} />
                 
                 <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
                   <CaseStudyContactSection />

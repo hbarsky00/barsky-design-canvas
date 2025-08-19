@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import CaseStudyNavigation from "./CaseStudyNavigation";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
+import SingleCaseStudyPreview from "./SingleCaseStudyPreview";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
@@ -36,6 +37,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
         const title = navItem?.label || sectionId.replace('-', ' ');
         return { id: sectionId, title };
       }),
+      { id: 'more-work', title: 'More Work' },
       { id: 'contact-section', title: 'Contact' },
       { id: 'project-navigation', title: 'More Projects' }
     ];
@@ -182,6 +184,9 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                   </motion.section>
                 );
               })}
+
+              {/* More Work Section */}
+              <SingleCaseStudyPreview currentProjectId={projectId} />
 
               {/* Contact Section - Apply cs-card class */}
               <div id="contact-section" className={isProjectPage ? 'cs-card' : ''}>
