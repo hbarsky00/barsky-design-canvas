@@ -151,9 +151,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               content="I focused on creating a streamlined approach that balanced user needs with technical constraints. My decision criteria centered on usability, scalability, and measurable impact. Through iterative validation loops, I refined the solution based on real user feedback and performance metrics."
               images={[
                 {
-                  src: "https://barskyux.com/wp-content/uploads/2025/08/thoughtprocess.jpg",
-                  alt: "Design thinking process diagram",
-                  caption: "Decision framework and validation approach"
+                  src: "https://barskyux.com/wp-content/uploads/2025/07/UserFlow.png",
+                  alt: "User flow diagram",
+                  caption: "User flow from onboarding to booking and tracking"
                 }
               ]}
             />
