@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import VideoPlayer from "../VideoPlayer";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
+import { getImageCaption } from "@/data/imageCaptions";
+import { getImageCaptionClasses } from "@/utils/captionStyles";
 
 interface StructuredHeroImageSectionProps {
   caseStudyData: StructuredCaseStudyData;
@@ -15,6 +17,13 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
 }) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
+
+  // Get the image source for caption lookup
+  const imageSrc = heroAsImage && caseStudyData.seoData?.image 
+    ? caseStudyData.seoData.image 
+    : caseStudyData.heroVideo?.poster || caseStudyData.seoData?.image || '';
+  
+  const caption = imageSrc ? getImageCaption(imageSrc) : null;
 
   return (
     <section 
@@ -49,6 +58,12 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
               title={caseStudyData.title}
             />
           ) : null}
+          
+          {caption && (
+            <div className={getImageCaptionClasses()}>
+              {caption}
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
