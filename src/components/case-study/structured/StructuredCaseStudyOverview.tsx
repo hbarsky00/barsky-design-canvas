@@ -24,7 +24,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Sole Product Designer",
     responsibilities: "End-to-end UX & UI design, research to validation",
-    collaborators: "2 Engineers, 1 Family Law Consultant",
+    collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
   },
   "herbalink": {
@@ -36,7 +36,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "Product design, booking flows, trust & safety UX",
-    collaborators: "3 Engineers, 1 Herbalist Advisor, 1 Researcher",
+    collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
   },
   "investor-loan-app": {
@@ -48,7 +48,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "UX strategy, workflow redesign, compliance UX",
-    collaborators: "1 PM, 3 Engineers, 1 Compliance Officer",
+    collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
   },
   "business-management": {
@@ -60,7 +60,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "Information architecture, workflow design, UI patterns",
-    collaborators: "3 Engineers, 1 PM, 2 Pilot Business Owners",
+    collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
   }
 };

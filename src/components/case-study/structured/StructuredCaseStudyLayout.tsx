@@ -338,19 +338,20 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               id="outcome-results" 
               data-section="outcome-results" 
               aria-labelledby="outcome-heading" 
-              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
+              className="section-snap mb-12 py-6 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
-              {/* Two-column layout: text/metrics left, images right */}
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-                {/* Left column: Text content and metrics */}
-                <div className="lg:col-span-3">
+              
+              {/* Two-column header: text left, larger mockup right */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+                {/* Left column: Text content (45%) */}
+                <div className="lg:order-1">
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="mb-8"
+                    className="mb-6"
                   >
                     <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
                       {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
@@ -360,40 +361,17 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     </h2>
                   </motion.div>
 
-                  <div className="mb-8">
+                  <div>
                     <p className="text-lg text-muted-foreground leading-relaxed">
                       {caseStudyData.outcomeSection.description}
                     </p>
                   </div>
-
-                  {/* Display dynamic metrics */}
-                  {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                      {caseStudyData.outcomeSection.metrics.map((metric, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
-                          className="h-full bg-white border border-neutral-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
-                        >
-                          <div className="text-3xl font-bold text-primary mb-2">
-                            {metric.value}
-                          </div>
-                          <div className="text-sm text-neutral-700">
-                            {metric.label}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  )}
                 </div>
 
-                {/* Right column: Outcome images */}
+                {/* Right column: Larger mockup (55%) */}
                 {caseStudyData.outcomeSection.images && (
-                  <div className="lg:col-span-2">
-                    <div className="grid gap-6 md:gap-8">
+                  <div className="lg:order-2">
+                    <div className="grid gap-6">
                       {caseStudyData.outcomeSection.images.map((image, index) => (
                         <motion.div
                           key={index}
@@ -401,7 +379,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.6, delay: index * 0.1 }}
-                          className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                         >
                           <img
                             src={image.src}
@@ -409,7 +386,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                             className="w-full h-auto object-contain image-high-quality"
                           />
                           {image.caption && (
-                            <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                            <div className="mt-3 text-sm text-muted-foreground text-center">
                               {image.caption}
                             </div>
                           )}
@@ -419,6 +396,29 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   </div>
                 )}
               </div>
+
+              {/* Full-width metrics row below */}
+              {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {caseStudyData.outcomeSection.metrics.map((metric, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-background border border-neutral-200 rounded-2xl p-5"
+                    >
+                      <div className="text-3xl font-semibold text-foreground mb-2">
+                        {metric.value}
+                      </div>
+                      <div className="text-sm text-neutral-700">
+                        {metric.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </section>
           )}
 
