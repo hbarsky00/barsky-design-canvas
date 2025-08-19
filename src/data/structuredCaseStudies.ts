@@ -55,6 +55,20 @@ export interface StructuredCaseStudyData {
     description: string;
   }[];
   ideationSection?: IdeationSection;
+  userTestingSection?: {
+    title: string;
+    description: string;
+    eyebrow?: string;
+    metrics?: Array<{
+      value: string;
+      label: string;
+    }>;
+    images?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
+  };
   finalProductSection?: {
     title: string;
     description: string;
@@ -156,6 +170,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 2", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/herbalistopening.jpg", alt: "Second iteration focusing on safety information" },
         { label: "Iteration 3", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Herbalinkpromo.jpg", alt: "Third iteration with match criteria refinements" },
         { label: "Iteration 4", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Book-Herablist-Symptom-Tracker-and-My-Profile.png", alt: "Fourth iteration streamlining booking flow" }
+      ]
+    },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "Testing with both practitioners and patients validated our trust-focused approach and revealed key usability improvements for the booking flow.",
+      eyebrow: "VALIDATION & TESTING",
+      metrics: [
+        { value: "92%", label: "Task Completion" },
+        { value: "4.8/5", label: "Trust Score" },
+        { value: "30s", label: "Avg. Booking Time" }
+      ],
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
+          alt: "User testing session showing booking flow validation",
+          caption: "Testing sessions showed users could easily complete bookings with high confidence in practitioner credentials."
+        }
       ]
     },
     finalProductSection: {
@@ -294,6 +325,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 5", imageSrc: "/media/splittime/ideation-5.jpg", alt: "Final iteration with unified interface" }
       ]
     },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "Testing with divorced co-parents revealed the importance of neutral communication tools and clear approval workflows to prevent misunderstandings.",
+      eyebrow: "VALIDATION & TESTING",
+      metrics: [
+        { value: "89%", label: "Usability Score" },
+        { value: "40%", label: "Conflict Reduction" },
+        { value: "2min", label: "Avg. Request Time" }
+      ],
+      images: [
+        {
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+          alt: "User testing session showing co-parenting workflow validation",
+          caption: "Testing sessions validated our neutral communication approach and approval workflow design."
+        }
+      ]
+    },
     finalProductSection: {
       title: "The Final Product",
       description: "A co-parenting platform that prioritizes children's wellbeing through clear communication, shared scheduling, and conflict reduction tools that help separated families coordinate effectively.",
@@ -410,6 +458,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 5", imageSrc: "/media/investment/ideation-5.jpg", alt: "Final iteration with integrated workflow" }
       ]
     },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "Testing with loan officers validated our automation approach and revealed critical workflow improvements for compliance and speed.",
+      eyebrow: "VALIDATION & TESTING",
+      metrics: [
+        { value: "95%", label: "Task Completion" },
+        { value: "85%", label: "Error Reduction" },
+        { value: "60s", label: "Avg. Search Time" }
+      ],
+      images: [
+        {
+          src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+          alt: "User testing session showing loan officer workflow validation",
+          caption: "Testing sessions confirmed our automated validation approach significantly reduced processing errors."
+        }
+      ]
+    },
     finalProductSection: {
       title: "The Final Product",
       description: "A comprehensive loan management platform that replaced error-prone Excel workflows with intelligent automation, real-time validation, and transparent audit trails for complete operational confidence.",
@@ -512,6 +577,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 3", imageSrc: "/media/wholesale/ideation-3.jpg", alt: "Third iteration adding routing automation" },
         { label: "Iteration 4", imageSrc: "/media/wholesale/ideation-4.jpg", alt: "Fourth iteration with reconciliation dashboard" },
         { label: "Iteration 5", imageSrc: "/media/wholesale/ideation-5.jpg", alt: "Final iteration with complete pipeline" }
+      ]
+    },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "Testing with distribution teams confirmed our AI-assisted approach eliminated manual errors and dramatically improved processing speed.",
+      eyebrow: "VALIDATION & TESTING",
+      metrics: [
+        { value: "98%", label: "Accuracy Rate" },
+        { value: "95%", label: "Less Manual Work" },
+        { value: "10s", label: "Order Processing" }
+      ],
+      images: [
+        {
+          src: "/placeholder.svg",
+          alt: "User testing session showing distribution workflow validation",
+          caption: "Testing confirmed our automation approach eliminated manual Excel processes entirely."
+        }
       ]
     },
     finalProductSection: {
@@ -643,6 +725,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 3", imageSrc: "/media/biz/ideation-3.jpg", alt: "Third iteration adding invoice workflow" },
         { label: "Iteration 4", imageSrc: "/media/biz/ideation-4.jpg", alt: "Fourth iteration with scheduling integration" },
         { label: "Iteration 5", imageSrc: "/media/biz/ideation-5.jpg", alt: "Final iteration with unified operations" }
+      ]
+    },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "Testing with small business owners validated our unified platform approach and revealed key workflow improvements for daily operations.",
+      eyebrow: "VALIDATION & TESTING",
+      metrics: [
+        { value: "90%", label: "User Satisfaction" },
+        { value: "68%", label: "Fewer Errors" },
+        { value: "5min", label: "Daily Setup" }
+      ],
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+          alt: "User testing session showing business management workflow validation",
+          caption: "Testing sessions confirmed our unified approach significantly improved daily operations efficiency."
+        }
       ]
     },
     finalProductSection: {
