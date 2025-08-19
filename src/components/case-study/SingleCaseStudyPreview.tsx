@@ -151,73 +151,86 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
 
   return (
     <section 
-      className="section-container py-16 md:py-24 section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)]"
+      className="w-full py-24 md:py-32 section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-gradient-to-b from-background to-muted/20"
       data-section="more-work"
     >
-      <div className="content-rail-center mb-12">
-        <h2 className="section-title">More Work</h2>
-        <p className="section-description">
-          Explore another project from my portfolio
-        </p>
+      {/* Hero-style header - full width */}
+      <div className="w-full text-center mb-16 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            More Work
+          </h2>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            Explore another project from my portfolio
+          </p>
+        </motion.div>
       </div>
 
+      {/* Hero-style content block */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative py-12 lg:py-16"
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="w-full max-w-7xl mx-auto px-6 overflow-hidden"
       >
-        {/* Mobile Layout: Stacked */}
-        <div className="lg:hidden">
+        {/* Mobile Layout: Hero-style Stacked */}
+        <div className="lg:hidden bg-card rounded-2xl overflow-hidden shadow-lg">
           {/* Image Section - Full Width on Mobile */}
-          <div className="relative bg-gray-50 p-6 min-h-[240px] flex items-center">
-            {renderMedia()}
+          <div className="relative min-h-[320px] flex items-center justify-center bg-muted/30">
+            <div className="w-full h-full">
+              {renderMedia()}
+            </div>
           </div>
 
           {/* Content Section */}
-          <div className="bg-gray-50 p-8 space-y-6">
+          <div className="p-8 space-y-6">
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
               {relatedStudy.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                <Badge key={tag} variant="secondary" className="text-sm font-medium rounded-full px-4 py-2">
                   #{tag}
                 </Badge>
               ))}
             </div>
 
             {/* Title */}
-            <h3 className="text-2xl font-bold text-gray-900 leading-tight break-words">
+            <h3 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
               {relatedStudy.title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-600 text-lg leading-relaxed break-words">
+            <p className="text-muted-foreground text-lg leading-relaxed">
               {relatedStudy.description}
             </p>
 
             {/* Impact Metrics */}
-            <div className="text-2xl font-bold text-primary">
+            <div className="text-3xl font-bold text-primary">
               {relatedStudy.impact}
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-row gap-3 pt-2">
-              <Button asChild variant="outline" className="flex-1">
+            <div className="flex flex-col gap-4 pt-4">
+              <Button asChild size="lg" className="w-full">
                 <Link to={relatedStudy.url}>
                   View Case Study
                 </Link>
               </Button>
               {relatedStudy.liveUrl && (
-                <Button asChild variant="outline" className="flex-1">
+                <Button asChild variant="outline" size="lg" className="w-full">
                   <a 
                     href={relatedStudy.liveUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2"
                   >
-                    View Live
-                    <ArrowRight className="w-4 h-4" />
+                    View Live Project
+                    <ArrowRight className="w-5 h-5" />
                   </a>
                 </Button>
               )}
@@ -225,72 +238,65 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
           </div>
         </div>
 
-        {/* Desktop Layout: Flexible Image-Heavy Split */}
-        <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 items-center
-                        [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
-                        2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
-          
-          {/* Images Section */}
-          <div className="relative bg-gray-50 p-4 xl:p-5 2xl:p-6 flex items-center" 
-               style={{ marginRight: '-24px' }}>
-            <div className="w-full min-h-[480px] xl:min-h-[520px] 2xl:min-h-[560px] flex items-center justify-center">
-              {renderMedia()}
-            </div>
-          </div>
-
-          {/* Content Section */}
-          <div className="bg-gray-50 flex flex-col justify-center p-6 xl:p-7 min-w-0" 
-               style={{ 
-                 paddingLeft: '24px',
-                 paddingRight: '24px',
-                 wordWrap: 'break-word',
-                 whiteSpace: 'normal'
-               }}>
-            <div className="w-full max-w-[600px] space-y-4 break-words">
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-3">
-                {relatedStudy.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
-                    #{tag}
-                  </Badge>
-                ))}
+        {/* Desktop Layout: Hero-style Side-by-Side */}
+        <div className="hidden lg:block">
+          <div className="bg-card rounded-3xl overflow-hidden shadow-xl">
+            <div className="grid lg:grid-cols-2 items-center min-h-[600px]">
+              
+              {/* Images Section */}
+              <div className="relative h-full min-h-[600px] bg-muted/30 flex items-center justify-center p-8">
+                <div className="w-full h-full flex items-center justify-center">
+                  {renderMedia()}
+                </div>
               </div>
 
-              {/* Title */}
-              <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere">
-                {relatedStudy.title}
-              </h3>
+              {/* Content Section */}
+              <div className="p-12 lg:p-16 space-y-8">
+                {/* Tags */}
+                <div className="flex flex-wrap gap-3">
+                  {relatedStudy.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary" className="text-sm font-medium rounded-full px-4 py-2">
+                      #{tag}
+                    </Badge>
+                  ))}
+                </div>
 
-              {/* Description */}
-              <p className="text-gray-600 text-lg leading-relaxed mb-4 break-words overflow-wrap-anywhere">
-                {relatedStudy.description}
-              </p>
+                {/* Title */}
+                <h3 className="text-4xl xl:text-5xl font-bold text-foreground leading-tight">
+                  {relatedStudy.title}
+                </h3>
 
-              {/* Impact Metrics */}
-              <div className="text-2xl font-bold text-primary mb-6">
-                {relatedStudy.impact}
-              </div>
+                {/* Description */}
+                <p className="text-muted-foreground text-xl leading-relaxed">
+                  {relatedStudy.description}
+                </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <Button asChild variant="outline" className="flex-1 sm:flex-none">
-                  <Link to={relatedStudy.url}>
-                    View Case Study
-                  </Link>
-                </Button>
-                {relatedStudy.liveUrl && (
-                  <Button asChild variant="outline" className="flex-1 sm:flex-none">
-                    <a 
-                      href={relatedStudy.liveUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      View Live
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
+                {/* Impact Metrics */}
+                <div className="text-4xl xl:text-5xl font-bold text-primary">
+                  {relatedStudy.impact}
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <Button asChild size="lg" className="text-lg px-8 py-3">
+                    <Link to={relatedStudy.url}>
+                      View Case Study
+                    </Link>
                   </Button>
-                )}
+                  {relatedStudy.liveUrl && (
+                    <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
+                      <a 
+                        href={relatedStudy.liveUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        View Live Project
+                        <ArrowRight className="w-5 h-5" />
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
