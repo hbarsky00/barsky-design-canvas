@@ -55,6 +55,8 @@ export interface StructuredCaseStudyData {
   }[];
   ideationSection?: IdeationSection;
   myThoughtProcessSection?: {
+    eyebrow: string;
+    title: string;
     content: string;
     images?: Array<{
       src: string;
@@ -79,12 +81,7 @@ export interface StructuredCaseStudyData {
   whatDidntWorkSection?: {
     eyebrow: string;
     title: string;
-    description: string;
-    metrics?: Array<{
-      label: string;
-      value: string;
-      description?: string;
-    }>;
+    content: string;
     images?: Array<{
       src: string;
       alt: string;
@@ -195,6 +192,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
+      eyebrow: "Process",
+      title: "My Thought Process",
       content: "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
       images: [
         {
@@ -255,9 +254,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     whatDidntWorkSection: {
-      title: "What Didn't Work",
-      description: "Early prototypes focused too heavily on complex categorization systems and overwhelming information architecture. Users needed simple, guided discovery rather than comprehensive databases.",
-      eyebrow: "LESSONS LEARNED",
+      eyebrow: "What Didn't Work",
+      title: "Lessons Learned",
+      content: "Early prototypes focused too heavily on complex categorization systems and overwhelming information architecture. Users needed simple, guided discovery rather than comprehensive databases.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
@@ -385,21 +384,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       ]
     },
-    sections: [
-      {
-        id: "my-thought-process",
-        title: "My Thought Process",
-        icon: Sparkles,
-        variant: "solution",
-        content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better.",
-        media: {
-          type: 'image',
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-user-flow.png",
-          alt: "Splittime user flow diagram showing communication patterns",
-          caption: "User flow focused on conflict reduction and neutral communication."
-        }
-      }
-    ],
+    myThoughtProcessSection: {
+      eyebrow: "Process",
+      title: "My Thought Process",
+      content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better."
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Learning from Setbacks",
+      content: "Initially, I tried to include too many features in the scheduling interface, which made it overwhelming for users. I learned to prioritize core functionality and gradually introduce advanced features based on user feedback."
+    },
+    sections: [],
     seoData: {
       image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
       projectName: "Splittime App",
@@ -518,36 +513,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       ]
     },
-    sections: [
-      {
-        id: "before-vs-after",
-        title: "Before vs. After",
-        icon: Target,
-        variant: "solution",
-        eyebrow: "TRANSFORMATION",
-        content:
-          "Excel System → New Platform:\n- Manual entry, frequent errors → Automated workflows with validation\n- No collaboration → In-app commenting and shared loan orders\n- Flat spreadsheets → Card + table views with live syncing\n- No audit history → Full visual audit logs\n- No search → AI-powered predictive search",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
-          alt: "User workflow",
-          caption: "Streamlined end-to-end workflow across roles."
-        }
-      },
-      {
-        id: "my-thought-process",
-        title: "My Thought Process", 
-        icon: Sparkles,
-        variant: "solution",
-        content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces.",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/investor-loan-thought-process.png",
-          alt: "Investor loan app workflow mapping and process analysis",
-          caption: "Process mapping revealed automation opportunities and error reduction points."
-        }
-      }
-    ],
+    myThoughtProcessSection: {
+      eyebrow: "Process",
+      title: "My Thought Process",
+      content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces."
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Learning from Challenges",
+      content: "Excel System → New Platform: Manual entry, frequent errors → Automated workflows with validation. No collaboration → In-app commenting and shared loan orders. Flat spreadsheets → Card + table views with live syncing. No audit history → Full visual audit logs. No search → AI-powered predictive search."
+    },
+    sections: [],
     seoData: {
       image: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
       projectName: "Investor Loan App",
@@ -639,36 +615,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       ]
     },
-    sections: [
-      {
-        id: "the-problem",
-        title: "The Problem",
-        icon: AlertTriangle,
-        variant: "problem",
-        eyebrow: "CHALLENGE",
-        content: "Teams managed 200+ weekly orders in Excel, leading to 15% errors, slow reconciliation, and risk to key accounts.",
-        media: {
-          type: 'image',
-          src: "/placeholder.svg",
-          alt: "Manual order tracking in spreadsheets",
-          caption: "Excel-based operations caused avoidable errors and delays."
-        }
-      },
-      {
-        id: "my-thought-process",
-        title: "My Thought Process",
-        icon: Sparkles,
-        variant: "solution",
-        content: "I treated this as a systems transformation, not just a digital upgrade. By shadowing operations teams and mapping their workflows end-to-end, I identified where manual processes created bottlenecks and errors. The solution focused on intelligent automation and data pipelines that eliminated repetitive work while maintaining accuracy.",
-        media: {
-          type: 'image',
-          src: "/wholesale-thought-process.png",
-          alt: "Wholesale distribution workflow analysis and automation points",
-          caption: "End-to-end process mapping revealed automation opportunities across the entire distribution pipeline."
-        },
-        tags: ["ProcessDesign", "Automation", "DataPipelines", "AIEnablement"]
-      }
-    ],
+    myThoughtProcessSection: {
+      eyebrow: "Process",
+      title: "My Thought Process",
+      content: "I treated this as a systems transformation, not just a digital upgrade. By shadowing operations teams and mapping their workflows end-to-end, I identified where manual processes created bottlenecks and errors. The solution focused on intelligent automation and data pipelines that eliminated repetitive work while maintaining accuracy."
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Overcoming Challenges",
+      content: "Teams managed 200+ weekly orders in Excel, leading to 15% errors, slow reconciliation, and risk to key accounts. Excel-based operations caused avoidable errors and delays."
+    },
+    sections: [],
     seoData: {
       image: "/placeholder.svg",
       projectName: "Wholesale Distribution",
@@ -787,21 +744,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       ]
     },
-    sections: [
-      {
-        id: "my-thought-process",
-        title: "My Thought Process",
-        icon: Sparkles,
-        variant: "solution",
-        content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner.",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-          alt: "Business management system design thinking and operational focus",
-          caption: "Unified platform designed around real business workflows and pain points."
-        }
-      }
-    ],
+    myThoughtProcessSection: {
+      eyebrow: "Process",
+      title: "My Thought Process",
+      content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner."
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Lessons Learned",
+      content: "Initially, we tried to create too many customization options, which overwhelmed users. We learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners."
+    },
+    sections: [],
     seoData: {
       image: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
       projectName: "Business Management System",

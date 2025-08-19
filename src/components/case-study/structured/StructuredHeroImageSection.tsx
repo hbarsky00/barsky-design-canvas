@@ -35,7 +35,7 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
           style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
           {heroAsImage && caseStudyData.seoData?.image ? (
-            <div className="relative w-full rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative w-full rounded-lg overflow-hidden">
               <img 
                 src={caseStudyData.seoData.image} 
                 alt={caseStudyData.title}
