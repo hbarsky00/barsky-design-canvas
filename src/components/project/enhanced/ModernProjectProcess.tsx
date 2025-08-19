@@ -25,7 +25,7 @@ const ModernProjectProcess: React.FC<ModernProjectProcessProps> = ({
       className="space-y-8"
     >
       <div className="max-w-3xl">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-base md:text-2xl lg:text-3xl font-medium md:font-semibold lg:font-bold text-gray-900 mb-6">
           The Process
         </h2>
         <div className="prose prose-lg text-gray-600 leading-relaxed">
