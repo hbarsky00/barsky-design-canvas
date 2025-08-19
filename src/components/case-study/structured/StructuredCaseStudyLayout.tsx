@@ -274,7 +274,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="text-center p-6 bg-white rounded-lg shadow-sm border border-border/20"
                     >
-                      <div className="text-3xl font-bold text-primary mb-2">
+                      <div className="text-3xl font-semibold text-primary mb-2">
                         {metric.value}
                       </div>
                       <div className="text-sm text-muted-foreground">
