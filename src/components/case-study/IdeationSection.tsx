@@ -37,7 +37,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
 
         {/* Iterations gallery */}
         <div className="mt-10 md:mt-14 rounded-[24px] bg-neutral-50 p-6 md:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 overflow-x-auto md:overflow-x-visible snap-x md:snap-none snap-mandatory -mx-5 px-5 md:mx-0 md:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 overflow-x-auto md:overflow-x-visible snap-x md:snap-none snap-mandatory -mx-5 px-5 md:mx-0 md:px-0">
             {ideationData.iterations.slice(0, 4).map((iteration, index) => (
               <div key={index} className="snap-start min-w-[72%] md:min-w-0">
                 <div className="text-[11px] tracking-widest uppercase text-neutral-500 mb-3">

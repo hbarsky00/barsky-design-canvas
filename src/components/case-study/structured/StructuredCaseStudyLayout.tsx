@@ -235,7 +235,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   {(() => {
                     const finalProductImages = getSectionImages("final-product");
                     return (
-                      <div className="grid md:grid-cols-2 gap-8 mb-6">
+                      <div className="grid lg:grid-cols-2 gap-8 mb-6">
                         <div className="space-y-4">
                           <img 
                             src={finalProductImages[0]?.src || "https://barskyux.com/wp-content/uploads/2025/08/finalproduct1.jpg"} 
