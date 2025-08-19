@@ -58,7 +58,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
     ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
     ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
-    ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : [])
+    ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
+    { label: "More Work", anchor: "#more-work" }
   ];
 
   // Build sections for keyboard navigation in correct order
@@ -77,6 +78,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.userTestingSection ? [{ id: 'user-testing', title: 'Validation & Testing' }] : []),
       ...(caseStudyData.finalProductSection ? [{ id: 'the-final-product', title: 'The Result' }] : []),
       ...(caseStudyData.outcomeSection ? [{ id: 'outcome-results', title: 'Outcome & Impact' }] : []),
+      { id: 'more-work', title: 'More Work' },
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
