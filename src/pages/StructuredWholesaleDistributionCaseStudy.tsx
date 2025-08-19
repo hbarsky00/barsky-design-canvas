@@ -10,6 +10,7 @@ const StructuredWholesaleDistributionCaseStudy: React.FC = () => {
   return (
     <StructuredCaseStudyLayout
       caseStudyData={caseStudyData}
+      heroAsImage={true}
     />
   );
 };
