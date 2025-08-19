@@ -33,7 +33,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
       <div className="section-container">
         {/* Header - Centered above grid */}
         <div className="text-center mb-8 sm:mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-eyebrow header-spacing min-touch">
+          <div className="inline-flex px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 text-eyebrow header-spacing min-touch">
             RESEARCH
           </div>
           <h2 className="text-section-title text-foreground mb-4 content-rail-center">
