@@ -50,14 +50,14 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Mobile Layout: Stacked */}
         {isMobile ? (
-          <div className="space-y-6">
+          <div className="space-y-5">
             {/* Text Content */}
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-left px-2"
+              className="text-left"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <h1 className="text-hero-h1 text-foreground mb-3 leading-tight">
@@ -68,7 +68,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                 {caseStudyData.description}
               </p>
               
-              <div className="flex flex-wrap gap-1.5 mb-4">
+              <div className="flex flex-wrap gap-2 mb-5">
                  {caseStudyData.tags.map((tag) => (
                    <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-xs">
                      {tag}
@@ -77,7 +77,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               </div>
 
                {caseStudyData.projectLink && (
-                 <div className="max-w-full">
+                 <div className="max-w-xs">
                    <ProjectActionsCompact 
                      liveUrl={caseStudyData.projectLink}
                      projectTitle={caseStudyData.title}
