@@ -52,9 +52,13 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
 
         {/* Iterations Gallery */}
         <div className="mt-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {ideationData.iterations.slice(0, 4).map((iteration, index) => (
-              <div key={index}>
+              <div 
+                key={index}
+                className="section-snap scroll-mt-[calc(var(--header-height,64px)+2rem)] py-4"
+                data-section={`iteration-${index + 1}`}
+              >
                 <div className="text-xs tracking-widest uppercase text-neutral-500 mb-3 font-medium">
                   {iteration.label}
                 </div>

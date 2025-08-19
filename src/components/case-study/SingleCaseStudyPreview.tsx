@@ -150,7 +150,10 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
   };
 
   return (
-    <section className="section-container py-16 md:py-24 scroll-mt-20">
+    <section 
+      className="section-container py-16 md:py-24 section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)]"
+      data-section="more-work"
+    >
       <div className="content-rail-center mb-12">
         <h2 className="section-title">More Work</h2>
         <p className="section-description">
