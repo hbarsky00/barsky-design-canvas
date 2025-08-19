@@ -40,7 +40,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       )}
       
       {title && !Icon && (
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-left lg:text-center mx-auto max-w-5xl [text-wrap:balance] mb-4">{title}</h2>
+        <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold md:font-bold text-left lg:text-center mx-auto max-w-5xl [text-wrap:balance] mb-4">{title}</h2>
       )}
       
       {content && (
