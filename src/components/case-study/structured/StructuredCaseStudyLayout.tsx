@@ -47,6 +47,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
   // Create navigation items from sections in correct order
   const navigationItems = [
+    { label: "Hero", anchor: "#hero" },
     { label: "Overview", anchor: "#overview" },
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
@@ -69,6 +70,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   // Build sections for keyboard navigation in correct order
   const keyboardSections = React.useMemo(() => {
     const navSections = [
+      { id: 'hero', title: 'Hero' },
       { id: 'overview', title: 'Overview' },
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),

@@ -42,7 +42,9 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
 
   return (
     <section 
-      className="w-full bg-white py-8 md:py-12 lg:py-16" 
+      id="hero"
+      data-section="hero"
+      className="section-snap w-full bg-white py-8 md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]" 
       style={{ perspective: "1000px" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
