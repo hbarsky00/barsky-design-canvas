@@ -60,11 +60,11 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               className="text-left w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="hero-title-mobile text-foreground mb-3 w-full">
+              <h1 className="text-hero-h1 text-foreground mb-3 w-full">
                 {caseStudyData.title}
               </h1>
               
-              <p className="hero-subtitle-mobile text-muted-foreground mb-4 w-full">
+              <p className="text-lg text-muted-foreground mb-4 w-full">
                 {caseStudyData.description}
               </p>
               
