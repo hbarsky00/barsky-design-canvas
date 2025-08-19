@@ -364,7 +364,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
               {/* Display dynamic metrics */}
               {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-8">
                   {caseStudyData.outcomeSection.metrics.map((metric, index) => (
                     <motion.div
                       key={index}
@@ -372,12 +372,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="text-center p-6 bg-white rounded-lg shadow-sm border border-border/20"
+                      className="h-full bg-white border border-neutral-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
                     >
                       <div className="text-3xl font-bold text-primary mb-2">
                         {metric.value}
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-sm text-neutral-700">
                         {metric.label}
                       </div>
                     </motion.div>

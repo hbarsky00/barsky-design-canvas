@@ -55,24 +55,22 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({
         )}
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
         {metrics.map((metric, index) => (
           <div 
             key={index} 
-            className={`border rounded-lg p-6 ${getCategoryColor(metric.category)}`}
+            className="h-full bg-white border border-neutral-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center space-x-3">
-                <div>
-                  {getCategoryIcon(metric.category)}
-                </div>
-                <h4 className="font-semibold text-gray-900 leading-tight">{metric.label}</h4>
+            <div className="flex items-center space-x-3 mb-4">
+              <div>
+                {getCategoryIcon(metric.category)}
               </div>
+              <h4 className="font-semibold text-gray-900 leading-tight">{metric.label}</h4>
             </div>
             
             <div className="space-y-2">
               <div className="text-3xl font-bold text-gray-900">{metric.value}</div>
-              <div className="text-lg font-medium text-green-700">{metric.improvement}</div>
+              <div className="text-lg font-medium text-neutral-700">{metric.improvement}</div>
             </div>
           </div>
         ))}
