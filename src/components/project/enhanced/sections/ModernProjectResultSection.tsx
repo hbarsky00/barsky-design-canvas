@@ -29,13 +29,17 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
 
   return (
     <motion.section
+      id="result"
+      data-section="result"
+      aria-labelledby="result-heading"
       key={`result-${componentKey}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8"
+      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
     >
+      <h2 id="result-heading" className="sr-only">Result Section</h2>
       <h2 className="text-3xl font-bold text-gray-900 mb-6 lg:mb-8 pt-2.5">
         The Result
       </h2>

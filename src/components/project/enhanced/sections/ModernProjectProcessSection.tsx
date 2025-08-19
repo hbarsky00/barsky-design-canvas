@@ -63,13 +63,17 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
 
   return (
     <motion.section
+      id="process"
+      data-section="process"
+      aria-labelledby="process-heading"
       key={`process-${componentKey}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.2 }}
-      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8"
+      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
     >
+      <h2 id="process-heading" className="sr-only">Process Section</h2>
       <EnhancedContentEditor
         content="What I Did"
         contentType="header"

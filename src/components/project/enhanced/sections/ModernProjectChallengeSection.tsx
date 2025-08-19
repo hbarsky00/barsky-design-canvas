@@ -54,13 +54,17 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
 
   return (
     <motion.section
+      id="challenge"
+      data-section="challenge"
+      aria-labelledby="challenge-heading"
       key={`challenge-${componentKey}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8"
+      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
     >
+      <h2 id="challenge-heading" className="sr-only">Challenge Section</h2>
       <EnhancedContentEditor
         content="The Challenge"
         contentType="header"

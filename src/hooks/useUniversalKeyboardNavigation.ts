@@ -64,7 +64,7 @@ export const useUniversalKeyboardNavigation = () => {
   const getHeaderOffset = useCallback(() => {
     const rootStyles = getComputedStyle(document.documentElement);
     const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
-    return headerHeight + 8;
+    return headerHeight + 16;
   }, []);
 
   const scrollToSection = useCallback((index: number) => {
