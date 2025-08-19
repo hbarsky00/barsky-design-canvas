@@ -44,48 +44,48 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full bg-white py-8 md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]" 
+      className="section-snap w-full bg-white py-6 md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]" 
       style={{ perspective: "1000px" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Mobile Layout: Stacked */}
         {isMobile ? (
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Text Content */}
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center"
+              className="text-left px-2"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="text-hero-h1 text-foreground mb-4">
+              <h1 className="text-hero-h1 text-foreground mb-3 leading-tight">
                 {caseStudyData.title}
               </h1>
               
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-base leading-relaxed text-muted-foreground mb-4">
                 {caseStudyData.description}
               </p>
               
-              <div className="flex flex-wrap justify-center gap-2 mb-6">
-                {caseStudyData.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="px-3 py-1">
-                    {tag}
-                  </Badge>
-                ))}
+              <div className="flex flex-wrap gap-1.5 mb-4">
+                 {caseStudyData.tags.map((tag) => (
+                   <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-xs">
+                     {tag}
+                   </Badge>
+                 ))}
               </div>
 
-              {caseStudyData.projectLink && (
-                <div className="max-w-sm mx-auto">
-                  <ProjectActionsCompact 
-                    liveUrl={caseStudyData.projectLink}
-                    projectTitle={caseStudyData.title}
-                    projectDescription={caseStudyData.description}
-                    projectPageUrl={getCanonicalUrl(location.pathname)}
-                  />
-                </div>
-              )}
+               {caseStudyData.projectLink && (
+                 <div className="max-w-full">
+                   <ProjectActionsCompact 
+                     liveUrl={caseStudyData.projectLink}
+                     projectTitle={caseStudyData.title}
+                     projectDescription={caseStudyData.description}
+                     projectPageUrl={getCanonicalUrl(location.pathname)}
+                   />
+                 </div>
+               )}
             </motion.div>
 
             {/* Media Content */}
