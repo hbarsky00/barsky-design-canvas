@@ -10,6 +10,7 @@ import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavi
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
+import StructuredHeroImageSection from "./StructuredHeroImageSection";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
 import ProblemCallout from "../ProblemCallout";
@@ -17,6 +18,7 @@ import KeyInsightsRow from "../KeyInsightsRow";
 import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
 import IdeationSection from "../IdeationSection";
 import MyThoughtProcessSection from "../MyThoughtProcessSection";
+import WhatDidntWorkSection from "../WhatDidntWorkSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { Badge } from "@/components/ui/badge";
@@ -43,49 +45,39 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ? window.location.href 
     : `https://barskydesign.pro${caseStudyData.seoData?.path || ''}`;
 
-  // Create navigation items from sections
+  // Create navigation items from sections in correct order
   const navigationItems = [
+    { label: "Hero Image", anchor: "#hero-image" },
     { label: "Overview", anchor: "#overview" },
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
     ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
-    ...caseStudyData.sections
-      .filter(section => section.id !== "final-product" && section.id !== "outcome")
-      .map(section => ({
-        label: section.title,
-        anchor: `#${section.id}`
-      })),
     ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
     ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
-    ...(caseStudyData.userTestingSection ? [{ label: "User Testing", anchor: "#user-testing" }] : []),
-    ...(caseStudyData.finalProductSection ? [{ label: caseStudyData.finalProductSection.title, anchor: "#the-final-product" }] : []),
-    ...(caseStudyData.outcomeSection ? [{ label: caseStudyData.outcomeSection.title, anchor: "#outcome-results" }] : [])
+    ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
+    ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
+    ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : [])
   ];
 
-  // Build sections for keyboard navigation
+  // Build sections for keyboard navigation in correct order
   const keyboardSections = React.useMemo(() => {
     const navSections = [
+      { id: 'hero-image', title: 'Hero Image' },
       { id: 'overview', title: 'Overview' },
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
       ...(caseStudyData.myThoughtProcessSection ? [{ id: 'my-thought-process', title: 'My Thought Process' }] : []),
-      ...caseStudyData.sections
-        .filter(section => section.id !== "final-product" && section.id !== "outcome")
-        .map(section => ({
-          id: section.id,
-          title: section.title
-        })),
       ...(caseStudyData.ideationSection ? [{ id: 'ideation', title: 'Ideation' }] : []),
       ...(caseStudyData.whatDidntWorkSection ? [{ id: 'what-didnt-work', title: 'What Didn\'t Work' }] : []),
-      ...(caseStudyData.userTestingSection ? [{ id: 'user-testing', title: 'User Testing' }] : []),
-      ...(caseStudyData.finalProductSection ? [{ id: 'the-final-product', title: caseStudyData.finalProductSection.title }] : []),
-      ...(caseStudyData.outcomeSection ? [{ id: 'outcome-results', title: caseStudyData.outcomeSection.title }] : []),
+      ...(caseStudyData.userTestingSection ? [{ id: 'user-testing', title: 'Validation & Testing' }] : []),
+      ...(caseStudyData.finalProductSection ? [{ id: 'the-final-product', title: 'The Result' }] : []),
+      ...(caseStudyData.outcomeSection ? [{ id: 'outcome-results', title: 'Outcome & Impact' }] : []),
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
-  }, [caseStudyData.sections, caseStudyData.problemCallout, caseStudyData.researchSection, caseStudyData.finalProductSection, caseStudyData.outcomeSection, caseStudyData.userTestingSection]);
+  }, [caseStudyData.researchSection, caseStudyData.problemCallout, caseStudyData.keyInsights, caseStudyData.myThoughtProcessSection, caseStudyData.ideationSection, caseStudyData.whatDidntWorkSection, caseStudyData.userTestingSection, caseStudyData.finalProductSection, caseStudyData.outcomeSection]);
 
   // Add keyboard navigation
   const keyboardNav = useCaseStudyKeyboardNavigation(keyboardSections);
@@ -116,13 +108,19 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <div className="section-container pt-[calc(var(--header-height,64px)+12px)]">
-          {/* Hero Section */}
+          {/* Hero Text Section */}
           <div className="mb-12">
             <StructuredCaseStudyHero 
               caseStudyData={caseStudyData}
-              heroAsImage={heroAsImage}
+              heroAsImage={false}
             />
           </div>
+
+          {/* Hero Image Section */}
+          <StructuredHeroImageSection 
+            caseStudyData={caseStudyData}
+            heroAsImage={heroAsImage}
+          />
 
           {/* Overview Section */}
           <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
@@ -159,85 +157,21 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </section>
           )}
 
-          {/* Dynamic Sections from case study data - My Thought Process appears before Ideation */}
-          {caseStudyData.sections
-            .filter(section => section.id !== "final-product" && section.id !== "outcome")
-            .map((section) => {
-            // Special handling for "my-thought-process" sections to use the clean design
-            if (section.id === "my-thought-process") {
-              return (
-                <section 
-                  key={section.id}
-                  id={section.id} 
-                  data-section={section.id} 
-                  aria-labelledby={`${section.id}-heading`} 
-                  className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
-                >
-                  <h2 id={`${section.id}-heading`} className="sr-only">{section.title} Section</h2>
-                  <MyThoughtProcessSection 
-                    content={section.content}
-                    images={section.media ? [{
-                      src: section.media.src,
-                      alt: section.media.alt,
-                      caption: section.media.caption
-                    }] : section.images || []}
-                  />
-                </section>
-              );
-            }
-            
-            // Check if section has eyebrow and should use centered header style
-            if (section.eyebrow) {
-              return (
-                <motion.section
-                  key={section.id}
-                  id={section.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="mb-12 text-center scroll-mt-[calc(var(--header-height,64px)+1rem)]"
-                >
-                  <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-eyebrow text-primary header-spacing">
-                    {section.eyebrow}
-                  </div>
-                  <h2 className="text-section-title text-foreground content-rail-center">
-                    {section.title}
-                  </h2>
-                  <div className="content-rail">
-                    <StructuredCaseStudySection
-                      key={`${section.id}-content`}
-                      id={`${section.id}-content`}
-                      title="" // Remove title since we render it above
-                      icon={section.icon}
-                      variant={section.variant}
-                      content={section.content}
-                      media={section.media}
-                      images={section.images}
-                      metrics={section.metrics}
-                      tags={section.tags}
-                    />
-                  </div>
-                </motion.section>
-              );
-            }
-            
-            // All other sections use the standard card-based layout
-            return (
-              <StructuredCaseStudySection
-                key={section.id}
-                id={section.id}
-                title={section.title}
-                icon={section.icon}
-                variant={section.variant}
-                content={section.content}
-                media={section.media}
-                images={section.images}
-                metrics={section.metrics}
-                tags={section.tags}
+          {/* My Thought Process Section */}
+          {caseStudyData.myThoughtProcessSection && (
+            <section 
+              id="my-thought-process" 
+              data-section="my-thought-process" 
+              aria-labelledby="my-thought-process-heading" 
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+            >
+              <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
+              <MyThoughtProcessSection 
+                content={caseStudyData.myThoughtProcessSection.content}
+                images={caseStudyData.myThoughtProcessSection.images || []}
               />
-            );
-          })}
+            </section>
+          )}
 
           {/* Ideation Section - Full width band - Now appears after My Thought Process */}
           {caseStudyData.ideationSection && (
@@ -249,65 +183,16 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          {/* What Didn't Work Section - After Ideation with same styling as Outcome */}
+          {/* What Didn't Work Section */}
           {caseStudyData.whatDidntWorkSection && (
-            <section id="what-didnt-work" className="section-snap section-spacing scroll-mt-24">
-              <div className="section-container">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="space-y-8"
-                >
-                  <div className="space-y-4 text-center">
-                    <div className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-eyebrow text-amber-700 header-spacing">
-                      {caseStudyData.whatDidntWorkSection.eyebrow}
-                    </div>
-                    <h2 className="text-section-title content-rail-center">
-                      {caseStudyData.whatDidntWorkSection.title}
-                    </h2>
-                    <p className="text-lg md:text-xl text-neutral-600 content-spacing content-rail-center">
-                      {caseStudyData.whatDidntWorkSection.description}
-                    </p>
-                  </div>
-
-                  {caseStudyData.whatDidntWorkSection.metrics && caseStudyData.whatDidntWorkSection.metrics.length > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
-                      {caseStudyData.whatDidntWorkSection.metrics.map((metric, index) => (
-                        <div key={index} className="space-y-2">
-                          <div className="text-3xl md:text-4xl font-bold text-amber-600">
-                            {metric.value}
-                          </div>
-                          <div className="text-sm font-medium text-neutral-900">
-                            {metric.label}
-                          </div>
-                          {metric.description && (
-                            <div className="text-sm text-neutral-600">
-                              {metric.description}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {caseStudyData.whatDidntWorkSection.images && caseStudyData.whatDidntWorkSection.images.length > 0 && (
-                    <div className="space-y-4">
-                      {caseStudyData.whatDidntWorkSection.images.map((image, index) => (
-                        <div key={index}>
-                          <MaximizableImage
-                            src={image.src}
-                            alt={image.alt}
-                            caption={image.caption}
-                            className="w-full rounded-lg"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              </div>
+            <section 
+              id="what-didnt-work" 
+              data-section="what-didnt-work" 
+              aria-labelledby="what-didnt-work-heading" 
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+            >
+              <h2 id="what-didnt-work-heading" className="sr-only">What Didn't Work Section</h2>
+              <WhatDidntWorkSection whatDidntWorkData={caseStudyData.whatDidntWorkSection} />
             </section>
           )}
 

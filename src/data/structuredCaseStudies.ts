@@ -259,30 +259,39 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "HerbaLink early 'Book an Herbalist' concept",
           caption: "Early concept of the ‘Book an Herbalist’ feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach."
         }
-      },
-      {
-        id: "my-thought-process",
-        title: "My Thought Process",
-        icon: Sparkles,
-        variant: "solution",
-        content:
-          "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
-        media: {
-          type: 'image',
+    }
+    ],
+    myThoughtProcessSection: {
+      content: "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
+      images: [
+        {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
           alt: "HerbaLink user flow from onboarding to booking",
           caption: "User flow from onboarding to booking and tracking."
         }
-      },
-    ],
-    seoData: {
-      image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-      projectName: "HerbaLink",
-      results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
-      technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
-      path: "/project/herbalink"
-    }
-  },
+      ]
+    },
+    whatDidntWorkSection: {
+      title: "What Didn't Work",
+      description: "Early prototypes focused too heavily on complex categorization systems and overwhelming information architecture. Users needed simple, guided discovery rather than comprehensive databases.",
+      eyebrow: "LESSONS LEARNED",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
+          alt: "HerbaLink early 'Book an Herbalist' concept",
+          caption: "Early concept of the 'Book an Herbalist' feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach."
+        }
+      ]
+    },
+    sections: [],
+  seoData: {
+    image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
+    projectName: "HerbaLink",
+    results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
+    technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
+    path: "/project/herbalink"
+  }
+},
   "splittime": {
     id: "splittime",
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
