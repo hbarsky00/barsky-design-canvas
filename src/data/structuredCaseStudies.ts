@@ -396,7 +396,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+      image: "/lovable-uploads/50bd9270-0304-4aab-bdc8-c779da2e71b5.png",
       projectName: "Splittime App",
       results: ["Reduced stress and conflict", "Improved coordination and transparency"],
       technologies: ["iOS", "Android", "WebApp"],
