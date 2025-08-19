@@ -16,71 +16,75 @@ interface CaseStudy {
   liveUrl?: string;
   images: {
     primary: string;
+    secondary?: string;
     alt: string;
   };
-  layout: "left" | "right";
+  layout: "side-by-side" | "single-centered" | "web-mobile";
   video?: string;
 }
 
-// Case studies data from homepage
+// Homepage case studies data with actual image URLs
 const caseStudies: CaseStudy[] = [
   {
     id: "herbalink",
-    tags: ["Telehealth", "E-commerce", "UI/UX"],
-    title: "HerbaLink Platform",
-    description: "Complete telehealth platform enabling remote consultations with herbal medicine specialists, featuring secure patient management and prescription tracking.",
-    impact: "300% increase in patient consultations",
+    tags: ["Health", "Marketplace", "Gen AI"],
+    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
+    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
+    impact: "+3x Booking Rate Increase",
     url: "/project/herbalink",
-    liveUrl: "https://herbalink.vercel.app/",
+    liveUrl: "https://herbalink.live",
     images: {
-      primary: "/herbalink-hero.png",
-      alt: "HerbaLink telehealth platform interface"
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
+      secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
+      alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
-    layout: "left",
-    video: "/herbalink-demo.mp4"
+    layout: "side-by-side",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4"
   },
   {
     id: "splittime",
-    tags: ["SaaS", "Scheduling", "Enterprise"],
-    title: "SplitTime Scheduling App",
-    description: "Enterprise scheduling solution that eliminates double-booking conflicts and streamlines team coordination with intelligent calendar management.",
-    impact: "85% reduction in scheduling conflicts",
+    tags: ["Family Tech", "iOS→Android", "Legal UX"],
+    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
+    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
+    impact: "-40% Conflict Reduction",
     url: "/project/splittime",
-    liveUrl: "https://splittime.vercel.app/",
+    liveUrl: "https://splittime.pro",
     images: {
-      primary: "/splittime-hero.png",
-      alt: "SplitTime scheduling application interface"
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png",
+      secondary: "images/desktop-signup-1.png",
+      alt: "SplitTime web and mobile views showing scheduling features"
     },
-    layout: "right",
-    video: "/splittime-demo.mp4"
+    layout: "web-mobile",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
   },
   {
     id: "business-management",
-    tags: ["Enterprise", "Dashboard", "Analytics"],
-    title: "Business Management Dashboard",
-    description: "Comprehensive business intelligence platform providing real-time analytics, performance tracking, and automated reporting for enterprise operations.",
-    impact: "40% improvement in operational efficiency",
+    tags: ["Enterprise", "Analytics", "Dashboard"],
+    title: "68% Fewer Errors: Streamlining Enterprise Operations",
+    description: "Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers.",
+    impact: "-68% Manual Entry Errors",
     url: "/project/business-management",
-    liveUrl: "https://business-mgmt.vercel.app/",
+    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "/business-mgmt-hero.png",
-      alt: "Business management dashboard interface"
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      secondary: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
+      alt: "Business management app showing driver and inventory management"
     },
-    layout: "left"
+    layout: "side-by-side",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runotBezsgewiQ_transition_this_mockup_i_1dfa0b37-ac57-43c8-962d-5270ac3b12b7_0.mp4"
   },
   {
     id: "investor-loan-app",
-    tags: ["FinTech", "Mobile", "Security"],
-    title: "Investor Loan Application",
-    description: "Secure loan application platform for investors, featuring automated document processing, risk assessment, and real-time approval workflows.",
-    impact: "60% faster loan processing",
+    tags: ["FinTech", "Analytics", "WebApp"],
+    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
+    description: "Transformed a chaotic Excel-based loan process into a streamlined digital platform. Built custom analytics dashboards and automated workflows that scaled operations while dramatically reducing manual errors.",
+    impact: "-85% Manual Entry Errors",
     url: "/project/investor-loan-app",
-    liveUrl: "https://investor-loans.vercel.app/",
     images: {
-      primary: "/investor-loan-hero.png",
-      alt: "Investor loan application interface"
+      primary: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+      alt: "Investor loan app showing analytics dashboard and loan management interface"
     },
-    layout: "right"
+    layout: "side-by-side"
   }
 ];
 
