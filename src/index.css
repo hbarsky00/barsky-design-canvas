@@ -395,8 +395,8 @@ body {
   padding-right: max(20px, env(safe-area-inset-right));
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   overflow-x: hidden;
   gap: 16px;
@@ -419,7 +419,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: center;
 }
 
 /* CTA buttons mobile */
