@@ -48,7 +48,14 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   };
   
   return (
-    <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+    <section 
+      id="project-navigation"
+      data-section="project-navigation"
+      className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+      aria-labelledby="navigation-heading"
+    >
+      <h2 id="navigation-heading" className="sr-only">Project Navigation</h2>
+      <div>
       {/* Mobile Layout - Stacked */}
       <div className="flex flex-col gap-4 sm:hidden">
         {prevProject && (
@@ -154,7 +161,8 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </section>
   );
 };
 

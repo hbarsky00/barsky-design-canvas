@@ -14,14 +14,18 @@ const ProjectCallToAction: React.FC = () => {
 
   return (
     <motion.section
+      id="call-to-action"
+      data-section="call-to-action"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="w-full bg-gradient-to-br from-blue-50 to-purple-50 py-16 px-4"
+      className="w-full bg-gradient-to-br from-blue-50 to-purple-50 py-16 px-4 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+      aria-labelledby="cta-heading"
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
+          id="cta-heading"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
