@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
@@ -16,7 +17,7 @@ interface WhatDidntWorkImage {
 
 interface WhatDidntWorkData {
   title: string;
-  description: string;
+  content: string; // Changed from 'description' to 'content' to match data structure
   eyebrow?: string;
   metrics?: WhatDidntWorkMetric[];
   images?: WhatDidntWorkImage[];
@@ -48,7 +49,7 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
       {/* Description */}
       <div className="content-rail-left mb-8">
         <p className="text-lg text-muted-foreground leading-relaxed">
-          {whatDidntWorkData.description}
+          {whatDidntWorkData.content}
         </p>
       </div>
 
