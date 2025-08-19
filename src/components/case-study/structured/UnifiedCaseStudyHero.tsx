@@ -50,25 +50,25 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
         <div className="hero-container">
-          <div className="flex flex-col justify-center gap-4">
+          <div className="flex flex-col justify-center gap-4 w-full max-w-none">
             {/* Text Content */}
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-left"
+              className="text-left w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="hero-title-mobile text-foreground mb-3">
+              <h1 className="hero-title-mobile text-foreground mb-3 w-full">
                 {caseStudyData.title}
               </h1>
               
-              <p className="hero-subtitle-mobile text-muted-foreground mb-4">
+              <p className="hero-subtitle-mobile text-muted-foreground mb-4 w-full">
                 {caseStudyData.description}
               </p>
               
-              <div className="hero-tags mb-5">
+              <div className="hero-tags mb-5 w-full">
                  {caseStudyData.tags.map((tag) => (
                    <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-xs">
                      {tag}
@@ -77,7 +77,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               </div>
 
                {caseStudyData.projectLink && (
-                 <div className="hero-cta-container">
+                 <div className="hero-cta-container w-full">
                    <ProjectActionsCompact 
                      liveUrl={caseStudyData.projectLink}
                      projectTitle={caseStudyData.title}
@@ -94,7 +94,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
+              className="relative w-full"
               style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               {shouldShowVideo && (

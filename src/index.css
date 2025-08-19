@@ -391,10 +391,13 @@ body {
   min-height: calc(100dvh - var(--header-height, 64px));
   padding-top: max(16px, env(safe-area-inset-top));
   padding-bottom: max(24px, env(safe-area-inset-bottom));
-  padding-inline: clamp(16px, 4vw, 24px);
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  overflow-x: hidden;
   gap: 16px;
 }
 
@@ -501,9 +504,17 @@ body {
 .projects-page .projects-wrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 0.5rem;   /* mobile 8px */
-  padding-right: 0.5rem;
+  padding-left: max(16px, env(safe-area-inset-left));   /* Minimum 16px mobile */
+  padding-right: max(16px, env(safe-area-inset-right));
   padding-top: calc(var(--header-height, 64px) + 12px);
+}
+
+/* Hero sections should override project page padding */
+.projects-page #hero {
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left)));
+  margin-right: calc(-1 * max(16px, env(safe-area-inset-right)));
+  padding-left: 0;
+  padding-right: 0;
 }
 
 @media (min-width: 640px) {   /* tablet */
