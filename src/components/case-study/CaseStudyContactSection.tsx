@@ -12,10 +12,10 @@ const CaseStudyContactSection: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-gradient-to-br from-primary/5 to-secondary/5 border border-border/50 rounded-lg p-4 md:p-8 mt-16 scroll-mt-24"
+      className="bg-gradient-to-br from-primary/3 to-secondary/3 border border-border/50 rounded-lg p-6 mt-8 scroll-mt-16"
     >
 
-      <motion.div ref={cardRef} style={{ ...containerStyle, transformStyle: "preserve-3d", willChange: "transform" }} className="bg-background/80 backdrop-blur-sm rounded-lg p-4 md:p-6 shadow-sm border border-border/30">
+      <motion.div ref={cardRef} style={{ ...containerStyle, transformStyle: "preserve-3d", willChange: "transform" }} className="bg-background/80 backdrop-blur-sm rounded-lg p-2 shadow-sm border border-border/30">
         <ContactForm />
       </motion.div>
     </motion.section>

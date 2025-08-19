@@ -81,14 +81,15 @@ const ContactForm: React.FC = () => {
   };
   
   return (
-    <section id="contact" className="flex flex-col justify-center py-6 bg-muted/30 relative">
+    <section id="contact" className="flex flex-col justify-center py-4 bg-muted/30 relative">
       <div className="container px-4 mx-auto max-w-4xl">
         <SectionHeader
           as="h2"
           title="Get In Touch"
           subtitle="Ready to start your project? Let's discuss your needs and create something amazing together."
-          titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface"
-          className="mb-12"
+          titleClassName="text-2xl md:text-3xl lg:text-4xl font-bold text-on-surface"
+          subtitleClassName="text-base md:text-lg"
+          className="mb-8"
         />
 
         <div className="max-w-2xl mx-auto">
