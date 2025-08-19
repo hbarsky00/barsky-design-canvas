@@ -44,8 +44,8 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center bg-barsky-bg-light overflow-x-hidden relative">
-      <div className="section-container">
+    <section id="home" className="bg-barsky-bg-light relative">
+      <div className="hero-container md:section-container">
         <div className="max-w-4xl mx-auto text-center md:text-left">
           <div className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'} relative`}>
             {/* Large Hero Logo - Left Aligned */}

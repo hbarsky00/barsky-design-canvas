@@ -369,24 +369,92 @@ select:focus-visible, a:focus-visible,
   }
 }
 
-/* Mobile viewport fixes */
-@supports (height: 100vh) and (height: 100dvh) {
-  .min-h-screen {
-    min-height: 100dvh;
-  }
-}
-
-/* Ensure proper mobile scrolling with snap behavior */
+/* Mobile viewport and safe areas */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
 }
 
-/* Respect reduced motion preference */
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  padding-top: max(0px, env(safe-area-inset-top));
+  padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+/* Hero container with safe area support */
+.hero-container {
+  min-height: calc(100vh - var(--header-height, 64px));
+  min-height: calc(100svh - var(--header-height, 64px));
+  min-height: calc(100dvh - var(--header-height, 64px));
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+  padding-inline: clamp(16px, 4vw, 24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Mobile typography with proper clamps */
+.hero-title-mobile {
+  font-size: clamp(22px, 5.6vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.hero-subtitle-mobile {
+  font-size: clamp(14px, 4vw, 18px);
+  line-height: 1.45;
+}
+
+/* Tags/chips layout */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* CTA buttons mobile */
+.hero-cta-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.hero-cta-container.two-column {
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero-cta-button {
+  width: 100%;
+  min-height: 48px;
+}
+
+/* Social/share icons */
+.hero-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Hero image/mockup */
+.hero-image {
+  width: 100%;
+  object-fit: contain;
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  
+  .section-snap {
     scroll-snap-type: none;
   }
 }

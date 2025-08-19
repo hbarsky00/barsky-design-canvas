@@ -17,8 +17,8 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
   const { containerStyle: textStyle } = useScroll3DTilt(textRef, { maxTilt: 2.5, yDistance: 10, childParallax: 6 });
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
   return (
-    <section className="pt-8 pb-16 bg-gradient-to-br from-background to-muted" style={{ perspective: "1000px" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-gradient-to-br from-background to-muted md:pt-8 md:pb-16" style={{ perspective: "1000px" }}>
+      <div className="hero-container md:max-w-6xl md:mx-auto md:px-4 sm:md:px-6 lg:md:px-8">
         <motion.div
           ref={textRef}
           initial={{ opacity: 0, y: 30 }}

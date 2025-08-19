@@ -44,13 +44,13 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full bg-white py-6 md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]" 
+      className="section-snap w-full bg-white md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]" 
       style={{ perspective: "1000px" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Mobile Layout: Stacked */}
-        {isMobile ? (
-          <div className="space-y-5">
+      {/* Mobile Layout: Full Hero Container */}
+      {isMobile ? (
+        <div className="hero-container">
+          <div className="flex flex-col justify-center gap-4">
             {/* Text Content */}
             <motion.div
               ref={textRef}
@@ -60,15 +60,15 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               className="text-left"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="text-hero-h1 text-foreground mb-3 leading-tight">
+              <h1 className="hero-title-mobile text-foreground mb-3">
                 {caseStudyData.title}
               </h1>
               
-              <p className="text-base leading-relaxed text-muted-foreground mb-4">
+              <p className="hero-subtitle-mobile text-muted-foreground mb-4">
                 {caseStudyData.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-5">
+              <div className="hero-tags mb-5">
                  {caseStudyData.tags.map((tag) => (
                    <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-xs">
                      {tag}
@@ -77,7 +77,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               </div>
 
                {caseStudyData.projectLink && (
-                 <div className="max-w-xs">
+                 <div className="hero-cta-container">
                    <ProjectActionsCompact 
                      liveUrl={caseStudyData.projectLink}
                      projectTitle={caseStudyData.title}
@@ -98,24 +98,30 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               {shouldShowVideo && (
-                <VideoPlayer 
-                  videoSrc={caseStudyData.heroVideo!.src}
-                  thumbnailSrc={caseStudyData.heroVideo!.poster}
-                  title={caseStudyData.title}
-                />
+                <div className="hero-image">
+                  <VideoPlayer 
+                    videoSrc={caseStudyData.heroVideo!.src}
+                    thumbnailSrc={caseStudyData.heroVideo!.poster}
+                    title={caseStudyData.title}
+                  />
+                </div>
               )}
               
               {shouldShowImage && caseStudyData.seoData?.image && (
-                <MaximizableImage
-                  src={caseStudyData.seoData.image}
-                  alt={`${caseStudyData.title} hero image`}
-                  caption={`${caseStudyData.title} project overview`}
-                />
+                <div className="hero-image">
+                  <MaximizableImage
+                    src={caseStudyData.seoData.image}
+                    alt={`${caseStudyData.title} hero image`}
+                    caption={`${caseStudyData.title} project overview`}
+                  />
+                </div>
               )}
             </motion.div>
           </div>
-        ) : (
-          /* Desktop Layout: Two Columns */
+        </div>
+      ) : (
+        /* Desktop Layout: Two Columns */
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             {/* Left Column: Text Content */}
             <motion.div
@@ -180,8 +186,8 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               )}
             </motion.div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 };
