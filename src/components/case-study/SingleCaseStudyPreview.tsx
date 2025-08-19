@@ -150,8 +150,8 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
   };
 
   return (
-    <section className="section-container section-spacing">
-      <div className="content-rail-center mb-8">
+    <section className="section-container py-16 md:py-24 scroll-mt-20">
+      <div className="content-rail-center mb-12">
         <h2 className="section-title">More Work</h2>
         <p className="section-description">
           Explore another project from my portfolio
