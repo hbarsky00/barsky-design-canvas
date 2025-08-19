@@ -16,6 +16,7 @@ import ProblemCallout from "../ProblemCallout";
 import KeyInsightsRow from "../KeyInsightsRow";
 import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
 import IdeationSection from "../IdeationSection";
+import IterationsSection from "../IterationsSection";
 import MyThoughtProcessSection from "../MyThoughtProcessSection";
 import WhatDidntWorkSection from "../WhatDidntWorkSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
@@ -53,7 +54,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...(caseStudyData.ideationSection ? [
       { label: "Ideation", anchor: "#ideation" },
-      { label: "Iterations", anchor: "#iterations" }
+      { label: "Iteration 1", anchor: "#iteration-1" },
+      { label: "Iteration 2", anchor: "#iteration-2" },
+      { label: "Iteration 3", anchor: "#iteration-3" },
+      { label: "Iteration 4", anchor: "#iteration-4" }
     ] : []),
     ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
     ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
@@ -72,7 +76,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.myThoughtProcessSection ? [{ id: 'my-thought-process', title: 'My Thought Process' }] : []),
       ...(caseStudyData.ideationSection ? [
         { id: 'ideation', title: 'Ideation' },
-        { id: 'iterations', title: 'Iterations' }
+        { id: 'iteration-1', title: 'Iteration 1' },
+        { id: 'iteration-2', title: 'Iteration 2' },
+        { id: 'iteration-3', title: 'Iteration 3' },
+        { id: 'iteration-4', title: 'Iteration 4' }
       ] : []),
       ...(caseStudyData.whatDidntWorkSection ? [{ id: 'what-didnt-work', title: 'What Didn\'t Work' }] : []),
       ...(caseStudyData.userTestingSection ? [{ id: 'user-testing', title: 'Validation & Testing' }] : []),
@@ -179,6 +186,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <IdeationSection ideationData={caseStudyData.ideationSection} />
               </section>
             </div>
+          )}
+
+          {/* Individual Iterations Sections */}
+          {caseStudyData.ideationSection && (
+            <IterationsSection iterations={caseStudyData.ideationSection.iterations} />
           )}
 
           {/* What Didn't Work Section */}
