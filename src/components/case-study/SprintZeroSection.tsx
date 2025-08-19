@@ -71,14 +71,14 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
           </div>
 
           {images && images.length > 0 && (
-            <div className="space-y-6 mt-8">
+            <div className="grid md:grid-cols-2 gap-6 mt-8">
               {images.map((image, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
                 >
                   <MaximizableImage
                     src={image.src}

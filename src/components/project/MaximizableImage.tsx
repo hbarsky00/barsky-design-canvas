@@ -145,6 +145,40 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     return url;
   };
 
+  // Handle placeholder images
+  if (currentSrc === "placeholder") {
+    return (
+      <figure 
+        className={`relative group overflow-hidden w-full max-w-full ${className}`} 
+        data-lovable-element="image-container" 
+        data-lovable-editable="image-wrapper"
+        style={aspectRatio ? { aspectRatio } : undefined}
+      >
+        <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+            <h3 className="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4 max-w-md">
+              {alt}
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+              Placeholder — replace with final image
+            </p>
+          </div>
+          <div className="absolute inset-0 opacity-5 bg-gradient-to-r from-transparent via-white to-transparent"></div>
+        </div>
+        {caption && (
+          <EditableCaption 
+            imageSrc={currentSrc} 
+            initialCaption={caption} 
+            projectId={projectId} 
+            variant="default"
+            size="xs"
+            alignment="center"
+          />
+        )}
+      </figure>
+    );
+  }
+
   return (
     <figure 
       className={`relative group overflow-hidden cursor-pointer w-full max-w-full ${className}`} 

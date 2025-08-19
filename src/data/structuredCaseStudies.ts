@@ -188,7 +188,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Sprint Zero: Blue-Sky Thinking",
       workshopKickoff: "I initiated discovery sessions with potential users and herbalists to understand the core friction points. Through design sprints, I framed the problem around trust, safety, and accessibility—not just practitioner availability. This foundation helped establish that matching algorithms needed to prioritize credentials and safety information over proximity alone.",
       explorations: "I explored blue-sky concepts ranging from AI-powered symptom analysis to community-driven peer reviews. Early sketches included marketplace-style browsing, chat-first consultations, and comprehensive health tracking. I tested divergent ideas like gamified health journeys and social proof through community testimonials to understand what resonated most with users seeking herbal care.",
-      decisionPoint: "I converged on a practitioner-focused platform after validating that users prioritized expert guidance over self-directed exploration. The decision centered on verified credentials, clear safety information, and streamlined booking—creating trust through transparency rather than overwhelming users with too many options or complex health tracking features."
+      decisionPoint: "I converged on a practitioner-focused platform after validating that users prioritized expert guidance over self-directed exploration. The decision centered on verified credentials, clear safety information, and streamlined booking—creating trust through transparency rather than overwhelming users with too many options or complex health tracking features.",
+      images: [
+        {
+          src: "placeholder",
+          alt: "Initial Concepts & Sketches",
+          caption: "Early ideation sketches exploring herbal practitioner discovery and matching concepts"
+        },
+        {
+          src: "placeholder",
+          alt: "User Flow Explorations", 
+          caption: "Blue-sky user journey mapping from symptom input to practitioner booking"
+        }
+      ]
     },
     keyInsights: [
       { number: 1, title: "Trust signals first", description: "Verified practitioners and clear bios drive confidence." },
@@ -342,7 +354,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Sprint Zero: Blue-Sky Thinking",
       workshopKickoff: "I conducted discovery workshops with divorced co-parents and family mediators to understand the emotional and logistical challenges. Through design sprints, I framed the problem around communication tone and shared accountability—not just scheduling tools. This foundation established that the solution needed to address conflict prevention, not just organization.",
       explorations: "I explored blue-sky concepts ranging from AI-powered communication filtering to gamified cooperation tracking. Early sketches included therapeutic check-ins, mood tracking, and automated conflict de-escalation. I tested divergent ideas like neutral third-party mediation and child-focused decision frameworks to understand what would genuinely reduce tension between co-parents.",
-      decisionPoint: "I converged on a neutral communication platform after validating that most conflicts arose from misunderstood tone and unclear expectations. The decision centered on structured templates, approval workflows, and transparent history—creating accountability through clarity rather than adding more complex features that could increase friction."
+      decisionPoint: "I converged on a neutral communication platform after validating that most conflicts arose from misunderstood tone and unclear expectations. The decision centered on structured templates, approval workflows, and transparent history—creating accountability through clarity rather than adding more complex features that could increase friction.",
+      images: [
+        {
+          src: "placeholder",
+          alt: "Initial Concepts & Sketches",
+          caption: "Early brainstorming on co-parenting communication tools and conflict reduction strategies"
+        },
+        {
+          src: "placeholder",
+          alt: "User Flow Explorations",
+          caption: "Blue-sky exploration of scheduling workflows and neutral communication patterns"
+        }
+      ]
     },
     keyInsights: [
       { number: 1, title: "Single source of truth", description: "One shared schedule and ledger eliminates disputes." },
@@ -473,6 +497,25 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Problem to Solve",
       statement: "Loan teams rely on error-prone spreadsheets with no audit trail—creating compliance risk, slow processing, and low trust in the data."
     },
+    sprintZeroSection: {
+      eyebrow: "0 → 1 EXPLORATION",
+      title: "Sprint Zero: Blue-Sky Thinking",
+      workshopKickoff: "I conducted discovery sessions with loan officers and risk managers to understand the operational and compliance challenges. Through design sprints, I framed the problem around data accuracy and audit trails—not just workflow efficiency. This foundation established that the solution needed to prioritize automated validation and transparent tracking over simple digitization.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered risk assessment to blockchain-based audit trails. Early sketches included predictive lending models, automated compliance checks, and integrated decision support systems. I tested divergent ideas like smart contract validation and real-time portfolio analytics to understand what would genuinely improve lending operations and reduce risk.",
+      decisionPoint: "I converged on an intelligent workflow platform after validating that most errors stemmed from manual data entry and lack of validation checks. The decision centered on automated validation, guided workflows, and comprehensive audit trails—creating trust through transparency and accuracy rather than overwhelming users with complex financial modeling features.",
+      images: [
+        {
+          src: "placeholder",
+          alt: "Initial Concepts & Sketches",
+          caption: "Early exploration of loan processing workflows and automated validation concepts"
+        },
+        {
+          src: "placeholder",
+          alt: "User Flow Explorations",
+          caption: "Blue-sky mapping of lending operations from application to approval and audit"
+        }
+      ]
+    },
     keyInsights: [
       { number: 1, title: "Trust through validation", description: "Real-time checks prevent errors and rework." },
       { number: 2, title: "Predictive findability", description: "Bloomberg-style search beats complex filters." },
@@ -574,6 +617,25 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: "wholesale-demo.mp4",
       poster: "/placeholder.svg",
       alt: "Wholesale operations dashboard walkthrough"
+    },
+    sprintZeroSection: {
+      eyebrow: "0 → 1 EXPLORATION",
+      title: "Sprint Zero: Blue-Sky Thinking", 
+      workshopKickoff: "I initiated discovery sessions with operations teams and distribution managers to understand the manual workflow challenges. Through design sprints, I framed the problem around process automation and error elimination—not just interface improvements. This foundation revealed that the solution needed to replace entire manual workflows, not just digitize existing processes.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered order prediction to fully automated reconciliation systems. Early sketches included intelligent inventory management, predictive demand forecasting, and automated quality control. I tested divergent ideas like machine learning optimization and real-time supply chain tracking to understand what would genuinely transform wholesale operations.",
+      decisionPoint: "I converged on an end-to-end automation platform after validating that manual Excel processes were the root cause of errors and delays. The decision centered on intelligent workflows, automated validation, and seamless data pipelines—creating efficiency through elimination of manual work rather than adding more tools to manage.",
+      images: [
+        {
+          src: "placeholder",
+          alt: "Initial Concepts & Sketches",
+          caption: "Early brainstorming on wholesale automation and process optimization strategies"
+        },
+        {
+          src: "placeholder", 
+          alt: "User Flow Explorations",
+          caption: "Blue-sky exploration of order-to-fulfillment workflows and automated validation systems"
+        }
+      ]
     },
     keyInsights: [
       { number: 1, title: "Process over interface", description: "Fixing workflows beats pretty dashboards on broken systems." },
@@ -709,7 +771,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Sprint Zero: Blue-Sky Thinking",
       workshopKickoff: "I initiated discovery sessions with small business owners to understand their daily operational challenges. Through design sprints, I framed the problem around context switching and duplicate data entry—not just tool organization. This foundation revealed that the solution needed to eliminate workflow fragmentation while maintaining business process flexibility.",
       explorations: "I explored blue-sky concepts ranging from AI-powered workflow automation to intelligent business insights. Early sketches included predictive cash flow modeling, automated client follow-ups, and integrated marketing campaigns. I tested divergent ideas like voice-controlled task management and smart scheduling optimization to understand what would genuinely improve daily business operations.",
-      decisionPoint: "I converged on a unified operations platform after validating that most inefficiencies came from switching between disconnected tools and re-entering the same data. The decision centered on consolidating core functions, automating repetitive tasks, and providing clear daily priorities—creating efficiency through integration rather than adding more specialized features."
+      decisionPoint: "I converged on a unified operations platform after validating that most inefficiencies came from switching between disconnected tools and re-entering the same data. The decision centered on consolidating core functions, automating repetitive tasks, and providing clear daily priorities—creating efficiency through integration rather than adding more specialized features.",
+      images: [
+        {
+          src: "placeholder",
+          alt: "Initial Concepts & Sketches",
+          caption: "Early ideation on business management consolidation and workflow optimization"
+        },
+        {
+          src: "placeholder",
+          alt: "User Flow Explorations",
+          caption: "Blue-sky exploration of unified operations and automated task management workflows"
+        }
+      ]
     },
     keyInsights: [
       { number: 1, title: "One platform", description: "Consolidating core ops cuts tool chaos." },
