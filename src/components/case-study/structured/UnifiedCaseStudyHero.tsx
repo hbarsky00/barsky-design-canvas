@@ -44,7 +44,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]" 
+      className="section-snap w-full md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-background" 
       style={{ perspective: "1000px" }}
     >
       {/* Mobile Layout: Full Hero Container */}
