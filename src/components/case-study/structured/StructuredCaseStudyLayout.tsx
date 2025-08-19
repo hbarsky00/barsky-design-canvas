@@ -378,9 +378,32 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   </motion.div>
 
                   <div>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                       {caseStudyData.outcomeSection.description}
                     </p>
+
+                    {/* Metrics within left column */}
+                    {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {caseStudyData.outcomeSection.metrics.map((metric, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="bg-background border border-neutral-200 rounded-2xl p-5"
+                          >
+                            <div className="text-3xl font-semibold text-foreground mb-2">
+                              {metric.value}
+                            </div>
+                            <div className="text-sm text-neutral-700">
+                              {metric.label}
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -412,29 +435,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   </div>
                 )}
               </div>
-
-              {/* Full-width metrics row below */}
-              {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {caseStudyData.outcomeSection.metrics.map((metric, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-background border border-neutral-200 rounded-2xl p-5"
-                    >
-                      <div className="text-3xl font-semibold text-foreground mb-2">
-                        {metric.value}
-                      </div>
-                      <div className="text-sm text-neutral-700">
-                        {metric.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
             </section>
           )}
 
