@@ -520,8 +520,9 @@ body {
 
 /* Apply proper padding to hero container content on project pages */
 .projects-page .hero-container {
-  padding-left: max(20px, env(safe-area-inset-left));
-  padding-right: max(20px, env(safe-area-inset-right));
+  padding-left: max(20px, env(safe-area-inset-left)) !important;
+  padding-right: max(20px, env(safe-area-inset-right)) !important;
+  max-width: none;
 }
 
 @media (min-width: 640px) {   /* tablet */
