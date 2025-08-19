@@ -55,6 +55,28 @@ export interface StructuredCaseStudyData {
     description: string;
   }[];
   ideationSection?: IdeationSection;
+  finalProductSection?: {
+    title: string;
+    description: string;
+    images?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
+  };
+  outcomeSection?: {
+    title: string;
+    description: string;
+    metrics?: Array<{
+      value: string;
+      label: string;
+    }>;
+    images?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
+  };
   sections: StructuredCaseStudySectionProps[];
   projectLink?: string;
   gradientClasses?: string;
@@ -134,6 +156,37 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 4", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Book-Herablist-Symptom-Tracker-and-My-Profile.png", alt: "Fourth iteration streamlining booking flow" }
       ]
     },
+    finalProductSection: {
+      title: "The Final Product",
+      description: "Users can book verified herbalists by need, rating, and availability; log symptoms and track progress over time; get data-informed herbal suggestions; join a growing community of trusted practitioners and peers.",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png",
+          alt: "HerbaLink final product desktop interface",
+          caption: "Complete HerbaLink desktop experience showing the comprehensive interface design"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
+          alt: "HerbaLink final product mobile interface",
+          caption: "HerbaLink mobile experience featuring the book an herbalist functionality"
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      description: "We built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights.",
+      metrics: [
+        { value: "3x", label: "Booking Rate Increase" },
+        { value: "85%", label: "Match Accuracy" },
+        { value: "24hr", label: "Response Time" }
+      ],
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/symptomtrackermobile.png",
+          alt: "HerbaLink conversation with herbalist and symptom tracker interface"
+        }
+      ]
+    },
     sections: [
       {
         id: "what-didnt-work",
@@ -163,38 +216,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           caption: "User flow from onboarding to booking and tracking."
         }
       },
-      {
-        id: "final-product",
-        title: "The Final Product",
-        icon: Target,
-        variant: "solution",
-        content:
-          "Users can book verified herbalists by need, rating, and availability; log symptoms and track progress over time; get data-informed herbal suggestions; join a growing community of trusted practitioners and peers.",
-        images: [
-          {
-            src: "https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png",
-            alt: "HerbaLink final product desktop interface",
-            caption: "Complete HerbaLink desktop experience showing the comprehensive interface design"
-          },
-          {
-            src: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
-            alt: "HerbaLink final product mobile interface",
-            caption: "HerbaLink mobile experience featuring the book an herbalist functionality"
-          }
-        ]
-      },
-      {
-        id: "outcome",
-        title: "Outcome",
-        icon: CheckCircle2,
-        variant: "impact",
-        content:  "We built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights.",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2025/08/symptomtrackermobile.png",
-          alt: "HerbaLink conversation with herbalist and symptom tracker interface",
-        }
-      }
     ],
     seoData: {
       image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",

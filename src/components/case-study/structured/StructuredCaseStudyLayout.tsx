@@ -48,17 +48,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
-    { label: "My Thought Process", anchor: "#my-thought-process" },
     ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
-    { label: "What Didn't Work", anchor: "#what-didnt-work" },
     ...caseStudyData.sections
       .filter(section => section.id !== "final-product" && section.id !== "outcome")
       .map(section => ({
         label: section.title,
         anchor: `#${section.id}`
       })),
-    { label: "The Final Product", anchor: "#the-final-product" },
-    { label: "Outcome", anchor: "#outcome-results" }
+    ...(caseStudyData.finalProductSection ? [{ label: caseStudyData.finalProductSection.title, anchor: "#the-final-product" }] : []),
+    ...(caseStudyData.outcomeSection ? [{ label: caseStudyData.outcomeSection.title, anchor: "#outcome-results" }] : [])
   ];
 
   // Build sections for keyboard navigation
@@ -68,21 +66,19 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
-      { id: 'my-thought-process', title: 'My Thought Process' },
       ...(caseStudyData.ideationSection ? [{ id: 'ideation', title: 'Ideation' }] : []),
-      { id: 'what-didnt-work', title: 'What Didn\'t Work' },
       ...caseStudyData.sections
         .filter(section => section.id !== "final-product" && section.id !== "outcome")
         .map(section => ({
           id: section.id,
           title: section.title
         })),
-      { id: 'the-final-product', title: 'The Final Product' },
-      { id: 'outcome-results', title: 'Outcome' },
+      ...(caseStudyData.finalProductSection ? [{ id: 'the-final-product', title: caseStudyData.finalProductSection.title }] : []),
+      ...(caseStudyData.outcomeSection ? [{ id: 'outcome-results', title: caseStudyData.outcomeSection.title }] : []),
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
-  }, [caseStudyData.sections, caseStudyData.problemCallout, caseStudyData.researchSection]);
+  }, [caseStudyData.sections, caseStudyData.problemCallout, caseStudyData.researchSection, caseStudyData.finalProductSection, caseStudyData.outcomeSection]);
 
   // Add keyboard navigation
   const keyboardNav = useCaseStudyKeyboardNavigation(keyboardSections);
@@ -211,131 +207,145 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             );
           })}
 
-          {/* The Final Product - Hardcoded Special Section */}
-          <section 
-            id="the-final-product" 
-            data-section="the-final-product" 
-            aria-labelledby="final-product-heading" 
-            className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
-          >
-            <h2 id="final-product-heading" className="sr-only">The Final Product Section</h2>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-12"
+          {/* Dynamic Final Product Section */}
+          {caseStudyData.finalProductSection && (
+            <section 
+              id="the-final-product" 
+              data-section="the-final-product" 
+              aria-labelledby="final-product-heading" 
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
             >
-              <div className="text-eyebrow text-primary header-spacing">
-                The Final Product
+              <h2 id="final-product-heading" className="sr-only">{caseStudyData.finalProductSection.title} Section</h2>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="mb-12"
+              >
+                <div className="text-eyebrow text-primary header-spacing">
+                  THE RESULT
+                </div>
+                <h2 className="text-section-title text-foreground content-rail-center">
+                  {caseStudyData.finalProductSection.title}
+                </h2>
+              </motion.div>
+
+              <div className="content-rail-left mb-8">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {caseStudyData.finalProductSection.description}
+                </p>
               </div>
-              <h2 className="text-section-title text-foreground content-rail-center">
-                See the final product in action
-              </h2>
-            </motion.div>
 
-            <div className="grid gap-6 md:gap-8">
-              {getSectionImages("final-product").map((image, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-auto object-contain image-high-quality"
-                  />
-                  {image.caption && (
-                    <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                      {image.caption}
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </section>
+              {caseStudyData.finalProductSection.images && (
+                <div className="grid gap-6 md:gap-8">
+                  {caseStudyData.finalProductSection.images.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-auto object-contain image-high-quality"
+                      />
+                      {image.caption && (
+                        <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                          {image.caption}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
 
-          {/* Outcome/Results - Hardcoded Special Section */}
-          <section 
-            id="outcome-results" 
-            data-section="outcome-results" 
-            aria-labelledby="outcome-heading" 
-            className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
-          >
-            <h2 id="outcome-heading" className="sr-only">Outcome Section</h2>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mb-12"
+          {/* Dynamic Outcome Section */}
+          {caseStudyData.outcomeSection && (
+            <section 
+              id="outcome-results" 
+              data-section="outcome-results" 
+              aria-labelledby="outcome-heading" 
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
             >
-              <div className="text-eyebrow text-primary header-spacing">
-                Outcome / Results
+              <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="mb-12"
+              >
+                <div className="text-eyebrow text-primary header-spacing">
+                  OUTCOMES & IMPACT
+                </div>
+                <h2 className="text-section-title text-foreground content-rail-center">
+                  {caseStudyData.outcomeSection.title}
+                </h2>
+              </motion.div>
+
+              <div className="content-rail-left mb-8">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {caseStudyData.outcomeSection.description}
+                </p>
               </div>
-              <h2 className="text-section-title text-foreground content-rail-center">
-                What we achieved together
-              </h2>
-            </motion.div>
 
-            {/* Display metrics if available from outcome section */}
-            {(() => {
-              const outcomeSection = caseStudyData.sections.find(s => s.id === "outcome");
-              if (outcomeSection?.metrics && outcomeSection.metrics.length > 0) {
-                return (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    {outcomeSection.metrics.map((metric, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="text-center p-6 bg-white rounded-lg shadow-sm border border-border/20"
-                      >
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          {metric.value}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {metric.label}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                );
-              }
-              return null;
-            })()}
+              {/* Display dynamic metrics */}
+              {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  {caseStudyData.outcomeSection.metrics.map((metric, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="text-center p-6 bg-white rounded-lg shadow-sm border border-border/20"
+                    >
+                      <div className="text-3xl font-bold text-primary mb-2">
+                        {metric.value}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {metric.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
 
-            {/* Display outcome images */}
-            <div className="grid gap-6 md:gap-8">
-              {getSectionImages("outcome").map((image, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-auto object-contain image-high-quality"
-                  />
-                  {image.caption && (
-                    <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                      {image.caption}
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </section>
+              {/* Display outcome images */}
+              {caseStudyData.outcomeSection.images && (
+                <div className="grid gap-6 md:gap-8">
+                  {caseStudyData.outcomeSection.images.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-auto object-contain image-high-quality"
+                      />
+                      {image.caption && (
+                        <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                          {image.caption}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
 
           
           {/* Related Case Study Section */}
