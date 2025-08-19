@@ -17,6 +17,7 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
   currentSectionIndex 
 }) => {
   const [activeSection, setActiveSection] = useState("");
+  const [showNavigation, setShowNavigation] = useState(false);
 
   const getHeaderOffset = () => {
     const rootStyles = getComputedStyle(document.documentElement);
@@ -46,6 +47,14 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
     const handleScroll = () => {
       const headerOffset = getHeaderOffset();
       const anchorY = headerOffset + 8;
+      
+      // Check if overview section is visible to show navigation
+      const overviewSection = document.getElementById('overview');
+      if (overviewSection) {
+        const rect = overviewSection.getBoundingClientRect();
+        setShowNavigation(rect.top <= headerOffset + 50);
+      }
+      
       const sections = navigation
         .map(nav => document.getElementById(nav.anchor.substring(1)))
         .filter(Boolean) as HTMLElement[];
@@ -128,12 +137,14 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
         </div>
       </aside>
 
-      {/* Mobile Navigation with Drawer */}
-      <MobileCaseStudyNavigation
-        navigation={navigation}
-        activeSection={activeSection}
-        onSectionClick={scrollToSection}
-      />
+      {/* Mobile Navigation with Drawer - Only show after overview section */}
+      {showNavigation && (
+        <MobileCaseStudyNavigation
+          navigation={navigation}
+          activeSection={activeSection}
+          onSectionClick={scrollToSection}
+        />
+      )}
     </>
   );
 };

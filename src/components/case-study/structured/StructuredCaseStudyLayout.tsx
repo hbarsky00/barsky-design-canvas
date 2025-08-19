@@ -123,14 +123,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           />
 
           {/* Overview Section */}
-          <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+          <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
             <h2 id="overview-heading" className="sr-only">Overview Section</h2>
             <StructuredCaseStudyOverview projectId={caseStudyData.id} />
           </section>
 
           {/* Research Section */}
           {caseStudyData.researchSection && (
-            <section id="research" data-section="research" aria-labelledby="research-heading" className="section-snap mb-12 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <section id="research" data-section="research" aria-labelledby="research-heading" className="section-snap mb-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
               <h2 id="research-heading" className="sr-only">Research Section</h2>
               <ResearchSectionTwoCol researchSection={caseStudyData.researchSection} />
             </section>
@@ -139,7 +139,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Problem Callout Section - Full width band */}
           {caseStudyData.problemCallout && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <section id="problem" data-section="problem" aria-labelledby="problem-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+              <section id="problem" data-section="problem" aria-labelledby="problem-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
                 <h2 id="problem-heading" className="sr-only">Problem Section</h2>
                 <ProblemCallout
                   eyebrow={caseStudyData.problemCallout.eyebrow}
@@ -151,7 +151,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
           {/* Key Insights Section */}
           {caseStudyData.keyInsights && (
-            <section id="key-insights" data-section="key-insights" aria-labelledby="key-insights-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <section id="key-insights" data-section="key-insights" aria-labelledby="key-insights-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
               <h2 id="key-insights-heading" className="sr-only">Key Insights Section</h2>
               <KeyInsightsRow insights={caseStudyData.keyInsights} />
             </section>
@@ -163,7 +163,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               id="my-thought-process" 
               data-section="my-thought-process" 
               aria-labelledby="my-thought-process-heading" 
-              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
               <MyThoughtProcessSection 
@@ -176,7 +176,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Ideation Section - Full width band - Now appears after My Thought Process */}
           {caseStudyData.ideationSection && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+              <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
                 <h2 id="ideation-heading" className="sr-only">Ideation Section</h2>
                 <IdeationSection ideationData={caseStudyData.ideationSection} />
               </section>
@@ -189,7 +189,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               id="what-didnt-work" 
               data-section="what-didnt-work" 
               aria-labelledby="what-didnt-work-heading" 
-              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="what-didnt-work-heading" className="sr-only">What Didn't Work Section</h2>
               <WhatDidntWorkSection whatDidntWorkData={caseStudyData.whatDidntWorkSection} />
@@ -202,7 +202,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               id="user-testing" 
               data-section="user-testing" 
               aria-labelledby="user-testing-heading" 
-              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="user-testing-heading" className="sr-only">{caseStudyData.userTestingSection.title} Section</h2>
               <motion.div 
@@ -284,7 +284,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               id="the-final-product" 
               data-section="the-final-product" 
               aria-labelledby="final-product-heading" 
-              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="final-product-heading" className="sr-only">{caseStudyData.finalProductSection.title} Section</h2>
               <motion.div 
@@ -342,7 +342,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               id="outcome-results" 
               data-section="outcome-results" 
               aria-labelledby="outcome-heading" 
-              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
               <motion.div 
@@ -423,7 +423,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           <SingleCaseStudyPreview currentProjectId={caseStudyData.id} />
           
           {/* Contact Section */}
-          <section id="contact-section" data-section="contact-section" aria-labelledby="contact-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+          <section id="contact-section" data-section="contact-section" aria-labelledby="contact-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
             <h2 id="contact-heading" className="sr-only">Contact Section</h2>
             <CaseStudyContactSection />
           </section>

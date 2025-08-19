@@ -64,7 +64,8 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
         className="flex-1 inline-flex items-center justify-center rounded-full px-4 py-3 bg-primary text-primary-foreground font-medium shadow-md hover:bg-primary/90 transition-colors active:scale-[.99] min-h-[44px]"
         aria-label="Visit live project site"
       >
-        Visit Live Site 
+        <span className="hidden sm:inline">Visit Live Site</span>
+        <span className="sm:hidden">Visit Site</span>
         <ExternalLink className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
       </a>
 
