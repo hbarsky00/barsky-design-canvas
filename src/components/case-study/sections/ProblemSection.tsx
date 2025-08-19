@@ -80,7 +80,7 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
               <div key={index} className="flex items-center space-x-3">
                 {getTrendIcon(metric.trend)}
                 <div>
-                  <div className="text-2xl font-semibold text-gray-900">{metric.value}</div>
+                  <div className="text-2xl font-bold text-gray-900">{metric.value}</div>
                   <div className="text-sm text-gray-600">{metric.label}</div>
                 </div>
               </div>

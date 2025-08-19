@@ -65,7 +65,7 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="text-center p-6 bg-card rounded-lg shadow-sm border border-border/20"
             >
-              <div className="text-3xl font-semibold text-orange-600 mb-2">
+              <div className="text-3xl font-bold text-orange-600 mb-2">
                 {metric.value}
               </div>
               <div className="text-sm text-muted-foreground">
