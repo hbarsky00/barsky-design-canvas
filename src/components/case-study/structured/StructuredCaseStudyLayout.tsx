@@ -144,6 +144,20 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </section>
           )}
 
+          {/* My Thought Process Section */}
+          <section id="my-thought-process" data-section="my-thought-process" aria-labelledby="my-thought-process-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
+            <MyThoughtProcessSection 
+              content="I focused on creating a streamlined approach that balanced user needs with technical constraints. My decision criteria centered on usability, scalability, and measurable impact. Through iterative validation loops, I refined the solution based on real user feedback and performance metrics."
+              images={[
+                {
+                  src: "https://barskyux.com/wp-content/uploads/2025/08/thoughtprocess.jpg",
+                  alt: "Design thinking process diagram",
+                  caption: "Decision framework and validation approach"
+                }
+              ]}
+            />
+          </section>
 
           {/* Ideation Section - Full width band */}
           {caseStudyData.ideationSection && (

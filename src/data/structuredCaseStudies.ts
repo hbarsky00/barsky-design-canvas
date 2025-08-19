@@ -159,9 +159,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
         media: {
           type: 'image',
-          src: "/lovable-uploads/f950cbe4-c13f-4d77-b218-4d0f4ce2139c.png",
-          alt: "Three people examining wireframes and design charts on a whiteboard",
-          caption: "Planning the attack to understand the users needs on the whiteboard"
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
+          alt: "HerbaLink user flow from onboarding to booking",
+          caption: "User flow from onboarding to booking and tracking."
         }
       },
       {
