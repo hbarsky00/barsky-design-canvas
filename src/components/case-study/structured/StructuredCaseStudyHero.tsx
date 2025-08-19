@@ -63,30 +63,33 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           )}
         </motion.div>
 
-        <motion.div
-          ref={videoRef}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
-          style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-        >
-          {heroAsImage && caseStudyData.seoData?.image ? (
-            <div className="relative w-full bg-white rounded-lg overflow-hidden shadow-2xl">
-              <img 
-                src={caseStudyData.seoData.image} 
-                alt={caseStudyData.title}
-                className="w-full h-auto object-contain"
+        {/* Full-width white background container for hero media */}
+        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white py-8 md:py-12">
+          <motion.div
+            ref={videoRef}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+            style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+          >
+            {heroAsImage && caseStudyData.seoData?.image ? (
+              <div className="relative w-full bg-white rounded-lg overflow-hidden shadow-2xl">
+                <img 
+                  src={caseStudyData.seoData.image} 
+                  alt={caseStudyData.title}
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            ) : caseStudyData.heroVideo?.src ? (
+              <VideoPlayer 
+                videoSrc={caseStudyData.heroVideo.src}
+                thumbnailSrc={caseStudyData.heroVideo.poster || caseStudyData.seoData?.image || ''}
+                title={caseStudyData.title}
               />
-            </div>
-          ) : caseStudyData.heroVideo?.src ? (
-            <VideoPlayer 
-              videoSrc={caseStudyData.heroVideo.src}
-              thumbnailSrc={caseStudyData.heroVideo.poster || caseStudyData.seoData?.image || ''}
-              title={caseStudyData.title}
-            />
-          ) : null}
-        </motion.div>
+            ) : null}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
