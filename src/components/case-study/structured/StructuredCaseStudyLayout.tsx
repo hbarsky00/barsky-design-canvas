@@ -31,6 +31,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 }) => {
   const isProjectPage = useProjectPageDetection();
   
+  // Helper function to get images from a specific section
+  const getSectionImages = (sectionId: string) => {
+    const section = caseStudyData.sections.find(s => s.id === sectionId);
+    return section?.images || [];
+  };
+  
   // Get current URL for sharing with safety check
   const currentUrl = typeof window !== 'undefined' && window.location 
     ? window.location.href 
@@ -226,22 +232,27 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     </h2>
                   </div>
                   
-                  <div className="grid md:grid-cols-2 gap-8 mb-6">
-                    <div className="space-y-4">
-                      <img 
-                        src="https://barskyux.com/wp-content/uploads/2025/08/finalproduct1.jpg" 
-                        alt="Final product desktop view"
-                        className="w-full rounded-lg shadow-sm"
-                      />
-                    </div>
-                    <div className="space-y-4">
-                      <img 
-                        src="https://barskyux.com/wp-content/uploads/2025/08/finalproduct2.jpg" 
-                        alt="Final product mobile view"
-                        className="w-full rounded-lg shadow-sm"
-                      />
-                    </div>
-                  </div>
+                  {(() => {
+                    const finalProductImages = getSectionImages("final-product");
+                    return (
+                      <div className="grid md:grid-cols-2 gap-8 mb-6">
+                        <div className="space-y-4">
+                          <img 
+                            src={finalProductImages[0]?.src || "https://barskyux.com/wp-content/uploads/2025/08/finalproduct1.jpg"} 
+                            alt={finalProductImages[0]?.alt || "Final product desktop view"}
+                            className="w-full rounded-lg shadow-sm"
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <img 
+                            src={finalProductImages[1]?.src || "https://barskyux.com/wp-content/uploads/2025/08/finalproduct2.jpg"} 
+                            alt={finalProductImages[1]?.alt || "Final product mobile view"}
+                            className="w-full rounded-lg shadow-sm"
+                          />
+                        </div>
+                      </div>
+                    );
+                  })()}
                   
                   <p className="text-lg text-muted-foreground leading-relaxed content-rail-left">
                     The final solution successfully balanced user needs with technical constraints, 
