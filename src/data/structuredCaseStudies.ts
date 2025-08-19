@@ -177,7 +177,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Continuity of care", description: "Booking, notes, and follow-ups keep users engaged." }
     ],
     ideationSection: {
-      subhead: "We explored profile, safety, matching, and booking flows—tight loops to validate trust and speed.",
+      subhead: "I explored profile, safety, matching, and booking flows—tight loops to validate trust and speed.",
       bubbles: [
         { title: "Profile essentials", description: "What users need at a glance" },
         { title: "Safety info", description: "Contraindications and dosage clarity" },
@@ -205,7 +205,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with both practitioners and patients validated our trust-focused approach and revealed key usability improvements for the booking flow.",
+      description: "Testing with both practitioners and patients validated my trust-focused approach and revealed key usability improvements for the booking flow.",
       eyebrow: "VALIDATION & TESTING",
       metrics: [
         { value: "92%", label: "Task Completion" },
@@ -239,7 +239,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "We built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights.",
+      description: "I built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "3x", label: "Booking Rate Increase" },
@@ -324,7 +324,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Calm communication", description: "Neutral templates reduce conflict and decision fatigue." }
     ],
     ideationSection: {
-      subhead: "We tested calendar, approvals, expenses, and messaging to reduce conflict and missed handoffs.",
+      subhead: "I tested calendar, approvals, expenses, and messaging to reduce conflict and missed handoffs.",
       bubbles: [
         { title: "Today's schedule", description: "Hand-offs, locations, changes" },
         { title: "Approvals", description: "Requests, confirmations, history" },
@@ -352,7 +352,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
           alt: "User testing session showing co-parenting workflow validation",
-          caption: "Testing sessions validated our neutral communication approach and approval workflow design."
+          caption: "Testing sessions validated my neutral communication approach and approval workflow design."
         }
       ]
     },
@@ -453,7 +453,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Guided orders", description: "Stepwise flows reduce mistakes vs. flat forms." }
     ],
     ideationSection: {
-      subhead: "We shaped deal findability, order building, validation, and collaboration around compliance.",
+      subhead: "I shaped deal findability, order building, validation, and collaboration around compliance.",
       bubbles: [
         { title: "Deal summary", description: "Status, limits, totals" },
         { title: "Predictive search", description: "Category-aware, smart defaults" },
@@ -470,7 +470,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with loan officers validated our automation approach and revealed critical workflow improvements for compliance and speed.",
+      description: "Testing with loan officers validated my automation approach and revealed critical workflow improvements for compliance and speed.",
       eyebrow: "VALIDATION & TESTING",
       metrics: [
         { value: "95%", label: "Task Completion" },
@@ -481,7 +481,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
           alt: "User testing session showing loan officer workflow validation",
-          caption: "Testing sessions confirmed our automated validation approach significantly reduced processing errors."
+          caption: "Testing sessions confirmed my automated validation approach significantly reduced processing errors."
         }
       ]
     },
@@ -555,7 +555,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "End-to-end thinking", description: "From order to reconciliation in one unified system." }
     ],
     ideationSection: {
-      subhead: "We prototyped order capture, validation, routing, and reconciliation to eliminate Excel entirely.",
+      subhead: "I prototyped order capture, validation, routing, and reconciliation to eliminate Excel entirely.",
       bubbles: [
         { title: "Order capture", description: "Smart forms, auto-completion" },
         { title: "Validation", description: "Real-time checks, error prevention" },
@@ -572,7 +572,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with distribution teams confirmed our AI-assisted approach eliminated manual errors and dramatically improved processing speed.",
+      description: "Testing with distribution teams confirmed my AI-assisted approach eliminated manual errors and dramatically improved processing speed.",
       eyebrow: "VALIDATION & TESTING",
       metrics: [
         { value: "98%", label: "Accuracy Rate" },
@@ -583,7 +583,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/placeholder.svg",
           alt: "User testing session showing distribution workflow validation",
-          caption: "Testing confirmed our automation approach eliminated manual Excel processes entirely."
+          caption: "Testing confirmed my automation approach eliminated manual Excel processes entirely."
         }
       ]
     },
@@ -684,7 +684,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Priority at a glance", description: "A single dashboard surfaces what needs attention now." }
     ],
     ideationSection: {
-      subhead: "We iterated on a simple \"run the day\" loop—dashboard, tasks, invoices, and scheduling.",
+      subhead: "I iterated on a simple \"run the day\" loop—dashboard, tasks, invoices, and scheduling.",
       bubbles: [
         { title: "Dashboard KPIs", description: "Cash flow and alerts" },
         { title: "Tasks", description: "Today, overdue, owners" },
@@ -701,7 +701,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with small business owners validated our unified platform approach and revealed key workflow improvements for daily operations.",
+      description: "Testing with small business owners validated my unified platform approach and revealed key workflow improvements for daily operations.",
       eyebrow: "VALIDATION & TESTING",
       metrics: [
         { value: "90%", label: "User Satisfaction" },
@@ -712,7 +712,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
           alt: "User testing session showing business management workflow validation",
-          caption: "Testing sessions confirmed our unified approach significantly improved daily operations efficiency."
+          caption: "Testing sessions confirmed my unified approach significantly improved daily operations efficiency."
         }
       ]
     },
@@ -752,7 +752,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "Initially, we tried to create too many customization options, which overwhelmed users. We learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners."
+      content: "Initially, I tried to create too many customization options, which overwhelmed users. I learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners."
     },
     sections: [],
     seoData: {

@@ -33,7 +33,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     ],
     sections: {
       "the-problem": {
-        text: "Users couldn't find trustworthy herbalists online due to fragmented directories and no verification system. We solved this by creating a national platform with certified practitioners and seamless booking.",
+        text: "Users couldn't find trustworthy herbalists online due to fragmented directories and no verification system. I solved this by creating a national platform with certified practitioners and seamless booking.",
         image: {
           src: "images/herbalink-problem.png",
           alt: "Screenshot showing confusing herbalist directory before redesign"
