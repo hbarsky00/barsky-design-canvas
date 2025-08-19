@@ -10,6 +10,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => {
   return (
     <StructuredCaseStudyLayout
       caseStudyData={caseStudyData}
+      heroAsImage={true}
     />
   );
 };
