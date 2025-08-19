@@ -511,14 +511,7 @@ body {
   padding-top: calc(var(--header-height, 64px) + 12px);
 }
 
-/* Hero sections should override project page padding and be full width */
-.projects-page #hero {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
-}
+/* Hero sections are handled by their breakout wrapper in the layout */
 
 @media (min-width: 640px) {   /* tablet */
   .projects-page .projects-wrap { 
