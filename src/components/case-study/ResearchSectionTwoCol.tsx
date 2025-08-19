@@ -25,7 +25,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
   return (
     <motion.section
       id="research"
-      className="min-h-[100dvh] sm:min-h-screen md:min-h-[110vh] pt-safe-top pb-safe-bottom section-spacing scroll-mt-24"
+      className="py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
