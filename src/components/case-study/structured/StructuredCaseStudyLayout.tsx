@@ -61,6 +61,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         id: section.id,
         title: section.title
       })),
+      { id: 'the-final-product', title: 'The Final Product' },
+      { id: 'outcome-results', title: 'Outcome / Results' },
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
