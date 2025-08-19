@@ -44,12 +44,13 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-background" 
+      className="section-snap w-full md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
       style={{ perspective: "1000px" }}
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
-        <div className="flex flex-col justify-center min-h-[calc(100vh-var(--header-height,64px))] py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col justify-center min-h-[calc(100vh-var(--header-height,64px))] py-4">
           <div className="flex flex-col justify-center gap-4 w-full max-w-none">
             {/* Text Content */}
             <motion.div
@@ -117,6 +118,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                 </div>
               )}
             </motion.div>
+          </div>
           </div>
         </div>
       ) : (
