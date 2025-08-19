@@ -42,10 +42,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
   const getGridLayout = () => {
     if (images.length === 1) {
       return "grid-cols-1";
-    } else if (images.length === 2) {
-      return "grid-cols-2 gap-8";
     } else {
-      return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+      return "grid-cols-1 md:grid-cols-2";
     }
   };
 

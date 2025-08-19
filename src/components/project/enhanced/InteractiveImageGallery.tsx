@@ -19,19 +19,9 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  // Override columns prop when there are exactly 2 images
+  // Always use 2 columns on desktop, 1 on mobile for consistency
   const getGridCols = () => {
-    if (images.length === 2) {
-      return "md:grid-cols-2";
-    }
-    
-    const gridCols = {
-      2: "md:grid-cols-2",
-      3: "md:grid-cols-2 lg:grid-cols-3",
-      4: "md:grid-cols-2 lg:grid-cols-4"
-    };
-    
-    return gridCols[columns];
+    return "md:grid-cols-2";
   };
 
   const openLightbox = (index: number) => {
