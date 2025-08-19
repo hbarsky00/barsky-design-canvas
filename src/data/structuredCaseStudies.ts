@@ -48,6 +48,18 @@ export interface StructuredCaseStudyData {
     eyebrow: string;
     statement: string;
   };
+  sprintZeroSection?: {
+    eyebrow: string;
+    title: string;
+    workshopKickoff: string;
+    explorations: string;
+    decisionPoint: string;
+    images?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
+  };
   keyInsights?: {
     number: number;
     title: string;
@@ -127,9 +139,9 @@ export interface StructuredCaseStudyData {
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "herbalink": {
     id: "herbalink",
-    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
+    title: "Using Design Thinking to Achieve 3x More Bookings for Certified Herbalists",
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x through AI-powered matching and streamlined UX.",
-    tags: ["GenAI", "HealthTech", "iOS", "Android", "WebApp"],
+    tags: ["Blue Sky", "Design Thinking", "GenAI", "WebApp", "Mobile"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "http://herbalink.live",
     heroVideo: {
@@ -170,6 +182,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement: "People seeking herbal care can't confidently find vetted practitioners or guidance—leading to misinformation, safety risks, and abandoned care."
+    },
+    sprintZeroSection: {
+      eyebrow: "0 → 1 EXPLORATION",
+      title: "Sprint Zero: Blue-Sky Thinking",
+      workshopKickoff: "I initiated discovery sessions with potential users and herbalists to understand the core friction points. Through design sprints, I framed the problem around trust, safety, and accessibility—not just practitioner availability. This foundation helped establish that matching algorithms needed to prioritize credentials and safety information over proximity alone.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered symptom analysis to community-driven peer reviews. Early sketches included marketplace-style browsing, chat-first consultations, and comprehensive health tracking. I tested divergent ideas like gamified health journeys and social proof through community testimonials to understand what resonated most with users seeking herbal care.",
+      decisionPoint: "I converged on a practitioner-focused platform after validating that users prioritized expert guidance over self-directed exploration. The decision centered on verified credentials, clear safety information, and streamlined booking—creating trust through transparency rather than overwhelming users with too many options or complex health tracking features."
     },
     keyInsights: [
       { number: 1, title: "Trust signals first", description: "Verified practitioners and clear bios drive confidence." },
@@ -276,9 +295,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "splittime": {
     id: "splittime",
-    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
+    title: "Design Thinking Approach to Reducing Co-Parenting Conflict by 40%",
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools designed for high-stress family situations.",
-    tags: ["FamilyTech", "iOS", "Android", "LegalUX", "ConflictReduction"],
+    tags: ["Blue Sky", "Design Thinking", "iOS→Android", "Legal UX", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://splittime.pro",
     heroVideo: {
@@ -317,6 +336,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement: "Co-parents lack a single source of truth for schedules, expenses, and decisions—causing miscommunication, missed pickups, and ongoing conflict."
+    },
+    sprintZeroSection: {
+      eyebrow: "0 → 1 EXPLORATION",
+      title: "Sprint Zero: Blue-Sky Thinking",
+      workshopKickoff: "I conducted discovery workshops with divorced co-parents and family mediators to understand the emotional and logistical challenges. Through design sprints, I framed the problem around communication tone and shared accountability—not just scheduling tools. This foundation established that the solution needed to address conflict prevention, not just organization.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered communication filtering to gamified cooperation tracking. Early sketches included therapeutic check-ins, mood tracking, and automated conflict de-escalation. I tested divergent ideas like neutral third-party mediation and child-focused decision frameworks to understand what would genuinely reduce tension between co-parents.",
+      decisionPoint: "I converged on a neutral communication platform after validating that most conflicts arose from misunderstood tone and unclear expectations. The decision centered on structured templates, approval workflows, and transparent history—creating accountability through clarity rather than adding more complex features that could increase friction."
     },
     keyInsights: [
       { number: 1, title: "Single source of truth", description: "One shared schedule and ledger eliminates disputes." },
@@ -636,9 +662,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "business-management": {
     id: "business-management",
-    title: "68% Fewer Errors: Streamlining Enterprise Operations",
+    title: "Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
-    tags: ["Enterprise", "Operations", "WebApp", "Mobile"],
+    tags: ["Blue Sky", "Design Thinking", "Enterprise", "WebApp", "Mobile"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
@@ -677,6 +703,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement: "Small businesses juggle disconnected tools for scheduling, invoicing, and tasks—wasting hours weekly and leaking revenue."
+    },
+    sprintZeroSection: {
+      eyebrow: "0 → 1 EXPLORATION",
+      title: "Sprint Zero: Blue-Sky Thinking",
+      workshopKickoff: "I initiated discovery sessions with small business owners to understand their daily operational challenges. Through design sprints, I framed the problem around context switching and duplicate data entry—not just tool organization. This foundation revealed that the solution needed to eliminate workflow fragmentation while maintaining business process flexibility.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered workflow automation to intelligent business insights. Early sketches included predictive cash flow modeling, automated client follow-ups, and integrated marketing campaigns. I tested divergent ideas like voice-controlled task management and smart scheduling optimization to understand what would genuinely improve daily business operations.",
+      decisionPoint: "I converged on a unified operations platform after validating that most inefficiencies came from switching between disconnected tools and re-entering the same data. The decision centered on consolidating core functions, automating repetitive tasks, and providing clear daily priorities—creating efficiency through integration rather than adding more specialized features."
     },
     keyInsights: [
       { number: 1, title: "One platform", description: "Consolidating core ops cuts tool chaos." },

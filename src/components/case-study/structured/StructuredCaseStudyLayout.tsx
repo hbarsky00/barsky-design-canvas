@@ -19,6 +19,7 @@ import IdeationSection from "../IdeationSection";
 import IterationsSection from "../IterationsSection";
 import MyThoughtProcessSection from "../MyThoughtProcessSection";
 import WhatDidntWorkSection from "../WhatDidntWorkSection";
+import SprintZeroSection from "../SprintZeroSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { Badge } from "@/components/ui/badge";
@@ -51,6 +52,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     { label: "Overview", anchor: "#overview" },
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
+    ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
     ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...(caseStudyData.ideationSection ? [
@@ -74,6 +76,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       { id: 'overview', title: 'Overview' },
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
+      ...(caseStudyData.sprintZeroSection ? [{ id: 'sprint-zero', title: 'Sprint Zero' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
       ...(caseStudyData.myThoughtProcessSection ? [{ id: 'my-thought-process', title: 'My Thought Process' }] : []),
       ...(caseStudyData.ideationSection ? [
@@ -91,7 +94,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       { id: 'contact-section', title: 'Contact' }
     ];
     return navSections;
-  }, [caseStudyData.researchSection, caseStudyData.problemCallout, caseStudyData.keyInsights, caseStudyData.myThoughtProcessSection, caseStudyData.ideationSection, caseStudyData.whatDidntWorkSection, caseStudyData.userTestingSection, caseStudyData.finalProductSection, caseStudyData.outcomeSection]);
+  }, [caseStudyData.researchSection, caseStudyData.problemCallout, caseStudyData.sprintZeroSection, caseStudyData.keyInsights, caseStudyData.myThoughtProcessSection, caseStudyData.ideationSection, caseStudyData.whatDidntWorkSection, caseStudyData.userTestingSection, caseStudyData.finalProductSection, caseStudyData.outcomeSection]);
 
   // Add keyboard navigation
   const keyboardNav = useCaseStudyKeyboardNavigation(keyboardSections);
@@ -154,6 +157,18 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 />
               </section>
             </div>
+          )}
+
+          {/* Sprint Zero Section */}
+          {caseStudyData.sprintZeroSection && (
+            <SprintZeroSection
+              eyebrow={caseStudyData.sprintZeroSection.eyebrow}
+              title={caseStudyData.sprintZeroSection.title}
+              workshopKickoff={caseStudyData.sprintZeroSection.workshopKickoff}
+              explorations={caseStudyData.sprintZeroSection.explorations}
+              decisionPoint={caseStudyData.sprintZeroSection.decisionPoint}
+              images={caseStudyData.sprintZeroSection.images}
+            />
           )}
 
           {/* Key Insights Section */}
