@@ -61,7 +61,7 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
         href={liveUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 inline-flex items-center justify-center rounded-full px-4 py-3 bg-primary text-primary-foreground font-medium shadow-md hover:bg-primary/90 transition-colors active:scale-[.99] min-h-[44px]"
+        className="hero-cta-button flex-1 inline-flex items-center justify-center rounded-full px-4 py-3 bg-primary text-primary-foreground font-medium shadow-md hover:bg-primary/90 transition-colors active:scale-[.99]"
         aria-label="Visit live project site"
       >
         <span className="hidden sm:inline">Visit Live Site</span>
@@ -69,7 +69,7 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
         <ExternalLink className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
       </a>
 
-      <div className="flex items-center gap-3 sm:gap-4">
+      <div className="hero-social flex items-center gap-3 sm:gap-4">
         <button
           onClick={handleLinkedInShare}
           className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-background text-foreground shadow-md border border-border hover:bg-muted transition-colors active:scale-[.95]"

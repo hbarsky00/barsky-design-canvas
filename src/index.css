@@ -375,6 +375,10 @@ html {
   overflow-x: hidden;
 }
 
+* {
+  overflow-x: hidden;
+}
+
 body {
   min-height: 100vh;
   min-height: 100svh;
@@ -391,8 +395,7 @@ body {
   min-height: calc(100dvh - var(--header-height, 64px));
   padding-top: max(16px, env(safe-area-inset-top));
   padding-bottom: max(24px, env(safe-area-inset-bottom));
-  padding-left: max(20px, env(safe-area-inset-left));
-  padding-right: max(20px, env(safe-area-inset-right));
+  padding-inline: clamp(16px, 4vw, 24px);
   display: flex;
   flex-direction: column;
   justify-content: center;
