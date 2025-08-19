@@ -118,6 +118,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
         <Header />
         
+        {/* Unified Hero Section - Outside projects-wrap to prevent double padding */}
+        <UnifiedCaseStudyHero 
+          caseStudyData={caseStudyData}
+          heroAsImage={heroAsImage}
+        />
+        
         {/* Mobile Sticky Navigation */}
         <CaseStudyNavigation 
           navigation={navigationItems}
@@ -125,12 +131,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <main className={isProjectPage ? "projects-wrap" : ""}>
-          {/* Unified Hero Section */}
-          <UnifiedCaseStudyHero 
-            caseStudyData={caseStudyData}
-            heroAsImage={heroAsImage}
-          />
-
           <div className="section-container">
           {/* Overview Section */}
           <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">

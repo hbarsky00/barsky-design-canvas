@@ -519,11 +519,6 @@ body {
 }
 
 
-/* Ensure hero container has proper mobile padding on project pages */
-.projects-page .hero-container {
-  padding-left: max(20px, env(safe-area-inset-left)) !important;
-  padding-right: max(20px, env(safe-area-inset-right)) !important;
-}
 
 @media (min-width: 640px) {   /* tablet */
   .projects-page .projects-wrap { 
