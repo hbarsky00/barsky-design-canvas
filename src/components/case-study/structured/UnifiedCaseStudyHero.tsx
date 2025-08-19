@@ -49,7 +49,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
-        <div className="hero-container">
+        <div className="flex flex-col justify-center min-h-[calc(100vh-var(--header-height,64px))] py-4">
           <div className="flex flex-col justify-center gap-4 w-full max-w-none">
             {/* Text Content */}
             <motion.div
