@@ -72,8 +72,7 @@ const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = 
 
   return (
     <motion.section
-      id="project-overview"
-      className="scroll-mt-24 bg-white/80 backdrop-blur-sm rounded-lg p-8 md:p-12 shadow-sm border border-white/20"
+      className="bg-white/80 backdrop-blur-sm rounded-lg p-8 md:p-12 shadow-sm border border-white/20"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}

@@ -42,7 +42,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+    { label: "My Thought Process", anchor: "#my-thought-process" },
     ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
+    { label: "What Didn't Work", anchor: "#what-didnt-work" },
     ...caseStudyData.sections.map(section => ({
       label: section.title,
       anchor: `#${section.id}`
@@ -56,7 +58,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
+      { id: 'my-thought-process', title: 'My Thought Process' },
       ...(caseStudyData.ideationSection ? [{ id: 'ideation', title: 'Ideation' }] : []),
+      { id: 'what-didnt-work', title: 'What Didn\'t Work' },
       ...caseStudyData.sections.map(section => ({
         id: section.id,
         title: section.title
@@ -106,13 +110,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           </div>
 
           {/* Overview Section */}
-          <section id="overview" className="section-snap mb-12 py-8">
+          <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <h2 id="overview-heading" className="sr-only">Overview Section</h2>
             <StructuredCaseStudyOverview projectId={caseStudyData.id} />
           </section>
 
           {/* Research Section */}
           {caseStudyData.researchSection && (
-            <section id="research" className="section-snap mb-12">
+            <section id="research" data-section="research" aria-labelledby="research-heading" className="section-snap mb-12 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+              <h2 id="research-heading" className="sr-only">Research Section</h2>
               <ResearchSectionTwoCol researchSection={caseStudyData.researchSection} />
             </section>
           )}
@@ -120,7 +126,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Problem Callout Section - Full width band */}
           {caseStudyData.problemCallout && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <section id="problem" className="section-snap py-12 md:py-16">
+              <section id="problem" data-section="problem" aria-labelledby="problem-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+                <h2 id="problem-heading" className="sr-only">Problem Section</h2>
                 <ProblemCallout
                   eyebrow={caseStudyData.problemCallout.eyebrow}
                   statement={caseStudyData.problemCallout.statement}
@@ -131,13 +138,15 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
           {/* Key Insights Section */}
           {caseStudyData.keyInsights && (
-            <section id="key-insights" className="section-snap mb-12 py-8">
+            <section id="key-insights" data-section="key-insights" aria-labelledby="key-insights-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+              <h2 id="key-insights-heading" className="sr-only">Key Insights Section</h2>
               <KeyInsightsRow insights={caseStudyData.keyInsights} />
             </section>
           )}
 
           {/* My Thought Process Section */}
-          <section className="section-snap mb-12 py-8">
+          <section id="my-thought-process" data-section="my-thought-process" aria-labelledby="my-thought-process-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
             <MyThoughtProcessSection 
               content="I focused on creating a streamlined approach that balanced user needs with technical constraints. My decision criteria centered on usability, scalability, and measurable impact. Through iterative validation loops, I refined the solution based on real user feedback and performance metrics."
               images={[
@@ -153,14 +162,16 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Ideation Section - Full width band */}
           {caseStudyData.ideationSection && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <section id="ideation" className="section-snap py-12 md:py-16">
+              <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+                <h2 id="ideation-heading" className="sr-only">Ideation Section</h2>
                 <IdeationSection ideationData={caseStudyData.ideationSection} />
               </section>
             </div>
           )}
 
           {/* What Didn't Work Section */}
-          <section id="what-didnt-work" className="section-snap py-12 md:py-16">
+          <section id="what-didnt-work" data-section="what-didnt-work" aria-labelledby="what-didnt-work-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <h2 id="what-didnt-work-heading" className="sr-only">What Didn't Work Section</h2>
             <div className="space-y-8">
               <div className="space-y-4 content-rail-center">
                 <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
@@ -202,7 +213,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
           {/* The Final Product Section - Full width band */}
           <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-            <section id="the-final-product" className="section-snap py-12 md:py-16">
+            <section id="the-final-product" data-section="the-final-product" aria-labelledby="final-product-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+              <h2 id="final-product-heading" className="sr-only">The Final Product Section</h2>
               <div className="section-container">
                 <div className="space-y-8">
                   <div className="space-y-4 content-rail-center">
@@ -241,7 +253,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           </div>
 
           {/* Outcome / Results Section */}
-          <section id="outcome-results" className="section-snap py-12 md:py-16">
+          <section id="outcome-results" data-section="outcome-results" aria-labelledby="outcome-results-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <h2 id="outcome-results-heading" className="sr-only">Outcome / Results Section</h2>
             <div className="space-y-8">
               <div className="space-y-4 content-rail-center">
                 <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
@@ -273,7 +286,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           <SingleCaseStudyPreview currentProjectId={caseStudyData.id} />
           
           {/* Contact Section */}
-          <section id="contact-section" className="section-snap py-12 md:py-16">
+          <section id="contact-section" data-section="contact-section" aria-labelledby="contact-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+            <h2 id="contact-heading" className="sr-only">Contact Section</h2>
             <CaseStudyContactSection />
           </section>
           
