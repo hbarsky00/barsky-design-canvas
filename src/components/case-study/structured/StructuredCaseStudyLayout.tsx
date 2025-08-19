@@ -16,6 +16,7 @@ import KeyInsightsRow from "../KeyInsightsRow";
 import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
 import IdeationSection from "../IdeationSection";
 import MyThoughtProcessSection from "../MyThoughtProcessSection";
+import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import { Badge } from "@/components/ui/badge";
 
 interface StructuredCaseStudyLayoutProps {
@@ -258,6 +259,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               </div>
             </div>
           </section>
+          
+          {/* Related Case Study Section */}
+          <SingleCaseStudyPreview currentProjectId={caseStudyData.id} />
           
           {/* Contact Section */}
           <section id="contact-section" className="section-snap py-12 md:py-16">
