@@ -29,6 +29,11 @@ export interface StructuredCaseStudySectionProps {
       playsInline?: boolean;
     };
   };
+  images?: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+  }>;
   metrics?: Array<{
     value: string;
     label: string;
@@ -44,6 +49,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
   variant,
   content,
   media,
+  images,
   metrics,
   tags,
 }) => {
@@ -101,8 +107,23 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
 
         {/* Content */}
         <div className="space-y-8">
-          {/* Media or Placeholder - with proper containment */}
-          {media ? (
+          {/* Multiple Images Support */}
+          {images && images.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {images.map((image, index) => (
+                <MaximizableImage
+                  key={index}
+                  src={image.src}
+                  alt={image.alt}
+                  caption={image.caption}
+                  className="w-full rounded-lg shadow-lg"
+                  projectId="case-study"
+                  fit="contain"
+                />
+              ))}
+            </div>
+          ) : media ? (
+            /* Single Media or Placeholder - with proper containment */
             <div className="w-full max-w-full overflow-hidden">
               {media.type === "image" ? (
                 <div className="w-full max-w-full">
