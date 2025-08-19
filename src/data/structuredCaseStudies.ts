@@ -58,6 +58,7 @@ export interface StructuredCaseStudyData {
   finalProductSection?: {
     title: string;
     description: string;
+    eyebrow?: string;
     images?: Array<{
       src: string;
       alt: string;
@@ -67,6 +68,7 @@ export interface StructuredCaseStudyData {
   outcomeSection?: {
     title: string;
     description: string;
+    eyebrow?: string;
     metrics?: Array<{
       value: string;
       label: string;
@@ -159,6 +161,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     finalProductSection: {
       title: "The Final Product",
       description: "Users can book verified herbalists by need, rating, and availability; log symptoms and track progress over time; get data-informed herbal suggestions; join a growing community of trusted practitioners and peers.",
+      eyebrow: "THE RESULT",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png",
@@ -175,6 +178,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       title: "Outcome",
       description: "We built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights.",
+      eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "3x", label: "Booking Rate Increase" },
         { value: "85%", label: "Match Accuracy" },

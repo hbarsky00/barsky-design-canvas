@@ -224,7 +224,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 className="mb-12"
               >
                 <div className="text-eyebrow text-primary header-spacing">
-                  THE RESULT
+                  {caseStudyData.finalProductSection.eyebrow || "THE RESULT"}
                 </div>
                 <h2 className="text-section-title text-foreground content-rail-center">
                   {caseStudyData.finalProductSection.title}
@@ -282,7 +282,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 className="mb-12"
               >
                 <div className="text-eyebrow text-primary header-spacing">
-                  OUTCOMES & IMPACT
+                  {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
                 </div>
                 <h2 className="text-section-title text-foreground content-rail-center">
                   {caseStudyData.outcomeSection.title}
