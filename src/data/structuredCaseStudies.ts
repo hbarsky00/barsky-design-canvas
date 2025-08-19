@@ -128,11 +128,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Booking flow", description: "Fewer steps, clearer expectations" }
       ],
       iterations: [
-        { label: "Iteration 1", imageSrc: "/media/herbalink/ideation-1.jpg", alt: "First iteration of HerbaLink profile design" },
-        { label: "Iteration 2", imageSrc: "/media/herbalink/ideation-2.jpg", alt: "Second iteration focusing on safety information" },
-        { label: "Iteration 3", imageSrc: "/media/herbalink/ideation-3.jpg", alt: "Third iteration with match criteria refinements" },
-        { label: "Iteration 4", imageSrc: "/media/herbalink/ideation-4.jpg", alt: "Fourth iteration streamlining booking flow" },
-        { label: "Iteration 5", imageSrc: "/media/herbalink/ideation-5.jpg", alt: "Final iteration combining all improvements" }
+        { label: "Iteration 1", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-13-at-9.50.22-PM.png", alt: "First iteration of HerbaLink profile design" },
+        { label: "Iteration 2", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/herbalistopening.jpg", alt: "Second iteration focusing on safety information" },
+        { label: "Iteration 3", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Herbalinkpromo.jpg", alt: "Third iteration with match criteria refinements" },
+        { label: "Iteration 4", imageSrc: "https://barskyux.com/wp-content/uploads/2025/07/Book-Herablist-Symptom-Tracker-and-My-Profile.png", alt: "Fourth iteration streamlining booking flow" }
       ]
     },
     sections: [
