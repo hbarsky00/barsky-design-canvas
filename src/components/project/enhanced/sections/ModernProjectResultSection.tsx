@@ -40,7 +40,15 @@ const ModernProjectResultSection: React.FC<ModernProjectResultSectionProps> = ({
       className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
     >
       <h2 id="result-heading" className="sr-only">Result Section</h2>
-      <h2 className="text-3xl font-bold text-gray-900 mb-6 lg:mb-8 pt-2.5">
+      
+      {/* Eyebrow */}
+      <div className="text-center mb-4">
+        <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 tracking-wide uppercase">
+          The Outcome
+        </span>
+      </div>
+      
+      <h2 className="text-3xl font-bold text-gray-900 mb-6 lg:mb-8">
         The Result
       </h2>
       

@@ -65,11 +65,19 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
       className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
     >
       <h2 id="challenge-heading" className="sr-only">Challenge Section</h2>
+      
+      {/* Eyebrow */}
+      <div className="text-center mb-4">
+        <span className="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700 tracking-wide uppercase">
+          The Problem
+        </span>
+      </div>
+      
       <EnhancedContentEditor
         content="The Challenge"
         contentType="header"
         onSave={(content) => handleSectionContentSave('challenge', 'title', content)}
-        className="mb-6 lg:mb-8 pt-2.5"
+        className="mb-6 lg:mb-8"
         projectId={projectId}
       />
 
