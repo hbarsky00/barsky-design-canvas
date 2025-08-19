@@ -98,8 +98,8 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <aside className="hidden lg:block w-64">
+      {/* Desktop Sidebar - Hidden for structured case studies */}
+      <aside className="hidden w-64">
         <div className="sticky" style={{ top: 'calc(var(--header-height, 64px) + 12px)' }}>
           <nav aria-label="Case study sections" className="p-4">
             <div className="rounded-xl border border-border bg-background/80 backdrop-blur shadow-sm animate-fade-in">

@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
+import CaseStudyNavigation from "../CaseStudyNavigation";
 import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
@@ -86,6 +87,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
 
         <Header />
+        
+        {/* Mobile Sticky Navigation */}
+        <CaseStudyNavigation 
+          navigation={navigationItems}
+          currentSectionIndex={keyboardNav.currentSectionIndex}
+        />
         
         <div className="section-container pt-[calc(var(--header-height,64px)+12px)]">
           {/* Hero Section */}
