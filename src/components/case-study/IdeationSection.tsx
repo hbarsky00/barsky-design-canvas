@@ -49,6 +49,26 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
             </div>
           ))}
         </div>
+
+        {/* Iterations Gallery */}
+        <div className="mt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            {ideationData.iterations.slice(0, 4).map((iteration, index) => (
+              <div key={index}>
+                <div className="text-xs tracking-widest uppercase text-neutral-500 mb-3 font-medium">
+                  {iteration.label}
+                </div>
+                <img
+                  src={iteration.imageSrc}
+                  alt={iteration.alt}
+                  className="w-full h-auto rounded-lg"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
