@@ -5,8 +5,6 @@ import Footer from "@/components/Footer";
 import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import CaseStudyNavigation from "../CaseStudyNavigation";
-import Section3DOverlay from "@/components/transitions/Section3DOverlay";
-import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import UnifiedCaseStudyHero from "./UnifiedCaseStudyHero";
@@ -69,59 +67,17 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     { label: "More Work", anchor: "#more-work" }
   ];
 
-  // Build sections for keyboard navigation in correct order
-  const keyboardSections = React.useMemo(() => {
-    const navSections = [
-      { id: 'hero', title: 'Hero' },
-      { id: 'overview', title: 'Overview' },
-      ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
-      ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
-      ...(caseStudyData.sprintZeroSection ? [{ id: 'sprint-zero', title: 'Sprint Zero' }] : []),
-      ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
-      ...(caseStudyData.myThoughtProcessSection ? [{ id: 'my-thought-process', title: 'My Thought Process' }] : []),
-      ...(caseStudyData.ideationSection ? [
-        { id: 'ideation', title: 'Ideation' },
-        { id: 'iteration-1', title: 'Iteration 1' },
-        { id: 'iteration-2', title: 'Iteration 2' },
-        { id: 'iteration-3', title: 'Iteration 3' },
-        { id: 'iteration-4', title: 'Iteration 4' }
-      ] : []),
-      ...(caseStudyData.whatDidntWorkSection ? [{ id: 'what-didnt-work', title: 'What Didn\'t Work' }] : []),
-      ...(caseStudyData.userTestingSection ? [{ id: 'user-testing', title: 'Validation & Testing' }] : []),
-      ...(caseStudyData.finalProductSection ? [{ id: 'the-final-product', title: 'The Result' }] : []),
-      ...(caseStudyData.outcomeSection ? [{ id: 'outcome-results', title: 'Outcome & Impact' }] : []),
-      { id: 'more-work', title: 'More Work' },
-      { id: 'contact-section', title: 'Contact' }
-    ];
-    return navSections;
-  }, [caseStudyData.researchSection, caseStudyData.problemCallout, caseStudyData.sprintZeroSection, caseStudyData.keyInsights, caseStudyData.myThoughtProcessSection, caseStudyData.ideationSection, caseStudyData.whatDidntWorkSection, caseStudyData.userTestingSection, caseStudyData.finalProductSection, caseStudyData.outcomeSection]);
-
-  // Add keyboard navigation
-  const keyboardNav = useCaseStudyKeyboardNavigation(keyboardSections);
-  const {
-    isTransitioning,
-    transitionDirection,
-    transitionVariation,
-  } = keyboardNav;
 
   return (
     <>
       {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
       <div className={`min-h-screen bg-muted/30 ${isProjectPage ? 'projects-page' : ''}`}>
-        {/* 3D Transition Overlay */}
-        <Section3DOverlay 
-          isVisible={isTransitioning} 
-          direction={transitionDirection}
-          variation={transitionVariation}
-        />
-
         <Header />
         
         {/* Mobile Sticky Navigation */}
         <CaseStudyNavigation 
           navigation={navigationItems}
-          currentSectionIndex={keyboardNav.currentSectionIndex}
         />
         
         <main className={isProjectPage ? "projects-wrap" : ""}>
