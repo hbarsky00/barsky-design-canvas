@@ -84,7 +84,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         <main className={isProjectPage ? "projects-wrap" : ""}>
           <div className="section-container">
           {/* Unified Hero Section */}
-          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white">
+          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white px-4 sm:px-6 lg:px-8">
             <UnifiedCaseStudyHero 
               caseStudyData={caseStudyData}
               heroAsImage={heroAsImage}
