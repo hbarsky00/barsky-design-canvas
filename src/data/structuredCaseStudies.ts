@@ -55,6 +55,14 @@ export interface StructuredCaseStudyData {
     description: string;
   }[];
   ideationSection?: IdeationSection;
+  myThoughtProcessSection?: {
+    content: string;
+    images?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
+  };
   userTestingSection?: {
     title: string;
     description: string;
@@ -62,6 +70,21 @@ export interface StructuredCaseStudyData {
     metrics?: Array<{
       value: string;
       label: string;
+    }>;
+    images?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
+  };
+  whatDidntWorkSection?: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    metrics?: Array<{
+      label: string;
+      value: string;
+      description?: string;
     }>;
     images?: Array<{
       src: string;

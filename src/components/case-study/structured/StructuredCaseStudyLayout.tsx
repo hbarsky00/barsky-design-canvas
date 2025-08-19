@@ -18,6 +18,7 @@ import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
 import IdeationSection from "../IdeationSection";
 import MyThoughtProcessSection from "../MyThoughtProcessSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
+import MaximizableImage from "@/components/project/MaximizableImage";
 import { Badge } from "@/components/ui/badge";
 
 interface StructuredCaseStudyLayoutProps {
@@ -48,6 +49,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...caseStudyData.sections
       .filter(section => section.id !== "final-product" && section.id !== "outcome")
       .map(section => ({
@@ -55,6 +57,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         anchor: `#${section.id}`
       })),
     ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
+    ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
     ...(caseStudyData.userTestingSection ? [{ label: "User Testing", anchor: "#user-testing" }] : []),
     ...(caseStudyData.finalProductSection ? [{ label: caseStudyData.finalProductSection.title, anchor: "#the-final-product" }] : []),
     ...(caseStudyData.outcomeSection ? [{ label: caseStudyData.outcomeSection.title, anchor: "#outcome-results" }] : [])
@@ -67,6 +70,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
+      ...(caseStudyData.myThoughtProcessSection ? [{ id: 'my-thought-process', title: 'My Thought Process' }] : []),
       ...caseStudyData.sections
         .filter(section => section.id !== "final-product" && section.id !== "outcome")
         .map(section => ({
@@ -74,6 +78,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           title: section.title
         })),
       ...(caseStudyData.ideationSection ? [{ id: 'ideation', title: 'Ideation' }] : []),
+      ...(caseStudyData.whatDidntWorkSection ? [{ id: 'what-didnt-work', title: 'What Didn\'t Work' }] : []),
       ...(caseStudyData.userTestingSection ? [{ id: 'user-testing', title: 'User Testing' }] : []),
       ...(caseStudyData.finalProductSection ? [{ id: 'the-final-product', title: caseStudyData.finalProductSection.title }] : []),
       ...(caseStudyData.outcomeSection ? [{ id: 'outcome-results', title: caseStudyData.outcomeSection.title }] : []),
@@ -242,6 +247,68 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <IdeationSection ideationData={caseStudyData.ideationSection} />
               </section>
             </div>
+          )}
+
+          {/* What Didn't Work Section - After Ideation with same styling as Outcome */}
+          {caseStudyData.whatDidntWorkSection && (
+            <section id="what-didnt-work" className="section-snap section-spacing scroll-mt-24">
+              <div className="section-container">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="space-y-8"
+                >
+                  <div className="space-y-4 text-center">
+                    <div className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-eyebrow text-amber-700 header-spacing">
+                      {caseStudyData.whatDidntWorkSection.eyebrow}
+                    </div>
+                    <h2 className="text-section-title content-rail-center">
+                      {caseStudyData.whatDidntWorkSection.title}
+                    </h2>
+                    <p className="text-lg md:text-xl text-neutral-600 content-spacing content-rail-center">
+                      {caseStudyData.whatDidntWorkSection.description}
+                    </p>
+                  </div>
+
+                  {caseStudyData.whatDidntWorkSection.metrics && caseStudyData.whatDidntWorkSection.metrics.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
+                      {caseStudyData.whatDidntWorkSection.metrics.map((metric, index) => (
+                        <div key={index} className="space-y-2">
+                          <div className="text-3xl md:text-4xl font-bold text-amber-600">
+                            {metric.value}
+                          </div>
+                          <div className="text-sm font-medium text-neutral-900">
+                            {metric.label}
+                          </div>
+                          {metric.description && (
+                            <div className="text-sm text-neutral-600">
+                              {metric.description}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {caseStudyData.whatDidntWorkSection.images && caseStudyData.whatDidntWorkSection.images.length > 0 && (
+                    <div className="space-y-4">
+                      {caseStudyData.whatDidntWorkSection.images.map((image, index) => (
+                        <div key={index}>
+                          <MaximizableImage
+                            src={image.src}
+                            alt={image.alt}
+                            caption={image.caption}
+                            className="w-full rounded-lg"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              </div>
+            </section>
           )}
 
           {/* User Testing Section - Same styling as Outcome section */}
