@@ -298,6 +298,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         content: "Beyond these quantitative metrics, qualitative improvements included reduced stress for parents, better coordination of children's activities, improved documentation, enhanced transparency, and most importantly, a stronger focus on children's wellbeing rather than parental conflict."
       },
       {
+        id: "my-thought-process",
+        title: "My Thought Process",
+        icon: Sparkles,
+        variant: "solution",
+        content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better.",
+        media: {
+          type: 'image',
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-user-flow.png",
+          alt: "Splittime user flow diagram showing communication patterns",
+          caption: "User flow focused on conflict reduction and neutral communication."
+        }
+      },
+      {
         id: "lessons-learned",
         title: "Lessons Learned",
         icon: Sparkles,
@@ -436,6 +449,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "1. Mobile app for field loan officers\n2. Predictive analytics for loan performance and risk\n3. Open API for future third-party integrations"
       },
       {
+        id: "my-thought-process",
+        title: "My Thought Process", 
+        icon: Sparkles,
+        variant: "solution",
+        content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces.",
+        media: {
+          type: 'image',
+          src: "/lovable-uploads/investor-loan-thought-process.png",
+          alt: "Investor loan app workflow mapping and process analysis",
+          caption: "Process mapping revealed automation opportunities and error reduction points."
+        }
+      },
+      {
         id: "outcome",
         title: "The Outcome",
         icon: CheckCircle2,
@@ -528,7 +554,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "My Thought Process",
         icon: Sparkles,
         variant: "solution",
-        content: "Shadowed operations, rebuilt workflows as data pipelines, and automated repetitive work end-to-end.",
+        content: "I treated this as a systems transformation, not just a digital upgrade. By shadowing operations teams and mapping their workflows end-to-end, I identified where manual processes created bottlenecks and errors. The solution focused on intelligent automation and data pipelines that eliminated repetitive work while maintaining accuracy.",
+        media: {
+          type: 'image',
+          src: "/wholesale-thought-process.png",
+          alt: "Wholesale distribution workflow analysis and automation points",
+          caption: "End-to-end process mapping revealed automation opportunities across the entire distribution pipeline."
+        },
         tags: ["ProcessDesign", "Automation", "DataPipelines", "AIEnablement"]
       }
     ],

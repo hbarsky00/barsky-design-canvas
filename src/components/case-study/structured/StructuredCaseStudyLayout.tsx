@@ -150,20 +150,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </section>
           )}
 
-          {/* My Thought Process Section */}
-          <section id="my-thought-process" data-section="my-thought-process" aria-labelledby="my-thought-process-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
-            <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
-            <MyThoughtProcessSection 
-              content="I focused on creating a streamlined approach that balanced user needs with technical constraints. My decision criteria centered on usability, scalability, and measurable impact. Through iterative validation loops, I refined the solution based on real user feedback and performance metrics."
-              images={[
-                {
-                  src: "https://barskyux.com/wp-content/uploads/2025/07/UserFlow.png",
-                  alt: "User flow diagram",
-                  caption: "User flow from onboarding to booking and tracking"
-                }
-              ]}
-            />
-          </section>
 
           {/* Ideation Section - Full width band */}
           {caseStudyData.ideationSection && (
@@ -175,47 +161,47 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          {/* What Didn't Work Section */}
-          <section id="what-didnt-work" data-section="what-didnt-work" aria-labelledby="what-didnt-work-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
-            <h2 id="what-didnt-work-heading" className="sr-only">What Didn't Work Section</h2>
-            <div className="space-y-8">
-              <div className="space-y-4 content-rail-center">
-                <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
-                  What Didn't Work
-                </Badge>
-                <h2 className="text-section-title">
-                  Learning from Failures
-                </h2>
-              </div>
-              
-              <div className="content-rail-left">
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Initial approaches that didn't meet user needs and how we pivoted to better solutions.
-                </p>
-                
-                <ul className="space-y-4 list-none pl-0">
-                  <li className="flex flex-col space-y-2">
-                    <span className="text-base">• Complex navigation structure confused users</span>
-                    <span className="text-sm text-primary font-medium pl-4">
-                      Fix: Simplified to 3 main sections with clear visual hierarchy
-                    </span>
-                  </li>
-                  <li className="flex flex-col space-y-2">
-                    <span className="text-base">• Too many form fields in initial onboarding</span>
-                    <span className="text-sm text-primary font-medium pl-4">
-                      Fix: Progressive disclosure with optional advanced settings
-                    </span>
-                  </li>
-                  <li className="flex flex-col space-y-2">
-                    <span className="text-base">• Real-time updates caused performance issues</span>
-                    <span className="text-sm text-primary font-medium pl-4">
-                      Fix: Intelligent batching and optimistic updates
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
+          {/* Dynamic Sections from case study data */}
+          {caseStudyData.sections.map((section) => {
+            // Special handling for "my-thought-process" sections to use the clean design
+            if (section.id === "my-thought-process") {
+              return (
+                <section 
+                  key={section.id}
+                  id={section.id} 
+                  data-section={section.id} 
+                  aria-labelledby={`${section.id}-heading`} 
+                  className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+                >
+                  <h2 id={`${section.id}-heading`} className="sr-only">{section.title} Section</h2>
+                  <MyThoughtProcessSection 
+                    content={section.content}
+                    images={section.media ? [{
+                      src: section.media.src,
+                      alt: section.media.alt,
+                      caption: section.media.caption
+                    }] : section.images || []}
+                  />
+                </section>
+              );
+            }
+            
+            // All other sections use the standard card-based layout
+            return (
+              <StructuredCaseStudySection
+                key={section.id}
+                id={section.id}
+                title={section.title}
+                icon={section.icon}
+                variant={section.variant}
+                content={section.content}
+                media={section.media}
+                images={section.images}
+                metrics={section.metrics}
+                tags={section.tags}
+              />
+            );
+          })}
 
           {/* The Final Product Section - Full width band */}
           <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
