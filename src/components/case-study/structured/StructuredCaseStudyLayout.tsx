@@ -145,6 +145,20 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           )}
 
 
+          {/* Dynamic Sections from Case Study Data */}
+          {caseStudyData.sections && caseStudyData.sections.map((section, index) => (
+            <section 
+              key={section.id} 
+              id={section.id} 
+              data-section={section.id} 
+              aria-labelledby={`${section.id}-heading`} 
+              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+            >
+              <h2 id={`${section.id}-heading`} className="sr-only">{section.title} Section</h2>
+              <StructuredCaseStudySection {...section} />
+            </section>
+          ))}
+
           {/* Ideation Section - Full width band */}
           {caseStudyData.ideationSection && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
