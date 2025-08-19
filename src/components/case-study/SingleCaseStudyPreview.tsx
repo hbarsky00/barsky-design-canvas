@@ -155,9 +155,9 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
       className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] cs-card"
       data-section="more-work"
     >
-      <div className="section-container section-spacing">
+      <div className="section-container compact-section-spacing">
         {/* Eyebrow tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-3">
           {relatedStudy.tags.map((tag) => (
             <span key={tag} className="text-eyebrow text-primary">
               #{tag}
@@ -166,30 +166,30 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
         </div>
 
         {/* Section header */}
-        <div className="header-spacing">
+        <div className="mb-4">
           <h2 className="text-section-title text-foreground">
             More Work
           </h2>
         </div>
 
         {/* Content */}
-        <div className="content-spacing">
+        <div className="mt-3">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center"
           >
             {/* Image Section */}
             <div className="order-2 lg:order-1">
-              <div className="relative bg-muted/20 rounded-xl overflow-hidden min-h-[300px] lg:min-h-[400px] flex items-center justify-center">
+              <div className="relative bg-muted/20 rounded-xl overflow-hidden min-h-[200px] lg:min-h-[280px] flex items-center justify-center">
                 {renderMedia()}
               </div>
             </div>
 
             {/* Content Section */}
-            <div className="order-1 lg:order-2 space-y-6">
+            <div className="order-1 lg:order-2 space-y-4">
               {/* Title */}
               <h3 className="text-subsection-title text-foreground leading-tight">
                 {relatedStudy.title}
@@ -201,12 +201,12 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
               </p>
 
               {/* Impact Metrics */}
-              <div className="text-2xl lg:text-3xl font-bold text-primary">
+              <div className="text-xl lg:text-2xl font-bold text-primary">
                 {relatedStudy.impact}
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 pt-1">
                 <Button asChild size="default">
                   <Link to={relatedStudy.url}>
                     View Case Study
