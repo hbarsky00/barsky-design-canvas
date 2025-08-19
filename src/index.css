@@ -380,7 +380,7 @@ select:focus-visible, a:focus-visible,
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
 }
 
 /* Respect reduced motion preference */
@@ -394,7 +394,7 @@ html {
 /* Section snap points for smooth scrolling */
 .section-snap {
   scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  scroll-snap-stop: always;
 }
 
 /* Alignment utilities */

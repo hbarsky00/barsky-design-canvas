@@ -151,157 +151,85 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
 
   return (
     <section 
-      className="w-full py-24 md:py-32 section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-gradient-to-b from-background to-muted/20"
+      id="more-work"
+      className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] cs-card"
       data-section="more-work"
     >
-      {/* Hero-style header - full width */}
-      <div className="w-full text-center mb-8 px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+      <div className="section-container section-spacing">
+        {/* Eyebrow tags */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {relatedStudy.tags.map((tag) => (
+            <span key={tag} className="text-eyebrow text-primary">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Section header */}
+        <div className="header-spacing">
+          <h2 className="text-section-title text-foreground">
             More Work
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Explore another project from my portfolio
-          </p>
-        </motion.div>
-      </div>
+        </div>
 
-      {/* Hero-style content block */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="w-full max-w-7xl mx-auto px-6 overflow-hidden"
-      >
-        {/* Mobile Layout: Hero-style Stacked */}
-        <div className="lg:hidden bg-card rounded-2xl overflow-hidden shadow-lg">
-          {/* Image Section - Full Width on Mobile */}
-          <div className="relative min-h-[320px] flex items-center justify-center bg-muted/30">
-            <div className="w-full h-full">
-              {renderMedia()}
-            </div>
-          </div>
-
-          {/* Content Section */}
-          <div className="p-8 space-y-6">
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {relatedStudy.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-sm font-medium rounded-full px-4 py-2">
-                  #{tag}
-                </Badge>
-              ))}
+        {/* Content */}
+        <div className="content-spacing">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+          >
+            {/* Image Section */}
+            <div className="order-2 lg:order-1">
+              <div className="relative bg-muted/20 rounded-xl overflow-hidden min-h-[300px] lg:min-h-[400px] flex items-center justify-center">
+                {renderMedia()}
+              </div>
             </div>
 
-            {/* Title */}
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-              {relatedStudy.title}
-            </h3>
+            {/* Content Section */}
+            <div className="order-1 lg:order-2 space-y-6">
+              {/* Title */}
+              <h3 className="text-subsection-title text-foreground leading-tight">
+                {relatedStudy.title}
+              </h3>
 
-            {/* Description */}
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              {relatedStudy.description}
-            </p>
+              {/* Description */}
+              <p className="text-base text-muted-foreground leading-relaxed">
+                {relatedStudy.description}
+              </p>
 
-            {/* Impact Metrics */}
-            <div className="text-3xl font-bold text-primary">
-              {relatedStudy.impact}
-            </div>
+              {/* Impact Metrics */}
+              <div className="text-2xl lg:text-3xl font-bold text-primary">
+                {relatedStudy.impact}
+              </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col gap-4 pt-4">
-              <Button asChild size="lg" className="w-full">
-                <Link to={relatedStudy.url}>
-                  View Case Study
-                </Link>
-              </Button>
-              {relatedStudy.liveUrl && (
-                <Button asChild variant="outline" size="lg" className="w-full">
-                  <a 
-                    href={relatedStudy.liveUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
-                  >
-                    View Live Project
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <Button asChild size="default">
+                  <Link to={relatedStudy.url}>
+                    View Case Study
+                  </Link>
                 </Button>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop Layout: Hero-style Side-by-Side */}
-        <div className="hidden lg:block">
-          <div className="bg-card rounded-3xl overflow-hidden shadow-xl">
-            <div className="grid lg:grid-cols-2 items-center min-h-[600px]">
-              
-              {/* Images Section */}
-              <div className="relative h-full min-h-[600px] bg-muted/30 flex items-center justify-center p-8">
-                <div className="w-full h-full flex items-center justify-center">
-                  {renderMedia()}
-                </div>
-              </div>
-
-              {/* Content Section */}
-              <div className="p-12 lg:p-16 space-y-8">
-                {/* Tags */}
-                <div className="flex flex-wrap gap-3">
-                  {relatedStudy.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-sm font-medium rounded-full px-4 py-2">
-                      #{tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-4xl xl:text-5xl font-bold text-foreground leading-tight">
-                  {relatedStudy.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-muted-foreground text-xl leading-relaxed">
-                  {relatedStudy.description}
-                </p>
-
-                {/* Impact Metrics */}
-                <div className="text-4xl xl:text-5xl font-bold text-primary">
-                  {relatedStudy.impact}
-                </div>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                  <Button asChild size="lg" className="text-lg px-8 py-3">
-                    <Link to={relatedStudy.url}>
-                      View Case Study
-                    </Link>
+                {relatedStudy.liveUrl && (
+                  <Button asChild variant="outline" size="default">
+                    <a 
+                      href={relatedStudy.liveUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      View Live Project
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
                   </Button>
-                  {relatedStudy.liveUrl && (
-                    <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
-                      <a 
-                        href={relatedStudy.liveUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2"
-                      >
-                        View Live Project
-                        <ArrowRight className="w-5 h-5" />
-                      </a>
-                    </Button>
-                  )}
-                </div>
+                )}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
