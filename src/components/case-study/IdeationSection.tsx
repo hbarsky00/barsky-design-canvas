@@ -58,15 +58,13 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
                   <div className="text-[11px] tracking-widest uppercase text-neutral-500 mb-3">
                     {iteration.label}
                   </div>
-                  <div className="rounded-2xl border border-neutral-200 bg-white p-3 md:p-4">
-                    <img
-                      src={iteration.imageSrc}
-                      alt={iteration.alt}
-                      className="w-full h-auto rounded-xl"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                  <img
+                    src={iteration.imageSrc}
+                    alt={iteration.alt}
+                    className="w-full h-auto"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               ))}
             </div>

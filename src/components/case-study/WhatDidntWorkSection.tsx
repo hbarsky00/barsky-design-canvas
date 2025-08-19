@@ -96,6 +96,7 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
                 src={image.src}
                 alt={image.alt}
                 caption={image.caption}
+                fit="contain"
                 className="w-full rounded-lg shadow-sm"
               />
             </motion.div>
