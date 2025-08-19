@@ -3,8 +3,6 @@ import React from "react";
 import { ProjectDetails } from "@/data/types/project";
 import { ProjectProps } from "@/components/ProjectCard";
 import ModernProjectChallengeSection from "./ModernProjectChallengeSection";
-import ModernProjectProcessSection from "./ModernProjectProcessSection";
-import ModernProjectResultSection from "./ModernProjectResultSection";
 
 interface ModernProjectSectionsProps {
   details: ProjectDetails;
@@ -30,19 +28,6 @@ const ModernProjectSections: React.FC<ModernProjectSectionsProps> = ({
         imageCaptions={imageCaptions}
       />
 
-      <ModernProjectProcessSection
-        details={details}
-        projectId={projectId}
-        componentKey={componentKey}
-        imageCaptions={imageCaptions}
-      />
-
-      <ModernProjectResultSection
-        details={details}
-        projectId={projectId}
-        componentKey={componentKey}
-        imageCaptions={imageCaptions}
-      />
     </div>
   );
 };

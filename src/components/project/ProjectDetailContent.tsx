@@ -68,8 +68,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   // Check if this is DAE Search project to conditionally hide bottom gallery
   const isDaeSearchProject = projectId === "dae-search";
 
-  // Get the process before header image from imageConfig
-  const processBeforeHeaderImage = details.imageConfig?.process?.beforeHeader;
 
   return (
     <div className="w-full px-4 sm:px-6 pt-20 pb-4 lg:pt-24 lg:pb-8">
@@ -98,17 +96,10 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
           <ProjectOverview
             challenge={details.challenge}
             challengeAdditionalText={details.challengeAdditionalText}
-            process={details.process}
-            result={details.result}
             technologies={details.technologies}
             projectLink={details.projectLink}
             caseStudyLink={details.caseStudyLink}
             challengeImage={getReplacedImageSrc(details.challengeImage || '')}
-            processImage={getReplacedImageSrc(details.processImage || '')}
-            processBottomImage={getReplacedImageSrc(details.processBottomImage || '')}
-            processBeforeHeaderImage={processBeforeHeaderImage ? getReplacedImageSrc(processBeforeHeaderImage) : undefined}
-            resultImage={getReplacedImageSrc(details.resultImage || '')}
-            resultGalleryImages={details.resultGalleryImages?.map(getReplacedImageSrc)}
             imageCaptions={imageCaptions}
             galleryImages={details.galleryImages?.map(getReplacedImageSrc)}
             showTechnologies={false}
@@ -116,7 +107,6 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
             challengeGalleryImages={details.challengeGalleryImages?.map(getReplacedImageSrc)}
             allImages={allImages}
             projectId={projectId}
-            servicesGalleryImages={details.servicesGalleryImages?.map(getReplacedImageSrc)}
           />
         </div>
       </div>

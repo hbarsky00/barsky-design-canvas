@@ -324,36 +324,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [
       {
-        id: "what-i-did",
-        title: "What I Did",
-        icon: Wrench,
-        variant: "solution",
-        eyebrow: "APPROACH",
-        content: "Transitioning from initial concepts, we developed low-fidelity mockups and wireframes to outline the app's core structure and user flow. This stage allowed us to rapidly iterate on design ideas, focusing on functionality and information hierarchy without getting bogged down in visual details.\n\nBy sketching out screens for features like the shared calendar, messaging, and document sharing, we established the foundational blueprint for the app, ensuring all essential components were logically placed and accessible.",
-        media: {
-          type: 'image',
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/iMh4BEwy33n8p2KC-PDr3.png",
-          alt: "Low-fidelity wireframes and flows for Splittime",
-          caption: "Wireframes established core structure and user flows early."
-        }
-      },
-      {
-        id: "usability-testing",
-        title: "Usability Testing",
-        icon: CheckCircle2,
-        variant: "impact",
-        eyebrow: "VALIDATION",
-        content: "Testing revealed that users particularly valued features that helped them communicate more effectively with their co-parent. The tone analysis feature received especially positive feedback, with users reporting it helped them \"step back\" from emotional responses."
-      },
-      {
-        id: "the-results",
-        title: "The Results",
-        icon: TrendingUp,
-        variant: "impact",
-        eyebrow: "IMPACT",
-        content: "Beyond these quantitative metrics, qualitative improvements included reduced stress for parents, better coordination of children's activities, improved documentation, enhanced transparency, and most importantly, a stronger focus on children's wellbeing rather than parental conflict."
-      },
-      {
         id: "my-thought-process",
         title: "My Thought Process",
         icon: Sparkles,
@@ -704,35 +674,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     sections: [
-      {
-        id: "impact-snapshot",
-        title: "Impact Snapshot",
-        icon: BarChart4,
-        variant: "impact",
-        eyebrow: "TRANSFORMATION",
-        content: "Comprehensive system transformation delivered immediate results across all business operations.",
-        metrics: [
-          { value: "−50%", label: "billing errors", trend: "down" },
-          { value: "+35%", label: "processing speed", trend: "up" },
-          { value: "90%", label: "satisfaction", trend: "up" },
-          { value: "0", label: "training hours", trend: "neutral" },
-          { value: "100%", label: "uptime", trend: "up" }
-        ]
-      },
-      {
-        id: "process-flow",
-        title: "Process Flow",
-        icon: Target,
-        variant: "solution",
-        eyebrow: "WORKFLOW",
-        content: "Mobile-first wholesale flow from order to reconciliation:",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/quickflow_process_flow.svg",
-          alt: "Mobile-first wholesale flow from order to reconciliation",
-          caption: "Mobile-first wholesale flow from order to reconciliation."
-        }
-      },
       {
         id: "my-thought-process",
         title: "My Thought Process",

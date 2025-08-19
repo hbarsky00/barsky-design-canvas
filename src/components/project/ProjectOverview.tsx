@@ -4,25 +4,15 @@ import TechnologiesList from "./TechnologiesList";
 import ServicesList from "./ServicesList";
 import ProjectLinks from "./ProjectLinks";
 import ChallengeSection from "./sections/ChallengeSection";
-import ProcessSection from "./sections/ProcessSection";
-import ResultSection from "./sections/ResultSection";
 import { useProjectConfiguration } from "@/hooks/useProjectConfiguration";
-import { useProcessContent } from "@/hooks/useProcessContent";
 
 interface ProjectOverviewProps {
   challenge: string;
   challengeAdditionalText?: string;
-  process: string;
-  result: string;
   technologies: string[];
   projectLink?: string;
   caseStudyLink?: string;
   challengeImage?: string;
-  processImage?: string;
-  processBottomImage?: string;
-  processBeforeHeaderImage?: string;
-  resultImage?: string;
-  resultGalleryImages?: string[];
   imageCaptions?: Record<string, string>;
   galleryImages?: string[];
   showTechnologies?: boolean;
@@ -30,43 +20,22 @@ interface ProjectOverviewProps {
   challengeGalleryImages?: string[];
   allImages: string[];
   projectId?: string;
-  servicesGalleryImages?: string[];
 }
 
 const ProjectOverview: React.FC<ProjectOverviewProps> = ({ 
   challenge, 
   challengeAdditionalText,
-  process, 
-  result,
   technologies,
   projectLink,
   challengeImage,
-  processImage,
-  processBottomImage,
-  processBeforeHeaderImage,
-  resultImage,
-  resultGalleryImages,
   imageCaptions = {},
   showTechnologies = false,
   challengeBottomImage,
   challengeGalleryImages = [],
-  projectId,
-  servicesGalleryImages = []
+  projectId
 }) => {
-  const {
-    isInvestorProject,
-    isDaeSearchProject,
-    inspirationImages,
-    inspirationCaptions,
-    servicesCaptions,
-    processBreakpoint
-  } = useProjectConfiguration(projectId);
+  const { isDaeSearchProject } = useProjectConfiguration(projectId);
 
-  const { processBeforeGallery, processAfterGallery } = useProcessContent(
-    process,
-    isInvestorProject,
-    processBreakpoint
-  );
 
   return (
     <div>
@@ -80,29 +49,6 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
         projectId={projectId}
       />
       
-      <ProcessSection
-        processBeforeGallery={processBeforeGallery}
-        processAfterGallery={processAfterGallery}
-        isInvestorProject={isInvestorProject}
-        isDaeSearchProject={isDaeSearchProject}
-        inspirationImages={inspirationImages}
-        inspirationCaptions={inspirationCaptions}
-        servicesGalleryImages={servicesGalleryImages}
-        servicesCaptions={servicesCaptions}
-        processImage={processImage}
-        processBottomImage={processBottomImage}
-        processBeforeHeaderImage={processBeforeHeaderImage}
-        imageCaptions={imageCaptions}
-        projectId={projectId}
-      />
-      
-      <ResultSection
-        result={result}
-        resultGalleryImages={resultGalleryImages}
-        resultImage={resultImage}
-        imageCaptions={imageCaptions}
-        projectId={projectId}
-      />
       
       {/* Technologies Section - Only show if showTechnologies is true */}
       {showTechnologies && <TechnologiesList technologies={technologies} />}
