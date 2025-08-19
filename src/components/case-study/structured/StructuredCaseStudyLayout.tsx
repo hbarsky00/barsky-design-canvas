@@ -125,22 +125,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <main className={isProjectPage ? "projects-wrap" : ""}>
-          {/* Unified Hero Section - Full width, breaks out of projects-wrap */}
-          {isProjectPage ? (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-              <UnifiedCaseStudyHero 
-                caseStudyData={caseStudyData}
-                heroAsImage={heroAsImage}
-              />
-            </div>
-          ) : (
-            <UnifiedCaseStudyHero 
-              caseStudyData={caseStudyData}
-              heroAsImage={heroAsImage}
-            />
-          )}
-
           <div className="section-container">
+          {/* Unified Hero Section */}
+          <UnifiedCaseStudyHero 
+            caseStudyData={caseStudyData}
+            heroAsImage={heroAsImage}
+          />
           {/* Overview Section */}
           <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
             <h2 id="overview-heading" className="sr-only">Overview Section</h2>
