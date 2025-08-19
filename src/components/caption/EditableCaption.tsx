@@ -57,6 +57,13 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
   useEffect(() => {
     const run = async () => {
       if (!imageSrc || hasTriggeredRef.current) return;
+      
+      // Don't generate if we have a valid initial caption
+      if (initialCaption && !needsGeneration(initialCaption)) {
+        setAutoCaption(initialCaption);
+        return;
+      }
+      
       if (!needsGeneration(autoCaption)) return;
 
       hasTriggeredRef.current = true;
@@ -81,7 +88,7 @@ const EditableCaption: React.FC<EditableCaptionProps> = ({
     };
 
     run();
-  }, [imageSrc, projectId, generateCaption, autoCaption, onCaptionChange]);
+  }, [imageSrc, projectId, generateCaption, autoCaption, onCaptionChange, initialCaption]);
 
   const displayedCaption = isAutoGenerating ? "Generating caption..." : autoCaption || "";
 
