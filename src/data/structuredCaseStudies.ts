@@ -294,12 +294,41 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 5", imageSrc: "/media/splittime/ideation-5.jpg", alt: "Final iteration with unified interface" }
       ]
     },
+    finalProductSection: {
+      title: "The Final Product",
+      description: "A co-parenting platform that prioritizes children's wellbeing through clear communication, shared scheduling, and conflict reduction tools that help separated families coordinate effectively.",
+      eyebrow: "THE RESULT",
+      images: [
+        {
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+          alt: "Splittime final product showing co-parenting interface",
+          caption: "Complete Splittime platform enabling conflict-free co-parenting coordination"
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      description: "Splittime transformed how separated families communicate and coordinate, creating a foundation for healthier relationships and better outcomes for children.",
+      eyebrow: "OUTCOMES & IMPACT",
+      metrics: [
+        { value: "40%", label: "Conflict Reduction" },
+        { value: "90%", label: "User Satisfaction" },
+        { value: "24hr", label: "Response Time" }
+      ],
+      images: [
+        {
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-user-flow.png",
+          alt: "Splittime user satisfaction metrics and communication improvements"
+        }
+      ]
+    },
     sections: [
       {
         id: "what-i-did",
         title: "What I Did",
         icon: Wrench,
         variant: "solution",
+        eyebrow: "APPROACH",
         content: "Transitioning from initial concepts, we developed low-fidelity mockups and wireframes to outline the app's core structure and user flow. This stage allowed us to rapidly iterate on design ideas, focusing on functionality and information hierarchy without getting bogged down in visual details.\n\nBy sketching out screens for features like the shared calendar, messaging, and document sharing, we established the foundational blueprint for the app, ensuring all essential components were logically placed and accessible.",
         media: {
           type: 'image',
@@ -313,6 +342,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "Usability Testing",
         icon: CheckCircle2,
         variant: "impact",
+        eyebrow: "VALIDATION",
         content: "Testing revealed that users particularly valued features that helped them communicate more effectively with their co-parent. The tone analysis feature received especially positive feedback, with users reporting it helped them \"step back\" from emotional responses."
       },
       {
@@ -320,6 +350,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "The Results",
         icon: TrendingUp,
         variant: "impact",
+        eyebrow: "IMPACT",
         content: "Beyond these quantitative metrics, qualitative improvements included reduced stress for parents, better coordination of children's activities, improved documentation, enhanced transparency, and most importantly, a stronger focus on children's wellbeing rather than parental conflict."
       },
       {
@@ -333,19 +364,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-user-flow.png",
           alt: "Splittime user flow diagram showing communication patterns",
           caption: "User flow focused on conflict reduction and neutral communication."
-        }
-      },
-      {
-        id: "lessons-learned",
-        title: "Lessons Learned",
-        icon: Sparkles,
-        variant: "solution",
-        content: "Perhaps the most significant insight was how thoughtful design can transform digital interactions from sources of conflict into opportunities for cooperation. By designing with emotional intelligence, we created a platform that not only solved practical problems but actually improved human relationships.",
-        media: {
-          type: 'image',
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Lessons-Learned-2.png",
-          alt: "Summary of key lessons learned from Splittime",
-          caption: "Designing with emotional intelligence improved cooperation."
         }
       }
     ],
@@ -422,40 +440,41 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 5", imageSrc: "/media/investment/ideation-5.jpg", alt: "Final iteration with integrated workflow" }
       ]
     },
+    finalProductSection: {
+      title: "The Final Product",
+      description: "A comprehensive loan management platform that replaced error-prone Excel workflows with intelligent automation, real-time validation, and transparent audit trails for complete operational confidence.",
+      eyebrow: "THE RESULT",
+      images: [
+        {
+          src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+          alt: "Investor loan platform dashboard final interface",
+          caption: "Complete loan management platform with automated workflows and real-time validation"
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      description: "Transformed loan operations from manual, error-prone processes to intelligent, automated workflows that scale with business growth while maintaining complete accuracy and compliance.",
+      eyebrow: "OUTCOMES & IMPACT",
+      metrics: [
+        { value: "85%", label: "Fewer Errors" },
+        { value: "40%", label: "Faster Processing" },
+        { value: "200+", label: "Orders in 2 Months" }
+      ],
+      images: [
+        {
+          src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
+          alt: "Investor loan platform user workflow and process improvements"
+        }
+      ]
+    },
     sections: [
-      {
-        id: "what-didnt-work",
-        title: "What Didn't Work",
-        icon: XCircle,
-        variant: "failed",
-        content:
-          "Rebuilding Excel as-is carried clutter and confusion. We shifted to modular card + table views with hierarchy and real-time updates.\n\nAutomating without transparency hurt trust. We added visual confirmations, logs, and rollback controls.\n\nDesigning Add Order like a flat form overwhelmed users. We rebuilt it as a guided, interactive workflow with progressive steps, real-time validation, and clear structure.",
-        media: {
-          type: 'image',
-          src: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Central-Orderbook-View.png",
-          alt: "Loan Central order book view in the redesigned platform",
-          caption: "Order book view showing modular cards, hierarchy, and real-time updates."
-        }
-      },
-      {
-        id: "mistake-1",
-        title: "Mistake #1",
-        icon: AlertTriangle,
-        variant: "failed",
-        content:
-          "Why it failed: We initially focused on building complex search filters and criteria matching, thinking users needed advanced discovery tools like they had in Excel.\nFix: Users actually needed fast, predictive search that understood their workflow. We pivoted to AI-powered search with smart defaults and contextual suggestions that anticipated what they were looking for.",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/150a4488-94c2-481d-a7e3-f3730f963866.png",
-          alt: "Enhanced orderbook",
-          caption: "Enhanced order book with clearer hierarchy and updates."
-        }
-      },
       {
         id: "before-vs-after",
         title: "Before vs. After",
         icon: Target,
         variant: "solution",
+        eyebrow: "TRANSFORMATION",
         content:
           "Excel System → New Platform:\n- Manual entry, frequent errors → Automated workflows with validation\n- No collaboration → In-app commenting and shared loan orders\n- Flat spreadsheets → Card + table views with live syncing\n- No audit history → Full visual audit logs\n- No search → AI-powered predictive search",
         media: {
@@ -464,14 +483,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "User workflow",
           caption: "Streamlined end-to-end workflow across roles."
         }
-      },
-      {
-        id: "whats-next",
-        title: "What's Next",
-        icon: Rocket,
-        variant: "solution",
-        content:
-          "1. Mobile app for field loan officers\n2. Predictive analytics for loan performance and risk\n3. Open API for future third-party integrations"
       },
       {
         id: "my-thought-process",
@@ -484,20 +495,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           src: "/lovable-uploads/investor-loan-thought-process.png",
           alt: "Investor loan app workflow mapping and process analysis",
           caption: "Process mapping revealed automation opportunities and error reduction points."
-        }
-      },
-      {
-        id: "outcome",
-        title: "The Outcome",
-        icon: CheckCircle2,
-        variant: "impact",
-        content:
-          "This wasn't about making a prettier interface. It was about building a smarter, more scalable system that helped the business grow — and gave users clarity, speed, and confidence.\n\n\"I don't have to double-check every number now. I just trust it.\"",
-        media: {
-          type: 'image',
-          src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-          alt: "Loan dashboard",
-          caption: "Outcome: clarity, speed, and user confidence."
         }
       }
     ],
@@ -547,31 +544,47 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 5", imageSrc: "/media/wholesale/ideation-5.jpg", alt: "Final iteration with complete pipeline" }
       ]
     },
+    finalProductSection: {
+      title: "The Final Product",
+      description: "An intelligent wholesale distribution platform that eliminated manual Excel processes through AI-assisted workflows, achieving near-perfect accuracy and dramatically increased speed.",
+      eyebrow: "THE RESULT",
+      images: [
+        {
+          src: "/placeholder.svg",
+          alt: "Wholesale distribution platform final interface",
+          caption: "Complete AI-powered distribution system replacing manual Excel workflows"
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      description: "Transformed wholesale operations from error-prone manual processes to intelligent automated workflows, delivering unprecedented accuracy and efficiency gains.",
+      eyebrow: "OUTCOMES & IMPACT",
+      metrics: [
+        { value: "95%", label: "Less Manual Work" },
+        { value: "500%", label: "Faster Processing" },
+        { value: "99.7%", label: "Accuracy Rate" }
+      ],
+      images: [
+        {
+          src: "/wholesale-thought-process.png",
+          alt: "Wholesale distribution transformation results and automation benefits"
+        }
+      ]
+    },
     sections: [
       {
         id: "the-problem",
         title: "The Problem",
         icon: AlertTriangle,
         variant: "problem",
+        eyebrow: "CHALLENGE",
         content: "Teams managed 200+ weekly orders in Excel, leading to 15% errors, slow reconciliation, and risk to key accounts.",
         media: {
           type: 'image',
           src: "/placeholder.svg",
           alt: "Manual order tracking in spreadsheets",
           caption: "Excel-based operations caused avoidable errors and delays."
-        }
-      },
-      {
-        id: "what-didnt-work",
-        title: "What Didn't Work",
-        icon: XCircle,
-        variant: "failed",
-        content: "Pretty dashboards on top of Excel didn't fix duplicated data and reconciliation bottlenecks.",
-        media: {
-          type: 'image',
-          src: "/placeholder.svg",
-          alt: "Ineffective dashboard layered over spreadsheets",
-          caption: "Cosmetic UI changes failed to solve process flaws."
         }
       },
       {
@@ -662,12 +675,41 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { label: "Iteration 5", imageSrc: "/media/biz/ideation-5.jpg", alt: "Final iteration with unified operations" }
       ]
     },
+    finalProductSection: {
+      title: "The Final Product",
+      description: "A unified business management platform that consolidates scheduling, invoicing, and task management into one intelligent system, eliminating tool chaos and manual errors.",
+      eyebrow: "THE RESULT",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+          alt: "Business management system final interface",
+          caption: "Complete business management platform with unified operations and automated workflows"
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      description: "Transformed small business operations from chaotic multi-tool workflows to streamlined automation, delivering significant error reduction and operational efficiency gains.",
+      eyebrow: "OUTCOMES & IMPACT",
+      metrics: [
+        { value: "68%", label: "Fewer Errors" },
+        { value: "35%", label: "Faster Processing" },
+        { value: "90%", label: "User Satisfaction" }
+      ],
+      images: [
+        {
+          src: "/lovable-uploads/quickflow_process_flow.svg",
+          alt: "Business management system operational improvements and metrics"
+        }
+      ]
+    },
     sections: [
       {
         id: "impact-snapshot",
         title: "Impact Snapshot",
         icon: BarChart4,
         variant: "impact",
+        eyebrow: "TRANSFORMATION",
         content: "Comprehensive system transformation delivered immediate results across all business operations.",
         metrics: [
           { value: "−50%", label: "billing errors", trend: "down" },
@@ -682,6 +724,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "Process Flow",
         icon: Target,
         variant: "solution",
+        eyebrow: "WORKFLOW",
         content: "Mobile-first wholesale flow from order to reconciliation:",
         media: {
           type: 'image',
@@ -691,25 +734,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       },
       {
-        id: "results",
-        title: "Results",
-        icon: TrendingUp,
-        variant: "impact",
-        content: "• 50% reduction in wholesale billing errors\n\n• 35% faster bulk order processing time\n\n• 90% user satisfaction rate\n\n• Zero training time for new staff\n\n• 100% uptime (no QuickBooks downtime)\n\n• $200/month saved in subscription fees\n\n• 40% reduction in admin tasks\n\n• Better inventory accuracy\n\n\"This system has completely changed how we operate our wholesale business. No more billing errors with our restaurant clients, and I can manage everything from my phone while I'm out making deliveries.\" — Client"
-      },
-      {
-        id: "challenges-fixes",
-        title: "Challenges & Fixes",
-        icon: Shield,
-        variant: "failed",
-        content: "**Replacing Complex Third-Party Integrations**\nSolution: Built an all-in-one system with native accounting features.\n\n**Complex Data Visualization**\nSolution: Progressive disclosure and color-coded cards.\n\n**Mobile Screen Real Estate**\nSolution: Tab-based navigation with clear visual hierarchy."
-      },
-      {
-        id: "next-steps",
-        title: "Next Steps",
-        icon: Rocket,
+        id: "my-thought-process",
+        title: "My Thought Process",
+        icon: Sparkles,
         variant: "solution",
-        content: "**Phase 2 Considerations:**\n\n• Advanced analytics dashboard\n\n• POS system integration\n\n• Automated B2B communication\n\n• Multi-location support\n\n• Supplier integration\n\n• Inventory forecasting\n\n**Success Metrics to Track:**\n\n• Wholesale order accuracy rates\n\n• B2B customer retention\n\n• Driver efficiency metrics\n\n• Revenue growth\n\n• Inventory turnover rates"
+        content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner.",
+        media: {
+          type: 'image',
+          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+          alt: "Business management system design thinking and operational focus",
+          caption: "Unified platform designed around real business workflows and pain points."
+        }
       }
     ],
     seoData: {

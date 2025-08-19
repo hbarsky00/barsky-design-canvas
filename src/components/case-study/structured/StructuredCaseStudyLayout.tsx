@@ -190,6 +190,42 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               );
             }
             
+            // Check if section has eyebrow and should use centered header style
+            if (section.eyebrow) {
+              return (
+                <motion.section
+                  key={section.id}
+                  id={section.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="mb-12 text-center scroll-mt-[calc(var(--header-height,64px)+1rem)]"
+                >
+                  <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-eyebrow text-primary header-spacing">
+                    {section.eyebrow}
+                  </div>
+                  <h2 className="text-section-title text-foreground content-rail-center">
+                    {section.title}
+                  </h2>
+                  <div className="content-rail">
+                    <StructuredCaseStudySection
+                      key={`${section.id}-content`}
+                      id={`${section.id}-content`}
+                      title="" // Remove title since we render it above
+                      icon={section.icon}
+                      variant={section.variant}
+                      content={section.content}
+                      media={section.media}
+                      images={section.images}
+                      metrics={section.metrics}
+                      tags={section.tags}
+                    />
+                  </div>
+                </motion.section>
+              );
+            }
+            
             // All other sections use the standard card-based layout
             return (
               <StructuredCaseStudySection

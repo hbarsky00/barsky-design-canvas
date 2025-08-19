@@ -16,6 +16,7 @@ export interface StructuredCaseStudySectionProps {
   icon: LucideIcon;
   variant: "problem" | "solution" | "impact" | "failed";
   content: string;
+  eyebrow?: string;
   media?: {
     type: "image" | "video";
     src: string;
