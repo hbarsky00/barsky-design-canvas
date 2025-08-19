@@ -450,6 +450,8 @@ body {
   width: 100%;
   object-fit: contain;
   padding-bottom: max(24px, env(safe-area-inset-bottom));
+  margin-left: 0;
+  margin-right: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

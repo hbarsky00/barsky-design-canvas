@@ -94,7 +94,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-full"
+              className="relative w-full px-4"
               style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               {shouldShowVideo && (
