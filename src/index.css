@@ -464,10 +464,9 @@ body {
   }
 }
 
-/* Section snap points for smooth scrolling */
+/* Section snap points removed for better UX */
 .section-snap {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  /* Scroll snapping disabled for natural scrolling */
 }
 
 /* Alignment utilities */
