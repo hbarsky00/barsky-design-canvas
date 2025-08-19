@@ -28,7 +28,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
         </div>
 
         {/* Cards Grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {ideationData.bubbles.map((bubble, index) => (
             <div
               key={index}
@@ -51,7 +51,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
         </div>
 
         {/* Iterations Gallery */}
-        <div className="mt-16">
+        <div className="mt-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             {ideationData.iterations.slice(0, 4).map((iteration, index) => (
               <div key={index}>
