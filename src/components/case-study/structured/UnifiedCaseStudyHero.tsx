@@ -44,31 +44,31 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full bg-white md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]" 
-      style={{ perspective: "1000px" }}
+      className="section-snap w-full bg-white md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)] overflow-x-hidden" 
+      style={{ perspective: "1000px", minHeight: isMobile ? "100svh" : "auto" }}
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
         <div className="hero-container">
-          <div className="flex flex-col justify-center items-center gap-4 w-full">
+          <div className="flex flex-col justify-start items-start gap-4 w-full">
             {/* Text Content */}
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center w-full"
+              className="text-left w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="hero-title-mobile text-foreground mb-3 w-full">
+              <h1 className="text-[clamp(22px,5.6vw,34px)] leading-[1.15] text-foreground mb-3 w-full font-black">
                 {caseStudyData.title}
               </h1>
               
-              <p className="hero-subtitle-mobile text-muted-foreground mb-4 w-full">
+              <p className="text-[clamp(14px,4vw,18px)] leading-[1.45] text-muted-foreground mb-4 w-full">
                 {caseStudyData.description}
               </p>
               
-              <div className="hero-tags mb-5 w-full">
+              <div className="flex flex-wrap gap-2 mb-4 w-full">
                  {caseStudyData.tags.map((tag) => (
                    <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-xs">
                      {tag}
@@ -77,7 +77,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               </div>
 
                {caseStudyData.projectLink && (
-                 <div className="hero-cta-container w-full">
+                 <div className="w-full mb-4">
                    <ProjectActionsCompact 
                      liveUrl={caseStudyData.projectLink}
                      projectTitle={caseStudyData.title}
@@ -94,7 +94,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-full"
+              className="relative w-full self-start"
               style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               {shouldShowVideo && (
