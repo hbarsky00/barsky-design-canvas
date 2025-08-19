@@ -395,7 +395,8 @@ body {
   padding-right: max(20px, env(safe-area-inset-right));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
   overflow-x: hidden;
   gap: 16px;
