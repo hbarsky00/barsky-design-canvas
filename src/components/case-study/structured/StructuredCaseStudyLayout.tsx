@@ -221,9 +221,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="mb-12"
+                className="mb-12 text-center"
               >
-                <div className="text-eyebrow text-primary header-spacing">
+                <div className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-eyebrow text-green-700 header-spacing">
                   {caseStudyData.finalProductSection.eyebrow || "THE RESULT"}
                 </div>
                 <h2 className="text-section-title text-foreground content-rail-center">
@@ -279,9 +279,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="mb-12"
+                className="mb-12 text-center"
               >
-                <div className="text-eyebrow text-primary header-spacing">
+                <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
                   {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
                 </div>
                 <h2 className="text-section-title text-foreground content-rail-center">
