@@ -50,14 +50,14 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
         <div className="hero-container">
-          <div className="flex flex-col justify-center items-center gap-4 w-full">
+          <div className="flex flex-col justify-start items-start gap-4 w-full">
             {/* Text Content */}
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center w-full"
+              className="text-left w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <h1 className="hero-title-mobile text-foreground mb-3 w-full">
