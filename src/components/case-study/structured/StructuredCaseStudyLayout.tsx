@@ -53,7 +53,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
     ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
-    ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
+    ...(caseStudyData.ideationSection ? [
+      { label: "Ideation", anchor: "#ideation" },
+      { label: "Iterations", anchor: "#iterations" }
+    ] : []),
     ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
     ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
     ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
@@ -69,7 +72,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
       ...(caseStudyData.keyInsights ? [{ id: 'key-insights', title: 'Key Insights' }] : []),
       ...(caseStudyData.myThoughtProcessSection ? [{ id: 'my-thought-process', title: 'My Thought Process' }] : []),
-      ...(caseStudyData.ideationSection ? [{ id: 'ideation', title: 'Ideation' }] : []),
+      ...(caseStudyData.ideationSection ? [
+        { id: 'ideation', title: 'Ideation' },
+        { id: 'iterations', title: 'Iterations' }
+      ] : []),
       ...(caseStudyData.whatDidntWorkSection ? [{ id: 'what-didnt-work', title: 'What Didn\'t Work' }] : []),
       ...(caseStudyData.userTestingSection ? [{ id: 'user-testing', title: 'Validation & Testing' }] : []),
       ...(caseStudyData.finalProductSection ? [{ id: 'the-final-product', title: 'The Result' }] : []),
