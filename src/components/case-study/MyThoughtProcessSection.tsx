@@ -38,19 +38,13 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
           {images && images.length > 0 && (
             <div className="space-y-4">
               {images.map((image, index) => (
-                <div key={index} className="space-y-2">
+                <div key={index}>
                   <MaximizableImage
                     src={image.src}
                     alt={image.alt}
+                    caption={image.caption}
                     className="w-full rounded-lg"
                   />
-                  {image.caption && (
-                    <div className="content-rail-left">
-                      <Badge variant="secondary" className="text-xs px-3 py-1">
-                        {image.caption}
-                      </Badge>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
