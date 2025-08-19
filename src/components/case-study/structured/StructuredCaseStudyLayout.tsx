@@ -211,15 +211,46 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           </section>
 
-          {/* Dynamic Sections from Data */}
-          {caseStudyData.sections.map((section) => (
-            <section key={section.id} id={section.id} data-section={section.id} aria-labelledby={`${section.id}-heading`} className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
-              <h2 id={`${section.id}-heading`} className="sr-only">{section.title} Section</h2>
-              <div className="cs-card">
-                <StructuredCaseStudySection {...section} />
+          {/* The Final Product Section - Full width band */}
+          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
+            <section id="the-final-product" data-section="the-final-product" aria-labelledby="final-product-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
+              <h2 id="final-product-heading" className="sr-only">The Final Product Section</h2>
+              <div className="section-container">
+                <div className="space-y-8">
+                  <div className="space-y-4 content-rail-center">
+                    <Badge variant="outline" className="uppercase text-xs font-semibold tracking-wide">
+                      The Final Product
+                    </Badge>
+                    <h2 className="text-section-title">
+                      Refined Solution
+                    </h2>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-8 mb-6">
+                    <div className="space-y-4">
+                      <img 
+                        src="https://barskyux.com/wp-content/uploads/2025/08/finalproduct1.jpg" 
+                        alt="Final product desktop view"
+                        className="w-full rounded-lg shadow-sm"
+                      />
+                    </div>
+                    <div className="space-y-4">
+                      <img 
+                        src="https://barskyux.com/wp-content/uploads/2025/08/finalproduct2.jpg" 
+                        alt="Final product mobile view"
+                        className="w-full rounded-lg shadow-sm"
+                      />
+                    </div>
+                  </div>
+                  
+                  <p className="text-lg text-muted-foreground leading-relaxed content-rail-left">
+                    The final solution successfully balanced user needs with technical constraints, 
+                    delivering a streamlined experience that improved key metrics while maintaining scalability.
+                  </p>
+                </div>
               </div>
             </section>
-          ))}
+          </div>
 
           {/* Outcome / Results Section */}
           <section id="outcome-results" data-section="outcome-results" aria-labelledby="outcome-results-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+2rem)]">
