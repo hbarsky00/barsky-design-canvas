@@ -9,8 +9,7 @@ import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
-import StructuredCaseStudyHero from "./StructuredCaseStudyHero";
-import StructuredHeroImageSection from "./StructuredHeroImageSection";
+import UnifiedCaseStudyHero from "./UnifiedCaseStudyHero";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
 import ProblemCallout from "../ProblemCallout";
@@ -47,7 +46,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
   // Create navigation items from sections in correct order
   const navigationItems = [
-    { label: "Hero Image", anchor: "#hero-image" },
     { label: "Overview", anchor: "#overview" },
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
@@ -66,7 +64,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   // Build sections for keyboard navigation in correct order
   const keyboardSections = React.useMemo(() => {
     const navSections = [
-      { id: 'hero-image', title: 'Hero Image' },
       { id: 'overview', title: 'Overview' },
       ...(caseStudyData.researchSection ? [{ id: 'research', title: 'Research' }] : []),
       ...(caseStudyData.problemCallout ? [{ id: 'problem', title: 'Problem' }] : []),
@@ -113,21 +110,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           currentSectionIndex={keyboardNav.currentSectionIndex}
         />
         
-        <div className="section-container pt-[calc(var(--header-height,64px)+12px)]">
-          {/* Hero Text Section */}
-          <div className="mb-12">
-            <StructuredCaseStudyHero 
-              caseStudyData={caseStudyData}
-              heroAsImage={false}
-            />
-          </div>
-
-          {/* Hero Image Section */}
-          <StructuredHeroImageSection 
+        <div className="pt-[calc(var(--header-height,64px)+12px)]">
+          {/* Unified Hero Section */}
+          <UnifiedCaseStudyHero 
             caseStudyData={caseStudyData}
             heroAsImage={heroAsImage}
           />
 
+          <div className="section-container">
           {/* Overview Section */}
           <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
             <h2 id="overview-heading" className="sr-only">Overview Section</h2>
@@ -442,10 +432,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               className="flex-wrap justify-center"
             />
           </div>
+          </div>
         </div>
-        
-        <Footer />
       </div>
+      
+      <Footer />
     </>
   );
 };
