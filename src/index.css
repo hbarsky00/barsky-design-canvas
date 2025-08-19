@@ -78,13 +78,13 @@
   --safe-area-inset-left: env(safe-area-inset-left, 0px);
 
   /* Typography Scale Variables */
-  --font-size-hero-h1-mobile: 30px;
+  --font-size-hero-h1-mobile: 26px;
   --line-height-hero-h1-mobile: 1.12;
-  --font-size-hero-h1-md: 40px;
+  --font-size-hero-h1-md: 34px;
   --line-height-hero-h1-md: 1.12;
-  --font-size-hero-h1-lg: 50px;
+  --font-size-hero-h1-lg: 42px;
   --line-height-hero-h1-lg: 1.1;
-  --font-size-hero-h1-xl: 56px;
+  --font-size-hero-h1-xl: 48px;
   --line-height-hero-h1-xl: 1.08;
   
   --font-size-section-title-mobile: 24px;
