@@ -17,7 +17,7 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
   images
 }) => {
   return (
-    <section className="section-snap section-spacing">
+    <section className="section-snap py-12 md:py-16">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

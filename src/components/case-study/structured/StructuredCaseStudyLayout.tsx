@@ -159,7 +159,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               id="my-thought-process" 
               data-section="my-thought-process" 
               aria-labelledby="my-thought-process-heading" 
-              className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
+              className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
               <MyThoughtProcessSection 
