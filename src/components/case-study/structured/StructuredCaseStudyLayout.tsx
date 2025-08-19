@@ -118,12 +118,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
         <Header />
         
-        {/* Unified Hero Section - Outside projects-wrap to prevent double padding */}
-        <UnifiedCaseStudyHero 
-          caseStudyData={caseStudyData}
-          heroAsImage={heroAsImage}
-        />
-        
         {/* Mobile Sticky Navigation */}
         <CaseStudyNavigation 
           navigation={navigationItems}
@@ -131,6 +125,21 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <main className={isProjectPage ? "projects-wrap" : ""}>
+          {/* Unified Hero Section - Full width, breaks out of projects-wrap */}
+          {isProjectPage ? (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+              <UnifiedCaseStudyHero 
+                caseStudyData={caseStudyData}
+                heroAsImage={heroAsImage}
+              />
+            </div>
+          ) : (
+            <UnifiedCaseStudyHero 
+              caseStudyData={caseStudyData}
+              heroAsImage={heroAsImage}
+            />
+          )}
+
           <div className="section-container">
           {/* Overview Section */}
           <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
@@ -265,7 +274,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="text-center p-6 bg-white rounded-lg shadow-sm border border-border/20"
                     >
-                      <div className="text-3xl font-semibold text-primary mb-2">
+                      <div className="text-3xl font-bold text-primary mb-2">
                         {metric.value}
                       </div>
                       <div className="text-sm text-muted-foreground">

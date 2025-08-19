@@ -69,7 +69,7 @@ const ImpactSection: React.FC<ImpactSectionProps> = ({
             </div>
             
             <div className="space-y-2">
-              <div className="text-3xl font-semibold text-gray-900">{metric.value}</div>
+              <div className="text-3xl font-bold text-gray-900">{metric.value}</div>
               <div className="text-lg font-medium text-neutral-700">{metric.improvement}</div>
             </div>
           </div>
