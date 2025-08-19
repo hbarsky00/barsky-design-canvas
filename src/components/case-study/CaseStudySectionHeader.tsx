@@ -57,7 +57,7 @@ const CaseStudySectionHeader: React.FC<CaseStudySectionHeaderProps> = ({
         <Icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 ${styles.iconColor}`} />
       </div>
       <div className="flex-1 min-w-0">
-        <h2 className={`text-lg md:text-2xl lg:text-3xl font-semibold md:font-bold leading-tight ${styles.titleColor}`}>
+        <h2 className={`text-base md:text-2xl lg:text-3xl font-medium md:font-bold leading-tight ${styles.titleColor}`}>
           {title}
         </h2>
       </div>
