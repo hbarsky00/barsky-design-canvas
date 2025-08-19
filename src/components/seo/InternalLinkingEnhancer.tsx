@@ -60,7 +60,6 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
           <SectionHeader
             as="h2"
             title="Explore More Resources"
-            titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface"
             className="mb-6"
           />
           
