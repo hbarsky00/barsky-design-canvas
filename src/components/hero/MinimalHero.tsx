@@ -10,25 +10,10 @@ import { EditableContent } from "@/components/editor/EditableContent";
 const MinimalHero: React.FC = () => {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
   const [showContinueButton, setShowContinueButton] = useState(true);
-  const [isHovering, setIsHovering] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   const videoUrl = 'https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runiIdLWyCYKV4_have_me_smile_at_the_scr_4838b019-f29d-486d-9a03-8725c08d3cd1_1.mp4';
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    if (videoRef.current) {
-      videoRef.current.play().catch(console.error);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-  };
 
   // Track scroll position to hide continue button permanently
   useEffect(() => {
@@ -81,30 +66,19 @@ const MinimalHero: React.FC = () => {
           <div className="flex justify-center order-1">
             <div 
               className="relative cursor-pointer"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
                              xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden shadow-lg relative">
-                <img
-                  src={imageUrl}
-                  alt="Hiram Barsky profile photo"
-                  className={`w-full h-full object-cover transition-opacity duration-300 ${
-                    isHovering ? 'opacity-0' : 'opacity-100'
-                  }`}
-                />
                 <video
                   ref={videoRef}
                   src={videoUrl}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-                    isHovering ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className="w-full h-full object-cover"
                   muted
                   playsInline
                   preload="metadata"
                   loop
-                  autoPlay={false}
+                  autoPlay={true}
                 />
               </div>
             </div>

@@ -44,13 +44,13 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full md:py-12 lg:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
+      className="section-snap w-full md:py-6 lg:py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
       style={{ perspective: "1000px" }}
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col justify-center min-h-[calc(100vh-var(--header-height,64px))] py-4">
+          <div className="flex flex-col justify-center min-h-[calc(100vh-var(--header-height,64px))] py-2">
           <div className="flex flex-col justify-center gap-4 w-full max-w-none">
             {/* Text Content */}
             <motion.div
@@ -61,7 +61,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               className="text-left w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="hero-title-mobile text-foreground mb-3 w-full">
+              <h1 className="hero-title-mobile text-foreground font-display mb-3 w-full">
                 {caseStudyData.title}
               </h1>
               
@@ -123,7 +123,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
         </div>
       ) : (
         /* Desktop Layout: Two Columns */
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="grid grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             {/* Left Column: Text Content */}
             <motion.div
@@ -134,7 +134,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               className="text-left"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="text-hero-h1 text-foreground mb-6 leading-tight">
+              <h1 className="text-hero-h1 text-foreground font-display mb-6 leading-tight">
                 {caseStudyData.title}
               </h1>
               

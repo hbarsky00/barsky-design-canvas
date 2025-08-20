@@ -23,12 +23,12 @@ const ProblemCallout: React.FC<ProblemCalloutProps> = ({ eyebrow, statement }) =
         >
           <div 
             id="problem-label"
-            className="text-eyebrow text-primary header-spacing"
+            className="text-eyebrow text-primary font-display header-spacing"
           >
             {eyebrow}
           </div>
           
-          <h2 className="text-section-title text-foreground content-rail-center">
+          <h2 className="text-section-title text-foreground font-display content-rail-center">
             {statement}
           </h2>
         </motion.div>
