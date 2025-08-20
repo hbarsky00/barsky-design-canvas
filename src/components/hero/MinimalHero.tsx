@@ -6,7 +6,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Linkedin, Calendar } from "lucide-react";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { NavigationProps } from "@/types/navigation";
-import EnhancedHeroBackground from "./EnhancedHeroBackground";
+import WinampVisualizer from "./WinampVisualizer";
 
 interface MinimalHeroProps extends NavigationProps {}
 
@@ -71,8 +71,11 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative
                  pt-safe-top pb-safe-bottom overflow-hidden"
     >
-      {/* Enhanced Background */}
-      <EnhancedHeroBackground />
+      {/* Winamp Visualizer Background */}
+      <WinampVisualizer />
+      
+      {/* Simple background for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-10" onClick={handleNavigateDown}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
