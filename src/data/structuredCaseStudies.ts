@@ -196,7 +196,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           caption: "Early ideation sketches exploring herbal practitioner discovery and matching concepts"
         },
         {
-          src: "placeholder",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png",
           alt: "User Flow Explorations", 
           caption: "Blue-sky user journey mapping from symptom input to practitioner booking"
         }
