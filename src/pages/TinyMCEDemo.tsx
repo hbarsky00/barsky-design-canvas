@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import ReactQuillEditor from '@/components/editor/ReactQuillEditor';
+import { TiptapEditor } from '@/components/editor/TiptapEditor';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const TinyMCEDemo: React.FC = () => {
-  const [content, setContent] = useState('<p>Welcome to ReactQuill! Start editing this content...</p>');
+  const [content, setContent] = useState('<p>Welcome to Tiptap Editor! Start editing this content or type "/" for commands...</p>');
   const [savedContent, setSavedContent] = useState('');
 
   const handleSave = () => {
@@ -33,10 +33,10 @@ const TinyMCEDemo: React.FC = () => {
           >
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                ReactQuill Integration Demo
+                Tiptap Editor Demo
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experience the power of ReactQuill rich text editor integrated into your Lovable application.
+                Experience the power of Tiptap rich text editor with modern toolbar and slash commands.
               </p>
             </div>
 
@@ -44,15 +44,15 @@ const TinyMCEDemo: React.FC = () => {
               <CardHeader>
                 <CardTitle>Rich Text Editor</CardTitle>
                 <CardDescription>
-                  Use the editor below to create and format content with ReactQuill's powerful features.
+                  Use the editor below to create and format content with Tiptap's powerful features and toolbar.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <ReactQuillEditor
-                  initialValue={content}
-                  onEditorChange={setContent}
-                  height={500}
-                  placeholder="Start creating amazing content..."
+                <TiptapEditor
+                  content={content}
+                  onChange={setContent}
+                  placeholder="Start creating amazing content or type '/' for commands..."
+                  className="min-h-[400px]"
                 />
                 
                 <div className="flex gap-2">
@@ -99,24 +99,24 @@ const TinyMCEDemo: React.FC = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle>ReactQuill Features</CardTitle>
+                <CardTitle>Tiptap Editor Features</CardTitle>
                 <CardDescription>
-                  Key features available in this integration:
+                  Key features available in this modern editor:
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                  <li>• Modern floating toolbar</li>
                   <li>• Rich text formatting (bold, italic, etc.)</li>
+                  <li>• Multiple heading levels</li>
                   <li>• Lists and bullet points</li>
                   <li>• Text alignment options</li>
                   <li>• Link insertion</li>
                   <li>• Image embedding</li>
-                  <li>• Color and background styling</li>
-                  <li>• Headers and text sizes</li>
+                  <li>• Slash commands (/)</li>
+                  <li>• Blockquotes and code blocks</li>
                   <li>• Undo/Redo functionality</li>
-                  <li>• Clean and simple interface</li>
-                  <li>• Better Lovable integration</li>
-                  <li>• No domain registration required</li>
+                  <li>• Auto-save capability</li>
                   <li>• Responsive design</li>
                 </ul>
               </CardContent>

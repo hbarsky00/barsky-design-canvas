@@ -8,6 +8,7 @@ import { Link } from '@tiptap/extension-link';
 import { Image } from '@tiptap/extension-image';
 import { TextAlign } from '@tiptap/extension-text-align';
 import { SlashCommand } from './extensions/SlashCommand';
+import { FloatingToolbar } from './FloatingToolbar';
 
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -166,8 +167,10 @@ export const ModernTiptapEditor: React.FC<ModernTiptapEditorProps> = ({
   }
 
   return (
-    <div className="modern-editor border border-border rounded-lg overflow-hidden bg-background">
-      
+    <div className="modern-editor border border-border rounded-lg overflow-hidden bg-background space-y-2">
+      <div className="p-3 border-b border-border">
+        <FloatingToolbar editor={editor} />
+      </div>
       
       <EditorContent 
         editor={editor} 
