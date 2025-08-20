@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "./MaximizableImage";
-import { getOverlayCaptionClasses } from "@/utils/captionStyles";
+import { getAnnotationCaptionClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
 
 interface VideoHoverImageProps {
   src: string;
@@ -118,8 +118,8 @@ const VideoHoverImage: React.FC<VideoHoverImageProps> = ({
       </div>
       
       {caption && (
-        <div className={getOverlayCaptionClasses()}>
-          {caption}
+        <div className={getAnnotationCaptionClasses()}>
+          {getResponsiveTruncatedText(caption)}
         </div>
       )}
     </motion.div>

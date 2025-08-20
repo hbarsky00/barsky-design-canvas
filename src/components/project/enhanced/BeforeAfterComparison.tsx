@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { getOverlayLabelClasses } from "@/utils/captionStyles";
+import { getAnnotationLabelClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
 
 interface BeforeAfterComparisonProps {
   beforeImage: string;
@@ -92,11 +92,11 @@ const BeforeAfterComparison: React.FC<BeforeAfterComparisonProps> = ({
         </div>
 
         {/* Labels */}
-        <div className={getOverlayLabelClasses("left-4")}>
-          {beforeLabel}
+        <div className={getAnnotationLabelClasses("left-4")}>
+          {getResponsiveTruncatedText(beforeLabel)}
         </div>
-        <div className={getOverlayLabelClasses("right-4")}>
-          {afterLabel}
+        <div className={getAnnotationLabelClasses("right-4")}>
+          {getResponsiveTruncatedText(afterLabel)}
         </div>
 
         {/* Instructions */}

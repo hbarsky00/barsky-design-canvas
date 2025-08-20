@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getOverlayCaptionClasses, getOverlayLabelClasses } from "@/utils/captionStyles";
+import { getAnnotationCaptionClasses, getAnnotationLabelClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
 
 interface InteractiveImageGalleryProps {
   images: string[];
@@ -80,7 +80,7 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
             
             {captions[image] && (
               <p className="mt-3 text-sm text-neutral-500 text-center">
-                {captions[image]}
+                {getResponsiveTruncatedText(captions[image])}
               </p>
             )}
           </motion.div>
@@ -160,14 +160,14 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={getOverlayCaptionClasses("bottom-4 left-4 right-4 text-center")}
+                  className={getAnnotationCaptionClasses("bottom-4 left-4 right-4 text-center")}
                 >
-                  <p>{captions[images[selectedImage]]}</p>
+                  <p>{getResponsiveTruncatedText(captions[images[selectedImage]])}</p>
                 </motion.div>
               )}
 
               {/* Image Counter */}
-              <div className={getOverlayLabelClasses("left-1/2 -translate-x-1/2 rounded")}>
+              <div className={getAnnotationLabelClasses("left-1/2 -translate-x-1/2 rounded")}>
                 {selectedImage + 1} / {images.length}
               </div>
             </motion.div>
