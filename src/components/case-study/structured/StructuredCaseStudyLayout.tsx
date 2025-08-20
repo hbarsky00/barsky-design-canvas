@@ -74,7 +74,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     <>
       {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
-      <div className={`min-h-screen bg-muted/30 ${isProjectPage ? 'projects-page' : ''}`}>
+      <div className={`min-h-screen bg-white ${isProjectPage ? 'projects-page' : ''}`}>
         <Header />
         
         {/* Mobile Sticky Navigation */}
@@ -83,7 +83,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <main className={isProjectPage ? "projects-wrap" : ""}>
-          <div className="section-container">
+          <div className="section-container bg-white">
           {/* Unified Hero Section */}
           <UnifiedCaseStudyHero 
             caseStudyData={caseStudyData}
