@@ -93,9 +93,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <Link
                     key={link.name}
                     to={link.href}
-                    onClick={(e) => {
+                    onClick={link.href.startsWith('#') ? (e) => {
                       e.preventDefault();
                       handleLinkClick(link.href);
+                      toggleMobileMenu();
+                    } : () => {
+                      toggleMobileMenu();
                     }}
                     className={cn(
                       "nav-link w-full text-base flex items-center justify-start px-3 py-2 rounded-md transition-colors",

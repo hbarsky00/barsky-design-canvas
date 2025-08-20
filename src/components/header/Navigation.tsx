@@ -75,10 +75,10 @@ const Navigation: React.FC<NavigationProps> = ({
           <Link
             key={link.name}
             to={link.href}
-            onClick={(e) => {
+            onClick={link.href.startsWith('#') ? (e) => {
               e.preventDefault();
               handleLinkClick(link.href);
-            }}
+            } : undefined}
             className={cn(
               "nav-link flex items-center",
               isLinkActive(link.href) && "active"
