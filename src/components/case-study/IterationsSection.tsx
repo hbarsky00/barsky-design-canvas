@@ -1,5 +1,6 @@
 import React from "react";
 import { IdeationIteration } from "@/data/structuredCaseStudies";
+import AnnotatedImage from "./AnnotatedImage";
 
 interface IterationsSectionProps {
   iterations: IdeationIteration[];
@@ -25,12 +26,10 @@ const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => 
               {iteration.label}
             </div>
             <div className="max-w-4xl mx-auto">
-              <img
+              <AnnotatedImage
                 src={iteration.imageSrc}
                 alt={iteration.alt}
-                className="w-full h-auto rounded-lg shadow-sm"
-                loading="lazy"
-                decoding="async"
+                annotations={iteration.annotations}
               />
             </div>
           </div>

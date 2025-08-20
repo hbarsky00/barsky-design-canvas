@@ -21,10 +21,18 @@ export interface IdeationBubble {
   description: string;
 }
 
+export interface ImageAnnotation {
+  text: string;
+  x: number; // percentage from left
+  y: number; // percentage from top
+  type?: 'issue' | 'improvement' | 'feature';
+}
+
 export interface IdeationIteration {
   label: string;
   imageSrc: string;
   alt: string;
+  annotations?: ImageAnnotation[];
 }
 
 export interface IdeationSection {
@@ -216,10 +224,46 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Booking flow", description: "Fewer steps, clearer expectations" }
       ],
       iterations: [
-        { label: "Iteration 1", imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661047658-scaled.png", alt: "First iteration of HerbaLink profile design" },
-        { label: "Iteration 2", imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661017299-scaled.png", alt: "Second iteration focusing on safety information" },
-        { label: "Iteration 3", imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661070914-scaled.png", alt: "Third iteration with match criteria refinements" },
-        { label: "Iteration 4", imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661102386.png", alt: "Fourth iteration streamlining booking flow" }
+        { 
+          label: "Iteration 1", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661047658-scaled.png", 
+          alt: "First iteration of HerbaLink profile design",
+          annotations: [
+            { text: "Navigation unclear - users don't understand the tab structure", x: 20, y: 15, type: "issue" },
+            { text: "Profile information scattered - needs better organization", x: 50, y: 35, type: "issue" },
+            { text: "CTA button placement needs improvement", x: 80, y: 75, type: "issue" }
+          ]
+        },
+        { 
+          label: "Iteration 2", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661017299-scaled.png", 
+          alt: "Second iteration focusing on safety information",
+          annotations: [
+            { text: "Improved navigation with clearer labels", x: 20, y: 15, type: "improvement" },
+            { text: "Safety information now prominently displayed", x: 60, y: 40, type: "feature" },
+            { text: "Better visual hierarchy", x: 50, y: 70, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 3", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661070914-scaled.png", 
+          alt: "Third iteration with match criteria refinements",
+          annotations: [
+            { text: "Match criteria made more prominent", x: 30, y: 25, type: "feature" },
+            { text: "Streamlined profile sections", x: 70, y: 45, type: "improvement" },
+            { text: "Enhanced booking flow entry point", x: 85, y: 80, type: "feature" }
+          ]
+        },
+        { 
+          label: "Iteration 4", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661102386.png", 
+          alt: "Fourth iteration streamlining booking flow",
+          annotations: [
+            { text: "Final booking flow - simplified and intuitive", x: 40, y: 30, type: "feature" },
+            { text: "Clear progression indicators", x: 60, y: 50, type: "improvement" },
+            { text: "Accessibility improvements implemented", x: 50, y: 75, type: "feature" }
+          ]
+        }
       ]
     },
     myThoughtProcessSection: {
