@@ -19,8 +19,10 @@ const ModernProjectOverview: React.FC<ModernProjectOverviewProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="grid grid-cols-1 lg:grid-cols-3 gap-12"
+      className="bg-slate-50 py-12"
     >
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
       {/* Technologies */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-gray-900">
@@ -76,6 +78,8 @@ const ModernProjectOverview: React.FC<ModernProjectOverviewProps> = ({
             Confidential Project
           </p>
         )}
+      </div>
+        </div>
       </div>
     </motion.section>
   );

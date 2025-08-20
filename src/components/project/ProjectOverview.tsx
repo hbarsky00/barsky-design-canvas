@@ -38,8 +38,9 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
 
 
   return (
-    <div>
-      <ChallengeSection
+    <div className="bg-slate-50 py-12">
+      <div className="container mx-auto px-4">
+        <ChallengeSection
         challenge={challenge}
         challengeAdditionalText={challengeAdditionalText}
         challengeImage={challengeImage}
@@ -56,8 +57,9 @@ const ProjectOverview: React.FC<ProjectOverviewProps> = ({
       {/* Services Section - Only show if not DAE Search (since it has its own services carousel) */}
       {!isDaeSearchProject && <ServicesList />}
       
-      {/* Links Section */}
-      <ProjectLinks projectLink={projectLink} />
+        {/* Links Section */}
+        <ProjectLinks projectLink={projectLink} />
+      </div>
     </div>
   );
 };
