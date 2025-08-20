@@ -120,7 +120,7 @@ const MinimalHero: React.FC = () => {
               renderAs="h1"
               className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
                          xl:text-7xl 2xl:text-8xl
-                         font-display font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight tracking-tight"
+                         font-sans font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight tracking-tight"
             />
             <EditableContent
               contentKey="hero-title"
@@ -130,7 +130,7 @@ const MinimalHero: React.FC = () => {
               renderAs="h2"
               className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                          xl:text-4xl 2xl:text-5xl
-                         font-brand font-medium text-gray-800 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-[1.706]"
+                         font-sans font-medium text-gray-800 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-[1.706]"
             />
             <a 
               href="https://barskydesign.pro" 

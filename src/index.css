@@ -239,6 +239,7 @@ select:focus-visible, a:focus-visible,
     line-height: var(--line-height-hero-h1-mobile);
     font-weight: 800;
     letter-spacing: -0.01em;
+    font-family: Inter, ui-sans-serif, system-ui;
   }
 
   @media (min-width: 768px) {
@@ -267,6 +268,7 @@ select:focus-visible, a:focus-visible,
     line-height: var(--line-height-section-title-mobile);
     font-weight: 700;
     letter-spacing: -0.01em;
+    font-family: Inter, ui-sans-serif, system-ui;
   }
 
   @media (min-width: 768px) {
@@ -288,6 +290,7 @@ select:focus-visible, a:focus-visible,
     line-height: var(--line-height-subsection-title);
     font-weight: 600;
     letter-spacing: -0.01em;
+    font-family: Inter, ui-sans-serif, system-ui;
   }
 
   @media (min-width: 768px) {
@@ -307,6 +310,7 @@ select:focus-visible, a:focus-visible,
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    font-family: Inter, ui-sans-serif, system-ui;
   }
 
   @media (min-width: 768px) {
