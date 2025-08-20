@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -14,6 +14,7 @@ interface IdentityBadgeProps {
   className?: string;
   ariaLabel?: string;
   videoSrc?: string;
+  autoPlay?: boolean;
 }
 
 const sizeMap = {
@@ -56,6 +57,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
   className,
   ariaLabel,
   videoSrc,
+  autoPlay = false,
 }) => {
   const s = sizeMap[size];
   const Wrapper: any = to ? Link : "div";
@@ -75,11 +77,18 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
   const handleMouseLeave = () => {
     if (videoSrc) {
       setIsHovered(false);
-      if (videoRef.current) {
+      if (videoRef.current && !autoPlay) {
         videoRef.current.pause();
       }
     }
   };
+
+  useEffect(() => {
+    if (videoSrc && autoPlay && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+    }
+  }, [videoSrc, autoPlay]);
 
   console.log('🔍 IdentityBadge: Image URL being used:', imageSrc);
   console.log('🔍 IdentityBadge: Component size:', size);
@@ -114,7 +123,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
             height={s.imgWH}
             className={cn(
               "transition-opacity duration-300",
-              videoSrc && isHovered ? "opacity-0" : "opacity-100"
+              videoSrc && (isHovered || autoPlay) ? "opacity-0" : "opacity-100"
             )}
             onLoad={() => {
               console.log('✅ IdentityBadge: Image loaded successfully!', imageSrc);
@@ -134,9 +143,9 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
               ref={videoRef}
               className={cn(
                 "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
-                isHovered ? "opacity-100" : "opacity-0"
+                (isHovered || autoPlay) ? "opacity-100" : "opacity-0"
               )}
-              autoPlay={false}
+              autoPlay={autoPlay}
               loop
               muted
               playsInline

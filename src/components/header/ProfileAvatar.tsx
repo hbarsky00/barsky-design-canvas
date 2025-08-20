@@ -18,6 +18,7 @@ const ProfileAvatar: React.FC = () => {
         subtitle="Product Designer + AI"
         size="md"
         subtitleStyle="pill"
+        autoPlay={true}
         className="shrink-0"
       />
     </div>
