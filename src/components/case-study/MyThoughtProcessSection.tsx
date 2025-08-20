@@ -53,9 +53,9 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
                       viewport={{ once: true }}
-                      className="mt-6 bg-gradient-to-r from-primary/5 to-accent/5 border-l-4 border-primary p-6 rounded-r-lg"
+                      className="mt-6 bg-barsky-accent-light border-l-4 border-barsky-blue p-6 rounded-r-lg shadow-sm"
                     >
-                      <p className="text-lg font-medium text-foreground leading-relaxed italic">
+                      <p className="text-lg font-medium text-barsky-dark leading-relaxed italic">
                         "{blurbs[index]}"
                       </p>
                     </motion.div>
