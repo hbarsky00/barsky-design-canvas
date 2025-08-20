@@ -44,10 +44,19 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
   const visibleAnnotations = sortedAnnotations.slice(0, maxAnnotations);
   const hiddenCount = annotations.length - visibleAnnotations.length;
 
-  // Get appropriate text truncation
+  // Get appropriate text truncation with word boundaries
   const getTruncatedText = (text: string) => {
-    const maxLength = screenSize === 'mobile' ? 25 : screenSize === 'tablet' ? 35 : 45;
-    return text.length <= maxLength ? text : text.substring(0, maxLength - 3) + "...";
+    const maxLength = screenSize === 'mobile' ? 42 : screenSize === 'tablet' ? 58 : 75;
+    
+    if (text.length <= maxLength) return text;
+    
+    // Find the last complete word that fits within the limit
+    const truncated = text.substring(0, maxLength - 3);
+    const lastSpaceIndex = truncated.lastIndexOf(' ');
+    
+    // If we can find a word boundary, use it; otherwise fall back to character truncation
+    const finalText = lastSpaceIndex > maxLength * 0.7 ? truncated.substring(0, lastSpaceIndex) : truncated;
+    return finalText + "...";
   };
 
   return (
@@ -81,7 +90,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
           
           {/* Always visible text */}
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10">
-            <div className={`px-3 py-2 text-xs sm:text-sm text-white rounded-lg shadow-lg w-40 max-w-[160px] sm:w-48 sm:max-w-[200px] lg:w-60 lg:max-w-[240px] whitespace-normal ${
+            <div className={`px-3 py-2 text-xs sm:text-sm text-white rounded-lg shadow-lg w-48 max-w-[192px] sm:w-52 sm:max-w-[208px] lg:w-64 lg:max-w-[256px] whitespace-normal ${
               annotation.type === 'issue' ? 'bg-red-600' :
               annotation.type === 'improvement' ? 'bg-blue-600' :
               'bg-green-600'
