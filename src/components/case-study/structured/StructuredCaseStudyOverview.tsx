@@ -72,11 +72,12 @@ const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = 
 
   return (
     <motion.section
-      className="bg-slate-50/80 backdrop-blur-sm rounded-lg p-8 md:p-12 shadow-sm border border-white/20"
+      className="container mx-auto px-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
+      <div className="bg-white rounded-lg p-8 md:p-12 shadow-sm border border-slate-200/20">
       <h2 className="text-section-title font-display text-foreground mb-8">Overview</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
@@ -129,6 +130,7 @@ const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = 
             <p className="text-foreground font-medium font-body">{content.duration}</p>
           </div>
         </div>
+      </div>
       </div>
     </motion.section>
   );
