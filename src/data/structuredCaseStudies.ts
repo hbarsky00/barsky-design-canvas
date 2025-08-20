@@ -165,7 +165,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
-      blurb: "Research revealed trust gaps in herbal safety.",
+      blurb: "Trust gaps found.",
       emergingThemes: [
         {
           eyebrow: "ESSENTIALS TO KNOW",
@@ -420,7 +420,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "Interviews and walkthroughs with co-parents revealed decision fatigue from fragmented schedules, expenses, and agreements.",
-      blurb: "Research revealed how scattered communication tools create stress and conflict in co-parenting relationships.",
+      blurb: "Tools create conflict.",
       emergingThemes: [
         {
           eyebrow: "ESSENTIALS TO KNOW",
@@ -481,7 +481,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard1st.png", 
           alt: "First iteration of Splittime calendar view",
-          blurb: "Dense calendar overwhelmed stressed parents.",
+          blurb: "Too overwhelming.",
           annotations: [
             { text: "Calendar layout too dense - overwhelming for stressed parents", x: 50, y: 30, type: "issue" },
             { text: "No clear distinction between confirmed vs pending events", x: 70, y: 50, type: "issue" }
@@ -491,7 +491,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2024/01/DashboardPRIMARY.png", 
           alt: "Second iteration with approval flows",
-          blurb: "Added approval flows for clear status.",
+          blurb: "Added clarity.",
           annotations: [
             { text: "Added approval status indicators for clarity", x: 40, y: 25, type: "improvement" },
             { text: "Simplified calendar view reduces cognitive load", x: 60, y: 45, type: "improvement" }
@@ -501,7 +501,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "/media/splittime/ideation-3.jpg", 
           alt: "Third iteration adding expense tracking",
-          blurb: "Integrated expense tracking and receipts.",
+          blurb: "Added expenses.",
           annotations: [
             { text: "Integrated expense tracking streamlines workflow", x: 30, y: 60, type: "feature" },
             { text: "Receipt upload system improves transparency", x: 80, y: 40, type: "feature" }
@@ -511,7 +511,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 4", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/iteration4.png", 
           alt: "Fourth iteration with messaging templates",
-          blurb: "Template messaging reduces conflict.",
+          blurb: "Reduced conflict.",
           annotations: [
             { text: "Template messaging reduces conflict potential", x: 45, y: 35, type: "feature" },
             { text: "Neutral tone suggestions prevent escalation", x: 65, y: 65, type: "improvement" }
@@ -669,7 +669,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "Shadowing loan officers and error-log reviews showed spreadsheet mistakes, slow retrieval, and no audit trail.",
-      blurb: "Excel workflows caused errors and delays.",
+      blurb: "Excel caused errors.",
       emergingThemes: [
         {
           eyebrow: "ACCURACY & AUDIT",
@@ -1145,7 +1145,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "Surveys and workflow audits showed owners switching between disconnected tools and duplicating data.",
-      blurb: "Multiple tools created workflow inefficiencies.",
+      blurb: "Tools caused chaos.",
       emergingThemes: [
         {
           eyebrow: "CONSOLIDATION",
