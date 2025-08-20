@@ -78,6 +78,7 @@ export interface StructuredCaseStudyData {
     eyebrow: string;
     title: string;
     content: string;
+    blurbs?: string[];
     images?: Array<{
       src: string;
       alt: string;
@@ -271,7 +272,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: "Process",
       title: "My Thought Process",
-      content: "I designed HerbaLink as a platform built on trust, not just features. By prioritizing outcomes over aesthetics and uncovering user pain points, I focused on usability, credibility, and retention. The result: simple onboarding, clear symptom tracking, and a community that builds confidence.",
+      content: "Trust beats features when connecting people with healthcare providers. I designed every interaction to build credibility and reduce anxiety through clear symptom tracking and verified herbalist profiles.",
+      blurbs: [
+        "I prioritized trust-building over flashy features, designing each interaction to reduce user anxiety and build confidence in healthcare decisions.",
+        "The result: 3x higher booking rates through clear symptom tracking, verified profiles, and a community that actually helps users feel understood."
+      ],
       images: [
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
@@ -595,7 +600,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: "Process",
       title: "My Thought Process",
-      content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better."
+      content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better.",
+      blurbs: [
+        "I designed around conflict reduction first, using neutral language and clear boundaries to help families communicate instead of argue.",
+        "The result: 40% less co-parenting conflict through a platform that prioritizes emotional well-being over feature complexity."
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
@@ -836,7 +845,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: "Process",
       title: "My Thought Process",
-      content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces."
+      content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces.",
+      blurbs: [
+        "I treated this as a workflow problem, not a design problem—shadowing loan officers to understand where manual processes created real bottlenecks.",
+        "The result: intelligent automation and transparent audit trails that eliminated data fragmentation and built trust through accountability."
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
@@ -1050,7 +1063,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: "Process",
       title: "My Thought Process",
-      content: "I treated this as a systems transformation, not just a digital upgrade. By shadowing operations teams and mapping their workflows end-to-end, I identified where manual processes created bottlenecks and errors. The solution focused on intelligent automation and data pipelines that eliminated repetitive work while maintaining accuracy."
+      content: "I treated this as a systems transformation, not just a digital upgrade. By shadowing operations teams and mapping their workflows end-to-end, I identified where manual processes created bottlenecks and errors. The solution focused on intelligent automation and data pipelines that eliminated repetitive work while maintaining accuracy.",
+      blurbs: [
+        "I approached this as systems transformation, mapping end-to-end workflows to identify where manual processes created costly bottlenecks and errors.",
+        "The result: intelligent automation that eliminated 68% of manual entry errors while maintaining the accuracy teams needed for critical operations."
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
@@ -1291,7 +1308,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: "Process",
       title: "My Thought Process",
-      content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner."
+      content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner.",
+      blurbs: [
+        "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.",
+        "The result: a unified platform that thinks like a business owner, automatically handling the details so teams can focus on growth."
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
