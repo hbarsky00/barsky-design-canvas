@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ProjectVideo from "../project/ProjectVideo";
+import { getOverlayBlurbClasses } from "@/utils/captionStyles";
 
 interface EmergingTheme {
   eyebrow: string;
@@ -117,7 +118,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         decoding="async"
                       />
                       {researchSection.blurb && (
-                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs max-w-[80px]">
+                        <div className={getOverlayBlurbClasses()}>
                           {researchSection.blurb}
                         </div>
                       )}
@@ -137,7 +138,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         decoding="async"
                       />
                       {researchSection.blurb && index === 0 && (
-                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs max-w-[80px]">
+                        <div className={getOverlayBlurbClasses()}>
                           {researchSection.blurb}
                         </div>
                       )}

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getOverlayCaptionClasses, getOverlayLabelClasses } from "@/utils/captionStyles";
 
 interface InteractiveImageGalleryProps {
   images: string[];
@@ -159,14 +160,14 @@ const InteractiveImageGallery: React.FC<InteractiveImageGalleryProps> = ({
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="absolute bottom-4 left-4 right-4 bg-black/70 text-white p-4"
+                  className={getOverlayCaptionClasses("bottom-4 left-4 right-4 text-center")}
                 >
-                  <p className="text-center">{captions[images[selectedImage]]}</p>
+                  <p>{captions[images[selectedImage]]}</p>
                 </motion.div>
               )}
 
               {/* Image Counter */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 text-sm rounded">
+              <div className={getOverlayLabelClasses("left-1/2 -translate-x-1/2 rounded")}>
                 {selectedImage + 1} / {images.length}
               </div>
             </motion.div>

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "./MaximizableImage";
+import { getOverlayCaptionClasses } from "@/utils/captionStyles";
 
 interface VideoHoverImageProps {
   src: string;
@@ -117,7 +118,7 @@ const VideoHoverImage: React.FC<VideoHoverImageProps> = ({
       </div>
       
       {caption && (
-        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-sm p-2">
+        <div className={getOverlayCaptionClasses()}>
           {caption}
         </div>
       )}

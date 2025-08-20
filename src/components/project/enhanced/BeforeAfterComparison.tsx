@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { getOverlayLabelClasses } from "@/utils/captionStyles";
 
 interface BeforeAfterComparisonProps {
   beforeImage: string;
@@ -91,10 +92,10 @@ const BeforeAfterComparison: React.FC<BeforeAfterComparisonProps> = ({
         </div>
 
         {/* Labels */}
-        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 text-sm font-medium">
+        <div className={getOverlayLabelClasses("left-4")}>
           {beforeLabel}
         </div>
-        <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 text-sm font-medium">
+        <div className={getOverlayLabelClasses("right-4")}>
           {afterLabel}
         </div>
 

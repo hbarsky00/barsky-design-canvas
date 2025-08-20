@@ -55,3 +55,20 @@ export const getVideoCaptionClasses = (className?: string) =>
 
 export const getGalleryCaptionClasses = (className?: string) => 
   getCaptionClasses({ variant: 'card', size: 'xs', alignment: 'left', className });
+
+// Image overlay utilities for blurbs, labels, and captions
+export const getImageOverlayClasses = (className?: string) => 
+  cn(
+    "absolute px-3 py-2 rounded-lg text-xs font-medium transition-colors duration-200 max-w-[160px]",
+    "bg-blue-50/60 text-blue-800 border border-blue-100/40 backdrop-blur-sm",
+    className
+  );
+
+export const getOverlayBlurbClasses = (className?: string) => 
+  getImageOverlayClasses(cn("bottom-3 left-3", className));
+
+export const getOverlayLabelClasses = (className?: string) => 
+  getImageOverlayClasses(cn("top-4", className));
+
+export const getOverlayCaptionClasses = (className?: string) => 
+  getImageOverlayClasses(cn("bottom-0 left-0 right-0 max-w-none", className));
