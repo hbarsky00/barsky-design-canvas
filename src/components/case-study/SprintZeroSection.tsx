@@ -115,6 +115,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                     alt={images[1].alt}
                     caption={images[1].caption}
                     className="w-full rounded-lg"
+                    fit="contain"
                   />
                 </motion.div>
               )}
