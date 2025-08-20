@@ -11,7 +11,7 @@ const PersonalStory: React.FC = () => {
       className="mb-16"
     >
       <div className="text-center mb-12">
-        <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+        <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-display">
           About Hiram Barsky
         </h1>
         <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
@@ -21,7 +21,7 @@ const PersonalStory: React.FC = () => {
       </div>
       
       <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">My Story</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 font-display">My Story</h2>
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-700 leading-relaxed mb-6">
             With over 15 years in product design, I've witnessed the evolution from static websites 

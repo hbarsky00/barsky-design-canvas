@@ -35,7 +35,7 @@ const WorkingWithMe: React.FC = () => {
       className="mb-16"
     >
       <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Working With Me</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 font-display">Working With Me</h2>
         
         <div className="grid md:grid-cols-2 gap-8">
           {benefits.map((benefit, index) => {
@@ -46,7 +46,7 @@ const WorkingWithMe: React.FC = () => {
                   <Icon className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 font-display">{benefit.title}</h3>
                   <p className="text-gray-700">{benefit.description}</p>
                 </div>
               </div>

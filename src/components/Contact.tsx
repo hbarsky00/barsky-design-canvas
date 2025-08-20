@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-8 md:py-12 dark:bg-gray-900">
       <div className="section-container">
         <div className="text-center mb-8">
-          <h2 className="section-title mb-6">Have Questions or Need Support?</h2>
+          <h2 className="section-title mb-6 font-display">Have Questions or Need Support?</h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Reach out for general inquiries, support, or if you'd like to discuss your project in more detail.
           </p>

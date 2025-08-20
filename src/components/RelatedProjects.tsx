@@ -78,7 +78,7 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h2 className="mx-auto max-w-5xl [text-wrap:balance] text-display-medium font-bold text-on-surface mb-2">
+          <h2 className="mx-auto max-w-5xl [text-wrap:balance] text-display-medium font-bold text-on-surface mb-2 font-display">
             Related Projects
           </h2>
           <p className="text-title-large text-on-surface-variant max-w-2xl mx-auto">
@@ -116,7 +116,7 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors font-display">
                     {project.title}
                   </h3>
                   <p className="text-on-surface-variant mb-4 line-clamp-2 hidden sm:block">

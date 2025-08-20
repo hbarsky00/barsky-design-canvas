@@ -77,7 +77,7 @@ const DesignFileDownload: React.FC = () => {
   return (
     <section className="py-12 bg-barsky-bg-white dark:bg-gray-900">
       <div className="section-container">
-        <h2 className="text-2xl font-bold mb-8 dark:text-white">Design Resources</h2>
+        <h2 className="text-2xl font-bold mb-8 dark:text-white font-display">Design Resources</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {designFiles.map((file, index) => (
             <DesignFile key={index} {...file} />

@@ -35,7 +35,7 @@ const ProfessionalJourney: React.FC = () => {
       className="mb-16"
     >
       <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Professional Journey</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 font-display">Professional Journey</h2>
         
         <div className="space-y-8">
           {milestones.map((milestone, index) => (
@@ -43,7 +43,7 @@ const ProfessionalJourney: React.FC = () => {
               <div className="w-4 h-4 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
               <div className="flex-1">
                 <div className="text-sm text-blue-600 font-medium mb-1">{milestone.year}</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{milestone.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 font-display">{milestone.title}</h3>
                 <p className="text-gray-700">{milestone.description}</p>
               </div>
             </div>

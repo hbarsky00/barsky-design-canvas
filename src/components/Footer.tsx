@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h3 className="font-bold mb-6 text-neutral-50 text-xl">
+            <h3 className="font-bold mb-6 text-neutral-50 text-xl font-display">
               Hiram <span className="text-blue-vibrant">Barsky</span>
             </h3>
             <p className="mb-6 leading-relaxed text-slate-50">
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           </div>
           
           <nav aria-label="Footer navigation">
-            <h4 className="text-lg font-semibold mb-6 text-neutral-50">Navigation</h4>
+            <h4 className="text-lg font-semibold mb-6 text-neutral-50 font-display">Navigation</h4>
             <ul className="space-y-3" role="list">
               <li>
                 <Link to="/" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
           </nav>
           
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-neutral-50">Contact</h4>
+            <h4 className="text-lg font-semibold mb-6 text-neutral-50 font-display">Contact</h4>
             <ul className="space-y-3" role="list">
               <li className="flex items-center gap-2">
                 <span className="text-blue-vibrant font-medium" aria-label="Email address">Email:</span>
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
             </ul>
             
             <div className="mt-6">
-              <h4 className="text-lg font-semibold mb-4 text-neutral-50">Connect</h4>
+              <h4 className="text-lg font-semibold mb-4 text-neutral-50 font-display">Connect</h4>
               <div className="flex space-x-4" role="list">
                 <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="Connect on LinkedIn (opens in new tab)">
                   <Linkedin size={24} strokeWidth={2.5} />

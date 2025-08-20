@@ -69,7 +69,7 @@ export class SafeErrorBoundary extends Component<Props, State> {
       return this.props.fallback || (
         <div className="min-h-screen flex items-center justify-center bg-background">
           <div className="text-center p-8 max-w-md">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
+            <h2 className="text-2xl font-bold text-foreground mb-4 font-display">
               Application Error
             </h2>
             <p className="text-muted-foreground mb-6">

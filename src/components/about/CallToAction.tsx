@@ -12,7 +12,7 @@ const CallToAction: React.FC = () => {
       transition={{ duration: 0.6, delay: 0.8 }}
     >
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8 lg:p-12 text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Digital Experience?</h2>
+        <h2 className="text-3xl font-bold mb-4 font-display">Ready to Transform Your Digital Experience?</h2>
         <p className="text-xl mb-8 opacity-90">
           Let's discuss how AI-enhanced design can drive your business forward.
         </p>

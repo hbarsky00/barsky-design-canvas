@@ -24,7 +24,7 @@ const About: React.FC = () => {
     <section id="about" className="py-12 bg-barsky-bg-light">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-center mb-8">Why Work With Me</h2>
+          <h2 className="section-title text-center mb-8 font-display">Why Work With Me</h2>
           
           {/* Streamlined Introduction */}
           <div className="text-center mb-12">
@@ -47,7 +47,7 @@ const About: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Core Skills - Condensed */}
             <div className="bg-white p-6 rounded-lg border">
-              <h3 className="font-bold text-barsky-dark mb-4">Core Expertise</h3>
+              <h3 className="font-bold text-barsky-dark mb-4 font-display">Core Expertise</h3>
               <div className="grid grid-cols-2 gap-2">
                 {coreSkills.map((skill, index) => (
                   <div key={index} className="flex items-center gap-2">
@@ -60,7 +60,7 @@ const About: React.FC = () => {
 
             {/* Essential Tools - Reduced */}
             <div className="bg-white p-6 rounded-lg border">
-              <h3 className="font-bold text-barsky-dark mb-4">AI-Enhanced Toolkit</h3>
+              <h3 className="font-bold text-barsky-dark mb-4 font-display">AI-Enhanced Toolkit</h3>
               <div className="flex flex-wrap gap-2">
                 {essentialTools.map((tool, index) => (
                   <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
@@ -73,7 +73,7 @@ const About: React.FC = () => {
 
           {/* Single Focused CTA */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 text-center">
-            <h3 className="text-2xl font-bold mb-3">Ready to 10x Your Conversions?</h3>
+            <h3 className="text-2xl font-bold mb-3 font-display">Ready to 10x Your Conversions?</h3>
             <p className="mb-6 text-lg">
               Join 47+ successful projects that achieved 40%+ conversion improvements 
               through AI-enhanced UX design.
