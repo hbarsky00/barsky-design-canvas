@@ -45,7 +45,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
           
           {/* Always visible text */}
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10">
-            <div className={`px-3 py-2 text-sm text-white rounded-lg shadow-lg max-w-xs whitespace-normal ${
+            <div className={`px-3 py-2 text-sm text-white rounded-lg shadow-lg min-w-[280px] w-80 max-w-[90vw] sm:min-w-[300px] sm:max-w-none whitespace-normal ${
               annotation.type === 'issue' ? 'bg-red-600' :
               annotation.type === 'improvement' ? 'bg-blue-600' :
               'bg-green-600'
