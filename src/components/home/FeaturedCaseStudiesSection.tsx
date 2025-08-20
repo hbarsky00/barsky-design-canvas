@@ -79,7 +79,7 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
           <div className="absolute bottom-4 left-4 right-4">
             <div className={getImageOverlayClasses("max-w-none")}>
               <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-blue-600" />
+                <Star className="w-4 h-4 text-yellow-400" />
                 <span className="font-medium">{study.impact}</span>
               </div>
             </div>

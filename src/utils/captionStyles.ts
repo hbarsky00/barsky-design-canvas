@@ -56,13 +56,41 @@ export const getVideoCaptionClasses = (className?: string) =>
 export const getGalleryCaptionClasses = (className?: string) => 
   getCaptionClasses({ variant: 'card', size: 'xs', alignment: 'left', className });
 
-// Image overlay utilities for blurbs, labels, and captions
+// Image overlay utilities - AnnotatedImage template styling
 export const getImageOverlayClasses = (className?: string) => 
   cn(
-    "absolute px-3 py-2 rounded-lg font-medium transition-colors duration-200",
+    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
     "text-xs md:text-sm lg:text-base", // Responsive text size
     "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]", // Responsive width
-    "bg-blue-50/60 text-blue-800 border border-blue-100/40 backdrop-blur-sm",
+    "bg-blue-600", // Default blue annotation
+    className
+  );
+
+// Specific annotation types matching AnnotatedImage
+export const getOverlayIssueClasses = (className?: string) => 
+  cn(
+    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
+    "text-xs md:text-sm lg:text-base",
+    "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]",
+    "bg-red-600", // Red for issues
+    className
+  );
+
+export const getOverlayImprovementClasses = (className?: string) => 
+  cn(
+    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
+    "text-xs md:text-sm lg:text-base",
+    "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]",
+    "bg-blue-600", // Blue for improvements
+    className
+  );
+
+export const getOverlaySuccessClasses = (className?: string) => 
+  cn(
+    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
+    "text-xs md:text-sm lg:text-base",
+    "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]",
+    "bg-green-600", // Green for success
     className
   );
 
