@@ -50,7 +50,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col justify-center min-h-[calc(100vh-var(--header-height,64px))] py-2">
+          <div className="flex flex-col justify-center min-h-[calc(100dvh-var(--header-height,64px)-32px)] py-6 md:py-8">
           <div className="flex flex-col justify-center gap-4 w-full max-w-none">
             {/* Text Content */}
             <motion.div
