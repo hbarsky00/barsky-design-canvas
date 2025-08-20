@@ -167,7 +167,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
 
         {/* Section header */}
         <div className="mb-4">
-          <h2 className="text-section-title text-foreground">
+          <h2 className="text-section-title text-foreground font-display">
             More Work
           </h2>
         </div>
@@ -191,7 +191,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
             {/* Content Section */}
             <div className="order-1 lg:order-2 space-y-4">
               {/* Title */}
-              <h3 className="text-subsection-title text-foreground leading-tight">
+              <h3 className="text-subsection-title text-foreground leading-tight font-display">
                 {relatedStudy.title}
               </h3>
 

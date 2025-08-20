@@ -162,7 +162,7 @@ const CaseStudyCard: React.FC<{
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl font-bold text-gray-900 leading-tight break-words">
+          <h3 className="text-2xl font-bold text-gray-900 leading-tight break-words font-display">
             {study.title}
           </h3>
 
@@ -232,7 +232,7 @@ const CaseStudyCard: React.FC<{
             </div>
 
             {/* Title */}
-            <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere">
+            <h3 className="text-2xl lg:text-3xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere font-display">
               {study.title}
             </h3>
 
