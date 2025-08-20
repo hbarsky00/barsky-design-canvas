@@ -64,6 +64,12 @@
   --barsky-bg-light: 210 40% 98%;
   --barsky-accent: 45 100% 51%;
   --barsky-accent-light: 45 100% 96%;
+
+  /* 3D Effects */
+  --shadow-elevation: 0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-elevation-hover: 0 8px 30px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+  --perspective: 1000px;
+  --transform-3d: preserve-3d;
   
   /* Problem section background */
   --problem-bg: 190 60% 96%;
@@ -124,6 +130,10 @@
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 224.3 76.3% 94.1%;
+
+  /* 3D Effects - Dark Mode */
+  --shadow-elevation: 0 4px 20px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-elevation-hover: 0 8px 30px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.25);
 }
 
   * {
@@ -603,7 +613,138 @@ body {
 }
 
 @media (min-width: 640px) { 
-  .projects-page .cs-card .row { 
-    margin-top: 1.25rem; 
-  } 
+.projects-page .cs-card .row { 
+  margin-top: 1.25rem; 
+} 
+}
+
+/* 3D Transform Utilities */
+.transform-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective {
+  perspective: var(--perspective);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Enhanced Shadows */
+.shadow-elevation {
+  box-shadow: var(--shadow-elevation);
+}
+
+.shadow-elevation-hover {
+  box-shadow: var(--shadow-elevation-hover);
+}
+
+/* 3D Tilt Classes */
+.tilt-hover {
+  transition: transform 0.3s cubic-bezier(0.03, 0.98, 0.52, 0.99);
+}
+
+.tilt-hover:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(10px);
+}
+
+/* Depth Layers */
+.depth-1 {
+  transform: translateZ(10px);
+}
+
+.depth-2 {
+  transform: translateZ(20px);
+}
+
+.depth-3 {
+  transform: translateZ(30px);
+}
+
+/* Glass Morphism Enhanced */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-morphism-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 3D Animation Keyframes */
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotateX(2deg) rotateY(1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotateX(-1deg) rotateY(-2deg);
+  }
+}
+
+@keyframes tilt3d {
+  0% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: perspective(1000px) rotateX(2deg) rotateY(1deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(2deg);
+  }
+  75% {
+    transform: perspective(1000px) rotateX(-1deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes pulse3d {
+  0%, 100% {
+    transform: scale(1) translateZ(0px);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  }
+  50% {
+    transform: scale(1.05) translateZ(10px);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  }
+}
+
+/* Animation Classes */
+.animate-float3d {
+  animation: float3d 6s ease-in-out infinite;
+}
+
+.animate-tilt3d {
+  animation: tilt3d 8s ease-in-out infinite;
+}
+
+.animate-pulse3d {
+  animation: pulse3d 3s ease-in-out infinite;
+}
+
+/* Hardware Acceleration */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float3d,
+  .animate-tilt3d,
+  .animate-pulse3d {
+    animation: none;
+  }
+  
+  .tilt-hover:hover {
+    transform: none;
+  }
 }

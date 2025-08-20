@@ -11,38 +11,57 @@ const PageTransition: React.FC<PageTransitionProps> = ({ isVisible, children }) 
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
+          initial={{ opacity: 0, rotateY: -90, scale: 0.8 }}
+          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+          exit={{ opacity: 0, rotateY: 90, scale: 0.8 }}
+          transition={{ 
+            duration: 0.8, 
+            ease: [0.25, 0.46, 0.45, 0.94],
+            rotateY: { duration: 0.6 },
+            scale: { duration: 0.4 }
+          }}
           className="fixed inset-0 z-[70] flex items-center justify-center"
           style={{
-            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8))",
+            background: "linear-gradient(135deg, hsl(var(--background) / 0.95), hsl(var(--muted) / 0.9))",
             backdropFilter: "blur(20px)",
+            perspective: "1000px",
+            transformStyle: "preserve-3d",
           }}
         >
           {/* Animated gradient overlay */}
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-indigo-500/10"
+            initial={{ scale: 0.8, opacity: 0, rotateX: -45 }}
+            animate={{ scale: 1, opacity: 1, rotateX: 0 }}
+            exit={{ scale: 0.8, opacity: 0, rotateX: 45 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10"
+            style={{ transformStyle: "preserve-3d" }}
           />
           
           {/* Loading content */}
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            initial={{ y: 30, opacity: 0, rotateX: 45 }}
+            animate={{ y: 0, opacity: 1, rotateX: 0 }}
+            exit={{ y: -30, opacity: 0, rotateX: -45 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="relative z-10 flex flex-col items-center space-y-4"
+            style={{ transformStyle: "preserve-3d" }}
           >
-            {/* Loading spinner */}
+            {/* Enhanced 3D Loading spinner */}
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              className="w-12 h-12 border-4 border-transparent border-t-blue-accent rounded-full"
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{ 
+                rotate: { duration: 1, repeat: Infinity, ease: "linear" },
+                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="w-12 h-12 border-4 border-transparent border-t-primary rounded-full shadow-lg"
+              style={{
+                filter: "drop-shadow(0 4px 8px hsl(var(--primary) / 0.3))",
+                transform: "translateZ(20px)",
+              }}
             />
             
             {/* Custom content */}
