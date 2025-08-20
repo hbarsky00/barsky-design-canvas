@@ -60,20 +60,20 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.05}>
-          <section id="bio" tabIndex={-1}>
-            <BioSection 
+        <SectionTransition variant="fade" delay={0.05} className="bg-background py-0 md:py-12">
+          <section id="case-studies" tabIndex={-1}>
+            <VideoCaseStudiesSection 
               navigateDown={navigateDown}
-              canNavigateDown={canNavigateDown}
               isMobile={isMobile}
             />
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
-          <section id="case-studies" tabIndex={-1}>
-            <VideoCaseStudiesSection 
+        <SectionTransition variant="fade" delay={0.1}>
+          <section id="bio" tabIndex={-1}>
+            <BioSection 
               navigateDown={navigateDown}
+              canNavigateDown={canNavigateDown}
               isMobile={isMobile}
             />
           </section>
