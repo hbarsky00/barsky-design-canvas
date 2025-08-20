@@ -59,7 +59,9 @@ export const getGalleryCaptionClasses = (className?: string) =>
 // Image overlay utilities for blurbs, labels, and captions
 export const getImageOverlayClasses = (className?: string) => 
   cn(
-    "absolute px-3 py-2 rounded-lg text-xs font-medium transition-colors duration-200 max-w-[160px]",
+    "absolute px-3 py-2 rounded-lg font-medium transition-colors duration-200",
+    "text-xs md:text-sm lg:text-base", // Responsive text size
+    "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]", // Responsive width
     "bg-blue-50/60 text-blue-800 border border-blue-100/40 backdrop-blur-sm",
     className
   );
