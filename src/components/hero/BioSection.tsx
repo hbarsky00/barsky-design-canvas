@@ -3,28 +3,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { NavigationProps } from "@/types/navigation";
-
-interface BioSectionProps extends NavigationProps {}
-
-const BioSection: React.FC<BioSectionProps> = ({ 
-  navigateDown, 
-  canNavigateDown,
-  isMobile 
-}) => {
-  const handleNavigateDown = () => {
-    if (navigateDown) {
-      navigateDown();
-    }
-  };
+const BioSection: React.FC = () => {
 
   return (
     <section 
       id="bio-section"
       className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-gradient-to-br from-blue-50/30 to-indigo-50/30 relative
-                 pt-safe-top pb-safe-bottom cursor-pointer"
+                 pt-safe-top pb-safe-bottom"
       tabIndex={-1}
-      onClick={handleNavigateDown}
     >
       <div className="max-w-4xl mx-auto w-full">
         <motion.div

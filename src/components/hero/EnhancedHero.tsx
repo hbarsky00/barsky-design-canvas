@@ -7,7 +7,7 @@ import HeroDescription from "./HeroDescription";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
 import AnimatedBackground from "./AnimatedBackground";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
+
 
 const EnhancedHero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -83,13 +83,25 @@ const EnhancedHero: React.FC = () => {
       </div>
 
       {/* Navigation Controls - Separated from main content */}
-      <div className="flex-shrink-0 relative z-10">
-        <SectionNavigation
-          onNavigateDown={scrollToNextSection}
-          canNavigateUp={false}
-          canNavigateDown={true}
-          downLabel="Explore"
-        />
+      <div className="flex-shrink-0 relative z-10 pb-8">
+        <div className="flex justify-center">
+          <button
+            onClick={scrollToNextSection}
+            className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg min-w-[80px]"
+            aria-label="Explore"
+          >
+            <span className="text-xs font-medium opacity-70 group-hover:opacity-100 transition-opacity mb-2 text-center w-full">Explore</span>
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="flex justify-center w-full"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform duration-200 mx-auto">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </motion.div>
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -12,8 +12,6 @@ import ProjectNavigation from "@/components/ProjectNavigation";
 import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import SingleCaseStudyPreview from "./SingleCaseStudyPreview";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
-import Section3DOverlay from "@/components/transitions/Section3DOverlay";
-import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 
 interface OriginalCaseStudyLayoutProps {
@@ -28,38 +26,11 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
   const isProjectPage = useProjectPageDetection();
   const projectsData = React.useMemo(() => getCaseStudyNavItems(), []);
 
-  // Build sections for keyboard navigation
-  const keyboardSections = React.useMemo(() => {
-    const navSections = [
-      { id: 'hero-section', title: 'Overview' },
-      ...Object.entries(caseStudy.sections).map(([sectionId, section]) => {
-        const navItem = caseStudy.stickyNav.find(nav => nav.anchor === `#${sectionId}`);
-        const title = navItem?.label || sectionId.replace('-', ' ');
-        return { id: sectionId, title };
-      }),
-      { id: 'more-work', title: 'More Work' },
-      { id: 'contact-section', title: 'Contact' },
-      { id: 'project-navigation', title: 'More Projects' }
-    ];
-    return navSections;
-  }, [caseStudy]);
-
-  const {
-    isTransitioning,
-    transitionDirection,
-    transitionVariation,
-  } = useCaseStudyKeyboardNavigation(keyboardSections);
 
   return (
     <>
 
       <div className={`min-h-screen bg-background ${isProjectPage ? 'projects-page' : ''}`}>
-        {/* 3D Transition Overlay */}
-        <Section3DOverlay 
-          isVisible={isTransitioning} 
-          direction={transitionDirection}
-          variation={transitionVariation}
-        />
 
         <Header />
 

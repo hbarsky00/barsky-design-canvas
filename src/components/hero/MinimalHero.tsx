@@ -4,18 +4,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Linkedin, Calendar } from "lucide-react";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { NavigationProps } from "@/types/navigation";
 import WinampVisualizer from "./WinampVisualizer";
 import { EditableContent } from "@/components/editor/EditableContent";
 
-interface MinimalHeroProps extends NavigationProps {}
-
-const MinimalHero: React.FC<MinimalHeroProps> = ({ 
-  navigateDown, 
-  canNavigateDown,
-  isMobile 
-}) => {
+const MinimalHero: React.FC = () => {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
   const [showContinueButton, setShowContinueButton] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
@@ -60,9 +52,10 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
     setShowContinueButton(false);
     setHasScrolledPastHero(true);
     
-    // Navigate to next section
-    if (navigateDown) {
-      navigateDown();
+    // Scroll to next section
+    const nextSection = document.getElementById('case-studies');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -249,12 +242,21 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       >
         <div className="flex flex-col items-center space-y-2">
           <span className="text-sm text-white/80 font-medium">Continue</span>
-          <SectionNavigation
-            onNavigateDown={handleNavigateDown}
-            canNavigateUp={false}
-            canNavigateDown={canNavigateDown}
-            downLabel=""
-          />
+          <button
+            onClick={handleNavigateDown}
+            className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg min-w-[80px]"
+            aria-label="Continue to next section"
+          >
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="flex justify-center w-full"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform duration-200 mx-auto">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </motion.div>
+          </button>
         </div>
       </motion.div>
     </section>

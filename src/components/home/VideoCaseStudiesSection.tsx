@@ -6,9 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { NavigationProps } from "@/types/navigation";
 
 interface CaseStudy {
   id: string;
@@ -93,22 +91,10 @@ const caseStudies: CaseStudy[] = [
 
 const CaseStudyCard: React.FC<{ 
   study: CaseStudy; 
-  index: number; 
-  onNavigateDown?: () => void;
-}> = ({ study, index, onNavigateDown }) => {
+  index: number;
+}> = ({ study, index }) => {
   const isMobile = useIsMobile();
 
-  const handleCaseStudyClick = (e: React.MouseEvent) => {
-    // Don't navigate if clicking on buttons or links
-    const target = e.target as HTMLElement;
-    if (target.closest('button') || target.closest('a')) {
-      return;
-    }
-    
-    if (onNavigateDown) {
-      onNavigateDown();
-    }
-  };
 
   const renderMedia = () => {
     if (study.video) {
@@ -154,9 +140,8 @@ const CaseStudyCard: React.FC<{
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative py-12 lg:py-16"
+      className="case-study-card bg-gray-50 overflow-hidden relative py-12 lg:py-16"
       tabIndex={-1}
-      onClick={handleCaseStudyClick}
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
@@ -290,12 +275,7 @@ const CaseStudyCard: React.FC<{
   );
 };
 
-interface VideoCaseStudiesSectionProps extends NavigationProps {}
-
-const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({ 
-  navigateDown,
-  isMobile 
-}) => {
+const VideoCaseStudiesSection: React.FC = () => {
   return (
     <section id="projects" className="py-12 bg-white" tabIndex={-1}>
       <div className="container px-4 mx-auto max-w-7xl">
@@ -321,8 +301,7 @@ const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({
             <CaseStudyCard 
               key={study.id} 
               study={study} 
-              index={index} 
-              onNavigateDown={navigateDown}
+              index={index}
             />
           ))}
         </div>

@@ -11,27 +11,13 @@ import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import SectionTransition from "@/components/transitions/SectionTransition";
-import Section3DOverlay from "@/components/transitions/Section3DOverlay";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
-import { useHomepageKeyboardNavigation } from "@/hooks/useHomepageKeyboardNavigation";
 
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
   
-  // Enhanced keyboard navigation with case study support
-  const { 
-    isTransitioning, 
-    transitionDirection, 
-    transitionVariation,
-    navigateUp,
-    navigateDown,
-    canNavigateUp,
-    canNavigateDown,
-    isMobile,
-    isInCaseStudyMode
-  } = useHomepageKeyboardNavigation();
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
@@ -40,42 +26,25 @@ const HomepageLayout: React.FC = () => {
         volume={0.15}
       />
       
-      {/* Refined, subtle overlay for section transitions */}
-      <Section3DOverlay 
-        isVisible={isTransitioning} 
-        direction={transitionDirection}
-        variation={transitionVariation}
-      />
       
       {isScrolledPastHero && <Header />}
       <main className="flex-grow space-y-4 md:space-y-12">
         
         <SectionTransition variant="fade">
           <section id="intro" tabIndex={-1}>
-            <MinimalHero 
-              navigateDown={navigateDown}
-              canNavigateDown={canNavigateDown}
-              isMobile={isMobile}
-            />
+            <MinimalHero />
           </section>
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.05} className="bg-background py-0 md:py-12">
           <section id="case-studies" tabIndex={-1}>
-            <VideoCaseStudiesSection 
-              navigateDown={navigateDown}
-              isMobile={isMobile}
-            />
+            <VideoCaseStudiesSection />
           </section>
         </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.1}>
           <section id="bio" tabIndex={-1}>
-            <BioSection 
-              navigateDown={navigateDown}
-              canNavigateDown={canNavigateDown}
-              isMobile={isMobile}
-            />
+            <BioSection />
           </section>
         </SectionTransition>
         

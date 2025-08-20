@@ -3,8 +3,6 @@ import { Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import SectionHeader from "@/components/shared/SectionHeader";
-import SectionNavigation from "@/components/navigation/SectionNavigation";
-import { NavigationProps } from "@/types/navigation";
 import { 
   Form,
   FormControl, 
@@ -37,15 +35,7 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-interface ContactFormProps extends NavigationProps {}
-
-const ContactForm: React.FC<ContactFormProps> = ({ 
-  navigateUp, 
-  navigateDown, 
-  canNavigateUp, 
-  canNavigateDown,
-  isMobile 
-}) => {
+const ContactForm: React.FC = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -189,18 +179,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
         </div>
       </div>
 
-      {!isMobile && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <SectionNavigation
-            onNavigateUp={navigateUp}
-            onNavigateDown={navigateDown}
-            canNavigateUp={canNavigateUp}
-            canNavigateDown={canNavigateDown}
-            upLabel="Projects"
-            downLabel="Blog preview"
-          />
-        </div>
-      )}
     </section>
   );
 };

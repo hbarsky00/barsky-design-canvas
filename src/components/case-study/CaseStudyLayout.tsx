@@ -7,8 +7,6 @@ import CaseStudyNavigation from "./CaseStudyNavigation";
 import CaseStudyContactSection from "./CaseStudyContactSection";
 import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
 import SingleCaseStudyPreview from "./SingleCaseStudyPreview";
-import Section3DOverlay from "@/components/transitions/Section3DOverlay";
-import { useCaseStudyKeyboardNavigation } from "@/hooks/useCaseStudyKeyboardNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 
 interface CaseStudySection {
@@ -60,38 +58,12 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
     { label: "More Work", anchor: "#more-work" }
   ];
 
-  // Build sections for keyboard navigation
-  const keyboardSections = React.useMemo(() => {
-    const navSections = [
-      { id: 'overview', title: 'Overview' },
-      ...sections.map(section => ({
-        id: section.id,
-        title: section.title
-      })),
-      { id: 'more-work', title: 'More Work' },
-      { id: 'contact-section', title: 'Contact' }
-    ];
-    return navSections;
-  }, [sections]);
-
-  // Add keyboard navigation
-  const {
-    isTransitioning,
-    transitionDirection,
-    transitionVariation,
-  } = useCaseStudyKeyboardNavigation(keyboardSections);
 
   return (
     <>
       {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
       <div className={`min-h-screen bg-gradient-to-br ${gradientClasses} ${isProjectPage ? 'projects-page' : ''}`}>
-        {/* 3D Transition Overlay */}
-        <Section3DOverlay 
-          isVisible={isTransitioning} 
-          direction={transitionDirection}
-          variation={transitionVariation}
-        />
 
         <Header />
         
