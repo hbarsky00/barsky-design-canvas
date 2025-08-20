@@ -117,7 +117,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         decoding="async"
                       />
                       {researchSection.blurb && (
-                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs md:text-sm max-w-[120px] sm:max-w-[80%]">
+                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs max-w-[80px]">
                           {researchSection.blurb}
                         </div>
                       )}
@@ -137,7 +137,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         decoding="async"
                       />
                       {researchSection.blurb && index === 0 && (
-                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs md:text-sm max-w-[120px] sm:max-w-[80%]">
+                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs max-w-[80px]">
                           {researchSection.blurb}
                         </div>
                       )}
