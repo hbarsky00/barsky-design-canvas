@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import AnnotatedImage from "./AnnotatedImage";
+import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
 interface MyThoughtProcessSectionProps {
   content: string;
@@ -9,14 +11,13 @@ interface MyThoughtProcessSectionProps {
     src: string;
     alt: string;
     caption?: string;
+    annotations?: ImageAnnotation[];
   }>;
-  blurbs?: string[];
 }
 
 const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
   content,
-  images,
-  blurbs = []
+  images
 }) => {
   return (
     <section className="section-snap py-12 md:py-16">
@@ -41,24 +42,20 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
             <div className="space-y-8">
               {images.map((image, index) => (
                 <div key={index} className="relative">
-                  <MaximizableImage
-                    src={image.src}
-                    alt={image.alt}
-                    caption={image.caption}
-                    className="w-full rounded-lg"
-                  />
-                  {blurbs[index] && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
-                      viewport={{ once: true }}
-                      className="mt-6 bg-barsky-accent-light border-l-4 border-barsky-blue p-6 rounded-r-lg shadow-sm"
-                    >
-                      <p className="text-lg font-medium text-barsky-dark leading-relaxed italic">
-                        "{blurbs[index]}"
-                      </p>
-                    </motion.div>
+                  {image.annotations && image.annotations.length > 0 ? (
+                    <AnnotatedImage
+                      src={image.src}
+                      alt={image.alt}
+                      annotations={image.annotations}
+                      className="w-full rounded-lg"
+                    />
+                  ) : (
+                    <MaximizableImage
+                      src={image.src}
+                      alt={image.alt}
+                      caption={image.caption}
+                      className="w-full rounded-lg"
+                    />
                   )}
                 </div>
               ))}

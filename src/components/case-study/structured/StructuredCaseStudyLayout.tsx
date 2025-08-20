@@ -148,7 +148,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               <MyThoughtProcessSection 
                 content={caseStudyData.myThoughtProcessSection.content}
                 images={caseStudyData.myThoughtProcessSection.images || []}
-                blurbs={caseStudyData.myThoughtProcessSection.blurbs || []}
               />
             </section>
           )}

@@ -78,11 +78,11 @@ export interface StructuredCaseStudyData {
     eyebrow: string;
     title: string;
     content: string;
-    blurbs?: string[];
     images?: Array<{
       src: string;
       alt: string;
       caption?: string;
+      annotations?: ImageAnnotation[];
     }>;
   };
   userTestingSection?: {
@@ -273,15 +273,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Process",
       title: "My Thought Process",
       content: "Trust beats features when connecting people with healthcare providers. I designed every interaction to build credibility and reduce anxiety through clear symptom tracking and verified herbalist profiles.",
-      blurbs: [
-        "I prioritized trust-building over flashy features, designing each interaction to reduce user anxiety and build confidence in healthcare decisions.",
-        "The result: 3x higher booking rates through clear symptom tracking, verified profiles, and a community that actually helps users feel understood."
-      ],
       images: [
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
           alt: "HerbaLink user flow from onboarding to booking",
-          caption: "User flow from onboarding to booking and tracking."
+          caption: "User flow from onboarding to booking and tracking.",
+          annotations: [
+            { text: "I prioritized trust-building over flashy features, designing each interaction to reduce user anxiety and build confidence in healthcare decisions.", x: 25, y: 30, type: "improvement" },
+            { text: "The result: 3x higher booking rates through clear symptom tracking, verified profiles, and a community that actually helps users feel understood.", x: 75, y: 70, type: "feature" }
+          ]
         }
       ]
     },
@@ -601,10 +601,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Process",
       title: "My Thought Process",
       content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better.",
-      blurbs: [
-        "I designed around conflict reduction first, using neutral language and clear boundaries to help families communicate instead of argue.",
-        "The result: 40% less co-parenting conflict through a platform that prioritizes emotional well-being over feature complexity."
-      ],
+      images: [
+        {
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-user-flow.png",
+          alt: "Splittime user satisfaction metrics and communication improvements",
+          annotations: [
+            { text: "I designed around conflict reduction first, using neutral language and clear boundaries to help families communicate instead of argue.", x: 30, y: 25, type: "improvement" },
+            { text: "The result: 40% less co-parenting conflict through a platform that prioritizes emotional well-being over feature complexity.", x: 70, y: 75, type: "feature" }
+          ]
+        }
+      ]
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
@@ -846,10 +852,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Process",
       title: "My Thought Process",
       content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces.",
-      blurbs: [
-        "I treated this as a workflow problem, not a design problem—shadowing loan officers to understand where manual processes created real bottlenecks.",
-        "The result: intelligent automation and transparent audit trails that eliminated data fragmentation and built trust through accountability."
-      ],
+      images: [
+        {
+          src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
+          alt: "Investor loan platform user workflow and process improvements",
+          annotations: [
+            { text: "I treated this as a workflow problem, not a design problem—shadowing loan officers to understand where manual processes created real bottlenecks.", x: 25, y: 35, type: "improvement" },
+            { text: "The result: intelligent automation and transparent audit trails that eliminated data fragmentation and built trust through accountability.", x: 75, y: 65, type: "feature" }
+          ]
+        }
+      ]
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
@@ -1064,10 +1076,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Process",
       title: "My Thought Process",
       content: "I treated this as a systems transformation, not just a digital upgrade. By shadowing operations teams and mapping their workflows end-to-end, I identified where manual processes created bottlenecks and errors. The solution focused on intelligent automation and data pipelines that eliminated repetitive work while maintaining accuracy.",
-      blurbs: [
-        "I approached this as systems transformation, mapping end-to-end workflows to identify where manual processes created costly bottlenecks and errors.",
-        "The result: intelligent automation that eliminated 68% of manual entry errors while maintaining the accuracy teams needed for critical operations."
-      ],
+      images: [
+        {
+          src: "/wholesale-thought-process.png",
+          alt: "Wholesale distribution transformation results and automation benefits",
+          annotations: [
+            { text: "I approached this as systems transformation, mapping end-to-end workflows to identify where manual processes created costly bottlenecks and errors.", x: 30, y: 30, type: "improvement" },
+            { text: "The result: intelligent automation that eliminated 68% of manual entry errors while maintaining the accuracy teams needed for critical operations.", x: 70, y: 70, type: "feature" }
+          ]
+        }
+      ]
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
@@ -1309,10 +1327,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Process",
       title: "My Thought Process",
       content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner.",
-      blurbs: [
-        "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.",
-        "The result: a unified platform that thinks like a business owner, automatically handling the details so teams can focus on growth."
-      ],
+      images: [
+        {
+          src: "/lovable-uploads/quickflow_process_flow.svg",
+          alt: "Business management system operational improvements and metrics",
+          annotations: [
+            { text: "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.", x: 25, y: 40, type: "improvement" },
+            { text: "The result: a unified platform that thinks like a business owner, automatically handling the details so teams can focus on growth.", x: 75, y: 60, type: "feature" }
+          ]
+        }
+      ]
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
