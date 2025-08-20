@@ -20,6 +20,7 @@ import WhatDidntWorkSection from "../WhatDidntWorkSection";
 import SprintZeroSection from "../SprintZeroSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import AnnotatedImage from "../AnnotatedImage";
 import { Badge } from "@/components/ui/badge";
 import FloatingEmailButton from "@/components/FloatingEmailButton";
 
@@ -302,15 +303,26 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                     >
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-auto object-contain image-high-quality"
-                      />
-                      {image.caption && (
-                        <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                          {image.caption}
-                        </div>
+                      {image.annotations && image.annotations.length > 0 ? (
+                        <AnnotatedImage
+                          src={image.src}
+                          alt={image.alt}
+                          annotations={image.annotations}
+                          className="w-full h-auto rounded-lg"
+                        />
+                      ) : (
+                        <>
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full h-auto object-contain image-high-quality"
+                          />
+                          {image.caption && (
+                            <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                              {image.caption}
+                            </div>
+                          )}
+                        </>
                       )}
                     </motion.div>
                   ))}

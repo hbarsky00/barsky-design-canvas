@@ -2,6 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import AnnotatedImage from "./AnnotatedImage";
+import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
 interface WhatDidntWorkMetric {
   value: string;
@@ -13,6 +15,7 @@ interface WhatDidntWorkImage {
   src: string;
   alt: string;
   caption?: string;
+  annotations?: ImageAnnotation[];
 }
 
 interface WhatDidntWorkData {
@@ -92,13 +95,22 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
             >
-              <MaximizableImage
-                src={image.src}
-                alt={image.alt}
-                caption={image.caption}
-                fit="contain"
-                className="w-full rounded-lg shadow-sm"
-              />
+              {image.annotations && image.annotations.length > 0 ? (
+                <AnnotatedImage
+                  src={image.src}
+                  alt={image.alt}
+                  annotations={image.annotations}
+                  className="w-full rounded-lg shadow-sm"
+                />
+              ) : (
+                <MaximizableImage
+                  src={image.src}
+                  alt={image.alt}
+                  caption={image.caption}
+                  fit="contain"
+                  className="w-full rounded-lg shadow-sm"
+                />
+              )}
             </motion.div>
           ))}
         </div>

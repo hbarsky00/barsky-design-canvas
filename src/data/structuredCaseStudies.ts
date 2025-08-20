@@ -106,6 +106,7 @@ export interface StructuredCaseStudyData {
       src: string;
       alt: string;
       caption?: string;
+      annotations?: ImageAnnotation[];
     }>;
   };
   finalProductSection?: {
@@ -116,6 +117,7 @@ export interface StructuredCaseStudyData {
       src: string;
       alt: string;
       caption?: string;
+      annotations?: ImageAnnotation[];
     }>;
   };
   outcomeSection?: {
@@ -303,7 +305,33 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png",
           alt: "HerbaLink final product desktop interface",
-          caption: "Complete HerbaLink desktop experience showing the comprehensive interface design"
+          caption: "Complete HerbaLink desktop experience showing the comprehensive interface design",
+          annotations: [
+            {
+              x: 25,
+              y: 20,
+              type: "feature",
+              text: "Streamlined booking flow increased conversions by 3x"
+            },
+            {
+              x: 70,
+              y: 35,
+              type: "feature",
+              text: "Trust indicators build user confidence"
+            },
+            {
+              x: 50,
+              y: 60,
+              type: "improvement",
+              text: "Simplified interface reduced cognitive load"
+            },
+            {
+              x: 80,
+              y: 80,
+              type: "feature",
+              text: "Symptom tracking provides personalized insights"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
@@ -336,7 +364,27 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
           alt: "HerbaLink early 'Book an Herbalist' concept",
-          caption: "Early concept of the 'Book an Herbalist' feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach."
+          caption: "Early concept of the 'Book an Herbalist' feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach.",
+          annotations: [
+            {
+              x: 30,
+              y: 25,
+              type: "issue",
+              text: "Complex navigation overwhelmed users"
+            },
+            {
+              x: 65,
+              y: 40,
+              type: "issue",
+              text: "Too many filter options created decision paralysis"
+            },
+            {
+              x: 50,
+              y: 70,
+              type: "improvement",
+              text: "Simplified to guided discovery flow"
+            }
+          ]
         }
       ]
     },
@@ -498,7 +546,33 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
           alt: "Splittime final product showing co-parenting interface",
-          caption: "Complete Splittime platform enabling conflict-free co-parenting coordination"
+          caption: "Complete Splittime platform enabling conflict-free co-parenting coordination",
+          annotations: [
+            {
+              x: 30,
+              y: 20,
+              type: "feature",
+              text: "Neutral messaging templates reduced conflict by 40%"
+            },
+            {
+              x: 70,
+              y: 35,
+              type: "feature",
+              text: "Approval workflows prevent misunderstandings"
+            },
+            {
+              x: 50,
+              y: 60,
+              type: "improvement",
+              text: "Simplified scheduling reduced decision fatigue"
+            },
+            {
+              x: 25,
+              y: 80,
+              type: "feature",
+              text: "Expense tracking creates transparency"
+            }
+          ]
         }
       ]
     },
@@ -526,7 +600,34 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Learning from Setbacks",
-      content: "Initially, I tried to include too many features in the scheduling interface, which made it overwhelming for users. I learned to prioritize core functionality and gradually introduce advanced features based on user feedback."
+      content: "Initially, I tried to include too many features in the scheduling interface, which made it overwhelming for users. I learned to prioritize core functionality and gradually introduce advanced features based on user feedback.",
+      images: [
+        {
+          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-early-concept.jpg",
+          alt: "Early Splittime interface with feature overload",
+          caption: "Early design attempts included too many features, overwhelming stressed co-parents",
+          annotations: [
+            {
+              x: 40,
+              y: 30,
+              type: "issue",
+              text: "Too many options created decision paralysis"
+            },
+            {
+              x: 65,
+              y: 50,
+              type: "issue", 
+              text: "Complex interface increased stress levels"
+            },
+            {
+              x: 50,
+              y: 75,
+              type: "improvement",
+              text: "Simplified to core conflict-reduction features"
+            }
+          ]
+        }
+      ]
     },
     sections: [],
     seoData: {
@@ -686,7 +787,33 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
           alt: "Investor loan platform dashboard final interface",
-          caption: "Complete loan management platform with automated workflows and real-time validation"
+          caption: "Complete loan management platform with automated workflows and real-time validation",
+          annotations: [
+            {
+              x: 20,
+              y: 25,
+              type: "feature",
+              text: "Bloomberg-style search reduced lookup time by 60%"
+            },
+            {
+              x: 70,
+              y: 20,
+              type: "feature",
+              text: "Real-time validation prevented 85% of errors"
+            },
+            {
+              x: 50,
+              y: 60,
+              type: "improvement",
+              text: "Guided workflows eliminated premature inputs"
+            },
+            {
+              x: 80,
+              y: 80,
+              type: "feature",
+              text: "Audit trails ensure compliance transparency"
+            }
+          ]
         }
       ]
     },
@@ -714,7 +841,34 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Learning from Challenges",
-      content: "Excel System → New Platform: Manual entry, frequent errors → Automated workflows with validation. No collaboration → In-app commenting and shared loan orders. Flat spreadsheets → Card + table views with live syncing. No audit history → Full visual audit logs. No search → AI-powered predictive search."
+      content: "Excel System → New Platform: Manual entry, frequent errors → Automated workflows with validation. No collaboration → In-app commenting and shared loan orders. Flat spreadsheets → Card + table views with live syncing. No audit history → Full visual audit logs. No search → AI-powered predictive search.",
+      images: [
+        {
+          src: "/lovable-uploads/excel-workflow-errors.png",
+          alt: "Excel-based loan workflow showing manual error points",
+          caption: "Original Excel-based workflows were prone to calculation errors and lacked audit trails",
+          annotations: [
+            {
+              x: 35,
+              y: 30,
+              type: "issue",
+              text: "Manual calculations led to frequent errors"
+            },
+            {
+              x: 60,
+              y: 50,
+              type: "issue",
+              text: "No audit trail created compliance risk"
+            },
+            {
+              x: 45,
+              y: 75,
+              type: "improvement",
+              text: "Automated validation eliminated 85% of errors"
+            }
+          ]
+        }
+      ]
     },
     sections: [],
     seoData: {
@@ -847,7 +1001,33 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/placeholder.svg",
           alt: "Wholesale distribution platform final interface",
-          caption: "Complete AI-powered distribution system replacing manual Excel workflows"
+          caption: "Complete AI-powered distribution system replacing manual Excel workflows",
+          annotations: [
+            {
+              x: 25,
+              y: 20,
+              type: "feature",
+              text: "AI-assisted order capture reduced errors by 95%"
+            },
+            {
+              x: 70,
+              y: 30,
+              type: "feature",
+              text: "Automated routing eliminated manual assignment"
+            },
+            {
+              x: 50,
+              y: 65,
+              type: "improvement",
+              text: "Real-time reconciliation replaced Excel tracking"
+            },
+            {
+              x: 80,
+              y: 80,
+              type: "feature",
+              text: "500% faster processing through automation"
+            }
+          ]
         }
       ]
     },
@@ -875,7 +1055,34 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Overcoming Challenges",
-      content: "Teams managed 200+ weekly orders in Excel, leading to 15% errors, slow reconciliation, and risk to key accounts. Excel-based operations caused avoidable errors and delays."
+      content: "Teams managed 200+ weekly orders in Excel, leading to 15% errors, slow reconciliation, and risk to key accounts. Excel-based operations caused avoidable errors and delays.",
+      images: [
+        {
+          src: "/wholesale-excel-challenges.png",
+          alt: "Excel-based wholesale operations showing manual error points",
+          caption: "Excel workflows created bottlenecks with 200+ weekly orders leading to 15% error rate",
+          annotations: [
+            {
+              x: 40,
+              y: 25,
+              type: "issue",
+              text: "Manual data entry created 15% error rate"
+            },
+            {
+              x: 65,
+              y: 45,
+              type: "issue",
+              text: "Slow reconciliation risked key accounts"
+            },
+            {
+              x: 50,
+              y: 75,
+              type: "improvement",
+              text: "AI automation achieved 99.7% accuracy"
+            }
+          ]
+        }
+      ]
     },
     sections: [],
     seoData: {
@@ -1035,7 +1242,33 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
           alt: "Business management system final interface",
-          caption: "Complete business management platform with unified operations and automated workflows"
+          caption: "Complete business management platform with unified operations and automated workflows",
+          annotations: [
+            {
+              x: 20,
+              y: 25,
+              type: "feature",
+              text: "Unified dashboard eliminated tool switching"
+            },
+            {
+              x: 70,
+              y: 20,
+              type: "feature",
+              text: "Automated invoicing reduced errors by 68%"
+            },
+            {
+              x: 50,
+              y: 60,
+              type: "improvement",
+              text: "Smart priority system surfaces urgent tasks"
+            },
+            {
+              x: 80,
+              y: 80,
+              type: "feature",
+              text: "Integrated scheduling prevents double-booking"
+            }
+          ]
         }
       ]
     },
@@ -1063,7 +1296,34 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "Initially, I tried to create too many customization options, which overwhelmed users. I learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners."
+      content: "Initially, I tried to create too many customization options, which overwhelmed users. I learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners.",
+      images: [
+        {
+          src: "/business-management-early-concept.png",
+          alt: "Early business management interface with feature overload",
+          caption: "Early designs included too many customization options, overwhelming busy business owners",
+          annotations: [
+            {
+              x: 35,
+              y: 30,
+              type: "issue",
+              text: "Too many options created decision paralysis"
+            },
+            {
+              x: 60,
+              y: 50,
+              type: "issue",
+              text: "Complex settings overwhelmed users"
+            },
+            {
+              x: 50,
+              y: 75,
+              type: "improvement",
+              text: "Smart defaults with selective customization"
+            }
+          ]
+        }
+      ]
     },
     sections: [],
     seoData: {
