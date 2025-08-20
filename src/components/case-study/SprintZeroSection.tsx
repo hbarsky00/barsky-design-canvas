@@ -47,49 +47,79 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
             </h2>
           </div>
 
-          <div className="content-rail-left space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Workshop Kickoff</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {workshopKickoff}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Explorations</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {explorations}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">Decision Point</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {decisionPoint}
-              </p>
-            </div>
-          </div>
-
-          {images && images.length > 0 && (
-            <div className="grid md:grid-cols-2 gap-6 mt-8">
-              {images.map((image, index) => (
+          {/* Row 1 - Initial Concepts & Sketches (30% image left, 70% text right) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-12">
+            {/* Image - 30% on desktop */}
+            <div className="md:col-span-4">
+              {images && images[0] && (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  transition={{ duration: 0.6 }}
                 >
                   <MaximizableImage
-                    src={image.src}
-                    alt={image.alt}
-                    caption={image.caption}
+                    src={images[0].src}
+                    alt={images[0].alt}
+                    caption={images[0].caption}
                     className="w-full rounded-lg"
                   />
                 </motion.div>
-              ))}
+              )}
             </div>
-          )}
+            
+            {/* Text - 70% on desktop */}
+            <div className="md:col-span-8 flex flex-col justify-center">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-4">Exploration: Initial Concepts & Sketches</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {explorations}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Row 2 - Decision Point (70% text left, 30% image right) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+            {/* Text - 70% on desktop */}
+            <div className="md:col-span-8 flex flex-col justify-center order-2 md:order-1">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-4">Decision Point</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {decisionPoint}
+                </p>
+              </motion.div>
+            </div>
+            
+            {/* Image - 30% on desktop */}
+            <div className="md:col-span-4 order-1 md:order-2">
+              {images && images[1] && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <MaximizableImage
+                    src={images[1].src}
+                    alt={images[1].alt}
+                    caption={images[1].caption}
+                    className="w-full rounded-lg"
+                  />
+                </motion.div>
+              )}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
