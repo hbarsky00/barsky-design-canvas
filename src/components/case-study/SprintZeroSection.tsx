@@ -47,10 +47,10 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
             </h2>
           </div>
 
-          {/* Row 1 - Initial Concepts & Sketches (30% image left, 70% text right) */}
+          {/* Row 1 - Initial Concepts & Sketches (50% image left, 50% text right) */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-12">
-            {/* Image - 30% on desktop */}
-            <div className="md:col-span-4">
+            {/* Image - 50% on desktop */}
+            <div className="md:col-span-6">
               {images && images[0] && (
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -68,8 +68,8 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
               )}
             </div>
             
-            {/* Text - 70% on desktop */}
-            <div className="md:col-span-8 flex flex-col justify-center">
+            {/* Text - 50% on desktop */}
+            <div className="md:col-span-6 flex flex-col justify-center">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -84,10 +84,10 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
             </div>
           </div>
 
-          {/* Row 2 - Decision Point (70% text left, 30% image right) */}
+          {/* Row 2 - Decision Point (50% text left, 50% image right) */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
-            {/* Text - 70% on desktop */}
-            <div className="md:col-span-8 flex flex-col justify-center order-2 md:order-1">
+            {/* Text - 50% on desktop */}
+            <div className="md:col-span-6 flex flex-col justify-center order-2 md:order-1">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -101,8 +101,8 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
               </motion.div>
             </div>
             
-            {/* Image - 30% on desktop */}
-            <div className="md:col-span-4 order-1 md:order-2">
+            {/* Image - 50% on desktop */}
+            <div className="md:col-span-6 order-1 md:order-2">
               {images && images[1] && (
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
