@@ -8,7 +8,7 @@ import { Link } from '@tiptap/extension-link';
 import { Image } from '@tiptap/extension-image';
 import { TextAlign } from '@tiptap/extension-text-align';
 import { SlashCommand } from './extensions/SlashCommand';
-import { BubbleMenu } from './BubbleMenu';
+
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import './modern-editor.css';
@@ -167,7 +167,7 @@ export const ModernTiptapEditor: React.FC<ModernTiptapEditorProps> = ({
 
   return (
     <div className="modern-editor border border-border rounded-lg overflow-hidden bg-background">
-      {editor && <BubbleMenu editor={editor} />}
+      
       
       <EditorContent 
         editor={editor} 
