@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { TextStyle } from '@tiptap/extension-text-style';
-import { ColorWithOpacity } from '@/extensions/ColorWithOpacity';
+import { Color } from '@tiptap/extension-color';
 import { Highlight } from '@tiptap/extension-highlight';
 import { Link } from '@tiptap/extension-link';
 import { Image } from '@tiptap/extension-image';
@@ -88,7 +88,7 @@ export const ModernTiptapEditor: React.FC<ModernTiptapEditorProps> = ({
         },
       }),
       TextStyle,
-      ColorWithOpacity,
+      Color,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),

@@ -22,7 +22,6 @@ import {
   Minus
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 
 interface FloatingToolbarProps {
@@ -78,7 +77,7 @@ export const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
 
   return (
     <div className={cn(
-      "flex items-center gap-1 p-2 bg-background border border-border rounded-lg shadow-lg",
+      "flex items-center gap-1 p-2 bg-background border border-border rounded-lg shadow-lg flex-wrap",
       className
     )}>
       {/* Text Formatting */}
@@ -116,7 +115,7 @@ export const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
         </ToolbarButton>
       </div>
 
-      <Separator orientation="vertical" className="h-6" />
+      <div className="w-px h-6 bg-border mx-1" />
 
       {/* Headings */}
       <div className="flex items-center gap-1">
@@ -153,7 +152,7 @@ export const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
         </ToolbarButton>
       </div>
 
-      <Separator orientation="vertical" className="h-6" />
+      <div className="w-px h-6 bg-border mx-1" />
 
       {/* Lists */}
       <div className="flex items-center gap-1">
@@ -182,7 +181,7 @@ export const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
         </ToolbarButton>
       </div>
 
-      <Separator orientation="vertical" className="h-6" />
+      <div className="w-px h-6 bg-border mx-1" />
 
       {/* Alignment */}
       <div className="flex items-center gap-1">
@@ -211,7 +210,7 @@ export const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
         </ToolbarButton>
       </div>
 
-      <Separator orientation="vertical" className="h-6" />
+      <div className="w-px h-6 bg-border mx-1" />
 
       {/* Media */}
       <div className="flex items-center gap-1">
@@ -238,7 +237,7 @@ export const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
         </ToolbarButton>
       </div>
 
-      <Separator orientation="vertical" className="h-6" />
+      <div className="w-px h-6 bg-border mx-1" />
 
       {/* Undo/Redo */}
       <div className="flex items-center gap-1">

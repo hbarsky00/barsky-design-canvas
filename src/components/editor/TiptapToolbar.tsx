@@ -104,11 +104,11 @@ export const TiptapToolbar: React.FC<TiptapToolbarProps> = ({
   };
 
   const handleColorChange = (color: string) => {
-    editor.chain().focus().setColorWithOpacity(color).run();
+    editor.chain().focus().setColor(color).run();
   };
 
   const handleRemoveColor = () => {
-    editor.chain().focus().unsetColorWithOpacity().run();
+    editor.chain().focus().unsetColor().run();
   };
 
   const handleHighlightChange = (color: string) => {
