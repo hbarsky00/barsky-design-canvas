@@ -426,11 +426,51 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Messaging", description: "Tone-safe templates" }
       ],
       iterations: [
-        { label: "Iteration 1", imageSrc: "/media/splittime/ideation-1.jpg", alt: "First iteration of Splittime calendar view" },
-        { label: "Iteration 2", imageSrc: "/media/splittime/ideation-2.jpg", alt: "Second iteration with approval flows" },
-        { label: "Iteration 3", imageSrc: "/media/splittime/ideation-3.jpg", alt: "Third iteration adding expense tracking" },
-        { label: "Iteration 4", imageSrc: "/media/splittime/ideation-4.jpg", alt: "Fourth iteration with messaging templates" },
-        { label: "Iteration 5", imageSrc: "/media/splittime/ideation-5.jpg", alt: "Final iteration with unified interface" }
+        { 
+          label: "Iteration 1", 
+          imageSrc: "/media/splittime/ideation-1.jpg", 
+          alt: "First iteration of Splittime calendar view",
+          annotations: [
+            { text: "Calendar layout too dense - overwhelming for stressed parents", x: 50, y: 30, type: "issue" },
+            { text: "No clear distinction between confirmed vs pending events", x: 70, y: 50, type: "issue" }
+          ]
+        },
+        { 
+          label: "Iteration 2", 
+          imageSrc: "/media/splittime/ideation-2.jpg", 
+          alt: "Second iteration with approval flows",
+          annotations: [
+            { text: "Added approval status indicators for clarity", x: 40, y: 25, type: "improvement" },
+            { text: "Simplified calendar view reduces cognitive load", x: 60, y: 45, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 3", 
+          imageSrc: "/media/splittime/ideation-3.jpg", 
+          alt: "Third iteration adding expense tracking",
+          annotations: [
+            { text: "Integrated expense tracking streamlines workflow", x: 30, y: 60, type: "feature" },
+            { text: "Receipt upload system improves transparency", x: 80, y: 40, type: "feature" }
+          ]
+        },
+        { 
+          label: "Iteration 4", 
+          imageSrc: "/media/splittime/ideation-4.jpg", 
+          alt: "Fourth iteration with messaging templates",
+          annotations: [
+            { text: "Template messaging reduces conflict potential", x: 45, y: 35, type: "feature" },
+            { text: "Neutral tone suggestions prevent escalation", x: 65, y: 65, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 5", 
+          imageSrc: "/media/splittime/ideation-5.jpg", 
+          alt: "Final iteration with unified interface",
+          annotations: [
+            { text: "Unified interface brings all features together seamlessly", x: 50, y: 30, type: "feature" },
+            { text: "Clean information hierarchy reduces decision fatigue", x: 40, y: 70, type: "improvement" }
+          ]
+        }
       ]
     },
     userTestingSection: {
@@ -574,11 +614,51 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Audit & comments", description: "History and collaboration" }
       ],
       iterations: [
-        { label: "Iteration 1", imageSrc: "/media/investment/ideation-1.jpg", alt: "First iteration of deal summary interface" },
-        { label: "Iteration 2", imageSrc: "/media/investment/ideation-2.jpg", alt: "Second iteration with predictive search" },
-        { label: "Iteration 3", imageSrc: "/media/investment/ideation-3.jpg", alt: "Third iteration of guided order builder" },
-        { label: "Iteration 4", imageSrc: "/media/investment/ideation-4.jpg", alt: "Fourth iteration with audit and comments" },
-        { label: "Iteration 5", imageSrc: "/media/investment/ideation-5.jpg", alt: "Final iteration with integrated workflow" }
+        { 
+          label: "Iteration 1", 
+          imageSrc: "/media/investment/ideation-1.jpg", 
+          alt: "First iteration of deal summary interface",
+          annotations: [
+            { text: "Deal information scattered - lacks clear hierarchy", x: 60, y: 30, type: "issue" },
+            { text: "No real-time validation causes errors downstream", x: 40, y: 70, type: "issue" }
+          ]
+        },
+        { 
+          label: "Iteration 2", 
+          imageSrc: "/media/investment/ideation-2.jpg", 
+          alt: "Second iteration with predictive search",
+          annotations: [
+            { text: "Bloomberg-style search improves findability", x: 30, y: 20, type: "feature" },
+            { text: "Contextual filters reduce search time", x: 70, y: 40, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 3", 
+          imageSrc: "/media/investment/ideation-3.jpg", 
+          alt: "Third iteration of guided order builder",
+          annotations: [
+            { text: "Step-by-step guidance prevents premature inputs", x: 50, y: 35, type: "feature" },
+            { text: "Real-time totals reduce calculation errors", x: 80, y: 60, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 4", 
+          imageSrc: "/media/investment/ideation-4.jpg", 
+          alt: "Fourth iteration with audit and comments",
+          annotations: [
+            { text: "Immutable audit trail meets compliance needs", x: 45, y: 25, type: "feature" },
+            { text: "Collaborative comments improve team coordination", x: 60, y: 75, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 5", 
+          imageSrc: "/media/investment/ideation-5.jpg", 
+          alt: "Final iteration with integrated workflow",
+          annotations: [
+            { text: "Integrated workflow eliminates context switching", x: 40, y: 40, type: "feature" },
+            { text: "85% error reduction through automated validation", x: 70, y: 20, type: "improvement" }
+          ]
+        }
       ]
     },
     userTestingSection: {
@@ -695,11 +775,51 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Reconciliation", description: "Live tracking, instant totals" }
       ],
       iterations: [
-        { label: "Iteration 1", imageSrc: "/media/wholesale/ideation-1.jpg", alt: "First iteration of order capture interface" },
-        { label: "Iteration 2", imageSrc: "/media/wholesale/ideation-2.jpg", alt: "Second iteration with validation features" },
-        { label: "Iteration 3", imageSrc: "/media/wholesale/ideation-3.jpg", alt: "Third iteration adding routing automation" },
-        { label: "Iteration 4", imageSrc: "/media/wholesale/ideation-4.jpg", alt: "Fourth iteration with reconciliation dashboard" },
-        { label: "Iteration 5", imageSrc: "/media/wholesale/ideation-5.jpg", alt: "Final iteration with complete pipeline" }
+        { 
+          label: "Iteration 1", 
+          imageSrc: "/media/wholesale/ideation-1.jpg", 
+          alt: "First iteration of order capture interface",
+          annotations: [
+            { text: "Manual data entry prone to frequent errors", x: 45, y: 40, type: "issue" },
+            { text: "No validation leads to downstream problems", x: 70, y: 60, type: "issue" }
+          ]
+        },
+        { 
+          label: "Iteration 2", 
+          imageSrc: "/media/wholesale/ideation-2.jpg", 
+          alt: "Second iteration with validation features",
+          annotations: [
+            { text: "Real-time validation prevents bad data entry", x: 30, y: 25, type: "feature" },
+            { text: "Smart form completion reduces manual work", x: 80, y: 45, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 3", 
+          imageSrc: "/media/wholesale/ideation-3.jpg", 
+          alt: "Third iteration adding routing automation",
+          annotations: [
+            { text: "Automated routing eliminates manual assignment", x: 50, y: 30, type: "feature" },
+            { text: "Approval workflows ensure proper oversight", x: 60, y: 70, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 4", 
+          imageSrc: "/media/wholesale/ideation-4.jpg", 
+          alt: "Fourth iteration with reconciliation dashboard",
+          annotations: [
+            { text: "Live tracking replaces Excel reconciliation", x: 40, y: 35, type: "feature" },
+            { text: "Instant totals provide immediate accuracy", x: 75, y: 55, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 5", 
+          imageSrc: "/media/wholesale/ideation-5.jpg", 
+          alt: "Final iteration with complete pipeline",
+          annotations: [
+            { text: "Complete automation achieves 95% manual work reduction", x: 45, y: 25, type: "feature" },
+            { text: "End-to-end pipeline eliminates context switching", x: 55, y: 65, type: "improvement" }
+          ]
+        }
       ]
     },
     userTestingSection: {
@@ -843,11 +963,51 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Scheduling", description: "Availability and bookings" }
       ],
       iterations: [
-        { label: "Iteration 1", imageSrc: "/media/biz/ideation-1.jpg", alt: "First iteration of business dashboard" },
-        { label: "Iteration 2", imageSrc: "/media/biz/ideation-2.jpg", alt: "Second iteration with task management" },
-        { label: "Iteration 3", imageSrc: "/media/biz/ideation-3.jpg", alt: "Third iteration adding invoice workflow" },
-        { label: "Iteration 4", imageSrc: "/media/biz/ideation-4.jpg", alt: "Fourth iteration with scheduling integration" },
-        { label: "Iteration 5", imageSrc: "/media/biz/ideation-5.jpg", alt: "Final iteration with unified operations" }
+        { 
+          label: "Iteration 1", 
+          imageSrc: "/media/biz/ideation-1.jpg", 
+          alt: "First iteration of business dashboard",
+          annotations: [
+            { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
+            { text: "No clear priority hierarchy for daily tasks", x: 70, y: 60, type: "issue" }
+          ]
+        },
+        { 
+          label: "Iteration 2", 
+          imageSrc: "/media/biz/ideation-2.jpg", 
+          alt: "Second iteration with task management",
+          annotations: [
+            { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
+            { text: "Today view focuses on immediate actions", x: 80, y: 50, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 3", 
+          imageSrc: "/media/biz/ideation-3.jpg", 
+          alt: "Third iteration adding invoice workflow",
+          annotations: [
+            { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
+            { text: "Template system ensures consistency", x: 65, y: 65, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 4", 
+          imageSrc: "/media/biz/ideation-4.jpg", 
+          alt: "Fourth iteration with scheduling integration",
+          annotations: [
+            { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
+            { text: "Linked records reduce duplicate data entry", x: 60, y: 70, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 5", 
+          imageSrc: "/media/biz/ideation-5.jpg", 
+          alt: "Final iteration with unified operations",
+          annotations: [
+            { text: "Unified operations platform reduces errors by 68%", x: 45, y: 30, type: "feature" },
+            { text: "Smart automation handles recurring tasks", x: 55, y: 60, type: "improvement" }
+          ]
+        }
       ]
     },
     userTestingSection: {

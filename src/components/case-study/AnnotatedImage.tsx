@@ -27,7 +27,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
       {annotations.map((annotation, index) => (
         <div
           key={index}
-          className="absolute group cursor-pointer"
+          className="absolute"
           style={{
             left: `${annotation.x}%`,
             top: `${annotation.y}%`,
@@ -43,8 +43,8 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
             }`}
           />
           
-          {/* Tooltip */}
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
+          {/* Always visible text */}
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10">
             <div className={`px-3 py-2 text-sm text-white rounded-lg shadow-lg max-w-xs whitespace-normal ${
               annotation.type === 'issue' ? 'bg-red-600' :
               annotation.type === 'improvement' ? 'bg-blue-600' :
