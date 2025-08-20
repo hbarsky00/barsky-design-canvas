@@ -154,7 +154,7 @@ const CaseStudyCard: React.FC<{
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative py-12 lg:py-16"
+      className="case-study-card bg-gray-50 overflow-hidden cursor-pointer relative min-h-screen flex items-center"
       tabIndex={-1}
       onClick={handleCaseStudyClick}
     >
@@ -297,7 +297,7 @@ const VideoCaseStudiesSection: React.FC<VideoCaseStudiesSectionProps> = ({
   isMobile 
 }) => {
   return (
-    <section id="projects" className="py-12 bg-white" tabIndex={-1}>
+    <section id="projects" className="min-h-screen flex flex-col justify-center bg-white" tabIndex={-1}>
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
