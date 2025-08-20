@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, ExternalLink } from "lucide-react";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
-import { getImageOverlayClasses } from "@/utils/captionStyles";
+import { getAnnotationClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
 
 const featuredCaseStudies = [
   {
@@ -77,10 +77,10 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
           
           {/* Impact Badge */}
           <div className="absolute bottom-4 left-4 right-4">
-            <div className={getImageOverlayClasses("max-w-none")}>
+            <div className={getAnnotationClasses("max-w-none")}>
               <div className="flex items-center gap-2">
                 <Star className="w-4 h-4 text-yellow-400" />
-                <span className="font-medium">{study.impact}</span>
+                <span className="font-medium">{getResponsiveTruncatedText(study.impact)}</span>
               </div>
             </div>
           </div>

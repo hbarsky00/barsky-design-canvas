@@ -56,8 +56,20 @@ export const getVideoCaptionClasses = (className?: string) =>
 export const getGalleryCaptionClasses = (className?: string) => 
   getCaptionClasses({ variant: 'card', size: 'xs', alignment: 'left', className });
 
-// Image overlay utilities - AnnotatedImage template styling
-export const getImageOverlayClasses = (className?: string) => 
+// Text truncation utilities for annotations
+export const truncateAnnotationText = (text: string, maxLength: number = 30): string => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength - 3) + "...";
+};
+
+export const getResponsiveTruncatedText = (text: string): string => {
+  // Mobile: 30 chars, Tablet: 40 chars, Desktop: 50 chars
+  // We'll use the mobile limit as default since it's the most restrictive
+  return truncateAnnotationText(text, 30);
+};
+
+// Annotation utilities - AnnotatedImage template styling
+export const getAnnotationClasses = (className?: string) => 
   cn(
     "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
     "text-xs md:text-sm lg:text-base", // Responsive text size
@@ -67,7 +79,7 @@ export const getImageOverlayClasses = (className?: string) =>
   );
 
 // Specific annotation types matching AnnotatedImage
-export const getOverlayIssueClasses = (className?: string) => 
+export const getAnnotationIssueClasses = (className?: string) => 
   cn(
     "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
     "text-xs md:text-sm lg:text-base",
@@ -76,7 +88,7 @@ export const getOverlayIssueClasses = (className?: string) =>
     className
   );
 
-export const getOverlayImprovementClasses = (className?: string) => 
+export const getAnnotationImprovementClasses = (className?: string) => 
   cn(
     "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
     "text-xs md:text-sm lg:text-base",
@@ -85,7 +97,7 @@ export const getOverlayImprovementClasses = (className?: string) =>
     className
   );
 
-export const getOverlaySuccessClasses = (className?: string) => 
+export const getAnnotationSuccessClasses = (className?: string) => 
   cn(
     "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
     "text-xs md:text-sm lg:text-base",
@@ -94,11 +106,20 @@ export const getOverlaySuccessClasses = (className?: string) =>
     className
   );
 
-export const getOverlayBlurbClasses = (className?: string) => 
-  getImageOverlayClasses(cn("bottom-3 left-3", className));
+export const getAnnotationBlurbClasses = (className?: string) => 
+  getAnnotationClasses(cn("bottom-3 left-3", className));
 
-export const getOverlayLabelClasses = (className?: string) => 
-  getImageOverlayClasses(cn("top-4", className));
+export const getAnnotationLabelClasses = (className?: string) => 
+  getAnnotationClasses(cn("top-4", className));
 
-export const getOverlayCaptionClasses = (className?: string) => 
-  getImageOverlayClasses(cn("bottom-0 left-0 right-0 max-w-none", className));
+export const getAnnotationCaptionClasses = (className?: string) => 
+  getAnnotationClasses(cn("bottom-0 left-0 right-0 max-w-none", className));
+
+// Legacy aliases for backward compatibility
+export const getImageOverlayClasses = getAnnotationClasses;
+export const getOverlayIssueClasses = getAnnotationIssueClasses;
+export const getOverlayImprovementClasses = getAnnotationImprovementClasses;
+export const getOverlaySuccessClasses = getAnnotationSuccessClasses;
+export const getOverlayBlurbClasses = getAnnotationBlurbClasses;
+export const getOverlayLabelClasses = getAnnotationLabelClasses;
+export const getOverlayCaptionClasses = getAnnotationCaptionClasses;
