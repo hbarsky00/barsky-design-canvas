@@ -126,7 +126,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                          xl:text-4xl 2xl:text-5xl
                          font-brand font-medium text-gray-900 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-relaxed">
-              Product Designer | Design Leadership & Strategy | Full-Stack Development | 15+ Years UX/UI | Fintech • Healthcare
+              Product Design Engineer | Design Strategy <br /> AI Development | 15+ Years UX/UI | Fintech • Healthcare
             </h2>
             <a 
               href="https://barskydesign.pro" 
