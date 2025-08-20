@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { ColorPicker } from './ColorPicker';
 
 interface FloatingToolbarProps {
   editor: Editor;
@@ -207,6 +208,28 @@ export const FloatingToolbar: React.FC<FloatingToolbarProps> = ({
           title="Align Right"
         >
           <AlignRight className="h-4 w-4" />
+        </ToolbarButton>
+      </div>
+
+      <div className="w-px h-6 bg-border mx-1" />
+
+      {/* Colors */}
+      <div className="flex items-center gap-1">
+        <ColorPicker
+          color="#000000"
+          onChange={(color) => editor.chain().focus().setColorWithOpacity(color).run()}
+          type="text"
+        />
+        <ColorPicker
+          color="#ffff00"
+          onChange={(color) => editor.chain().focus().setHighlight({ color }).run()}
+          type="highlight"
+        />
+        <ToolbarButton
+          onClick={() => editor.chain().focus().unsetColorWithOpacity().unsetHighlight().run()}
+          title="Remove color and highlight"
+        >
+          <Minus className="w-4 h-4" />
         </ToolbarButton>
       </div>
 

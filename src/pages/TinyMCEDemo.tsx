@@ -1,20 +1,41 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { TiptapEditor } from '@/components/editor/TiptapEditor';
+import { ModernTiptapEditor } from '@/components/editor/ModernTiptapEditor';
+import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const TinyMCEDemo: React.FC = () => {
   const [content, setContent] = useState('<p>Welcome to Tiptap Editor! Start editing this content or type "/" for commands...</p>');
   const [savedContent, setSavedContent] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const { toast } = useToast();
 
-  const handleSave = () => {
-    setSavedContent(content);
-    console.log('Saved content:', content);
-  };
+  const handleSave = useCallback(async () => {
+    setIsSaving(true);
+    try {
+      // Simulate save operation
+      await new Promise(resolve => setTimeout(resolve, 500));
+      setSavedContent(content);
+      setLastSaved(new Date());
+      toast({
+        title: "Content saved",
+        description: "Your content has been saved successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Save failed",
+        description: "Failed to save content. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  }, [content, toast]);
 
   const handleClear = () => {
     setContent('');
@@ -48,20 +69,29 @@ const TinyMCEDemo: React.FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <TiptapEditor
+                <ModernTiptapEditor
                   content={content}
                   onChange={setContent}
+                  onSave={handleSave}
                   placeholder="Start creating amazing content or type '/' for commands..."
                   className="min-h-[400px]"
+                  autoSave={false}
                 />
                 
-                <div className="flex gap-2">
-                  <Button onClick={handleSave}>
-                    Save Content
-                  </Button>
-                  <Button variant="outline" onClick={handleClear}>
-                    Clear Editor
-                  </Button>
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    <Button onClick={handleSave} disabled={isSaving}>
+                      {isSaving ? 'Saving...' : 'Save Content'}
+                    </Button>
+                    <Button variant="outline" onClick={handleClear}>
+                      Clear Editor
+                    </Button>
+                  </div>
+                  {lastSaved && (
+                    <div className="text-sm text-muted-foreground">
+                      Last saved: {lastSaved.toLocaleTimeString()}
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -116,7 +146,9 @@ const TinyMCEDemo: React.FC = () => {
                   <li>• Slash commands (/)</li>
                   <li>• Blockquotes and code blocks</li>
                   <li>• Undo/Redo functionality</li>
-                  <li>• Auto-save capability</li>
+                  <li>• Text color with opacity</li>
+                  <li>• Text highlighting</li>
+                  <li>• Manual save functionality</li>
                   <li>• Responsive design</li>
                 </ul>
               </CardContent>
