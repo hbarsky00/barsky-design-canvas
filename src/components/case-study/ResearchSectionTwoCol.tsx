@@ -46,7 +46,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
             {researchSection.subhead}
           </p>
           {researchSection.blurb && (
-            <p className="text-base text-muted-foreground mt-4 content-rail-center">
+            <p className="text-sm md:text-base text-muted-foreground mt-4 content-rail-center">
               {researchSection.blurb}
             </p>
           )}
