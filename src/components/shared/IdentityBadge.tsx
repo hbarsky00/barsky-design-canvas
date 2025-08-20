@@ -152,7 +152,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
         </Avatar>
       </div>
 
-      <div className="flex flex-col font-sans whitespace-nowrap">
+      <div className="flex flex-col font-display whitespace-nowrap">
         <span
           className={cn(
             s.name,
