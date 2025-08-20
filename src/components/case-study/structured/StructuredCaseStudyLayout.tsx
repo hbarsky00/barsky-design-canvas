@@ -199,7 +199,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <div className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-eyebrow text-purple-700 header-spacing">
                   {caseStudyData.userTestingSection.eyebrow || "VALIDATION & TESTING"}
                 </div>
-                <h2 className="text-section-title text-foreground content-rail-center">
+                <h2 className="text-section-title text-foreground font-display content-rail-center">
                   {caseStudyData.userTestingSection.title}
                 </h2>
               </motion.div>
@@ -281,7 +281,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <div className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-eyebrow text-green-700 header-spacing">
                   {caseStudyData.finalProductSection.eyebrow || "THE RESULT"}
                 </div>
-                <h2 className="text-section-title text-foreground content-rail-center">
+                <h2 className="text-section-title text-foreground font-display content-rail-center">
                   {caseStudyData.finalProductSection.title}
                 </h2>
               </motion.div>
@@ -355,7 +355,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
                       {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
                     </div>
-                    <h2 className="text-section-title text-foreground">
+                    <h2 className="text-section-title text-foreground font-display">
                       {caseStudyData.outcomeSection.title}
                     </h2>
                   </motion.div>

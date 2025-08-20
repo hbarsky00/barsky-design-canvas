@@ -45,7 +45,7 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
       <div className="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-eyebrow text-orange-700 mb-4">
         {whatDidntWorkData.eyebrow || "WHAT DIDN'T WORK"}
       </div>
-      <h2 className="text-section-title text-foreground content-rail-center mb-4">
+      <h2 className="text-section-title text-foreground font-display content-rail-center mb-4">
         {whatDidntWorkData.title}
       </h2>
       

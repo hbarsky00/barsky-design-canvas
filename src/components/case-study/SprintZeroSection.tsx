@@ -42,7 +42,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
             <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
               {eyebrow}
             </div>
-            <h2 id="sprint-zero-heading" className="text-section-title content-rail-center">
+            <h2 id="sprint-zero-heading" className="text-section-title font-display content-rail-center">
               {title}
             </h2>
           </div>
@@ -76,7 +76,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <h3 className="text-xl font-semibold text-foreground mb-4">Exploration: Initial Concepts & Sketches</h3>
+                <h3 className="text-xl font-semibold text-foreground font-display mb-4">Exploration: Initial Concepts & Sketches</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {explorations}
                 </p>
@@ -94,7 +94,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h3 className="text-xl font-semibold text-foreground mb-4">Decision Point</h3>
+                <h3 className="text-xl font-semibold text-foreground font-display mb-4">Decision Point</h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {decisionPoint}
                 </p>

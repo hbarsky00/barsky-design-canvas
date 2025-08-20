@@ -33,7 +33,7 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
             <div className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-eyebrow text-neutral-700 header-spacing">
               APPROACH & DECISION MAKING
             </div>
-            <h2 className="text-section-title content-rail-center">
+            <h2 className="text-section-title font-display content-rail-center">
               My Thought Process
             </h2>
           </div>

@@ -38,7 +38,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-eyebrow header-spacing min-touch">
             RESEARCH
           </div>
-          <h2 className="text-section-title text-foreground mb-4 content-rail-center">
+          <h2 className="text-section-title text-foreground font-display mb-4 content-rail-center">
             Gathering insights
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground content-spacing content-rail-center">
@@ -50,7 +50,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start">
           {/* Left column - Content (7 columns on desktop) */}
           <div className="lg:col-span-7 content-rail-left">
-            <h3 className="text-subsection-title text-foreground mb-6 sm:mb-8">
+            <h3 className="text-subsection-title text-foreground font-display mb-6 sm:mb-8">
               Emerging themes
             </h3>
             

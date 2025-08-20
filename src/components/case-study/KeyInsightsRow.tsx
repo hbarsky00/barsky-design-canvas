@@ -36,7 +36,7 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
         >
           <h2 
             id="key-insights-label"
-            className="text-section-title text-foreground content-rail-center"
+            className="text-section-title text-foreground font-display content-rail-center"
           >
             Key insights
           </h2>
@@ -67,7 +67,7 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
                 <div className="flex flex-col flex-1 justify-center">
                   <h3 
                     id={`insight-${insight.number}-title`}
-                    className="text-base md:text-lg font-medium text-foreground mb-3 leading-tight tracking-[var(--letter-spacing-normal)]"
+                    className="text-base md:text-lg font-medium text-foreground font-display mb-3 leading-tight tracking-[var(--letter-spacing-normal)]"
                   >
                     {insight.title}
                   </h3>

@@ -19,7 +19,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
           <Badge variant="outlined" className="mb-4">
             IDEATION
           </Badge>
-          <h2 className="text-section-title content-rail-center">
+          <h2 className="text-section-title font-display content-rail-center">
             Multiple iterations
           </h2>
           <p className="text-base text-neutral-600 content-spacing max-w-[65ch] mx-auto">
@@ -40,7 +40,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
                   {index + 1}
                 </Badge>
               </div>
-              <h3 className="text-subsection-title mb-3 text-left">
+              <h3 className="text-subsection-title font-display mb-3 text-left">
                 {bubble.title}
               </h3>
               <p className="text-base text-neutral-700 leading-relaxed text-left">
