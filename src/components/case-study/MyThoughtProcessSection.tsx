@@ -10,11 +10,13 @@ interface MyThoughtProcessSectionProps {
     alt: string;
     caption?: string;
   }>;
+  blurbs?: string[];
 }
 
 const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
   content,
-  images
+  images,
+  blurbs = []
 }) => {
   return (
     <section className="section-snap py-12 md:py-16">
@@ -36,15 +38,28 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
           </div>
 
           {images && images.length > 0 && (
-            <div className="space-y-4">
+            <div className="space-y-8">
               {images.map((image, index) => (
-                <div key={index}>
+                <div key={index} className="relative">
                   <MaximizableImage
                     src={image.src}
                     alt={image.alt}
                     caption={image.caption}
                     className="w-full rounded-lg"
                   />
+                  {blurbs[index] && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      viewport={{ once: true }}
+                      className="mt-6 bg-gradient-to-r from-primary/5 to-accent/5 border-l-4 border-primary p-6 rounded-r-lg"
+                    >
+                      <p className="text-lg font-medium text-foreground leading-relaxed italic">
+                        "{blurbs[index]}"
+                      </p>
+                    </motion.div>
+                  )}
                 </div>
               ))}
             </div>
