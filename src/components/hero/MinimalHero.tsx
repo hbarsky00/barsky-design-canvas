@@ -125,7 +125,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             </h1>
             <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                          xl:text-4xl 2xl:text-5xl
-                         font-brand font-medium text-gray-900 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-[1.706]">
+                         font-brand font-medium text-gray-800 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-[1.706]">
               Product Design Engineer | Design Strategy <br /> AI Development | 15+ Years UX/UI | Fintech • Healthcare
             </h2>
             <a 
