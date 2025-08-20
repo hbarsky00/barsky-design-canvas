@@ -6,6 +6,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Linkedin, Calendar } from "lucide-react";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { NavigationProps } from "@/types/navigation";
+import EnhancedHeroBackground from "./EnhancedHeroBackground";
 
 interface MinimalHeroProps extends NavigationProps {}
 
@@ -67,10 +68,12 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
   return (
     <section 
       id="intro"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-white relative
-                 pt-safe-top pb-safe-bottom"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative
+                 pt-safe-top pb-safe-bottom overflow-hidden"
     >
-      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full" onClick={handleNavigateDown}>
+      {/* Enhanced Background */}
+      <EnhancedHeroBackground />
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-10" onClick={handleNavigateDown}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -114,12 +117,12 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           <div className="order-2">
             <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
                          xl:text-7xl 2xl:text-8xl
-                         font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight">
+                         font-display font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight tracking-tight">
               Hiram Barsky
             </h1>
             <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                          xl:text-4xl 2xl:text-5xl
-                         font-medium text-gray-900 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7">
+                         font-brand font-medium text-gray-900 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-relaxed">
               Product Designer | Design Leadership & Strategy | Full-Stack Development | 15+ Years UX/UI | Fintech • Healthcare
             </h2>
             <a 

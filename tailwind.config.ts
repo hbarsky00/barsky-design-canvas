@@ -92,6 +92,13 @@ const config: Config = {
       minHeight: {
         'touch': '44px',
       },
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        mono: ["ui-monospace", "SFMono-Regular"],
+        display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+        brand: ["Outfit", "ui-sans-serif", "system-ui"],
+        body: ["Inter", "ui-sans-serif", "system-ui"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
