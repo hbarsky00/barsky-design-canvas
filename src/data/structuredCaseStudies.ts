@@ -69,6 +69,7 @@ export interface StructuredCaseStudyData {
       src: string;
       alt: string;
       caption?: string;
+      annotations?: ImageAnnotation[];
     }>;
   };
   keyInsights?: {
@@ -208,12 +209,28 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png",
           alt: "Initial Concepts & Sketches",
-          caption: "Early ideation sketches exploring herbal practitioner discovery and matching concepts"
+          caption: "Early ideation sketches exploring herbal practitioner discovery and matching concepts",
+          annotations: [
+            {
+              x: 35,
+              y: 40,
+              type: "improvement",
+              text: "Early sketches prioritized practitioner credibility over features - this foundation guided all future design decisions"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png",
           alt: "User Flow Explorations", 
-          caption: "Blue-sky user journey mapping from symptom input to practitioner booking"
+          caption: "Blue-sky user journey mapping from symptom input to practitioner booking",
+          annotations: [
+            {
+              x: 65,
+              y: 30,
+              type: "feature",
+              text: "Blue-sky thinking revealed users needed guided discovery rather than overwhelming choice - leading to simplified booking flow"
+            }
+          ]
         }
       ]
     },
