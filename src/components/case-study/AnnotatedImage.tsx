@@ -81,7 +81,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
         >
           {/* Callout dot */}
           <div 
-            className={`w-4 h-4 rounded-full border-2 border-white shadow-lg ${
+            className={`w-4 h-4 rounded-full border-2 border-white shadow-xl drop-shadow-lg ${
               annotation.type === 'issue' ? 'bg-red-500' :
               annotation.type === 'improvement' ? 'bg-blue-500' :
               'bg-green-500'
@@ -90,7 +90,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
           
           {/* Always visible text */}
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10">
-            <div className={`px-3 py-2 text-xs sm:text-sm text-white rounded-lg shadow-lg w-48 max-w-[192px] sm:w-52 sm:max-w-[208px] lg:w-64 lg:max-w-[256px] whitespace-normal ${
+            <div className={`px-3 py-2 text-xs sm:text-sm text-white rounded-lg shadow-2xl drop-shadow-xl backdrop-blur-sm ring-1 ring-black/10 w-48 max-w-[192px] sm:w-52 sm:max-w-[208px] lg:w-64 lg:max-w-[256px] whitespace-normal ${
               annotation.type === 'issue' ? 'bg-red-600' :
               annotation.type === 'improvement' ? 'bg-blue-600' :
               'bg-green-600'
@@ -108,7 +108,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
 
       {/* Hidden annotations indicator */}
       {hiddenCount > 0 && (
-        <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+        <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full shadow-xl drop-shadow-lg backdrop-blur-sm">
           +{hiddenCount} more
         </div>
       )}

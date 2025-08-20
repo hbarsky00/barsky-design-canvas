@@ -71,7 +71,7 @@ export const getResponsiveTruncatedText = (text: string): string => {
 // Annotation utilities - AnnotatedImage template styling
 export const getAnnotationClasses = (className?: string) => 
   cn(
-    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
+    "absolute px-3 py-2 rounded-lg font-medium shadow-2xl drop-shadow-lg backdrop-blur-sm ring-1 ring-black/10 text-white",
     "text-xs md:text-sm lg:text-base", // Responsive text size
     "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]", // Responsive width
     "bg-blue-600", // Default blue annotation
@@ -81,7 +81,7 @@ export const getAnnotationClasses = (className?: string) =>
 // Specific annotation types matching AnnotatedImage
 export const getAnnotationIssueClasses = (className?: string) => 
   cn(
-    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
+    "absolute px-3 py-2 rounded-lg font-medium shadow-2xl drop-shadow-lg backdrop-blur-sm ring-1 ring-black/10 text-white",
     "text-xs md:text-sm lg:text-base",
     "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]",
     "bg-red-600", // Red for issues
@@ -90,7 +90,7 @@ export const getAnnotationIssueClasses = (className?: string) =>
 
 export const getAnnotationImprovementClasses = (className?: string) => 
   cn(
-    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
+    "absolute px-3 py-2 rounded-lg font-medium shadow-2xl drop-shadow-lg backdrop-blur-sm ring-1 ring-black/10 text-white",
     "text-xs md:text-sm lg:text-base",
     "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]",
     "bg-blue-600", // Blue for improvements
@@ -99,7 +99,7 @@ export const getAnnotationImprovementClasses = (className?: string) =>
 
 export const getAnnotationSuccessClasses = (className?: string) => 
   cn(
-    "absolute px-3 py-2 rounded-lg font-medium shadow-lg text-white",
+    "absolute px-3 py-2 rounded-lg font-medium shadow-2xl drop-shadow-lg backdrop-blur-sm ring-1 ring-black/10 text-white",
     "text-xs md:text-sm lg:text-base",
     "max-w-[160px] md:max-w-[200px] lg:max-w-[240px]",
     "bg-green-600", // Green for success
