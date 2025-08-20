@@ -1,4 +1,5 @@
 import { Extension } from '@tiptap/core';
+import { PluginKey } from '@tiptap/pm/state';
 import { ReactRenderer } from '@tiptap/react';
 import Suggestion from '@tiptap/suggestion';
 import tippy from 'tippy.js';
@@ -25,7 +26,7 @@ export const SlashCommand = Extension.create({
         char: '/',
         allowSpaces: false,
         startOfLine: true,
-        pluginKey: 'slashCommand',
+        pluginKey: new PluginKey('slashCommand'),
         command: ({ editor, range, props }) => {
           editor
             .chain()
@@ -79,7 +80,7 @@ export const SlashCommand = Extension.create({
                 return true;
               }
 
-              return component.ref?.onKeyDown(props);
+              return (component.ref as any)?.onKeyDown?.(props) || false;
             },
 
             onExit() {

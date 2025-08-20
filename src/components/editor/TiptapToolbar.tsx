@@ -99,7 +99,8 @@ export const TiptapToolbar: React.FC<TiptapToolbarProps> = ({
   };
 
   const insertTable = () => {
-    editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
+    // Table insertion requires table extension to be properly configured
+    toast.error('Table insertion not yet available');
   };
 
   const handleColorChange = (color: string) => {
