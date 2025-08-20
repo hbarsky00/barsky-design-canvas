@@ -10,6 +10,7 @@ export interface EmergingTheme {
 
 export interface ResearchSection {
   subhead: string;
+  blurb?: string;
   emergingThemes: EmergingTheme[];
   researchImage?: string;
   researchImageAlt?: string;
@@ -163,6 +164,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
+      blurb: "Through interviews with both patients seeking herbal care and certified practitioners, I uncovered critical gaps in trust, safety information, and practitioner discovery that shaped our design approach.",
       emergingThemes: [
         {
           eyebrow: "ESSENTIALS TO KNOW",
@@ -417,6 +419,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "Interviews and walkthroughs with co-parents revealed decision fatigue from fragmented schedules, expenses, and agreements.",
+      blurb: "Extensive research with divorced and separated parents showed how scattered communication tools and unclear schedules create stress and conflict in co-parenting relationships.",
       emergingThemes: [
         {
           eyebrow: "ESSENTIALS TO KNOW",
@@ -661,6 +664,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "Shadowing loan officers and error-log reviews showed spreadsheet mistakes, slow retrieval, and no audit trail.",
+      blurb: "I conducted field research by shadowing loan officers in their daily workflows and analyzed error logs to identify critical pain points in the existing Excel-based process.",
       emergingThemes: [
         {
           eyebrow: "ACCURACY & AUDIT",
@@ -1136,6 +1140,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     researchSection: {
       subhead: "Surveys and workflow audits showed owners switching between disconnected tools and duplicating data.",
+      blurb: "Through comprehensive workflow audits and surveys with small business owners, I mapped the inefficiencies in managing operations across multiple disconnected tools and platforms.",
       emergingThemes: [
         {
           eyebrow: "CONSOLIDATION",

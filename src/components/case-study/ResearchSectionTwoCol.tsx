@@ -10,6 +10,7 @@ interface EmergingTheme {
 
 interface ResearchSection {
   subhead: string;
+  blurb?: string;
   emergingThemes: EmergingTheme[];
   researchImage?: string;
   researchImageAlt?: string;
@@ -44,6 +45,11 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
           <p className="text-lg md:text-xl text-muted-foreground content-spacing content-rail-center">
             {researchSection.subhead}
           </p>
+          {researchSection.blurb && (
+            <p className="text-base text-muted-foreground mt-4 content-rail-center">
+              {researchSection.blurb}
+            </p>
+          )}
         </div>
 
         {/* Grid - 12 columns responsive */}
@@ -54,12 +60,12 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
               Emerging themes
             </h3>
             
-            {/* Bubble cards list */}
-            <div className="space-y-4 sm:space-y-6">
+            {/* Clean theme list */}
+            <div className="space-y-6 sm:space-y-8">
               {researchSection.emergingThemes.map((theme, index) => (
                 <motion.div
                   key={index}
-                  className="rounded-[20px] sm:rounded-[24px] border border-border bg-card p-4 sm:p-6 md:p-7 shadow-sm"
+                  className="border-l-2 border-primary/20 pl-4 sm:pl-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ 
@@ -71,14 +77,14 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                     willChange: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'transform' 
                   }}
                 >
-                  <div className="text-xs font-semibold tracking-wide uppercase text-muted-foreground mb-3">
+                  <div className="text-xs font-semibold tracking-wide uppercase text-primary mb-2">
                     {theme.eyebrow}
                   </div>
-                  <p className="text-foreground leading-relaxed mb-2">
+                  <p className="text-foreground leading-relaxed mb-2 text-base">
                     {theme.insight}
                   </p>
-                  <p className="text-foreground leading-relaxed">
-                    <span className="font-medium">Drove:</span> {theme.drove}
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    <span className="font-medium text-foreground">Drove:</span> {theme.drove}
                   </p>
                 </motion.div>
               ))}
@@ -98,42 +104,40 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                 <ProjectVideo
                   src={researchSection.researchVideo}
                   title="Research Video"
-                  className="w-full"
+                  className="w-full rounded-xl"
                 />
               ) : (
-                /* Image Display with bubble styling */
-                <div className="rounded-[28px] border border-neutral-200 bg-white/70 backdrop-blur-sm shadow-sm p-4 md:p-6">
-                  <div className="scroll-area flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto overscroll-contain">
-                    {/* Primary image (legacy support) */}
-                    {researchSection.researchImage && (
-                      <figure className="flex-1 min-h-0">
-                        <img
-                          src={researchSection.researchImage}
-                          srcSet={researchSection.researchImage.startsWith('http') ? `${researchSection.researchImage} 1x${researchSection.researchImage.includes('.') ? `, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          alt={researchSection.researchImageAlt || "Research image"}
-                          className="w-full h-full object-contain rounded-2xl border border-neutral-200"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </figure>
-                    )}
-                    
-                    {/* Additional images */}
-                    {researchSection.researchImages?.map((image, index) => (
-                      <figure key={index} className="flex-1 min-h-0">
-                        <img
-                          src={image.src}
-                          srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          alt={image.alt}
-                          className="w-full h-full object-contain rounded-2xl border border-neutral-200"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </figure>
-                    ))}
-                  </div>
+                /* Clean Image Display */
+                <div className="flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto">
+                  {/* Primary image (legacy support) */}
+                  {researchSection.researchImage && (
+                    <figure className="flex-1 min-h-0">
+                      <img
+                        src={researchSection.researchImage}
+                        srcSet={researchSection.researchImage.startsWith('http') ? `${researchSection.researchImage} 1x${researchSection.researchImage.includes('.') ? `, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={researchSection.researchImageAlt || "Research image"}
+                        className="w-full h-full object-contain rounded-xl"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  )}
+                  
+                  {/* Additional images */}
+                  {researchSection.researchImages?.map((image, index) => (
+                    <figure key={index} className="flex-1 min-h-0">
+                      <img
+                        src={image.src}
+                        srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt={image.alt}
+                        className="w-full h-full object-contain rounded-xl"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  ))}
                 </div>
               )}
             </motion.div>
