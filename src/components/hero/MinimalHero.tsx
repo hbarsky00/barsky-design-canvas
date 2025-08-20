@@ -117,8 +117,8 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
                          font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight">
               Hiram Barsky
             </h1>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl 
-                         xl:text-5xl 2xl:text-6xl
+            <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
+                         xl:text-4xl 2xl:text-5xl
                          font-medium text-gray-900 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7">
               Product Designer | Design Leadership & Strategy | Full-Stack Development | 15+ Years UX/UI | Fintech • Healthcare
             </h2>
