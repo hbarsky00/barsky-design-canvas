@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { Color } from '@tiptap/extension-color';
 import { TextStyle } from '@tiptap/extension-text-style';
+import { ColorWithOpacity } from '@/extensions/ColorWithOpacity';
 import { Highlight } from '@tiptap/extension-highlight';
 import { Link } from '@tiptap/extension-link';
 import { Image } from '@tiptap/extension-image';
@@ -15,6 +15,7 @@ import { TextAlign } from '@tiptap/extension-text-align';
 import { createLowlight, common } from 'lowlight';
 import { TiptapToolbar } from './TiptapToolbar';
 import { useToast } from '@/hooks/use-toast';
+import { useOptimisticSave } from '@/hooks/useOptimisticSave';
 
 interface TiptapEditorProps {
   content: string;
@@ -41,6 +42,22 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({
 }) => {
   const { toast } = useToast();
 
+  const {
+    saveOptimistically,
+    saveImmediately,
+    isDirty,
+    isSaving,
+    lastSaved
+  } = useOptimisticSave({
+    saveFn: async (content: string) => {
+      if (onSave) {
+        await new Promise(resolve => setTimeout(resolve, 100)); // Simulate network delay
+        onSave();
+      }
+    },
+    debounceMs: autoSaveDelay
+  });
+
   const lowlight = createLowlight(common);
 
   const editor = useEditor({
@@ -49,7 +66,7 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({
         codeBlock: false, // We'll use CodeBlockLowlight instead
       }),
       TextStyle,
-      Color,
+      ColorWithOpacity,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
@@ -85,6 +102,9 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       onChange(html);
+      if (autoSave) {
+        saveOptimistically(html);
+      }
     },
     editorProps: {
       attributes: {
@@ -94,18 +114,10 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({
     },
   });
 
-  // Auto-save functionality
-  useEffect(() => {
-    if (!autoSave || !onSave || !editor) return;
-
-    const saveTimer = setTimeout(() => {
-      if (editor.getHTML() !== content) {
-        onSave();
-      }
-    }, autoSaveDelay);
-
-    return () => clearTimeout(saveTimer);
-  }, [content, autoSave, autoSaveDelay, onSave, editor]);
+  // Manual save handler
+  const handleSave = useCallback(() => {
+    saveImmediately();
+  }, [saveImmediately]);
 
   // Update editor content when prop changes
   useEffect(() => {
@@ -144,7 +156,10 @@ export const TiptapEditor: React.FC<TiptapEditorProps> = ({
         <TiptapToolbar 
           editor={editor} 
           onImageUpload={handleImageUpload}
-          onSave={onSave}
+          onSave={handleSave}
+          isDirty={isDirty}
+          isSaving={isSaving}
+          lastSaved={lastSaved}
         />
       )}
       <EditorContent 
