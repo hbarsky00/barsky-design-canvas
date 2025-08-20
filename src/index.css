@@ -323,8 +323,8 @@ select:focus-visible, a:focus-visible,
 
   /* Standard section spacing */
   .section-spacing {
-    padding-top: 4rem;
-    padding-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
   }
 
   @media (min-width: 768px) {

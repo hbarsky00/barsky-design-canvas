@@ -28,7 +28,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
       id="sprint-zero" 
       data-section="sprint-zero" 
       aria-labelledby="sprint-zero-heading" 
-      className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
+      className="section-snap py-6 md:py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
     >
       <div className="section-container">
         <motion.div
@@ -36,7 +36,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-4 md:space-y-8"
         >
           <div className="space-y-4 text-center">
             <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
@@ -48,7 +48,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
           </div>
 
           {/* Row 1 - Initial Concepts & Sketches (50% image left, 50% text right) */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-6 md:mb-12">
             {/* Image - 50% on desktop */}
             <div className="md:col-span-6">
               {images && images[0] && (
