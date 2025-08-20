@@ -75,7 +75,9 @@ const TinyMCEDemo: React.FC = () => {
                   onSave={handleSave}
                   placeholder="Start creating amazing content or type '/' for commands..."
                   className="min-h-[400px]"
-                  autoSave={false}
+                  autoSave={true}
+                  projectId="demo-project"
+                  contentKey="demo-content"
                 />
                 
                 <div className="flex items-center justify-between">
