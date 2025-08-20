@@ -7,6 +7,7 @@ import { Mail, Linkedin, Calendar } from "lucide-react";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
 import { NavigationProps } from "@/types/navigation";
 import WinampVisualizer from "./WinampVisualizer";
+import { EditableContent } from "@/components/editor/EditableContent";
 
 interface MinimalHeroProps extends NavigationProps {}
 
@@ -118,16 +119,26 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
 
           {/* Content - More proportional text scaling */}
           <div className="order-2">
-            <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
+            <EditableContent
+              contentKey="hero-name"
+              defaultContent="Hiram Barsky"
+              pagePath="/"
+              sectionName="hero"
+              renderAs="h1"
+              className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
                          xl:text-7xl 2xl:text-8xl
-                         font-display font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight tracking-tight">
-              Hiram Barsky
-            </h1>
-            <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
+                         font-display font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight tracking-tight"
+            />
+            <EditableContent
+              contentKey="hero-title"
+              defaultContent="Product Design Engineer | Design Strategy <br /> AI Development | 15+ Years UX/UI | Fintech • Healthcare"
+              pagePath="/"
+              sectionName="hero"
+              renderAs="h2"
+              className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                          xl:text-4xl 2xl:text-5xl
-                         font-brand font-medium text-gray-800 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-[1.706]">
-              Product Design Engineer | Design Strategy <br /> AI Development | 15+ Years UX/UI | Fintech • Healthcare
-            </h2>
+                         font-brand font-medium text-gray-800 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-[1.706]"
+            />
             <a 
               href="https://barskydesign.pro" 
               target="_blank" 
@@ -138,9 +149,14 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             >
               barskydesign.pro
             </a>
-            <p className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-600">
-              Clifton, NJ
-            </p>
+            <EditableContent
+              contentKey="hero-location"
+              defaultContent="Clifton, NJ"
+              pagePath="/"
+              sectionName="hero"
+              renderAs="p"
+              className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-600"
+            />
           </div>
         </motion.div>
 

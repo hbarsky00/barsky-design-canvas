@@ -86,6 +86,45 @@ export type Database = {
         }
         Relationships: []
       }
+      editable_content: {
+        Row: {
+          content_html: string
+          content_json: Json
+          content_key: string
+          created_at: string
+          created_by: string | null
+          id: string
+          last_edited_by: string | null
+          page_path: string
+          section_name: string
+          updated_at: string
+        }
+        Insert: {
+          content_html?: string
+          content_json?: Json
+          content_key: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          last_edited_by?: string | null
+          page_path?: string
+          section_name?: string
+          updated_at?: string
+        }
+        Update: {
+          content_html?: string
+          content_json?: Json
+          content_key?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          last_edited_by?: string | null
+          page_path?: string
+          section_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       lead_interactions: {
         Row: {
           completed_at: string | null
