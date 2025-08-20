@@ -391,7 +391,7 @@ select:focus-visible, a:focus-visible,
 
 /* Mobile viewport and safe areas */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overflow-x: hidden;
 }
 

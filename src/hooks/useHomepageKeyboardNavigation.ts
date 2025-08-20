@@ -43,7 +43,7 @@ export const useHomepageKeyboardNavigation = () => {
 
   // Scroll to specific section
   const scrollToSection = (index: number) => {
-    if (isInFormField() || isTransitioning) return;
+    if (isInFormField()) return;
     
     const currentSections = getCurrentSections();
     if (index < 0 || index >= currentSections.length) return;
@@ -51,35 +51,26 @@ export const useHomepageKeyboardNavigation = () => {
     const section = currentSections[index];
     if (!section.element) return;
 
-    setIsTransitioning(true);
-    
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+    // Instant scroll for effortless navigation
     section.element.scrollIntoView({
-      behavior: prefersReducedMotion ? 'auto' : 'smooth',
-      block: 'start',
+      behavior: 'auto',
+      block: 'center',
     });
-
-    // Reset transition state after animation
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, prefersReducedMotion ? 100 : 800);
   };
 
   // Navigate up
   const navigateUp = () => {
     const now = Date.now();
-    if (now - lastNavigationTime.current < 300) return; // Debounce
+    if (now - lastNavigationTime.current < 100) return; // Reduced debounce for responsiveness
     lastNavigationTime.current = now;
 
-    if (isInFormField() || isTransitioning) return;
+    if (isInFormField()) return;
     
     const currentSections = getCurrentSections();
     const newIndex = Math.max(0, currentSectionIndex - 1);
     
     if (newIndex !== currentSectionIndex) {
-      setTransitionDirection('up');
+      setCurrentSectionIndex(newIndex);
       scrollToSection(newIndex);
     }
   };
@@ -87,16 +78,16 @@ export const useHomepageKeyboardNavigation = () => {
   // Navigate down
   const navigateDown = () => {
     const now = Date.now();
-    if (now - lastNavigationTime.current < 300) return; // Debounce
+    if (now - lastNavigationTime.current < 100) return; // Reduced debounce for responsiveness
     lastNavigationTime.current = now;
 
-    if (isInFormField() || isTransitioning) return;
+    if (isInFormField()) return;
     
     const currentSections = getCurrentSections();
     const newIndex = Math.min(currentSections.length - 1, currentSectionIndex + 1);
     
     if (newIndex !== currentSectionIndex) {
-      setTransitionDirection('down');
+      setCurrentSectionIndex(newIndex);
       scrollToSection(newIndex);
     }
   };
@@ -104,8 +95,6 @@ export const useHomepageKeyboardNavigation = () => {
   // Scroll tracking and keyboard navigation
   useEffect(() => {
     const handleScroll = () => {
-      if (isTransitioning) return;
-      
       const scrollPosition = window.scrollY + 200;
       
       // Track all sections including individual case studies
@@ -145,7 +134,7 @@ export const useHomepageKeyboardNavigation = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentSectionIndex, isTransitioning]);
+  }, [currentSectionIndex]);
 
   const currentSections = getCurrentSections();
   const canNavigateUp = currentSectionIndex > 0;
