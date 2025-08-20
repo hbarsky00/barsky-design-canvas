@@ -45,11 +45,6 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
           <p className="text-lg md:text-xl text-muted-foreground content-spacing content-rail-center">
             {researchSection.subhead}
           </p>
-          {researchSection.blurb && (
-            <p className="text-sm md:text-base text-muted-foreground mt-4 content-rail-center max-w-[120px] sm:max-w-none">
-              {researchSection.blurb}
-            </p>
-          )}
         </div>
 
         {/* Grid - 12 columns responsive */}
@@ -111,7 +106,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                 <div className="flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto">
                   {/* Primary image (legacy support) */}
                   {researchSection.researchImage && (
-                    <figure className="flex-1 min-h-0">
+                    <figure className="flex-1 min-h-0 relative">
                       <img
                         src={researchSection.researchImage}
                         srcSet={researchSection.researchImage.startsWith('http') ? `${researchSection.researchImage} 1x${researchSection.researchImage.includes('.') ? `, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
@@ -121,12 +116,17 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         loading="lazy"
                         decoding="async"
                       />
+                      {researchSection.blurb && (
+                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs md:text-sm max-w-[80%]">
+                          {researchSection.blurb}
+                        </div>
+                      )}
                     </figure>
                   )}
                   
                   {/* Additional images */}
                   {researchSection.researchImages?.map((image, index) => (
-                    <figure key={index} className="flex-1 min-h-0">
+                    <figure key={index} className="flex-1 min-h-0 relative">
                       <img
                         src={image.src}
                         srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
@@ -136,6 +136,11 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         loading="lazy"
                         decoding="async"
                       />
+                      {researchSection.blurb && index === 0 && (
+                        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-xs md:text-sm max-w-[80%]">
+                          {researchSection.blurb}
+                        </div>
+                      )}
                     </figure>
                   ))}
                 </div>
