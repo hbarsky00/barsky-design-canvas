@@ -191,7 +191,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "I converged on a practitioner-focused platform after validating that users prioritized expert guidance over self-directed exploration. The decision centered on verified credentials, clear safety information, and streamlined booking—creating trust through transparency rather than overwhelming users with too many options or complex health tracking features.",
       images: [
         {
-          src: "placeholder",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png",
           alt: "Initial Concepts & Sketches",
           caption: "Early ideation sketches exploring herbal practitioner discovery and matching concepts"
         },
