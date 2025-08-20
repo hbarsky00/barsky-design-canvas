@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import AnnotatedImage from "@/components/case-study/AnnotatedImage";
+import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
 interface SprintZeroSectionProps {
   eyebrow: string;
@@ -12,6 +14,7 @@ interface SprintZeroSectionProps {
     src: string;
     alt: string;
     caption?: string;
+    annotations?: ImageAnnotation[];
   }>;
 }
 
@@ -58,12 +61,21 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <MaximizableImage
-                    src={images[0].src}
-                    alt={images[0].alt}
-                    caption={images[0].caption}
-                    className="w-full rounded-lg"
-                  />
+                  {images[0].annotations && images[0].annotations.length > 0 ? (
+                    <AnnotatedImage
+                      src={images[0].src}
+                      alt={images[0].alt}
+                      annotations={images[0].annotations}
+                      className="w-full rounded-lg"
+                    />
+                  ) : (
+                    <MaximizableImage
+                      src={images[0].src}
+                      alt={images[0].alt}
+                      caption={images[0].caption}
+                      className="w-full rounded-lg"
+                    />
+                  )}
                 </motion.div>
               )}
             </div>
@@ -110,13 +122,22 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <MaximizableImage
-                    src={images[1].src}
-                    alt={images[1].alt}
-                    caption={images[1].caption}
-                    className="w-full rounded-lg"
-                    fit="contain"
-                  />
+                  {images[1].annotations && images[1].annotations.length > 0 ? (
+                    <AnnotatedImage
+                      src={images[1].src}
+                      alt={images[1].alt}
+                      annotations={images[1].annotations}
+                      className="w-full rounded-lg"
+                    />
+                  ) : (
+                    <MaximizableImage
+                      src={images[1].src}
+                      alt={images[1].alt}
+                      caption={images[1].caption}
+                      className="w-full rounded-lg"
+                      fit="contain"
+                    />
+                  )}
                 </motion.div>
               )}
             </div>
