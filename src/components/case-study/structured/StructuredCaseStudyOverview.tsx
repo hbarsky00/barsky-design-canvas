@@ -77,26 +77,26 @@ const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">Overview</h2>
+      <h2 className="text-section-title font-display text-foreground mb-8">Overview</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
         {/* Left Column - 60% */}
         <div className="lg:col-span-3 space-y-8">
           {/* Overview Text */}
           <div>
-            <p className="text-muted-foreground leading-relaxed text-lg">
+            <p className="text-muted-foreground leading-relaxed text-lg font-body">
               {content.overview}
             </p>
           </div>
 
           {/* Goals */}
           <div>
-            <h3 className="text-xl font-semibold text-foreground mb-4">Goals</h3>
+            <h3 className="text-xl font-display font-semibold text-foreground mb-4">Goals</h3>
             <ul className="space-y-3">
               {content.goals.map((goal, index) => (
                 <li key={index} className="flex items-start">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0" />
-                  <span className="text-muted-foreground leading-relaxed">{goal}</span>
+                  <span className="text-muted-foreground leading-relaxed font-body">{goal}</span>
                 </li>
               ))}
             </ul>
@@ -108,25 +108,25 @@ const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = 
           {/* Role */}
           <div>
             <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Role</h4>
-            <p className="text-foreground font-medium">{content.role}</p>
+            <p className="text-foreground font-medium font-body">{content.role}</p>
           </div>
 
           {/* Responsibilities */}
           <div>
             <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Responsibilities</h4>
-            <p className="text-muted-foreground leading-relaxed">{content.responsibilities}</p>
+            <p className="text-muted-foreground leading-relaxed font-body">{content.responsibilities}</p>
           </div>
 
           {/* Collaborators */}
           <div>
             <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Collaborators</h4>
-            <p className="text-muted-foreground leading-relaxed">{content.collaborators}</p>
+            <p className="text-muted-foreground leading-relaxed font-body">{content.collaborators}</p>
           </div>
 
           {/* Duration */}
           <div>
             <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Duration</h4>
-            <p className="text-foreground font-medium">{content.duration}</p>
+            <p className="text-foreground font-medium font-body">{content.duration}</p>
           </div>
         </div>
       </div>
