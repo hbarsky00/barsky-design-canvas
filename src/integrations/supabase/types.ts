@@ -280,6 +280,33 @@ export type Database = {
         }
         Relationships: []
       }
+      project_content: {
+        Row: {
+          content_key: string
+          content_value: string | null
+          created_at: string
+          id: string
+          project_id: string
+          updated_at: string
+        }
+        Insert: {
+          content_key: string
+          content_value?: string | null
+          created_at?: string
+          id?: string
+          project_id: string
+          updated_at?: string
+        }
+        Update: {
+          content_key?: string
+          content_value?: string | null
+          created_at?: string
+          id?: string
+          project_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       published_projects: {
         Row: {
           content_blocks: Json

@@ -1,0 +1,36 @@
+/* Modern Tiptap Editor Styles */
+.bubble-menu {
+  z-index: 1000;
+}
+
+.slash-command-list {
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Tippy.js theme for slash commands */
+.tippy-box[data-theme~='slash-command'] {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.tippy-box[data-theme~='slash-command'] .tippy-content {
+  padding: 0;
+}
+
+/* Editor focus styles */
+.modern-editor-content .ProseMirror:focus {
+  outline: none;
+}
+
+.modern-editor-content .ProseMirror {
+  min-height: 200px;
+}
+
+/* Ensure proper z-index for menus */
+.tippy-popper {
+  z-index: 1000 !important;
+}
