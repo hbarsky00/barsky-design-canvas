@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ProjectVideo from "../project/ProjectVideo";
 
 interface EmergingTheme {
   eyebrow: string;
@@ -13,6 +14,7 @@ interface ResearchSection {
   researchImage?: string;
   researchImageAlt?: string;
   researchImages?: { src: string; alt: string; }[];
+  researchVideo?: string;
 }
 
 interface ResearchSectionTwoColProps {
@@ -83,7 +85,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
             </div>
           </div>
 
-          {/* Right column - Image (5 columns on desktop) */}
+          {/* Right column - Video or Images (5 columns on desktop) */}
           <div className="lg:col-span-5 order-first lg:order-last">
             <motion.div
               className="lg:sticky lg:top-24"
@@ -91,39 +93,49 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="rounded-[28px] border border-neutral-200 bg-white/70 backdrop-blur-sm shadow-sm p-4 md:p-6">
-                <div className="scroll-area flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto overscroll-contain">
-                  {/* Primary image (legacy support) */}
-                  {researchSection.researchImage && (
-                    <figure className="flex-1 min-h-0">
-                      <img
-                        src={researchSection.researchImage}
-                        srcSet={researchSection.researchImage.startsWith('http') ? `${researchSection.researchImage} 1x${researchSection.researchImage.includes('.') ? `, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt={researchSection.researchImageAlt || "Research image"}
-                        className="w-full h-full object-contain rounded-2xl border border-neutral-200"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </figure>
-                  )}
-                  
-                  {/* Additional images */}
-                  {researchSection.researchImages?.map((image, index) => (
-                    <figure key={index} className="flex-1 min-h-0">
-                      <img
-                        src={image.src}
-                        srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt={image.alt}
-                        className="w-full h-full object-contain rounded-2xl border border-neutral-200"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </figure>
-                  ))}
+              {/* Video Display */}
+              {researchSection.researchVideo ? (
+                <ProjectVideo
+                  src={researchSection.researchVideo}
+                  title="Research Video"
+                  className="w-full"
+                />
+              ) : (
+                /* Image Display with bubble styling */
+                <div className="rounded-[28px] border border-neutral-200 bg-white/70 backdrop-blur-sm shadow-sm p-4 md:p-6">
+                  <div className="scroll-area flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto overscroll-contain">
+                    {/* Primary image (legacy support) */}
+                    {researchSection.researchImage && (
+                      <figure className="flex-1 min-h-0">
+                        <img
+                          src={researchSection.researchImage}
+                          srcSet={researchSection.researchImage.startsWith('http') ? `${researchSection.researchImage} 1x${researchSection.researchImage.includes('.') ? `, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          alt={researchSection.researchImageAlt || "Research image"}
+                          className="w-full h-full object-contain rounded-2xl border border-neutral-200"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </figure>
+                    )}
+                    
+                    {/* Additional images */}
+                    {researchSection.researchImages?.map((image, index) => (
+                      <figure key={index} className="flex-1 min-h-0">
+                        <img
+                          src={image.src}
+                          srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          alt={image.alt}
+                          className="w-full h-full object-contain rounded-2xl border border-neutral-200"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </figure>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </motion.div>
           </div>
         </div>

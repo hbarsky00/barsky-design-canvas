@@ -14,6 +14,7 @@ export interface ResearchSection {
   researchImage?: string;
   researchImageAlt?: string;
   researchImages?: { src: string; alt: string; }[];
+  researchVideo?: string;
 }
 
 export interface IdeationBubble {
@@ -433,14 +434,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "In-app templates and reminders that keep language neutral."
         }
       ],
-        researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
-        researchImageAlt: "Research artifact — TOP (replace this URL)",
-        researchImages: [
-          {
-            src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
-            alt: "Research artifact — BOTTOM (replace this URL)"
-          }
-        ]
+        researchVideo: "https://www.loom.com/share/fc0904a5d0d840389f0b474c29806b37?sid=0b69a583-a511-448e-92f1-1861e98d3070"
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
