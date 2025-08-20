@@ -478,7 +478,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         { 
           label: "Iteration 1", 
-          imageSrc: "/media/splittime/ideation-1.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard1st.png", 
           alt: "First iteration of Splittime calendar view",
           annotations: [
             { text: "Calendar layout too dense - overwhelming for stressed parents", x: 50, y: 30, type: "issue" },
@@ -487,7 +487,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         { 
           label: "Iteration 2", 
-          imageSrc: "/media/splittime/ideation-2.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2024/01/DashboardPRIMARY.png", 
           alt: "Second iteration with approval flows",
           annotations: [
             { text: "Added approval status indicators for clarity", x: 40, y: 25, type: "improvement" },
@@ -505,7 +505,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         { 
           label: "Iteration 4", 
-          imageSrc: "/media/splittime/ideation-4.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/iteration4.png", 
           alt: "Fourth iteration with messaging templates",
           annotations: [
             { text: "Template messaging reduces conflict potential", x: 45, y: 35, type: "feature" },
