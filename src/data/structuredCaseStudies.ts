@@ -469,12 +469,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "I converged on a neutral communication platform after validating that most conflicts arose from misunderstood tone and unclear expectations. The decision centered on structured templates, approval workflows, and transparent history—creating accountability through clarity rather than adding more complex features that could increase friction.",
       images: [
         {
-          src: "placeholder",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard0.jpg",
           alt: "Initial Concepts & Sketches",
           caption: "Early brainstorming on co-parenting communication tools and conflict reduction strategies"
         },
         {
-          src: "placeholder",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/wireframing-1.webp",
           alt: "User Flow Explorations",
           caption: "Blue-sky exploration of scheduling workflows and neutral communication patterns"
         }
