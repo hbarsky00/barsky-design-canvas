@@ -46,7 +46,7 @@ const Navigation: React.FC<NavigationProps> = ({
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="nav-link nav-clean flex items-center transition-colors duration-200 hover:text-primary/80"
+              className="nav-link nav-clean flex items-center py-2 px-1 transition-colors duration-200"
             >
               {getIcon(link.name)}
               {link.name}
@@ -64,7 +64,7 @@ const Navigation: React.FC<NavigationProps> = ({
               handleLinkClick(link.href);
             } : undefined}
             className={cn(
-              "nav-link nav-clean flex items-center transition-colors duration-200 hover:text-primary/80",
+              "nav-link nav-clean flex items-center py-2 px-1 transition-colors duration-200",
               isLinkActive(link.href) && "active text-primary"
             )}
           >
