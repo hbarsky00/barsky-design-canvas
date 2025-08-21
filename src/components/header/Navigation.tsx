@@ -2,8 +2,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import ThemeToggle from "../ThemeToggle";
-import { Button } from "@/components/ui/button";
 import { Briefcase, User, Mail, BookOpen } from "lucide-react";
 
 interface NavigationProps {
@@ -38,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({
   };
 
   return (
-    <nav className="hidden md:flex items-center space-x-4 w-full justify-start">
+    <nav className="hidden md:flex items-center space-x-6">
       {links.map((link) => {
         // For external links, use a regular anchor tag
         if (link.href.startsWith('http')) {
@@ -48,7 +46,7 @@ const Navigation: React.FC<NavigationProps> = ({
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="nav-link flex items-center"
+              className="nav-link nav-clean flex items-center transition-colors duration-200 hover:text-primary/80"
             >
               {getIcon(link.name)}
               {link.name}
@@ -66,8 +64,8 @@ const Navigation: React.FC<NavigationProps> = ({
               handleLinkClick(link.href);
             } : undefined}
             className={cn(
-              "nav-link flex items-center",
-              isLinkActive(link.href) && "active"
+              "nav-link nav-clean flex items-center transition-colors duration-200 hover:text-primary/80",
+              isLinkActive(link.href) && "active text-primary"
             )}
           >
             {getIcon(link.name)}
@@ -75,8 +73,6 @@ const Navigation: React.FC<NavigationProps> = ({
           </Link>
         );
       })}
-      
-      <ThemeToggle />
     </nav>
   );
 };

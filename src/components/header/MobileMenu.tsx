@@ -1,11 +1,8 @@
 
 import React from "react";
-
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Briefcase, Store, User, Mail, BookOpen, FileText, Calendar } from "lucide-react";
-import { trackContentEngagement } from "@/lib/analytics";
+import { Menu, X, Briefcase, User, Mail, BookOpen } from "lucide-react";
 
 interface MobileMenuProps {
   links: Array<{ name: string; href: string }>;
@@ -24,29 +21,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 }) => {
   // Show all links in one list across all breakpoints
   const menuLinks = links;
-  const openCalendly = () => {
-    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
-    trackContentEngagement('mobile-menu', 'consultation-booking', 'Calendly Booking');
-    toggleMobileMenu();
-  };
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
-      case "home":
-        return <Home className="h-5 w-5 mr-3" />;
-      case "projects":
+      case "case studies":
         return <Briefcase className="h-5 w-5 mr-3" />;
       case "about":
         return <User className="h-5 w-5 mr-3" />;
-      case "services":
-        return <Briefcase className="h-5 w-5 mr-3" />;
-      case "store":
-        return <Store className="h-5 w-5 mr-3" />;
       case "blog":
         return <BookOpen className="h-5 w-5 mr-3" />;
-      case "resume":
-        return <FileText className="h-5 w-5 mr-3" />;
-      case "contact":
+      case "contact me":
         return <Mail className="h-5 w-5 mr-3" />;
       default:
         return null;
@@ -112,16 +96,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   </Link>
                 );
               })}
-
-
-              <Button
-                onClick={openCalendly}
-                size="lg"
-                className="w-full mt-1 flex items-center justify-start px-3 py-2 text-base"
-              >
-                <Calendar className="h-5 w-5 mr-3" />
-                Schedule a Free Consultation
-              </Button>
             </nav>
           </div>
         )}

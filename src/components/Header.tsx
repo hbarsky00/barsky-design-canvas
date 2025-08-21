@@ -65,10 +65,7 @@ const Header: React.FC = () => {
             isLinkActive={isLinkActive}
           />
 
-          <div className="flex items-center gap-3">
-            <div className="md:hidden">
-              <ThemeToggle />
-            </div>
+          <div className="flex items-center gap-3 md:hidden">
             <MobileMenu 
               links={navLinks} 
               isMobileMenuOpen={isMobileMenuOpen} 
