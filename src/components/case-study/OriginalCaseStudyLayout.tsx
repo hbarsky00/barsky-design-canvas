@@ -13,6 +13,7 @@ import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import SingleCaseStudyPreview from "./SingleCaseStudyPreview";
 import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
+import FloatingEmailButton from "@/components/FloatingEmailButton";
 
 interface OriginalCaseStudyLayoutProps {
   caseStudy: CaseStudyData;
@@ -177,6 +178,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
           </div>
         </div>
         <Footer />
+        <FloatingEmailButton />
       </div>
     </>
   );

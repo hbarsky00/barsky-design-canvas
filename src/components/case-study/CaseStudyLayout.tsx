@@ -8,6 +8,7 @@ import CaseStudyContactSection from "./CaseStudyContactSection";
 import CaseStudyShareToolbar from "./CaseStudyShareToolbar";
 import SingleCaseStudyPreview from "./SingleCaseStudyPreview";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
+import FloatingEmailButton from "@/components/FloatingEmailButton";
 
 interface CaseStudySection {
   id: string;
@@ -120,6 +121,7 @@ const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
         </div>
         
         <Footer />
+        <FloatingEmailButton />
       </div>
     </>
   );

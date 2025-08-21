@@ -10,8 +10,11 @@ const FloatingEmailButton: React.FC = () => {
   if (!isProjectPage) return null;
 
   const handleEmailClick = () => {
+    console.log("🔍 FloatingEmailButton: Button clicked!");
     const subject = encodeURIComponent("I'm here to Contact Hiram Barsky for Work");
-    window.location.href = `mailto:hbarsky01@gmail.com?subject=${subject}`;
+    const mailtoUrl = `mailto:hbarsky01@gmail.com?subject=${subject}`;
+    console.log("📧 FloatingEmailButton: Opening email with URL:", mailtoUrl);
+    window.location.href = mailtoUrl;
   };
 
   return (

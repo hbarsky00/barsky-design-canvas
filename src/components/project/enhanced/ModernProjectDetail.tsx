@@ -15,6 +15,7 @@ import ModernProjectImage from "./ModernProjectImage";
 import ModernProjectSections from "./sections/ModernProjectSections";
 import ProjectCallToAction from "../ProjectCallToAction";
 import ProjectNavigation from "@/components/ProjectNavigation";
+import FloatingEmailButton from "@/components/FloatingEmailButton";
 
 interface ModernProjectDetailProps {
   project: ProjectProps;
@@ -192,6 +193,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
           </section>
         </div>
       </div>
+      <FloatingEmailButton />
     </div>
   );
 };
