@@ -34,6 +34,7 @@ const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
         subtitle="Product Design + AI"
         size="lg"
         subtitleStyle="text"
+        autoPlay={true}
       />
     </div>
   );

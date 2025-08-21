@@ -755,36 +755,110 @@ body {
   }
 }
 
-/* ============= CUSTOM CURSOR UTILITIES ============= */
+/* ============= CUSTOM CURSOR & ILLUMINATION UTILITIES ============= */
 
-/* Pen cursor for links - using optimized SVG data URI */
-.cursor-pen {
-  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+/* Twirling circle cursor animation */
+@keyframes twirl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.cursor-pen-dark {
-  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+/* Circle cursor for links - animated twirling circle */
+.cursor-circle {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='12' cy='12' r='8'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10'/%3e%3canimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='1s' repeatCount='indefinite'/%3e%3c/svg%3e") 10 10, pointer;
 }
 
-/* Global link cursor styling */
+.cursor-circle-dark {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='12' cy='12' r='8'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10'/%3e%3canimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='1s' repeatCount='indefinite'/%3e%3c/svg%3e") 10 10, pointer;
+}
+
+/* Border illumination animations */
+@keyframes illuminate-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px hsl(var(--primary) / 0.3),
+      0 0 10px hsl(var(--primary) / 0.2),
+      0 0 15px hsl(var(--primary) / 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.5),
+      0 0 20px hsl(var(--primary) / 0.3),
+      0 0 30px hsl(var(--primary) / 0.2);
+  }
+}
+
+@keyframes illuminate-glow {
+  0% {
+    box-shadow: 
+      0 0 2px hsl(var(--primary) / 0.2),
+      inset 0 0 2px hsl(var(--primary) / 0.1);
+  }
+  100% {
+    box-shadow: 
+      0 0 8px hsl(var(--primary) / 0.4),
+      0 0 16px hsl(var(--primary) / 0.2),
+      inset 0 0 4px hsl(var(--primary) / 0.2);
+  }
+}
+
+/* Global interactive element styling with illumination */
 a[href],
 [role="link"],
 .cursor-link,
-button[type="button"]:not(.no-pen-cursor) {
-  transition: all 0.2s ease;
+button[type="button"]:not(.no-circle-cursor) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
 }
 
+/* Hover effects with twirling cursor and illuminated borders */
 a[href]:hover,
 [role="link"]:hover,
 .cursor-link:hover,
-button[type="button"]:not(.no-pen-cursor):hover {
-  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+button[type="button"]:not(.no-circle-cursor):hover {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='12' cy='12' r='8'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10'/%3e%3canimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='1s' repeatCount='indefinite'/%3e%3c/svg%3e") 10 10, pointer;
+  animation: illuminate-glow 0.3s ease-in-out forwards;
 }
 
-/* Dark mode pen cursor */
+/* Dark mode circle cursor and illumination */
 .dark a[href]:hover,
 .dark [role="link"]:hover,
 .dark .cursor-link:hover,
-.dark button[type="button"]:not(.no-pen-cursor):hover {
-  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+.dark button[type="button"]:not(.no-circle-cursor):hover {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='12' cy='12' r='8'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10'/%3e%3canimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='1s' repeatCount='indefinite'/%3e%3c/svg%3e") 10 10, pointer;
+}
+
+/* Utility classes for special illumination effects */
+.illuminate-border {
+  animation: illuminate-pulse 2s ease-in-out infinite;
+}
+
+.illuminate-hover:hover {
+  animation: illuminate-glow 0.3s ease-in-out forwards;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-circle,
+  .cursor-circle-dark,
+  a[href]:hover,
+  [role="link"]:hover,
+  .cursor-link:hover,
+  button[type="button"]:not(.no-circle-cursor):hover,
+  .dark a[href]:hover,
+  .dark [role="link"]:hover,
+  .dark .cursor-link:hover,
+  .dark button[type="button"]:not(.no-circle-cursor):hover {
+    cursor: pointer;
+  }
+  
+  .illuminate-border,
+  .illuminate-hover:hover {
+    animation: none;
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+  }
 }
