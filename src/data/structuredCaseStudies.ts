@@ -622,8 +622,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better.",
       images: [
         {
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-user-flow.png",
+          src: "https://barskyux.com/wp-content/uploads/2016/08/ideation_phase_design.png",
           alt: "Splittime user satisfaction metrics and communication improvements",
+          caption: "Ideation phase explorations mapping Splittime’s core user flows and interaction patterns.",
           annotations: [
             { text: "I designed around conflict reduction first, using neutral language and clear boundaries to help families communicate instead of argue.", x: 30, y: 25, type: "improvement" },
             { text: "The result: 40% less co-parenting conflict through a platform that prioritizes emotional well-being over feature complexity.", x: 70, y: 75, type: "feature" }
