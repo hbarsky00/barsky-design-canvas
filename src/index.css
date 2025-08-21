@@ -754,3 +754,37 @@ body {
     transform: none;
   }
 }
+
+/* ============= CUSTOM CURSOR UTILITIES ============= */
+
+/* Pen cursor for links - using optimized SVG data URI */
+.cursor-pen {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+}
+
+.cursor-pen-dark {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+}
+
+/* Global link cursor styling */
+a[href],
+[role="link"],
+.cursor-link,
+button[type="button"]:not(.no-pen-cursor) {
+  transition: all 0.2s ease;
+}
+
+a[href]:hover,
+[role="link"]:hover,
+.cursor-link:hover,
+button[type="button"]:not(.no-pen-cursor):hover {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+}
+
+/* Dark mode pen cursor */
+.dark a[href]:hover,
+.dark [role="link"]:hover,
+.dark .cursor-link:hover,
+.dark button[type="button"]:not(.no-pen-cursor):hover {
+  cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3e%3cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3e%3cpath d='M2 2l7.586 7.586'/%3e%3cpath d='M11 11L5.5 5.5'/%3e%3c/svg%3e") 2 18, pointer;
+}
