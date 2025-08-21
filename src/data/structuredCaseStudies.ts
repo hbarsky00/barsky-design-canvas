@@ -561,37 +561,183 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/1.Dashboard.png",
           alt: "Splittime Dashboard",
-          caption: "Main dashboard showing overview of all co-parenting activities and quick actions"
+          caption: "Main dashboard showing overview of all co-parenting activities and quick actions",
+          annotations: [
+            {
+              x: 25,
+              y: 20,
+              type: "feature",
+              text: "Activity timeline provides instant overview of recent co-parenting interactions without overwhelming detail"
+            },
+            {
+              x: 75,
+              y: 35,
+              type: "improvement",
+              text: "Quick stats reduce anxiety by showing positive progress metrics like timely pickups and resolved issues"
+            },
+            {
+              x: 50,
+              y: 65,
+              type: "feature",
+              text: "Primary navigation emphasizes children-first organization over parent-centric views"
+            },
+            {
+              x: 80,
+              y: 80,
+              type: "improvement",
+              text: "Quick action buttons enable immediate task completion without deep navigation"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/2.Dashboard-Add.png",
           alt: "Dashboard Add Function",
-          caption: "Add new events, expenses, or messages directly from the dashboard"
+          caption: "Add new events, expenses, or messages directly from the dashboard",
+          annotations: [
+            {
+              x: 40,
+              y: 30,
+              type: "feature",
+              text: "Modal overlay keeps users in context while adding new items, reducing cognitive load"
+            },
+            {
+              x: 60,
+              y: 50,
+              type: "improvement",
+              text: "Clear categorization prevents mix-ups between schedules, expenses, and communications"
+            },
+            {
+              x: 70,
+              y: 75,
+              type: "feature",
+              text: "Smart defaults and autocomplete reduce friction in high-stress co-parenting moments"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/3.calendar.png",
           alt: "Calendar View",
-          caption: "Shared calendar ensuring both parents stay coordinated on schedules"
+          caption: "Shared calendar ensuring both parents stay coordinated on schedules",
+          annotations: [
+            {
+              x: 30,
+              y: 25,
+              type: "improvement",
+              text: "Color-coded custody periods eliminate confusion about who has the children when"
+            },
+            {
+              x: 65,
+              y: 40,
+              type: "feature",
+              text: "Both parents see identical information, preventing 'he said, she said' scheduling conflicts"
+            },
+            {
+              x: 50,
+              y: 70,
+              type: "improvement",
+              text: "Visual scheduling reduces text-based miscommunication that often leads to conflict"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/4.Expenses.png",
           alt: "Expenses Tracking",
-          caption: "Track and split child-related expenses with transparent documentation"
+          caption: "Track and split child-related expenses with transparent documentation",
+          annotations: [
+            {
+              x: 35,
+              y: 30,
+              type: "feature",
+              text: "Receipt uploads provide transparent documentation, eliminating disputes about spending"
+            },
+            {
+              x: 70,
+              y: 45,
+              type: "improvement",
+              text: "Automatic splitting calculations remove emotional negotiation from financial discussions"
+            },
+            {
+              x: 55,
+              y: 75,
+              type: "feature",
+              text: "Spending categories help parents understand child-related expenses and plan budgets"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/5.Documents.png",
           alt: "Documents Storage",
-          caption: "Centralized document storage for important child-related paperwork"
+          caption: "Centralized document storage for important child-related paperwork",
+          annotations: [
+            {
+              x: 40,
+              y: 25,
+              type: "improvement",
+              text: "Centralized storage ensures both parents access the same current documents and information"
+            },
+            {
+              x: 60,
+              y: 50,
+              type: "feature",
+              text: "Smart organization by child and category makes critical documents findable during emergencies"
+            },
+            {
+              x: 75,
+              y: 75,
+              type: "improvement",
+              text: "Version control prevents confusion about outdated medical forms or legal documents"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/6.Messages.png",
           alt: "Messaging System",
-          caption: "Neutral messaging interface designed to reduce conflict and misunderstandings"
+          caption: "Neutral messaging interface designed to reduce conflict and misunderstandings",
+          annotations: [
+            {
+              x: 30,
+              y: 30,
+              type: "improvement",
+              text: "Neutral interface design discourages emotional escalation in written communication"
+            },
+            {
+              x: 65,
+              y: 45,
+              type: "feature",
+              text: "Message threading keeps conversations organized and prevents misunderstandings"
+            },
+            {
+              x: 50,
+              y: 70,
+              type: "improvement",
+              text: "Read receipts and timestamps create accountability without being intrusive"
+            }
+          ]
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/7.ChildProfile.png",
           alt: "Child Profile",
-          caption: "Detailed child profile with important information accessible to both parents"
+          caption: "Detailed child profile with important information accessible to both parents",
+          annotations: [
+            {
+              x: 35,
+              y: 25,
+              type: "feature",
+              text: "Comprehensive child information ensures both parents stay informed about development and needs"
+            },
+            {
+              x: 70,
+              y: 40,
+              type: "improvement",
+              text: "Medical information, preferences, and emergency contacts are always current and accessible"
+            },
+            {
+              x: 55,
+              y: 70,
+              type: "feature",
+              text: "Growth tracking and milestone documentation helps both parents stay connected to child's development"
+            }
+          ]
         }
       ]
     },
