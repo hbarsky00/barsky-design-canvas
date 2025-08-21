@@ -56,12 +56,8 @@ const RecentAdventuresSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="mb-12 md:mb-16"
         >
-          <div className="mb-6">
-            <div className="inline-flex items-center justify-center px-3 py-1 mb-4 text-xs font-medium tracking-wider text-primary bg-primary/10 rounded-full uppercase">
-              Experience
-            </div>
-          </div>
           <SectionHeader
+            eyebrow="Experience"
             title={
               <div className="flex items-center gap-3 justify-center">
                 Recent adventures
