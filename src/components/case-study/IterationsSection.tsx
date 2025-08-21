@@ -16,7 +16,7 @@ const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => 
         Design Iterations Section
       </h2>
       
-      <div className="section-container">
+      <div className="w-full px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {iterations.slice(0, 4).map((iteration, index) => (
             <div 
