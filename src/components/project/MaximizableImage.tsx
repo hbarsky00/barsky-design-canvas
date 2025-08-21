@@ -237,7 +237,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             maxHeight: '70vh',
             objectFit: fit
           }} 
-          className={`w-full max-w-full image-high-quality ${fit === 'contain' ? 'h-auto object-contain' : 'h-full object-cover'} transition-transform duration-300 group-hover:scale-105`} 
+          className={`w-full max-w-full image-high-quality image-drop-shadow ${fit === 'contain' ? 'h-auto object-contain' : 'h-full object-cover'} transition-transform duration-300 group-hover:scale-105`} 
         />
       )}
       

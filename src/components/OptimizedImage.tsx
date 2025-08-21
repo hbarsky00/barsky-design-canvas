@@ -48,7 +48,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       aspectRatio={dimensions?.aspectRatio}
       onLoadComplete={handleLoad}
       onError={handleError}
-      className={cn('transition-opacity duration-300 image-clarity-enhanced', className)}
+      className={cn('transition-opacity duration-300 image-clarity-enhanced image-drop-shadow', className)}
       {...props}
     />
   );

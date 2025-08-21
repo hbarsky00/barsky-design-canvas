@@ -25,7 +25,7 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
       caption={caption}
       priority={priority}
       fit="contain"
-      className={`shadow-elevated w-full glass-card layered-depth image-clarity-enhanced ${className}`}
+      className={`shadow-elevated w-full glass-card layered-depth image-clarity-enhanced image-drop-shadow ${className}`}
     />
   );
 };
