@@ -516,7 +516,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         { 
           label: "Iteration 3", 
-          imageSrc: "/media/splittime/ideation-3.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/DashboardPRIMARY.png", 
           alt: "Third iteration adding expense tracking",
           blurb: "Added expenses.",
           annotations: [
@@ -532,15 +532,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           annotations: [
             { text: "Template messaging reduces conflict potential", x: 45, y: 35, type: "feature" },
             { text: "Neutral tone suggestions prevent escalation", x: 65, y: 65, type: "improvement" }
-          ]
-        },
-        { 
-          label: "Iteration 5", 
-          imageSrc: "/media/splittime/ideation-5.jpg", 
-          alt: "Final iteration with unified interface",
-          annotations: [
-            { text: "Unified interface brings all features together seamlessly", x: 50, y: 30, type: "feature" },
-            { text: "Clean information hierarchy reduces decision fatigue", x: 40, y: 70, type: "improvement" }
           ]
         }
       ]
