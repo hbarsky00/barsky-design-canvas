@@ -13,34 +13,40 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    role: "Senior Product Designer",
-    company: "Amazon",
-    description: "Led design for Prime Video's recommendation engine, increasing user engagement by 34%",
-    duration: "2023 - Present"
+    role: "Senior Lead Product Designer",
+    company: "PNC",
+    description: "Redesigned mobile banking interface, boosting engagement by 40% and raising satisfaction scores by 25%",
+    duration: "2023 - July 2024"
   },
   {
-    role: "Lead UX Designer",
-    company: "Acorns",
-    description: "Redesigned investment onboarding flow, reducing drop-off rates by 42%",
+    role: "Senior UX/UI Designer",
+    company: "Bank of America",
+    description: "Led UX for Loan Central and ServiceNow IRM, cutting errors by 15% and lifting engagement by 10%",
     duration: "2022 - 2023"
   },
   {
-    role: "Design Researcher",
-    company: "Stanford University",
-    description: "Conducted user research for AI-assisted learning platforms",
-    duration: "2021 - 2022"
+    role: "Senior User Experience Designer",
+    company: "Deloitte",
+    description: "Elevated platform engagement by 20% through user-centered prototypes and innovative design solutions",
+    duration: "2021 - 2023"
   },
   {
-    role: "Product Designer",
-    company: "Tesla",
-    description: "Designed in-vehicle user interfaces for Model S and Model 3",
-    duration: "2020 - 2021"
+    role: "UX Strategist & Design Lead",
+    company: "Tata Consultancy Services",
+    description: "Designed fintech apps that drove a 15% revenue lift; built a document manager app reducing support workload by 10%",
+    duration: "2019 - 2021"
   },
   {
-    role: "UX Designer",
-    company: "Airbnb",
-    description: "Improved host onboarding experience across web and mobile platforms",
-    duration: "2019 - 2020"
+    role: "Senior UX Designer",
+    company: "KPMG",
+    description: "Created dashboards and data visualizations that reduced client costs by 10% and increased platform revenue by 14%",
+    duration: "2014 - 2019"
+  },
+  {
+    role: "Senior UX Designer",
+    company: "Express Scripts",
+    description: "Led design initiatives that improved satisfaction and engagement by 30%, while cutting project turnaround by 20%",
+    duration: "2013 - 2014"
   }
 ];
 
