@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useScrollToHomeTop } from "@/hooks/useScrollToHomeTop";
 import HLetter from "./logo/HLetter";
 import IramText from "./logo/IramText";
 import BarskyText from "./logo/BarskyText";
@@ -13,6 +13,7 @@ const AnimatedLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const scrollToHomeTop = useScrollToHomeTop();
 
   useEffect(() => {
     setMounted(true);
@@ -29,14 +30,14 @@ const AnimatedLogo = () => {
   };
 
   return (
-    <Link to="/">
-      <motion.div
-        className="relative flex items-center"
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
-        initial="initial"
-        animate={isHovered ? "hover" : "initial"}
-      >
+    <motion.div
+      className="relative flex items-center cursor-pointer"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={scrollToHomeTop}
+      initial="initial"
+      animate={isHovered ? "hover" : "initial"}
+    >
         {/* Logo Container */}
         <HLetter isDarkMode={isDarkMode} letterTransition={letterTransition} />
         <IramText isDarkMode={isDarkMode} letterTransition={letterTransition} />
@@ -66,7 +67,6 @@ const AnimatedLogo = () => {
         
         <DesignerSparkle />
       </motion.div>
-    </Link>
   );
 };
 

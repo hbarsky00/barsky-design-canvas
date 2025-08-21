@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 
 const ScrollEngagement: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [showEngagementPrompt, setShowEngagementPrompt] = useState(false);
 
   useEffect(() => {
@@ -13,9 +12,6 @@ const ScrollEngagement: React.FC = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
-
-      // Show back to top button after 20% scroll
-      setShowBackToTop(progress > 20);
 
       // Show engagement prompt if user scrolls past 60% but hasn't contacted
       if (progress > 60 && !localStorage.getItem('engagement-shown')) {
@@ -27,10 +23,6 @@ const ScrollEngagement: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const scrollToContact = () => {
     setShowEngagementPrompt(false);
@@ -51,21 +43,6 @@ const ScrollEngagement: React.FC = () => {
       >
         <div className="h-full bg-primary" />
       </motion.div>
-
-      {/* Back to Top Button */}
-      <AnimatePresence>
-        {showBackToTop && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            onClick={scrollToTop}
-            className="fixed bottom-4 right-4 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-colors z-40"
-          >
-            <ArrowUp className="h-5 w-5" />
-          </motion.button>
-        )}
-      </AnimatePresence>
 
       {/* Engagement Prompt */}
       <AnimatePresence>
