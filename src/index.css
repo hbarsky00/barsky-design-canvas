@@ -776,37 +776,7 @@ body {
   cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='12' cy='12' r='8'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10'/%3e%3canimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='1s' repeatCount='indefinite'/%3e%3c/svg%3e") 10 10, pointer;
 }
 
-/* Border illumination animations */
-@keyframes illuminate-pulse {
-  0%, 100% {
-    box-shadow: 
-      0 0 5px hsl(var(--primary) / 0.3),
-      0 0 10px hsl(var(--primary) / 0.2),
-      0 0 15px hsl(var(--primary) / 0.1);
-  }
-  50% {
-    box-shadow: 
-      0 0 10px hsl(var(--primary) / 0.5),
-      0 0 20px hsl(var(--primary) / 0.3),
-      0 0 30px hsl(var(--primary) / 0.2);
-  }
-}
-
-@keyframes illuminate-glow {
-  0% {
-    box-shadow: 
-      0 0 2px hsl(var(--primary) / 0.2),
-      inset 0 0 2px hsl(var(--primary) / 0.1);
-  }
-  100% {
-    box-shadow: 
-      0 0 8px hsl(var(--primary) / 0.4),
-      0 0 16px hsl(var(--primary) / 0.2),
-      inset 0 0 4px hsl(var(--primary) / 0.2);
-  }
-}
-
-/* Global interactive element styling with illumination */
+/* Global interactive element styling - clean hover */
 a[href],
 [role="link"],
 .cursor-link,
@@ -815,16 +785,15 @@ button[type="button"]:not(.no-circle-cursor) {
   border-radius: 4px;
 }
 
-/* Hover effects with twirling cursor and illuminated borders */
+/* Hover effects with twirling cursor only */
 a[href]:hover,
 [role="link"]:hover,
 .cursor-link:hover,
 button[type="button"]:not(.no-circle-cursor):hover {
   cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='12' cy='12' r='8'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10'/%3e%3canimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='1s' repeatCount='indefinite'/%3e%3c/svg%3e") 10 10, pointer;
-  animation: illuminate-glow 0.3s ease-in-out forwards;
 }
 
-/* Dark mode circle cursor and illumination */
+/* Dark mode circle cursor */
 .dark a[href]:hover,
 .dark [role="link"]:hover,
 .dark .cursor-link:hover,
@@ -832,13 +801,15 @@ button[type="button"]:not(.no-circle-cursor):hover {
   cursor: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='12' cy='12' r='8'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10'/%3e%3canimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='1s' repeatCount='indefinite'/%3e%3c/svg%3e") 10 10, pointer;
 }
 
-/* Utility classes for special illumination effects */
-.illuminate-border {
-  animation: illuminate-pulse 2s ease-in-out infinite;
+/* Clean navigation hover with underline */
+.nav-clean {
+  position: relative;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s ease;
 }
 
-.illuminate-hover:hover {
-  animation: illuminate-glow 0.3s ease-in-out forwards;
+.nav-clean:hover {
+  border-bottom-color: hsl(var(--primary));
 }
 
 /* Reduced motion support */
@@ -854,11 +825,5 @@ button[type="button"]:not(.no-circle-cursor):hover {
   .dark .cursor-link:hover,
   .dark button[type="button"]:not(.no-circle-cursor):hover {
     cursor: pointer;
-  }
-  
-  .illuminate-border,
-  .illuminate-hover:hover {
-    animation: none;
-    box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
   }
 }
