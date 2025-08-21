@@ -12,8 +12,8 @@ export const useHeaderNavigation = () => {
 
   const navLinks = [
     { name: "Case Studies", href: "#projects" },
-    { name: "About", href: "#about" },
-    { name: "Blog", href: "#blog-preview" },
+    { name: "About", href: "/about" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact Me", href: "#contact" },
   ];
 
@@ -85,6 +85,11 @@ export const useHeaderNavigation = () => {
     // Special case for home link
     if (link === "/") {
       return location.pathname === "/" && activeSection === "home";
+    }
+    
+    // For about page
+    if (link === "/about") {
+      return location.pathname === "/about";
     }
     
     // For blog page
