@@ -559,35 +559,39 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "THE RESULT",
       images: [
         {
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
-          alt: "Splittime final product showing co-parenting interface",
-          caption: "Complete Splittime platform enabling conflict-free co-parenting coordination",
-          annotations: [
-            {
-              x: 30,
-              y: 20,
-              type: "feature",
-              text: "Neutral messaging templates reduced conflict by 40%"
-            },
-            {
-              x: 70,
-              y: 35,
-              type: "feature",
-              text: "Approval workflows prevent misunderstandings"
-            },
-            {
-              x: 50,
-              y: 60,
-              type: "improvement",
-              text: "Simplified scheduling reduced decision fatigue"
-            },
-            {
-              x: 25,
-              y: 80,
-              type: "feature",
-              text: "Expense tracking creates transparency"
-            }
-          ]
+          src: "https://barskyux.com/wp-content/uploads/2025/08/1.Dashboard.png",
+          alt: "Splittime Dashboard",
+          caption: "Main dashboard showing overview of all co-parenting activities and quick actions"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/2.Dashboard-Add.png",
+          alt: "Dashboard Add Function",
+          caption: "Add new events, expenses, or messages directly from the dashboard"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/3.calendar.png",
+          alt: "Calendar View",
+          caption: "Shared calendar ensuring both parents stay coordinated on schedules"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/4.Expenses.png",
+          alt: "Expenses Tracking",
+          caption: "Track and split child-related expenses with transparent documentation"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/5.Documents.png",
+          alt: "Documents Storage",
+          caption: "Centralized document storage for important child-related paperwork"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/6.Messages.png",
+          alt: "Messaging System",
+          caption: "Neutral messaging interface designed to reduce conflict and misunderstandings"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/7.ChildProfile.png",
+          alt: "Child Profile",
+          caption: "Detailed child profile with important information accessible to both parents"
         }
       ]
     },

@@ -21,6 +21,7 @@ import SprintZeroSection from "../SprintZeroSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import AnnotatedImage from "../AnnotatedImage";
+import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
 import { Badge } from "@/components/ui/badge";
 import FloatingEmailButton from "@/components/FloatingEmailButton";
 
@@ -299,40 +300,50 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               </div>
 
               {caseStudyData.finalProductSection.images && (
-                <div className="grid gap-6 md:gap-8">
-                  {caseStudyData.finalProductSection.images.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
-                    >
-                      {image.annotations && image.annotations.length > 0 ? (
-                        <AnnotatedImage
-                          src={image.src}
-                          alt={image.alt}
-                          annotations={image.annotations}
-                          className="w-full h-auto rounded-lg"
-                        />
-                      ) : (
-                        <>
-                          <img
+                caseStudyData.finalProductSection.images.length > 3 ? (
+                  <ProjectImageCarousel
+                    images={caseStudyData.finalProductSection.images.map(img => img.src)}
+                    imageCaptions={caseStudyData.finalProductSection.images.reduce((acc, img) => {
+                      if (img.caption) acc[img.src] = img.caption;
+                      return acc;
+                    }, {} as Record<string, string>)}
+                  />
+                ) : (
+                  <div className="grid gap-6 md:gap-8">
+                    {caseStudyData.finalProductSection.images.map((image, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                      >
+                        {image.annotations && image.annotations.length > 0 ? (
+                          <AnnotatedImage
                             src={image.src}
                             alt={image.alt}
-                            className="w-full h-auto object-contain image-high-quality"
+                            annotations={image.annotations}
+                            className="w-full h-auto rounded-lg"
                           />
-                          {image.caption && (
-                            <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                              {image.caption}
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
+                        ) : (
+                          <>
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="w-full h-auto object-contain image-high-quality"
+                            />
+                            {image.caption && (
+                              <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                                {image.caption}
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
+                )
               )}
             </section>
           )}
