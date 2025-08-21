@@ -16,7 +16,6 @@ export const useHeaderNavigation = () => {
     { name: "Services", href: "/services" },
     { name: "Blog", href: "#blog-preview" },
     { name: "About", href: "#about" },
-    { name: "Resume", href: "https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk" },
     { name: "Contact", href: "#contact" },
   ];
 
