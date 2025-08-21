@@ -6,11 +6,14 @@ import UploadOverlay from "./image/UploadOverlay";
 import ImageErrorFallback from "./image/ImageErrorFallback";
 import EditableCaption from "../caption/EditableCaption";
 import { useImageUploadHandler } from "./image/useImageUploadHandler";
+import AnnotatedImage from "../case-study/AnnotatedImage";
+import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
 interface MaximizableImageProps {
   src: string;
   alt: string;
   caption?: string;
+  annotations?: ImageAnnotation[];
   imageList?: string[];
   currentIndex?: number;
   priority?: boolean;
@@ -30,6 +33,7 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   src,
   alt,
   caption,
+  annotations,
   imageList = [src],
   currentIndex = 0,
   priority = false,
@@ -175,6 +179,33 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             alignment="center"
           />
         )}
+      </figure>
+    );
+  }
+
+  // If annotations exist, render AnnotatedImage instead
+  if (annotations && annotations.length > 0) {
+    return (
+      <figure 
+        className={`relative group overflow-hidden w-full max-w-full ${className}`}
+        data-lovable-element="image-container" 
+        data-lovable-editable="image-wrapper"
+        style={aspectRatio ? { aspectRatio } : undefined}
+      >
+        <AnnotatedImage
+          src={currentSrc}
+          alt={alt}
+          annotations={annotations}
+          className="w-full h-auto"
+        />
+        <EditableCaption 
+          imageSrc={currentSrc} 
+          initialCaption={caption || ''} 
+          projectId={projectId} 
+          variant="default"
+          size="xs"
+          alignment="center"
+        />
       </figure>
     );
   }

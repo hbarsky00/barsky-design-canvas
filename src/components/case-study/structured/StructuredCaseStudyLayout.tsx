@@ -6,7 +6,7 @@ import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import CaseStudyNavigation from "../CaseStudyNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
-import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
+import { StructuredCaseStudyData, ImageAnnotation } from "@/data/structuredCaseStudies";
 import UnifiedCaseStudyHero from "./UnifiedCaseStudyHero";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
@@ -307,6 +307,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       if (img.caption) acc[img.src] = img.caption;
                       return acc;
                     }, {} as Record<string, string>)}
+                    imageAnnotations={caseStudyData.finalProductSection.images.reduce((acc, img) => {
+                      if (img.annotations) acc[img.src] = img.annotations;
+                      return acc;
+                    }, {} as Record<string, ImageAnnotation[]>)}
                   />
                 ) : (
                   <div className="grid gap-6 md:gap-8">

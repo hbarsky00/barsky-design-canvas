@@ -5,15 +5,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MaximizableImage from "./MaximizableImage";
 
+import { ImageAnnotation } from "@/data/structuredCaseStudies";
+
 interface ProjectImageCarouselProps {
   images: string[];
   imageCaptions?: Record<string, string>;
+  imageAnnotations?: Record<string, ImageAnnotation[]>;
   projectId?: string;
 }
 
 const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   images,
   imageCaptions = {},
+  imageAnnotations = {},
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -48,6 +52,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
               src={images[currentIndex]}
               alt={`Carousel image ${currentIndex + 1}`}
               caption={imageCaptions[images[currentIndex]]}
+              annotations={imageAnnotations[images[currentIndex]]}
               imageList={images}
               currentIndex={currentIndex}
               className="w-full"
