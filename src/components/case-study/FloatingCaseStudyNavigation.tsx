@@ -92,12 +92,12 @@ const FloatingCaseStudyNavigation: React.FC<FloatingCaseStudyNavigationProps> = 
           </DrawerHeader>
           
           <div className="px-4 pb-4">
-            <div className="space-y-2">
+            <div className="space-y-2 md:space-y-0 md:grid md:grid-cols-2 md:gap-2">
               {navigation.map((item, index) => (
                 <motion.button
                   key={item.anchor}
                   onClick={() => handleSectionClick(item.anchor)}
-                  className={`w-full text-left p-4 rounded-lg transition-all duration-200 flex items-center justify-between ${
+                  className={`w-full text-left p-4 md:p-3 rounded-lg transition-all duration-200 flex items-center justify-between ${
                     activeSection === item.anchor
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "bg-muted/50 text-foreground hover:bg-muted"
@@ -115,7 +115,7 @@ const FloatingCaseStudyNavigation: React.FC<FloatingCaseStudyNavigationProps> = 
               
               <motion.button
                 onClick={scrollToTop}
-                className="w-full text-left p-4 rounded-lg bg-secondary/50 text-secondary-foreground hover:bg-secondary transition-all duration-200 flex items-center justify-between mt-4"
+                className="w-full text-left p-4 md:p-3 rounded-lg bg-secondary/50 text-secondary-foreground hover:bg-secondary transition-all duration-200 flex items-center justify-between mt-4 md:col-span-2"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navigation.length * 0.1 }}
