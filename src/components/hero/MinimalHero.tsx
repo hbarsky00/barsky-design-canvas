@@ -62,7 +62,7 @@ const MinimalHero: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
         >
-          {/* Avatar with hover video effect */}
+          {/* Avatar with optimized video loading */}
           <div className="flex justify-center order-1">
             <div 
               className="relative cursor-pointer"
@@ -70,15 +70,21 @@ const MinimalHero: React.FC = () => {
             >
               <div className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
                              xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden shadow-lg relative">
+                <img
+                  src={imageUrl}
+                  alt="Hiram Barsky profile"
+                  className="w-full h-full object-cover"
+                />
                 <video
                   ref={videoRef}
                   src={videoUrl}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 hover:opacity-100 transition-opacity duration-300"
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   loop
-                  autoPlay={true}
+                  onMouseEnter={() => videoRef.current?.play()}
+                  onMouseLeave={() => videoRef.current?.pause()}
                 />
               </div>
             </div>
@@ -98,7 +104,7 @@ const MinimalHero: React.FC = () => {
             />
             <EditableContent
               contentKey="hero-title"
-              defaultContent="Product Design Engineer | Design Strategy <br /> AI Development | 15+ Years UX/UI | Fintech • Healthcare"
+              defaultContent="I Design AI-Powered UX That Boosts Conversion by 40%+ <br /> 15+ Years Experience | Fintech • Healthcare • SaaS"
               pagePath="/"
               sectionName="hero"
               renderAs="h2"

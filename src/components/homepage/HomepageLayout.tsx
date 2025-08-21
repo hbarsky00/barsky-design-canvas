@@ -16,9 +16,17 @@ import SectionTransition from "@/components/transitions/SectionTransition";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
+import ExitIntentDetector from "@/components/bounce-reduction/ExitIntentDetector";
+import ScrollEngagement from "@/components/bounce-reduction/ScrollEngagement";
+import { useBounceReduction } from "@/hooks/useBounceReduction";
 
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
+  const { metrics, isLikelyToBounce } = useBounceReduction();
+
+  const handleExitIntent = () => {
+    console.log('Exit intent detected, bounce reduction triggered');
+  };
   
 
   return (
@@ -89,6 +97,13 @@ const HomepageLayout: React.FC = () => {
       <Footer />
       <FloatingConsultationBubble />
       <FloatingScrollToTopButton />
+      
+      {/* Bounce Reduction Components */}
+      <ExitIntentDetector 
+        onExitIntent={handleExitIntent}
+        disabled={metrics.timeOnPage < 10000} // Only show after 10 seconds
+      />
+      <ScrollEngagement />
     </div>
   );
 };

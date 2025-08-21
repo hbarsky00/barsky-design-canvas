@@ -47,8 +47,8 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
       }
     };
 
-    // Start playback attempt after a short delay to not interfere with page load
-    const timer = setTimeout(tryAutoplay, 1000);
+    // Wait for user interaction before starting audio to reduce bounce rate
+    const timer = setTimeout(tryAutoplay, 3000);
 
     return () => {
       clearTimeout(timer);
