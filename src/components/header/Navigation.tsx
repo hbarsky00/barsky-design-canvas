@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "../ThemeToggle";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
-import { Home, Briefcase, Store, User, Mail, BookOpen, FileText } from "lucide-react";
-import { trackContentEngagement } from "@/lib/analytics";
+import { Briefcase, User, Mail, BookOpen } from "lucide-react";
 
 interface NavigationProps {
   links: Array<{ name: string; href: string }>;
@@ -20,31 +18,19 @@ const Navigation: React.FC<NavigationProps> = ({
   handleLinkClick, 
   isLinkActive 
 }) => {
-  const openCalendly = () => {
-    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
-    trackContentEngagement('navigation', 'consultation-booking', 'Calendly Booking');
-  };
 
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     const iconProps = "h-4 w-4 mr-1 stroke-2 stroke-current fill-none";
     
     switch (linkName.toLowerCase()) {
-      case "home":
-        return <Home className={iconProps} />;
-      case "projects":
+      case "case studies":
         return <Briefcase className={iconProps} />;
       case "about":
         return <User className={iconProps} />;
-      case "services":
-        return <Briefcase className={iconProps} />;
-      case "store":
-        return <Store className={iconProps} />;
       case "blog":
         return <BookOpen className={iconProps} />;
-      case "resume":
-        return <FileText className={iconProps} />;
-      case "contact":
+      case "contact me":
         return <Mail className={iconProps} />;
       default:
         return null;
@@ -89,15 +75,6 @@ const Navigation: React.FC<NavigationProps> = ({
           </Link>
         );
       })}
-      
-      <Button
-        onClick={openCalendly}
-        size="sm"
-        className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
-      >
-        <Calendar className="h-4 w-4 mr-1" />
-        Book Call
-      </Button>
       
       <ThemeToggle />
     </nav>

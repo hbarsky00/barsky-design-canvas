@@ -11,12 +11,10 @@ export const useHeaderNavigation = () => {
   const navigate = useNavigate();
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Projects", href: "#projects" },
-    { name: "Services", href: "/services" },
-    { name: "Blog", href: "#blog-preview" },
+    { name: "Case Studies", href: "#projects" },
     { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Blog", href: "#blog-preview" },
+    { name: "Contact Me", href: "#contact" },
   ];
 
   // Track scroll direction and header visibility

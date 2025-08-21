@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
+import Navigation from "./header/Navigation";
 import ThemeToggle from "./ThemeToggle";
 import ProfileAvatar from "./header/ProfileAvatar";
 import { useLocation } from "react-router-dom";
@@ -14,6 +15,7 @@ const Header: React.FC = () => {
   const {
     isScrolled,
     isScrolledPastHero,
+    activeSection,
     navLinks,
     isMobileMenuOpen,
     handleLinkClick,
@@ -56,8 +58,17 @@ const Header: React.FC = () => {
             )}
           </div>
 
+          <Navigation 
+            links={navLinks}
+            activeSection={activeSection}
+            handleLinkClick={handleLinkClick}
+            isLinkActive={isLinkActive}
+          />
+
           <div className="flex items-center gap-3">
-            <ThemeToggle />
+            <div className="md:hidden">
+              <ThemeToggle />
+            </div>
             <MobileMenu 
               links={navLinks} 
               isMobileMenuOpen={isMobileMenuOpen} 
