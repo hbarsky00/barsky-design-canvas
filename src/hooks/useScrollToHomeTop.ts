@@ -1,10 +1,13 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export const useScrollToHomeTop = () => {
+export const useScrollToHomeTop = (onScrollStart?: () => void) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const scrollToHomeTop = () => {
+    // Notify that intentional scrolling is starting
+    onScrollStart?.();
+    
     if (location.pathname !== '/') {
       // Navigate to homepage first
       navigate('/');

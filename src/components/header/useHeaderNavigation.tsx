@@ -7,6 +7,7 @@ export const useHeaderNavigation = () => {
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isIntentionalScrolling, setIsIntentionalScrolling] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -42,6 +43,9 @@ export const useHeaderNavigation = () => {
       return;
     }
     
+    // Set intentional scrolling flag
+    setIsIntentionalScrolling(true);
+    
     // If we're already on the homepage, scroll to the section with header offset
     const section = document.getElementById(sectionId);
     if (section) {
@@ -54,6 +58,11 @@ export const useHeaderNavigation = () => {
         behavior: 'smooth'
       });
       setIsMobileMenuOpen(false);
+      
+      // Clear intentional scrolling flag after scroll completes
+      setTimeout(() => {
+        setIsIntentionalScrolling(false);
+      }, 1000);
     }
   };
 
@@ -148,8 +157,13 @@ export const useHeaderNavigation = () => {
       const slideScrollThreshold = heroHeight * 0.95;
       setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
 
-      // Home section logic - set as active when near the top of the page
-      if (location.pathname === '/' && scrollPosition < 200) {
+      // Skip section detection during intentional scrolling to prevent conflicts
+      if (isIntentionalScrolling) {
+        return;
+      }
+
+      // Home section logic - set as active when near the top of the page with bigger buffer
+      if (location.pathname === '/' && scrollPosition < 400) {
         setActiveSection("home");
         return;
       }
@@ -177,16 +191,17 @@ export const useHeaderNavigation = () => {
             const visiblePercent = visibleHeight > 0 ? (visibleHeight / sectionHeight) * 100 : 0;
             
             // If this section is more visible than our current most visible section, update
-            if (visiblePercent > mostVisibleSection.visiblePercent && rect.top < windowHeight / 2) {
+            // Added minimum visibility threshold to prevent false positives
+            if (visiblePercent > mostVisibleSection.visiblePercent && visiblePercent > 25 && rect.top < windowHeight / 2) {
               mostVisibleSection = { id, visiblePercent };
             }
           }
         }
         
-        // Only update if we found a visible section
-        if (mostVisibleSection.visiblePercent > 0) {
+        // Only update if we found a visible section with significant visibility
+        if (mostVisibleSection.visiblePercent > 25) {
           setActiveSection(mostVisibleSection.id);
-        } else if (scrollPosition < 200) {
+        } else if (scrollPosition < 400) {
           // Fallback to home when near the top and no section is visible enough
           setActiveSection("home");
         }
