@@ -57,11 +57,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
     ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...(caseStudyData.ideationSection ? [
-      { label: "Ideation", anchor: "#ideation" },
-      { label: "Iteration 1", anchor: "#iteration-1" },
-      { label: "Iteration 2", anchor: "#iteration-2" },
-      { label: "Iteration 3", anchor: "#iteration-3" },
-      { label: "Iteration 4", anchor: "#iteration-4" }
+      { label: "Ideation", anchor: "#ideation" }
     ] : []),
     ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
     ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
