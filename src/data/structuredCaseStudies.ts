@@ -629,7 +629,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Initially, I tried to include too many features in the scheduling interface, which made it overwhelming for users. I learned to prioritize core functionality and gradually introduce advanced features based on user feedback.",
       images: [
         {
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-early-concept.jpg",
+          src: "https://barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-05-03-at-10.10.22%E2%80%AFPM-e1748480830908.png",
           alt: "Early Splittime interface with feature overload",
           caption: "Early design attempts included too many features, overwhelming stressed co-parents",
           annotations: [
