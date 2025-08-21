@@ -81,16 +81,9 @@ const RecentAdventuresSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative"
+              className="group"
             >
-              {/* Timeline line - hidden on mobile */}
-              {index < experiences.length - 1 && (
-                <div className="hidden md:block absolute left-8 top-16 w-px h-16 bg-border" />
-              )}
-              
               <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 p-6 rounded-lg border border-border/50 bg-surface/50 hover:bg-surface/80 hover:border-primary/20 transition-all duration-300">
-                {/* Timeline dot - hidden on mobile */}
-                <div className="hidden md:block flex-shrink-0 w-4 h-4 rounded-full bg-primary shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all duration-300" />
                 
                 {/* Content */}
                 <div className="flex-1 grid md:grid-cols-2 gap-4 md:gap-8">
