@@ -11,6 +11,7 @@ import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
+import FloatingScrollToTopButton from "@/components/FloatingScrollToTopButton";
 import SectionTransition from "@/components/transitions/SectionTransition";
 import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
@@ -87,6 +88,7 @@ const HomepageLayout: React.FC = () => {
       </main>
       <Footer />
       <FloatingConsultationBubble />
+      <FloatingScrollToTopButton />
     </div>
   );
 };
