@@ -42,10 +42,17 @@ export const useHeaderNavigation = () => {
       return;
     }
     
-    // If we're already on the homepage, just scroll to the section
+    // If we're already on the homepage, scroll to the section with header offset
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '64');
+      const elementTop = section.offsetTop;
+      const offset = elementTop - headerHeight - 20; // 20px breathing room
+      
+      window.scrollTo({
+        top: Math.max(0, offset),
+        behavior: 'smooth'
+      });
       setIsMobileMenuOpen(false);
     }
   };
