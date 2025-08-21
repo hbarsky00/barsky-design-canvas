@@ -277,7 +277,7 @@ const CaseStudyCard: React.FC<{
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section id="projects" className="py-12 bg-white" tabIndex={-1}>
+    <section className="py-12 bg-white" tabIndex={-1}>
       <div className="container px-4 mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div

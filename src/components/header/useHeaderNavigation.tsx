@@ -12,7 +12,7 @@ export const useHeaderNavigation = () => {
   const navigate = useNavigate();
 
   const navLinks = [
-    { name: "Case Studies", href: "#projects" },
+    { name: "Case Studies", href: "#case-studies" },
     { name: "About", href: "/about" },
     { name: "Blog", href: "/blog" },
     { name: "Contact Me", href: "#contact" },
