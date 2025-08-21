@@ -1322,12 +1322,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "'Today' view with aging statuses and alerts."
         }
       ],
-      researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
-      researchImageAlt: "Research artifact — TOP (replace this URL)",
+      researchImage: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png",
+      researchImageAlt: "Inventory audit screenshot showing data fragmentation across tools",
       researchImages: [
         {
-          src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
-          alt: "Research artifact — BOTTOM (replace this URL)"
+          src: "https://barskyux.com/wp-content/uploads/2025/07/AutomatedInventoryTrackingSystem-Claude-8July2025-ezgif.com-video-to-gif-converter.gif",
+          alt: "Animated workflow of automated inventory tracking system"
         }
       ]
     },
@@ -1343,14 +1343,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "I converged on a unified operations platform after validating that most inefficiencies came from switching between disconnected tools and re-entering the same data. The decision centered on consolidating core functions, automating repetitive tasks, and providing clear daily priorities—creating efficiency through integration rather than adding more specialized features.",
       images: [
         {
-          src: "placeholder",
+          src: "https://barskyux.com/wp-content/uploads/2025/07/sitemap.png",
           alt: "Initial Concepts & Sketches",
-          caption: "Early ideation on business management consolidation and workflow optimization"
+          caption: "Initial concept sitemap mapping core modules and navigation."
         },
         {
-          src: "placeholder",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755796640970-scaled.png",
           alt: "User Flow Explorations",
-          caption: "Blue-sky exploration of unified operations and automated task management workflows"
+          caption: "User flow exploration detailing end-to-end operations from intake to invoicing."
         }
       ]
     },
@@ -1370,7 +1370,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         { 
           label: "Iteration 1", 
-          imageSrc: "/media/biz/ideation-1.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_0.png", 
           alt: "First iteration of business dashboard",
           annotations: [
             { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
@@ -1379,7 +1379,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         { 
           label: "Iteration 2", 
-          imageSrc: "/media/biz/ideation-2.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png", 
           alt: "Second iteration with task management",
           annotations: [
             { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
@@ -1388,7 +1388,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         { 
           label: "Iteration 3", 
-          imageSrc: "/media/biz/ideation-3.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_2.png", 
           alt: "Third iteration adding invoice workflow",
           annotations: [
             { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
@@ -1397,7 +1397,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         { 
           label: "Iteration 4", 
-          imageSrc: "/media/biz/ideation-4.jpg", 
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png", 
           alt: "Fourth iteration with scheduling integration",
           annotations: [
             { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
@@ -1438,7 +1438,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "THE RESULT",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/07/993shots_so.png",
           alt: "Business management system final interface",
           caption: "Complete business management platform with unified operations and automated workflows",
           annotations: [
@@ -1492,7 +1492,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner.",
       images: [
         {
-          src: "/lovable-uploads/quickflow_process_flow.svg",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-21-2025-01_29_46-PM.png",
           alt: "Business management system operational improvements and metrics",
           annotations: [
             { text: "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.", x: 25, y: 40, type: "improvement" },
@@ -1507,7 +1507,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Initially, I tried to create too many customization options, which overwhelmed users. I learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners.",
       images: [
         {
-          src: "/business-management-early-concept.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
           alt: "Early business management interface with feature overload",
           caption: "Early designs included too many customization options, overwhelming busy business owners",
           annotations: [
