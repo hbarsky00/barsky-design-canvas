@@ -241,5 +241,6 @@ export const useHeaderNavigation = () => {
     toggleMobileMenu,
     isLinkActive,
     headerHidden,
+    setIsIntentionalScrolling,
   };
 };
