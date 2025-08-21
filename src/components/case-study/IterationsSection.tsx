@@ -9,21 +9,21 @@ interface IterationsSectionProps {
 const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => {
   return (
     <section 
-      className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] py-8"
+      className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] py-4"
       aria-labelledby="iterations-heading"
     >
       <h2 id="iterations-heading" className="sr-only">
         Design Iterations Section
       </h2>
       
-      <div className="w-full px-6 md:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <div className="w-full px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
           {iterations.slice(0, 4).map((iteration, index) => (
             <div 
               key={index}
               id={`iteration-${index + 1}`}
               data-section={`iteration-${index + 1}`}
-              className="space-y-6"
+              className="space-y-3"
             >
               <div className="text-xs tracking-widest uppercase text-neutral-500 font-medium text-center">
                 {iteration.label}

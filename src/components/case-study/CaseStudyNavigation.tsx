@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import MobileCaseStudyNavigation from "./MobileCaseStudyNavigation";
+import FloatingCaseStudyNavigation from "./FloatingCaseStudyNavigation";
 
 interface NavItem {
   label: string;
@@ -137,9 +137,9 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
         </div>
       </aside>
 
-      {/* Mobile Navigation with Drawer - Only show after overview section */}
+      {/* Floating Navigation - Show after overview section */}
       {showNavigation && (
-        <MobileCaseStudyNavigation
+        <FloatingCaseStudyNavigation
           navigation={navigation}
           activeSection={activeSection}
           onSectionClick={scrollToSection}

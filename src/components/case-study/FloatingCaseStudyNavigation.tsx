@@ -15,13 +15,13 @@ interface NavItem {
   anchor: string;
 }
 
-interface MobileCaseStudyNavigationProps {
+interface FloatingCaseStudyNavigationProps {
   navigation: NavItem[];
   activeSection: string;
   onSectionClick: (anchor: string) => void;
 }
 
-const MobileCaseStudyNavigation: React.FC<MobileCaseStudyNavigationProps> = ({
+const FloatingCaseStudyNavigation: React.FC<FloatingCaseStudyNavigationProps> = ({
   navigation,
   activeSection,
   onSectionClick,
@@ -42,7 +42,7 @@ const MobileCaseStudyNavigation: React.FC<MobileCaseStudyNavigationProps> = ({
   const progress = activeIndex >= 0 ? ((activeIndex + 1) / navigation.length) * 100 : 0;
 
   return (
-    <div className="lg:hidden fixed bottom-6 left-4 z-50 flex items-center gap-2">
+    <div className="fixed bottom-6 left-4 z-50 flex items-center gap-2">
       <Drawer open={isOpen} onOpenChange={setIsOpen}>
         <DrawerTrigger asChild>
           <motion.button
@@ -131,4 +131,4 @@ const MobileCaseStudyNavigation: React.FC<MobileCaseStudyNavigationProps> = ({
   );
 };
 
-export default MobileCaseStudyNavigation;
+export default FloatingCaseStudyNavigation;
