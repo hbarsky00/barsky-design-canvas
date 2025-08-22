@@ -130,17 +130,17 @@ const FeaturedProjects: React.FC = () => {
           className="hidden sm:grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-16"
         >
           <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-            <div className="text-2xl font-bold text-green-600">65%</div>
+            <div className="text-impact-metric-neutral-md text-green-600">65%</div>
             <div className="text-sm text-green-700">User Engagement ↑</div>
             <div className="text-xs text-green-600">Wholesale Distribution</div>
           </div>
           <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-            <div className="text-2xl font-bold text-blue-600">70%</div>
+            <div className="text-impact-metric-neutral-md text-blue-600">70%</div>
             <div className="text-sm text-blue-700">Faster Processing</div>
             <div className="text-xs text-blue-600">Loan Management</div>
           </div>
           <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-            <div className="text-2xl font-bold text-purple-600">$2M+</div>
+            <div className="text-impact-metric-neutral-md text-purple-600">$2M+</div>
             <div className="text-sm text-purple-700">Revenue Generated</div>
             <div className="text-xs text-purple-600">Client Portfolio</div>
           </div>

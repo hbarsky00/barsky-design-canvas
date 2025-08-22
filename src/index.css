@@ -571,6 +571,56 @@ body {
   @apply text-4xl lg:text-5xl font-display font-bold;
 }
 
+/* Button styles - Use display font for consistency with headers */
+.btn-text {
+  @apply font-display font-medium;
+}
+
+.btn-text-bold {
+  @apply font-display font-semibold;
+}
+
+/* Navigation styles - Use display font */
+.nav-text {
+  @apply font-display font-medium;
+}
+
+.nav-text-bold {
+  @apply font-display font-semibold;
+}
+
+/* General heading utility - for any heading regardless of size */
+.heading {
+  @apply font-display font-bold;
+}
+
+/* Body content - explicitly use Inter (default sans) */
+.body-text {
+  @apply font-sans;
+}
+
+/* Color-neutral impact metrics for custom coloring */
+.text-impact-metric-neutral-sm {
+  @apply text-xl lg:text-2xl font-display font-bold;
+}
+
+.text-impact-metric-neutral-md {
+  @apply text-2xl font-display font-bold;
+}
+
+.text-impact-metric-neutral-lg {
+  @apply text-3xl font-display font-bold;
+}
+
+.text-impact-metric-neutral-xl {
+  @apply text-4xl font-display font-bold;
+}
+
+/* Responsive impact metric */
+.text-impact-metric-responsive {
+  @apply text-2xl md:text-3xl font-display font-bold text-primary;
+}
+
 /* Section scroll margin for header offset */
 #intro, #bio, #case-studies, #contact, #blog, #faq {
   scroll-margin-top: 96px;

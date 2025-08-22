@@ -89,7 +89,7 @@ const SplittimeImpactMetrics: React.FC<SplittimeImpactMetricsProps> = ({
                 <div className="flex justify-center mb-4 text-blue-500">
                   <IconComponent className="h-6 w-6" />
                 </div>
-                <div className="text-4xl font-bold text-blue-600 mb-2">{impact.metric}</div>
+                <div className="text-impact-metric-neutral-xl text-blue-600 mb-2">{impact.metric}</div>
                 <div className="text-sm text-neutral-600 uppercase tracking-wide">{impact.label}</div>
               </motion.div>
             );

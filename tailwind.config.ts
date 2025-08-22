@@ -96,7 +96,6 @@ const config: Config = {
         sans: ["Inter", "ui-sans-serif", "system-ui"],
         mono: ["ui-monospace", "SFMono-Regular"],
         display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
-        brand: ["Outfit", "ui-sans-serif", "system-ui"],
         body: ["Inter", "ui-sans-serif", "system-ui"],
       },
       keyframes: {
