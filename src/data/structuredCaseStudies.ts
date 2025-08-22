@@ -1322,7 +1322,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "'Today' view with aging statuses and alerts."
         }
       ],
-      researchImage: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png",
+      researchImage: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png?v=20250122",
       researchImageAlt: "Inventory audit screenshot showing data fragmentation across tools",
       researchImages: [
         {
