@@ -172,7 +172,7 @@ const CaseStudyCard: React.FC<{
           </p>
 
           {/* Impact Metrics */}
-          <div className="text-2xl font-bold text-primary">
+          <div className="text-impact-metric-md">
             {study.impact}
           </div>
 
@@ -242,7 +242,7 @@ const CaseStudyCard: React.FC<{
             </p>
 
             {/* Impact Metrics */}
-            <div className="text-2xl font-bold text-primary mb-6">
+            <div className="text-impact-metric-md mb-6">
               {study.impact}
             </div>
 

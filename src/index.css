@@ -533,6 +533,44 @@ body {
   @apply max-w-[72ch] mx-auto text-center;
 }
 
+/* Impact Metrics - Primary colored bold text with display font */
+.text-impact-metric {
+  @apply font-display font-bold text-primary;
+}
+
+.text-impact-metric-sm {
+  @apply text-xl lg:text-2xl font-display font-bold text-primary;
+}
+
+.text-impact-metric-md {
+  @apply text-2xl font-display font-bold text-primary;
+}
+
+.text-impact-metric-lg {
+  @apply text-3xl font-display font-bold text-primary;
+}
+
+/* Header text styles - Display font with bold weight */
+.text-header-display {
+  @apply font-display font-bold;
+}
+
+.text-header-display-sm {
+  @apply text-xl font-display font-bold;
+}
+
+.text-header-display-md {
+  @apply text-2xl font-display font-bold;
+}
+
+.text-header-display-lg {
+  @apply text-3xl font-display font-bold;
+}
+
+.text-header-display-xl {
+  @apply text-4xl lg:text-5xl font-display font-bold;
+}
+
 /* Section scroll margin for header offset */
 #intro, #bio, #case-studies, #contact, #blog, #faq {
   scroll-margin-top: 96px;

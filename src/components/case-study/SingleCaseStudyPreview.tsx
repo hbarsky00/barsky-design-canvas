@@ -201,7 +201,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
               </p>
 
               {/* Impact Metrics */}
-              <div className="text-xl lg:text-2xl font-bold text-primary">
+              <div className="text-impact-metric-sm">
                 {relatedStudy.impact}
               </div>
 
