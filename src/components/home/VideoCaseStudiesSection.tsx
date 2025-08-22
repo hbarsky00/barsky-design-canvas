@@ -146,7 +146,7 @@ const CaseStudyCard: React.FC<{
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
         {/* Image Section - Full Width on Mobile - Now Clickable */}
-        <div className="relative bg-gray-50 p-6 min-h-[240px] flex items-center">
+        <div className="relative bg-gray-50 py-6 min-h-[240px] flex items-center">
           {renderMedia()}
         </div>
 
