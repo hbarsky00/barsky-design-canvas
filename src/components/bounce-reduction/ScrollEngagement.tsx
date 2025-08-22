@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLocation } from 'react-router-dom';
 
 const ScrollEngagement: React.FC = () => {
+  const location = useLocation();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showEngagementPrompt, setShowEngagementPrompt] = useState(false);
+  const [isConsultationBubbleVisible, setIsConsultationBubbleVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,16 +16,39 @@ const ScrollEngagement: React.FC = () => {
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
 
-      // Show engagement prompt if user scrolls past 60% but hasn't contacted
-      if (progress > 60 && !localStorage.getItem('engagement-shown')) {
-        setShowEngagementPrompt(true);
-        localStorage.setItem('engagement-shown', 'true');
+      // Only show on homepage and check for consultation bubble visibility
+      if (location.pathname === "/") {
+        const heroSection = document.getElementById("hero");
+        const contactSection = document.getElementById("contact");
+        
+        // Check if consultation bubble should be visible
+        let consultationBubbleVisible = false;
+        if (heroSection && contactSection) {
+          const heroRect = heroSection.getBoundingClientRect();
+          const contactRect = contactSection.getBoundingClientRect();
+          const hasScrolledPastHero = heroRect.bottom <= 0;
+          const isInContactSection = contactRect.top <= window.innerHeight && contactRect.bottom >= 0;
+          consultationBubbleVisible = hasScrolledPastHero && !isInContactSection;
+        }
+        
+        setIsConsultationBubbleVisible(consultationBubbleVisible);
+
+        // Only show engagement prompt if consultation bubble is not visible
+        if (progress > 60 && !localStorage.getItem('engagement-shown') && !consultationBubbleVisible) {
+          setShowEngagementPrompt(true);
+          localStorage.setItem('engagement-shown', 'true');
+        }
+        
+        // Hide engagement prompt if consultation bubble becomes visible
+        if (consultationBubbleVisible && showEngagementPrompt) {
+          setShowEngagementPrompt(false);
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname, showEngagementPrompt]);
 
   const scrollToContact = () => {
     setShowEngagementPrompt(false);
