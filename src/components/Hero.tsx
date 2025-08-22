@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
               <AnimatedText 
                 text="Hi, I'm" 
                 tag="h2" 
-                className="text-xl sm:text-2xl font-semibold mb-3 text-barsky-text"
+                className="text-xl sm:text-2xl heading-medium mb-3 text-barsky-text"
                 delay={800}
                 type="word"
                 animation="bounce"
@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
               <AnimatedText
                 text="Barsky Design"
                 tag="h1"
-                className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-barsky-dark"
+                className="heading-hero mb-6 text-barsky-dark"
                 delay={1000}
                 type="word"
                 animation="bounce"

@@ -59,7 +59,7 @@ const SkillsShowcase: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="heading-section text-gray-900 mb-6">
             Design Skills & Process
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -85,9 +85,9 @@ const SkillsShowcase: React.FC = () => {
               </div>
 
               {/* Category Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-6 group-hover:text-blue-600 transition-colors">
-                {category.title}
-              </h3>
+               <h3 className="heading-card text-gray-900 mb-6 group-hover:text-blue-600 transition-colors">
+                 {category.title}
+               </h3>
 
               {/* Skills List - Clean Typography */}
               <div className="space-y-3">

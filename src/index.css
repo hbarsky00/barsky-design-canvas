@@ -621,6 +621,56 @@ body {
   @apply text-2xl md:text-3xl font-display font-bold text-primary;
 }
 
+/* Neutral impact metrics */
+.text-impact-metric-neutral {
+  @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-foreground;
+}
+
+/* All headings and display text - Space Grotesk */
+.heading {
+  @apply font-display font-bold;
+}
+
+.heading-semibold {
+  @apply font-display font-semibold;
+}
+
+.heading-medium {
+  @apply font-display font-medium;
+}
+
+/* Size-specific heading classes */
+.heading-hero {
+  @apply text-5xl sm:text-6xl md:text-7xl font-display font-bold;
+}
+
+.heading-section {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-display font-bold;
+}
+
+.heading-subsection {
+  @apply text-2xl font-display font-bold;
+}
+
+.heading-card {
+  @apply text-xl font-display font-bold;
+}
+
+/* Button and UI element text - Space Grotesk */
+.btn-text {
+  @apply font-display font-medium;
+}
+
+/* Navigation styles */
+.nav-text {
+  @apply font-display font-medium;
+}
+
+/* Body content default */
+.body-text {
+  @apply font-sans;
+}
+
 /* Section scroll margin for header offset */
 #intro, #bio, #case-studies, #contact, #blog, #faq {
   scroll-margin-top: 96px;

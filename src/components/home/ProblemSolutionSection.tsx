@@ -13,7 +13,7 @@ const ProblemSolutionSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="heading-section text-gray-900 mb-6">
             Most Product Designers Guess. I Use AI to Know.
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -34,7 +34,7 @@ const ProblemSolutionSection: React.FC = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-6">
                 <XCircle className="h-6 w-6 text-red-500" />
-                <h3 className="text-2xl font-bold text-gray-900">Traditional UX</h3>
+                <h3 className="heading-subsection text-gray-900">Traditional UX</h3>
               </div>
               
               <div className="space-y-4">
@@ -76,7 +76,7 @@ const ProblemSolutionSection: React.FC = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-6">
                 <CheckCircle className="h-6 w-6 text-green-500" />
-                <h3 className="text-2xl font-bold text-gray-900">AI-Enhanced UX</h3>
+                <h3 className="heading-subsection text-gray-900">AI-Enhanced UX</h3>
               </div>
               
               <div className="space-y-4">
@@ -124,32 +124,32 @@ const ProblemSolutionSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center max-w-4xl mx-auto"
         >
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">
+          <h3 className="heading-subsection text-gray-900 mb-8">
             The difference? While others conduct manual research, I use ChatGPT and Claude AI to:
           </h3>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="glass-card p-6 text-center">
               <BarChart3 className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-gray-900 mb-2">Analyze 10,000+ Behaviors</h4>
+              <h4 className="heading-medium text-gray-900 mb-2">Analyze 10,000+ Behaviors</h4>
               <p className="text-gray-600 text-sm">In hours, not months</p>
             </div>
             
             <div className="glass-card p-6 text-center">
               <Target className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-gray-900 mb-2">Identify Conversion Blockers</h4>
+              <h4 className="heading-medium text-gray-900 mb-2">Identify Conversion Blockers</h4>
               <p className="text-gray-600 text-sm">Before they impact revenue</p>
             </div>
             
             <div className="glass-card p-6 text-center">
               <Zap className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-gray-900 mb-2">Create Personalized Experiences</h4>
+              <h4 className="heading-medium text-gray-900 mb-2">Create Personalized Experiences</h4>
               <p className="text-gray-600 text-sm">That adapt in real-time</p>
             </div>
             
             <div className="glass-card p-6 text-center">
               <CheckCircle className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-              <h4 className="font-semibold text-gray-900 mb-2">Deliver Measurable Results</h4>
+              <h4 className="heading-medium text-gray-900 mb-2">Deliver Measurable Results</h4>
               <p className="text-gray-600 text-sm">Not just pretty designs</p>
             </div>
           </div>

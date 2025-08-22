@@ -17,7 +17,7 @@ const BlogLanding: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="heading-section text-gray-900 mb-6">
               UX Design & AI Insights
             </h1>
             <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
@@ -61,7 +61,7 @@ const BlogLanding: React.FC = () => {
                     ))}
                   </div>
                   
-                  <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                  <h2 className="heading-card text-gray-900 mb-3 line-clamp-2">
                     <Link 
                       to={`/blog/${post.slug}`}
                       className="hover:text-blue-600 transition-colors"

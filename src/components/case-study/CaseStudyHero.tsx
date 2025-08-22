@@ -27,7 +27,7 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
           className="text-center mb-12 mt-8"
           style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+          <h1 className="heading-hero text-foreground mb-6">
             {caseStudy.title}
           </h1>
           

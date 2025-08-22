@@ -36,9 +36,9 @@ const ServicesPreviewSection: React.FC = () => {
       }} transition={{
         duration: 0.8
       }} className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Choose Your Revenue Growth Strategy
-          </h2>
+           <h2 className="heading-section text-gray-900 mb-6">
+             Choose Your Revenue Growth Strategy
+           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Two proven packages designed to accelerate business growth through AI-enhanced UX design. 
             Each includes free consultation to ensure perfect fit for your goals.
@@ -67,7 +67,7 @@ const ServicesPreviewSection: React.FC = () => {
                     <span className="text-2xl font-bold text-gray-900">{service.price}</span>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                <h3 className="heading-subsection text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
                 
                 <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-50 px-3 py-2 rounded-lg">
@@ -112,9 +112,9 @@ const ServicesPreviewSection: React.FC = () => {
         delay: 0.6
       }} className="text-center mt-16">
           <div className="glass-card p-8 max-w-2xl mx-auto border border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Ready to 10X Your Conversion Rate?
-            </h3>
+             <h3 className="heading-subsection text-gray-900 mb-4">
+               Ready to 10X Your Conversion Rate?
+             </h3>
             <p className="text-gray-600 mb-6">
               Get a free 30-minute strategy session where I'll analyze your current setup and show you exactly 
               how to implement AI-enhanced UX that drives measurable ROI.

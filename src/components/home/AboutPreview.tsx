@@ -27,7 +27,7 @@ const AboutPreview: React.FC = () => {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="heading-section text-gray-900 mb-6">
                 About My Design Process
               </h2>
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
