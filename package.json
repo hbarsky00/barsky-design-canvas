@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
- "scripts": {
+  "scripts": {
     "dev": "vite",
     "build": "npm run build:client && npm run build:server && npm run build:prerender",
     "build:client": "vite build",
@@ -70,7 +70,6 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.3",
-    "vite-plugin-prerender": "^1.0.8",
     "zod": "^3.23.8"
   },
   "devDependencies": {
