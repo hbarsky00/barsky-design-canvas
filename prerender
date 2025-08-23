@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+// Wrapper to ensure `npm run build:prerender` (node prerender) works reliably
+// in environments where the script expects a file without extension.
+
+(async () => {
+  try {
+    await import('./prerender.js');
+  } catch (err) {
+    console.error('Failed to run prerender.js:', err);
+    process.exit(1);
+  }
+})();
