@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Mail, Linkedin, Calendar } from "lucide-react";
+import { Mail, Linkedin, Github, Calendar } from "lucide-react";
 import WinampVisualizer from "./WinampVisualizer";
 import { EditableContent } from "@/components/editor/EditableContent";
 
@@ -166,6 +166,21 @@ const MinimalHero: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <Linkedin className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
+                               text-gray-600 hover:text-blue-600 transition-colors" />
+          </motion.a>
+
+          <motion.a
+            href="https://github.dev/hbarsky00"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit GitHub"
+            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl hover:bg-blue-50 transition-all duration-300
+                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Github className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
                                text-gray-600 hover:text-blue-600 transition-colors" />
           </motion.a>
 

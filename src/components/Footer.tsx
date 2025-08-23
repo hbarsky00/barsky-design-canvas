@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                 <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="Connect on LinkedIn (opens in new tab)">
                   <Linkedin size={24} strokeWidth={2.5} />
                 </a>
-                <a href="https://github.com/hbarsky00" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="View GitHub profile (opens in new tab)">
+                <a href="https://github.dev/hbarsky00" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="View GitHub profile (opens in new tab)">
                   <Github size={24} strokeWidth={2.5} />
                 </a>
               </div>
