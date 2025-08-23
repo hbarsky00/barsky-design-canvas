@@ -3,15 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "dev": "vite",
-  "build": "npm run build:client && npm run build:server && npm run build:prerender",
-  "build:client": "vite build",
-  "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-  "build:prerender": "node prerender.js",
-  "lint": "eslint .",
-  "preview": "vite preview"
-}
+ "scripts" node with this (no trailing comma at the end): "scripts": { "dev": "vite", "build": "npm run build:client && npm run build:server && npm run build:prerender", "build:client": "vite build", "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server", "build:prerender": "node prerender.js", "preview": "vite preview", "lint": "eslint ." },
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
