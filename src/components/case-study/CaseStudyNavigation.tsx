@@ -88,13 +88,17 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
       }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    handleScroll(); // Set initial state
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", onScroll, { passive: true });
+      handleScroll(); // Set initial state
 
-    return () => window.removeEventListener("scroll", onScroll);
+      return () => window.removeEventListener("scroll", onScroll);
+    }
   }, [navigation, currentSectionIndex]);
 
   const scrollToSection = (anchor: string) => {
+    if (typeof document === 'undefined' || typeof window === 'undefined') return;
+    
     const element = document.querySelector(anchor);
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();

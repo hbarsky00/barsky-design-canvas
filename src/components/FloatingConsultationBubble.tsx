@@ -19,6 +19,8 @@ const FloatingConsultationBubble: React.FC = () => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
     const handleScroll = () => {
+      if (typeof window === 'undefined' || typeof document === 'undefined') return;
+      
       const heroSection = document.getElementById("hero");
       const contactSection = document.getElementById("contact");
       
@@ -40,8 +42,10 @@ const FloatingConsultationBubble: React.FC = () => {
     // Initial check
     handleScroll();
     
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, [location.pathname]);
 
   const scrollToContact = () => {

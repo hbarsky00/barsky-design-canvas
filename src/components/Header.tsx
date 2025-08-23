@@ -33,12 +33,15 @@ const Header: React.FC = () => {
     if (typeof window === 'undefined') return;
     
     const updateVar = () => {
+      if (typeof document === 'undefined') return;
       const h = headerRef.current?.offsetHeight || 64;
       document.documentElement.style.setProperty('--header-height', `${h}px`);
     };
     updateVar();
-    window.addEventListener('resize', updateVar);
-    return () => window.removeEventListener('resize', updateVar);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', updateVar);
+      return () => window.removeEventListener('resize', updateVar);
+    }
   }, [isScrolled]);
 
   return (

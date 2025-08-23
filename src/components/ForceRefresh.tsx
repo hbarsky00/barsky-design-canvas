@@ -6,7 +6,7 @@ export const ForceRefresh: React.FC = () => {
     if (typeof window === 'undefined' || typeof Storage === 'undefined') return;
     
     // Add reload prevention - only allow one reload per 5 seconds
-    const lastReload = localStorage.getItem('lastForceReload');
+    const lastReload = typeof localStorage !== 'undefined' ? localStorage.getItem('lastForceReload') : null;
     const now = Date.now();
     
     if (lastReload && (now - parseInt(lastReload)) < 5000) {

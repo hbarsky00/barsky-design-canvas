@@ -53,10 +53,12 @@ export const useHeaderNavigation = () => {
       const elementTop = section.offsetTop;
       const offset = elementTop - headerHeight - 20; // 20px breathing room
       
-      window.scrollTo({
-        top: Math.max(0, offset),
-        behavior: 'smooth'
-      });
+      if (typeof window !== 'undefined') {
+        window.scrollTo({
+          top: Math.max(0, offset),
+          behavior: 'smooth'
+        });
+      }
       setIsMobileMenuOpen(false);
       
       // Clear intentional scrolling flag after scroll completes
@@ -82,7 +84,9 @@ export const useHeaderNavigation = () => {
       scrollToSection(href.substring(1));
     } else if (href === '/') {
       // For home link, go to homepage and scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       navigate(href);
     } else {
       // For other routes like /services, just navigate
@@ -210,10 +214,12 @@ export const useHeaderNavigation = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    // Trigger once to set initial state
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll);
+      // Trigger once to set initial state
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, [navLinks, location.pathname, isHomepage, isProjectPage]);
 
   useEffect(() => {

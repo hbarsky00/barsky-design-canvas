@@ -12,6 +12,8 @@ const ScrollEngagement: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (typeof window === 'undefined' || typeof document === 'undefined') return;
+      
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / totalHeight) * 100;
       setScrollProgress(progress);
@@ -34,7 +36,7 @@ const ScrollEngagement: React.FC = () => {
         setIsConsultationBubbleVisible(consultationBubbleVisible);
 
         // Only show engagement prompt if consultation bubble is not visible
-        if (progress > 60 && !localStorage.getItem('engagement-shown') && !consultationBubbleVisible) {
+        if (progress > 60 && typeof localStorage !== 'undefined' && !localStorage.getItem('engagement-shown') && !consultationBubbleVisible) {
           setShowEngagementPrompt(true);
           localStorage.setItem('engagement-shown', 'true');
         }
@@ -46,15 +48,19 @@ const ScrollEngagement: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, [location.pathname, showEngagementPrompt]);
 
   const scrollToContact = () => {
     setShowEngagementPrompt(false);
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    if (typeof document !== 'undefined') {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

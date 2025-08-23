@@ -29,8 +29,10 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
     };
 
     updateScreenSize();
-    window.addEventListener('resize', updateScreenSize);
-    return () => window.removeEventListener('resize', updateScreenSize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', updateScreenSize);
+      return () => window.removeEventListener('resize', updateScreenSize);
+    }
   }, []);
 
   // Sort annotations by priority and limit based on screen size

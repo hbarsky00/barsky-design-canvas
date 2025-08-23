@@ -27,26 +27,32 @@ const ExitIntentDetector: React.FC<ExitIntentDetectorProps> = ({
       }
     };
 
-    document.addEventListener('mouseleave', handleMouseLeave);
+    if (typeof document !== 'undefined') {
+      document.addEventListener('mouseleave', handleMouseLeave);
 
-    return () => {
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
+      return () => {
+        document.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    }
   }, [disabled, hasTriggered, onExitIntent]);
 
   const handleContactClick = () => {
     setShowModal(false);
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    if (typeof document !== 'undefined') {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   const handleViewWorkClick = () => {
     setShowModal(false);
-    const projectsSection = document.getElementById('case-studies');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    if (typeof document !== 'undefined') {
+      const projectsSection = document.getElementById('case-studies');
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
