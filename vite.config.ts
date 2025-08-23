@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => ({
     },
     sourcemap: false,
     minify: 'esbuild',
-    // Pure SSG - no prerendering
+    // Pure SSG build
     emptyOutDir: true,
   },
   optimizeDeps: {
