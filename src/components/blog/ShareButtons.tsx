@@ -57,7 +57,9 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
   const visibleShareLinks = showAll ? shareLinks : mainShareLinks;
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(url);
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(url);
+    }
     toast({
       title: "Link copied",
       description: "The blog post URL has been copied to your clipboard.",
@@ -76,7 +78,11 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
             key={link.name}
             variant="outline"
             className="share-button"
-            onClick={() => window.open(link.href, "_blank", "noreferrer,noopener,width=600,height=400")}
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.open(link.href, "_blank", "noreferrer,noopener,width=600,height=400");
+              }
+            }}
             aria-label={`Share on ${link.name}`}
             title={`Share on ${link.name}`}
           >

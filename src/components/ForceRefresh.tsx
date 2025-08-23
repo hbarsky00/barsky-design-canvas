@@ -3,6 +3,8 @@ import * as React from 'react';
 // Component to force a hard refresh if React modules are corrupted
 export const ForceRefresh: React.FC = () => {
   React.useEffect(() => {
+    if (typeof window === 'undefined' || typeof Storage === 'undefined') return;
+    
     // Add reload prevention - only allow one reload per 5 seconds
     const lastReload = localStorage.getItem('lastForceReload');
     const now = Date.now();

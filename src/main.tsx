@@ -18,9 +18,5 @@ const app = (
   </React.StrictMode>
 );
 
-// Use hydration for SSR in production
-if (import.meta.env.PROD) {
-  hydrateRoot(root, app);
-} else {
-  createRoot(root).render(app);
-}
+// For SSG - always use createRoot since we're not doing SSR
+createRoot(root).render(app);

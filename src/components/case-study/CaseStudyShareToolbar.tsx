@@ -21,16 +21,22 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
     const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
     
     // Open LinkedIn sharing dialog in popup
-    window.open(
-      linkedinUrl,
-      '_blank',
-      'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
-    );
+    if (typeof window !== 'undefined') {
+      window.open(
+        linkedinUrl,
+        '_blank',
+        'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
+      );
+    }
   };
 
   const handleCopyLink = async () => {
+    if (typeof navigator === 'undefined') return;
+    
     try {
-      await navigator.clipboard.writeText(url);
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+      }
       toast({
         title: "Link copied!",
         description: "Case study URL copied to clipboard",

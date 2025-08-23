@@ -6,7 +6,9 @@ import { Calendar, PenLine, Users, Clock } from "lucide-react";
 
 const Pricing = () => {
   const openCalendly = () => {
-    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+    if (typeof window !== 'undefined') {
+      window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+    }
   };
 
   return (

@@ -25,25 +25,38 @@ export class SafeErrorBoundary extends Component<Props, State> {
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('SafeErrorBoundary detailed error:', error, errorInfo);
     
+    if (typeof window === 'undefined') return;
+    
     // Handle React hook errors specifically
     if (error.message.includes('useEffect') || error.message.includes('Cannot read properties of null')) {
       console.log('🚨 React hook error detected - clearing caches with reload guard');
 
       // Prevent reload loops: only allow one reload every 10 seconds
       const now = Date.now();
-      const lastReload = Number(sessionStorage.getItem('last_reload_ts') || '0');
+      let lastReload = 0;
+      try {
+        lastReload = Number(sessionStorage.getItem('last_reload_ts') || '0');
+      } catch {}
+      
       if (now - lastReload < 10000) {
         console.warn('Skipping auto-reload to avoid loop');
         return;
       }
-      sessionStorage.setItem('last_reload_ts', String(now));
+      
+      try {
+        sessionStorage.setItem('last_reload_ts', String(now));
+      } catch {}
       
       // Clear all local/session storage
-      try { localStorage.clear(); } catch {}
-      try { sessionStorage.clear(); } catch {}
+      try { 
+        if (typeof Storage !== 'undefined') {
+          localStorage.clear(); 
+          sessionStorage.clear();
+        }
+      } catch {}
       
       // Clear service worker caches
-      if ('serviceWorker' in navigator) {
+      if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
           registrations.forEach(registration => registration.unregister());
         });
@@ -83,7 +96,11 @@ export class SafeErrorBoundary extends Component<Props, State> {
                 Try Again ({this.state.retryCount}/3)
               </button>
               <button
-                onClick={() => window.location.reload()}
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.location.reload();
+                  }
+                }}
                 className="w-full px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition-colors"
               >
                 Refresh Page

@@ -57,6 +57,8 @@ const BlogEngagement: React.FC<BlogEngagementProps> = ({
   };
 
   const handleShare = async () => {
+    if (typeof navigator === 'undefined' || typeof window === 'undefined' || typeof document === 'undefined') return;
+    
     if (navigator.share) {
       try {
         await navigator.share({
@@ -69,7 +71,9 @@ const BlogEngagement: React.FC<BlogEngagementProps> = ({
     } else {
       // Fallback to clipboard
       try {
-        await navigator.clipboard.writeText(window.location.href);
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(window.location.href);
+        }
         toast({
           title: "Link copied!",
           description: "Post URL copied to clipboard",
@@ -85,6 +89,8 @@ const BlogEngagement: React.FC<BlogEngagementProps> = ({
   };
 
   const handleComment = () => {
+    if (typeof document === 'undefined') return;
+    
     // Scroll to newsletter or contact section as a placeholder for comments
     const footer = document.querySelector('footer');
     if (footer) {

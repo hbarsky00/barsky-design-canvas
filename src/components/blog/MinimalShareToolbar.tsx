@@ -37,10 +37,12 @@ const MinimalShareToolbar: React.FC<MinimalShareToolbarProps> = ({
   };
 
   const handleCopyLink = async () => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
     
     try {
-      await navigator.clipboard.writeText(url);
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+      }
       toast({
         title: "Link copied!",
         description: "Blog post URL copied to clipboard",

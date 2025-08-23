@@ -15,10 +15,12 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
   const fullUrl = typeof window !== 'undefined' ? `${window.location.origin}${url}` : url;
   
   const copyToClipboard = async () => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
     
     try {
-      await navigator.clipboard.writeText(fullUrl);
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(fullUrl);
+      }
       toast({
         title: "Link copied!",
         description: "Blog post URL copied to clipboard",

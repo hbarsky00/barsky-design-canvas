@@ -23,8 +23,12 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
   const { toast } = useToast();
 
   const handleCopy = async () => {
+    if (typeof navigator === 'undefined') return;
+    
     try {
-      await navigator.clipboard.writeText(liveUrl);
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(liveUrl);
+      }
       toast({
         title: "Link copied!",
         description: "Project URL copied to clipboard",
@@ -44,11 +48,13 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
     const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
     
     // Open LinkedIn sharing dialog in popup
-    window.open(
-      linkedinUrl,
-      '_blank',
-      'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
-    );
+    if (typeof window !== 'undefined') {
+      window.open(
+        linkedinUrl,
+        '_blank',
+        'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
+      );
+    }
     
     onShare?.();
   };

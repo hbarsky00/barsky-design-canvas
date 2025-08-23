@@ -7,7 +7,7 @@ console.log('🔧 Cache utilities loaded at:', new Date().toISOString());
 export const emergencyCacheClear = () => {
   console.log('🚨 Emergency cache clear triggered');
   
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
     // Clear browser caches
     if ('caches' in window) {
       caches.keys().then(names => {
@@ -30,8 +30,10 @@ export const emergencyCacheClear = () => {
     
     // Clear storage
     try {
-      localStorage.clear();
-      sessionStorage.clear();
+      if (typeof Storage !== 'undefined') {
+        localStorage.clear();
+        sessionStorage.clear();
+      }
     } catch (e) {
       console.warn('Could not clear storage:', e);
     }

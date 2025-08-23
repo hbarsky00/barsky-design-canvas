@@ -7,8 +7,10 @@ import { trackContentEngagement } from "@/lib/analytics";
 
 const ContactInformation: React.FC = () => {
   const openCalendly = () => {
-    window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
-    trackContentEngagement('contact', 'consultation-booking', 'Calendly Booking');
+    if (typeof window !== 'undefined') {
+      window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
+      trackContentEngagement('contact', 'consultation-booking', 'Calendly Booking');
+    }
   };
 
   return (

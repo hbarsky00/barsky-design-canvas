@@ -38,7 +38,11 @@ const DesignFile: React.FC<DesignFileProps> = ({
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" onClick={() => window.open(downloadUrl, "_blank")}>
+        <Button className="w-full" onClick={() => {
+          if (typeof window !== 'undefined') {
+            window.open(downloadUrl, "_blank");
+          }
+        }}>
           <Download className="mr-2 h-4 w-4" /> Download
         </Button>
       </CardFooter>

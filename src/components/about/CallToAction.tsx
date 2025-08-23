@@ -22,9 +22,11 @@ const CallToAction: React.FC = () => {
             size="lg"
             className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
             onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
+              if (typeof document !== 'undefined') {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }}
           >
@@ -36,7 +38,11 @@ const CallToAction: React.FC = () => {
             size="lg"
             variant="outline"
             className="border-white text-white hover:bg-white/10"
-            onClick={() => window.open('/free-audit', '_blank')}
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.open('/free-audit', '_blank');
+              }
+            }}
           >
             Get Free Audit
           </Button>

@@ -96,8 +96,10 @@ const SocialSharingTester: React.FC = () => {
   };
 
   const openDebugger = (debuggerUrl: string) => {
-    const fullUrl = `${debuggerUrl}?q=${encodeURIComponent(testUrl)}`;
-    window.open(fullUrl, '_blank');
+    if (typeof window !== 'undefined') {
+      const fullUrl = `${debuggerUrl}?q=${encodeURIComponent(testUrl)}`;
+      window.open(fullUrl, '_blank');
+    }
   };
 
   return (

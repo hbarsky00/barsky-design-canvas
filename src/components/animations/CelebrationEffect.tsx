@@ -97,7 +97,7 @@ const ConfettiEffect = () => {
   // Create array of confetti pieces
   const confettiPieces = Array.from({ length: 50 }).map((_, i) => {
     const size = Math.random() * 10 + 5;
-    const xPos = (Math.random() - 0.5) * window.innerWidth * 0.8;
+    const xPos = typeof window !== 'undefined' ? (Math.random() - 0.5) * window.innerWidth * 0.8 : 0;
     return (
       <motion.div
         key={i}
@@ -109,7 +109,7 @@ const ConfettiEffect = () => {
         }}
         animate={{ 
           x: xPos,
-          y: window.innerHeight * 0.9,
+          y: typeof window !== 'undefined' ? window.innerHeight * 0.9 : 500,
           opacity: [1, 1, 0],
           scale: 1,
           rotate: Math.random() * 360,

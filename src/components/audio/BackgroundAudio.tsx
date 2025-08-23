@@ -35,15 +35,19 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
             setHasUserInteracted(true);
             audio.play().catch(console.error);
             // Remove listeners after first interaction
-            document.removeEventListener('click', handleFirstInteraction);
-            document.removeEventListener('keydown', handleFirstInteraction);
-            document.removeEventListener('scroll', handleFirstInteraction);
+            if (typeof document !== 'undefined') {
+              document.removeEventListener('click', handleFirstInteraction);
+              document.removeEventListener('keydown', handleFirstInteraction);
+              document.removeEventListener('scroll', handleFirstInteraction);
+            }
           }
         };
 
-        document.addEventListener('click', handleFirstInteraction);
-        document.addEventListener('keydown', handleFirstInteraction);  
-        document.addEventListener('scroll', handleFirstInteraction);
+        if (typeof document !== 'undefined') {
+          document.addEventListener('click', handleFirstInteraction);
+          document.addEventListener('keydown', handleFirstInteraction);  
+          document.addEventListener('scroll', handleFirstInteraction);
+        }
       }
     };
 
@@ -61,6 +65,8 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
 
   // Handle page visibility changes (pause when tab is not active)
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+    
     const handleVisibilityChange = () => {
       const audio = audioRef.current;
       if (!audio) return;

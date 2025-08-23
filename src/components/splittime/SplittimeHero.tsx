@@ -52,7 +52,11 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({ onImageClick, onImageKeyp
                     size="lg" 
                     variant="brand"
                     className="font-bold"
-                    onClick={() => window.open('http://splittime.pro', '_blank')}
+                    onClick={() => {
+                      if (typeof window !== 'undefined') {
+                        window.open('http://splittime.pro', '_blank');
+                      }
+                    }}
                   >
                     See the App in Action
                     <ArrowRight className="ml-2 h-4 w-4" />

@@ -71,7 +71,9 @@ export const useHeaderNavigation = () => {
     
     // Handle external links (like the resume)
     if (href.startsWith('http')) {
-      window.open(href, '_blank', 'noopener,noreferrer');
+      if (typeof window !== 'undefined') {
+        window.open(href, '_blank', 'noopener,noreferrer');
+      }
       return;
     }
     
