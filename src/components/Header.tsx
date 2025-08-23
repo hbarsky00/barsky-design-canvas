@@ -3,10 +3,14 @@ import { cn } from "@/lib/utils";
 import { useHeaderNavigation } from "./header/useHeaderNavigation";
 import MobileMenu from "./header/MobileMenu";
 import Navigation from "./header/Navigation";
-import ThemeToggle from "./ThemeToggle";
+
 import ProfileAvatar from "./header/ProfileAvatar";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
+import { toast } from "sonner";
 
 const Header: React.FC = () => {
   const location = useLocation();
