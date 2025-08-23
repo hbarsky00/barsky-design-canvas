@@ -5,7 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
-import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+
 
 // Global SEO component
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
@@ -34,7 +34,6 @@ import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
 import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
 import Admin from "@/pages/Admin";
-import Auth from "@/pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -77,12 +76,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/admin" element={
-              <ProtectedRoute requireAdmin={true}>
-                <Admin />
-              </ProtectedRoute>
-            } />
+            <Route path="/admin" element={<Admin />} />
             
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
