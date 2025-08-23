@@ -34,7 +34,7 @@ const BlogPostPage: React.FC = () => {
         <Header />
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Post Not Found</h1>
+            <h1 className="heading-subsection text-gray-900 mb-4">Post Not Found</h1>
             <p className="text-gray-600">The blog post you're looking for doesn't exist.</p>
           </div>
         </div>
@@ -97,7 +97,7 @@ const BlogPostPage: React.FC = () => {
                 />
                 
                 <header className="mb-8">
-                  <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                  <h1 className="heading-section lg:text-4xl text-gray-900 mb-4">
                     {post.title}
                   </h1>
                   

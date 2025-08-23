@@ -48,7 +48,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
                   </div>
                 </div>
                 
-                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-3 line-clamp-2 leading-tight">
+                <h3 className="heading-medium md:text-xl text-gray-900 mb-3 line-clamp-2 leading-tight">
                   {post.title}
                 </h3>
                 

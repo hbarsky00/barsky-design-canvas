@@ -16,24 +16,24 @@ const MvpValidation: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="text-center p-6 bg-green-50 rounded-lg">
             <Lightbulb className="w-8 h-8 text-green-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">85%</div>
+            <div className="text-impact-metric-neutral-md text-gray-900">85%</div>
             <div className="text-sm text-gray-600">Faster Time to Market</div>
           </div>
           <div className="text-center p-6 bg-blue-50 rounded-lg">
             <Users className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">50+</div>
+            <div className="text-impact-metric-neutral-md text-gray-900">50+</div>
             <div className="text-sm text-gray-600">User Interviews</div>
           </div>
           <div className="text-center p-6 bg-purple-50 rounded-lg">
             <TrendingUp className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">70%</div>
+            <div className="text-impact-metric-neutral-md text-gray-900">70%</div>
             <div className="text-sm text-gray-600">Reduced Development Risk</div>
           </div>
         </div>
 
         {/* Validation Process */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Comprehensive Validation Process</h2>
+          <h2 className="heading-subsection text-gray-900 mb-6">Comprehensive Validation Process</h2>
           
           <div className="space-y-6">
             {[
@@ -59,7 +59,7 @@ const MvpValidation: React.FC = () => {
               }
             ].map((phase, index) => (
               <div key={index} className="border-l-4 border-green-600 pl-6 py-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{phase.phase}</h3>
+                <h3 className="heading-medium text-gray-900 mb-2">{phase.phase}</h3>
                 <p className="text-gray-700 mb-3">{phase.description}</p>
                 <div className="grid md:grid-cols-3 gap-2">
                   {phase.deliverables.map((deliverable, deliverableIndex) => (
@@ -76,7 +76,7 @@ const MvpValidation: React.FC = () => {
 
         {/* What You Get */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Validation Package</h2>
+          <h2 className="heading-subsection text-gray-900 mb-6">Complete Validation Package</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
             {[
@@ -99,11 +99,11 @@ const MvpValidation: React.FC = () => {
 
         {/* Success Stories */}
         <section className="bg-gray-50 p-8 rounded-lg">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Validation Success Stories</h3>
+          <h3 className="heading-medium text-gray-900 mb-6">Validation Success Stories</h3>
           
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">FinTech Startup</h4>
+              <h4 className="heading-medium text-gray-900 mb-2">FinTech Startup</h4>
               <p className="text-gray-600 text-sm mb-3">
                 Validated lending platform concept, identified key user pain points, and pivoted features 
                 before development. Saved $200K+ in unnecessary features.
@@ -114,7 +114,7 @@ const MvpValidation: React.FC = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">E-commerce Platform</h4>
+              <h4 className="heading-medium text-gray-900 mb-2">E-commerce Platform</h4>
               <p className="text-gray-600 text-sm mb-3">
                 User testing revealed critical UX issues in checkout flow. Post-validation improvements 
                 led to 45% increase in conversion rates.
@@ -128,18 +128,18 @@ const MvpValidation: React.FC = () => {
 
         {/* Pricing */}
         <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-8 rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Investment & Timeline</h3>
+          <h3 className="heading-medium mb-4">Investment & Timeline</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h4 className="font-semibold mb-3">Complete MVP Validation</h4>
-              <div className="text-3xl font-bold mb-2">$7,997</div>
+              <h4 className="heading-medium mb-3">Complete MVP Validation</h4>
+              <div className="text-impact-metric-neutral-lg mb-2">$7,997</div>
               <p className="text-sm opacity-90 mb-4">Or 3 payments of $2,799</p>
               <Badge className="bg-white/20 text-white border-white/30">
                 ROI: Save $50K+ in development costs
               </Badge>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Project Timeline</h4>
+              <h4 className="heading-medium mb-3">Project Timeline</h4>
               <ul className="space-y-2 text-sm">
                 <li>• Week 1-2: Market research & prototype</li>
                 <li>• Week 3-4: User testing & interviews</li>
@@ -152,7 +152,7 @@ const MvpValidation: React.FC = () => {
 
         {/* FAQ Preview */}
         <section>
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Common Questions</h3>
+          <h3 className="heading-medium text-gray-900 mb-6">Common Questions</h3>
           <div className="space-y-4">
             {[
               {
@@ -169,7 +169,7 @@ const MvpValidation: React.FC = () => {
               }
             ].map((faq, index) => (
               <div key={index} className="border border-gray-200 p-4 rounded-lg">
-                <h4 className="font-semibold text-gray-900 mb-2">{faq.q}</h4>
+                <h4 className="heading-medium text-gray-900 mb-2">{faq.q}</h4>
                 <p className="text-gray-600 text-sm">{faq.a}</p>
               </div>
             ))}
@@ -178,7 +178,7 @@ const MvpValidation: React.FC = () => {
 
         {/* CTA */}
         <section className="text-center">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+          <h3 className="heading-medium text-gray-900 mb-4">
             Ready to Validate Your Product Idea?
           </h3>
           <p className="text-gray-600 mb-6">

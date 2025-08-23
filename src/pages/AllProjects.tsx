@@ -19,7 +19,7 @@ const AllProjects: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-center mb-12"
             >
-              <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl mb-4">
+              <h1 className="heading-section text-gray-900 sm:text-4xl lg:text-5xl mb-4">
                 Explore Our Projects
               </h1>
               <p className="text-lg text-gray-600">

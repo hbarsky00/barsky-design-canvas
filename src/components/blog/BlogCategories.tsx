@@ -62,7 +62,7 @@ const BlogCategories: React.FC = () => {
         <div className="hidden md:block text-center mb-6 md:mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Tag className="h-6 w-6 text-blue-600" />
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="heading-section text-gray-900">
               Browse by Category
             </h2>
           </div>
@@ -108,7 +108,7 @@ const BlogCategories: React.FC = () => {
                 {category.icon}
               </div>
               
-              <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h3 className="heading-medium text-foreground mb-2 group-hover:text-primary transition-colors">
                 {category.name}
               </h3>
               

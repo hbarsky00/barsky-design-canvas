@@ -16,24 +16,24 @@ const ConversionAudit: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="text-center p-6 bg-green-50 rounded-lg">
             <BarChart3 className="w-8 h-8 text-green-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">47%</div>
+            <div className="text-impact-metric-neutral-md text-gray-900">47%</div>
             <div className="text-sm text-gray-600">Average Conversion Increase</div>
           </div>
           <div className="text-center p-6 bg-blue-50 rounded-lg">
             <Target className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">23</div>
+            <div className="text-impact-metric-neutral-md text-gray-900">23</div>
             <div className="text-sm text-gray-600">Optimization Opportunities Found</div>
           </div>
           <div className="text-center p-6 bg-purple-50 rounded-lg">
             <Users className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">3-5 days</div>
+            <div className="text-impact-metric-neutral-md text-gray-900">3-5 days</div>
             <div className="text-sm text-gray-600">Audit Completion</div>
           </div>
         </div>
 
         {/* Audit Areas */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Comprehensive Audit Areas</h2>
+          <h2 className="heading-subsection text-gray-900 mb-6">Comprehensive Audit Areas</h2>
           
           <div className="grid md:grid-cols-2 gap-8">
             {[
@@ -75,7 +75,7 @@ const ConversionAudit: React.FC = () => {
               }
             ].map((section, index) => (
               <div key={index} className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{section.category}</h3>
+                <h3 className="heading-medium text-gray-900 mb-4">{section.category}</h3>
                 <ul className="space-y-2">
                   {section.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2">
@@ -91,7 +91,7 @@ const ConversionAudit: React.FC = () => {
 
         {/* Deliverables */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">What You'll Receive</h2>
+          <h2 className="heading-subsection text-gray-900 mb-6">What You'll Receive</h2>
           
           <div className="space-y-4">
             {[
@@ -123,7 +123,7 @@ const ConversionAudit: React.FC = () => {
             ].map((item, index) => (
               <div key={index} className="border border-gray-200 p-6 rounded-lg">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                  <h3 className="heading-medium text-gray-900">{item.title}</h3>
                   <Badge variant="outline" className="text-blue-700 border-blue-200">
                     {item.deliverable}
                   </Badge>
@@ -136,18 +136,18 @@ const ConversionAudit: React.FC = () => {
 
         {/* Pricing */}
         <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white p-8 rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Investment & ROI</h3>
+          <h3 className="heading-medium mb-4">Investment & ROI</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h4 className="font-semibold mb-3">Complete CRO Audit</h4>
-              <div className="text-3xl font-bold mb-2">$1,497</div>
+              <h4 className="heading-medium mb-3">Complete CRO Audit</h4>
+              <div className="text-impact-metric-neutral-lg mb-2">$1,497</div>
               <p className="text-sm opacity-90 mb-4">One-time investment</p>
               <Badge className="bg-white/20 text-white border-white/30">
                 Average ROI: 400%+ within 3 months
               </Badge>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Typical Results</h4>
+              <h4 className="heading-medium mb-3">Typical Results</h4>
               <ul className="space-y-2 text-sm">
                 <li>• 47% average conversion increase</li>
                 <li>• $50K+ additional annual revenue</li>
@@ -160,7 +160,7 @@ const ConversionAudit: React.FC = () => {
 
         {/* Process */}
         <section>
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Audit Process & Timeline</h3>
+          <h3 className="heading-medium text-gray-900 mb-6">Audit Process & Timeline</h3>
           <div className="space-y-4">
             {[
               { step: "1", title: "Discovery Call", desc: "30-minute consultation to understand your goals and challenges", time: "Day 1" },
@@ -170,11 +170,11 @@ const ConversionAudit: React.FC = () => {
               { step: "5", title: "Strategy Session", desc: "60-minute presentation of findings and implementation planning", time: "Day 6" }
             ].map((item, index) => (
               <div key={index} className="flex gap-4 p-4 bg-gray-50 rounded-lg">
-                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center heading-medium text-sm">
                   {item.step}
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900">{item.title}</h4>
+                  <h4 className="heading-medium text-gray-900">{item.title}</h4>
                   <p className="text-gray-600 text-sm">{item.desc}</p>
                   <span className="text-xs text-blue-600 font-medium">{item.time}</span>
                 </div>
@@ -185,7 +185,7 @@ const ConversionAudit: React.FC = () => {
 
         {/* CTA */}
         <section className="text-center">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+          <h3 className="heading-medium text-gray-900 mb-4">
             Ready to Unlock Your Website's Revenue Potential?
           </h3>
           <p className="text-gray-600 mb-6">

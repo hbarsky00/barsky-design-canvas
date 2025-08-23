@@ -153,7 +153,7 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = ({
   
   return (
     <section className="mt-12 pt-8 border-t border-gray-200">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+      <h3 className="heading-subsection text-gray-900 mb-6">
         Related UX Design Articles
       </h3>
       
@@ -163,7 +163,7 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = ({
             key={post.id}
             className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200"
           >
-            <h4 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+            <h4 className="heading-medium text-gray-900 mb-2 line-clamp-2">
               {post.title}
             </h4>
             

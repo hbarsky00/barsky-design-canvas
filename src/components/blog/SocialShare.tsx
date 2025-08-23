@@ -50,7 +50,7 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
     <div className="bg-gray-50 rounded-lg p-6 my-8">
       <div className="flex items-center gap-2 mb-4">
         <Share2 className="h-5 w-5 text-gray-700" />
-        <h3 className="text-lg font-semibold text-gray-900">Share this article</h3>
+        <h3 className="heading-medium text-gray-900">Share this article</h3>
       </div>
       
       <div className="flex flex-wrap gap-3">

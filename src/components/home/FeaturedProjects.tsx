@@ -27,7 +27,7 @@ const FeaturedProjects: React.FC = () => {
           transition={{ duration: 0.6 }} 
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 py-[25px]">Case Study Design Portfolio</h2>
+          <h2 className="heading-section text-gray-900 mb-6 py-[25px]">Case Study Design Portfolio</h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
             Real case studies showing how AI-enhanced UX design delivers measurable ROI for startups and enterprises. 
             Each project combines traditional UX research with Gen AI to create breakthrough results.
@@ -79,7 +79,7 @@ const FeaturedProjects: React.FC = () => {
                 {/* Project Content */}
                 <div className="p-6 space-y-4 flex-1 flex flex-col">
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="heading-card text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                       {project.title}
                     </h3>
                     <p className="text-gray-600 line-clamp-3 leading-relaxed">

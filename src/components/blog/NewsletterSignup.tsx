@@ -56,7 +56,7 @@ const NewsletterSignup: React.FC = () => {
           <Mail className="h-12 w-12 text-white/90" />
         </div>
         
-        <h3 className="text-2xl font-bold mb-2">
+        <h3 className="heading-subsection mb-2">
           Stay ahead of the curve
         </h3>
         
