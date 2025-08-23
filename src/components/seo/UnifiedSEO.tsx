@@ -72,8 +72,8 @@ const UnifiedSEO: React.FC = () => {
     
     // Default data for non-project pages or fallback
     const initialData = {
-      title: "Hiram Barsky — Product Design & AI",
-      description: "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration.",
+      title: "Senior Product Designer & AI Strategist — Hiram Barsky",
+      description: "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.",
       canonical: immediateCanonical,
       image: "https://barskydesign.pro/images/profile-hero.jpg",
       type: 'website' as const
@@ -102,8 +102,8 @@ const UnifiedSEO: React.FC = () => {
 
       try {
         let enhancedSeoData: SEOData = {
-          title: "Hiram Barsky — Product Design & AI",
-          description: "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration.",
+          title: "Senior Product Designer & AI Strategist — Hiram Barsky",
+          description: "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.",
           canonical: immediateCanonical,
           image: "https://barskydesign.pro/images/profile-hero.jpg",
           type: 'website'

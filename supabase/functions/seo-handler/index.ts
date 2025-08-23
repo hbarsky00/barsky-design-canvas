@@ -16,19 +16,19 @@ const corsHeaders: HeadersInit = {
 const BASE_URL = "https://barskydesign.pro";
 const SITE_NAME = "Hiram Barsky Design";
 const DEFAULT_DESC =
-  "15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration.";
+  "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.";
 const DEFAULT_IMAGE =
   "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp";
 
 // Known crawler/bot user agents
 // Additional per-route SEO mappings
 const PROJECT_IMAGE_MAP: Record<string, string> = {
-  "investment-app": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-  "herbalink": "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
+  "herbalink": "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
   "splittime": "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+  "business-management": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
   "investor-loan-app": "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+  "investment-app": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
   "wholesale-distribution": "/placeholder.svg",
-  "business-management": "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
 };
 
 const BLOG_IMAGE_MAP: Record<string, string> = {
@@ -103,7 +103,7 @@ function getSeoForPath(pathname: string) {
 
   // Sections mapping
   const SECTION_SEO: Record<string, { title: string; description: string; image?: string }> = {
-    "/": { title: "Hiram Barsky — Product Design & AI", description: DEFAULT_DESC, image: DEFAULT_IMAGE },
+    "/": { title: "Senior Product Designer & AI Strategist — Hiram Barsky", description: DEFAULT_DESC, image: DEFAULT_IMAGE },
     "/projects": { title: `Case Studies & Projects — ${SITE_NAME}`, description: "Explore selected work in product design, UX, and AI." },
     "/services": { title: `Design & AI Services — ${SITE_NAME}`, description: "UX research, design systems, and AI integration services." },
     "/about": { title: `About — ${SITE_NAME}`, description: "Designer and builder focused on impactful, AI-enhanced experiences." },
@@ -121,7 +121,7 @@ function getSeoForPath(pathname: string) {
 
   // Home fallback
   if (clean === "/") {
-    title = "Hiram Barsky — Product Design & AI";
+    title = "Senior Product Designer & AI Strategist — Hiram Barsky";
     description = DEFAULT_DESC;
     image = DEFAULT_IMAGE;
     return { title, description, image, type };
