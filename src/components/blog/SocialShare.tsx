@@ -12,9 +12,11 @@ interface SocialShareProps {
 const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
   const { toast } = useToast();
   const [showMore, setShowMore] = React.useState(false);
-  const fullUrl = `${window.location.origin}${url}`;
+  const fullUrl = typeof window !== 'undefined' ? `${window.location.origin}${url}` : url;
   
   const copyToClipboard = async () => {
+    if (typeof window === 'undefined') return;
+    
     try {
       await navigator.clipboard.writeText(fullUrl);
       toast({
@@ -31,17 +33,23 @@ const SocialShare: React.FC<SocialShareProps> = ({ url, title, excerpt }) => {
   };
 
   const shareOnTwitter = () => {
+    if (typeof window === 'undefined') return;
+    
     const text = `${title} - ${excerpt.substring(0, 100)}...`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(fullUrl)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
 
   const shareOnLinkedIn = () => {
+    if (typeof window === 'undefined') return;
+    
     const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`;
     window.open(linkedinUrl, '_blank', 'width=550,height=420');
   };
 
   const shareOnFacebook = () => {
+    if (typeof window === 'undefined') return;
+    
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`;
     window.open(facebookUrl, '_blank', 'width=550,height=420');
   };

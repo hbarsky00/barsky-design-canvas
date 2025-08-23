@@ -15,6 +15,8 @@ const FloatingScrollToTopButton: React.FC = () => {
       return;
     }
 
+    if (typeof window === 'undefined') return;
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setIsVisible(scrollY > 300);
@@ -25,10 +27,12 @@ const FloatingScrollToTopButton: React.FC = () => {
   }, [location.pathname]);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   };
 
   // Don't render if not on homepage

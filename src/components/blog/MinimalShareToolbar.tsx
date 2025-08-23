@@ -19,6 +19,8 @@ const MinimalShareToolbar: React.FC<MinimalShareToolbarProps> = ({
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleShare = async () => {
+    if (typeof window === 'undefined') return;
+    
     if (navigator.share) {
       try {
         await navigator.share({
@@ -35,6 +37,8 @@ const MinimalShareToolbar: React.FC<MinimalShareToolbarProps> = ({
   };
 
   const handleCopyLink = async () => {
+    if (typeof window === 'undefined') return;
+    
     try {
       await navigator.clipboard.writeText(url);
       toast({

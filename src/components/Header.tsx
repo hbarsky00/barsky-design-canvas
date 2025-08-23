@@ -30,6 +30,8 @@ const Header: React.FC = () => {
 
   const headerRef = React.useRef<HTMLElement | null>(null);
   React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const updateVar = () => {
       const h = headerRef.current?.offsetHeight || 64;
       document.documentElement.style.setProperty('--header-height', `${h}px`);

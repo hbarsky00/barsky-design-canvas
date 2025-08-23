@@ -36,7 +36,7 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
 
       {/* Minimal Share Toolbar - Under Title */}
       <MinimalShareToolbar 
-        url={window.location.href}
+        url={typeof window !== 'undefined' ? window.location.href : ''}
         title={post.title}
         className="mb-6"
       />
