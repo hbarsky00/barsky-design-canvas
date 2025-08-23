@@ -1,8 +1,8 @@
-# Pre-rendered Build Instructions
+# Pure SSG Build Instructions
 
-## Option 2: Pre-rendering Implementation
+## Pure Static Site Generation (SSG)
 
-React Snap has been configured to generate static HTML files for each route with proper canonical tags.
+This project is configured for pure static site generation with no server-side rendering (SSR).
 
 ### Build Commands:
 
@@ -11,52 +11,44 @@ React Snap has been configured to generate static HTML files for each route with
 npm run build:dev
 ```
 
-**Production build with pre-rendering:**
-```bash
-npm run build
-node scripts/build-with-prerender.js
-```
-
-**Or manually:**
+**Production build (Pure SSG):**
 ```bash
 vite build
-npx react-snap
 ```
 
 ### What this does:
 
-1. **Builds React app** into `dist/` folder
-2. **Pre-renders routes** using Puppeteer to generate actual HTML files
-3. **Creates HTML files** like:
-   - `dist/index.html` (homepage)
-   - `dist/projects/index.html` 
-   - `dist/contact/index.html`
-   - `dist/case-studies/herbalink-mobile-herbalist-ux-design/index.html`
-   - etc.
+1. **Builds React app** into `dist/` folder as pure static files
+2. **Generates static HTML** with client-side hydration
+3. **Creates optimized bundles** with proper chunking
+4. **No server required** - serves from any static hosting
 
 ### Benefits:
 
-- ✅ **Real HTML files** with proper canonical tags in `<head>`
-- ✅ **SEO crawlers** see correct canonicals immediately  
-- ✅ **No JavaScript dependency** for canonical tags
-- ✅ **Better Core Web Vitals** from static HTML
+- ✅ **Pure static files** - no server dependencies
+- ✅ **Fast builds** - no complex prerendering
+- ✅ **Easy deployment** - works on any static host
+- ✅ **Better performance** - optimized static assets
+- ✅ **SEO friendly** - proper meta tags via React Helmet
 
-### Routes being pre-rendered:
+### Architecture:
 
-- Homepage: `/`
-- Projects: `/projects`
-- Contact: `/contact` 
-- About: `/about`
-- Blog: `/blog`
-- Services: `/services`
-- Case studies: `/case-studies/*`
-- Service pages: `/design-services/*`
-- Store: `/store`
-- Lead capture: `/get-started`
-- Free audit: `/free-audit`
-- Service pages: `/services/*`
-- LinkedIn visitors: `/linkedin-visitors`
+- **Client-side routing** with React Router
+- **Static HTML shell** with JavaScript hydration
+- **Wrapped browser APIs** for build-time safety
+- **Semantic HTML** with proper meta tags
 
 ### Deployment:
 
-Upload the entire `dist/` folder to your hosting provider. Each route will have its own HTML file with proper canonicals.
+Upload the entire `dist/` folder to any static hosting provider (Netlify, Vercel, S3, etc.).
+
+### Browser API Safety:
+
+All browser APIs (window, document, localStorage, etc.) are properly wrapped with:
+```javascript
+if (typeof window !== 'undefined') {
+  // browser API usage
+}
+```
+
+This ensures the app builds successfully and runs properly in both build and runtime environments.

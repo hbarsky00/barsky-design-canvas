@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => ({
     },
     sourcemap: false,
     minify: 'esbuild',
-    // Enable prerendering for project pages
+    // Pure SSG - no prerendering
     emptyOutDir: true,
   },
   optimizeDeps: {
