@@ -2,7 +2,7 @@
 import React from 'react';
 import { Edit3, Save, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ReactQuillEditor from '@/components/editor/ReactQuillEditor';
+import { SimpleTextEditor } from '@/components/editor/SimpleTextEditor';
 
 interface ContentEditorProps {
   isEditing: boolean;
@@ -64,9 +64,9 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
 
   return (
     <div className="space-y-4">
-      <ReactQuillEditor
-        initialValue={editedContent}
-        onEditorChange={onContentChange}
+      <SimpleTextEditor
+        content={editedContent}
+        onChange={onContentChange}
         height={300}
         placeholder={`Edit ${title.toLowerCase()} content...`}
       />

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ReactQuillEditor from './ReactQuillEditor';
+import { SimpleTextEditor } from './SimpleTextEditor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ContentEditorProps {
@@ -24,9 +24,9 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <ReactQuillEditor
-          initialValue={content}
-          onEditorChange={onContentChange}
+        <SimpleTextEditor
+          content={content}
+          onChange={onContentChange}
           placeholder={placeholder}
           readonly={readonly}
           height={400}

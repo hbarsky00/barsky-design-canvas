@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { TiptapEditor } from './TiptapEditor';
+import { SimpleTextEditor } from './SimpleTextEditor';
 import { useEditableContent } from '@/hooks/useEditableContent';
 import { RichTextRenderer } from '@/components/ui/RichTextRenderer';
 import { Edit, Save, X } from 'lucide-react';
@@ -88,11 +88,12 @@ export const EditableContent: React.FC<EditableContentProps> = ({
                 <DialogTitle>Edit Content</DialogTitle>
               </DialogHeader>
               <div className="flex-1 overflow-hidden">
-                <TiptapEditor
+                <SimpleTextEditor
                   content={editContent}
                   onChange={setEditContent}
                   placeholder={placeholder}
                   className="h-full"
+                  height={400}
                 />
               </div>
               <div className="flex justify-end gap-2 pt-4 border-t">

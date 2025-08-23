@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Trash2, Edit, Search, Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { TiptapEditor } from './TiptapEditor';
+import { SimpleTextEditor } from './SimpleTextEditor';
 
 interface ContentItem {
   id: string;
@@ -188,11 +188,12 @@ export const ContentManagement: React.FC = () => {
                         <DialogTitle>Edit: {item.content_key}</DialogTitle>
                       </DialogHeader>
                       <div className="flex-1 overflow-hidden">
-                        <TiptapEditor
+                        <SimpleTextEditor
                           content={editContent}
                           onChange={setEditContent}
                           placeholder="Edit content..."
                           className="h-full"
+                          height={400}
                         />
                       </div>
                       <div className="flex justify-end gap-2 pt-4 border-t">
