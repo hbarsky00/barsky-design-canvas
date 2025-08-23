@@ -81,7 +81,7 @@ const About: React.FC = () => {
             <Button
               onClick={() => {
                 if (typeof document !== 'undefined') {
-                  const contactSection = document.getElementById('contact');
+                  const contactSection = typeof document !== 'undefined' ? document.getElementById('contact') : null;
                   if (contactSection) {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }

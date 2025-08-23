@@ -35,7 +35,9 @@ const Header: React.FC = () => {
     const updateVar = () => {
       if (typeof document === 'undefined') return;
       const h = headerRef.current?.offsetHeight || 64;
-      document.documentElement.style.setProperty('--header-height', `${h}px`);
+      if (typeof document !== 'undefined') {
+        document.documentElement.style.setProperty('--header-height', `${h}px`);
+      }
     };
     updateVar();
     if (typeof window !== 'undefined') {

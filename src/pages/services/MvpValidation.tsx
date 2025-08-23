@@ -188,9 +188,11 @@ const MvpValidation: React.FC = () => {
             size="lg"
             className="bg-purple-600 hover:bg-purple-700"
             onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
+              if (typeof document !== 'undefined') {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }}
           >

@@ -19,7 +19,7 @@ export const emergencyCacheClear = () => {
     }
     
     // Clear service workers
-    if ('serviceWorker' in navigator) {
+    if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(registrations => {
         registrations.forEach(registration => {
           console.log('🗑️ Unregistering service worker');
@@ -30,7 +30,7 @@ export const emergencyCacheClear = () => {
     
     // Clear storage
     try {
-      if (typeof Storage !== 'undefined') {
+      if (typeof window !== 'undefined' && typeof Storage !== 'undefined') {
         localStorage.clear();
         sessionStorage.clear();
       }

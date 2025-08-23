@@ -23,7 +23,7 @@ export const useAnalytics = () => {
 
   useEffect(() => {
     const path = location.pathname + location.search;
-    const title = document.title;
+    const title = typeof document !== 'undefined' ? document.title : '';
     
     // Track page view when location changes
     trackPageView(path, title);
@@ -41,10 +41,12 @@ export const useAnalytics = () => {
         page_location: window.location.href,
         page_path: path,
         send_to: 'G-VYKW0Y9K0T'
-      });
+        });
+      }
       
       // Enhanced site mapping data for Google Analytics 4
-      window.gtag('event', 'site_map_navigation', {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'site_map_navigation', {
         current_page: path,
         page_title: title,
         site_section: getSiteSection(path),

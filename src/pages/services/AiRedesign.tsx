@@ -132,9 +132,11 @@ const AiRedesign: React.FC = () => {
             size="lg"
             className="bg-blue-600 hover:bg-blue-700"
             onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
+              if (typeof document !== 'undefined') {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }}
           >

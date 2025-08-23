@@ -35,7 +35,7 @@ export class SafeErrorBoundary extends Component<Props, State> {
       const now = Date.now();
       let lastReload = 0;
       try {
-        lastReload = Number(sessionStorage.getItem('last_reload_ts') || '0');
+        lastReload = typeof sessionStorage !== 'undefined' ? Number(sessionStorage.getItem('last_reload_ts') || '0') : 0;
       } catch {}
       
       if (now - lastReload < 10000) {
@@ -44,7 +44,9 @@ export class SafeErrorBoundary extends Component<Props, State> {
       }
       
       try {
-        sessionStorage.setItem('last_reload_ts', String(now));
+        if (typeof sessionStorage !== 'undefined') {
+          sessionStorage.setItem('last_reload_ts', String(now));
+        }
       } catch {}
       
       // Clear all local/session storage
@@ -64,7 +66,9 @@ export class SafeErrorBoundary extends Component<Props, State> {
       
       // Force page reload after short delay
       setTimeout(() => {
-        window.location.reload();
+        if (typeof window !== 'undefined') {
+          window.location.reload();
+        }
       }, 500);
     }
   }

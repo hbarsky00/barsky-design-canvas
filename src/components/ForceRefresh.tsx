@@ -18,9 +18,13 @@ export const ForceRefresh: React.FC = () => {
     try {
       if (!React || typeof React.useEffect !== 'function') {
         console.error('🚨 Critical React failure detected');
-        localStorage.setItem('lastForceReload', now.toString());
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('lastForceReload', now.toString());
+        }
         setTimeout(() => {
-          window.location.reload();
+          if (typeof window !== 'undefined') {
+            window.location.reload();
+          }
         }, 100);
         return;
       }
@@ -28,9 +32,13 @@ export const ForceRefresh: React.FC = () => {
       console.log('✅ React core is functional');
     } catch (error) {
       console.error('🚨 React error detected:', error);
-      localStorage.setItem('lastForceReload', now.toString());
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('lastForceReload', now.toString());
+      }
       setTimeout(() => {
-        window.location.reload();
+        if (typeof window !== 'undefined') {
+          window.location.reload();
+        }
       }, 100);
     }
   }, []);

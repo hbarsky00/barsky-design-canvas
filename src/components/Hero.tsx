@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
   const scrollToContact = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (typeof window !== 'undefined') {
-      const contactSection = document.getElementById('contact');
+      const contactSection = typeof document !== 'undefined' ? document.getElementById('contact') : null;
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' });
       }

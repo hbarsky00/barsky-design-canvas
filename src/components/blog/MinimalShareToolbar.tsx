@@ -19,7 +19,7 @@ const MinimalShareToolbar: React.FC<MinimalShareToolbarProps> = ({
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const handleShare = async () => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
     
     if (navigator.share) {
       try {
