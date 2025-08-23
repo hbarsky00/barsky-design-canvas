@@ -32,7 +32,7 @@ export const BlockAnimation: React.FC<BlockAnimatedTextProps> = ({
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number]
       }
     }
   };

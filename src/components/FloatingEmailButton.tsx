@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
@@ -25,7 +26,8 @@ const FloatingEmailButton: React.FC = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       transition={{ 
-        initial: { duration: 0.3, delay: 0.5 },
+        duration: 0.3, 
+        delay: 0.5,
         hover: { duration: 0.2 },
         tap: { duration: 0.1 }
       }}
