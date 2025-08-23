@@ -23,8 +23,6 @@ const FloatingEmailButton: React.FC = () => {
       onClick={handleEmailClick}
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
       transition={{ 
         duration: 0.3, 
         delay: 0.5
