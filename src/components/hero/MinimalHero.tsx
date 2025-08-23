@@ -53,23 +53,25 @@ const MinimalHero: React.FC = () => {
       {/* Winamp Visualizer Background */}
       <WinampVisualizer />
       
-      {/* Simple background for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
+      {/* Enhanced background with professional gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-surface via-background to-surface-container-low" />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-10" onClick={handleNavigateDown}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
+          className="flex flex-col items-center text-center gap-3 sm:gap-4 lg:gap-4 xl:gap-5 2xl:gap-6"
         >
-          {/* Avatar with optimized video loading */}
+          {/* Enhanced Avatar with better styling */}
           <div className="flex justify-center order-1">
             <div 
-              className="relative cursor-pointer"
+              className="relative cursor-pointer group"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
-                             xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden shadow-lg relative">
+                             xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden 
+                             shadow-elegant ring-4 ring-white/20 group-hover:shadow-glow 
+                             transition-all duration-300 relative">
                 <img
                   src={imageUrl}
                   alt="Hiram Barsky profile"
@@ -90,17 +92,15 @@ const MinimalHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Content - More proportional text scaling */}
-          <div className="order-2">
+          {/* Content with proper typography hierarchy */}
+          <div className="order-2 space-y-2 sm:space-y-3 lg:space-y-3">
             <EditableContent
               contentKey="hero-name"
               defaultContent="Hiram Barsky"
               pagePath="/"
               sectionName="hero"
               renderAs="h1"
-              className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
-                         xl:text-7xl 2xl:text-8xl
-                         font-display font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 leading-tight tracking-tight"
+              className="heading-hero text-foreground mb-1 sm:mb-1 lg:mb-2 leading-tight"
             />
             <EditableContent
               contentKey="hero-title"
@@ -108,16 +108,16 @@ const MinimalHero: React.FC = () => {
               pagePath="/"
               sectionName="hero"
               renderAs="h2"
-              className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
-                         xl:text-4xl 2xl:text-5xl
-                         font-display font-medium text-gray-800 mb-3 sm:mb-4 lg:mb-5 xl:mb-6 2xl:mb-7 leading-[1.706]"
+              className="heading-subhero text-muted-foreground leading-relaxed"
             />
             <a 
               href="https://barskydesign.pro" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-blue-600 hover:text-blue-700 
-                       transition-colors duration-200 mb-2 lg:mb-3 xl:mb-4 2xl:mb-5 inline-block font-medium"
+              className="text-lg xs:text-xl sm:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl 
+                       text-primary hover:text-primary/80 transition-all duration-200 
+                       inline-block font-medium underline decoration-primary/30 
+                       hover:decoration-primary/60 underline-offset-4"
               onClick={(e) => e.stopPropagation()}
             >
               barskydesign.pro
@@ -128,30 +128,31 @@ const MinimalHero: React.FC = () => {
               pagePath="/"
               sectionName="hero"
               renderAs="p"
-              className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-600"
+              className="text-base sm:text-lg lg:text-xl text-muted-foreground/80"
             />
           </div>
         </motion.div>
 
-        {/* Contact Icons Row - Reasonable sizing with better proportions */}
+        {/* Enhanced Contact Icons Row with refined spacing */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex justify-center items-center space-x-6 sm:space-x-8 lg:space-x-10 xl:space-x-12 2xl:space-x-14
-                     mt-6 sm:mt-8 lg:mt-10 xl:mt-12 2xl:mt-14 order-3"
+          className="flex justify-center items-center space-x-4 sm:space-x-5 lg:space-x-6 xl:space-x-7 2xl:space-x-8
+                     mt-4 sm:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 order-3"
         >
           <motion.a
             href="mailto:hbarsky01@gmail.com"
             aria-label="Email Hiram Barsky"
-            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl hover:bg-blue-50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg"
+            className="p-3 sm:p-4 lg:p-4 xl:p-5 2xl:p-6 rounded-xl 
+                       hover:bg-primary/5 hover:shadow-elegant transition-all duration-300
+                       min-w-[44px] min-h-[44px] flex items-center justify-center group"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <Mail className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
-                           text-gray-600 hover:text-blue-600 transition-colors" />
+            <Mail className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 
+                           text-muted-foreground group-hover:text-primary transition-colors" />
           </motion.a>
 
           <motion.a
@@ -159,14 +160,15 @@ const MinimalHero: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit LinkedIn"
-            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl hover:bg-blue-50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg"
+            className="p-3 sm:p-4 lg:p-4 xl:p-5 2xl:p-6 rounded-xl 
+                       hover:bg-primary/5 hover:shadow-elegant transition-all duration-300
+                       min-w-[44px] min-h-[44px] flex items-center justify-center group"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <Linkedin className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
-                               text-gray-600 hover:text-blue-600 transition-colors" />
+            <Linkedin className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 
+                               text-muted-foreground group-hover:text-primary transition-colors" />
           </motion.a>
 
           <motion.a
@@ -174,17 +176,18 @@ const MinimalHero: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Book Appointment"
-            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl hover:bg-green-50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg"
+            className="p-3 sm:p-4 lg:p-4 xl:p-5 2xl:p-6 rounded-xl 
+                       hover:bg-accent/10 hover:shadow-elegant transition-all duration-300
+                       min-w-[44px] min-h-[44px] flex items-center justify-center group"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <Calendar className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
-                               text-gray-600 hover:text-green-600 transition-colors" />
+            <Calendar className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 
+                               text-muted-foreground group-hover:text-accent transition-colors" />
           </motion.a>
 
-          {/* Skip to Contact Button */}
+          {/* Enhanced Skip to Contact Button */}
           <motion.button
             onClick={(e) => {
               e.stopPropagation();
@@ -194,11 +197,12 @@ const MinimalHero: React.FC = () => {
               }
             }}
             aria-label="Skip to Contact section"
-            className="px-4 py-2 sm:px-5 sm:py-3 lg:px-6 lg:py-4 xl:px-7 xl:py-5 2xl:px-8 2xl:py-6
-                       bg-primary text-white rounded-full hover:bg-primary/90 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center hover:scale-110 hover:shadow-lg
-                       text-sm sm:text-base lg:text-lg font-medium"
-            whileHover={{ scale: 1.1, y: -2 }}
+            className="px-4 py-2 sm:px-5 sm:py-3 lg:px-6 lg:py-3 xl:px-7 xl:py-4 2xl:px-8 2xl:py-5
+                       bg-primary text-primary-foreground rounded-full hover:bg-primary/90 
+                       shadow-elegant hover:shadow-glow transition-all duration-300
+                       min-w-[44px] min-h-[44px] flex items-center justify-center 
+                       text-sm sm:text-base lg:text-base font-medium"
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
             Skip to Contact
@@ -206,7 +210,7 @@ const MinimalHero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Continue Button with proper full-width centering */}
+      {/* Enhanced Continue Button */}
       <motion.div 
         className="absolute bottom-8 inset-x-0 px-4"
         animate={{ 
@@ -221,10 +225,13 @@ const MinimalHero: React.FC = () => {
         }}
       >
         <div className="flex flex-col items-center space-y-2">
-          <span className="text-sm text-white/80 font-medium">Continue</span>
+          <span className="text-sm text-muted-foreground/60 font-medium">Continue</span>
           <button
             onClick={handleNavigateDown}
-            className="group flex flex-col items-center justify-center text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg min-w-[80px]"
+            className="group flex flex-col items-center justify-center 
+                       text-muted-foreground hover:text-primary transition-all duration-300 
+                       cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 
+                       rounded-lg min-w-[80px] p-2"
             aria-label="Continue to next section"
           >
             <motion.div
@@ -232,8 +239,21 @@ const MinimalHero: React.FC = () => {
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="flex justify-center w-full"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:scale-110 transition-transform duration-200 mx-auto">
-                <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="group-hover:scale-110 transition-transform duration-200 mx-auto"
+              >
+                <path 
+                  d="m6 9 6 6 6-6" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
               </svg>
             </motion.div>
           </button>
