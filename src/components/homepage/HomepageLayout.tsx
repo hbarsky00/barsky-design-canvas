@@ -38,7 +38,7 @@ const HomepageLayout: React.FC = () => {
       
       
       {isScrolledPastHero && <Header />}
-      <main className="flex-grow space-y-4 md:space-y-12">
+      <main className="flex-grow space-y-2 md:space-y-6">
         
         <SectionTransition variant="fade">
           <section id="intro" tabIndex={-1}>

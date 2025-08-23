@@ -52,7 +52,7 @@ const experiences: Experience[] = [
 
 const RecentAdventuresSection: React.FC = () => {
   return (
-    <section className="py-12 md:py-20 bg-background">
+    <section className="py-6 md:py-12 bg-background">
       <div className="container max-w-6xl mx-auto px-4">
         {/* Header */}
         <motion.div
