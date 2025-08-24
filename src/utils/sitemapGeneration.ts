@@ -83,12 +83,6 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       changefreq: 'monthly',
       priority: 0.7
     },
-    {
-      url: `${BASE_URL}/project/wholesale-distribution`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.7
-    },
     
     // Other pages
     {

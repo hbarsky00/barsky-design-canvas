@@ -1,7 +1,7 @@
 
 import { useCallback, useRef } from 'react';
 import { getImageCaption } from '@/data/imageCaptions';
-import { projectsData } from '@/data/projects/projectsList';
+import { projectsData } from '@/data/projectsData';
 
 
 export interface CaptionIssue {
@@ -101,8 +101,7 @@ export const useImageScanner = () => {
       }
     });
 
-    // Note: Removed detailed project scanning since we only have wholesale-distribution now
-    // and it uses the new dynamic template system
+    // Note: Updated to use main projectsData source for consistency
     
     // Remove duplicates and sort by priority
     const uniqueIssues = issues.filter((issue, index, self) => 

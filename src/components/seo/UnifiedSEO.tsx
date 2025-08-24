@@ -41,7 +41,12 @@ const UnifiedSEO: React.FC = () => {
   
   // Generate SEO data completely synchronously using only local data
   const seoData = useMemo(() => {
-    const pathname = location?.pathname || '/';
+    // Handle redirects/aliases before processing
+    const aliases: Record<string, string> = {
+      '/project/wholesale-distribution': '/project/business-management'
+    };
+    const rawPathname = location?.pathname || '/';
+    const pathname = aliases[rawPathname] || rawPathname;
     const canonical = normalizeUrl(pathname);
     
     console.log('🔒 SEO LOCKED - SYNCHRONOUS ONLY:', {

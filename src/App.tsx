@@ -32,7 +32,7 @@ import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
-import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
+
 
 const queryClient = new QueryClient();
 
@@ -59,7 +59,7 @@ function App() {
             <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
             <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
             <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-            <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
+            <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
             
             {/* Generic project detail for other projects */}
             <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />

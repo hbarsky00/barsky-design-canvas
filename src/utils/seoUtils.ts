@@ -16,7 +16,7 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   { path: '/case-studies/herbalink-mobile-herbalist-ux-design', priority: 'high', changeFreq: 'monthly' },
   { path: '/case-studies/splittime-coparenting-app-design', priority: 'high', changeFreq: 'monthly' },
   { path: '/case-studies/investor-loan-portfolio-management', priority: 'high', changeFreq: 'monthly' },
-  { path: '/case-studies/wholesale-distribution-ai-solution', priority: 'high', changeFreq: 'monthly' },
+  
   
   { path: '/case-studies/business-management-solution', priority: 'high', changeFreq: 'monthly' },
   { path: '/case-studies/medication-app', priority: 'medium', changeFreq: 'monthly' },
