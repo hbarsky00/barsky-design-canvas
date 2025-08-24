@@ -1,11 +1,11 @@
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
-import { fetchPageMetadata, fetchBlogPost } from "@/hooks/database/operations";
 import { normalizeUrl } from "@/utils/seo/canonicalUtils";
 import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
+import { SEO_CONSTANTS } from "@/utils/seoConstants";
 
 interface SEOData {
   title: string;
@@ -19,33 +19,39 @@ interface SEOData {
   tags?: string[];
 }
 
+// Local SEO data map for static pages
+const staticPageSEO: Record<string, Partial<SEOData>> = {
+  '/': {
+    title: "Senior Product Designer & AI Strategist — Hiram Barsky",
+    description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
+  },
+  '/blog': {
+    title: "Design & AI Insights — Hiram Barsky",
+    description: "Thoughts on UX design, AI integration, and digital product strategy from 15+ years in the field."
+  },
+  '/about': {
+    title: "About Hiram Barsky — Senior Product Designer & AI Strategist",
+    description: "Learn about my 15+ year journey designing AI-enhanced digital experiences and strategic product solutions."
+  }
+};
+
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
   
-  // Generate immediate canonical URL with enhanced debugging
-  const immediateCanonical = useMemo(() => {
+  // Generate SEO data completely synchronously using only local data
+  const seoData = useMemo(() => {
     const pathname = location?.pathname || '/';
     const canonical = normalizeUrl(pathname);
     
-    // Enhanced debugging for canonical generation
-    console.log('🔥 CANONICAL DEBUG - IMMEDIATE GENERATION:', {
+    console.log('🔒 SEO LOCKED - SYNCHRONOUS ONLY:', {
       pathname,
       canonical,
-      locationExists: !!location,
       timestamp: new Date().toISOString(),
-      userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'SSR',
-      isLinkedInBot: typeof navigator !== 'undefined' && navigator.userAgent.includes('LinkedInBot'),
-      isScraper: typeof navigator !== 'undefined' && /bot|crawler|spider|scraper/i.test(navigator.userAgent)
+      note: "NO DATABASE CALLS - 100% SYNCHRONOUS"
     });
     
-    return canonical;
-  }, [location?.pathname]);
-
-  // Initialize seoData with immediate canonical URL and project data
-  const [seoData, setSeoData] = useState<SEOData>(() => {
-    const pathname = location?.pathname || '/';
-    
-    // Check if this is a project page and load structured case study data immediately
+    // Handle project pages with structured case studies
     if (pathname.startsWith('/project/')) {
       const projectId = pathname.replace('/project/', '').replace('/', '');
       const caseStudyData = getStructuredCaseStudy(projectId);
@@ -54,175 +60,66 @@ const UnifiedSEO: React.FC = () => {
         const projectSeoData = {
           title: caseStudyData.title,
           description: caseStudyData.description,
-          canonical: immediateCanonical,
-          image: caseStudyData.seoData?.image || "https://barskydesign.pro/images/profile-hero.jpg",
+          canonical,
+          image: caseStudyData.seoData?.image || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
           type: 'website' as const
         };
         
-        console.log('🚀 UnifiedSEO - IMMEDIATE PROJECT SEO DATA:', {
+        console.log('✨ PROJECT SEO DATA (SYNC):', {
           ...projectSeoData,
           projectId,
-          timestamp: new Date().toISOString(),
-          note: "IMMEDIATE PROJECT DATA - Available for scrapers on first render"
+          imageAbsolute: projectSeoData.image?.startsWith('http')
         });
         
         return projectSeoData;
       }
+      
+      // Fallback for unknown projects
+      return {
+        title: `Project: ${projectId} — Hiram Barsky`,
+        description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+        canonical,
+        image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
+        type: 'website' as const
+      };
     }
     
-    // Default data for non-project pages or fallback
-    const initialData = {
-      title: "Senior Product Designer & AI Strategist — Hiram Barsky",
-      description: "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.",
-      canonical: immediateCanonical,
-      image: "https://barskydesign.pro/images/profile-hero.jpg",
+    // Handle static pages from local map
+    const staticSeo = staticPageSEO[pathname];
+    if (staticSeo) {
+      const result = {
+        title: staticSeo.title || SEO_CONSTANTS.SITE_NAME,
+        description: staticSeo.description || SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+        canonical,
+        image: staticSeo.image || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
+        type: 'website' as const
+      };
+      
+      console.log('📄 STATIC PAGE SEO (SYNC):', result);
+      return result;
+    }
+    
+    // Default fallback
+    const defaultData = {
+      title: SEO_CONSTANTS.SITE_NAME,
+      description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+      canonical,
+      image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
       type: 'website' as const
     };
     
-    console.log('🚀 UnifiedSEO - INITIAL SEO DATA:', {
-      ...initialData,
-      timestamp: new Date().toISOString(),
-      note: "IMMEDIATE - Available for scrapers on first render"
-    });
-    
-    return initialData;
-  });
-
-  useEffect(() => {
-    const loadSEOData = async () => {
-      const pathname = location?.pathname || '/';
-      
-      console.log('🔍 ENHANCED SEO LOADING DEBUG:', {
-        pathname,
-        immediateCanonical,
-        currentSeoCanonical: seoData.canonical,
-        timestamp: new Date().toISOString(),
-        loadingStarted: true
-      });
-
-      try {
-        let enhancedSeoData: SEOData = {
-          title: "Senior Product Designer & AI Strategist — Hiram Barsky",
-          description: "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.",
-          canonical: immediateCanonical,
-          image: "https://barskydesign.pro/images/profile-hero.jpg",
-          type: 'website'
-        };
-
-        // Handle blog posts
-        if (pathname.startsWith('/blog/') && pathname !== '/blog') {
-          const slug = pathname.replace('/blog/', '');
-          console.log('📝 Loading blog post SEO for slug:', slug);
-          
-          const blogPost = await fetchBlogPost(slug);
-          if (blogPost) {
-            enhancedSeoData = {
-              title: blogPost.title,
-              description: blogPost.excerpt || enhancedSeoData.description,
-              canonical: normalizeUrl(pathname),
-              image: blogPost.featured_image || enhancedSeoData.image,
-              type: 'article',
-              publishedTime: blogPost.created_at,
-              modifiedTime: blogPost.updated_at,
-              author: "Hiram Barsky",
-              tags: blogPost.tags
-            };
-          }
-        } else {
-          // Handle project pages first - PRIORITIZE STRUCTURED CASE STUDIES
-          if (pathname.startsWith('/project/')) {
-            const projectId = pathname.replace('/project/', '').replace('/', '');
-            console.log('🎯 Loading project page SEO for:', projectId);
-            
-            // Try to get structured case study data FIRST
-            const caseStudyData = getStructuredCaseStudy(projectId);
-            
-            if (caseStudyData) {
-              enhancedSeoData = {
-                title: caseStudyData.title,
-                description: caseStudyData.description,
-                canonical: normalizeUrl(pathname),
-                image: caseStudyData.seoData?.image || enhancedSeoData.image,
-                type: 'website'
-              };
-              console.log('✨ Using structured case study SEO data for project:', projectId);
-            } else {
-              // Only fallback to database if no structured case study exists
-              console.log('⚠️ No structured case study found, trying database for project:', projectId);
-              const pageMetadata = await fetchPageMetadata(pathname);
-              
-              if (pageMetadata) {
-                enhancedSeoData = {
-                  title: pageMetadata.seo_title,
-                  description: pageMetadata.seo_description,
-                  canonical: normalizeUrl(pathname),
-                  image: pageMetadata.featured_image || enhancedSeoData.image,
-                  type: 'website'
-                };
-                console.log('📄 Using database SEO data for project:', projectId);
-              } else {
-                enhancedSeoData.canonical = normalizeUrl(pathname);
-                console.log('🚫 No SEO data found for project:', projectId);
-              }
-            }
-          } else {
-            // Handle other pages
-            console.log('📄 Loading page metadata for:', pathname);
-            const pageMetadata = await fetchPageMetadata(pathname);
-            
-            if (pageMetadata) {
-              enhancedSeoData = {
-                title: pageMetadata.seo_title,
-                description: pageMetadata.seo_description,
-                canonical: normalizeUrl(pathname),
-                image: pageMetadata.featured_image || enhancedSeoData.image,
-                type: 'website'
-              };
-            } else {
-              // Update canonical for pages without database entries
-              enhancedSeoData.canonical = normalizeUrl(pathname);
-            }
-          }
-        }
-
-        console.log('✅ FINAL SEO DATA COMPLETE:', {
-          ...enhancedSeoData,
-          timestamp: new Date().toISOString(),
-          canonicalChanged: enhancedSeoData.canonical !== seoData.canonical,
-          previousCanonical: seoData.canonical,
-          newCanonical: enhancedSeoData.canonical
-        });
-        
-        setSeoData(enhancedSeoData);
-
-      } catch (error) {
-        console.error('❌ SEO DATA ERROR - FALLING BACK TO IMMEDIATE CANONICAL:', {
-          error,
-          pathname,
-          fallbackCanonical: immediateCanonical,
-          timestamp: new Date().toISOString()
-        });
-        
-        // On error, at least update the canonical URL
-        setSeoData(prev => ({
-          ...prev,
-          canonical: immediateCanonical
-        }));
-      }
-    };
-
-    loadSEOData();
-  }, [location?.pathname, immediateCanonical]);
+    console.log('🔄 DEFAULT SEO (SYNC):', defaultData);
+    return defaultData;
+  }, [location?.pathname]);
 
   const structuredData = generateStructuredData(seoData);
 
-  // Final debug before render
-  console.log('🎯 FINAL RENDER - CANONICAL URL:', {
+  console.log('🎯 FINAL SEO RENDER:', {
     canonical: seoData.canonical,
     title: seoData.title,
-    pathname: location?.pathname,
-    timestamp: new Date().toISOString(),
-    renderNumber: Math.random()
+    hasImage: !!seoData.image,
+    imageAbsolute: seoData.image?.startsWith('http'),
+    pathname: location?.pathname
   });
 
   return (
@@ -243,17 +140,7 @@ const UnifiedSEO: React.FC = () => {
       <meta property="og:type" content={seoData.type} />
       {seoData.image && <meta property="og:image" content={seoData.image} />}
       
-      {/* Article specific meta tags */}
-      {seoData.type === 'article' && (
-        <>
-          {seoData.publishedTime && <meta property="article:published_time" content={seoData.publishedTime} />}
-          {seoData.modifiedTime && <meta property="article:modified_time" content={seoData.modifiedTime} />}
-          {seoData.author && <meta property="article:author" content={seoData.author} />}
-          {seoData.tags && seoData.tags.map(tag => (
-            <meta key={tag} property="article:tag" content={tag} />
-          ))}
-        </>
-      )}
+      {/* Article specific meta tags - not used in current synchronous implementation */}
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />

@@ -1283,7 +1283,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/placeholder.svg",
+      image: "https://barskydesign.pro/images/profile-hero.jpg",
       projectName: "Wholesale Distribution",
       results: ["95% less manual work", "500% faster processing", "99.7% accuracy"],
       technologies: ["React", "Automation", "AI"],
