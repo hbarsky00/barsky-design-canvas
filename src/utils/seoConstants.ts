@@ -19,7 +19,7 @@ export const SEO_CONSTANTS = {
   SITE_NAME: 'Hiram Barsky Design',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
-  DEFAULT_DESCRIPTION: '15+ years creating AI-enhanced digital experiences. Specializing in UX research, design systems, and Gen AI integration for businesses looking to transform their products with intelligent design solutions.',
+  DEFAULT_DESCRIPTION: 'Senior Product Designer & AI Developer with 15+ years experience. Specializing in UX research, design systems, and Gen AI integration for business growth.',
   
   // Meta tag defaults
   THEME_COLOR: '#3B82F6',
