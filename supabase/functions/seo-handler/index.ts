@@ -18,28 +18,30 @@ const SITE_NAME = "Hiram Barsky Design";
 const DEFAULT_DESC =
   "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.";
 const DEFAULT_IMAGE =
-  "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp";
+  "https://barskydesign.pro/images/hiram-barsky-profile.webp";
 
 // Known crawler/bot user agents
 // Additional per-route SEO mappings
 const PROJECT_IMAGE_MAP: Record<string, string> = {
-  "herbalink": "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-  "splittime": "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
-  "business-management": "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-  "investor-loan-app": "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-  "investment-app": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-  
+  "herbalink": "https://barskydesign.pro/images/herbalink-desktop-1.webp",
+  "splittime": "https://barskydesign.pro/images/splittime-desktop-1.webp",
+  "business-management": "https://barskydesign.pro/images/business-management-desktop-1.webp",
+  "investor-loan-app": "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp",
+  "medication-app": "https://barskydesign.pro/images/medication-app-desktop-1.webp",
+  "gold2crypto": "https://barskydesign.pro/images/gold2crypto-desktop-1.webp",
+  "dae-search": "https://barskydesign.pro/images/dae-search-desktop-1.webp",
+  "barskyjoint": "https://barskydesign.pro/images/barskyjoint-desktop-1.webp",
 };
 
 const BLOG_IMAGE_MAP: Record<string, string> = {
-  "finding-first-ux-job-guide": "/blog-finding-ux-job.jpg",
-  "design-systems-that-get-used": "/blog-design-systems.jpg",
-  "portfolio-red-flags-no-interviews": "/blog-portfolio-red-flags.jpg",
-  "ai-enhanced-ux-designer-future": "/blog-ai-enhanced-ux.jpg",
-  "user-research-shoestring-budget": "/blog-user-research-budget.jpg",
-  "built-product-without-real-data": "/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
-  "building-products-nobody-asked-for": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop",
-  "wireframes-to-wow-visual-hierarchy": "/blog-images/visual-hierarchy-psychology.png",
+  "finding-first-ux-job-guide": "https://barskydesign.pro/blog-finding-ux-job.jpg",
+  "design-systems-that-get-used": "https://barskydesign.pro/blog-design-systems.jpg",
+  "portfolio-red-flags-no-interviews": "https://barskydesign.pro/blog-portfolio-red-flags.jpg",
+  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
+  "user-research-shoestring-budget": "https://barskydesign.pro/blog-user-research-budget.jpg",
+  "built-product-without-real-data": "https://barskydesign.pro/blog-built-product-without-real-data.jpg",
+  "building-products-nobody-asked-for": "https://barskydesign.pro/blog-building-products-nobody-asked-for.jpg",
+  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/blog-wireframes-to-wow-visual-hierarchy.jpg",
 };
 
 function toAbsoluteImage(url: string): string {
@@ -263,6 +265,14 @@ serve(async (req: Request) => {
     const ua = req.headers.get("user-agent");
     const targetUrlParam = url.searchParams.get("url");
     const pathParam = url.searchParams.get("path");
+
+    // Only serve SEO content to bots to avoid duplicate canonicals
+    if (!isBot(ua)) {
+      return new Response('Not for browsers', { 
+        status: 403,
+        headers: corsHeaders 
+      });
+    }
 
     const canonical = resolveCanonical(targetUrlParam, pathParam);
     const pathname = new URL(canonical).pathname || "/";

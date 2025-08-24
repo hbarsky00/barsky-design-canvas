@@ -1,88 +1,135 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://barskydesign.pro/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/projects/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/projects</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/services/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/services</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/herbalink/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/project/herbalink</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/splittime/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/project/splittime</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/business-management/</loc>
-    <lastmod>2025-08-24</lastmod>
+    <loc>https://barskydesign.pro/project/business-management</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/investor-loan-app/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/project/investor-loan-app</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/medication-app/</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/project/gold2crypto/</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/project/dae-search/</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/project/barskyjoint/</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/about/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/project/medication-app</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/contact/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/project/gold2crypto</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/blog/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://barskydesign.pro/project/dae-search</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/project/barskyjoint</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/about</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/contact</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/finding-first-ux-job-guide</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/design-systems-that-get-used</loc>
+    <lastmod>2025-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/portfolio-red-flags-no-interviews</loc>
+    <lastmod>2024-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/ai-enhanced-ux-designer-future</loc>
+    <lastmod>2024-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/user-research-shoestring-budget</loc>
+    <lastmod>2024-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/built-product-without-real-data</loc>
+    <lastmod>2024-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/building-products-nobody-asked-for</loc>
+    <lastmod>2024-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/wireframes-to-wow-visual-hierarchy</loc>
+    <lastmod>2024-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

@@ -1,3 +1,5 @@
+import { blogPosts } from '@/data/blogData';
+
 interface SitemapEntry {
   url: string;
   lastmod: string;
@@ -105,7 +107,15 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
     }
   ];
 
-  return staticPages;
+  // Add blog posts dynamically
+  const blogEntries: SitemapEntry[] = blogPosts.map(post => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastmod: post.date || currentDate,
+    changefreq: 'monthly' as const,
+    priority: 0.7
+  }));
+
+  return [...staticPages, ...blogEntries];
 };
 
 /**
