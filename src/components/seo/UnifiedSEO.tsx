@@ -129,12 +129,12 @@ const UnifiedSEO: React.FC = () => {
             };
           }
         } else {
-          // Handle project pages first
+          // Handle project pages first - PRIORITIZE STRUCTURED CASE STUDIES
           if (pathname.startsWith('/project/')) {
             const projectId = pathname.replace('/project/', '').replace('/', '');
             console.log('🎯 Loading project page SEO for:', projectId);
             
-            // Try to get structured case study data
+            // Try to get structured case study data FIRST
             const caseStudyData = getStructuredCaseStudy(projectId);
             
             if (caseStudyData) {
@@ -147,9 +147,23 @@ const UnifiedSEO: React.FC = () => {
               };
               console.log('✨ Using structured case study SEO data for project:', projectId);
             } else {
-              // Fallback to generic project data
-              enhancedSeoData.canonical = normalizeUrl(pathname);
-              console.log('⚠️ No structured case study found for project:', projectId);
+              // Only fallback to database if no structured case study exists
+              console.log('⚠️ No structured case study found, trying database for project:', projectId);
+              const pageMetadata = await fetchPageMetadata(pathname);
+              
+              if (pageMetadata) {
+                enhancedSeoData = {
+                  title: pageMetadata.seo_title,
+                  description: pageMetadata.seo_description,
+                  canonical: normalizeUrl(pathname),
+                  image: pageMetadata.featured_image || enhancedSeoData.image,
+                  type: 'website'
+                };
+                console.log('📄 Using database SEO data for project:', projectId);
+              } else {
+                enhancedSeoData.canonical = normalizeUrl(pathname);
+                console.log('🚫 No SEO data found for project:', projectId);
+              }
             }
           } else {
             // Handle other pages
