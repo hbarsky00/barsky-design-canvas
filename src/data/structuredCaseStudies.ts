@@ -439,7 +439,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Splittime co-parenting app hero overview"
     },
     researchSection: {
-      subhead: "Interviews and walkthroughs with co-parents revealed decision fatigue from fragmented schedules, expenses, and agreements.",
+      subhead: "SplitTime is a co-parenting app designed to simplify shared custody, expenses, and communication. Parents were relying on texts and spreadsheets, leading to miscommunication and stress. The vision is to create a neutral and trustworthy tool that reduces conflict and fosters trust between co-parents.",
       blurb: "Tools create conflict.",
       emergingThemes: [
         {
@@ -462,14 +462,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
-      statement: "Co-parents lack a single source of truth for schedules, expenses, and decisions—causing miscommunication, missed pickups, and ongoing conflict."
+      statement: "Co-parents often lack a single source of truth for schedules, expenses, and decisions, leading to miscommunication, missed pickups, and ongoing conflict."
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "I conducted discovery workshops with divorced co-parents and family mediators to understand the emotional and logistical challenges. Through design sprints, I framed the problem around communication tone and shared accountability—not just scheduling tools. This foundation established that the solution needed to address conflict prevention, not just organization.",
+      workshopKickoff: "Early brainstorming on co-parenting communication tools and conflict reduction strategies.",
       explorations: "I explored blue-sky concepts ranging from AI-powered communication filtering to gamified cooperation tracking. Early sketches included therapeutic check-ins, mood tracking, and automated conflict de-escalation. I tested divergent ideas like neutral third-party mediation and child-focused decision frameworks to understand what would genuinely reduce tension between co-parents.",
-      decisionPoint: "I converged on a neutral communication platform after validating that most conflicts arose from misunderstood tone and unclear expectations. The decision centered on structured templates, approval workflows, and transparent history—creating accountability through clarity rather than adding more complex features that could increase friction.",
+      decisionPoint: "I decided to focus on a neutral communication platform after seeing that most conflicts came from unclear tone and expectations. I chose structured templates, approval workflows, and transparent history to build accountability through clarity, instead of adding features that might make things harder.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard0.jpg",
@@ -501,7 +501,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard1st.png", 
           alt: "First iteration of Splittime calendar view",
-          blurb: "Too overwhelming.",
+          blurb: "Calendar layout too dense — overwhelming for stressed parents\nNo clear distinction between confirmed and pending events",
           annotations: [
             { text: "Calendar layout too dense - overwhelming for stressed parents", x: 50, y: 30, type: "issue" },
             { text: "No clear distinction between confirmed vs pending events", x: 70, y: 50, type: "issue" }
@@ -511,7 +511,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2024/01/DashboardPRIMARY.png", 
           alt: "Second iteration with approval flows",
-          blurb: "Added clarity.",
+          blurb: "Added approval status indicators for clarity\nSimplified calendar view reduces cognitive load",
           annotations: [
             { text: "Added approval status indicators for clarity", x: 40, y: 25, type: "improvement" },
             { text: "Simplified calendar view reduces cognitive load", x: 60, y: 45, type: "improvement" }
@@ -521,7 +521,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/DashboardPRIMARY.png", 
           alt: "Third iteration adding expense tracking",
-          blurb: "Added expenses.",
+          blurb: "Integrated expense tracking streamlines workflow\nReceipt upload system improves transparency",
           annotations: [
             { text: "Integrated expense tracking streamlines workflow", x: 30, y: 60, type: "feature" },
             { text: "Receipt upload system improves transparency", x: 80, y: 40, type: "feature" }
@@ -531,7 +531,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 4", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/iteration4.png", 
           alt: "Fourth iteration with messaging templates",
-          blurb: "Reduced conflict.",
+          blurb: "Neutral tone suggestions prevent escalation\nTemplate messaging reduces conflict potential",
           annotations: [
             { text: "Template messaging reduces conflict potential", x: 45, y: 35, type: "feature" },
             { text: "Neutral tone suggestions prevent escalation", x: 65, y: 65, type: "improvement" }
@@ -746,7 +746,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "Splittime transformed how separated families communicate and coordinate, creating a foundation for healthier relationships and better outcomes for children.",
+      description: "SplitTime changed the way separated families communicate and work together. It helped build healthier relationships and led to better outcomes for children.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "40%", label: "Conflict Reduction" },
@@ -761,9 +761,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "Process",
+      eyebrow: "APPROACH & DECISION MAKING",
       title: "My Thought Process",
-      content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better.",
+      content: "I designed around conflict reduction first, using neutral language and clear boundaries. Many co-parenting apps miss the mark by focusing on features instead of how people feel. I built SplitTime to reduce conflict first, using neutral language, clear boundaries, and shared accountability. The result: 40% less co-parenting conflict through a platform that helps families communicate better—not just stay organized.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2016/08/ideation_phase_design.png",
@@ -779,7 +779,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Learning from Setbacks",
-      content: "Initially, I tried to include too many features in the scheduling interface, which made it overwhelming for users. I learned to prioritize core functionality and gradually introduce advanced features based on user feedback.",
+      content: "At first, I added too many features to the scheduling interface, which overwhelmed users. I learned to focus on the basics and add advanced features slowly, based on what users needed.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-05-03-at-10.10.22%E2%80%AFPM-e1748480830908.png",
