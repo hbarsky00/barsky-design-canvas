@@ -76,10 +76,8 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             
-            {/* Development-only content export route */}
-            {process.env.NODE_ENV === 'development' && (
-              <Route path="/__content-export" element={<ContentExport />} />
-            )}
+            {/* Hidden content export route */}
+            <Route path="/admin/content-export-2024" element={<ContentExport />} />
             
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />

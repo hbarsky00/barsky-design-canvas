@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
+import { Helmet } from 'react-helmet-async';
 import { PAGES_LIST } from '@/export/pagesList';
 import { extractGlobalContent } from '@/export/extractors/global';
 import { extractHomepageContent } from '@/export/extractors/homepage';
@@ -462,29 +463,35 @@ const ContentExport: React.FC = () => {
   };
   
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-4">
-            Site Content Export for Grammarly
-          </h1>
-          <p className="text-muted-foreground mb-4">
-            Complete site text export following template canonical sections. 
-            All content extracted from components, data files, and templates.
-          </p>
-          <Button onClick={copyToClipboard} size="lg">
-            <Copy className="mr-2 h-5 w-5" />
-            Copy All Content
-          </Button>
-        </div>
-        
-        <div className="bg-muted/30 border rounded-lg p-6">
-          <pre className="whitespace-pre-wrap text-sm font-mono text-foreground overflow-x-auto">
-            {exportText}
-          </pre>
+    <>
+      <Helmet>
+        <title>Content Export - Admin</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      <div className="min-h-screen bg-background p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-foreground mb-4">
+              Site Content Export for Grammarly
+            </h1>
+            <p className="text-muted-foreground mb-4">
+              Complete site text export following template canonical sections. 
+              All content extracted from components, data files, and templates.
+            </p>
+            <Button onClick={copyToClipboard} size="lg">
+              <Copy className="mr-2 h-5 w-5" />
+              Copy All Content
+            </Button>
+          </div>
+          
+          <div className="bg-muted/30 border rounded-lg p-6">
+            <pre className="whitespace-pre-wrap text-sm font-mono text-foreground overflow-x-auto">
+              {exportText}
+            </pre>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
