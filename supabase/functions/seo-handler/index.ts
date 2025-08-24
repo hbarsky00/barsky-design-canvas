@@ -109,12 +109,29 @@ function getSeoForPath(pathname: string) {
 
   // Sections mapping
   const SECTION_SEO: Record<string, { title: string; description: string; image?: string }> = {
-    "/": { title: "Hiram Barsky Design", description: DEFAULT_DESC, image: DEFAULT_IMAGE },
-    "/projects": { title: `Case Studies & Projects — ${SITE_NAME}`, description: "Explore selected work in product design, UX, and AI." },
-    "/services": { title: `Design & AI Services — ${SITE_NAME}`, description: "UX research, design systems, and AI integration services." },
-    "/about": { title: `About — ${SITE_NAME}`, description: "Designer and builder focused on impactful, AI-enhanced experiences." },
-    "/blog": { title: `Blog — ${SITE_NAME}`, description: "Articles on product design, UX, and AI." },
-    "/contact": { title: `Contact — ${SITE_NAME}`, description: "Get in touch to discuss product design, UX, and AI initiatives." },
+    "/": { title: SITE_NAME, description: DEFAULT_DESC, image: DEFAULT_IMAGE },
+    "/projects": {
+      title: "Design Case Studies – Barsky Design",
+      description: "Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — showcasing impact, outcomes, and design thinking.",
+      image: "https://barskydesign.pro/images/herbalink-desktop-1.webp",
+    },
+    "/services": {
+      title: "UX & Product Design Services – Barsky Design",
+      description: "From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences.",
+    },
+    "/about": {
+      title: "About Hiram Barsky – Product Designer",
+      description: "Senior UX/Product Designer with 15+ years of experience creating data-driven, AI-powered, and mobile-first digital platforms.",
+    },
+    "/blog": {
+      title: "Design Insights & Case Studies – Barsky Blog",
+      description: "Thoughts on UX, AI, and design strategy — lessons learned from projects and experiments.",
+      image: "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
+    },
+    "/contact": {
+      title: "Contact Hiram Barsky – Product Designer",
+      description: "Let’s connect. Book a call to discuss your product vision, UX challenges, or collaboration opportunities.",
+    },
   };
 
   // Direct section hits
