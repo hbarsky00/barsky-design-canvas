@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 15, 2025",
     readTime: "7 min read",
-    coverImage: "/blog-finding-ux-job.jpg",
+    coverImage: "https://barskydesign.pro/blog-finding-ux-job.jpg",
     tags: ["UX Design", "Career", "Job Search", "Portfolio", "Networking"],
     slug: "finding-first-ux-job-guide",
     content: `
@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 8, 2025",
     readTime: "8 min read",
-    coverImage: "/blog-design-systems.jpg",
+    coverImage: "https://barskydesign.pro/blog-design-systems.jpg",
     tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
     slug: "design-systems-that-get-used",
     content: `
@@ -120,7 +120,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 28, 2025",
     readTime: "6 min read",
-    coverImage: "/blog-portfolio-red-flags.jpg",
+    coverImage: "https://barskydesign.pro/blog-portfolio-red-flags.jpg",
     tags: ["Portfolio", "UX Design", "Career", "Job Search", "Interview"],
     slug: "portfolio-red-flags-no-interviews",
     content: `
@@ -178,7 +178,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 15, 2025",
     readTime: "9 min read",
-    coverImage: "/blog-ai-enhanced-ux.jpg",
+    coverImage: "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
     tags: ["AI", "UX Design", "Future", "Career", "Technology"],
     slug: "ai-enhanced-ux-designer-future",
     content: `
@@ -244,7 +244,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 1, 2025",
     readTime: "7 min read",
-    coverImage: "/blog-user-research-budget.jpg",
+    coverImage: "https://barskydesign.pro/blog-user-research-budget.jpg",
     tags: ["User Research", "Budget", "Methods", "Strategy", "Process"],
     slug: "user-research-shoestring-budget",
     content: `
@@ -337,7 +337,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "October 18, 2025",
     readTime: "8 min read",
-    coverImage: "/blog-images/visual-hierarchy-psychology.png",
+    coverImage: "https://barskydesign.pro/blog-images/visual-hierarchy-psychology.png",
     tags: ["Visual Design", "Psychology", "Hierarchy", "UX Design", "Interface"],
     slug: "wireframes-to-wow-visual-hierarchy",
     content: `
@@ -415,7 +415,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "May 16, 2025",
     readTime: "8 min read",
-    coverImage: "/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
+    coverImage: "https://barskydesign.pro/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
     tags: ["Product Design", "Marketing", "Solo Designer", "UX Design"],
     slug: "built-product-without-real-data",
     content: `

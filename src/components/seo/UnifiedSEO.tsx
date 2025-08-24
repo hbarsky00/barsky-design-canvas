@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { normalizeUrl } from "@/utils/seo/canonicalUtils";
 import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
+import { blogPosts } from "@/data/blogData";
 import { SEO_CONSTANTS } from "@/utils/seoConstants";
 
 interface SEOData {
@@ -28,23 +29,28 @@ const staticPageSEO: Record<string, Partial<SEOData>> = {
   },
   '/projects': {
     title: `Case Studies & Projects — ${SEO_CONSTANTS.SITE_NAME}`,
-    description: 'Explore selected work in product design, UX, and AI.'
+    description: 'Explore selected work in product design, UX, and AI.',
+    image: 'https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png'
   },
   '/services': {
     title: `Design & AI Services — ${SEO_CONSTANTS.SITE_NAME}`,
-    description: 'UX research, design systems, and AI integration services.'
+    description: 'UX research, design systems, and AI integration services.',
+    image: 'https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png'
   },
   '/contact': {
     title: `Contact — ${SEO_CONSTANTS.SITE_NAME}`,
-    description: 'Get in touch to discuss product design, UX, and AI initiatives.'
+    description: 'Get in touch to discuss product design, UX, and AI initiatives.',
+    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
   '/blog': {
     title: "Design & AI Insights — Hiram Barsky",
-    description: "Thoughts on UX design, AI integration, and digital product strategy from 15+ years in the field."
+    description: "Thoughts on UX design, AI integration, and digital product strategy from 15+ years in the field.",
+    image: 'https://barskydesign.pro/blog-ai-enhanced-ux.jpg'
   },
   '/about': {
     title: "About Hiram Barsky — Senior Product Designer & AI Strategist",
-    description: "Learn about my 15+ year journey designing AI-enhanced digital experiences and strategic product solutions."
+    description: "Learn about my 15+ year journey designing AI-enhanced digital experiences and strategic product solutions.",
+    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   }
 };
 
@@ -68,6 +74,42 @@ const UnifiedSEO: React.FC = () => {
       note: "NO DATABASE CALLS - 100% SYNCHRONOUS"
     });
     
+    // Handle blog posts
+    if (pathname.startsWith('/blog/')) {
+      const slug = pathname.replace('/blog/', '').replace('/', '');
+      const blogPost = blogPosts.find(post => post.slug === slug);
+      
+      if (blogPost) {
+        const blogSeoData = {
+          title: `${blogPost.title} — ${SEO_CONSTANTS.SITE_NAME}`,
+          description: blogPost.excerpt,
+          canonical,
+          image: blogPost.coverImage,
+          type: 'article' as const,
+          publishedTime: new Date(blogPost.date).toISOString(),
+          author: blogPost.author,
+          tags: blogPost.tags
+        };
+        
+        console.log('📝 BLOG POST SEO DATA (SYNC):', {
+          ...blogSeoData,
+          slug,
+          imageAbsolute: blogSeoData.image?.startsWith('http')
+        });
+        
+        return blogSeoData;
+      }
+      
+      // Fallback for unknown blog posts
+      return {
+        title: `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
+        description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+        canonical,
+        image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
+        type: 'article' as const
+      };
+    }
+
     // Handle project pages with structured case studies
     if (pathname.startsWith('/project/')) {
       const projectId = pathname.replace('/project/', '').replace('/', '');
