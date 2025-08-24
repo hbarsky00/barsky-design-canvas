@@ -25,15 +25,15 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>Breaking into UX can feel like trying to solve a puzzle with missing pieces. After 15+ years in the field, I've seen countless talented designers struggle not because they lack skills, but because they're approaching the job hunt all wrong.</p>
       
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Reality Check Nobody Talks About</h2>
+      <h2 class="text-section-title mt-8 mb-4">The Reality Check Nobody Talks About</h2>
       
       <p>The UX job market isn't what it was five years ago. Companies are more selective, and "entry-level" positions often require 2-3 years of experience. But here's the thing - this creates opportunity for those who know how to stand out.</p>
       
-      <h2 class="text-2xl font-bold mt-8 mb-4">Your Portfolio is Your Product</h2>
+      <h2 class="text-section-title mt-8 mb-4">Your Portfolio is Your Product</h2>
       
       <p>Treat your portfolio like you would any UX project. Start with user research - who are the hiring managers? What problems are they trying to solve? Most portfolios fail because they showcase pretty designs instead of problem-solving processes.</p>
       
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Three-Story Rule</h2>
+      <h2 class="text-section-title mt-8 mb-4">The Three-Story Rule</h2>
       
       <p>Include exactly three case studies:</p>
       <ol class="list-decimal pl-6 mb-4">
@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 8, 2025",
     readTime: "8 min read",
-    coverImage: "https://barskydesign.pro/blog-design-systems.jpg",
+    coverImage: "https://barskydesign.pro/images/blog-design-systems.jpg",
     tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
     slug: "design-systems-that-get-used",
     content: `
@@ -244,7 +244,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 1, 2025",
     readTime: "7 min read",
-    coverImage: "https://barskydesign.pro/blog-user-research-budget.jpg",
+    coverImage: "https://barskydesign.pro/images/blog-user-research-budget.jpg",
     tags: ["User Research", "Budget", "Methods", "Strategy", "Process"],
     slug: "user-research-shoestring-budget",
     content: `
