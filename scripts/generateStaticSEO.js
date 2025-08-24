@@ -145,12 +145,6 @@ const allPagesSEOData = {
         image: DEFAULT_IMAGE,
         url: `${BASE_URL}/project/business-management`
       },
-      '/project/wholesale-distribution': {
-        title: 'Wholesale Distribution Case Study - Hiram Barsky Design',
-        description: 'Comprehensive case study of the Wholesale Distribution project showcasing UX design and development process.',
-        image: DEFAULT_IMAGE,
-        url: `${BASE_URL}/project/wholesale-distribution`
-      }
     };
     
     return { ...projectPages, ...fallbackProjects };
@@ -257,7 +251,7 @@ const caseStudySEOData = {
   'business-management': allPagesSEOData['/project/business-management'],
   'herbal-ink': allPagesSEOData['/project/herbalink'],
   'investor-loan': allPagesSEOData['/project/investor-loan'],
-  'wholesale-distribution': allPagesSEOData['/project/wholesale-distribution']
+  
 };
 
 // Function to inject SEO meta tags

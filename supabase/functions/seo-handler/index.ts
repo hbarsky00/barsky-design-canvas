@@ -28,7 +28,7 @@ const PROJECT_IMAGE_MAP: Record<string, string> = {
   "business-management": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
   "investor-loan-app": "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
   "investment-app": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-  "wholesale-distribution": "/placeholder.svg",
+  
 };
 
 const BLOG_IMAGE_MAP: Record<string, string> = {
