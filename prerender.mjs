@@ -20,13 +20,25 @@ try {
   process.exit(1)
 }
 
-// Minimal, safe routes to pre-render. Add more as needed.
+// Pre-render all known static and specific routes from App.tsx
 const routesToPrerender = [
   '/',
   '/projects',
   '/services',
+  '/about',
+  '/contact',
   '/blog',
-]
+  // Structured case studies
+  '/project/herbalink',
+  '/project/business-management',
+  '/project/splittime',
+  '/project/investor-loan-app',
+  '/project/wholesale-distribution',
+  // Service detail pages
+  '/design-services/ux-ui-design',
+  '/design-services/mobile-app-design',
+  '/design-services/web-development',
+];
 
 ;(async () => {
   for (const url of routesToPrerender) {
