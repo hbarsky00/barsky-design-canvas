@@ -21,7 +21,7 @@ try {
   console.log('✅ Server (SSG) build completed');
 
 // Prerender static HTML files
-execSync('node prerender.mjs', { stdio: 'inherit' });
+execSync('node prerender.js', { stdio: 'inherit' });
 console.log('✅ Prerendering completed');
 
   // Verify build files
