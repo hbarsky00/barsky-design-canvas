@@ -12,9 +12,17 @@ try {
     console.log('🧹 Cleaned previous build');
   }
 
-  // Build the application
+  // Build the client application
   execSync('vite build', { stdio: 'inherit' });
-  console.log('✅ Vite build completed');
+  console.log('✅ Client build completed');
+
+  // Build the server entry for SSG
+  execSync('vite build --ssr src/entry-server.tsx --outDir dist/server', { stdio: 'inherit' });
+  console.log('✅ Server (SSG) build completed');
+
+  // Prerender static HTML files
+  execSync('node prerender.js', { stdio: 'inherit' });
+  console.log('✅ Prerendering completed');
 
   // Verify build files
   const distDir = 'dist';
