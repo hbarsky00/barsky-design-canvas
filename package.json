@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
- "scripts": { "dev": "vite", "build": "npm run build:client && npm run build:server && npm run build:prerender", "build:client": "vite build", "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server", "build:prerender": "node prerender.mjs", "build:dev": "vite build --mode development", "lint": "eslint .", "preview": "vite preview" },
+  "scripts": { "dev": "vite", "clean": "rimraf dist || rm -rf dist", "build": "node scripts/build-with-prerender.js", "build:client": "vite build", "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server", "build:prerender": "node prerender.js", "build:dev": "vite build --mode development", "preview": "vite preview", "check:pkg": "npm pkg get name version type scripts" },
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
