@@ -3,6 +3,8 @@
  * Simplified URL normalization utilities for consistent canonical URLs
  */
 
+import { normalizeCanonicalUrl } from '@/utils/seo/urlNormalizer';
+
 const PRODUCTION_BASE_URL = 'https://barskydesign.pro';
 
 /**
@@ -20,8 +22,7 @@ const getDynamicBaseUrl = (): string => {
  * - No complex path manipulation
  */
 export const normalizeUrl = (path: string): string => {
-  // Use the new unified normalizer
-  const { normalizeCanonicalUrl } = require('@/utils/seo/urlNormalizer');
+  // Use the new unified normalizer with proper ES6 import
   return normalizeCanonicalUrl(path);
 };
 
