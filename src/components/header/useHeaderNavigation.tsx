@@ -36,6 +36,8 @@ export const useHeaderNavigation = () => {
   const isProjectPage = location.pathname.startsWith('/project/') || location.pathname.startsWith('/case-studies/');
 
   const scrollToSection = (sectionId: string) => {
+    console.log('Scrolling to section:', sectionId);
+    
     // First check if we're on the homepage
     if (location.pathname !== '/') {
       // If not on homepage, navigate there first with scrollTo state
@@ -46,26 +48,40 @@ export const useHeaderNavigation = () => {
     // Set intentional scrolling flag
     setIsIntentionalScrolling(true);
     
-    // If we're already on the homepage, scroll to the section with header offset
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '64');
-      const elementTop = section.offsetTop;
-      const offset = elementTop - headerHeight - 20; // 20px breathing room
+    // Simple, foolproof scroll function
+    const attemptScroll = (retries = 3) => {
+      const section = document.getElementById(sectionId);
+      console.log('Found section:', sectionId, section);
       
-      if (typeof window !== 'undefined') {
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetPosition = rect.top + scrollTop - 80; // Fixed 80px offset for header
+        
+        console.log('Scrolling to position:', targetPosition);
+        
         window.scrollTo({
-          top: Math.max(0, offset),
+          top: Math.max(0, targetPosition),
           behavior: 'smooth'
         });
-      }
-      setIsMobileMenuOpen(false);
-      
-      // Clear intentional scrolling flag after scroll completes
-      setTimeout(() => {
+        
+        setIsMobileMenuOpen(false);
+        
+        // Clear intentional scrolling flag after scroll completes
+        setTimeout(() => {
+          setIsIntentionalScrolling(false);
+        }, 1000);
+      } else if (retries > 0) {
+        // Element might not be rendered yet due to transitions, retry
+        console.log('Section not found, retrying...', retries);
+        setTimeout(() => attemptScroll(retries - 1), 50);
+      } else {
+        console.error('Could not find section:', sectionId);
         setIsIntentionalScrolling(false);
-      }, 1000);
-    }
+      }
+    };
+    
+    attemptScroll();
   };
 
   const handleLinkClick = (href: string) => {
