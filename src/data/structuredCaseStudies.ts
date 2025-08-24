@@ -155,7 +155,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "herbalink": {
     id: "herbalink",
     title: "HerbaLink – 3× More Bookings for Certified Herbalists",
-    description: "Designed a mobile-first platform connecting users with verified herbalists. Achieved a 3× increase in bookings through trust and transparency.",
+    description: "HerbaLink connects people with vetted herbalists and reliable resources. Many users relied on unverified sources, creating risks. The vision: build a discovery and booking platform with credibility at its core. The outcome: safe, trustworthy access to natural health practitioners and remedies.",
     tags: ["Blue Sky", "Design Thinking", "GenAI", "WebApp", "Mobile"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "http://herbalink.live",
@@ -202,9 +202,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "I initiated discovery sessions with potential users and herbalists to understand the core friction points. Through design sprints, I framed the problem around trust, safety, and accessibility—not just practitioner availability. This foundation helped establish that matching algorithms needed to prioritize credentials and safety information over proximity alone.",
+      workshopKickoff: "Early sketches prioritized practitioner credibility over features.",
       explorations: "I explored blue-sky concepts ranging from AI-powered symptom analysis to community-driven peer reviews. Early sketches included marketplace-style browsing, chat-first consultations, and comprehensive health tracking. I tested divergent ideas like gamified health journeys and social proof through community testimonials to understand what resonated most with users seeking herbal care.",
-      decisionPoint: "I converged on a practitioner-focused platform after validating that users prioritized expert guidance over self-directed exploration. The decision centered on verified credentials, clear safety information, and streamlined booking—creating trust through transparency rather than overwhelming users with too many options or complex health tracking features.",
+      decisionPoint: "I chose to focus the platform on practitioners after seeing that users valued expert guidance most. I made verified credentials, clear safety details, and simple booking the core features. This approach built trust and avoided overwhelming users with too many choices or complicated tracking tools.\nBlue-sky thinking revealed users needed guided discovery rather than exhaustive, self-serve databases.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png",
@@ -252,6 +252,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661047658-scaled.png", 
           alt: "First iteration of HerbaLink profile design",
+          blurb: "Navigation unclear — users don't understand the tab structure\nProfile information scattered — needs better organization\nCTA button placement needs improvement",
           annotations: [
             { text: "Navigation unclear - users don't understand the tab structure", x: 20, y: 15, type: "issue" },
             { text: "Profile information scattered - needs better organization", x: 50, y: 35, type: "issue" },
@@ -262,6 +263,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661017299-scaled.png", 
           alt: "Second iteration focusing on safety information",
+          blurb: "Improved navigation with clearer labels\nBetter visual hierarchy\nSafety information now prominently displayed",
           annotations: [
             { text: "Improved navigation with clearer labels", x: 20, y: 15, type: "improvement" },
             { text: "Safety information now prominently displayed", x: 60, y: 40, type: "feature" },
@@ -272,6 +274,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661070914-scaled.png", 
           alt: "Third iteration with match criteria refinements",
+          blurb: "Streamlined profile sections\nMatch criteria made more prominent\nEnhanced booking flow entry point",
           annotations: [
             { text: "Match criteria made more prominent", x: 30, y: 25, type: "feature" },
             { text: "Streamlined profile sections", x: 70, y: 45, type: "improvement" },
@@ -291,9 +294,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "Process",
+      eyebrow: "APPROACH & DECISION MAKING",
       title: "My Thought Process",
-      content: "Trust beats features when connecting people with healthcare providers. I designed every interaction to build credibility and reduce anxiety through clear symptom tracking and verified herbalist profiles.",
+      content: "I prioritized trust-building over flashy features. Building trust is more important than adding lots of features when connecting people with healthcare providers. I focused on making every interaction credible and reassuring by using clear symptom tracking and verified herbalist profiles. The result: 3x higher booking rates through clear symptom tracking and verified profiles.",
       images: [
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
@@ -308,7 +311,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with both practitioners and patients validated my trust-focused approach and revealed key usability improvements for the booking flow.",
+      description: "Testing with both practitioners and patients validated the trust-focused approach and revealed key usability improvements for the booking flow.",
       eyebrow: "VALIDATION & TESTING",
       metrics: [
         { value: "92%", label: "Task Completion" },
@@ -368,7 +371,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "I built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights.",
+      description: "I set up a solid base for results, confirmed the model works, and created a plan to grow with AI, long-term tracking, and insights from practitioners.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "3x", label: "Booking Rate Increase" },
@@ -385,7 +388,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "Early prototypes focused too heavily on complex categorization systems and overwhelming information architecture. Users needed simple, guided discovery rather than comprehensive databases.",
+      content: "At first, the prototypes were too complex, with too many categories and confusing layouts. Users wanted a simple, guided way to find what they needed, not a huge database.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
