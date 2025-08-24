@@ -15,7 +15,7 @@ export const SEO_CONSTANTS = {
   get BASE_URL() {
     return getDynamicBaseUrl();
   },
-  DEFAULT_PROFILE_IMAGE: 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp',
+  DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/lovable-uploads/bf17cde1-bae7-4ed8-b085-15f8e8b38f0d.png',
   SITE_NAME: 'Hiram Barsky Design',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
