@@ -20,7 +20,7 @@
   status = 200
   
 [build]
-  command = "npm run build"
+  command = "node scripts/build-with-prerender.js"
   publish = "dist"
   
 [[headers]]
