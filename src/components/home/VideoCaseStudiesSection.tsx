@@ -59,6 +59,19 @@ const caseStudies: CaseStudy[] = [
     video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
   },
   {
+    id: "crypto",
+    tags: ["FinTech", "Crypto", "Mobile & Web"],
+    title: "Trading Without Friction: 35% More Conversions in Crypto Trading",
+    description: "Designed a dual-mode trading experience that adapts to both beginner and expert users. Built intuitive portfolio tracking, simplified onboarding, and advanced charting tools that increased user engagement and conversion rates across all user segments.",
+    impact: "+35% Onboarding Conversion",
+    url: "/project/crypto",
+    images: {
+      primary: "/placeholder.svg",
+      alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
+    },
+    layout: "side-by-side"
+  },
+  {
     id: "business-management",
     tags: ["Enterprise", "Analytics", "Dashboard"],
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
