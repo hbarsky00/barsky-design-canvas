@@ -23,7 +23,7 @@ interface SEOData {
 // Local SEO data map for static pages
 const staticPageSEO: Record<string, Partial<SEOData>> = {
   '/': {
-    title: "Senior Product Designer & AI Strategist — Hiram Barsky",
+    title: SEO_CONSTANTS.SITE_NAME,
     description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
