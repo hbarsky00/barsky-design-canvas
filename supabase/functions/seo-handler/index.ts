@@ -18,7 +18,7 @@ const SITE_NAME = "Hiram Barsky Design";
 const DEFAULT_DESC =
   "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.";
 const DEFAULT_IMAGE =
-  "https://barskydesign.pro/images/hiram-barsky-profile.webp";
+  "https://barskydesign.pro/lovable-uploads/bf17cde1-bae7-4ed8-b085-15f8e8b38f0d.png";
 
 // Known crawler/bot user agents
 // Additional per-route SEO mappings
@@ -109,7 +109,7 @@ function getSeoForPath(pathname: string) {
 
   // Sections mapping
   const SECTION_SEO: Record<string, { title: string; description: string; image?: string }> = {
-    "/": { title: "Senior Product Designer & AI Strategist — Hiram Barsky", description: DEFAULT_DESC, image: DEFAULT_IMAGE },
+    "/": { title: "Hiram Barsky Design", description: DEFAULT_DESC, image: DEFAULT_IMAGE },
     "/projects": { title: `Case Studies & Projects — ${SITE_NAME}`, description: "Explore selected work in product design, UX, and AI." },
     "/services": { title: `Design & AI Services — ${SITE_NAME}`, description: "UX research, design systems, and AI integration services." },
     "/about": { title: `About — ${SITE_NAME}`, description: "Designer and builder focused on impactful, AI-enhanced experiences." },
@@ -127,7 +127,7 @@ function getSeoForPath(pathname: string) {
 
   // Home fallback
   if (clean === "/") {
-    title = "Senior Product Designer & AI Strategist — Hiram Barsky";
+    title = "Hiram Barsky Design";
     description = DEFAULT_DESC;
     image = DEFAULT_IMAGE;
     return { title, description, image, type };
