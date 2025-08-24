@@ -14,7 +14,7 @@ export interface ResearchSection {
   emergingThemes: EmergingTheme[];
   researchImage?: string;
   researchImageAlt?: string;
-  researchImages?: { src: string; alt: string; }[];
+  researchImages?: { src: string; alt: string; caption?: string; annotations?: ImageAnnotation[]; }[];
   researchVideo?: string;
 }
 
@@ -137,6 +137,7 @@ export interface StructuredCaseStudyData {
       src: string;
       alt: string;
       caption?: string;
+      annotations?: ImageAnnotation[];
     }>;
   };
   sections: StructuredCaseStudySectionProps[];
@@ -849,14 +850,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Stepwise flow; actions disabled until lender selection; real-time feedback."
         }
       ],
-        researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
-        researchImageAlt: "Excel caused errors.",
-        researchImages: [
-          {
-            src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
-            alt: "Excel caused errors."
-          }
-        ]
+      researchImages: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2023/12/excel-document-used-to-save-loan-information.png",
+          alt: "Excel-based loan tracking spreadsheet with inconsistent fields and manual totals",
+          caption: "Excel caused errors and compliance risk",
+          annotations: [
+            { text: "Inconsistent columns", x: 20, y: 25, type: "issue" },
+            { text: "Manual copy/paste", x: 50, y: 40, type: "issue" },
+            { text: "No audit history", x: 70, y: 60, type: "issue" },
+            { text: "Hidden calculation errors", x: 40, y: 75, type: "issue" }
+          ]
+        }
+      ]
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
@@ -870,14 +876,27 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "I decided to build an intelligent workflow platform after seeing that most errors came from manual data entry and missing validation. I focused on automated checks, guided workflows, and clear audit trails to build trust through transparency and accuracy, instead of adding complex financial modeling features.",
       images: [
         {
-          src: "placeholder",
-          alt: "Initial Concepts & Sketches",
-          caption: "Early exploration of loan processing workflows and automated validation concepts"
+          src: "https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png",
+          alt: "Low-fidelity order builder wireframe for loan workflows",
+          caption: "",
+          annotations: [
+            { text: "Stepwise order stages", x: 25, y: 20, type: "feature" },
+            { text: "Required fields first", x: 60, y: 35, type: "improvement" },
+            { text: "Validation badges", x: 40, y: 60, type: "feature" },
+            { text: "Review & submit gate", x: 75, y: 80, type: "improvement" }
+          ]
         },
         {
-          src: "placeholder",
-          alt: "User Flow Explorations",
-          caption: "Blue-sky mapping of lending operations from application to approval and audit"
+          src: "https://barskyux.com/wp-content/uploads/2023/12/whiteboarding.png",
+          alt: "Whiteboard mapping of loan lifecycle from application to audit",
+          caption: "",
+          annotations: [
+            { text: "Intake to screening", x: 20, y: 25, type: "feature" },
+            { text: "Lender selection", x: 40, y: 40, type: "feature" },
+            { text: "Order build & validate", x: 60, y: 30, type: "improvement" },
+            { text: "Approval & booking", x: 75, y: 60, type: "feature" },
+            { text: "Audit trail & monitoring", x: 50, y: 80, type: "improvement" }
+          ]
         }
       ]
     },
@@ -897,51 +916,46 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         { 
           label: "Iteration 1", 
-          imageSrc: "/media/investment/ideation-1.jpg", 
-          alt: "First iteration of deal summary interface",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Orderbook-ViewAddOrderDefault.png", 
+          alt: "Early orderbook view with Add Order entry point and sparse validation",
           blurb: "Deal information is scattered — lacks a clear hierarchy\nNo real-time validation causes errors downstream",
           annotations: [
-            { text: "Deal information scattered - lacks clear hierarchy", x: 60, y: 30, type: "issue" },
-            { text: "No real-time validation causes errors downstream", x: 40, y: 70, type: "issue" }
+            { text: "Add Order entry", x: 30, y: 20, type: "feature" },
+            { text: "Unclear field priority", x: 60, y: 45, type: "issue" },
+            { text: "No inline checks", x: 50, y: 75, type: "issue" }
           ]
         },
         { 
           label: "Iteration 2", 
-          imageSrc: "/media/investment/ideation-2.jpg", 
-          alt: "Second iteration with predictive search",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Add-Order-Default.png", 
+          alt: "Add Order default form with clearer required fields and disabled actions",
           blurb: "Contextual filters reduce search time\nBloomberg-style search improves findability",
           annotations: [
-            { text: "Bloomberg-style search improves findability", x: 30, y: 20, type: "feature" },
-            { text: "Contextual filters reduce search time", x: 70, y: 40, type: "improvement" }
+            { text: "Required field indicators", x: 25, y: 30, type: "improvement" },
+            { text: "Disabled submit until ready", x: 65, y: 50, type: "feature" },
+            { text: "Contextual field help", x: 50, y: 75, type: "improvement" }
           ]
         },
         { 
           label: "Iteration 3", 
-          imageSrc: "/media/investment/ideation-3.jpg", 
-          alt: "Third iteration of guided order builder",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Central-Orderbook-View.png", 
+          alt: "Orderbook overview with real-time totals and status cues",
           blurb: "Real-time totals reduce calculation errors\nStep-by-step guidance prevents premature inputs",
           annotations: [
-            { text: "Step-by-step guidance prevents premature inputs", x: 50, y: 35, type: "feature" },
-            { text: "Real-time totals reduce calculation errors", x: 80, y: 60, type: "improvement" }
+            { text: "Live totals", x: 35, y: 25, type: "feature" },
+            { text: "Status chips", x: 65, y: 40, type: "improvement" },
+            { text: "Inline validation states", x: 50, y: 70, type: "feature" }
           ]
         },
         { 
           label: "Iteration 4", 
-          imageSrc: "/media/investment/ideation-4.jpg", 
-          alt: "Fourth iteration with audit and comments",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062219098-scaled.png", 
+          alt: "High-fidelity UI showing guided steps and validation feedback",
           blurb: "Collaborative comments improve team coordination\nImmutable audit trail meets compliance needs",
           annotations: [
-            { text: "Immutable audit trail meets compliance needs", x: 45, y: 25, type: "feature" },
-            { text: "Collaborative comments improve team coordination", x: 60, y: 75, type: "improvement" }
-          ]
-        },
-        { 
-          label: "Iteration 5", 
-          imageSrc: "/media/investment/ideation-5.jpg", 
-          alt: "Final iteration with integrated workflow",
-          annotations: [
-            { text: "Integrated workflow eliminates context switching", x: 40, y: 40, type: "feature" },
-            { text: "85% error reduction through automated validation", x: 70, y: 20, type: "improvement" }
+            { text: "Step indicator", x: 30, y: 20, type: "feature" },
+            { text: "Error prevention copy", x: 60, y: 45, type: "improvement" },
+            { text: "Confirm & audit link", x: 70, y: 75, type: "feature" }
           ]
         }
       ]
@@ -998,6 +1012,81 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
               text: "Audit trails ensure compliance transparency"
             }
           ]
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2023/12/My-Deals-list-view.png",
+          alt: "My Deals list view with quick filters, status chips, and bulk actions",
+          caption: "",
+          annotations: [
+            {
+              x: 25,
+              y: 20,
+              type: "feature",
+              text: "Quick lender/status filters"
+            },
+            {
+              x: 60,
+              y: 40,
+              type: "improvement",
+              text: "Risk/progress status chips"
+            },
+            {
+              x: 80,
+              y: 70,
+              type: "feature",
+              text: "Bulk actions for common updates"
+            }
+          ]
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Deals-1.png",
+          alt: "Loan deals table with summary sidebar, inline validation, and audit trail",
+          caption: "",
+          annotations: [
+            {
+              x: 30,
+              y: 25,
+              type: "feature",
+              text: "Summary limits & totals"
+            },
+            {
+              x: 65,
+              y: 45,
+              type: "improvement",
+              text: "Inline validation prompts"
+            },
+            {
+              x: 50,
+              y: 75,
+              type: "feature",
+              text: "Change log & audit history"
+            }
+          ]
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2023/12/Just-Orderbook.png",
+          alt: "Orderbook screen emphasizing guided steps and real-time totals",
+          caption: "",
+          annotations: [
+            {
+              x: 35,
+              y: 20,
+              type: "feature",
+              text: "Guided step progression"
+            },
+            {
+              x: 70,
+              y: 40,
+              type: "improvement",
+              text: "Real-time total checks"
+            },
+            {
+              x: 55,
+              y: 70,
+              type: "feature",
+              text: "Reviewer comments thread"
+            }
+          ]
         }
       ]
     },
@@ -1012,8 +1101,29 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
-          alt: "Investor loan platform user workflow and process improvements"
+          src: "https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png",
+          alt: "Low-fidelity order builder highlighting outcome-driving design decisions",
+          caption: "",
+          annotations: [
+            {
+              x: 30,
+              y: 25,
+              type: "feature",
+              text: "Validation at each step"
+            },
+            {
+              x: 65,
+              y: 50,
+              type: "improvement",
+              text: "Submit only when complete"
+            },
+            {
+              x: 50,
+              y: 75,
+              type: "feature",
+              text: "Audit-ready artifacts"
+            }
+          ]
         }
       ]
     },
@@ -1038,27 +1148,27 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Excel System → New Platform: Manual entry, frequent errors → Automated workflows with validation. No collaboration → In-app commenting and shared loan orders. Flat spreadsheets → Card + table views with live syncing. No audit history → Full visual audit logs. No search → AI-powered predictive search.",
       images: [
         {
-          src: "/lovable-uploads/excel-workflow-errors.png",
-          alt: "Excel-based loan workflow showing manual error points",
-          caption: "Original Excel-based workflows were prone to calculation errors and lacked audit trails",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062303031-scaled.png",
+          alt: "Collage highlighting legacy manual steps and fragmentation",
+          caption: "",
           annotations: [
             {
-              x: 35,
-              y: 30,
+              x: 30,
+              y: 25,
               type: "issue",
-              text: "Manual calculations led to frequent errors"
+              text: "Multiple sources of truth"
             },
             {
               x: 60,
               y: 50,
               type: "issue",
-              text: "No audit trail created compliance risk"
+              text: "Manual reconciliation"
             },
             {
-              x: 45,
+              x: 50,
               y: 75,
-              type: "improvement",
-              text: "Automated validation eliminated 85% of errors"
+              type: "issue",
+              text: "Compliance blind spots"
             }
           ]
         }
