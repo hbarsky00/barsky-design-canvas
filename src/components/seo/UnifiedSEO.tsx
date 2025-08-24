@@ -26,6 +26,18 @@ const staticPageSEO: Record<string, Partial<SEOData>> = {
     description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
+  '/projects': {
+    title: `Case Studies & Projects — ${SEO_CONSTANTS.SITE_NAME}`,
+    description: 'Explore selected work in product design, UX, and AI.'
+  },
+  '/services': {
+    title: `Design & AI Services — ${SEO_CONSTANTS.SITE_NAME}`,
+    description: 'UX research, design systems, and AI integration services.'
+  },
+  '/contact': {
+    title: `Contact — ${SEO_CONSTANTS.SITE_NAME}`,
+    description: 'Get in touch to discuss product design, UX, and AI initiatives.'
+  },
   '/blog': {
     title: "Design & AI Insights — Hiram Barsky",
     description: "Thoughts on UX design, AI integration, and digital product strategy from 15+ years in the field."
@@ -60,14 +72,19 @@ const UnifiedSEO: React.FC = () => {
     if (pathname.startsWith('/project/')) {
       const projectId = pathname.replace('/project/', '').replace('/', '');
       const caseStudyData = getStructuredCaseStudy(projectId);
+
+      const ensureAbsolute = (img?: string) => {
+        if (!img) return SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE;
+        return img.startsWith('http') ? img : `${SEO_CONSTANTS.BASE_URL}${img.startsWith('/') ? img : `/${img}`}`;
+      };
       
       if (caseStudyData) {
         const projectSeoData = {
           title: caseStudyData.title,
           description: caseStudyData.description,
           canonical,
-          image: caseStudyData.seoData?.image || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-          type: 'website' as const
+          image: ensureAbsolute(caseStudyData.seoData?.image),
+          type: 'article' as const
         };
         
         console.log('✨ PROJECT SEO DATA (SYNC):', {
@@ -85,7 +102,7 @@ const UnifiedSEO: React.FC = () => {
         description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
         canonical,
         image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
-        type: 'website' as const
+        type: 'article' as const
       };
     }
     
@@ -132,23 +149,21 @@ const UnifiedSEO: React.FC = () => {
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
-      
-      {/* Force scrapers to see canonical immediately */}
-      <meta property="og:url" content={seoData.canonical} />
       <meta name="robots" content="index,follow" />
       <meta name="googlebot" content="index,follow" />
       
       {/* Open Graph */}
+      <meta property="og:site_name" content={SEO_CONSTANTS.SITE_NAME} />
       <meta property="og:title" content={seoData.title} />
       <meta property="og:description" content={seoData.description} />
       <meta property="og:url" content={seoData.canonical} />
       <meta property="og:type" content={seoData.type} />
       {seoData.image && <meta property="og:image" content={seoData.image} />}
-      
-      {/* Article specific meta tags - not used in current synchronous implementation */}
+      {seoData.image && <meta property="og:image:alt" content={seoData.title} />}
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={SEO_CONSTANTS.TWITTER_HANDLE} />
       <meta name="twitter:title" content={seoData.title} />
       <meta name="twitter:description" content={seoData.description} />
       {seoData.image && <meta name="twitter:image" content={seoData.image} />}

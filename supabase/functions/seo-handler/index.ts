@@ -25,7 +25,7 @@ const DEFAULT_IMAGE =
 const PROJECT_IMAGE_MAP: Record<string, string> = {
   "herbalink": "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
   "splittime": "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
-  "business-management": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+  "business-management": "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
   "investor-loan-app": "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
   "investment-app": "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
   
@@ -86,9 +86,13 @@ function resolveCanonical(urlParam: string | null, pathParam: string | null): st
     }
   }
   const path = pathParam ? (pathParam.startsWith("/") ? pathParam : `/${pathParam}`) : "/";
-  // Normalize double slashes and trailing slash for non-root
-  const cleanPath = path === "/" ? "/" : path.replace(/\/+$/, "");
-  return `${BASE_URL}${cleanPath}`;
+  // Normalize and ensure trailing slash for non-root to match frontend canonical
+  if (path === "/" || path === "") {
+    return `${BASE_URL}/`;
+  }
+  const cleanPath = path.replace(/\/index\.html?$/i, "/");
+  const withSlash = cleanPath.endsWith("/") ? cleanPath : `${cleanPath}/`;
+  return `${BASE_URL}${withSlash}`;
 }
 
 function getSeoForPath(pathname: string) {
