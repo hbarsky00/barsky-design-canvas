@@ -20,7 +20,7 @@
   status = 200
   
 [build]
-  command = "node scripts/build-with-prerender.js"
+  command = "vite build"
   publish = "dist"
   
 [[headers]]
