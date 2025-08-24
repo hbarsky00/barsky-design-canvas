@@ -19,15 +19,15 @@ const featuredCaseStudies = [
     tags: ["AI", "Healthcare", "Mobile App"]
   },
   {
-    id: "splittime",
-    title: "SplitTime",
-    subtitle: "Smart Scheduling Solution",
-    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
-    image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-    url: "/project/splittime",
-    category: "Productivity",
-    impact: "65% reduction in scheduling conflicts",
-    tags: ["AI", "Productivity", "Scheduling"]
+    id: "crypto",
+    title: "Trading Without Friction",
+    subtitle: "Dual-Mode Crypto Trading Platform",
+    description: "Crypto platforms force a tradeoff: easy but shallow vs powerful but confusing. Over 60% of beginners quit before their first trade, and nearly 30% of pros churn within 90 days. I designed a dual-mode trading experience that serves both ends.",
+    image: "/lovable-uploads/crypto-cover.jpg",
+    url: "/project/crypto",
+    category: "FinTech", 
+    impact: "+35% Conversion · –40% TTF Trade",
+    tags: ["Fintech", "Crypto", "Mobile & Web"]
   },
   {
     id: "investor-loan",
@@ -39,6 +39,28 @@ const featuredCaseStudies = [
     category: "FinTech",
     impact: "50% faster loan approval process",
     tags: ["FinTech", "Real Estate", "Automation"]
+  },
+  {
+    id: "splittime",
+    title: "SplitTime",
+    subtitle: "Smart Scheduling Solution",
+    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
+    image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
+    url: "/project/splittime",
+    category: "Productivity",
+    impact: "65% reduction in scheduling conflicts",
+    tags: ["AI", "Productivity", "Scheduling"]
+  },
+  {
+    id: "business-management",
+    title: "Business Management",
+    subtitle: "Internal Operations Tool",
+    description: "Streamlined internal business operations with automated workflows, centralized data management, and performance tracking. The system reduces manual tasks and provides clear visibility into business processes.",
+    image: "/lovable-uploads/business-management-cover.jpg",
+    url: "/project/business-management",
+    category: "Enterprise",
+    impact: "40% reduction in manual tasks",
+    tags: ["Enterprise", "Automation", "Analytics"]
   }
 ];
 

@@ -153,6 +153,138 @@ export interface StructuredCaseStudyData {
 }
 
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
+  "crypto": {
+    id: "crypto",
+    title: "Trading Without Friction – Crypto App Case Study",
+    description: "Crypto platforms force a tradeoff: easy but shallow vs powerful but confusing. Over 60% of beginners quit before their first trade, and nearly 30% of pros churn within 90 days. I designed a dual-mode trading experience that serves both ends. Results: onboarding conversion ↑ 35%, order errors ↓ 45%, pro trader retention ↑ 25%, and time-to-first-trade ↓ 40%.",
+    tags: ["Fintech", "Crypto", "Mobile & Web", "Product Design", "Research", "Prototyping"],
+    gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
+    heroVideo: {
+      src: "/lovable-uploads/crypto-hero.mp4",
+      poster: "/lovable-uploads/crypto-cover.jpg", 
+      alt: "Crypto trading platform overview"
+    },
+    researchSection: {
+      subhead: "User research revealed significant pain points in crypto trading platforms across all experience levels.",
+      emergingThemes: [
+        {
+          eyebrow: "BEGINNER BARRIERS",
+          insight: "60% of beginners reported feeling 'too confused to invest.'",
+          drove: "Guided trading mode with clear explanations and safety rails."
+        },
+        {
+          eyebrow: "PRO LIMITATIONS", 
+          insight: "70% of pros stitched multiple platforms to get speed + analytics.",
+          drove: "Advanced panel with hotkeys, presets, and live order book."
+        },
+        {
+          eyebrow: "COMPETITIVE GAPS",
+          insight: "Coinbase = simple but limited; Binance = dense; Kraken = technical.",
+          drove: "Dual-mode approach serving both audiences in one platform."
+        }
+      ]
+    },
+    problemCallout: {
+      eyebrow: "Problem to Solve",
+      statement: "Novices abandon onboarding; pros churn after early trades. The business loses first deposits and high-volume activity."
+    },
+    sprintZeroSection: {
+      eyebrow: "Sprint Zero",
+      title: "Foundation & Principles",
+      workshopKickoff: "Principles: (1) Trust is visible, (2) Speed is retention, (3) Guided simplicity.",
+      explorations: "Targets: +30% onboarding conversion, –50% order errors, +25% repeat logins (30 days).",
+      decisionPoint: "Focus on dual-mode design serving both novice and expert traders."
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: "Dual-mode clarity wins",
+        description: "Guided flow + Pro Panel approach satisfied both user segments."
+      },
+      {
+        number: 2, 
+        title: "Plain language improved success ~30%",
+        description: "Converting crypto jargon to everyday terms reduced confusion."
+      },
+      {
+        number: 3,
+        title: "Visible security raised trust by 45%",
+        description: "Security indicators and verification badges built confidence."
+      },
+      {
+        number: 4,
+        title: "One dashboard + quick actions beat multiple home screens",
+        description: "Unified interface with contextual actions performed better than scattered navigation."
+      }
+    ],
+    myThoughtProcessSection: {
+      eyebrow: "My Thought Process",
+      title: "Design for the Extremes",
+      content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Use progressive disclosure, treat latency as UX (live quotes, optimistic states, visible sync)."
+    },
+    ideationSection: {
+      subhead: "Core Features & Interface Design",
+      bubbles: [
+        {
+          title: "Dashboard",
+          description: "Portfolio, movers, quick trade, 'security score.'"
+        },
+        {
+          title: "Markets",
+          description: "Search, mini-charts, sort/filter."
+        },
+        {
+          title: "Trading",
+          description: "Quick Trade (guided) and Pro Panel (hotkeys, presets, live order book)."
+        },
+        {
+          title: "Portfolio", 
+          description: "Clear PnL, history, exports."
+        }
+      ],
+      iterations: []
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Failed Approaches & Learnings",
+      content: "One-size trade form ↑ errors by 60%. Global alerts spammed; asset-level alerts fixed it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it."
+    },
+    userTestingSection: {
+      title: "Validation & Testing Results",
+      eyebrow: "Testing",
+      description: "Time-to-first-trade dropped to ~3 minutes (vs. ~8 competitors). Limit/stop order errors fell 45%. 75% of testers trusted this app more than their current platform.",
+      metrics: [
+        { value: "~3 min", label: "Time-to-first-trade" },
+        { value: "-45%", label: "Order errors" },
+        { value: "75%", label: "Trust increase" }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome & Impact",
+      eyebrow: "Results",
+      description: "The dual-mode trading experience delivered significant improvements across all key metrics, successfully serving both novice and expert traders.",
+      metrics: [
+        { value: "+35%", label: "Onboarding conversion" },
+        { value: "-40%", label: "Time-to-first-trade" },
+        { value: "-45%", label: "Order errors" },
+        { value: "+25%", label: "Pro trader retention" },
+        { value: "+40%", label: "Portfolio engagement" }
+      ]
+    },
+    sections: [],
+    seoData: {
+      image: "/lovable-uploads/crypto-cover.jpg",
+      projectName: "Trading Without Friction",
+      results: [
+        "35% increase in onboarding conversion",
+        "40% reduction in time-to-first-trade", 
+        "45% reduction in order errors",
+        "25% increase in pro trader retention"
+      ],
+      technologies: ["React", "TypeScript", "Node.js", "WebSocket", "REST API"],
+      path: "/project/crypto"
+    }
+  },
   "herbalink": {
     id: "herbalink",
     title: "HerbaLink – 3× More Bookings for Certified Herbalists",

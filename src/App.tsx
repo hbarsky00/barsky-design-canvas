@@ -32,6 +32,7 @@ import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
+import StructuredCryptoCaseStudy from "@/pages/StructuredCryptoCaseStudy";
 import ContentExport from "@/pages/ContentExport";
 
 
@@ -55,6 +56,7 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             
             {/* Structured case studies - these override the generic ProjectDetail routing */}
+            <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
             <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
             <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
             <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
