@@ -44,6 +44,49 @@ const BLOG_IMAGE_MAP: Record<string, string> = {
   "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/blog-wireframes-to-wow-visual-hierarchy.jpg",
 };
 
+// Project-specific SEO mappings (titles and >=100 char descriptions)
+const PROJECT_SEO_MAP: Record<string, { title: string; description: string }> = {
+  herbalink: {
+    title: "HerbaLink – Herbalist Marketplace Case Study",
+    description:
+      "How I designed a HIPAA-conscious marketplace that increased certified herbalist bookings and patient retention through trustworthy UX and streamlined scheduling.",
+  },
+  splittime: {
+    title: "SplitTime – Co‑Parenting Planner Case Study",
+    description:
+      "A thoughtful co‑parenting app that reduces conflict with shared calendars, smart reminders, and transparent expense tracking designed for real families facing complex schedules.",
+  },
+  "business-management": {
+    title: "Business Management – Operations Platform Case Study",
+    description:
+      "Designing a modular operations platform that centralizes inventory, workflows, and analytics to cut manual work, create visibility across teams, and surface actionable insights.",
+  },
+  "investor-loan-app": {
+    title: "Investor Loan App – Fintech Case Study",
+    description:
+      "Streamlined underwriting flows and data collection that cut loan processing time by 40% while improving compliance, decision clarity, internal collaboration, and borrower experience.",
+  },
+  "medication-app": {
+    title: "Medication App – Adherence & Safety Case Study",
+    description:
+      "Mobile-first medication management that improves adherence with contextual reminders, clear scanning, accessible affordances, and caregiver visibility across devices and roles.",
+  },
+  gold2crypto: {
+    title: "Gold2Crypto – Exchange Onboarding Case Study",
+    description:
+      "Reducing drop‑off with plain‑language KYC, progressive disclosure, and clear risk cues to help users confidently convert assets between gold and crypto with fewer errors.",
+  },
+  "dae-search": {
+    title: "DAE Search – Data Discovery Case Study",
+    description:
+      "A powerful search experience with faceted filters, previews, and relevance tuning that helps analysts find trustworthy data assets quickly and consistently across sources.",
+  },
+  barskyjoint: {
+    title: "BarskyJoint – Restaurant Ordering Case Study",
+    description:
+      "Designed an end‑to‑end ordering experience that increases average ticket size with menu clarity, guided customization, and seamless checkout across web and kiosk.",
+  },
+};
 function toAbsoluteImage(url: string): string {
   if (!url) return DEFAULT_IMAGE;
   if (/^https?:\/\//i.test(url)) return url;
@@ -166,8 +209,16 @@ function getSeoForPath(pathname: string) {
   if (clean.startsWith("/project/")) {
     const slug = clean.replace("/project/", "");
     const human = titleCaseFromSlug(slug || "Case Study");
-    title = `${human} — Case Study | ${SITE_NAME}`;
-    description = `Case study: ${human}. Outcomes, process, metrics, and visuals.`;
+
+    const mappedProject = PROJECT_SEO_MAP[slug];
+    if (mappedProject) {
+      title = `${mappedProject.title} | ${SITE_NAME}`;
+      description = mappedProject.description;
+    } else {
+      title = `${human} — Case Study | ${SITE_NAME}`;
+      description = `Case study: ${human}. Outcomes, process, metrics, and visuals.`;
+    }
+
     type = "article";
     const mapped = PROJECT_IMAGE_MAP[slug];
     image = mapped ? toAbsoluteImage(mapped) : DEFAULT_IMAGE;
