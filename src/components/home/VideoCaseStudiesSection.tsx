@@ -28,77 +28,70 @@ interface CaseStudy {
 const caseStudies: CaseStudy[] = [
   {
     id: "herbalink",
-    tags: ["Health", "Marketplace", "Gen AI"],
-    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
-    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
-    impact: "+3x Booking Rate Increase",
+    tags: ["Blue Sky", "Design Thinking", "GenAI"],
+    title: "HerbaLink: 3× More Bookings for Certified Herbalists",
+    description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
+    impact: "3× Practitioner Bookings",
     url: "/project/herbalink",
-    liveUrl: "https://herbalink.live",
+    liveUrl: "http://herbalink.live",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-      secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-      alt: "HerbaLink app showing symptom tracker and herbalist finder"
-    },
-    layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4"
-  },
-  {
-    id: "splittime",
-    tags: ["Family Tech", "iOS→Android", "Legal UX"],
-    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
-    impact: "-40% Conflict Reduction",
-    url: "/project/splittime",
-    liveUrl: "https://splittime.pro",
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/studiodisplaynewlook.png",
-      secondary: "images/desktop-signup-1.png",
-      alt: "SplitTime web and mobile views showing scheduling features"
-    },
-    layout: "web-mobile",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
-  },
-  {
-    id: "crypto",
-    tags: ["FinTech", "Crypto", "Mobile & Web"],
-    title: "Trading Without Friction: 35% More Conversions in Crypto Trading",
-    description: "Designed a dual-mode trading experience that adapts to both beginner and expert users. Built intuitive portfolio tracking, simplified onboarding, and advanced charting tools that increased user engagement and conversion rates across all user segments.",
-    impact: "+35% Onboarding Conversion",
-    url: "/project/crypto",
-    images: {
-      primary: "/placeholder.svg",
-      alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
+      alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side"
   },
   {
     id: "business-management",
-    tags: ["Enterprise", "Analytics", "Dashboard"],
-    title: "68% Fewer Errors: Streamlining Enterprise Operations",
-    description: "Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers.",
-    impact: "-68% Manual Entry Errors",
+    tags: ["B2B", "Productivity", "Enterprise"],
+    title: "Business Management: 40% Faster Project Delivery",
+    description: "Designed an integrated business management platform that consolidates project tracking, team communication, and resource allocation. The solution streamlined workflows for mid-size companies, reducing administrative overhead and improving project visibility across departments.",
+    impact: "40% Faster Project Delivery",
     url: "/project/business-management",
-    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-      secondary: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-      alt: "Business management app showing driver and inventory management"
+      primary: "/placeholder.svg",
+      alt: "Business management dashboard showing project tracking and team collaboration"
     },
-    layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runotBezsgewiQ_transition_this_mockup_i_1dfa0b37-ac57-43c8-962d-5270ac3b12b7_0.mp4"
+    layout: "side-by-side"
   },
   {
     id: "investor-loan-app",
-    tags: ["FinTech", "Analytics", "WebApp"],
-    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
-    description: "Transformed a chaotic Excel-based loan process into a streamlined digital platform. Built custom analytics dashboards and automated workflows that scaled operations while dramatically reducing manual errors.",
-    impact: "-85% Manual Entry Errors",
-    url: "/project/investor-loan-app",
+    tags: ["FinTech", "Investment", "B2B"],
+    title: "Investor Platform: 85% Faster Deal Processing",
+    description: "Created a comprehensive investment platform that connects investors with loan opportunities. Features include deal analysis, automated underwriting, portfolio management, and real-time market insights that accelerated investment decisions and improved risk assessment.",
+    impact: "85% Faster Deal Processing",
+    url: "/project/investor-loan-app", 
     images: {
-      primary: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-      alt: "Investor loan app showing analytics dashboard and loan management interface"
+      primary: "/placeholder.svg",
+      alt: "Investment platform showing deal analysis and portfolio management"
     },
     layout: "side-by-side"
+  },
+  {
+    id: "crypto",
+    tags: ["FinTech", "Crypto", "Mobile & Web"],
+    title: "Trading Without Friction",
+    description: "A dual-mode crypto app that boosted conversions by 35% and cut errors by 45%. Designed to serve both hesitant first-timers and speed-driven traders through progressive disclosure and unified interface design.",
+    impact: "+35% Conversion · –40% Time-to-First-Trade · +25% Retention",
+    url: "/project/crypto",
+    images: {
+      primary: "/lovable-uploads/crypto-cover.jpg",
+      alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
+    },
+    layout: "side-by-side"
+  },
+  {
+    id: "split-time",
+    tags: ["Co-Parenting", "Scheduling", "Communication"],
+    title: "SplitTime: 64% Less Scheduling Conflict for Co-Parents",
+    description: "Built a comprehensive co-parenting platform that streamlines scheduling, communication, and coordination between separated parents. The app features shared calendars, expense tracking, and communication tools designed to reduce conflict and prioritize children's wellbeing.",
+    impact: "64% Less Scheduling Conflict",
+    url: "/project/split-time",
+    images: {
+      primary: "/placeholder.svg",
+      alt: "SplitTime co-parenting app showing calendar and communication features"
+    },
+    layout: "web-mobile",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
   }
 ];
 
