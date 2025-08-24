@@ -20,47 +20,9 @@ const getDynamicBaseUrl = (): string => {
  * - No complex path manipulation
  */
 export const normalizeUrl = (path: string): string => {
-  const BASE_URL = getDynamicBaseUrl();
-  
-  console.log('🔧 normalizeUrl - Input path:', path);
-  
-  // Clean the path first
-  let cleanPath = path;
-  
-  // Handle absolute URLs - extract pathname only
-  if (path.startsWith('http')) {
-    try {
-      const url = new URL(path);
-      cleanPath = url.pathname;
-    } catch (error) {
-      console.warn('⚠️ normalizeUrl - Invalid URL, using as-is:', path);
-      cleanPath = path;
-    }
-  }
-  
-  // Ensure path starts with /
-  if (!cleanPath.startsWith('/')) {
-    cleanPath = `/${cleanPath}`;
-  }
-  
-  // Handle root path - should be just /
-  if (cleanPath === '/' || cleanPath === '/index.html' || cleanPath === '/index.htm') {
-    const result = `${BASE_URL}/`;
-    console.log('✅ normalizeUrl - Root path result:', result);
-    return result;
-  }
-  
-  // Remove trailing index.html variations
-  cleanPath = cleanPath.replace(/\/index\.html?$/i, '/');
-  
-  // For non-root paths, ensure they end with / for consistency
-  if (!cleanPath.endsWith('/') && !cleanPath.includes('.')) {
-    cleanPath = `${cleanPath}/`;
-  }
-  
-  const result = `${BASE_URL}${cleanPath}`;
-  console.log('✅ normalizeUrl - Final result:', result);
-  return result;
+  // Use the new unified normalizer
+  const { normalizeCanonicalUrl } = require('@/utils/seo/urlNormalizer');
+  return normalizeCanonicalUrl(path);
 };
 
 /**

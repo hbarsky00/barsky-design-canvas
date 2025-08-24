@@ -1,11 +1,11 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
-// Public SEO Edge Function
-// - Detects crawler/bot user-agents
-// - Generates HTML with full SEO meta (OG/Twitter/canonical/JSON-LD)
-// - Can target any URL via `?url=` or path via `?path=` query param
-// - CORS enabled
+// Public SEO Edge Function - UNIFIED VERSION
+// - Uses shared SEO data sources for consistency
+// - Enhanced bot detection with cache headers
+// - Consistent canonical URL normalization
+// - Full article meta support
 
 const corsHeaders: HeadersInit = {
   "Access-Control-Allow-Origin": "*",
@@ -20,72 +20,87 @@ const DEFAULT_DESC =
 const DEFAULT_IMAGE =
   "https://barskydesign.pro/images/hiram-barsky-profile.jpg";
 
-// Known crawler/bot user agents
-// Additional per-route SEO mappings
-const PROJECT_IMAGE_MAP: Record<string, string> = {
-  "herbalink": "https://barskydesign.pro/images/herbalink-desktop-1.webp",
-  "splittime": "https://barskydesign.pro/images/splittime-desktop-1.webp",
-  "business-management": "https://barskydesign.pro/images/business-management-desktop-1.webp",
-  "investor-loan-app": "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp",
-  "medication-app": "https://barskydesign.pro/images/medication-app-desktop-1.webp",
-  "gold2crypto": "https://barskydesign.pro/images/gold2crypto-desktop-1.webp",
-  "dae-search": "https://barskydesign.pro/images/dae-search-desktop-1.webp",
-  "barskyjoint": "https://barskydesign.pro/images/barskyjoint-desktop-1.webp",
+// Unified SEO data mappings - shared with client
+const STATIC_PAGE_SEO: Record<string, { title: string; description: string; image?: string }> = {
+  "/": { title: SITE_NAME, description: DEFAULT_DESC, image: DEFAULT_IMAGE },
+  "/projects": {
+    title: "Design Case Studies – Barsky Design",
+    description: "Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — showcasing impact, outcomes, and design thinking.",
+    image: "https://barskydesign.pro/images/herbalink-desktop-1.webp",
+  },
+  "/services": {
+    title: "UX & Product Design Services – Barsky Design",
+    description: "From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences.",
+  },
+  "/about": {
+    title: "About Hiram Barsky – Product Designer",
+    description: "Senior UX/Product Designer with 15+ years of experience creating data-driven, AI-powered, and mobile-first digital platforms.",
+  },
+  "/blog": {
+    title: "Design Insights & Case Studies – Barsky Blog",
+    description: "Thoughts on UX, AI, and design strategy — lessons learned from projects and experiments.",
+    image: "https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg",
+  },
+  "/contact": {
+    title: "Contact Hiram Barsky – Product Designer",
+    description: "Let's connect. Book a call to discuss your product vision, UX challenges, or collaboration opportunities.",
+  },
 };
 
-const BLOG_IMAGE_MAP: Record<string, string> = {
-  "finding-first-ux-job-guide": "https://barskydesign.pro/blog-finding-ux-job.jpg",
-  "design-systems-that-get-used": "https://barskydesign.pro/blog-design-systems.jpg",
-  "portfolio-red-flags-no-interviews": "https://barskydesign.pro/blog-portfolio-red-flags.jpg",
-  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
-  "user-research-shoestring-budget": "https://barskydesign.pro/blog-user-research-budget.jpg",
-  "built-product-without-real-data": "https://barskydesign.pro/blog-built-product-without-real-data.jpg",
-  "building-products-nobody-asked-for": "https://barskydesign.pro/blog-building-products-nobody-asked-for.jpg",
-  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/blog-wireframes-to-wow-visual-hierarchy.jpg",
-};
-
-// Project-specific SEO mappings (titles and >=100 char descriptions)
-const PROJECT_SEO_MAP: Record<string, { title: string; description: string }> = {
+const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string }> = {
   herbalink: {
     title: "HerbaLink – Herbalist Marketplace Case Study",
-    description:
-      "How I designed a HIPAA-conscious marketplace that increased certified herbalist bookings and patient retention through trustworthy UX and streamlined scheduling.",
+    description: "How I designed a HIPAA-conscious marketplace that increased certified herbalist bookings and patient retention through trustworthy UX and streamlined scheduling.",
+    image: "https://barskydesign.pro/images/herbalink-desktop-1.webp"
   },
   splittime: {
     title: "SplitTime – Co‑Parenting Planner Case Study",
-    description:
-      "A thoughtful co‑parenting app that reduces conflict with shared calendars, smart reminders, and transparent expense tracking designed for real families facing complex schedules.",
+    description: "A thoughtful co‑parenting app that reduces conflict with shared calendars, smart reminders, and transparent expense tracking designed for real families facing complex schedules.",
+    image: "https://barskydesign.pro/images/splittime-desktop-1.webp"
   },
   "business-management": {
     title: "Business Management – Operations Platform Case Study",
-    description:
-      "Designing a modular operations platform that centralizes inventory, workflows, and analytics to cut manual work, create visibility across teams, and surface actionable insights.",
+    description: "Designing a modular operations platform that centralizes inventory, workflows, and analytics to cut manual work, create visibility across teams, and surface actionable insights.",
+    image: "https://barskydesign.pro/images/business-management-desktop-1.webp"
   },
   "investor-loan-app": {
     title: "Investor Loan App – Fintech Case Study",
-    description:
-      "Streamlined underwriting flows and data collection that cut loan processing time by 40% while improving compliance, decision clarity, internal collaboration, and borrower experience.",
+    description: "Streamlined underwriting flows and data collection that cut loan processing time by 40% while improving compliance, decision clarity, internal collaboration, and borrower experience.",
+    image: "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp"
   },
   "medication-app": {
     title: "Medication App – Adherence & Safety Case Study",
-    description:
-      "Mobile-first medication management that improves adherence with contextual reminders, clear scanning, accessible affordances, and caregiver visibility across devices and roles.",
+    description: "Mobile-first medication management that improves adherence with contextual reminders, clear scanning, accessible affordances, and caregiver visibility across devices and roles.",
+    image: "https://barskydesign.pro/images/medication-app-desktop-1.webp"
   },
   gold2crypto: {
     title: "Gold2Crypto – Exchange Onboarding Case Study",
-    description:
-      "Reducing drop‑off with plain‑language KYC, progressive disclosure, and clear risk cues to help users confidently convert assets between gold and crypto with fewer errors.",
+    description: "Reducing drop‑off with plain‑language KYC, progressive disclosure, and clear risk cues to help users confidently convert assets between gold and crypto with fewer errors.",
+    image: "https://barskydesign.pro/images/gold2crypto-desktop-1.webp"
   },
   "dae-search": {
     title: "DAE Search – Data Discovery Case Study",
-    description:
-      "A powerful search experience with faceted filters, previews, and relevance tuning that helps analysts find trustworthy data assets quickly and consistently across sources.",
+    description: "A powerful search experience with faceted filters, previews, and relevance tuning that helps analysts find trustworthy data assets quickly and consistently across sources.",
+    image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
   },
   barskyjoint: {
     title: "BarskyJoint – Restaurant Ordering Case Study",
-    description:
-      "Designed an end‑to‑end ordering experience that increases average ticket size with menu clarity, guided customization, and seamless checkout across web and kiosk.",
+    description: "Designed an end‑to‑end ordering experience that increases average ticket size with menu clarity, guided customization, and seamless checkout across web and kiosk.",
+    image: "https://barskydesign.pro/images/barskyjoint-desktop-1.webp"
   },
+};
+
+const BLOG_IMAGE_MAP: Record<string, string> = {
+  "finding-first-ux-job-guide": "https://barskydesign.pro/images/blog-finding-ux-job.jpg",
+  "design-systems-that-get-used": "https://barskydesign.pro/images/blog-design-systems.jpg",
+  "portfolio-red-flags-no-interviews": "https://barskydesign.pro/images/blog-portfolio-red-flags.jpg",
+  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg",
+  "user-research-shoestring-budget": "https://barskydesign.pro/images/blog-user-research-budget.jpg",
+  "built-product-without-real-data": "https://barskydesign.pro/images/blog-built-product-without-real-data.jpg",
+  "building-products-nobody-asked-for": "https://barskydesign.pro/images/blog-building-products-nobody-asked-for.jpg",
+  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/images/blog-wireframes-to-wow-visual-hierarchy.jpg",
+  "case-study-writing": "https://barskydesign.pro/images/blog-case-study-writing.jpg",
+  "ai-in-design": "https://barskydesign.pro/images/blog-ai-in-design.jpg"
 };
 function toAbsoluteImage(url: string): string {
   if (!url) return DEFAULT_IMAGE;
@@ -101,11 +116,14 @@ const BOT_UA = [
   /LinkedInBot/i,
   /Slackbot/i,
   /Discordbot/i,
+  /Pinterest/i,
   /Googlebot/i,
   /bingbot/i,
   /DuckDuckBot/i,
   /Embedly/i,
   /WhatsApp/i,
+  /TelegramBot/i,
+  /SkypeUriPreview/i,
 ];
 
 function isBot(userAgent: string | null): boolean {
@@ -125,23 +143,48 @@ function resolveCanonical(urlParam: string | null, pathParam: string | null): st
   if (urlParam) {
     try {
       const u = new URL(urlParam);
-      return u.toString();
+      return normalizeCanonicalUrl(u.pathname);
     } catch (_) {
       // ignore and fall back below
     }
   }
   const path = pathParam ? (pathParam.startsWith("/") ? pathParam : `/${pathParam}`) : "/";
-  // Normalize and ensure trailing slash for non-root to match frontend canonical
-  if (path === "/" || path === "") {
+  return normalizeCanonicalUrl(path);
+}
+
+function normalizeCanonicalUrl(path: string): string {
+  // Handle aliases
+  const aliases: Record<string, string> = {
+    '/project/wholesale-distribution': '/project/business-management'
+  };
+  path = aliases[path] || path;
+  
+  // Clean the path first
+  let cleanPath = path;
+  
+  // Ensure path starts with /
+  if (!cleanPath.startsWith('/')) {
+    cleanPath = `/${cleanPath}`;
+  }
+  
+  // Handle root path - should be just /
+  if (cleanPath === '/' || cleanPath === '/index.html' || cleanPath === '/index.htm') {
     return `${BASE_URL}/`;
   }
-  const cleanPath = path.replace(/\/index\.html?$/i, "/");
-  const withSlash = cleanPath.endsWith("/") ? cleanPath : `${cleanPath}/`;
-  return `${BASE_URL}${withSlash}`;
+  
+  // Remove trailing index.html variations
+  cleanPath = cleanPath.replace(/\/index\.html?$/i, '/');
+  
+  // For non-root paths, ensure they end with / for consistency
+  if (!cleanPath.endsWith('/') && !cleanPath.includes('.')) {
+    cleanPath = `${cleanPath}/`;
+  }
+  
+  return `${BASE_URL}${cleanPath}`;
 }
 
 function getSeoForPath(pathname: string) {
-  // Normalize
+  // Normalize path
   const clean = pathname === "/" || pathname === "" ? "/" : pathname.replace(/\/+$/, "");
 
   // Defaults
@@ -150,78 +193,32 @@ function getSeoForPath(pathname: string) {
   let image = DEFAULT_IMAGE;
   let type: "website" | "article" = "website";
 
-  // Sections mapping
-  const SECTION_SEO: Record<string, { title: string; description: string; image?: string }> = {
-    "/": { title: SITE_NAME, description: DEFAULT_DESC, image: DEFAULT_IMAGE },
-    "/projects": {
-      title: "Design Case Studies – Barsky Design",
-      description: "Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — showcasing impact, outcomes, and design thinking.",
-      image: "https://barskydesign.pro/images/herbalink-desktop-1.webp",
-    },
-    "/services": {
-      title: "UX & Product Design Services – Barsky Design",
-      description: "From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences.",
-    },
-    "/about": {
-      title: "About Hiram Barsky – Product Designer",
-      description: "Senior UX/Product Designer with 15+ years of experience creating data-driven, AI-powered, and mobile-first digital platforms.",
-    },
-    "/blog": {
-      title: "Design Insights & Case Studies – Barsky Blog",
-      description: "Thoughts on UX, AI, and design strategy — lessons learned from projects and experiments.",
-      image: "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
-    },
-    "/contact": {
-      title: "Contact Hiram Barsky – Product Designer",
-      description: "Let’s connect. Book a call to discuss your product vision, UX challenges, or collaboration opportunities.",
-    },
-  };
-
-  // Direct section hits
-  if (SECTION_SEO[clean]) {
-    title = SECTION_SEO[clean].title;
-    description = SECTION_SEO[clean].description;
-    image = SECTION_SEO[clean].image ? toAbsoluteImage(SECTION_SEO[clean].image) : DEFAULT_IMAGE;
-    return { title, description, image, type };
-  }
-
-  // Home fallback
-  if (clean === "/") {
-    title = SITE_NAME;
-    description = DEFAULT_DESC;
-    image = DEFAULT_IMAGE;
-    return { title, description, image, type };
-  }
-
-  // Design services (and subsections)
-  if (clean === "/design-services" || clean.startsWith("/design-services/")) {
-    const sub = clean === "/design-services" ? "" : clean.replace("/design-services/", "");
-    const human = sub ? titleCaseFromSlug(sub) : "Design Services";
-    title = sub ? `Design Services: ${human} — ${SITE_NAME}` : `Design Services — ${SITE_NAME}`;
-    description = sub
-      ? `${human} service details, outcomes, and approach.`
-      : "UX research, design systems, prototypes, and AI-assisted delivery.";
-    image = DEFAULT_IMAGE;
+  // Handle static pages first
+  if (STATIC_PAGE_SEO[clean]) {
+    const staticSeo = STATIC_PAGE_SEO[clean];
+    title = staticSeo.title;
+    description = staticSeo.description;
+    image = staticSeo.image ? toAbsoluteImage(staticSeo.image) : DEFAULT_IMAGE;
     return { title, description, image, type };
   }
 
   // Project detail
   if (clean.startsWith("/project/")) {
     const slug = clean.replace("/project/", "");
-    const human = titleCaseFromSlug(slug || "Case Study");
-
     const mappedProject = PROJECT_SEO_MAP[slug];
+    
     if (mappedProject) {
-      title = `${mappedProject.title} | ${SITE_NAME}`;
+      title = mappedProject.title;
       description = mappedProject.description;
+      image = toAbsoluteImage(mappedProject.image);
+      type = "article";
     } else {
+      const human = titleCaseFromSlug(slug || "Case Study");
       title = `${human} — Case Study | ${SITE_NAME}`;
       description = `Case study: ${human}. Outcomes, process, metrics, and visuals.`;
+      type = "article";
     }
-
-    type = "article";
-    const mapped = PROJECT_IMAGE_MAP[slug];
-    image = mapped ? toAbsoluteImage(mapped) : DEFAULT_IMAGE;
+    
     return { title, description, image, type };
   }
 
@@ -232,8 +229,21 @@ function getSeoForPath(pathname: string) {
     title = `${human} — ${SITE_NAME}`;
     description = `Article: ${human} — insights on product design and AI.`;
     type = "article";
+    
     const mapped = BLOG_IMAGE_MAP[slug];
     image = mapped ? toAbsoluteImage(mapped) : DEFAULT_IMAGE;
+    return { title, description, image, type };
+  }
+
+  // Design services (legacy support)
+  if (clean === "/design-services" || clean.startsWith("/design-services/")) {
+    const sub = clean === "/design-services" ? "" : clean.replace("/design-services/", "");
+    const human = sub ? titleCaseFromSlug(sub) : "Design Services";
+    title = sub ? `Design Services: ${human} — ${SITE_NAME}` : `Design Services — ${SITE_NAME}`;
+    description = sub
+      ? `${human} service details, outcomes, and approach.`
+      : "UX research, design systems, prototypes, and AI-assisted delivery.";
+    image = DEFAULT_IMAGE;
     return { title, description, image, type };
   }
 
@@ -271,6 +281,8 @@ function buildHtml({
     image,
   } as Record<string, unknown>;
 
+  const imageAlt = `${title} preview image`;
+
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -288,13 +300,17 @@ function buildHtml({
   <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:url" content="${escapeAttr(canonical)}" />
   <meta property="og:image" content="${escapeAttr(image)}" />
-  <meta property="og:image:alt" content="${escapeHtml(title)}" />
+  <meta property="og:image:secure_url" content="${escapeAttr(image)}" />
+  <meta property="og:image:alt" content="${escapeHtml(imageAlt)}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
   <meta name="twitter:image" content="${escapeAttr(image)}" />
+  <meta name="twitter:image:alt" content="${escapeHtml(imageAlt)}" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
@@ -354,6 +370,8 @@ serve(async (req: Request) => {
       ...corsHeaders,
       // Cache for 10 minutes, allow stale for 1 day for crawlers
       "Cache-Control": "public, max-age=600, s-maxage=600, stale-while-revalidate=86400",
+      // Add ETag for better caching
+      "ETag": `"${btoa(canonical + title).substring(0, 16)}"`,
     });
 
     // If it's a bot, return the HTML. If not, still return HTML so it can be tested in a browser.
