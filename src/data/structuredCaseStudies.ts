@@ -1087,9 +1087,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Business management system promotional overview"
     },
     researchSection: {
-      subhead: "Surveys and workflow audits showed owners switching between disconnected tools and duplicating data.",
+      subhead: "Small businesses often had to juggle different tools for scheduling, invoicing, and tasks. To solve this, I created a single platform that brings everything together. My goal was to cut down on admin work and give owners more time back. In the end, users spent 35% less time on manual tasks.",
       blurb: "Tools caused chaos.",
-      emergingThemes: [
+        emergingThemes: [
         {
           eyebrow: "CONSOLIDATION",
           insight: "Scheduling, invoicing, and tasks lived in separate systems.",
@@ -1117,14 +1117,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
-      statement: "Small businesses juggle disconnected tools for scheduling, invoicing, and tasks—wasting hours weekly and leaking revenue."
+      statement: "Small businesses often juggle disconnected tools for scheduling, invoicing, and tasks, wasting hours weekly and losing revenue."
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "I initiated discovery sessions with small business owners to understand their daily operational challenges. Through design sprints, I framed the problem around context switching and duplicate data entry—not just tool organization. This foundation revealed that the solution needed to eliminate workflow fragmentation while maintaining business process flexibility.",
+      workshopKickoff: "Initial concept sitemap mapping core modules and navigation.",
       explorations: "I explored blue-sky concepts ranging from AI-powered workflow automation to intelligent business insights. Early sketches included predictive cash flow modeling, automated client follow-ups, and integrated marketing campaigns. I tested divergent ideas like voice-controlled task management and smart scheduling optimization to understand what would genuinely improve daily business operations.",
-      decisionPoint: "I converged on a unified operations platform after validating that most inefficiencies came from switching between disconnected tools and re-entering the same data. The decision centered on consolidating core functions, automating repetitive tasks, and providing clear daily priorities—creating efficiency through integration rather than adding more specialized features.",
+      decisionPoint: "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/sitemap.png",
@@ -1144,7 +1144,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Priority at a glance", description: "A single dashboard surfaces what needs attention now." }
     ],
     ideationSection: {
-      subhead: "I iterated on a simple \"run the day\" loop—dashboard, tasks, invoices, and scheduling.",
+      subhead: "I iterated on a simple \"run the day\" loop, encompassing dashboard, tasks, invoices, and scheduling.",
       bubbles: [
         { title: "Dashboard KPIs", description: "Cash flow and alerts" },
         { title: "Tasks", description: "Today, overdue, owners" },
@@ -1156,6 +1156,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_0.png", 
           alt: "First iteration of business dashboard",
+          blurb: "Information overload — too many metrics at once\nNo clear priority hierarchy for daily tasks",
           annotations: [
             { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
             { text: "No clear priority hierarchy for daily tasks", x: 70, y: 60, type: "issue" }
@@ -1165,6 +1166,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png", 
           alt: "Second iteration with task management",
+          blurb: "\"Today\" view focuses on immediate actions\nTask prioritization system added for clarity",
           annotations: [
             { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
             { text: "Today view focuses on immediate actions", x: 80, y: 50, type: "improvement" }
@@ -1174,6 +1176,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_2.png", 
           alt: "Third iteration adding invoice workflow",
+          blurb: "Template system ensures consistency\nAutomated invoice generation saves hours",
           annotations: [
             { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
             { text: "Template system ensures consistency", x: 65, y: 65, type: "improvement" }
@@ -1183,6 +1186,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 4", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png", 
           alt: "Fourth iteration with scheduling integration",
+          blurb: "Linked records reduce duplicate data entry\nIntegrated scheduling eliminates tool switching",
           annotations: [
             { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
             { text: "Linked records reduce duplicate data entry", x: 60, y: 70, type: "improvement" }
@@ -1256,7 +1260,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "Transformed small business operations from chaotic multi-tool workflows to streamlined automation, delivering significant error reduction and operational efficiency gains.",
+      description: "I helped small businesses move from messy, multi-tool workflows to a smoother, automated system. This change led to fewer errors and made daily operations much more efficient.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "68%", label: "Fewer Errors" },
@@ -1271,9 +1275,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "Process",
+      eyebrow: "APPROACH & DECISION MAKING",
       title: "My Thought Process",
-      content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner.",
+      content: "I focused on making the system efficient, not overloaded with features. By learning how small businesses really operate—switching between tools, missing follow-ups, and losing money to manual mistakes—I built a platform that works the way business owners do. The result: a unified platform that thinks like a business owner and reduces busywork through smart defaults and automation.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-21-2025-01_29_46-PM.png",
@@ -1288,7 +1292,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "Initially, I tried to create too many customization options, which overwhelmed users. I learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners.",
+      content: "Initially, I added too many customization options, which made the platform confusing for users. I learned that offering smart defaults with a few key options made the platform both strong and easy for business owners to use.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
