@@ -154,8 +154,8 @@ export interface StructuredCaseStudyData {
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "herbalink": {
     id: "herbalink",
-    title: "Using Design Thinking to Achieve 3x More Bookings for Certified Herbalists",
-    description: "Connected users to certified herbalists across the country and increased booking rates by 3x through AI-powered matching and streamlined UX.",
+    title: "HerbaLink – 3× More Bookings for Certified Herbalists",
+    description: "Designed a mobile-first platform connecting users with verified herbalists. Achieved a 3× increase in bookings through trust and transparency.",
     tags: ["Blue Sky", "Design Thinking", "GenAI", "WebApp", "Mobile"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "http://herbalink.live",
@@ -425,8 +425,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "splittime": {
     id: "splittime",
-    title: "Design Thinking Approach to Reducing Co-Parenting Conflict by 40%",
-    description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools designed for high-stress family situations.",
+    title: "SplitTime – Simplifying Co-Parenting with Better Planning",
+    description: "Built a co-parenting app to reduce scheduling conflicts. Early tests showed a 40% decrease in communication breakdowns.",
     tags: ["Blue Sky", "Design Thinking", "iOS→Android", "Legal UX", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://splittime.pro",

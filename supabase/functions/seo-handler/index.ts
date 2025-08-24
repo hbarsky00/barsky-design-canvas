@@ -14,11 +14,11 @@ const corsHeaders: HeadersInit = {
 
 // Configure your production base URL here (fallback used when only `path` is provided)
 const BASE_URL = "https://barskydesign.pro";
-const SITE_NAME = "Hiram Barsky Design";
+const SITE_NAME = "Hiram Barsky – Product Designer & Gen AI Developer";
 const DEFAULT_DESC =
-  "Transforming complex problems into intuitive digital experiences through strategic design and AI integration.";
+  "Transforming complex problems into intuitive digital experiences with data-driven design and AI-powered solutions.";
 const DEFAULT_IMAGE =
-  "https://barskydesign.pro/lovable-uploads/bf17cde1-bae7-4ed8-b085-15f8e8b38f0d.png";
+  "https://barskydesign.pro/images/hiram-barsky-profile.jpg";
 
 // Known crawler/bot user agents
 // Additional per-route SEO mappings
@@ -127,7 +127,7 @@ function getSeoForPath(pathname: string) {
 
   // Home fallback
   if (clean === "/") {
-    title = "Hiram Barsky Design";
+    title = SITE_NAME;
     description = DEFAULT_DESC;
     image = DEFAULT_IMAGE;
     return { title, description, image, type };

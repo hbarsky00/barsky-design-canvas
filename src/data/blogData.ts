@@ -14,12 +14,12 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: "4",
-    title: "Finding Your First UX Job: A Senior Designer's Honest Guide",
-    excerpt: "Breaking into UX can feel like trying to solve a puzzle with missing pieces. After 15+ years in the field, here's the reality check nobody talks about.",
+    title: "Finding a UX Job in 2025 – What Works (and What Doesn't)",
+    excerpt: "Lessons from breaking into UX in a crowded market — mistakes, pivots, and strategies that actually work today.",
     author: "Hiram Barsky",
     date: "January 15, 2025",
     readTime: "7 min read",
-    coverImage: "https://barskydesign.pro/blog-finding-ux-job.jpg",
+    coverImage: "https://barskydesign.pro/images/blog-finding-ux-job.jpg",
     tags: ["UX Design", "Career", "Job Search", "Portfolio", "Networking"],
     slug: "finding-first-ux-job-guide",
     content: `
@@ -115,14 +115,14 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: "6",
-    title: "Portfolio Red Flags: Why Your UX Portfolio Isn't Getting You Interviews",
-    excerpt: "Your portfolio gets views but no interviews? After reviewing hundreds of UX portfolios, I've identified the red flags killing your chances.",
+    title: "Case Studies That Win Clients – Beyond Pretty Screens",
+    excerpt: "Why design case studies should focus on problems, impact, and thought process — not wireframe montages.",
     author: "Hiram Barsky",
     date: "December 28, 2025",
     readTime: "6 min read",
-    coverImage: "https://barskydesign.pro/blog-portfolio-red-flags.jpg",
+    coverImage: "https://barskydesign.pro/images/blog-case-study-writing.jpg",
     tags: ["Portfolio", "UX Design", "Career", "Job Search", "Interview"],
-    slug: "portfolio-red-flags-no-interviews",
+    slug: "case-study-writing",
     content: `
       <p>Your portfolio is getting views but no interviews. Sound familiar? After reviewing hundreds of UX portfolios, I've identified the red flags that make hiring managers hit the back button.</p>
       
@@ -173,12 +173,12 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: "7",
-    title: "The AI-Enhanced UX Designer: Future-Proofing Your Career",
-    excerpt: "AI isn't going to replace UX designers, but UX designers who understand AI will replace those who don't. Here's how to position yourself for the future of design.",
+    title: "How AI Is Changing UX Design – A Designer's Perspective",
+    excerpt: "Practical insights on where AI helps and where it confuses users — and how to design with trust in mind.",
     author: "Hiram Barsky",
     date: "December 15, 2025",
     readTime: "9 min read",
-    coverImage: "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
+    coverImage: "https://barskydesign.pro/images/blog-ai-in-design.jpg",
     tags: ["AI", "UX Design", "Future", "Career", "Technology"],
     slug: "ai-enhanced-ux-designer-future",
     content: `

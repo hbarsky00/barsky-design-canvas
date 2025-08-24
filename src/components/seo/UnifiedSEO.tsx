@@ -28,28 +28,28 @@ const staticPageSEO: Record<string, Partial<SEOData>> = {
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
   '/projects': {
-    title: `Case Studies & Projects — ${SEO_CONSTANTS.SITE_NAME}`,
-    description: 'Explore selected work in product design, UX, and AI.',
+    title: 'Design Case Studies – Barsky Design',
+    description: 'Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — showcasing impact, outcomes, and design thinking.',
     image: 'https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png'
   },
   '/services': {
-    title: `Design & AI Services — ${SEO_CONSTANTS.SITE_NAME}`,
-    description: 'UX research, design systems, and AI integration services.',
+    title: 'UX & Product Design Services – Barsky Design',
+    description: 'From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences.',
     image: 'https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png'
   },
   '/contact': {
-    title: `Contact — ${SEO_CONSTANTS.SITE_NAME}`,
-    description: 'Get in touch to discuss product design, UX, and AI initiatives.',
+    title: 'Contact Hiram Barsky – Product Designer',
+    description: 'Let\'s connect. Book a call to discuss your product vision, UX challenges, or collaboration opportunities.',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
   '/blog': {
-    title: "Design & AI Insights — Hiram Barsky",
-    description: "Thoughts on UX design, AI integration, and digital product strategy from 15+ years in the field.",
+    title: 'Design Insights & Case Studies – Barsky Blog',
+    description: 'Thoughts on UX, AI, and design strategy — lessons learned from projects and experiments.',
     image: 'https://barskydesign.pro/blog-ai-enhanced-ux.jpg'
   },
   '/about': {
-    title: "About Hiram Barsky — Senior Product Designer & AI Strategist",
-    description: "Learn about my 15+ year journey designing AI-enhanced digital experiences and strategic product solutions.",
+    title: 'About Hiram Barsky – Product Designer',
+    description: 'Senior UX/Product Designer with 15+ years of experience creating data-driven, AI-powered, and mobile-first digital platforms.',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   }
 };
