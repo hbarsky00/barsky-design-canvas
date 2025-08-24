@@ -32,6 +32,7 @@ import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
+import ContentExport from "@/pages/ContentExport";
 
 
 const queryClient = new QueryClient();
@@ -74,6 +75,11 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            
+            {/* Development-only content export route */}
+            {process.env.NODE_ENV === 'development' && (
+              <Route path="/__content-export" element={<ContentExport />} />
+            )}
             
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
