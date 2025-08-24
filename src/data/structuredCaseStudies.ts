@@ -830,7 +830,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Investor loan platform dashboard"
     },
     researchSection: {
-      subhead: "Shadowing loan officers and error-log reviews showed spreadsheet mistakes, slow retrieval, and no audit trail.",
+      subhead: "A private bank was managing investor loans in Excel, leading to errors, compliance risks, and delays. I designed a scalable loan platform with predictive search, guided workflows, and collaboration. The impact: 85% fewer errors, 40% faster processing, and restored trust from staff and regulators.",
       blurb: "Excel caused errors.",
       emergingThemes: [
         {
@@ -850,24 +850,24 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       ],
         researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
-        researchImageAlt: "Research artifact — TOP (replace this URL)",
+        researchImageAlt: "Excel caused errors.",
         researchImages: [
           {
             src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
-            alt: "Research artifact — BOTTOM (replace this URL)"
+            alt: "Excel caused errors."
           }
         ]
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
-      statement: "Loan teams rely on error-prone spreadsheets with no audit trail—creating compliance risk, slow processing, and low trust in the data."
+      statement: "Loan teams rely on error-prone spreadsheets with no audit trail, creating compliance risks, slow processing, and low trust in the data."
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "I conducted discovery sessions with loan officers and risk managers to understand the operational and compliance challenges. Through design sprints, I framed the problem around data accuracy and audit trails—not just workflow efficiency. This foundation established that the solution needed to prioritize automated validation and transparent tracking over simple digitization.",
-      explorations: "I explored blue-sky concepts ranging from AI-powered risk assessment to blockchain-based audit trails. Early sketches included predictive lending models, automated compliance checks, and integrated decision support systems. I tested divergent ideas like smart contract validation and real-time portfolio analytics to understand what would genuinely improve lending operations and reduce risk.",
-      decisionPoint: "I converged on an intelligent workflow platform after validating that most errors stemmed from manual data entry and lack of validation checks. The decision centered on automated validation, guided workflows, and comprehensive audit trails—creating trust through transparency and accuracy rather than overwhelming users with complex financial modeling features.",
+      workshopKickoff: "Initial Concepts & Sketches — Placeholder — replace with final image.",
+      explorations: "Early exploration of loan processing workflows and automated validation concepts.",
+      decisionPoint: "I decided to build an intelligent workflow platform after seeing that most errors came from manual data entry and missing validation. I focused on automated checks, guided workflows, and clear audit trails to build trust through transparency and accuracy, instead of adding complex financial modeling features.",
       images: [
         {
           src: "placeholder",
@@ -887,7 +887,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Guided orders", description: "Stepwise flows reduce mistakes vs. flat forms." }
     ],
     ideationSection: {
-      subhead: "I shaped deal findability, order building, validation, and collaboration around compliance.",
+      subhead: "I optimized deal findability, order building, validation, and collaboration to ensure compliance.",
       bubbles: [
         { title: "Deal summary", description: "Status, limits, totals" },
         { title: "Predictive search", description: "Category-aware, smart defaults" },
@@ -899,6 +899,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "/media/investment/ideation-1.jpg", 
           alt: "First iteration of deal summary interface",
+          blurb: "Deal information is scattered — lacks a clear hierarchy\nNo real-time validation causes errors downstream",
           annotations: [
             { text: "Deal information scattered - lacks clear hierarchy", x: 60, y: 30, type: "issue" },
             { text: "No real-time validation causes errors downstream", x: 40, y: 70, type: "issue" }
@@ -908,6 +909,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "/media/investment/ideation-2.jpg", 
           alt: "Second iteration with predictive search",
+          blurb: "Contextual filters reduce search time\nBloomberg-style search improves findability",
           annotations: [
             { text: "Bloomberg-style search improves findability", x: 30, y: 20, type: "feature" },
             { text: "Contextual filters reduce search time", x: 70, y: 40, type: "improvement" }
@@ -917,6 +919,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "/media/investment/ideation-3.jpg", 
           alt: "Third iteration of guided order builder",
+          blurb: "Real-time totals reduce calculation errors\nStep-by-step guidance prevents premature inputs",
           annotations: [
             { text: "Step-by-step guidance prevents premature inputs", x: 50, y: 35, type: "feature" },
             { text: "Real-time totals reduce calculation errors", x: 80, y: 60, type: "improvement" }
@@ -926,6 +929,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 4", 
           imageSrc: "/media/investment/ideation-4.jpg", 
           alt: "Fourth iteration with audit and comments",
+          blurb: "Collaborative comments improve team coordination\nImmutable audit trail meets compliance needs",
           annotations: [
             { text: "Immutable audit trail meets compliance needs", x: 45, y: 25, type: "feature" },
             { text: "Collaborative comments improve team coordination", x: 60, y: 75, type: "improvement" }
@@ -961,7 +965,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     finalProductSection: {
       title: "The Final Product",
-      description: "A comprehensive loan management platform that replaced error-prone Excel workflows with intelligent automation, real-time validation, and transparent audit trails for complete operational confidence.",
+      description: "We built a loan management platform that replaced error-prone Excel workflows with smart automation, real-time checks, and clear audit trails. This gave the team full confidence in their operations.",
       eyebrow: "THE RESULT",
       images: [
         {
@@ -999,7 +1003,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "Transformed loan operations from manual, error-prone processes to intelligent, automated workflows that scale with business growth while maintaining complete accuracy and compliance.",
+      description: "We transformed loan operations from slow, manual work into automated workflows that scale with the business, ensuring accuracy and compliance.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "85%", label: "Fewer Errors" },
@@ -1014,9 +1018,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "Process",
+      eyebrow: "APPROACH & DECISION MAKING",
       title: "My Thought Process",
-      content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces.",
+      content: "I saw this as a process problem, not just a UI issue. By shadowing loan officers and mapping their real workflows, I found the main problems were scattered data, manual mistakes, and missing audit trails. My solution focused on automation, validation, and transparency instead of flashy design.",
       images: [
         {
           src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
