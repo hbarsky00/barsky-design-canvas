@@ -32,9 +32,9 @@ export function normalizeCanonicalUrl(path: string): string {
   // Remove trailing index.html variations
   cleanPath = cleanPath.replace(/\/index\.html?$/i, '/');
   
-  // For non-root paths, ensure they end with / for consistency
-  if (!cleanPath.endsWith('/') && !cleanPath.includes('.')) {
-    cleanPath = `${cleanPath}/`;
+  // Remove trailing slashes for consistency (except root)
+  if (cleanPath !== '/' && cleanPath.endsWith('/')) {
+    cleanPath = cleanPath.slice(0, -1);
   }
   
   return `${SEO_CONSTANTS.BASE_URL}${cleanPath}`;

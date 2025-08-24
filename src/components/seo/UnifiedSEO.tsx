@@ -147,6 +147,7 @@ const UnifiedSEO: React.FC = () => {
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
+      <link rel="sitemap" type="application/xml" href="https://barskydesign.pro/sitemap.xml" />
       <meta name="robots" content="index,follow" />
       <meta name="googlebot" content="index,follow" />
       

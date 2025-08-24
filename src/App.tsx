@@ -10,7 +10,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 // Global SEO component
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
 import SitemapGenerator from "@/components/seo/SitemapGenerator";
-import SitemapLink from "@/components/seo/SitemapLink";
+
 
 // Page imports
 import Index from "@/pages/Index";
@@ -44,8 +44,7 @@ function App() {
           <ScrollToTop />
           {/* Global Unified SEO System */}
           <UnifiedSEO />
-          {/* Sitemap link + generator */}
-          <SitemapLink />
+          {/* Sitemap generator */}
           <SitemapGenerator />
           <Routes>
             {/* Home route */}

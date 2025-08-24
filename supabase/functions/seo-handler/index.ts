@@ -124,10 +124,18 @@ const BOT_UA = [
   /WhatsApp/i,
   /TelegramBot/i,
   /SkypeUriPreview/i,
+  /AppleBot/i,
+  /ia_archiver/i,
+  /Mastodon/i,
+  /RedditBot/i,
 ];
 
-function isBot(userAgent: string | null): boolean {
+function isBot(userAgent: string | null, headers: Headers): boolean {
   if (!userAgent) return false;
+  
+  // Check for manual scraping header (for testing)
+  if (headers.get('x-scrape-preview')) return true;
+  
   return BOT_UA.some((re) => re.test(userAgent));
 }
 
@@ -175,9 +183,9 @@ function normalizeCanonicalUrl(path: string): string {
   // Remove trailing index.html variations
   cleanPath = cleanPath.replace(/\/index\.html?$/i, '/');
   
-  // For non-root paths, ensure they end with / for consistency
-  if (!cleanPath.endsWith('/') && !cleanPath.includes('.')) {
-    cleanPath = `${cleanPath}/`;
+  // Remove trailing slashes for consistency (except root)
+  if (cleanPath !== '/' && cleanPath.endsWith('/')) {
+    cleanPath = cleanPath.slice(0, -1);
   }
   
   return `${BASE_URL}${cleanPath}`;
@@ -351,7 +359,7 @@ serve(async (req: Request) => {
     const pathParam = url.searchParams.get("path");
 
     // Only serve SEO content to bots to avoid duplicate canonicals
-    if (!isBot(ua)) {
+    if (!isBot(ua, req.headers)) {
       return new Response('Not for browsers', { 
         status: 403,
         headers: corsHeaders 
@@ -370,13 +378,14 @@ serve(async (req: Request) => {
       ...corsHeaders,
       // Cache for 10 minutes, allow stale for 1 day for crawlers
       "Cache-Control": "public, max-age=600, s-maxage=600, stale-while-revalidate=86400",
-      // Add ETag for better caching
-      "ETag": `"${btoa(canonical + title).substring(0, 16)}"`,
+      // Add ETag for better caching (include timestamp for cache busting)
+      "ETag": `"${btoa(canonical + title + Date.now().toString()).substring(0, 20)}"`,
+      "Vary": "User-Agent",
     });
 
     // If it's a bot, return the HTML. If not, still return HTML so it can be tested in a browser.
-    const bot = isBot(ua);
-    console.log("seo-handler invoked", { ua, bot, canonical, pathname });
+    const bot = isBot(ua, req.headers);
+    console.log("seo-handler invoked", { ua, bot, canonical, pathname, hasPreviewHeader: !!req.headers.get('x-scrape-preview') });
 
     return new Response(html, { status: 200, headers });
   } catch (e) {

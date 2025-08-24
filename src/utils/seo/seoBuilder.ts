@@ -26,14 +26,25 @@ export function buildSEO(input: SEOInput) {
   const image = toAbs(input.image) ?? SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE;
   const imageAlt = input.imageAlt ?? `${input.title ?? SEO_CONSTANTS.SITE_NAME} preview image`;
 
-  // Validate description length
-  if (input.description && input.description.length < 100) {
-    console.warn(`⚠️ SEO Warning: Description too short (${input.description.length} chars) for ${input.path}`);
-  }
+  // Development guardrails
+  if (process.env.NODE_ENV === 'development') {
+    // Validate description length
+    if (input.description && input.description.length < 100) {
+      console.warn(`⚠️ SEO Warning: Description too short (${input.description.length} chars) for ${input.path}`);
+    }
 
-  // Validate image is absolute
-  if (input.image && !input.image.startsWith('http')) {
-    console.warn(`⚠️ SEO Warning: Image not absolute URL for ${input.path}: ${input.image}`);
+    // Validate image is absolute
+    if (input.image && !input.image.startsWith('http')) {
+      console.warn(`⚠️ SEO Warning: Image not absolute URL for ${input.path}: ${input.image}`);
+    }
+
+    // Validate required fields
+    if (!input.title) {
+      console.warn(`⚠️ SEO Warning: Missing title for ${input.path}`);
+    }
+    if (!input.description) {
+      console.warn(`⚠️ SEO Warning: Missing description for ${input.path}`);
+    }
   }
 
   return {

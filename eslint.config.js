@@ -24,6 +24,32 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-unused-vars": "off",
+      // Anti-hardcode SEO rules
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "JSXElement[openingElement.name.name='meta'][openingElement.attributes.some(attr => attr.name && (attr.name.name === 'name' || attr.name.name === 'property') && attr.value && /(og:|twitter:|description|robots|article:)/.test(attr.value.value))]",
+          message: "Use UnifiedSEO/seoBuilder for meta tags. Do not hardcode <meta> in components.",
+        },
+        {
+          selector: "JSXElement[openingElement.name.name='link'][openingElement.attributes.some(attr => attr.name && attr.name.name === 'rel' && attr.value && attr.value.value === 'canonical')]",
+          message: "Canonical tags must be emitted by UnifiedSEO/seoBuilder.",
+        },
+        {
+          selector: "JSXElement[openingElement.name.name='Helmet']:not([openingElement.parent.parent.parent.id.name='UnifiedSEO'])",
+          message: "Use UnifiedSEO instead of direct Helmet usage for SEO meta tags.",
+        },
+      ],
+    },
+  },
+  {
+    files: [
+      "src/utils/seo/**/*",
+      "supabase/functions/seo-handler/**/*",
+      "src/components/seo/UnifiedSEO.tsx",
+    ],
+    rules: {
+      "no-restricted-syntax": "off",
     },
   }
 );
