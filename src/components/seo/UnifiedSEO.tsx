@@ -6,36 +6,23 @@ import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 import { blogPosts } from "@/data/blogData";
 import { SEO_CONSTANTS } from "@/utils/seoConstants";
-import { buildSEO, SEOInput } from "@/utils/seo/seoBuilder";
-import { normalizeCanonicalUrl, resolveUrlAliases } from "@/utils/seo/urlNormalizer";
+import { buildSEO, SEOInput, BuiltSEO } from "@/utils/seo/seoBuilder";
+import { resolveUrlAliases } from "@/utils/seo/urlNormalizer";
 import { getStaticPageSEO, getProjectSEO, getBlogSEO } from "@/data/seoData";
 
-interface SEOData {
-  title: string;
-  description: string;
-  canonical: string;
-  image?: string;
-  imageAlt?: string;
-  type?: 'website' | 'article';
-  publishedTime?: string;
-  modifiedTime?: string;
-  author?: string;
-  tags?: string[];
-}
+const devLog = (...args: any[]) => {
+  if (process.env.NODE_ENV !== 'production') console.warn(...args);
+};
 
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
   
   // Generate SEO data using unified builder
-  const seoData = useMemo(() => {
+  const seoData = useMemo((): BuiltSEO => {
     const rawPathname = location?.pathname || '/';
     const pathname = resolveUrlAliases(rawPathname);
     
-    console.log('🔒 SEO UNIFIED BUILDER:', {
-      pathname,
-      timestamp: new Date().toISOString(),
-      note: "USING SHARED SEO BUILDER"
-    });
+    devLog('🔒 SEO UNIFIED BUILDER:', { pathname });
     
     // Build SEO input based on path type
     let seoInput: SEOInput;
@@ -120,50 +107,38 @@ const UnifiedSEO: React.FC = () => {
     }
     
     // Build final SEO data using unified builder
-    const builtSeo = buildSEO(seoInput);
-    
-    console.log('✅ UNIFIED SEO BUILT:', {
-      pathname,
-      title: builtSeo.title,
-      hasImage: !!builtSeo.image,
-      type: builtSeo.type
-    });
-    
-    return builtSeo;
+    return buildSEO(seoInput);
   }, [location?.pathname]);
 
   const structuredData = generateStructuredData(seoData);
-
-  console.log('🎯 FINAL SEO RENDER:', {
-    canonical: seoData.canonical,
-    title: seoData.title,
-    hasImage: !!seoData.image,
-    imageAbsolute: seoData.image?.startsWith('http'),
-    pathname: location?.pathname
-  });
 
   return (
     <Helmet>
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
-      <link rel="sitemap" type="application/xml" href="https://barskydesign.pro/sitemap.xml" />
-      <meta name="robots" content="index,follow" />
-      <meta name="googlebot" content="index,follow" />
-      
+
+      {/* Robots from builder to avoid hardcoding */}
+      {seoData.robots && <meta name="robots" content={seoData.robots} />}
+      {seoData.robots && <meta name="googlebot" content={seoData.robots} />}
+
       {/* Open Graph */}
-      <meta property="og:site_name" content={SEO_CONSTANTS.SITE_NAME} />
+      <meta property="og:type" content={seoData.type ?? 'website'} />
       <meta property="og:title" content={seoData.title} />
       <meta property="og:description" content={seoData.description} />
       <meta property="og:url" content={seoData.canonical} />
-      <meta property="og:type" content={seoData.type} />
-      {seoData.image && <meta property="og:image" content={seoData.image} />}
-      {seoData.image && <meta property="og:image:secure_url" content={seoData.image} />}
-      {seoData.image && <meta property="og:image:alt" content={seoData.imageAlt || seoData.title} />}
-      {seoData.image && <meta property="og:image:width" content="1200" />}
-      {seoData.image && <meta property="og:image:height" content="630" />}
-      
-      {/* Article-specific meta */}
+      {seoData.siteName && <meta property="og:site_name" content={seoData.siteName} />}
+      {seoData.image && (
+        <>
+          <meta property="og:image" content={seoData.image} />
+          <meta property="og:image:secure_url" content={seoData.image} />
+          {seoData.imageAlt && <meta property="og:image:alt" content={seoData.imageAlt} />}
+          {seoData.imageWidth && <meta property="og:image:width" content={String(seoData.imageWidth)} />}
+          {seoData.imageHeight && <meta property="og:image:height" content={String(seoData.imageHeight)} />}
+        </>
+      )}
+
+      {/* Article-only */}
       {seoData.type === 'article' && seoData.publishedTime && (
         <meta property="article:published_time" content={seoData.publishedTime} />
       )}
@@ -173,22 +148,20 @@ const UnifiedSEO: React.FC = () => {
       {seoData.type === 'article' && seoData.author && (
         <meta property="article:author" content={seoData.author} />
       )}
-      {seoData.type === 'article' && seoData.tags?.map(tag => (
-        <meta key={tag} property="article:tag" content={tag} />
+      {seoData.type === 'article' && seoData.tags?.map((t) => (
+        <meta key={t} property="article:tag" content={t} />
       ))}
-      
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={SEO_CONSTANTS.TWITTER_HANDLE} />
+
+      {/* Twitter */}
+      {seoData.twitterCard && <meta name="twitter:card" content={seoData.twitterCard} />}
+      {seoData.twitterSite && <meta name="twitter:site" content={seoData.twitterSite} />}
       <meta name="twitter:title" content={seoData.title} />
       <meta name="twitter:description" content={seoData.description} />
       {seoData.image && <meta name="twitter:image" content={seoData.image} />}
-      {seoData.image && <meta name="twitter:image:alt" content={seoData.imageAlt || seoData.title} />}
-      
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      {seoData.imageAlt && <meta name="twitter:image:alt" content={seoData.imageAlt} />}
+
+      {/* JSON-LD */}
+      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
     </Helmet>
   );
 };
