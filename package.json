@@ -3,11 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+    },
   "scripts": {
-  "prebuild": "node scripts/guard-seo-hardcodes.js",
-  "build": "vite build && node prerender.js",
-  "postbuild": "node scripts/validate-seo-build.js",
-  "build:dev": "vite build --mode development"
+    "prebuild": "node scripts/guard-seo-hardcodes.js",
+    "build": "vite build && node prerender.js", 
+    "postbuild": "node scripts/validate-seo-build.js”,
+"build:dev": "vite build --mode development"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
