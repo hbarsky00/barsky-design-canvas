@@ -1,4 +1,4 @@
-
+# ---------- Redirects for static subpaths ----------
 [[redirects]]
   from = "/lovable-uploads/*"
   to = "/lovable-uploads/:splat"
@@ -14,23 +14,59 @@
   to = "/static/:splat"
   status = 200
 
+# ---------- SPA fallback (optional) ----------
+# Keep this if you want unknown routes to fall back to the SPA shell.
+# If you truly prerender EVERY route, you can remove this block.
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  
+
+# ---------- Build ----------
 [build]
-  command = "vite build"
+  # IMPORTANT: call your package script so prerender runs after Vite.
+  command = "npm run build"
   publish = "dist"
-  
+
+# If you need a specific Node version on Netlify's build image:
+[build.environment]
+  NODE_VERSION = "20"
+
+# ---------- Security headers for all responses ----------
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    
+
+# ---------- HTML caching ----------
+# Root index (SSR shell for SPA or your prerendered home)
 [[headers]]
   for = "/index.html"
   [headers.values]
     Cache-Control = "no-cache"
+
+# All other prerendered HTML files (e.g., /project/*, /blog/*)
+# Prevent long-term caching so you can redeploy SEO quickly.
+[[headers]]
+  for = "/**/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# ---------- Static asset caching (optional, nicer perf) ----------
+# Let hashed assets cache aggressively (adjust globs to your setup).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/lovable-uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
