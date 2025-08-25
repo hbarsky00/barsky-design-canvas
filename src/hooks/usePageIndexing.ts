@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getPageConfig, submitUrlForIndexing } from '@/utils/seoUtils';
-import { getCanonicalUrl } from '@/utils/urlUtils';
+// removed getCanonicalUrl import - no longer needed for Pure SSG
 
 export const usePageIndexing = () => {
   const location = useLocation();
@@ -12,7 +12,7 @@ export const usePageIndexing = () => {
       const config = getPageConfig(location.pathname);
       
       // Get normalized canonical URL
-      const canonicalUrl = getCanonicalUrl(location.pathname);
+      const canonicalUrl = `https://barskydesign.pro${location.pathname}`;
       
       // Submit URL for indexing
       await submitUrlForIndexing(canonicalUrl);
