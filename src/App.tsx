@@ -1,15 +1,9 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
-
-
-// Global SEO component
-import UnifiedSEO from "@/components/seo/UnifiedSEO";
-import SitemapGenerator from "@/components/seo/SitemapGenerator";
 
 
 // Page imports
@@ -41,13 +35,8 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <ImageMaximizerProvider>
-          <ScrollToTop />
-          {/* Global Unified SEO System */}
-          <UnifiedSEO />
-          {/* Sitemap generator */}
-          <SitemapGenerator />
+      <ImageMaximizerProvider>
+        <ScrollToTop />
           <Routes>
             {/* Home route */}
             <Route path="/" element={<Index />} />
@@ -84,9 +73,8 @@ function App() {
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          <Toaster />
-        </ImageMaximizerProvider>
-      </HelmetProvider>
+        <Toaster />
+      </ImageMaximizerProvider>
     </QueryClientProvider>
   );
 }
