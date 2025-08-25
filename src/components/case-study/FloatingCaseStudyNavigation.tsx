@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Menu, ArrowUp } from "lucide-react";
 import {
@@ -29,19 +29,54 @@ const FloatingCaseStudyNavigation: React.FC<FloatingCaseStudyNavigationProps> = 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
+  const scrollPositionRef = useRef<number>(0);
 
-  // Lock background scroll on mobile when drawer is open
+  // Enhanced mobile scroll lock with position saving
   useEffect(() => {
     if (!isMobile) return;
     
     if (isOpen) {
+      // Save current scroll position
+      scrollPositionRef.current = window.scrollY;
+      
+      // Apply comprehensive scroll lock for mobile
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
+      document.body.style.overscrollBehavior = 'contain';
+      
+      // Also lock html element for iOS Safari
+      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.position = 'fixed';
+      document.documentElement.style.width = '100%';
     } else {
+      // Restore all styles
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
+      document.body.style.overscrollBehavior = '';
+      
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.position = '';
+      document.documentElement.style.width = '';
+      
+      // Restore scroll position
+      window.scrollTo(0, scrollPositionRef.current);
     }
 
     return () => {
+      // Cleanup function
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
+      document.body.style.overscrollBehavior = '';
+      
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.position = '';
+      document.documentElement.style.width = '';
     };
   }, [isOpen, isMobile]);
 
