@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
-import { Helmet } from 'react-helmet-async';
+
 import { PAGES_LIST } from '@/export/pagesList';
 import { extractGlobalContent } from '@/export/extractors/global';
 import { extractHomepageContent } from '@/export/extractors/homepage';
@@ -463,12 +463,7 @@ const ContentExport: React.FC = () => {
   };
   
   return (
-    <>
-      <Helmet>
-        <title>Content Export - Admin</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
-      <div className="min-h-screen bg-background p-8">
+    <div className="min-h-screen bg-background p-8">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-foreground mb-4">
@@ -491,7 +486,6 @@ const ContentExport: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
