@@ -27,6 +27,19 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
+    id: "business-management",
+    tags: ["B2B", "Productivity", "Enterprise"],
+    title: "Business Management: 40% Faster Project Delivery",
+    description: "Designed an integrated business management platform that consolidates project tracking, team communication, and resource allocation. The solution streamlined workflows for mid-size companies, reducing administrative overhead and improving project visibility across departments.",
+    impact: "40% Faster Project Delivery",
+    url: "/project/business-management",
+    images: {
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/featureimagenew.png",
+      alt: "Business management dashboard showing project tracking and team collaboration"
+    },
+    layout: "side-by-side"
+  },
+  {
     id: "herbalink",
     tags: ["Blue Sky", "Design Thinking", "GenAI"],
     title: "HerbaLink: 3× More Bookings for Certified Herbalists",
@@ -41,17 +54,18 @@ const caseStudies: CaseStudy[] = [
     layout: "side-by-side"
   },
   {
-    id: "business-management",
-    tags: ["B2B", "Productivity", "Enterprise"],
-    title: "Business Management: 40% Faster Project Delivery",
-    description: "Designed an integrated business management platform that consolidates project tracking, team communication, and resource allocation. The solution streamlined workflows for mid-size companies, reducing administrative overhead and improving project visibility across departments.",
-    impact: "40% Faster Project Delivery",
-    url: "/project/business-management",
+    id: "split-time",
+    tags: ["Co-Parenting", "Scheduling", "Communication"],
+    title: "SplitTime: 64% Less Scheduling Conflict for Co-Parents",
+    description: "Built a comprehensive co-parenting platform that streamlines scheduling, communication, and coordination between separated parents. The app features shared calendars, expense tracking, and communication tools designed to reduce conflict and prioritize children's wellbeing.",
+    impact: "64% Less Scheduling Conflict",
+    url: "/project/split-time",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/featureimagenew.png",
-      alt: "Business management dashboard showing project tracking and team collaboration"
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/studiodisplaynewlook-1.png",
+      alt: "SplitTime co-parenting app showing calendar and communication features"
     },
-    layout: "side-by-side"
+    layout: "web-mobile",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
   },
   {
     id: "investor-loan-app",
@@ -78,20 +92,6 @@ const caseStudies: CaseStudy[] = [
       alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
     },
     layout: "side-by-side"
-  },
-  {
-    id: "split-time",
-    tags: ["Co-Parenting", "Scheduling", "Communication"],
-    title: "SplitTime: 64% Less Scheduling Conflict for Co-Parents",
-    description: "Built a comprehensive co-parenting platform that streamlines scheduling, communication, and coordination between separated parents. The app features shared calendars, expense tracking, and communication tools designed to reduce conflict and prioritize children's wellbeing.",
-    impact: "64% Less Scheduling Conflict",
-    url: "/project/split-time",
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/studiodisplaynewlook-1.png",
-      alt: "SplitTime co-parenting app showing calendar and communication features"
-    },
-    layout: "web-mobile",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
   }
 ];
 
