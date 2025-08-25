@@ -165,7 +165,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
       src: "/lovable-uploads/crypto-hero.mp4",
-      poster: "/lovable-uploads/crypto-cover.jpg", 
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png", 
       alt: "Crypto trading platform overview"
     },
     heroMetrics: [
@@ -284,7 +284,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/lovable-uploads/crypto-cover.jpg",
+      image: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
       projectName: "Trading Without Friction",
       results: [
         "35% increase in onboarding conversion",

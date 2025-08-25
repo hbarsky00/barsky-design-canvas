@@ -48,7 +48,7 @@ const caseStudies: CaseStudy[] = [
     impact: "40% Faster Project Delivery",
     url: "/project/business-management",
     images: {
-      primary: "/placeholder.svg",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/featureimagenew.png",
       alt: "Business management dashboard showing project tracking and team collaboration"
     },
     layout: "side-by-side"
@@ -61,7 +61,7 @@ const caseStudies: CaseStudy[] = [
     impact: "85% Faster Deal Processing",
     url: "/project/investor-loan-app", 
     images: {
-      primary: "/placeholder.svg",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",
       alt: "Investment platform showing deal analysis and portfolio management"
     },
     layout: "side-by-side"
@@ -74,7 +74,7 @@ const caseStudies: CaseStudy[] = [
     impact: "+35% Conversion · –40% Time-to-First-Trade · +25% Retention",
     url: "/project/crypto",
     images: {
-      primary: "/lovable-uploads/crypto-cover.jpg",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
       alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
     },
     layout: "side-by-side"
@@ -87,7 +87,7 @@ const caseStudies: CaseStudy[] = [
     impact: "64% Less Scheduling Conflict",
     url: "/project/split-time",
     images: {
-      primary: "/placeholder.svg",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/studiodisplaynewlook-1.png",
       alt: "SplitTime co-parenting app showing calendar and communication features"
     },
     layout: "web-mobile",
