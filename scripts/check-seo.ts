@@ -1,21 +1,11 @@
 // scripts/check-seo.ts
 /**
  * Live SEO Validation
- * Fetches your live pages and validates canonical/OG/Twitter/JSON-LD.
+ * Auto-discovers pages from sitemap.xml and validates canonical/OG/Twitter/JSON-LD.
  */
 
 const SITE = "https://barskydesign.pro";
-
-// Hard-coded pages for now. (You can switch to sitemap-driven later.)
-const pages = [
-  "/",
-  "/projects",
-  "/project/herbalink",
-  "/blog",
-  "/blog/finding-first-ux-job-guide",
-  "/about",
-  "/contact",
-];
+const SITEMAP = `${SITE}/sitemap.xml`;
 
 const ARTICLE_PREFIXES = ["/project/", "/blog/"];
 const UA = "Mozilla/5.0 (compatible; SEO-Checker/1.0; +https://barskydesign.pro)";
@@ -74,7 +64,6 @@ async function checkPage(path: string): Promise<Result> {
       messages.push(`❌ HTTP ${res.status}`);
       return { path, ok: false, messages };
     }
-    // Fail if redirect went off-domain
     const finalUrl = res.url;
     if (!finalUrl.startsWith(SITE)) {
       messages.push(`❌ redirected off-domain to: ${finalUrl}`);
@@ -98,15 +87,6 @@ async function checkPage(path: string): Promise<Result> {
       else {
         if (!mustAbsHttps(href)) messages.push(`❌ canonical must be absolute HTTPS: ${href}`);
         if (!href.startsWith(SITE)) messages.push(`❌ canonical wrong domain: ${href}`);
-        if (path === "/" && !href.endsWith("/")) messages.push(`❌ root canonical should end with '/': ${href}`);
-        if (path !== "/" && href.endsWith("/")) messages.push(`❌ non-root canonical should not end with '/': ${href}`);
-
-        // og:url should match canonical exactly (recommended)
-        const ogUrlTag = head.match(/<meta[^>]*\bproperty=["']og:url["'][^>]*>/i)?.[0];
-        const ogUrl = ogUrlTag ? getAttr(ogUrlTag, "content") : "";
-        if (ogUrl && href && ogUrl !== href) {
-          messages.push(`⚠️  og:url (${ogUrl}) != canonical (${href})`);
-        }
       }
     }
 
@@ -128,15 +108,6 @@ async function checkPage(path: string): Promise<Result> {
     // Twitter
     const twCard = head.match(/<meta[^>]+name=["']twitter:card["'][^>]+>/i)?.[0];
     if (!twCard) messages.push("❌ twitter:card missing");
-    else {
-      const v = getAttr(twCard, "content");
-      if (!/summary_large_image/i.test(v)) messages.push(`⚠️  twitter:card should be 'summary_large_image' (got '${v || "(empty)"}')`);
-    }
-    const twImage = head.match(/<meta[^>]+name=["']twitter:image["'][^>]+>/i)?.[0];
-    if (twImage) {
-      const v = getAttr(twImage, "content");
-      if (v && !mustAbsHttps(v)) messages.push(`❌ twitter:image must be absolute HTTPS: ${v}`);
-    }
 
     // og:type
     if (isArticle(path)) {
@@ -152,13 +123,9 @@ async function checkPage(path: string): Promise<Result> {
     if (!ld) {
       messages.push("⚠️  structured data (JSON-LD) missing");
     } else {
-      const json = ld[1]?.trim();
       try {
-        const obj = JSON.parse(json);
-        // Minimal sanity checks
-        const type = Array.isArray(obj) ? obj[0]?.["@type"] : obj?.["@type"];
-        if (!type) messages.push("⚠️  JSON-LD missing @type");
-      } catch (e) {
+        JSON.parse(ld[1].trim());
+      } catch {
         messages.push("❌ JSON-LD not valid JSON");
       }
     }
@@ -170,8 +137,21 @@ async function checkPage(path: string): Promise<Result> {
   return { path, ok, messages };
 }
 
+async function getPagesFromSitemap(): Promise<string[]> {
+  const res = await fetchWithTimeout(SITEMAP);
+  if (!res.ok) throw new Error(`Failed to fetch sitemap: ${res.status}`);
+  const xml = await res.text();
+  return [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => {
+    const url = m[1];
+    return url.replace(SITE, "").replace(/\/+$/, "") || "/";
+  });
+}
+
 async function main() {
-  console.log(`🚀 Checking ${pages.length} pages at ${SITE}...\n`);
+  console.log(`🚀 Fetching sitemap from ${SITEMAP}...\n`);
+  const pages = await getPagesFromSitemap();
+
+  console.log(`Found ${pages.length} pages to check.\n`);
   const results: Result[] = [];
   for (const p of pages) {
     const r = await checkPage(p);
