@@ -7,17 +7,7 @@
   "engines": {
     "node": ">=18.17"
   },
-  "scripts": {
-    "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true",
-    "dev": "vite",
-    "build:dev": "vite build --mode development",
-    "preview": "vite preview",
-    "prebuild": "node scripts/guard-seo-hardcodes.js",
-   "build": "node scripts/diagnose-build.js pre && vite build && node prerender.js && node scripts/diagnose-build.js post"
-    "postbuild": "node scripts/validate-seo-build.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
+"scripts": { "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true", "dev": "vite", "build:dev": "vite build --mode development", "preview": "vite preview", "prebuild": "node scripts/guard-seo-hardcodes.js", "build": "node scripts/diagnose-build.js pre && vite build && node prerender.js && node scripts/diagnose-build.js post", "postbuild": "node scripts/validate-seo-build.js", "lint": "eslint .", "lint:fix": "eslint . --fix" },
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
