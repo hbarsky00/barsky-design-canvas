@@ -3,12 +3,12 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
-    id: "business-management",
-    title: "Business Management App",
-    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
-    image: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-    tags: ["Enterprise", "CRM", "Dashboard"],
+    id: "wholesale-distribution",
+    title: "Wholesale Distribution Management App",
+    description: "AI-powered business solution transforming restaurant conversation into custom development. Achieved 70% reduction in manual tasks through intelligent automation and streamlined workflows.",
+    image: "/lovable-uploads/62c180ba-ccc8-4c56-9f71-a3374bfc43f7.png",
+    tags: ["Product Design", "AI Development", "Business Automation", "Custom Development", "Workflow Optimization"],
     featured: true,
-    category: "Enterprise"
+    category: "Business Automation"
   }
 ];

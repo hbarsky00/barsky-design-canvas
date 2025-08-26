@@ -7,7 +7,7 @@ import VideoPlayer from "../VideoPlayer";
 import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
-// Removed getCanonicalUrl - Pure SSG handles URLs
+import { getCanonicalUrl } from "@/utils/urlUtils";
 
 interface StructuredCaseStudyHeroProps {
   caseStudyData: StructuredCaseStudyData;
@@ -57,7 +57,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
                 liveUrl={caseStudyData.projectLink}
                 projectTitle={caseStudyData.title}
                 projectDescription={caseStudyData.description}
-                projectPageUrl={`https://barskydesign.pro${location.pathname}`}
+                projectPageUrl={getCanonicalUrl(location.pathname)}
               />
             </div>
           )}

@@ -47,13 +47,13 @@ const allCaseStudies: CaseStudy[] = [
     tags: ["FinTech", "Real Estate", "Web App", "UX/UI Design"]
   },
   {
-    id: "business-management",
-    title: "Business Management App",
-    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
-    image: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-    url: "/project/business-management",
+    id: "wholesale-distribution",
+    title: "Wholesale Distribution Platform",
+    description: "Enterprise B2B platform streamlining wholesale operations and inventory management.",
+    image: "/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png",
+    url: "/project/wholesale-distribution",
     category: "Enterprise",
-    tags: ["Enterprise", "CRM", "Dashboard"]
+    tags: ["B2B", "Enterprise", "Distribution", "Web Platform"]
   }
 ];
 

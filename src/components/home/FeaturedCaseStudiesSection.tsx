@@ -19,28 +19,6 @@ const featuredCaseStudies = [
     tags: ["AI", "Healthcare", "Mobile App"]
   },
   {
-    id: "crypto",
-    title: "Trading Without Friction",
-    subtitle: "Dual-Mode Crypto Trading Platform",
-    description: "Crypto platforms force a tradeoff: easy but shallow vs powerful but confusing. Over 60% of beginners quit before their first trade, and nearly 30% of pros churn within 90 days. I designed a dual-mode trading experience that serves both ends.",
-    image: "/lovable-uploads/crypto-cover.jpg",
-    url: "/project/crypto",
-    category: "FinTech", 
-    impact: "+35% Conversion · –40% TTF Trade",
-    tags: ["Fintech", "Crypto", "Mobile & Web"]
-  },
-  {
-    id: "investor-loan",
-    title: "Investor Loan App",
-    subtitle: "FinTech Innovation",
-    description: "Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios.",
-    image: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-    url: "/project/investor-loan-app",
-    category: "FinTech",
-    impact: "50% faster loan approval process",
-    tags: ["FinTech", "Real Estate", "Automation"]
-  },
-  {
     id: "splittime",
     title: "SplitTime",
     subtitle: "Smart Scheduling Solution",
@@ -52,15 +30,15 @@ const featuredCaseStudies = [
     tags: ["AI", "Productivity", "Scheduling"]
   },
   {
-    id: "business-management",
-    title: "Business Management",
-    subtitle: "Internal Operations Tool",
-    description: "Streamlined internal business operations with automated workflows, centralized data management, and performance tracking. The system reduces manual tasks and provides clear visibility into business processes.",
-    image: "/lovable-uploads/business-management-cover.jpg",
-    url: "/project/business-management",
-    category: "Enterprise",
-    impact: "40% reduction in manual tasks",
-    tags: ["Enterprise", "Automation", "Analytics"]
+    id: "investor-loan",
+    title: "Investor Loan App",
+    subtitle: "FinTech Innovation",
+    description: "Built beginner-friendly investing tools with guided onboarding, goal tracking, and real-time performance insights. The design demystifies complex financial concepts and keeps users motivated to grow their portfolios.",
+    image: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
+    url: "/project/investor-loan-app",
+    category: "FinTech",
+    impact: "50% faster loan approval process",
+    tags: ["FinTech", "Real Estate", "Automation"]
   }
 ];
 

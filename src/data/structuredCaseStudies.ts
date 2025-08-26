@@ -14,7 +14,7 @@ export interface ResearchSection {
   emergingThemes: EmergingTheme[];
   researchImage?: string;
   researchImageAlt?: string;
-  researchImages?: { src: string; alt: string; caption?: string; annotations?: ImageAnnotation[]; }[];
+  researchImages?: { src: string; alt: string; }[];
   researchVideo?: string;
 }
 
@@ -54,10 +54,6 @@ export interface StructuredCaseStudyData {
     poster: string;
     alt: string;
   };
-  heroMetrics?: {
-    value: string;
-    label: string;
-  }[];
   researchSection?: ResearchSection;
   problemCallout?: {
     eyebrow: string;
@@ -141,7 +137,6 @@ export interface StructuredCaseStudyData {
       src: string;
       alt: string;
       caption?: string;
-      annotations?: ImageAnnotation[];
     }>;
   };
   sections: StructuredCaseStudySectionProps[];
@@ -157,149 +152,10 @@ export interface StructuredCaseStudyData {
 }
 
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
-  "crypto": {
-    id: "crypto",
-    title: "Trading Without Friction – Crypto App Case Study",
-    description: "How a dual-mode crypto app turned churn into growth by serving both novices and pros",
-    tags: ["Fintech", "Crypto", "Mobile & Web", "Product Design", "Research", "Prototyping"],
-    gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
-    heroVideo: {
-      src: "/lovable-uploads/crypto-hero.mp4",
-      poster: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png", 
-      alt: "Crypto trading platform overview"
-    },
-    heroMetrics: [
-      { value: "+35%", label: "Onboarding Conversion" },
-      { value: "–40%", label: "Time-to-First-Trade" },
-      { value: "–45%", label: "Order Errors" },
-      { value: "+25%", label: "Pro Trader Retention" }
-    ],
-    researchSection: {
-      subhead: "Gathering insights",
-      blurb: "60% of beginners reported being 'too confused to invest.' 70% of pros stitched multiple platforms together for speed + analytics. Competitors: Coinbase = too simple, Binance = too dense, Kraken = too technical.",
-      emergingThemes: [
-        {
-          eyebrow: "BEGINNER BARRIERS",
-          insight: "Drove guided trading mode with safety rails.",
-          drove: "Guided trading mode with clear explanations and safety rails."
-        },
-        {
-          eyebrow: "PRO LIMITATIONS", 
-          insight: "Drove advanced panel with hotkeys, presets, and live order book.",
-          drove: "Advanced panel with hotkeys, presets, and live order book."
-        },
-        {
-          eyebrow: "COMPETITIVE GAPS",
-          insight: "Drove a dual-mode approach serving both audiences.",
-          drove: "Dual-mode approach serving both audiences in one platform."
-        }
-      ]
-    },
-    problemCallout: {
-      eyebrow: "Problem",
-      statement: "Novices abandon onboarding; pros churn after early trades. The business loses both first deposits and high-volume activity—two critical revenue streams."
-    },
-    sprintZeroSection: {
-      eyebrow: "Sprint Zero",
-      title: "Foundation & Principles",
-      workshopKickoff: "1. Trust is visible → show security upfront. 2. Speed is retention → every tap matters. 3. Guided simplicity → confidence without hand-holding.",
-      explorations: "Targets: +30% onboarding conversion, –50% order errors, +25% repeat logins in 30 days.",
-      decisionPoint: "Focus on a dual-mode design serving both novice and expert traders."
-    },
-    keyInsights: [
-      {
-        number: 1,
-        title: "Dual-mode clarity wins",
-        description: "Guided Quick Trade + Pro Panel."
-      },
-      {
-        number: 2, 
-        title: "Plain language ↑ adoption ~30%",
-        description: "translating jargon reduced confusion."
-      },
-      {
-        number: 3,
-        title: "Visible security ↑ trust 45%",
-        description: "MFA + receipts raised confidence."
-      },
-      {
-        number: 4,
-        title: "One dashboard > many",
-        description: "quick actions + deep links beat scattered navigation."
-      }
-    ],
-    myThoughtProcessSection: {
-      eyebrow: "My Thought Process",
-      title: "",
-      content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Progressive disclosure: hide complexity until requested. Latency = UX: live quotes, optimistic states, visible sync timers. Confidence and speed weren't opposites—they were interdependent."
-    },
-    ideationSection: {
-      subhead: "Core Features & Interface Design",
-      bubbles: [
-        {
-          title: "Dashboard",
-          description: "Portfolio, movers, quick trade, security score."
-        },
-        {
-          title: "Markets",
-          description: "Search, mini-charts, filters."
-        },
-        {
-          title: "Trading",
-          description: "Quick Trade (guided) + Pro Panel (hotkeys, presets, live order book)."
-        },
-        {
-          title: "Portfolio", 
-          description: "Clear P&L, history, exports."
-        }
-      ],
-      iterations: []
-    },
-    whatDidntWorkSection: {
-      eyebrow: "What Didn't Work",
-      title: "",
-      content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it."
-    },
-    userTestingSection: {
-      title: "Validation & Testing",
-      eyebrow: "Testing",
-      description: "Prototype sessions showed: Time-to-first-trade ↓ to 3 minutes (vs 8 competitors). Order errors ↓ 45%. 75% of testers trusted this app more than their current platform.",
-      metrics: [
-        { value: "3 min", label: "Time-to-first-trade" },
-        { value: "↓45%", label: "Order errors" },
-        { value: "75%", label: "Trusted more" }
-      ]
-    },
-    outcomeSection: {
-      title: "Outcome & Impact",
-      eyebrow: "Results",
-      description: "Instead of splitting audiences, the app united them—delivering growth, retention, and stronger brand trust.",
-      metrics: [
-        { value: "+35%", label: "Onboarding conversion" },
-        { value: "↓40%", label: "Time-to-first-trade" },
-        { value: "↓45%", label: "Order errors" },
-        { value: "+25%", label: "Pro trader retention" },
-        { value: "+40%", label: "Portfolio engagement (users checked balances daily, not weekly)" }
-      ]
-    },
-    sections: [],
-    seoData: {
-      image: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
-      projectName: "Trading Without Friction",
-      results: [
-        "35% increase in onboarding conversion",
-        "40% reduction in time-to-first-trade", 
-        "45% reduction in order errors",
-        "25% increase in pro trader retention"
-      ],
-      technologies: ["React", "TypeScript", "Node.js", "WebSocket", "REST API"],
-      path: "/project/crypto"
-    }
-  },
   "herbalink": {
     id: "herbalink",
-    title: "HerbaLink – 3× More Bookings for Certified Herbalists",
-    description: "HerbaLink connects people with vetted herbalists and reliable resources. Many users relied on unverified sources, creating risks. The vision: build a discovery and booking platform with credibility at its core. The outcome: safe, trustworthy access to natural health practitioners and remedies.",
+    title: "Using Design Thinking to Achieve 3x More Bookings for Certified Herbalists",
+    description: "Connected users to certified herbalists across the country and increased booking rates by 3x through AI-powered matching and streamlined UX.",
     tags: ["Blue Sky", "Design Thinking", "GenAI", "WebApp", "Mobile"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "http://herbalink.live",
@@ -346,9 +202,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "Early sketches prioritized practitioner credibility over features.",
+      workshopKickoff: "I initiated discovery sessions with potential users and herbalists to understand the core friction points. Through design sprints, I framed the problem around trust, safety, and accessibility—not just practitioner availability. This foundation helped establish that matching algorithms needed to prioritize credentials and safety information over proximity alone.",
       explorations: "I explored blue-sky concepts ranging from AI-powered symptom analysis to community-driven peer reviews. Early sketches included marketplace-style browsing, chat-first consultations, and comprehensive health tracking. I tested divergent ideas like gamified health journeys and social proof through community testimonials to understand what resonated most with users seeking herbal care.",
-      decisionPoint: "I chose to focus the platform on practitioners after seeing that users valued expert guidance most. I made verified credentials, clear safety details, and simple booking the core features. This approach built trust and avoided overwhelming users with too many choices or complicated tracking tools.\nBlue-sky thinking revealed users needed guided discovery rather than exhaustive, self-serve databases.",
+      decisionPoint: "I converged on a practitioner-focused platform after validating that users prioritized expert guidance over self-directed exploration. The decision centered on verified credentials, clear safety information, and streamlined booking—creating trust through transparency rather than overwhelming users with too many options or complex health tracking features.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png",
@@ -396,7 +252,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661047658-scaled.png", 
           alt: "First iteration of HerbaLink profile design",
-          blurb: "Navigation unclear — users don't understand the tab structure\nProfile information scattered — needs better organization\nCTA button placement needs improvement",
           annotations: [
             { text: "Navigation unclear - users don't understand the tab structure", x: 20, y: 15, type: "issue" },
             { text: "Profile information scattered - needs better organization", x: 50, y: 35, type: "issue" },
@@ -407,7 +262,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661017299-scaled.png", 
           alt: "Second iteration focusing on safety information",
-          blurb: "Improved navigation with clearer labels\nBetter visual hierarchy\nSafety information now prominently displayed",
           annotations: [
             { text: "Improved navigation with clearer labels", x: 20, y: 15, type: "improvement" },
             { text: "Safety information now prominently displayed", x: 60, y: 40, type: "feature" },
@@ -418,7 +272,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755661070914-scaled.png", 
           alt: "Third iteration with match criteria refinements",
-          blurb: "Streamlined profile sections\nMatch criteria made more prominent\nEnhanced booking flow entry point",
           annotations: [
             { text: "Match criteria made more prominent", x: 30, y: 25, type: "feature" },
             { text: "Streamlined profile sections", x: 70, y: 45, type: "improvement" },
@@ -438,9 +291,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "APPROACH & DECISION MAKING",
+      eyebrow: "Process",
       title: "My Thought Process",
-      content: "I prioritized trust-building over flashy features. Building trust is more important than adding lots of features when connecting people with healthcare providers. I focused on making every interaction credible and reassuring by using clear symptom tracking and verified herbalist profiles. The result: 3x higher booking rates through clear symptom tracking and verified profiles.",
+      content: "Trust beats features when connecting people with healthcare providers. I designed every interaction to build credibility and reduce anxiety through clear symptom tracking and verified herbalist profiles.",
       images: [
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
@@ -455,7 +308,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with both practitioners and patients validated the trust-focused approach and revealed key usability improvements for the booking flow.",
+      description: "Testing with both practitioners and patients validated my trust-focused approach and revealed key usability improvements for the booking flow.",
       eyebrow: "VALIDATION & TESTING",
       metrics: [
         { value: "92%", label: "Task Completion" },
@@ -515,7 +368,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "I set up a solid base for results, confirmed the model works, and created a plan to grow with AI, long-term tracking, and insights from practitioners.",
+      description: "I built a strong foundation for outcomes, validating the model and setting up a roadmap to scale with AI, long-term tracking, and practitioner insights.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "3x", label: "Booking Rate Increase" },
@@ -532,7 +385,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "At first, the prototypes were too complex, with too many categories and confusing layouts. Users wanted a simple, guided way to find what they needed, not a huge database.",
+      content: "Early prototypes focused too heavily on complex categorization systems and overwhelming information architecture. Users needed simple, guided discovery rather than comprehensive databases.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
@@ -572,8 +425,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "splittime": {
     id: "splittime",
-    title: "SplitTime – Simplifying Co-Parenting with Better Planning",
-    description: "Built a co-parenting app to reduce scheduling conflicts. Early tests showed a 40% decrease in communication breakdowns.",
+    title: "Design Thinking Approach to Reducing Co-Parenting Conflict by 40%",
+    description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools designed for high-stress family situations.",
     tags: ["Blue Sky", "Design Thinking", "iOS→Android", "Legal UX", "WebApp"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://splittime.pro",
@@ -583,7 +436,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Splittime co-parenting app hero overview"
     },
     researchSection: {
-      subhead: "SplitTime is a co-parenting app designed to simplify shared custody, expenses, and communication. Parents were relying on texts and spreadsheets, leading to miscommunication and stress. The vision is to create a neutral and trustworthy tool that reduces conflict and fosters trust between co-parents.",
+      subhead: "Interviews and walkthroughs with co-parents revealed decision fatigue from fragmented schedules, expenses, and agreements.",
       blurb: "Tools create conflict.",
       emergingThemes: [
         {
@@ -606,14 +459,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
-      statement: "Co-parents often lack a single source of truth for schedules, expenses, and decisions, leading to miscommunication, missed pickups, and ongoing conflict."
+      statement: "Co-parents lack a single source of truth for schedules, expenses, and decisions—causing miscommunication, missed pickups, and ongoing conflict."
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "Early brainstorming on co-parenting communication tools and conflict reduction strategies.",
+      workshopKickoff: "I conducted discovery workshops with divorced co-parents and family mediators to understand the emotional and logistical challenges. Through design sprints, I framed the problem around communication tone and shared accountability—not just scheduling tools. This foundation established that the solution needed to address conflict prevention, not just organization.",
       explorations: "I explored blue-sky concepts ranging from AI-powered communication filtering to gamified cooperation tracking. Early sketches included therapeutic check-ins, mood tracking, and automated conflict de-escalation. I tested divergent ideas like neutral third-party mediation and child-focused decision frameworks to understand what would genuinely reduce tension between co-parents.",
-      decisionPoint: "I decided to focus on a neutral communication platform after seeing that most conflicts came from unclear tone and expectations. I chose structured templates, approval workflows, and transparent history to build accountability through clarity, instead of adding features that might make things harder.",
+      decisionPoint: "I converged on a neutral communication platform after validating that most conflicts arose from misunderstood tone and unclear expectations. The decision centered on structured templates, approval workflows, and transparent history—creating accountability through clarity rather than adding more complex features that could increase friction.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard0.jpg",
@@ -645,7 +498,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard1st.png", 
           alt: "First iteration of Splittime calendar view",
-          blurb: "Calendar layout too dense — overwhelming for stressed parents\nNo clear distinction between confirmed and pending events",
+          blurb: "Too overwhelming.",
           annotations: [
             { text: "Calendar layout too dense - overwhelming for stressed parents", x: 50, y: 30, type: "issue" },
             { text: "No clear distinction between confirmed vs pending events", x: 70, y: 50, type: "issue" }
@@ -655,7 +508,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2024/01/DashboardPRIMARY.png", 
           alt: "Second iteration with approval flows",
-          blurb: "Added approval status indicators for clarity\nSimplified calendar view reduces cognitive load",
+          blurb: "Added clarity.",
           annotations: [
             { text: "Added approval status indicators for clarity", x: 40, y: 25, type: "improvement" },
             { text: "Simplified calendar view reduces cognitive load", x: 60, y: 45, type: "improvement" }
@@ -665,7 +518,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/DashboardPRIMARY.png", 
           alt: "Third iteration adding expense tracking",
-          blurb: "Integrated expense tracking streamlines workflow\nReceipt upload system improves transparency",
+          blurb: "Added expenses.",
           annotations: [
             { text: "Integrated expense tracking streamlines workflow", x: 30, y: 60, type: "feature" },
             { text: "Receipt upload system improves transparency", x: 80, y: 40, type: "feature" }
@@ -675,7 +528,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 4", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/iteration4.png", 
           alt: "Fourth iteration with messaging templates",
-          blurb: "Neutral tone suggestions prevent escalation\nTemplate messaging reduces conflict potential",
+          blurb: "Reduced conflict.",
           annotations: [
             { text: "Template messaging reduces conflict potential", x: 45, y: 35, type: "feature" },
             { text: "Neutral tone suggestions prevent escalation", x: 65, y: 65, type: "improvement" }
@@ -890,7 +743,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "SplitTime changed the way separated families communicate and work together. It helped build healthier relationships and led to better outcomes for children.",
+      description: "Splittime transformed how separated families communicate and coordinate, creating a foundation for healthier relationships and better outcomes for children.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "40%", label: "Conflict Reduction" },
@@ -905,9 +758,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "APPROACH & DECISION MAKING",
+      eyebrow: "Process",
       title: "My Thought Process",
-      content: "I designed around conflict reduction first, using neutral language and clear boundaries. Many co-parenting apps miss the mark by focusing on features instead of how people feel. I built SplitTime to reduce conflict first, using neutral language, clear boundaries, and shared accountability. The result: 40% less co-parenting conflict through a platform that helps families communicate better—not just stay organized.",
+      content: "Co-parenting apps often fail because they focus on features rather than emotions. I designed Splittime around conflict reduction first—neutral language, clear boundaries, and shared accountability. The result was a platform that helps families communicate better, not just organize better.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2016/08/ideation_phase_design.png",
@@ -923,7 +776,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Learning from Setbacks",
-      content: "At first, I added too many features to the scheduling interface, which overwhelmed users. I learned to focus on the basics and add advanced features slowly, based on what users needed.",
+      content: "Initially, I tried to include too many features in the scheduling interface, which made it overwhelming for users. I learned to prioritize core functionality and gradually introduce advanced features based on user feedback.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-05-03-at-10.10.22%E2%80%AFPM-e1748480830908.png",
@@ -974,7 +827,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Investor loan platform dashboard"
     },
     researchSection: {
-      subhead: "A private bank was managing investor loans in Excel, leading to errors, compliance risks, and delays. I designed a scalable loan platform with predictive search, guided workflows, and collaboration. The impact: 85% fewer errors, 40% faster processing, and restored trust from staff and regulators.",
+      subhead: "Shadowing loan officers and error-log reviews showed spreadsheet mistakes, slow retrieval, and no audit trail.",
       blurb: "Excel caused errors.",
       emergingThemes: [
         {
@@ -993,53 +846,35 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Stepwise flow; actions disabled until lender selection; real-time feedback."
         }
       ],
-      researchImages: [
-        {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/excel-document-used-to-save-loan-information.png",
-          alt: "Excel-based loan tracking spreadsheet with inconsistent fields and manual totals",
-          caption: "Excel caused errors and compliance risk",
-          annotations: [
-            { text: "Inconsistent columns", x: 20, y: 25, type: "issue" },
-            { text: "Manual copy/paste", x: 50, y: 40, type: "issue" },
-            { text: "No audit history", x: 70, y: 60, type: "issue" },
-            { text: "Hidden calculation errors", x: 40, y: 75, type: "issue" }
-          ]
-        }
-      ]
+        researchImage: "https://barskydesign.pro/media/REPLACE-ME-top.jpg",
+        researchImageAlt: "Research artifact — TOP (replace this URL)",
+        researchImages: [
+          {
+            src: "https://barskydesign.pro/media/REPLACE-ME-bottom.jpg",
+            alt: "Research artifact — BOTTOM (replace this URL)"
+          }
+        ]
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
-      statement: "Loan teams rely on error-prone spreadsheets with no audit trail, creating compliance risks, slow processing, and low trust in the data."
+      statement: "Loan teams rely on error-prone spreadsheets with no audit trail—creating compliance risk, slow processing, and low trust in the data."
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "Initial Concepts & Sketches — Placeholder — replace with final image.",
-      explorations: "Early exploration of loan processing workflows and automated validation concepts.",
-      decisionPoint: "I decided to build an intelligent workflow platform after seeing that most errors came from manual data entry and missing validation. I focused on automated checks, guided workflows, and clear audit trails to build trust through transparency and accuracy, instead of adding complex financial modeling features.",
+      workshopKickoff: "I conducted discovery sessions with loan officers and risk managers to understand the operational and compliance challenges. Through design sprints, I framed the problem around data accuracy and audit trails—not just workflow efficiency. This foundation established that the solution needed to prioritize automated validation and transparent tracking over simple digitization.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered risk assessment to blockchain-based audit trails. Early sketches included predictive lending models, automated compliance checks, and integrated decision support systems. I tested divergent ideas like smart contract validation and real-time portfolio analytics to understand what would genuinely improve lending operations and reduce risk.",
+      decisionPoint: "I converged on an intelligent workflow platform after validating that most errors stemmed from manual data entry and lack of validation checks. The decision centered on automated validation, guided workflows, and comprehensive audit trails—creating trust through transparency and accuracy rather than overwhelming users with complex financial modeling features.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png",
-          alt: "Low-fidelity order builder wireframe for loan workflows",
-          caption: "",
-          annotations: [
-            { text: "Stepwise order stages", x: 25, y: 20, type: "feature" },
-            { text: "Required fields first", x: 60, y: 35, type: "improvement" },
-            { text: "Validation badges", x: 40, y: 60, type: "feature" },
-            { text: "Review & submit gate", x: 75, y: 80, type: "improvement" }
-          ]
+          src: "placeholder",
+          alt: "Initial Concepts & Sketches",
+          caption: "Early exploration of loan processing workflows and automated validation concepts"
         },
         {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/whiteboarding.png",
-          alt: "Whiteboard mapping of loan lifecycle from application to audit",
-          caption: "",
-          annotations: [
-            { text: "Intake to screening", x: 20, y: 25, type: "feature" },
-            { text: "Lender selection", x: 40, y: 40, type: "feature" },
-            { text: "Order build & validate", x: 60, y: 30, type: "improvement" },
-            { text: "Approval & booking", x: 75, y: 60, type: "feature" },
-            { text: "Audit trail & monitoring", x: 50, y: 80, type: "improvement" }
-          ]
+          src: "placeholder",
+          alt: "User Flow Explorations",
+          caption: "Blue-sky mapping of lending operations from application to approval and audit"
         }
       ]
     },
@@ -1049,7 +884,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Guided orders", description: "Stepwise flows reduce mistakes vs. flat forms." }
     ],
     ideationSection: {
-      subhead: "I optimized deal findability, order building, validation, and collaboration to ensure compliance.",
+      subhead: "I shaped deal findability, order building, validation, and collaboration around compliance.",
       bubbles: [
         { title: "Deal summary", description: "Status, limits, totals" },
         { title: "Predictive search", description: "Category-aware, smart defaults" },
@@ -1059,46 +894,47 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         { 
           label: "Iteration 1", 
-          imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Orderbook-ViewAddOrderDefault.png", 
-          alt: "Early orderbook view with Add Order entry point and sparse validation",
-          blurb: "Deal information is scattered — lacks a clear hierarchy\nNo real-time validation causes errors downstream",
+          imageSrc: "/media/investment/ideation-1.jpg", 
+          alt: "First iteration of deal summary interface",
           annotations: [
-            { text: "Add Order entry", x: 30, y: 20, type: "feature" },
-            { text: "Unclear field priority", x: 60, y: 45, type: "issue" },
-            { text: "No inline checks", x: 50, y: 75, type: "issue" }
+            { text: "Deal information scattered - lacks clear hierarchy", x: 60, y: 30, type: "issue" },
+            { text: "No real-time validation causes errors downstream", x: 40, y: 70, type: "issue" }
           ]
         },
         { 
           label: "Iteration 2", 
-          imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Add-Order-Default.png", 
-          alt: "Add Order default form with clearer required fields and disabled actions",
-          blurb: "Contextual filters reduce search time\nBloomberg-style search improves findability",
+          imageSrc: "/media/investment/ideation-2.jpg", 
+          alt: "Second iteration with predictive search",
           annotations: [
-            { text: "Required field indicators", x: 25, y: 30, type: "improvement" },
-            { text: "Disabled submit until ready", x: 65, y: 50, type: "feature" },
-            { text: "Contextual field help", x: 50, y: 75, type: "improvement" }
+            { text: "Bloomberg-style search improves findability", x: 30, y: 20, type: "feature" },
+            { text: "Contextual filters reduce search time", x: 70, y: 40, type: "improvement" }
           ]
         },
         { 
           label: "Iteration 3", 
-          imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Central-Orderbook-View.png", 
-          alt: "Orderbook overview with real-time totals and status cues",
-          blurb: "Real-time totals reduce calculation errors\nStep-by-step guidance prevents premature inputs",
+          imageSrc: "/media/investment/ideation-3.jpg", 
+          alt: "Third iteration of guided order builder",
           annotations: [
-            { text: "Live totals", x: 35, y: 25, type: "feature" },
-            { text: "Status chips", x: 65, y: 40, type: "improvement" },
-            { text: "Inline validation states", x: 50, y: 70, type: "feature" }
+            { text: "Step-by-step guidance prevents premature inputs", x: 50, y: 35, type: "feature" },
+            { text: "Real-time totals reduce calculation errors", x: 80, y: 60, type: "improvement" }
           ]
         },
         { 
           label: "Iteration 4", 
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062219098-scaled.png", 
-          alt: "High-fidelity UI showing guided steps and validation feedback",
-          blurb: "Collaborative comments improve team coordination\nImmutable audit trail meets compliance needs",
+          imageSrc: "/media/investment/ideation-4.jpg", 
+          alt: "Fourth iteration with audit and comments",
           annotations: [
-            { text: "Step indicator", x: 30, y: 20, type: "feature" },
-            { text: "Error prevention copy", x: 60, y: 45, type: "improvement" },
-            { text: "Confirm & audit link", x: 70, y: 75, type: "feature" }
+            { text: "Immutable audit trail meets compliance needs", x: 45, y: 25, type: "feature" },
+            { text: "Collaborative comments improve team coordination", x: 60, y: 75, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 5", 
+          imageSrc: "/media/investment/ideation-5.jpg", 
+          alt: "Final iteration with integrated workflow",
+          annotations: [
+            { text: "Integrated workflow eliminates context switching", x: 40, y: 40, type: "feature" },
+            { text: "85% error reduction through automated validation", x: 70, y: 20, type: "improvement" }
           ]
         }
       ]
@@ -1122,7 +958,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     finalProductSection: {
       title: "The Final Product",
-      description: "We built a loan management platform that replaced error-prone Excel workflows with smart automation, real-time checks, and clear audit trails. This gave the team full confidence in their operations.",
+      description: "A comprehensive loan management platform that replaced error-prone Excel workflows with intelligent automation, real-time validation, and transparent audit trails for complete operational confidence.",
       eyebrow: "THE RESULT",
       images: [
         {
@@ -1155,87 +991,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
               text: "Audit trails ensure compliance transparency"
             }
           ]
-        },
-        {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/My-Deals-list-view.png",
-          alt: "My Deals list view with quick filters, status chips, and bulk actions",
-          caption: "",
-          annotations: [
-            {
-              x: 25,
-              y: 20,
-              type: "feature",
-              text: "Quick lender/status filters"
-            },
-            {
-              x: 60,
-              y: 40,
-              type: "improvement",
-              text: "Risk/progress status chips"
-            },
-            {
-              x: 80,
-              y: 70,
-              type: "feature",
-              text: "Bulk actions for common updates"
-            }
-          ]
-        },
-        {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Deals-1.png",
-          alt: "Loan deals table with summary sidebar, inline validation, and audit trail",
-          caption: "",
-          annotations: [
-            {
-              x: 30,
-              y: 25,
-              type: "feature",
-              text: "Summary limits & totals"
-            },
-            {
-              x: 65,
-              y: 45,
-              type: "improvement",
-              text: "Inline validation prompts"
-            },
-            {
-              x: 50,
-              y: 75,
-              type: "feature",
-              text: "Change log & audit history"
-            }
-          ]
-        },
-        {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/Just-Orderbook.png",
-          alt: "Orderbook screen emphasizing guided steps and real-time totals",
-          caption: "",
-          annotations: [
-            {
-              x: 35,
-              y: 20,
-              type: "feature",
-              text: "Guided step progression"
-            },
-            {
-              x: 70,
-              y: 40,
-              type: "improvement",
-              text: "Real-time total checks"
-            },
-            {
-              x: 55,
-              y: 70,
-              type: "feature",
-              text: "Reviewer comments thread"
-            }
-          ]
         }
       ]
     },
     outcomeSection: {
       title: "Outcome",
-      description: "We transformed loan operations from slow, manual work into automated workflows that scale with the business, ensuring accuracy and compliance.",
+      description: "Transformed loan operations from manual, error-prone processes to intelligent, automated workflows that scale with business growth while maintaining complete accuracy and compliance.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "85%", label: "Fewer Errors" },
@@ -1244,36 +1005,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png",
-          alt: "Low-fidelity order builder highlighting outcome-driving design decisions",
-          caption: "",
-          annotations: [
-            {
-              x: 30,
-              y: 25,
-              type: "feature",
-              text: "Validation at each step"
-            },
-            {
-              x: 65,
-              y: 50,
-              type: "improvement",
-              text: "Submit only when complete"
-            },
-            {
-              x: 50,
-              y: 75,
-              type: "feature",
-              text: "Audit-ready artifacts"
-            }
-          ]
+          src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
+          alt: "Investor loan platform user workflow and process improvements"
         }
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "APPROACH & DECISION MAKING",
+      eyebrow: "Process",
       title: "My Thought Process",
-      content: "I saw this as a process problem, not just a UI issue. By shadowing loan officers and mapping their real workflows, I found the main problems were scattered data, manual mistakes, and missing audit trails. My solution focused on automation, validation, and transparency instead of flashy design.",
+      content: "I approached this as a process problem, not a UI problem. By shadowing loan officers and mapping their actual workflows, I identified the core pain points: data fragmentation, manual errors, and lack of audit trails. The solution prioritized automation, validation, and transparency over flashy interfaces.",
       images: [
         {
           src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
@@ -1291,27 +1031,27 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Excel System → New Platform: Manual entry, frequent errors → Automated workflows with validation. No collaboration → In-app commenting and shared loan orders. Flat spreadsheets → Card + table views with live syncing. No audit history → Full visual audit logs. No search → AI-powered predictive search.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062303031-scaled.png",
-          alt: "Collage highlighting legacy manual steps and fragmentation",
-          caption: "",
+          src: "/lovable-uploads/excel-workflow-errors.png",
+          alt: "Excel-based loan workflow showing manual error points",
+          caption: "Original Excel-based workflows were prone to calculation errors and lacked audit trails",
           annotations: [
             {
-              x: 30,
-              y: 25,
+              x: 35,
+              y: 30,
               type: "issue",
-              text: "Multiple sources of truth"
+              text: "Manual calculations led to frequent errors"
             },
             {
               x: 60,
               y: 50,
               type: "issue",
-              text: "Manual reconciliation"
+              text: "No audit trail created compliance risk"
             },
             {
-              x: 50,
+              x: 45,
               y: 75,
-              type: "issue",
-              text: "Compliance blind spots"
+              type: "improvement",
+              text: "Automated validation eliminated 85% of errors"
             }
           ]
         }
@@ -1331,6 +1071,225 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/investor-loan-app"
     }
   },
+  "wholesale-distribution": {
+    id: "wholesale-distribution",
+    title: "95% Less Manual Work: Wholesale Distribution Transformation",
+    description: "Turned error-prone Excel operations into an AI-assisted workflow with near-perfect accuracy and speed.",
+    tags: ["Automation", "AI", "Operations", "WebApp"],
+    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
+    heroVideo: {
+      src: "wholesale-demo.mp4",
+      poster: "/placeholder.svg",
+      alt: "Wholesale operations dashboard walkthrough"
+    },
+    sprintZeroSection: {
+      eyebrow: "0 → 1 EXPLORATION",
+      title: "Sprint Zero: Blue-Sky Thinking", 
+      workshopKickoff: "I initiated discovery sessions with operations teams and distribution managers to understand the manual workflow challenges. Through design sprints, I framed the problem around process automation and error elimination—not just interface improvements. This foundation revealed that the solution needed to replace entire manual workflows, not just digitize existing processes.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered order prediction to fully automated reconciliation systems. Early sketches included intelligent inventory management, predictive demand forecasting, and automated quality control. I tested divergent ideas like machine learning optimization and real-time supply chain tracking to understand what would genuinely transform wholesale operations.",
+      decisionPoint: "I converged on an end-to-end automation platform after validating that manual Excel processes were the root cause of errors and delays. The decision centered on intelligent workflows, automated validation, and seamless data pipelines—creating efficiency through elimination of manual work rather than adding more tools to manage.",
+      images: [
+        {
+          src: "placeholder",
+          alt: "Initial Concepts & Sketches",
+          caption: "Early brainstorming on wholesale automation and process optimization strategies"
+        },
+        {
+          src: "placeholder", 
+          alt: "User Flow Explorations",
+          caption: "Blue-sky exploration of order-to-fulfillment workflows and automated validation systems"
+        }
+      ]
+    },
+    keyInsights: [
+      { number: 1, title: "Process over interface", description: "Fixing workflows beats pretty dashboards on broken systems." },
+      { number: 2, title: "Data pipelines win", description: "Automated flows eliminate human error and speed." },
+      { number: 3, title: "End-to-end thinking", description: "From order to reconciliation in one unified system." }
+    ],
+    ideationSection: {
+      subhead: "I prototyped order capture, validation, routing, and reconciliation to eliminate Excel entirely.",
+      bubbles: [
+        { title: "Order capture", description: "Smart forms, auto-completion" },
+        { title: "Validation", description: "Real-time checks, error prevention" },
+        { title: "Routing", description: "Automated workflows, approvals" },
+        { title: "Reconciliation", description: "Live tracking, instant totals" }
+      ],
+      iterations: [
+        { 
+          label: "Iteration 1", 
+          imageSrc: "/media/wholesale/ideation-1.jpg", 
+          alt: "First iteration of order capture interface",
+          annotations: [
+            { text: "Manual data entry prone to frequent errors", x: 45, y: 40, type: "issue" },
+            { text: "No validation leads to downstream problems", x: 70, y: 60, type: "issue" }
+          ]
+        },
+        { 
+          label: "Iteration 2", 
+          imageSrc: "/media/wholesale/ideation-2.jpg", 
+          alt: "Second iteration with validation features",
+          annotations: [
+            { text: "Real-time validation prevents bad data entry", x: 30, y: 25, type: "feature" },
+            { text: "Smart form completion reduces manual work", x: 80, y: 45, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 3", 
+          imageSrc: "/media/wholesale/ideation-3.jpg", 
+          alt: "Third iteration adding routing automation",
+          annotations: [
+            { text: "Automated routing eliminates manual assignment", x: 50, y: 30, type: "feature" },
+            { text: "Approval workflows ensure proper oversight", x: 60, y: 70, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 4", 
+          imageSrc: "/media/wholesale/ideation-4.jpg", 
+          alt: "Fourth iteration with reconciliation dashboard",
+          annotations: [
+            { text: "Live tracking replaces Excel reconciliation", x: 40, y: 35, type: "feature" },
+            { text: "Instant totals provide immediate accuracy", x: 75, y: 55, type: "improvement" }
+          ]
+        },
+        { 
+          label: "Iteration 5", 
+          imageSrc: "/media/wholesale/ideation-5.jpg", 
+          alt: "Final iteration with complete pipeline",
+          annotations: [
+            { text: "Complete automation achieves 95% manual work reduction", x: 45, y: 25, type: "feature" },
+            { text: "End-to-end pipeline eliminates context switching", x: 55, y: 65, type: "improvement" }
+          ]
+        }
+      ]
+    },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "Testing with distribution teams confirmed my AI-assisted approach eliminated manual errors and dramatically improved processing speed.",
+      eyebrow: "VALIDATION & TESTING",
+      metrics: [
+        { value: "98%", label: "Accuracy Rate" },
+        { value: "95%", label: "Less Manual Work" },
+        { value: "10s", label: "Order Processing" }
+      ],
+      images: [
+        {
+          src: "/placeholder.svg",
+          alt: "User testing session showing distribution workflow validation",
+          caption: "Testing confirmed my automation approach eliminated manual Excel processes entirely."
+        }
+      ]
+    },
+    finalProductSection: {
+      title: "The Final Product",
+      description: "An intelligent wholesale distribution platform that eliminated manual Excel processes through AI-assisted workflows, achieving near-perfect accuracy and dramatically increased speed.",
+      eyebrow: "THE RESULT",
+      images: [
+        {
+          src: "/placeholder.svg",
+          alt: "Wholesale distribution platform final interface",
+          caption: "Complete AI-powered distribution system replacing manual Excel workflows",
+          annotations: [
+            {
+              x: 25,
+              y: 20,
+              type: "feature",
+              text: "AI-assisted order capture reduced errors by 95%"
+            },
+            {
+              x: 70,
+              y: 30,
+              type: "feature",
+              text: "Automated routing eliminated manual assignment"
+            },
+            {
+              x: 50,
+              y: 65,
+              type: "improvement",
+              text: "Real-time reconciliation replaced Excel tracking"
+            },
+            {
+              x: 80,
+              y: 80,
+              type: "feature",
+              text: "500% faster processing through automation"
+            }
+          ]
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      description: "Transformed wholesale operations from error-prone manual processes to intelligent automated workflows, delivering unprecedented accuracy and efficiency gains.",
+      eyebrow: "OUTCOMES & IMPACT",
+      metrics: [
+        { value: "95%", label: "Less Manual Work" },
+        { value: "500%", label: "Faster Processing" },
+        { value: "99.7%", label: "Accuracy Rate" }
+      ],
+      images: [
+        {
+          src: "/wholesale-thought-process.png",
+          alt: "Wholesale distribution transformation results and automation benefits"
+        }
+      ]
+    },
+    myThoughtProcessSection: {
+      eyebrow: "Process",
+      title: "My Thought Process",
+      content: "I treated this as a systems transformation, not just a digital upgrade. By shadowing operations teams and mapping their workflows end-to-end, I identified where manual processes created bottlenecks and errors. The solution focused on intelligent automation and data pipelines that eliminated repetitive work while maintaining accuracy.",
+      images: [
+        {
+          src: "/wholesale-thought-process.png",
+          alt: "Wholesale distribution transformation results and automation benefits",
+          annotations: [
+            { text: "I approached this as systems transformation, mapping end-to-end workflows to identify where manual processes created costly bottlenecks and errors.", x: 30, y: 30, type: "improvement" },
+            { text: "The result: intelligent automation that eliminated 68% of manual entry errors while maintaining the accuracy teams needed for critical operations.", x: 70, y: 70, type: "feature" }
+          ]
+        }
+      ]
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Overcoming Challenges",
+      content: "Teams managed 200+ weekly orders in Excel, leading to 15% errors, slow reconciliation, and risk to key accounts. Excel-based operations caused avoidable errors and delays.",
+      images: [
+        {
+          src: "/wholesale-excel-challenges.png",
+          alt: "Excel-based wholesale operations showing manual error points",
+          caption: "Excel workflows created bottlenecks with 200+ weekly orders leading to 15% error rate",
+          annotations: [
+            {
+              x: 40,
+              y: 25,
+              type: "issue",
+              text: "Manual data entry created 15% error rate"
+            },
+            {
+              x: 65,
+              y: 45,
+              type: "issue",
+              text: "Slow reconciliation risked key accounts"
+            },
+            {
+              x: 50,
+              y: 75,
+              type: "improvement",
+              text: "AI automation achieved 99.7% accuracy"
+            }
+          ]
+        }
+      ]
+    },
+    sections: [],
+    seoData: {
+      image: "/placeholder.svg",
+      projectName: "Wholesale Distribution",
+      results: ["95% less manual work", "500% faster processing", "99.7% accuracy"],
+      technologies: ["React", "Automation", "AI"],
+      path: "/project/wholesale-distribution"
+    }
+  },
   "business-management": {
     id: "business-management",
     title: "Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
@@ -1344,9 +1303,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Business management system promotional overview"
     },
     researchSection: {
-      subhead: "Small businesses often had to juggle different tools for scheduling, invoicing, and tasks. To solve this, I created a single platform that brings everything together. My goal was to cut down on admin work and give owners more time back. In the end, users spent 35% less time on manual tasks.",
+      subhead: "Surveys and workflow audits showed owners switching between disconnected tools and duplicating data.",
       blurb: "Tools caused chaos.",
-        emergingThemes: [
+      emergingThemes: [
         {
           eyebrow: "CONSOLIDATION",
           insight: "Scheduling, invoicing, and tasks lived in separate systems.",
@@ -1374,14 +1333,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     problemCallout: {
       eyebrow: "Problem to Solve",
-      statement: "Small businesses often juggle disconnected tools for scheduling, invoicing, and tasks, wasting hours weekly and losing revenue."
+      statement: "Small businesses juggle disconnected tools for scheduling, invoicing, and tasks—wasting hours weekly and leaking revenue."
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
       title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "Initial concept sitemap mapping core modules and navigation.",
+      workshopKickoff: "I initiated discovery sessions with small business owners to understand their daily operational challenges. Through design sprints, I framed the problem around context switching and duplicate data entry—not just tool organization. This foundation revealed that the solution needed to eliminate workflow fragmentation while maintaining business process flexibility.",
       explorations: "I explored blue-sky concepts ranging from AI-powered workflow automation to intelligent business insights. Early sketches included predictive cash flow modeling, automated client follow-ups, and integrated marketing campaigns. I tested divergent ideas like voice-controlled task management and smart scheduling optimization to understand what would genuinely improve daily business operations.",
-      decisionPoint: "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
+      decisionPoint: "I converged on a unified operations platform after validating that most inefficiencies came from switching between disconnected tools and re-entering the same data. The decision centered on consolidating core functions, automating repetitive tasks, and providing clear daily priorities—creating efficiency through integration rather than adding more specialized features.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/sitemap.png",
@@ -1401,7 +1360,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 3, title: "Priority at a glance", description: "A single dashboard surfaces what needs attention now." }
     ],
     ideationSection: {
-      subhead: "I iterated on a simple \"run the day\" loop, encompassing dashboard, tasks, invoices, and scheduling.",
+      subhead: "I iterated on a simple \"run the day\" loop—dashboard, tasks, invoices, and scheduling.",
       bubbles: [
         { title: "Dashboard KPIs", description: "Cash flow and alerts" },
         { title: "Tasks", description: "Today, overdue, owners" },
@@ -1413,7 +1372,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_0.png", 
           alt: "First iteration of business dashboard",
-          blurb: "Information overload — too many metrics at once\nNo clear priority hierarchy for daily tasks",
           annotations: [
             { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
             { text: "No clear priority hierarchy for daily tasks", x: 70, y: 60, type: "issue" }
@@ -1423,7 +1381,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png", 
           alt: "Second iteration with task management",
-          blurb: "\"Today\" view focuses on immediate actions\nTask prioritization system added for clarity",
           annotations: [
             { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
             { text: "Today view focuses on immediate actions", x: 80, y: 50, type: "improvement" }
@@ -1433,7 +1390,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_2.png", 
           alt: "Third iteration adding invoice workflow",
-          blurb: "Template system ensures consistency\nAutomated invoice generation saves hours",
           annotations: [
             { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
             { text: "Template system ensures consistency", x: 65, y: 65, type: "improvement" }
@@ -1443,7 +1399,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 4", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png", 
           alt: "Fourth iteration with scheduling integration",
-          blurb: "Linked records reduce duplicate data entry\nIntegrated scheduling eliminates tool switching",
           annotations: [
             { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
             { text: "Linked records reduce duplicate data entry", x: 60, y: 70, type: "improvement" }
@@ -1517,7 +1472,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "I helped small businesses move from messy, multi-tool workflows to a smoother, automated system. This change led to fewer errors and made daily operations much more efficient.",
+      description: "Transformed small business operations from chaotic multi-tool workflows to streamlined automation, delivering significant error reduction and operational efficiency gains.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "68%", label: "Fewer Errors" },
@@ -1532,9 +1487,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "APPROACH & DECISION MAKING",
+      eyebrow: "Process",
       title: "My Thought Process",
-      content: "I focused on making the system efficient, not overloaded with features. By learning how small businesses really operate—switching between tools, missing follow-ups, and losing money to manual mistakes—I built a platform that works the way business owners do. The result: a unified platform that thinks like a business owner and reduces busywork through smart defaults and automation.",
+      content: "I designed this system around operational efficiency, not feature complexity. By understanding how small businesses actually work—jumping between tools, forgetting follow-ups, and losing revenue to manual errors—I created a unified platform that thinks like a business owner.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-21-2025-01_29_46-PM.png",
@@ -1549,7 +1504,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "Initially, I added too many customization options, which made the platform confusing for users. I learned that offering smart defaults with a few key options made the platform both strong and easy for business owners to use.",
+      content: "Initially, I tried to create too many customization options, which overwhelmed users. I learned to provide smart defaults with selective customization options, making the platform powerful yet approachable for business owners.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
@@ -1591,8 +1546,4 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
 
 export const getStructuredCaseStudy = (id: string): StructuredCaseStudyData | null => {
   return structuredCaseStudies[id] || null;
-};
-
-export const getAllCaseStudyIds = (): string[] => {
-  return Object.keys(structuredCaseStudies);
 };

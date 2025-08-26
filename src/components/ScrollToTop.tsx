@@ -1,25 +1,15 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
-  const { pathname, state } = useLocation();
-  const prevPathnameRef = useRef<string>('');
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const prevPathname = prevPathnameRef.current;
-    prevPathnameRef.current = pathname;
-    
-    // Only scroll to top if:
-    // 1. We're actually changing pages (not staying on homepage)
-    // 2. There's no scroll state indicating intentional section navigation
-    const isChangingPages = prevPathname !== '' && prevPathname !== pathname;
-    const hasScrollIntent = state && state.scrollTo;
-    
-    if (typeof window !== 'undefined' && isChangingPages && !hasScrollIntent) {
+    if (typeof window !== 'undefined') {
       window.scrollTo(0, 0);
     }
-  }, [pathname, state]);
+  }, [pathname]);
 
   return null;
 };

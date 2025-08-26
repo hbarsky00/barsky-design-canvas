@@ -1,12 +1,4 @@
-# ---------- Build ----------
-[build]
-  command = "npm run build"
-  publish = "dist"
 
-[build.environment]
-  NODE_VERSION = "20"
-
-# ---------- Redirects ----------
 [[redirects]]
   from = "/lovable-uploads/*"
   to = "/lovable-uploads/:splat"
@@ -22,55 +14,22 @@
   to = "/static/:splat"
   status = 200
 
-# SPA fallback (safe even with prerender: Netlify serves /route/index.html if it exists)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# ---------- Security Headers ----------
+  
+[build]
+  publish = "dist"
+  
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-
-# ---------- Caching ----------
-# Don’t cache HTML so SEO updates go live immediately
+    
 [[headers]]
   for = "/index.html"
   [headers.values]
     Cache-Control = "no-cache"
-
-[[headers]]
-  for = "/**/*.html"
-  [headers.values]
-    Cache-Control = "no-cache"
-
-# Long-cache static assets (hashed files)
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/static/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/lovable-uploads/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# (Optional but useful)
-[[headers]]
-  for = "/sitemap.xml"
-  [headers.values]
-    Cache-Control = "max-age=300"   # 5 min
-
-[[headers]]
-  for = "/robots.txt"
-  [headers.values]
-    Cache-Control = "max-age=300"

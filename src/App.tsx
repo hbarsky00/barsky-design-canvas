@@ -1,10 +1,16 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
 
+
+// Global SEO component
+import UnifiedSEO from "@/components/seo/UnifiedSEO";
+import SitemapGenerator from "@/components/seo/SitemapGenerator";
+import SitemapLink from "@/components/seo/SitemapLink";
 
 // Page imports
 import Index from "@/pages/Index";
@@ -26,17 +32,22 @@ import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
-import StructuredCryptoCaseStudy from "@/pages/StructuredCryptoCaseStudy";
-import ContentExport from "@/pages/ContentExport";
-
+import StructuredWholesaleDistributionCaseStudy from "@/pages/StructuredWholesaleDistributionCaseStudy";
+import Admin from "@/pages/Admin";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ImageMaximizerProvider>
-        <ScrollToTop />
+      <HelmetProvider>
+        <ImageMaximizerProvider>
+          <ScrollToTop />
+          {/* Global Unified SEO System */}
+          <UnifiedSEO />
+          {/* Sitemap link + generator */}
+          <SitemapLink />
+          <SitemapGenerator />
           <Routes>
             {/* Home route */}
             <Route path="/" element={<Index />} />
@@ -45,12 +56,11 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             
             {/* Structured case studies - these override the generic ProjectDetail routing */}
-            <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
             <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
             <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
             <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
             <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-            <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
+            <Route path="/project/wholesale-distribution" element={<StructuredWholesaleDistributionCaseStudy />} />
             
             {/* Generic project detail for other projects */}
             <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
@@ -66,15 +76,14 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
-            
-            {/* Hidden content export route */}
-            <Route path="/admin/content-export-2024" element={<ContentExport />} />
+            <Route path="/admin" element={<Admin />} />
             
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        <Toaster />
-      </ImageMaximizerProvider>
+          <Toaster />
+        </ImageMaximizerProvider>
+      </HelmetProvider>
     </QueryClientProvider>
   );
 }

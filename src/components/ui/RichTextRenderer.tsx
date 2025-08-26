@@ -15,7 +15,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({
 
   return (
     <div 
-      className={`prose prose-lg max-w-none dark:prose-invert prose-headings:text-on-surface prose-p:text-on-surface-variant prose-a:text-primary ${className}`}
+      className={`prose prose-slate max-w-none ${className}`}
       {...createSanitizedHtmlProps(content)}
     />
   );

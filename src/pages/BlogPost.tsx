@@ -134,7 +134,7 @@ const BlogPostPage: React.FC = () => {
                   
                   {/* Enhanced blog content with internal SEO links */}
                   {staticPost?.content && (
-                    <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-on-surface prose-p:text-on-surface-variant prose-a:text-primary">
+                    <div className="prose prose-lg max-w-none">
                       <InternalLinkEnhancer 
                         content={staticPost.content} 
                         currentSlug={staticPost.slug} 

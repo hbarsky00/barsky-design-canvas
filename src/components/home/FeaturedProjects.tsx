@@ -13,7 +13,7 @@ const FeaturedProjects: React.FC = () => {
   } = useProjectsData();
 
   // Show featured projects
-  const featuredProjectIds = ["herbalink", "business-management", "splittime", "investor-loan-app"];
+  const featuredProjectIds = ["herbalink", "wholesale-distribution", "splittime", "investor-loan-app"];
   const displayProjects = featuredProjectIds.map(id => filteredProjects.find(project => project.id === id)).filter(Boolean);
 
   return (
@@ -132,7 +132,7 @@ const FeaturedProjects: React.FC = () => {
           <div className="bg-green-50 p-4 rounded-lg border border-green-200">
             <div className="text-impact-metric-neutral-md text-green-600">65%</div>
             <div className="text-sm text-green-700">User Engagement ↑</div>
-            <div className="text-xs text-green-600">Business Management</div>
+            <div className="text-xs text-green-600">Wholesale Distribution</div>
           </div>
           <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
             <div className="text-impact-metric-neutral-md text-blue-600">70%</div>

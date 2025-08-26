@@ -1,7 +1,6 @@
 
 import React from "react";
 import { InternalLinkEnhancer, RelatedPosts } from "./InternalLinkEnhancer";
-import { standardizeBlogContent } from "@/utils/blogStyleStandardizer";
 
 interface BlogPostContentProps {
   content: string;
@@ -9,13 +8,11 @@ interface BlogPostContentProps {
 }
 
 const BlogPostContent: React.FC<BlogPostContentProps> = ({ content, slug }) => {
-  const standardizedContent = standardizeBlogContent(content);
-  
   return (
     <article className="max-w-none mb-16">
-      {/* Enhanced content with internal SEO links using standardized typography */}
-      <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-on-surface prose-p:text-on-surface-variant prose-a:text-primary prose-img:w-full prose-img:h-auto">
-        <InternalLinkEnhancer content={standardizedContent} currentSlug={slug} />
+      {/* Enhanced content with internal SEO links */}
+      <div className="prose dark:prose-invert prose-headings:text-barsky-dark dark:prose-headings:text-white prose-p:text-barsky-text dark:prose-p:text-slate-300 prose-a:text-barsky-blue prose-img:w-full prose-img:h-auto">
+        <InternalLinkEnhancer content={content} currentSlug={slug} />
       </div>
       
       {/* Related posts for additional internal linking */}
