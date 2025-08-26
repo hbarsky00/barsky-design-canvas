@@ -7,7 +7,10 @@ const ROOT = process.cwd();
 const APPROVED = new Set([
   path.normalize("prerender.js"),
   path.normalize("src/utils/seo/seoBuilder.ts"),
+  path.normalize("src/utils/seo/seoBuilder.js"),
+  path.normalize("src/utils/seo/seoConstants.js"),
   path.normalize("src/data/seoData.ts"),
+  path.normalize("src/data/seoData.js"),
   path.normalize("scripts/validate-seo-build.js"),
   path.normalize("scripts/guard-seo-hardcodes.js"),
   // Add other intentional SEO-handling files here if needed

@@ -27,7 +27,7 @@ import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessMan
 import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
 import StructuredCryptoCaseStudy from "@/pages/StructuredCryptoCaseStudy";
-import ContentExport from "@/pages/ContentExport";
+// import ContentExport from "@/pages/ContentExport";
 
 
 const queryClient = new QueryClient();
@@ -68,7 +68,7 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             
             {/* Hidden content export route */}
-            <Route path="/admin/content-export-2024" element={<ContentExport />} />
+            {/* <Route path="/admin/content-export-2024" element={<ContentExport />} /> */}
             
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
