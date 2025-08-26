@@ -13,7 +13,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "prebuild": "node scripts/guard-seo-hardcodes.js",
-   "build": "vite build && node prerender.js",
+   "build": "node scripts/diagnose-build.js pre && vite build && node prerender.js && node scripts/diagnose-build.js post"
     "postbuild": "node scripts/validate-seo-build.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
