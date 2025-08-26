@@ -8,17 +8,22 @@ import { extractGlobalContent } from '@/export/extractors/global';
 import { extractHomepageContent } from '@/export/extractors/homepage';
 import { extractStructuredCaseStudyContent } from '@/export/extractors/structuredCaseStudy';
 import { buildSEO } from '@/utils/seo/seoBuilder';
-import { resolveSeoInput } from '@/data/seoData';
+import { resolveSeoInput } from "@/data/seoData";
 import { blogPosts } from '@/data/blogData';
 import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO } from '@/data/services';
 import { getTemplateForPageType } from '@/export/templateRegistry';
 import { SectionExport } from '@/export/extractors/global';
 
+// --- Helper: Strip HTML safely for build-time ---
+function stripHtmlTags(html: string): string {
+  return html.replace(/<[^>]*>/g, '');
+}
+
 const ContentExport: React.FC = () => {
   const exportText = useMemo(() => {
     let output = '';
     
-    // GLOBAL section (appears once at top)
+    // GLOBAL section
     output += '=== GLOBAL ===\n\n';
     const globalSections = extractGlobalContent();
     globalSections.forEach(section => {
@@ -42,16 +47,10 @@ const ContentExport: React.FC = () => {
     
     pages.forEach(page => {
       output += `=== PAGE: ${page.title} — ${page.url} ===\n\n`;
-      
-      // ✅ Unified SEO
-      let seoInput: any = null;
-      try {
-        seoInput = resolveSeoInput(page.url);
-      } catch (err) {
-        console.warn(`⚠️ No SEO input resolved for ${page.url}`, err);
-        seoInput = { path: page.url, kind: 'page', title: page.title };
-      }
-      const seoData = buildSEO(seoInput);
+
+      // Build SEO for page
+      const seoInput = resolveSeoInput(page.url);
+      const seoData = seoInput ? buildSEO(seoInput as any) : { title: '', description: '' };
 
       output += 'Meta\n';
       output += `- Meta Title: ${seoData.title}\n`;
@@ -60,7 +59,7 @@ const ContentExport: React.FC = () => {
       output += `- OpenGraph Description: ${seoData.description}\n`;
       output += `- OpenGraph Image alt/caption: ${seoData.imageAlt || ''}\n\n`;
       
-      // Extract page content based on type
+      // Extract sections
       let sections: SectionExport[] = [];
       
       switch (page.type) {
@@ -310,10 +309,7 @@ const ContentExport: React.FC = () => {
         case 'blog-post':
           const blogPost = blogPosts.find(post => post.slug === page.id);
           if (blogPost) {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = blogPost.content;
-            const plainTextContent = tempDiv.textContent || tempDiv.innerText || '';
-            
+            const plainTextContent = stripHtmlTags(blogPost.content || '');
             sections = [
               {
                 key: 'header',
@@ -363,7 +359,7 @@ const ContentExport: React.FC = () => {
                   formLabels: [],
                   tooltips: [],
                   ctas: [],
-                  notes: 'Blog post content (truncated)'
+                  notes: 'Blog post content (plain text, truncated)'
                 }
               }
             ];
@@ -391,7 +387,6 @@ const ContentExport: React.FC = () => {
           }));
       }
       
-      // Output each section
       sections.forEach(section => {
         output += `--- SECTION: ${section.displayName} ---\n`;
         output += `Section Key/ID: ${section.key}\n`;
@@ -407,20 +402,6 @@ const ContentExport: React.FC = () => {
         output += `CTA Buttons (label + URL): ${section.fields.ctas?.map(cta => `${cta.label} (${cta.url})`).join('; ') || ''}\n`;
         output += `Notes: ${section.fields.notes || ''}\n\n`;
       });
-      
-      // MISSING template sections
-      const template = getTemplateForPageType(page.type);
-      const missingSections = template.filter(templateSection => 
-        !sections.some(section => section.key === templateSection.key)
-      );
-      
-      if (missingSections.length > 0) {
-        output += 'MISSING (Template Sections Not Found in Page Content Source):\n';
-        missingSections.forEach(section => {
-          output += `- ${section.displayName}\n`;
-        });
-        output += '\n';
-      }
       
       output += '\n';
     });
@@ -439,28 +420,28 @@ const ContentExport: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-background p-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-4">
-              Site Content Export for Grammarly
-            </h1>
-            <p className="text-muted-foreground mb-4">
-              Complete site text export following template canonical sections. 
-              All content extracted from components, data files, and templates.
-            </p>
-            <Button onClick={copyToClipboard} size="lg">
-              <Copy className="mr-2 h-5 w-5" />
-              Copy All Content
-            </Button>
-          </div>
-          
-          <div className="bg-muted/30 border rounded-lg p-6">
-            <pre className="whitespace-pre-wrap text-sm font-mono text-foreground overflow-x-auto">
-              {exportText}
-            </pre>
-          </div>
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-4">
+            Site Content Export for Grammarly
+          </h1>
+          <p className="text-muted-foreground mb-4">
+            Complete site text export following template canonical sections. 
+            All content extracted from components, data files, and templates.
+          </p>
+          <Button onClick={copyToClipboard} size="lg">
+            <Copy className="mr-2 h-5 w-5" />
+            Copy All Content
+          </Button>
+        </div>
+        
+        <div className="bg-muted/30 border rounded-lg p-6">
+          <pre className="whitespace-pre-wrap text-sm font-mono text-foreground overflow-x-auto">
+            {exportText}
+          </pre>
         </div>
       </div>
+    </div>
   );
 };
 
