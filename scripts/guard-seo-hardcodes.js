@@ -1,44 +1,26 @@
+// scripts/guard-seo-hardcodes.js
 import fs from "node:fs";
 import path from "node:path";
+
+const ROOT = process.cwd();
 
 const APPROVED = new Set([
   path.normalize("prerender.js"),
   path.normalize("src/utils/seo/seoBuilder.ts"),
   path.normalize("src/data/seoData.ts"),
   path.normalize("scripts/validate-seo-build.js"),
-  path.normalize("scripts/guard-seo-hardcodes.js")
+  path.normalize("scripts/guard-seo-hardcodes.js"),
+  // add server-only SEO files here if needed:
+  // path.normalize("supabase/functions/seo-handler/index.ts"),
 ]);
 
-const ROOT = process.cwd();
-const SRC_DIRS = ["src", "app", "components"];
+const SCAN_DIRS = ["src", "app", "components", "public", "" /* project root */];
+const IGNORE_DIRS = new Set([
+  "node_modules", "dist", "build", ".git", ".cache", ".vite",
+  ".netlify", ".vercel", ".parcel-cache", ".turbo", "coverage"
+]);
 
-const META_RE = /<meta\s+[^>]*(name|property)=["'](og:|twitter:|description|robots|article:)[^>]*>/i;
-const CANON_RE = /<link\s+[^>]*rel=["']canonical["'][^>]*>/i;
-
-const offenders = [];
-
-function walk(dir) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const p = path.join(dir, entry.name);
-    if (entry.isDirectory()) walk(p);
-    else if (/\.(tsx?|jsx?|html)$/.test(entry.name)) scan(p);
-  }
-}
-function scan(file) {
-  const rel = path.relative(ROOT, file);
-  if (APPROVED.has(path.normalize(rel))) return;
-  const txt = fs.readFileSync(file, "utf8");
-  if (META_RE.test(txt) || CANON_RE.test(txt)) offenders.push(rel);
-}
-
-for (const d of SRC_DIRS) {
-  const p = path.join(ROOT, d);
-  if (fs.existsSync(p)) walk(p);
-}
-
-if (offenders.length) {
-  console.error("\n🚫 Hardcoded SEO detected outside approved files:\n" + offenders.map(f => "  " + f).join("\n"));
-  process.exit(1);
-} else {
-  console.log("✅ No hardcoded SEO found.");
-}
+// Multiline-safe regexes
+const META_RE = /<meta\s+[^>]*\b(?:name|property)\s*=\s*["']\s*(?:og:[^"']*|twitter:[^"']*|description|robots|article:[^"']*)\s*["'][^>]*>/ims;
+const CANON_RE = /<link\s+[^>]*\brel\s*=\s*["']\s*canonical\s*["'][^>]*>/ims;
+const HELMET_RE = /<\s*Helmet\b[^>]*_
