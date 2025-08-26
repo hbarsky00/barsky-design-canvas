@@ -14,7 +14,12 @@ export const getAllCaseStudyIds = () => {
 };
 
 export const getStructuredCaseStudy = (id) => {
-  // This is a stub for build compatibility
-  // The actual data is used in TypeScript components
-  return null;
+  // Import and re-export from TypeScript for build compatibility
+  try {
+    const { structuredCaseStudies } = require("./structuredCaseStudies.ts");
+    return structuredCaseStudies[id] || null;
+  } catch (error) {
+    // Fallback for build process
+    return null;
+  }
 };

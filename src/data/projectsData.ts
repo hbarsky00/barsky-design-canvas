@@ -31,5 +31,25 @@ export const projectsData: ProjectProps[] = [
     video: "bizmgmt-demo.mp4",
     tags: ["Enterprise", "CRM", "Dashboard"],
     featured: true,
+  },
+  {
+    id: "crypto",
+    title: "Trading Without Friction – Crypto App Case Study",
+    description: "How a dual-mode crypto app turned churn into growth by serving both novices and pros",
+    image: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
+    videoThumbnail: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
+    video: "/lovable-uploads/crypto-hero.mp4",
+    tags: ["Fintech", "Crypto", "Mobile & Web"],
+    featured: true,
+  },
+  {
+    id: "investor-loan-app",
+    title: "Investor Loan App",
+    description: "Streamlined real estate investment loans with automated underwriting and faster approvals.",
+    image: "https://barskyux.com/wp-content/uploads/2025/08/investorloanfeatureimage.png",
+    videoThumbnail: "https://barskyux.com/wp-content/uploads/2025/08/investorloanfeatureimage.png",
+    video: "investor-loan-demo.mp4",
+    tags: ["Fintech", "Real Estate", "Automation"],
+    featured: true,
   }
 ];
