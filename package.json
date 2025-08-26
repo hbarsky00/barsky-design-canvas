@@ -8,18 +8,17 @@
     "node": ">=18.17"
   },
   "scripts": {
-    "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true",
-    "dev": "vite",
-    "build:dev": "vite build --mode development",
-    "preview": "vite preview",
-    "prebuild": "echo '⚠ skipping hardcode guard' || true",
-    "build:vite": "vite build",
-    "build": "vite build", // <-- Netlify will use build:vite per toml above
-    "postbuild": "echo '⚠ skipping seo validate' || true",
-
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
+  "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true",
+  "dev": "vite",
+  "build:dev": "vite build --mode development",
+  "preview": "vite preview",
+  "prebuild": "echo '⚠ skipping hardcode guard' || true",
+  "build:vite": "vite build",
+  "build": "vite build",
+  "postbuild": "echo '⚠ skipping seo validate' || true",
+  "lint": "eslint .",
+  "lint:fix": "eslint . --fix"
+},
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
