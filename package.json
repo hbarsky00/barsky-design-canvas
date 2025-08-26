@@ -7,17 +7,18 @@
   "engines": {
     "node": ">=18.17"
   },
-"scripts": {
-  "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true",
-  "dev": "vite",
-  "build:dev": "vite build --mode development",
-  "preview": "vite preview",
-  "prebuild": "node scripts/guard-seo-hardcodes.js",
-  "build": "vite build && node scripts/prerender.js",
-  "postbuild": "node scripts/validate-seo-build.js",
-  "lint": "eslint .",
-  "lint:fix": "eslint . --fix"
-},
+  "scripts": {
+    "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true",
+    "dev": "vite",
+    "build:dev": "vite build --mode development",
+    "build:vite": "vite build",
+    "preview": "vite preview",
+    "prebuild": "node scripts/guard-seo-hardcodes.js",
+    "build": "vite build && node scripts/prerender.js",
+    "postbuild": "node scripts/validate-seo-build.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
@@ -62,11 +63,13 @@
     "jspdf": "^3.0.1",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
+    "quill": "^2.0.3",
     "react": "^18.3.1",
     "react-colorful": "^5.6.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
+    "react-quill": "^2.0.0",
     "react-resizable-panels": "^2.1.3",
     "react-router-dom": "^6.26.2",
     "recharts": "^2.12.7",
