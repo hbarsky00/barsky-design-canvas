@@ -1592,7 +1592,3 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
 export const getStructuredCaseStudy = (id: string): StructuredCaseStudyData | null => {
   return structuredCaseStudies[id] || null;
 };
-
-export const getAllCaseStudyIds = (): string[] => {
-  return Object.keys(structuredCaseStudies);
-};
