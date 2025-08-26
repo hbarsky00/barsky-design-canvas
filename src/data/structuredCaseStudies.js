@@ -3,8 +3,9 @@
 
 const CASE_STUDY_IDS = [
   "crypto",
-  "healthtech",
-  "enterprise",
+  "herbalink", 
+  "splittime",
+  "investor-loan-app",
   "business-management"
 ];
 

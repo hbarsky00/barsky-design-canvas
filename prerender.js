@@ -36,6 +36,7 @@ ${seo.type === "article" && seo.modifiedTime ? `<meta property="article:modified
 ${seo.type === "article" && seo.author ? `<meta property="article:author" content="${esc(seo.author)}" />` : ""}`;
 
 async function main() {
+  console.log("🚀 Starting prerender process...");
   const templatePath = path.join(DIST, "index.html");
   if (!fs.existsSync(templatePath)) {
     throw new Error(`Template not found: ${templatePath} — did 'vite build' run?`);
@@ -43,6 +44,7 @@ async function main() {
   const template = fs.readFileSync(templatePath, "utf8");
 
   const routes = await getAllRoutes();
+  console.log("📋 Routes to process:", routes);
   const urls = [];
   for (const route of routes) {
     const input = await resolveSeoInput(route);
