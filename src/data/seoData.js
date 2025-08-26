@@ -1,5 +1,6 @@
 import { SEO_CONSTANTS } from "../utils/seo/seoConstants.js";
 import { blogPosts } from "./blogData.js";
+import { getAllCaseStudyIds } from "./structuredCaseStudies.js";
 
 // SEO data resolvers for prerender process
 export async function resolveSeoInput(routePath) {
@@ -102,9 +103,9 @@ export async function getAllRoutes() {
     routes.push(`/blog/${post.slug}`);
   });
 
-  // Add common project routes (hardcoded to avoid complex dependencies)
-  const commonProjects = ["herbalink", "splittime", "business-management", "investor-loan-app"];
-  commonProjects.forEach(project => {
+  // Add project routes dynamically from case study data
+  const caseStudyIds = getAllCaseStudyIds();
+  caseStudyIds.forEach(project => {
     routes.push(`/project/${project}`);
   });
 
