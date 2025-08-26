@@ -8,7 +8,7 @@ import MaximizableImage from "@/components/project/MaximizableImage";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
-import { getCanonicalUrl } from "@/utils/urlUtils";
+// Removed getCanonicalUrl import - URL is handled by UnifiedSEO only
 
 interface UnifiedCaseStudyHeroProps {
   caseStudyData: StructuredCaseStudyData;
@@ -79,12 +79,12 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
 
                {caseStudyData.projectLink && (
                  <div className="hero-cta-container w-full">
-                   <ProjectActionsCompact 
-                     liveUrl={caseStudyData.projectLink}
-                     projectTitle={caseStudyData.title}
-                     projectDescription={caseStudyData.description}
-                     projectPageUrl={getCanonicalUrl(location.pathname)}
-                   />
+                    <ProjectActionsCompact 
+                      liveUrl={caseStudyData.projectLink}
+                      projectTitle={caseStudyData.title}
+                      projectDescription={caseStudyData.description}
+                      projectPageUrl={`https://barskydesign.pro${location.pathname}`}
+                    />
                  </div>
                )}
             </motion.div>
@@ -156,7 +156,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                     liveUrl={caseStudyData.projectLink}
                     projectTitle={caseStudyData.title}
                     projectDescription={caseStudyData.description}
-                    projectPageUrl={getCanonicalUrl(location.pathname)}
+                    projectPageUrl={`https://barskydesign.pro${location.pathname}`}
                   />
                 </div>
               )}

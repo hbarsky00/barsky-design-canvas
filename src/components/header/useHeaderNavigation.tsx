@@ -36,6 +36,8 @@ export const useHeaderNavigation = () => {
   const isProjectPage = location.pathname.startsWith('/project/') || location.pathname.startsWith('/case-studies/');
 
   const scrollToSection = (sectionId: string) => {
+    console.log('Scrolling to section:', sectionId);
+    
     // First check if we're on the homepage
     if (location.pathname !== '/') {
       // If not on homepage, navigate there first with scrollTo state
@@ -46,26 +48,40 @@ export const useHeaderNavigation = () => {
     // Set intentional scrolling flag
     setIsIntentionalScrolling(true);
     
-    // If we're already on the homepage, scroll to the section with header offset
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height') || '64');
-      const elementTop = section.offsetTop;
-      const offset = elementTop - headerHeight - 20; // 20px breathing room
+    // Simple, foolproof scroll function
+    const attemptScroll = (retries = 3) => {
+      const section = document.getElementById(sectionId);
+      console.log('Found section:', sectionId, section);
       
-      if (typeof window !== 'undefined') {
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetPosition = rect.top + scrollTop - 80; // Fixed 80px offset for header
+        
+        console.log('Scrolling to position:', targetPosition);
+        
         window.scrollTo({
-          top: Math.max(0, offset),
+          top: Math.max(0, targetPosition),
           behavior: 'smooth'
         });
-      }
-      setIsMobileMenuOpen(false);
-      
-      // Clear intentional scrolling flag after scroll completes
-      setTimeout(() => {
+        
+        setIsMobileMenuOpen(false);
+        
+        // Clear intentional scrolling flag after scroll completes
+        setTimeout(() => {
+          setIsIntentionalScrolling(false);
+        }, 1000);
+      } else if (retries > 0) {
+        // Element might not be rendered yet due to transitions, retry
+        console.log('Section not found, retrying...', retries);
+        setTimeout(() => attemptScroll(retries - 1), 50);
+      } else {
+        console.error('Could not find section:', sectionId);
         setIsIntentionalScrolling(false);
-      }, 1000);
-    }
+      }
+    };
+    
+    attemptScroll();
   };
 
   const handleLinkClick = (href: string) => {
@@ -124,9 +140,12 @@ export const useHeaderNavigation = () => {
       return location.pathname === "/services" || location.pathname.startsWith("/design-services");
     }
     
-    // For section links (anchors)
+    // For section links (anchors) - with debugging
     if (link.startsWith('#')) {
-      return activeSection === link.substring(1);
+      const sectionId = link.substring(1);
+      const isActive = activeSection === sectionId;
+      console.log(`Link ${link} active check: activeSection="${activeSection}", sectionId="${sectionId}", isActive=${isActive}`);
+      return isActive;
     }
     
     // For other routes
@@ -165,11 +184,13 @@ export const useHeaderNavigation = () => {
 
       // Skip section detection during intentional scrolling to prevent conflicts
       if (isIntentionalScrolling) {
+        console.log('Skipping section detection - intentional scrolling in progress');
         return;
       }
 
-      // Home section logic - set as active when near the top of the page with bigger buffer
-      if (location.pathname === '/' && scrollPosition < 400) {
+      // Home section logic - set as active when near the top of the page
+      if (location.pathname === '/' && scrollPosition < 200) {
+        console.log('Setting active section to "home" (near top)');
         setActiveSection("home");
         return;
       }
@@ -183,34 +204,35 @@ export const useHeaderNavigation = () => {
             element: document.getElementById(link.href.substring(1))
           }));
         
-        // Find which section is most visible in the viewport
-        let mostVisibleSection = { id: "home", visiblePercent: 0 };
+        // Simple approach: find the section whose top is closest to the middle of the viewport
+        let activeSection = "home";
+        let closestDistance = Infinity;
+        const viewportMiddle = window.innerHeight / 2;
         
         for (const { id, element } of sections) {
           if (element) {
             const rect = element.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
             
-            // Calculate how much of the section is visible in the viewport
-            const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-            const sectionHeight = rect.height;
-            const visiblePercent = visibleHeight > 0 ? (visibleHeight / sectionHeight) * 100 : 0;
+            // Check if section is in viewport (at least partially visible)
+            const isVisible = rect.bottom > 0 && rect.top < window.innerHeight;
             
-            // If this section is more visible than our current most visible section, update
-            // Added minimum visibility threshold to prevent false positives
-            if (visiblePercent > mostVisibleSection.visiblePercent && visiblePercent > 25 && rect.top < windowHeight / 2) {
-              mostVisibleSection = { id, visiblePercent };
+            if (isVisible) {
+              // Calculate distance from section top to viewport middle
+              const distanceFromMiddle = Math.abs(rect.top - viewportMiddle);
+              
+              // If this section is closer to the middle than our current best, use it
+              if (distanceFromMiddle < closestDistance) {
+                closestDistance = distanceFromMiddle;
+                activeSection = id;
+              }
+              
+              console.log(`Section "${id}": top=${rect.top.toFixed(0)}, bottom=${rect.bottom.toFixed(0)}, distance=${distanceFromMiddle.toFixed(0)}`);
             }
           }
         }
         
-        // Only update if we found a visible section with significant visibility
-        if (mostVisibleSection.visiblePercent > 25) {
-          setActiveSection(mostVisibleSection.id);
-        } else if (scrollPosition < 400) {
-          // Fallback to home when near the top and no section is visible enough
-          setActiveSection("home");
-        }
+        console.log(`Setting active section to: "${activeSection}"`);
+        setActiveSection(activeSection);
       }
     };
 

@@ -1,8 +1,7 @@
 import { ProjectVariable } from "./types";
-import { wholesaleDistributionVariables } from "./wholesaleDistribution";
 
 export const projectVariables: Record<string, ProjectVariable> = {
-  "wholesale-distribution": wholesaleDistributionVariables
+  // wholesale-distribution removed - replaced with business-management
 };
 
 export * from "./types";

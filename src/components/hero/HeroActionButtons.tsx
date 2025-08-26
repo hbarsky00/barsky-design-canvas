@@ -19,9 +19,16 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
 
   const handleViewResults = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    const caseStudiesSection = document.getElementById('case-studies');
+    if (caseStudiesSection) {
+      const headerOffset = 80;
+      const elementPosition = caseStudiesSection.offsetTop;
+      const offsetPosition = elementPosition - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 

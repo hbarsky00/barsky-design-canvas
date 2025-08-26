@@ -1,103 +1,75 @@
-import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// IMPORTANT: use RELATIVE paths to JS or TS modules
+import { buildSEO } from "./src/utils/seo/seoBuilder.js"; // if this is TS, change to relative JS or follow Plan B below
+import { resolveSeoInput, getAllRoutes } from "./src/data/seoData.js";
 
-// Function to get all project routes from data files
-function getProjectRoutes() {
-  const routes = [];
-  
-  try {
-    // Add static project routes that we know exist
-    const knownProjects = [
-      'retail-pos-system',
-      'ai-content-platform', 
-      'healthcare-dashboard',
-      'fintech-mobile-app',
-      'saas-analytics-platform'
-    ];
-    
-    knownProjects.forEach(project => {
-      routes.push(`/project/${project}`);
-    });
-    
-    console.log(`📄 Found ${routes.length} project routes for prerendering`);
-  } catch (error) {
-    console.warn('⚠️ Could not load project routes:', error.message);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DIST = path.join(__dirname, "dist");
+const esc = (s="") => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+// Reuse Vite template, only swap <head>
+const injectHead = (tpl, head) => tpl.replace(/<head[^>]*>[\s\S]*?<\/head>/i, `<head>${head}</head>`);
+
+const headHtml = (seo) => `\
+<title>${esc(seo.title)}</title>
+<meta name="description" content="${esc(seo.description)}" />
+<link rel="canonical" href="${seo.canonical}" />
+<meta name="robots" content="${seo.robots ?? "index,follow"}" />
+<meta property="og:type" content="${seo.type}" />
+<meta property="og:title" content="${esc(seo.title)}" />
+<meta property="og:description" content="${esc(seo.description)}" />
+<meta property="og:url" content="${seo.canonical}" />
+${seo.siteName ? `<meta property="og:site_name" content="${esc(seo.siteName)}" />` : ""}
+${seo.image ? `<meta property="og:image" content="${seo.image}" />
+<meta property="og:image:secure_url" content="${seo.image}" />
+${seo.imageAlt ? `<meta property="og:image:alt" content="${esc(seo.imageAlt)}" />` : ""}` : ""}
+<meta name="twitter:card" content="${seo.twitterCard ?? "summary_large_image"}" />
+${seo.twitterSite ? `<meta name="twitter:site" content="${seo.twitterSite}" />` : ""}
+<meta name="twitter:title" content="${esc(seo.title)}" />
+<meta name="twitter:description" content="${seo.description}" />
+${seo.image ? `<meta name="twitter:image" content="${seo.image}" />` : ""}
+${seo.type === "article" && seo.publishedTime ? `<meta property="article:published_time" content="${seo.publishedTime}" />` : ""}
+${seo.type === "article" && seo.modifiedTime ? `<meta property="article:modified_time" content="${seo.modifiedTime}" />` : ""}
+${seo.type === "article" && seo.author ? `<meta property="article:author" content="${esc(seo.author)}" />` : ""}`;
+
+async function main() {
+  const templatePath = path.join(DIST, "index.html");
+  if (!fs.existsSync(templatePath)) {
+    throw new Error(`Template not found: ${templatePath} — did 'vite build' run?`);
   }
-  
-  return routes;
-}
+  const template = fs.readFileSync(templatePath, "utf8");
 
-// Function to get all blog routes
-function getBlogRoutes() {
-  const routes = [];
-  
-  // Add known blog routes - these would typically come from your CMS
-  // For now, we'll add a few example routes
-  const knownPosts = [
-    'ai-in-ux-design',
-    'design-system-best-practices',
-    'user-research-techniques'
-  ];
-  
-  knownPosts.forEach(post => {
-    routes.push(`/blog/${post}`);
-  });
-  
-  console.log(`📝 Found ${routes.length} blog routes for prerendering`);
-  return routes;
-}
+  const routes = await getAllRoutes();
+  const urls = [];
+  for (const route of routes) {
+    const input = await resolveSeoInput(route);
+    if (!input) throw new Error(`resolveSeoInput returned nothing for '${route}'`);
+    const seo = buildSEO(input);
 
-// Enhanced route configuration
-const routes = [
-  '/',
-  '/projects', 
-  '/about',
-  '/services',
-  '/blog',
-  '/contact',
-  ...getProjectRoutes(),
-  ...getBlogRoutes()
-];
-
-console.log(`🚀 Starting prerender process for ${routes.length} routes...`);
-
-// Simple prerender verification
-function verifyPrerenderOutput() {
-  const distDir = join(__dirname, 'dist');
-  
-  try {
-    const indexHTML = readFileSync(join(distDir, 'index.html'), 'utf-8');
-    
-    // Check if SEO meta tags are present
-    const hasTitle = indexHTML.includes('<title>') && !indexHTML.includes('<title></title>');
-    const hasDescription = indexHTML.includes('name="description"');
-    const hasCanonical = indexHTML.includes('rel="canonical"');
-    const hasOgTags = indexHTML.includes('property="og:title"');
-    
-    console.log('✅ Prerender verification:', {
-      hasTitle,
-      hasDescription, 
-      hasCanonical,
-      hasOgTags,
-      titleContent: indexHTML.match(/<title>(.*?)<\/title>/)?.[1] || 'Not found'
-    });
-    
-    if (hasTitle && hasDescription && hasCanonical && hasOgTags) {
-      console.log('🎉 SSG build successful! All SEO meta tags are properly rendered.');
-    } else {
-      console.warn('⚠️ Some SEO meta tags may be missing from prerendered HTML.');
-    }
-    
-  } catch (error) {
-    console.error('❌ Could not verify prerender output:', error.message);
+    const html = injectHead(template, headHtml(seo));
+    const dir = path.join(DIST, route === "/" ? "" : route);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
+    urls.push(seo.canonical);
+    console.log("✓ prerendered", route);
   }
+
+  // sitemap + robots
+  const today = new Date().toISOString().slice(0,10);
+  const base = urls[0]?.replace(/\/$/, "") || "";
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(u => `  <url><loc>${u}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`).join("\n")}
+</urlset>`;
+  fs.writeFileSync(path.join(DIST, "sitemap.xml"), sitemap, "utf8");
+  fs.writeFileSync(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n`, "utf8");
 }
 
-// Run verification
-verifyPrerenderOutput();
-
-export { routes };
+main().catch(err => {
+  console.error("[PRERENDER ERROR]");
+  console.error(err.stack || err);
+  process.exit(1);
+});
