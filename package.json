@@ -7,13 +7,7 @@
   "engines": {
     "node": ">=18.17"
   },
-"scripts": {
-  "dev": "vite",
-  "build:vite": "vite build",
-  "build:dev": "vite build --mode development",
-  "build": "vite build",                // ← TEMP: no prerender
-  "preview": "vite preview"
-},
+ "scripts": { "dev": "vite", "build": "vite build", "preview": "vite preview --port 4173", "build:dev": "vite build" } 
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
