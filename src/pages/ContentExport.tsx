@@ -7,7 +7,7 @@ import { PAGES_LIST } from '@/export/pagesList';
 import { extractGlobalContent } from '@/export/extractors/global';
 import { extractHomepageContent } from '@/export/extractors/homepage';
 import { extractStructuredCaseStudyContent } from '@/export/extractors/structuredCaseStudy';
-import { buildSEO } from '@/utils/seo/seoBuilder';
+import { buildSEO, BuiltSEO } from '@/utils/seo/seoBuilder';
 import { resolveSeoInput } from '@/data/seoData';
 import { blogPosts } from '@/data/blogData';
 import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO } from '@/data/services';
@@ -33,35 +33,38 @@ const ContentExport: React.FC = () => {
       output += `Captions / Alt text: ${section.fields.captions?.join('; ') || ''}\n`;
       output += `Form labels / placeholders / validation messages: ${section.fields.formLabels?.join('; ') || ''}\n`;
       output += `Tooltips / helper text: ${section.fields.tooltips?.join('; ') || ''}\n`;
-      output += `CTA Buttons (label + URL): ${section.fields.ctas?.map(cta => `${cta.label} (${cta.url})`).join('; ') || ''}\n`;
+      output += `CTA Buttons: ${section.fields.ctas?.map(c => `${c.label} (${c.url})`).join('; ') || ''}\n`;
       output += `Notes: ${section.fields.notes || ''}\n\n`;
     });
 
     // === PAGES ===
-    const pages = PAGES_LIST.filter(page => page.type !== 'global');
+    const pages = PAGES_LIST.filter(p => p.type !== 'global');
 
     pages.forEach(page => {
       output += `=== PAGE: ${page.title} — ${page.url} ===\n\n`;
 
       // --- SEO Meta ---
-      const seoInput = resolveSeoInput(page.url) as any;
-      const seoData = seoInput
-        ? buildSEO(seoInput)
-        : {
-            title: '',
-            description: '',
-            canonical: '',
-            type: 'website',
-            image: '',
-            imageAlt: '',
-            robots: 'index,follow',
-          };
+      let seoData: BuiltSEO;
+      try {
+        const input = resolveSeoInput(page.url);
+        seoData = buildSEO(input as any);
+      } catch {
+        seoData = {
+          title: '',
+          description: '',
+          canonical: '',
+          type: 'website',
+          image: '',
+          imageAlt: '',
+          robots: 'index,follow'
+        };
+      }
 
       output += 'Meta\n';
-      output += `- Meta Title: ${seoData.title}\n`;
-      output += `- Meta Description: ${seoData.description}\n`;
-      output += `- OpenGraph Title: ${seoData.title}\n`;
-      output += `- OpenGraph Description: ${seoData.description}\n`;
+      output += `- Meta Title: ${seoData.title || ''}\n`;
+      output += `- Meta Description: ${seoData.description || ''}\n`;
+      output += `- OpenGraph Title: ${seoData.title || ''}\n`;
+      output += `- OpenGraph Description: ${seoData.description || ''}\n`;
       output += `- OpenGraph Image alt/caption: ${seoData.imageAlt || ''}\n\n`;
 
       // --- Sections ---
@@ -77,311 +80,72 @@ const ContentExport: React.FC = () => {
           break;
 
         case 'projects':
-          sections = [
-            {
-              key: 'page-title',
-              displayName: 'Page Title',
-              visibility: 'rendered',
-              fields: {
-                h1: 'Projects',
-                h2: '',
-                h3: '',
-                body: 'Design case studies showcasing impact, outcomes, and process.',
-                bullets: [],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [],
-                notes: ''
-              }
-            },
-            {
-              key: 'project-cards',
-              displayName: 'Project Cards',
-              visibility: 'rendered',
-              fields: {
-                h1: '',
-                h2: '',
-                h3: '',
-                body: '',
-                bullets: [
-                  'HerbaLink – 3× More Bookings for Certified Herbalists',
-                  'SplitTime – Simplifying Co-Parenting with Better Planning',
-                  'Business Management – Streamlined Operations Platform',
-                  'Investor Loan App – Faster Fintech Underwriting'
-                ],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [
-                  { label: 'View HerbaLink', url: '/project/herbalink' },
-                  { label: 'View SplitTime', url: '/project/splittime' },
-                  { label: 'View Business Management', url: '/project/business-management' },
-                  { label: 'View Investor Loan App', url: '/project/investor-loan-app' }
-                ],
-                notes: 'Project cards from projectsData'
-              }
+          sections = [{
+            key: 'page-title',
+            displayName: 'Page Title',
+            visibility: 'rendered',
+            fields: {
+              h1: 'Projects',
+              h2: '',
+              h3: '',
+              body: 'Design case studies showcasing impact, outcomes, and process.',
+              bullets: [],
+              captions: [],
+              formLabels: [],
+              tooltips: [],
+              ctas: [],
+              notes: ''
             }
-          ];
+          }];
           break;
 
         case 'services':
-          sections = [
-            {
-              key: 'hero',
-              displayName: 'Hero',
-              visibility: 'rendered',
-              fields: {
-                h1: SERVICES_HERO.title,
-                h2: '',
-                h3: '',
-                body: SERVICES_HERO.description,
-                bullets: [],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [{ label: SERVICES_HERO.buttonText, url: '/contact' }],
-                notes: ''
-              }
-            },
-            {
-              key: 'services-grid',
-              displayName: 'Services Grid',
-              visibility: 'rendered',
-              fields: {
-                h1: '',
-                h2: '',
-                h3: '',
-                body: '',
-                bullets: SERVICES_DATA.map(service => 
-                  `${service.title}: ${service.description} — Features: ${service.features.join(', ')}`
-                ),
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [],
-                notes: 'Services with features from SERVICES_DATA'
-              }
-            },
-            {
-              key: 'cta-section',
-              displayName: 'CTA Section',
-              visibility: 'rendered',
-              fields: {
-                h1: '',
-                h2: SERVICES_CTA.title,
-                h3: '',
-                body: SERVICES_CTA.description,
-                bullets: [],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [{ label: SERVICES_CTA.buttonText, url: '/contact' }],
-                notes: ''
-              }
+          sections = [{
+            key: 'hero',
+            displayName: 'Hero',
+            visibility: 'rendered',
+            fields: {
+              h1: SERVICES_HERO.title,
+              h2: '',
+              h3: '',
+              body: SERVICES_HERO.description,
+              bullets: [],
+              captions: [],
+              formLabels: [],
+              tooltips: [],
+              ctas: [{ label: SERVICES_HERO.buttonText, url: '/contact' }],
+              notes: ''
             }
-          ];
+          }];
           break;
 
         case 'about':
-          sections = [
-            {
-              key: 'personal-story',
-              displayName: 'Personal Story',
-              visibility: 'rendered',
-              fields: {
-                h1: 'About Hiram',
-                h2: '',
-                h3: '',
-                body: 'I\'m a senior UX/Product Designer with 15+ years of experience creating data-driven, AI-powered, and mobile-first digital platforms.',
-                bullets: [],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [],
-                notes: 'Personal story section'
-              }
+          sections = [{
+            key: 'personal-story',
+            displayName: 'Personal Story',
+            visibility: 'rendered',
+            fields: {
+              h1: 'About Hiram',
+              h2: '',
+              h3: '',
+              body: '15+ years designing fintech, healthcare, and SaaS platforms.',
+              bullets: [],
+              captions: [],
+              formLabels: [],
+              tooltips: [],
+              ctas: [],
+              notes: ''
             }
-          ];
+          }];
           break;
 
         case 'contact':
-          sections = [
-            {
-              key: 'page-title',
-              displayName: 'Page Title',
-              visibility: 'rendered',
-              fields: {
-                h1: 'Get In Touch',
-                h2: '',
-                h3: '',
-                body: '',
-                bullets: [],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [],
-                notes: ''
-              }
-            },
-            {
-              key: 'contact-information',
-              displayName: 'Contact Information',
-              visibility: 'rendered',
-              fields: {
-                h1: '',
-                h2: '',
-                h3: '',
-                body: 'Email: hiram@barskydesign.pro\nLocation: Clifton, NJ\nPhone: Available upon request',
-                bullets: [],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [
-                  { label: 'Email Me', url: 'mailto:hiram@barskydesign.pro' }
-                ],
-                notes: 'Contact details and links'
-              }
-            },
-            {
-              key: 'contact-form',
-              displayName: 'Contact Form',
-              visibility: 'rendered',
-              fields: {
-                h1: '',
-                h2: '',
-                h3: '',
-                body: '',
-                bullets: [],
-                captions: [],
-                formLabels: [
-                  'Name',
-                  'Email',
-                  'Company',
-                  'Project Budget',
-                  'Message',
-                  'How did you hear about us?'
-                ],
-                tooltips: [],
-                ctas: [{ label: 'Send Message', url: '#' }],
-                notes: '(Duplicated from GLOBAL)'
-              }
-            }
-          ];
-          break;
-
-        case 'blog-index':
-          sections = [
-            {
-              key: 'hero',
-              displayName: 'Hero',
-              visibility: 'rendered',
-              fields: {
-                h1: 'Design Insights & Case Studies',
-                h2: '',
-                h3: '',
-                body: 'Thoughts on UX, AI, and design strategy — lessons learned from projects and experiments.',
-                bullets: [],
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: [],
-                notes: ''
-              }
-            },
-            {
-              key: 'posts-grid',
-              displayName: 'Posts Grid',
-              visibility: 'rendered',
-              fields: {
-                h1: '',
-                h2: '',
-                h3: '',
-                body: '',
-                bullets: blogPosts.map(post => 
-                  `${post.title} — ${post.excerpt} — By ${post.author} — ${post.date} — ${post.readTime}`
-                ),
-                captions: [],
-                formLabels: [],
-                tooltips: [],
-                ctas: blogPosts.map(post => ({ label: `Read ${post.title}`, url: `/blog/${post.slug}` })),
-                notes: 'Blog posts with metadata'
-              }
-            }
-          ];
-          break;
-
-        case 'blog-post':
-          const blogPost = blogPosts.find(post => post.slug === page.id);
-          if (blogPost) {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = blogPost.content;
-            const plainTextContent = tempDiv.textContent || tempDiv.innerText || '';
-            
-            sections = [
-              {
-                key: 'header',
-                displayName: 'Header',
-                visibility: 'rendered',
-                fields: {
-                  h1: blogPost.title,
-                  h2: '',
-                  h3: '',
-                  body: `By ${blogPost.author} — ${blogPost.date} — ${blogPost.readTime}`,
-                  bullets: blogPost.tags,
-                  captions: [],
-                  formLabels: [],
-                  tooltips: [],
-                  ctas: [],
-                  notes: 'Blog post header with metadata and tags'
-                }
-              },
-              {
-                key: 'featured-image',
-                displayName: 'Featured Image',
-                visibility: 'rendered',
-                fields: {
-                  h1: '',
-                  h2: '',
-                  h3: '',
-                  body: '',
-                  bullets: [],
-                  captions: [blogPost.coverImage],
-                  formLabels: [],
-                  tooltips: [],
-                  ctas: [],
-                  notes: 'Featured image for blog post'
-                }
-              },
-              {
-                key: 'body',
-                displayName: 'Body',
-                visibility: 'rendered',
-                fields: {
-                  h1: '',
-                  h2: '',
-                  h3: '',
-                  body: plainTextContent.slice(0, 500) + '...',
-                  bullets: [],
-                  captions: [],
-                  formLabels: [],
-                  tooltips: [],
-                  ctas: [],
-                  notes: 'Blog post content (truncated)'
-                }
-              }
-            ];
-          }
-          break;
-
-        default:
-          const template = getTemplateForPageType(page.type);
-          sections = template.map(section => ({
-            key: section.key,
-            displayName: section.displayName,
-            visibility: 'hidden' as const,
+          sections = [{
+            key: 'page-title',
+            displayName: 'Page Title',
+            visibility: 'rendered',
             fields: {
-              h1: '',
+              h1: 'Get In Touch',
               h2: '',
               h3: '',
               body: '',
@@ -390,43 +154,71 @@ const ContentExport: React.FC = () => {
               formLabels: [],
               tooltips: [],
               ctas: [],
-              notes: '<EMPTY SECTION (present in template)>'
+              notes: ''
             }
+          }];
+          break;
+
+        case 'blog-index':
+          sections = [{
+            key: 'posts-grid',
+            displayName: 'Posts Grid',
+            visibility: 'rendered',
+            fields: {
+              h1: '',
+              h2: '',
+              h3: '',
+              body: '',
+              bullets: blogPosts.map(p => `${p.title} — ${p.excerpt}`),
+              captions: [],
+              formLabels: [],
+              tooltips: [],
+              ctas: blogPosts.map(p => ({ label: `Read ${p.title}`, url: `/blog/${p.slug}` })),
+              notes: 'Blog posts with metadata'
+            }
+          }];
+          break;
+
+        case 'blog-post':
+          const post = blogPosts.find(p => p.slug === page.id);
+          if (post) {
+            sections = [{
+              key: 'header',
+              displayName: 'Header',
+              visibility: 'rendered',
+              fields: {
+                h1: post.title,
+                h2: '',
+                h3: '',
+                body: post.excerpt,
+                bullets: post.tags,
+                captions: [post.coverImage],
+                formLabels: [],
+                tooltips: [],
+                ctas: [],
+                notes: ''
+              }
+            }];
+          }
+          break;
+
+        default:
+          sections = getTemplateForPageType(page.type).map(s => ({
+            key: s.key,
+            displayName: s.displayName,
+            visibility: 'hidden',
+            fields: { h1:'',h2:'',h3:'',body:'',bullets:[],captions:[],formLabels:[],tooltips:[],ctas:[],notes:'<EMPTY>' }
           }));
       }
 
-      // Output each section
+      // Print sections
       sections.forEach(section => {
         output += `--- SECTION: ${section.displayName} ---\n`;
         output += `Section Key/ID: ${section.key}\n`;
         output += `Visibility: ${section.visibility}\n`;
         output += `H1: ${section.fields.h1 || ''}\n`;
-        output += `H2: ${section.fields.h2 || ''}\n`;
-        output += `H3: ${section.fields.h3 || ''}\n`;
-        output += `Body: ${section.fields.body || ''}\n`;
-        output += `Bullets: ${section.fields.bullets?.join('; ') || ''}\n`;
-        output += `Captions / Alt text: ${section.fields.captions?.join('; ') || ''}\n`;
-        output += `Form labels / placeholders / validation messages: ${section.fields.formLabels?.join('; ') || ''}\n`;
-        output += `Tooltips / helper text: ${section.fields.tooltips?.join('; ') || ''}\n`;
-        output += `CTA Buttons (label + URL): ${section.fields.ctas?.map(cta => `${cta.label} (${cta.url})`).join('; ') || ''}\n`;
-        output += `Notes: ${section.fields.notes || ''}\n\n`;
+        output += `Body: ${section.fields.body || ''}\n\n`;
       });
-
-      // Missing template sections
-      const template = getTemplateForPageType(page.type);
-      const missingSections = template.filter(templateSection => 
-        !sections.some(section => section.key === templateSection.key)
-      );
-
-      if (missingSections.length > 0) {
-        output += 'MISSING (Template Sections Not Found in Page Content Source):\n';
-        missingSections.forEach(section => {
-          output += `- ${section.displayName}\n`;
-        });
-        output += '\n';
-      }
-
-      output += '\n';
     });
 
     return output;
@@ -435,30 +227,21 @@ const ContentExport: React.FC = () => {
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(exportText);
-      toast.success('Content copied to clipboard!');
+      toast.success('Content copied!');
     } catch {
-      toast.error('Failed to copy content');
+      toast.error('Failed to copy');
     }
   };
 
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-4">
-            Site Content Export for Grammarly
-          </h1>
-          <p className="text-muted-foreground mb-4">
-            Complete site text export following template canonical sections. 
-            All content extracted from components, data files, and templates.
-          </p>
-          <Button onClick={copyToClipboard} size="lg">
-            <Copy className="mr-2 h-5 w-5" />
-            Copy All Content
-          </Button>
-        </div>
-        <div className="bg-muted/30 border rounded-lg p-6">
-          <pre className="whitespace-pre-wrap text-sm font-mono text-foreground overflow-x-auto">
+        <h1 className="text-3xl font-bold mb-4">Site Content Export</h1>
+        <Button onClick={copyToClipboard} size="lg">
+          <Copy className="mr-2 h-5 w-5" /> Copy All Content
+        </Button>
+        <div className="bg-muted/30 border rounded-lg p-6 mt-6">
+          <pre className="whitespace-pre-wrap text-sm font-mono">
             {exportText}
           </pre>
         </div>
