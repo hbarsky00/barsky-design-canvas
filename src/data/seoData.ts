@@ -2,33 +2,42 @@ import { SEO_CONSTANTS } from "@/utils/seoConstants";
 import { getStructuredCaseStudy, getAllCaseStudyIds } from "@/data/structuredCaseStudies";
 import { blogPosts } from "@/data/blogData";
 
+function withDefaults(data: any) {
+  return {
+    siteName: SEO_CONSTANTS.SITE_NAME,
+    twitterSite: SEO_CONSTANTS.TWITTER_HANDLE,
+    image: data.image || SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
+    description: data.description || SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+    ...data
+  };
+}
+
 export async function resolveSeoInput(path: string) {
   path = path.replace(/[?#].*$/, "").replace(/\/{2,}/g, "/");
 
   if (path === "/") {
-    return {
+    return withDefaults({
       path, kind: "home",
       title: SEO_CONSTANTS.SITE_NAME,
-      description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
-      image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE,
       imageAlt: "Portrait of Hiram Barsky, Product Designer"
-    };
+    });
   }
 
   if (path.startsWith("/blog/")) {
     const slug = path.replace("/blog/", "").replace(/\/$/, "");
     const post = blogPosts.find(p => p.slug === slug);
     if (post) {
-      return {
+      return withDefaults({
         path, kind: "post",
         title: `${post.title} — ${SEO_CONSTANTS.SITE_NAME}`,
         description: post.excerpt,
         image: post.coverImage,
         imageAlt: post.imageAlt ?? `${post.title} preview image`,
-        author: post.author, tags: post.tags,
+        author: post.author || "Hiram Barsky",
+        tags: post.tags,
         published: new Date(post.date).toISOString(),
         modified: new Date(post.updated ?? post.date).toISOString()
-      };
+      });
     }
   }
 
@@ -36,16 +45,17 @@ export async function resolveSeoInput(path: string) {
     const id = path.replace("/project/", "").replace(/\/$/, "");
     const cs = getStructuredCaseStudy(id);
     if (cs) {
-      return {
+      return withDefaults({
         path, kind: "project",
-        title: cs.title, description: cs.description,
+        title: cs.title,
+        description: cs.description,
         image: cs.seoData?.image,
         imageAlt: cs.seoData?.image ? `${cs.title} preview image` : undefined,
         author: "Hiram Barsky",
         tags: cs.tags,
-        published: "2025-01-01T00:00:00Z", // default date
-        modified: "2025-08-01T00:00:00Z"  // default date
-      };
+        published: "2025-01-01T00:00:00Z",
+        modified: "2025-08-01T00:00:00Z"
+      });
     }
   }
 
@@ -76,14 +86,13 @@ export async function resolveSeoInput(path: string) {
       image: "https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg"
     }
   };
-  if (staticMap[path]) return { path, kind: "page", ...staticMap[path] };
+  if (staticMap[path]) return withDefaults({ path, kind: "page", ...staticMap[path] });
 
-  return {
+  // Fallback
+  return withDefaults({
     path, kind: "page",
-    title: SEO_CONSTANTS.SITE_NAME,
-    description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
-    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
-  };
+    title: SEO_CONSTANTS.SITE_NAME
+  });
 }
 
 export async function getAllRoutes(): Promise<string[]> {
@@ -92,8 +101,3 @@ export async function getAllRoutes(): Promise<string[]> {
   const posts = blogPosts.map(p => `/blog/${p.slug}`);
   return [...pages, ...projects, ...posts];
 }
-
-// Legacy exports for backwards compatibility
-export const getStaticPageSEO = (path: string) => null;
-export const getProjectSEO = (projectId: string) => null;
-export const getBlogSEO = (slug: string) => null;
