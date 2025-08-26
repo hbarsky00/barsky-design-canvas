@@ -20,21 +20,12 @@ const ContentExport: React.FC = () => {
 
     // === GLOBAL ===
     output += '=== GLOBAL ===\n\n';
-    const globalSections = extractGlobalContent();
-    globalSections.forEach(section => {
+    extractGlobalContent().forEach(section => {
       output += `--- SECTION: ${section.displayName} ---\n`;
       output += `Section Key/ID: ${section.key}\n`;
       output += `Visibility: ${section.visibility}\n`;
       output += `H1: ${section.fields.h1 || ''}\n`;
-      output += `H2: ${section.fields.h2 || ''}\n`;
-      output += `H3: ${section.fields.h3 || ''}\n`;
-      output += `Body: ${section.fields.body || ''}\n`;
-      output += `Bullets: ${section.fields.bullets?.join('; ') || ''}\n`;
-      output += `Captions / Alt text: ${section.fields.captions?.join('; ') || ''}\n`;
-      output += `Form labels / placeholders / validation messages: ${section.fields.formLabels?.join('; ') || ''}\n`;
-      output += `Tooltips / helper text: ${section.fields.tooltips?.join('; ') || ''}\n`;
-      output += `CTA Buttons: ${section.fields.ctas?.map(c => `${c.label} (${c.url})`).join('; ') || ''}\n`;
-      output += `Notes: ${section.fields.notes || ''}\n\n`;
+      output += `Body: ${section.fields.body || ''}\n\n`;
     });
 
     // === PAGES ===
@@ -46,16 +37,23 @@ const ContentExport: React.FC = () => {
       // --- SEO Meta ---
       let seoData: BuiltSEO;
       try {
-        const input = resolveSeoInput(page.url);
-        seoData = buildSEO(input as any);
+        // resolveSeoInput is async, but here we just use the shape
+        // in non-runtime context; fallback if not resolved
+        const input: any = {
+          path: page.url,
+          kind: page.type === 'case-study' ? 'project' :
+                page.type === 'blog-post' ? 'post' : 'page',
+          title: page.title,
+          description: ''
+        };
+        seoData = buildSEO(input);
       } catch {
         seoData = {
-          title: '',
+          title: page.title,
           description: '',
-          canonical: '',
+          canonical: `https://barskydesign.pro${page.url}`,
           type: 'website',
           image: '',
-          imageAlt: '',
           robots: 'index,follow'
         };
       }
@@ -65,7 +63,7 @@ const ContentExport: React.FC = () => {
       output += `- Meta Description: ${seoData.description || ''}\n`;
       output += `- OpenGraph Title: ${seoData.title || ''}\n`;
       output += `- OpenGraph Description: ${seoData.description || ''}\n`;
-      output += `- OpenGraph Image alt/caption: ${seoData.imageAlt || ''}\n\n`;
+      output += `- OpenGraph Image: ${seoData.image || ''}\n\n`;
 
       // --- Sections ---
       let sections: SectionExport[] = [];
@@ -74,140 +72,68 @@ const ContentExport: React.FC = () => {
         case 'homepage':
           sections = extractHomepageContent();
           break;
-
         case 'case-study':
           sections = extractStructuredCaseStudyContent(page.id);
           break;
-
-        case 'projects':
-          sections = [{
-            key: 'page-title',
-            displayName: 'Page Title',
-            visibility: 'rendered',
-            fields: {
-              h1: 'Projects',
-              h2: '',
-              h3: '',
-              body: 'Design case studies showcasing impact, outcomes, and process.',
-              bullets: [],
-              captions: [],
-              formLabels: [],
-              tooltips: [],
-              ctas: [],
-              notes: ''
-            }
-          }];
-          break;
-
         case 'services':
-          sections = [{
-            key: 'hero',
-            displayName: 'Hero',
-            visibility: 'rendered',
-            fields: {
-              h1: SERVICES_HERO.title,
-              h2: '',
-              h3: '',
-              body: SERVICES_HERO.description,
-              bullets: [],
-              captions: [],
-              formLabels: [],
-              tooltips: [],
-              ctas: [{ label: SERVICES_HERO.buttonText, url: '/contact' }],
-              notes: ''
-            }
-          }];
-          break;
-
-        case 'about':
-          sections = [{
-            key: 'personal-story',
-            displayName: 'Personal Story',
-            visibility: 'rendered',
-            fields: {
-              h1: 'About Hiram',
-              h2: '',
-              h3: '',
-              body: '15+ years designing fintech, healthcare, and SaaS platforms.',
-              bullets: [],
-              captions: [],
-              formLabels: [],
-              tooltips: [],
-              ctas: [],
-              notes: ''
-            }
-          }];
-          break;
-
-        case 'contact':
-          sections = [{
-            key: 'page-title',
-            displayName: 'Page Title',
-            visibility: 'rendered',
-            fields: {
-              h1: 'Get In Touch',
-              h2: '',
-              h3: '',
-              body: '',
-              bullets: [],
-              captions: [],
-              formLabels: [],
-              tooltips: [],
-              ctas: [],
-              notes: ''
-            }
-          }];
-          break;
-
-        case 'blog-index':
-          sections = [{
-            key: 'posts-grid',
-            displayName: 'Posts Grid',
-            visibility: 'rendered',
-            fields: {
-              h1: '',
-              h2: '',
-              h3: '',
-              body: '',
-              bullets: blogPosts.map(p => `${p.title} — ${p.excerpt}`),
-              captions: [],
-              formLabels: [],
-              tooltips: [],
-              ctas: blogPosts.map(p => ({ label: `Read ${p.title}`, url: `/blog/${p.slug}` })),
-              notes: 'Blog posts with metadata'
-            }
-          }];
-          break;
-
-        case 'blog-post':
-          const post = blogPosts.find(p => p.slug === page.id);
-          if (post) {
-            sections = [{
-              key: 'header',
-              displayName: 'Header',
+          sections = [
+            {
+              key: 'hero',
+              displayName: 'Hero',
               visibility: 'rendered',
               fields: {
-                h1: post.title,
+                h1: SERVICES_HERO.title,
                 h2: '',
                 h3: '',
-                body: post.excerpt,
-                bullets: post.tags,
-                captions: [post.coverImage],
+                body: SERVICES_HERO.description,
+                bullets: [],
+                captions: [],
                 formLabels: [],
                 tooltips: [],
-                ctas: [],
+                ctas: [{ label: SERVICES_HERO.buttonText, url: '/contact' }],
                 notes: ''
               }
-            }];
-          }
+            }
+          ];
           break;
-
+        case 'blog-index':
+          sections = [
+            {
+              key: 'posts-grid',
+              displayName: 'Posts Grid',
+              visibility: 'rendered',
+              fields: {
+                h1: '',
+                h2: '',
+                h3: '',
+                body: '',
+                bullets: blogPosts.map(p => `${p.title} — ${p.excerpt}`),
+                captions: [],
+                formLabels: [],
+                tooltips: [],
+                ctas: blogPosts.map(p => ({ label: `Read ${p.title}`, url: `/blog/${p.slug}` })),
+                notes: 'Blog posts with metadata'
+              }
+            }
+          ];
+          break;
         default:
           sections = getTemplateForPageType(page.type).map(s => ({
             key: s.key,
             displayName: s.displayName,
             visibility: 'hidden',
-            fields: { h1:'',h2:'',h3:'',body:'',bullets:[],captions:[],formLabels:[],tooltips:[],ctas:[],notes:'<EMPTY>' }
+            fields: {
+              h1: '',
+              h2: '',
+              h3: '',
+              body: '',
+              bullets: [],
+              captions: [],
+              formLabels: [],
+              tooltips: [],
+              ctas: [],
+              notes: '<EMPTY>'
+            }
           }));
       }
 
