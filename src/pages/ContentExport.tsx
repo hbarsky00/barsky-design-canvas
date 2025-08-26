@@ -8,7 +8,7 @@ import { extractGlobalContent } from '@/export/extractors/global';
 import { extractHomepageContent } from '@/export/extractors/homepage';
 import { extractStructuredCaseStudyContent } from '@/export/extractors/structuredCaseStudy';
 import { buildSEO } from '@/utils/seo/seoBuilder';
-import { getStaticPageSEO, getProjectSEO, getBlogSEO } from '@/data/seoData';
+import { resolveSeoInput } from "@/data/seoData";
 import { blogPosts } from '@/data/blogData';
 import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO } from '@/data/services';
 import { getTemplateForPageType } from '@/export/templateRegistry';
