@@ -8,7 +8,7 @@ import { extractGlobalContent } from '@/export/extractors/global';
 import { extractHomepageContent } from '@/export/extractors/homepage';
 import { extractStructuredCaseStudyContent } from '@/export/extractors/structuredCaseStudy';
 import { buildSEO } from '@/utils/seo/seoBuilder';
-import { resolveSeoInput } from "@/data/seoData";
+import { resolveSeoInput } from '@/data/seoData';
 import { blogPosts } from '@/data/blogData';
 import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO } from '@/data/services';
 import { getTemplateForPageType } from '@/export/templateRegistry';
@@ -43,39 +43,16 @@ const ContentExport: React.FC = () => {
     pages.forEach(page => {
       output += `=== PAGE: ${page.title} — ${page.url} ===\n\n`;
       
-      // SEO Meta fields (from buildSEO only)
-      let seoInput;
-      if (page.type === 'case-study') {
-        const projectSEO = getProjectSEO(page.id);
-        seoInput = { 
-          path: page.url, 
-          kind: 'project' as const,
-          ...projectSEO 
-        };
-      } else if (page.type === 'blog-post') {
-        const blogPost = blogPosts.find(post => post.slug === page.id);
-        const blogSEO = getBlogSEO(page.id);
-        seoInput = {
-          path: page.url,
-          kind: 'post' as const,
-          title: blogPost?.title,
-          description: blogPost?.excerpt,
-          author: blogPost?.author,
-          published: blogPost?.date,
-          tags: blogPost?.tags,
-          ...blogSEO
-        };
-      } else {
-        const staticSEO = getStaticPageSEO(page.url);
-        seoInput = {
-          path: page.url,
-          kind: staticSEO?.kind || 'page' as const,
-          ...staticSEO
-        };
+      // ✅ Unified SEO
+      let seoInput: any = null;
+      try {
+        seoInput = resolveSeoInput(page.url);
+      } catch (err) {
+        console.warn(`⚠️ No SEO input resolved for ${page.url}`, err);
+        seoInput = { path: page.url, kind: 'page', title: page.title };
       }
-      
       const seoData = buildSEO(seoInput);
-      
+
       output += 'Meta\n';
       output += `- Meta Title: ${seoData.title}\n`;
       output += `- Meta Description: ${seoData.description}\n`;
@@ -333,7 +310,6 @@ const ContentExport: React.FC = () => {
         case 'blog-post':
           const blogPost = blogPosts.find(post => post.slug === page.id);
           if (blogPost) {
-            // Convert HTML content to plain text
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = blogPost.content;
             const plainTextContent = tempDiv.textContent || tempDiv.innerText || '';
@@ -381,13 +357,13 @@ const ContentExport: React.FC = () => {
                   h1: '',
                   h2: '',
                   h3: '',
-                  body: plainTextContent.slice(0, 500) + '...', // Truncate for export
+                  body: plainTextContent.slice(0, 500) + '...',
                   bullets: [],
                   captions: [],
                   formLabels: [],
                   tooltips: [],
                   ctas: [],
-                  notes: 'Blog post content (HTML converted to plain text, truncated)'
+                  notes: 'Blog post content (truncated)'
                 }
               }
             ];
@@ -395,7 +371,6 @@ const ContentExport: React.FC = () => {
           break;
           
         default:
-          // Get template sections but mark as empty
           const template = getTemplateForPageType(page.type);
           sections = template.map(section => ({
             key: section.key,
