@@ -27,3 +27,16 @@ export async function getAllRoutes() {
   // Minimal set to keep build green. Can be expanded to include all site routes.
   return ["/"];
 }
+
+// Legacy exports for backwards compatibility
+export function getStaticPageSEO() {
+  return null;
+}
+
+export function getProjectSEO() {
+  return null;
+}
+
+export function getBlogSEO() {
+  return null;
+}
