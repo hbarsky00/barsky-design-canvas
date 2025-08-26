@@ -7,17 +7,22 @@
   "engines": {
     "node": ">=18.17"
   },
-"scripts": {
-  "build": "vite build && tsx scripts/prerender.ts",
-  "build:vite": "vite build",
-  "build:dev": "vite build --mode development",
-  "prebuild": "node scripts/guard-seo-hardcodes.js",
-  "postbuild": "node scripts/validate-seo-build.js",
-  "dev": "vite",
-  "preview": "vite preview",
-  "lint": "eslint .",
-  "lint:fix": "eslint . --fix"
-},
+{
+  "overrides": {
+    "esbuild": "^0.24.4"
+  },
+  "scripts": {
+    "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true",
+    "dev": "vite",
+    "build:dev": "vite build --mode development",
+    "build:vite": "vite build",
+    "preview": "vite preview",
+    "prebuild": "node scripts/guard-seo-hardcodes.js",
+    "build": "vite build && tsx scripts/prerender.ts",
+    "postbuild": "node scripts/validate-seo-build.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",
     "@hookform/resolvers": "^3.10.0",
