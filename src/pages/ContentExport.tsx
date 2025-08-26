@@ -8,22 +8,17 @@ import { extractGlobalContent } from '@/export/extractors/global';
 import { extractHomepageContent } from '@/export/extractors/homepage';
 import { extractStructuredCaseStudyContent } from '@/export/extractors/structuredCaseStudy';
 import { buildSEO } from '@/utils/seo/seoBuilder';
-import { resolveSeoInput } from "@/data/seoData";
+import { resolveSeoInput } from '@/data/seoData';
 import { blogPosts } from '@/data/blogData';
 import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO } from '@/data/services';
 import { getTemplateForPageType } from '@/export/templateRegistry';
 import { SectionExport } from '@/export/extractors/global';
 
-// --- Helper: Strip HTML safely for build-time ---
-function stripHtmlTags(html: string): string {
-  return html.replace(/<[^>]*>/g, '');
-}
-
 const ContentExport: React.FC = () => {
   const exportText = useMemo(() => {
     let output = '';
-    
-    // GLOBAL section
+
+    // === GLOBAL ===
     output += '=== GLOBAL ===\n\n';
     const globalSections = extractGlobalContent();
     globalSections.forEach(section => {
@@ -41,16 +36,26 @@ const ContentExport: React.FC = () => {
       output += `CTA Buttons (label + URL): ${section.fields.ctas?.map(cta => `${cta.label} (${cta.url})`).join('; ') || ''}\n`;
       output += `Notes: ${section.fields.notes || ''}\n\n`;
     });
-    
-    // Process each page
+
+    // === PAGES ===
     const pages = PAGES_LIST.filter(page => page.type !== 'global');
-    
+
     pages.forEach(page => {
       output += `=== PAGE: ${page.title} — ${page.url} ===\n\n`;
 
-      // Build SEO for page
-      const seoInput = resolveSeoInput(page.url);
-      const seoData = seoInput ? buildSEO(seoInput as any) : { title: '', description: '' };
+      // --- SEO Meta ---
+      const seoInput = resolveSeoInput(page.url) as any;
+      const seoData = seoInput
+        ? buildSEO(seoInput)
+        : {
+            title: '',
+            description: '',
+            canonical: '',
+            type: 'website',
+            image: '',
+            imageAlt: '',
+            robots: 'index,follow',
+          };
 
       output += 'Meta\n';
       output += `- Meta Title: ${seoData.title}\n`;
@@ -58,19 +63,19 @@ const ContentExport: React.FC = () => {
       output += `- OpenGraph Title: ${seoData.title}\n`;
       output += `- OpenGraph Description: ${seoData.description}\n`;
       output += `- OpenGraph Image alt/caption: ${seoData.imageAlt || ''}\n\n`;
-      
-      // Extract sections
+
+      // --- Sections ---
       let sections: SectionExport[] = [];
-      
+
       switch (page.type) {
         case 'homepage':
           sections = extractHomepageContent();
           break;
-          
+
         case 'case-study':
           sections = extractStructuredCaseStudyContent(page.id);
           break;
-          
+
         case 'projects':
           sections = [
             {
@@ -119,7 +124,7 @@ const ContentExport: React.FC = () => {
             }
           ];
           break;
-          
+
         case 'services':
           sections = [
             {
@@ -177,7 +182,7 @@ const ContentExport: React.FC = () => {
             }
           ];
           break;
-          
+
         case 'about':
           sections = [
             {
@@ -199,7 +204,7 @@ const ContentExport: React.FC = () => {
             }
           ];
           break;
-          
+
         case 'contact':
           sections = [
             {
@@ -264,7 +269,7 @@ const ContentExport: React.FC = () => {
             }
           ];
           break;
-          
+
         case 'blog-index':
           sections = [
             {
@@ -305,11 +310,14 @@ const ContentExport: React.FC = () => {
             }
           ];
           break;
-          
+
         case 'blog-post':
           const blogPost = blogPosts.find(post => post.slug === page.id);
           if (blogPost) {
-            const plainTextContent = stripHtmlTags(blogPost.content || '');
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = blogPost.content;
+            const plainTextContent = tempDiv.textContent || tempDiv.innerText || '';
+            
             sections = [
               {
                 key: 'header',
@@ -359,13 +367,13 @@ const ContentExport: React.FC = () => {
                   formLabels: [],
                   tooltips: [],
                   ctas: [],
-                  notes: 'Blog post content (plain text, truncated)'
+                  notes: 'Blog post content (truncated)'
                 }
               }
             ];
           }
           break;
-          
+
         default:
           const template = getTemplateForPageType(page.type);
           sections = template.map(section => ({
@@ -386,7 +394,8 @@ const ContentExport: React.FC = () => {
             }
           }));
       }
-      
+
+      // Output each section
       sections.forEach(section => {
         output += `--- SECTION: ${section.displayName} ---\n`;
         output += `Section Key/ID: ${section.key}\n`;
@@ -402,22 +411,36 @@ const ContentExport: React.FC = () => {
         output += `CTA Buttons (label + URL): ${section.fields.ctas?.map(cta => `${cta.label} (${cta.url})`).join('; ') || ''}\n`;
         output += `Notes: ${section.fields.notes || ''}\n\n`;
       });
-      
+
+      // Missing template sections
+      const template = getTemplateForPageType(page.type);
+      const missingSections = template.filter(templateSection => 
+        !sections.some(section => section.key === templateSection.key)
+      );
+
+      if (missingSections.length > 0) {
+        output += 'MISSING (Template Sections Not Found in Page Content Source):\n';
+        missingSections.forEach(section => {
+          output += `- ${section.displayName}\n`;
+        });
+        output += '\n';
+      }
+
       output += '\n';
     });
-    
+
     return output;
   }, []);
-  
+
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(exportText);
       toast.success('Content copied to clipboard!');
-    } catch (err) {
+    } catch {
       toast.error('Failed to copy content');
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="max-w-4xl mx-auto">
@@ -434,7 +457,6 @@ const ContentExport: React.FC = () => {
             Copy All Content
           </Button>
         </div>
-        
         <div className="bg-muted/30 border rounded-lg p-6">
           <pre className="whitespace-pre-wrap text-sm font-mono text-foreground overflow-x-auto">
             {exportText}
