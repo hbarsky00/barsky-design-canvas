@@ -7,10 +7,6 @@
   "engines": {
     "node": ">=18.17"
   },
-{
-  "overrides": {
-    "esbuild": "^0.24.4"
-  },
   "scripts": {
     "clean": "rimraf dist .vite .turbo .parcel-cache .cache || true",
     "dev": "vite",
