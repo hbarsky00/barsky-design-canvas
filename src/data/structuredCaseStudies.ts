@@ -1029,7 +1029,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     heroVideo: {
       src: "investor-loan-demo.mp4",
-      poster: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
+      poster: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
       alt: "Investor loan platform dashboard"
     },
     researchSection: {
@@ -1054,7 +1054,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/excel-document-used-to-save-loan-information.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/excelterror.jpg",
           alt: "Excel-based loan tracking spreadsheet with inconsistent fields and manual totals",
           caption: "Excel caused errors and compliance risk",
           annotations: [
