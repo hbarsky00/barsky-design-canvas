@@ -59,7 +59,7 @@ const caseStudies: CaseStudy[] = [
     title: "SplitTime: 64% Less Scheduling Conflict for Co-Parents",
     description: "Built a comprehensive co-parenting platform that streamlines scheduling, communication, and coordination between separated parents. The app features shared calendars, expense tracking, and communication tools designed to reduce conflict and prioritize children's wellbeing.",
     impact: "64% Less Scheduling Conflict",
-    url: "/project/split-time",
+    url: "/project/splittime",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/studiodisplaynewlook-1.png",
       alt: "SplitTime co-parenting app showing calendar and communication features"
