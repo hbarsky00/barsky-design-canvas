@@ -179,7 +179,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       blurb: "60% of beginners reported being 'too confused to invest.' 70% of pros stitched multiple platforms together for speed + analytics. Competitors: Coinbase = too simple, Binance = too dense, Kraken = too technical.",
       researchImages: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/competetive.png",
           alt: "Competitive analysis of crypto trading platforms",
           caption: "Competitive analysis showing gaps in existing crypto platforms"
         }
@@ -343,7 +343,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
+      image: "https://barskyux.com/wp-content/uploads/2025/08/Promo-Image.jpg",
       projectName: "Trading Without Friction",
       results: [
         "35% increase in onboarding conversion",
