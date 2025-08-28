@@ -75,15 +75,12 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group"
-      style={{ ...containerStyle, transformStyle: 'preserve-3d', willChange: 'transform' }}
-    >
-      <Link
-        to={study.url}
-        className="block rounded-2xl border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-white/95 border-gray-200/80 hover:border-primary/30 hover:shadow-lg hover:shadow-gray-200/20"
-      >
-        {/* Image Section */}
-        <div className="relative overflow-hidden">
+       className="group"
+       style={{ ...containerStyle, transformStyle: 'preserve-3d', willChange: 'transform' }}
+     >
+       <div className="rounded-2xl border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-white/95 border-gray-200/80 hover:border-primary/30 hover:shadow-lg hover:shadow-gray-200/20">
+         {/* Image Section */}
+         <div className="relative overflow-hidden">
           <img
             src={study.image}
             alt={study.title}
@@ -94,9 +91,9 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
               {study.category}
             </span>
           </div>
-          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <ExternalLink className="w-5 h-5 text-on-surface-variant" />
-          </div>
+           <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+             <ExternalLink className="w-5 h-5 text-on-surface-variant" />
+           </div>
           
           {/* Impact Badge */}
           <div className="absolute bottom-4 left-4 right-4">
@@ -106,7 +103,7 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
                 <span className="font-medium">{getResponsiveTruncatedText(study.impact)}</span>
               </div>
             </div>
-          </div>
+         </div>
         </div>
 
         {/* Content Section */}
@@ -134,30 +131,31 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
             ))}
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center text-primary font-semibold group-hover:text-primary/90">
-              <span>Read Case Study</span>
-              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-            </div>
-          </div>
-        </div>
-      </Link>
-      
-      {/* Live Link Button for SplitTime */}
-      {study.liveUrl && (
-        <div className="px-6 pb-6">
-          <a
-            href={study.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center w-full py-2 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/30 rounded-lg transition-all duration-200 font-medium"
-          >
-            View Live
-            <ExternalLink className="w-4 h-4 ml-2" />
-          </a>
-        </div>
-      )}
-    </motion.div>
+           {/* Action Buttons */}
+           <div className="flex flex-col gap-3">
+             <Link
+               to={study.url}
+               className="flex items-center justify-center py-2 px-4 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg transition-all duration-200 font-medium"
+             >
+               <span>View Case Study</span>
+               <ArrowRight className="w-4 h-4 ml-2" />
+             </Link>
+             
+             {study.liveUrl && (
+               <a
+                 href={study.liveUrl}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="flex items-center justify-center py-2 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/30 rounded-lg transition-all duration-200 font-medium"
+               >
+                 View Live
+                 <ExternalLink className="w-4 h-4 ml-2" />
+               </a>
+             )}
+           </div>
+         </div>
+       </div>
+     </motion.div>
   );
 };
 
