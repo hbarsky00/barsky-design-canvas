@@ -16,7 +16,7 @@ const SplittimeHero: React.FC<SplittimeHeroProps> = ({ onImageClick, onImageKeyp
       {/* Single focal background image */}
       <div className="absolute inset-0">
         <img 
-          src="/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png" 
+          src="https://barskyux.com/wp-content/uploads/2025/08/signupscree.png" 
           alt="Splittime co-parenting dashboard showing neutral communication tools"
           className="w-full h-full object-cover object-center"
         />
