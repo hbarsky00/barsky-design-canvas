@@ -165,7 +165,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
       src: "/lovable-uploads/crypto-hero.mp4",
-      poster: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png", 
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
       alt: "Crypto trading platform overview"
     },
     heroMetrics: [
@@ -177,6 +177,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     researchSection: {
       subhead: "Gathering insights",
       blurb: "60% of beginners reported being 'too confused to invest.' 70% of pros stitched multiple platforms together for speed + analytics. Competitors: Coinbase = too simple, Binance = too dense, Kraken = too technical.",
+      researchImages: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/competetive.png",
+          alt: "Competitive analysis of crypto trading platforms",
+          caption: "Competitive analysis showing gaps in existing crypto platforms"
+        }
+      ],
       emergingThemes: [
         {
           eyebrow: "BEGINNER BARRIERS",
@@ -204,7 +211,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Foundation & Principles",
       workshopKickoff: "1. Trust is visible → show security upfront. 2. Speed is retention → every tap matters. 3. Guided simplicity → confidence without hand-holding.",
       explorations: "Targets: +30% onboarding conversion, –50% order errors, +25% repeat logins in 30 days.",
-      decisionPoint: "Focus on a dual-mode design serving both novice and expert traders."
+      decisionPoint: "Focus on a dual-mode design serving both novice and expert traders.",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
+          alt: "Initial concepts and sketches for crypto onboarding",
+          caption: "Foundation and principles guiding the dual-mode crypto platform design"
+        },
+        {
+          src: "https://www.loom.com/share/6b30e410c7394757956b9f6f2d10d10f?sid=75203801-3262-4a46-a502-41a55aa8839c",
+          alt: "Decision point video demonstration",
+          caption: "Video walkthrough of key decision points in the design process"
+        }
+      ]
     },
     keyInsights: [
       {
@@ -231,7 +250,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: "My Thought Process",
       title: "",
-      content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Progressive disclosure: hide complexity until requested. Latency = UX: live quotes, optimistic states, visible sync timers. Confidence and speed weren't opposites—they were interdependent."
+      content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Progressive disclosure: hide complexity until requested. Latency = UX: live quotes, optimistic states, visible sync timers. Confidence and speed weren't opposites—they were interdependent.",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Thought-Process.png",
+          alt: "Design thinking process for crypto platform",
+          caption: "Thought process visualization showing design decisions for crypto trading platform"
+        }
+      ]
     },
     ideationSection: {
       subhead: "Core Features & Interface Design",
@@ -253,12 +279,38 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           description: "Clear P&L, history, exports."
         }
       ],
-      iterations: []
+      iterations: [
+        {
+          label: "Landing Page Decision",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/whichlandingpage.png",
+          alt: "Landing page design iteration showing user-friendly crypto onboarding",
+          annotations: [
+            { text: "Simplified entry flow reduces barrier to first trade", x: 30, y: 25, type: "improvement" },
+            { text: "Trust indicators prominently displayed", x: 70, y: 45, type: "feature" }
+          ]
+        },
+        {
+          label: "Onboarding Flow",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Onboardingview.png",
+          alt: "Onboarding view showing guided user experience for crypto beginners",
+          annotations: [
+            { text: "Progressive disclosure prevents information overload", x: 40, y: 30, type: "improvement" },
+            { text: "Dual-mode design caters to both novice and expert traders", x: 60, y: 65, type: "feature" }
+          ]
+        }
+      ]
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "",
-      content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it."
+      content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it.",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/iphonelearning.png",
+          alt: "Early crypto design that didn't work well",
+          caption: "Learning from design iterations that didn't meet user needs"
+        }
+      ]
     },
     userTestingSection: {
       title: "Validation & Testing",
@@ -280,6 +332,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "↓45%", label: "Order errors" },
         { value: "+25%", label: "Pro trader retention" },
         { value: "+40%", label: "Portfolio engagement (users checked balances daily, not weekly)" }
+      ],
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/iphonelearning.png",
+          alt: "Finished crypto trading product showing successful outcomes",
+          caption: "Final product demonstrating the successful dual-mode crypto trading platform"
+        }
       ]
     },
     sections: [],
@@ -899,8 +958,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/splittime-user-flow.png",
-          alt: "Splittime user satisfaction metrics and communication improvements"
+          src: "https://barskyux.com/wp-content/uploads/2025/08/signupscree.png",
+          alt: "Splittime signup screen showing the successful outcome interface"
         }
       ]
     },
@@ -1244,8 +1303,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png",
-          alt: "Low-fidelity order builder highlighting outcome-driving design decisions",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard.png",
+          alt: "Analysis dashboard showing the successful loan processing outcomes",
           caption: "",
           annotations: [
             {
@@ -1526,8 +1585,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/lovable-uploads/quickflow_process_flow.svg",
-          alt: "Business management system operational improvements and metrics"
+          src: "https://www.loom.com/share/6b2dbd5672944f3b8bbaea71335afab7?sid=f9fa11c9-9c89-440b-bbc8-8eca0aa7c524",
+          alt: "Business management system full user journey demonstration",
+          caption: "Complete user journey showing the full process in high fidelity"
         }
       ]
     },

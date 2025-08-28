@@ -14,7 +14,7 @@ export const PAGES_LIST: PageInfo[] = [
   
   // Static pages
   { id: "homepage", title: "Home", url: "/", type: "homepage" },
-  { id: "projects", title: "Projects", url: "/projects", type: "projects" },
+  
   { id: "services", title: "Services", url: "/services", type: "services" },
   { id: "about", title: "About", url: "/about", type: "about" },
   { id: "contact", title: "Contact", url: "/contact", type: "contact" },

@@ -14,7 +14,7 @@ import SitemapGenerator from "@/components/seo/SitemapGenerator";
 
 // Page imports
 import Index from "@/pages/Index";
-import Projects from "@/pages/Projects";
+
 import Services from "@/pages/Services";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
@@ -52,8 +52,6 @@ function App() {
             {/* Home route */}
             <Route path="/" element={<Index />} />
             
-            {/* Projects listing */}
-            <Route path="/projects" element={<Projects />} />
             
             {/* Structured case studies - these override the generic ProjectDetail routing */}
             <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
