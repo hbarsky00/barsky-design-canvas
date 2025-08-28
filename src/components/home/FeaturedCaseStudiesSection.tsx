@@ -79,45 +79,47 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
        style={{ ...containerStyle, transformStyle: 'preserve-3d', willChange: 'transform' }}
      >
        <div className="rounded-2xl border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-white/95 border-gray-200/80 hover:border-primary/30 hover:shadow-lg hover:shadow-gray-200/20">
-         {/* Image Section */}
-         <div className="relative overflow-hidden">
-          <img
-            src={study.image}
-            alt={study.title}
-            className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute top-4 left-4">
-            <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-              {study.category}
-            </span>
-          </div>
-           <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-             <ExternalLink className="w-5 h-5 text-on-surface-variant" />
-           </div>
-          
-          {/* Impact Badge */}
-          <div className="absolute bottom-4 left-4 right-4">
-            <div className={getAnnotationClasses("max-w-none")}>
-              <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-yellow-400" />
-                <span className="font-medium">{getResponsiveTruncatedText(study.impact)}</span>
+          {/* Image Section - Clickable */}
+          <Link to={study.url} className="block relative overflow-hidden">
+            <img
+              src={study.image}
+              alt={study.title}
+              className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute top-4 left-4">
+              <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+                {study.category}
+              </span>
+            </div>
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <ExternalLink className="w-5 h-5 text-on-surface-variant" />
+            </div>
+            
+            {/* Impact Badge */}
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className={getAnnotationClasses("max-w-none")}>
+                <div className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-yellow-400" />
+                  <span className="font-medium">{getResponsiveTruncatedText(study.impact)}</span>
+                </div>
               </div>
             </div>
-         </div>
-        </div>
+          </Link>
 
-        {/* Content Section */}
-        <div className="p-6">
-          {/* Title - Made Much Bolder and More Prominent */}
-          <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
-            {study.title}
-          </h3>
-          <h4 className="text-lg font-semibold text-primary mb-3">
-            {study.subtitle}
-          </h4>
-          <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 hidden sm:block">
-            {study.description}
-          </p>
+         {/* Content Section */}
+         <div className="p-6">
+           {/* Title - Clickable */}
+           <Link to={study.url} className="block mb-3">
+             <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+               {study.title}
+             </h3>
+             <h4 className="text-lg font-semibold text-primary">
+               {study.subtitle}
+             </h4>
+           </Link>
+           <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 hidden sm:block">
+             {study.description}
+           </p>
           
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-4">
