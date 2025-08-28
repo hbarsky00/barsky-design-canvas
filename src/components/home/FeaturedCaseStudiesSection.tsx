@@ -47,6 +47,7 @@ const featuredCaseStudies = [
     description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
     image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
     url: "/project/splittime",
+    liveUrl: "http://splittime.pro",
     category: "Productivity",
     impact: "65% reduction in scheduling conflicts",
     tags: ["AI", "Productivity", "Scheduling"]
@@ -141,6 +142,21 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
           </div>
         </div>
       </Link>
+      
+      {/* Live Link Button for SplitTime */}
+      {study.liveUrl && (
+        <div className="px-6 pb-6">
+          <a
+            href={study.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-full py-2 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/30 rounded-lg transition-all duration-200 font-medium"
+          >
+            View Live
+            <ExternalLink className="w-4 h-4 ml-2" />
+          </a>
+        </div>
+      )}
     </motion.div>
   );
 };

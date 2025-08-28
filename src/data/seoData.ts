@@ -49,8 +49,8 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     image: "https://barskydesign.pro/images/herbalink-desktop-1.webp"
   },
   "splittime": {
-    title: "SplitTime – Co‑Parenting Planner Case Study",
-    description: "A thoughtful co‑parenting app that reduces conflict with shared calendars, smart reminders, and transparent expense tracking designed for real families facing complex schedules.",
+    title: "SplitTime — Co-Parenting App",
+    description: "Scheduling, messaging, and expense tracking for co-parents.",
     image: "https://barskydesign.pro/images/splittime-desktop-1.webp"
   },
   "business-management": {

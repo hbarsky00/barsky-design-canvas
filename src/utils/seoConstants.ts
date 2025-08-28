@@ -16,10 +16,10 @@ export const SEO_CONSTANTS = {
     return getDynamicBaseUrl();
   },
   DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/hiram-barsky-profile.jpg',
-  SITE_NAME: 'Hiram Barsky – Product Designer & Gen AI Developer',
+  SITE_NAME: 'Hiram Barsky — Lead UX Designer & Design Leader',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
-  DEFAULT_DESCRIPTION: 'Transforming complex problems into intuitive digital experiences with data-driven design and AI-powered solutions.',
+  DEFAULT_DESCRIPTION: 'Driving Design Strategy & Leadership · Passion for High Craft, Gen AI, Cyber & Fintech',
   
   // Meta tag defaults
   THEME_COLOR: '#3B82F6',
