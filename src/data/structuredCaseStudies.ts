@@ -523,7 +523,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png",
           alt: "User testing session showing booking flow validation",
           caption: "Testing sessions showed users could easily complete bookings with high confidence in practitioner credentials."
         }
