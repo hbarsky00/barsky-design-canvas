@@ -523,7 +523,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png",
           alt: "User testing session showing booking flow validation",
           caption: "Testing sessions showed users could easily complete bookings with high confidence in practitioner credentials."
         }
@@ -566,7 +566,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           ]
         },
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png",
           alt: "HerbaLink final product mobile interface",
           caption: "HerbaLink mobile experience featuring the book an herbalist functionality"
         }
@@ -584,7 +584,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/symptomtrackermobile.png",
-          alt: "HerbaLink conversation with herbalist and symptom tracker interface"
+          alt: "HerbaLink conversation with herbalist and symptom tracker interface",
+          caption: "HerbaLink conversation with herbalist and symptom tracker interface"
         }
       ]
     },
