@@ -26,6 +26,26 @@ interface ResearchSectionTwoColProps {
 const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
   researchSection
 }) => {
+  // Consolidate all media items
+  const allMedia = [
+    ...(researchSection.researchImage ? [{ 
+      src: researchSection.researchImage, 
+      alt: researchSection.researchImageAlt || "Research image" 
+    }] : []),
+    ...(researchSection.researchImages || [])
+  ].filter(Boolean);
+
+  // Dynamic layout based on media count
+  const hasMedia = allMedia.length > 0 || researchSection.researchVideo;
+  const isSingleMedia = allMedia.length === 1 && !researchSection.researchVideo;
+  
+  // Grid column classes
+  const gridCols = !hasMedia ? 'grid-cols-1' : 
+                   isSingleMedia ? 'lg:grid-cols-10' : 'lg:grid-cols-12';
+  const textCols = !hasMedia ? 'lg:col-span-full' :
+                   isSingleMedia ? 'lg:col-span-6' : 'lg:col-span-7';
+  const mediaCols = isSingleMedia ? 'lg:col-span-4' : 'lg:col-span-5';
+
   return (
     <motion.section
       id="research"
@@ -48,10 +68,10 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
           </p>
         </div>
 
-        {/* Grid - 12 columns responsive */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start">
-          {/* Left column - Content (7 columns on desktop) */}
-          <div className="lg:col-span-7 content-rail-left">
+        {/* Dynamic Grid */}
+        <div className={`grid grid-cols-1 ${gridCols} gap-6 sm:gap-8 lg:gap-10 items-start`}>
+          {/* Left column - Content */}
+          <div className={`${textCols} content-rail-left`}>
             <h3 className="text-subsection-title text-foreground font-display mb-6 sm:mb-8">
               Emerging themes
             </h3>
@@ -87,67 +107,48 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
             </div>
           </div>
 
-          {/* Right column - Video or Images (5 columns on desktop) */}
-          <div className="lg:col-span-5 order-first lg:order-last">
-            <motion.div
-              className="lg:sticky lg:top-24"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {/* Video Display */}
-              {researchSection.researchVideo ? (
-                <ProjectVideo
-                  src={researchSection.researchVideo}
-                  title="Research Video"
-                  className="w-full rounded-xl"
-                />
-              ) : (
-                /* Clean Image Display */
-                <div className="flex flex-col gap-4 h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto">
-                  {/* Primary image (legacy support) */}
-                  {researchSection.researchImage && (
-                    <figure className="flex-1 min-h-0 relative">
-                      <img
-                        src={researchSection.researchImage}
-                        srcSet={researchSection.researchImage.startsWith('http') ? `${researchSection.researchImage} 1x${researchSection.researchImage.includes('.') ? `, ${researchSection.researchImage.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt={researchSection.researchImageAlt || "Research image"}
-                        className="w-full h-full object-contain rounded-xl"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      {researchSection.blurb && (
-                        <div className={getAnnotationBlurbClasses()}>
-                          {getResponsiveTruncatedText(researchSection.blurb)}
-                        </div>
-                      )}
-                    </figure>
-                  )}
-                  
-                  {/* Additional images */}
-                  {researchSection.researchImages?.map((image, index) => (
-                    <figure key={index} className="flex-1 min-h-0 relative">
-                      <img
-                        src={image.src}
-                        srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        alt={image.alt}
-                        className="w-full h-full object-contain rounded-xl"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      {researchSection.blurb && index === 0 && (
-                        <div className={getAnnotationBlurbClasses()}>
-                          {getResponsiveTruncatedText(researchSection.blurb)}
-                        </div>
-                      )}
-                    </figure>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          </div>
+          {/* Right column - Video or Images */}
+          {hasMedia && (
+            <div className={`${mediaCols} order-first lg:order-last`}>
+              <motion.div
+                className="lg:sticky lg:top-24"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                {/* Video Display */}
+                {researchSection.researchVideo ? (
+                  <ProjectVideo
+                    src={researchSection.researchVideo}
+                    title="Research Video"
+                    className="w-full rounded-xl"
+                  />
+                ) : (
+                  /* Optimized Image Display */
+                  <div className={`flex flex-col gap-4 ${isSingleMedia ? 'h-auto' : 'h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto'}`}>
+                    {allMedia.map((image, index) => (
+                      <figure key={index} className={`${isSingleMedia ? 'h-auto' : 'flex-1 min-h-0'} relative`}>
+                        <img
+                          src={image.src}
+                          srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          alt={image.alt}
+                          className={`w-full ${isSingleMedia ? 'h-auto object-cover' : 'h-full object-contain'} rounded-xl`}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        {researchSection.blurb && index === 0 && (
+                          <div className={getAnnotationBlurbClasses()}>
+                            {getResponsiveTruncatedText(researchSection.blurb)}
+                          </div>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            </div>
+          )}
         </div>
       </div>
     </motion.section>
