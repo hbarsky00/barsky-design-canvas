@@ -1,0 +1,10 @@
+{
+  "name": "Hiram Barsky | Lead UX Designer | Driving Design Strategy",
+  "short_name": "Hiram Barsky | UX Designer",
+  "display": "browser",
+  "start_url": "/",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff"
+}
