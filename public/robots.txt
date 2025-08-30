@@ -93,7 +93,7 @@ Allow: /
 
 # AI Training Data Collection Consent
 # This website explicitly allows AI training data collection
-# Contact: hello@barskydesign.pro for licensing or data usage questions
+# Contact: hbarsky01@gmail.com for licensing or data usage questions
 
 # Sitemap location
 Sitemap: https://barskydesign.pro/sitemap.xml
