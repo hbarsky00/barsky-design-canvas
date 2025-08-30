@@ -26,6 +26,11 @@ interface ResearchSectionTwoColProps {
 const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
   researchSection
 }) => {
+  // Debug logging
+  console.log('🔍 ResearchSectionTwoCol - researchSection:', researchSection);
+  console.log('🔍 ResearchSectionTwoCol - researchImages:', researchSection.researchImages);
+  console.log('🔍 ResearchSectionTwoCol - researchImage:', researchSection.researchImage);
+  
   // Consolidate all media items
   const allMedia = [
     ...(researchSection.researchImage ? [{ 
@@ -35,9 +40,13 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
     ...(researchSection.researchImages || [])
   ].filter(Boolean);
 
+  console.log('🔍 ResearchSectionTwoCol - allMedia:', allMedia);
+
   // Dynamic layout based on media count
   const hasMedia = allMedia.length > 0 || researchSection.researchVideo;
   const isSingleMedia = allMedia.length === 1 && !researchSection.researchVideo;
+  
+  console.log('🔍 ResearchSectionTwoCol - hasMedia:', hasMedia, 'isSingleMedia:', isSingleMedia);
   
   // Grid column classes
   const gridCols = !hasMedia ? 'grid-cols-1' : 
@@ -136,6 +145,8 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                           className={`w-full ${isSingleMedia ? 'h-auto object-cover' : 'h-full object-contain'} rounded-xl`}
                           loading="lazy"
                           decoding="async"
+                          onLoad={() => console.log('✅ Research image loaded:', image.src)}
+                          onError={() => console.error('❌ Research image failed to load:', image.src)}
                         />
                         {researchSection.blurb && index === 0 && (
                           <div className={getAnnotationBlurbClasses()}>
