@@ -27,12 +27,26 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
+    id: "crypto",
+    tags: ["FinTech", "Crypto", "Mobile & Web"],
+    title: "Trading Without Friction",
+    description: "A dual-mode crypto app that boosted conversions by 35% and cut errors by 45%. Designed to serve both hesitant first-timers and speed-driven traders through progressive disclosure and unified interface design.",
+    impact: "+35% Conversion · –40% Time-to-First-Trade · +25% Retention",
+    url: "/project/crypto",
+    images: {
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
+      alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
+    },
+    layout: "side-by-side"
+  },
+  {
     id: "business-management",
     tags: ["B2B", "Productivity", "Enterprise"],
     title: "Business Management: 40% Faster Project Delivery",
     description: "Designed an integrated business management platform that consolidates project tracking, team communication, and resource allocation. The solution streamlined workflows for mid-size companies, reducing administrative overhead and improving project visibility across departments.",
     impact: "40% Faster Project Delivery",
     url: "/project/business-management",
+    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/featureimagenew.png",
       alt: "Business management dashboard showing project tracking and team collaboration"
@@ -46,7 +60,7 @@ const caseStudies: CaseStudy[] = [
     description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
     impact: "3× Practitioner Bookings",
     url: "/project/herbalink",
-    liveUrl: "http://herbalink.live",
+    liveUrl: "https://herbalink.live",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
@@ -60,6 +74,7 @@ const caseStudies: CaseStudy[] = [
     description: "Built a comprehensive co-parenting platform that streamlines scheduling, communication, and coordination between separated parents. The app features shared calendars, expense tracking, and communication tools designed to reduce conflict and prioritize children's wellbeing.",
     impact: "64% Less Scheduling Conflict",
     url: "/project/splittime",
+    liveUrl: "https://splittime.pro/",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/studiodisplaynewlook-1.png",
       alt: "SplitTime co-parenting app showing calendar and communication features"
@@ -77,19 +92,6 @@ const caseStudies: CaseStudy[] = [
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",
       alt: "Investment platform showing deal analysis and portfolio management"
-    },
-    layout: "side-by-side"
-  },
-  {
-    id: "crypto",
-    tags: ["FinTech", "Crypto", "Mobile & Web"],
-    title: "Trading Without Friction",
-    description: "A dual-mode crypto app that boosted conversions by 35% and cut errors by 45%. Designed to serve both hesitant first-timers and speed-driven traders through progressive disclosure and unified interface design.",
-    impact: "+35% Conversion · –40% Time-to-First-Trade · +25% Retention",
-    url: "/project/crypto",
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
-      alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
     },
     layout: "side-by-side"
   }
