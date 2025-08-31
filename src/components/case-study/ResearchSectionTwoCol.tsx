@@ -137,7 +137,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                   <div className={`flex flex-col gap-4 ${isSingleMedia ? 'h-auto' : 'h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto'}`}>
                     {allMedia.map((image, index) => (
                       <figure key={index} className={`${isSingleMedia ? 'h-auto' : 'flex-1 min-h-0'} relative`}>
-                        <img
+                         <img
                           src={image.src}
                           srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -146,7 +146,15 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                           loading="lazy"
                           decoding="async"
                           onLoad={() => console.log('✅ Research image loaded:', image.src)}
-                          onError={() => console.error('❌ Research image failed to load:', image.src)}
+                          onError={() => {
+                            console.error('❌ Research image failed to load:', image.src);
+                            console.log('❌ Image error details:', { src: image.src, alt: image.alt });
+                          }}
+                          style={{ 
+                            border: '2px solid red',
+                            minHeight: '200px',
+                            backgroundColor: 'yellow'
+                          }}
                         />
                         {researchSection.blurb && index === 0 && (
                           <div className={getAnnotationBlurbClasses()}>
