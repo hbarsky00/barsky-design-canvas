@@ -181,7 +181,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           imageSrc: "/lovable-uploads/943e338c-1cad-49fe-8a7b-7824b0c4ff60.png",
           alt: "Competitive analysis of crypto trading platforms",
-          caption: "Competitive analysis showing gaps in existing crypto platforms"
+          caption: "Competitive analysis showing gaps in existing crypto platforms",
         }
       ],
       emergingThemes: [
