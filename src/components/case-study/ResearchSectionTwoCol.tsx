@@ -41,6 +41,12 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
   ].filter(Boolean);
 
   console.log('🔍 ResearchSectionTwoCol - allMedia:', allMedia);
+  console.log('🔍 ResearchSectionTwoCol - allMedia length:', allMedia.length);
+  
+  // Log each image URL individually
+  allMedia.forEach((media, index) => {
+    console.log(`🔍 Image ${index + 1}:`, media.src);
+  });
 
   // Dynamic layout based on media count
   const hasMedia = allMedia.length > 0 || researchSection.researchVideo;
