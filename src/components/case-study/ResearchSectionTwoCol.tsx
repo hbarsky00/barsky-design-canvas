@@ -133,28 +133,31 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                     className="w-full rounded-xl"
                   />
                 ) : (
-                  /* Optimized Image Display */
-                  <div className={`flex flex-col gap-4 ${isSingleMedia ? 'h-auto' : 'h-[56vh] lg:h-[74vh] max-h-[74vh] overflow-y-auto'}`}>
-                    {allMedia.map((image, index) => (
-                      <figure key={index} className={`${isSingleMedia ? 'h-auto' : 'flex-1 min-h-0'} relative`}>
-                        <img
-                          src={image.src}
-                          srcSet={image.src.startsWith('http') ? `${image.src} 1x${image.src && image.src.includes('.') ? `, ${image.src.replace(/\.(jpg|jpeg|png)$/, '@2x.$1')} 2x` : ''}` : undefined}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          alt={image.alt}
-                          className={`w-full ${isSingleMedia ? 'h-auto object-cover' : 'h-full object-contain'} rounded-xl`}
-                          loading="lazy"
-                          decoding="async"
-                          onLoad={() => console.log('✅ Research image loaded:', image.src)}
-                          onError={() => console.error('❌ Research image failed to load:', image.src)}
-                        />
-                        {researchSection.blurb && index === 0 && (
-                          <div className={getAnnotationBlurbClasses()}>
-                            {getResponsiveTruncatedText(researchSection.blurb)}
-                          </div>
-                        )}
-                      </figure>
-                    ))}
+                  /* DEBUGGING: Simplified Image Display */
+                  <div className="bg-red-100 border-2 border-red-500 p-4 rounded-xl">
+                    <div className="text-red-600 font-bold mb-2">DEBUG: Image Container ({allMedia.length} images)</div>
+                    <div className="flex flex-col gap-4">
+                      {allMedia.map((image, index) => (
+                        <figure key={index} className="bg-blue-100 border-2 border-blue-500 p-2 rounded">
+                          <div className="text-blue-600 text-sm mb-2">DEBUG: Image {index + 1} - {image.src}</div>
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full min-h-[200px] max-h-[400px] object-contain rounded border-2 border-green-500"
+                            onLoad={() => console.log('✅ Research image loaded successfully:', image.src)}
+                            onError={(e) => {
+                              console.error('❌ Research image failed to load:', image.src);
+                              console.error('Error details:', e);
+                            }}
+                          />
+                          {researchSection.blurb && index === 0 && (
+                            <div className="mt-2 p-2 bg-yellow-100 border border-yellow-300 rounded text-sm">
+                              {researchSection.blurb}
+                            </div>
+                          )}
+                        </figure>
+                      ))}
+                    </div>
                   </div>
                 )}
               </motion.div>
