@@ -1053,14 +1053,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Stepwise flow; actions disabled until lender selection; real-time feedback."
         }
       ],
-        researchImages: [
+      researchImages: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/excelterror.jpg",
-          alt: "Excel Manual Input"
-        },
-        {
-          src: "hhttps://barskyux.com/wp-content/uploads/2024/01/IMG_20230929_121600322.jpg",
-          alt: "Drawing out scenarios for Orderbook"      
+          alt: "Excel-based loan tracking spreadsheet with inconsistent fields and manual totals",
         }
       ]
     },
