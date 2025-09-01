@@ -1056,11 +1056,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
    researchImages: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/excelterror.jpg",
-        alt: "Excel Manual Input"
+          alt: "Excel Manual Input"
         },
         {
           src: "hhttps://barskyux.com/wp-content/uploads/2024/01/IMG_20230929_121600322.jpg",
-          alt: "Drawing out scenarios for Orderbook"   
+          alt: "Drawing out a gameplan for Orderbook"      
         }
       ]
     },
