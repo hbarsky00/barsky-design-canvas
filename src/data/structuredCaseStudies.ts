@@ -183,8 +183,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
             alt: "Competitive Analysis of Crypto Apps"
           },
           {
-            src: "https://attractgroup.com/wp-content/uploads/2024/11/Competitive-Analysis-for-Exchange-Strategy-scaled.png",
-            alt: "Analysis for Analysis"
+            src: "https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png",
+            alt: "User Flow Chart for Crypto App"
           }
         ],
         emergingThemes: [
