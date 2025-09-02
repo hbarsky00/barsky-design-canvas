@@ -174,34 +174,37 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { value: "–45%", label: "Order Errors" },
       { value: "+25%", label: "Pro Trader Retention" }
     ],
-      researchImages: [
-        {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png",
-          alt: "Competitive Analysis of Crypto Apps"
-        },
-        {
-          src: "https://attractgroup.com/wp-content/uploads/2024/11/Competitive-Analysis-for-Exchange-Strategy-scaled.png",
-          alt: "Analysis for Analysis"
-        }
-      ],
-      emergingThemes: [
-        {
-          eyebrow: "BEGINNER BARRIERS",
-          insight: "Drove guided trading mode with safety rails.",
-          drove: "Guided trading mode with clear explanations and safety rails."
-        },
-        {
-          eyebrow: "PRO LIMITATIONS", 
-          insight: "Drove advanced panel with hotkeys, presets, and live order book.",
-          drove: "Advanced panel with hotkeys, presets, and live order book."
-        },
-        {
-          eyebrow: "COMPETITIVE GAPS",
-          insight: "Drove a dual-mode approach serving both audiences.",
-          drove: "Dual-mode approach serving both audiences in one platform."
-        }
-      ]
-    },
+      researchSection: {
+        subhead: "Interviews and competitive analysis revealed beginner barriers and pro constraints.",
+        blurb: "Insights drove a dual-mode approach.",
+        researchImages: [
+          {
+            src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png",
+            alt: "Competitive Analysis of Crypto Apps"
+          },
+          {
+            src: "https://attractgroup.com/wp-content/uploads/2024/11/Competitive-Analysis-for-Exchange-Strategy-scaled.png",
+            alt: "Analysis for Analysis"
+          }
+        ],
+        emergingThemes: [
+          {
+            eyebrow: "BEGINNER BARRIERS",
+            insight: "Drove guided trading mode with safety rails.",
+            drove: "Guided trading mode with clear explanations and safety rails."
+          },
+          {
+            eyebrow: "PRO LIMITATIONS",
+            insight: "Drove advanced panel with hotkeys, presets, and live order book.",
+            drove: "Advanced panel with hotkeys, presets, and live order book."
+          },
+          {
+            eyebrow: "COMPETITIVE GAPS",
+            insight: "Drove a dual-mode approach serving both audiences.",
+            drove: "Dual-mode approach serving both audiences in one platform."
+          }
+        ]
+      },
     problemCallout: {
       eyebrow: "Problem",
       statement: "Novices abandon onboarding; pros churn after early trades. The business loses both first deposits and high-volume activity—two critical revenue streams."
