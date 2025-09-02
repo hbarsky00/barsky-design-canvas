@@ -62,6 +62,18 @@ const overviewContent: Record<string, OverviewContent> = {
     responsibilities: "Information architecture, workflow design, UI patterns",
     collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
+  },
+  "crypto": {
+    overview: "Crypto traders needed fast, secure tools to analyze market trends and execute trades. Existing platforms were either too complex or lacked advanced features. I designed a trading platform that balances sophisticated analytics with intuitive workflows. The result: traders gained the speed and insights they needed to make confident decisions in volatile markets.",
+    goals: [
+      "Create real-time market analysis and trading tools.",
+      "Simplify complex crypto data into actionable insights.",
+      "Build trust through secure, transparent transactions."
+    ],
+    role: "Lead Product Designer",
+    responsibilities: "Trading UX, data visualization, security workflows",
+    collaborators: "Me (Conversational Design Engineer + AI)",
+    duration: "1 year"
   }
 };
 
