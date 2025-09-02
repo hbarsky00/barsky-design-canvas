@@ -217,9 +217,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Focus on a dual-mode design serving both novice and expert traders.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
           alt: "Initial concepts and sketches for crypto onboarding",
-          caption: "Foundation and principles guiding the dual-mode crypto platform design"
+          caption: "Dashboard Ideations for Homepage"
         },
         {
           src: "https://www.loom.com/share/6b30e410c7394757956b9f6f2d10d10f?sid=75203801-3262-4a46-a502-41a55aa8839c",
@@ -309,8 +309,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/iphonelearning.png",
-          alt: "Early crypto design that didn't work well",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
+          alt: "Onboarding Flow to help the user understand how to connect their wallet",
           caption: "Learning from design iterations that didn't meet user needs"
         }
       ]
