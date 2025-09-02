@@ -251,13 +251,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "",
       content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Progressive disclosure: hide complexity until requested. Latency = UX: live quotes, optimistic states, visible sync timers. Confidence and speed weren't opposites—they were interdependent.",
       images: [
-            {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Option-a-or-b.png",
-          alt: "Login Page view Low Res Vs High Res",
-          caption: "Login Page view Low Res Vs High Res"
-        },
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/09/Option-a-or-b.png",
           alt: "Design thinking process for crypto platform",
           caption: "Thought process visualization showing design decisions for crypto trading platform"
         }
@@ -282,7 +277,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         {
           label: "Landing Page Decision",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/whichlandingpage.png",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
           alt: "Landing page design iteration showing user-friendly crypto onboarding",
           annotations: [
             { text: "Simplified entry flow reduces barrier to first trade", x: 30, y: 25, type: "improvement" },
