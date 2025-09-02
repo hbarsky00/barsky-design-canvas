@@ -159,7 +159,7 @@ export interface StructuredCaseStudyData {
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "crypto": {
     id: "crypto",
-    title: "Trading Without Friction – Crypto App Case Study",
+    title: "Trading Without Friction — 35% More Conversions, 40% Faster to First Trade",
     description: "How a dual-mode crypto app turned churn into growth by serving both novices and pros",
     tags: ["Fintech", "Crypto", "Mobile & Web", "Product Design", "Research", "Prototyping"],
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
@@ -266,6 +266,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           description: "Portfolio, movers, quick trade, security score."
         },
         {
+          title: "Markets",
+          description: "Search, mini-charts, filters."
+        },
+        {
           title: "Trading",
           description: "Quick Trade (guided) + Pro Panel (hotkeys, presets, live order book)."
         }
@@ -273,7 +277,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         {
           label: "Landing Page Decision",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Buy-and-Sell-Bitcoin-scaled.png",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/whichlandingpage.png",
           alt: "Landing page design iteration showing user-friendly crypto onboarding",
           annotations: [
             { text: "Simplified entry flow reduces barrier to first trade", x: 30, y: 25, type: "improvement" },
@@ -281,9 +285,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           ]
         },
         {
-          label: "Trading Flow",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/09/Trading-Crypto-Low-Res.png",
-          alt: "Trading view showing guided user experience for crypto users",
+          label: "Onboarding Flow",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Onboardingview.png",
+          alt: "Onboarding view showing guided user experience for crypto beginners",
           annotations: [
             { text: "Progressive disclosure prevents information overload", x: 40, y: 30, type: "improvement" },
             { text: "Dual-mode design caters to both novice and expert traders", x: 60, y: 65, type: "feature" }
