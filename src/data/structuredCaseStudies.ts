@@ -241,11 +241,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         number: 3,
-        title: "Visible security ↑ trust 45%",
-        description: "MFA + receipts raised confidence."
-      },
-      {
-        number: 4,
         title: "One dashboard > many",
         description: "quick actions + deep links beat scattered navigation."
       }
