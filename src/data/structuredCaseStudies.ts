@@ -297,7 +297,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/iphonelearning.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/09/dashboardthoughtprocess.png",
           alt: "Early crypto design that didn't work well",
           caption: "Learning from design iterations that didn't meet user needs"
         }
