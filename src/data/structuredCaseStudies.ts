@@ -217,7 +217,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Focus on a dual-mode design serving both novice and expert traders.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Trading-Crypto.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
           alt: "Initial concepts and sketches for crypto onboarding",
           caption: "Foundation and principles guiding the dual-mode crypto platform design"
         },
@@ -255,16 +255,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "",
       content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Progressive disclosure: hide complexity until requested. Latency = UX: live quotes, optimistic states, visible sync timers. Confidence and speed weren't opposites—they were interdependent.",
       images: [
-         {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
-          alt: "Design thinking process for crypto platform",
-          caption: "Thought process visualization showing design decisions for crypto trading platform"
-        },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Thought-Process.png",
           alt: "Design thinking process for crypto platform",
           caption: "Thought process visualization showing design decisions for crypto trading platform"
-        } 
+        }
       ]
     },
     ideationSection: {
@@ -281,10 +276,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           title: "Trading",
           description: "Quick Trade (guided) + Pro Panel (hotkeys, presets, live order book)."
-        },
-        {
-          title: "Portfolio", 
-          description: "Clear P&L, history, exports."
         }
       ],
       iterations: [
