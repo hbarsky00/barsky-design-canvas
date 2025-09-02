@@ -217,7 +217,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Focus on a dual-mode design serving both novice and expert traders.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboardingview.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
           alt: "Initial concepts and sketches for crypto onboarding",
           caption: "Foundation and principles guiding the dual-mode crypto platform design"
         },
@@ -294,7 +294,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         {
           label: "Onboarding Flow",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Onboardingview.png",
           alt: "Onboarding view showing guided user experience for crypto beginners",
           annotations: [
             { text: "Progressive disclosure prevents information overload", x: 40, y: 30, type: "improvement" },
@@ -338,7 +338,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
           alt: "Finished crypto trading product showing successful outcomes",
           caption: "Final product demonstrating the successful dual-mode crypto trading platform"
         }
