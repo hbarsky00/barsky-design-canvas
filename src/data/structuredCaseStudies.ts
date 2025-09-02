@@ -294,7 +294,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         {
           label: "Onboarding Flow",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Onboardingview.png",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
           alt: "Onboarding view showing guided user experience for crypto beginners",
           annotations: [
             { text: "Progressive disclosure prevents information overload", x: 40, y: 30, type: "improvement" },
@@ -309,7 +309,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/iphonelearning.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Buy-and-Sell-Bitcoin-scaled.png",
           alt: "Early crypto design that didn't work well",
           caption: "Learning from design iterations that didn't meet user needs"
         }
@@ -338,7 +338,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
           alt: "Finished crypto trading product showing successful outcomes",
           caption: "Final product demonstrating the successful dual-mode crypto trading platform"
         }
