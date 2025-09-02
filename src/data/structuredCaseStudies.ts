@@ -184,7 +184,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           },
           {
             src: "https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png",
-            alt: "User Flow Chart for Crypto App"
+            alt: "User Flow Chart for Crypto App",
+            caption: "User Flow Chart for Crypto App"
           }
         ],
         emergingThemes: [
