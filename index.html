@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/webp" href="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
     
     <!-- Minimal, non-opinionated defaults. Dynamic SEO injected by React Helmet (UnifiedSEO). -->
     <title>Hiram Barsky Design</title>
@@ -38,5 +39,65 @@
   <body>
     <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Mobile Link Fix: Normalize all anchor hrefs and safely intercept internal links -->
+    <script>
+    (function () {
+      const SAFE = /^(https?:\/\/|mailto:|tel:|\/|#)/i;
+      function normalize(href) {
+        if (!href) return href;
+        href = href.trim();
+        // project:foo → /project/foo
+        href = href.replace(/^project:/i, '/project/');
+        // app:// or intent:// → strip to path
+        href = href.replace(/^(app|intent):\/\/?/i, '/');
+        // //project… → /project…
+        href = href.replace(/^\/\/(project)/i, '/$1');
+        // http:barskydesign.pro → https://barskydesign.pro
+        href = href.replace(/^http:barskydesign\.pro/i, 'https://barskydesign.pro');
+        // bare domain → https://…
+        if (/^[a-z0-9.-]+\.[a-z]{2,}([\/?#].*)?$/i.test(href)) {
+          href = 'https://' + href;
+        }
+        // internal "project…" without leading slash → add it
+        if (/^project(\/|$)/i.test(href)) href = '/' + href;
+        return href;
+      }
+
+      function normalizeLinks() {
+        // Normalize existing anchors
+        document.querySelectorAll('a[href]').forEach(a => {
+          const fixed = normalize(a.getAttribute('href'));
+          if (fixed) a.setAttribute('href', fixed);
+          if (/^\//.test(fixed || '')) a.setAttribute('target', '_self');
+        });
+      }
+
+      // Initial normalization
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', normalizeLinks);
+      } else {
+        normalizeLinks();
+      }
+
+      // Re-normalize when React updates DOM
+      const observer = new MutationObserver(normalizeLinks);
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Safe client-side routing: only intercept site-relative links
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href]');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        if (!SAFE.test(href)) return;              // don't touch weird schemes
+        if (/^https?:\/\//i.test(href)) return;    // let browser handle absolute
+        // For site-relative links, use assign for SSG compatibility
+        if (href.startsWith('/')) {
+          e.preventDefault();
+          window.location.assign(href);
+        }
+      }, true);
+    })();
+    </script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Hash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -150,6 +150,8 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
     }
   };
 
+  const navigate = useNavigate();
+
   // Keyboard event handler that allows navigation to pass through
   const handleKeyDown = (event: React.KeyboardEvent) => {
     // Allow arrow keys to pass through for navigation
@@ -161,8 +163,12 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
     // Handle Enter key for card activation
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      // Navigate to the URL programmatically
-      window.location.href = url;
+      // Use React Router for internal navigation, window.location for external
+      if (url.startsWith('/')) {
+        navigate(url);
+      } else {
+        window.location.href = url;
+      }
     }
   };
 
