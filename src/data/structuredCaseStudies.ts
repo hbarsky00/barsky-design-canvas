@@ -174,14 +174,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { value: "–45%", label: "Order Errors" },
       { value: "+25%", label: "Pro Trader Retention" }
     ],
-    researchSection: {
-      subhead: "Gathering insights",
-      blurb: "60% of beginners reported being 'too confused to invest.' 70% of pros stitched multiple platforms together for speed + analytics. Competitors: Coinbase = too simple, Binance = too dense, Kraken = too technical.",
       researchImages: [
         {
-          src: "/lovable-uploads/943e338c-1cad-49fe-8a7b-7824b0c4ff60.png",
-          alt: "Competitive analysis of crypto trading platforms",
-          caption: "Competitive analysis showing gaps in existing crypto platforms"
+          src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png",
+          alt: "Competitive Analysis of Crypto Apps"
+        },
+        {
+          src: "https://attractgroup.com/wp-content/uploads/2024/11/Competitive-Analysis-for-Exchange-Strategy-scaled.png",
+          alt: "Analysis for Analysis"
         }
       ],
       emergingThemes: [
