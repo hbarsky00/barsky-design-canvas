@@ -273,7 +273,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         {
           label: "Landing Page Decision",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/whichlandingpage.png",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Buy-and-Sell-Bitcoin-scaled.png",
           alt: "Landing page design iteration showing user-friendly crypto onboarding",
           annotations: [
             { text: "Simplified entry flow reduces barrier to first trade", x: 30, y: 25, type: "improvement" },
@@ -281,9 +281,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           ]
         },
         {
-          label: "Onboarding Flow",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Onboardingview.png",
-          alt: "Onboarding view showing guided user experience for crypto beginners",
+          label: "Trading Flow",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/09/Trading-Crypto-Low-Res.png",
+          alt: "Trading view showing guided user experience for crypto users",
           annotations: [
             { text: "Progressive disclosure prevents information overload", x: 40, y: 30, type: "improvement" },
             { text: "Dual-mode design caters to both novice and expert traders", x: 60, y: 65, type: "feature" }
