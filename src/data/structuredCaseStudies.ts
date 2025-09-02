@@ -252,7 +252,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Progressive disclosure: hide complexity until requested. Latency = UX: live quotes, optimistic states, visible sync timers. Confidence and speed weren't opposites—they were interdependent.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Crypto-Mockups-for-homepagedashboard.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/09/designthinkingupdate.png",
           alt: "Design thinking process for crypto platform",
           caption: "Thought process visualization showing design decisions for crypto trading platform"
         }
