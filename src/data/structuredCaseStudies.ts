@@ -1024,7 +1024,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     heroVideo: {
       src: "investor-loan-demo.mp4",
-      poster: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
       alt: "Investor loan platform dashboard"
     },
     researchSection: {
