@@ -191,18 +191,18 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         emergingThemes: [
           {
             eyebrow: "BEGINNER BARRIERS",
-            insight: "Drove guided trading mode with safety rails.",
-            drove: "Guided trading mode with clear explanations and safety rails."
+            insight: "Many first-time users felt overwhelmed or unsure.",
+            drove: "Guided Trading mode — a step-by-step flow with clear explanations and built-in safety rails."
           },
           {
             eyebrow: "PRO LIMITATIONS",
-            insight: "Drove advanced panel with hotkeys, presets, and live order book.",
-            drove: "Advanced panel with hotkeys, presets, and live order book."
+            insight: "Experienced traders wanted speed and control.",
+            drove: "This led to the Advanced Panel with hotkeys, presets, and a live order book, giving them the efficiency they expected."
           },
           {
             eyebrow: "COMPETITIVE GAPS",
-            insight: "Drove a dual-mode approach serving both audiences.",
-            drove: "Dual-mode approach serving both audiences in one platform."
+            insight: "Competitor apps leaned too simple or too complex.",
+            drove: "That gap inspired a dual-mode approach that serves both beginners and pros in one unified platform."
           }
         ]
       },
@@ -232,18 +232,18 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     keyInsights: [
       {
         number: 1,
-        title: "Two trading modes worked best",
-        description: "Beginners loved the simple guided flow, while pros preferred the fast Pro Panel. Supporting both made the app useful for everyone."
+        title: "Dual-mode clarity wins",
+        description: "Guided Quick Trade + Pro Panel."
       },
       {
         number: 2, 
-        title: "Clear language built confidence",
-        description: "By replacing jargon with plain-English explanations, more people completed trades without hesitation — adoption jumped by about 30%."
+        title: "Plain language ↑ adoption ~30%",
+        description: "translating jargon reduced confusion."
       },
       {
         number: 3,
-        title: "One home screen was enough",
-        description: "A single dashboard with quick actions and deep links outperformed multiple scattered menus, making navigation faster and simpler."
+        title: "One dashboard > many",
+        description: "quick actions + deep links beat scattered navigation."
       }
     ],
     myThoughtProcessSection: {
