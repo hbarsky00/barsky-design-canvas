@@ -232,18 +232,18 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     keyInsights: [
       {
         number: 1,
-        title: "Dual-mode clarity wins",
-        description: "Guided Quick Trade + Pro Panel."
+        title: "Two trading modes worked best",
+        description: "Beginners loved the simple guided flow, while pros preferred the fast Pro Panel. Supporting both made the app useful for everyone."
       },
       {
         number: 2, 
-        title: "Plain language ↑ adoption ~30%",
-        description: "translating jargon reduced confusion."
+        title: "Clear language built confidence,
+        description: "By replacing jargon with plain-English explanations, more people completed trades without hesitation — adoption jumped by about 30%."
       },
       {
         number: 3,
-        title: "One dashboard > many",
-        description: "quick actions + deep links beat scattered navigation."
+        title: "One home screen was enough",
+        description: "A single dashboard with quick actions and deep links outperformed multiple scattered menus, making navigation faster and simpler."
       }
     ],
     myThoughtProcessSection: {
@@ -294,7 +294,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "",
-      content: "A single, one-size trade form left users confused and mistakes shot up by 60%. Global alerts turned into noise, so we shifted to asset-level notifications that felt relevant. And asking for multi-factor authentication too often backfired—abandonment doubled—until we moved to risk-based security checks.",
+      content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg",
