@@ -333,7 +333,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Crypto-Trade.png",
           alt: "Finished crypto trading product showing successful outcomes",
           caption: "Final product demonstrating the successful dual-mode crypto trading platform"
         }
