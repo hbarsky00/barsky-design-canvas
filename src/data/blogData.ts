@@ -1,3 +1,11 @@
+// Import blog images
+import blogFindingUxJob from '@/assets/blog-finding-ux-job.jpg';
+import blogDesignSystems from '@/assets/blog-design-systems.jpg';
+import blogCaseStudyWriting from '@/assets/blog-case-study-writing.jpg';
+import blogAiInDesign from '@/assets/blog-ai-in-design.jpg';
+import blogUserResearchBudget from '@/assets/blog-user-research-budget.jpg';
+import blogVisualHierarchy from '@/assets/blog-visual-hierarchy.jpg';
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -19,7 +27,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 15, 2025",
     readTime: "7 min read",
-    coverImage: "https://barskydesign.pro/images/blog-finding-ux-job.jpg",
+    coverImage: blogFindingUxJob,
     tags: ["UX Design", "Career", "Job Search", "Portfolio", "Networking"],
     slug: "finding-first-ux-job-guide",
     content: `
@@ -69,7 +77,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "January 8, 2025",
     readTime: "8 min read",
-    coverImage: "https://barskydesign.pro/images/blog-design-systems.jpg",
+    coverImage: blogDesignSystems,
     tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
     slug: "design-systems-that-get-used",
     content: `
@@ -120,7 +128,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 28, 2025",
     readTime: "6 min read",
-    coverImage: "https://barskydesign.pro/images/blog-case-study-writing.jpg",
+    coverImage: blogCaseStudyWriting,
     tags: ["Portfolio", "UX Design", "Career", "Job Search", "Interview"],
     slug: "case-study-writing",
     content: `
@@ -178,7 +186,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 15, 2025",
     readTime: "9 min read",
-    coverImage: "https://barskydesign.pro/images/blog-ai-in-design.jpg",
+    coverImage: blogAiInDesign,
     tags: ["AI", "UX Design", "Future", "Career", "Technology"],
     slug: "ai-enhanced-ux-designer-future",
     content: `
@@ -244,7 +252,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "December 1, 2025",
     readTime: "7 min read",
-    coverImage: "https://barskydesign.pro/images/blog-user-research-budget.jpg",
+    coverImage: blogUserResearchBudget,
     tags: ["User Research", "Budget", "Methods", "Strategy", "Process"],
     slug: "user-research-shoestring-budget",
     content: `
@@ -337,7 +345,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "October 18, 2025",
     readTime: "8 min read",
-    coverImage: "https://barskydesign.pro/blog-images/visual-hierarchy-psychology.png",
+    coverImage: blogVisualHierarchy,
     tags: ["Visual Design", "Psychology", "Hierarchy", "UX Design", "Interface"],
     slug: "wireframes-to-wow-visual-hierarchy",
     content: `
