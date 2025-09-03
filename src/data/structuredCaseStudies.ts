@@ -208,7 +208,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
     problemCallout: {
       eyebrow: "Problem",
-      statement: "Novices abandon onboarding; pros churn after early trades. The business loses both first deposits and high-volume activity—two critical revenue streams."
+      statement: "Beginners drop out during onboarding, while pros leave after their first few trades. That means the business misses out on both initial deposits and the high-volume activity that drives revenue."
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",
