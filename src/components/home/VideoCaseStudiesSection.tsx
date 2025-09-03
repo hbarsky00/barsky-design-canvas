@@ -29,9 +29,9 @@ const caseStudies: CaseStudy[] = [
   {
     id: "crypto",
     tags: ["FinTech", "Crypto", "Mobile & Web"],
-    title: "Trading Without Friction",
+    title: "Trading Without Friction - +35% Conversion · –40% Time-to-First-Trade",
     description: "A dual-mode crypto app that boosted conversions by 35% and cut errors by 45%. Designed to serve both hesitant first-timers and speed-driven traders through progressive disclosure and unified interface design.",
-    impact: "+35% Conversion · –40% Time-to-First-Trade · +25% Retention",
+    impact: "· +25% Retention",
     url: "/project/crypto",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
