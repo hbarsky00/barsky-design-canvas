@@ -159,7 +159,7 @@ export interface StructuredCaseStudyData {
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "crypto": {
     id: "crypto",
-    title: "Trading Without Friction – Crypto App Case Study",
+    title: "Trading Without Friction",
     description: "How a dual-mode crypto app turned churn into growth by serving both novices and pros",
     tags: ["Fintech", "Crypto", "Mobile & Web", "Product Design", "Research", "Prototyping"],
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
@@ -208,7 +208,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
     problemCallout: {
       eyebrow: "Problem",
-      statement: "Beginners drop out during onboarding, while pros leave after their first few trades. That means the business misses out on both initial deposits and the high-volume activity that drives revenue."
+      statement: "Novices abandon onboarding; pros churn after early trades. The business loses both first deposits and high-volume activity—two critical revenue streams."
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",

@@ -4,7 +4,7 @@ import { ProjectProps } from "@/components/ProjectCard";
 export const projectsData: ProjectProps[] = [
   {
     id: "crypto",
-    title: "Trading Without Friction – Crypto App Case Study",
+    title: "Trading Without Friction",
     description: "How a dual-mode crypto app turned churn into growth by serving both novices and pros",
     image: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
     videoThumbnail: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
