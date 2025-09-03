@@ -307,6 +307,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Validation & Testing",
       eyebrow: "Testing",
       description: "Prototype sessions showed: Time-to-first-trade ↓ to 3 minutes (vs 8 competitors). Order errors ↓ 45%. 75% of testers trusted this app more than their current platform.",
+           images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
+          alt: "Learning from design iterations that didn't meet user needs",
+          caption: "Learning from design iterations that didn't meet user needs"
+        }
+      ],
       metrics: [
         { value: "3 min", label: "Time-to-first-trade" },
         { value: "↓45%", label: "Order errors" },
