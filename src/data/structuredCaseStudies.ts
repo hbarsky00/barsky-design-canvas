@@ -191,24 +191,24 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         emergingThemes: [
           {
             eyebrow: "BEGINNER BARRIERS",
-            insight: "Many first-time users felt overwhelmed or unsure.",
-            drove: "Guided Trading mode — a step-by-step flow with clear explanations and built-in safety rails."
+            insight: "Drove guided trading mode with safety rails.",
+            drove: "Guided trading mode with clear explanations and safety rails."
           },
           {
             eyebrow: "PRO LIMITATIONS",
-            insight: "Experienced traders wanted speed and control.",
-            drove: "This led to the Advanced Panel with hotkeys, presets, and a live order book, giving them the efficiency they expected."
+            insight: "Drove advanced panel with hotkeys, presets, and live order book.",
+            drove: "Advanced panel with hotkeys, presets, and live order book."
           },
           {
             eyebrow: "COMPETITIVE GAPS",
-            insight: "Competitor apps leaned too simple or too complex.",
-            drove: "That gap inspired a dual-mode approach that serves both beginners and pros in one unified platform."
+            insight: "Drove a dual-mode approach serving both audiences.",
+            drove: "Dual-mode approach serving both audiences in one platform."
           }
         ]
       },
     problemCallout: {
       eyebrow: "Problem",
-      statement: "Novices abandon onboarding; pros churn after early trades. The business loses both first deposits and high-volume activity—two critical revenue streams."
+      statement: "Beginners drop out during onboarding, while pros leave after their first few trades. That means the business misses out on both initial deposits and the high-volume activity that drives revenue."
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",
