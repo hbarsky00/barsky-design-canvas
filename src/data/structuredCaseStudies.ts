@@ -237,7 +237,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         number: 2, 
-        title: "Clear language built confidence,
+        title: "Clear language built confidence",
         description: "By replacing jargon with plain-English explanations, more people completed trades without hesitation — adoption jumped by about 30%."
       },
       {
