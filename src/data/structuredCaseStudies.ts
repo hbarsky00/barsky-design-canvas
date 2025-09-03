@@ -208,7 +208,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
     problemCallout: {
       eyebrow: "Problem",
-      statement: "Beginners drop out during onboarding, while pros leave after their first few trades. That means the business misses out on both initial deposits and the high-volume activity that drives revenue."
+      statement: "Novices abandon onboarding; pros churn after early trades. The business loses both first deposits and high-volume activity—two critical revenue streams."
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",
@@ -294,7 +294,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "",
-      content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it.",
+      content: "A single, one-size trade form left users confused and mistakes shot up by 60%. Global alerts turned into noise, so we shifted to asset-level notifications that felt relevant. And asking for multi-factor authentication too often backfired—abandonment doubled—until we moved to risk-based security checks.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg",
