@@ -319,10 +319,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description: "Instead of splitting audiences, the app united them—delivering growth, retention, and stronger brand trust.",
       metrics: [
         { value: "+35%", label: "Onboarding conversion" },
-        { value: "↓40%", label: "Time-to-first-trade" },
-        { value: "↓45%", label: "Order errors" },
-        { value: "+25%", label: "Pro trader retention" },
-        { value: "+40%", label: "Portfolio engagement (users checked balances daily, not weekly)" }
+        { value: "↓40%", label: "Time-to-first-trade" }
       ],
       images: [
         {
