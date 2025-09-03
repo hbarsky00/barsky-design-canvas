@@ -294,7 +294,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "",
-      content: "One-size trade form ↑ errors 60%. Global alerts overwhelmed; asset-level solved it. Over-frequent MFA doubled abandonment; risk-based triggers fixed it.",
+      content: "When everything was crammed into a single screen, both new and experienced users made more mistakes. Breaking it into two flows — a simple step-by-step path for beginners and a pro panel for advanced traders — cut down errors dramatically.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg",
@@ -306,14 +306,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     userTestingSection: {
       title: "Validation & Testing",
       eyebrow: "Testing",
-      description: "Prototype sessions showed: Time-to-first-trade ↓ to 3 minutes (vs 8 competitors). Order errors ↓ 45%. 75% of testers trusted this app more than their current platform.",
-           images: [
-        {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
-          alt: "Learning from design iterations that didn't meet user needs",
-          caption: "Learning from design iterations that didn't meet user needs"
-        }
-      ],
+      description: "In prototype testing, the impact was clear: new users placed their first trade in just three minutes—less than half the time it took on competitor platforms. Mistakes dropped by 45%, as clearer flows and summaries prevented common errors. Most importantly, three out of four testers said they trusted this app more than their current one, citing fee transparency, plain-English order confirmations, and visible security features as key reasons.",
       metrics: [
         { value: "3 min", label: "Time-to-first-trade" },
         { value: "↓45%", label: "Order errors" },
@@ -323,17 +316,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       title: "Outcome & Impact",
       eyebrow: "Results",
-      description: "Instead of splitting audiences, the app united them—delivering growth, retention, and stronger brand trust.",
-      metrics: [
-        { value: "+35%", label: "Onboarding conversion" },
-        { value: "↓40%", label: "Time-to-first-trade" },
-        { value: "↓45%", label: "Order errors" },
-        { value: "+25%", label: "Pro trader retention" },
-        { value: "+40%", label: "Portfolio engagement (users checked balances daily, not weekly)" }
-      ],
+      description: "Rather than forcing people to choose between beginner-friendly or pro tools, the app brought both groups together—driving growth, keeping traders engaged, and strengthening overall trust in the brand.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/Crypto-Trade.png",
+          src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
           alt: "Finished crypto trading product showing successful outcomes",
           caption: "Final product demonstrating the successful dual-mode crypto trading platform"
         }
