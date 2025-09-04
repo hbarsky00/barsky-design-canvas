@@ -358,36 +358,27 @@ serve(async (req: Request) => {
     const targetUrlParam = url.searchParams.get("url");
     const pathParam = url.searchParams.get("path");
 
-    // Only serve SEO content to bots to avoid duplicate canonicals
-    if (!isBot(ua, req.headers)) {
-      return new Response('Not for browsers', { 
-        status: 403,
-        headers: corsHeaders 
-      });
-    }
-
-    const canonical = resolveCanonical(targetUrlParam, pathParam);
-    const pathname = new URL(canonical).pathname || "/";
-
-    const { title, description, image, type } = getSeoForPath(pathname);
-
-    const html = buildHtml({ title, description, canonical, image, type });
-
-    const headers = new Headers({
-      "Content-Type": "text/html; charset=utf-8",
-      ...corsHeaders,
-      // Cache for 10 minutes, allow stale for 1 day for crawlers
-      "Cache-Control": "public, max-age=600, s-maxage=600, stale-while-revalidate=86400",
-      // Add ETag for better caching (include timestamp for cache busting)
-      "ETag": `"${btoa(canonical + title + Date.now().toString()).substring(0, 20)}"`,
-      "Vary": "User-Agent",
+    // DISABLED: Bot HTML serving - static prerender now handles all SEO
+    // This prevents conflicts between edge function and static HTML
+    // Static files in dist/ now contain proper SEO meta tags
+    
+    console.log("seo-handler disabled - using static prerender for SEO", { 
+      ua, 
+      canonical: resolveCanonical(targetUrlParam, pathParam),
+      reason: "static-first-seo"
     });
 
-    // If it's a bot, return the HTML. If not, still return HTML so it can be tested in a browser.
-    const bot = isBot(ua, req.headers);
-    console.log("seo-handler invoked", { ua, bot, canonical, pathname, hasPreviewHeader: !!req.headers.get('x-scrape-preview') });
-
-    return new Response(html, { status: 200, headers });
+    // Return simple redirect to let static files handle SEO
+    const canonical = resolveCanonical(targetUrlParam, pathParam);
+    
+    return new Response('SEO handled by static prerender', { 
+      status: 302,
+      headers: {
+        ...corsHeaders,
+        'Location': canonical,
+        'Cache-Control': 'no-cache'
+      }
+    });
   } catch (e) {
     console.error("seo-handler error", e);
     return new Response(

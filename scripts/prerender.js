@@ -14,7 +14,27 @@ if (!existsSync(distDir)) {
   process.exit(1);
 }
 
-// Load data from actual source files
+// Import unified data sources
+function loadUnifiedSeoData() {
+  try {
+    // Load existing data sources that are used across the system
+    const seoDataPath = join(__dirname, '..', 'src', 'data', 'seoData.ts');
+    const seoDataContent = readFileSync(seoDataPath, 'utf-8');
+    
+    // Extract static page data
+    const staticPagesMatch = seoDataContent.match(/STATIC_PAGE_SEO[^{]*{([^}]+)}/s);
+    const projectsMatch = seoDataContent.match(/PROJECT_SEO_MAP[^{]*{([^}]+)}/s);
+    const blogImagesMatch = seoDataContent.match(/BLOG_IMAGE_MAP[^{]*{([^}]+)}/s);
+    
+    console.log('✅ Using unified SEO data sources from seoData.ts');
+    return { seoDataContent, staticPagesMatch, projectsMatch, blogImagesMatch };
+  } catch (error) {
+    console.warn('⚠️ Could not load unified SEO data:', error.message);
+    return null;
+  }
+}
+
+// Load blog data from actual source file
 function loadBlogData() {
   try {
     const blogDataPath = join(__dirname, '..', 'src', 'data', 'blogData.ts');
@@ -46,6 +66,7 @@ function loadBlogData() {
   }
 }
 
+// Load project data from structured case studies
 function loadProjectData() {
   try {
     const projectDataPath = join(__dirname, '..', 'src', 'data', 'structuredCaseStudies.ts');
@@ -77,7 +98,8 @@ function loadProjectData() {
   }
 }
 
-// Enhanced route configuration with dynamic data
+// Load unified SEO data and existing sources  
+const unifiedSeoData = loadUnifiedSeoData();
 const blogPosts = loadBlogData();
 const projects = loadProjectData();
 
@@ -94,10 +116,10 @@ const routes = [
 
 console.log(`🚀 Starting SSG prerendering for ${routes.length} routes...`);
 
-// SEO configuration for each route type
+// Updated SEO configuration using unified data sources
 function getSEOConfig(route) {
-  const baseUrl = 'https://barskyux.com';
-  const defaultImage = 'https://barskyux.com/wp-content/uploads/2025/08/hiram-professional-headshot.png';
+  const baseUrl = 'https://barskydesign.pro';
+  const defaultImage = 'https://barskydesign.pro/images/hiram-barsky-profile.jpg';
   
   // Homepage
   if (route === '/') {

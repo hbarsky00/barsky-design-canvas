@@ -112,55 +112,13 @@ const UnifiedSEO: React.FC = () => {
 
   const structuredData = generateStructuredData(seoData);
 
+  // DISABLED: Client-side Helmet usage to prevent conflicts with static prerendering
+  // The static prerender script now handles all SEO meta tags in the built HTML
+  // This component now only handles structured data for better indexing
+  
   return (
     <Helmet>
-      <title>{seoData.title}</title>
-      <meta name="description" content={seoData.description} />
-      <link rel="canonical" href={seoData.canonical} />
-
-      {/* Robots from builder to avoid hardcoding */}
-      {seoData.robots && <meta name="robots" content={seoData.robots} />}
-      {seoData.robots && <meta name="googlebot" content={seoData.robots} />}
-
-      {/* Open Graph */}
-      <meta property="og:type" content={seoData.type ?? 'website'} />
-      <meta property="og:title" content={seoData.title} />
-      <meta property="og:description" content={seoData.description} />
-      <meta property="og:url" content={seoData.canonical} />
-      {seoData.siteName && <meta property="og:site_name" content={seoData.siteName} />}
-      {seoData.image && (
-        <>
-          <meta property="og:image" content={seoData.image} />
-          <meta property="og:image:secure_url" content={seoData.image} />
-          {seoData.imageAlt && <meta property="og:image:alt" content={seoData.imageAlt} />}
-          {seoData.imageWidth && <meta property="og:image:width" content={String(seoData.imageWidth)} />}
-          {seoData.imageHeight && <meta property="og:image:height" content={String(seoData.imageHeight)} />}
-        </>
-      )}
-
-      {/* Article-only */}
-      {seoData.type === 'article' && seoData.publishedTime && (
-        <meta property="article:published_time" content={seoData.publishedTime} />
-      )}
-      {seoData.type === 'article' && seoData.modifiedTime && (
-        <meta property="article:modified_time" content={seoData.modifiedTime} />
-      )}
-      {seoData.type === 'article' && seoData.author && (
-        <meta property="article:author" content={seoData.author} />
-      )}
-      {seoData.type === 'article' && seoData.tags?.map((t) => (
-        <meta key={t} property="article:tag" content={t} />
-      ))}
-
-      {/* Twitter */}
-      {seoData.twitterCard && <meta name="twitter:card" content={seoData.twitterCard} />}
-      {seoData.twitterSite && <meta name="twitter:site" content={seoData.twitterSite} />}
-      <meta name="twitter:title" content={seoData.title} />
-      <meta name="twitter:description" content={seoData.description} />
-      {seoData.image && <meta name="twitter:image" content={seoData.image} />}
-      {seoData.imageAlt && <meta name="twitter:image:alt" content={seoData.imageAlt} />}
-
-      {/* JSON-LD */}
+      {/* Only structured data - all other SEO tags handled by static prerender */}
       <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
     </Helmet>
   );
