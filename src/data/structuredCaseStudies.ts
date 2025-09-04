@@ -218,8 +218,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Focus on a dual-mode design serving both novice and expert traders.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/A-or-B-for-Low-Res-Mockups.png",
-          alt: "Initial concepts and sketches for crypto onboarding",
+          src: "https://barskyux.com/wp-content/uploads/2025/09/Initial-Flow-of-screens-scaled.png",
+          alt: "Initial concepts and sketches for full crypto app",
           caption: "Foundation and principles guiding the dual-mode crypto platform design"
         },
         {
