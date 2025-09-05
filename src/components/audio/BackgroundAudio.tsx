@@ -20,7 +20,7 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
     // Configure audio
     audio.volume = volume;
     audio.loop = true;
-    audio.preload = 'auto';
+    audio.preload = 'none'; // Don't preload until user interaction
 
     // Try to play immediately (will work if autoplay is allowed)
     const tryAutoplay = async () => {
@@ -51,8 +51,8 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
       }
     };
 
-    // Wait for user interaction before starting audio to reduce bounce rate
-    const timer = setTimeout(tryAutoplay, 3000);
+    // Wait for significant user interaction before loading audio
+    const timer = setTimeout(tryAutoplay, 8000);
 
     return () => {
       clearTimeout(timer);

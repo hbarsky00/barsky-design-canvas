@@ -1,31 +1,34 @@
 
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
 import BioSection from "@/components/hero/BioSection";
-import VideoCaseStudiesSection from "@/components/home/VideoCaseStudiesSection";
-import RecentAdventuresSection from "@/components/home/RecentAdventuresSection";
-import ContactForm from "@/components/home/ContactForm";
-import SeoFaqSection from "@/components/seo/SeoFaqSection";
-import BlogPreview from "@/components/blog/BlogPreview";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import FloatingScrollToTopButton from "@/components/FloatingScrollToTopButton";
 import SectionTransition from "@/components/transitions/SectionTransition";
-import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
-import ExitIntentDetector from "@/components/bounce-reduction/ExitIntentDetector";
-import ScrollEngagement from "@/components/bounce-reduction/ScrollEngagement";
 import { useBounceReduction } from "@/hooks/useBounceReduction";
+import LazySection from "@/components/lazy/LazySection";
+import {
+  LazyVideoCaseStudiesSection,
+  LazyRecentAdventuresSection,
+  LazyContactForm,
+  LazySeoFaqSection,
+  LazyBlogPreview,
+  LazyInternalLinkingEnhancer,
+  LazyExitIntentDetector,
+  LazyScrollEngagement
+} from "@/components/lazy/LazyComponents";
 
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
   const { metrics, isLikelyToBounce } = useBounceReduction();
 
   const handleExitIntent = () => {
-    console.log('Exit intent detected, bounce reduction triggered');
+    // Exit intent detected - production ready
   };
   
 
@@ -46,17 +49,21 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.05} className="bg-background py-0 md:py-12">
-          <section id="case-studies" tabIndex={-1}>
-            <VideoCaseStudiesSection />
-          </section>
-        </SectionTransition>
+        <LazySection threshold={0.05}>
+          <SectionTransition variant="fade" delay={0.05} className="bg-background py-0 md:py-12">
+            <section id="case-studies" tabIndex={-1}>
+              <LazyVideoCaseStudiesSection />
+            </section>
+          </SectionTransition>
+        </LazySection>
         
-        <SectionTransition variant="fade" delay={0.1}>
-          <section id="adventures" tabIndex={-1}>
-            <RecentAdventuresSection />
-          </section>
-        </SectionTransition>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.1}>
+            <section id="adventures" tabIndex={-1}>
+              <LazyRecentAdventuresSection />
+            </section>
+          </SectionTransition>
+        </LazySection>
         
         <SectionTransition variant="fade" delay={0.15}>
           <section id="bio" tabIndex={-1}>
@@ -64,46 +71,56 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.2} className="bg-muted/30 py-8 md:py-12">
-          <section id="contact" tabIndex={-1}>
-            <ContactForm />
-          </section>
-        </SectionTransition>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.2} className="bg-muted/30 py-8 md:py-12">
+            <section id="contact" tabIndex={-1}>
+              <LazyContactForm />
+            </section>
+          </SectionTransition>
+        </LazySection>
         
-        <SectionTransition variant="fade" delay={0.25} className="bg-background py-8 md:py-12">
-          <section id="blog" tabIndex={-1}>
-            <BlogPreview />
-          </section>
-        </SectionTransition>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.25} className="bg-background py-8 md:py-12">
+            <section id="blog" tabIndex={-1}>
+              <LazyBlogPreview />
+            </section>
+          </SectionTransition>
+        </LazySection>
         
-        <SectionTransition variant="fade" delay={0.3} className="hidden md:block bg-muted/30 py-8 md:py-12">
-          <section id="faq" tabIndex={-1}>
-            <SeoFaqSection 
-              title="Frequently Asked Questions About AI-Enhanced UX Design"
-              faqs={homepageFaqs}
-            />
-          </section>
-        </SectionTransition>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.3} className="hidden md:block bg-muted/30 py-8 md:py-12">
+            <section id="faq" tabIndex={-1}>
+              <LazySeoFaqSection 
+                title="Frequently Asked Questions About AI-Enhanced UX Design"
+                faqs={homepageFaqs}
+              />
+            </section>
+          </SectionTransition>
+        </LazySection>
 
-        <SectionTransition variant="fade" delay={0.35} className="bg-background py-8 md:py-12">
-          <section id="internal-linking" tabIndex={-1}>
-            <InternalLinkingEnhancer 
-              currentPage="home" 
-              showRelatedLinks={true}
-            />
-          </section>
-        </SectionTransition>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.35} className="bg-background py-8 md:py-12">
+            <section id="internal-linking" tabIndex={-1}>
+              <LazyInternalLinkingEnhancer 
+                currentPage="home" 
+                showRelatedLinks={true}
+              />
+            </section>
+          </SectionTransition>
+        </LazySection>
       </main>
       <Footer />
       <FloatingConsultationBubble />
       <FloatingScrollToTopButton />
       
-      {/* Bounce Reduction Components */}
-      <ExitIntentDetector 
-        onExitIntent={handleExitIntent}
-        disabled={metrics.timeOnPage < 10000} // Only show after 10 seconds
-      />
-      <ScrollEngagement />
+      {/* Bounce Reduction Components - Lazy loaded */}
+      <Suspense fallback={null}>
+        <LazyExitIntentDetector 
+          onExitIntent={handleExitIntent}
+          disabled={metrics.timeOnPage < 10000} // Only show after 10 seconds
+        />
+        <LazyScrollEngagement />
+      </Suspense>
     </div>
   );
 };

@@ -28,15 +28,28 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           ui: ['framer-motion', 'lucide-react'],
+          charts: ['recharts'],
+          radix: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
+          supabase: ['@supabase/supabase-js'],
+          audio: ['react-hook-form'],
         }
       }
     },
     sourcemap: false,
     minify: 'esbuild',
+    target: 'esnext',
     // Pure SSG build
     emptyOutDir: true,
+    // Remove console logs in production
+    esbuild: {
+      drop: mode === 'production' ? ['console', 'debugger'] : [],
+    },
+    // Compression and optimization
+    reportCompressedSize: false,
+    chunkSizeWarningLimit: 500,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion'],
+    exclude: ['@supabase/supabase-js']
   }
 }));

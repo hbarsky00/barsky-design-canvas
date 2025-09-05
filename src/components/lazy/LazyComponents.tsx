@@ -1,0 +1,13 @@
+import { lazy } from 'react';
+
+// Lazy load heavy components
+export const LazyBlogPreview = lazy(() => import('@/components/blog/BlogPreview'));
+export const LazySeoFaqSection = lazy(() => import('@/components/seo/SeoFaqSection'));
+export const LazyInternalLinkingEnhancer = lazy(() => import('@/components/seo/InternalLinkingEnhancer'));
+export const LazyVideoCaseStudiesSection = lazy(() => import('@/components/home/VideoCaseStudiesSection'));
+export const LazyRecentAdventuresSection = lazy(() => import('@/components/home/RecentAdventuresSection'));
+export const LazyContactForm = lazy(() => import('@/components/home/ContactForm'));
+
+// Lazy load bounce reduction components for better initial load
+export const LazyExitIntentDetector = lazy(() => import('@/components/bounce-reduction/ExitIntentDetector'));
+export const LazyScrollEngagement = lazy(() => import('@/components/bounce-reduction/ScrollEngagement'));
