@@ -128,6 +128,11 @@ export interface StructuredCaseStudyData {
       caption?: string;
       annotations?: ImageAnnotation[];
     }>;
+    video?: {
+      src: string;
+      title: string;
+      caption?: string;
+    };
   };
   outcomeSection?: {
     title: string;
@@ -1165,6 +1170,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "The Final Product",
       description: "We built a loan management platform that replaced error-prone Excel workflows with smart automation, real-time checks, and clear audit trails. This gave the team full confidence in their operations.",
       eyebrow: "THE RESULT",
+      video: {
+        src: "https://www.loom.com/share/a47f20680a16435cab9e90521383bfc6?sid=6eed1d9d-f571-4f4b-aa38-f40267e710d0",
+        title: "Investor loan platform demo",
+        caption: "Complete loan management platform with automated workflows and real-time validation"
+      },
       images: [
         {
           src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",

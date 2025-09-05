@@ -22,6 +22,7 @@ import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import AnnotatedImage from "../AnnotatedImage";
 import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
+import ProjectVideo from "@/components/project/ProjectVideo";
 import { Badge } from "@/components/ui/badge";
 import FloatingEmailButton from "@/components/FloatingEmailButton";
 
@@ -295,7 +296,16 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </p>
               </div>
 
-              {caseStudyData.finalProductSection.images && (
+              {/* Render video if present, otherwise render images */}
+              {caseStudyData.finalProductSection.video ? (
+                <ProjectVideo
+                  src={caseStudyData.finalProductSection.video.src}
+                  title={caseStudyData.finalProductSection.video.title}
+                  caption={caseStudyData.finalProductSection.video.caption}
+                  className="mb-8"
+                  projectId={caseStudyData.id}
+                />
+              ) : caseStudyData.finalProductSection.images && (
                 caseStudyData.finalProductSection.images.length > 3 ? (
                   <ProjectImageCarousel
                     images={caseStudyData.finalProductSection.images.map(img => img.src)}
