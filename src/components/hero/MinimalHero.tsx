@@ -37,11 +37,13 @@ const MinimalHero: React.FC = () => {
     setShowContinueButton(false);
     setHasScrolledPastHero(true);
     
-    // Scroll to next section
-    const nextSection = document.getElementById('case-studies');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Scroll to next section with improved reliability
+    setTimeout(() => {
+      const nextSection = document.getElementById('case-studies');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -55,7 +57,10 @@ const MinimalHero: React.FC = () => {
       
       {/* Simple background for text readability */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
-      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-10" onClick={handleNavigateDown}>
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-10 
+                       hover:opacity-95 transition-opacity duration-200" 
+           onClick={handleNavigateDown}
+           title="Click anywhere to view case studies">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,8 +70,7 @@ const MinimalHero: React.FC = () => {
           {/* Avatar with optimized video loading */}
           <div className="flex justify-center order-1">
             <div 
-              className="relative cursor-pointer"
-              onClick={(e) => e.stopPropagation()}
+              className="relative"
             >
               <div className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
                              xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden shadow-lg relative">
@@ -118,7 +122,10 @@ const MinimalHero: React.FC = () => {
               rel="noopener noreferrer"
               className="text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-blue-600 hover:text-blue-700 
                        transition-colors duration-200 mb-2 lg:mb-3 xl:mb-4 2xl:mb-5 inline-block font-medium"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open('https://barskydesign.pro', '_blank');
+              }}
             >
               barskydesign.pro
             </a>
