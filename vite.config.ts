@@ -49,7 +49,6 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 500,
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion'],
-    exclude: ['@supabase/supabase-js']
+    include: ['react', 'react-dom', 'framer-motion', '@supabase/supabase-js', '@supabase/postgrest-js']
   }
 }));
