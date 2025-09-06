@@ -37,13 +37,28 @@ const MinimalHero: React.FC = () => {
     setShowContinueButton(false);
     setHasScrolledPastHero(true);
     
-    // Scroll to next section with improved reliability
-    setTimeout(() => {
+    // Scroll to next section with robust waiting for lazy-loaded content
+    const scrollToCaseStudies = () => {
       const nextSection = document.getElementById('case-studies');
       if (nextSection) {
         nextSection.scrollIntoView({ behavior: 'smooth' });
+        return true;
       }
-    }, 100);
+      return false;
+    };
+
+    // Try immediate scroll first
+    if (!scrollToCaseStudies()) {
+      // If element not found, wait for lazy loading and try again
+      let attempts = 0;
+      const maxAttempts = 20; // 2 seconds total
+      const interval = setInterval(() => {
+        attempts++;
+        if (scrollToCaseStudies() || attempts >= maxAttempts) {
+          clearInterval(interval);
+        }
+      }, 100);
+    }
   };
 
   return (
