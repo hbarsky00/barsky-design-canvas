@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { useStickyScroll } from "@/hooks/useStickyScroll";
 import { useStickyScrollContext } from "./StickyScrollContainer";
@@ -14,13 +14,7 @@ const StickyScrollCard: React.FC<StickyScrollCardProps> = ({
   index,
   className = ""
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const { containerRef, totalCards } = useStickyScrollContext();
-
-  const cards = Array.from({ length: totalCards }, (_, i) => ({
-    id: `card-${i}`,
-    ref: cardRef
-  }));
+  const { containerRef, cards } = useStickyScrollContext();
 
   const { opacity, scale, y, zIndex } = useStickyScroll(
     containerRef,
@@ -30,7 +24,7 @@ const StickyScrollCard: React.FC<StickyScrollCardProps> = ({
 
   return (
     <motion.div
-      ref={cardRef}
+      ref={cards[index].ref}
       className={`absolute inset-0 w-full h-full ${className}`}
       style={{
         opacity,

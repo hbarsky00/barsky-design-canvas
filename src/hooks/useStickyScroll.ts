@@ -32,18 +32,18 @@ export const useStickyScroll = (
   // Calculate when this card is active (fully visible)
   const isActive = useTransform(
     scrollYProgress,
-    [startProgress, startProgress + 0.1, endProgress - 0.1, endProgress],
+    [startProgress, startProgress + 0.05, endProgress - 0.05, endProgress],
     [false, true, true, false]
   );
 
-  // Opacity: fade in when approaching, fade out when being covered
+  // Opacity: Immediate transition for layering effect
   const opacity = useTransform(
     scrollYProgress,
     [
-      Math.max(0, startProgress - 0.1),
+      Math.max(0, startProgress - 0.01),
       startProgress,
-      endProgress - 0.1,
-      Math.min(1, endProgress + 0.1)
+      endProgress,
+      Math.min(1, endProgress + 0.01)
     ],
     [0, 1, 1, 0]
   );
@@ -53,25 +53,25 @@ export const useStickyScroll = (
     scrollYProgress,
     [
       startProgress,
-      endProgress - 0.05,
+      endProgress - 0.1,
       endProgress
     ],
-    [1, 1, 0.95]
+    [1, 1, 0.96]
   );
 
-  // Y position: push up slightly when being covered
+  // Y position: slide up when being covered for layering effect
   const y = useTransform(
     scrollYProgress,
     [
       startProgress,
-      endProgress - 0.05,
+      endProgress - 0.1,
       endProgress
     ],
-    [0, 0, -20]
+    [0, 0, -30]
   );
 
-  // Z-index: ensure proper layering
-  const zIndex = totalCards - cardIndex;
+  // Z-index: ensure proper layering (higher index = on top)
+  const zIndex = cardIndex + 1;
 
   return useMemo(() => ({
     opacity,

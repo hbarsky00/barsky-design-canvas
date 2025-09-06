@@ -1,9 +1,15 @@
-import React, { useRef, createContext, useContext } from "react";
+import React, { useRef, createContext, useContext, useMemo } from "react";
 import { motion } from "framer-motion";
+
+export interface StickyScrollCard {
+  id: string;
+  ref: React.RefObject<HTMLDivElement>;
+}
 
 interface StickyScrollContextType {
   containerRef: React.RefObject<HTMLDivElement>;
   totalCards: number;
+  cards: StickyScrollCard[];
 }
 
 const StickyScrollContext = createContext<StickyScrollContextType | null>(null);
@@ -29,12 +35,19 @@ const StickyScrollContainer: React.FC<StickyScrollContainerProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Create unique refs for each card
+  const cards = useMemo(() => 
+    Array.from({ length: cardCount }, (_, i) => ({
+      id: `card-${i}`,
+      ref: useRef<HTMLDivElement>(null)
+    })), [cardCount]);
+
   // Calculate height to allow proper scrolling through all cards
   // Each card needs enough space to trigger its sticky behavior
   const containerHeight = `${cardCount * 100}vh`;
 
   return (
-    <StickyScrollContext.Provider value={{ containerRef, totalCards: cardCount }}>
+    <StickyScrollContext.Provider value={{ containerRef, totalCards: cardCount, cards }}>
       <div
         ref={containerRef}
         className={`relative ${className}`}
