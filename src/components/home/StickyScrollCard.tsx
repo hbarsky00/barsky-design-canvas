@@ -16,6 +16,15 @@ const StickyScrollCard: React.FC<StickyScrollCardProps> = ({
 }) => {
   const { containerRef, cards } = useStickyScrollContext();
 
+  // Early return if cards aren't ready or index is out of bounds
+  if (!cards || !cards[index]) {
+    return (
+      <div className={`absolute inset-0 w-full h-full ${className}`}>
+        {children}
+      </div>
+    );
+  }
+
   const { opacity, scale, y, zIndex } = useStickyScroll(
     containerRef,
     cards,
