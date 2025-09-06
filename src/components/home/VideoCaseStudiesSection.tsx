@@ -27,32 +27,6 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: "crypto",
-    tags: ["FinTech", "Crypto", "Mobile & Web"],
-    title: "Trading Without Friction - +35% Conversion · –40% Time-to-First-Trade",
-    description: "A dual-mode crypto app that boosted conversions by 35% and cut errors by 45%. Designed to serve both hesitant first-timers and speed-driven traders through progressive disclosure and unified interface design.",
-    impact: "· +25% Retention",
-    url: "/project/crypto",
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
-      alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
-    },
-    layout: "side-by-side"
-  },
-  {
-    id: "investor-loan-app",
-    tags: ["FinTech", "Investment", "B2B"],
-    title: "Investor Platform: 85% Faster Deal Processing",
-    description: "Created a comprehensive investment platform that connects investors with loan opportunities. Features include deal analysis, automated underwriting, portfolio management, and real-time market insights that accelerated investment decisions and improved risk assessment.",
-    impact: "85% Faster Deal Processing",
-    url: "/project/investor-loan-app", 
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",
-      alt: "Investment platform showing deal analysis and portfolio management"
-    },
-    layout: "side-by-side"
-  },
-  {
     id: "business-management",
     tags: ["B2B", "Productivity", "Enterprise"],
     title: "Business Management: 40% Faster Project Delivery",
@@ -94,6 +68,32 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "web-mobile",
     video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
+  },
+  {
+    id: "crypto",
+    tags: ["FinTech", "Crypto", "Mobile & Web"],
+    title: "Trading Without Friction - +35% Conversion · –40% Time-to-First-Trade",
+    description: "A dual-mode crypto app that boosted conversions by 35% and cut errors by 45%. Designed to serve both hesitant first-timers and speed-driven traders through progressive disclosure and unified interface design.",
+    impact: "· +25% Retention",
+    url: "/project/crypto",
+    images: {
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
+      alt: "Crypto trading app showing dual-mode interface and portfolio tracking"
+    },
+    layout: "side-by-side"
+  },
+  {
+    id: "investor-loan-app",
+    tags: ["FinTech", "Investment", "B2B"],
+    title: "Investor Platform: 85% Faster Deal Processing",
+    description: "Created a comprehensive investment platform that connects investors with loan opportunities. Features include deal analysis, automated underwriting, portfolio management, and real-time market insights that accelerated investment decisions and improved risk assessment.",
+    impact: "85% Faster Deal Processing",
+    url: "/project/investor-loan-app", 
+    images: {
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",
+      alt: "Investment platform showing deal analysis and portfolio management"
+    },
+    layout: "side-by-side"
   }
 ];
 
