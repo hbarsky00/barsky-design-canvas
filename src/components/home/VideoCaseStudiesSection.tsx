@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
-import StickyScrollContainer from "./StickyScrollContainer";
-import StickyScrollCard from "./StickyScrollCard";
 
 interface CaseStudy {
   id: string;
@@ -144,9 +142,13 @@ const CaseStudyCard: React.FC<{
   };
 
   return (
-    <div
+    <motion.div
       id={`case-study-${index + 1}`}
-      className="case-study-card bg-gray-50 overflow-hidden relative py-12 lg:py-16 w-full h-full"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="case-study-card bg-gray-50 overflow-hidden relative py-12 lg:py-16"
       tabIndex={-1}
     >
       {/* Mobile Layout: Stacked */}
@@ -207,7 +209,7 @@ const CaseStudyCard: React.FC<{
       </div>
 
       {/* Desktop Layout: Flexible Image-Heavy Split with Smart Alignment */}
-      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 items-center h-full
+      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 items-center
                       [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
                       2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
         
@@ -277,54 +279,15 @@ const CaseStudyCard: React.FC<{
         </div>
       </div>
 
-    </div>
+    </motion.div>
   );
 };
 
 const VideoCaseStudiesSection: React.FC = () => {
-  const isMobile = useIsMobile();
-
-  // On mobile, use traditional scroll. On desktop, use sticky scroll.
-  if (isMobile) {
-    return (
-      <section className="py-8 bg-white" tabIndex={-1}>
-        <div className="container px-4 mx-auto max-w-7xl">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 text-center"
-          >
-            <SectionHeader
-              as="h2"
-              title="Case Studies That Drive Results"
-              subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
-              subtitleClassName="max-w-4xl mx-auto"
-            />
-          </motion.div>
-
-          {/* Case Studies Grid - Traditional Mobile Layout */}
-          <div className="space-y-12">
-            {caseStudies.map((study, index) => (
-              <CaseStudyCard 
-                key={study.id} 
-                study={study} 
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // Desktop: Sticky scroll layout
   return (
-    <section className="bg-white" tabIndex={-1}>
-      {/* Section Header - Outside sticky container */}
-      <div className="container px-4 mx-auto max-w-7xl py-8">
+    <section className="py-8 bg-white" tabIndex={-1}>
+      <div className="container px-4 mx-auto max-w-7xl">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -339,20 +302,18 @@ const VideoCaseStudiesSection: React.FC = () => {
             subtitleClassName="max-w-4xl mx-auto"
           />
         </motion.div>
-      </div>
 
-      {/* Sticky Scroll Container */}
-      <StickyScrollContainer cardCount={caseStudies.length} className="bg-white">
-        <div className="relative w-full h-full">
+        {/* Case Studies Grid */}
+        <div className="space-y-12">
           {caseStudies.map((study, index) => (
-            <StickyScrollCard key={study.id} index={index}>
-              <div className="container px-4 mx-auto max-w-7xl h-full flex items-center">
-                <CaseStudyCard study={study} index={index} />
-              </div>
-            </StickyScrollCard>
+            <CaseStudyCard 
+              key={study.id} 
+              study={study} 
+              index={index}
+            />
           ))}
         </div>
-      </StickyScrollContainer>
+      </div>
     </section>
   );
 };
