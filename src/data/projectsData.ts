@@ -13,6 +13,26 @@ export const projectsData: ProjectProps[] = [
     featured: true,
   },
   {
+    id: "investor-loan-app",
+    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
+    description: "How I led a banking platform redesign that replaced Excel and scaled operations with speed, accuracy, and trust.",
+    image: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
+    videoThumbnail: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
+    video: "investor-loan-demo.mp4",
+    tags: ["FinTech", "Analytics", "WebApp"],
+    featured: true,
+  },
+  {
+    id: "business-management",
+    title: "Business Management App",
+    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
+    image: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+    video: "bizmgmt-demo.mp4",
+    tags: ["Enterprise", "CRM", "Dashboard"],
+    featured: true,
+  },
+  {
     id: "herbalink",
     title: "HerbaLink",
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
@@ -30,16 +50,6 @@ export const projectsData: ProjectProps[] = [
     videoThumbnail: "splittime-thumb.jpg",
     video: "splittime-demo.mp4",
     tags: ["Family Tech", "iOS to Android", "Legal UX"],
-    featured: true,
-  },
-  {
-    id: "business-management",
-    title: "Business Management App",
-    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
-    image: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
-    video: "bizmgmt-demo.mp4",
-    tags: ["Enterprise", "CRM", "Dashboard"],
     featured: true,
   }
 ];

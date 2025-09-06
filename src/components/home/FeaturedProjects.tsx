@@ -12,8 +12,8 @@ const FeaturedProjects: React.FC = () => {
     filteredProjects
   } = useProjectsData();
 
-  // Show featured projects
-  const featuredProjectIds = ["crypto", "business-management", "herbalink", "splittime", "investor-loan-app"];
+  // Show featured projects with crypto first, then investor platform
+  const featuredProjectIds = ["crypto", "investor-loan-app", "business-management", "herbalink", "splittime"];
   const displayProjects = featuredProjectIds.map(id => filteredProjects.find(project => project.id === id)).filter(Boolean);
 
   return (

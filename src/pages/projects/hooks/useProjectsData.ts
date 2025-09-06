@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { projectsData } from "@/data/projectsData";
 import { ProjectProps } from "@/components/ProjectCard";
 
-// Show all featured projects
-const featuredProjectIds = ["crypto", "business-management", "herbalink", "splittime", "investor-loan-app"];
+// Show all featured projects with crypto first, then investor platform
+const featuredProjectIds = ["crypto", "investor-loan-app", "business-management", "herbalink", "splittime"];
 
 export const useProjectsData = () => {
   const [visibleProjects, setVisibleProjects] = useState<ProjectProps[]>([]);
