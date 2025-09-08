@@ -78,9 +78,20 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
           <h2 className="text-section-title text-foreground font-display mb-4 content-rail-center">
             Gathering insights
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground content-spacing content-rail-center">
-            {researchSection.subhead}
-          </p>
+          <div className="text-lg md:text-xl text-muted-foreground content-spacing content-rail-center space-y-6">
+            {researchSection.subhead.split('\n\n').map((section, index) => {
+              const lines = section.split('\n');
+              const header = lines[0];
+              const content = lines.slice(1).join('\n');
+              
+              return (
+                <div key={index}>
+                  <h4 className="font-bold text-foreground mb-3">{header}</h4>
+                  <p className="leading-relaxed">{content}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Dynamic Grid */}
