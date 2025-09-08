@@ -16,13 +16,13 @@ const experiences: Experience[] = [
     role: "Senior Lead Product Designer",
     company: "PNC",
     description: "Redesigned mobile banking interface, boosting engagement by 40% and raising satisfaction scores by 25%",
-    duration: "2023 - July 2024"
+    duration: "2024 - July 2025"
   },
   {
     role: "Senior UX/UI Designer",
     company: "Bank of America",
     description: "Led UX for Loan Central and ServiceNow IRM, cutting errors by 15% and lifting engagement by 10%",
-    duration: "2022 - 2023"
+    duration: "2023 - 2024"
   },
   {
     role: "Senior User Experience Designer",
