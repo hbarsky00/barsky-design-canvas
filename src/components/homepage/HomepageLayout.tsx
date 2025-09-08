@@ -22,6 +22,7 @@ import {
   LazyExitIntentDetector,
   LazyScrollEngagement
 } from "@/components/lazy/LazyComponents";
+import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
 
 const HomepageLayout: React.FC = () => {
   const { isScrolledPastHero } = useHeaderNavigation();
@@ -49,8 +50,14 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
+        <SectionTransition variant="fade" delay={0.05}>
+          <section id="current-projects" tabIndex={-1}>
+            <CurrentProjectsSection />
+          </section>
+        </SectionTransition>
+        
         <LazySection threshold={0.05}>
-          <SectionTransition variant="fade" delay={0.05} className="bg-background py-0 md:py-12">
+          <SectionTransition variant="fade" delay={0.1} className="bg-background py-0 md:py-12">
             <section id="case-studies" tabIndex={-1}>
               <LazyVideoCaseStudiesSection />
             </section>
@@ -58,21 +65,21 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
         
         <LazySection>
-          <SectionTransition variant="fade" delay={0.1}>
+          <SectionTransition variant="fade" delay={0.15}>
             <section id="adventures" tabIndex={-1}>
               <LazyRecentAdventuresSection />
             </section>
           </SectionTransition>
         </LazySection>
         
-        <SectionTransition variant="fade" delay={0.15}>
+        <SectionTransition variant="fade" delay={0.2}>
           <section id="bio" tabIndex={-1}>
             <BioSection />
           </section>
         </SectionTransition>
         
         <LazySection>
-          <SectionTransition variant="fade" delay={0.2} className="bg-muted/30 py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.25} className="bg-muted/30 py-8 md:py-12">
             <section id="contact" tabIndex={-1}>
               <LazyContactForm />
             </section>
@@ -80,7 +87,7 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
         
         <LazySection>
-          <SectionTransition variant="fade" delay={0.25} className="bg-background py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.3} className="bg-background py-8 md:py-12">
             <section id="blog" tabIndex={-1}>
               <LazyBlogPreview />
             </section>
@@ -88,7 +95,7 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
         
         <LazySection>
-          <SectionTransition variant="fade" delay={0.3} className="hidden md:block bg-muted/30 py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.35} className="hidden md:block bg-muted/30 py-8 md:py-12">
             <section id="faq" tabIndex={-1}>
               <LazySeoFaqSection 
                 title="Frequently Asked Questions About AI-Enhanced UX Design"
@@ -99,7 +106,7 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
 
         <LazySection>
-          <SectionTransition variant="fade" delay={0.35} className="bg-background py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.4} className="bg-background py-8 md:py-12">
             <section id="internal-linking" tabIndex={-1}>
               <LazyInternalLinkingEnhancer 
                 currentPage="home" 

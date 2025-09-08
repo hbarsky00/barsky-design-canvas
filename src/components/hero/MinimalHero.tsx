@@ -37,9 +37,9 @@ const MinimalHero: React.FC = () => {
     setShowContinueButton(false);
     setHasScrolledPastHero(true);
     
-    // Scroll to next section with robust waiting for lazy-loaded content
-    const scrollToCaseStudies = () => {
-      const nextSection = document.getElementById('case-studies');
+    // Scroll to current projects section
+    const scrollToCurrentProjects = () => {
+      const nextSection = document.getElementById('current-projects');
       if (nextSection) {
         nextSection.scrollIntoView({ behavior: 'smooth' });
         return true;
@@ -48,13 +48,13 @@ const MinimalHero: React.FC = () => {
     };
 
     // Try immediate scroll first
-    if (!scrollToCaseStudies()) {
-      // If element not found, wait for lazy loading and try again
+    if (!scrollToCurrentProjects()) {
+      // If element not found, wait for loading and try again
       let attempts = 0;
       const maxAttempts = 20; // 2 seconds total
       const interval = setInterval(() => {
         attempts++;
-        if (scrollToCaseStudies() || attempts >= maxAttempts) {
+        if (scrollToCurrentProjects() || attempts >= maxAttempts) {
           clearInterval(interval);
         }
       }, 100);
