@@ -1395,7 +1395,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Business management system promotional overview"
     },
     researchSection: {
-      subhead: "Small businesses often had to juggle different tools for scheduling, invoicing, and tasks. To solve this, I created a single platform that brings everything together. My goal was to cut down on admin work and give owners more time back. In the end, users spent 35% less time on manual tasks.",
+      subhead: "REPETITIVE MANUAL WORK\nBusiness owners were stuck recreating the same invoices, reminders, and follow-ups weekly. I solved this with smart automation—customizable templates, recurring workflows, and context-aware reminders that learn user patterns and handle routine processes automatically.\n\nPRIORITY BLINDNESS\nCritical tasks like overdue invoices got buried in routine to-dos. My 'Today' dashboard uses priority scoring, aging indicators, and intelligent alerts to surface what needs immediate attention, transforming overwhelming lists into clear, actionable priorities.",
       blurb: "Tools caused chaos.",
         emergingThemes: [
         {
