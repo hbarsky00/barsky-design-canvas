@@ -28,11 +28,14 @@ const FloatingScrollToTopButton: React.FC = () => {
   }, [location.pathname]);
 
   const scrollToTop = () => {
+    console.log('🔄 FloatingScrollToTopButton: Scroll to top clicked!');
     if (typeof window !== 'undefined') {
+      console.log('📍 Current scroll position:', window.scrollY);
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
+      console.log('✅ Scroll to top executed');
     }
   };
 
@@ -49,7 +52,7 @@ const FloatingScrollToTopButton: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
           transition={{ duration: 0.2 }}
-          className="fixed bottom-16 left-6 z-50"
+          className="fixed bottom-16 left-6 z-40"
         >
           <Button
             onClick={scrollToTop}
