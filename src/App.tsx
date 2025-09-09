@@ -5,7 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
-
+import BuyMeCoffeeButton from "@/components/shared/BuyMeCoffeeButton";
 
 // Global SEO component
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
@@ -82,6 +82,7 @@ function App() {
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <BuyMeCoffeeButton />
           <Toaster />
         </ImageMaximizerProvider>
       </HelmetProvider>
