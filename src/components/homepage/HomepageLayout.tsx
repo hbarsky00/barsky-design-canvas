@@ -8,7 +8,6 @@ import FloatingConsultationBubble from "@/components/FloatingConsultationBubble"
 import FloatingScrollToTopButton from "@/components/FloatingScrollToTopButton";
 import SectionTransition from "@/components/transitions/SectionTransition";
 import ScrollMorphingBackground from "@/components/transitions/ScrollMorphingBackground";
-import Enhanced3DScrollContainer from "@/components/transitions/Enhanced3DScrollContainer";
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 import { useBounceReduction } from "@/hooks/useBounceReduction";
@@ -88,24 +87,24 @@ const HomepageLayout: React.FC = () => {
       
       <main className="space-y-2 md:space-y-6 relative z-10">
         {/* Keep intro section outside 3D container to prevent displacement */}
-        <SectionTransition variant="fade" intensity={0.6}>
+        <SectionTransition variant="fade" intensity={0.3}>
           <section id="intro" tabIndex={-1}>
             <MinimalHero />
           </section>
         </SectionTransition>
         
         {/* Keep current projects section outside 3D container to prevent cutting off */}
-        <SectionTransition variant="fade" delay={0.05} intensity={0.6}>
+        <SectionTransition variant="fade" delay={0.05} intensity={0.3}>
           <section id="current-projects" tabIndex={-1}>
             <CurrentProjectsSection />
           </section>
         </SectionTransition>
         
-        {/* Apply 3D effects only to sections below current projects */}
-        <Enhanced3DScrollContainer intensity={0.3} className="space-y-2 md:space-y-6">
+        {/* Remove 3D effects that cause layout distortion */}
+        <div className="space-y-2 md:space-y-6">
         
         <LazySection threshold={0.05}>
-          <SectionTransition variant="wave" delay={0.1} intensity={0.7} className="py-0 md:py-12">
+          <SectionTransition variant="fade" delay={0.1} intensity={0.3} className="py-0 md:py-12">
             <section id="case-studies" tabIndex={-1}>
               <LazyVideoCaseStudiesSection />
             </section>
@@ -113,21 +112,21 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
         
         <LazySection>
-          <SectionTransition variant="parallax" delay={0.15} intensity={0.5}>
+          <SectionTransition variant="fade" delay={0.15} intensity={0.3}>
             <section id="adventures" tabIndex={-1}>
               <LazyRecentAdventuresSection />
             </section>
           </SectionTransition>
         </LazySection>
         
-        <SectionTransition variant="morph" delay={0.2} intensity={0.9}>
+        <SectionTransition variant="fade" delay={0.2} intensity={0.3}>
           <section id="bio" tabIndex={-1}>
             <BioSection />
           </section>
         </SectionTransition>
         
         <LazySection>
-          <SectionTransition variant="perspective" delay={0.25} intensity={0.6} className="bg-muted/30 py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
             <section id="contact" tabIndex={-1}>
               <LazyContactForm />
             </section>
@@ -135,7 +134,7 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
         
         <LazySection>
-          <SectionTransition variant="wave" delay={0.3} intensity={0.5} className="bg-background py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.3} intensity={0.3} className="bg-background py-8 md:py-12">
             <section id="blog" tabIndex={-1}>
               <LazyBlogPreview />
             </section>
@@ -143,7 +142,7 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
         
         <LazySection>
-          <SectionTransition variant="parallax" delay={0.35} intensity={0.4} className="hidden md:block bg-muted/30 py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="hidden md:block bg-muted/30 py-8 md:py-12">
             <section id="faq" tabIndex={-1}>
               <LazySeoFaqSection 
                 title="Frequently Asked Questions"
@@ -154,7 +153,7 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
 
         <LazySection>
-          <SectionTransition variant="morph" delay={0.4} intensity={0.3} className="bg-background py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.4} intensity={0.3} className="bg-background py-8 md:py-12">
             <section id="internal-linking" tabIndex={-1}>
               <LazyInternalLinkingEnhancer 
                 currentPage="home" 
@@ -163,7 +162,7 @@ const HomepageLayout: React.FC = () => {
             </section>
           </SectionTransition>
         </LazySection>
-        </Enhanced3DScrollContainer>
+        </div>
       </main>
       
       <Footer />
