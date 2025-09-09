@@ -9,6 +9,7 @@ interface CurrentProject {
   description: string;
   status: "Work in Progress";
   videoUrl: string;
+  thumbnailSrc: string;
 }
 
 const currentProjects: CurrentProject[] = [
@@ -17,28 +18,32 @@ const currentProjects: CurrentProject[] = [
     title: "ROI Design Calculator",
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
-    videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b"
+    videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
+    thumbnailSrc: "/lovable-uploads/c4ea3015-d96e-41f9-9339-6d788647c2c9.png"
   },
   {
     id: "nail-salon-platform",
     title: "Multi-Business Nail Salon Platform",
     description: "A booking and payment system that lets clients pay after appointments while giving salon owners a clear, centralized schedule view.",
     status: "Work in Progress",
-    videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8"
+    videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8",
+    thumbnailSrc: "/lovable-uploads/59af23d6-904e-4444-92a5-28b2de7deaae.png"
   },
   {
     id: "faces-of-hunger",
     title: "Faces of Hunger",
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
-    videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff"
+    videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
+    thumbnailSrc: "/lovable-uploads/8e324946-76da-44ad-8115-441ec3133e1b.png"
   },
   {
     id: "crypto-app-learning",
     title: "Crypto App Learning",
     description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
-    videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d"
+    videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
+    thumbnailSrc: "/lovable-uploads/9d3f8870-1e45-4fae-a7f4-350ec4c3c753.png"
   }
 ];
 
@@ -50,10 +55,6 @@ const CurrentProjectsSection: React.FC = () => {
     return `https://www.loom.com/embed/${videoId}`;
   };
 
-  const getThumbnailUrl = (url: string) => {
-    const videoId = url.split('loom.com/share/')[1]?.split('?')[0];
-    return `https://cdn.loom.com/sessions/thumbnails/${videoId}-with-play.gif`;
-  };
 
   const handleVideoClick = (videoUrl: string) => {
     window.open(videoUrl, '_blank');
@@ -109,7 +110,7 @@ const CurrentProjectsSection: React.FC = () => {
                     ) : (
                       <>
                         <img
-                          src={getThumbnailUrl(project.videoUrl)}
+                          src={project.thumbnailSrc}
                           alt={`${project.title} video thumbnail`}
                           className="w-full h-full object-cover"
                           loading="lazy"
