@@ -145,7 +145,7 @@ const HomepageLayout: React.FC = () => {
           <SectionTransition variant="parallax" delay={0.35} intensity={0.4} className="hidden md:block bg-muted/30 py-8 md:py-12">
             <section id="faq" tabIndex={-1}>
               <LazySeoFaqSection 
-                title="Frequently Asked Questions About AI-Enhanced UX Design"
+                title="Frequently Asked Questions"
                 faqs={homepageFaqs}
               />
             </section>
