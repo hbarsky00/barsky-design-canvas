@@ -1,13 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
+import AdvancedSectionTransition from "./AdvancedSectionTransition";
 
 interface SectionTransitionProps {
   as?: keyof JSX.IntrinsicElements;
   id?: string;
   className?: string;
   children: React.ReactNode;
-  variant?: "fade" | "wipe";
+  variant?: "fade" | "wipe" | "morph" | "perspective" | "wave" | "parallax";
   delay?: number;
+  intensity?: number;
 }
 
 const SectionTransition: React.FC<SectionTransitionProps> = ({
@@ -17,7 +19,25 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
   children,
   variant = "fade",
   delay = 0,
+  intensity = 1,
 }) => {
+  // Use advanced transitions for new variants
+  if (["morph", "perspective", "wave", "parallax"].includes(variant)) {
+    return (
+      <AdvancedSectionTransition
+        as={as}
+        id={id}
+        className={className}
+        variant={variant as "morph" | "perspective" | "wave" | "parallax"}
+        delay={delay}
+        intensity={intensity}
+      >
+        {children}
+      </AdvancedSectionTransition>
+    );
+  }
+
+  // Original fade and wipe animations
   const MotionTag: any = motion[as as keyof typeof motion] || motion.section;
 
   return (
