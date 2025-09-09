@@ -1638,6 +1638,184 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       technologies: ["React", "Mobile", "Enterprise", "Operations"],
       path: "/project/business-management"
     }
+  },
+  "barskyjoint": {
+    id: "barskyjoint",
+    title: "BarskyJoint – 28% Higher Average Ticket Size",
+    description: "Designed a dual-format restaurant ordering platform that serves both web and kiosk customers with menu clarity, guided customization, and seamless checkout.",
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design", "UX Research", "Product Design"],
+    gradientClasses: "from-orange-50 via-amber-50 to-yellow-50",
+    projectLink: "https://barskyjoint.com",
+    heroVideo: {
+      src: "/lovable-uploads/barskyjoint-hero.mp4",
+      poster: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+      alt: "BarskyJoint restaurant ordering platform overview"
+    },
+    heroMetrics: [
+      { value: "+28%", label: "Average Ticket Size" },
+      { value: "-35%", label: "Order Time" },
+      { value: "-60%", label: "Ordering Errors" },
+      { value: "+40%", label: "Customer Satisfaction" }
+    ],
+    researchSection: {
+      subhead: "Customer interviews and restaurant observations revealed pain points in ordering flow and menu navigation.",
+      blurb: "Insights drove dual-format design.",
+      emergingThemes: [
+        {
+          eyebrow: "MENU CONFUSION",
+          insight: "Complex menus overwhelmed customers and slowed ordering.",
+          drove: "Clear categorization with visual hierarchy and simplified descriptions."
+        },
+        {
+          eyebrow: "CUSTOMIZATION COMPLEXITY",
+          insight: "Too many options led to decision paralysis and abandoned orders.",
+          drove: "Guided customization with smart defaults and progressive disclosure."
+        },
+        {
+          eyebrow: "DUAL EXPERIENCE GAPS",
+          insight: "Web and kiosk experiences were inconsistent.",
+          drove: "Unified design system serving both formats seamlessly."
+        }
+      ],
+      researchImages: [
+        {
+          src: "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
+          alt: "Restaurant management interface analysis",
+          caption: "Competitive analysis of restaurant ordering systems"
+        },
+        {
+          src: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
+          alt: "Food truck location tracking research",
+          caption: "User journey mapping for mobile food service"
+        }
+      ]
+    },
+    problemCallout: {
+      eyebrow: "Problem",
+      statement: "Customers abandon orders due to confusing menus and complex customization flows. Restaurants lose revenue from incomplete orders and reduced average ticket size."
+    },
+    sprintZeroSection: {
+      eyebrow: "Sprint Zero",
+      title: "Foundation & Principles",
+      workshopKickoff: "1. Clarity drives confidence → clear menu structure. 2. Guided choice → smart defaults with customization. 3. Unified experience → consistent across web and kiosk.",
+      explorations: "I designed three different ordering flows, testing menu organization, customization patterns, and checkout processes. Focus groups helped validate the guided approach.",
+      decisionPoint: "Focus on a dual-format design that maintains consistency while optimizing for each platform's strengths.",
+      images: [
+        {
+          src: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
+          alt: "Initial restaurant ordering concepts and wireframes",
+          caption: "Foundation sketches exploring menu organization and ordering flow"
+        }
+      ]
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: "Visual menu hierarchy increased orders",
+        description: "Clear categorization with appetizing images helped customers navigate faster and order more items confidently."
+      },
+      {
+        number: 2,
+        title: "Guided customization reduced abandonment",
+        description: "Smart defaults with optional customization eliminated decision paralysis while maintaining choice flexibility."
+      },
+      {
+        number: 3,
+        title: "Unified design served both formats",
+        description: "Consistent experience across web and kiosk increased familiarity and reduced training needs for staff."
+      }
+    ],
+    ideationSection: {
+      subhead: "Core Features & Interface Design",
+      bubbles: [
+        {
+          title: "Menu Navigation",
+          description: "Clear categories, visual hierarchy, smart search and filtering."
+        },
+        {
+          title: "Customization Flow",
+          description: "Guided options with smart defaults and progressive disclosure."
+        },
+        {
+          title: "Checkout Process",
+          description: "Streamlined payment with order summary and confirmation."
+        }
+      ],
+      iterations: [
+        {
+          label: "Menu Structure",
+          imageSrc: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+          alt: "BarskyJoint desktop menu interface",
+          annotations: [
+            { text: "Visual hierarchy guides customer attention to featured items", x: 25, y: 30, type: "improvement" },
+            { text: "Clear categorization reduces cognitive load", x: 70, y: 60, type: "feature" }
+          ]
+        }
+      ]
+    },
+    myThoughtProcessSection: {
+      eyebrow: "My Thought Process",
+      title: "",
+      content: "Design for speed and confidence: customers should feel guided, not overwhelmed. Progressive disclosure: show essentials first, details on demand. Platform parity: maintain consistency while leveraging each format's strengths. The goal was creating an ordering experience that felt effortless regardless of how customers chose to interact.",
+      images: [
+        {
+          src: "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
+          alt: "Restaurant ordering design thinking process",
+          caption: "Design process visualization showing decision points for restaurant ordering platform"
+        }
+      ]
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "",
+      content: "Initially, I included too many customization options which overwhelmed customers and increased abandonment by 40%. Showing all menu items at once created choice paralysis. Moving to progressive disclosure and smart defaults dramatically improved completion rates and customer satisfaction.",
+      images: [
+        {
+          src: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
+          alt: "Early restaurant ordering interface with too many options",
+          caption: "Early designs that overwhelmed customers with choices"
+        }
+      ]
+    },
+    userTestingSection: {
+      title: "Validation & Testing",
+      eyebrow: "Testing",
+      description: "Prototype testing showed: Order completion time ↓ 35%. Customization errors ↓ 60%. 85% of customers preferred this system over competitors.",
+      metrics: [
+        { value: "↓35%", label: "Order completion time" },
+        { value: "↓60%", label: "Customization errors" },
+        { value: "85%", label: "Customer preference" }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome & Impact",
+      eyebrow: "Results",
+      description: "The dual-format platform increased revenue through higher average ticket size and reduced operational costs through fewer ordering errors.",
+      metrics: [
+        { value: "+28%", label: "Average ticket size" },
+        { value: "↓35%", label: "Order completion time" }
+      ],
+      images: [
+        {
+          src: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
+          alt: "Final BarskyJoint restaurant ordering platform",
+          caption: "Completed dual-format restaurant ordering platform showing successful outcomes"
+        }
+      ]
+    },
+    sections: [],
+    seoData: {
+      image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+      projectName: "BarskyJoint Restaurant Ordering Platform",
+      results: [
+        "28% increase in average ticket size",
+        "35% reduction in order completion time",
+        "60% reduction in ordering errors",
+        "40% increase in customer satisfaction"
+      ],
+      technologies: ["React", "TypeScript", "POS Integration", "Kiosk Software"],
+      path: "/project/barskyjoint"
+    }
   }
 };
 

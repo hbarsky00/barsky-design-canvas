@@ -1,10 +1,9 @@
-
 import React from "react";
 import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 
-const StructuredSplittimeCaseStudy: React.FC = () => {
-  const caseStudyData = getStructuredCaseStudy("splittime");
+const StructuredBarskyJointCaseStudy: React.FC = () => {
+  const caseStudyData = getStructuredCaseStudy("barskyjoint");
   if (!caseStudyData) return <div>Case study not found</div>;
 
   return (
@@ -15,4 +14,4 @@ const StructuredSplittimeCaseStudy: React.FC = () => {
   );
 };
 
-export default StructuredSplittimeCaseStudy;
+export default StructuredBarskyJointCaseStudy;

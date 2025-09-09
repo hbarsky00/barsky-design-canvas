@@ -43,13 +43,13 @@ export const projectsData: ProjectProps[] = [
     featured: true,
   },
   {
-    id: "splittime",
-    title: "SplitTime",
-    description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
-    image: "/lovable-uploads/8fb40d7a-8ac6-404e-a3ce-43746775a75c.png",
-    videoThumbnail: "splittime-thumb.jpg",
-    video: "splittime-demo.mp4",
-    tags: ["Family Tech", "iOS to Android", "Legal UX"],
+    id: "barskyjoint",
+    title: "BarskyJoint",
+    description: "Dual-format restaurant ordering platform that increased average ticket size by 28% through menu clarity and guided customization.",
+    image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+    videoThumbnail: "barskyjoint-thumb.jpg",
+    video: "barskyjoint-demo.mp4",
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design"],
     featured: true,
   }
 ];

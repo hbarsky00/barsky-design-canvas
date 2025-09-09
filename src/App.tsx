@@ -30,7 +30,7 @@ import WebDevelopment from "@/pages/design-services/WebDevelopment";
 // Structured case study imports
 import StructuredHerbalinkCaseStudy from "@/pages/StructuredHerbalinkCaseStudy";
 import StructuredBusinessManagementCaseStudy from "@/pages/StructuredBusinessManagementCaseStudy";
-import StructuredSplittimeCaseStudy from "@/pages/StructuredSplittimeCaseStudy";
+import StructuredBarskyJointCaseStudy from "@/pages/StructuredBarskyJointCaseStudy";
 import StructuredInvestorLoanCaseStudy from "@/pages/StructuredInvestorLoanCaseStudy";
 import StructuredCryptoCaseStudy from "@/pages/StructuredCryptoCaseStudy";
 import ContentExport from "@/pages/ContentExport";
@@ -57,7 +57,7 @@ function App() {
             <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
             <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
             <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
-            <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
+            <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
             <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
             <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
             

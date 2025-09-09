@@ -41,16 +41,16 @@ const featuredCaseStudies = [
     tags: ["FinTech", "Real Estate", "Automation"]
   },
   {
-    id: "splittime",
-    title: "SplitTime",
-    subtitle: "Smart Scheduling Solution",
-    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
-    image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-    url: "/project/splittime",
-    liveUrl: "http://splittime.pro",
-    category: "Productivity",
-    impact: "65% reduction in scheduling conflicts",
-    tags: ["AI", "Productivity", "Scheduling"]
+    id: "barskyjoint",
+    title: "BarskyJoint",
+    subtitle: "Restaurant Ordering Platform",
+    description: "Designed a dual-format restaurant ordering system that serves both web and kiosk customers. Features menu clarity, guided customization, and seamless checkout to enhance customer experience and increase average ticket size.",
+    image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+    url: "/project/barskyjoint",
+    liveUrl: "https://barskyjoint.com",
+    category: "Restaurant Tech",
+    impact: "28% higher average ticket size",
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design"]
   },
   {
     id: "business-management",

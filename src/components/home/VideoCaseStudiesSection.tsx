@@ -55,19 +55,19 @@ const caseStudies: CaseStudy[] = [
     layout: "side-by-side"
   },
   {
-    id: "splittime",
-    tags: ["Co-Parenting", "Scheduling", "Communication"],
-    title: "SplitTime: 64% Less Scheduling Conflict for Co-Parents",
-    description: "Built a comprehensive co-parenting platform that streamlines scheduling, communication, and coordination between separated parents. The app features shared calendars, expense tracking, and communication tools designed to reduce conflict and prioritize children's wellbeing.",
-    impact: "64% Less Scheduling Conflict",
-    url: "/project/splittime",
-    liveUrl: "https://splittime.pro/",
+    id: "barskyjoint",
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design"],
+    title: "BarskyJoint: 28% Higher Average Ticket Size",
+    description: "Designed a dual-format restaurant ordering platform that serves both web and kiosk customers. Features menu clarity, guided customization, seamless checkout, and integrated POS systems to enhance customer experience and operational efficiency.",
+    impact: "28% Higher Average Ticket Size",
+    url: "/project/barskyjoint",
+    liveUrl: "https://barskyjoint.com/",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/studiodisplaynewlook-1.png",
-      alt: "SplitTime co-parenting app showing calendar and communication features"
+      primary: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+      alt: "BarskyJoint restaurant ordering interface showing menu and kiosk design"
     },
     layout: "web-mobile",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
+    video: "https://barskyux.com/wp-content/uploads/2025/08/barskyjoint-demo.mp4"
   },
   {
     id: "crypto",

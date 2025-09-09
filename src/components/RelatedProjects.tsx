@@ -29,13 +29,13 @@ const allCaseStudies: CaseStudy[] = [
     tags: ["AI", "Healthcare", "Mobile App", "UX/UI Design"]
   },
   {
-    id: "splittime",
-    title: "SplitTime - Smart Scheduling",
-    description: "Intelligent time management app that optimizes scheduling and reduces conflicts through AI-driven insights.",
-    image: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-    url: "/project/splittime",
-    category: "Productivity",
-    tags: ["AI", "Productivity", "Scheduling", "Mobile App"]
+    id: "barskyjoint",
+    title: "BarskyJoint - Restaurant Ordering",
+    description: "Dual-format restaurant platform that increased average ticket size by 28% through menu clarity and guided customization.",
+    image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+    url: "/project/barskyjoint",
+    category: "Restaurant Tech",
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design", "Mobile App"]
   },
   {
     id: "investor-loan",

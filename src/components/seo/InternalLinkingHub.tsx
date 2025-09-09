@@ -65,9 +65,9 @@ const InternalLinkingHub: React.FC = () => {
       icon: <Smartphone className="w-6 h-6" />,
       links: [
         {
-          text: "SplitTime - Co-parenting App",
-          url: "/project/splittime",
-          description: "Family coordination platform design"
+          text: "BarskyJoint - Restaurant Ordering",
+          url: "/project/barskyjoint",
+          description: "Dual-format restaurant ordering platform"
         },
         {
           text: "HerbaLink - Telemedicine Platform", 
