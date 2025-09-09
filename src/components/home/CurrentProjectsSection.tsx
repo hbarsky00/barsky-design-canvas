@@ -19,7 +19,7 @@ const currentProjects: CurrentProject[] = [
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
-    thumbnailSrc: "/lovable-uploads/6cc610dd-3a12-4244-be90-8994ac643394.png"
+    thumbnailSrc: "https://barskydesign.pro/lovable-uploads/c4ea3015-d96e-41f9-9339-6d788647c2c9.png"
   },
   {
     id: "nail-salon-platform",
@@ -27,7 +27,7 @@ const currentProjects: CurrentProject[] = [
     description: "A booking and payment system that lets clients pay after appointments while giving salon owners a clear, centralized schedule view.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8",
-    thumbnailSrc: "/lovable-uploads/3417bd5e-4a86-4ab9-807f-3603c55a95d0.png"
+    thumbnailSrc: "https://barskydesign.pro/lovable-uploads/59af23d6-904e-4444-92a5-28b2de7deaae.png"
   },
   {
     id: "faces-of-hunger",
@@ -35,7 +35,7 @@ const currentProjects: CurrentProject[] = [
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
-    thumbnailSrc: "/lovable-uploads/202d5148-e3ca-4484-8c5d-a34edcf4fb5c.png"
+    thumbnailSrc: "https://barskydesign.pro/lovable-uploads/8e324946-76da-44ad-8115-441ec3133e1b.png"
   },
   {
     id: "crypto-app-learning",
@@ -43,7 +43,7 @@ const currentProjects: CurrentProject[] = [
     description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
-    thumbnailSrc: "/lovable-uploads/7b7d782c-dda6-4314-945e-f7c4a4de308b.png"
+    thumbnailSrc: "https://barskydesign.pro/lovable-uploads/9d3f8870-1e45-4fae-a7f4-350ec4c3c753.png"
   }
 ];
 
