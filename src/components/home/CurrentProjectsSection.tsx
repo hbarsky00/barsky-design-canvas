@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import SectionHeader from "@/components/shared/SectionHeader";
 
 interface CurrentProject {
@@ -128,18 +129,18 @@ const CurrentProjectsSection: React.FC = () => {
                     )}
                   </div>
 
-                  <CardHeader className="relative pb-4">
-                    <div className="absolute top-4 right-4">
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <CardTitle className="text-subsection-title font-semibold text-foreground flex-1 min-w-0 leading-tight">
+                        {project.title}
+                      </CardTitle>
+                      <Badge variant="secondary" className="bg-muted text-muted-foreground border-border font-medium px-3 py-1 shrink-0 text-xs">
                         {project.status}
-                      </span>
+                      </Badge>
                     </div>
-                    <CardTitle className="text-xl font-semibold text-on-surface pr-24">
-                      {project.title}
-                    </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-on-surface-variant leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {project.description}
                     </p>
                   </CardContent>

@@ -56,35 +56,35 @@ const Enhanced3DScrollContainer: React.FC<Enhanced3DScrollContainerProps> = ({
     return unsubscribe;
   }, [smoothVelocity]);
 
-  // Enhanced 3D transforms based on scroll
+  // Enhanced 3D transforms based on scroll - Reduced intensity to prevent scrollbars
   const rotateX = useTransform(
     smoothProgress, 
     [0, 0.25, 0.5, 0.75, 1], 
-    [5 * intensity, -2 * intensity, 0, 2 * intensity, -5 * intensity]
+    [3 * intensity, -1 * intensity, 0, 1 * intensity, -3 * intensity]
   );
 
   const rotateY = useTransform(
     smoothVelocity,
     [-1000, 0, 1000],
-    [-10 * intensity, 0, 10 * intensity]
+    [-5 * intensity, 0, 5 * intensity]
   );
 
   const rotateZ = useTransform(
     smoothVelocity,
     [-500, 0, 500],
-    [2 * intensity, 0, -2 * intensity]
+    [1 * intensity, 0, -1 * intensity]
   );
 
   const scale = useTransform(
     smoothProgress,
     [0, 0.5, 1],
-    [0.9, 1, 0.9]
+    [0.95, 1, 0.95]
   );
 
   const y = useTransform(
     smoothProgress,
     [0, 1],
-    [20 * intensity, -20 * intensity]
+    [10 * intensity, -10 * intensity]
   );
 
   // Dynamic blur based on velocity
@@ -94,11 +94,11 @@ const Enhanced3DScrollContainer: React.FC<Enhanced3DScrollContainerProps> = ({
     [3, 0, 3]
   );
 
-  // Momentum-based floating animation
+  // Momentum-based floating animation - Reduced for stability
   const floatY = useTransform(
     smoothVelocity,
     [-500, 0, 500],
-    [20 * intensity, 0, -20 * intensity]
+    [8 * intensity, 0, -8 * intensity]
   );
 
   if (prefersReducedMotion) {
@@ -112,7 +112,7 @@ const Enhanced3DScrollContainer: React.FC<Enhanced3DScrollContainerProps> = ({
   return (
     <motion.div
       ref={containerRef}
-      className={cn("relative", className)}
+      className={cn("relative overflow-x-hidden", className)}
       style={{
         perspective: `${perspective}px`,
         transformStyle: "preserve-3d"
