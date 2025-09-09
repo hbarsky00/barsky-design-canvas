@@ -36,9 +36,16 @@ const currentProjects: CurrentProject[] = [
 ];
 
 const CurrentProjectsSection: React.FC = () => {
+  const [hoveredProject, setHoveredProject] = React.useState<string | null>(null);
+
   const getEmbedUrl = (url: string) => {
     const videoId = url.split('loom.com/share/')[1]?.split('?')[0];
     return `https://www.loom.com/embed/${videoId}`;
+  };
+
+  const getThumbnailUrl = (url: string) => {
+    const videoId = url.split('loom.com/share/')[1]?.split('?')[0];
+    return `https://cdn.loom.com/sessions/thumbnails/${videoId}-with-play.gif`;
   };
 
   const handleVideoClick = (videoUrl: string) => {
@@ -80,23 +87,36 @@ const CurrentProjectsSection: React.FC = () => {
                   <div 
                     className="relative aspect-video bg-muted rounded-t-lg overflow-hidden cursor-pointer group"
                     onClick={() => handleVideoClick(project.videoUrl)}
+                    onMouseEnter={() => setHoveredProject(project.id)}
+                    onMouseLeave={() => setHoveredProject(null)}
                   >
-                    <iframe
-                      src={`${getEmbedUrl(project.videoUrl)}?hide_owner=true&hide_share=true&hide_title=true&autoplay=false`}
-                      title={`${project.title} preview`}
-                      className="w-full h-full border-0"
-                      frameBorder="0"
-                      allowFullScreen={false}
-                      style={{ pointerEvents: 'none' }}
-                    />
-                    {/* Play button overlay */}
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 ml-1 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
-                        </svg>
-                      </div>
-                    </div>
+                    {hoveredProject === project.id ? (
+                      <iframe
+                        src={`${getEmbedUrl(project.videoUrl)}?hide_owner=true&hide_share=true&hide_title=true&autoplay=true`}
+                        title={`${project.title} preview`}
+                        className="w-full h-full border-0"
+                        frameBorder="0"
+                        allowFullScreen={false}
+                        style={{ pointerEvents: 'none' }}
+                      />
+                    ) : (
+                      <>
+                        <img
+                          src={getThumbnailUrl(project.videoUrl)}
+                          alt={`${project.title} video thumbnail`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        {/* Play button overlay */}
+                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                          <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                            <svg className="w-6 h-6 ml-1 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
 
                   <CardHeader className="relative pb-4">
