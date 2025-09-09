@@ -53,10 +53,11 @@ export class ImageStorageService {
         return null;
       }
 
-      // Create a unique filename
+      // Create a unique filename under the required folder
       const fileExt = file.name.split('.').pop() || 'jpg';
       const sanitizedPath = originalPath.replace(/[^a-zA-Z0-9]/g, '_');
-      const fileName = `${projectId}/${sanitizedPath}_${Date.now()}.${fileExt}`;
+      const folder = 'what i did';
+      const fileName = `${folder}/${sanitizedPath}_${Date.now()}.${fileExt}`;
       
       console.log('📁 Upload path:', fileName);
       
