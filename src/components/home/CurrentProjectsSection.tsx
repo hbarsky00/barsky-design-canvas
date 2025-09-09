@@ -32,6 +32,13 @@ const currentProjects: CurrentProject[] = [
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff"
+  },
+  {
+    id: "crypto-app-learning",
+    title: "Crypto App Learning",
+    description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d"
   }
 ];
 
