@@ -94,14 +94,15 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        {/* Apply 3D effects only to sections below intro */}
-        <Enhanced3DScrollContainer intensity={0.4} className="space-y-2 md:space-y-6">
-        
-        <SectionTransition variant="perspective" delay={0.05} intensity={0.6}>
+        {/* Keep current projects section outside 3D container to prevent cutting off */}
+        <SectionTransition variant="fade" delay={0.05} intensity={0.6}>
           <section id="current-projects" tabIndex={-1}>
             <CurrentProjectsSection />
           </section>
         </SectionTransition>
+        
+        {/* Apply 3D effects only to sections below current projects */}
+        <Enhanced3DScrollContainer intensity={0.3} className="space-y-2 md:space-y-6">
         
         <LazySection threshold={0.05}>
           <SectionTransition variant="wave" delay={0.1} intensity={0.7} className="py-0 md:py-12">

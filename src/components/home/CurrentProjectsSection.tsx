@@ -102,11 +102,12 @@ const CurrentProjectsSection: React.FC = () => {
                   >
                     {hoveredProject === project.id ? (
                       <iframe
-                        src={`${getEmbedUrl(project.videoUrl)}?hide_owner=true&hide_share=true&hide_title=true&autoplay=true`}
+                        src={`${getEmbedUrl(project.videoUrl)}?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true&autoplay=1`}
                         title={`${project.title} preview`}
                         className="w-full h-full border-0"
                         frameBorder="0"
                         allowFullScreen={false}
+                        allow="autoplay"
                         style={{ pointerEvents: 'none' }}
                       />
                     ) : (
