@@ -69,14 +69,14 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
   if (relatedProjects.length === 0) return null;
 
   return (
-    <section className="py-12 bg-transparent">
-      <div className="container px-4 mx-auto max-w-7xl">
+    <section className="py-8 md:py-12 bg-transparent">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-8 md:mb-12"
         >
           <h2 className="mx-auto max-w-5xl [text-wrap:balance] text-display-medium font-bold text-on-surface mb-2 font-display">
             Related Projects

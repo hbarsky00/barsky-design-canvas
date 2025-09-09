@@ -530,7 +530,7 @@ body {
 }
 
 .content-rail-center {
-  @apply max-w-[72ch] mx-auto text-center;
+  @apply max-w-[65ch] mx-auto text-center;
 }
 
 /* Impact Metrics - Primary colored bold text with display font */

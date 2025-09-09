@@ -152,10 +152,10 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
   return (
     <section 
       id="more-work"
-      className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] cs-card"
+      className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] cs-card py-8 md:py-12"
       data-section="more-work"
     >
-      <div className="section-container compact-section-spacing">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Eyebrow tags */}
         <div className="flex flex-wrap gap-2 mb-3">
           {relatedStudy.tags.map((tag) => (
