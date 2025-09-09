@@ -8,6 +8,7 @@ interface CurrentProject {
   title: string;
   description: string;
   status: "Work in Progress";
+  videoUrl: string;
 }
 
 const currentProjects: CurrentProject[] = [
@@ -15,23 +16,35 @@ const currentProjects: CurrentProject[] = [
     id: "roi-calculator",
     title: "ROI Design Calculator",
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
-    status: "Work in Progress"
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b"
   },
   {
     id: "nail-salon-platform",
     title: "Multi-Business Nail Salon Platform",
     description: "A booking and payment system that lets clients pay after appointments while giving salon owners a clear, centralized schedule view.",
-    status: "Work in Progress"
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8"
   },
   {
     id: "faces-of-hunger",
     title: "Faces of Hunger",
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
-    status: "Work in Progress"
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff"
   }
 ];
 
 const CurrentProjectsSection: React.FC = () => {
+  const getEmbedUrl = (url: string) => {
+    const videoId = url.split('loom.com/share/')[1]?.split('?')[0];
+    return `https://www.loom.com/embed/${videoId}`;
+  };
+
+  const handleVideoClick = (videoUrl: string) => {
+    window.open(videoUrl, '_blank');
+  };
+
   return (
     <section className="py-8 md:py-12 bg-muted/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -63,6 +76,29 @@ const CurrentProjectsSection: React.FC = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card variant="outlined" className="h-full hover:shadow-md transition-shadow duration-300 bg-background/50 backdrop-blur-sm">
+                  {/* Video Preview */}
+                  <div 
+                    className="relative aspect-video bg-muted rounded-t-lg overflow-hidden cursor-pointer group"
+                    onClick={() => handleVideoClick(project.videoUrl)}
+                  >
+                    <iframe
+                      src={`${getEmbedUrl(project.videoUrl)}?hide_owner=true&hide_share=true&hide_title=true&autoplay=false`}
+                      title={`${project.title} preview`}
+                      className="w-full h-full border-0"
+                      frameBorder="0"
+                      allowFullScreen={false}
+                      style={{ pointerEvents: 'none' }}
+                    />
+                    {/* Play button overlay */}
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 ml-1 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
                   <CardHeader className="relative pb-4">
                     <div className="absolute top-4 right-4">
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
