@@ -19,7 +19,7 @@ const currentProjects: CurrentProject[] = [
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
-    thumbnailSrc: "/lovable-uploads/c4ea3015-d96e-41f9-9339-6d788647c2c9.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/investor-loan-app/_lovable_uploads_70efa220_d524_4d37_a9de_fbec00205917_png_1750296332389.png"
   },
   {
     id: "nail-salon-platform",
@@ -27,7 +27,7 @@ const currentProjects: CurrentProject[] = [
     description: "A booking and payment system that lets clients pay after appointments while giving salon owners a clear, centralized schedule view.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8",
-    thumbnailSrc: "/lovable-uploads/59af23d6-904e-4444-92a5-28b2de7deaae.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/splittime/_lovable_uploads_044ebd4f_a061_46fd_8668_fef8e8496a16_png_1750308576636.png"
   },
   {
     id: "faces-of-hunger",
@@ -35,7 +35,7 @@ const currentProjects: CurrentProject[] = [
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
-    thumbnailSrc: "/lovable-uploads/8e324946-76da-44ad-8115-441ec3133e1b.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/herbalink/_lovable_uploads_e4fb8ea0_be2b_41f7_8d69_d8f8a043c213_png_1750355299619.png"
   },
   {
     id: "crypto-app-learning",
@@ -43,7 +43,7 @@ const currentProjects: CurrentProject[] = [
     description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
-    thumbnailSrc: "/lovable-uploads/9d3f8870-1e45-4fae-a7f4-350ec4c3c753.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/case-study/_lovable_uploads_150a4488_94c2_481d_a7e3_f3730f963866_png_1755397336335.png"
   }
 ];
 
