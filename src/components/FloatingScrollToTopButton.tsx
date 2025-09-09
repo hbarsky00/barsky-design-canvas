@@ -19,7 +19,13 @@ const FloatingScrollToTopButton: React.FC = () => {
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsVisible(scrollY > 300);
+      // Only show when scrolled significantly and not overlapping with consultation button
+      const contactSection = document.getElementById("contact");
+      const isInContactSection = contactSection && 
+        contactSection.getBoundingClientRect().top <= window.innerHeight && 
+        contactSection.getBoundingClientRect().bottom >= 0;
+      
+      setIsVisible(scrollY > 800 && !isInContactSection);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -48,7 +54,7 @@ const FloatingScrollToTopButton: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
           transition={{ duration: 0.2 }}
-          className="fixed bottom-6 right-6 z-50"
+          className="fixed bottom-24 right-6 z-50"
         >
           <Button
             onClick={scrollToTop}

@@ -75,11 +75,11 @@ const FloatingConsultationBubble: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="fixed z-50
-                   right-4 bottom-4
-                   sm:right-6 sm:bottom-6"
+                   left-4 bottom-4
+                   sm:left-6 sm:bottom-6"
           style={{ 
             bottom: "calc(1rem + env(safe-area-inset-bottom))",
-            right: "calc(1rem + env(safe-area-inset-right))"
+            left: "calc(1rem + env(safe-area-inset-left))"
           }}
         >
           <Button
