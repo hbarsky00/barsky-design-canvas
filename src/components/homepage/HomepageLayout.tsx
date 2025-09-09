@@ -86,14 +86,16 @@ const HomepageLayout: React.FC = () => {
       
       {isScrolledPastHero && <Header />}
       
-      <Enhanced3DScrollContainer intensity={0.8} className="flex-grow">
-        <main className="space-y-2 md:space-y-6 relative z-10">
-        
-        <SectionTransition variant="morph" intensity={0.8}>
+      <main className="space-y-2 md:space-y-6 relative z-10">
+        {/* Keep intro section outside 3D container to prevent displacement */}
+        <SectionTransition variant="fade" intensity={0.6}>
           <section id="intro" tabIndex={-1}>
             <MinimalHero />
           </section>
         </SectionTransition>
+        
+        {/* Apply 3D effects only to sections below intro */}
+        <Enhanced3DScrollContainer intensity={0.4} className="space-y-2 md:space-y-6">
         
         <SectionTransition variant="perspective" delay={0.05} intensity={0.6}>
           <section id="current-projects" tabIndex={-1}>
@@ -160,8 +162,8 @@ const HomepageLayout: React.FC = () => {
             </section>
           </SectionTransition>
         </LazySection>
-        </main>
-      </Enhanced3DScrollContainer>
+        </Enhanced3DScrollContainer>
+      </main>
       
       <Footer />
       <FloatingConsultationBubble />

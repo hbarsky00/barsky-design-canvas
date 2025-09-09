@@ -23,7 +23,7 @@ const Enhanced3DScrollContainer: React.FC<Enhanced3DScrollContainerProps> = ({
   
   const { scrollY, scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end center"]
   });
 
   const scrollVelocity = useVelocity(scrollY);
@@ -60,7 +60,7 @@ const Enhanced3DScrollContainer: React.FC<Enhanced3DScrollContainerProps> = ({
   const rotateX = useTransform(
     smoothProgress, 
     [0, 0.25, 0.5, 0.75, 1], 
-    [15 * intensity, -5 * intensity, 0, 5 * intensity, -15 * intensity]
+    [5 * intensity, -2 * intensity, 0, 2 * intensity, -5 * intensity]
   );
 
   const rotateY = useTransform(
@@ -84,7 +84,7 @@ const Enhanced3DScrollContainer: React.FC<Enhanced3DScrollContainerProps> = ({
   const y = useTransform(
     smoothProgress,
     [0, 1],
-    [100 * intensity, -100 * intensity]
+    [20 * intensity, -20 * intensity]
   );
 
   // Dynamic blur based on velocity
