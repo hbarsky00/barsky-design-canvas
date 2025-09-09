@@ -80,13 +80,12 @@ const ContactForm: React.FC = () => {
   };
   
   return (
-    <section id="contact" className="min-h-screen flex flex-col justify-center py-16 bg-muted/30 relative">
-      <div className="container px-4 mx-auto max-w-4xl">
+    <section id="contact" className="min-h-screen flex flex-col justify-center py-8 md:py-12 bg-muted/30 relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <SectionHeader
           as="h2"
           title="Get In Touch"
           subtitle="Ready to start your project? Let's discuss your needs and create something amazing together."
-          className="mb-12"
         />
 
         <div className="max-w-2xl mx-auto">

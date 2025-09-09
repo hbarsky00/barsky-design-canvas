@@ -285,15 +285,14 @@ const CaseStudyCard: React.FC<{
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-8 bg-white" tabIndex={-1}>
-      <div className="container px-4 mx-auto max-w-7xl">
+    <section className="py-8 md:py-12 bg-white" tabIndex={-1}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
         >
           <SectionHeader
             as="h2"

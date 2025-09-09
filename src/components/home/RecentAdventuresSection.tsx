@@ -52,15 +52,14 @@ const experiences: Experience[] = [
 
 const RecentAdventuresSection: React.FC = () => {
   return (
-    <section className="py-6 md:py-12 bg-background">
-      <div className="container max-w-6xl mx-auto px-4">
+    <section className="py-8 md:py-12 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 md:mb-16"
         >
           <SectionHeader
             eyebrow="Experience"
