@@ -95,7 +95,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
           }}
           className={cn(
             'w-full h-full object-cover transition-opacity duration-300',
-            'image-high-quality image-drop-shadow',
+            'image-clarity-enhanced image-drop-shadow',
             isLoaded ? 'opacity-100' : 'opacity-0'
           )}
           {...props}

@@ -1,6 +1,7 @@
 
 import React from "react";
 import MaximizableImage from "./MaximizableImage";
+import { AIEnhancedImage } from "@/components/enhanced/AIEnhancedImage";
 
 interface ProjectImageProps {
   src: string;
@@ -19,14 +20,21 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
   priority = false,
 }) => {
   return (
-    <MaximizableImage
-      src={src}
-      alt={alt}
-      caption={caption}
-      priority={priority}
-      fit="contain"
-      className={`shadow-elevated w-full glass-card layered-depth image-clarity-enhanced image-drop-shadow ${className}`}
-    />
+    <div className={`shadow-elevated w-full glass-card layered-depth ${className}`}>
+      <AIEnhancedImage
+        src={src}
+        alt={alt}
+        priority={priority}
+        enableAI={true}
+        showEnhancementIndicator={true}
+        className="w-full h-full object-contain"
+      />
+      {caption && (
+        <div className="p-3 text-sm text-muted-foreground text-center border-t border-border">
+          {caption}
+        </div>
+      )}
+    </div>
   );
 };
 
