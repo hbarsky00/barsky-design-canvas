@@ -111,12 +111,6 @@ export interface StructuredCaseStudyData {
     eyebrow: string;
     title: string;
     content: string;
-    preImage?: {
-      src: string;
-      alt: string;
-      caption?: string;
-      annotations?: ImageAnnotation[];
-    };
     images?: Array<{
       src: string;
       alt: string;
@@ -469,12 +463,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "",
-      preImage: {
-        src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/style_guide.webp",
-        alt: "Design system",
-        caption: "design system",
-        annotations: []
-      },
       content: "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
       images: [
         {
