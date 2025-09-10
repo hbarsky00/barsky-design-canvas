@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
+import CaseStudySnapScrollContainer from "./CaseStudySnapScrollContainer";
 
 interface CaseStudy {
   id: string;
@@ -316,8 +317,11 @@ const VideoCaseStudiesSection: React.FC = () => {
           />
         </motion.div>
 
-        {/* Case Studies Grid */}
-        <div className="space-y-12">
+        {/* Case Studies Grid with Snap Scroll */}
+        <CaseStudySnapScrollContainer 
+          totalCaseStudies={caseStudies.length}
+          className="space-y-12"
+        >
           {caseStudies.map((study, index) => (
             <CaseStudyCard 
               key={study.id} 
@@ -325,7 +329,7 @@ const VideoCaseStudiesSection: React.FC = () => {
               index={index}
             />
           ))}
-        </div>
+        </CaseStudySnapScrollContainer>
       </div>
     </section>
   );

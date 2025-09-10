@@ -402,7 +402,28 @@ select:focus-visible, a:focus-visible,
       padding-bottom: 2.5rem;
     }
   }
-}
+  }
+
+  /* Case Study Snap Scroll Styles */
+  .case-study-snap-container {
+    scroll-snap-type: y mandatory;
+  }
+
+  .case-study-card {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Smooth scroll behavior for case studies */
+  .case-study-snap-container .case-study-card {
+    scroll-margin-top: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .case-study-snap-container .case-study-card {
+      scroll-margin-top: 4rem;
+    }
+  }
 }
 
 /* Mobile viewport and safe areas */
