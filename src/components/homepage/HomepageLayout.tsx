@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import FloatingButtonGroup from "@/components/shared/FloatingButtonGroup";
 import SectionTransition from "@/components/transitions/SectionTransition";
-import ScrollMorphingBackground from "@/components/transitions/ScrollMorphingBackground";
+
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 import { useBounceReduction } from "@/hooks/useBounceReduction";
@@ -32,51 +32,9 @@ const HomepageLayout: React.FC = () => {
     // Exit intent detected - production ready
   };
 
-  // Define background sections for morphing
-  const backgroundSections = [
-    {
-      id: "intro",
-      colors: {
-        primary: "hsl(var(--primary) / 0.03)",
-        secondary: "hsl(var(--background))",
-        accent: "hsl(var(--accent) / 0.02)"
-      },
-      particles: true
-    },
-    {
-      id: "case-studies",
-      colors: {
-        primary: "hsl(var(--primary) / 0.02)",
-        secondary: "hsl(var(--background))",
-        accent: "hsl(var(--muted) / 0.1)"
-      },
-      particles: true
-    },
-    {
-      id: "current-projects",
-      colors: {
-        primary: "hsl(var(--secondary) / 0.05)",
-        secondary: "hsl(var(--muted) / 0.3)",
-        accent: "hsl(var(--primary) / 0.02)"
-      }
-    },
-    {
-      id: "bio",
-      colors: {
-        primary: "hsl(var(--accent) / 0.03)",
-        secondary: "hsl(var(--muted) / 0.2)",
-        accent: "hsl(var(--primary) / 0.01)"
-      }
-    }
-  ];
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden relative">
-      {/* Enhanced morphing background */}
-      <ScrollMorphingBackground 
-        sections={backgroundSections}
-        className="opacity-60"
-      />
       
       <BackgroundAudio 
         src="/audio/shove-it-deftones.mp3" 

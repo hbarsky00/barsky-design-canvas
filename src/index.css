@@ -409,6 +409,7 @@ select:focus-visible, a:focus-visible,
 html {
   scroll-behavior: auto;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -416,6 +417,7 @@ body {
   min-height: 100svh;
   min-height: 100dvh;
   overflow-x: hidden;
+  overflow-y: auto;
   padding-top: max(0px, env(safe-area-inset-top));
   padding-bottom: max(0px, env(safe-area-inset-bottom));
 }

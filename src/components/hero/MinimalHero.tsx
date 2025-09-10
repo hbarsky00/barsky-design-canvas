@@ -44,7 +44,7 @@ const MinimalHero: React.FC = () => {
       console.log('📍 Looking for case-studies element:', nextSection);
       if (nextSection) {
         console.log('✅ Found case-studies element, scrolling...');
-        nextSection.scrollIntoView({ behavior: 'smooth' });
+        nextSection.scrollIntoView({ behavior: 'auto', block: 'start' });
         return true;
       }
       console.log('❌ case-studies element not found');
