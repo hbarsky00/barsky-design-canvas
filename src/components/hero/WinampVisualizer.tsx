@@ -248,7 +248,7 @@ const WinampVisualizer: React.FC<WinampVisualizerProps> = ({ className = "" }) =
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
-        className="absolute bottom-4 right-4 w-72 h-24 md:w-80 md:h-28 lg:w-96 lg:h-32"
+        className="absolute bottom-4 right-4 w-72 h-24 md:w-80 md:h-28 lg:w-96 lg:h-32 pointer-events-auto"
       >
         {/* Chrome border effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-400 via-gray-300 to-gray-500 rounded-lg p-1">
@@ -263,9 +263,13 @@ const WinampVisualizer: React.FC<WinampVisualizerProps> = ({ className = "" }) =
             <canvas
               ref={canvasRef}
               className="w-full h-full cursor-pointer"
-              onClick={cycleMode}
+              onClick={(e) => {
+                e.stopPropagation();
+                cycleMode();
+              }}
               onContextMenu={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 cycleColorScheme();
               }}
               style={{ imageRendering: 'pixelated' }}

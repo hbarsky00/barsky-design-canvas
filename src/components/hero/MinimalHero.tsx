@@ -33,29 +33,37 @@ const MinimalHero: React.FC = () => {
   }, [showContinueButton]);
 
   const handleNavigateDown = () => {
+    console.log('🚀 handleNavigateDown called!');
     // Hide continue button immediately when clicked
     setShowContinueButton(false);
     setHasScrolledPastHero(true);
     
-    // Scroll to current projects section
-    const scrollToCurrentProjects = () => {
+    // Scroll to case studies section
+    const scrollToCaseStudies = () => {
       const nextSection = document.getElementById('case-studies');
+      console.log('📍 Looking for case-studies element:', nextSection);
       if (nextSection) {
+        console.log('✅ Found case-studies element, scrolling...');
         nextSection.scrollIntoView({ behavior: 'smooth' });
         return true;
       }
+      console.log('❌ case-studies element not found');
       return false;
     };
 
     // Try immediate scroll first
-    if (!scrollToCurrentProjects()) {
+    if (!scrollToCaseStudies()) {
       // If element not found, wait for loading and try again
       let attempts = 0;
       const maxAttempts = 20; // 2 seconds total
       const interval = setInterval(() => {
         attempts++;
-        if (scrollToCurrentProjects() || attempts >= maxAttempts) {
+        console.log(`🔄 Retry attempt ${attempts}/${maxAttempts}`);
+        if (scrollToCaseStudies() || attempts >= maxAttempts) {
           clearInterval(interval);
+          if (attempts >= maxAttempts) {
+            console.log('⚠️ Max attempts reached, could not find case-studies element');
+          }
         }
       }, 100);
     }
@@ -67,14 +75,19 @@ const MinimalHero: React.FC = () => {
       className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative
                  pt-safe-top pb-safe-bottom overflow-hidden"
     >
-      {/* Winamp Visualizer Background */}
-      <WinampVisualizer />
+      {/* Winamp Visualizer Background - positioned behind clickable area */}
+      <div className="absolute inset-0 pointer-events-none">
+        <WinampVisualizer />
+      </div>
       
       {/* Simple background for text readability */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
-      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-10 
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-20 
                        hover:opacity-95 transition-opacity duration-200" 
-           onClick={handleNavigateDown}
+           onClick={(e) => {
+             console.log('📱 Main container clicked!', e.target);
+             handleNavigateDown();
+           }}
            title="Click anywhere to view case studies">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
