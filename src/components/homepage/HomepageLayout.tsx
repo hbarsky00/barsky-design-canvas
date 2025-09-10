@@ -44,14 +44,6 @@ const HomepageLayout: React.FC = () => {
       particles: true
     },
     {
-      id: "current-projects",
-      colors: {
-        primary: "hsl(var(--secondary) / 0.05)",
-        secondary: "hsl(var(--muted) / 0.3)",
-        accent: "hsl(var(--primary) / 0.02)"
-      }
-    },
-    {
       id: "case-studies",
       colors: {
         primary: "hsl(var(--primary) / 0.02)",
@@ -59,6 +51,14 @@ const HomepageLayout: React.FC = () => {
         accent: "hsl(var(--muted) / 0.1)"
       },
       particles: true
+    },
+    {
+      id: "current-projects",
+      colors: {
+        primary: "hsl(var(--secondary) / 0.05)",
+        secondary: "hsl(var(--muted) / 0.3)",
+        accent: "hsl(var(--primary) / 0.02)"
+      }
     },
     {
       id: "bio",
@@ -93,23 +93,23 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        {/* Keep current projects section outside 3D container to prevent cutting off */}
-        <SectionTransition variant="fade" delay={0.05} intensity={0.3}>
-          <section id="current-projects" tabIndex={-1}>
-            <CurrentProjectsSection />
-          </section>
-        </SectionTransition>
-        
         {/* Remove 3D effects that cause layout distortion */}
         <div className="space-y-2 md:space-y-6">
         
         <LazySection threshold={0.05}>
-          <SectionTransition variant="fade" delay={0.1} intensity={0.3} className="py-0 md:py-12">
+          <SectionTransition variant="fade" delay={0.05} intensity={0.3} className="py-0 md:py-12">
             <section id="case-studies" tabIndex={-1}>
               <LazyVideoCaseStudiesSection />
             </section>
           </SectionTransition>
         </LazySection>
+        
+        {/* Keep current projects section outside 3D container to prevent cutting off */}
+        <SectionTransition variant="fade" delay={0.1} intensity={0.3}>
+          <section id="current-projects" tabIndex={-1}>
+            <CurrentProjectsSection />
+          </section>
+        </SectionTransition>
         
         <LazySection>
           <SectionTransition variant="fade" delay={0.15} intensity={0.3}>
