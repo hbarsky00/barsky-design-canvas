@@ -4,7 +4,8 @@ import { lazy } from 'react';
 export const LazyBlogPreview = lazy(() => import('@/components/blog/BlogPreview'));
 export const LazySeoFaqSection = lazy(() => import('@/components/seo/SeoFaqSection'));
 export const LazyInternalLinkingEnhancer = lazy(() => import('@/components/seo/InternalLinkingEnhancer'));
-export const LazyVideoCaseStudiesSection = lazy(() => import('@/components/home/VideoCaseStudiesSection'));
+// Temporarily disable lazy loading for VideoCaseStudiesSection to fix dynamic import error
+export { default as LazyVideoCaseStudiesSection } from '@/components/home/VideoCaseStudiesSection';
 export const LazyRecentAdventuresSection = lazy(() => import('@/components/home/RecentAdventuresSection'));
 export const LazyContactForm = lazy(() => import('@/components/home/ContactForm'));
 
