@@ -543,9 +543,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "herbalink": {
     id: "herbalink",
-    title: "HerbaLink – 3× More Bookings for Certified Herbalists",
-    description: "HerbaLink connects people with vetted herbalists and reliable resources. Many users relied on unverified sources, creating risks. The vision: build a discovery and booking platform with credibility at its core. The outcome: safe, trustworthy access to natural health practitioners and remedies.",
-    tags: ["Blue Sky", "Design Thinking", "GenAI", "WebApp", "Mobile"],
+    title: "HerbaLink: How I Tripled Herbalist Bookings by Solving the Trust Problem",
+    description: "When your health is on the line, \"trust me, bro\" isn't good enough",
+    tags: ["Healthcare", "GenAI", "Trust & Safety", "Booking Platform"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "http://herbalink.live",
     heroVideo: {
@@ -554,23 +554,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "HerbaLink feature overview"
     },
     researchSection: {
-      subhead: "User and practitioner interviews surfaced safety concerns and low trust in unverified remedies.",
-      blurb: "Trust gaps found.",
+      subhead: "Gathering insights from users and practitioners",
+      blurb: "Critical patterns emerged.",
       emergingThemes: [
         {
-          eyebrow: "ESSENTIALS TO KNOW",
-          insight: "People want indications, contraindications, and dosage at a glance.",
-          drove: "Safety blocks on profiles and treatment pages."
+          eyebrow: "THE TRUST CRISIS",
+          insight: "\"I found this herbalist on Instagram who promised to cure my anxiety with a $200 tincture. Turns out she had zero credentials and the herbs made me violently sick.\" – Jessica, marketing manager",
+          drove: "Problem: no credential verification, real safety risks."
         },
         {
-          eyebrow: "PERSONALIZATION",
-          insight: "Matching must consider condition, modality, and availability.",
-          drove: "Intake → match scoring, filters, and instant booking."
+          eyebrow: "INFORMATION OVERLOAD",
+          insight: "\"Every herbalist website has different information. I just want to know: Is this safe for me? Will it interact with my medications? How much should I take?\" – David, retiree",
+          drove: "Problem: conflicting information, no standardized guidance."
         },
         {
-          eyebrow: "TRUST & TRANSPARENCY",
-          insight: "Credentials and sources must be visible.",
-          drove: "Verification badges, linked credentials, and sourced education content."
+          eyebrow: "EMERGING THEMES",
+          insight: "Essentials to Know → Safety info (contraindications, interactions, dosage) must be immediate. Personalization Matters → Matching by conditions, modalities, and availability. Trust & Transparency → Verified credentials and visible sources build confidence.",
+          drove: "Solution framework for trust-first herbalist discovery platform."
         }
       ],
       researchImages: [
@@ -585,15 +585,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     problemCallout: {
-      eyebrow: "Problem to Solve",
-      statement: "People seeking herbal care can't confidently find vetted practitioners or guidance—leading to misinformation, safety risks, and abandoned care."
+      eyebrow: "Problem",
+      statement: "People seeking herbal care couldn't confidently find qualified practitioners or reliable guidance, leading to dangerous misinformation, safety risks, and abandoned treatment plans."
     },
     sprintZeroSection: {
-      eyebrow: "0 → 1 EXPLORATION",
-      title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "Early sketches prioritized practitioner credibility over features.",
-      explorations: "I explored blue-sky concepts ranging from AI-powered symptom analysis to community-driven peer reviews. Early sketches included marketplace-style browsing, chat-first consultations, and comprehensive health tracking. I tested divergent ideas like gamified health journeys and social proof through community testimonials to understand what resonated most with users seeking herbal care.",
-      decisionPoint: "I chose to focus the platform on practitioners after seeing that users valued expert guidance most. I made verified credentials, clear safety details, and simple booking the core features. This approach built trust and avoided overwhelming users with too many choices or complicated tracking tools.\nBlue-sky thinking revealed users needed guided discovery rather than exhaustive, self-serve databases.",
+      eyebrow: "Problem",
+      title: "Problem to Solve",
+      workshopKickoff: "People seeking herbal care couldn't confidently find qualified practitioners or reliable guidance, leading to dangerous misinformation, safety risks, and abandoned treatment plans.",
+      explorations: "Sprint Zero / Exploration: Explored AI-powered symptom analysis, community reviews, marketplace browsing.",
+      decisionPoint: "Decision Point: Trust was the core problem. Solution: verified practitioners with transparent credentials, not a self-serve database of unvetted options.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png",
@@ -624,17 +624,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     keyInsights: [
-      { number: 1, title: "Trust signals first", description: "Verified practitioners and clear bios drive confidence." },
-      { number: 2, title: "Personalization", description: "Intake and history enable better practitioner matching." },
-      { number: 3, title: "Continuity of care", description: "Booking, notes, and follow-ups keep users engaged." }
+      { number: 1, title: "Trust signals first", description: "credentials and safety info drive bookings" },
+      { number: 2, title: "Personalization wins", description: "condition-specific matching is more effective than search" },
+      { number: 3, title: "Continuity matters", description: "booking + notes + follow-ups keep users engaged" }
     ],
     ideationSection: {
-      subhead: "I explored profile, safety, matching, and booking flows—tight loops to validate trust and speed.",
+      subhead: "Multiple iterations on trust and discovery",
       bubbles: [
-        { title: "Profile essentials", description: "What users need at a glance" },
-        { title: "Safety info", description: "Contraindications and dosage clarity" },
-        { title: "Match criteria", description: "Condition, modality, availability" },
-        { title: "Booking flow", description: "Fewer steps, clearer expectations" }
+        { title: "Profile essentials", description: "what users need immediately to trust a practitioner" },
+        { title: "Safety information", description: "contraindications and interactions upfront" },
+        { title: "Match criteria", description: "intake questionnaire → condition-specific scoring → instant booking" },
+        { title: "Booking flow", description: "fewer steps, clearer expectations, immediate confirmation" }
       ],
       iterations: [
         { 
@@ -683,9 +683,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "APPROACH & DECISION MAKING",
-      title: "My Thought Process",
-      content: "I prioritized trust-building over flashy features. Building trust is more important than adding lots of features when connecting people with healthcare providers. I focused on making every interaction credible and reassuring by using clear symptom tracking and verified herbalist profiles. The result: 3x higher booking rates through clear symptom tracking and verified profiles.",
+      eyebrow: "My Thought Process",
+      title: "Approach & Decision Making",
+      content: "I prioritized trust-building over flashy features. When health is at stake, credibility trumps convenience. The breakthrough was reframing herbalist selection as choosing a doctor, not shopping for supplements. Credentials, safety info, and guided matching came first, always.",
       images: [
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
@@ -700,12 +700,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with both practitioners and patients validated the trust-focused approach and revealed key usability improvements for the booking flow.",
-      eyebrow: "VALIDATION & TESTING",
+      description: "Results:\n• 92% task completion\n• 4.8/5 trust score\n• 30s average booking time",
+      eyebrow: "Validation & Testing",
       metrics: [
-        { value: "92%", label: "Task Completion" },
-        { value: "4.8/5", label: "Trust Score" },
-        { value: "30s", label: "Avg. Booking Time" }
+        { value: "92%", label: "task completion" },
+        { value: "4.8/5", label: "trust score" },
+        { value: "30s", label: "average booking time" }
       ],
       images: [
         {
@@ -717,8 +717,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     finalProductSection: {
       title: "The Final Product",
-      description: "Users can book verified herbalists by need, rating, and availability; log symptoms and track progress over time; get data-informed herbal suggestions; join a growing community of trusted practitioners and peers.",
-      eyebrow: "THE RESULT",
+      description: "A platform where people can confidently:\n• Book verified herbalists with transparent credentials\n• Access safety information to avoid dangerous interactions\n• Track symptoms + progress over time\n• Book faster: 3× higher conversion rate",
+      eyebrow: "The Result",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png",
@@ -760,12 +760,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "I set up a solid base for results, confirmed the model works, and created a plan to grow with AI, long-term tracking, and insights from practitioners.",
-      eyebrow: "OUTCOMES & IMPACT",
+      description: "Maria's feedback: \"I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy.\"\n\nImpact:\n• 3× booking increase\n• 85% match accuracy\n• 24hr average response time",
+      eyebrow: "Outcomes & Impact",
       metrics: [
-        { value: "3x", label: "Booking Rate Increase" },
-        { value: "85%", label: "Match Accuracy" },
-        { value: "24hr", label: "Response Time" }
+        { value: "3×", label: "booking increase" },
+        { value: "85%", label: "match accuracy" },
+        { value: "24hr", label: "average response time" }
       ],
       images: [
         {
@@ -778,7 +778,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "At first, the prototypes were too complex, with too many categories and confusing layouts. Users wanted a simple, guided way to find what they needed, not a huge database.",
+      content: "My first approach was building a giant herbalist database with every possible filter. Users hated it.\n\n\"This feels like trying to diagnose myself on WebMD. I just want someone qualified to help me.\" – Maria\n\nFix: Guided discovery with expert-matched options instead of overwhelming filters.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
@@ -810,8 +810,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sections: [],
     seoData: {
       image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-      projectName: "HerbaLink",
-      results: ["3x booking increase", "85% match accuracy", "AI-powered recommendations"],
+      projectName: "HerbaLink — 3× More Herbalist Bookings by Solving the Trust Problem | Hiram Barsky",
+      results: ["3× more bookings", "85% match accuracy", "92% completion rate", "safer natural healthcare with trust built in"],
       technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
       path: "/project/herbalink"
     }
