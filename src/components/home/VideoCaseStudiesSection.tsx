@@ -41,6 +41,32 @@ const caseStudies: CaseStudy[] = [
     video: "/lovable-uploads/dae-search-hero.mp4"
   },
   {
+    id: "crypto",
+    tags: ["Fintech", "Crypto", "Product Design", "Dual-Mode UX"],
+    title: "Trading Without Friction",
+    description: "Here's what nobody tells you about crypto apps: they're designed to fail you on purpose. I decided to call bullshit on the entire industry and build something that actually works for everyone. The result: 35% higher conversion and users who don't hate their trading app.",
+    impact: "Why Every Crypto App is Designed to Fail (And How I Fixed It)",
+    url: "/project/crypto",
+    images: {
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
+      alt: "Crypto trading platform exposing industry manipulation and providing honest alternative"
+    },
+    layout: "side-by-side"
+  },
+  {
+    id: "investor-loan-app",
+    tags: ["FinTech", "Analytics", "WebApp"],
+    title: "Redesigning Loans",
+    description: "85% Fewer Errors, 40% Faster",
+    impact: "How I led a banking platform redesign that replaced Excel and scaled operations",
+    url: "/project/investor-loan-app", 
+    images: {
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",
+      alt: "Investment platform showing deal analysis and portfolio management"
+    },
+    layout: "side-by-side"
+  },
+  {
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
@@ -82,32 +108,6 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "web-mobile",
     video: "https://barskyux.com/wp-content/uploads/2025/08/barskyjoint-demo.mp4"
-  },
-  {
-    id: "crypto",
-    tags: ["Fintech", "Crypto", "Product Design", "Dual-Mode UX"],
-    title: "Trading Without Friction",
-    description: "Here's what nobody tells you about crypto apps: they're designed to fail you on purpose. I decided to call bullshit on the entire industry and build something that actually works for everyone. The result: 35% higher conversion and users who don't hate their trading app.",
-    impact: "Why Every Crypto App is Designed to Fail (And How I Fixed It)",
-    url: "/project/crypto",
-    images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
-      alt: "Crypto trading platform exposing industry manipulation and providing honest alternative"
-    },
-    layout: "side-by-side"
-  },
-  {
-    id: "investor-loan-app",
-    tags: ["FinTech", "Analytics", "WebApp"],
-    title: "Redesigning Loans",
-    description: "85% Fewer Errors, 40% Faster",
-    impact: "How I led a banking platform redesign that replaced Excel and scaled operations",
-    url: "/project/investor-loan-app", 
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",
-      alt: "Investment platform showing deal analysis and portfolio management"
-    },
-    layout: "side-by-side"
   }
 ];
 
