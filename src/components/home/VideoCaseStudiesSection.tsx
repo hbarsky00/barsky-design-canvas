@@ -72,7 +72,7 @@ const caseStudies: CaseStudy[] = [
     id: "barskyjoint",
     tags: ["Restaurant Tech", "Food Service", "Kiosk Design"],
     title: "BarskyJoint: 28% Higher Average Ticket Size",
-    description: "Designed a dual-format restaurant ordering platform that serves both web and kiosk customers. Features menu clarity, guided customization, seamless checkout, and integrated POS systems to enhance customer experience and operational efficiency.",
+    description: "Ordering shouldn't feel like a test of willpower. Yet in most restaurants, menus are cluttered, customization flows are overwhelming, and web vs. kiosk experiences feel like completely different products. BarskyJoint — my dual-format ordering platform — solved these issues by creating clarity, confidence, and consistency across channels.",
     impact: "28% Higher Average Ticket Size",
     url: "/project/barskyjoint",
     liveUrl: "https://barskyjoint.com/",

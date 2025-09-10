@@ -1843,8 +1843,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "barskyjoint": {
     id: "barskyjoint",
     title: "BarskyJoint – 28% Higher Average Ticket Size",
-    description: "Designed a dual-format restaurant ordering platform that serves both web and kiosk customers with menu clarity, guided customization, and seamless checkout.",
-    tags: ["Restaurant Tech", "Food Service", "Kiosk Design", "UX Research", "Product Design"],
+    description: "Dual-format ordering platform for web and kiosk customers with clarity, guidance, and seamless checkout",
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design", "Product Design"],
     gradientClasses: "from-orange-50 via-amber-50 to-yellow-50",
     projectLink: "https://barskyjoint.com",
     heroVideo: {
@@ -1856,51 +1856,51 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { value: "+28%", label: "Average Ticket Size" },
       { value: "-35%", label: "Order Time" },
       { value: "-60%", label: "Ordering Errors" },
-      { value: "+40%", label: "Customer Satisfaction" }
+      { value: "85%", label: "Customer Preference" }
     ],
     researchSection: {
-      subhead: "Customer interviews and restaurant observations revealed pain points in ordering flow and menu navigation.",
-      blurb: "Insights drove dual-format design.",
+      subhead: "Restaurant interviews + customer observations revealed:",
+      blurb: "Menu Confusion",
       emergingThemes: [
         {
           eyebrow: "MENU CONFUSION",
           insight: "Complex menus overwhelmed customers and slowed ordering.",
-          drove: "Clear categorization with visual hierarchy and simplified descriptions."
+          drove: "Clear categorization, visual hierarchy, simplified descriptions."
         },
         {
           eyebrow: "CUSTOMIZATION COMPLEXITY",
-          insight: "Too many options led to decision paralysis and abandoned orders.",
-          drove: "Guided customization with smart defaults and progressive disclosure."
+          insight: "Too many options created decision paralysis and abandoned orders.",
+          drove: "Guided customization with smart defaults + progressive disclosure."
         },
         {
           eyebrow: "DUAL EXPERIENCE GAPS",
-          insight: "Web and kiosk experiences were inconsistent.",
+          insight: "Web and kiosk flows were inconsistent, frustrating staff + customers.",
           drove: "Unified design system serving both formats seamlessly."
         }
       ],
       researchImages: [
         {
           src: "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
-          alt: "Restaurant management interface analysis",
-          caption: "Competitive analysis of restaurant ordering systems"
+          alt: "Insights driving dual-format ordering design",
+          caption: "Insights driving dual-format ordering design"
         },
         {
           src: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
-          alt: "Food truck location tracking research",
-          caption: "User journey mapping for mobile food service"
+          alt: "Field research observing ordering flows",
+          caption: "Field research observing ordering flows"
         }
       ]
     },
     problemCallout: {
       eyebrow: "Problem",
-      statement: "Customers abandon orders due to confusing menus and complex customization flows. Restaurants lose revenue from incomplete orders and reduced average ticket size."
+      statement: "Customers abandoned orders because of confusing menus and overwhelming customization flows. Restaurants lost revenue to incomplete orders and reduced ticket size."
     },
     sprintZeroSection: {
-      eyebrow: "Sprint Zero",
-      title: "Foundation & Principles",
-      workshopKickoff: "1. Clarity drives confidence → clear menu structure. 2. Guided choice → smart defaults with customization. 3. Unified experience → consistent across web and kiosk.",
-      explorations: "I designed three different ordering flows, testing menu organization, customization patterns, and checkout processes. Focus groups helped validate the guided approach.",
-      decisionPoint: "Focus on a dual-format design that maintains consistency while optimizing for each platform's strengths.",
+      eyebrow: "Problem",
+      title: "Problem to Solve",
+      workshopKickoff: "Customers abandoned orders because of confusing menus and overwhelming customization flows. Restaurants lost revenue to incomplete orders and reduced ticket size.",
+      explorations: "Sprint Zero / Exploration: Tested three different ordering flows (menu-first, customization-first, and hybrid) with focus groups.",
+      decisionPoint: "Decision Point: Build a dual-format system that leverages each platform's strengths while maintaining consistency.",
       images: [
         {
           src: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
@@ -1912,43 +1912,43 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     keyInsights: [
       {
         number: 1,
-        title: "Visual menu hierarchy increased orders",
-        description: "Clear categorization with appetizing images helped customers navigate faster and order more items confidently."
+        title: "Visual hierarchy increased confidence",
+        description: "customers navigated faster and ordered more."
       },
       {
         number: 2,
         title: "Guided customization reduced abandonment",
-        description: "Smart defaults with optional customization eliminated decision paralysis while maintaining choice flexibility."
+        description: "smart defaults balanced choice with speed."
       },
       {
         number: 3,
         title: "Unified design served both formats",
-        description: "Consistent experience across web and kiosk increased familiarity and reduced training needs for staff."
+        description: "customers recognized patterns and staff needed less training."
       }
     ],
     ideationSection: {
-      subhead: "Core Features & Interface Design",
+      subhead: "Multiple Iterations on Core Flows",
       bubbles: [
         {
           title: "Menu Navigation",
-          description: "Clear categories, visual hierarchy, smart search and filtering."
+          description: "clear categories, appetizing visuals, smart filtering"
         },
         {
           title: "Customization Flow",
-          description: "Guided options with smart defaults and progressive disclosure."
+          description: "guided options with defaults, extra detail only when needed"
         },
         {
           title: "Checkout Process",
-          description: "Streamlined payment with order summary and confirmation."
+          description: "streamlined payment, order summary, confirmation in one screen"
         }
       ],
       iterations: [
         {
-          label: "Menu Structure",
+          label: "Revised hierarchy",
           imageSrc: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-          alt: "BarskyJoint desktop menu interface",
+          alt: "Revised hierarchy guiding attention",
           annotations: [
-            { text: "Visual hierarchy guides customer attention to featured items", x: 25, y: 30, type: "improvement" },
+            { text: "Revised flows: progressive disclosure + defaults → faster completion, happier customers", x: 25, y: 30, type: "improvement" },
             { text: "Clear categorization reduces cognitive load", x: 70, y: 60, type: "feature" }
           ]
         }
@@ -1956,8 +1956,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     myThoughtProcessSection: {
       eyebrow: "My Thought Process",
-      title: "",
-      content: "Design for speed and confidence: customers should feel guided, not overwhelmed. Progressive disclosure: show essentials first, details on demand. Platform parity: maintain consistency while leveraging each format's strengths. The goal was creating an ordering experience that felt effortless regardless of how customers chose to interact.",
+      title: "Approach & Decision Making",
+      content: "The key was designing for speed + confidence. Progressive disclosure let customers see essentials first, then dive into details if they wanted. And platform parity meant whether ordering on kiosk or web, the experience felt familiar.",
       images: [
         {
           src: "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
@@ -1968,8 +1968,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
-      title: "",
-      content: "Initially, I included too many customization options which overwhelmed customers and increased abandonment by 40%. Showing all menu items at once created choice paralysis. Moving to progressive disclosure and smart defaults dramatically improved completion rates and customer satisfaction.",
+      title: "Lessons Learned",
+      content: "At first, showing every customization upfront created choice paralysis and higher abandonment. Moving to defaults + \"expand if needed\" dramatically improved completion and satisfaction.",
       images: [
         {
           src: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
@@ -1979,42 +1979,44 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     userTestingSection: {
-      title: "Validation & Testing",
-      eyebrow: "Testing",
-      description: "Prototype testing showed: Order completion time ↓ 35%. Customization errors ↓ 60%. 85% of customers preferred this system over competitors.",
+      title: "Prototype Testing",
+      eyebrow: "Validation & Testing",
+      description: "Results:\n• ↓35% order completion time\n• ↓60% customization errors\n• 85% customer preference over competitor systems",
       metrics: [
-        { value: "↓35%", label: "Order completion time" },
-        { value: "↓60%", label: "Customization errors" },
-        { value: "85%", label: "Customer preference" }
+        { value: "↓35%", label: "order completion time" },
+        { value: "↓60%", label: "customization errors" },
+        { value: "85%", label: "customer preference" }
       ]
     },
     outcomeSection: {
-      title: "Outcome & Impact",
-      eyebrow: "Results",
-      description: "The dual-format platform increased revenue through higher average ticket size and reduced operational costs through fewer ordering errors.",
+      title: "Outcome",
+      eyebrow: "Outcomes & Impact",
+      description: "The dual-format design improved both revenue and customer experience:\n\n• +28% average ticket size\n• ↓35% order completion time\n• ↓60% customization errors\n• 85% of customers said they preferred it to other systems",
       metrics: [
-        { value: "+28%", label: "Average ticket size" },
-        { value: "↓35%", label: "Order completion time" }
+        { value: "+28%", label: "average ticket size" },
+        { value: "↓35%", label: "order completion time" },
+        { value: "↓60%", label: "customization errors" },
+        { value: "85%", label: "customer preference" }
       ],
       images: [
         {
           src: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-          alt: "Final BarskyJoint restaurant ordering platform",
-          caption: "Completed dual-format restaurant ordering platform showing successful outcomes"
+          alt: "Final BarskyJoint platform",
+          caption: "Completed dual-format ordering platform with consistent web + kiosk flows"
         }
       ]
     },
     sections: [],
     seoData: {
       image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-      projectName: "BarskyJoint Restaurant Ordering Platform",
+      projectName: "BarskyJoint — 28% Higher Average Ticket Size with Dual-Format Ordering | Hiram Barsky",
       results: [
-        "28% increase in average ticket size",
-        "35% reduction in order completion time",
-        "60% reduction in ordering errors",
-        "40% increase in customer satisfaction"
+        "+28% average ticket size",
+        "↓35% order completion time",
+        "↓60% customization errors",
+        "85% customer preference"
       ],
-      technologies: ["React", "TypeScript", "POS Integration", "Kiosk Software"],
+      technologies: ["Restaurant Tech", "Food Service", "Kiosk Design", "Product Design"],
       path: "/project/barskyjoint"
     }
   }
