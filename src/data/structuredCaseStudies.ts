@@ -164,9 +164,9 @@ export interface StructuredCaseStudyData {
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "crypto": {
     id: "crypto",
-    title: "Trading Without Friction",
-    description: "How a dual-mode crypto app turned churn into growth by serving both novices and pros",
-    tags: ["Fintech", "Crypto", "Mobile & Web", "Product Design", "Research", "Prototyping"],
+    title: "Trading Without Friction: Why Every Crypto App is Designed to Fail (And How I Fixed It)",
+    description: "The dirty secret: platforms profit more from your confusion than your success",
+    tags: ["Fintech", "Crypto", "Product Design", "Dual-Mode UX"],
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
       src: "/lovable-uploads/crypto-hero.mp4",
@@ -177,172 +177,188 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { value: "+35%", label: "Onboarding Conversion" },
       { value: "–40%", label: "Time-to-First-Trade" },
       { value: "–45%", label: "Order Errors" },
-      { value: "+25%", label: "Pro Trader Retention" }
+      { value: "+60%", label: "Retention" }
     ],
-      researchSection: {
-        subhead: "Interviews and competitive analysis revealed beginner barriers and pro constraints.",
-        blurb: "Insights drove a dual-mode approach.",
-        researchImages: [
-          {
-            src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png",
-            alt: "Competitive Analysis of Crypto Apps"
-          },
-          {
-            src: "https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png",
-            alt: "User Flow Chart for Crypto App",
-            caption: "User Flow Chart for Crypto App"
-          }
-        ],
-        emergingThemes: [
-          {
-            eyebrow: "BEGINNER BARRIERS",
-            insight: "Drove guided trading mode with safety rails.",
-            drove: "Guided trading mode with clear explanations and safety rails."
-          },
-          {
-            eyebrow: "PRO LIMITATIONS",
-            insight: "Drove advanced panel with hotkeys, presets, and live order book.",
-            drove: "Advanced panel with hotkeys, presets, and live order book."
-          },
-          {
-            eyebrow: "COMPETITIVE GAPS",
-            insight: "Drove a dual-mode approach serving both audiences.",
-            drove: "Dual-mode approach serving both audiences in one platform."
-          }
-        ]
-      },
+    researchSection: {
+      subhead: "Uncovering the industry's dirty secrets",
+      blurb: "",
+      researchImages: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png",
+          alt: "Competitor analysis exposing beginner exploitation"
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png",
+          alt: "User Flow Chart for Crypto App",
+          caption: "Trading interface serving both pros and beginners"
+        }
+      ],
+      emergingThemes: [
+        {
+          eyebrow: "BEGINNER EXPLOITATION",
+          insight: "\"I tried Coinbase Pro and felt like they wanted me to fail. Like, why would you hide the 'buy' button behind three menus?\" – Alex",
+          drove: "Guided mode that educates instead of exploiting"
+        },
+        {
+          eyebrow: "PRO PUNISHMENT", 
+          insight: "\"These 'user-friendly' apps are financial torture devices. Every second I wait for their cute animations, I'm losing money.\" – Jordan",
+          drove: "Full-featured pro mode without speed penalties"
+        },
+        {
+          eyebrow: "INDUSTRY GASLIGHTING",
+          insight: "Platforms profit more from confusion and frustration than they ever would from satisfied users",
+          drove: "Dual-mode design proves serving both groups is possible"
+        }
+      ]
+    },
     problemCallout: {
       eyebrow: "Problem",
-      statement: "Novices abandon onboarding; pros churn after early trades. The business loses both first deposits and high-volume activity—two critical revenue streams."
+      statement: "The crypto industry is built on a lie: you must choose between \"easy\" and \"useful.\" This false choice forces beginners into high-fee apps and pros into platform switching. The real problem: platforms profit more from confusion and frustration than they ever would from satisfied users."
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",
       title: "Foundation & Principles",
-      workshopKickoff: "1. Trust is visible → show security upfront. 2. Speed is retention → every tap matters. 3. Guided simplicity → confidence without hand-holding.",
-      explorations: "I designed three different dashboard layouts, focusing on what mattered most to users. After gathering feedback, I chose the second option.",
-      decisionPoint: "Focus on a dual-mode design serving both novice and expert traders.",
+      workshopKickoff: "Challenged every \"rule\" of crypto UX. Asked: why do trading apps look like Bloomberg terminals from 1995? Why do \"simple\" apps treat users like children?",
+      explorations: "Sprint Zero / Exploration: Challenged every \"rule\" of crypto UX. Asked: why do trading apps look like Bloomberg terminals from 1995? Why do \"simple\" apps treat users like children?",
+      decisionPoint: "Stop accepting industry excuses. Build a platform that proves the false choice is bullshit.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/09/Initial-Flow-of-screens-scaled.png",
-          alt: "Initial concepts and sketches for full crypto app",
-          caption: "Foundation and principles guiding the dual-mode crypto platform design"
+          alt: "Initial concepts challenging crypto app conventions",
+          caption: "Foundation principles breaking crypto UX conventions"
         },
         {
           src: "https://www.loom.com/share/6b30e410c7394757956b9f6f2d10d10f?sid=75203801-3262-4a46-a502-41a55aa8839c",
           alt: "Decision point video demonstration",
-          caption: "Video walkthrough of key decision points in the design process"
+          caption: "Video walkthrough proving the false choice is unnecessary"
         }
       ]
     },
     keyInsights: [
       {
         number: 1,
-        title: "Two trading modes worked best",
-        description: "Beginners loved the simple guided flow, while pros preferred the fast Pro Panel. Supporting both made the app useful for everyone."
+        title: "The industry gaslights users: \"complexity\" and \"simplicity\" are both monetization tactics",
+        description: "Most crypto platforms deliberately choose one audience because it's easier to build and cheaper to maintain. They don't care about actually serving users."
       },
       {
-        number: 2, 
-        title: "Clear language built confidence",
-        description: "By replacing jargon with plain-English explanations, more people completed trades without hesitation — adoption jumped by about 30%."
+        number: 2,
+        title: "Jargon is a weapon: designed to keep beginners dependent",
+        description: "By using plain English instead of manipulative terminology, users gained confidence and completion rates increased dramatically."
       },
       {
         number: 3,
-        title: "One home screen was enough",
-        description: "A single dashboard with quick actions and deep links outperformed multiple scattered menus, making navigation faster and simpler."
+        title: "Speed vs. safety is a false choice: good design can provide both",
+        description: "Progressive disclosure and unified experience prove you don't have to sacrifice functionality for usability or vice versa."
       }
     ],
     myThoughtProcessSection: {
       eyebrow: "My Thought Process",
-      title: "",
-      content: "Design for the extremes: the hesitant first-timer and the speed-driven trader. Progressive disclosure: hide complexity until requested. Latency = UX: live quotes, optimistic states, visible sync timers. Confidence and speed weren't opposites—they were interdependent.",
+      title: "Approach & Decision Making",
+      content: "I designed for the uncomfortable truth: crypto platforms are hostile to their users' success. My approach: Progressive disclosure → show complexity when needed, hide it when not. Honest language → plain English instead of manipulative jargon. Unified experience → beginners and pros deserve the same platform.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/09/designthinkingupdate.png",
           alt: "Design thinking process for crypto platform",
-          caption: "Thought process visualization showing design decisions for crypto trading platform"
+          caption: "Thought process focused on exposing industry lies and building honest solutions"
         }
       ]
     },
     ideationSection: {
-      subhead: "Core Features & Interface Design",
+      subhead: "Destroying Sacred Cows",
       bubbles: [
         {
-          title: "Dashboard",
-          description: "Portfolio, movers, quick trade, security score."
+          title: "Onboarding",
+          description: "Stop making people feel stupid"
         },
         {
           title: "Trading",
-          description: "Quick Trade (guided) + Pro Panel (hotkeys, presets, live order book)."
+          description: "Stop forcing a choice between speed and clarity"
+        },
+        {
+          title: "Security",
+          description: "Stop using \"theater\" to justify bad UX"
+        },
+        {
+          title: "Education",
+          description: "Stop hiding knowledge behind jargon and paywalls"
         }
       ],
       iterations: [
         {
-          label: "Landing Page Decision",
+          label: "Landing Page Revolution",
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/Buy-and-Sell-Bitcoin-scaled.png",
-          alt: "Landing page design iteration showing user-friendly crypto onboarding",
+          alt: "Landing page with honest copy and transparency",
+          blurb: "Honest copy, transparency → \"Finally, a crypto app that doesn't treat me like an idiot\"",
           annotations: [
-            { text: "Simplified entry flow reduces barrier to first trade", x: 30, y: 25, type: "improvement" },
-            { text: "Trust indicators prominently displayed", x: 70, y: 45, type: "feature" }
+            { text: "Honest messaging replaces manipulative marketing", x: 30, y: 25, type: "improvement" },
+            { text: "Transparent fees and risks upfront", x: 70, y: 45, type: "feature" }
           ]
         },
         {
-          label: "Trading Flow",
+          label: "Trading Flow Rebellion",
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/09/Trading-Crypto-Low-Res.png",
-          alt: "Trading view showing guided user experience for crypto users",
+          alt: "Trading interface with no artificial limitations",
+          blurb: "No artificial limitations, no speed trade-offs → \"This is what every crypto app should have been\"",
           annotations: [
-            { text: "Progressive disclosure prevents information overload", x: 40, y: 30, type: "improvement" },
-            { text: "Dual-mode design caters to both novice and expert traders", x: 60, y: 65, type: "feature" }
+            { text: "No artificial delays or speed penalties", x: 40, y: 30, type: "improvement" },
+            { text: "Full functionality for all users", x: 60, y: 65, type: "feature" }
           ]
         }
       ]
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
-      title: "",
-      content: "A single, one-size trade form left users confused and mistakes shot up by 60%. Global alerts turned into noise, so we shifted to asset-level notifications that felt relevant. And asking for multi-factor authentication too often backfired—abandonment doubled—until we moved to risk-based security checks.",
+      title: "Lessons Learned",
+      content: "First attempt still felt like \"every other crypto app, just prettier.\" Feedback: brutal but true. Global notifications = noise → replaced with asset-specific alerts. Security theater = frustration → replaced with risk-based authentication. Breakthrough: stop trying to polish bad patterns, start from scratch with user needs.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg",
-          alt: "Learning from design iterations that didn't meet user needs",
-          caption: "Learning from design iterations that didn't meet user needs"
+          alt: "Learning from failed attempts to polish bad industry patterns",
+          caption: "Learning to start from scratch instead of polishing bad patterns"
         }
       ]
     },
     userTestingSection: {
-      title: "Validation & Testing",
-      eyebrow: "Testing",
-      description: "Prototype sessions showed: Time-to-first-trade ↓ to 3 minutes (vs 8 competitors). Order errors ↓ 45%. 75% of testers trusted this app more than their current platform.",
+      title: "Proving the Industry Wrong",
+      eyebrow: "Validation & Testing",
+      description: "Results: 3 min time-to-first-trade (vs 8+ mins competitors). ↓45% order errors. 75% higher trust scores.",
       metrics: [
-        { value: "3 min", label: "Time-to-first-trade" },
+        { value: "3 min", label: "Time-to-first-trade (vs 8+ competitors)" },
         { value: "↓45%", label: "Order errors" },
-        { value: "75%", label: "Trusted more" }
+        { value: "75%", label: "Higher trust scores" }
       ]
     },
-    outcomeSection: {
-      title: "Outcome & Impact",
-      eyebrow: "Results",
-      description: "Instead of splitting audiences, the app united them—delivering growth, retention, and stronger brand trust.",
-      metrics: [
-        { value: "+35%", label: "Onboarding conversion" },
-        { value: "↓40%", label: "Time-to-first-trade" }
-      ],
+    finalProductSection: {
+      title: "The Platform That Shouldn't Exist (According to Industry Logic)",
+      description: "A crypto app that commits the ultimate sin: actually helping users. Honest Mode → plain English, no manipulation. Unified Experience → one platform for all. Transparent Everything → fees & risks upfront. Actually Fast → no artificial delays.",
+      eyebrow: "The Result",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png",
-          alt: "Finished crypto trading product showing successful outcomes",
-          caption: "Final product demonstrating the successful dual-mode crypto trading platform"
+          alt: "Finished crypto platform breaking industry conventions",
+          caption: "Final platform proving the industry's false choice is unnecessary"
         }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      eyebrow: "Outcomes & Impact",
+      description: "User reactions: Alex: \"I can't believe how simple this is when you're not trying to confuse me.\" Jordan: \"Finally, I don't have to choose between speed and helping friends get started.\"",
+      metrics: [
+        { value: "+35%", label: "Onboarding conversion" },
+        { value: "↓40%", label: "Time-to-first-trade" },
+        { value: "+60%", label: "Retention" }
       ]
     },
     sections: [],
     seoData: {
       image: "https://barskyux.com/wp-content/uploads/2025/08/Promo-Image.jpg",
-      projectName: "Trading Without Friction",
+      projectName: "Crypto Trading UX — 35% Higher Conversion by Breaking Industry Lies",
       results: [
-        "35% increase in onboarding conversion",
-        "40% reduction in time-to-first-trade", 
+        "35% increase in onboarding conversion", 
+        "40% reduction in time-to-first-trade",
         "45% reduction in order errors",
-        "25% increase in pro trader retention"
+        "60% increase in retention"
       ],
       technologies: ["React", "TypeScript", "Node.js", "WebSocket", "REST API"],
       path: "/project/crypto"
