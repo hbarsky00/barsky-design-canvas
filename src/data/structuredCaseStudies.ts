@@ -1530,7 +1530,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
-      poster: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/frontpagemobileview.png",
       alt: "Business management system promotional overview"
     },
     researchSection: {

@@ -75,7 +75,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/featureimagenew.png",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/frontpagemobileview.png",
       alt: "Sarah Chen's unified business management platform eliminating tool chaos"
     },
     layout: "side-by-side"
