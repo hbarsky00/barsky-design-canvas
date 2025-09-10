@@ -1588,7 +1588,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Business management system promotional overview"
     },
     researchSection: {
-      subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.\n\nPRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring.",
+      subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.",
       blurb: "Gathering insights from 47 small business owners",
         emergingThemes: [
         {
@@ -1610,6 +1610,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       researchImage: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png?v=20250122",
       researchImageAlt: "Inventory audit screenshot showing data fragmentation across tools",
       researchImages: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png?v=20250122",
+          alt: "Inventory audit screenshot showing data fragmentation across tools",
+          caption: "PRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring."
+        },
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/AutomatedInventoryTrackingSystem-Claude-8July2025-ezgif.com-video-to-gif-converter.gif",
           alt: "Animated workflow of automated inventory tracking system"
