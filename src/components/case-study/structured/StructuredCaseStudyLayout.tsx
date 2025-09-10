@@ -223,6 +223,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     caption={caseStudyData.userTestingSection.video.caption}
                     projectId={caseStudyData.id}
                     className="rounded-lg shadow-sm"
+                    hoverToPlay={true}
+                    showControls={false}
                   />
                 </motion.div>
               )}

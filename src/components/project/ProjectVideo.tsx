@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useRef } from "react";
 import EditableCaption from "../caption/EditableCaption";
 
 interface ProjectVideoProps {
@@ -8,6 +8,8 @@ interface ProjectVideoProps {
   caption?: string;
   className?: string;
   projectId?: string;
+  hoverToPlay?: boolean;
+  showControls?: boolean;
 }
 
 const ProjectVideo: React.FC<ProjectVideoProps> = ({
@@ -15,8 +17,23 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
   title,
   caption,
   className = "",
-  projectId
+  projectId,
+  hoverToPlay = false,
+  showControls = true
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (hoverToPlay && videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverToPlay && videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
   const isLoomVideo = src.includes('loom.com/share/');
   
   const getEmbedUrl = (url: string) => {
@@ -43,10 +60,15 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
         />
       ) : (
         <video
+          ref={videoRef}
           src={src}
           title={title}
           className="w-full h-auto"
-          controls
+          controls={showControls}
+          muted={hoverToPlay}
+          loop={hoverToPlay}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           style={{ 
             display: 'block',
             maxWidth: '100%'
