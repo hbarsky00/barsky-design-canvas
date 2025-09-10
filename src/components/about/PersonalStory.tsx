@@ -12,11 +12,11 @@ const PersonalStory: React.FC = () => {
     >
       <div className="text-center mb-12">
         <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-display">
-          About Hiram Barsky
+          About Me (Hiram Barsky)
         </h1>
         <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-          Product Designer & Gen AI Developer passionate about creating AI-enhanced digital experiences 
-          that solve real problems and drive business results.
+          Product Designer & Gen AI Developer focused on building AI-powered digital experiences 
+          that solve real business problems and deliver results.
         </p>
       </div>
       
@@ -24,15 +24,14 @@ const PersonalStory: React.FC = () => {
         <h2 className="text-2xl font-bold text-gray-900 mb-6 font-display">My Story</h2>
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-700 leading-relaxed mb-6">
-            With over 15 years in product design, I've witnessed the evolution from static websites 
-            to dynamic, AI-powered applications. My journey began in traditional UX design, but 
-            I've embraced the AI revolution to create more intelligent, adaptive user experiences.
+            With 15+ years in product design, I've seen digital products transform—from simple static sites 
+            to intelligent, dynamic platforms. My roots are in classic UX, but my passion now is for 
+            integrating generative AI to unlock smarter, more adaptive user experiences.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Today, I specialize in integrating generative AI into digital products, helping businesses 
-            leverage cutting-edge technology to enhance user engagement and drive conversions. 
-            I believe in the power of AI to make digital experiences more personalized, accessible, 
-            and effective.
+            Today, I help businesses harness AI to boost engagement, conversions, and real-world impact. 
+            I believe AI isn't just hype—it's a game-changer for making digital products more personal, 
+            accessible, and effective for everyone.
           </p>
         </div>
       </div>

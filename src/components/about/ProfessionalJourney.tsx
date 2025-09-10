@@ -6,24 +6,34 @@ import { CheckCircle } from 'lucide-react';
 const ProfessionalJourney: React.FC = () => {
   const milestones = [
     {
-      year: "2023-Present",
-      title: "Gen AI Integration Specialist",
-      description: "Leading AI-enhanced product designs for startups and enterprises"
+      year: "2024 - July 2025",
+      title: "Senior Lead Product Designer - PNC",
+      description: "Redesigned mobile banking interface, boosting engagement by 40% and raising satisfaction scores by 25%"
     },
     {
-      year: "2020-2023", 
-      title: "Senior Product Designer",
-      description: "Focused on conversion optimization and accessibility compliance"
+      year: "2023 - 2024", 
+      title: "Senior UX/UI Designer - Bank of America",
+      description: "Led UX for Loan Central and ServiceNow IRM, cutting errors by 15% and lifting engagement by 10%"
     },
     {
-      year: "2015-2020",
-      title: "UX Designer & Researcher", 
-      description: "Conducted user research and designed digital experiences"
+      year: "2021 - 2023",
+      title: "Senior User Experience Designer - Deloitte", 
+      description: "Elevated platform engagement by 20% through user-centered prototypes and innovative design solutions"
     },
     {
-      year: "2009-2015",
-      title: "Digital Designer",
-      description: "Started journey in web design and user interface development"
+      year: "2019 - 2021",
+      title: "UX Strategist & Design Lead - Tata Consultancy Services",
+      description: "Designed fintech apps that drove a 15% revenue lift; built a document manager app reducing support workload by 10%"
+    },
+    {
+      year: "2014 - 2019",
+      title: "Senior UX Designer - KPMG",
+      description: "Created dashboards and data visualizations that reduced client costs by 10% and increased platform revenue by 14%"
+    },
+    {
+      year: "2013 - 2014",
+      title: "Senior UX Designer - Express Scripts",
+      description: "Led design initiatives that improved satisfaction and engagement by 30%, while cutting project turnaround by 20%"
     }
   ];
 
