@@ -424,12 +424,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
       images: [
         {
-          src: "/lovable-uploads/dae-sprint-zero-1.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp",
           alt: "Initial concepts for enterprise search interface design",
           caption: "Foundation principles guiding the enterprise data discovery platform"
         },
         {
-          src: "/lovable-uploads/dae-sprint-zero-2.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png",
           alt: "Search paradigm exploration and decision framework",
           caption: "Comparative analysis of search approaches for enterprise data discovery"
         }
@@ -458,7 +458,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Enterprise search isn't just finding files—it's understanding business context. I designed for the moment when someone needs to make a decision with incomplete information. The interface needed to bridge the gap between data discovery and business insight, making every search result a learning opportunity.",
       images: [
         {
-          src: "/lovable-uploads/dae-thought-process.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/hiram%20working%20on%20dae%20project%20.png",
           alt: "Design thinking process for enterprise search platform",
           caption: "Thought process visualization showing design decisions for enterprise data discovery"
         }
