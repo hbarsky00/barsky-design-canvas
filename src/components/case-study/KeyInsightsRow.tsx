@@ -1,10 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
+import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface KeyInsight {
   number: number;
   title: string;
   description: string;
+  images?: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+  }>;
 }
 
 interface KeyInsightsRowProps {
@@ -41,6 +47,34 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
             Key insights
           </h2>
         </motion.div>
+
+        {/* Images section - display any images from the first insight that has them */}
+        {insights.find(insight => insight.images?.length)?.images && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="mb-12 md:mb-16"
+          >
+            <div className="grid grid-cols-1 gap-6">
+              {insights.find(insight => insight.images?.length)?.images?.map((image, index) => (
+                <div key={index} className="content-rail-center">
+                  <MaximizableImage
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-auto rounded-lg shadow-sm"
+                  />
+                  {image.caption && (
+                    <p className="text-sm text-muted-foreground mt-3 text-center">
+                      {image.caption}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
           {insights.map((insight, index) => (

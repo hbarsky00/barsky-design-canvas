@@ -80,6 +80,11 @@ export interface StructuredCaseStudyData {
     number: number;
     title: string;
     description: string;
+    images?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+    }>;
   }[];
   ideationSection?: IdeationSection;
   myThoughtProcessSection?: {
@@ -440,7 +445,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       {
         number: 1,
         title: "Semantic search changed everything",
-        description: "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%."
+        description: "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
+        images: [
+          {
+            src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/style_guide.webp",
+            alt: "DAE project style guide showing design system, colors, typography, and component specifications",
+            caption: "Design system and style guide for the DAE search platform"
+          }
+        ]
       },
       {
         number: 2,
