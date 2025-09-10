@@ -460,47 +460,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         }
       ]
     },
-    ideationSection: {
-      subhead: "Core Features & Interface Design",
-      bubbles: [
-        {
-          title: "Semantic Search",
-          description: "Intent-based queries with natural language processing and contextual understanding."
-        },
-        {
-          title: "Data Lineage",
-          description: "Visual representation of data sources, transformations, and quality indicators."
-        },
-        {
-          title: "Smart Permissions",
-          description: "Intelligent access control with proactive suggestions and streamlined requests."
-        },
-        {
-          title: "Usage Analytics",
-          description: "Insights into search patterns, popular content, and team collaboration trends."
-        }
-      ],
-      iterations: [
-        {
-          label: "Search Interface Evolution",
-          imageSrc: "/lovable-uploads/dae-iteration-1.png",
-          alt: "Search interface showing evolution from basic to semantic search",
-          annotations: [
-            { text: "Semantic search reduces query refinement by 70%", x: 30, y: 25, type: "improvement" },
-            { text: "Visual data lineage builds user confidence", x: 70, y: 45, type: "feature" }
-          ]
-        },
-        {
-          label: "Results & Context",
-          imageSrc: "/lovable-uploads/dae-iteration-2.png",
-          alt: "Search results showing rich context and metadata display",
-          annotations: [
-            { text: "Rich metadata prevents context loss", x: 40, y: 30, type: "improvement" },
-            { text: "Smart access controls reduce permission friction", x: 60, y: 65, type: "feature" }
-          ]
-        }
-      ]
-    },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "",
