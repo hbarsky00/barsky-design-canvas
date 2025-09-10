@@ -180,7 +180,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
       src: "/lovable-uploads/crypto-hero.mp4",
-      poster: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
+      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
       alt: "Crypto trading platform overview"
     },
     heroMetrics: [
@@ -362,7 +362,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "https://barskyux.com/wp-content/uploads/2025/08/Promo-Image.jpg",
+      image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
       projectName: "Crypto Trading UX — 35% Higher Conversion by Breaking Industry Lies",
       results: [
         "35% increase in onboarding conversion", 

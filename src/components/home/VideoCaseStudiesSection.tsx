@@ -91,7 +91,7 @@ const caseStudies: CaseStudy[] = [
     impact: "Why Every Crypto App is Designed to Fail (And How I Fixed It)",
     url: "/project/crypto",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/CryptoFeatureimage.png",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
       alt: "Crypto trading platform exposing industry manipulation and providing honest alternative"
     },
     layout: "side-by-side"
