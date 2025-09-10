@@ -150,10 +150,7 @@ const MinimalHero: React.FC = () => {
               rel="noopener noreferrer"
               className="text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-blue-600 hover:text-blue-700 
                        transition-colors duration-200 mb-2 lg:mb-3 xl:mb-4 2xl:mb-5 inline-block font-medium"
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open('https://barskydesign.pro', '_blank');
-              }}
+              onClick={(e) => e.stopPropagation()}
             >
               barskydesign.pro
             </a>
