@@ -403,11 +403,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "/lovable-uploads/dae-research-1.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp",
           alt: "User research findings showing enterprise data discovery pain points"
         },
         {
-          src: "/lovable-uploads/dae-research-2.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp",
           alt: "Information architecture analysis of existing data systems"
         }
       ]
