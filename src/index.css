@@ -404,24 +404,29 @@ select:focus-visible, a:focus-visible,
   }
   }
 
-  /* Case Study Snap Scroll Styles */
-  .case-study-snap-container {
-    scroll-snap-type: y mandatory;
+  /* Vertical Overlay Transition Styles */
+  .vertical-overlay-container {
+    position: relative;
   }
 
-  .case-study-card {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+  .case-study-overlay-panel {
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
   }
 
-  /* Smooth scroll behavior for case studies */
-  .case-study-snap-container .case-study-card {
-    scroll-margin-top: 2rem;
+  /* Optimized video handling for overlay transitions */
+  .overlay-video {
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
-  @media (min-width: 1024px) {
-    .case-study-snap-container .case-study-card {
-      scroll-margin-top: 4rem;
+  /* Reduced motion fallback */
+  @media (prefers-reduced-motion: reduce) {
+    .case-study-overlay-panel {
+      transition: opacity 0.2s ease !important;
+      transform: none !important;
     }
   }
 }

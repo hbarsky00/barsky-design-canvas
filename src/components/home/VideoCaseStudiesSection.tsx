@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
-import CaseStudySnapScrollContainer from "./CaseStudySnapScrollContainer";
+import { useVerticalOverlayTransition } from "@/hooks/useVerticalOverlayTransition";
 
 interface CaseStudy {
   id: string;
@@ -115,8 +115,30 @@ const caseStudies: CaseStudy[] = [
 const CaseStudyCard: React.FC<{ 
   study: CaseStudy; 
   index: number;
-}> = ({ study, index }) => {
+  transitionState: {
+    opacity: number;
+    scale: number;
+    translateY: number;
+    isActive: boolean;
+    isInteractive: boolean;
+  };
+}> = ({ study, index, transitionState }) => {
   const isMobile = useIsMobile();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Handle video play/pause based on active state
+  useEffect(() => {
+    if (!videoRef.current || !study.video) return;
+    
+    if (transitionState.isActive) {
+      videoRef.current.play().catch(() => {
+        // Handle autoplay restrictions gracefully
+      });
+    } else {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [transitionState.isActive, study.video]);
 
 
   const renderMedia = () => {
@@ -125,18 +147,14 @@ const CaseStudyCard: React.FC<{
         <Link to={study.url} className="block h-full group">
           <div className="flex justify-center h-full cursor-pointer">
             <video 
+              ref={videoRef}
               src={study.video}
               poster={study.images.primary}
-              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105 overlay-video"
               muted
               loop
               playsInline
-              onMouseEnter={(e) => e.currentTarget.play()}
-              onMouseLeave={(e) => {
-                e.currentTarget.pause();
-                e.currentTarget.currentTime = 0;
-                e.currentTarget.load();
-              }}
+              preload="metadata"
             />
           </div>
         </Link>
@@ -159,12 +177,19 @@ const CaseStudyCard: React.FC<{
   return (
     <motion.div
       id={`case-study-${index + 1}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="case-study-card bg-gray-50 overflow-hidden relative py-12 lg:py-16"
-      tabIndex={-1}
+      className="case-study-overlay-panel bg-gray-50 overflow-hidden"
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 10 + index,
+        minHeight: '100dvh',
+        opacity: transitionState.opacity,
+        transform: `translateY(${transitionState.translateY}px) scale(${transitionState.scale})`,
+        pointerEvents: transitionState.isInteractive ? 'auto' : 'none',
+        willChange: 'transform, opacity'
+      }}
+      aria-hidden={!transitionState.isActive}
+      tabIndex={transitionState.isInteractive ? 0 : -1}
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
@@ -299,9 +324,13 @@ const CaseStudyCard: React.FC<{
 };
 
 const VideoCaseStudiesSection: React.FC = () => {
+  const { containerRef, activeIndex, transitionStates } = useVerticalOverlayTransition({
+    totalPanels: caseStudies.length
+  });
+
   return (
-    <section className="py-8 md:py-12 bg-white" tabIndex={-1}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <section className="bg-white" tabIndex={-1}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-8 md:py-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -316,20 +345,28 @@ const VideoCaseStudiesSection: React.FC = () => {
             subtitleClassName="max-w-4xl mx-auto"
           />
         </motion.div>
+      </div>
 
-        {/* Case Studies Grid with Snap Scroll */}
-        <CaseStudySnapScrollContainer 
-          totalCaseStudies={caseStudies.length}
-          className="space-y-12"
-        >
-          {caseStudies.map((study, index) => (
-            <CaseStudyCard 
-              key={study.id} 
-              study={study} 
-              index={index}
-            />
-          ))}
-        </CaseStudySnapScrollContainer>
+      {/* Vertical Overlay Transition Container */}
+      <div 
+        ref={containerRef}
+        id="videoCaseStudies"
+        className="vertical-overlay-container"
+      >
+        {caseStudies.map((study, index) => (
+          <CaseStudyCard 
+            key={study.id} 
+            study={study} 
+            index={index}
+            transitionState={transitionStates[index] || {
+              opacity: index === 0 ? 1 : 0,
+              scale: index === 0 ? 1 : 0.97,
+              translateY: index === 0 ? 0 : 20,
+              isActive: index === 0,
+              isInteractive: index === 0
+            }}
+          />
+        ))}
       </div>
     </section>
   );
