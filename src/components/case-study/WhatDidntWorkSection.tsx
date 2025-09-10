@@ -22,6 +22,7 @@ interface WhatDidntWorkData {
   title: string;
   content: string; // Changed from 'description' to 'content' to match data structure
   eyebrow?: string;
+  preImage?: WhatDidntWorkImage;
   metrics?: WhatDidntWorkMetric[];
   images?: WhatDidntWorkImage[];
 }
@@ -41,6 +42,34 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="mb-12 text-center"
     >
+      {/* Pre-Image */}
+      {whatDidntWorkData.preImage && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-8"
+        >
+          {whatDidntWorkData.preImage.annotations && whatDidntWorkData.preImage.annotations.length > 0 ? (
+            <AnnotatedImage
+              src={whatDidntWorkData.preImage.src}
+              alt={whatDidntWorkData.preImage.alt}
+              annotations={whatDidntWorkData.preImage.annotations}
+              className="w-full rounded-lg shadow-sm"
+            />
+          ) : (
+            <MaximizableImage
+              src={whatDidntWorkData.preImage.src}
+              alt={whatDidntWorkData.preImage.alt}
+              caption={whatDidntWorkData.preImage.caption}
+              fit="contain"
+              className="w-full rounded-lg shadow-sm"
+            />
+          )}
+        </motion.div>
+      )}
+      
       {/* Header */}
       <div className="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-eyebrow text-orange-700 mb-4">
         {whatDidntWorkData.eyebrow || "WHAT DIDN'T WORK"}
