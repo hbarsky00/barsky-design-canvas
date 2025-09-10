@@ -97,6 +97,11 @@ export interface StructuredCaseStudyData {
     title: string;
     description: string;
     eyebrow?: string;
+    video?: {
+      src: string;
+      title: string;
+      caption?: string;
+    };
     metrics?: Array<{
       value: string;
       label: string;
@@ -475,6 +480,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     userTestingSection: {
       title: "Validation & Testing",
       eyebrow: "Testing",
+      video: {
+        src: "https://barskyux.com/wp-content/uploads/2023/08/Advanced-Search.mp4",
+        title: "Advanced Search Validation Testing",
+        caption: "Demonstration of the advanced search functionality during user testing"
+      },
       description: "Prototype sessions with enterprise teams showed: Information retrieval time ↓ to 5 minutes (vs 15+ previously). Search accuracy ↑ 85%. 90% of users found the data lineage visualization valuable for decision-making.",
       metrics: [
         { value: "5 min", label: "Avg. retrieval time" },

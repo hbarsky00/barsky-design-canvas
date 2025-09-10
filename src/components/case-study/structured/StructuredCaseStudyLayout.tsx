@@ -208,6 +208,25 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </h2>
               </motion.div>
 
+              {/* Video if present */}
+              {caseStudyData.userTestingSection.video && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="mb-8"
+                >
+                  <ProjectVideo
+                    src={caseStudyData.userTestingSection.video.src}
+                    title={caseStudyData.userTestingSection.video.title}
+                    caption={caseStudyData.userTestingSection.video.caption}
+                    projectId={caseStudyData.id}
+                    className="rounded-lg shadow-sm"
+                  />
+                </motion.div>
+              )}
+
               <div className="content-rail-left mb-8">
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   {caseStudyData.userTestingSection.description}
