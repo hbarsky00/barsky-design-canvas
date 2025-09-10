@@ -42,15 +42,15 @@ const caseStudies: CaseStudy[] = [
   },
   {
     id: "business-management",
-    tags: ["B2B", "Productivity", "Enterprise"],
-    title: "Business Management: 40% Faster Project Delivery",
-    description: "Designed an integrated business management platform that consolidates project tracking, team communication, and resource allocation. The solution streamlined workflows for mid-size companies, reducing administrative overhead and improving project visibility across departments.",
-    impact: "40% Faster Project Delivery",
+    tags: ["Enterprise", "Small Business", "Automation"],
+    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+    description: "It's 8:47 AM on a Tuesday, and Sarah Chen is already having the day from hell. She meant to send an invoice to TechCorp but accidentally sent it to her yoga studio client instead. Why? She was juggling Calendly, QuickBooks, Asana, and three spreadsheets—mentally fried from switching between tools. That's when I knew small businesses needed one unified platform, not better individual tools.",
+    impact: "68% Fewer Operation Errors",
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/featureimagenew.png",
-      alt: "Business management dashboard showing project tracking and team collaboration"
+      alt: "Sarah Chen's unified business management platform eliminating tool chaos"
     },
     layout: "side-by-side"
   },

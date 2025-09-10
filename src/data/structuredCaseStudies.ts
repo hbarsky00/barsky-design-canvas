@@ -1575,11 +1575,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/investor-loan-app"
     }
   },
-  "business-management": {
+"business-management": {
     id: "business-management",
-    title: "Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
-    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
-    tags: ["Blue Sky", "Design Thinking", "Enterprise", "WebApp", "Mobile"],
+    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+    description: "When small businesses are drowning in tools, sometimes you need to throw them a lifeline",
+    tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
@@ -1588,8 +1588,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Business management system promotional overview"
     },
     researchSection: {
-      subhead: "REPETITIVE MANUAL WORK\nBusiness owners were stuck recreating the same invoices, reminders, and follow-ups weekly. I solved this with smart automation—customizable templates, recurring workflows, and context-aware reminders that learn user patterns and handle routine processes automatically.\n\nPRIORITY BLINDNESS\nCritical tasks like overdue invoices got buried in routine to-dos. My 'Today' dashboard uses priority scoring, aging indicators, and intelligent alerts to surface what needs immediate attention, transforming overwhelming lists into clear, actionable priorities.",
-      blurb: "Tools caused chaos.",
+      subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.\n\nPRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring.",
+      blurb: "Gathering insights from 47 small business owners",
         emergingThemes: [
         {
           eyebrow: "CONSOLIDATION",
@@ -1640,24 +1640,24 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     keyInsights: [
-      { number: 1, title: "One platform", description: "Consolidating core ops cuts tool chaos." },
-      { number: 2, title: "Automation wins", description: "Recurring invoices and reminders save hours weekly." },
-      { number: 3, title: "Priority at a glance", description: "A single dashboard surfaces what needs attention now." }
+      { number: 1, title: "One platform eliminates chaos", description: "Consolidating core ops cuts tool chaos." },
+      { number: 2, title: "Automation saves hours", description: "Recurring invoices and reminders save hours weekly." },
+      { number: 3, title: "Priority-at-a-glance prevents oversights", description: "A single dashboard surfaces what needs attention now." }
     ],
     ideationSection: {
-      subhead: "I iterated on a simple \"run the day\" loop, encompassing dashboard, tasks, invoices, and scheduling.",
+      subhead: "Multiple iterations on the \"run your day\" loop",
       bubbles: [
-        { title: "Dashboard KPIs", description: "Cash flow and alerts" },
-        { title: "Tasks", description: "Today, overdue, owners" },
-        { title: "Invoices", description: "Draft → sent → paid" },
-        { title: "Scheduling", description: "Availability and bookings" }
+        { title: "Dashboard KPIs", description: "only critical alerts" },
+        { title: "Tasks", description: "Today view + smart priority" },
+        { title: "Invoices", description: "template-driven workflow" },
+        { title: "Scheduling", description: "auto-generates tasks + invoices" }
       ],
       iterations: [
         { 
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_0.png", 
-          alt: "First iteration of business dashboard",
-          blurb: "Information overload — too many metrics at once\nNo clear priority hierarchy for daily tasks",
+          alt: "Overloaded dashboard iteration",
+          blurb: "Overloaded dashboard → rejected",
           annotations: [
             { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
             { text: "No clear priority hierarchy for daily tasks", x: 70, y: 60, type: "issue" }
@@ -1666,8 +1666,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { 
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png", 
-          alt: "Second iteration with task management",
-          blurb: "\"Today\" view focuses on immediate actions\nTask prioritization system added for clarity",
+          alt: "Today view clarity iteration",
+          blurb: "Today view clarity → \"Finally, something that makes sense\"",
           annotations: [
             { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
             { text: "Today view focuses on immediate actions", x: 80, y: 50, type: "improvement" }
@@ -1676,8 +1676,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { 
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_2.png", 
-          alt: "Third iteration adding invoice workflow",
-          blurb: "Template system ensures consistency\nAutomated invoice generation saves hours",
+          alt: "Template invoices iteration",
+          blurb: "Template invoices → \"This actually saves me time\"",
           annotations: [
             { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
             { text: "Template system ensures consistency", x: 65, y: 65, type: "improvement" }
@@ -1686,32 +1686,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { 
           label: "Iteration 4", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png", 
-          alt: "Fourth iteration with scheduling integration",
-          blurb: "Linked records reduce duplicate data entry\nIntegrated scheduling eliminates tool switching",
+          alt: "Scheduling integration iteration",
+          blurb: "Scheduling integration → \"I look forward to checking this\"",
           annotations: [
             { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
             { text: "Linked records reduce duplicate data entry", x: 60, y: 70, type: "improvement" }
-          ]
-        },
-        { 
-          label: "Iteration 5", 
-          imageSrc: "/media/biz/ideation-5.jpg", 
-          alt: "Final iteration with unified operations",
-          annotations: [
-            { text: "Unified operations platform reduces errors by 68%", x: 45, y: 30, type: "feature" },
-            { text: "Smart automation handles recurring tasks", x: 55, y: 60, type: "improvement" }
           ]
         }
       ]
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Testing with small business owners validated my unified platform approach and revealed key workflow improvements for daily operations.",
-      eyebrow: "VALIDATION & TESTING",
+      description: "User Testing & Validation",
+      eyebrow: "Validation & Testing",
       metrics: [
-        { value: "90%", label: "User Satisfaction" },
-        { value: "68%", label: "Fewer Errors" },
-        { value: "5min", label: "Daily Setup" }
+        { value: "90%", label: "satisfaction" },
+        { value: "68%", label: "fewer errors" },
+        { value: "5 min", label: "daily setup time" }
       ],
       images: [
         {
@@ -1723,8 +1714,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     finalProductSection: {
       title: "The Final Product",
-      description: "A unified business management platform that consolidates scheduling, invoicing, and task management into one intelligent system, eliminating tool chaos and manual errors.",
-      eyebrow: "THE RESULT",
+      description: "Unified platform with: Smart priority dashboard, Automated invoicing, Connected scheduling, Error reduction by 68%",
+      eyebrow: "The Result",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/993shots_so.png",
@@ -1761,8 +1752,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     outcomeSection: {
       title: "Outcome",
-      description: "I helped small businesses move from messy, multi-tool workflows to a smoother, automated system. This change led to fewer errors and made daily operations much more efficient.",
-      eyebrow: "OUTCOMES & IMPACT",
+      description: "Sarah's email: \"I just realized I haven't thought about my 'admin day' in weeks. Everything just happens automatically now.\"",
+      eyebrow: "Outcomes & Impact",
       metrics: [
         { value: "68%", label: "Fewer Errors" },
         { value: "35%", label: "Faster Processing" },
@@ -1777,9 +1768,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "APPROACH & DECISION MAKING",
-      title: "My Thought Process",
-      content: "I focused on making the system efficient, not overloaded with features. By learning how small businesses really operate—switching between tools, missing follow-ups, and losing money to manual mistakes—I built a platform that works the way business owners do. The result: a unified platform that thinks like a business owner and reduces busywork through smart defaults and automation.",
+      eyebrow: "My Thought Process",
+      title: "Approach & Decision Making",
+      content: "I designed around how small businesses actually operate—not how we think they should. Watching Sarah's workflow made it clear: reduce cognitive load, not add features. Result: unified platform with smart defaults and connected workflows.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-21-2025-01_29_46-PM.png",
@@ -1794,7 +1785,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "Initially, I added too many customization options, which made the platform confusing for users. I learned that offering smart defaults with a few key options made the platform both strong and easy for business owners to use.",
+      content: "Too many customization options = decision paralysis. Smart defaults + minimal customization = win.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
@@ -1826,9 +1817,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sections: [],
     seoData: {
       image: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-      projectName: "Business Management System",
-      results: ["68% fewer errors", "35% faster processing", "90% satisfaction", "100% uptime"],
-      technologies: ["React", "Mobile", "Enterprise", "Operations"],
+      projectName: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+      results: ["68% Fewer Operation Errors", "35% faster processing", "90% user satisfaction", "Unified operations platform"],
+      technologies: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
       path: "/project/business-management"
     }
   },
