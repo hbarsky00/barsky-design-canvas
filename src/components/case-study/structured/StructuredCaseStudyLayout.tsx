@@ -389,82 +389,51 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             >
               <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
               
-              {/* Two-column header: text left, larger mockup right */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
-                {/* Left column: Text content (45%) */}
-                <div className="lg:order-1">
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="mb-6"
-                  >
-                    <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
-                      {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
-                    </div>
-                    <h2 className="text-section-title text-foreground font-display">
-                      {caseStudyData.outcomeSection.title}
-                    </h2>
-                  </motion.div>
-
-                  <div>
-                    <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                      {caseStudyData.outcomeSection.description}
-                    </p>
-
-                    {/* Metrics within left column */}
-                    {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {caseStudyData.outcomeSection.metrics.map((metric, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="bg-background border border-neutral-200 rounded-2xl p-5"
-                          >
-                            <div className="text-3xl font-semibold text-foreground mb-2">
-                              {metric.value}
-                            </div>
-                            <div className="text-sm text-neutral-700">
-                              {metric.label}
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    )}
+              {/* Full-width content since no images */}
+              <div className="mb-12">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="mb-6"
+                >
+                  <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
+                    {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
                   </div>
-                </div>
+                  <h2 className="text-section-title text-foreground font-display">
+                    {caseStudyData.outcomeSection.title}
+                  </h2>
+                </motion.div>
 
-                {/* Right column: Larger mockup (55%) */}
-                {caseStudyData.outcomeSection.images && (
-                  <div className="lg:order-2">
-                    <div className="grid gap-6">
-                      {caseStudyData.outcomeSection.images.map((image, index) => (
+                <div className="max-w-3xl">
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {caseStudyData.outcomeSection.description}
+                  </p>
+
+                  {/* Metrics */}
+                  {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {caseStudyData.outcomeSection.metrics.map((metric, index) => (
                         <motion.div
                           key={index}
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.6, delay: index * 0.1 }}
+                          className="bg-background border border-neutral-200 rounded-2xl p-5"
                         >
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="w-full h-auto object-contain image-high-quality"
-                          />
-                          {image.caption && (
-                            <div className="mt-3 text-sm text-muted-foreground text-center">
-                              {image.caption}
-                            </div>
-                          )}
+                          <div className="text-3xl font-semibold text-foreground mb-2">
+                            {metric.value}
+                          </div>
+                          <div className="text-sm text-neutral-700">
+                            {metric.label}
+                          </div>
                         </motion.div>
                       ))}
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </section>
           )}

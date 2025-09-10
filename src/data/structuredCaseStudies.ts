@@ -499,13 +499,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       metrics: [
         { value: "20%", label: "ROI from better discovery" },
         { value: "↓65%", label: "Information retrieval time" }
-      ],
-      images: [
-        {
-          src: "/lovable-uploads/dae-outcome.png",
-          alt: "Final DAE search platform showing successful enterprise data discovery",
-          caption: "Final product demonstrating the successful enterprise data discovery platform"
-        }
       ]
     },
     sections: [],
@@ -747,13 +740,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "3×", label: "booking increase" },
         { value: "85%", label: "match accuracy" },
         { value: "24hr", label: "average response time" }
-      ],
-      images: [
-        {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/symptomtrackermobile.png",
-          alt: "HerbaLink conversation with herbalist and symptom tracker interface",
-          caption: "HerbaLink conversation with herbalist and symptom tracker interface"
-        }
       ]
     },
     whatDidntWorkSection: {
@@ -1123,12 +1109,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "40%", label: "Conflict Reduction" },
         { value: "90%", label: "User Satisfaction" },
         { value: "24hr", label: "Response Time" }
-      ],
-      images: [
-        {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/signupscree.png",
-          alt: "Splittime signup screen showing the successful outcome interface"
-        }
       ]
     },
     myThoughtProcessSection: {
@@ -1466,34 +1446,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "85%", label: "Fewer Errors" },
         { value: "40%", label: "Faster Processing" },
         { value: "200+", label: "Orders in 2 Months" }
-      ],
-      images: [
-        {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard.png",
-          alt: "Analysis dashboard showing the successful loan processing outcomes",
-          caption: "",
-          annotations: [
-            {
-              x: 30,
-              y: 25,
-              type: "feature",
-              text: "Validation at each step"
-            },
-            {
-              x: 65,
-              y: 50,
-              type: "improvement",
-              text: "Submit only when complete"
-            },
-            {
-              x: 50,
-              y: 75,
-              type: "feature",
-              text: "Audit-ready artifacts"
-            }
-          ]
-        }
-      ]
+       ]
     },
     myThoughtProcessSection: {
       eyebrow: "Design mindset",
@@ -1740,13 +1693,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "68%", label: "Fewer Errors" },
         { value: "35%", label: "Faster Processing" },
         { value: "90%", label: "User Satisfaction" }
-      ],
-      images: [
-        {
-          src: "https://www.loom.com/share/6b2dbd5672944f3b8bbaea71335afab7?sid=f9fa11c9-9c89-440b-bbc8-8eca0aa7c524",
-          alt: "Business management system full user journey demonstration",
-          caption: "Complete user journey showing the full process in high fidelity"
-        }
       ]
     },
     myThoughtProcessSection: {
@@ -1962,13 +1908,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "↓35%", label: "order completion time" },
         { value: "↓60%", label: "customization errors" },
         { value: "85%", label: "customer preference" }
-      ],
-      images: [
-        {
-          src: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-          alt: "Final BarskyJoint platform",
-          caption: "Completed dual-format ordering platform with consistent web + kiosk flows"
-        }
       ]
     },
     sections: [],
