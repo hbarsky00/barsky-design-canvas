@@ -56,9 +56,7 @@ const HomepageLayout: React.FC = () => {
         
         <SectionTransition variant="fade" delay={0.05} intensity={0.3} className="py-0 md:py-12">
           <section id="case-studies" tabIndex={-1}>
-            <LazySection threshold={0.05}>
-              <LazyVideoCaseStudiesSection />
-            </LazySection>
+            <LazyVideoCaseStudiesSection />
           </section>
         </SectionTransition>
         
