@@ -39,7 +39,7 @@ const MinimalHero: React.FC = () => {
     
     // Scroll to current projects section
     const scrollToCurrentProjects = () => {
-      const nextSection = document.getElementById('current-projects');
+      const nextSection = document.getElementById('case-studies');
       if (nextSection) {
         nextSection.scrollIntoView({ behavior: 'smooth' });
         return true;
