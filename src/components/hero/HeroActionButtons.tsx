@@ -3,33 +3,23 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 
 interface HeroActionButtonsProps {
   isVisible: boolean;
 }
 
 const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
+  const { handleLinkClick } = useHeaderNavigation();
+
   const handleFreeConsultation = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    handleLinkClick('#contact');
   };
 
   const handleViewResults = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const caseStudiesSection = document.getElementById('case-studies');
-    if (caseStudiesSection) {
-      const headerOffset = 80;
-      const elementPosition = caseStudiesSection.offsetTop;
-      const offsetPosition = elementPosition - headerOffset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    handleLinkClick('#case-studies');
   };
 
   return (
