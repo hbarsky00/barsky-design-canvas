@@ -348,6 +348,199 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/crypto"
     }
   },
+  "daesearchproject": {
+    id: "daesearchproject",
+    title: "DAE Search Platform: Making Enterprise Data Actually Findable",
+    description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data, reducing information retrieval time by 65% and delivering 20% ROI through improved productivity.",
+    tags: ["Enterprise", "Search", "Data Discovery", "B2B", "Productivity"],
+    gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
+    heroVideo: {
+      src: "/lovable-uploads/dae-search-hero.mp4",
+      poster: "/lovable-uploads/dae-search-poster.jpg",
+      alt: "DAE Search Platform interface overview"
+    },
+    heroMetrics: [
+      { value: "20%", label: "ROI from Better Discovery" },
+      { value: "–65%", label: "Information Retrieval Time" },
+      { value: "+85%", label: "Search Accuracy" },
+      { value: "–40%", label: "Support Tickets" }
+    ],
+    researchSection: {
+      subhead: "Employee interviews revealed critical gaps in enterprise data discovery and access patterns.",
+      blurb: "Data silos were costing productivity.",
+      emergingThemes: [
+        {
+          eyebrow: "DISCOVERY BARRIERS",
+          insight: "Teams spend 3+ hours daily searching for existing data across disconnected systems.",
+          drove: "Unified search interface with intelligent content tagging and federated results."
+        },
+        {
+          eyebrow: "PERMISSION COMPLEXITY",
+          insight: "Access control confusion leads to either data hoarding or security breaches.",
+          drove: "Visual permission indicators and smart access request workflows."
+        },
+        {
+          eyebrow: "CONTEXT LOSS",
+          insight: "Found data lacks business context, making it unusable without tribal knowledge.",
+          drove: "Rich metadata display with usage patterns and related content suggestions."
+        }
+      ],
+      researchImages: [
+        {
+          src: "/lovable-uploads/dae-research-1.png",
+          alt: "User research findings showing enterprise data discovery pain points"
+        },
+        {
+          src: "/lovable-uploads/dae-research-2.png",
+          alt: "Information architecture analysis of existing data systems"
+        }
+      ]
+    },
+    problemCallout: {
+      eyebrow: "Problem",
+      statement: "Enterprise teams lose 40% of their productive time hunting for data that already exists. Critical decisions get delayed, projects stall, and knowledge workers become frustrated with disconnected systems that hide rather than reveal insights."
+    },
+    sprintZeroSection: {
+      eyebrow: "Sprint Zero",
+      title: "Foundation & Principles",
+      workshopKickoff: "1. Search is discovery → results must teach. 2. Context drives confidence → show data lineage and usage. 3. Access is workflow → permissions become pathways, not barriers.",
+      explorations: "I designed three search paradigms: Google-like simplicity, database-style filtering, and AI-powered semantic search. User testing revealed the need for a hybrid approach that combines familiar search patterns with enterprise-specific context and intelligence.",
+      decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
+      images: [
+        {
+          src: "/lovable-uploads/dae-sprint-zero-1.png",
+          alt: "Initial concepts for enterprise search interface design",
+          caption: "Foundation principles guiding the enterprise data discovery platform"
+        },
+        {
+          src: "/lovable-uploads/dae-sprint-zero-2.png",
+          alt: "Search paradigm exploration and decision framework",
+          caption: "Comparative analysis of search approaches for enterprise data discovery"
+        }
+      ]
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: "Semantic search changed everything",
+        description: "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%."
+      },
+      {
+        number: 2,
+        title: "Visual data lineage built trust",
+        description: "Showing data sources, freshness, and transformation history gave users confidence to act on search results immediately."
+      },
+      {
+        number: 3,
+        title: "Smart permissions reduced friction",
+        description: "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways."
+      }
+    ],
+    myThoughtProcessSection: {
+      eyebrow: "My Thought Process",
+      title: "",
+      content: "Enterprise search isn't just finding files—it's understanding business context. I designed for the moment when someone needs to make a decision with incomplete information. The interface needed to bridge the gap between data discovery and business insight, making every search result a learning opportunity.",
+      images: [
+        {
+          src: "/lovable-uploads/dae-thought-process.png",
+          alt: "Design thinking process for enterprise search platform",
+          caption: "Thought process visualization showing design decisions for enterprise data discovery"
+        }
+      ]
+    },
+    ideationSection: {
+      subhead: "Core Features & Interface Design",
+      bubbles: [
+        {
+          title: "Semantic Search",
+          description: "Intent-based queries with natural language processing and contextual understanding."
+        },
+        {
+          title: "Data Lineage",
+          description: "Visual representation of data sources, transformations, and quality indicators."
+        },
+        {
+          title: "Smart Permissions",
+          description: "Intelligent access control with proactive suggestions and streamlined requests."
+        },
+        {
+          title: "Usage Analytics",
+          description: "Insights into search patterns, popular content, and team collaboration trends."
+        }
+      ],
+      iterations: [
+        {
+          label: "Search Interface Evolution",
+          imageSrc: "/lovable-uploads/dae-iteration-1.png",
+          alt: "Search interface showing evolution from basic to semantic search",
+          annotations: [
+            { text: "Semantic search reduces query refinement by 70%", x: 30, y: 25, type: "improvement" },
+            { text: "Visual data lineage builds user confidence", x: 70, y: 45, type: "feature" }
+          ]
+        },
+        {
+          label: "Results & Context",
+          imageSrc: "/lovable-uploads/dae-iteration-2.png",
+          alt: "Search results showing rich context and metadata display",
+          annotations: [
+            { text: "Rich metadata prevents context loss", x: 40, y: 30, type: "improvement" },
+            { text: "Smart access controls reduce permission friction", x: 60, y: 65, type: "feature" }
+          ]
+        }
+      ]
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "",
+      content: "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
+      images: [
+        {
+          src: "/lovable-uploads/dae-what-didnt-work.png",
+          alt: "Learning from design iterations that didn't meet enterprise needs",
+          caption: "Learning from design iterations that didn't meet enterprise user requirements"
+        }
+      ]
+    },
+    userTestingSection: {
+      title: "Validation & Testing",
+      eyebrow: "Testing",
+      description: "Prototype sessions with enterprise teams showed: Information retrieval time ↓ to 5 minutes (vs 15+ previously). Search accuracy ↑ 85%. 90% of users found the data lineage visualization valuable for decision-making.",
+      metrics: [
+        { value: "5 min", label: "Avg. retrieval time" },
+        { value: "↑85%", label: "Search accuracy" },
+        { value: "90%", label: "Found lineage valuable" }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome & Impact",
+      eyebrow: "Results",
+      description: "The platform transformed enterprise data discovery from a daily frustration into a competitive advantage, delivering measurable ROI through improved productivity and decision-making speed.",
+      metrics: [
+        { value: "20%", label: "ROI from better discovery" },
+        { value: "↓65%", label: "Information retrieval time" }
+      ],
+      images: [
+        {
+          src: "/lovable-uploads/dae-outcome.png",
+          alt: "Final DAE search platform showing successful enterprise data discovery",
+          caption: "Final product demonstrating the successful enterprise data discovery platform"
+        }
+      ]
+    },
+    sections: [],
+    seoData: {
+      image: "/lovable-uploads/dae-search-poster.jpg",
+      projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
+      results: [
+        "20% ROI from better data discovery",
+        "65% reduction in information retrieval time",
+        "85% increase in search accuracy",
+        "40% reduction in support tickets"
+      ],
+      technologies: ["React", "TypeScript", "Elasticsearch", "Node.js", "GraphQL"],
+      path: "/project/daesearchproject"
+    }
+  },
   "herbalink": {
     id: "herbalink",
     title: "HerbaLink – 3× More Bookings for Certified Herbalists",

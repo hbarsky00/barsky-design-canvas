@@ -27,6 +27,20 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
+    id: "daesearchproject",
+    tags: ["Enterprise", "Search", "Data Discovery"],
+    title: "DAE Search Platform: Making Enterprise Data Actually Findable",
+    description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data. Through semantic search and visual data lineage, we reduced information retrieval time by 65% and delivered measurable ROI.",
+    impact: "20% ROI from Better Data Discovery",
+    url: "/project/daesearchproject",
+    images: {
+      primary: "/lovable-uploads/dae-search-poster.jpg",
+      alt: "DAE Search Platform showing enterprise data discovery interface"
+    },
+    layout: "side-by-side",
+    video: "/lovable-uploads/dae-search-hero.mp4"
+  },
+  {
     id: "business-management",
     tags: ["B2B", "Productivity", "Enterprise"],
     title: "Business Management: 40% Faster Project Delivery",
