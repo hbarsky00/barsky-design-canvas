@@ -1611,13 +1611,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       researchImageAlt: "Inventory audit screenshot showing data fragmentation across tools",
       researchImages: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png?v=20250122",
-          alt: "Inventory audit screenshot showing data fragmentation across tools",
-          caption: "PRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring."
-        },
-        {
           src: "https://barskyux.com/wp-content/uploads/2025/07/AutomatedInventoryTrackingSystem-Claude-8July2025-ezgif.com-video-to-gif-converter.gif",
-          alt: "Animated workflow of automated inventory tracking system"
+          alt: "Animated workflow of automated inventory tracking system",
+          caption: "PRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring."
         }
       ]
     },

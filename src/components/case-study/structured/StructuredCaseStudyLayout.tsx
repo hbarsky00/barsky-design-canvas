@@ -24,7 +24,7 @@ import AnnotatedImage from "../AnnotatedImage";
 import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
 import ProjectVideo from "@/components/project/ProjectVideo";
 import { Badge } from "@/components/ui/badge";
-import FloatingEmailButton from "@/components/FloatingEmailButton";
+
 
 interface StructuredCaseStudyLayoutProps {
   caseStudyData: StructuredCaseStudyData;
@@ -471,7 +471,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
       </div>
       
       <Footer />
-      <FloatingEmailButton />
     </>
   );
 };
