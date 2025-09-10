@@ -98,10 +98,10 @@ const caseStudies: CaseStudy[] = [
   },
   {
     id: "investor-loan-app",
-    tags: ["FinTech", "Investment", "B2B"],
-    title: "Investor Platform: 85% Faster Deal Processing",
-    description: "Created a comprehensive investment platform that connects investors with loan opportunities. Features include deal analysis, automated underwriting, portfolio management, and real-time market insights that accelerated investment decisions and improved risk assessment.",
-    impact: "85% Faster Deal Processing",
+    tags: ["FinTech", "Analytics", "WebApp"],
+    title: "Redesigning Loans",
+    description: "85% Fewer Errors, 40% Faster",
+    impact: "How I led a banking platform redesign that replaced Excel and scaled operations",
     url: "/project/investor-loan-app", 
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",

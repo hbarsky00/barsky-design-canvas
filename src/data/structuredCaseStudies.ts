@@ -1236,8 +1236,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Investor loan platform dashboard"
     },
     researchSection: {
-      subhead: "A private bank was managing investor loans in Excel, leading to errors, compliance risks, and delays. I designed a scalable loan platform with predictive search, guided workflows, and collaboration. The impact: 85% fewer errors, 40% faster processing, and restored trust from staff and regulators.",
-      blurb: "Excel caused errors.",
+      subhead: "Digging into the pain points",
+      blurb: "Why Excel was breaking loan operations",
       emergingThemes: [
         {
           eyebrow: "ACCURACY & AUDIT",
@@ -1252,7 +1252,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           eyebrow: "GUIDED ORDERS",
           insight: "Flat forms caused premature inputs and rework.",
-          drove: "Stepwise flow; actions disabled until lender selection; real-time feedback."
+          drove: "Stepwise flows with disabled actions until lender selection, plus real-time feedback."
         }
       ],
       researchImages: [
@@ -1263,15 +1263,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     problemCallout: {
-      eyebrow: "Problem to Solve",
-      statement: "Loan teams rely on error-prone spreadsheets with no audit trail, creating compliance risks, slow processing, and low trust in the data."
+      eyebrow: "The critical challenge",
+      statement: "Compliance risks hidden in spreadsheets: Loan teams were managing multi-million-dollar deals in fragile spreadsheets, with no audit trail or validation. Errors slipped through, reconciliation was manual, and regulators had no trustworthy data to review."
     },
     sprintZeroSection: {
-      eyebrow: "0 → 1 EXPLORATION",
-      title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "Initial Concepts & Sketches — Placeholder — replace with final image.",
+      eyebrow: "Sprint Zero",
+      title: "Blue-Sky Thinking",
+      workshopKickoff: "I mapped the loan lifecycle end-to-end: intake → lender selection → approval → booking → audit. Early sketches explored validation gates before submission, guided steps for loan officers, and real-time totals and audit history.",
       explorations: "Early exploration of loan processing workflows and automated validation concepts.",
-      decisionPoint: "I decided to build an intelligent workflow platform after seeing that most errors came from manual data entry and missing validation. I focused on automated checks, guided workflows, and clear audit trails to build trust through transparency and accuracy, instead of adding complex financial modeling features.",
+      decisionPoint: "The data showed most errors stemmed from missing validation and flat forms. I focused on building an intelligent workflow system—automation, checks, and audit trails—instead of adding unnecessary financial modeling.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png",
@@ -1299,24 +1299,24 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     keyInsights: [
-      { number: 1, title: "Trust through validation", description: "Real-time checks prevent errors and rework." },
-      { number: 2, title: "Predictive findability", description: "Bloomberg-style search beats complex filters." },
+      { number: 1, title: "Trust through validation", description: "Real-time checks prevent costly errors." },
+      { number: 2, title: "Predictive findability", description: "Bloomberg-style search beats filter hell." },
       { number: 3, title: "Guided orders", description: "Stepwise flows reduce mistakes vs. flat forms." }
     ],
     ideationSection: {
-      subhead: "I optimized deal findability, order building, validation, and collaboration to ensure compliance.",
+      subhead: "Exploring solutions: Designing the building blocks of trust",
       bubbles: [
-        { title: "Deal summary", description: "Status, limits, totals" },
-        { title: "Predictive search", description: "Category-aware, smart defaults" },
+        { title: "Deal summary", description: "Clear status, limits, and totals" },
+        { title: "Predictive search", description: "Context-aware, smart defaults" },
         { title: "Order builder", description: "Guided steps, fewer errors" },
-        { title: "Audit & comments", description: "History and collaboration" }
+        { title: "Audit & comments", description: "Full history with collaboration" }
       ],
       iterations: [
         { 
           label: "Iteration 1", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Orderbook-ViewAddOrderDefault.png", 
           alt: "Early orderbook view with Add Order entry point and sparse validation",
-          blurb: "Deal information is scattered — lacks a clear hierarchy\nNo real-time validation causes errors downstream",
+          blurb: "Sparse validation, unclear priorities",
           annotations: [
             { text: "Add Order entry", x: 30, y: 20, type: "feature" },
             { text: "Unclear field priority", x: 60, y: 45, type: "issue" },
@@ -1327,7 +1327,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Add-Order-Default.png", 
           alt: "Add Order default form with clearer required fields and disabled actions",
-          blurb: "Contextual filters reduce search time\nBloomberg-style search improves findability",
+          blurb: "Required fields, disabled submit until ready",
           annotations: [
             { text: "Required field indicators", x: 25, y: 30, type: "improvement" },
             { text: "Disabled submit until ready", x: 65, y: 50, type: "feature" },
@@ -1338,7 +1338,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 3", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Central-Orderbook-View.png", 
           alt: "Orderbook overview with real-time totals and status cues",
-          blurb: "Real-time totals reduce calculation errors\nStep-by-step guidance prevents premature inputs",
+          blurb: "Real-time totals and inline validation states",
           annotations: [
             { text: "Live totals", x: 35, y: 25, type: "feature" },
             { text: "Status chips", x: 65, y: 40, type: "improvement" },
@@ -1349,7 +1349,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           label: "Iteration 4", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062219098-scaled.png", 
           alt: "High-fidelity UI showing guided steps and validation feedback",
-          blurb: "Collaborative comments improve team coordination\nImmutable audit trail meets compliance needs",
+          blurb: "High-fidelity guided steps with audit integration",
           annotations: [
             { text: "Step indicator", x: 30, y: 20, type: "feature" },
             { text: "Error prevention copy", x: 60, y: 45, type: "improvement" },
@@ -1359,9 +1359,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     userTestingSection: {
-      title: "User Testing & Validation",
-      description: "Testing with loan officers validated my automation approach and revealed critical workflow improvements for compliance and speed.",
-      eyebrow: "VALIDATION & TESTING",
+      title: "Testing with real loan officers",
+      description: "Testing validated that automation and audit trails significantly improved both speed and compliance.",
+      eyebrow: "Proving it out",
       metrics: [
         { value: "95%", label: "Task Completion" },
         { value: "85%", label: "Error Reduction" },
@@ -1376,9 +1376,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     finalProductSection: {
-      title: "The Final Product",
-      description: "We built a loan management platform that replaced error-prone Excel workflows with smart automation, real-time checks, and clear audit trails. This gave the team full confidence in their operations.",
-      eyebrow: "THE RESULT",
+      title: "From error-prone spreadsheets to reliable workflows",
+      description: "We delivered a platform that replaced Excel chaos with guided workflows, real-time checks, and transparent audit trails. Officers gained confidence, regulators gained visibility, and the bank scaled with accuracy.",
+      eyebrow: "The solution in action",
       video: {
         src: "https://www.loom.com/share/a47f20680a16435cab9e90521383bfc6?sid=6eed1d9d-f571-4f4b-aa38-f40267e710d0",
         title: "Investor loan platform demo",
@@ -1494,9 +1494,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     outcomeSection: {
-      title: "Outcome",
-      description: "We transformed loan operations from slow, manual work into automated workflows that scale with the business, ensuring accuracy and compliance.",
-      eyebrow: "OUTCOMES & IMPACT",
+      title: "The results that mattered",
+      description: "The platform transformed loan operations with measurable improvements. Officers gained confidence, regulators gained visibility, and the bank scaled with accuracy.",
+      eyebrow: "Impact",
       metrics: [
         { value: "85%", label: "Fewer Errors" },
         { value: "40%", label: "Faster Processing" },
@@ -1531,9 +1531,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     myThoughtProcessSection: {
-      eyebrow: "APPROACH & DECISION MAKING",
-      title: "My Thought Process",
-      content: "I saw this as a process problem, not just a UI issue. By shadowing loan officers and mapping their real workflows, I found the main problems were scattered data, manual mistakes, and missing audit trails. My solution focused on automation, validation, and transparency instead of flashy design.",
+      eyebrow: "Design mindset",
+      title: "Solving workflows, not just interfaces",
+      content: "I treated this as a process problem, not a screen problem. By shadowing loan officers, I saw scattered data, manual mistakes, and compliance blind spots. The answer wasn't prettier forms—it was automation, validation, and transparency.",
       images: [
         {
           src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
@@ -1546,9 +1546,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ]
     },
     whatDidntWorkSection: {
-      eyebrow: "What Didn't Work",
-      title: "Learning from Challenges",
-      content: "Excel System → New Platform: Manual entry, frequent errors → Automated workflows with validation. No collaboration → In-app commenting and shared loan orders. Flat spreadsheets → Card + table views with live syncing. No audit history → Full visual audit logs. No search → AI-powered predictive search.",
+      eyebrow: "Lessons learned",
+      title: "When copying Excel patterns failed",
+      content: "At first, we recreated too much of Excel's flat structure. Users were overwhelmed, and errors persisted. The fix: guided workflows, card-based views, and live syncing that matched real processes instead of old habits.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062303031-scaled.png",
