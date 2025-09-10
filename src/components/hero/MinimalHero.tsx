@@ -15,14 +15,17 @@ const MinimalHero: React.FC = () => {
   const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   const videoUrl = 'https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runiIdLWyCYKV4_have_me_smile_at_the_scr_4838b019-f29d-486d-9a03-8725c08d3cd1_1.mp4';
 
-  // Track scroll position to hide continue button permanently
+  // Track scroll position to show/hide continue button
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const heroHeight = window.innerHeight;
       
-      // If user scrolls past 20% of hero section, hide continue button permanently
-      if (scrollPosition > heroHeight * 0.2 && showContinueButton) {
+      // Show button when near top, hide when scrolled down
+      if (scrollPosition < heroHeight * 0.1) {
+        setShowContinueButton(true);
+        setHasScrolledPastHero(false);
+      } else if (scrollPosition > heroHeight * 0.2) {
         setShowContinueButton(false);
         setHasScrolledPastHero(true);
       }
@@ -30,13 +33,10 @@ const MinimalHero: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [showContinueButton]);
+  }, []);
 
   const handleNavigateDown = () => {
     console.log('🚀 handleNavigateDown called!');
-    // Hide continue button immediately when clicked
-    setShowContinueButton(false);
-    setHasScrolledPastHero(true);
     
     // Scroll to case studies section
     const scrollToCaseStudies = () => {
@@ -44,7 +44,7 @@ const MinimalHero: React.FC = () => {
       console.log('📍 Looking for case-studies element:', nextSection);
       if (nextSection) {
         console.log('✅ Found case-studies element, scrolling...');
-        nextSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return true;
       }
       console.log('❌ case-studies element not found');
