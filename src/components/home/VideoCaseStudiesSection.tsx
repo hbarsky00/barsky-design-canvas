@@ -114,7 +114,7 @@ const caseStudies: CaseStudy[] = [
 const CaseStudyCard: React.FC<{ 
   study: CaseStudy; 
   index: number;
-}> = ({ study, index }) => {
+}> = React.memo(({ study, index }) => {
   const isMobile = useIsMobile();
 
 
@@ -299,7 +299,7 @@ const CaseStudyCard: React.FC<{
 
     </motion.div>
   );
-};
+});
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (

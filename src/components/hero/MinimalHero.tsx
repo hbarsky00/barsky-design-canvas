@@ -36,18 +36,13 @@ const MinimalHero: React.FC = () => {
   }, []);
 
   const handleNavigateDown = () => {
-    console.log('🚀 handleNavigateDown called!');
-    
     // Scroll to case studies section
     const scrollToCaseStudies = () => {
       const nextSection = document.getElementById('case-studies');
-      console.log('📍 Looking for case-studies element:', nextSection);
       if (nextSection) {
-        console.log('✅ Found case-studies element, scrolling...');
         nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return true;
       }
-      console.log('❌ case-studies element not found');
       return false;
     };
 
@@ -58,12 +53,8 @@ const MinimalHero: React.FC = () => {
       const maxAttempts = 20; // 2 seconds total
       const interval = setInterval(() => {
         attempts++;
-        console.log(`🔄 Retry attempt ${attempts}/${maxAttempts}`);
         if (scrollToCaseStudies() || attempts >= maxAttempts) {
           clearInterval(interval);
-          if (attempts >= maxAttempts) {
-            console.log('⚠️ Max attempts reached, could not find case-studies element');
-          }
         }
       }, 100);
     }
@@ -85,7 +76,6 @@ const MinimalHero: React.FC = () => {
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-20 
                        hover:opacity-95 transition-opacity duration-200" 
            onClick={(e) => {
-             console.log('📱 Main container clicked!', e.target);
              handleNavigateDown();
            }}
            title="Click anywhere to view case studies">

@@ -47,7 +47,7 @@ function getInitials(name: string) {
   return initials || "";
 }
 
-const IdentityBadge: React.FC<IdentityBadgeProps> = ({
+const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
   imageSrc,
   name,
   subtitle,
@@ -90,8 +90,6 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
     }
   }, [videoSrc, autoPlay]);
 
-  console.log('🔍 IdentityBadge: Image URL being used:', imageSrc);
-  console.log('🔍 IdentityBadge: Component size:', size);
 
   return (
     <Wrapper
@@ -127,15 +125,10 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
               videoSrc && (isHovered || autoPlay) ? "opacity-0" : "opacity-100"
             )}
             onLoad={() => {
-              console.log('✅ IdentityBadge: Image loaded successfully!', imageSrc);
+              // Image loaded successfully
             }}
             onError={(e) => {
-              console.error('❌ IdentityBadge: Image failed to load!', imageSrc);
-              console.error('❌ Error details:', e);
-              // Test if the URL is accessible
-              fetch(imageSrc, { method: 'HEAD', mode: 'no-cors' })
-                .then(() => console.log('🌐 URL is accessible via fetch'))
-                .catch(err => console.error('🌐 URL fetch failed:', err));
+              // Image failed to load - fallback to AvatarFallback
             }}
           />
           
@@ -199,6 +192,6 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
       </div>
     </Wrapper>
   );
-};
+});
 
 export default IdentityBadge;
