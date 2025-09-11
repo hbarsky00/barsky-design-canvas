@@ -51,8 +51,8 @@ serve(async (req) => {
         },
       ],
       mode: "payment",
-      success_url: `${req.headers.get("origin") || "https://hirambarsky.com"}/store?success=true`,
-      cancel_url: `${req.headers.get("origin") || "https://hirambarsky.com"}/store/product/${product.id}?canceled=true`,
+      success_url: `${req.headers.get("origin") || "https://barskydesign.pro"}/store?success=true`,
+      cancel_url: `${req.headers.get("origin") || "https://barskydesign.pro"}/store/product/${product.id}?canceled=true`,
     });
 
     // Return the session URL for the client to redirect to
