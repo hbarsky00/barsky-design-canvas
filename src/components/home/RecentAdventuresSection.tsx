@@ -84,20 +84,20 @@ const RecentAdventuresSection: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 p-6 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 hover:border-primary/20 transition-all duration-300">
+              <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 p-6 rounded-lg border border-border/50 bg-surface/50 hover:bg-surface/80 hover:border-primary/20 transition-all duration-300">
                 
                 {/* Content */}
                 <div className="flex-1 grid md:grid-cols-2 gap-4 md:gap-8">
                   {/* Left: Role and Company */}
                   <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-xl font-semibold text-on-surface group-hover:text-primary transition-colors duration-300">
                       {experience.role}
                     </h3>
                     <div className="flex items-center gap-2">
                       <span className="text-lg font-medium text-primary">
                         {experience.company}
                       </span>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-sm text-on-surface-variant">
                         {experience.duration}
                       </span>
                     </div>
@@ -105,7 +105,7 @@ const RecentAdventuresSection: React.FC = () => {
                   
                   {/* Right: Description */}
                   <div>
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
+                    <p className="text-on-surface-variant leading-relaxed group-hover:text-on-surface transition-colors duration-300">
                       {experience.description}
                     </p>
                   </div>
@@ -123,7 +123,7 @@ const RecentAdventuresSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-12 md:mt-16 text-center"
         >
-          <p className="text-muted-foreground mb-4">
+          <p className="text-on-surface-variant mb-4">
             Want to learn more about my experience?
           </p>
           <a
