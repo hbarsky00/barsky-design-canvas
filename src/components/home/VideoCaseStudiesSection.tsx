@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useVerticalOverlayTransition } from "@/hooks/useVerticalOverlayTransition";
+import { useCaseStudySnapScroll } from "@/hooks/useCaseStudySnapScroll";
 
 interface CaseStudy {
   id: string;
@@ -115,14 +115,8 @@ const caseStudies: CaseStudy[] = [
 const CaseStudyCard: React.FC<{ 
   study: CaseStudy; 
   index: number;
-  transitionState: {
-    opacity: number;
-    scale: number;
-    translateY: number;
-    isActive: boolean;
-    isInteractive: boolean;
-  };
-}> = ({ study, index, transitionState }) => {
+  isActive: boolean;
+}> = ({ study, index, isActive }) => {
   const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -132,7 +126,7 @@ const CaseStudyCard: React.FC<{
     
     const video = videoRef.current;
     
-    if (transitionState.isActive) {
+    if (isActive) {
       video.play().catch((error) => {
         console.log(`Video autoplay failed for ${study.id}:`, error);
         // Gracefully handle autoplay restrictions
@@ -141,7 +135,7 @@ const CaseStudyCard: React.FC<{
       video.pause();
       video.currentTime = 0;
     }
-  }, [transitionState.isActive, study.video, study.id]);
+  }, [isActive, study.video, study.id]);
 
 
   const renderMedia = () => {
@@ -192,19 +186,11 @@ const CaseStudyCard: React.FC<{
   return (
     <motion.div
       id={`case-study-${index + 1}`}
-      className="case-study-overlay-panel bg-gray-50 overflow-hidden"
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 10 + index,
-        minHeight: '100dvh',
-        opacity: transitionState.opacity,
-        transform: `translateY(${transitionState.translateY}px) scale(${transitionState.scale})`,
-        pointerEvents: transitionState.isInteractive ? 'auto' : 'none',
-        willChange: 'transform, opacity'
-      }}
-      aria-hidden={!transitionState.isActive}
-      tabIndex={transitionState.isInteractive ? 0 : -1}
+      className="bg-gray-50 overflow-hidden min-h-screen snap-start"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
@@ -339,8 +325,8 @@ const CaseStudyCard: React.FC<{
 };
 
 const VideoCaseStudiesSection: React.FC = () => {
-  const { containerRef, activeIndex, transitionStates } = useVerticalOverlayTransition({
-    totalPanels: caseStudies.length
+  const { containerRef, currentIndex } = useCaseStudySnapScroll({
+    totalCaseStudies: caseStudies.length
   });
 
   return (
@@ -362,24 +348,19 @@ const VideoCaseStudiesSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Vertical Overlay Transition Container */}
+      {/* Case Studies Container with Snap Scroll */}
       <div 
         ref={containerRef}
-        id="videoCaseStudies"
-        className="vertical-overlay-container"
+        id="case-studies"
+        className="snap-y snap-mandatory overflow-y-auto"
+        style={{ height: "100vh" }}
       >
         {caseStudies.map((study, index) => (
           <CaseStudyCard 
             key={study.id} 
             study={study} 
             index={index}
-            transitionState={transitionStates[index] || {
-              opacity: index === 0 ? 1 : 0,
-              scale: index === 0 ? 1 : 0.97,
-              translateY: index === 0 ? 0 : 20,
-              isActive: index === 0,
-              isInteractive: index === 0
-            }}
+            isActive={currentIndex === index}
           />
         ))}
       </div>
