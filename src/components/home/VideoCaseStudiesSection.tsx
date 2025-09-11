@@ -130,15 +130,18 @@ const CaseStudyCard: React.FC<{
   useEffect(() => {
     if (!videoRef.current || !study.video) return;
     
+    const video = videoRef.current;
+    
     if (transitionState.isActive) {
-      videoRef.current.play().catch(() => {
-        // Handle autoplay restrictions gracefully
+      video.play().catch((error) => {
+        console.log(`Video autoplay failed for ${study.id}:`, error);
+        // Gracefully handle autoplay restrictions
       });
     } else {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
+      video.pause();
+      video.currentTime = 0;
     }
-  }, [transitionState.isActive, study.video]);
+  }, [transitionState.isActive, study.video, study.id]);
 
 
   const renderMedia = () => {
@@ -155,6 +158,14 @@ const CaseStudyCard: React.FC<{
               loop
               playsInline
               preload="metadata"
+              onError={(e) => {
+                console.log(`Video failed to load for ${study.id}:`, e);
+                // Video will show poster image on error
+              }}
+              onLoadStart={() => {
+                console.log(`Video loading started for ${study.id}`);
+              }}
+              style={{ minHeight: '200px' }} // Prevent layout shift
             />
           </div>
         </Link>
@@ -168,6 +179,10 @@ const CaseStudyCard: React.FC<{
             src={study.images.primary} 
             alt={study.images.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            style={{ minHeight: '200px' }} // Prevent layout shift
+            onError={(e) => {
+              console.log(`Image failed to load for ${study.id}:`, e);
+            }}
           />
         </div>
       </Link>

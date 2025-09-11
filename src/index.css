@@ -407,6 +407,8 @@ select:focus-visible, a:focus-visible,
   /* Vertical Overlay Transition Styles */
   .vertical-overlay-container {
     position: relative;
+    /* Ensure container always has content visible */
+    min-height: 100vh;
   }
 
   .case-study-overlay-panel {
@@ -414,12 +416,38 @@ select:focus-visible, a:focus-visible,
                 transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backface-visibility: hidden;
     transform-style: preserve-3d;
+    /* Ensure panels always maintain minimum visibility */
+    min-height: 100vh;
+    /* Prevent gaps between panels */
+    margin-bottom: 0;
   }
 
   /* Optimized video handling for overlay transitions */
   .overlay-video {
     transform: translateZ(0);
     backface-visibility: hidden;
+    /* Prevent video from causing layout shifts */
+    min-height: 200px;
+    background-color: #f8f9fa; /* Fallback background */
+  }
+
+  /* Ensure sticky positioning works reliably */
+  @supports (position: sticky) {
+    .case-study-overlay-panel {
+      position: sticky !important;
+    }
+  }
+
+  /* Fallback for browsers without proper sticky support */
+  @supports not (position: sticky) {
+    .case-study-overlay-panel {
+      position: relative;
+    }
+    
+    .vertical-overlay-container {
+      /* Alternative approach for non-sticky browsers */
+      overflow-y: auto;
+    }
   }
 
   /* Reduced motion fallback */
