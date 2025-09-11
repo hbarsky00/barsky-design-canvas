@@ -66,7 +66,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
   const currentImageIndex = allImages.indexOf(updatedProject.image);
 
   // Check if this is DAE Search project to conditionally hide bottom gallery
-  const isDaeSearchProject = projectId === "dae-search";
+  const isDaeSearchProject = projectId === "daesearchproject";
 
 
   return (
