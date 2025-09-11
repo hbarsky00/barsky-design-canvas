@@ -9,6 +9,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     
+    <!-- Performance & Critical Resource Hints -->
+    <link rel="preconnect" href="https://barskyux.com" crossorigin>
+    <link rel="preconnect" href="https://ctqttomppgkjbjkckise.supabase.co" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical above-the-fold image -->
+    <link rel="preload" as="image" href="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp" fetchpriority="high">
+    
+    <!-- Critical CSS -->
+    <style>
+      /* Critical above-the-fold styles to prevent layout shift */
+      .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+      .hero-loading { opacity: 0; animation: fade-in-fast 0.3s ease-out forwards; }
+      @keyframes fade-in-fast { to { opacity: 1; } }
+      /* Prevent layout shift for images */
+      img[loading="eager"] { content-visibility: auto; }
+    </style>
+    
 
 
     <!-- Primary SEO -->
@@ -85,10 +104,11 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
     
-    <!-- Google Fonts - Optimized -->
+    <!-- Google Fonts - Optimized with display=swap for faster rendering -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
     
     <!-- Critical Asset Preloads -->
     <link rel="preload" href="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp" as="image" crossorigin="anonymous">

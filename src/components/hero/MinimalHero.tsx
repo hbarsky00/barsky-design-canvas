@@ -63,7 +63,7 @@ const MinimalHero: React.FC = () => {
   return (
     <section 
       id="intro"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative
+      className="hero-container min-h-screen flex items-center justify-center px-4 sm:px-6 relative
                  pt-safe-top pb-safe-bottom overflow-hidden"
     >
       {/* Winamp Visualizer Background - positioned behind clickable area */}
@@ -82,8 +82,8 @@ const MinimalHero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="hero-loading flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
         >
           {/* Avatar with optimized video loading */}
           <div className="flex justify-center order-1">
@@ -97,6 +97,7 @@ const MinimalHero: React.FC = () => {
                   alt="Hiram Barsky profile"
                   className="w-full h-full object-cover"
                   loading="eager"
+                  fetchPriority="high"
                   sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 240px"
                   style={{ maxWidth: '240px', height: 'auto' }}
                 />
@@ -108,6 +109,7 @@ const MinimalHero: React.FC = () => {
                   playsInline
                   preload="none"
                   loop
+                  
                   onMouseEnter={() => videoRef.current?.play()}
                   onMouseLeave={() => videoRef.current?.pause()}
                 />
@@ -163,7 +165,7 @@ const MinimalHero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
           className="flex justify-center items-center space-x-6 sm:space-x-8 lg:space-x-10 xl:space-x-12 2xl:space-x-14
                      mt-6 sm:mt-8 lg:mt-10 xl:mt-12 2xl:mt-14 order-3"
         >
