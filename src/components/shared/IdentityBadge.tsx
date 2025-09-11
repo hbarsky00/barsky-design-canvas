@@ -121,6 +121,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = ({
             loading="eager"
             width={s.imgWH}
             height={s.imgWH}
+            sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 80px"
             className={cn(
               "transition-opacity duration-300",
               videoSrc && (isHovered || autoPlay) ? "opacity-0" : "opacity-100"

@@ -130,6 +130,7 @@ const CaseStudyCard: React.FC<{
               muted
               loop
               playsInline
+              style={{ maxWidth: '625px', height: 'auto' }}
               onMouseEnter={(e) => e.currentTarget.play()}
               onMouseLeave={(e) => {
                 e.currentTarget.pause();
@@ -149,6 +150,9 @@ const CaseStudyCard: React.FC<{
             src={study.images.primary} 
             alt={study.images.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
+            style={{ maxWidth: '625px', height: 'auto' }}
           />
         </div>
       </Link>

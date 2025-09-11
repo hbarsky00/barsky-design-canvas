@@ -106,6 +106,9 @@ const MinimalHero: React.FC = () => {
                   src={imageUrl}
                   alt="Hiram Barsky profile"
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 240px"
+                  style={{ maxWidth: '240px', height: 'auto' }}
                 />
                 <video
                   ref={videoRef}
