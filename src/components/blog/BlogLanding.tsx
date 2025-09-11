@@ -61,14 +61,14 @@ const BlogLanding: React.FC = () => {
                     ))}
                   </div>
                   
-                  <h2 className="heading-card text-gray-900 mb-3 line-clamp-2">
+                  <h3 className="heading-card text-gray-900 mb-3 line-clamp-2">
                     <Link 
                       to={`/blog/${post.slug}`}
                       className="hover:text-blue-600 transition-colors"
                     >
                       {post.title}
                     </Link>
-                  </h2>
+                  </h3>
                   
                   <p className="text-gray-700 mb-4 line-clamp-3">
                     {post.excerpt}

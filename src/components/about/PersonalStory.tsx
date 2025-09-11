@@ -12,7 +12,7 @@ const PersonalStory: React.FC = () => {
     >
       <div className="text-center mb-12">
         <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-display">
-          About Me (Hiram Barsky)
+          About Hiram Barsky - UX/UI Designer & AI Developer
         </h1>
         <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
           Product Designer & Gen AI Developer focused on building AI-powered digital experiences 

@@ -254,7 +254,7 @@ const CaseStudyCard: React.FC<{
             </div>
 
             {/* Title */}
-            <h3 className="heading-subsection lg:text-3xl xl:text-3xl text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere">
+            <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere">
               {study.title}
             </h3>
 
