@@ -54,13 +54,11 @@ const HomepageLayout: React.FC = () => {
         {/* Remove 3D effects that cause layout distortion */}
         <div className="space-y-2 md:space-y-6">
         
-        <LazySection threshold={0.05}>
-          <SectionTransition variant="fade" delay={0.05} intensity={0.3} className="py-0 md:py-12">
-            <section id="case-studies" tabIndex={-1}>
-              <LazyVideoCaseStudiesSection />
-            </section>
-          </SectionTransition>
-        </LazySection>
+        <SectionTransition variant="fade" delay={0.05} intensity={0.3} className="py-0 md:py-12">
+          <section id="case-studies" tabIndex={-1}>
+            <LazyVideoCaseStudiesSection />
+          </section>
+        </SectionTransition>
         
         {/* Keep current projects section outside 3D container to prevent cutting off */}
         <SectionTransition variant="fade" delay={0.1} intensity={0.3}>

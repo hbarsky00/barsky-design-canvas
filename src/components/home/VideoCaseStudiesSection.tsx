@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useCaseStudySnapScroll } from "@/hooks/useCaseStudySnapScroll";
 
 interface CaseStudy {
   id: string;
@@ -114,8 +115,27 @@ const caseStudies: CaseStudy[] = [
 const CaseStudyCard: React.FC<{ 
   study: CaseStudy; 
   index: number;
-}> = ({ study, index }) => {
+  isActive: boolean;
+}> = ({ study, index, isActive }) => {
   const isMobile = useIsMobile();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Handle video play/pause based on active state
+  useEffect(() => {
+    if (!videoRef.current || !study.video) return;
+    
+    const video = videoRef.current;
+    
+    if (isActive) {
+      video.play().catch((error) => {
+        console.log(`Video autoplay failed for ${study.id}:`, error);
+        // Gracefully handle autoplay restrictions
+      });
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, [isActive, study.video, study.id]);
 
 
   const renderMedia = () => {
@@ -124,18 +144,22 @@ const CaseStudyCard: React.FC<{
         <Link to={study.url} className="block h-full group">
           <div className="flex justify-center h-full cursor-pointer">
             <video 
+              ref={videoRef}
               src={study.video}
               poster={study.images.primary}
-              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105 overlay-video"
               muted
               loop
               playsInline
-              onMouseEnter={(e) => e.currentTarget.play()}
-              onMouseLeave={(e) => {
-                e.currentTarget.pause();
-                e.currentTarget.currentTime = 0;
-                e.currentTarget.load();
+              preload="metadata"
+              onError={(e) => {
+                console.log(`Video failed to load for ${study.id}:`, e);
+                // Video will show poster image on error
               }}
+              onLoadStart={() => {
+                console.log(`Video loading started for ${study.id}`);
+              }}
+              style={{ minHeight: '200px' }} // Prevent layout shift
             />
           </div>
         </Link>
@@ -149,6 +173,10 @@ const CaseStudyCard: React.FC<{
             src={study.images.primary} 
             alt={study.images.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            style={{ minHeight: '200px' }} // Prevent layout shift
+            onError={(e) => {
+              console.log(`Image failed to load for ${study.id}:`, e);
+            }}
           />
         </div>
       </Link>
@@ -158,12 +186,11 @@ const CaseStudyCard: React.FC<{
   return (
     <motion.div
       id={`case-study-${index + 1}`}
-      initial={{ opacity: 0, y: 30 }}
+      className="bg-gray-50 overflow-hidden min-h-screen snap-start"
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="case-study-card bg-gray-50 overflow-hidden relative py-12 lg:py-16"
-      tabIndex={-1}
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
@@ -298,9 +325,13 @@ const CaseStudyCard: React.FC<{
 };
 
 const VideoCaseStudiesSection: React.FC = () => {
+  const { containerRef, currentIndex } = useCaseStudySnapScroll({
+    totalCaseStudies: caseStudies.length
+  });
+
   return (
-    <section className="py-8 md:py-12 bg-white" tabIndex={-1}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <section className="bg-white" tabIndex={-1}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-8 md:py-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -315,17 +346,23 @@ const VideoCaseStudiesSection: React.FC = () => {
             subtitleClassName="max-w-4xl mx-auto"
           />
         </motion.div>
+      </div>
 
-        {/* Case Studies Grid */}
-        <div className="space-y-12">
-          {caseStudies.map((study, index) => (
-            <CaseStudyCard 
-              key={study.id} 
-              study={study} 
-              index={index}
-            />
-          ))}
-        </div>
+      {/* Case Studies Container with Snap Scroll */}
+      <div 
+        ref={containerRef}
+        id="case-studies"
+        className="snap-y snap-mandatory overflow-y-auto"
+        style={{ height: "100vh" }}
+      >
+        {caseStudies.map((study, index) => (
+          <CaseStudyCard 
+            key={study.id} 
+            study={study} 
+            index={index}
+            isActive={currentIndex === index}
+          />
+        ))}
       </div>
     </section>
   );
