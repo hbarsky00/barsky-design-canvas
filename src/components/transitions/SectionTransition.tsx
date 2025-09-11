@@ -43,11 +43,15 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
   return (
     <MotionTag
       id={id}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, delay, ease: "easeOut" }}
       className={`relative ${className}`}
+      style={{ 
+        transform: 'translate3d(0,0,0)',
+        willChange: 'transform, opacity'
+      }}
     >
       {variant === "wipe" && (
         <motion.div

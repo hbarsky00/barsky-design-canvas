@@ -115,19 +115,21 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
     return () => cleanup();
   }, [inView, isDirectVideo, video, videoSrcLoaded, hasTriedCapture, capturedThumb]);
 
-  // 3D scroll transforms
+  // 3D scroll transforms with optimizations
   const prefersReducedMotion = useReducedMotion();
   const {
     scrollYProgress
   } = useScroll({
     target: containerRef,
-    offset: ["start 80%", "end 20%"]
+    offset: ["start 90%", "end 10%"]
   });
-  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [6, 0, -6]);
-  const yTransform = useTransform(scrollYProgress, [0, 1], [16, -16]);
-  const scaleTransform = useTransform(scrollYProgress, [0, 0.5, 1], [0.985, 1, 0.985]);
-  const mediaY = useTransform(scrollYProgress, [0, 1], [-8, 8]);
-  const mediaScale = useTransform(scrollYProgress, [0, 1], [1.03, 1.0]);
+  
+  // Reduced animation intensity and smoother timing
+  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [2, 0, -2]);
+  const yTransform = useTransform(scrollYProgress, [0, 1], [8, -8]);
+  const scaleTransform = useTransform(scrollYProgress, [0, 0.5, 1], [0.995, 1, 0.995]);
+  const mediaY = useTransform(scrollYProgress, [0, 1], [-4, 4]);
+  const mediaScale = useTransform(scrollYProgress, [0, 1], [1.015, 1.0]);
 
   // Enhanced event handlers that don't interfere with navigation
   const handleMouseEnter = () => {
@@ -190,11 +192,15 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
       }} 
       className={`${className} will-change-transform`} 
       ref={containerRef} 
-      style={prefersReducedMotion ? undefined : {
+      style={prefersReducedMotion ? {
+        transform: 'translate3d(0,0,0)'
+      } : {
         rotateX,
         y: yTransform,
         scale: scaleTransform,
-        transformPerspective: 1000
+        transformPerspective: 1000,
+        transform: 'translate3d(0,0,0)',
+        contain: 'layout style paint'
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -205,7 +211,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
         onKeyDown={handleKeyDown}
       >
-        <Card className="overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-200/80 hover:shadow-xl hover:shadow-gray-200/20 transition-all duration-300 group cursor-pointer">
+        <Card className="overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-200/80 hover:shadow-xl hover:shadow-gray-200/20 transition-all duration-300 group cursor-pointer will-change-transform">
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
             {isDirectVideo ? (
@@ -218,10 +224,13 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                 playsInline
                 loop
                 preload="none"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                style={prefersReducedMotion ? undefined : {
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
+                style={prefersReducedMotion ? {
+                  transform: 'translate3d(0,0,0)'
+                } : {
                   y: mediaY,
-                  scale: mediaScale
+                  scale: mediaScale,
+                  transform: 'translate3d(0,0,0)'
                 }}
                 onCanPlay={() => {
                   if (isHovered) {
@@ -236,10 +245,13 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                 src={thumb}
                 alt={title}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                style={prefersReducedMotion ? undefined : {
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
+                style={prefersReducedMotion ? {
+                  transform: 'translate3d(0,0,0)'
+                } : {
                   y: mediaY,
-                  scale: mediaScale
+                  scale: mediaScale,
+                  transform: 'translate3d(0,0,0)'
                 }}
                 onError={(e) => {
                   const el = e.currentTarget as HTMLImageElement;
