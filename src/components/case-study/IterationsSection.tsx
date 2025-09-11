@@ -1,6 +1,6 @@
 import React from "react";
 import { IdeationIteration } from "@/data/structuredCaseStudies";
-import AnnotatedImage from "./AnnotatedImage";
+import MaximizableImage from "../project/MaximizableImage";
 
 interface IterationsSectionProps {
   iterations: IdeationIteration[];
@@ -29,10 +29,13 @@ const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => 
                 {iteration.label}
               </div>
               <div className="max-w-full">
-                <AnnotatedImage
+                <MaximizableImage
                   src={iteration.imageSrc}
                   alt={iteration.alt}
                   annotations={iteration.annotations}
+                  imageList={iterations.map(iter => iter.imageSrc)}
+                  currentIndex={index}
+                  className="w-full"
                 />
               </div>
             </div>
