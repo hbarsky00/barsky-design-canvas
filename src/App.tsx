@@ -20,6 +20,8 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
+import Store from "@/pages/Store";
+import StoreSuccess from "@/pages/StoreSuccess";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
 // Service page imports
@@ -73,6 +75,8 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/store/success" element={<StoreSuccess />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             

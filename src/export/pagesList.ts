@@ -17,6 +17,7 @@ export const PAGES_LIST: PageInfo[] = [
   
   { id: "services", title: "Services", url: "/services", type: "services" },
   { id: "about", title: "About", url: "/about", type: "about" },
+  { id: "store", title: "Store", url: "/store", type: "services" },
   { id: "contact", title: "Contact", url: "/contact", type: "contact" },
   { id: "blog", title: "Blog", url: "/blog", type: "blog-index" },
   

@@ -14,6 +14,7 @@ export const useHeaderNavigation = () => {
   const navLinks = [
     { name: "Case Studies", href: "#case-studies" },
     { name: "About", href: "/about" },
+    { name: "Store", href: "/store" },
     { name: "Blog", href: "/blog" },
     { name: "Contact Me", href: "#contact" },
   ];
@@ -133,6 +134,11 @@ export const useHeaderNavigation = () => {
     // For blog page
     if (link === "/blog") {
       return location.pathname === "/blog" || location.pathname.startsWith("/blog/");
+    }
+    
+    // For store page
+    if (link === "/store") {
+      return location.pathname === "/store" || location.pathname.startsWith("/store/");
     }
     
     // For service page

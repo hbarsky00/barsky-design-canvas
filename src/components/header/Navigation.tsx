@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Briefcase, User, Mail, BookOpen } from "lucide-react";
+import { Briefcase, User, Mail, BookOpen, ShoppingBag } from "lucide-react";
 
 interface NavigationProps {
   links: Array<{ name: string; href: string }>;
@@ -26,6 +26,8 @@ const Navigation: React.FC<NavigationProps> = ({
         return <Briefcase className={iconProps} />;
       case "about":
         return <User className={iconProps} />;
+      case "store":
+        return <ShoppingBag className={iconProps} />;
       case "blog":
         return <BookOpen className={iconProps} />;
       case "contact me":
