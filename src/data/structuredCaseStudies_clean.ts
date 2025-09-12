@@ -362,6 +362,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   }
 };
 
-export const getStructuredCaseStudy = (id: string): StructuredCaseStudyData | null => {
-  return structuredCaseStudies[id] || null;
+export const getStructuredCaseStudy = (id: string): StructuredCaseStudyData | undefined => {
+  return structuredCaseStudies[id];
 };

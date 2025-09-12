@@ -32,7 +32,6 @@ const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => 
                 <MaximizableImage
                   src={iteration.imageSrc}
                   alt={iteration.alt}
-                  annotations={iteration.annotations}
                   imageList={iterations.map(iter => iter.imageSrc)}
                   currentIndex={index}
                   className="w-full"
