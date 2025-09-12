@@ -130,7 +130,7 @@ const CaseStudyCard: React.FC<{
               muted
               loop
               playsInline
-              style={{ height: 'auto' }}
+              style={{ maxWidth: '625px', height: 'auto' }}
               onMouseEnter={(e) => e.currentTarget.play()}
               onMouseLeave={(e) => {
                 e.currentTarget.pause();
@@ -152,7 +152,7 @@ const CaseStudyCard: React.FC<{
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
-            style={{ height: 'auto' }}
+            style={{ maxWidth: '625px', height: 'auto' }}
           />
         </div>
       </Link>
@@ -166,18 +166,18 @@ const CaseStudyCard: React.FC<{
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "100px" }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="case-study-card bg-gray-50 overflow-hidden relative py-8 lg:py-10"
+      className="case-study-card bg-gray-50 overflow-hidden relative py-12 lg:py-16"
       tabIndex={-1}
     >
       {/* Mobile Layout: Stacked */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         {/* Image Section - Full Width on Mobile - Now Clickable */}
-        <div className="relative bg-gray-50 py-4 min-h-[240px] flex items-center">
+        <div className="relative bg-gray-50 py-6 min-h-[240px] flex items-center">
           {renderMedia()}
         </div>
 
         {/* Content Section - Same background */}
-        <div className="bg-gray-50 p-6 space-y-6">
+        <div className="bg-gray-50 p-8 space-y-6">
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {study.tags.map((tag) => (
@@ -226,8 +226,8 @@ const CaseStudyCard: React.FC<{
         </div>
       </div>
 
-      {/* Desktop/Tablet Layout: Flexible Image-Heavy Split with Smart Alignment */}
-      <div className="hidden md:grid gap-4 xl:gap-5 2xl:gap-5 items-center
+      {/* Desktop Layout: Flexible Image-Heavy Split with Smart Alignment */}
+      <div className="hidden lg:grid gap-4 xl:gap-5 2xl:gap-5 items-center
                       [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
                       2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
         
@@ -240,7 +240,7 @@ const CaseStudyCard: React.FC<{
         </div>
 
         {/* Content Section - Flexible height with minimum padding and width enforcement */}
-        <div className="bg-gray-50 flex flex-col justify-center p-5 xl:p-6 min-w-0"
+        <div className="bg-gray-50 flex flex-col justify-center p-6 xl:p-7 min-w-0" 
              style={{ 
                paddingLeft: '24px',
                paddingRight: '24px',
@@ -321,7 +321,7 @@ const VideoCaseStudiesSection: React.FC = () => {
         </motion.div>
 
         {/* Case Studies Grid */}
-        <div className="space-y-8">
+        <div className="space-y-12">
           {caseStudies.map((study, index) => (
             <CaseStudyCard 
               key={study.id} 

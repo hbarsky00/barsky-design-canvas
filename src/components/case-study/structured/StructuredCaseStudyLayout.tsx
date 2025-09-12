@@ -334,7 +334,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       if (img.caption) acc[img.src] = img.caption;
                       return acc;
                     }, {} as Record<string, string>)}
-                    imageAnnotations={{}}
+                    imageAnnotations={caseStudyData.finalProductSection.images.reduce((acc, img) => {
+                      if (img.annotations) acc[img.src] = img.annotations;
+                      return acc;
+                    }, {} as Record<string, ImageAnnotation[]>)}
                   />
                 ) : (
                   <div className="grid gap-6 md:gap-8">
@@ -347,11 +350,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         transition={{ duration: 0.6, delay: index * 0.1 }}
                         className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                       >
-                        {false ? (
+                        {image.annotations && image.annotations.length > 0 ? (
                           <AnnotatedImage
                             src={image.src}
                             alt={image.alt}
-                            annotations={[]}
+                            annotations={image.annotations}
                             className="w-full h-auto rounded-lg"
                           />
                         ) : (
