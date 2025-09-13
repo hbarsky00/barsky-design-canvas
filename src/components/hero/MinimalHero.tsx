@@ -300,7 +300,7 @@ const MinimalHero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer group z-30"
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group z-50 flex items-center justify-center"
           onClick={handleNavigateDown}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}

@@ -21,11 +21,13 @@ const FloatingParticles: React.FC = () => {
     duration: Math.random() * 15 + 20,
     delay: Math.random() * 8,
     color: [
-      'rgba(59, 130, 246, 0.1)',
-      'rgba(147, 51, 234, 0.1)',
-      'rgba(99, 102, 241, 0.1)',
-      'rgba(255, 255, 255, 0.05)'
-    ][Math.floor(Math.random() * 4)]
+      'rgba(59, 130, 246, 0.3)',
+      'rgba(147, 51, 234, 0.3)',
+      'rgba(99, 102, 241, 0.3)',
+      'rgba(255, 255, 255, 0.2)',
+      'rgba(16, 185, 129, 0.3)',
+      'rgba(245, 101, 101, 0.3)'
+    ][Math.floor(Math.random() * 6)]
   }));
 
   return (
