@@ -147,9 +147,9 @@ const MinimalHero: React.FC = () => {
                 text="I Design AI-Powered UX That Boosts Conversion by 40%+"
                 tag="h1"
                 type="word"
-                animation="typewriter"
-                delay={800}
-                staggerChildren={0.08}
+                animation="fade"
+                delay={300}
+                staggerChildren={0.04}
                 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                            xl:text-4xl 2xl:text-5xl
                            font-display font-medium bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 
@@ -157,24 +157,46 @@ const MinimalHero: React.FC = () => {
               />
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <AnimatedText
-                text="Hiram Barsky"
-                tag="h2"
-                type="character"
-                animation="elastic"
-                delay={1500}
-                staggerChildren={0.05}
-                className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
-                           xl:text-7xl 2xl:text-8xl
-                           font-display font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
-                           bg-clip-text text-transparent mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3 leading-tight tracking-tight"
-              />
-            </motion.div>
+            {/* Separate Hiram and Barsky */}
+            <div className="flex flex-col items-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <AnimatedText
+                  text="Hiram"
+                  tag="h2"
+                  type="character"
+                  animation="elastic"
+                  delay={800}
+                  staggerChildren={0.05}
+                  className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
+                             xl:text-7xl 2xl:text-8xl
+                             font-display font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
+                             bg-clip-text text-transparent leading-tight tracking-tight"
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <AnimatedText
+                  text="Barsky"
+                  tag="h2"
+                  type="character"
+                  animation="slide"
+                  delay={1000}
+                  staggerChildren={0.04}
+                  className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
+                             xl:text-7xl 2xl:text-8xl
+                             font-display font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
+                             bg-clip-text text-transparent mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3 leading-tight tracking-tight"
+                />
+              </motion.div>
+            </div>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
