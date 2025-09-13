@@ -65,13 +65,13 @@ const MinimalHero: React.FC = () => {
     <section 
       id="intro"
       className="h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
-                 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+                 bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50"
     >
       {/* Professional Particle Network Background */}
       <ParticleNetwork />
       
-      {/* Clean gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-white/75 to-white/80 backdrop-blur-sm" />
+      {/* Clean gradient overlay for enhanced readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/40 backdrop-blur-sm" />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-20 
                        hover:opacity-95 transition-opacity duration-200" 
            onClick={(e) => {
