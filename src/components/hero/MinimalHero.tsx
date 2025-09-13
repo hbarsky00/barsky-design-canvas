@@ -4,10 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Linkedin, Github, Calendar } from "lucide-react";
-import EnhancedWinampVisualizer from "./EnhancedWinampVisualizer";
-import FloatingParticles from "./FloatingParticles";
-import AnimatedBackground from "./AnimatedBackground";
+import ParticleNetwork from "./ParticleNetwork";
 import { EditableContent } from "@/components/editor/EditableContent";
+import AnimatedText from "../AnimatedText";
 
 const MinimalHero: React.FC = () => {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
@@ -68,9 +67,8 @@ const MinimalHero: React.FC = () => {
       className="h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
                  bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     >
-      {/* Professional Background Layers */}
-      <AnimatedBackground />
-      <FloatingParticles />
+      {/* Professional Particle Network Background */}
+      <ParticleNetwork />
       
       {/* Clean gradient overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-white/75 to-white/80 backdrop-blur-sm" />
@@ -145,12 +143,13 @@ const MinimalHero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <EditableContent
-                contentKey="hero-title"
-                defaultContent="I Design AI-Powered UX That Boosts Conversion by 40%+ <br /> 15+ Years Experience | Fintech • Healthcare • SaaS"
-                pagePath="/"
-                sectionName="hero"
-                renderAs="h1"
+              <AnimatedText
+                text="I Design AI-Powered UX That Boosts Conversion by 40%+"
+                tag="h1"
+                type="word"
+                animation="typewriter"
+                delay={800}
+                staggerChildren={0.08}
                 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                            xl:text-4xl 2xl:text-5xl
                            font-display font-medium bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 
@@ -163,47 +162,50 @@ const MinimalHero: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <EditableContent
-                contentKey="hero-name"
-                defaultContent="Hiram Barsky"
-                pagePath="/"
-                sectionName="hero"
-                renderAs="p"
+              <AnimatedText
+                text="Hiram Barsky"
+                tag="h2"
+                type="character"
+                animation="elastic"
+                delay={1500}
+                staggerChildren={0.05}
                 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
                            xl:text-7xl 2xl:text-8xl
                            font-display font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
                            bg-clip-text text-transparent mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3 leading-tight tracking-tight"
               />
             </motion.div>
-            <motion.a 
-              href="https://barskydesign.pro" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl 
-                       bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent
-                       hover:from-blue-700 hover:to-purple-700 transition-all duration-300 
-                       mb-1 lg:mb-2 xl:mb-2 2xl:mb-3 inline-block font-semibold"
-              onClick={(e) => e.stopPropagation()}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              barskydesign.pro
-            </motion.a>
+              <AnimatedText
+                text="barskydesign.pro"
+                tag="a"
+                type="character"
+                animation="slide"
+                delay={2200}
+                staggerChildren={0.03}
+                className="text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl 
+                         bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent
+                         hover:from-blue-700 hover:to-purple-700 transition-all duration-300 
+                         mb-1 lg:mb-2 xl:mb-2 2xl:mb-3 inline-block font-semibold cursor-pointer"
+              />
+            </motion.div>
             
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <EditableContent
-                contentKey="hero-location"
-                defaultContent="Clifton, NJ"
-                pagePath="/"
-                sectionName="hero"
-                renderAs="p"
+              <AnimatedText
+                text="Clifton, NJ"
+                tag="p"
+                type="character"
+                animation="blur"
+                delay={2800}
+                staggerChildren={0.04}
                 className="text-base sm:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-700 font-medium"
               />
             </motion.div>
