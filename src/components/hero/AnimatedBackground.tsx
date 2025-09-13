@@ -1,123 +1,101 @@
-
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const AnimatedBackground: React.FC = () => {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return (
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30" />
-    );
-  }
-
   return (
-    <>
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30" />
-      
-      {/* Animated gradient orbs */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-          x: [0, 30, 0],
-          y: [0, -20, 0]
-        }}
-        transition={{ 
-          duration: 8, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-        className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"
-      />
-      
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.1, 1],
-          opacity: [0.2, 0.4, 0.2],
-          x: [0, -40, 0],
-          y: [0, 30, 0]
-        }}
-        transition={{ 
-          duration: 10, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 2 
-        }}
-        className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full blur-3xl"
-      />
-
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.3, 1],
-          opacity: [0.1, 0.3, 0.1],
-          rotate: [0, 180, 360]
-        }}
-        transition={{ 
-          duration: 15, 
-          repeat: Infinity, 
-          ease: "linear"
-        }}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-conic from-blue-400/10 via-purple-400/10 to-blue-400/10 rounded-full blur-3xl"
-      />
-
-      {/* Floating geometric shapes */}
-      {Array.from({ length: 6 }).map((_, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0 }}
-          animate={{ 
-            opacity: [0.1, 0.3, 0.1],
-            y: [0, -30, 0],
-            x: [0, Math.sin(i) * 20, 0],
-            rotate: [0, 360, 0]
-          }}
-          transition={{
-            duration: 6 + i * 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 1.5,
-          }}
-          className="absolute w-4 h-4 bg-blue-400/20 rounded-full blur-sm"
-          style={{
-            left: `${15 + i * 12}%`,
-            top: `${20 + i * 10}%`,
-          }}
-        />
-      ))}
-
-      {/* Animated grid pattern */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Gradient Orbs */}
       <motion.div
-        animate={{ opacity: [0.02, 0.05, 0.02] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.15)_1px,transparent_0)] bg-[size:40px_40px]"
+        className="absolute -top-1/2 -left-1/2 w-full h-full"
+        animate={{
+          rotate: [0, 360],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      >
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-400/20 to-orange-400/20 rounded-full blur-3xl" />
+      </motion.div>
+
+      {/* Flowing Lines */}
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+      >
+        {Array.from({ length: 5 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+            style={{
+              top: `${20 + i * 15}%`,
+              left: 0,
+              right: 0,
+            }}
+            animate={{
+              scaleX: [0, 1, 0],
+              opacity: [0, 0.6, 0],
+            }}
+            transition={{
+              duration: 4,
+              delay: i * 0.5,
+              repeat: Infinity,
+              repeatDelay: 2,
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Geometric Shapes */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-8 h-8 border border-cyan-400/40"
+        animate={{
+          rotate: [0, 90, 180, 270, 360],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      
+      <motion.div
+        className="absolute bottom-1/3 left-1/5 w-6 h-6 bg-gradient-to-br from-pink-400/30 to-purple-400/30 rounded-full"
+        animate={{
+          y: [0, -20, 0],
+          x: [0, 10, 0],
+          scale: [1, 1.3, 1],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
-      {/* Subtle moving particles */}
-      {Array.from({ length: 20 }).map((_, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ 
-            opacity: [0, 0.6, 0],
-            scale: [0, 1, 0],
-            y: [0, -100, -200]
-          }}
-          transition={{
-            duration: 8 + Math.random() * 4,
-            repeat: Infinity,
-            delay: Math.random() * 8,
-            ease: "easeOut"
-          }}
-          className="absolute w-1 h-1 bg-blue-400/40 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            bottom: 0,
-          }}
-        />
-      ))}
-    </>
+      {/* Mesh Gradient Overlay */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30"
+        animate={{
+          background: [
+            "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(147, 51, 234, 0.1) 100%)",
+            "linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, transparent 50%, rgba(59, 130, 246, 0.1) 100%)",
+            "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(147, 51, 234, 0.1) 100%)",
+          ],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+    </div>
   );
 };
 

@@ -908,6 +908,68 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
   color: hsl(var(--primary)) !important;
 }
 
+/* Enhanced animation styles */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes particle-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.particle-glow {
+  animation: particle-glow 3s ease-in-out infinite;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .cursor-circle,
@@ -921,5 +983,11 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
   .dark .cursor-link:hover,
   .dark button[type="button"]:not(.no-circle-cursor):hover {
     cursor: pointer;
+  }
+  
+  .shimmer-effect::after,
+  .gradient-text,
+  .particle-glow {
+    animation: none;
   }
 }
