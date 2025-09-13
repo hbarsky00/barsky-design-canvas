@@ -19,21 +19,28 @@ const ExitIntentDetector: React.FC<ExitIntentDetectorProps> = ({
     if (disabled || hasTriggered) return;
 
     const handleMouseLeave = (e: MouseEvent) => {
-      // Only trigger if mouse is moving towards top of page
-      if (e.clientY <= 10 && e.movementY < 0) {
+      // Only trigger if mouse is leaving from the top of the viewport (exit intent)
+      // Check if cursor is moving upward and is near the top
+      if (e.clientY <= 5 && e.movementY < -3) {
         setShowModal(true);
         setHasTriggered(true);
         onExitIntent();
       }
     };
 
-    if (typeof document !== 'undefined') {
-      document.addEventListener('mouseleave', handleMouseLeave);
+    // Add a small delay before enabling to prevent immediate triggers
+    const timer = setTimeout(() => {
+      if (typeof document !== 'undefined') {
+        document.addEventListener('mouseleave', handleMouseLeave);
+      }
+    }, 2000); // Wait 2 seconds before enabling exit detection
 
-      return () => {
+    return () => {
+      clearTimeout(timer);
+      if (typeof document !== 'undefined') {
         document.removeEventListener('mouseleave', handleMouseLeave);
-      };
-    }
+      }
+    };
   }, [disabled, hasTriggered, onExitIntent]);
 
   const handleContactClick = () => {
