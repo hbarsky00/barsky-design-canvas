@@ -12,21 +12,20 @@ interface Particle {
 }
 
 const FloatingParticles: React.FC = () => {
-  // Generate particles
-  const particles: Particle[] = Array.from({ length: 30 }, (_, i) => ({
+  // Generate subtle particles
+  const particles: Particle[] = Array.from({ length: 15 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 4 + 2,
-    duration: Math.random() * 10 + 15,
-    delay: Math.random() * 5,
+    size: Math.random() * 2 + 1,
+    duration: Math.random() * 15 + 20,
+    delay: Math.random() * 8,
     color: [
-      'rgba(255, 107, 107, 0.4)',
-      'rgba(78, 205, 196, 0.4)',
-      'rgba(69, 183, 209, 0.4)',
-      'rgba(150, 206, 180, 0.4)',
-      'rgba(255, 255, 255, 0.2)'
-    ][Math.floor(Math.random() * 5)]
+      'rgba(59, 130, 246, 0.1)',
+      'rgba(147, 51, 234, 0.1)',
+      'rgba(99, 102, 241, 0.1)',
+      'rgba(255, 255, 255, 0.05)'
+    ][Math.floor(Math.random() * 4)]
   }));
 
   return (

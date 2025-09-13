@@ -65,24 +65,15 @@ const MinimalHero: React.FC = () => {
   return (
     <section 
       id="intro"
-      className="hero-container min-h-screen flex items-center justify-center px-4 sm:px-6 relative
-                 pt-safe-top overflow-hidden"
-      style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 6rem)' }}
+      className="h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
+                 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     >
-      {/* Enhanced Background Layers */}
+      {/* Professional Background Layers */}
       <AnimatedBackground />
       <FloatingParticles />
       
-      {/* Enhanced Winamp Visualizer - Full Screen Background */}
-      <EnhancedWinampVisualizer fullScreen />
-      
-      {/* Enhanced Winamp Visualizer Widget */}
-      <div className="absolute inset-0 pointer-events-none">
-        <EnhancedWinampVisualizer />
-      </div>
-      
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/60 to-white/70 backdrop-blur-sm" />
+      {/* Clean gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-white/75 to-white/80 backdrop-blur-sm" />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-20 
                        hover:opacity-95 transition-opacity duration-200" 
            onClick={(e) => {
@@ -302,48 +293,40 @@ const MinimalHero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Enhanced Continue Button */}
-      <motion.div 
-        className="absolute bottom-12 inset-x-0 px-4 z-30"
-        animate={{ 
-          opacity: showContinueButton ? 1 : 0,
-          scale: showContinueButton ? 1 : 0.8,
-          y: showContinueButton ? 0 : 20
-        }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ 
-          pointerEvents: showContinueButton ? 'auto' : 'none',
-          visibility: showContinueButton ? 'visible' : 'hidden'
-        }}
-      >
-        <div className="flex flex-col items-center space-y-3">
-          <span className="text-sm text-gray-800 font-semibold bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
-            Continue
-          </span>
-          <motion.button
-            onClick={handleNavigateDown}
-            className="group flex flex-col items-center justify-center 
-                       bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-4
-                       hover:bg-white/30 hover:border-white/50 transition-all duration-300 
-                       cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/50 
-                       min-w-[60px] min-h-[60px] shadow-lg"
-            aria-label="Continue to next section"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
+      {/* Continue Button - Fixed positioning within viewport */}
+      {showContinueButton && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer group z-30"
+          onClick={handleNavigateDown}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="flex flex-col items-center space-y-2 text-slate-700/80 hover:text-slate-800 transition-colors duration-300">
+            <span className="text-sm font-medium animate-pulse bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
+              Continue
+            </span>
             <motion.div
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex justify-center w-full"
+              className="w-12 h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300 shadow-lg"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
-                   className="text-gray-700 group-hover:text-blue-600 transition-colors duration-200">
-                <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <motion.div
+                animate={{ y: [0, 3, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                     className="text-slate-700 group-hover:text-blue-600 transition-colors duration-200">
+                  <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.div>
             </motion.div>
-          </motion.button>
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };
