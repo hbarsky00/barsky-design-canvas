@@ -22,7 +22,7 @@ const Blog = React.lazy(() => import("@/pages/Blog"));
 const BlogPost = React.lazy(() => import("@/pages/BlogPost"));
 const Store = React.lazy(() => import("@/pages/Store"));
 const StoreSuccess = React.lazy(() => import("@/pages/StoreSuccess"));
-const SimplifiedProjectDetail = React.lazy(() => import("@/components/project/SimplifiedProjectDetail"));
+const ProjectDetail = React.lazy(() => import("@/pages/ProjectDetail"));
 
 // Service page imports - lazy loaded
 const UxUiDesign = React.lazy(() => import("@/pages/design-services/UxUiDesign"));
@@ -65,7 +65,7 @@ function App() {
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
-              <Route path="/project/:projectId" element={<SimplifiedProjectDetail />} />
+              <Route path="/project/:projectId" element={<ProjectDetail />} />
               
               {/* Service pages */}
               <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
