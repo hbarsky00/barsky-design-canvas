@@ -172,8 +172,10 @@ const CaseStudyCard: React.FC<{
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
         {/* Image Section - Full Width on Mobile - Now Clickable */}
-        <div className="relative bg-gray-50 py-6 min-h-[240px] flex items-center">
-          {renderMedia()}
+        <div className="relative bg-gray-50 py-6 min-h-[240px] flex items-center justify-center">
+          <div className="w-full max-w-[625px] flex justify-center">
+            {renderMedia()}
+          </div>
         </div>
 
         {/* Content Section - Same background */}
