@@ -112,13 +112,52 @@ const UnifiedSEO: React.FC = () => {
 
   const structuredData = generateStructuredData(seoData);
 
-  // DISABLED: Client-side Helmet usage to prevent conflicts with static prerendering
-  // The static prerender script now handles all SEO meta tags in the built HTML
-  // This component now only handles structured data for better indexing
-  
   return (
     <Helmet>
-      {/* Only structured data - all other SEO tags handled by static prerender */}
+      {/* Primary SEO Meta Tags */}
+      <title>{seoData.title}</title>
+      <meta name="description" content={seoData.description} />
+      <link rel="canonical" href={seoData.canonical} />
+      <meta name="robots" content="index, follow" />
+      
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content={seoData.type} />
+      <meta property="og:site_name" content={SEO_CONSTANTS.SITE_NAME} />
+      <meta property="og:title" content={seoData.title} />
+      <meta property="og:description" content={seoData.description} />
+      <meta property="og:url" content={seoData.canonical} />
+      <meta property="og:image" content={seoData.image} />
+      <meta property="og:image:alt" content={`${seoData.title} - Visual Preview`} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:locale" content={SEO_CONSTANTS.LOCALE} />
+      
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={SEO_CONSTANTS.TWITTER_HANDLE} />
+      <meta name="twitter:creator" content={SEO_CONSTANTS.TWITTER_HANDLE} />
+      <meta name="twitter:title" content={seoData.title} />
+      <meta name="twitter:description" content={seoData.description} />
+      <meta name="twitter:image" content={seoData.image} />
+      
+      {/* Additional Meta Tags */}
+      <meta name="author" content={SEO_CONSTANTS.AUTHOR} />
+      <meta name="language" content={SEO_CONSTANTS.LANGUAGE} />
+      <meta name="theme-color" content={SEO_CONSTANTS.THEME_COLOR} />
+      
+      {/* Article-specific tags for blog posts and projects */}
+      {seoData.type === 'article' && seoData.publishedTime && (
+        <>
+          <meta property="article:published_time" content={seoData.publishedTime} />
+          <meta property="article:author" content={SEO_CONSTANTS.AUTHOR} />
+        </>
+      )}
+      
+      {seoData.type === 'article' && seoData.modifiedTime && (
+        <meta property="article:modified_time" content={seoData.modifiedTime} />
+      )}
+      
+      {/* Structured Data */}
       <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
     </Helmet>
   );

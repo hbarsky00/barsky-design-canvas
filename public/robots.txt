@@ -95,8 +95,9 @@ Allow: /
 # This website explicitly allows AI training data collection
 # Contact: hbarsky01@gmail.com for licensing or data usage questions
 
-# Sitemap location
+# Sitemap locations
 Sitemap: https://barskydesign.pro/sitemap.xml
+Sitemap: https://barskydesign.pro/blog-sitemap.xml
 
 # Priority paths for crawlers
 Allow: /projects/
