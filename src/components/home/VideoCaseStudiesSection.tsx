@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
+import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface CaseStudy {
@@ -190,9 +191,15 @@ const CaseStudyCard: React.FC<{
           </div>
 
           {/* Title */}
-          <h3 className="heading-subsection text-gray-900 leading-tight break-words">
-            {study.title}
-          </h3>
+          <AnimatedText
+            text={study.title}
+            tag="h3"
+            className="heading-subsection text-gray-900 leading-tight break-words"
+            type="word"
+            animation="slide"
+            delay={300}
+            staggerChildren={0.05}
+          />
 
           {/* Description */}
           <p className="text-gray-600 text-lg leading-relaxed break-words">
@@ -260,9 +267,15 @@ const CaseStudyCard: React.FC<{
             </div>
 
             {/* Title */}
-            <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere">
-              {study.title}
-            </h3>
+            <AnimatedText
+              text={study.title}
+              tag="h3"
+              className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere"
+              type="word"
+              animation="slide"
+              delay={300}
+              staggerChildren={0.05}
+            />
 
             {/* Description */}
             <p className="text-gray-600 text-lg leading-relaxed mb-4 break-words overflow-wrap-anywhere">
@@ -319,6 +332,10 @@ const VideoCaseStudiesSection: React.FC = () => {
             title="Case Studies That Drive Results"
             subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
             subtitleClassName="max-w-4xl mx-auto"
+            titleAnimation="elastic"
+            subtitleAnimation="fade"
+            titleDelay={0}
+            subtitleDelay={0.3}
           />
         </motion.div>
 

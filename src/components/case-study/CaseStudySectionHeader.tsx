@@ -1,5 +1,6 @@
 import React from "react";
 import { LucideIcon } from "lucide-react";
+import AnimatedText from "@/components/AnimatedText";
 
 export interface CaseStudySectionHeaderProps {
   title: string;
@@ -57,9 +58,15 @@ const CaseStudySectionHeader: React.FC<CaseStudySectionHeaderProps> = ({
         <Icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 ${styles.iconColor}`} />
       </div>
       <div className="flex-1 min-w-0">
-        <h2 className={`text-base md:text-2xl lg:text-3xl font-medium md:font-bold leading-tight font-display ${styles.titleColor}`}>
-          {title}
-        </h2>
+        <AnimatedText
+          text={title}
+          tag="h2"
+          className={`text-base md:text-2xl lg:text-3xl font-medium md:font-bold leading-tight font-display ${styles.titleColor}`}
+          type="character"
+          animation="wave"
+          delay={100}
+          staggerChildren={0.04}
+        />
       </div>
     </div>
   );
