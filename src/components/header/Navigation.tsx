@@ -38,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({
   };
 
   return (
-    <nav className="hidden md:flex items-center space-x-6">
+    <nav className="hidden lg:flex items-center space-x-6">
       {links.map((link) => {
         // For external links, use a regular anchor tag
         if (link.href.startsWith('http')) {

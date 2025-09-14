@@ -74,7 +74,7 @@ const Header: React.FC = () => {
 
           <div className="flex items-center gap-3">
             {/* Mobile menu */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <MobileMenu 
                 links={navLinks} 
                 isMobileMenuOpen={isMobileMenuOpen} 
