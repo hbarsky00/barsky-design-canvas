@@ -1779,7 +1779,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://barskyjoint.com",
     heroVideo: {
       src: "/lovable-uploads/barskyjoint-hero.mp4",
-      poster: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png",
       alt: "BarskyJoint restaurant ordering platform overview"
     },
     heroMetrics: [
@@ -1810,14 +1810,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
-          alt: "Insights driving dual-format ordering design",
-          caption: "Insights driving dual-format ordering design"
-        },
-        {
-          src: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
-          alt: "Field research observing ordering flows",
-          caption: "Field research observing ordering flows"
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/mainpagedesktop.jpg",
+          alt: "Menu confusion analysis from restaurant ordering interface",
+          caption: "Menu confusion analysis from restaurant ordering interface"
         }
       ]
     },
@@ -1833,9 +1828,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Decision Point: Build a dual-format system that leverages each platform's strengths while maintaining consistency.",
       images: [
         {
-          src: "/lovable-uploads/ca0ed7f2-7f32-4ed9-a558-e1c3a718e711.png",
-          alt: "Initial restaurant ordering concepts and wireframes",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/journeymap0.jpg",
+          alt: "Customer journey mapping for restaurant ordering flow",
           caption: "Foundation sketches exploring menu organization and ordering flow"
+        },
+        {
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/uxpilot-design-1757973264652.png",
+          alt: "Decision point analysis for ordering platform design",
+          caption: "Decision point analysis for dual-format ordering system"
         }
       ]
     },
@@ -1875,8 +1875,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         {
           label: "Revised hierarchy",
-          imageSrc: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-          alt: "Revised hierarchy guiding attention",
+          imageSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Food%20Design%20Mobile.png",
+          alt: "Mobile food ordering interface with revised hierarchy",
           annotations: [
             { text: "Revised flows: progressive disclosure + defaults → faster completion, happier customers", x: 25, y: 30, type: "improvement" },
             { text: "Clear categorization reduces cognitive load", x: 70, y: 60, type: "feature" }
@@ -1888,13 +1888,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "Approach & Decision Making",
       content: "The key was designing for speed + confidence. Progressive disclosure let customers see essentials first, then dive into details if they wanted. And platform parity meant whether ordering on kiosk or web, the experience felt familiar.",
-      images: [
-        {
-          src: "/lovable-uploads/2c2d5cc4-b820-4d42-8470-4b3147ed61be.png",
-          alt: "Restaurant ordering design thinking process",
-          caption: "Design process visualization showing decision points for restaurant ordering platform"
-        }
-      ]
+      video: {
+        src: "https://www.loom.com/share/7c882bbed3df4eeaaed60692f5cd72c6?sid=09bc4dc1-e621-43d4-9705-4ef8e41d682f",
+        title: "Design thinking process for BarskyJoint ordering platform"
+      }
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
@@ -1902,8 +1899,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "At first, showing every customization upfront created choice paralysis and higher abandonment. Moving to defaults + \"expand if needed\" dramatically improved completion and satisfaction.",
       images: [
         {
-          src: "/lovable-uploads/92026191-54bd-457b-9a0d-1a7bd591a2a5.png",
-          alt: "Early restaurant ordering interface with too many options",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barskyjoint800.jpg",
+          alt: "Failed early restaurant ordering interface design",
           caption: "Early designs that overwhelmed customers with choices"
         }
       ]
@@ -1916,6 +1913,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "↓35%", label: "order completion time" },
         { value: "↓60%", label: "customization errors" },
         { value: "85%", label: "customer preference" }
+      ],
+      images: [
+        {
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barskyjoint800.jpg",
+          alt: "Final BarskyJoint restaurant ordering platform interface",
+          caption: "Final prototype testing interface showing improved ordering flow"
+        }
       ]
     },
     outcomeSection: {
@@ -1931,7 +1935,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+      image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png",
       projectName: "BarskyJoint — 28% Higher Average Ticket Size with Dual-Format Ordering | Hiram Barsky",
       results: [
         "+28% average ticket size",
