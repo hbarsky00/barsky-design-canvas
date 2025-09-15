@@ -45,7 +45,7 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
         </motion.span>);
     }
   };
-  return <Tag ref={elementRef} className={cn("inline-block", className)}>
+  return <Tag ref={elementRef} className={cn("block", className)}>
       <motion.span initial="hidden" animate={isVisible ? "visible" : "hidden"} variants={{
       hidden: {},
       visible: {
