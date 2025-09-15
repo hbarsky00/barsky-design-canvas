@@ -49,8 +49,8 @@ const caseStudies: CaseStudy[] = [
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/frontpagemobileview.png",
-      alt: "Sarah Chen's unified business management platform eliminating tool chaos"
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png",
+      alt: "Business management warehouse operations and inventory tracking system"
     },
     layout: "side-by-side"
   },

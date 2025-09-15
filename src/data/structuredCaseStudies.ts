@@ -1537,8 +1537,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
-      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/frontpagemobileview.png",
-      alt: "Business management system promotional overview"
+      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png",
+      alt: "Business management warehouse operations and inventory tracking system"
     },
     researchSection: {
       subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.",
