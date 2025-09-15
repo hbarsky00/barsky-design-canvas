@@ -44,7 +44,7 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
         variant="problem"
       />
 
-      <div className="prose prose-lg text-gray-700 max-w-none">
+      <div className="prose text-gray-700 max-w-none">
         <p className="mb-6">{businessImpact}</p>
       </div>
 
@@ -62,25 +62,25 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-gray-50 rounded-lg p-6">
-          <h4 className="font-semibold text-gray-900 mb-3">User Pain Points</h4>
+          <h4 className="font-medium text-gray-900 mb-3">User Pain Points</h4>
           <p className="text-gray-700">{userPain}</p>
         </div>
         
         <div className="bg-amber-50 rounded-lg p-6">
-          <h4 className="font-semibold text-gray-900 mb-3">The Real Gap</h4>
+          <h4 className="font-medium text-gray-900 mb-3">The Real Gap</h4>
           <p className="text-gray-700">{gapAnalysis}</p>
         </div>
       </div>
 
       {metrics.length > 0 && (
         <div className="bg-red-50 rounded-lg p-6">
-          <h4 className="font-semibold text-gray-900 mb-4">Before: Key Problem Metrics</h4>
+          <h4 className="font-medium text-gray-900 mb-4">Before: Key Problem Metrics</h4>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {metrics.map((metric, index) => (
               <div key={index} className="flex items-center space-x-3">
                 {getTrendIcon(metric.trend)}
                 <div>
-                  <div className="text-2xl font-bold text-gray-900">{metric.value}</div>
+                  <div className="text-xl font-medium text-gray-900">{metric.value}</div>
                   <div className="text-sm text-gray-600">{metric.label}</div>
                 </div>
               </div>

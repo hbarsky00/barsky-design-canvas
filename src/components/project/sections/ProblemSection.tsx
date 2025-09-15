@@ -39,16 +39,16 @@ const ProblemSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <Lightbulb className="h-8 w-8 text-red-600" />
-            <span className="text-red-700 font-semibold">The Real Problem</span>
+            <Lightbulb className="h-6 w-6 text-red-600" />
+            <span className="text-red-700 font-medium">The Real Problem</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-xl sm:text-2xl font-medium text-gray-900 mb-6">
             What They Were Actually Struggling With
           </h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 col-span-full">Their Daily Frustrations:</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-8 col-span-full">Their Daily Frustrations:</h3>
           {painPoints.map((pain, index) => (
             <motion.div 
               key={index} 
