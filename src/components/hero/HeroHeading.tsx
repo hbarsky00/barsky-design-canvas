@@ -27,7 +27,7 @@ const HeroHeading: React.FC<HeroHeadingProps> = ({
         }}
       >
         <AnimatedText 
-          text="I Design AI-Powered UX That Boosts Conversion by 40%+" 
+          text="Lead UX Designer | Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech" 
           tag="h1" 
           className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-slate-900 dark:text-white block mb-6 lg:mb-8 leading-tight mx-auto max-w-6xl [text-wrap:balance]" 
           delay={800} 

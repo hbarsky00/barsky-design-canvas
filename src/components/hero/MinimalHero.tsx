@@ -64,13 +64,13 @@ const MinimalHero: React.FC = () => {
   return (
     <section 
       className="h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
-                 bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50"
+                 bg-gradient-to-br from-slate-50 to-blue-50"
     >
       {/* Professional Particle Network Background */}
       <ParticleNetwork />
       
-      {/* Clean gradient overlay for enhanced readability */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/30 via-white/20 to-white/40 backdrop-blur-sm" />
+      {/* Simplified gradient overlay for enhanced readability */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/10 via-white/5 to-white/15" />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto w-full relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -138,7 +138,7 @@ const MinimalHero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <AnimatedText
-                text="I Design AI-Powered UX That Boosts Conversion by 40%+"
+                text="Lead UX Designer | Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech"
                 tag="h1"
                 type="word"
                 animation="fade"
@@ -151,43 +151,25 @@ const MinimalHero: React.FC = () => {
               />
             </motion.div>
             
-            {/* Separate Hiram and Barsky */}
-            <div className="flex flex-col items-center">
+            {/* Combined Hiram Barsky on one line */}
+            <div className="flex flex-row items-center justify-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <AnimatedText
-                  text="Hiram"
+                  text="Hiram Barsky"
                   tag="h2"
                   type="character"
                   animation="elastic"
                   delay={800}
                   staggerChildren={0.05}
                   className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
-                             xl:text-7xl 2xl:text-8xl
-                             font-display font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
-                             bg-clip-text text-transparent leading-tight tracking-tight"
-                />
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                <AnimatedText
-                  text="Barsky"
-                  tag="h2"
-                  type="character"
-                  animation="slide"
-                  delay={1000}
-                  staggerChildren={0.04}
-                  className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
-                             xl:text-7xl 2xl:text-8xl
-                             font-display font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
-                             bg-clip-text text-transparent mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3 leading-tight tracking-tight"
+                             xl:text-7xl 2xl:text-8xl font-display font-bold 
+                             bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
+                             bg-clip-text text-transparent leading-tight tracking-tight 
+                             whitespace-nowrap mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3"
                 />
               </motion.div>
             </div>
@@ -240,7 +222,7 @@ const MinimalHero: React.FC = () => {
             href="mailto:hbarsky01@gmail.com"
             aria-label="Email Hiram Barsky"
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
-                       bg-white/20 backdrop-blur-sm border border-white/30
+                       bg-white/10 backdrop-blur-sm border border-white/20
                        hover:bg-blue-50/50 hover:border-blue-200/50 transition-all duration-300
                        min-w-[44px] min-h-[44px] flex items-center justify-center 
                        hover:shadow-lg hover:shadow-blue-500/25"
@@ -258,7 +240,7 @@ const MinimalHero: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Visit LinkedIn"
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
-                       bg-white/20 backdrop-blur-sm border border-white/30
+                       bg-white/10 backdrop-blur-sm border border-white/20
                        hover:bg-blue-50/50 hover:border-blue-200/50 transition-all duration-300
                        min-w-[44px] min-h-[44px] flex items-center justify-center 
                        hover:shadow-lg hover:shadow-blue-500/25"
@@ -276,7 +258,7 @@ const MinimalHero: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Visit GitHub"
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
-                       bg-white/20 backdrop-blur-sm border border-white/30
+                       bg-white/10 backdrop-blur-sm border border-white/20
                        hover:bg-gray-50/50 hover:border-gray-200/50 transition-all duration-300
                        min-w-[44px] min-h-[44px] flex items-center justify-center 
                        hover:shadow-lg hover:shadow-gray-500/25"
@@ -294,7 +276,7 @@ const MinimalHero: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Book Appointment"
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
-                       bg-white/20 backdrop-blur-sm border border-white/30
+                       bg-white/10 backdrop-blur-sm border border-white/20
                        hover:bg-green-50/50 hover:border-green-200/50 transition-all duration-300
                        min-w-[44px] min-h-[44px] flex items-center justify-center 
                        hover:shadow-lg hover:shadow-green-500/25"
