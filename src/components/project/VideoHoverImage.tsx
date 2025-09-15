@@ -33,17 +33,33 @@ const VideoHoverImage: React.FC<VideoHoverImageProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Detect if the video is a Loom embed
+  const isLoomVideo = videoSrc?.includes('loom.com/embed');
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (videoRef.current && videoSrc) {
+    if (isLoomVideo && iframeRef.current) {
+      // For Loom videos, we'll rely on the autoplay parameter in the URL
+      setIsVideoLoaded(true);
+    } else if (videoRef.current && videoSrc) {
       videoRef.current.play().catch(console.error);
     }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (videoRef.current) {
+    if (isLoomVideo && iframeRef.current) {
+      // For Loom, reload the iframe to stop playback
+      const currentSrc = iframeRef.current.src;
+      iframeRef.current.src = '';
+      setTimeout(() => {
+        if (iframeRef.current) {
+          iframeRef.current.src = currentSrc;
+        }
+      }, 50);
+    } else if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
@@ -96,25 +112,43 @@ const VideoHoverImage: React.FC<VideoHoverImageProps> = ({
           loading={priority ? "eager" : "lazy"}
         />
         
-        {/* Video */}
-        <motion.video
-          ref={videoRef}
-          className="w-full h-full object-contain transition-opacity duration-300"
-          style={{ 
-            opacity: isHovered && isVideoLoaded ? 1 : 0,
-            position: 'absolute',
-            top: 0,
-            left: 0
-          }}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onLoadedData={handleVideoLoad}
-          poster={src}
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </motion.video>
+        {/* Video or Loom Embed */}
+        {isLoomVideo ? (
+          <motion.iframe
+            ref={iframeRef}
+            src={isHovered ? `${videoSrc}&autoplay=1` : videoSrc}
+            className="w-full h-full transition-opacity duration-300"
+            style={{ 
+              opacity: isHovered ? 1 : 0,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              border: 'none'
+            }}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            onLoad={() => setIsVideoLoaded(true)}
+          />
+        ) : (
+          <motion.video
+            ref={videoRef}
+            className="w-full h-full object-contain transition-opacity duration-300"
+            style={{ 
+              opacity: isHovered && isVideoLoaded ? 1 : 0,
+              position: 'absolute',
+              top: 0,
+              left: 0
+            }}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onLoadedData={handleVideoLoad}
+            poster={src}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </motion.video>
+        )}
       </div>
       
       {caption && (
