@@ -151,6 +151,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
               <MyThoughtProcessSection 
                 content={caseStudyData.myThoughtProcessSection.content}
+                video={caseStudyData.myThoughtProcessSection.video}
                 images={caseStudyData.myThoughtProcessSection.images || []}
               />
             </section>

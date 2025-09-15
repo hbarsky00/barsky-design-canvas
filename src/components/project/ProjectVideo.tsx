@@ -52,6 +52,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
           title={title}
           className="w-full h-80 md:h-96 lg:h-[32rem]"
           frameBorder="0"
+          allow="autoplay; fullscreen"
           allowFullScreen
           style={{ 
             display: 'block',
