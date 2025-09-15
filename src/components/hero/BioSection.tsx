@@ -26,7 +26,7 @@ const BioSection: React.FC = () => {
                 <Badge variant="outline" className="mb-6 px-4 py-2 text-sm font-medium">
                   About Me
                 </Badge>
-                <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-6 text-center">
+                <h2 className="font-display font-extrabold text-gray-900 mb-6 text-center !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1]">
                   Product Designer & AI Developer
                 </h2>
               </div>
