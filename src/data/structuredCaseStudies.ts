@@ -1516,8 +1516,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-      projectName: "Investor Loan App",
+      image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
+      projectName: "Business Management App",
       results: [
         "85% fewer errors",
         "40% faster processing",
@@ -1537,7 +1537,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
-      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png",
+      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
       alt: "Business management warehouse operations and inventory tracking system"
     },
     researchSection: {

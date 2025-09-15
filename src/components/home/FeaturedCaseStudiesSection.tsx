@@ -58,7 +58,7 @@ const featuredCaseStudies = [
     title: "Business Management",
     subtitle: "Internal Operations Tool",
     description: "Streamlined internal business operations with automated workflows, centralized data management, and performance tracking. The system reduces manual tasks and provides clear visibility into business processes.",
-    image: "/lovable-uploads/business-management-cover.jpg",
+    image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
     url: "/project/business-management",
     category: "Enterprise",
     impact: "40% reduction in manual tasks",
