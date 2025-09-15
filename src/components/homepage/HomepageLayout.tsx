@@ -41,7 +41,7 @@ const HomepageLayout: React.FC = () => {
         volume={0.15}
       />
       
-      <Header />
+      {isScrolledPastHero && <Header />}
       
       <main className="space-y-2 md:space-y-6 relative z-10">
         {/* Keep intro section outside 3D container to prevent displacement */}

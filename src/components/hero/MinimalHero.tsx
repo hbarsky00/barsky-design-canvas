@@ -120,11 +120,23 @@ const MinimalHero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <AnimatedText
-                text="Lead UX Designer | Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech"
+                text="Lead UX Designer | Driving Design Strategy & Leadership"
                 tag="h1"
                 type="word"
                 animation="fade"
                 delay={300}
+                staggerChildren={0.04}
+                className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
+                           xl:text-4xl 2xl:text-5xl
+                           font-display font-medium bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 
+                           bg-clip-text text-transparent mb-1 sm:mb-1 lg:mb-1 xl:mb-1 2xl:mb-1 leading-[1.706]"
+              />
+              <AnimatedText
+                text="Passion for High Craft, Gen AI, Cyber & Fintech"
+                tag="div"
+                type="word"
+                animation="fade"
+                delay={600}
                 staggerChildren={0.04}
                 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
                            xl:text-4xl 2xl:text-5xl
