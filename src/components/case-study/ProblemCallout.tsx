@@ -28,7 +28,7 @@ const ProblemCallout: React.FC<ProblemCalloutProps> = ({ eyebrow, statement }) =
             {eyebrow}
           </div>
           
-          <h2 className="text-section-title text-foreground font-display content-rail-center">
+          <h2 className="text-foreground font-display content-rail-center text-xl sm:text-2xl md:text-3xl lg:text-3xl leading-snug font-medium">
             {statement}
           </h2>
         </motion.div>
