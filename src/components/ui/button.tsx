@@ -5,18 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "btn-text inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-all focus:outline-none focus-visible:outline-none duration-300 w-full sm:w-auto [&_svg]:pointer-events-none [&_svg]:shrink-0 min-h-[44px] min-w-[44px] relative overflow-hidden",
+  "btn-text inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-all focus:outline-none focus-visible:outline-none duration-500 w-full sm:w-auto [&_svg]:pointer-events-none [&_svg]:shrink-0 min-h-[44px] min-w-[44px] relative overflow-hidden before:absolute before:inset-0 before:rounded-full before:opacity-0 before:scale-0 before:transition-all before:duration-500 before:pointer-events-none",
   {
     variants: {
       variant: {
         filled: "!bg-barsky-blue !text-white shadow-sm hover:bg-barsky-blue-dark !rounded-full [&_svg]:!text-white",
         "filled-tonal": "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
         elevated: "bg-surface-container-low text-primary shadow-md hover:shadow-lg hover:bg-surface-container active:shadow-md rounded-full",
-        outlined: "border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue active:bg-barsky-blue-dark rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:text-white",
+        outlined: "border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue hover:scale-105 hover:shadow-lg active:bg-barsky-blue-dark rounded-full transition-all duration-500 [&_svg]:transition-colors [&_svg]:duration-500 hover:[&_svg]:text-white before:bg-gradient-radial before:from-barsky-blue before:to-transparent hover:before:opacity-100 hover:before:scale-100",
         text: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
         destructive: "bg-error text-white shadow-sm hover:shadow-md hover:bg-error/90 active:shadow-sm rounded-full",
         // Case study specific variant with enhanced hover effects
-        "case-study": "border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue hover:shadow-lg hover:scale-[1.02] active:bg-barsky-blue-dark rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:text-white",
+        "case-study": "border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue hover:shadow-lg hover:scale-105 active:bg-barsky-blue-dark rounded-full transition-all duration-500 [&_svg]:transition-colors [&_svg]:duration-500 hover:[&_svg]:text-white before:bg-gradient-radial before:from-barsky-blue before:to-transparent hover:before:opacity-100 hover:before:scale-100",
         // High-contrast variants for dark backgrounds
         "high-contrast": "bg-white text-black shadow-lg hover:bg-white/90 active:shadow-md rounded-full border border-white/20",
         "on-dark": "bg-white/10 text-white border border-white/30 shadow-sm hover:bg-white/20 active:bg-white/30 rounded-full backdrop-blur-sm [&_svg]:text-white",
@@ -28,7 +28,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
         ghost: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
         link: "text-primary underline-offset-4 hover:underline bg-transparent",
-        outline: "border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue active:bg-barsky-blue-dark rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:text-white",
+        outline: "border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue hover:scale-105 hover:shadow-lg active:bg-barsky-blue-dark rounded-full transition-all duration-500 [&_svg]:transition-colors [&_svg]:duration-500 hover:[&_svg]:text-white before:bg-gradient-radial before:from-barsky-blue before:to-transparent hover:before:opacity-100 hover:before:scale-100",
       },
       size: {
         default: "h-10 px-6 text-sm font-medium [&_svg]:h-4 [&_svg]:w-4 min-h-[44px]",
