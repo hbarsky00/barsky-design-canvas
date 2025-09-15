@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { getAnnotationClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
 
@@ -133,27 +134,27 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
             ))}
           </div>
 
-           {/* Action Buttons */}
-           <div className="flex flex-col gap-3">
-             <Link
-               to={study.url}
-               className="flex items-center justify-center py-2 px-4 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg transition-all duration-200 font-medium"
-             >
-               <span>View Case Study</span>
-               <ArrowRight className="w-4 h-4 ml-2" />
-             </Link>
+            {/* Action Buttons */}
+            <div className="flex flex-col gap-3">
+              <Button asChild variant="case-study">
+                <Link to={study.url}>
+                  <span>View Case Study</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
              
-             {study.liveUrl && (
-               <a
-                 href={study.liveUrl}
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="flex items-center justify-center py-2 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/30 rounded-lg transition-all duration-200 font-medium"
-               >
-                 View Live
-                 <ExternalLink className="w-4 h-4 ml-2" />
-               </a>
-             )}
+              {study.liveUrl && (
+                <Button asChild variant="outlined">
+                  <a
+                    href={study.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Live
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </a>
+                </Button>
+              )}
            </div>
          </div>
        </div>

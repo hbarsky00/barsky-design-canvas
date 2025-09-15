@@ -213,7 +213,7 @@ const CaseStudyCard: React.FC<{
 
           {/* CTA Buttons - Updated to two-column layout */}
           <div className="flex flex-row gap-3 pt-2">
-            <Button asChild variant="outline" className="flex-1">
+            <Button asChild variant="case-study" className="flex-1">
               <Link to={study.url}>
                 View Case Study
               </Link>
@@ -289,7 +289,7 @@ const CaseStudyCard: React.FC<{
 
             {/* CTA Buttons - Both now use outline variant */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <Button asChild variant="outline" className="flex-1 sm:flex-none">
+              <Button asChild variant="case-study" className="flex-1 sm:flex-none">
                 <Link to={study.url}>
                   View Case Study
                 </Link>

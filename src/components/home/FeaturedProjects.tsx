@@ -108,7 +108,7 @@ const FeaturedProjects: React.FC = () => {
                       <span>•</span>
                       <span>Product Design</span>
                     </div>
-                    <Button asChild variant="outline" size="sm" className="text-xs">
+                    <Button asChild variant="case-study" size="sm" className="text-xs">
                       <Link to={`/project/${project.id}`} className="flex items-center group">
                         View Case Study
                         <ArrowRight className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-1" />

@@ -35,7 +35,7 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
           {/* Hover Overlay - Updated with standardized buttons */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div className="flex space-x-3">
-              <Button asChild variant="outline" className="bg-white/90 hover:bg-white border-gray-300">
+              <Button asChild variant="case-study" className="bg-white/90 hover:bg-barsky-blue hover:text-white border-gray-300 hover:border-barsky-blue">
                 <Link to={`/project/${project.id}`} className="flex items-center">
                   <Eye className="h-4 w-4 mr-1" />
                   View Case Study
@@ -97,7 +97,7 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
               <span>•</span>
               <span>Product Design</span>
             </div>
-            <Button asChild variant="outline" size="sm" className="text-xs">
+            <Button asChild variant="case-study" size="sm" className="text-xs">
               <Link 
                 to={`/project/${project.id}`}
                 className="flex items-center group"

@@ -207,7 +207,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 pt-1">
-                <Button asChild size="default">
+                <Button asChild variant="case-study" size="default">
                   <Link to={relatedStudy.url}>
                     View Case Study
                   </Link>
