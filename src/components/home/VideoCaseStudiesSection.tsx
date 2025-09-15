@@ -38,8 +38,7 @@ const caseStudies: CaseStudy[] = [
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/dashboard.webp",
       alt: "DAE Search Platform showing enterprise data discovery interface"
     },
-    layout: "side-by-side",
-    video: "https://www.loom.com/embed/d11e52c85a1c48b181a5b23290321195?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+    layout: "side-by-side"
   },
   {
     id: "crypto",

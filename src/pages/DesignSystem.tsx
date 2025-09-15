@@ -38,7 +38,7 @@ const DesignSystem = () => {
       <main className="flex-grow pt-20">
         <section className="bg-barsky-bg-light py-20 dark:bg-gray-900">
           <div className="section-container">
-            <h1 className="section-title">Design System</h1>
+            <h1 className="text-section-title">Design System</h1>
             <p className="text-barsky-text mb-12 max-w-2xl dark:text-gray-300">
               A comprehensive guide to the visual language and components used throughout
               the portfolio. This system ensures consistency and helps maintain design

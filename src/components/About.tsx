@@ -28,7 +28,7 @@ const About: React.FC = () => {
           <AnimatedText
             text="Why Work With Me"
             tag="h2"
-            className="section-title text-center mb-8 font-display"
+            className="text-section-title text-center mb-8 font-display"
             type="word"
             animation="elastic"
             delay={0}

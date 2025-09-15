@@ -5,7 +5,7 @@ const ServicesFaq = () => {
   return (
     <section className="py-20 bg-white">
       <div className="container px-4 mx-auto max-w-4xl">
-        <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+        <h2 className="text-section-title text-center mb-12">Frequently Asked Questions</h2>
         
         <div className="space-y-6">
           <div className="bg-slate-50 p-6 rounded-lg">
