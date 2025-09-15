@@ -60,9 +60,29 @@ const ParticleNetwork: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const setCanvasSize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      // Reset the transform then scale for crisp rendering
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    let isVisible = true;
+
     const animate = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      if (!isVisible) return;
+
+      const dpr = window.devicePixelRatio || 1;
+      const w = canvas.width / dpr;
+      const h = canvas.height / dpr;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -77,8 +97,8 @@ const ParticleNetwork: React.FC = () => {
         p.y += p.vy;
 
         // Boundary collision
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
 
         // Mouse interaction
         const dx = mouseRef.current.x - p.x;
@@ -121,9 +141,28 @@ const ParticleNetwork: React.FC = () => {
       animationRef.current = requestAnimationFrame(animate);
     };
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          // Kickstart animation if it was paused
+          if (!animationRef.current) {
+            animationRef.current = requestAnimationFrame(animate);
+          }
+        } else if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+          animationRef.current = undefined;
+        }
+      });
+    });
+
+    observer.observe(canvas);
+
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {
+      window.removeEventListener('resize', setCanvasSize);
+      observer.disconnect();
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }

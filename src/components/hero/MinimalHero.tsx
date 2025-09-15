@@ -63,7 +63,6 @@ const MinimalHero: React.FC = () => {
 
   return (
     <section 
-      id="intro"
       className="h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
                  bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50"
     >
@@ -71,7 +70,7 @@ const MinimalHero: React.FC = () => {
       <ParticleNetwork />
       
       {/* Clean gradient overlay for enhanced readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/40 backdrop-blur-sm" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/30 via-white/20 to-white/40 backdrop-blur-sm" />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto w-full relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
