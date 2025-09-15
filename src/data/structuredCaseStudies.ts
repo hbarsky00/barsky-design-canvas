@@ -381,7 +381,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: ["Enterprise", "Search", "Data Discovery", "B2B", "Productivity"],
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
     heroVideo: {
-      src: "/lovable-uploads/dae-search-hero.mp4",
+      src: "https://www.loom.com/share/d11e52c85a1c48b181a5b23290321195?sid=1b805134-722d-4f63-a94b-42409f866a38",
       poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/dashboard.webp",
       alt: "DAE Search Platform interface overview"
     },
