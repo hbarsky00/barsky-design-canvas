@@ -34,7 +34,7 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
     if (type === "character") {
       return text.split("").map((char, index) => <motion.span key={`char-${index}`} custom={index} variants={characterAnimation[animation]} className={animation === "typewriter" ? "inline-block" : ""} style={{
         display: "inline-block",
-        whiteSpace: animation === "typewriter" ? "pre" : "normal"
+        whiteSpace: "pre"
       }}>
           {char}
         </motion.span>);
