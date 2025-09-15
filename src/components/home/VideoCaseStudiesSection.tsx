@@ -38,7 +38,8 @@ const caseStudies: CaseStudy[] = [
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/dashboard.webp",
       alt: "DAE Search Platform showing enterprise data discovery interface"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/lovable-uploads/dae-search-hero.mp4"
   },
   {
     id: "crypto",
@@ -120,34 +121,6 @@ const CaseStudyCard: React.FC<{
 
   const renderMedia = () => {
     if (study.video) {
-      // Check if it's a Loom embed
-      const isLoomVideo = study.video.includes('loom.com/embed');
-      
-      if (isLoomVideo) {
-        return (
-          <Link to={study.url} className="block h-full group">
-            <div className="flex justify-center h-full cursor-pointer relative">
-              <img 
-                src={study.images.primary} 
-                alt={study.images.alt}
-                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
-                style={{ maxWidth: '625px', height: 'auto' }}
-              />
-              {/* Overlay iframe on hover */}
-              <iframe
-                src={`${study.video}&autoplay=1`}
-                className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ border: 'none', maxWidth: '625px', height: 'auto' }}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-              />
-            </div>
-          </Link>
-        );
-      }
-      
       return (
         <Link to={study.url} className="block h-full group">
           <div className="flex justify-center h-full cursor-pointer">

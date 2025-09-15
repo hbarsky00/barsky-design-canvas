@@ -12,7 +12,7 @@ const Contact: React.FC = () => {
           <AnimatedText
             text="Have Questions or Need Support?"
             tag="h2"
-            className="text-section-title mb-6 font-display"
+            className="section-title mb-6 font-display"
             type="word"
             animation="slide"
             delay={0}

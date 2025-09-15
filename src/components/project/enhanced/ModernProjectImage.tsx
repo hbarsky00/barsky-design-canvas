@@ -47,13 +47,10 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
 
   console.log('🎨 ModernProjectImage: Rendering with final image src:', project.image);
 
-  // Get video for projects with hover functionality
+  // Get video for Herbalink project specifically
   const getProjectVideo = () => {
     if (projectId === "herbalink") {
       return "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4";
-    }
-    if (projectId === "daesearchproject") {
-      return "https://www.loom.com/embed/d11e52c85a1c48b181a5b23290321195?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true";
     }
     return undefined;
   };

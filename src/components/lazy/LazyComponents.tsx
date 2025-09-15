@@ -11,3 +11,4 @@ export const LazyContactForm = lazy(() => import('@/components/home/ContactForm'
 
 // Lazy load bounce reduction components for better initial load
 export const LazyExitIntentDetector = lazy(() => import('@/components/bounce-reduction/ExitIntentDetector'));
+export const LazyScrollEngagement = lazy(() => import('@/components/bounce-reduction/ScrollEngagement'));

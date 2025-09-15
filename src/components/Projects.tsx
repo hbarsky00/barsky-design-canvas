@@ -13,7 +13,7 @@ const Projects: React.FC = () => {
     <section id="projects" className="py-20 bg-white">
       <div className="section-container">
         <div className="mb-12">
-          <h2 className="text-section-title font-display">Featured Projects</h2>
+          <h2 className="section-title font-display">Featured Projects</h2>
         </div>
         
         {filteredProjects.length > 0 ? (
