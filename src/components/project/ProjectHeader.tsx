@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { Badge } from "@/components/ui/badge";
 import { getServiceUrlFromTag } from "@/utils/tagServiceMapping";
+import AnimatedText from "@/components/AnimatedText";
 
 interface ProjectHeaderProps {
   title: string;
@@ -37,9 +38,15 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 text-center">
-              {title}
-            </h1>
+            <AnimatedText
+              text={title}
+              tag="h1"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 text-center"
+              type="character"
+              animation="typewriter"
+              delay={200}
+              staggerChildren={0.03}
+            />
             
             <p className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8 leading-relaxed text-center">
               {description}

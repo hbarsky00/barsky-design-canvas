@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import EnhancedContentEditor from "@/components/editor/EnhancedContentEditor";
 import { useSimplifiedContentEditor } from "@/hooks/useSimplifiedContentEditor";
+import AnimatedText from "@/components/AnimatedText";
 
 interface ModernProjectHeaderProps {
   project: ProjectProps;
@@ -51,13 +52,16 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
               <span className="text-gray-600">{details.role}</span>
             </div>
             
-            <EnhancedContentEditor
-              content={project.title}
-              contentType="header"
-              onSave={(content) => handleSectionContentSave('hero', 'title', content)}
-              projectId={projectId}
-              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight text-center"
-            />
+            <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight text-center">
+              <AnimatedText
+                text={project.title}
+                tag="h1"
+                type="character"
+                animation="typewriter"
+                delay={200}
+                staggerChildren={0.03}
+              />
+            </div>
             
             <EnhancedContentEditor
               content={project.description}
