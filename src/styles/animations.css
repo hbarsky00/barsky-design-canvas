@@ -82,3 +82,46 @@
 .enhanced-button:hover::before {
   left: 100%;
 }
+
+/* Button gloss animation for default state */
+@keyframes button-gloss {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(150%) skewX(-25deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(150%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.button-gloss {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-gloss::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+  animation: button-gloss 6s ease-in-out infinite;
+  animation-delay: 2s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.button-gloss:hover::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
