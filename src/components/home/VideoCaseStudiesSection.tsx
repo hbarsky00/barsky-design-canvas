@@ -330,7 +330,7 @@ const VideoCaseStudiesSection: React.FC = () => {
           <SectionHeader
             as="h2"
             title="Case Studies That Drive Results"
-            subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
+            subtitle="Real projects. Measurable outcomes.See how I transform business challenges into digital solutions."
             subtitleClassName="max-w-4xl mx-auto"
             titleAnimation="elastic"
             subtitleAnimation="fade"
