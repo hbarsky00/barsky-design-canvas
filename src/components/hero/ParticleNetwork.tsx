@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface Particle {
@@ -13,8 +13,8 @@ interface Particle {
 
 const ParticleNetwork: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const particlesRef = useRef<Particle[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
 
   // Initialize particles
@@ -35,7 +35,7 @@ const ParticleNetwork: React.FC = () => {
         });
       }
       
-      setParticles(newParticles);
+      particlesRef.current = newParticles;
     };
 
     initParticles();
@@ -46,14 +46,13 @@ const ParticleNetwork: React.FC = () => {
   // Mouse tracking
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Animation loop
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -64,70 +63,72 @@ const ParticleNetwork: React.FC = () => {
     const animate = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
+      const particles = particlesRef.current;
+
       // Update and draw particles
-      setParticles(prevParticles => {
-        return prevParticles.map(particle => {
-          // Update position
-          particle.x += particle.vx;
-          particle.y += particle.vy;
-          
-          // Boundary collision
-          if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-          if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-          
-          // Mouse interaction
-          const dx = mousePos.x - particle.x;
-          const dy = mousePos.y - particle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 100) {
-            particle.x += dx * 0.002;
-            particle.y += dy * 0.002;
-          }
-          
-          // Draw particle
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(220, 70%, 60%, ${particle.opacity})`;
-          ctx.fill();
-          
-          return particle;
-        });
-      });
-      
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        // Update position
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Boundary collision
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        // Mouse interaction
+        const dx = mouseRef.current.x - p.x;
+        const dy = mouseRef.current.y - p.y;
+        const distance = Math.hypot(dx, dy);
+
+        if (distance < 100) {
+          p.x += dx * 0.002;
+          p.y += dy * 0.002;
+        }
+
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(220, 70%, 60%, ${p.opacity})`;
+        ctx.fill();
+      }
+
       // Draw connections
-      particles.forEach((particle, i) => {
-        particles.slice(i + 1).forEach(otherParticle => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const p = particles[i];
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const distance = Math.hypot(dx, dy);
+
           if (distance < 120) {
-            const opacity = (120 - distance) / 120 * 0.2;
+            const opacity = ((120 - distance) / 120) * 0.2;
             ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
             ctx.strokeStyle = `hsla(220, 70%, 60%, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
-        });
-      });
-      
+        }
+      }
+
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [particles, mousePos]);
+  }, []);
 
   return (
     <motion.canvas
