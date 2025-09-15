@@ -437,9 +437,10 @@ select:focus-visible, a:focus-visible,
 
 /* Mobile viewport and safe areas */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: auto;
+  scroll-padding-top: var(--header-height, 72px);
 }
 
 body {
@@ -450,6 +451,11 @@ body {
   overflow-y: auto;
   padding-top: max(0px, env(safe-area-inset-top));
   padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+/* Anchor offset for fixed header */
+.scroll-offset {
+  scroll-margin-top: var(--header-height, 72px);
 }
 
 /* Hero container with safe area support */

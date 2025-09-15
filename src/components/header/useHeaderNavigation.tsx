@@ -37,7 +37,6 @@ export const useHeaderNavigation = () => {
   const isProjectPage = location.pathname.startsWith('/project/') || location.pathname.startsWith('/case-studies/');
 
   const scrollToSection = (sectionId: string) => {
-    console.log('Scrolling to section:', sectionId);
     
     // First check if we're on the homepage
     if (location.pathname !== '/') {
@@ -52,7 +51,6 @@ export const useHeaderNavigation = () => {
     // Simple, unified scroll function using scrollIntoView
     const attemptScroll = (retries = 3) => {
       const section = document.getElementById(sectionId);
-      console.log('Found section:', sectionId, section);
       
       if (section) {
         // Use scrollIntoView with block: 'start' for consistent behavior
@@ -77,10 +75,8 @@ export const useHeaderNavigation = () => {
         }
       } else if (retries > 0) {
         // Element might not be rendered yet due to lazy loading, retry
-        console.log('Section not found, retrying...', retries);
         setTimeout(() => attemptScroll(retries - 1), 100);
       } else {
-        console.error('Could not find section:', sectionId);
         setIsIntentionalScrolling(false);
       }
     };
@@ -149,11 +145,9 @@ export const useHeaderNavigation = () => {
       return location.pathname === "/services" || location.pathname.startsWith("/design-services");
     }
     
-    // For section links (anchors) - with debugging
     if (link.startsWith('#')) {
       const sectionId = link.substring(1);
       const isActive = activeSection === sectionId;
-      console.log(`Link ${link} active check: activeSection="${activeSection}", sectionId="${sectionId}", isActive=${isActive}`);
       return isActive;
     }
     
@@ -187,19 +181,16 @@ export const useHeaderNavigation = () => {
       }
       
       // For homepage, hide header completely on first section and only show when scrolling to second section
-      // Changed threshold from 0.6 to 0.95 to create slideshow effect
-      const slideScrollThreshold = heroHeight * 0.95;
+      const slideScrollThreshold = heroHeight * 0.6;
       setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
 
       // Skip section detection during intentional scrolling to prevent conflicts
       if (isIntentionalScrolling) {
-        console.log('Skipping section detection - intentional scrolling in progress');
         return;
       }
 
       // Home section logic - set as active when near the top of the page
       if (location.pathname === '/' && scrollPosition < 200) {
-        console.log('Setting active section to "home" (near top)');
         setActiveSection("home");
         return;
       }
@@ -234,13 +225,10 @@ export const useHeaderNavigation = () => {
                 closestDistance = distanceFromMiddle;
                 activeSection = id;
               }
-              
-              console.log(`Section "${id}": top=${rect.top.toFixed(0)}, bottom=${rect.bottom.toFixed(0)}, distance=${distanceFromMiddle.toFixed(0)}`);
             }
           }
         }
         
-        console.log(`Setting active section to: "${activeSection}"`);
         setActiveSection(activeSection);
       }
     };

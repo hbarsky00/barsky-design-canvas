@@ -45,7 +45,7 @@ const MinimalHero: React.FC = () => {
 
   return (
     <section 
-      className="h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
+      className="min-h-screen pb-16 sm:pb-20 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
                  bg-gradient-to-br from-slate-50 to-blue-50"
     >
       {/* Professional Particle Network Background */}
