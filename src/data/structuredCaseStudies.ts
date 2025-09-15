@@ -54,6 +54,10 @@ export interface StructuredCaseStudyData {
     poster: string;
     alt: string;
   };
+  heroImage?: {
+    src: string;
+    alt: string;
+  };
   heroMetrics?: {
     value: string;
     label: string;
@@ -91,6 +95,11 @@ export interface StructuredCaseStudyData {
     eyebrow: string;
     title: string;
     content: string;
+    video?: {
+      src: string;
+      title: string;
+      caption?: string;
+    };
     images?: Array<{
       src: string;
       alt: string;
@@ -380,9 +389,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data, reducing information retrieval time by 65% and delivering 20% ROI through improved productivity.",
     tags: ["Enterprise", "Search", "Data Discovery", "B2B", "Productivity"],
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
-    heroVideo: {
-      src: "https://www.loom.com/share/d11e52c85a1c48b181a5b23290321195?sid=1b805134-722d-4f63-a94b-42409f866a38",
-      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/dashboard.webp",
+    heroImage: {
+      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search Platform interface overview"
     },
     heroMetrics: [
@@ -470,13 +478,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "",
       content: "Enterprise search isn't just finding files—it's understanding business context. I designed for the moment when someone needs to make a decision with incomplete information. The interface needed to bridge the gap between data discovery and business insight, making every search result a learning opportunity.",
-      images: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/hiram%20working%20on%20dae%20project%20.png",
-          alt: "Design thinking process for enterprise search platform",
-          caption: "Thought process visualization showing design decisions for enterprise data discovery"
-        }
-      ]
+      video: {
+        src: "https://www.loom.com/share/d11e52c85a1c48b181a5b23290321195?sid=1b805134-722d-4f63-a94b-42409f866a38",
+        title: "DAE Search Platform Demo",
+        caption: "Live demonstration of the enterprise search platform showing semantic search and data lineage features"
+      }
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",

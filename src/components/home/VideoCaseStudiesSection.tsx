@@ -35,11 +35,10 @@ const caseStudies: CaseStudy[] = [
     impact: "20% ROI from Better Data Discovery",
     url: "/project/daesearchproject",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/dashboard.webp",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search Platform showing enterprise data discovery interface"
     },
-    layout: "side-by-side",
-    video: "/lovable-uploads/dae-search-hero.mp4"
+    layout: "side-by-side"
   },
   {
     id: "business-management",

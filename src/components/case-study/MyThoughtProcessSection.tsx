@@ -3,10 +3,16 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import AnnotatedImage from "./AnnotatedImage";
+import ProjectVideo from "@/components/project/ProjectVideo";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
 interface MyThoughtProcessSectionProps {
   content: string;
+  video?: {
+    src: string;
+    title: string;
+    caption?: string;
+  };
   images?: Array<{
     src: string;
     alt: string;
@@ -17,6 +23,7 @@ interface MyThoughtProcessSectionProps {
 
 const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
   content,
+  video,
   images
 }) => {
   return (
@@ -37,6 +44,25 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
               My Thought Process
             </h2>
           </div>
+
+          {video && (
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <ProjectVideo
+                  src={video.src}
+                  title={video.title}
+                  caption={video.caption}
+                  className="w-full rounded-lg shadow-lg"
+                />
+              </motion.div>
+            </div>
+          )}
 
           {images && images.length > 0 && (
             <div className="space-y-8">
