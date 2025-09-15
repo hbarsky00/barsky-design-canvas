@@ -1660,8 +1660,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-          alt: "User testing session showing business management workflow validation",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
+          alt: "Business management warehouse operations and inventory tracking system",
           caption: "Testing sessions confirmed my unified approach significantly improved daily operations efficiency."
         }
       ]
@@ -1763,7 +1763,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
       projectName: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
       results: ["68% Fewer Operation Errors", "35% faster processing", "90% user satisfaction", "Unified operations platform"],
       technologies: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
