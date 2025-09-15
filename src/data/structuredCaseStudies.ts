@@ -465,39 +465,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         description: "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways."
       }
     ],
-    ideationSection: {
-      subhead: "Search interface and data discovery explorations",
-      bubbles: [
-        { title: "Search Patterns", description: "exploring different search paradigms for enterprise users" },
-        { title: "Data Discovery", description: "visual approaches to data lineage and context" },
-        { title: "Permission Flow", description: "intuitive access request and approval workflows" },
-        { title: "Result Display", description: "rich metadata presentation with business context" }
-      ],
-      iterations: [
-        {
-          label: "Search Interface Concepts",
-          imageSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/ideation1.png",
-          alt: "Search interface ideation sketches exploring different search paradigms",
-          annotations: [
-            { text: "Semantic search input with intelligent suggestions", x: 25, y: 20, type: "feature" },
-            { text: "Visual filter system for data types and sources", x: 65, y: 35, type: "improvement" },
-            { text: "Quick access to recent and saved searches", x: 40, y: 60, type: "feature" },
-            { text: "Context-aware search recommendations", x: 75, y: 80, type: "improvement" }
-          ]
-        },
-        {
-          label: "Data Discovery Patterns",
-          imageSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/ideation2.png",
-          alt: "Data discovery ideation concepts showing metadata and lineage visualization",
-          annotations: [
-            { text: "Rich metadata cards with usage statistics", x: 30, y: 25, type: "feature" },
-            { text: "Visual data lineage and transformation paths", x: 60, y: 40, type: "improvement" },
-            { text: "Permission indicators with request workflows", x: 45, y: 65, type: "feature" },
-            { text: "Related content suggestions based on context", x: 80, y: 75, type: "improvement" }
-          ]
-        }
-      ]
-    },
+    // ideationSection removed to hide images
     myThoughtProcessSection: {
       eyebrow: "My Thought Process",
       title: "",

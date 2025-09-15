@@ -183,32 +183,32 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     );
   }
 
-  // If annotations exist, render AnnotatedImage instead
-  if (annotations && annotations.length > 0) {
-    return (
-      <figure 
-        className={`relative group overflow-hidden w-full max-w-full ${className}`}
-        data-lovable-element="image-container" 
-        data-lovable-editable="image-wrapper"
-        style={aspectRatio ? { aspectRatio } : undefined}
-      >
-        <AnnotatedImage
-          src={currentSrc}
-          alt={alt}
-          annotations={annotations}
-          className="w-full h-auto"
-        />
-        <EditableCaption 
-          imageSrc={currentSrc} 
-          initialCaption={caption || ''} 
-          projectId={projectId} 
-          variant="default"
-          size="xs"
-          alignment="center"
-        />
-      </figure>
-    );
-  }
+  // Annotations temporarily hidden - fallback to regular image
+  // if (annotations && annotations.length > 0) {
+  //   return (
+  //     <figure 
+  //       className={`relative group overflow-hidden w-full max-w-full ${className}`}
+  //       data-lovable-element="image-container" 
+  //       data-lovable-editable="image-wrapper"
+  //       style={aspectRatio ? { aspectRatio } : undefined}
+  //     >
+  //       <AnnotatedImage
+  //         src={currentSrc}
+  //         alt={alt}
+  //         annotations={annotations}
+  //         className="w-full h-auto"
+  //       />
+  //       <EditableCaption 
+  //         imageSrc={currentSrc} 
+  //         initialCaption={caption || ''} 
+  //         projectId={projectId} 
+  //         variant="default"
+  //         size="xs"
+  //         alignment="center"
+  //       />
+  //     </figure>
+  //   );
+  // }
 
   return (
     <figure 
