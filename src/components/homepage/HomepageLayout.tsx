@@ -19,8 +19,7 @@ import {
   LazySeoFaqSection,
   LazyBlogPreview,
   LazyInternalLinkingEnhancer,
-  LazyExitIntentDetector,
-  LazyScrollEngagement
+  LazyExitIntentDetector
 } from "@/components/lazy/LazyComponents";
 import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
 
@@ -133,7 +132,6 @@ const HomepageLayout: React.FC = () => {
           onExitIntent={handleExitIntent}
           disabled={metrics.timeOnPage < 10000} // Only show after 10 seconds
         />
-        <LazyScrollEngagement />
       </Suspense>
     </div>
   );

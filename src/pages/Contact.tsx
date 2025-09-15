@@ -13,7 +13,7 @@ const Contact = () => {
       <main className="flex-grow pt-16">
         <section className="py-12 dark:bg-gray-900">
           <div className="section-container">
-            <h1 className="section-title mb-16">Get In Touch</h1>
+            <h1 className="text-section-title text-center mb-16">Get In Touch</h1>
             
             <div className="grid md:grid-cols-2 gap-12">
               <ContactInformation />
