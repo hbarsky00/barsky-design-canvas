@@ -145,16 +145,6 @@ const config: Config = {
           "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-2px)" },
           "20%, 40%, 60%, 80%": { transform: "translateX(2px)" },
         },
-        "wave-ripple": {
-          "0%": { 
-            transform: "scale(0)", 
-            opacity: "1" 
-          },
-          "100%": { 
-            transform: "scale(4)", 
-            opacity: "0" 
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -168,10 +158,6 @@ const config: Config = {
         float: "float 3s ease-in-out infinite",
         "gentle-float": "gentle-float 6s ease-in-out infinite",
         shake: "shake 0.5s ease-in-out",
-        "wave-ripple": "wave-ripple 0.5s ease-out",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(circle, var(--tw-gradient-stops))",
       },
     },
   },
