@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import SectionHeader from "@/components/shared/SectionHeader";
 const BioSection: React.FC = () => {
 
   return (
@@ -22,14 +23,11 @@ const BioSection: React.FC = () => {
           <Card className="p-8 lg:p-12 bg-white/80 backdrop-blur-sm shadow-xl border-0">
             <div className="space-y-8">
               {/* Header with badge */}
-              <div className="text-center">
-                <Badge variant="outline" className="mb-6 px-4 py-2 text-sm font-medium">
-                  About Me
-                </Badge>
-                <h2 className="font-display font-extrabold text-gray-900 mb-6 text-center !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1]">
-                  Product Designer & AI Developer
-                </h2>
-              </div>
+              <SectionHeader
+                eyebrow="About Me"
+                title="Product Designer & AI Developer"
+                className="text-center"
+              />
 
               {/* Bio content */}
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">

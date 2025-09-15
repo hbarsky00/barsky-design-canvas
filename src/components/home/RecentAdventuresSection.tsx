@@ -63,14 +63,12 @@ const RecentAdventuresSection: React.FC = () => {
         >
           <SectionHeader
             eyebrow="Experience"
-            title={
-              <div className="flex items-center gap-3 justify-center">
-                Recent adventures
-                <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-primary" />
-              </div>
-            }
+            title="Recent adventures"
             subtitle="A journey through innovative product design and user experience at leading tech companies"
           />
+          <div className="flex justify-center mb-8">
+            <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-primary" />
+          </div>
         </motion.div>
 
         {/* Timeline */}
