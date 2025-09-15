@@ -67,21 +67,6 @@ const caseStudies: CaseStudy[] = [
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side"
-  },
-  {
-    id: "barskyjoint",
-    tags: ["Restaurant Tech", "Food Service", "Kiosk Design"],
-    title: "BarskyJoint: 28% Higher Average Ticket Size",
-    description: "Ordering shouldn't feel like a test of willpower. Yet in most restaurants, menus are cluttered, customization flows are overwhelming, and web vs. kiosk experiences feel like completely different products. BarskyJoint — my dual-format ordering platform — solved these issues by creating clarity, confidence, and consistency across channels.",
-    impact: "28% Higher Average Ticket Size",
-    url: "/project/barskyjoint",
-    liveUrl: "https://barskyjoint.com/",
-    images: {
-      primary: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-      alt: "BarskyJoint restaurant ordering interface showing menu and kiosk design"
-    },
-    layout: "web-mobile",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/barskyjoint-demo.mp4"
   }
 ];
 

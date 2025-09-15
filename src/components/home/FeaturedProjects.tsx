@@ -13,7 +13,7 @@ const FeaturedProjects: React.FC = () => {
   } = useProjectsData();
 
   // Show featured projects (crypto and investor loan moved to draft)
-  const featuredProjectIds = ["business-management", "herbalink", "barskyjoint"];
+  const featuredProjectIds = ["business-management", "herbalink"];
   const displayProjects = featuredProjectIds.map(id => filteredProjects.find(project => project.id === id)).filter(Boolean);
 
   return (
