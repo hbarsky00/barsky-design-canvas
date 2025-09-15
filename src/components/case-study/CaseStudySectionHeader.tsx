@@ -61,7 +61,7 @@ const CaseStudySectionHeader: React.FC<CaseStudySectionHeaderProps> = ({
         <AnimatedText
           text={title}
           tag="h2"
-          className={`text-base md:text-2xl lg:text-3xl font-medium md:font-bold leading-tight font-display ${styles.titleColor}`}
+          className={`font-display ${styles.titleColor} !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1] font-extrabold`}
           type="character"
           animation="wave"
           delay={100}
