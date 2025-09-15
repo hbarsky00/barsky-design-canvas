@@ -72,12 +72,7 @@ const MinimalHero: React.FC = () => {
       
       {/* Clean gradient overlay for enhanced readability */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/40 backdrop-blur-sm" />
-      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto cursor-pointer w-full relative z-20 
-                       hover:opacity-95 transition-opacity duration-200" 
-           onClick={(e) => {
-             handleNavigateDown();
-           }}
-           title="Click anywhere to view case studies">
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto w-full relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
