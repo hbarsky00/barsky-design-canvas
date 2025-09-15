@@ -12,10 +12,10 @@ export type SectionHeaderProps = {
   titleClassName?: string;
   subtitleClassName?: string;
   animatedTitle?: boolean;
-  titleAnimation?: "fade" | "elastic" | "slide" | "bounce" | "wave" | "blur";
+  titleAnimation?: "fade" | "elastic" | "slide" | "bounce" | "wave" | "blur" | "typewriter";
   titleDelay?: number;
   animatedSubtitle?: boolean;
-  subtitleAnimation?: "fade" | "elastic" | "slide" | "bounce" | "wave" | "blur";
+  subtitleAnimation?: "fade" | "elastic" | "slide" | "bounce" | "wave" | "blur" | "typewriter";
   subtitleDelay?: number;
 };
 
@@ -28,10 +28,10 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   titleClassName,
   subtitleClassName,
   animatedTitle = true,
-  titleAnimation = "fade",
+  titleAnimation = "typewriter",
   titleDelay = 0,
   animatedSubtitle = true,
-  subtitleAnimation = "fade",
+  subtitleAnimation = "typewriter",
   subtitleDelay = 0.2,
 }) => {
   const Tag = as as keyof JSX.IntrinsicElements;
@@ -48,10 +48,10 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           text={title}
           tag={as}
           className={clsx("text-section-title text-on-surface content-rail-center font-display !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1]", titleClassName)}
-          type="word"
+          type="character"
           animation={titleAnimation}
           delay={titleDelay * 1000}
-          staggerChildren={0.05}
+          staggerChildren={0}
         />
       ) : (
         <Tag className={clsx("text-section-title text-on-surface content-rail-center font-display !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1]", titleClassName)}>
@@ -67,10 +67,10 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
               "content-spacing leading-relaxed text-lg md:text-xl text-on-surface-variant content-rail-center",
               subtitleClassName
             )}
-            type="word"
+            type="character"
             animation={subtitleAnimation}
             delay={subtitleDelay * 1000}
-            staggerChildren={0.04}
+            staggerChildren={0}
           />
         ) : (
           <p className={clsx(

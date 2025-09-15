@@ -63,9 +63,9 @@ const CaseStudySectionHeader: React.FC<CaseStudySectionHeaderProps> = ({
           tag="h2"
           className={`font-display ${styles.titleColor} !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1] font-extrabold`}
           type="character"
-          animation="wave"
+          animation="typewriter"
           delay={100}
-          staggerChildren={0.04}
+          staggerChildren={0}
         />
       </div>
     </div>
