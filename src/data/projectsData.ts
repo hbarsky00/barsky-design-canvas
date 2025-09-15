@@ -3,16 +3,6 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
-    id: "crypto",
-    title: "Trading Without Friction",
-    description: "How a dual-mode crypto app turned churn into growth by serving both novices and pros",
-    image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
-    videoThumbnail: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
-    video: "/lovable-uploads/crypto-hero.mp4",
-    tags: ["Fintech", "Crypto", "Mobile & Web"],
-    featured: true,
-  },
-  {
     id: "investor-loan-app",
     title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
     description: "How I led a banking platform redesign that replaced Excel and scaled operations with speed, accuracy, and trust.",

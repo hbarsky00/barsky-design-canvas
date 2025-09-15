@@ -34,7 +34,7 @@ const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/Structured
 const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
 const StructuredBarskyJointCaseStudy = React.lazy(() => import("@/pages/StructuredBarskyJointCaseStudy"));
 const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
-const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy"));
+// const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 
 
@@ -57,7 +57,7 @@ function App() {
               
               
               {/* Structured case studies - these override the generic ProjectDetail routing */}
-              <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
+              {/* <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} /> DRAFT */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
