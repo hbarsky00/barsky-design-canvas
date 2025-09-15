@@ -3,16 +3,6 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
-    id: "investor-loan-app",
-    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
-    description: "How I led a banking platform redesign that replaced Excel and scaled operations with speed, accuracy, and trust.",
-    image: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
-    videoThumbnail: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
-    video: "investor-loan-demo.mp4",
-    tags: ["FinTech", "Analytics", "WebApp"],
-    featured: true,
-  },
-  {
     id: "business-management",
     title: "Business Management App",
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",

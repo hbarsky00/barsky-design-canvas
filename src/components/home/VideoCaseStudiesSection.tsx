@@ -42,19 +42,6 @@ const caseStudies: CaseStudy[] = [
     video: "/lovable-uploads/dae-search-hero.mp4"
   },
   {
-    id: "investor-loan-app",
-    tags: ["FinTech", "Analytics", "WebApp"],
-    title: "Redesigning Loans",
-    description: "85% Fewer Errors, 40% Faster",
-    impact: "How I led a banking platform redesign that replaced Excel and scaled operations",
-    url: "/project/investor-loan-app", 
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/iMac-24-inch.png",
-      alt: "Investment platform showing deal analysis and portfolio management"
-    },
-    layout: "side-by-side"
-  },
-  {
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",

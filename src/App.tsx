@@ -33,7 +33,7 @@ const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevel
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
 const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
 const StructuredBarskyJointCaseStudy = React.lazy(() => import("@/pages/StructuredBarskyJointCaseStudy"));
-const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
+// const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy")); // DRAFT
 // const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 
@@ -61,7 +61,7 @@ function App() {
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
-              <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
+              {/* <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} /> DRAFT */}
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
