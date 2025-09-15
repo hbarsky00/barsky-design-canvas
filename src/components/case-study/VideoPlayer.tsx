@@ -13,7 +13,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   const getEmbedUrl = (url: string) => {
     if (isLoomVideo) {
       const videoId = url.split('loom.com/share/')[1]?.split('?')[0];
-      return `https://www.loom.com/embed/${videoId}?autoplay=1&muted=1`;
+      return `https://www.loom.com/embed/${videoId}?autoplay=1&muted=0&t=0`;
     }
     return url;
   };
