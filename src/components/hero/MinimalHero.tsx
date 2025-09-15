@@ -7,11 +7,13 @@ import { Mail, Linkedin, Github, Calendar } from "lucide-react";
 import ParticleNetwork from "./ParticleNetwork";
 import { EditableContent } from "@/components/editor/EditableContent";
 import AnimatedText from "../AnimatedText";
+import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 
 const MinimalHero: React.FC = () => {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
   const [showContinueButton, setShowContinueButton] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { scrollToSection } = useHeaderNavigation();
 
   const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   const videoUrl = 'https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runiIdLWyCYKV4_have_me_smile_at_the_scr_4838b019-f29d-486d-9a03-8725c08d3cd1_1.mp4';
@@ -37,28 +39,8 @@ const MinimalHero: React.FC = () => {
   }, []);
 
   const handleNavigateDown = () => {
-    // Scroll to case studies section
-    const scrollToCaseStudies = () => {
-      const nextSection = document.getElementById('case-studies');
-      if (nextSection) {
-        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return true;
-      }
-      return false;
-    };
-
-    // Try immediate scroll first
-    if (!scrollToCaseStudies()) {
-      // If element not found, wait for loading and try again
-      let attempts = 0;
-      const maxAttempts = 20; // 2 seconds total
-      const interval = setInterval(() => {
-        attempts++;
-        if (scrollToCaseStudies() || attempts >= maxAttempts) {
-          clearInterval(interval);
-        }
-      }, 100);
-    }
+    // Use the unified scrolling from header navigation
+    scrollToSection('case-studies');
   };
 
   return (

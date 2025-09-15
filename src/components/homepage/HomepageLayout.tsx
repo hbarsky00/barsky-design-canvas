@@ -55,7 +55,7 @@ const HomepageLayout: React.FC = () => {
         <div className="space-y-2 md:space-y-6">
         
         <section id="case-studies" tabIndex={-1}>
-          <LazySection threshold={0.05}>
+          <LazySection threshold={0.05} fallback={<div className="min-h-[60vh] animate-pulse bg-muted/20 rounded-lg" />}>
             <SectionTransition variant="fade" delay={0.05} intensity={0.3} className="py-0 md:py-12">
               <LazyVideoCaseStudiesSection />
             </SectionTransition>

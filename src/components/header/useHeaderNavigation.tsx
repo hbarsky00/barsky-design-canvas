@@ -49,33 +49,36 @@ export const useHeaderNavigation = () => {
     // Set intentional scrolling flag
     setIsIntentionalScrolling(true);
     
-    // Simple, foolproof scroll function
+    // Simple, unified scroll function using scrollIntoView
     const attemptScroll = (retries = 3) => {
       const section = document.getElementById(sectionId);
       console.log('Found section:', sectionId, section);
       
       if (section) {
-        const rect = section.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const targetPosition = rect.top + scrollTop - 80; // Fixed 80px offset for header
-        
-        console.log('Scrolling to position:', targetPosition);
-        
-        window.scrollTo({
-          top: Math.max(0, targetPosition),
-          behavior: 'smooth'
+        // Use scrollIntoView with block: 'start' for consistent behavior
+        section.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start'
         });
         
         setIsMobileMenuOpen(false);
         
-        // Clear intentional scrolling flag after scroll completes
-        setTimeout(() => {
+        // Clear intentional scrolling flag when scroll completes
+        const handleScrollEnd = () => {
           setIsIntentionalScrolling(false);
-        }, 1000);
+          window.removeEventListener('scrollend', handleScrollEnd);
+        };
+        
+        // Use scrollend event if available, otherwise fallback to timeout
+        if ('onscrollend' in window) {
+          window.addEventListener('scrollend', handleScrollEnd);
+        } else {
+          setTimeout(() => setIsIntentionalScrolling(false), 1000);
+        }
       } else if (retries > 0) {
-        // Element might not be rendered yet due to transitions, retry
+        // Element might not be rendered yet due to lazy loading, retry
         console.log('Section not found, retrying...', retries);
-        setTimeout(() => attemptScroll(retries - 1), 50);
+        setTimeout(() => attemptScroll(retries - 1), 100);
       } else {
         console.error('Could not find section:', sectionId);
         setIsIntentionalScrolling(false);
@@ -278,5 +281,6 @@ export const useHeaderNavigation = () => {
     isLinkActive,
     headerHidden,
     setIsIntentionalScrolling,
+    scrollToSection,
   };
 };
