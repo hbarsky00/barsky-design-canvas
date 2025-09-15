@@ -53,7 +53,7 @@ const CaseStudySectionHeader: React.FC<CaseStudySectionHeaderProps> = ({
   const styles = getVariantStyles(variant);
 
   return (
-    <div className={`flex items-center gap-3 mb-6 lg:mb-8 ${className}`}>
+    <div className={`not-prose flex items-center gap-3 mb-6 lg:mb-8 ${className}`}>
       <div className={`flex-shrink-0 p-3 rounded-lg ${styles.iconBg} flex items-center justify-center`}>
         <Icon className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 ${styles.iconColor}`} />
       </div>

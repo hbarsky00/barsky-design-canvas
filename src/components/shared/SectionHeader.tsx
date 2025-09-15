@@ -37,7 +37,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   const Tag = as as keyof JSX.IntrinsicElements;
 
   return (
-    <header className={clsx("text-center mb-8 md:mb-12", className)}>
+    <header className={clsx("not-prose text-center mb-8 md:mb-12", className)}>
       {eyebrow && (
         <div className="inline-flex items-center justify-center px-3 py-1 mb-4 text-xs font-medium tracking-wider text-primary bg-primary/10 rounded-full uppercase">
           {eyebrow}
