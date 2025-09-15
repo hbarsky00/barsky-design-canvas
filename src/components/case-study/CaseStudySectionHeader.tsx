@@ -61,7 +61,7 @@ const CaseStudySectionHeader: React.FC<CaseStudySectionHeaderProps> = ({
         <AnimatedText
           text={title}
           tag="h2"
-          className={`font-display ${styles.titleColor} text-2xl sm:text-3xl md:text-4xl lg:text-4xl leading-tight font-bold`}
+          className={`font-display ${styles.titleColor} text-2xl sm:text-3xl md:text-4xl lg:text-4xl leading-tight font-medium`}
           type="character"
           animation="typewriter"
           delay={100}
