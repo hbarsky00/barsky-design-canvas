@@ -47,14 +47,14 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         <AnimatedText
           text={title}
           tag={as}
-          className={clsx("text-section-title text-on-surface content-rail-center font-display !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1]", titleClassName)}
+          className={clsx("text-section-title text-on-surface content-rail-center font-display !text-[24px] sm:!text-[28px] md:!text-[32px] lg:!text-[40px] xl:!text-[48px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1] text-balance", titleClassName)}
           type="character"
           animation={titleAnimation}
           delay={titleDelay * 1000}
           staggerChildren={0}
         />
       ) : (
-        <Tag className={clsx("text-section-title text-on-surface content-rail-center font-display !text-[32px] sm:!text-[36px] md:!text-[48px] lg:!text-[56px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1]", titleClassName)}>
+        <Tag className={clsx("text-section-title text-on-surface content-rail-center font-display !text-[24px] sm:!text-[28px] md:!text-[32px] lg:!text-[40px] xl:!text-[48px] !leading-[1.2] md:!leading-[1.15] lg:!leading-[1.1] text-balance", titleClassName)}>
           {title}
         </Tag>
       )}
