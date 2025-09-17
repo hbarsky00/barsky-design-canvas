@@ -1,5 +1,6 @@
 import React from "react";
 import { X, Lightbulb, ChevronUp } from "lucide-react";
+import MaximizableImage from "../../project/MaximizableImage";
 
 interface Failure {
   assumption: string;
@@ -44,10 +45,10 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
 
             {failure.image && (
               <div className="px-6 py-4 bg-gray-50">
-                <img 
-                  src={failure.image} 
+                <MaximizableImage
+                  src={failure.image}
                   alt={`Failed approach ${index + 1}`}
-                  className="w-full h-48 object-cover rounded-lg"
+                  className="w-full h-48 object-cover rounded-lg shadow-elevated glass-card layered-depth"
                 />
               </div>
             )}

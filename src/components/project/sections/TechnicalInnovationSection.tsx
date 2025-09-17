@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TrendingUp } from "lucide-react";
+import MaximizableImage from "../MaximizableImage";
 
 const TechnicalInnovationSection: React.FC = () => {
   const results = [
@@ -73,10 +74,10 @@ const TechnicalInnovationSection: React.FC = () => {
               delay: 0.2
             }}
           >
-            <img 
+            <MaximizableImage
               src="/lovable-uploads/656c0433-9b6b-4a41-9c08-90b154ee0f32.png" 
               alt="Comprehensive System Architecture: Five Core Modules for distribution management" 
-              className="w-full h-auto object-contain shadow-2xl rounded-lg" 
+              className="w-full h-auto object-contain shadow-2xl rounded-lg shadow-elevated glass-card layered-depth" 
             />
           </motion.div>
         </div>

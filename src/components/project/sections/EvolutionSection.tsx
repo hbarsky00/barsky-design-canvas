@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code } from "lucide-react";
+import MaximizableImage from "../MaximizableImage";
 
 const EvolutionSection: React.FC = () => {
   const phases = [
@@ -73,7 +74,13 @@ const EvolutionSection: React.FC = () => {
                     className="w-full h-48 mb-6"
                   ></iframe>
                 ) : (
-                  <img src={phase.image} alt={phase.title} className="w-full h-48 object-cover mb-6" />
+                  <MaximizableImage 
+                    src={phase.image} 
+                    alt={phase.title} 
+                    className="w-full h-48 object-cover mb-6 shadow-elevated glass-card layered-depth"
+                    imageList={phases.map(p => p.image).filter(Boolean)}
+                    currentIndex={index}
+                  />
                 )}
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{phase.title}</h3>
                 <p className="text-gray-600">{phase.description}</p>

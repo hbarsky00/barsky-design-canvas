@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ProjectVideo from "../project/ProjectVideo";
+import MaximizableImage from "../project/MaximizableImage";
 import { getAnnotationBlurbClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
 
 interface EmergingTheme {
@@ -150,27 +151,18 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                     className="w-full rounded-xl"
                   />
                 ) : (
-                  /* Fixed Image Display - Direct img tags for debugging */
+                  /* Maximizable Images Display */
                   <div className="flex flex-col gap-4">
                     {allMedia.map((image, index) => (
-                      <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img
-                          src={image.src}
-                          alt={image.alt || `Research image ${index + 1}`}
-                          className="w-full h-auto object-contain"
-                          style={{ minHeight: '200px', maxHeight: '600px' }}
-                          onLoad={() => console.log('✅ RESEARCH IMAGE LOADED:', image.src)}
-                          onError={(e) => {
-                            console.error('❌ RESEARCH IMAGE FAILED:', image.src);
-                            console.error('Error event:', e);
-                          }}
-                        />
-                        {researchSection.blurb && index === 0 && (
-                          <div className="p-4 bg-gray-50 border-t">
-                            <p className="text-sm text-gray-600">{researchSection.blurb}</p>
-                          </div>
-                        )}
-                      </div>
+                      <MaximizableImage
+                        key={index}
+                        src={image.src}
+                        alt={image.alt || `Research image ${index + 1}`}
+                        caption={researchSection.blurb && index === 0 ? researchSection.blurb : undefined}
+                        imageList={allMedia.map(img => img.src)}
+                        currentIndex={index}
+                        className="shadow-elevated w-full glass-card layered-depth"
+                      />
                     ))}
                   </div>
                 )}
