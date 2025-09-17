@@ -82,7 +82,7 @@ const ContactForm: React.FC = () => {
   
   return (
     <section id="contact" className="flex flex-col justify-center py-4 bg-muted/30 relative">
-      <div className="container px-4 mx-auto max-w-4xl">
+      <div>
         <SectionHeader
           as="h2"
           title="Get In Touch"
