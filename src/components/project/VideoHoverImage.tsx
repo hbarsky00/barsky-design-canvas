@@ -82,19 +82,29 @@ const VideoHoverImage: React.FC<VideoHoverImageProps> = ({
       transition={{ duration: 0.8 }}
     >
       <div className="relative aspect-video bg-muted">
-        {/* Static Image */}
-        <motion.img
-          src={src}
-          alt={alt}
-          className="w-full h-full object-contain transition-opacity duration-300"
+        {/* Static Image - Now Maximizable */}
+        <div 
+          className="w-full h-full transition-opacity duration-300"
           style={{ 
             opacity: isHovered && isVideoLoaded ? 0 : 1,
             position: 'absolute',
             top: 0,
             left: 0
           }}
-          loading={priority ? "eager" : "lazy"}
-        />
+        >
+          <MaximizableImage
+            src={src}
+            alt={alt}
+            className="w-full h-full object-contain"
+            imageList={imageList}
+            currentIndex={currentIndex}
+            projectId={projectId}
+            hideEditButton={hideEditButton}
+            onImageReplace={onImageReplace}
+            priority={priority}
+            fit="contain"
+          />
+        </div>
         
         {/* Video */}
         <motion.video
