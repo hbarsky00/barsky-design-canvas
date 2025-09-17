@@ -64,7 +64,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
             text={subtitle}
             tag="p"
             className={clsx(
-              "content-spacing leading-relaxed text-lg md:text-xl text-on-surface-variant content-rail-center",
+              "content-spacing leading-relaxed text-lg md:text-xl text-on-surface-variant text-center",
               subtitleClassName
             )}
             type="character"
@@ -74,7 +74,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           />
         ) : (
           <p className={clsx(
-            "content-spacing leading-relaxed text-lg md:text-xl text-on-surface-variant content-rail-center",
+            "content-spacing leading-relaxed text-lg md:text-xl text-on-surface-variant text-center",
             subtitleClassName
           )}>
             {subtitle}
