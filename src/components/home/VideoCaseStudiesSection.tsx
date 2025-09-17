@@ -125,20 +125,20 @@ const CaseStudyCard: React.FC<{
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "100px" }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="case-study-card bg-gray-50 overflow-hidden relative py-12 lg:py-16"
+      className="case-study-card bg-gray-50 overflow-hidden relative py-8 lg:py-10"
       tabIndex={-1}
     >
       {/* Mobile Layout: Stacked */}
       <div className="lg:hidden">
         {/* Image Section - Full Width on Mobile - Now Clickable */}
-        <div className="relative bg-gray-50 py-6 min-h-[240px] flex items-center justify-center">
+        <div className="relative bg-gray-50 py-4 min-h-[200px] flex items-center justify-center">
           <div className="w-full max-w-[625px] flex justify-center">
             {renderMedia()}
           </div>
         </div>
 
         {/* Content Section - Same background */}
-        <div className="bg-gray-50 p-8 space-y-6">
+        <div className="bg-gray-50 p-6 space-y-4">
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {study.tags.map((tag) => (
@@ -201,20 +201,20 @@ const CaseStudyCard: React.FC<{
         {/* Images Section - Flexible height with target guidelines - Now Clickable */}
         <div className="relative bg-gray-50 p-4 xl:p-5 2xl:p-6 flex items-center" 
              style={{ marginRight: '-24px' }}>
-          <div className="w-full min-h-[480px] xl:min-h-[520px] 2xl:min-h-[560px] flex items-center justify-center">
+          <div className="w-full min-h-[400px] xl:min-h-[440px] 2xl:min-h-[480px] flex items-center justify-center">
             {renderMedia()}
           </div>
         </div>
 
         {/* Content Section - Flexible height with minimum padding and width enforcement */}
-        <div className="bg-gray-50 flex flex-col justify-center p-6 xl:p-7 min-w-0" 
+        <div className="bg-gray-50 flex flex-col justify-center p-5 xl:p-6 min-w-0" 
              style={{ 
                paddingLeft: '24px',
                paddingRight: '24px',
                wordWrap: 'break-word',
                whiteSpace: 'normal'
              }}>
-          <div className="w-full max-w-[600px] space-y-4 break-words">
+          <div className="w-full max-w-[600px] space-y-3 break-words">
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-3">
               {study.tags.map((tag) => (
@@ -236,12 +236,12 @@ const CaseStudyCard: React.FC<{
             />
 
             {/* Description */}
-            <p className="text-gray-600 text-lg leading-relaxed mb-4 break-words overflow-wrap-anywhere">
+            <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words overflow-wrap-anywhere">
               {study.description}
             </p>
 
             {/* Impact Metrics */}
-            <div className="text-impact-metric-md mb-6">
+            <div className="text-impact-metric-md mb-4">
               {study.impact}
             </div>
 
@@ -276,7 +276,7 @@ const CaseStudyCard: React.FC<{
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-8 md:py-12 bg-white" tabIndex={-1}>
+    <section className="py-6 md:py-8 bg-white" tabIndex={-1}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -298,7 +298,7 @@ const VideoCaseStudiesSection: React.FC = () => {
         </motion.div>
 
         {/* Case Studies Grid */}
-        <div className="space-y-12">
+        <div className="space-y-8">
           {caseStudies.map((study, index) => (
             <CaseStudyCard 
               key={study.id} 
