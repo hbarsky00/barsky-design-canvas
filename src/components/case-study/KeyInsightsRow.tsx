@@ -59,14 +59,14 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
           >
             <div className="grid grid-cols-1 gap-6">
               {insights.find(insight => insight.images?.length)?.images?.map((image, index) => (
-                <div key={index} className="content-rail-center">
+                <div key={index}>
                   <MaximizableImage
                     src={image.src}
                     alt={image.alt}
                     className="w-full h-auto rounded-lg shadow-sm"
                   />
                   {image.caption && (
-                    <p className="text-sm text-muted-foreground mt-3 text-center">
+                    <p className="text-sm text-muted-foreground mt-3 text-center content-rail-center">
                       {image.caption}
                     </p>
                   )}
