@@ -1,20 +1,18 @@
 
 import React from "react";
-import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
+import { Navigate } from "react-router-dom";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
+import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
 
 const StructuredBusinessManagementCaseStudy: React.FC = () => {
   const caseStudyData = getStructuredCaseStudy("business-management");
   
   if (!caseStudyData) {
-    return <div>Case study not found</div>;
+    return <Navigate to="/projects" replace />;
   }
 
   return (
-    <StructuredCaseStudyLayout
-      caseStudyData={caseStudyData}
-      heroAsImage={true}
-    />
+    <StructuredCaseStudyLayout caseStudyData={caseStudyData} heroAsImage={true} />
   );
 };
 
