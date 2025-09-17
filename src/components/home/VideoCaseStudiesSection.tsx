@@ -41,19 +41,6 @@ const caseStudies: CaseStudy[] = [
     layout: "side-by-side"
   },
   {
-    id: "investor-loan-app",
-    tags: ["FinTech", "Analytics", "WebApp"],
-    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
-    description: "Transformed a chaotic Excel-based loan process into a streamlined digital platform. Built custom analytics dashboards and automated workflows that scaled operations while dramatically reducing manual errors.",
-    impact: "-85% Manual Entry Errors",
-    url: "/project/investor-loan-app",
-    images: {
-      primary: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-      alt: "Investor loan application platform showing analytics dashboard"
-    },
-    layout: "side-by-side"
-  },
-  {
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
@@ -64,6 +51,19 @@ const caseStudies: CaseStudy[] = [
     images: {
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
       alt: "Business management warehouse operations and inventory tracking system"
+    },
+    layout: "side-by-side"
+  },
+  {
+    id: "investor-loan-app",
+    tags: ["FinTech", "Analytics", "WebApp"],
+    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
+    description: "Transformed a chaotic Excel-based loan process into a streamlined digital platform. Built custom analytics dashboards and automated workflows that scaled operations while dramatically reducing manual errors.",
+    impact: "-85% Manual Entry Errors",
+    url: "/project/investor-loan-app",
+    images: {
+      primary: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
+      alt: "Investor loan application platform showing analytics dashboard"
     },
     layout: "side-by-side"
   },
