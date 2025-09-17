@@ -12,12 +12,16 @@ const Contact = () => {
       <Header />
       <main className="flex-grow pt-16">
         <section className="py-12 dark:bg-gray-900">
-          <div className="section-container">
-            <h1 className="section-title mb-16">Get In Touch</h1>
+          <div className="px-0 md:px-6 lg:px-10 max-w-6xl mx-auto">
+            <h1 className="section-title mb-16 px-4 md:px-0">Get In Touch</h1>
             
             <div className="grid md:grid-cols-2 gap-12">
-              <ContactInformation />
-              <ContactForm />
+              <div className="px-4 md:px-0">
+                <ContactInformation />
+              </div>
+              <div className="px-4 md:px-0">
+                <ContactForm />
+              </div>
             </div>
           </div>
         </section>

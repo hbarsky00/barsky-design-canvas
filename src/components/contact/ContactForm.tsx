@@ -91,7 +91,7 @@ const ContactForm: React.FC = () => {
           className="mb-8"
         />
 
-        <div className="max-w-2xl mx-auto">
+        <div className="w-full">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
               <FormField
