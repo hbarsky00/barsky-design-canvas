@@ -1633,6 +1633,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "User Testing & Validation",
       description: "Testing with enterprise teams revealed that consolidating multiple tools into one unified platform dramatically reduced training time and operational errors.",
       eyebrow: "Validation & Testing",
+      video: {
+        src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/design_system.gif",
+        title: "Design System Implementation Demo",
+        caption: "Unified design system streamlined user workflows and reduced learning curve across all business functions"
+      },
       metrics: [
         { value: "90%", label: "satisfaction" },
         { value: "68%", label: "fewer errors" },
@@ -1712,27 +1717,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
           alt: "Early business management interface with feature overload",
-          caption: "Early designs included too many customization options, overwhelming busy business owners",
-          annotations: [
-            {
-              x: 35,
-              y: 30,
-              type: "issue",
-              text: "Too many options created decision paralysis"
-            },
-            {
-              x: 60,
-              y: 50,
-              type: "issue",
-              text: "Complex settings overwhelmed users"
-            },
-            {
-              x: 50,
-              y: 75,
-              type: "improvement",
-              text: "Smart defaults with selective customization"
-            }
-          ]
+          caption: "Early designs included too many customization options, overwhelming busy business owners"
         }
       ]
     },
