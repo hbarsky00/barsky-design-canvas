@@ -1240,25 +1240,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png",
           alt: "Low-fidelity order builder wireframe for loan workflows",
-          caption: "",
-          annotations: [
-            { text: "Stepwise order stages", x: 25, y: 20, type: "feature" },
-            { text: "Required fields first", x: 60, y: 35, type: "improvement" },
-            { text: "Validation badges", x: 40, y: 60, type: "feature" },
-            { text: "Review & submit gate", x: 75, y: 80, type: "improvement" }
-          ]
+          caption: ""
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2023/12/whiteboarding.png",
           alt: "Whiteboard mapping of loan lifecycle from application to audit",
-          caption: "",
-          annotations: [
-            { text: "Intake to screening", x: 20, y: 25, type: "feature" },
-            { text: "Lender selection", x: 40, y: 40, type: "feature" },
-            { text: "Order build & validate", x: 60, y: 30, type: "improvement" },
-            { text: "Approval & booking", x: 75, y: 60, type: "feature" },
-            { text: "Audit trail & monitoring", x: 50, y: 80, type: "improvement" }
-          ]
+          caption: ""
         }
       ]
     },
@@ -1352,108 +1339,22 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
           alt: "Investor loan platform dashboard final interface",
-          caption: "Complete loan management platform with automated workflows and real-time validation",
-          annotations: [
-            {
-              x: 20,
-              y: 25,
-              type: "feature",
-              text: "Bloomberg-style search reduced lookup time by 60%"
-            },
-            {
-              x: 70,
-              y: 20,
-              type: "feature",
-              text: "Real-time validation prevented 85% of errors"
-            },
-            {
-              x: 50,
-              y: 60,
-              type: "improvement",
-              text: "Guided workflows eliminated premature inputs"
-            },
-            {
-              x: 80,
-              y: 80,
-              type: "feature",
-              text: "Audit trails ensure compliance transparency"
-            }
-          ]
+          caption: "Complete loan management platform with automated workflows and real-time validation"
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2023/12/My-Deals-list-view.png",
           alt: "My Deals list view with quick filters, status chips, and bulk actions",
-          caption: "",
-          annotations: [
-            {
-              x: 25,
-              y: 20,
-              type: "feature",
-              text: "Quick lender/status filters"
-            },
-            {
-              x: 60,
-              y: 40,
-              type: "improvement",
-              text: "Risk/progress status chips"
-            },
-            {
-              x: 80,
-              y: 70,
-              type: "feature",
-              text: "Bulk actions for common updates"
-            }
-          ]
+          caption: ""
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2023/12/Loan-Deals-1.png",
           alt: "Loan deals table with summary sidebar, inline validation, and audit trail",
-          caption: "",
-          annotations: [
-            {
-              x: 30,
-              y: 25,
-              type: "feature",
-              text: "Summary limits & totals"
-            },
-            {
-              x: 65,
-              y: 45,
-              type: "improvement",
-              text: "Inline validation prompts"
-            },
-            {
-              x: 50,
-              y: 75,
-              type: "feature",
-              text: "Change log & audit history"
-            }
-          ]
+          caption: ""
         },
         {
           src: "https://barskyux.com/wp-content/uploads/2023/12/Just-Orderbook.png",
           alt: "Orderbook screen emphasizing guided steps and real-time totals",
-          caption: "",
-          annotations: [
-            {
-              x: 35,
-              y: 20,
-              type: "feature",
-              text: "Guided step progression"
-            },
-            {
-              x: 70,
-              y: 40,
-              type: "improvement",
-              text: "Real-time total checks"
-            },
-            {
-              x: 55,
-              y: 70,
-              type: "feature",
-              text: "Reviewer comments thread"
-            }
-          ]
+          caption: ""
         }
       ]
     },
@@ -1474,11 +1375,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
-          alt: "Investor loan platform user workflow and process improvements",
-          annotations: [
-            { text: "I treated this as a workflow problem, not a design problem—shadowing loan officers to understand where manual processes created real bottlenecks.", x: 25, y: 35, type: "improvement" },
-            { text: "The result: intelligent automation and transparent audit trails that eliminated data fragmentation and built trust through accountability.", x: 75, y: 65, type: "feature" }
-          ]
+          alt: "Investor loan platform user workflow and process improvements"
         }
       ]
     },
@@ -1490,27 +1387,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062303031-scaled.png",
           alt: "Collage highlighting legacy manual steps and fragmentation",
-          caption: "",
-          annotations: [
-            {
-              x: 30,
-              y: 25,
-              type: "issue",
-              text: "Multiple sources of truth"
-            },
-            {
-              x: 60,
-              y: 50,
-              type: "issue",
-              text: "Manual reconciliation"
-            },
-            {
-              x: 50,
-              y: 75,
-              type: "issue",
-              text: "Compliance blind spots"
-            }
-          ]
+          caption: ""
         }
       ]
     },

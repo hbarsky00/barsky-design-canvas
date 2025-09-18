@@ -8,6 +8,7 @@ import CaseStudyNavigation from "../CaseStudyNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData, ImageAnnotation } from "@/data/structuredCaseStudies";
 import UnifiedCaseStudyHero from "./UnifiedCaseStudyHero";
+import MaximizableImage from "@/components/project/MaximizableImage";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
 import ProblemCallout from "../ProblemCallout";
@@ -19,7 +20,6 @@ import MyThoughtProcessSection from "../MyThoughtProcessSection";
 import WhatDidntWorkSection from "../WhatDidntWorkSection";
 import SprintZeroSection from "../SprintZeroSection";
 import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
-import MaximizableImage from "@/components/project/MaximizableImage";
 import AnnotatedImage from "../AnnotatedImage";
 import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
 import ProjectVideo from "@/components/project/ProjectVideo";
@@ -271,16 +271,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                     >
-                      <img
+                      <MaximizableImage
                         src={image.src}
                         alt={image.alt}
+                        caption={image.caption}
                         className="w-full h-auto object-contain image-high-quality"
+                        imageList={caseStudyData.userTestingSection?.images?.map(img => img.src)}
+                        currentIndex={index}
                       />
-                      {image.caption && (
-                        <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                          {image.caption}
-                        </div>
-                      )}
                     </motion.div>
                   ))}
                 </div>
