@@ -1582,7 +1582,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/07/sitemap.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/userflowscreen.png",
           alt: "Initial Concepts & Sketches",
           caption: "Initial concept sitemap mapping core modules and navigation."
         },
