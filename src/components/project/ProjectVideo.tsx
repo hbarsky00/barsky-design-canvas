@@ -35,6 +35,7 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
     }
   };
   const isLoomVideo = src.includes('loom.com/share/');
+  const isGif = src.toLowerCase().endsWith('.gif');
   
   const getEmbedUrl = (url: string) => {
     if (isLoomVideo) {
@@ -54,6 +55,16 @@ const ProjectVideo: React.FC<ProjectVideoProps> = ({
           frameBorder="0"
           allow="autoplay; fullscreen"
           allowFullScreen
+          style={{ 
+            display: 'block',
+            maxWidth: '100%'
+          }}
+        />
+      ) : isGif ? (
+        <img
+          src={src}
+          alt={title}
+          className="w-full h-auto"
           style={{ 
             display: 'block',
             maxWidth: '100%'
