@@ -1609,16 +1609,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         { 
           label: "Iteration 1", 
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_0.png", 
-          alt: "Overloaded dashboard iteration",
-          blurb: "Overloaded dashboard → rejected",
-          annotations: [
-            { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
-            { text: "No clear priority hierarchy for daily tasks", x: 70, y: 60, type: "issue" }
-          ]
-        },
-        { 
-          label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png", 
           alt: "Today view clarity iteration",
           blurb: "Today view clarity → \"Finally, something that makes sense\"",
@@ -1628,17 +1618,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           ]
         },
         { 
-          label: "Iteration 3", 
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_2.png", 
-          alt: "Template invoices iteration",
-          blurb: "Template invoices → \"This actually saves me time\"",
-          annotations: [
-            { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
-            { text: "Template system ensures consistency", x: 65, y: 65, type: "improvement" }
-          ]
-        },
-        { 
-          label: "Iteration 4", 
+          label: "Iteration 2", 
           imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png", 
           alt: "Scheduling integration iteration",
           blurb: "Scheduling integration → \"I look forward to checking this\"",
