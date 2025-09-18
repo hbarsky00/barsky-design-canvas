@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import ProjectVideo from "@/components/project/ProjectVideo";
 
 interface KeyInsight {
   number: number;
@@ -11,13 +12,23 @@ interface KeyInsight {
     alt: string;
     caption?: string;
   }>;
+  video?: {
+    src: string;
+    title: string;
+    caption?: string;
+  };
 }
 
 interface KeyInsightsRowProps {
   insights: KeyInsight[];
+  video?: {
+    src: string;
+    title: string;
+    caption?: string;
+  };
 }
 
-const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
+const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights, video }) => {
   return (
     <section 
       id="key-insights" 
@@ -47,6 +58,24 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights }) => {
             Key insights
           </h2>
         </motion.div>
+
+        {/* Video section - display video if provided */}
+        {video && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="mb-12 md:mb-16"
+          >
+            <ProjectVideo
+              src={video.src}
+              title={video.title}
+              caption={video.caption}
+              className="w-full rounded-lg shadow-sm"
+            />
+          </motion.div>
+        )}
 
         {/* Images section - display any images from the first insight that has them */}
         {insights.find(insight => insight.images?.length)?.images && (

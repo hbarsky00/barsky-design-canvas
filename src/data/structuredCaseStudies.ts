@@ -90,6 +90,11 @@ export interface StructuredCaseStudyData {
       caption?: string;
     }>;
   }[];
+  keyInsightsVideo?: {
+    src: string;
+    title: string;
+    caption?: string;
+  };
   ideationSection?: IdeationSection;
   myThoughtProcessSection?: {
     eyebrow: string;
@@ -1475,6 +1480,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { number: 2, title: "Automation saves hours", description: "Recurring invoices and reminders save hours weekly." },
       { number: 3, title: "Priority-at-a-glance prevents oversights", description: "A single dashboard surfaces what needs attention now." }
     ],
+    keyInsightsVideo: {
+      src: "https://www.loom.com/share/eb5833ead685404880646de2a6692fce?sid=51661533-c61d-4c57-9b47-0ef7f7a03ebc",
+      title: "Key Insights Video",
+      caption: "Key insights and design decisions for the business management platform"
+    },
     ideationSection: {
       subhead: "Multiple iterations on the \"run your day\" loop",
       bubbles: [

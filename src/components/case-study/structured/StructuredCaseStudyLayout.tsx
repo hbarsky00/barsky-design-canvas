@@ -136,7 +136,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {caseStudyData.keyInsights && (
             <section id="key-insights" data-section="key-insights" aria-labelledby="key-insights-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
               <h2 id="key-insights-heading" className="sr-only">Key Insights Section</h2>
-              <KeyInsightsRow insights={caseStudyData.keyInsights} />
+              <KeyInsightsRow insights={caseStudyData.keyInsights} video={caseStudyData.keyInsightsVideo} />
             </section>
           )}
 
