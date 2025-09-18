@@ -1718,16 +1718,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "Approach & Decision Making",
       content: "I designed around how small businesses actually operate—not how we think they should. Watching Sarah's workflow made it clear: reduce cognitive load, not add features. Result: unified platform with smart defaults and connected workflows.",
-      images: [
-        {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-21-2025-01_29_46-PM.png",
-          alt: "Business management system operational improvements and metrics",
-          annotations: [
-            { text: "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.", x: 25, y: 40, type: "improvement" },
-            { text: "The result: a unified platform that thinks like a business owner, automatically handling the details so teams can focus on growth.", x: 75, y: 60, type: "feature" }
-          ]
-        }
-      ]
+      video: {
+        src: "https://www.loom.com/share/e60a93f3f5984a17a7eb0020b5dad812?sid=f76cfc4b-c235-4c48-9dd2-468091c9113b",
+        title: "My Thought Process - Business Management Design Approach",
+        caption: "Walkthrough of design decisions and approach for the business management platform"
+      }
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
