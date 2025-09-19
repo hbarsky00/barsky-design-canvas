@@ -129,8 +129,8 @@ const ParticleNetwork: React.FC = () => {
         }
       ];
       
-      // Initialize particles along edges, away from content
-      const particleCount = 30;
+      // Initialize particles throughout the entire viewport, avoiding content
+      const particleCount = 60;
       const newParticles: Particle[] = [];
       
       for (let i = 0; i < particleCount; i++) {
@@ -138,31 +138,11 @@ const ParticleNetwork: React.FC = () => {
         let attempts = 0;
         
         do {
-          // Position particles along edges
-          const edge = Math.floor(Math.random() * 4);
-          switch (edge) {
-            case 0: // top edge
-              x = Math.random() * w;
-              y = Math.random() * 100;
-              break;
-            case 1: // right edge
-              x = w - Math.random() * 100;
-              y = Math.random() * h;
-              break;
-            case 2: // bottom edge
-              x = Math.random() * w;
-              y = h - Math.random() * 100;
-              break;
-            case 3: // left edge
-              x = Math.random() * 100;
-              y = Math.random() * h;
-              break;
-            default:
-              x = Math.random() * w;
-              y = Math.random() * h;
-          }
+          // Distribute particles across the entire viewport
+          x = Math.random() * w;
+          y = Math.random() * h;
           attempts++;
-        } while (isInContentBoundary(x, y) && attempts < 10);
+        } while (isInContentBoundary(x, y, 40) && attempts < 20);
         
         newParticles.push({
           x,
@@ -269,8 +249,8 @@ const ParticleNetwork: React.FC = () => {
           const dy = p.y - q.y;
           const distance = Math.hypot(dx, dy);
 
-          if (distance < 80 && !lineIntersectsContent(p.x, p.y, q.x, q.y)) {
-            const opacity = ((80 - distance) / 80) * 0.1;
+          if (distance < 180 && !lineIntersectsContent(p.x, p.y, q.x, q.y)) {
+            const opacity = ((180 - distance) / 180) * 0.25;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
@@ -354,7 +334,7 @@ const ParticleNetwork: React.FC = () => {
 
     corners.forEach(corner => {
       // Create flowing lines from each corner toward center
-      const numLines = 3;
+      const numLines = 7;
       
       for (let i = 0; i < numLines; i++) {
         const angle = Math.atan2(centerY - corner.y, centerX - corner.x);
@@ -380,8 +360,8 @@ const ParticleNetwork: React.FC = () => {
         if (!lineIntersectsContent(startX, startY, endX, endY)) {
           // Draw curved line with gradient opacity
           const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
-          gradient.addColorStop(0, 'hsla(220, 70%, 60%, 0.15)');
-          gradient.addColorStop(0.7, 'hsla(220, 70%, 60%, 0.05)');
+          gradient.addColorStop(0, 'hsla(220, 70%, 60%, 0.3)');
+          gradient.addColorStop(0.7, 'hsla(220, 70%, 60%, 0.1)');
           gradient.addColorStop(1, 'hsla(220, 70%, 60%, 0)');
           
           ctx.beginPath();
@@ -396,7 +376,7 @@ const ParticleNetwork: React.FC = () => {
 
     // Add subtle radial lines from corners
     corners.forEach(corner => {
-      const numRadialLines = 2;
+      const numRadialLines = 4;
       
       for (let i = 0; i < numRadialLines; i++) {
         const baseAngle = Math.atan2(centerY - corner.y, centerX - corner.x);
@@ -412,7 +392,7 @@ const ParticleNetwork: React.FC = () => {
         
         if (!lineIntersectsContent(startX, startY, endX, endY)) {
           const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
-          gradient.addColorStop(0, 'hsla(220, 70%, 60%, 0.08)');
+          gradient.addColorStop(0, 'hsla(220, 70%, 60%, 0.15)');
           gradient.addColorStop(1, 'hsla(220, 70%, 60%, 0)');
           
           ctx.beginPath();
