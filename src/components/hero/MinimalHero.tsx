@@ -51,8 +51,6 @@ const MinimalHero: React.FC = () => {
       {/* Professional Particle Network Background */}
       <ParticleNetwork />
       
-      {/* Simplified gradient overlay for enhanced readability */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/10 via-white/5 to-white/15" />
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto w-full relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
