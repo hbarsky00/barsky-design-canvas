@@ -11,26 +11,166 @@ interface Particle {
   connections: number[];
 }
 
+interface CornerAnchor {
+  x: number;
+  y: number;
+  id: string;
+}
+
+interface ContentBoundary {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  radius?: number;
+  type: 'circle' | 'rectangle';
+}
+
 const ParticleNetwork: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
+  const cornersRef = useRef<CornerAnchor[]>([]);
+  const contentBoundariesRef = useRef<ContentBoundary[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
 
-  // Initialize particles
+  // Initialize particles and content boundaries
   useEffect(() => {
-    const initParticles = () => {
-      const particleCount = 40;
+    const initSystem = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const centerX = w / 2;
+      const centerY = h / 2;
+      
+      // Initialize corner anchors
+      cornersRef.current = [
+        { x: 0, y: 0, id: 'top-left' },
+        { x: w, y: 0, id: 'top-right' },
+        { x: 0, y: h, id: 'bottom-left' },
+        { x: w, y: h, id: 'bottom-right' }
+      ];
+      
+      // Define content boundaries (estimated positions)
+      contentBoundariesRef.current = [
+        // Avatar area (circular)
+        {
+          x: centerX,
+          y: centerY - 100,
+          width: 120,
+          height: 120,
+          radius: 80,
+          type: 'circle'
+        },
+        // Main text area (rectangular)
+        {
+          x: centerX - 300,
+          y: centerY - 50,
+          width: 600,
+          height: 100,
+          type: 'rectangle'
+        },
+        // Name text area
+        {
+          x: centerX - 200,
+          y: centerY + 50,
+          width: 400,
+          height: 60,
+          type: 'rectangle'
+        },
+        // URL and location text
+        {
+          x: centerX - 150,
+          y: centerY + 110,
+          width: 300,
+          height: 80,
+          type: 'rectangle'
+        },
+        // Icons row (individual circular boundaries)
+        {
+          x: centerX - 150,
+          y: centerY + 200,
+          width: 60,
+          height: 60,
+          radius: 40,
+          type: 'circle'
+        },
+        {
+          x: centerX - 50,
+          y: centerY + 200,
+          width: 60,
+          height: 60,
+          radius: 40,
+          type: 'circle'
+        },
+        {
+          x: centerX + 50,
+          y: centerY + 200,
+          width: 60,
+          height: 60,
+          radius: 40,
+          type: 'circle'
+        },
+        {
+          x: centerX + 150,
+          y: centerY + 200,
+          width: 60,
+          height: 60,
+          radius: 40,
+          type: 'circle'
+        },
+        // Continue button area
+        {
+          x: centerX,
+          y: h - 100,
+          width: 80,
+          height: 80,
+          radius: 50,
+          type: 'circle'
+        }
+      ];
+      
+      // Initialize particles along edges, away from content
+      const particleCount = 30;
       const newParticles: Particle[] = [];
       
       for (let i = 0; i < particleCount; i++) {
+        let x, y;
+        let attempts = 0;
+        
+        do {
+          // Position particles along edges
+          const edge = Math.floor(Math.random() * 4);
+          switch (edge) {
+            case 0: // top edge
+              x = Math.random() * w;
+              y = Math.random() * 100;
+              break;
+            case 1: // right edge
+              x = w - Math.random() * 100;
+              y = Math.random() * h;
+              break;
+            case 2: // bottom edge
+              x = Math.random() * w;
+              y = h - Math.random() * 100;
+              break;
+            case 3: // left edge
+              x = Math.random() * 100;
+              y = Math.random() * h;
+              break;
+            default:
+              x = Math.random() * w;
+              y = Math.random() * h;
+          }
+          attempts++;
+        } while (isInContentBoundary(x, y) && attempts < 10);
+        
         newParticles.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          size: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.3 + 0.1,
+          x,
+          y,
+          vx: (Math.random() - 0.5) * 0.2,
+          vy: (Math.random() - 0.5) * 0.2,
+          size: Math.random() * 1.5 + 0.5,
+          opacity: Math.random() * 0.2 + 0.05,
           connections: []
         });
       }
@@ -38,9 +178,9 @@ const ParticleNetwork: React.FC = () => {
       particlesRef.current = newParticles;
     };
 
-    initParticles();
-    window.addEventListener('resize', initParticles);
-    return () => window.removeEventListener('resize', initParticles);
+    initSystem();
+    window.addEventListener('resize', initSystem);
+    return () => window.removeEventListener('resize', initSystem);
   }, []);
 
   // Mouse tracking
@@ -117,7 +257,10 @@ const ParticleNetwork: React.FC = () => {
         ctx.fill();
       }
 
-      // Draw connections
+      // Draw corner-to-content flow lines
+      drawCornerFlowLines(ctx, w, h);
+      
+      // Draw particle connections (reduced)
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const p = particles[i];
@@ -126,13 +269,13 @@ const ParticleNetwork: React.FC = () => {
           const dy = p.y - q.y;
           const distance = Math.hypot(dx, dy);
 
-          if (distance < 120) {
-            const opacity = ((120 - distance) / 120) * 0.2;
+          if (distance < 80 && !lineIntersectsContent(p.x, p.y, q.x, q.y)) {
+            const opacity = ((80 - distance) / 80) * 0.1;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
             ctx.strokeStyle = `hsla(220, 70%, 60%, ${opacity})`;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -168,6 +311,120 @@ const ParticleNetwork: React.FC = () => {
       }
     };
   }, []);
+
+  // Helper function to check if a point is within content boundaries
+  const isInContentBoundary = (x: number, y: number, padding: number = 20): boolean => {
+    return contentBoundariesRef.current.some(boundary => {
+      if (boundary.type === 'circle') {
+        const dx = x - boundary.x;
+        const dy = y - boundary.y;
+        const distance = Math.hypot(dx, dy);
+        return distance < (boundary.radius || 50) + padding;
+      } else {
+        return (
+          x > boundary.x - boundary.width / 2 - padding &&
+          x < boundary.x + boundary.width / 2 + padding &&
+          y > boundary.y - boundary.height / 2 - padding &&
+          y < boundary.y + boundary.height / 2 + padding
+        );
+      }
+    });
+  };
+
+  // Helper function to check if a line intersects content
+  const lineIntersectsContent = (x1: number, y1: number, x2: number, y2: number): boolean => {
+    // Sample points along the line to check for intersection
+    const steps = 10;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = x1 + (x2 - x1) * t;
+      const y = y1 + (y2 - y1) * t;
+      if (isInContentBoundary(x, y, 10)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  // Draw flowing lines from corners that curve around content
+  const drawCornerFlowLines = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+    const corners = cornersRef.current;
+    const centerX = w / 2;
+    const centerY = h / 2;
+
+    corners.forEach(corner => {
+      // Create flowing lines from each corner toward center
+      const numLines = 3;
+      
+      for (let i = 0; i < numLines; i++) {
+        const angle = Math.atan2(centerY - corner.y, centerX - corner.x);
+        const spread = (Math.PI / 6) * (i - 1); // 30 degree spread
+        const lineAngle = angle + spread;
+        
+        // Create curved path that flows around content
+        const controlDistance = Math.min(w, h) * 0.3;
+        const endDistance = Math.min(w, h) * 0.4;
+        
+        const startX = corner.x;
+        const startY = corner.y;
+        
+        // Control point for curve
+        const controlX = startX + Math.cos(lineAngle) * controlDistance;
+        const controlY = startY + Math.sin(lineAngle) * controlDistance;
+        
+        // End point (closer to center but not touching content)
+        const endX = startX + Math.cos(lineAngle) * endDistance;
+        const endY = startY + Math.sin(lineAngle) * endDistance;
+        
+        // Check if the curve would intersect content, if so, modify it
+        if (!lineIntersectsContent(startX, startY, endX, endY)) {
+          // Draw curved line with gradient opacity
+          const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
+          gradient.addColorStop(0, 'hsla(220, 70%, 60%, 0.15)');
+          gradient.addColorStop(0.7, 'hsla(220, 70%, 60%, 0.05)');
+          gradient.addColorStop(1, 'hsla(220, 70%, 60%, 0)');
+          
+          ctx.beginPath();
+          ctx.moveTo(startX, startY);
+          ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    });
+
+    // Add subtle radial lines from corners
+    corners.forEach(corner => {
+      const numRadialLines = 2;
+      
+      for (let i = 0; i < numRadialLines; i++) {
+        const baseAngle = Math.atan2(centerY - corner.y, centerX - corner.x);
+        const offsetAngle = (Math.PI / 4) * (i - 0.5);
+        const lineAngle = baseAngle + offsetAngle;
+        
+        const startX = corner.x;
+        const startY = corner.y;
+        const length = Math.min(w, h) * 0.2;
+        
+        const endX = startX + Math.cos(lineAngle) * length;
+        const endY = startY + Math.sin(lineAngle) * length;
+        
+        if (!lineIntersectsContent(startX, startY, endX, endY)) {
+          const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
+          gradient.addColorStop(0, 'hsla(220, 70%, 60%, 0.08)');
+          gradient.addColorStop(1, 'hsla(220, 70%, 60%, 0)');
+          
+          ctx.beginPath();
+          ctx.moveTo(startX, startY);
+          ctx.lineTo(endX, endY);
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    });
+  };
 
   return (
     <motion.canvas
