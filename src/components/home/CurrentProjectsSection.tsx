@@ -15,6 +15,14 @@ interface CurrentProject {
 
 const currentProjects: CurrentProject[] = [
   {
+    id: "inclusive-shopping-experience",
+    title: "Creating an Inclusive Online Shopping Experience",
+    description: "Developing an accessible e-commerce platform that promotes community engagement and showcases inclusive design principles through user-friendly checkout processes and community reviews.",
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
+    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/eb6c7f4ec3984230ab016b61f78e432a-1726776933466-with-play.gif"
+  },
+  {
     id: "roi-calculator",
     title: "ROI Design Calculator",
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
@@ -73,7 +81,7 @@ const CurrentProjectsSection: React.FC = () => {
           <SectionHeader
             as="h2"
             title="What I'm Working On Now"
-            eyebrow="Last Updated September 9th, 2025"
+            eyebrow="Last Updated Friday September 19th, 2025"
           />
           
           <div className="mb-8 md:mb-12 text-center">
