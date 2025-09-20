@@ -6,6 +6,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import ScrollToTop from "@/components/ScrollToTop";
 import BuyMeCoffeeButton from "@/components/shared/BuyMeCoffeeButton";
+import { useRoomTransition } from "@/hooks/useRoomTransition";
+import RoomTransition from "@/components/transitions/RoomTransition";
+import SpatialNavigationWrapper from "@/components/transitions/SpatialNavigationWrapper";
+import MaterialDesignLoader from "@/components/loading/MaterialDesignLoader";
 
 // Global SEO component
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
@@ -40,17 +44,30 @@ const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 
 const queryClient = new QueryClient();
 
-function App() {
+function AppContent() {
+  const { isTransitioning, transitionStage, projectTitle } = useRoomTransition();
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <ImageMaximizerProvider>
-          <ScrollToTop />
-          {/* Global Unified SEO System */}
-          <UnifiedSEO />
-          {/* Sitemap generator */}
-          <SitemapGenerator />
-          <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <>
+      <ScrollToTop />
+      {/* Global Unified SEO System */}
+      <UnifiedSEO />
+      {/* Sitemap generator */}
+      <SitemapGenerator />
+      
+      {/* Room Transition Overlay */}
+      <RoomTransition 
+        isVisible={isTransitioning} 
+        projectTitle={projectTitle}
+        stage={transitionStage}
+      />
+      
+      <SpatialNavigationWrapper isNavigating={isTransitioning}>
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <MaterialDesignLoader size="lg" text="Loading page..." />
+          </div>
+        }>
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
@@ -88,8 +105,19 @@ function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
-          <BuyMeCoffeeButton />
-          <Toaster />
+        </SpatialNavigationWrapper>
+        <BuyMeCoffeeButton />
+        <Toaster />
+      </>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <ImageMaximizerProvider>
+          <AppContent />
         </ImageMaximizerProvider>
       </HelmetProvider>
     </QueryClientProvider>

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useRoomTransition } from "@/hooks/useRoomTransition";
 
 interface CaseStudy {
   id: string;
@@ -88,12 +89,16 @@ const CaseStudyCard: React.FC<{
   index: number;
 }> = React.memo(({ study, index }) => {
   const isMobile = useIsMobile();
+  const { triggerRoomTransition } = useRoomTransition();
 
   const renderMedia = () => {
     if (study.video) {
       return (
-        <Link to={study.url} className="block h-full group">
-          <div className="flex justify-center h-full cursor-pointer">
+        <div 
+          onClick={() => triggerRoomTransition(study.url, study.title)}
+          className="block h-full group cursor-pointer"
+        >
+          <div className="flex justify-center h-full">
             <video 
               src={study.video}
               poster={study.images.primary}
@@ -110,13 +115,16 @@ const CaseStudyCard: React.FC<{
               }}
             />
           </div>
-        </Link>
+        </div>
       );
     }
     
     return (
-      <Link to={study.url} className="block h-full group">
-        <div className="flex justify-center h-full cursor-pointer">
+      <div 
+        onClick={() => triggerRoomTransition(study.url, study.title)}
+        className="block h-full group cursor-pointer"
+      >
+        <div className="flex justify-center h-full">
           <img 
             src={study.images.primary} 
             alt={study.images.alt}
@@ -126,7 +134,7 @@ const CaseStudyCard: React.FC<{
             style={{ maxWidth: '625px', height: 'auto' }}
           />
         </div>
-      </Link>
+      </div>
     );
   };
 
@@ -183,10 +191,12 @@ const CaseStudyCard: React.FC<{
 
           {/* CTA Buttons */}
           <div className="flex flex-row gap-3 pt-2">
-            <Button asChild variant="case-study" className="flex-1">
-              <Link to={study.url}>
-                View Case Study
-              </Link>
+            <Button 
+              variant="case-study" 
+              className="flex-1"
+              onClick={() => triggerRoomTransition(study.url, study.title)}
+            >
+              View Case Study
             </Button>
             {study.liveUrl && (
               <Button asChild variant="outline" className="flex-1">
@@ -264,10 +274,12 @@ const CaseStudyCard: React.FC<{
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button asChild variant="case-study" className="flex-1 sm:flex-none">
-                      <Link to={study.url}>
-                        View Case Study
-                      </Link>
+                    <Button 
+                      variant="case-study" 
+                      className="flex-1 sm:flex-none"
+                      onClick={() => triggerRoomTransition(study.url, study.title)}
+                    >
+                      View Case Study
                     </Button>
                     {study.liveUrl && (
                       <Button asChild variant="outline" className="flex-1 sm:flex-none">
