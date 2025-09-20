@@ -8,12 +8,19 @@ import ParticleNetwork from "./ParticleNetwork";
 import { EditableContent } from "@/components/editor/EditableContent";
 import AnimatedText from "../AnimatedText";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
+import CrackOverlay from "@/components/effects/CrackOverlay";
+import { useVideoTiming } from "@/hooks/useVideoTiming";
 
 const MinimalHero: React.FC = () => {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
   const [showContinueButton, setShowContinueButton] = useState(true);
+  const [showCrackEffect, setShowCrackEffect] = useState(false);
+  const [avatarSize, setAvatarSize] = useState(160);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollToSection } = useHeaderNavigation();
+  
+  // Video timing hook for crack effect synchronization
+  const { addTimestampTrigger } = useVideoTiming(videoRef, 3.5);
 
   const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
   const videoUrl = 'https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runiIdLWyCYKV4_have_me_smile_at_the_scr_4838b019-f29d-486d-9a03-8725c08d3cd1_1.mp4';
@@ -36,6 +43,28 @@ const MinimalHero: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Set up crack effect trigger at window banging timestamp (3.5 seconds)
+  useEffect(() => {
+    addTimestampTrigger(3.5, () => {
+      setShowCrackEffect(true);
+    });
+  }, [addTimestampTrigger]);
+
+  // Update avatar size for responsive crack overlay
+  useEffect(() => {
+    const updateAvatarSize = () => {
+      const width = window.innerWidth;
+      if (width < 640) setAvatarSize(128);
+      else if (width < 768) setAvatarSize(160);
+      else if (width < 1024) setAvatarSize(192);
+      else setAvatarSize(240);
+    };
+
+    updateAvatarSize();
+    window.addEventListener('resize', updateAvatarSize);
+    return () => window.removeEventListener('resize', updateAvatarSize);
   }, []);
 
   const handleNavigateDown = () => {
@@ -95,6 +124,15 @@ const MinimalHero: React.FC = () => {
                   loop
                   onMouseEnter={() => videoRef.current?.play()}
                   onMouseLeave={() => videoRef.current?.pause()}
+                  onClick={() => setShowCrackEffect(!showCrackEffect)} // Click to trigger crack effect
+                />
+                
+                {/* Crack Overlay Effect */}
+                <CrackOverlay
+                  isActive={showCrackEffect}
+                  size={avatarSize}
+                  onComplete={() => setShowCrackEffect(false)}
+                  duration={3000}
                 />
                 
                 {/* Shimmer effect */}

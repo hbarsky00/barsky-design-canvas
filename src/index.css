@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Crack Animation Styles */
+@import './styles/crack-animations.css';
+
 /* Image Quality Enhancement */
 @layer utilities {
   .image-render-crisp-edges {
