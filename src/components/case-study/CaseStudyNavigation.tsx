@@ -48,11 +48,14 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
       const headerOffset = getHeaderOffset();
       const anchorY = headerOffset + 8;
       
-      // Check if overview section is visible to show navigation
-      const overviewSection = document.getElementById('overview');
-      if (overviewSection) {
-        const rect = overviewSection.getBoundingClientRect();
-        setShowNavigation(rect.top <= headerOffset + 50);
+      // Check if hero section has been scrolled past to show navigation
+      const heroSection = document.getElementById('hero');
+      if (heroSection) {
+        const rect = heroSection.getBoundingClientRect();
+        setShowNavigation(rect.bottom <= headerOffset);
+      } else {
+        // Fallback: show navigation after scrolling down a bit if no hero section found
+        setShowNavigation(window.scrollY > 200);
       }
       
       const sections = navigation
