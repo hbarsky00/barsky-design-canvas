@@ -6,18 +6,20 @@ import { cn } from "@/lib/utils"
 import { useHoverTilt } from "@/hooks/useHoverTilt"
 
 const inputVariants = cva(
-  "flex w-full transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]",
+  "flex w-full transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-md-sys-on-surface-variant focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 min-h-[56px] text-body-large",
   {
     variants: {
       variant: {
-        filled: "bg-surface-container text-foreground rounded-t border-b-2 border-outline focus:border-outline px-4 py-3 hover:bg-surface-container-high",
-        outlined: "border border-outline bg-surface text-foreground rounded focus:border-outline px-4 py-3 hover:border-outline-variant",
-        // Legacy variant
-        default: "border border-outline bg-surface text-foreground rounded focus:border-outline px-4 py-3 hover:border-outline-variant",
+        // Material Design 3.0 Text Field Variants
+        filled: "bg-md-sys-surface-container-highest text-md-sys-on-surface rounded-xs border-0 focus:ring-2 focus:ring-md-sys-primary px-4 py-4 hover:bg-md-sys-surface-container-high",
+        outlined: "border border-md-sys-outline bg-md-sys-surface text-md-sys-on-surface rounded-xs focus:border-md-sys-primary focus:border-2 px-4 py-4 hover:border-md-sys-outline",
+        
+        // Legacy variant for compatibility
+        default: "bg-md-sys-surface-container-highest text-md-sys-on-surface rounded-xs border-0 focus:ring-2 focus:ring-md-sys-primary px-4 py-4",
       },
     },
     defaultVariants: {
-      variant: "outlined",
+      variant: "filled",
     },
   }
 )

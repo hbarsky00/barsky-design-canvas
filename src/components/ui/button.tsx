@@ -5,40 +5,41 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "btn-text inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-all focus:outline-none focus-visible:outline-none duration-300 w-full sm:w-auto [&_svg]:pointer-events-none [&_svg]:shrink-0 min-h-[44px] min-w-[44px] relative overflow-hidden",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-all focus:outline-none focus-visible:outline-none duration-200 w-full sm:w-auto [&_svg]:pointer-events-none [&_svg]:shrink-0 min-h-[44px] min-w-[44px] relative overflow-hidden text-label-large font-medium",
   {
     variants: {
       variant: {
-        filled: "!bg-barsky-blue !text-white shadow-sm hover:bg-barsky-blue-dark !rounded-full [&_svg]:!text-white",
-        "filled-tonal": "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
-        elevated: "bg-surface-container-low text-primary shadow-md hover:shadow-lg hover:bg-surface-container active:shadow-md rounded-full",
-        outlined: "button-gloss border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue active:bg-barsky-blue-dark rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:text-white",
-        text: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
-        destructive: "bg-error text-white shadow-sm hover:shadow-md hover:bg-error/90 active:shadow-sm rounded-full",
-        // Case study specific variant with enhanced hover effects
-        "case-study": "button-gloss border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue hover:shadow-lg hover:scale-[1.02] active:bg-barsky-blue-dark rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:text-white",
-        // High-contrast variants for dark backgrounds
-        "high-contrast": "bg-white text-black shadow-lg hover:bg-white/90 active:shadow-md rounded-full border border-white/20",
-        "on-dark": "bg-white/10 text-white border border-white/30 shadow-sm hover:bg-white/20 active:bg-white/30 rounded-full backdrop-blur-sm [&_svg]:text-white",
-        "on-image": "bg-black/80 text-white border border-white/20 shadow-lg hover:bg-black/90 active:bg-black/70 rounded-full backdrop-blur-sm [&_svg]:text-white",
-        // Brand standard button - now more visible
-        brand: "!bg-barsky-blue !text-white shadow-sm hover:bg-barsky-blue-dark !rounded-full [&_svg]:!text-white",
-        // Legacy variants for compatibility
-        default: "!bg-barsky-blue !text-white shadow-sm hover:bg-barsky-blue-dark !rounded-full [&_svg]:!text-white",
-        secondary: "bg-secondary-container text-on-secondary-container shadow-sm hover:shadow-md hover:bg-secondary-container/80 active:shadow-sm rounded-full",
-        ghost: "bg-transparent text-primary hover:bg-primary/8 active:bg-primary/12 rounded-full",
-        link: "text-primary underline-offset-4 hover:underline bg-transparent",
-        outline: "button-gloss border border-outline bg-transparent text-primary hover:bg-barsky-blue hover:text-white hover:border-barsky-blue active:bg-barsky-blue-dark rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:text-white",
+        // Material Design 3.0 Button Variants
+        filled: "bg-md-sys-primary text-md-sys-on-primary hover:shadow-elevation-1 rounded-full px-6 h-10",
+        "filled-tonal": "bg-md-sys-secondary-container text-md-sys-on-secondary-container hover:shadow-elevation-1 rounded-full px-6 h-10",
+        elevated: "bg-md-sys-surface-container-low text-md-sys-primary shadow-elevation-1 hover:shadow-elevation-2 rounded-full px-6 h-10",
+        outlined: "border border-md-sys-outline text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-6 h-10",
+        text: "text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-4 h-10",
+        destructive: "bg-md-sys-error text-md-sys-on-error hover:shadow-elevation-1 rounded-full px-6 h-10",
+        
+        // Enhanced variants with special effects
+        "case-study": "border border-md-sys-outline bg-transparent text-md-sys-primary hover:bg-md-sys-primary hover:text-md-sys-on-primary hover:shadow-elevation-2 hover:scale-[1.02] active:bg-md-sys-primary rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300",
+        "high-contrast": "bg-md-sys-inverse-surface text-md-sys-inverse-on-surface shadow-elevation-2 hover:shadow-elevation-3 rounded-full",
+        "on-dark": "bg-md-sys-surface-container/20 text-md-sys-on-surface border border-md-sys-outline/30 hover:bg-md-sys-surface-container/40 rounded-full backdrop-blur-sm",
+        "on-image": "bg-md-sys-scrim/80 text-md-sys-on-primary border border-md-sys-outline/20 shadow-elevation-2 hover:bg-md-sys-scrim/90 rounded-full backdrop-blur-sm",
+        
+        // Brand and legacy variants for compatibility
+        brand: "bg-md-sys-primary text-md-sys-on-primary hover:shadow-elevation-2 rounded-full px-6 h-10 transform hover:scale-[1.02]",
+        default: "bg-md-sys-primary text-md-sys-on-primary hover:shadow-elevation-1 rounded-full px-6 h-10",
+        secondary: "bg-md-sys-secondary-container text-md-sys-on-secondary-container hover:shadow-elevation-1 rounded-full px-6 h-10",
+        ghost: "text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-4 h-10",
+        link: "text-md-sys-primary underline-offset-4 hover:underline bg-transparent h-auto p-0",
+        outline: "border border-md-sys-outline text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-6 h-10",
       },
       size: {
-        default: "h-10 px-6 text-sm font-medium [&_svg]:h-4 [&_svg]:w-4 min-h-[44px]",
-        sm: "h-9 px-4 text-sm font-medium [&_svg]:h-4 [&_svg]:w-4 min-h-[44px] min-w-[44px]",
-        lg: "h-12 px-8 text-base font-medium [&_svg]:h-5 [&_svg]:w-5 min-h-[48px]",
-        icon: "h-10 w-10 [&_svg]:h-4 [&_svg]:w-4 min-h-[44px] min-w-[44px]",
+        default: "h-10 px-6 text-label-large [&_svg]:h-4 [&_svg]:w-4 min-h-[44px]",
+        sm: "h-8 px-4 text-label-medium [&_svg]:h-4 [&_svg]:w-4 min-h-[44px] min-w-[44px]",
+        lg: "h-12 px-8 text-label-large [&_svg]:h-5 [&_svg]:w-5 min-h-[48px]",
+        icon: "h-10 w-10 [&_svg]:h-4 [&_svg]:w-4 min-h-[44px] min-w-[44px] px-0",
       },
     },
     defaultVariants: {
-      variant: "brand",
+      variant: "filled",
       size: "default",
     },
   }

@@ -4,15 +4,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const cardVariants = cva(
-  "relative overflow-hidden text-card-foreground transition-all duration-300",
+  "relative overflow-hidden text-md-sys-on-surface transition-all duration-200 rounded-md",
   {
     variants: {
       variant: {
-        elevated: "bg-surface-container-low shadow-md hover:shadow-lg rounded-xl",
-        filled: "bg-surface-container rounded-xl",
-        outlined: "border border-outline bg-surface rounded-xl",
-        // Legacy variant
-        default: "bg-surface-container-low shadow-md hover:shadow-lg rounded-xl",
+        // Material Design 3.0 Card Variants
+        elevated: "bg-md-sys-surface-container-low shadow-elevation-1 hover:shadow-elevation-2",
+        filled: "bg-md-sys-surface-container-highest border-0",
+        outlined: "border border-md-sys-outline-variant bg-md-sys-surface",
+        
+        // Legacy variant for compatibility
+        default: "bg-md-sys-surface-container shadow-elevation-1 hover:shadow-elevation-2",
       },
     },
     defaultVariants: {
