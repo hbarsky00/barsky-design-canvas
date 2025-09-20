@@ -217,8 +217,8 @@ const CaseStudyCard: React.FC<{
 
       {/* Desktop Layout: Full-width background */}
       <div className="hidden lg:block">
-        {/* Full-width background wrapper */}
-        <div className="w-screen relative left-1/2 -ml-[50vw] bg-gray-50 py-8 lg:py-10">
+        {/* Full-width background wrapper with reliable viewport width */}
+        <div className="bg-gray-50 py-8 lg:py-10" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             {/* Desktop content grid */}
             <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
