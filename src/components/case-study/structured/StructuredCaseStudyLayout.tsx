@@ -23,6 +23,10 @@ import SingleCaseStudyPreview from "../SingleCaseStudyPreview";
 import AnnotatedImage from "../AnnotatedImage";
 import ProjectImageCarousel from "@/components/project/ProjectImageCarousel";
 import ProjectVideo from "@/components/project/ProjectVideo";
+import ClientTestimonialSection from "../ClientTestimonialSection";
+import ProjectContextSection from "../ProjectContextSection";
+import PostLaunchSection from "../PostLaunchSection";
+import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
 
 
@@ -64,6 +68,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
     ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
     ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
+    ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
+    ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
     { label: "More Work", anchor: "#more-work" }
   ];
 
@@ -88,6 +94,20 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             heroAsImage={heroAsImage}
           />
           </div>
+
+          {/* Project Context Section */}
+          {caseStudyData.projectContext && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+              <ProjectContextSection context={caseStudyData.projectContext} />
+            </div>
+          )}
+
+          {/* Client Testimonial Section */}
+          {caseStudyData.clientTestimonial && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+              <ClientTestimonialSection testimonial={caseStudyData.clientTestimonial} />
+            </div>
+          )}
 
           {/* Overview Section - Full width band */}
           <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
@@ -437,9 +457,38 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </section>
           )}
 
+          {/* Post-Launch Section */}
+          {caseStudyData.postLaunchSection && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+              <section id="post-launch" data-section="post-launch" aria-labelledby="post-launch-heading" className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+                <h2 id="post-launch-heading" className="sr-only">Post-Launch Section</h2>
+                <PostLaunchSection
+                  title={caseStudyData.postLaunchSection.title}
+                  description={caseStudyData.postLaunchSection.description}
+                  eyebrow={caseStudyData.postLaunchSection.eyebrow}
+                  metrics={caseStudyData.postLaunchSection.metrics}
+                  images={caseStudyData.postLaunchSection.images}
+                />
+              </section>
+            </div>
+          )}
+
+          {/* Technical Implementation Section */}
+          {caseStudyData.technicalImplementation && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+              <section id="technical" data-section="technical" aria-labelledby="technical-heading" className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+                <h2 id="technical-heading" className="sr-only">Technical Implementation Section</h2>
+                <TechnicalImplementationSection implementation={caseStudyData.technicalImplementation} />
+              </section>
+            </div>
+          )}
+
           
           {/* Related Case Study Section */}
-          <SingleCaseStudyPreview currentProjectId={caseStudyData.id} />
+          <section id="more-work" data-section="more-work" aria-labelledby="more-work-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+            <h2 id="more-work-heading" className="sr-only">More Work Section</h2>
+            <SingleCaseStudyPreview currentProjectId={caseStudyData.id} />
+          </section>
           
           {/* Contact Section */}
           <section id="contact-section" data-section="contact-section" aria-labelledby="contact-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
