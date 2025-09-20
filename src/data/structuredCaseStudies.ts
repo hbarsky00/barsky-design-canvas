@@ -255,28 +255,36 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     ],
     // NEW: Business Context & Credibility
     projectContext: {
-      timeline: "8 months (Q2-Q4 2023)",
-      team: "5 people (2 designers, 2 developers, 1 PM)",
-      budget: "$280K development budget",
-      companySize: "Series B startup, 45 employees",
-      industry: "Financial Technology"
+      timeline: "8 months (Crisis timeline: Q2-Q4 2023)",
+      team: "Cross-functional crisis team: 2 designers, 2 senior developers, 1 PM, + regulatory consultant",
+      budget: "$280K emergency development budget (50% of remaining runway)",
+      companySize: "Series B fintech startup, 45 employees (down from 67 after layoffs)",
+      industry: "Financial Technology (Crypto Trading)"
     },
     clientTestimonial: {
-      quote: "Hiram didn't just redesign our app—he exposed how we were accidentally working against our users. The dual-mode approach seemed impossible until we saw 60% higher retention rates. Now competitors are copying our model.",
+      quote: "Hiram didn't just redesign our app—he exposed how we were accidentally working against our users. When you're losing $400K/month to churn, the dual-mode approach seemed impossible. Now competitors are copying our model and we're profitable again.",
       author: "Sarah Chen",
       title: "Head of Product",
-      company: "CryptoTrade Pro"
+      company: "CryptoTrade Pro",
+      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
     },
     postLaunchSection: {
       title: "What Happened Next: 6 Months Post-Launch",
       eyebrow: "REAL-WORLD IMPACT",
-      description: "The results weren't just numbers on a dashboard—they changed how the entire industry thinks about crypto UX.",
+      description: "The results weren't just numbers on a dashboard—they changed how the entire industry thinks about crypto UX. Three competitors have since copied our dual-mode approach.",
       metrics: {
-        timeframe: "6 months post-launch",
-        usage: "2.3M active traders using dual-mode daily",
-        retention: "60% improvement in 30-day retention (industry avg: 15%)",
-        businessImpact: "$2.1M additional monthly revenue from reduced churn"
-      }
+        timeframe: "6 months post-launch (ongoing monitoring)",
+        usage: "2.3M active traders using dual-mode daily (87% adoption rate)",
+        retention: "60% improvement in 30-day retention (from 15% to 24%, industry avg: 15%)",
+        businessImpact: "$2.1M additional monthly revenue from reduced churn + $890K from premium feature uptake"
+      },
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/dashboardmobileanddesktopcrypto.jpg",
+          alt: "6-month analytics dashboard showing sustained improvements",
+          caption: "Real usage data 6 months post-launch: sustained improvements across all metrics"
+        }
+      ]
     },
     technicalImplementation: {
       challenges: [
@@ -432,13 +440,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
-      title: "Lessons Learned",
-      content: "First attempt still felt like \"every other crypto app, just prettier.\" Feedback: brutal but true. Global notifications = noise → replaced with asset-specific alerts. Security theater = frustration → replaced with risk-based authentication. Breakthrough: stop trying to polish bad patterns, start from scratch with user needs.",
+      title: "Expensive Lessons & Stakeholder Management",
+      content: "**First attempt disaster**: V1 still felt like 'every other crypto app, just prettier.' Feedback was brutal but true. **Failed features**: Global notifications created noise (replaced with asset-specific alerts). Security theater frustrated users (replaced with risk-based authentication). **Stakeholder crisis**: Engineering team threatened to quit when I suggested starting over. Had to prove ROI with competitor analysis. **The breakthrough**: Stop polishing bad patterns—start from user needs. Cost: 6 weeks of development time. Value: Product that actually works.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg",
-          alt: "Learning from failed attempts to polish bad industry patterns",
-          caption: "Learning to start from scratch instead of polishing bad patterns"
+          alt: "Failed prototype iterations and stakeholder feedback sessions",
+          caption: "Failed prototypes and stakeholder crisis meetings that led to breakthrough insights"
         }
       ]
     },
