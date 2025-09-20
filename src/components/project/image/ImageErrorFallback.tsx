@@ -22,7 +22,7 @@ const ImageErrorFallback: React.FC<ImageErrorFallbackProps> = ({
       {showEditingControls && (
         <div className="text-center space-y-2">
           <p className="text-sm text-gray-500">File: {fileName}</p>
-          <p className="text-xs text-gray-400 max-w-xs break-all">{originalSrc}</p>
+          <p className="text-xs text-gray-400 max-w-xs break-words">{originalSrc}</p>
           <div className="flex items-center space-x-2 text-xs text-blue-600">
             <Upload className="h-3 w-3" />
             <span>Hover to replace image</span>

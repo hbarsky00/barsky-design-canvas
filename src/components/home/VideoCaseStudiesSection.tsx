@@ -241,7 +241,7 @@ const CaseStudyCard: React.FC<{
             <AnimatedText
               text={study.title}
               tag="h3"
-              className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words overflow-wrap-anywhere"
+              className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]"
               type="word"
               animation="slide"
               delay={300}
@@ -249,7 +249,7 @@ const CaseStudyCard: React.FC<{
             />
 
             {/* Description */}
-            <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words overflow-wrap-anywhere">
+            <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]">
               {study.description}
             </p>
 
