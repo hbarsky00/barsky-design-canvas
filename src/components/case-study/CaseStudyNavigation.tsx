@@ -19,7 +19,6 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
   const [activeSection, setActiveSection] = useState("");
   const [showNavigation, setShowNavigation] = useState(false);
 
-
   const getHeaderOffset = () => {
     const rootStyles = getComputedStyle(document.documentElement);
     const headerHeight = parseInt(rootStyles.getPropertyValue('--header-height')) || 64;
