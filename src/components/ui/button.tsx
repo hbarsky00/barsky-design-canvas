@@ -5,31 +5,31 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-all focus:outline-none focus-visible:outline-none duration-200 w-full sm:w-auto [&_svg]:pointer-events-none [&_svg]:shrink-0 min-h-[44px] min-w-[44px] relative overflow-hidden text-label-large font-medium",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-all focus:outline-none focus-visible:outline-none duration-300 w-full sm:w-auto [&_svg]:pointer-events-none [&_svg]:shrink-0 min-h-[44px] min-w-[44px] relative overflow-hidden text-label-large font-medium group cursor-pointer will-change-transform before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 hover:before:translate-x-[100%]",
   {
     variants: {
       variant: {
-        // Material Design 3.0 Button Variants
-        filled: "bg-md-sys-primary text-md-sys-on-primary hover:shadow-elevation-1 rounded-full px-6 h-10",
-        "filled-tonal": "bg-md-sys-secondary-container text-md-sys-on-secondary-container hover:shadow-elevation-1 rounded-full px-6 h-10",
-        elevated: "bg-md-sys-surface-container-low text-md-sys-primary shadow-elevation-1 hover:shadow-elevation-2 rounded-full px-6 h-10",
-        outlined: "border border-md-sys-outline text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-6 h-10",
-        text: "text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-4 h-10",
-        destructive: "bg-md-sys-error text-md-sys-on-error hover:shadow-elevation-1 rounded-full px-6 h-10",
+        // Ultra-Modern Premium Button Variants
+        filled: "bg-gradient-to-r from-md-sys-primary to-md-sys-tertiary text-md-sys-on-primary hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-6 h-12 font-semibold backdrop-blur-sm",
+        "filled-tonal": "bg-md-sys-secondary-container text-md-sys-on-secondary-container hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium",
+        elevated: "bg-gradient-to-br from-md-sys-surface-bright to-md-sys-surface-container text-md-sys-primary shadow-elevation-2 hover:shadow-elevation-4 hover:scale-[1.02] rounded-2xl px-6 h-12 border border-white/50 backdrop-blur-sm",
+        outlined: "border-2 border-md-sys-outline text-md-sys-primary hover:bg-md-sys-primary hover:text-md-sys-on-primary hover:border-md-sys-primary hover:scale-[1.02] hover:shadow-glow rounded-2xl px-6 h-12 font-medium backdrop-blur-sm",
+        text: "text-md-sys-primary hover:bg-md-sys-primary/10 hover:scale-[1.02] rounded-2xl px-4 h-12 font-medium relative after:absolute after:inset-0 after:rounded-2xl after:bg-gradient-to-r after:from-md-sys-primary/5 after:to-md-sys-tertiary/5 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-300",
+        destructive: "bg-gradient-to-r from-md-sys-error to-red-500 text-md-sys-on-error hover:shadow-glow-hover hover:scale-[1.02] rounded-2xl px-6 h-12 font-semibold",
         
-        // Enhanced variants with special effects
-        "case-study": "border border-md-sys-outline bg-transparent text-md-sys-primary hover:bg-md-sys-primary hover:text-md-sys-on-primary hover:shadow-elevation-2 hover:scale-[1.02] active:bg-md-sys-primary rounded-full transition-all duration-300 [&_svg]:transition-colors [&_svg]:duration-300",
-        "high-contrast": "bg-md-sys-inverse-surface text-md-sys-inverse-on-surface shadow-elevation-2 hover:shadow-elevation-3 rounded-full",
-        "on-dark": "bg-md-sys-surface-container/20 text-md-sys-on-surface border border-md-sys-outline/30 hover:bg-md-sys-surface-container/40 rounded-full backdrop-blur-sm",
-        "on-image": "bg-md-sys-scrim/80 text-md-sys-on-primary border border-md-sys-outline/20 shadow-elevation-2 hover:bg-md-sys-scrim/90 rounded-full backdrop-blur-sm",
+        // Award-winning enhanced variants with premium effects
+        "case-study": "border-2 border-md-sys-outline bg-gradient-to-br from-transparent via-white/5 to-transparent text-md-sys-primary hover:bg-gradient-to-r hover:from-md-sys-primary hover:to-md-sys-tertiary hover:text-md-sys-on-primary hover:border-transparent hover:shadow-glow hover:scale-[1.05] active:scale-[0.95] rounded-2xl transition-all duration-500 ease-out [&_svg]:transition-all [&_svg]:duration-300 relative overflow-hidden backdrop-blur-sm font-semibold",
+        "high-contrast": "bg-gradient-to-br from-md-sys-inverse-surface to-gray-900 text-md-sys-inverse-on-surface shadow-elevation-3 hover:shadow-elevation-5 hover:scale-[1.02] rounded-2xl font-bold",
+        "on-dark": "bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
+        "on-image": "bg-black/40 text-white border-2 border-white/20 shadow-elevation-3 hover:bg-black/60 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
         
-        // Brand and legacy variants for compatibility
-        brand: "bg-md-sys-primary text-md-sys-on-primary hover:shadow-elevation-2 rounded-full px-6 h-10 transform hover:scale-[1.02]",
-        default: "bg-md-sys-primary text-md-sys-on-primary hover:shadow-elevation-1 rounded-full px-6 h-10",
-        secondary: "bg-md-sys-secondary-container text-md-sys-on-secondary-container hover:shadow-elevation-1 rounded-full px-6 h-10",
-        ghost: "text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-4 h-10",
-        link: "text-md-sys-primary underline-offset-4 hover:underline bg-transparent h-auto p-0",
-        outline: "border border-md-sys-outline text-md-sys-primary hover:bg-md-sys-primary/8 rounded-full px-6 h-10",
+        // Premium brand variants
+        brand: "bg-gradient-to-r from-md-sys-primary via-blue-600 to-md-sys-tertiary text-md-sys-on-primary hover:shadow-glow-hover hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-8 h-12 font-bold transform transition-all duration-300 relative overflow-hidden",
+        default: "bg-gradient-to-r from-md-sys-primary to-blue-600 text-md-sys-on-primary hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium",
+        secondary: "bg-gradient-to-br from-md-sys-secondary-container to-md-sys-surface-container-high text-md-sys-on-secondary-container hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium border border-md-sys-outline-variant/30",
+        ghost: "text-md-sys-primary hover:bg-gradient-to-r hover:from-md-sys-primary/10 hover:to-md-sys-tertiary/10 hover:scale-[1.02] rounded-2xl px-4 h-12 font-medium relative",
+        link: "text-md-sys-primary underline-offset-4 hover:underline bg-transparent h-auto p-0 relative after:absolute after:w-full after:h-0.5 after:bg-gradient-to-r after:from-md-sys-primary after:to-md-sys-tertiary after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
+        outline: "border-2 border-md-sys-outline text-md-sys-primary hover:bg-gradient-to-r hover:from-md-sys-primary/10 hover:to-md-sys-tertiary/10 hover:border-md-sys-primary hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium backdrop-blur-sm",
       },
       size: {
         default: "h-10 px-6 text-label-large [&_svg]:h-4 [&_svg]:w-4 min-h-[44px]",

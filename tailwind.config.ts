@@ -218,6 +218,78 @@ const config: Config = {
           "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-2px)" },
           "20%, 40%, 60%, 80%": { transform: "translateX(2px)" },
         },
+        // Award-winning ultra-modern animations
+        "magnetic-hover": {
+          "0%": { transform: "scale(1) rotate(0deg)" },
+          "50%": { transform: "scale(1.02) rotate(1deg)" },
+          "100%": { transform: "scale(1.05) rotate(0deg)" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { 
+            "box-shadow": "0 0 0 0 rgba(59, 130, 246, 0.3)",
+            opacity: "1"
+          },
+          "50%": { 
+            "box-shadow": "0 0 0 16px rgba(59, 130, 246, 0)",
+            opacity: "0.8"
+          },
+        },
+        "shimmer": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        "morphing": {
+          "0%, 100%": { 
+            "border-radius": "12px",
+            transform: "rotate(0deg) scale(1)"
+          },
+          "33%": { 
+            "border-radius": "50% 12px",
+            transform: "rotate(2deg) scale(1.01)"
+          },
+          "66%": { 
+            "border-radius": "12px 50%",
+            transform: "rotate(-1deg) scale(0.99)"
+          },
+        },
+        "spring-bounce": {
+          "0%": { transform: "scale(1)" },
+          "10%": { transform: "scale(0.95)" },
+          "40%": { transform: "scale(1.08)" },
+          "60%": { transform: "scale(0.98)" },
+          "80%": { transform: "scale(1.02)" },
+          "100%": { transform: "scale(1)" },
+        },
+        "glass-float": {
+          "0%, 100%": { 
+            transform: "translateY(0px) rotateX(0deg)",
+            "backdrop-filter": "blur(8px)",
+          },
+          "50%": { 
+            transform: "translateY(-8px) rotateX(2deg)",
+            "backdrop-filter": "blur(12px)",
+          },
+        },
+        "ripple": {
+          "0%": { 
+            transform: "scale(0)",
+            opacity: "1"
+          },
+          "100%": { 
+            transform: "scale(4)",
+            opacity: "0"
+          },
+        },
+        "text-reveal": {
+          "0%": { 
+            opacity: "0",
+            transform: "translateY(100%) rotateX(-90deg)",
+          },
+          "100%": { 
+            opacity: "1",
+            transform: "translateY(0%) rotateX(0deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -231,6 +303,15 @@ const config: Config = {
         float: "float 3s ease-in-out infinite",
         "gentle-float": "gentle-float 6s ease-in-out infinite",
         shake: "shake 0.5s ease-in-out",
+        // Award-winning ultra-modern animations
+        "magnetic-hover": "magnetic-hover 0.4s var(--ease-spring)",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "shimmer": "shimmer 2s linear infinite",
+        "morphing": "morphing 4s ease-in-out infinite",
+        "spring-bounce": "spring-bounce 0.6s var(--ease-spring)",
+        "glass-float": "glass-float 3s ease-in-out infinite",
+        "ripple": "ripple 0.6s ease-out",
+        "text-reveal": "text-reveal 0.8s var(--ease-out-expo)",
       },
     },
   },

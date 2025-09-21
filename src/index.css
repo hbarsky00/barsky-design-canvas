@@ -37,25 +37,25 @@
 
 /* Material Design 3.0 Design System */
 :root {
-  /* Material Design 3.0 Color System - Light Theme */
+  /* Material Design 3.0 Color System - Light Theme - Award-Winning Color Palette */
   
-  /* Primary Colors */
-  --md-sys-color-primary: 103 80% 40%;
+  /* Primary Colors - Deep Blue with Sophisticated Purple Undertones */
+  --md-sys-color-primary: 231 92% 58%;
   --md-sys-color-on-primary: 0 0% 100%;
-  --md-sys-color-primary-container: 103 100% 90%;
-  --md-sys-color-on-primary-container: 103 100% 10%;
+  --md-sys-color-primary-container: 231 100% 96%;
+  --md-sys-color-on-primary-container: 231 100% 8%;
   
-  /* Secondary Colors */
-  --md-sys-color-secondary: 103 16% 50%;
+  /* Secondary Colors - Warm Slate with Premium Feel */
+  --md-sys-color-secondary: 220 14% 32%;
   --md-sys-color-on-secondary: 0 0% 100%;
-  --md-sys-color-secondary-container: 103 24% 90%;
-  --md-sys-color-on-secondary-container: 103 24% 10%;
+  --md-sys-color-secondary-container: 220 20% 95%;
+  --md-sys-color-on-secondary-container: 220 30% 12%;
   
-  /* Tertiary Colors */
-  --md-sys-color-tertiary: 49 80% 40%;
+  /* Tertiary Colors - Energetic Purple for Accents */
+  --md-sys-color-tertiary: 263 85% 67%;
   --md-sys-color-on-tertiary: 0 0% 100%;
-  --md-sys-color-tertiary-container: 49 100% 90%;
-  --md-sys-color-on-tertiary-container: 49 100% 10%;
+  --md-sys-color-tertiary-container: 263 100% 95%;
+  --md-sys-color-on-tertiary-container: 263 100% 12%;
   
   /* Error Colors */
   --md-sys-color-error: 0 84% 60%;
@@ -63,21 +63,21 @@
   --md-sys-color-error-container: 0 100% 95%;
   --md-sys-color-on-error-container: 0 100% 9%;
   
-  /* Surface Colors */
-  --md-sys-color-surface-dim: 0 0% 87%;
-  --md-sys-color-surface: 0 0% 98%;
-  --md-sys-color-surface-bright: 0 0% 98%;
+  /* Surface Colors - Premium Glass-like Surfaces */
+  --md-sys-color-surface-dim: 220 15% 88%;
+  --md-sys-color-surface: 0 0% 99%;
+  --md-sys-color-surface-bright: 0 0% 100%;
   --md-sys-color-surface-container-lowest: 0 0% 100%;
-  --md-sys-color-surface-container-low: 0 0% 96%;
-  --md-sys-color-surface-container: 0 0% 94%;
-  --md-sys-color-surface-container-high: 0 0% 92%;
-  --md-sys-color-surface-container-highest: 0 0% 90%;
-  --md-sys-color-on-surface: 0 0% 10%;
-  --md-sys-color-on-surface-variant: 103 8% 30%;
+  --md-sys-color-surface-container-low: 220 20% 97%;
+  --md-sys-color-surface-container: 220 25% 95%;
+  --md-sys-color-surface-container-high: 220 30% 93%;
+  --md-sys-color-surface-container-highest: 220 35% 91%;
+  --md-sys-color-on-surface: 220 15% 8%;
+  --md-sys-color-on-surface-variant: 220 12% 28%;
   
-  /* Outline Colors */
-  --md-sys-color-outline: 103 8% 50%;
-  --md-sys-color-outline-variant: 103 12% 80%;
+  /* Outline Colors - Sophisticated Borders */
+  --md-sys-color-outline: 220 15% 48%;
+  --md-sys-color-outline-variant: 220 20% 82%;
   
   /* Other Colors */
   --md-sys-color-inverse-surface: 0 0% 20%;
@@ -143,13 +143,13 @@
   --md-sys-typescale-label-small: 0.6875rem;
   --md-sys-typescale-label-small-line-height: 1rem;
   
-  /* Material Design 3.0 Elevation */
+  /* Material Design 3.0 Elevation - Premium Shadows */
   --md-sys-elevation-level0: none;
-  --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level1: 0px 1px 3px 0px rgba(59, 130, 246, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.02);
+  --md-sys-elevation-level2: 0px 2px 6px 0px rgba(59, 130, 246, 0.12), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+  --md-sys-elevation-level3: 0px 4px 12px 0px rgba(59, 130, 246, 0.16), 0px 4px 6px 0px rgba(0, 0, 0, 0.06);
+  --md-sys-elevation-level4: 0px 8px 24px 0px rgba(59, 130, 246, 0.20), 0px 6px 12px 0px rgba(0, 0, 0, 0.08);
+  --md-sys-elevation-level5: 0px 16px 48px 0px rgba(59, 130, 246, 0.24), 0px 12px 24px 0px rgba(0, 0, 0, 0.12);
   
   /* Material Design 3.0 Shape */
   --md-sys-shape-corner-none: 0px;
@@ -163,12 +163,32 @@
   /* Legacy radius for compatibility */
   --radius: var(--md-sys-shape-corner-medium);
 
-  /* Chart colors */
-  --chart-1: 12 76% 61%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+  /* Chart colors - Sophisticated Data Visualization */
+  --chart-1: 231 92% 58%;
+  --chart-2: 263 85% 67%;
+  --chart-3: 220 14% 32%;
+  --chart-4: 284 100% 75%;
+  --chart-5: 346 100% 68%;
+
+  /* Award-Winning Gradient System */
+  --gradient-primary: linear-gradient(135deg, hsl(231 92% 58%), hsl(263 85% 67%));
+  --gradient-secondary: linear-gradient(135deg, hsl(220 14% 32%), hsl(220 20% 95%));
+  --gradient-accent: linear-gradient(135deg, hsl(263 85% 67%), hsl(284 100% 75%));
+  --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 20% 97%));
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+  
+  /* Advanced Shadow System */
+  --shadow-glow: 0 0 32px hsl(231 92% 58% / 0.15);
+  --shadow-glow-hover: 0 0 48px hsl(231 92% 58% / 0.25);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.08);
+  --shadow-large: 0 16px 64px rgba(0, 0, 0, 0.12);
+  
+  /* Sophisticated Animation Curves */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-anticipate: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   /* Brand specific colors */
   --barsky-blue: var(--md-sys-color-primary);

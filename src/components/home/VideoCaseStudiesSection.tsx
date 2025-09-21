@@ -148,8 +148,17 @@ const CaseStudyCard: React.FC<{
       className="case-study-card overflow-hidden relative"
       tabIndex={-1}
     >
-      {/* Mobile Layout: Stacked with contained background */}
-      <div className="lg:hidden bg-gray-50 py-8">
+      {/* Mobile Layout: Stacked with Premium Background */}
+      <div className="lg:hidden py-8 relative overflow-hidden"
+           style={{
+             background: `
+               linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
+               radial-gradient(circle at 50% 0%, hsl(231 92% 98% / 0.5) 0%, transparent 50%)
+             `,
+             border: "1px solid hsl(220 20% 92%)",
+             borderRadius: "24px",
+             backdropFilter: "blur(8px)"
+           }}>
         {/* Image Section - Full Width on Mobile */}
         <div className="relative py-4 min-h-[200px] flex items-center justify-center">
           <div className="w-full max-w-[625px] flex justify-center">
@@ -217,8 +226,17 @@ const CaseStudyCard: React.FC<{
 
       {/* Desktop Layout: Full-width background */}
       <div className="hidden lg:block">
-        {/* Full-width background wrapper */}
-        <div className="w-screen relative left-1/2 -ml-[50vw] bg-gray-50 py-8 lg:py-10">
+        {/* Full-width Premium Background wrapper */}
+        <div className="w-screen relative left-1/2 -ml-[50vw] py-8 lg:py-10 overflow-hidden"
+             style={{
+               background: `
+                 linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
+                 radial-gradient(circle at 20% 50%, hsl(231 92% 98% / 0.3) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 50%, hsl(263 85% 98% / 0.2) 0%, transparent 50%)
+               `,
+               borderTop: "1px solid hsl(220 20% 92%)",
+               borderBottom: "1px solid hsl(220 20% 92%)",
+             }}>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             {/* Desktop content grid */}
             <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
@@ -307,8 +325,35 @@ const CaseStudyCard: React.FC<{
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-6 md:py-8 bg-white" tabIndex={-1}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <section 
+      className="py-12 md:py-16 relative overflow-hidden" 
+      tabIndex={-1}
+      style={{
+        background: `
+          radial-gradient(circle at 10% 20%, hsl(231 92% 98% / 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 90% 80%, hsl(263 85% 98% / 0.3) 0%, transparent 50%),
+          linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 99%) 100%)
+        `
+      }}
+    >
+      {/* Premium Background Elements */}
+      <motion.div
+        className="absolute inset-0 opacity-30"
+        animate={{
+          background: [
+            "radial-gradient(circle at 20% 30%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
+            "radial-gradient(circle at 80% 70%, hsl(263 85% 95% / 0.1) 0%, transparent 40%)",
+            "radial-gradient(circle at 60% 20%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -75,7 +75,14 @@ const MinimalHero: React.FC = () => {
   return (
     <section 
       className="min-h-screen pb-16 sm:pb-20 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
-                 bg-gradient-to-br from-slate-50 to-blue-50"
+                 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20"
+      style={{
+        background: `
+          radial-gradient(circle at 20% 30%, hsl(231 92% 95% / 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, hsl(263 85% 95% / 0.2) 0%, transparent 50%),
+          linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 20% 98%) 100%)
+        `
+      }}
     >
       {/* Professional Particle Network Background */}
       <ParticleNetwork />
@@ -87,24 +94,65 @@ const MinimalHero: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="hero-loading flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
         >
-          {/* Enhanced Avatar with glow effect */}
+          {/* Ultra-Modern Avatar with Premium Effects */}
           <motion.div 
             className="flex justify-center order-1"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
           >
             <div className="relative">
-              {/* Glow ring */}
+              {/* Multi-layered Premium Glow System */}
               <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-0 blur-lg"
-                whileHover={{ opacity: 0.6, scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-                style={{ padding: '4px' }}
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `
+                    radial-gradient(circle, hsl(231 92% 58% / 0.15) 0%, transparent 70%),
+                    conic-gradient(from 0deg, hsl(231 92% 58% / 0.2), hsl(263 85% 67% / 0.2), hsl(284 100% 75% / 0.2), hsl(231 92% 58% / 0.2))
+                  `,
+                  filter: "blur(16px)",
+                  padding: '8px'
+                }}
+                animate={{
+                  rotate: [0, 360],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                }}
+                whileHover={{ 
+                  scale: 1.2, 
+                  filter: "blur(20px)",
+                  transition: { duration: 0.3 }
+                }}
+              />
+              
+              {/* Secondary Glow Ring */}
+              <motion.div
+                className="absolute inset-0 rounded-full opacity-0"
+                style={{
+                  background: "conic-gradient(from 45deg, hsl(231 92% 58% / 0.3), hsl(263 85% 67% / 0.3), hsl(284 100% 75% / 0.3), hsl(231 92% 58% / 0.3))",
+                  filter: "blur(8px)",
+                  padding: '4px'
+                }}
+                whileHover={{ 
+                  opacity: 0.8, 
+                  scale: 1.15,
+                  rotate: 180,
+                }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
               />
               
               <div className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
                              xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden 
-                             shadow-2xl relative ring-4 ring-white/20 backdrop-blur-sm">
+                             relative ring-4 ring-white/40 backdrop-blur-sm border-2 border-white/60"
+                   style={{
+                     boxShadow: `
+                       0 16px 64px rgba(59, 130, 246, 0.15),
+                       0 8px 32px rgba(168, 85, 247, 0.1),
+                       inset 0 2px 4px rgba(255, 255, 255, 0.3)
+                     `
+                   }}>
                 <img
                   src={imageUrl}
                   alt="Hiram Barsky profile"
@@ -135,14 +183,46 @@ const MinimalHero: React.FC = () => {
                   duration={3000}
                 />
                 
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                               opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full"
-                     style={{
-                       background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
-                       transform: 'translateX(-100%)',
-                       animation: 'shimmer 2s infinite'
-                     }} />
+                {/* Premium Shimmer and Glass Effects */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `
+                      linear-gradient(135deg, 
+                        transparent 0%, 
+                        rgba(255, 255, 255, 0.6) 40%, 
+                        rgba(59, 130, 246, 0.2) 50%, 
+                        rgba(255, 255, 255, 0.6) 60%, 
+                        transparent 100%
+                      )
+                    `,
+                  }}
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+                
+                {/* Floating Light Particles */}
+                <motion.div
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  animate={{
+                    background: [
+                      "radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 40%)",
+                      "radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 40%)",
+                      "radial-gradient(circle at 60% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%)",
+                    ]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
               </div>
             </div>
           </motion.div>
@@ -251,17 +331,32 @@ const MinimalHero: React.FC = () => {
           <motion.a
             href="mailto:hbarsky01@gmail.com"
             aria-label="Email Hiram Barsky"
-            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
-                       bg-white/10 backdrop-blur-sm border border-white/20
-                       hover:bg-blue-50/50 hover:border-blue-200/50 transition-all duration-300
+            className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-2xl 
+                       bg-gradient-to-br from-white/20 via-white/10 to-white/5 backdrop-blur-lg border border-white/30
+                       hover:bg-gradient-to-br hover:from-blue-50/60 hover:via-blue-50/30 hover:to-white/10 
+                       hover:border-blue-200/50 transition-all duration-500
                        min-w-[44px] min-h-[44px] flex items-center justify-center 
-                       hover:shadow-lg hover:shadow-blue-500/25"
-            whileHover={{ scale: 1.15, y: -4 }}
+                       hover:shadow-xl hover:shadow-blue-500/25 group relative overflow-hidden"
+            whileHover={{ 
+              scale: 1.15, 
+              y: -6,
+              rotateY: 5,
+            }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
+            style={{
+              transformStyle: "preserve-3d",
+            }}
           >
+            {/* Animated Ripple Background */}
+            <motion.div
+              className="absolute inset-0 rounded-2xl bg-blue-500/10 scale-0 group-hover:scale-100"
+              transition={{ duration: 0.3 }}
+            />
+            
             <Mail className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
-                           text-gray-700 hover:text-blue-600 transition-colors" />
+                           text-gray-700 group-hover:text-blue-600 transition-all duration-300 relative z-10
+                           group-hover:drop-shadow-sm" />
           </motion.a>
 
           <motion.a
