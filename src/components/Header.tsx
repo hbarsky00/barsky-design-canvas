@@ -53,7 +53,8 @@ const Header: React.FC = () => {
         "pointer-events-auto",
         "py-3 sm:py-4",
         headerHidden ? "md:-translate-y-full" : "md:translate-y-0",
-        "bg-background border-b border-border shadow-sm"
+        "bg-background border-b border-border shadow-sm",
+        isHomePage && !isScrolledPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
       )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={cn("flex justify-between items-center", "h-16 sm:h-18")}>

@@ -9,7 +9,7 @@ import FloatingButtonGroup from "@/components/shared/FloatingButtonGroup";
 import SectionTransition from "@/components/transitions/SectionTransition";
 
 import BackgroundAudio from "@/components/audio/BackgroundAudio";
-import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
+
 import { useBounceReduction } from "@/hooks/useBounceReduction";
 import LazySection from "@/components/lazy/LazySection";
 import {
@@ -25,7 +25,7 @@ import {
 import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
 
 const HomepageLayout: React.FC = () => {
-  const { isScrolledPastHero } = useHeaderNavigation();
+  
   const { metrics, isLikelyToBounce } = useBounceReduction();
 
   const handleExitIntent = () => {
@@ -41,7 +41,7 @@ const HomepageLayout: React.FC = () => {
         volume={0.15}
       />
       
-      {isScrolledPastHero && <Header />}
+      <Header />
       
       <main className="space-y-2 md:space-y-6 relative z-10">
         {/* Keep intro section outside 3D container to prevent displacement */}
