@@ -23,6 +23,9 @@ export const useHeaderNavigation = () => {
   const lastYRef = useRef(0);
   const [headerHidden, setHeaderHidden] = useState(false);
   const isMenuOpenRef = useRef(isMobileMenuOpen);
+  // IntersectionObserver management for homepage intro detection
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const ioActiveRef = useRef(false);
 
   useEffect(() => {
     isMenuOpenRef.current = isMobileMenuOpen;
@@ -181,15 +184,18 @@ export const useHeaderNavigation = () => {
         return;
       }
       
-      // For homepage, show header after intro section
-      const introSection = document.getElementById('intro');
-      if (introSection) {
-        const introRect = introSection.getBoundingClientRect();
-        setIsScrolledPastHero(introRect.bottom <= 0);
-      } else {
-        // Fallback if intro section not found
-        const slideScrollThreshold = heroHeight * 0.6;
-        setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
+      // For homepage, show header after intro section using IO when available; fallback to scroll calc
+      if (!ioActiveRef.current) {
+        const introSection = document.getElementById('intro');
+        if (introSection) {
+          const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
+          const introRect = introSection.getBoundingClientRect();
+          setIsScrolledPastHero(introRect.bottom <= headerHeight);
+        } else {
+          // Fallback if intro section not found
+          const slideScrollThreshold = heroHeight * 0.6;
+          setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
+        }
       }
 
       // Skip section detection during intentional scrolling to prevent conflicts
@@ -248,6 +254,63 @@ export const useHeaderNavigation = () => {
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, [navLinks, location.pathname, isHomepage, isProjectPage]);
+
+  // IntersectionObserver: control header visibility after homepage intro
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    // If not on homepage, ensure IO is disabled and cleaned up
+    if (!isHomepage) {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
+      ioActiveRef.current = false;
+      return;
+    }
+
+    const introEl = document.getElementById('intro');
+
+    // If no intro or IO unsupported, fall back to scroll logic
+    if (!introEl || typeof IntersectionObserver === 'undefined') {
+      ioActiveRef.current = false;
+      const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
+      if (introEl) {
+        const rect = introEl.getBoundingClientRect();
+        setIsScrolledPastHero(rect.bottom <= headerHeight);
+      }
+      return;
+    }
+
+    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        // When the intro no longer intersects the viewport area shifted by header height, show header
+        setIsScrolledPastHero(!entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: `-${headerHeight}px 0px 0px 0px`,
+        threshold: 0,
+      }
+    );
+
+    observer.observe(introEl);
+    observerRef.current = observer;
+    ioActiveRef.current = true;
+
+    // Initial compute on mount
+    const rect = introEl.getBoundingClientRect();
+    setIsScrolledPastHero(rect.bottom <= headerHeight);
+
+    return () => {
+      observer.disconnect();
+      observerRef.current = null;
+      ioActiveRef.current = false;
+    };
+  }, [isHomepage]);
 
   useEffect(() => {
     if (location.pathname === '/') {
