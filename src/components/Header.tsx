@@ -27,6 +27,9 @@ const Header: React.FC = () => {
   // Show logo when: not on homepage (immediate) OR on homepage after scrolling past hero
   const shouldShowLogo = true;
 
+  // Hide header on homepage until scrolled past hero
+  const shouldShowHeader = !isHomePage || isScrolledPastHero;
+
   const headerRef = React.useRef<HTMLElement | null>(null);
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -48,11 +51,12 @@ const Header: React.FC = () => {
   return (
     <>
       <header ref={headerRef} className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         "pointer-events-auto",
         "py-3 sm:py-4",
         "md:translate-y-0",
-        "bg-background border-b border-border shadow-sm"
+        "bg-background border-b border-border shadow-sm",
+        shouldShowHeader ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={cn("flex justify-between items-center", "h-16 sm:h-18")}>

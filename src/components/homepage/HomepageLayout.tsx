@@ -43,7 +43,7 @@ const HomepageLayout: React.FC = () => {
       
       <Header />
       
-      <main className="pt-[var(--header-height)] space-y-2 md:space-y-6 relative z-10">
+      <main className="space-y-2 md:space-y-6 relative z-10">
         {/* Keep intro section outside 3D container to prevent displacement */}
         <SectionTransition variant="fade" intensity={0.3}>
           <section id="intro" tabIndex={-1} className="scroll-offset">
