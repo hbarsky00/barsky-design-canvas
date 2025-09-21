@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const useHeaderNavigation = () => {
@@ -19,21 +19,8 @@ export const useHeaderNavigation = () => {
     { name: "Contact Me", href: "#contact" },
   ];
 
-  // Track scroll direction and header visibility
-  const lastYRef = useRef(0);
-  const [headerHidden, setHeaderHidden] = useState(false);
-  const isMenuOpenRef = useRef(isMobileMenuOpen);
-  // IntersectionObserver management for homepage intro detection
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const ioActiveRef = useRef(false);
-
-  useEffect(() => {
-    isMenuOpenRef.current = isMobileMenuOpen;
-  }, [isMobileMenuOpen]);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) setHeaderHidden(false);
-  }, [isMobileMenuOpen]);
+  // Header visibility: never auto-hide; keep fixed/visible
+  const headerHidden = false;
 
   // Check if we're on the homepage
   const isHomepage = location.pathname === '/';
@@ -163,12 +150,6 @@ export const useHeaderNavigation = () => {
       const scrollPosition = window.scrollY;
       const heroHeight = window.innerHeight;
       
-      // Auto-hide header when scrolling down past threshold (disabled on homepage and project pages)
-      const goingDown = scrollPosition > lastYRef.current;
-      const shouldHideHeader = !isHomepage && !isProjectPage && scrollPosition > 120 && goingDown && !isMenuOpenRef.current;
-      setHeaderHidden(shouldHideHeader);
-      lastYRef.current = scrollPosition;
-      
       // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
       
@@ -253,62 +234,6 @@ export const useHeaderNavigation = () => {
     }
   }, [navLinks, location.pathname, isHomepage, isProjectPage]);
 
-  // IntersectionObserver: control header visibility after homepage intro
-  useEffect(() => {
-    if (typeof window === 'undefined' || typeof document === 'undefined') return;
-
-    // If not on homepage, ensure IO is disabled and cleaned up
-    if (!isHomepage) {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-        observerRef.current = null;
-      }
-      ioActiveRef.current = false;
-      return;
-    }
-
-    const introEl = document.getElementById('intro');
-
-    // If no intro or IO unsupported, fall back to scroll logic
-    if (!introEl || typeof IntersectionObserver === 'undefined') {
-      ioActiveRef.current = false;
-      const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
-      if (introEl) {
-        const rect = introEl.getBoundingClientRect();
-        setIsScrolledPastHero(rect.bottom <= headerHeight);
-      }
-      return;
-    }
-
-    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        const bottom = entry.boundingClientRect.bottom;
-        setIsScrolledPastHero(bottom <= headerHeight);
-      },
-      {
-        root: null,
-        rootMargin: `-${headerHeight}px 0px 0px 0px`,
-        threshold: 0,
-      }
-    );
-
-    observer.observe(introEl);
-    observerRef.current = observer;
-    ioActiveRef.current = true;
-
-    // Initial compute on mount
-    const rect = introEl.getBoundingClientRect();
-    setIsScrolledPastHero(rect.bottom <= headerHeight);
-
-    return () => {
-      observer.disconnect();
-      observerRef.current = null;
-      ioActiveRef.current = false;
-    };
-  }, [isHomepage]);
 
   useEffect(() => {
     if (location.pathname === '/') {
