@@ -59,7 +59,7 @@ const FloatingCaseStudyNavigation: React.FC<FloatingCaseStudyNavigationProps> = 
   const progress = activeIndex >= 0 ? ((activeIndex + 1) / navigation.length) * 100 : 0;
 
   return (
-    <div className="fixed bottom-6 left-4 z-50 flex items-center gap-2">
+    <div className="fixed bottom-6 left-4 z-[70] flex items-center gap-2">
       <Drawer open={isOpen} onOpenChange={setIsOpen}>
         <DrawerTrigger asChild>
           <motion.button
