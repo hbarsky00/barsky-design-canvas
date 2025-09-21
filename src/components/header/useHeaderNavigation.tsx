@@ -160,9 +160,10 @@ export const useHeaderNavigation = () => {
       const scrollPosition = window.scrollY;
       const heroHeight = window.innerHeight;
       
-      // Auto-hide header when scrolling down past threshold
+      // Auto-hide header when scrolling down past threshold (disabled on homepage and project pages)
       const goingDown = scrollPosition > lastYRef.current;
-      setHeaderHidden(scrollPosition > 120 && goingDown && !isMenuOpenRef.current);
+      const shouldHideHeader = !isHomepage && !isProjectPage && scrollPosition > 120 && goingDown && !isMenuOpenRef.current;
+      setHeaderHidden(shouldHideHeader);
       lastYRef.current = scrollPosition;
       
       // Set basic scroll state for background change
@@ -180,9 +181,16 @@ export const useHeaderNavigation = () => {
         return;
       }
       
-      // For homepage, hide header completely on first section and only show when scrolling to second section
-      const slideScrollThreshold = heroHeight * 0.6;
-      setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
+      // For homepage, show header after intro section
+      const introSection = document.getElementById('intro');
+      if (introSection) {
+        const introRect = introSection.getBoundingClientRect();
+        setIsScrolledPastHero(introRect.bottom <= 0);
+      } else {
+        // Fallback if intro section not found
+        const slideScrollThreshold = heroHeight * 0.6;
+        setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
+      }
 
       // Skip section detection during intentional scrolling to prevent conflicts
       if (isIntentionalScrolling) {
