@@ -41,44 +41,40 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
   }, [currentSectionIndex, navigation]);
 
   useEffect(() => {
+    // Only use scroll detection if no keyboard navigation is provided
+    if (currentSectionIndex !== undefined) return;
+    
     const handleScroll = () => {
       const headerOffset = getHeaderOffset();
       const anchorY = headerOffset + 8;
-
-      // Determine visibility of floating navigation (after hero)
-      const heroSection = document.getElementById('hero');
-      if (heroSection) {
-        const rect = heroSection.getBoundingClientRect();
-        // Show once we've scrolled past the hero
-        setShowNavigation(rect.bottom <= headerOffset);
-      } else {
-        // Fallback: show once the user has scrolled a bit
-        setShowNavigation(window.scrollY > 20);
+      
+      // Check if overview section is visible to show navigation
+      const overviewSection = document.getElementById('overview');
+      if (overviewSection) {
+        const rect = overviewSection.getBoundingClientRect();
+        setShowNavigation(rect.top <= headerOffset + 50);
       }
       
-      // Only update active section from scroll when keyboard navigation isn't controlling it
-      if (currentSectionIndex === undefined) {
-        const sections = navigation
-          .map(nav => document.getElementById(nav.anchor.substring(1)))
-          .filter(Boolean) as HTMLElement[];
+      const sections = navigation
+        .map(nav => document.getElementById(nav.anchor.substring(1)))
+        .filter(Boolean) as HTMLElement[];
 
-        let newActive = navigation[0]?.anchor || "";
+      let newActive = navigation[0]?.anchor || "";
 
-        // Choose the last section whose top is above the anchor line
-        const candidates = sections
-          .map((el, idx) => ({ el, idx, rect: el.getBoundingClientRect() }))
-          .filter(item => item.rect.top - anchorY <= 0);
+      // Choose the last section whose top is above the anchor line
+      const candidates = sections
+        .map((el, idx) => ({ el, idx, rect: el.getBoundingClientRect() }))
+        .filter(item => item.rect.top - anchorY <= 0);
 
-        if (candidates.length > 0) {
-          const last = candidates[candidates.length - 1];
-          newActive = navigation[last.idx].anchor;
-        } else if (sections.length > 0) {
-          // If we're above the first section, default to the first
-          newActive = navigation[0].anchor;
-        }
-
-        setActiveSection(prev => (prev === newActive ? prev : newActive));
+      if (candidates.length > 0) {
+        const last = candidates[candidates.length - 1];
+        newActive = navigation[last.idx].anchor;
+      } else if (sections.length > 0) {
+        // If we're above the first section, default to the first
+        newActive = navigation[0].anchor;
       }
+
+      setActiveSection(prev => (prev === newActive ? prev : newActive));
     };
 
     let ticking = false;
