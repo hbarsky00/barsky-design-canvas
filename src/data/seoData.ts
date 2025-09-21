@@ -5,87 +5,111 @@ import { SEOInput } from "@/utils/seo/seoBuilder";
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/': {
     kind: 'home',
-    title: SEO_CONSTANTS.SITE_NAME,
-    description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+    title: 'Hiram Barsky | Lead Product Designer & AI Innovator — Barsky Design',
+    description: 'Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech | Based in Clifton, NJ',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
   '/projects': {
     kind: 'page',
-    title: 'Design Case Studies – Barsky Design',
-    description: 'Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — showcasing impact, outcomes, and design thinking.',
+    title: 'UX Case Studies & Product Design Portfolio — Barsky Design',
+    description: 'Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — showcasing measurable impact, user outcomes, and strategic design thinking.',
     image: 'https://barskydesign.pro/images/herbalink-desktop-1.webp'
   },
   '/services': {
     kind: 'page',
-    title: 'UX & Product Design Services – Barsky Design',
-    description: 'From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences.',
+    title: 'Expert UX/UI Design Services | Mobile Apps & Web Development — Barsky Design',
+    description: 'From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences that drive business results.',
     image: 'https://barskydesign.pro/images/macbookpro.png'
   },
   '/contact': {
     kind: 'page',
-    title: 'Contact Hiram Barsky – Product Designer',
-    description: 'Let\'s connect. Book a call to discuss your product vision, UX challenges, or collaboration opportunities.',
+    title: 'Contact Barsky Design | Product Design & UX Consulting in NJ — Barsky Design',
+    description: 'Ready to transform your product? Book a call to discuss your vision, UX challenges, or collaboration opportunities in Clifton, NJ and beyond.',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
   '/blog': {
     kind: 'page',
-    title: 'Design Insights & Case Studies – Barsky Blog',
-    description: 'Thoughts on UX, AI, and design strategy — lessons learned from projects and experiments.',
+    title: 'UX Design Blog | Product Design Insights & Case Studies — Barsky Design',
+    description: 'Expert insights on UX design, AI integration, design systems, and product strategy — practical lessons from 15+ years in the field.',
     image: 'https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg'
   },
   '/about': {
     kind: 'page',
-    title: 'About Hiram Barsky – Product Designer',
-    description: 'Senior UX/Product Designer with 15+ years of experience creating data-driven, AI-powered, and mobile-first digital platforms.',
+    title: 'About Hiram Barsky | 15+ Years Product Design Leadership — Barsky Design',
+    description: 'Senior UX/Product Designer with 15+ years creating data-driven, AI-powered platforms. Based in Clifton, NJ, serving clients nationwide.',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
+  },
+  '/store': {
+    kind: 'page',
+    title: 'Design Resources & Templates | Premium UX Tools — Barsky Design',
+    description: 'Professional design resources, wireframe kits, and UX templates to accelerate your product development. Digital downloads available instantly.',
+    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
+  },
+  '/design-services/ux-ui-design': {
+    kind: 'page',
+    title: 'Expert UX/UI Design Services | User-Centered Product Design — Barsky Design',
+    description: 'Transform your product with expert UX/UI design. From user research to high-fidelity prototypes, I create intuitive experiences that drive results.',
+    image: 'https://barskydesign.pro/images/ux-ui-design-service.jpg'
+  },
+  '/design-services/mobile-app-design': {
+    kind: 'page',
+    title: 'Mobile App Design Services | iOS & Android UX/UI — Barsky Design',
+    description: 'Native and cross-platform mobile app design for iOS and Android. User-centered design that increases engagement and app store ratings.',
+    image: 'https://barskydesign.pro/images/mobile-app-design-service.jpg'
+  },
+  '/design-services/web-development': {
+    kind: 'page',
+    title: 'Modern Web Development | React & Frontend Development — Barsky Design',
+    description: 'Custom web development with React, TypeScript, and modern frameworks. Fast, responsive, and accessible web applications that scale.',
+    image: 'https://barskydesign.pro/images/web-development-service.jpg'
   }
 };
 
 // Project-specific SEO mappings
 export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; }> = {
   "herbalink": {
-    title: "HerbaLink – Herbalist Marketplace Case Study",
-    description: "How I designed a HIPAA-conscious marketplace that increased certified herbalist bookings and patient retention through trustworthy UX and streamlined scheduling.",
+    title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design",
+    description: "HIPAA-compliant herbalist marketplace design that increased certified provider bookings 45% and patient retention 30% through trustworthy UX and streamlined scheduling.",
     image: "https://barskydesign.pro/images/herbalink-desktop-1.webp"
   },
   "splittime": {
-    title: "SplitTime — Co-Parenting App",
-    description: "Scheduling, messaging, and expense tracking for co-parents.",
+    title: "SplitTime Co-Parenting App | Mobile UX Case Study — Barsky Design",
+    description: "Designing a co-parenting platform that reduces family conflict through intuitive scheduling, transparent expense tracking, and secure messaging between divorced parents.",
     image: "https://barskydesign.pro/images/splittime-desktop-1.webp"
   },
   "business-management": {
-    title: "Business Management – Operations Platform Case Study",
-    description: "Designing a modular operations platform that centralizes inventory, workflows, and analytics to cut manual work, create visibility across teams, and surface actionable insights.",
+    title: "Enterprise Operations Platform | B2B UX Case Study — Barsky Design",
+    description: "Modular business management platform that reduced manual work 60% by centralizing inventory, workflows, and analytics with actionable insights across teams.",
     image: "https://barskydesign.pro/images/business-management-desktop-1.webp"
   },
   "investor-loan-app": {
-    title: "Investor Loan App – Fintech Case Study",
-    description: "Streamlined underwriting flows and data collection that cut loan processing time by 40% while improving compliance, decision clarity, internal collaboration, and borrower experience.",
+    title: "Fintech Loan Platform | Investment App UX Case Study — Barsky Design",
+    description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance, decision clarity, and borrower experience through better UX.",
     image: "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp"
   },
   "medication-app": {
-    title: "Medication App – Adherence & Safety Case Study",
-    description: "Mobile-first medication management that improves adherence with contextual reminders, clear scanning, accessible affordances, and caregiver visibility across devices and roles.",
+    title: "Healthcare Medication App | Patient Safety UX Case Study — Barsky Design",
+    description: "Mobile-first medication management improving adherence 35% with smart reminders, barcode scanning, and caregiver visibility across iOS and Android.",
     image: "https://barskydesign.pro/images/medication-app-desktop-1.webp"
   },
   "gold2crypto": {
-    title: "Gold2Crypto – Exchange Onboarding Case Study",
-    description: "Reducing drop‑off with plain‑language KYC, progressive disclosure, and clear risk cues to help users confidently convert assets between gold and crypto with fewer errors.",
+    title: "Crypto Exchange Onboarding | Fintech UX Case Study — Barsky Design",
+    description: "Reduced crypto exchange drop-off 50% with simplified KYC, progressive disclosure, and clear risk communication for gold-to-cryptocurrency conversion.",
     image: "https://barskydesign.pro/images/gold2crypto-desktop-1.webp"
   },
   "dae-search": {
-    title: "DAE Search – Data Discovery Case Study",
-    description: "A powerful search experience with faceted filters, previews, and relevance tuning that helps analysts find trustworthy data assets quickly and consistently across sources.",
+    title: "Enterprise Data Discovery | Search UX Case Study — Barsky Design",
+    description: "Advanced search platform with faceted filters and relevance tuning that helps data analysts find trustworthy assets 3x faster across enterprise sources.",
     image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
   },
   "barskyjoint": {
-    title: "BarskyJoint – Restaurant Ordering Case Study",
-    description: "Designed an end‑to‑end ordering experience that increases average ticket size with menu clarity, guided customization, and seamless checkout across web and kiosk.",
+    title: "Restaurant Ordering System | Food Tech UX Case Study — Barsky Design",
+    description: "End-to-end restaurant ordering experience that increased average ticket size 25% through menu clarity, guided customization, and seamless web/kiosk checkout.",
     image: "https://barskydesign.pro/images/barskyjoint-desktop-1.webp"
   }
 };
 
-// Blog post image mappings
+// Blog post image mappings with enhanced SEO-optimized data
 export const BLOG_IMAGE_MAP: Record<string, string> = {
   "finding-first-ux-job-guide": "https://barskydesign.pro/images/blog-finding-ux-job.jpg",
   "design-systems-that-get-used": "https://barskydesign.pro/images/blog-design-systems.jpg",
@@ -97,6 +121,50 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
   "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/images/blog-wireframes-to-wow-visual-hierarchy.jpg",
   "case-study-writing": "https://barskydesign.pro/images/blog-case-study-writing.jpg",
   "ai-in-design": "https://barskydesign.pro/images/blog-ai-in-design.jpg"
+};
+
+// Enhanced blog post SEO data
+export const BLOG_SEO_MAP: Record<string, { title: string; description: string; }> = {
+  "finding-first-ux-job-guide": {
+    title: "Finding a UX Job in 2025 | Job Search Guide for UX Designers — Barsky Design",
+    description: "Practical strategies for landing your first UX job in 2025. Portfolio tips, networking tactics, and insider advice from 15+ years in the field."
+  },
+  "design-systems-that-get-used": {
+    title: "Building Design Systems That Work | Practical Implementation Guide — Barsky Design",
+    description: "Stop building design systems that get ignored. Learn how to create systems teams actually use with practical governance, documentation, and adoption strategies."
+  },
+  "portfolio-red-flags-no-interviews": {
+    title: "UX Portfolio Red Flags | Why You're Not Getting Interviews — Barsky Design",
+    description: "Common UX portfolio mistakes that kill your chances. Learn what hiring managers look for and how to showcase your UX process effectively."
+  },
+  "ai-enhanced-ux-designer-future": {
+    title: "AI in UX Design | How Designers Can Leverage AI Tools — Barsky Design",
+    description: "Practical guide to using AI in UX design. From research synthesis to prototyping, learn how AI enhances (not replaces) design work."
+  },
+  "user-research-shoestring-budget": {
+    title: "Low-Budget User Research | Maximum Impact Methods — Barsky Design",
+    description: "Get valuable user insights without big budgets. Guerrilla research tactics, free tools, and lean methods that actually work."
+  },
+  "built-product-without-real-data": {
+    title: "Building Products Without Real Data | UX Research Mistakes — Barsky Design",
+    description: "Why assumptions kill products and how to validate ideas with real user data. Learn from common research pitfalls and solutions."
+  },
+  "building-products-nobody-asked-for": {
+    title: "Building Products Nobody Asked For | Product Strategy Lessons — Barsky Design",
+    description: "How to avoid building features users don't want. Product strategy insights on user validation, market research, and customer discovery."
+  },
+  "wireframes-to-wow-visual-hierarchy": {
+    title: "Visual Hierarchy in UX Design | From Wireframes to Wow — Barsky Design",
+    description: "Master visual hierarchy to guide user attention. Practical tips for typography, spacing, and layout that improve user experience."
+  },
+  "case-study-writing": {
+    title: "UX Case Study Writing | Portfolio That Gets Results — Barsky Design",
+    description: "Write case studies that win clients and jobs. Structure, storytelling, and presentation tips from reviewing hundreds of UX portfolios."
+  },
+  "ai-in-design": {
+    title: "Future of AI in Design | Designer's Perspective 2025 — Barsky Design",
+    description: "How AI is transforming design work. Practical insights on tools, ethics, and career implications for UX and product designers."
+  }
 };
 
 // Helper functions for getting SEO data
@@ -118,10 +186,13 @@ export function getProjectSEO(projectId: string): Partial<SEOInput> | null {
 
 export function getBlogSEO(slug: string): Partial<SEOInput> | null {
   const image = BLOG_IMAGE_MAP[slug];
-  if (!image) return null;
+  const seoData = BLOG_SEO_MAP[slug];
+  if (!image && !seoData) return null;
   
   return {
     kind: 'post',
+    title: seoData?.title,
+    description: seoData?.description,
     image
   };
 }
