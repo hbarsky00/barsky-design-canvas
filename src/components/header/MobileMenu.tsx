@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Menu, X, Briefcase, User, Mail, BookOpen, ShoppingBag } from "lucide-react";
+import { Menu, X, Briefcase, User, Mail, BookOpen } from "lucide-react";
 
 interface MobileMenuProps {
   links: Array<{ name: string; href: string }>;
@@ -32,8 +32,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         return <BookOpen className="h-5 w-5 mr-3" />;
       case "contact me":
         return <Mail className="h-5 w-5 mr-3" />;
-      case "store":
-        return <ShoppingBag className="h-5 w-5 mr-3" />;
       default:
         return null;
     }
