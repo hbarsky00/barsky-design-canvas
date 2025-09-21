@@ -180,9 +180,15 @@ export const useHeaderNavigation = () => {
         return;
       }
       
-      // For homepage, hide header completely on first section and only show when scrolling to second section
-      const slideScrollThreshold = heroHeight * 0.6;
-      setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
+      // For homepage: show header after the intro section ends
+      const introEl = typeof document !== 'undefined' ? document.getElementById('intro') : null;
+      if (introEl) {
+        const introBottom = introEl.offsetTop + introEl.offsetHeight;
+        setIsScrolledPastHero(scrollPosition >= introBottom - 10);
+      } else {
+        // Fallback: show after a small scroll
+        setIsScrolledPastHero(scrollPosition > 120);
+      }
 
       // Skip section detection during intentional scrolling to prevent conflicts
       if (isIntentionalScrolling) {

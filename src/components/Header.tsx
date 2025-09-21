@@ -20,7 +20,6 @@ const Header: React.FC = () => {
     handleLinkClick,
     toggleMobileMenu,
     isLinkActive,
-    headerHidden,
   } = useHeaderNavigation();
   const isMobile = useIsMobile();
 
@@ -52,7 +51,7 @@ const Header: React.FC = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         "pointer-events-auto",
         "py-3 sm:py-4",
-        headerHidden ? "md:-translate-y-full" : "md:translate-y-0",
+        "md:translate-y-0",
         "bg-background border-b border-border shadow-sm"
       )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
