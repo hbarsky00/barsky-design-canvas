@@ -184,18 +184,16 @@ export const useHeaderNavigation = () => {
         return;
       }
       
-      // For homepage, show header after intro section using IO when available; fallback to scroll calc
-      if (!ioActiveRef.current) {
-        const introSection = document.getElementById('intro');
-        if (introSection) {
-          const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
-          const introRect = introSection.getBoundingClientRect();
-          setIsScrolledPastHero(introRect.bottom <= headerHeight);
-        } else {
-          // Fallback if intro section not found
-          const slideScrollThreshold = heroHeight * 0.6;
-          setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
-        }
+      // For homepage, show header after intro section; compute based on intro bottom vs header height
+      const introSection = document.getElementById('intro');
+      if (introSection) {
+        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
+        const introRect = introSection.getBoundingClientRect();
+        setIsScrolledPastHero(introRect.bottom <= headerHeight);
+      } else {
+        // Fallback if intro section not found
+        const slideScrollThreshold = heroHeight * 0.6;
+        setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
       }
 
       // Skip section detection during intentional scrolling to prevent conflicts
@@ -287,8 +285,8 @@ export const useHeaderNavigation = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        // When the intro no longer intersects the viewport area shifted by header height, show header
-        setIsScrolledPastHero(!entry.isIntersecting);
+        const bottom = entry.boundingClientRect.bottom;
+        setIsScrolledPastHero(bottom <= headerHeight);
       },
       {
         root: null,
