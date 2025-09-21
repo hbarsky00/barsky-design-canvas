@@ -36,7 +36,7 @@ const caseStudies: CaseStudy[] = [
     impact: "20% ROI from Better Data Discovery",
     url: "/project/daesearchproject",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/daenewnew.png",
       alt: "DAE Search Platform showing enterprise data discovery interface"
     },
     layout: "side-by-side"
@@ -215,82 +215,87 @@ const CaseStudyCard: React.FC<{
         </div>
       </div>
 
-      {/* Desktop Layout */}
+      {/* Desktop Layout: Full-width background */}
       <div className="hidden lg:block">
-        {/* Desktop content grid */}
-        <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
-                        [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
-                        2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
-          
-          {/* Images Section */}
-          <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center" 
-               style={{ marginRight: '-24px' }}>
-            <div className="w-full min-h-[400px] xl:min-h-[440px] 2xl:min-h-[480px] flex items-center justify-center">
-              {renderMedia()}
-            </div>
-          </div>
-
-          {/* Content Section */}
-          <div className="flex flex-col justify-center p-5 xl:p-6 min-w-0" 
-               style={{ 
-                 paddingLeft: '24px',
-                 paddingRight: '24px',
-                 wordWrap: 'break-word',
-                 whiteSpace: 'normal'
-               }}>
-            <div className="w-full max-w-[600px] space-y-3 break-words">
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-3">
-                {study.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
-                    #{tag}
-                  </Badge>
-                ))}
+        {/* Full-width background wrapper with reliable viewport width */}
+        <div className="bg-gray-50 py-8 lg:py-10" style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            {/* Desktop content grid */}
+            <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
+                            [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
+                            2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
+              
+              {/* Images Section */}
+              <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center" 
+                   style={{ marginRight: '-24px' }}>
+                <div className="w-full min-h-[400px] xl:min-h-[440px] 2xl:min-h-[480px] flex items-center justify-center">
+                  {renderMedia()}
+                </div>
               </div>
 
-              {/* Title */}
-              <AnimatedText
-                text={study.title}
-                tag="h3"
-                className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]"
-                type="word"
-                animation="slide"
-                delay={300}
-                staggerChildren={0.05}
-              />
+              {/* Content Section */}
+              <div className="flex flex-col justify-center p-5 xl:p-6 min-w-0" 
+                   style={{ 
+                     paddingLeft: '24px',
+                     paddingRight: '24px',
+                     wordWrap: 'break-word',
+                     whiteSpace: 'normal'
+                   }}>
+                <div className="w-full max-w-[600px] space-y-3 break-words">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {study.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
 
-              {/* Description */}
-              <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]">
-                {study.description}
-              </p>
+                  {/* Title */}
+                  <AnimatedText
+                    text={study.title}
+                    tag="h3"
+                    className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]"
+                    type="word"
+                    animation="slide"
+                    delay={300}
+                    staggerChildren={0.05}
+                  />
 
-              {/* Impact Metrics */}
-              <div className="text-impact-metric-md mb-4">
-                {study.impact}
-              </div>
+                  {/* Description */}
+                  <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]">
+                    {study.description}
+                  </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <Button 
-                  variant="case-study" 
-                  className="flex-1 sm:flex-none"
-                  onClick={() => triggerRoomTransition(study.url, study.title)}
-                >
-                  View Case Study
-                </Button>
-                {study.liveUrl && (
-                  <Button asChild variant="outline" className="flex-1 sm:flex-none">
-                    <a 
-                      href={study.liveUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
+                  {/* Impact Metrics */}
+                  <div className="text-impact-metric-md mb-4">
+                    {study.impact}
+                  </div>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <Button 
+                      variant="case-study" 
+                      className="flex-1 sm:flex-none"
+                      onClick={() => triggerRoomTransition(study.url, study.title)}
                     >
-                      View Live
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </Button>
-                )}
+                      View Case Study
+                    </Button>
+                    {study.liveUrl && (
+                      <Button asChild variant="outline" className="flex-1 sm:flex-none">
+                        <a 
+                          href={study.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
+                        >
+                          View Live
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -302,47 +307,37 @@ const CaseStudyCard: React.FC<{
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-6 md:py-8" tabIndex={-1}>
-      {/* Section Header with white background */}
-      <div className="bg-white py-6 md:py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "50px" }}
-            transition={{ duration: 0.4 }}
-          >
-            <SectionHeader
-              as="h2"
-              title="Case Studies That Drive Results"
-              subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
-              subtitleClassName="max-w-4xl mx-auto"
-              titleAnimation="elastic"
-              subtitleAnimation="fade"
-              titleDelay={0}
-              subtitleDelay={0.3}
-            />
-          </motion.div>
-        </div>
-      </div>
+    <section className="py-6 md:py-8 bg-white" tabIndex={-1}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "50px" }}
+          transition={{ duration: 0.4 }}
+        >
+          <SectionHeader
+            as="h2"
+            title="Case Studies That Drive Results"
+            subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
+            subtitleClassName="max-w-4xl mx-auto"
+            titleAnimation="elastic"
+            subtitleAnimation="fade"
+            titleDelay={0}
+            subtitleDelay={0.3}
+          />
+        </motion.div>
 
-      {/* Case Studies with alternating full-width backgrounds */}
-      <div className="space-y-0">
-        {caseStudies.map((study, index) => {
-          const isOdd = index % 2 === 1;
-          const bgColor = isOdd ? 'bg-gray-50' : 'bg-white';
-          
-          return (
-            <div key={study.id} className={`w-full ${bgColor}`}>
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-8 lg:py-10">
-                <CaseStudyCard 
-                  study={study} 
-                  index={index}
-                />
-              </div>
-            </div>
-          );
-        })}
+        {/* Case Studies Grid */}
+        <div className="space-y-8">
+          {caseStudies.map((study, index) => (
+            <CaseStudyCard 
+              key={study.id} 
+              study={study} 
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
