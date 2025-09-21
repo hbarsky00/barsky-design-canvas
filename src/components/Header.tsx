@@ -49,12 +49,11 @@ const Header: React.FC = () => {
   return (
     <>
       <header ref={headerRef} className={cn(
-        "fixed top-0 left-0 right-0 z-[60] transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         "pointer-events-auto",
         "py-3 sm:py-4",
         headerHidden ? "md:-translate-y-full" : "md:translate-y-0",
-        "bg-background border-b border-border shadow-sm",
-        isHomePage && !isScrolledPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
+        "bg-background border-b border-border shadow-sm"
       )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={cn("flex justify-between items-center", "h-16 sm:h-18")}>

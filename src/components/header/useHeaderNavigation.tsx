@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const useHeaderNavigation = () => {
@@ -19,8 +19,18 @@ export const useHeaderNavigation = () => {
     { name: "Contact Me", href: "#contact" },
   ];
 
-  // Header visibility: never auto-hide; keep fixed/visible
-  const headerHidden = false;
+  // Track scroll direction and header visibility
+  const lastYRef = useRef(0);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const isMenuOpenRef = useRef(isMobileMenuOpen);
+
+  useEffect(() => {
+    isMenuOpenRef.current = isMobileMenuOpen;
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) setHeaderHidden(false);
+  }, [isMobileMenuOpen]);
 
   // Check if we're on the homepage
   const isHomepage = location.pathname === '/';
@@ -150,6 +160,11 @@ export const useHeaderNavigation = () => {
       const scrollPosition = window.scrollY;
       const heroHeight = window.innerHeight;
       
+      // Auto-hide header when scrolling down past threshold
+      const goingDown = scrollPosition > lastYRef.current;
+      setHeaderHidden(scrollPosition > 120 && goingDown && !isMenuOpenRef.current);
+      lastYRef.current = scrollPosition;
+      
       // Set basic scroll state for background change
       setIsScrolled(scrollPosition > 50);
       
@@ -165,17 +180,9 @@ export const useHeaderNavigation = () => {
         return;
       }
       
-      // For homepage, show header after intro section; compute based on intro bottom vs header height
-      const introSection = document.getElementById('intro');
-      if (introSection) {
-        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
-        const introRect = introSection.getBoundingClientRect();
-        setIsScrolledPastHero(introRect.bottom <= headerHeight);
-      } else {
-        // Fallback if intro section not found
-        const slideScrollThreshold = heroHeight * 0.6;
-        setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
-      }
+      // For homepage, hide header completely on first section and only show when scrolling to second section
+      const slideScrollThreshold = heroHeight * 0.6;
+      setIsScrolledPastHero(scrollPosition > slideScrollThreshold);
 
       // Skip section detection during intentional scrolling to prevent conflicts
       if (isIntentionalScrolling) {
@@ -233,7 +240,6 @@ export const useHeaderNavigation = () => {
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, [navLinks, location.pathname, isHomepage, isProjectPage]);
-
 
   useEffect(() => {
     if (location.pathname === '/') {

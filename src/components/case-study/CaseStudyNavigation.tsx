@@ -47,19 +47,13 @@ const CaseStudyNavigation: React.FC<CaseStudyNavigationProps> = ({
 
       // Determine visibility of floating navigation (after hero)
       const heroSection = document.getElementById('hero');
-      const overviewSection = document.getElementById('overview');
-      
       if (heroSection) {
         const rect = heroSection.getBoundingClientRect();
         // Show once we've scrolled past the hero
         setShowNavigation(rect.bottom <= headerOffset);
-      } else if (overviewSection) {
-        const rect = overviewSection.getBoundingClientRect();
-        // Show once overview section is in view or passed
-        setShowNavigation(rect.top <= headerOffset + 100);
       } else {
-        // Fallback: show once the user has scrolled past viewport height
-        setShowNavigation(window.scrollY > window.innerHeight * 0.8);
+        // Fallback: show once the user has scrolled a bit
+        setShowNavigation(window.scrollY > 20);
       }
       
       // Only update active section from scroll when keyboard navigation isn't controlling it
