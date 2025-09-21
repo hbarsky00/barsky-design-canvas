@@ -12,6 +12,15 @@ const SpatialNavigationWrapper: React.FC<SpatialNavigationWrapperProps> = ({
   className = "",
   isNavigating = false,
 }) => {
+  // When not navigating, render a plain wrapper to avoid creating containing blocks
+  if (!isNavigating) {
+    return (
+      <div className={`relative ${className}`}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       className={`relative ${className}`}
@@ -19,14 +28,10 @@ const SpatialNavigationWrapper: React.FC<SpatialNavigationWrapperProps> = ({
         perspective: "1200px",
         transformStyle: "preserve-3d",
       }}
-      animate={isNavigating ? {
+      animate={{
         scale: 0.95,
         rotateY: -2,
         z: -50,
-      } : {
-        scale: 1,
-        rotateY: 0,
-        z: 0,
       }}
       transition={{
         duration: 0.6,
@@ -40,10 +45,8 @@ const SpatialNavigationWrapper: React.FC<SpatialNavigationWrapperProps> = ({
           background: "linear-gradient(135deg, transparent, hsl(var(--md-sys-color-shadow) / 0.05))",
           transform: "translateZ(-10px)",
         }}
-        animate={isNavigating ? {
+        animate={{
           opacity: 0.3,
-        } : {
-          opacity: 0,
         }}
         transition={{
           duration: 0.4,
@@ -53,10 +56,8 @@ const SpatialNavigationWrapper: React.FC<SpatialNavigationWrapperProps> = ({
       {/* Main content */}
       <motion.div
         className="relative z-10"
-        animate={isNavigating ? {
+        animate={{
           filter: "blur(1px)",
-        } : {
-          filter: "blur(0px)",
         }}
         transition={{
           duration: 0.3,
