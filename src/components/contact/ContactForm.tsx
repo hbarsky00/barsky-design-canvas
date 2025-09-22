@@ -4,6 +4,7 @@ import { Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import SectionHeader from "@/components/shared/SectionHeader";
+import { useLocation } from "react-router-dom";
 import { 
   Form,
   FormControl, 
@@ -39,7 +40,8 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 const ContactForm: React.FC = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+  const location = useLocation();
+  const shouldAutoFocus = location.pathname === '/contact';
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -104,6 +106,7 @@ const ContactForm: React.FC = () => {
                       <Input 
                         placeholder="Your name" 
                         {...field} 
+                        autoFocus={shouldAutoFocus}
                         className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none"
                       />
                     </FormControl>

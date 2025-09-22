@@ -78,12 +78,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     key={link.name}
                     to={link.href}
                     onClick={link.href.startsWith('#') ? (e) => {
-                      e.preventDefault();
-                      handleLinkClick(link.href);
+                      // Allow native anchor for contact; prevent only for other anchors
+                      if (link.href !== '#contact') {
+                        e.preventDefault();
+                        handleLinkClick(link.href);
+                      }
                       toggleMobileMenu();
                     } : () => {
                       toggleMobileMenu();
                     }}
+                    aria-label={link.name.toLowerCase().includes('contact') ? 'Contact' : link.name}
                     className={cn(
                       "nav-link w-full text-base flex items-center justify-start px-3 py-2 rounded-md transition-colors",
                       isLinkActive(link.href)

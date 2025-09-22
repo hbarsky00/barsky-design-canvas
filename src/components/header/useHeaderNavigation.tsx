@@ -16,7 +16,7 @@ export const useHeaderNavigation = () => {
     { name: "About", href: "/about" },
     { name: "Store", href: "/store" },
     { name: "Blog", href: "/blog" },
-    { name: "Contact Me", href: "#contact" },
+    { name: "Contact Me", href: location.pathname === '/' ? "#contact" : "/contact" },
   ];
 
   // Track scroll direction and header visibility

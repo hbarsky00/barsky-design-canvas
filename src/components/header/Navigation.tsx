@@ -62,9 +62,13 @@ const Navigation: React.FC<NavigationProps> = ({
             key={link.name}
             to={link.href}
             onClick={link.href.startsWith('#') ? (e) => {
-              e.preventDefault();
-              handleLinkClick(link.href);
+              // For contact anchor, allow native anchor behavior (no preventDefault)
+              if (link.href !== '#contact') {
+                e.preventDefault();
+                handleLinkClick(link.href);
+              }
             } : undefined}
+            aria-label={link.name.toLowerCase().includes('contact') ? 'Contact' : link.name}
             className={cn(
               "nav-link nav-clean flex items-center py-2 px-1 transition-colors duration-200",
               isLinkActive(link.href) && "active text-primary"
