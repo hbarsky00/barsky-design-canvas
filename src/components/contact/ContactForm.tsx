@@ -170,6 +170,7 @@ const ContactForm: React.FC = () => {
               
               <Button 
                 type="submit" 
+                variant="case-study"
                 size="lg"
                 className="w-full flex items-center justify-center gap-2"
                 disabled={isSubmitting}
