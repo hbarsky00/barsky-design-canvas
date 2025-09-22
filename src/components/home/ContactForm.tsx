@@ -114,7 +114,7 @@ const ContactForm: React.FC = () => {
                     <FormMessage />
                   </FormItem>} />
               
-              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full flex items-center justify-center gap-2 text-slate-50">
+              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto font-semibold !text-white [&_*]:!text-white">
                 {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
               </Button>
             </form>
