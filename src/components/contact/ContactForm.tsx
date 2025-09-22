@@ -70,7 +70,7 @@ const ContactForm: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-  return <section id="contact" className="flex flex-col justify-center py-4 relative scroll-mt-20 bg-white">
+  return <section id="contact" className="flex flex-col justify-center py-4 bg-muted/30 relative scroll-mt-20">
       <div className="bg-white mx-0 px-[10px] py-[10px]">
         <SectionHeader as="h2" title="Get In Touch" subtitle="Ready to start your project? Let's discuss your needs and create something amazing together." subtitleClassName="text-base md:text-lg" className="mb-8" />
 
@@ -117,7 +117,7 @@ const ContactForm: React.FC = () => {
                     <FormMessage />
                   </FormItem>} />
               
-              <Button type="submit" variant="case-study" size="lg" className="w-full flex items-center justify-center gap-2 text-white" disabled={isSubmitting}>
+              <Button type="submit" variant="case-study" size="lg" className="w-full sm:w-auto font-semibold !text-white [&_*]:!text-white" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
               </Button>
             </form>
