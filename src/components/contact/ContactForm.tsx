@@ -81,7 +81,7 @@ const ContactForm: React.FC = () => {
   };
   
   return (
-    <section id="contact" className="flex flex-col justify-center py-4 bg-muted/30 relative">
+    <section id="contact" className="flex flex-col justify-center py-4 bg-muted/30 relative scroll-mt-20">
       <div>
         <SectionHeader
           as="h2"
@@ -172,7 +172,7 @@ const ContactForm: React.FC = () => {
                 type="submit" 
                 variant="case-study"
                 size="lg"
-                className="w-full flex items-center justify-center gap-2"
+                className="w-full flex items-center justify-center gap-2 text-white"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />

@@ -96,8 +96,24 @@ export const useHeaderNavigation = () => {
     }
     
     if (href.startsWith('#')) {
-      // For anchor links, scroll to the section
-      scrollToSection(href.substring(1));
+      const sectionId = href.substring(1);
+      
+      // Special handling for contact section
+      if (sectionId === 'contact') {
+        const isHomepage = location.pathname === '/';
+        
+        if (isHomepage) {
+          // On homepage, scroll to contact form
+          scrollToSection('contact');
+        } else {
+          // On other pages, navigate to contact page
+          navigate('/contact');
+        }
+        return;
+      }
+      
+      // For other anchor links, scroll to the section
+      scrollToSection(sectionId);
     } else if (href === '/') {
       // For home link, go to homepage and scroll to top
       if (typeof window !== 'undefined') {
