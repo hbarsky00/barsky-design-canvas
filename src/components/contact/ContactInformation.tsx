@@ -1,10 +1,8 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Linkedin, Github, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackContentEngagement } from "@/lib/analytics";
-
 const ContactInformation: React.FC = () => {
   const openCalendly = () => {
     if (typeof window !== 'undefined') {
@@ -12,9 +10,7 @@ const ContactInformation: React.FC = () => {
       trackContentEngagement('contact', 'consultation-booking', 'Calendly Booking');
     }
   };
-
-  return (
-    <div>
+  return <div>
       <h3 className="text-2xl font-bold mb-6 text-barsky-dark dark:text-white">Contact Information</h3>
       <p className="text-barsky-text dark:text-gray-300 mb-8">
         Have a project in mind or want to discuss a collaboration? Feel free to reach out — 
@@ -23,7 +19,7 @@ const ContactInformation: React.FC = () => {
       
       {/* Quick Action Button - Only Schedule Consultation */}
       <div className="mb-8">
-        <Button onClick={openCalendly} size="lg" variant="brand" className="w-full sm:w-auto font-semibold">
+        <Button onClick={openCalendly} size="lg" variant="brand" className="w-full sm:w-auto font-semibold text-slate-50">
           <Calendar className="mr-2 h-5 w-5" />
           Schedule a Free Consultation
         </Button>
@@ -68,28 +64,14 @@ const ContactInformation: React.FC = () => {
       <div className="mt-8">
         <h4 className="font-medium text-barsky-dark dark:text-white mb-4">Connect on Social</h4>
         <div className="flex gap-4">
-          <a 
-            href="https://www.linkedin.com/in/hiram-barsky" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="bg-barsky-blue/10 p-3 rounded-full hover:bg-barsky-blue hover:text-white transition-colors"
-            aria-label="LinkedIn"
-          >
+          <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer" className="bg-barsky-blue/10 p-3 rounded-full hover:bg-barsky-blue hover:text-white transition-colors" aria-label="LinkedIn">
             <Linkedin size={20} />
           </a>
-          <a 
-            href="https://github.com/hbarsky00/barsky-design-canvas.git" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="bg-barsky-blue/10 p-3 rounded-full hover:bg-barsky-blue hover:text-white transition-colors"
-            aria-label="GitHub"
-          >
+          <a href="https://github.com/hbarsky00/barsky-design-canvas.git" target="_blank" rel="noopener noreferrer" className="bg-barsky-blue/10 p-3 rounded-full hover:bg-barsky-blue hover:text-white transition-colors" aria-label="GitHub">
             <Github size={20} />
           </a>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ContactInformation;
