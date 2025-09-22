@@ -57,7 +57,7 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
         variant="default"
         size="sm"
         onClick={handleLinkedInShare}
-        className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4"
+        className="w-full sm:w-auto font-semibold !text-white [&_*]:!text-white"
         aria-label="Share on LinkedIn"
       >
         <Linkedin className="h-4 w-4" />
