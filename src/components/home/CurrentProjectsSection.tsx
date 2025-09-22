@@ -20,7 +20,7 @@ const currentProjects: CurrentProject[] = [
     description: "Developing an accessible e-commerce platform that promotes community engagement and showcases inclusive design principles through user-friendly checkout processes and community reviews.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
-    thumbnailSrc: "/src/assets/inclusive-shopping-thumbnail.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/inclusive/goodvibesshallym.jpg"
   },
   {
     id: "roi-calculator",
