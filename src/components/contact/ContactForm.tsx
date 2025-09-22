@@ -70,7 +70,7 @@ const ContactForm: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-  return <section id="contact" className="flex flex-col justify-center py-4 bg-muted/30 relative scroll-mt-20">
+  return <section id="contact" className="flex flex-col justify-center py-4 relative scroll-mt-20 bg-white">
       <div className="bg-white mx-0 px-[10px] py-[10px]">
         <SectionHeader as="h2" title="Get In Touch" subtitle="Ready to start your project? Let's discuss your needs and create something amazing together." subtitleClassName="text-base md:text-lg" className="mb-8" />
 
