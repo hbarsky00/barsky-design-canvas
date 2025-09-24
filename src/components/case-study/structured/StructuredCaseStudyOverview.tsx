@@ -74,6 +74,19 @@ const overviewContent: Record<string, OverviewContent> = {
     responsibilities: "Trading UX, data visualization, security workflows",
     collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
+  },
+  "daesearchproject": {
+    overview: "Users struggled with traditional search interfaces that required exact keywords and couldn't understand context or intent. I designed an intelligent search platform powered by AI that predicts user needs and delivers personalized results. The vision: transform how people discover information through natural language understanding and predictive suggestions.",
+    goals: [
+      "Create AI-powered search with natural language processing.",
+      "Implement predictive suggestions that anticipate user intent.",
+      "Reduce search time by 60% through smarter result ranking.",
+      "Build trust through transparent, explainable search results."
+    ],
+    role: "Lead Product Designer",
+    responsibilities: "Search UX, AI interaction design, information architecture",
+    collaborators: "Me (Conversational Design Engineer + AI)",
+    duration: "1 year"
   }
 };
 
