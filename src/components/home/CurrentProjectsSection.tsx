@@ -14,6 +14,14 @@ interface CurrentProject {
 }
 
 const currentProjects: CurrentProject[] = [
+    {
+    id: "qr-code-creator",
+    title: "Vibe-Coding a QR Code Maker",
+    description: "📱 Mobile-first design (but works everywhere) 🎨 Three simple sections: Content → Style → Export ⚡ No expiration headaches 🔄 Easy customization on the fl",
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/d355adb5e73c47de8c56544b963b55c8?sid=2ea042b3-5698-432a-a1d6-7ebd72fc3631",
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/Screenshot%202025-09-26%20at%206.57.52%20PM.png"
+  },
   {
     id: "inclusive-shopping-experience",
     title: "Creating an Inclusive Online Shopping Experience",
