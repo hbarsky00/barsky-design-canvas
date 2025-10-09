@@ -356,13 +356,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Approach & Decision Making",
       content:
         "After five months of design and testing, we launched an MVP that finally felt natural for real patients. They could manage medication, appointments, and surveys in one space—and doctors received cleaner, more reliable data. The app emphasized empathy, clarity, and tone over complexity.",
-      images: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/medical-app-ui0.jpg",
-          alt: "Final UI showing medication tracker and dashboard",
-          caption: "Final interface prioritizing clarity and empathy",
-        },
-      ],
+      video: {
+        src: "https://youtu.be/iDbqHuz6d2A",
+        title: "Final UI showing medication tracker and dashboard",
+        caption: "Final interface prioritizing clarity and empathy",
+      },
     },
     ideationSection: {
       subhead: "Testing calendar, medication tracking, vitals, and surveys to reduce patient stress",
@@ -438,6 +436,26 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "Home Dashboard",
           caption: "Clean, empathetic home dashboard",
         },
+        {
+          src: "/assets/case-studies/smarter-health/medication-tracker.png",
+          alt: "Medication Tracking View",
+          caption: "Simplified medication tracking interface",
+        },
+        {
+          src: "/assets/case-studies/smarter-health/appointment.png",
+          alt: "Appointment Scheduler",
+          caption: "Seamless appointment booking flow",
+        },
+        {
+          src: "/assets/case-studies/smarter-health/patient-dashboard.png",
+          alt: "Patient Progress View",
+          caption: "Comprehensive patient progress tracking",
+        },
+        {
+          src: "/assets/case-studies/smarter-health/signature.png",
+          alt: "Digital Signature Flow",
+          caption: "Digital consent and signature workflow",
+        },
       ],
     },
     outcomeSection: {
@@ -453,9 +471,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/demoui-signature.png",
-          alt: "Patient Onboarding",
-          caption: "Patient Onboarding Flow",
+          src: "/assets/case-studies/smarter-health/outcome-gradient.png",
+          alt: "Patient dashboard with gradient overlay",
+          caption: "A patient-first design that empowers users",
         },
       ],
     },
