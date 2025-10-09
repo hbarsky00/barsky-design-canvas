@@ -381,7 +381,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           label: "Iteration 2",
           imageSrc:
-            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/whatdidntwork.png",
+            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/Group-12.png",
           alt: "Simplified home dashboard",
           blurb: "Simplified dashboard with friendly tone and clear CTAs",
           annotations: [
