@@ -3,6 +3,16 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
+    id: "smarter-health",
+    title: "Smarter Health: Helping Patients Stay on Track",
+    description: "How I designed a healthcare app that made medication tracking 45% faster and appointment adherence 60% higher for diabetic patients.",
+    image: "/assets/case-studies/smarter-health/og-cover.png",
+    videoThumbnail: "/assets/case-studies/smarter-health/hero-video.mp4",
+    video: "/assets/case-studies/smarter-health/hero-video.mp4",
+    tags: ["UX Design", "Healthcare App", "Mobile App Design", "Accessibility"],
+    featured: true,
+  },
+  {
     id: "business-management",
     title: "WholeTech Operations Platform",
     description: "How I saved a failing $2.8M wholesale distributor: 68% fewer manual errors, 45% faster order processing, and prevented bankruptcy through one integrated system.",

@@ -236,6 +236,240 @@ export interface StructuredCaseStudyData {
 }
 
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
+  "smarter-health": {
+    id: "smarter-health",
+    title: "Smarter Health: Helping Patients Stay on Track",
+    description: "Unlocking user insights to help patients connect with doctors effortlessly",
+    tags: ["UX Design", "Healthcare App", "Mobile App Design", "Accessibility"],
+    gradientClasses: "from-blue-50 via-cyan-50 to-teal-50",
+    heroVideo: {
+      src: "/assets/case-studies/smarter-health/hero-video.mp4",
+      poster: "/assets/case-studies/smarter-health/hero-video.mp4",
+      alt: "Smarter Health app dashboard with medication tracker animation"
+    },
+    heroMetrics: [
+      { value: "45%", label: "Faster medication entry" },
+      { value: "60%", label: "Increase in appointment adherence" },
+      { value: "3×", label: "Higher patient engagement" }
+    ],
+    researchSection: {
+      subhead: "Managing daily medication and doctor visits can be overwhelming—especially for diabetic patients juggling multiple prescriptions and health devices.",
+      blurb: "The client's early app looked promising, but users found it confusing. Logging doses, syncing devices, and scheduling appointments required too many steps.",
+      emergingThemes: [
+        {
+          eyebrow: "COMPLEXITY OVERLOAD",
+          insight: "Interviews with doctors & patients surfaced daily frustrations with existing solutions like Teladoc and MySugr",
+          drove: "Simplified medication tracking with one-tap logging"
+        },
+        {
+          eyebrow: "TRUST & EMPATHY",
+          insight: "Our first prototype mirrored clinical apps—but patients said it felt 'too clinical'",
+          drove: "Empathy-driven design with friendly tone and clear guidance"
+        },
+        {
+          eyebrow: "ONBOARDING FRICTION",
+          insight: "Users dropped off halfway through sign-up—simplifying onboarding became our top priority",
+          drove: "Streamlined onboarding reduced drop-off by 60%"
+        }
+      ],
+      researchImages: [
+        {
+          src: "/assets/case-studies/smarter-health/problem-screens.png",
+          alt: "Early app screens showing login and calendar overview",
+          caption: "Early screens revealed complexity issues in medication tracking"
+        },
+        {
+          src: "/assets/case-studies/smarter-health/wireframes.png",
+          alt: "Wireframes of admin and patient dashboard",
+          caption: "Wireframe explorations for admin and patient views"
+        }
+      ]
+    },
+    problemCallout: {
+      eyebrow: "The Problem",
+      statement: "Managing daily medication and doctor visits can be overwhelming—especially for diabetic patients juggling multiple prescriptions and health devices. My challenge: design a simple, dependable app that patients could rely on every day."
+    },
+    sprintZeroSection: {
+      eyebrow: "Sprint Zero",
+      title: "Research & Competitive Analysis",
+      workshopKickoff: "Mapped every touchpoint from onboarding → vitals → survey completion. Prioritized clarity, reminders, and trust.",
+      explorations: "Created dual views: Admin Dashboard and Patient App, ensuring seamless data connection between them. Built a clean, accessible Material Design 3.0 system.",
+      decisionPoint: "Defined Core Modules: Medication Tracker, Appointments & Calendar, Vitals Tracking, Patient Surveys",
+      images: [
+        {
+          src: "/assets/case-studies/smarter-health/sketches.jpg",
+          alt: "Early hand-drawn sketch concepts",
+          caption: "Early sketches exploring medication tracking flows"
+        },
+        {
+          src: "/assets/case-studies/smarter-health/wireframes.png",
+          alt: "Wireframes showing admin and patient dashboard",
+          caption: "Dual-view wireframes for seamless admin-patient data flow"
+        }
+      ]
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: "Empathy over complexity",
+        description: "Patients needed friendliness and clarity more than feature-rich dashboards"
+      },
+      {
+        number: 2,
+        title: "Simplified onboarding",
+        description: "Reducing sign-up steps prevented 60% of drop-offs"
+      },
+      {
+        number: 3,
+        title: "Dual-view architecture",
+        description: "Admin and patient views working together improved data reliability"
+      }
+    ],
+    myThoughtProcessSection: {
+      eyebrow: "My Thought Process",
+      title: "Approach & Decision Making",
+      content: "After five months of design and testing, we launched an MVP that finally felt natural for real patients. They could manage medication, appointments, and surveys in one space—and doctors received cleaner, more reliable data. The app emphasized empathy, clarity, and tone over complexity.",
+      images: [
+        {
+          src: "/assets/case-studies/smarter-health/final-ui.png",
+          alt: "Final UI showing medication tracker and dashboard",
+          caption: "Final interface prioritizing clarity and empathy"
+        }
+      ]
+    },
+    ideationSection: {
+      subhead: "Testing calendar, medication tracking, vitals, and surveys to reduce patient stress",
+      bubbles: [
+        { title: "Medication Tracker", description: "One-tap logging with reminders" },
+        { title: "Appointments & Calendar", description: "Seamless scheduling and notifications" },
+        { title: "Vitals Tracking", description: "Device sync and manual entry" },
+        { title: "Patient Surveys", description: "Progress tracking and insights" }
+      ],
+      iterations: [
+        {
+          label: "Iteration 1",
+          imageSrc: "/assets/case-studies/smarter-health/before-after.png",
+          alt: "Early Teladoc-like mockup vs simplified final onboarding",
+          blurb: "First prototype mirrored Teladoc—felt too clinical and overwhelming",
+          annotations: [
+            { text: "Too clinical - patients felt alienated", x: 30, y: 25, type: "issue" },
+            { text: "Complex navigation caused drop-offs", x: 70, y: 45, type: "issue" }
+          ]
+        },
+        {
+          label: "Iteration 2",
+          imageSrc: "/assets/case-studies/smarter-health/home-screen.png",
+          alt: "Simplified home dashboard",
+          blurb: "Simplified dashboard with friendly tone and clear CTAs",
+          annotations: [
+            { text: "Friendly tone improved patient trust", x: 40, y: 30, type: "improvement" },
+            { text: "Clear CTAs reduced confusion", x: 60, y: 55, type: "improvement" }
+          ]
+        },
+        {
+          label: "Iteration 3",
+          imageSrc: "/assets/case-studies/smarter-health/medication-tracker.png",
+          alt: "Medication tracking view",
+          blurb: "One-tap medication logging with visual confirmation",
+          annotations: [
+            { text: "One-tap logging - 45% faster entry", x: 50, y: 40, type: "feature" },
+            { text: "Visual confirmation reduces errors", x: 70, y: 65, type: "feature" }
+          ]
+        }
+      ]
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Lessons Learned",
+      content: "Our first prototype mirrored Teladoc and MySugr—but patients said it felt 'too clinical.' We discovered that empathy, clarity, and tone were more important than complexity. Onboarding also took too long—users dropped off halfway. Simplifying sign-up became our top priority.",
+      images: [
+        {
+          src: "/assets/case-studies/smarter-health/before-after.png",
+          alt: "Before and after comparison of onboarding flow",
+          caption: "Left: clinical early mockup; Right: simplified empathetic design",
+          annotations: [
+            { text: "Clinical design alienated patients", x: 25, y: 30, type: "issue" },
+            { text: "Simplified approach increased trust", x: 75, y: 30, type: "improvement" }
+          ]
+        }
+      ]
+    },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "Testing revealed significant improvements in medication adherence and appointment booking",
+      eyebrow: "Validation & Testing",
+      metrics: [
+        { value: "45%", label: "Faster medication entry" },
+        { value: "60%", label: "Increase in appointment adherence" },
+        { value: "3×", label: "Higher patient engagement" }
+      ],
+      images: [
+        {
+          src: "/assets/case-studies/smarter-health/patient-dashboard.png",
+          alt: "Patient progress dashboard",
+          caption: "Dashboard showing medication adherence and appointment tracking"
+        }
+      ]
+    },
+    finalProductSection: {
+      title: "The Result",
+      description: "After five months of design and testing, we launched an MVP that finally felt natural for real patients. They could manage medication, appointments, and surveys in one space—and doctors received cleaner, more reliable data.",
+      eyebrow: "The Final Product",
+      images: [
+        {
+          src: "/assets/case-studies/smarter-health/home-screen.png",
+          alt: "Home Dashboard",
+          caption: "Clean, empathetic home dashboard"
+        },
+        {
+          src: "/assets/case-studies/smarter-health/medication-tracker.png",
+          alt: "Medication Tracking View",
+          caption: "Simplified medication tracking interface"
+        },
+        {
+          src: "/assets/case-studies/smarter-health/appointment.png",
+          alt: "Appointment Scheduler",
+          caption: "Seamless appointment booking flow"
+        },
+        {
+          src: "/assets/case-studies/smarter-health/patient-dashboard.png",
+          alt: "Patient Progress View",
+          caption: "Comprehensive patient progress tracking"
+        },
+        {
+          src: "/assets/case-studies/smarter-health/signature.png",
+          alt: "Digital Signature Flow",
+          caption: "Digital consent and signature workflow"
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome & Reflection",
+      description: "A patient-first design that turned a complex medical routine into something simple, empowering, and humane. The app gained early adoption in clinics and was featured in local health-tech publications for its empathy-driven UX.",
+      eyebrow: "Outcomes & Impact",
+      metrics: [
+        { value: "45%", label: "Faster medication entry" },
+        { value: "60%", label: "Increase in appointment adherence" },
+        { value: "3×", label: "Higher patient engagement" },
+        { value: "Fewer", label: "Input errors from clinicians" }
+      ],
+      images: [
+        {
+          src: "/assets/case-studies/smarter-health/outcome-gradient.png",
+          alt: "Patient dashboard with gradient overlay",
+          caption: "A patient-first design that empowers users"
+        }
+      ]
+    },
+    sections: [],
+    seoData: {
+      image: "/assets/case-studies/smarter-health/og-cover.png",
+      projectName: "Smarter Health – Helping Patients Stay on Track | Hiram Barsky",
+      results: ["45% faster medication entry", "60% higher appointment adherence", "3× patient engagement increase"],
+      technologies: ["iOS", "Android", "Web", "Healthcare UX", "Mobile Design"],
+      path: "/project/smarter-health"
+    }
+  },
   "crypto": {
     id: "crypto",
     title: "Trading Without Friction: Why Every Crypto App is Designed to Fail (And How I Fixed It)",

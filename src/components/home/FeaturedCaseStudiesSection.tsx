@@ -9,6 +9,17 @@ import { getAnnotationClasses, getResponsiveTruncatedText } from "@/utils/captio
 
 const featuredCaseStudies = [
   {
+    id: "smarter-health",
+    title: "Smarter Health",
+    subtitle: "Patient Medication & Appointment Management",
+    description: "Designed a healthcare app that simplified medication tracking and appointment management for diabetic patients. One-tap medication logging, seamless device sync, and empathy-driven design increased patient engagement by 3× and improved appointment adherence by 60%.",
+    image: "/assets/case-studies/smarter-health/og-cover.png",
+    url: "/project/smarter-health",
+    category: "Healthcare",
+    impact: "60% increase in appointment adherence",
+    tags: ["Healthcare", "Mobile App", "Accessibility"]
+  },
+  {
     id: "herbalink",
     title: "HerbaLink",
     subtitle: "AI-Powered Herbal Medicine Platform",

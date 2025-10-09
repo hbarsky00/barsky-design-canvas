@@ -87,6 +87,19 @@ const overviewContent: Record<string, OverviewContent> = {
     responsibilities: "Search UX, AI interaction design, information architecture",
     collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
+  },
+  "smarter-health": {
+    overview: "Managing daily medication and doctor visits can be overwhelming—especially for diabetic patients juggling multiple prescriptions and health devices. The client's early app looked promising, but users found it confusing. Logging doses, syncing devices, and scheduling appointments required too many steps. My challenge: design a simple, dependable app that patients could rely on every day.",
+    goals: [
+      "Simplify medication tracking with one-tap logging and visual confirmation.",
+      "Reduce appointment booking friction by 60% through streamlined scheduling.",
+      "Build trust through empathy-driven design and friendly tone.",
+      "Create dual views for both patients and clinicians with seamless data flow."
+    ],
+    role: "Lead UX Designer",
+    responsibilities: "End-to-end UX & UI design, research to validation, accessibility compliance",
+    collaborators: "Me (Conversational Design Engineer + AI)",
+    duration: "5 months"
   }
 };
 
