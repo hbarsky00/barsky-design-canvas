@@ -383,7 +383,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           label: "Iteration 2",
           imageSrc:
-            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/phone-1.png",
+            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/whatdidntwork.png",
           alt: "Simplified home dashboard",
           blurb: "Simplified dashboard with friendly tone and clear CTAs",
           annotations: [
@@ -400,7 +400,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "Our first prototype mirrored Teladoc and MySugr—but patients said it felt 'too clinical.' We discovered that empathy, clarity, and tone were more important than complexity. Onboarding also took too long—users dropped off halfway. Simplifying sign-up became our top priority.",
       images: [
         {
-          src: "/assets/case-studies/smarter-health/before-after.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
           alt: "Before and after comparison of onboarding flow",
           caption: "Left: clinical early mockup; Right: simplified empathetic design",
           annotations: [
