@@ -356,11 +356,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Approach & Decision Making",
       content:
         "After five months of design and testing, we launched an MVP that finally felt natural for real patients. They could manage medication, appointments, and surveys in one space—and doctors received cleaner, more reliable data. The app emphasized empathy, clarity, and tone over complexity.",
-      video: {
-        src: "https://youtu.be/iDbqHuz6d2A",
-        title: "Final UI showing medication tracker and dashboard",
-        caption: "Final interface prioritizing clarity and empathy",
-      },
+      images: [
+        {
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/medical-app-ui0.jpg",
+          alt: "Final UI showing medication tracker and dashboard",
+          caption: "Final interface prioritizing clarity and empathy",
+        },
+      ],
     },
     ideationSection: {
       subhead: "Testing calendar, medication tracking, vitals, and surveys to reduce patient stress",
@@ -398,7 +400,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "Our first prototype mirrored Teladoc and MySugr—but patients said it felt 'too clinical.' We discovered that empathy, clarity, and tone were more important than complexity. Onboarding also took too long—users dropped off halfway. Simplifying sign-up became our top priority.",
       images: [
         {
-          src: "/assets/case-studies/smarter-health/before-after.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/other-screens.png",
           alt: "Before and after comparison of onboarding flow",
           caption: "Left: clinical early mockup; Right: simplified empathetic design",
           annotations: [
