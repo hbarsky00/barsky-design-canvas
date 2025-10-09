@@ -51,7 +51,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/smarterhealth",
     video: "/assets/case-studies/smarter-health/hero-video.mp4",
     images: {
-      primary: "/assets/case-studies/smarter-health/og-cover.png",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/phones.png",
       alt: "Smarter Health app dashboard with medication tracker"
     },
     layout: "side-by-side"
