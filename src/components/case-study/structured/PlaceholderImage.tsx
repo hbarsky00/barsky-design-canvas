@@ -11,13 +11,15 @@ const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
   title, 
   className 
 }) => {
+  console.log('🖼️ PlaceholderImage rendering with title:', title);
+  
   return (
     <div className={cn(
       "relative aspect-video rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800",
       className
     )}>
       {/* Content overlay */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center z-10">
         {/* Section title */}
         <h3 className="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-4 max-w-md">
           {title}
