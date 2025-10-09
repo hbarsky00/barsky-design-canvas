@@ -375,32 +375,20 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         {
           label: "Iteration 1",
-          imageSrc: "/assets/case-studies/smarter-health/before-after.png",
+          imageSrc:
+            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/createaccountmockup.png",
           alt: "Early Teladoc-like mockup vs simplified final onboarding",
-          blurb: "First prototype mirrored Teladoc—felt too clinical and overwhelming",
-          annotations: [
-            { text: "Too clinical - patients felt alienated", x: 30, y: 25, type: "issue" },
-            { text: "Complex navigation caused drop-offs", x: 70, y: 45, type: "issue" },
-          ],
+          blurb: "First prototype to show basic controls for dashboard layout",
         },
         {
           label: "Iteration 2",
-          imageSrc: "/assets/case-studies/smarter-health/home-screen.png",
+          imageSrc:
+            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/whatdidntwork.png",
           alt: "Simplified home dashboard",
           blurb: "Simplified dashboard with friendly tone and clear CTAs",
           annotations: [
             { text: "Friendly tone improved patient trust", x: 40, y: 30, type: "improvement" },
             { text: "Clear CTAs reduced confusion", x: 60, y: 55, type: "improvement" },
-          ],
-        },
-        {
-          label: "Iteration 3",
-          imageSrc: "/assets/case-studies/smarter-health/medication-tracker.png",
-          alt: "Medication tracking view",
-          blurb: "One-tap medication logging with visual confirmation",
-          annotations: [
-            { text: "One-tap logging - 45% faster entry", x: 50, y: 40, type: "feature" },
-            { text: "Visual confirmation reduces errors", x: 70, y: 65, type: "feature" },
           ],
         },
       ],
