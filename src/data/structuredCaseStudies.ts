@@ -279,7 +279,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           caption: "Early screens revealed complexity issues in medication tracking"
         },
         {
-          src: "/assets/case-studies/smarter-health/wireframes.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/wireframing.png",
           alt: "Wireframes of admin and patient dashboard",
           caption: "Wireframe explorations for admin and patient views"
         }
@@ -297,12 +297,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Defined Core Modules: Medication Tracker, Appointments & Calendar, Vitals Tracking, Patient Surveys",
       images: [
         {
-          src: "/assets/case-studies/smarter-health/sketches.jpg",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/sketches.png",
           alt: "Early hand-drawn sketch concepts",
           caption: "Early sketches exploring medication tracking flows"
         },
         {
-          src: "/assets/case-studies/smarter-health/wireframes.png",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/wireframing.png",
           alt: "Wireframes showing admin and patient dashboard",
           caption: "Dual-view wireframes for seamless admin-patient data flow"
         }
