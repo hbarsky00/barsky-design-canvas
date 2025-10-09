@@ -88,7 +88,7 @@ const overviewContent: Record<string, OverviewContent> = {
     collaborators: "Me (Conversational Design Engineer + AI)",
     duration: "1 year"
   },
-  "smarter-health": {
+  "smarterhealth": {
     overview: "Managing daily medication and doctor visits can be overwhelming—especially for diabetic patients juggling multiple prescriptions and health devices. The client's early app looked promising, but users found it confusing. Logging doses, syncing devices, and scheduling appointments required too many steps. My challenge: design a simple, dependable app that patients could rely on every day.",
     goals: [
       "Simplify medication tracking with one-tap logging and visual confirmation.",

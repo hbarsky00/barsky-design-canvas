@@ -3,7 +3,7 @@ import { ProjectProps } from "@/components/ProjectCard";
 
 export const projectsData: ProjectProps[] = [
   {
-    id: "smarter-health",
+    id: "smarterhealth",
     title: "Smarter Health: Helping Patients Stay on Track",
     description: "How I designed a healthcare app that made medication tracking 45% faster and appointment adherence 60% higher for diabetic patients.",
     image: "/assets/case-studies/smarter-health/og-cover.png",

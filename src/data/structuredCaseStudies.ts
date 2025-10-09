@@ -236,8 +236,8 @@ export interface StructuredCaseStudyData {
 }
 
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
-  "smarter-health": {
-    id: "smarter-health",
+  "smarterhealth": {
+    id: "smarterhealth",
     title: "Smarter Health: Helping Patients Stay on Track",
     description: "Unlocking user insights to help patients connect with doctors effortlessly",
     tags: ["UX Design", "Healthcare App", "Mobile App Design", "Accessibility"],
@@ -467,7 +467,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       projectName: "Smarter Health – Helping Patients Stay on Track | Hiram Barsky",
       results: ["45% faster medication entry", "60% higher appointment adherence", "3× patient engagement increase"],
       technologies: ["iOS", "Android", "Web", "Healthcare UX", "Mobile Design"],
-      path: "/project/smarter-health"
+      path: "/project/smarterhealth"
     }
   },
   "crypto": {
