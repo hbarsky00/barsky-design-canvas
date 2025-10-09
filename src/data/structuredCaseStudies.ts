@@ -379,6 +379,21 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
             "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/createaccountmockup.png",
           alt: "Early Teladoc-like mockup vs simplified final onboarding",
           blurb: "First prototype to show basic controls for dashboard layout",
+          annotations: [
+            { text: "Friendly tone improved patient trust", x: 40, y: 30, type: "improvement" },
+            { text: "Clear CTAs reduced confusion", x: 60, y: 55, type: "improvement" },
+          ],
+        },
+        {
+          label: "Iteration 2",
+          imageSrc:
+            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/whatdidntwork.png",
+          alt: "Simplified home dashboard",
+          blurb: "Simplified dashboard with friendly tone and clear CTAs",
+          annotations: [
+            { text: "Friendly tone improved patient trust", x: 40, y: 30, type: "improvement" },
+            { text: "Clear CTAs reduced confusion", x: 60, y: 55, type: "improvement" },
+          ],
         },
       ],
     },
