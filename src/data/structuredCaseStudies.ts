@@ -356,13 +356,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Approach & Decision Making",
       content:
         "After five months of design and testing, we launched an MVP that finally felt natural for real patients. They could manage medication, appointments, and surveys in one space—and doctors received cleaner, more reliable data. The app emphasized empathy, clarity, and tone over complexity.",
-      images: [
-        {
-          src: "https://youtu.be/iDbqHuz6d2A",
-          alt: "Final UI showing medication tracker and dashboard",
-          caption: "Final interface prioritizing clarity and empathy",
-        },
-      ],
+      video: {
+        src: "https://youtu.be/iDbqHuz6d2A",
+        title: "Final UI showing medication tracker and dashboard",
+        caption: "Final interface prioritizing clarity and empathy",
+      },
     },
     ideationSection: {
       subhead: "Testing calendar, medication tracking, vitals, and surveys to reduce patient stress",
