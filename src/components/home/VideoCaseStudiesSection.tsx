@@ -49,7 +49,6 @@ const caseStudies: CaseStudy[] = [
     description: "Designed a healthcare app that simplified medication tracking and appointment management for diabetic patients. One-tap medication logging, seamless device sync, and empathy-driven design increased patient engagement by 3× and improved appointment adherence by 60%.",
     impact: "60% ↑ Appointment Adherence",
     url: "/project/smarterhealth",
-    video: "/assets/case-studies/smarter-health/hero-video.mp4",
     images: {
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/phones.png",
       alt: "Smarter Health app dashboard with medication tracker"
