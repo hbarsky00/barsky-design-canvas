@@ -400,7 +400,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "Our first prototype mirrored Teladoc and MySugr—but patients said it felt 'too clinical.' We discovered that empathy, clarity, and tone were more important than complexity. Onboarding also took too long—users dropped off halfway. Simplifying sign-up became our top priority.",
       images: [
         {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/other-screens.png",
+          src: "/assets/case-studies/smarter-health/before-after.png",
           alt: "Before and after comparison of onboarding flow",
           caption: "Left: clinical early mockup; Right: simplified empathetic design",
           annotations: [
@@ -438,26 +438,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "Home Dashboard",
           caption: "Clean, empathetic home dashboard",
         },
-        {
-          src: "/assets/case-studies/smarter-health/medication-tracker.png",
-          alt: "Medication Tracking View",
-          caption: "Simplified medication tracking interface",
-        },
-        {
-          src: "/assets/case-studies/smarter-health/appointment.png",
-          alt: "Appointment Scheduler",
-          caption: "Seamless appointment booking flow",
-        },
-        {
-          src: "/assets/case-studies/smarter-health/patient-dashboard.png",
-          alt: "Patient Progress View",
-          caption: "Comprehensive patient progress tracking",
-        },
-        {
-          src: "/assets/case-studies/smarter-health/signature.png",
-          alt: "Digital Signature Flow",
-          caption: "Digital consent and signature workflow",
-        },
       ],
     },
     outcomeSection: {
@@ -473,9 +453,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/assets/case-studies/smarter-health/outcome-gradient.png",
-          alt: "Patient dashboard with gradient overlay",
-          caption: "A patient-first design that empowers users",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/demoui-signature.png",
+          alt: "Patient Onboarding",
+          caption: "Patient Onboarding Flow",
         },
       ],
     },
