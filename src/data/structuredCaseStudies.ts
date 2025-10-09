@@ -463,7 +463,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/assets/case-studies/smarter-health/og-cover.png",
+      image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
       projectName: "Smarter Health – Helping Patients Stay on Track | Hiram Barsky",
       results: ["45% faster medication entry", "60% higher appointment adherence", "3× patient engagement increase"],
       technologies: ["iOS", "Android", "Web", "Healthcare UX", "Mobile Design"],
