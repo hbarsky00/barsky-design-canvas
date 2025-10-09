@@ -50,7 +50,7 @@ const caseStudies: CaseStudy[] = [
     impact: "60% ↑ Appointment Adherence",
     url: "/project/smarterhealth",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/phones.png",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
       alt: "Smarter Health app dashboard with medication tracker"
     },
     layout: "side-by-side"
