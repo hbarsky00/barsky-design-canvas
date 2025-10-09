@@ -244,7 +244,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-blue-50 via-cyan-50 to-teal-50",
     heroVideo: {
       src: "/assets/case-studies/smarter-health/hero-video.mp4",
-      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/My-Way-Health-1.jpg",
+      poster: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
       alt: "Smarter Health app dashboard with medication tracker animation"
     },
     heroMetrics: [
