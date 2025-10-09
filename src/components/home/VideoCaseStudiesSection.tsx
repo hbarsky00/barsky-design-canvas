@@ -42,6 +42,20 @@ const caseStudies: CaseStudy[] = [
     layout: "side-by-side"
   },
   {
+    id: "smarterhealth",
+    tags: ["Healthcare", "Mobile App", "UX Design"],
+    title: "Smarter Health: Helping Patients Stay on Track",
+    description: "Designed a healthcare app that simplified medication tracking and appointment management for diabetic patients. One-tap medication logging, seamless device sync, and empathy-driven design increased patient engagement by 3× and improved appointment adherence by 60%.",
+    impact: "60% ↑ Appointment Adherence",
+    url: "/project/smarterhealth",
+    video: "/assets/case-studies/smarter-health/hero-video.mp4",
+    images: {
+      primary: "/assets/case-studies/smarter-health/og-cover.png",
+      alt: "Smarter Health app dashboard with medication tracker"
+    },
+    layout: "side-by-side"
+  },
+  {
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
