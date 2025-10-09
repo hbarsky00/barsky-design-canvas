@@ -5,6 +5,7 @@ import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import { getImageCaption } from "@/data/imageCaptions";
 import { getImageCaptionClasses } from "@/utils/captionStyles";
+import PlaceholderImage from "./PlaceholderImage";
 
 interface StructuredHeroImageSectionProps {
   caseStudyData: StructuredCaseStudyData;
@@ -25,6 +26,14 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
   
   const caption = imageSrc ? getImageCaption(imageSrc) : null;
 
+  // Check if we need a placeholder for Smarter Health assets
+  const needsPlaceholder = (src?: string) => {
+    return src && src.includes('/assets/case-studies/smarter-health/');
+  };
+
+  const shouldShowPlaceholder = needsPlaceholder(caseStudyData.heroVideo?.src) || 
+                                 needsPlaceholder(caseStudyData.seoData?.image);
+
   return (
     <section 
       id="hero-image" 
@@ -43,7 +52,9 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
           className="max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"
           style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
-          {heroAsImage && caseStudyData.seoData?.image ? (
+          {shouldShowPlaceholder ? (
+            <PlaceholderImage title="Hero Video" />
+          ) : heroAsImage && caseStudyData.seoData?.image ? (
             <div className="relative w-full rounded-lg overflow-hidden">
               <img 
                 src={caseStudyData.seoData.image} 

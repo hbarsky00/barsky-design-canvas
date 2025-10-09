@@ -96,6 +96,11 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
 
   const styles = getVariantStyles(variant);
 
+  // Check if we need a placeholder for Smarter Health assets
+  const needsPlaceholder = (src?: string) => {
+    return src && src.includes('/assets/case-studies/smarter-health/');
+  };
+
   return (
     <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
       <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
@@ -111,22 +116,29 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
           {/* Multiple Images Support */}
           {images && images.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {images.map((image, index) => (
-                <MaximizableImage
-                  key={index}
-                  src={image.src}
-                  alt={image.alt}
-                  caption={image.caption}
-                  className="w-full rounded-lg shadow-lg"
-                  projectId="case-study"
-                  fit="contain"
-                />
-              ))}
+              {images.map((image, index) => {
+                const showPlaceholder = needsPlaceholder(image.src);
+                return showPlaceholder ? (
+                  <PlaceholderImage key={index} title={image.alt || title} />
+                ) : (
+                  <MaximizableImage
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    caption={image.caption}
+                    className="w-full rounded-lg shadow-lg"
+                    projectId="case-study"
+                    fit="contain"
+                  />
+                );
+              })}
             </div>
           ) : media ? (
             /* Single Media or Placeholder - with proper containment */
             <div className="w-full max-w-full overflow-hidden">
-              {media.type === "image" ? (
+              {needsPlaceholder(media.src) ? (
+                <PlaceholderImage title={media.alt || title} />
+              ) : media.type === "image" ? (
                 <div className="w-full max-w-full">
                   <MaximizableImage
                     src={media.src}

@@ -9,6 +9,7 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useRoomTransition } from "@/hooks/useRoomTransition";
+import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
 
 interface CaseStudy {
   id: string;
@@ -105,7 +106,25 @@ const CaseStudyCard: React.FC<{
   const isMobile = useIsMobile();
   const { triggerRoomTransition } = useRoomTransition();
 
+  // Check if we need a placeholder for Smarter Health assets
+  const needsPlaceholder = (src?: string) => {
+    return src && src.includes('/assets/case-studies/smarter-health/');
+  };
+
+  const showPlaceholder = needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
+
   const renderMedia = () => {
+    if (showPlaceholder) {
+      return (
+        <div 
+          onClick={() => triggerRoomTransition(study.url, study.title)}
+          className="block h-full cursor-pointer"
+        >
+          <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
+        </div>
+      );
+    }
+
     if (study.video) {
       return (
         <div 
