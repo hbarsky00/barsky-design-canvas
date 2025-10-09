@@ -92,9 +92,9 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             {/* Media Content */}
             <motion.div
               ref={mediaRef}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0.3, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
               className="relative w-full"
               style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
@@ -165,9 +165,9 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             {/* Right Column: Media Content */}
             <motion.div
               ref={mediaRef}
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0.3, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
               className="relative"
               style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >

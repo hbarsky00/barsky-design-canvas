@@ -15,9 +15,16 @@ const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
   
   return (
     <div className={cn(
-      "relative aspect-video rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800",
+      "relative rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800",
+      "min-h-[400px] md:min-h-[500px] lg:min-h-[600px]",
+      "w-full",
       className
-    )}>
+    )}
+    style={{ 
+      contain: 'layout',
+      willChange: 'transform',
+      aspectRatio: '16/9'
+    }}>
       {/* Content overlay */}
       <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center z-10">
         {/* Section title */}

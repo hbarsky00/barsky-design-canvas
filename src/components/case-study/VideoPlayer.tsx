@@ -38,11 +38,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   }
 
   return (
-    <div className="relative bg-white rounded-lg overflow-hidden">
+    <div className="relative bg-white rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
       <img
         src={thumbnailSrc}
         alt={`${title} promotional image`}
-        className="w-full h-auto object-contain image-high-quality"
+        className="w-full h-full object-contain image-high-quality"
+        style={{ display: 'block' }}
       />
     </div>
   );

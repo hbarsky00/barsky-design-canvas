@@ -694,6 +694,9 @@ body {
   padding-bottom: max(24px, env(safe-area-inset-bottom));
   margin-left: 0;
   margin-right: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
 @media (prefers-reduced-motion: reduce) {
