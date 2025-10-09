@@ -358,7 +358,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "After five months of design and testing, we launched an MVP that finally felt natural for real patients. They could manage medication, appointments, and surveys in one space—and doctors received cleaner, more reliable data. The app emphasized empathy, clarity, and tone over complexity.",
       images: [
         {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/medical-app-ui0.jpg",
+          src: "https://youtu.be/iDbqHuz6d2A",
           alt: "Final UI showing medication tracker and dashboard",
           caption: "Final interface prioritizing clarity and empathy",
         },
@@ -383,7 +383,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           label: "Iteration 2",
           imageSrc:
-            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/Group-13.3.png",
+            "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/whatdidntwork.png",
           alt: "Simplified home dashboard",
           blurb: "Simplified dashboard with friendly tone and clear CTAs",
           annotations: [
