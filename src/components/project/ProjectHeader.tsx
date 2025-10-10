@@ -30,7 +30,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16 hero-no-overflow">
-      <div className="w-full hero-container-mobile">
+      <div className="w-full px-[10px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -52,7 +52,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
                 {description}
               </p>
               
-              <div className="hero-tags">
+              <div className="hero-tags flex flex-wrap justify-center gap-2 mt-4">
                 {tags.map((tag) => (
                   <Link
                     key={tag}

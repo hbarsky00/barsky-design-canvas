@@ -62,7 +62,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       {isMobile ? (
         <div className="hero-mobile-fullbleed hero-no-overflow">
           {/* Text Content - Centered with proper padding */}
-          <div className="hero-text-padded py-8">
+          <div className="py-8">
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
