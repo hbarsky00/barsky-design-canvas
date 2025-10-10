@@ -181,7 +181,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             initial={{ opacity: 0.3, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="hero-image-fullwidth hero-text-padded"
+            className="hero-image-fullwidth"
             style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
             <div className="hero-image">

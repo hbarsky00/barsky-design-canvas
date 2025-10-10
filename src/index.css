@@ -1018,13 +1018,37 @@ body {
   gap: 12px;
 }
 
-/* Mobile-only: Force exact 10px left/right padding on all hero sections */
-@media (max-width: 639px) {
+/* Mobile + Tablet: Force exact 10px left/right padding and centering on all hero sections */
+@media (max-width: 1023px) {
   section[data-section="hero"],
   .project-hero-root {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-inline: 10px !important;
+    margin-inline: 0 !important;
+    width: 100% !important;
     box-sizing: border-box;
+  }
+  
+  /* Center text + tags */
+  section[data-section="hero"] .hero-text-stack,
+  .project-hero-root .hero-text-stack {
+    text-align: center !important;
+    align-items: center !important;
+  }
+  
+  section[data-section="hero"] .hero-tags,
+  .project-hero-root .hero-tags {
+    justify-content: center !important;
+    gap: 10px;
+  }
+  
+  /* Ensure hero media scales properly */
+  .hero-image,
+  .hero-image img,
+  .hero-image video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block;
   }
 }
 
