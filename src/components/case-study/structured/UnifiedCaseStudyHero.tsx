@@ -61,26 +61,26 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
         <div className="w-full overflow-hidden">
-          {/* Text Content - WITH padding */}
-          <div className="hero-text-padded py-6">
+          {/* Text Content - Centered with proper padding */}
+          <div className="hero-text-padded py-8">
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center w-full"
+              className="flex flex-col items-center text-center w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <div className="hero-text-stack">
-                <h1 className="hero-title-mobile text-foreground font-display w-full">
+                <h1 className="hero-title-mobile text-foreground font-display mx-auto max-w-[90%]">
                   {caseStudyData.title}
                 </h1>
                 
-                <p className="hero-subtitle-mobile text-muted-foreground w-full hero-subtitle">
+                <p className="hero-subtitle-mobile text-muted-foreground mx-auto max-w-[85%]">
                   {caseStudyData.description}
                 </p>
                 
-                <div className="hero-tags w-full">
+                <div className="hero-tags flex flex-wrap justify-center gap-2 mt-4">
                   {caseStudyData.tags.map((tag) => (
                     <Badge key={tag} variant="secondary" className="px-3 py-2">
                       {tag}
@@ -89,7 +89,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                 </div>
 
                 {caseStudyData.projectLink && (
-                  <div className="hero-cta-wrapper w-full">
+                  <div className="hero-cta-wrapper max-w-md mx-auto mt-6">
                     <ProjectActionsCompact 
                       liveUrl={caseStudyData.projectLink}
                       projectTitle={caseStudyData.title}
@@ -102,13 +102,13 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             </motion.div>
           </div>
 
-          {/* Media Content - FULL WIDTH, no side padding */}
+          {/* Media Content - Full width with proper aspect ratio */}
           <motion.div
             ref={mediaRef}
-            initial={{ opacity: 0.3, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="hero-image-fullwidth mt-6"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="hero-image-fullwidth mt-8"
             style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
             <div className="hero-image">
@@ -124,7 +124,8 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                 <MaximizableImage
                   src={caseStudyData.seoData.image}
                   alt={`${caseStudyData.title} hero image`}
-                  caption={`${caseStudyData.title} project overview`}
+                  className="w-full h-auto block rounded-2xl shadow-md"
+                  priority={true}
                 />
               )}
             </div>

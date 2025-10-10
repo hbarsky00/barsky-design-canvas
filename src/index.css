@@ -446,8 +446,17 @@ select:focus-visible, a:focus-visible,
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
-  max-width: 100%; /* Prevent overflow */
+  object-fit: contain;
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 768px) {
+  .hero-image img,
+  .hero-image video {
+    border-radius: 1.5rem;
+  }
 }
 
 /* Text-only padding utility */
@@ -1003,20 +1012,25 @@ body {
   gap: 12px;
 }
 
-/* Mobile typography with proper clamps */
+/* Mobile typography with proper clamps and centering */
 .hero-title-mobile {
   font-size: clamp(28px, 7vw, 40px);
   line-height: 1.2;
   letter-spacing: -0.025em;
   font-weight: 500;
   font-family: var(--font-display);
-  margin-bottom: 0;
+  margin: 0 auto 12px auto;
+  max-width: 90%;
+  text-align: center;
 }
 
 .hero-subtitle-mobile {
   font-size: clamp(16px, 4.5vw, 20px);
   line-height: 1.65;
-  margin-bottom: 0;
+  margin: 0 auto 16px auto;
+  max-width: 85%;
+  text-align: center;
+  color: hsl(var(--muted-foreground));
 }
 
 

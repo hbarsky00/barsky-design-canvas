@@ -20,25 +20,25 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
     <section className="bg-gradient-to-br from-background to-muted overflow-x-hidden" style={{ perspective: "1000px" }}>
       <div className="w-full overflow-hidden md:max-w-6xl md:mx-auto">
         {/* Text Container with Padding */}
-        <div className="hero-text-padded md:px-8 md:pt-8">
+        <div className="hero-text-padded md:px-8 md:pt-8 py-8">
           <motion.div
             ref={textRef}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center"
+            className="flex flex-col items-center text-center"
             style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
           <div className="hero-text-stack mt-8 mb-12">
-            <h1 className="heading-hero text-foreground">
+            <h1 className="heading-hero text-foreground mx-auto max-w-[90%]">
               {caseStudy.title}
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle">
+            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle mx-auto max-w-[85%]">
               {caseStudy.description}
             </p>
             
-            <div className="hero-tags">
+            <div className="hero-tags flex flex-wrap justify-center gap-2 mt-4">
               {caseStudy.tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="px-3 py-1.5">
                   {tag}
@@ -47,7 +47,7 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
             </div>
 
             {caseStudy.projectLink && (
-              <div className="hero-cta-wrapper">
+              <div className="hero-cta-wrapper max-w-md mx-auto mt-6">
                 <ProjectLinks projectLink={caseStudy.projectLink} />
               </div>
             )}

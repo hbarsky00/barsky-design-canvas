@@ -33,7 +33,7 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="glass-card-elevated p-6 sm:p-8 lg:p-10 text-center layered-depth mb-10 lg:mb-16"
+            className="glass-card-elevated p-6 sm:p-8 lg:p-10 flex flex-col items-center text-center layered-depth mb-10 lg:mb-16"
           >
             <div className="hero-text-stack">
               <div className="flex items-center justify-center flex-wrap gap-2 text-sm">
@@ -44,15 +44,15 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
                 <span className="text-gray-600">{details.role}</span>
               </div>
               
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight mx-auto max-w-[90%]">
                 {project.title}
               </h1>
               
-              <p className="text-lg lg:text-xl text-gray-600 hero-subtitle max-w-4xl mx-auto">
+              <p className="text-lg lg:text-xl text-gray-600 hero-subtitle mx-auto max-w-[85%]">
                 {project.description}
               </p>
 
-              <div className="hero-tags">
+              <div className="hero-tags flex flex-wrap justify-center gap-2 mt-4">
                 {project.tags.map((tag) => (
                   <Badge 
                     key={tag}
@@ -65,7 +65,7 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
               </div>
 
               {details.projectLink && (
-                <div className="hero-cta-wrapper">
+                <div className="hero-cta-wrapper max-w-md mx-auto mt-6">
                   <Button asChild variant="default">
                     <a href={details.projectLink} target="_blank" rel="noopener noreferrer">
                       View Live Project
@@ -89,7 +89,7 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
               src={project.image}
               alt={project.title}
               caption={imageCaptions[project.image] || project.title}
-              className="w-full h-auto glass-card layered-depth md:rounded-xl md:shadow-elevated-lg"
+              className="w-full h-auto block rounded-2xl shadow-md glass-card layered-depth md:rounded-xl md:shadow-elevated-lg"
               imageList={[project.image]}
               currentIndex={0}
               projectId={projectId}

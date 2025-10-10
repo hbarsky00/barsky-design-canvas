@@ -27,25 +27,25 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
   return (
     <section className="section-spacing bg-gradient-to-br from-background to-muted overflow-x-hidden" style={{ perspective: "1000px" }}>
       <div className="w-full overflow-hidden">
-        <div className="hero-text-padded md:max-w-6xl md:mx-auto md:px-8">
+        <div className="hero-text-padded md:max-w-6xl md:mx-auto md:px-8 py-8">
           <motion.div
             ref={textRef}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center content-rail-center"
+            className="flex flex-col items-center text-center content-rail-center"
             style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
           <div className="hero-text-stack mt-8 mb-12">
-            <h1 className="text-hero-h1 text-foreground">
+            <h1 className="text-hero-h1 text-foreground mx-auto max-w-[90%]">
               {caseStudyData.title}
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle">
+            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle mx-auto max-w-[85%]">
               {caseStudyData.description}
             </p>
             
-            <div className="hero-tags">
+            <div className="hero-tags flex flex-wrap justify-center gap-2 mt-4">
               {caseStudyData.tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="px-3 py-1.5">
                   {tag}
@@ -54,7 +54,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
             </div>
 
             {caseStudyData.projectLink && (
-              <div className="hero-cta-wrapper max-w-md mx-auto">
+              <div className="hero-cta-wrapper max-w-md mx-auto mt-6">
                 <ProjectActionsCompact 
                   liveUrl={caseStudyData.projectLink}
                   projectTitle={caseStudyData.title}
