@@ -22,13 +22,13 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
   projectId
 }) => {
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
-      <div className="relative w-full overflow-hidden z-10">
-        <div className="hero-text-padded md:max-w-7xl md:mx-auto md:px-8 pt-20 pb-8 lg:pt-24 lg:pb-16">
+      <div className="relative w-full hero-container-mobile z-10">
+        <div className="max-w-7xl mx-auto pt-20 pb-8 lg:pt-24 lg:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,27 +76,25 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
               )}
             </div>
           </motion.div>
-        </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hero-image-fullwidth md:max-w-3xl md:mx-auto md:px-6 lg:px-8 md:pb-8"
-        >
-          <div className="hero-image">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="floating-element max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8"
+          >
             <MaximizableImage
               src={project.image}
               alt={project.title}
               caption={imageCaptions[project.image] || project.title}
-              className="w-full h-auto glass-card layered-depth md:rounded-xl md:shadow-elevated-lg"
+              className="rounded-xl shadow-elevated-lg w-full glass-card layered-depth"
               imageList={[project.image]}
               currentIndex={0}
               projectId={projectId}
               priority={true}
             />
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
