@@ -18,17 +18,29 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="case-study-image-grid">
       {images.map((image, index) => (
-        <MaximizableImage
+        <motion.div
           key={image}
-          src={image}
-          alt={`Gallery image ${index + 1}`}
-          caption={imageCaptions[image]}
-          imageList={images}
-          currentIndex={index}
-          className="shadow-elevated w-full glass-card layered-depth"
-        />
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+          className="case-study-image-container case-study-image-standard"
+        >
+          <MaximizableImage
+            src={image}
+            alt={imageCaptions[image] || `Gallery image ${index + 1}`}
+            imageList={images}
+            currentIndex={index}
+            className="w-full h-full"
+          />
+          {imageCaptions[image] && (
+            <p className="case-study-image-caption">
+              {imageCaptions[image]}
+            </p>
+          )}
+        </motion.div>
       ))}
     </div>
   );

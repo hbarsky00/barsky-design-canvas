@@ -54,13 +54,19 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
       )}
       
       {image && (
-        <MaximizableImage
-          src={image}
-          alt={imageCaption || title}
-          caption={imageCaption}
-          className="shadow-elevated w-full glass-card layered-depth floating-element"
-          onImageReplace={onImageReplace}
-        />
+        <div className="case-study-image-container case-study-image-standard">
+          <MaximizableImage
+            src={image}
+            alt={imageCaption || title}
+            className="w-full h-full"
+            onImageReplace={onImageReplace}
+          />
+          {imageCaption && (
+            <p className="case-study-image-caption">
+              {imageCaption}
+            </p>
+          )}
+        </div>
       )}
     </motion.section>
   );

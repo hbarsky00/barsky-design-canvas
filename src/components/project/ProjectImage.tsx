@@ -1,4 +1,3 @@
-
 import React from "react";
 import MaximizableImage from "./MaximizableImage";
 import { AIEnhancedImage } from "@/components/enhanced/AIEnhancedImage";
@@ -10,6 +9,7 @@ interface ProjectImageProps {
   className?: string;
   priority?: boolean;
   projectId?: string;
+  size?: "hero" | "standard" | "small";
 }
 
 const ProjectImage: React.FC<ProjectImageProps> = ({
@@ -18,21 +18,28 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
   caption,
   className = "",
   priority = false,
+  size = "standard",
 }) => {
+  const sizeClass = size === "hero" 
+    ? "case-study-image-hero" 
+    : size === "small"
+    ? "case-study-image-small"
+    : "case-study-image-standard";
+
   return (
-    <div className={`shadow-elevated w-full glass-card layered-depth ${className}`}>
+    <div className={`case-study-image-container ${sizeClass} ${className}`}>
       <AIEnhancedImage
         src={src}
         alt={alt}
         priority={priority}
         enableAI={true}
         showEnhancementIndicator={true}
-        className="w-full h-full object-contain"
+        className="w-full h-full object-cover"
       />
       {caption && (
-        <div className="p-3 text-sm text-muted-foreground text-center border-t border-border">
+        <p className="case-study-image-caption">
           {caption}
-        </div>
+        </p>
       )}
     </div>
   );

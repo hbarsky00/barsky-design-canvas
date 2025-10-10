@@ -17,27 +17,25 @@ const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => 
       </h2>
       
       <div className="w-full px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+        <div className="case-study-image-grid">
           {iterations.slice(0, 4).map((iteration, index) => (
             <div 
               key={index}
               id={`iteration-${index + 1}`}
               data-section={`iteration-${index + 1}`}
-              className="space-y-3"
+              className="case-study-image-container"
             >
-              <div className="text-xs tracking-widest uppercase text-neutral-500 font-medium text-center">
+              <div className="text-xs tracking-widest uppercase text-neutral-500 font-medium text-center mb-3 px-4">
                 {iteration.label}
               </div>
-              <div className="max-w-full">
-                <MaximizableImage
-                  src={iteration.imageSrc}
-                  alt={iteration.alt}
-                  annotations={iteration.annotations}
-                  imageList={iterations.map(iter => iter.imageSrc)}
-                  currentIndex={index}
-                  className="w-full"
-                />
-              </div>
+              <MaximizableImage
+                src={iteration.imageSrc}
+                alt={iteration.alt}
+                annotations={iteration.annotations}
+                imageList={iterations.map(iter => iter.imageSrc)}
+                currentIndex={index}
+                className="w-full h-full"
+              />
             </div>
           ))}
         </div>

@@ -374,13 +374,216 @@ select:focus-visible, a:focus-visible,
     }
   }
   
-  /* Hero responsive containers - ensures safe margins on all devices */
+/* Hero responsive containers - ensures safe margins on all devices */
+.hero-container-mobile {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+@media (min-width: 640px) {
   .hero-container-mobile {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
   }
+}
+
+@media (min-width: 768px) {
+  .hero-container-mobile {
+    padding: 32px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-container-mobile {
+    padding: 40px 48px;
+  }
+}
+
+/* ========================================
+   CASE STUDY IMAGE SYSTEM
+   High-impact, immersive image display
+   ======================================== */
+
+/* Base image container - ensures proper aspect ratios */
+.case-study-image-container {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+  background: var(--md-sys-color-surface-container);
+}
+
+@media (min-width: 768px) {
+  .case-study-image-container {
+    border-radius: 1.5rem; /* rounded-3xl on larger screens */
+  }
+}
+
+/* Full-width hero images - maximum impact */
+.case-study-image-hero {
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16 / 9;
+  margin: 2rem auto;
+}
+
+@media (max-width: 767px) {
+  .case-study-image-hero {
+    aspect-ratio: 4 / 3; /* Better for mobile screens */
+    margin: 1.5rem auto;
+  }
+}
+
+/* Standard content images - readable but impactful */
+.case-study-image-standard {
+  width: 100%;
+  max-width: 900px;
+  margin: 1.5rem auto;
+}
+
+@media (max-width: 767px) {
+  .case-study-image-standard {
+    margin: 1rem auto;
+  }
+}
+
+/* Small feature images - for comparison shots, details */
+.case-study-image-small {
+  width: 100%;
+  max-width: 600px;
+  margin: 1.5rem auto;
+}
+
+/* Image within container - always full-width with proper object-fit */
+.case-study-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect for interactivity */
+.case-study-image-container:hover img {
+  transform: scale(1.02);
+}
+
+/* Image captions - consistent styling */
+.case-study-image-caption {
+  display: block;
+  text-align: center;
+  font-size: 0.875rem; /* text-sm */
+  color: hsl(var(--muted-foreground));
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .case-study-image-caption {
+    font-size: 0.9375rem; /* slightly larger on desktop */
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Image gallery grid - for multiple images */
+.case-study-image-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (min-width: 768px) {
+  .case-study-image-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-study-image-grid {
+    gap: 2rem;
+  }
+}
+
+/* Horizontal scroll container for app screens */
+.case-study-image-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 0;
+  margin: 2rem -1rem; /* Negative margin to allow edge-to-edge scroll */
+}
+
+.case-study-image-scroll > * {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: 280px; /* Mobile phone width */
+}
+
+@media (min-width: 768px) {
+  .case-study-image-scroll {
+    gap: 1.5rem;
+    margin: 2rem auto;
+    justify-content: center;
+  }
+  
+  .case-study-image-scroll > * {
+    width: 320px;
+  }
+}
+
+/* Scrollbar styling for horizontal scroll */
+.case-study-image-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.case-study-image-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--md-sys-color-surface-container));
+  border-radius: 4px;
+}
+
+.case-study-image-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--md-sys-color-outline-variant));
+  border-radius: 4px;
+}
+
+.case-study-image-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--md-sys-color-outline));
+}
+
+/* Section spacing adjustments for better image breathing room */
+.case-study-section-with-images {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .case-study-section-with-images {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .case-study-section-with-images {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
 
   @media (min-width: 640px) {
     .hero-container-mobile {

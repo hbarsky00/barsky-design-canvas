@@ -55,8 +55,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   }, [images.length]);
 
   return (
-    <div className="relative">
-      <div className="relative overflow-hidden glass-card layered-depth">
+    <div className="case-study-image-container case-study-image-hero">
+      <div className="relative w-full h-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -67,7 +67,7 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
               duration: 0.5,
               ease: [0.22, 1, 0.36, 1]
             }}
-            className="w-full"
+            className="w-full h-full"
           >
             <MaximizableImage
               src={images[currentIndex]}
