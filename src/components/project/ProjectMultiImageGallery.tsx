@@ -96,7 +96,8 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
           >
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-20"
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-30 bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors shadow-lg"
+              aria-label="Close"
             >
               <X className="h-8 w-8" />
             </button>
@@ -108,18 +109,20 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                     e.stopPropagation();
                     navigateImage('prev');
                   }}
-                  className="absolute left-4 top-4 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-3 hover:bg-black/70 transition-colors shadow-lg"
+                  aria-label="Previous image"
                 >
-                  <ChevronLeft className="h-6 w-6" />
+                  <ChevronLeft className="h-8 w-8" />
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigateImage('next');
                   }}
-                  className="absolute right-16 top-4 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-3 hover:bg-black/70 transition-colors shadow-lg"
+                  aria-label="Next image"
                 >
-                  <ChevronRight className="h-6 w-6" />
+                  <ChevronRight className="h-8 w-8" />
                 </button>
               </>
             )}
