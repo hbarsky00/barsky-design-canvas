@@ -60,45 +60,47 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col justify-start py-3 md:py-8">
-          <div className="flex flex-col justify-center gap-6 w-full max-w-none">
-            {/* Text Content */}
-            <motion.div
-              ref={textRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center w-full"
-              style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-            >
-              <h1 className="hero-title-mobile text-foreground font-display mb-4 w-full">
-                {caseStudyData.title}
-              </h1>
-              
-              <p className="hero-subtitle-mobile text-muted-foreground mb-5 w-full hero-subtitle">
-                {caseStudyData.description}
-              </p>
-              
-              <div className="hero-tags mb-5 w-full">
-                 {caseStudyData.tags.map((tag) => (
-                   <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-xs">
-                     {tag}
-                   </Badge>
-                 ))}
-              </div>
+        <div className="hero-container-mobile">
+          <div className="flex flex-col justify-start py-6">
+            <div className="flex flex-col justify-center gap-8 w-full max-w-none">
+              {/* Text Content */}
+              <motion.div
+                ref={textRef}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-center w-full"
+                style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+              >
+                <div className="hero-text-stack">
+                  <h1 className="hero-title-mobile text-foreground font-display w-full">
+                    {caseStudyData.title}
+                  </h1>
+                  
+                  <p className="hero-subtitle-mobile text-muted-foreground w-full hero-subtitle">
+                    {caseStudyData.description}
+                  </p>
+                  
+                  <div className="hero-tags w-full">
+                    {caseStudyData.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="px-3 py-2">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
 
-               {caseStudyData.projectLink && (
-                 <div className="hero-cta-container w-full flex justify-center">
-                    <ProjectActionsCompact 
-                      liveUrl={caseStudyData.projectLink}
-                      projectTitle={caseStudyData.title}
-                      projectDescription={caseStudyData.description}
-                      projectPageUrl={`https://barskydesign.pro${location.pathname}`}
-                    />
-                 </div>
-               )}
-            </motion.div>
+                  {caseStudyData.projectLink && (
+                    <div className="hero-cta-wrapper w-full">
+                      <ProjectActionsCompact 
+                        liveUrl={caseStudyData.projectLink}
+                        projectTitle={caseStudyData.title}
+                        projectDescription={caseStudyData.description}
+                        projectPageUrl={`https://barskydesign.pro${location.pathname}`}
+                      />
+                    </div>
+                  )}
+                </div>
+              </motion.div>
 
             {/* Media Content */}
             <motion.div
@@ -134,8 +136,8 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
         </div>
       ) : isTablet ? (
         /* Tablet Layout: Single Column, Optimized Spacing */
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-          <div className="flex flex-col gap-10">
+        <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12">
+          <div className="flex flex-col gap-12">
             {/* Text Content */}
             <motion.div
               ref={textRef}
@@ -145,32 +147,34 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               className="text-center"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="text-4xl md:text-5xl text-foreground font-display mb-5 leading-tight">
-                {caseStudyData.title}
-              </h1>
-              
-              <p className="text-base md:text-lg text-muted-foreground mb-6 hero-subtitle">
-                {caseStudyData.description}
-              </p>
-              
-              <div className="hero-tags mb-7">
-                {caseStudyData.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="px-2.5 py-1 text-sm">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-
-              {caseStudyData.projectLink && (
-                <div className="flex justify-center">
-                  <ProjectActionsCompact
-                    liveUrl={caseStudyData.projectLink}
-                    projectTitle={caseStudyData.title}
-                    projectDescription={caseStudyData.description}
-                    projectPageUrl={`https://barskydesign.pro${location.pathname}`}
-                  />
+              <div className="hero-text-stack">
+                <h1 className="text-4xl md:text-5xl text-foreground font-display leading-tight">
+                  {caseStudyData.title}
+                </h1>
+                
+                <p className="text-lg md:text-xl text-muted-foreground hero-subtitle">
+                  {caseStudyData.description}
+                </p>
+                
+                <div className="hero-tags">
+                  {caseStudyData.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary" className="px-3 py-1.5">
+                      {tag}
+                    </Badge>
+                  ))}
                 </div>
-              )}
+
+                {caseStudyData.projectLink && (
+                  <div className="hero-cta-wrapper">
+                    <ProjectActionsCompact
+                      liveUrl={caseStudyData.projectLink}
+                      projectTitle={caseStudyData.title}
+                      projectDescription={caseStudyData.description}
+                      projectPageUrl={`https://barskydesign.pro${location.pathname}`}
+                    />
+                  </div>
+                )}
+              </div>
             </motion.div>
 
             {/* Media Content */}

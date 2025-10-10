@@ -27,61 +27,54 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
-      <div className="relative w-full px-4 sm:px-6 z-10">
-        {/* Header with proper spacing from logo */}
-        <div className="max-w-7xl mx-auto pt-24 pb-8 lg:pt-28 lg:pb-16">
-
+      <div className="relative w-full hero-container-mobile z-10">
+        <div className="max-w-7xl mx-auto pt-20 pb-8 lg:pt-24 lg:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="glass-card-elevated p-4 sm:p-8 text-center space-y-4 lg:space-y-6 layered-depth mb-10 lg:mb-16"
+            className="glass-card-elevated p-6 sm:p-8 lg:p-10 text-center layered-depth mb-10 lg:mb-16"
           >
-            <div className="flex items-center justify-center space-x-3 text-sm">
-              <span className="font-medium text-blue-600 glass-button px-3 py-1 rounded-full">{details.client}</span>
-              <span className="text-gray-400">•</span>
-              <span className="text-gray-600">{details.duration}</span>
-              <span className="text-gray-400">•</span>
-              <span className="text-gray-600">{details.role}</span>
-            </div>
-            
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-              {project.title}
-            </h1>
-            
-            <p className="text-lg lg:text-xl text-gray-600 hero-subtitle max-w-4xl mx-auto">
-              {project.description}
-            </p>
-
-            <div className="hero-tags">
-              {project.tags.map((tag) => (
-                <Badge 
-                  key={tag}
-                  variant="secondary" 
-                  className="glass-button px-3 py-1 bg-blue-50/80 text-blue-700 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-
-            {details.projectLink && (
-              <div className="flex justify-center pt-4">
-                <Button 
-                  asChild
-                  variant="default"
-                >
-                  <a
-                    href={details.projectLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Live Project
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
+            <div className="hero-text-stack">
+              <div className="flex items-center justify-center flex-wrap gap-2 text-sm">
+                <span className="font-medium text-blue-600 glass-button px-3 py-1.5 rounded-full">{details.client}</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-gray-600">{details.duration}</span>
+                <span className="text-gray-400">•</span>
+                <span className="text-gray-600">{details.role}</span>
               </div>
-            )}
+              
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+                {project.title}
+              </h1>
+              
+              <p className="text-lg lg:text-xl text-gray-600 hero-subtitle max-w-4xl mx-auto">
+                {project.description}
+              </p>
+
+              <div className="hero-tags">
+                {project.tags.map((tag) => (
+                  <Badge 
+                    key={tag}
+                    variant="secondary" 
+                    className="glass-button px-3 py-1.5 bg-blue-50/80 text-blue-700 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300"
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+
+              {details.projectLink && (
+                <div className="hero-cta-wrapper">
+                  <Button asChild variant="default">
+                    <a href={details.projectLink} target="_blank" rel="noopener noreferrer">
+                      View Live Project
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+              )}
+            </div>
           </motion.div>
 
           <motion.div

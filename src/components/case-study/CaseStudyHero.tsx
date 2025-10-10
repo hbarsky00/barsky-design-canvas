@@ -18,36 +18,38 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
   return (
     <section className="bg-gradient-to-br from-background to-muted md:pt-8 md:pb-16" style={{ perspective: "1000px" }}>
-      <div className="hero-container md:max-w-6xl md:mx-auto md:px-4 sm:md:px-6 lg:md:px-8">
+      <div className="hero-container-mobile md:max-w-6xl md:mx-auto">
         <motion.div
           ref={textRef}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-12 mt-8"
+          className="text-center"
           style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
-          <h1 className="heading-hero text-foreground mb-6">
-            {caseStudy.title}
-          </h1>
-          
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto hero-subtitle">
-            {caseStudy.description}
-          </p>
-          
-          <div className="hero-tags mb-8">
-            {caseStudy.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="px-3 py-1">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-
-          {caseStudy.projectLink && (
-            <div className="flex justify-center">
-              <ProjectLinks projectLink={caseStudy.projectLink} />
+          <div className="hero-text-stack mt-8 mb-12">
+            <h1 className="heading-hero text-foreground">
+              {caseStudy.title}
+            </h1>
+            
+            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle">
+              {caseStudy.description}
+            </p>
+            
+            <div className="hero-tags">
+              {caseStudy.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="px-3 py-1.5">
+                  {tag}
+                </Badge>
+              ))}
             </div>
-          )}
+
+            {caseStudy.projectLink && (
+              <div className="hero-cta-wrapper">
+                <ProjectLinks projectLink={caseStudy.projectLink} />
+              </div>
+            )}
+          </div>
         </motion.div>
 
         <motion.div

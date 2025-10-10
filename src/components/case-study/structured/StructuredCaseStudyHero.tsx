@@ -32,35 +32,37 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-12 mt-8"
+          className="text-center content-rail-center"
           style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
-          <h1 className="text-hero-h1 text-foreground mb-6 content-rail-center">
-            {caseStudyData.title}
-          </h1>
-          
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 content-rail-center hero-subtitle">
-            {caseStudyData.description}
-          </p>
-          
-          <div className="hero-tags mb-8">
-            {caseStudyData.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="px-3 py-1">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-
-          {caseStudyData.projectLink && (
-            <div className="flex justify-center max-w-md mx-auto">
-              <ProjectActionsCompact 
-                liveUrl={caseStudyData.projectLink}
-                projectTitle={caseStudyData.title}
-                projectDescription={caseStudyData.description}
-                projectPageUrl={getCanonicalUrl(location.pathname)}
-              />
+          <div className="hero-text-stack mt-8 mb-12">
+            <h1 className="text-hero-h1 text-foreground">
+              {caseStudyData.title}
+            </h1>
+            
+            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle">
+              {caseStudyData.description}
+            </p>
+            
+            <div className="hero-tags">
+              {caseStudyData.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="px-3 py-1.5">
+                  {tag}
+                </Badge>
+              ))}
             </div>
-          )}
+
+            {caseStudyData.projectLink && (
+              <div className="hero-cta-wrapper max-w-md mx-auto">
+                <ProjectActionsCompact 
+                  liveUrl={caseStudyData.projectLink}
+                  projectTitle={caseStudyData.title}
+                  projectDescription={caseStudyData.description}
+                  projectPageUrl={getCanonicalUrl(location.pathname)}
+                />
+              </div>
+            )}
+          </div>
         </motion.div>
 
       </div>

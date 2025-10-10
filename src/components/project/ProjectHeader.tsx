@@ -30,43 +30,44 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
 
   return (
     <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16">
-      <div className="w-full px-4 sm:px-6">
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+      <div className="w-full hero-container-mobile">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <AnimatedText
-              text={title}
-              tag="h1"
-              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 text-center"
-              type="character"
-              animation="typewriter"
-              delay={200}
-              staggerChildren={0.03}
-            />
-            
-            <p className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8 hero-subtitle text-center">
-              {description}
-            </p>
-            
-            <div className="hero-tags">
-              {tags.map((tag) => (
-                <Link
-                  key={tag}
-                  to={getServiceUrlFromTag(tag)}
-                  className="inline-block"
-                >
-                  <Badge 
-                    variant="secondary" 
-                    className="px-3 py-1 hover:bg-barsky-blue hover:text-white transition-all duration-200 cursor-pointer"
+            <div className="hero-text-stack">
+              <AnimatedText
+                text={title}
+                tag="h1"
+                className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 text-center leading-tight"
+                type="character"
+                animation="typewriter"
+                delay={200}
+                staggerChildren={0.03}
+              />
+              
+              <p className="text-lg lg:text-xl text-gray-600 hero-subtitle text-center">
+                {description}
+              </p>
+              
+              <div className="hero-tags">
+                {tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    to={getServiceUrlFromTag(tag)}
+                    className="inline-block"
                   >
-                    {tag}
-                  </Badge>
-                </Link>
-              ))}
+                    <Badge 
+                      variant="secondary" 
+                      className="px-3 py-1.5 hover:bg-barsky-blue hover:text-white transition-all duration-200 cursor-pointer"
+                    >
+                      {tag}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
             </div>
           </motion.div>
           
