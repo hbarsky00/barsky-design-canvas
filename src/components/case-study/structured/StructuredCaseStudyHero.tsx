@@ -33,7 +33,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col items-center text-center content-rail-center"
+            className="hero-center-mobile"
             style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
           <div className="hero-text-stack mt-8 mb-12">
