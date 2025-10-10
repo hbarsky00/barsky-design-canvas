@@ -55,12 +55,12 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full overflow-x-hidden md:py-6 lg:py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
+      className="section-snap w-full hero-no-overflow md:py-6 lg:py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
       style={{ perspective: "1000px" }}
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
-        <div className="w-full overflow-hidden">
+        <div className="hero-mobile-fullbleed hero-no-overflow">
           {/* Text Content - Centered with proper padding */}
           <div className="hero-text-padded py-8">
             <motion.div
@@ -133,7 +133,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
         </div>
       ) : isTablet ? (
         /* Tablet Layout: Full-width images, padded text */
-        <div className="w-full overflow-hidden">
+        <div className="hero-mobile-fullbleed hero-no-overflow">
           {/* Text with constrained width */}
           <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12">
             <motion.div

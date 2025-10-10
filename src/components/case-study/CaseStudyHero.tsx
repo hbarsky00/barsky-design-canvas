@@ -17,8 +17,8 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
   const { containerStyle: textStyle } = useScroll3DTilt(textRef, { maxTilt: 2.5, yDistance: 10, childParallax: 6 });
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
   return (
-    <section className="bg-gradient-to-br from-background to-muted overflow-x-hidden" style={{ perspective: "1000px" }}>
-      <div className="w-full overflow-hidden md:max-w-6xl md:mx-auto">
+    <section className="bg-gradient-to-br from-background to-muted hero-no-overflow" style={{ perspective: "1000px" }}>
+      <div className="hero-mobile-fullbleed hero-no-overflow md:max-w-6xl md:mx-auto">
         {/* Text Container with Padding */}
         <div className="hero-text-padded md:px-8 md:pt-8 py-8">
           <motion.div

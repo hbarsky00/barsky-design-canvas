@@ -25,8 +25,8 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
 
   return (
-    <section className="section-spacing bg-gradient-to-br from-background to-muted overflow-x-hidden" style={{ perspective: "1000px" }}>
-      <div className="w-full overflow-hidden">
+    <section className="section-spacing bg-gradient-to-br from-background to-muted hero-no-overflow" style={{ perspective: "1000px" }}>
+      <div className="hero-mobile-fullbleed hero-no-overflow">
         <div className="hero-text-padded md:max-w-6xl md:mx-auto md:px-8 py-8">
           <motion.div
             ref={textRef}

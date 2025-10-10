@@ -1148,6 +1148,33 @@ section[data-section="hero"] .content-rail-center,
   padding: 0 !important;
 }
 
+/* Full-bleed breaker for mobile heroes */
+.hero-mobile-fullbleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .hero-mobile-fullbleed {
+    width: 100%;
+    left: auto;
+    right: auto;
+    margin: 0;
+  }
+}
+
+/* Disable cropping anywhere this is applied */
+.hero-no-overflow {
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
 /* Ensure hero sections don't crop */
 section[data-section="hero"] {
   overflow-x: visible;
