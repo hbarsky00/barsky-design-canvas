@@ -50,8 +50,8 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col justify-center min-h-[calc(100dvh-var(--header-height,64px)-32px)] py-6 md:py-8">
-          <div className="flex flex-col justify-center gap-4 w-full max-w-none">
+          <div className="flex flex-col justify-center min-h-[calc(100dvh-var(--header-height,64px)-32px)] py-3 md:py-8">
+          <div className="flex flex-col justify-center gap-2.5 w-full max-w-none">
             {/* Text Content */}
             <motion.div
               ref={textRef}
@@ -61,15 +61,15 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               className="text-left w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="hero-title-mobile text-foreground font-display mb-3 w-full">
+              <h1 className="hero-title-mobile text-foreground font-display mb-2 w-full">
                 {caseStudyData.title}
               </h1>
               
-              <p className="hero-subtitle-mobile text-muted-foreground mb-4 w-full">
+              <p className="hero-subtitle-mobile text-muted-foreground mb-2.5 w-full">
                 {caseStudyData.description}
               </p>
               
-              <div className="hero-tags mb-5 w-full">
+              <div className="hero-tags mb-3 w-full">
                  {caseStudyData.tags.map((tag) => (
                    <Badge key={tag} variant="secondary" className="px-2 py-0.5 text-xs">
                      {tag}

@@ -638,7 +638,7 @@ body {
   justify-content: center;
   width: 100%;
   overflow-x: hidden;
-  gap: 16px;
+  gap: 12px;
 }
 
 /* Mobile typography with proper clamps */
@@ -648,25 +648,27 @@ body {
   letter-spacing: -0.025em;
   font-weight: 500;
   font-family: var(--font-display);
+  margin-bottom: 0;
 }
 
 .hero-subtitle-mobile {
   font-size: clamp(14px, 4vw, 18px);
-  line-height: 1.45;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 /* Tags/chips layout */
 .hero-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 /* CTA buttons mobile */
 .hero-cta-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
