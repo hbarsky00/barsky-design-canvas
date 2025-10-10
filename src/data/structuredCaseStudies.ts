@@ -417,13 +417,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "60%", label: "Increase in appointment adherence" },
         { value: "3×", label: "Higher patient engagement" },
       ],
-      images: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/1.-User-Management-Grid-View.jpg",
-          alt: "Patient progress dashboard",
-          caption: "Dashboard showing medication adherence and appointment tracking",
-        },
-      ],
+        images: [
+          {
+            src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/wireframing.png",
+            alt: "Wireframes showing admin and patient dashboard",
+            caption: "Dual-view wireframes for seamless admin-patient data flow",
+          },
+        ],
     },
     finalProductSection: {
       title: "The Result",
