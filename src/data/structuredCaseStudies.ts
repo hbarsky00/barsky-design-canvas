@@ -421,7 +421,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/assets/case-studies/smarter-health/patient-dashboard.png",
+        src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/1.-User-Management-Grid-View.jpg",
           alt: "Patient progress dashboard",
           caption: "Dashboard showing medication adherence and appointment tracking",
         },
