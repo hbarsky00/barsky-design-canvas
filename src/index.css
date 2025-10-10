@@ -1145,8 +1145,6 @@ section[data-section="hero"] .content-rail-center,
   flex-direction: column !important;
   align-items: center !important;
   margin: 0 !important;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
   box-sizing: border-box;
 }
 
