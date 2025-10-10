@@ -134,8 +134,8 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
         </div>
       ) : isTablet ? (
         /* Tablet Layout: Single Column, Optimized Spacing */
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6">
-          <div className="flex flex-col gap-4">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+          <div className="flex flex-col gap-8">
             {/* Text Content */}
             <motion.div
               ref={textRef}
@@ -145,15 +145,15 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               className="text-left"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
-              <h1 className="text-4xl md:text-5xl text-foreground font-display mb-4 leading-tight">
+              <h1 className="text-4xl md:text-5xl text-foreground font-display mb-3 leading-tight">
                 {caseStudyData.title}
               </h1>
               
-              <p className="text-base md:text-lg text-muted-foreground mb-5 leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground mb-4 leading-relaxed">
                 {caseStudyData.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-5">
                 {caseStudyData.tags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2.5 py-1 text-sm">
                     {tag}
@@ -162,8 +162,8 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               </div>
 
               {caseStudyData.projectLink && (
-                <div className="mb-6">
-                  <ProjectActionsCompact 
+                <div>
+                  <ProjectActionsCompact
                     liveUrl={caseStudyData.projectLink}
                     projectTitle={caseStudyData.title}
                     projectDescription={caseStudyData.description}
