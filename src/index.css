@@ -333,13 +333,7 @@
     background: transparent;
   }
 
-  html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-body {
+  body {
   color: hsl(var(--foreground));
   background: hsl(var(--background));
   font-feature-settings: "rlig" 1, "calt" 1;
@@ -347,15 +341,6 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-}
-
-/* Hero text specific optimizations */
-.hero-title-mobile,
-.hero-subtitle-mobile,
-.text-hero-h1 {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "kern" 1;
 }
 
 /* Global focus style removal - Remove all focus indicators */
@@ -378,14 +363,9 @@ select:focus-visible, a:focus-visible,
   /* Hero Utilities */
   .hero-subtitle {
     line-height: 1.65;
-  }
-  
-  @media (min-width: 768px) {
-    .hero-subtitle {
-      max-width: 65ch;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   @media (min-width: 1024px) {
@@ -396,8 +376,8 @@ select:focus-visible, a:focus-visible,
   
 /* Hero responsive containers - ensures safe margins on all devices */
 .hero-container-mobile {
-  padding-left: max(10px, env(safe-area-inset-left));
-  padding-right: max(10px, env(safe-area-inset-right));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
   padding-top: 16px;
   padding-bottom: 16px;
 }
@@ -418,63 +398,6 @@ select:focus-visible, a:focus-visible,
 @media (min-width: 1024px) {
   .hero-container-mobile {
     padding: 40px 48px;
-  }
-}
-
-/* Safe full-width hero image container - no negative margins */
-.hero-image-fullwidth {
-  width: 100%;
-  max-width: 100vw; /* Never exceed viewport */
-  margin-left: 0;
-  margin-right: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-@media (min-width: 1024px) {
-  .hero-image-fullwidth {
-    border-radius: 1rem;
-    max-width: 100%; /* Respect parent container on desktop */
-  }
-}
-
-/* Ensure hero image quality */
-.hero-image {
-  width: 100%;
-  height: auto;
-  position: relative;
-  background: var(--md-sys-color-surface-container);
-}
-
-.hero-image img,
-.hero-image video {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  max-width: 100%;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-@media (min-width: 768px) {
-  .hero-image img,
-  .hero-image video {
-    border-radius: 1.5rem;
-  }
-}
-
-/* Text-only padding utility */
-.hero-text-padded {
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .hero-text-padded {
-    padding-left: max(24px, env(safe-area-inset-left));
-    padding-right: max(24px, env(safe-area-inset-right));
   }
 }
 
@@ -1018,74 +941,20 @@ body {
   gap: 12px;
 }
 
-/* Mobile + Tablet: Force exact 10px left/right padding and centering on all hero sections */
-@media (max-width: 1023px) {
-  section[data-section="hero"],
-  .project-hero-root {
-    padding-inline: 10px !important;
-    margin-inline: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box;
-  }
-  
-  /* Force center alignment on ALL hero content */
-  section[data-section="hero"] *,
-  .project-hero-root * {
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  
-  /* Specific hero containers */
-  section[data-section="hero"] .hero-loading,
-  section[data-section="hero"] .hero-text-stack,
-  .project-hero-root .hero-text-stack {
-    text-align: center !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-  }
-  
-  section[data-section="hero"] .hero-tags,
-  .project-hero-root .hero-tags {
-    justify-content: center !important;
-    gap: 10px;
-  }
-  
-  /* Ensure no conflicting paddings */
-  section[data-section="hero"] > *,
-  .project-hero-root > * {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  
-  /* Ensure hero media scales properly */
-  .hero-image,
-  .hero-image img,
-  .hero-image video {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-    display: block;
-  }
-}
-
-/* Mobile typography with proper clamps and centering */
+/* Mobile typography with proper clamps */
 .hero-title-mobile {
   font-size: clamp(28px, 7vw, 40px);
   line-height: 1.2;
   letter-spacing: -0.025em;
   font-weight: 500;
   font-family: var(--font-display);
-  margin: 0 auto 12px auto;
-  text-align: center;
+  margin-bottom: 0;
 }
 
 .hero-subtitle-mobile {
   font-size: clamp(16px, 4.5vw, 20px);
   line-height: 1.65;
-  margin: 0 auto 16px auto;
-  text-align: center;
-  color: hsl(var(--muted-foreground));
+  margin-bottom: 0;
 }
 
 
@@ -1172,60 +1041,7 @@ body {
 }
 
 .content-rail-center {
-  @apply mx-auto text-center w-full;
-}
-
-@media (min-width: 768px) {
-  .content-rail-center {
-    max-width: 65ch;
-  }
-}
-
-/* Hero-specific centering - neutralize content-rail-center inside heroes */
-section[data-section="hero"] .content-rail-center,
-.hero-text-padded .content-rail-center {
-  max-width: none !important;
-  width: 100% !important;
-}
-
-/* Hero mobile centering helper */
-.hero-center-mobile {
-  width: 100% !important;
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  margin: 0 !important;
-  box-sizing: border-box;
-}
-
-/* Full-bleed breaker for mobile heroes */
-.hero-mobile-fullbleed {
-  width: 100%;
-  position: relative;
-  left: auto;
-  right: auto;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-
-/* Disable cropping anywhere this is applied */
-.hero-no-overflow {
-  overflow: visible !important;
-  overflow-x: visible !important;
-  overflow-y: visible !important;
-}
-
-/* Ensure hero sections don't crop */
-section[data-section="hero"] {
-  overflow-x: visible;
-  width: 100%;
-}
-
-.hero-image-fullwidth {
-  width: 100%;
-  max-width: 100vw;
+  @apply max-w-[65ch] mx-auto text-center;
 }
 
 /* Impact Metrics - Primary colored bold text with display font */

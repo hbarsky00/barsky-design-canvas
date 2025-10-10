@@ -70,65 +70,61 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
 
 
   return (
-    <div className="w-full pt-20 lg:pt-24">
-      <div className="w-full hero-no-overflow">
-        <ProjectHeader
-          title={updatedProject.title}
-          description={updatedProject.description}
-          image={updatedProject.image}
-          tags={updatedProject.tags}
-          imageCaptions={imageCaptions}
-          imageList={allImages}
-          currentIndex={currentImageIndex >= 0 ? currentImageIndex : 0}
-        />
+    <div className="w-full px-4 sm:px-6 pt-20 pb-4 lg:pt-24 lg:pb-8">
+      <ProjectHeader
+        title={updatedProject.title}
+        description={updatedProject.description}
+        image={updatedProject.image}
+        tags={updatedProject.tags}
+        imageCaptions={imageCaptions}
+        imageList={allImages}
+        currentIndex={currentImageIndex >= 0 ? currentImageIndex : 0}
+      />
+      
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 xl:gap-8 mt-6 lg:mt-8 max-w-6xl mx-auto">
+        {/* Project Sidebar - Shows first on mobile, last on desktop */}
+        <div className="lg:col-span-1 order-first lg:order-last">
+          <ProjectSidebar
+            duration={details.duration}
+            client={details.client}
+            role={details.role}
+          />
+        </div>
+        
+        {/* Main Content - Shows second on mobile, first on desktop */}
+        <div className="lg:col-span-2 order-last lg:order-first">
+          <ProjectOverview
+            challenge={details.challenge}
+            challengeAdditionalText={details.challengeAdditionalText}
+            technologies={details.technologies}
+            projectLink={details.projectLink}
+            caseStudyLink={details.caseStudyLink}
+            challengeImage={getReplacedImageSrc(details.challengeImage || '')}
+            imageCaptions={imageCaptions}
+            galleryImages={details.galleryImages?.map(getReplacedImageSrc)}
+            showTechnologies={false}
+            challengeBottomImage={getReplacedImageSrc(details.challengeBottomImage || '')}
+            challengeGalleryImages={details.challengeGalleryImages?.map(getReplacedImageSrc)}
+            allImages={allImages}
+            projectId={projectId}
+          />
+        </div>
       </div>
       
-      <div className="px-4 sm:px-6 pb-4 lg:pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 xl:gap-8 mt-6 lg:mt-8 max-w-6xl mx-auto">
-          {/* Project Sidebar - Shows first on mobile, last on desktop */}
-          <div className="lg:col-span-1 order-first lg:order-last">
-            <ProjectSidebar
-              duration={details.duration}
-              client={details.client}
-              role={details.role}
-            />
-          </div>
-          
-          {/* Main Content - Shows second on mobile, first on desktop */}
-          <div className="lg:col-span-2 order-last lg:order-first">
-            <ProjectOverview
-              challenge={details.challenge}
-              challengeAdditionalText={details.challengeAdditionalText}
-              technologies={details.technologies}
-              projectLink={details.projectLink}
-              caseStudyLink={details.caseStudyLink}
-              challengeImage={getReplacedImageSrc(details.challengeImage || '')}
-              imageCaptions={imageCaptions}
-              galleryImages={details.galleryImages?.map(getReplacedImageSrc)}
-              showTechnologies={false}
-              challengeBottomImage={getReplacedImageSrc(details.challengeBottomImage || '')}
-              challengeGalleryImages={details.challengeGalleryImages?.map(getReplacedImageSrc)}
-              allImages={allImages}
-              projectId={projectId}
-            />
-          </div>
-        </div>
-        
-        {/* Call to Action Section */}
-        <div className="max-w-6xl mx-auto">
-          <ProjectCallToAction />
-        </div>
-        
-        {/* Only show bottom gallery if it's not DAE Search project and has gallery images */}
-        {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (
-          <div className="max-w-6xl mx-auto">
-            <ProjectGallery
-              images={Array.from(new Set(details.galleryImages.map(getReplacedImageSrc)))}
-              imageCaptions={imageCaptions}
-            />
-          </div>
-        )}
+      {/* Call to Action Section */}
+      <div className="max-w-6xl mx-auto">
+        <ProjectCallToAction />
       </div>
+      
+      {/* Only show bottom gallery if it's not DAE Search project and has gallery images */}
+      {!isDaeSearchProject && details.galleryImages && details.galleryImages.length > 0 && (
+        <div className="max-w-6xl mx-auto">
+          <ProjectGallery
+            images={Array.from(new Set(details.galleryImages.map(getReplacedImageSrc)))}
+            imageCaptions={imageCaptions}
+          />
+        </div>
+      )}
     </div>
   );
 };

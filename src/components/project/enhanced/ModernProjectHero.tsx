@@ -30,12 +30,12 @@ const ModernProjectHero: React.FC<ModernProjectHeroProps> = ({
   console.log('🎬 ModernProjectHero: Rendering with project:', project.title);
 
   return (
-    <div className="relative overflow-hidden project-hero-root">
+    <div className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-purple-50/10 to-indigo-50/20" />
       <div className="absolute top-20 right-20 w-64 h-64 glass-accent rounded-full blur-3xl gentle-float opacity-20" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gentle-float opacity-30" style={{ animationDelay: '2s' }} />
       
-      <div className="relative w-full px-0 sm:px-6 z-10">
+      <div className="relative w-full px-4 sm:px-6 z-10">
         {/* Header with proper spacing from logo */}
         <div className="w-full pt-20 pb-8 lg:pt-24 lg:pb-16">
 

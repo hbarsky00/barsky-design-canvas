@@ -25,17 +25,16 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
 
   return (
-    <section id="hero" data-section="hero" className="section-spacing bg-gradient-to-br from-background to-muted hero-no-overflow" style={{ perspective: "1000px" }}>
-      <div className="hero-mobile-fullbleed hero-no-overflow">
-        <div className="md:max-w-6xl md:mx-auto md:px-8 py-8">
-          <motion.div
-            ref={textRef}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="hero-center-mobile"
-            style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-          >
+    <section className="section-spacing bg-gradient-to-br from-background to-muted" style={{ perspective: "1000px" }}>
+      <div className="section-container">
+        <motion.div
+          ref={textRef}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center content-rail-center"
+          style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+        >
           <div className="hero-text-stack mt-8 mb-12">
             <h1 className="text-hero-h1 text-foreground">
               {caseStudyData.title}
@@ -45,7 +44,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
               {caseStudyData.description}
             </p>
             
-            <div className="hero-tags flex flex-wrap justify-center gap-2 mt-4">
+            <div className="hero-tags">
               {caseStudyData.tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="px-3 py-1.5">
                   {tag}
@@ -54,7 +53,7 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
             </div>
 
             {caseStudyData.projectLink && (
-              <div className="hero-cta-wrapper max-w-md mx-auto mt-6">
+              <div className="hero-cta-wrapper max-w-md mx-auto">
                 <ProjectActionsCompact 
                   liveUrl={caseStudyData.projectLink}
                   projectTitle={caseStudyData.title}
@@ -64,8 +63,8 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
               </div>
             )}
           </div>
-          </motion.div>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );
