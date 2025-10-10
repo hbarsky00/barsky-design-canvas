@@ -1150,23 +1150,14 @@ section[data-section="hero"] .content-rail-center,
 
 /* Full-bleed breaker for mobile heroes */
 .hero-mobile-fullbleed {
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  left: auto;
+  right: auto;
+  margin: 0;
   box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
-  .hero-mobile-fullbleed {
-    width: 100%;
-    left: auto;
-    right: auto;
-    margin: 0;
-  }
-}
 
 /* Disable cropping anywhere this is applied */
 .hero-no-overflow {

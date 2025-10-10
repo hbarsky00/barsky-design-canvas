@@ -71,7 +71,7 @@ const ProjectDetailContent: React.FC<ProjectDetailContentProps> = ({
 
   return (
     <div className="w-full pt-20 lg:pt-24">
-      <div className="hero-mobile-fullbleed hero-no-overflow">
+      <div className="w-full hero-no-overflow">
         <ProjectHeader
           title={updatedProject.title}
           description={updatedProject.description}
