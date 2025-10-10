@@ -21,6 +21,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
 }) => {
   const location = useLocation();
   const isMobile = useIsMobile();
+  const [isTablet, setIsTablet] = React.useState(false);
   const textRef = React.useRef<HTMLDivElement>(null);
   const mediaRef = React.useRef<HTMLDivElement>(null);
   
@@ -36,6 +37,16 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     childParallax: 4, 
     scaleRange: [0.996, 1, 0.998] 
   });
+
+  React.useEffect(() => {
+    const checkTablet = () => {
+      setIsTablet(!isMobile && window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+    
+    checkTablet();
+    window.addEventListener('resize', checkTablet);
+    return () => window.removeEventListener('resize', checkTablet);
+  }, [isMobile]);
 
   const shouldShowVideo = !heroAsImage && caseStudyData.heroVideo?.src;
   const shouldShowImage = heroAsImage || (!caseStudyData.heroVideo?.src && caseStudyData.seoData?.image);
@@ -121,10 +132,78 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
           </div>
           </div>
         </div>
+      ) : isTablet ? (
+        /* Tablet Layout: Single Column, Optimized Spacing */
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6">
+          <div className="flex flex-col gap-4">
+            {/* Text Content */}
+            <motion.div
+              ref={textRef}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-left"
+              style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+            >
+              <h1 className="text-4xl md:text-5xl text-foreground font-display mb-4 leading-tight">
+                {caseStudyData.title}
+              </h1>
+              
+              <p className="text-base md:text-lg text-muted-foreground mb-5 leading-relaxed">
+                {caseStudyData.description}
+              </p>
+              
+              <div className="flex flex-wrap gap-2 mb-6">
+                {caseStudyData.tags.map((tag) => (
+                  <Badge key={tag} variant="secondary" className="px-2.5 py-1 text-sm">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+
+              {caseStudyData.projectLink && (
+                <div className="mb-6">
+                  <ProjectActionsCompact 
+                    liveUrl={caseStudyData.projectLink}
+                    projectTitle={caseStudyData.title}
+                    projectDescription={caseStudyData.description}
+                    projectPageUrl={`https://barskydesign.pro${location.pathname}`}
+                  />
+                </div>
+              )}
+            </motion.div>
+
+            {/* Media Content */}
+            <motion.div
+              ref={mediaRef}
+              initial={{ opacity: 0.3, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="relative"
+              style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+            >
+              {shouldShowVideo && (
+                <VideoPlayer 
+                  videoSrc={caseStudyData.heroVideo!.src}
+                  thumbnailSrc={caseStudyData.heroVideo!.poster}
+                  title={caseStudyData.title}
+                />
+              )}
+              
+              {shouldShowImage && caseStudyData.seoData?.image && (
+                <MaximizableImage
+                  src={caseStudyData.seoData.image}
+                  alt={`${caseStudyData.title} hero image`}
+                  caption={`${caseStudyData.title} project overview`}
+                />
+              )}
+            </motion.div>
+          </div>
+        </div>
       ) : (
         /* Desktop Layout: Two Columns */
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="grid grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
             {/* Left Column: Text Content */}
             <motion.div
               ref={textRef}
