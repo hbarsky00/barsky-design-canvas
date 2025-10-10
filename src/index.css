@@ -907,9 +907,6 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
   scroll-padding-top: var(--header-height, 72px);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -920,88 +917,6 @@ body {
   overflow-y: auto;
   padding-top: max(0px, env(safe-area-inset-top));
   padding-bottom: max(0px, env(safe-area-inset-bottom));
-}
-
-/* ========================================
-   FULL-BLEED HERO IMAGE SYSTEM
-   Edge-to-edge images on mobile/tablet
-   ======================================== */
-
-/* Full-bleed hero image container - edge to edge on mobile/tablet */
-.hero-image-container-fullbleed {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(-1 * max(16px, env(safe-area-inset-left)));
-  margin-right: calc(-1 * max(16px, env(safe-area-inset-right)));
-  position: relative;
-  overflow: hidden;
-}
-
-@media (min-width: 768px) {
-  .hero-image-container-fullbleed {
-    margin-left: calc(-1 * max(24px, env(safe-area-inset-left)));
-    margin-right: calc(-1 * max(24px, env(safe-area-inset-right)));
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-image-container-fullbleed {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    border-radius: 1rem;
-  }
-}
-
-/* Full-width hero images - maximum impact */
-.hero-image {
-  width: 100%;
-  height: auto;
-  position: relative;
-  background: var(--md-sys-color-surface-container);
-}
-
-.hero-image img,
-.hero-image video {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  image-rendering: -webkit-optimize-contrast;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Ensure sharp rendering on retina */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .hero-image img {
-    image-rendering: crisp-edges;
-  }
-}
-
-/* Mobile hero text wrapper - padding for text only */
-.hero-text-container-mobile {
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-
-@media (min-width: 640px) {
-  .hero-text-container-mobile {
-    padding-left: max(24px, env(safe-area-inset-left));
-    padding-right: max(24px, env(safe-area-inset-right));
-  }
-}
-
-/* Hero text quality optimizations */
-.hero-title-mobile,
-.hero-subtitle-mobile,
-.text-hero-h1 {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "kern" 1;
 }
 
 /* Anchor offset for fixed header */

@@ -60,90 +60,91 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
-        <div className="w-full">
-          {/* Text Content - With Padding */}
-          <div className="hero-text-container-mobile py-6">
-            <motion.div
-              ref={textRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center w-full"
-              style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-            >
-              <div className="hero-text-stack">
-                <h1 className="hero-title-mobile text-foreground font-display w-full">
-                  {caseStudyData.title}
-                </h1>
-                
-                <p className="hero-subtitle-mobile text-muted-foreground w-full hero-subtitle">
-                  {caseStudyData.description}
-                </p>
-                
-                <div className="hero-tags w-full">
-                  {caseStudyData.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="px-3 py-2">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                {caseStudyData.projectLink && (
-                  <div className="hero-cta-wrapper w-full">
-                    <ProjectActionsCompact 
-                      liveUrl={caseStudyData.projectLink}
-                      projectTitle={caseStudyData.title}
-                      projectDescription={caseStudyData.description}
-                      projectPageUrl={`https://barskydesign.pro${location.pathname}`}
-                    />
+        <div className="hero-container-mobile">
+          <div className="flex flex-col justify-start py-6">
+            <div className="flex flex-col justify-center gap-8 w-full max-w-none">
+              {/* Text Content */}
+              <motion.div
+                ref={textRef}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-center w-full"
+                style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+              >
+                <div className="hero-text-stack">
+                  <h1 className="hero-title-mobile text-foreground font-display w-full">
+                    {caseStudyData.title}
+                  </h1>
+                  
+                  <p className="hero-subtitle-mobile text-muted-foreground w-full hero-subtitle">
+                    {caseStudyData.description}
+                  </p>
+                  
+                  <div className="hero-tags w-full">
+                    {caseStudyData.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="px-3 py-2">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
-                )}
-              </div>
+
+                  {caseStudyData.projectLink && (
+                    <div className="hero-cta-wrapper w-full">
+                      <ProjectActionsCompact 
+                        liveUrl={caseStudyData.projectLink}
+                        projectTitle={caseStudyData.title}
+                        projectDescription={caseStudyData.description}
+                        projectPageUrl={`https://barskydesign.pro${location.pathname}`}
+                      />
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+
+            {/* Media Content */}
+            <motion.div
+              ref={mediaRef}
+              initial={{ opacity: 0.3, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="relative w-full"
+              style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+            >
+              {shouldShowVideo && (
+                <div className="hero-image">
+                  <VideoPlayer 
+                    videoSrc={caseStudyData.heroVideo!.src}
+                    thumbnailSrc={caseStudyData.heroVideo!.poster}
+                    title={caseStudyData.title}
+                  />
+                </div>
+              )}
+              
+              {shouldShowImage && caseStudyData.seoData?.image && (
+                <div className="hero-image">
+                  <MaximizableImage
+                    src={caseStudyData.seoData.image}
+                    alt={`${caseStudyData.title} hero image`}
+                    caption={`${caseStudyData.title} project overview`}
+                  />
+                </div>
+              )}
             </motion.div>
           </div>
-
-          {/* Media Content - Full Bleed */}
-          <motion.div
-            ref={mediaRef}
-            initial={{ opacity: 0.3, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="hero-image-container-fullbleed mt-6"
-            style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-          >
-            {shouldShowVideo && (
-              <div className="hero-image">
-                <VideoPlayer 
-                  videoSrc={caseStudyData.heroVideo!.src}
-                  thumbnailSrc={caseStudyData.heroVideo!.poster}
-                  title={caseStudyData.title}
-                />
-              </div>
-            )}
-            
-            {shouldShowImage && caseStudyData.seoData?.image && (
-              <div className="hero-image">
-                <MaximizableImage
-                  src={caseStudyData.seoData.image}
-                  alt={`${caseStudyData.title} hero image`}
-                  caption={`${caseStudyData.title} project overview`}
-                  className="w-full h-auto"
-                />
-              </div>
-            )}
-          </motion.div>
+          </div>
         </div>
       ) : isTablet ? (
-        /* Tablet Layout: Full-width images, padded text */
-        <div className="w-full">
-          <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12">
+        /* Tablet Layout: Single Column, Optimized Spacing */
+        <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12">
+          <div className="flex flex-col gap-12">
             {/* Text Content */}
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center mb-12"
+              className="text-center"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <div className="hero-text-stack">
@@ -175,38 +176,33 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                 )}
               </div>
             </motion.div>
-          </div>
 
-          {/* Media Content - Full Bleed on Tablet */}
-          <motion.div
-            ref={mediaRef}
-            initial={{ opacity: 0.3, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="hero-image-container-fullbleed"
-            style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-          >
-            {shouldShowVideo && (
-              <div className="hero-image">
+            {/* Media Content */}
+            <motion.div
+              ref={mediaRef}
+              initial={{ opacity: 0.3, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="relative"
+              style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+            >
+              {shouldShowVideo && (
                 <VideoPlayer 
                   videoSrc={caseStudyData.heroVideo!.src}
                   thumbnailSrc={caseStudyData.heroVideo!.poster}
                   title={caseStudyData.title}
                 />
-              </div>
-            )}
-            
-            {shouldShowImage && caseStudyData.seoData?.image && (
-              <div className="hero-image">
+              )}
+              
+              {shouldShowImage && caseStudyData.seoData?.image && (
                 <MaximizableImage
                   src={caseStudyData.seoData.image}
                   alt={`${caseStudyData.title} hero image`}
                   caption={`${caseStudyData.title} project overview`}
-                  className="w-full h-auto"
                 />
-              </div>
-            )}
-          </motion.div>
+              )}
+            </motion.div>
+          </div>
         </div>
       ) : (
         /* Desktop Layout: Two Columns */

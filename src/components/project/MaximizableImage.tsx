@@ -261,12 +261,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
             transition: 'opacity 0.3s ease',
             display: 'block',
             width: '100%',
-            height: 'auto',
+            height: fit === 'contain' ? 'auto' : '100%',
             maxWidth: '100%',
             imageRendering: 'crisp-edges',
-            objectFit: fit,
-            aspectRatio: aspectRatio ? String(aspectRatio) : 'auto'
-          }}
+            filter: 'contrast(1.03) saturate(1.02) brightness(1.01)',
+            maxHeight: '70vh',
+            objectFit: fit
+          }} 
           className={`w-full max-w-full image-high-quality image-drop-shadow ${fit === 'contain' ? 'h-auto object-contain' : 'h-full object-cover'} transition-transform duration-300 group-hover:scale-105`} 
         />
       )}
