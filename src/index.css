@@ -1028,17 +1028,34 @@ body {
     box-sizing: border-box;
   }
   
-  /* Center text + tags */
+  /* Force center alignment on ALL hero content */
+  section[data-section="hero"] *,
+  .project-hero-root * {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  /* Specific hero containers */
+  section[data-section="hero"] .hero-loading,
   section[data-section="hero"] .hero-text-stack,
   .project-hero-root .hero-text-stack {
     text-align: center !important;
     align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
   }
   
   section[data-section="hero"] .hero-tags,
   .project-hero-root .hero-tags {
     justify-content: center !important;
     gap: 10px;
+  }
+  
+  /* Ensure no conflicting paddings */
+  section[data-section="hero"] > *,
+  .project-hero-root > * {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   
   /* Ensure hero media scales properly */
