@@ -96,11 +96,19 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
           >
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-30 bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors shadow-lg"
-              aria-label="Close"
+              className="absolute top-6 right-6 text-white hover:text-gray-300 z-30 bg-black/50 rounded-full p-3 hover:bg-black/70 hover:scale-110 transition-all duration-300 shadow-lg"
+              aria-label="Close gallery"
             >
-              <X className="h-8 w-8" />
+              <X className="h-10 w-10" />
             </button>
+
+            {images.length > 1 && (
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                <span className="text-white font-medium text-lg">
+                  {selectedImage + 1} / {images.length}
+                </span>
+              </div>
+            )}
 
             {images.length > 1 && (
               <>
@@ -109,22 +117,42 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
                     e.stopPropagation();
                     navigateImage('prev');
                   }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-3 hover:bg-black/70 transition-colors shadow-lg"
+                  className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-4 hover:bg-black/70 hover:scale-110 transition-all duration-300 shadow-lg"
                   aria-label="Previous image"
                 >
-                  <ChevronLeft className="h-8 w-8" />
+                  <ChevronLeft className="h-10 w-10" />
                 </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigateImage('next');
                   }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-3 hover:bg-black/70 transition-colors shadow-lg"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-20 bg-black/50 rounded-full p-4 hover:bg-black/70 hover:scale-110 transition-all duration-300 shadow-lg"
                   aria-label="Next image"
                 >
-                  <ChevronRight className="h-8 w-8" />
+                  <ChevronRight className="h-10 w-10" />
                 </button>
               </>
+            )}
+
+            {images.length > 1 && images.length <= 10 && (
+              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImage(index);
+                    }}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                      index === selectedImage
+                        ? 'bg-white w-8'
+                        : 'bg-white/50 hover:bg-white/75 w-2.5'
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             )}
 
             <AnimatePresence mode="wait">
@@ -153,7 +181,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="absolute bottom-4 left-4 right-4 text-center"
+                className="absolute bottom-8 left-4 right-4 text-center z-30"
               >
                 <div className={getCaptionClasses({ 
                   variant: 'card', 
