@@ -432,11 +432,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "The Final Product",
       images: [
         {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/phones.png",
-          alt: "Home Dashboard",
-          caption: "Clean, empathetic home dashboard",
-        },
-        {
           src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/medical-app-ui0.jpg",
           alt: "Medication Tracking View",
           caption: "Simplified medication tracking interface",
@@ -445,11 +440,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/other-screens.png",
           alt: "Appointment Scheduler",
           caption: "Seamless appointment booking flow",
-        },
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/Group-12.14.png",
-          alt: "Patient Progress View",
-          caption: "Comprehensive patient progress tracking",
         },
         {
           src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/demoui-signature.png",

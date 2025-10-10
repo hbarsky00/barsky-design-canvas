@@ -110,7 +110,7 @@ const ProjectMultiImageGallery: React.FC<ProjectMultiImageGalleryProps> = ({
               </div>
             )}
 
-            {images.length > 1 && (
+            {images.length > 3 && (
               <>
                 <button
                   onClick={(e) => {
