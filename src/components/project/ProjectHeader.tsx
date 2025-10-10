@@ -29,7 +29,7 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   const caption = imageCaptions[image] || title;
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16">
+    <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16 hero-no-overflow">
       <div className="w-full hero-container-mobile">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
           <motion.div

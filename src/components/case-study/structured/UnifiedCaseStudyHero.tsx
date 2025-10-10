@@ -108,7 +108,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hero-image-fullwidth mt-8"
+            className="hero-image-fullwidth hero-text-padded mt-8"
             style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
             <div className="hero-image">
@@ -181,7 +181,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             initial={{ opacity: 0.3, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="hero-image-fullwidth"
+            className="hero-image-fullwidth hero-text-padded"
             style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
             <div className="hero-image">

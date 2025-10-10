@@ -61,7 +61,7 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="hero-image-fullwidth mt-6 md:max-w-3xl md:mx-auto md:px-6 lg:px-8 md:pb-8"
+          className="hero-image-fullwidth hero-text-padded mt-6 md:max-w-3xl md:mx-auto md:px-6 lg:px-8 md:pb-8"
           style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
           <div className="hero-image">

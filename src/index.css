@@ -396,8 +396,8 @@ select:focus-visible, a:focus-visible,
   
 /* Hero responsive containers - ensures safe margins on all devices */
 .hero-container-mobile {
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
+  padding-left: max(10px, env(safe-area-inset-left));
+  padding-right: max(10px, env(safe-area-inset-right));
   padding-top: 16px;
   padding-bottom: 16px;
 }
