@@ -14,7 +14,8 @@
   }
   
   .image-clarity-enhanced {
-    filter: contrast(1.03) saturate(1.02) brightness(1.01);
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
     backface-visibility: hidden;
     transform: translateZ(0);
   }
@@ -699,6 +700,8 @@ body {
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translateZ(0);
   will-change: transform, opacity;
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 @media (prefers-reduced-motion: reduce) {

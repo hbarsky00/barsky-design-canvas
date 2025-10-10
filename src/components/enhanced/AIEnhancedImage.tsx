@@ -101,17 +101,11 @@ export const AIEnhancedImage: React.FC<AIEnhancedImageProps> = ({
         onError={handleError}
         className={cn(
           'transition-all duration-300',
-          'image-clarity-enhanced image-drop-shadow',
+          'image-drop-shadow',
           isLoaded ? 'opacity-100' : 'opacity-0',
           isProcessing && 'animate-pulse',
           className
         )}
-        style={{
-          imageRendering: 'crisp-edges',
-          filter: isEnhanced 
-            ? 'contrast(1.05) saturate(1.02) brightness(1.01)' 
-            : 'contrast(1.02) saturate(1.01)',
-        }}
         {...props}
       />
 
