@@ -39,11 +39,11 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
             {caseStudyData.title}
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 content-rail-center">
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 content-rail-center hero-subtitle">
             {caseStudyData.description}
           </p>
           
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <div className="hero-tags mb-8">
             {caseStudyData.tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="px-3 py-1">
                 {tag}

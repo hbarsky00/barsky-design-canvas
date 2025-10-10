@@ -48,11 +48,11 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
               staggerChildren={0.03}
             />
             
-            <p className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8 leading-relaxed text-center">
+            <p className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8 hero-subtitle text-center">
               {description}
             </p>
             
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className="hero-tags">
               {tags.map((tag) => (
                 <Link
                   key={tag}

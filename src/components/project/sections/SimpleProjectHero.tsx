@@ -49,11 +49,11 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
               {project.title}
             </h1>
             
-            <p className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-600 hero-subtitle max-w-4xl mx-auto">
               {project.description}
             </p>
 
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="hero-tags">
               {project.tags.map((tag) => (
                 <Badge 
                   key={tag}

@@ -69,14 +69,14 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-left w-full"
+              className="text-center w-full"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <h1 className="hero-title-mobile text-foreground font-display mb-2 w-full">
                 {caseStudyData.title}
               </h1>
               
-              <p className="hero-subtitle-mobile text-muted-foreground mb-2.5 w-full">
+              <p className="hero-subtitle-mobile text-muted-foreground mb-2.5 w-full hero-subtitle">
                 {caseStudyData.description}
               </p>
               
@@ -89,7 +89,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               </div>
 
                {caseStudyData.projectLink && (
-                 <div className="hero-cta-container w-full">
+                 <div className="hero-cta-container w-full flex justify-center">
                     <ProjectActionsCompact 
                       liveUrl={caseStudyData.projectLink}
                       projectTitle={caseStudyData.title}
@@ -142,18 +142,18 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-left"
+              className="text-center"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <h1 className="text-4xl md:text-5xl text-foreground font-display mb-3 leading-tight">
                 {caseStudyData.title}
               </h1>
               
-              <p className="text-base md:text-lg text-muted-foreground mb-4 leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground mb-4 hero-subtitle">
                 {caseStudyData.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-5">
+              <div className="hero-tags mb-5">
                 {caseStudyData.tags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="px-2.5 py-1 text-sm">
                     {tag}
@@ -162,7 +162,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               </div>
 
               {caseStudyData.projectLink && (
-                <div>
+                <div className="flex justify-center">
                   <ProjectActionsCompact
                     liveUrl={caseStudyData.projectLink}
                     projectTitle={caseStudyData.title}

@@ -360,6 +360,28 @@ select:focus-visible, a:focus-visible,
 
 /* Mobile-specific utilities */
 @layer utilities {
+  /* Hero Utilities */
+  .hero-subtitle {
+    line-height: 1.6;
+  }
+  
+  @media (min-width: 1024px) {
+    .hero-subtitle {
+      line-height: 1.55;
+    }
+  }
+  
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .hero-tags .badge {
+    line-height: 1.6;
+  }
+  
   .pt-safe-top {
     padding-top: var(--safe-area-inset-top);
   }
@@ -654,7 +676,7 @@ body {
 
 .hero-subtitle-mobile {
   font-size: clamp(14px, 4vw, 18px);
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 0;
 }
 
