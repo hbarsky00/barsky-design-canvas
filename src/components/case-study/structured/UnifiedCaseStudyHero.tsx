@@ -55,14 +55,14 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full md:py-6 lg:py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
+      className="section-snap w-full overflow-x-hidden md:py-6 lg:py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
       style={{ perspective: "1000px" }}
     >
       {/* Mobile Layout: Full Hero Container */}
       {isMobile ? (
-        <div className="w-full">
-          {/* Text Content - With Padding */}
-          <div className="hero-text-container-mobile py-6">
+        <div className="w-full overflow-hidden">
+          {/* Text Content - WITH padding */}
+          <div className="hero-text-padded py-6">
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
@@ -102,48 +102,45 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             </motion.div>
           </div>
 
-          {/* Media Content - Full Bleed */}
+          {/* Media Content - FULL WIDTH, no side padding */}
           <motion.div
             ref={mediaRef}
             initial={{ opacity: 0.3, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="hero-image-container-fullbleed mt-6"
+            className="hero-image-fullwidth mt-6"
             style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
-            {shouldShowVideo && (
-              <div className="hero-image">
+            <div className="hero-image">
+              {shouldShowVideo && (
                 <VideoPlayer 
                   videoSrc={caseStudyData.heroVideo!.src}
                   thumbnailSrc={caseStudyData.heroVideo!.poster}
                   title={caseStudyData.title}
                 />
-              </div>
-            )}
-            
-            {shouldShowImage && caseStudyData.seoData?.image && (
-              <div className="hero-image">
+              )}
+              
+              {shouldShowImage && caseStudyData.seoData?.image && (
                 <MaximizableImage
                   src={caseStudyData.seoData.image}
                   alt={`${caseStudyData.title} hero image`}
                   caption={`${caseStudyData.title} project overview`}
-                  className="w-full h-auto"
                 />
-              </div>
-            )}
+              )}
+            </div>
           </motion.div>
         </div>
       ) : isTablet ? (
         /* Tablet Layout: Full-width images, padded text */
-        <div className="w-full">
+        <div className="w-full overflow-hidden">
+          {/* Text with constrained width */}
           <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12">
-            {/* Text Content */}
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center mb-12"
+              className="text-center"
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <div className="hero-text-stack">
@@ -177,35 +174,32 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             </motion.div>
           </div>
 
-          {/* Media Content - Full Bleed on Tablet */}
+          {/* Image full-width on tablet too */}
           <motion.div
             ref={mediaRef}
             initial={{ opacity: 0.3, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="hero-image-container-fullbleed"
+            className="hero-image-fullwidth"
             style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
-            {shouldShowVideo && (
-              <div className="hero-image">
+            <div className="hero-image">
+              {shouldShowVideo && (
                 <VideoPlayer 
                   videoSrc={caseStudyData.heroVideo!.src}
                   thumbnailSrc={caseStudyData.heroVideo!.poster}
                   title={caseStudyData.title}
                 />
-              </div>
-            )}
-            
-            {shouldShowImage && caseStudyData.seoData?.image && (
-              <div className="hero-image">
+              )}
+              
+              {shouldShowImage && caseStudyData.seoData?.image && (
                 <MaximizableImage
                   src={caseStudyData.seoData.image}
                   alt={`${caseStudyData.title} hero image`}
                   caption={`${caseStudyData.title} project overview`}
-                  className="w-full h-auto"
                 />
-              </div>
-            )}
+              )}
+            </div>
           </motion.div>
         </div>
       ) : (

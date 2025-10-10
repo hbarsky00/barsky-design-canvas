@@ -17,17 +17,18 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
   const { containerStyle: textStyle } = useScroll3DTilt(textRef, { maxTilt: 2.5, yDistance: 10, childParallax: 6 });
   const { containerStyle: videoStyle } = useScroll3DTilt(videoRef, { maxTilt: 2, yDistance: 8, childParallax: 4, scaleRange: [0.996, 1, 0.998] });
   return (
-    <section className="bg-gradient-to-br from-background to-muted" style={{ perspective: "1000px" }}>
-      {/* Text Container with Padding */}
-      <div className="hero-text-container-mobile md:max-w-6xl md:mx-auto md:pt-8">
-        <motion.div
-          ref={textRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center"
-          style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-        >
+    <section className="bg-gradient-to-br from-background to-muted overflow-x-hidden" style={{ perspective: "1000px" }}>
+      <div className="w-full overflow-hidden md:max-w-6xl md:mx-auto">
+        {/* Text Container with Padding */}
+        <div className="hero-text-padded md:px-8 md:pt-8">
+          <motion.div
+            ref={textRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center"
+            style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+          >
           <div className="hero-text-stack mt-8 mb-12">
             <h1 className="heading-hero text-foreground">
               {caseStudy.title}
@@ -51,26 +52,27 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
               </div>
             )}
           </div>
+          </motion.div>
+        </div>
+
+        {/* Media Container - Full Bleed */}
+        <motion.div
+          ref={videoRef}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="hero-image-fullwidth mt-6 md:max-w-3xl md:mx-auto md:px-6 lg:px-8 md:pb-8"
+          style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
+        >
+          <div className="hero-image">
+            <VideoPlayer 
+              videoSrc={caseStudy.video}
+              thumbnailSrc={caseStudy.videoThumbnail}
+              title={caseStudy.title}
+            />
+          </div>
         </motion.div>
       </div>
-
-      {/* Media Container - Full Bleed */}
-      <motion.div
-        ref={videoRef}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="hero-image-container-fullbleed md:max-w-3xl md:mx-auto md:px-6 lg:px-8 md:pb-8"
-        style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
-      >
-        <div className="hero-image">
-          <VideoPlayer 
-            videoSrc={caseStudy.video}
-            thumbnailSrc={caseStudy.videoThumbnail}
-            title={caseStudy.title}
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };
