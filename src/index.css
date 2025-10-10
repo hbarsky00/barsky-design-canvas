@@ -466,11 +466,12 @@ select:focus-visible, a:focus-visible,
 
 /* Text-only padding utility */
 .hero-text-padded {
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .hero-text-padded {
     padding-left: max(24px, env(safe-area-inset-left));
     padding-right: max(24px, env(safe-area-inset-right));
@@ -1138,12 +1139,19 @@ section[data-section="hero"] .content-rail-center,
 
 /* Hero mobile centering helper */
 .hero-center-mobile {
-  @apply w-full text-center flex flex-col items-center;
+  width: 100% !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Ensure hero sections don't crop */
 section[data-section="hero"] {
   overflow-x: visible;
+  width: 100%;
 }
 
 .hero-image-fullwidth {
