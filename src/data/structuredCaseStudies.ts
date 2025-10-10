@@ -328,9 +328,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           caption: "Early sketches exploring medication tracking flows",
         },
         {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/wireframing.png",
-          alt: "Wireframes showing admin and patient dashboard",
-          caption: "Dual-view wireframes for seamless admin-patient data flow",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/userprocessflow.jpg",
+          alt: "User process flow diagram",
+          caption: "User process flow showing core module interactions",
         },
       ],
     },
