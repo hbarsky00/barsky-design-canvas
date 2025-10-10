@@ -1018,6 +1018,16 @@ body {
   gap: 12px;
 }
 
+/* Mobile-only: Force exact 10px left/right padding on all hero sections */
+@media (max-width: 639px) {
+  section[data-section="hero"],
+  .project-hero-root {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    box-sizing: border-box;
+  }
+}
+
 /* Mobile typography with proper clamps and centering */
 .hero-title-mobile {
   font-size: clamp(28px, 7vw, 40px);

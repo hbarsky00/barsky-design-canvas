@@ -62,7 +62,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
       {isMobile ? (
         <div className="hero-mobile-fullbleed hero-no-overflow">
           {/* Text Content - Centered with proper padding */}
-          <div className="px-[10px] py-8">
+          <div className="py-8">
             <motion.div
               ref={textRef}
               initial={{ opacity: 0, y: 30 }}
@@ -108,7 +108,7 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hero-image-fullwidth hero-text-padded mt-8"
+            className="hero-image-fullwidth mt-8"
             style={{ ...mediaStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
             <div className="hero-image">

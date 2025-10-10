@@ -29,8 +29,8 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = ({
   const caption = imageCaptions[image] || title;
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16 hero-no-overflow">
-      <div className="w-full px-[10px] sm:px-6 lg:px-8 mx-auto">
+    <div className="bg-gradient-to-br from-gray-50 to-white pt-24 pb-8 lg:pt-28 lg:pb-16 hero-no-overflow project-hero-root">
+      <div className="w-full px-0 sm:px-6 lg:px-8 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-6xl mx-auto px-0">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

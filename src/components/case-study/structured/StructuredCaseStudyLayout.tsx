@@ -87,8 +87,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
-          <div className="w-full bg-white">
-          {/* Unified Hero Section */}
+          {/* Hero Section - Full bleed breakout to avoid parent padding */}
+          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white">
           <UnifiedCaseStudyHero 
             caseStudyData={caseStudyData}
             heroAsImage={heroAsImage}
