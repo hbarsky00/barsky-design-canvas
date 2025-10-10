@@ -1020,7 +1020,6 @@ body {
   font-weight: 500;
   font-family: var(--font-display);
   margin: 0 auto 12px auto;
-  max-width: 90%;
   text-align: center;
 }
 
@@ -1028,7 +1027,6 @@ body {
   font-size: clamp(16px, 4.5vw, 20px);
   line-height: 1.65;
   margin: 0 auto 16px auto;
-  max-width: 85%;
   text-align: center;
   color: hsl(var(--muted-foreground));
 }

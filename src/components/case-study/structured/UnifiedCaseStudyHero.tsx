@@ -72,13 +72,13 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
               style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
             >
               <div className="hero-text-stack">
-                <h1 className="hero-title-mobile text-foreground font-display mx-auto max-w-[90%]">
-                  {caseStudyData.title}
-                </h1>
-                
-                <p className="hero-subtitle-mobile text-muted-foreground mx-auto max-w-[85%]">
-                  {caseStudyData.description}
-                </p>
+            <h1 className="hero-title-mobile text-foreground font-display">
+              {caseStudyData.title}
+            </h1>
+            
+            <p className="hero-subtitle-mobile text-muted-foreground">
+              {caseStudyData.description}
+            </p>
                 
                 <div className="hero-tags flex flex-wrap justify-center gap-2 mt-4">
                   {caseStudyData.tags.map((tag) => (

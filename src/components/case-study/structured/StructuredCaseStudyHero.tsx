@@ -37,11 +37,11 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
             style={{ ...textStyle, transformStyle: "preserve-3d", willChange: "transform" }}
           >
           <div className="hero-text-stack mt-8 mb-12">
-            <h1 className="text-hero-h1 text-foreground mx-auto max-w-[90%]">
+            <h1 className="text-hero-h1 text-foreground">
               {caseStudyData.title}
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle mx-auto max-w-[85%]">
+            <p className="text-lg md:text-xl text-muted-foreground hero-subtitle">
               {caseStudyData.description}
             </p>
             

@@ -44,11 +44,11 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
                 <span className="text-gray-600">{details.role}</span>
               </div>
               
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight mx-auto max-w-[90%]">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
                 {project.title}
               </h1>
               
-              <p className="text-lg lg:text-xl text-gray-600 hero-subtitle mx-auto max-w-[85%]">
+              <p className="text-lg lg:text-xl text-gray-600 hero-subtitle">
                 {project.description}
               </p>
 
