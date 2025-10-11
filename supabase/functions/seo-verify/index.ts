@@ -67,24 +67,28 @@ serve(async (req) => {
     const expectedRoute = row.path_type === "page" ? `/${row.slug === "home" ? "" : row.slug}` : `${routePrefix}${row.slug}`;
     const expectedCanonical = row.canonical_url || (SITE_URL + expectedRoute);
 
-    // 3) Non-fatal, best-effort live fetch (optional)
-    let live: any = null;
-    try {
-      const target = new URL(expectedRoute, SITE_URL).toString();
-      const r = await fetch(target, { redirect: "follow", headers: { "user-agent": "supabase-edge-seo-verify/1.0" } });
-      const html = await r.text();
-      const pick = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
-      live = {
-        target,
-        status: r.status,
-        title: pick(/<title>([\s\S]*?)<\/title>/i),
-        description: pick(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i),
-        canonical: pick(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i),
-        ogImage: pick(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i),
-      };
-    } catch (_) {
-      // Ignore network errors; report DB results only
-      live = { note: "live_fetch_skipped_or_failed" };
+    // 3) Opt-in live fetch (only if ?live=true is passed)
+    const doLive = url.searchParams.get("live") === "true";
+    let live: any = { note: "live_fetch_disabled" };
+    
+    if (doLive) {
+      try {
+        const target = new URL(expectedRoute, SITE_URL).toString();
+        const r = await fetch(target, { redirect: "follow", headers: { "user-agent": "supabase-edge-seo-verify/1.0" } });
+        const html = await r.text();
+        const pick = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
+        live = {
+          target,
+          status: r.status,
+          title: pick(/<title>([\s\S]*?)<\/title>/i),
+          description: pick(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i),
+          canonical: pick(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i),
+          ogImage: pick(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i),
+        };
+      } catch (_) {
+        // Ignore network errors; report DB results only
+        live = { note: "live_fetch_skipped_or_failed" };
+      }
     }
 
     // 4) Return a stable JSON (no HTTP errors)
