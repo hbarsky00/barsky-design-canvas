@@ -1,60 +1,94 @@
-// supabase/functions/seo-verify/index.ts
-// Simplified edge function for quick SEO spot-checks
-// For comprehensive verification, use build-time scripts
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
-const corsHeaders = {
+const cors = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
-function okJSON(data: unknown, status = 200) {
+function j(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { "content-type": "application/json", ...corsHeaders },
+    headers: { "content-type": "application/json", ...cors },
   });
 }
 
+function buildTarget(slugRaw: string | null, siteUrlEnv: string | undefined) {
+  const slug = (slugRaw ?? "/").trim();
+  const siteUrl = (siteUrlEnv ?? "https://barskydesign.pro").trim();
+  try {
+    return slug.startsWith("http") ? new URL(slug).toString() : new URL(slug, siteUrl).toString();
+  } catch {
+    return "";
+  }
+}
+
 serve(async (req) => {
-  // CORS preflight
-  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
+  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
+
+  const url = new URL(req.url);
+  const slug = url.searchParams.get("slug");
+  const siteUrlEnv = Deno.env.get("SITE_URL");
+
+  const target = buildTarget(slug, siteUrlEnv);
+
+  if (!target) {
+    return j(
+      {
+        ok: false,
+        error: "invalid_target_url",
+        details: { slug, SITE_URL: siteUrlEnv ?? null },
+      },
+      400
+    );
+  }
 
   try {
-    // Accept ?slug=/path to probe a live page
-    const url = new URL(req.url);
-    const slug = url.searchParams.get("slug") ?? "/";
-    const siteUrl = Deno.env.get("SITE_URL") ?? "https://barskydesign.pro";
-    const target = new URL(slug, siteUrl).toString();
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 10_000);
 
-    console.log(`[SEO-VERIFY] Checking: ${target}`);
+    const res = await fetch(target, {
+      redirect: "follow",
+      signal: controller.signal,
+      headers: { "user-agent": "supabase-edge-seo-verify/1.0" },
+    }).catch((e) => {
+      throw new Error(`fetch_failed: ${e?.message || e}`);
+    });
 
-    // Light verification against the live page
-    const res = await fetch(target, { redirect: "follow" });
+    clearTimeout(t);
+
+    const status = res.status;
     const html = await res.text();
 
-    // Simple extractors (no JSDOM in Edge)
-    const get = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
-    const title = get(/<title>([\s\S]*?)<\/title>/i);
-    const description = get(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i);
-    const canonical = get(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
-    const ogTitle = get(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
-    const ogDesc = get(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i);
-    const ogImage = get(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
+    const pick = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
+    const title = pick(/<title>([\s\S]*?)<\/title>/i);
+    const description = pick(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i);
+    const canonical = pick(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
+    const ogTitle = pick(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
+    const ogDesc = pick(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i);
+    const ogImage = pick(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
 
-    const result = {
-      ok: true,
+    return j({
+      ok: status >= 200 && status < 300,
+      status,
       target,
-      status: res.status,
+      env: { SITE_URL: siteUrlEnv ?? null },
       seo: { title, description, canonical, ogTitle, ogDesc, ogImage },
-      notes: "Edge check succeeded. For full DB↔HTML parity, use the build-time verifier."
-    };
-
-    console.log(`[SEO-VERIFY] Success:`, JSON.stringify(result, null, 2));
-    return okJSON(result);
+      diagnostics: {
+        htmlBytes: html.length,
+        hasHead: /<head[\s>]/i.test(html),
+        notes:
+          status >= 200 && status < 300
+            ? "Success"
+            : "Non-200 from target; SEO fields may still be extracted",
+      },
+    }, 200);
   } catch (e) {
-    const error = String(e?.message ?? e);
-    console.error(`[SEO-VERIFY] Error:`, error);
-    return okJSON({ ok: false, error }, 500);
+    return j({
+      ok: false,
+      error: "edge_exception",
+      message: String(e?.message ?? e),
+      targetInfo: { slug, SITE_URL: siteUrlEnv ?? null },
+    }, 200);
   }
 });
