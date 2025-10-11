@@ -63,7 +63,7 @@ const SeoCheckRunner: React.FC = () => {
           placeholder="/path/to/check"
           className="flex-1"
         />
-        <Button onClick={handleCheck} disabled={loading}>
+        <Button onClick={handleCheck} disabled={loading} variant="filled" className="bg-primary text-primary-foreground hover:bg-primary/90">
           {loading ? "Checking..." : "Check"}
         </Button>
       </div>
