@@ -350,18 +350,14 @@ async function prerenderRoutes() {
         );
       }
       
-      // Update or add canonical URL
-      if (html.includes('rel="canonical"')) {
-        html = html.replace(
-          /(<link\s+rel="canonical"\s+href=")[^"]*(")/,
-          `$1${seoConfig.canonical}$2`
-        );
-      } else {
-        html = html.replace(
-          /<head>/,
-          `<head>\n    <link rel="canonical" href="${seoConfig.canonical}">`
-        );
-      }
+      // Remove ALL existing canonical tags first (prevents duplicates)
+      html = html.replace(/<link[^>]*rel=["']canonical["'][^>]*>/gi, '');
+      
+      // Add exactly one canonical URL
+      html = html.replace(
+        /<head>/,
+        `<head>\n    <link rel="canonical" href="${seoConfig.canonical}">`
+      );
       
       // Update or add Open Graph tags
       const ogTags = [
@@ -373,8 +369,8 @@ async function prerenderRoutes() {
         `<meta property="og:site_name" content="Hiram Barsky - UX Designer">`
       ];
       
-      // Remove existing OG tags
-      html = html.replace(/<meta\s+property="og:[^"]*"\s+content="[^"]*">/g, '');
+      // Remove ALL existing OG tags (case-insensitive, any attribute order)
+      html = html.replace(/<meta[^>]*property=["']og:[^"']+["'][^>]*>/gi, '');
       
       // Add new OG tags
       html = html.replace(
@@ -391,8 +387,8 @@ async function prerenderRoutes() {
         `<meta name="twitter:creator" content="@hirambarsky">`
       ];
       
-      // Remove existing Twitter tags
-      html = html.replace(/<meta\s+name="twitter:[^"]*"\s+content="[^"]*">/g, '');
+      // Remove ALL existing Twitter tags (case-insensitive, any attribute order)
+      html = html.replace(/<meta[^>]*name=["']twitter:[^"']+["'][^>]*>/gi, '');
       
       // Add new Twitter tags
       html = html.replace(
