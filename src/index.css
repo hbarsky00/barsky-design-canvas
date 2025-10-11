@@ -249,7 +249,7 @@
   
   /* Primary Colors */
   --md-sys-color-primary: 103 100% 80%;
-  --md-sys-color-on-primary: 103 100% 10%;
+  --md-sys-color-on-primary: 0 0% 100%;
   --md-sys-color-primary-container: 103 80% 30%;
   --md-sys-color-on-primary-container: 103 100% 90%;
   
