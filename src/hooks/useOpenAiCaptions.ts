@@ -11,6 +11,14 @@ export const useOpenAiCaptions = () => {
   const [generationProgress, setGenerationProgress] = useState<{current: number, total: number} | null>(null);
 
   const generateCaption = async (imageSrc: string, projectContext?: string, imageIndex?: number): Promise<OpenAiCaptionResponse> => {
+    // Feature flag to disable captions when quota/billing issues
+    if (!import.meta.env.VITE_ENABLE_CAPTIONS) {
+      console.log('ℹ️ Caption generation disabled via feature flag');
+      return { 
+        caption: getProjectSpecificFallback(imageIndex || 0, projectContext || '')
+      };
+    }
+    
     console.log('🤖 OpenAI Caption: Analyzing image:', imageSrc.substring(0, 50) + '...', 'Project:', projectContext);
     
     try {
@@ -46,7 +54,7 @@ export const useOpenAiCaptions = () => {
       return { caption };
       
     } catch (error) {
-      console.error('❌ Error generating caption:', error);
+      console.warn('⚠️ Caption generation failed, using fallback:', error instanceof Error ? error.message : 'Unknown error');
       
       return { 
         caption: getProjectSpecificFallback(imageIndex || 0, projectContext || ''),

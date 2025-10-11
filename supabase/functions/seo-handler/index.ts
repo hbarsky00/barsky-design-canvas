@@ -405,7 +405,7 @@ serve(async (req: Request) => {
         headers: {
           ...corsHeaders,
           'Content-Type': 'text/html; charset=utf-8',
-          'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
+          'Cache-Control': 'public, max-age=14400, s-maxage=14400, stale-while-revalidate=86400'
         }
       });
     }

@@ -282,6 +282,16 @@ async function generateSitemaps() {
   fs.writeFileSync(path.join(distDir, 'blog-sitemap.xml'), blogSitemap);
   console.log('Generated blog-sitemap.xml');
 
+  // Generate robots.txt
+  const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: ${BASE_URL}/sitemap.xml
+Sitemap: ${BASE_URL}/blog-sitemap.xml
+`;
+  fs.writeFileSync(path.join(distDir, 'robots.txt'), robotsTxt);
+  console.log('✅ Generated robots.txt');
+
   console.log('✅ All sitemaps generated successfully!');
 }
 
