@@ -15,14 +15,27 @@ const json = (data: unknown, status = 200) =>
 function normalizeSiteUrl(raw?: string | null) {
   const v = (raw ?? "").trim();
   if (!v) return "https://barskydesign.pro";
-  return /^https?:\/\//i.test(v) ? v : `https://${v}`;
+  const cleaned = v.replace(/\/+$/, "");
+  return /^https?:\/\//i.test(cleaned) ? cleaned : `https://${cleaned}`;
 }
 
 function buildTarget(slugRaw: string | null, siteRaw?: string | null) {
   const slug = (slugRaw ?? "/").trim() || "/";
   const site = normalizeSiteUrl(siteRaw);
+  
+  // If slug is already an absolute URL, use it directly
+  if (/^https?:\/\//i.test(slug)) {
+    try {
+      return new URL(slug).toString();
+    } catch {
+      return "";
+    }
+  }
+  
+  // Otherwise, combine with site URL
+  const path = slug.startsWith("/") ? slug : "/" + slug;
   try {
-    return new URL(slug, site).toString();
+    return new URL(path, site).toString();
   } catch {
     try {
       return new URL("/", site).toString();
@@ -46,7 +59,12 @@ serve(async (req) => {
     return json({
       ok: false,
       error: "invalid_target_url",
-      diagnostics: { slug: qpSlug ?? pathSlug, SITE_URL: SITE_URL ?? null }
+      hint: "Provide absolute URL (https://example.com) or relative path (/path)",
+      diagnostics: { 
+        slug: qpSlug ?? pathSlug, 
+        SITE_URL: SITE_URL ?? null,
+        fallback: "https://barskydesign.pro"
+      }
     });
   }
 

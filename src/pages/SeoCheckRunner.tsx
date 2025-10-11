@@ -52,6 +52,9 @@ const SeoCheckRunner: React.FC = () => {
         <p className="text-sm text-muted-foreground mb-2">
           Quick spot-check for live SEO tags. For comprehensive verification, use build-time scripts.
         </p>
+        <p className="text-xs text-muted-foreground">
+          You can enter a full URL (https://barskydesign.pro/) or just a path (/project/herbalink)
+        </p>
       </div>
 
       <div className="flex gap-2 mb-6">
