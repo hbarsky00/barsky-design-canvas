@@ -8,10 +8,18 @@ const SeoCheckRunner: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data, error } = await supabase.functions.invoke("seo-verify");
-        if (error) throw error;
+        const FUNCTIONS_URL = "https://ctqttomppgkjbjkckise.functions.supabase.co";
+        const response = await fetch(`${FUNCTIONS_URL}/seo-verify`, {
+          method: "GET",
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
         setJson(data);
-        console.log("[SEO_VERIFY_JSON]", JSON.stringify(data));
+        console.log("[SEO_VERIFY_JSON]", JSON.stringify(data, null, 2));
       } catch (e: any) {
         setError(e?.message || "Unknown error");
         console.error("[SEO_VERIFY_ERROR]", e);

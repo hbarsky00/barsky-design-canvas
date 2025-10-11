@@ -18,6 +18,12 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
 const SITE_URL = (Deno.env.get("SITE_URL") || "https://barskydesign.pro").replace(/\/$/, "");
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "GET, OPTIONS"
+};
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 function toPath(rec: SeoRecord): string {
@@ -72,7 +78,11 @@ async function fetchText(url: string): Promise<{ ok: boolean; status: number; te
   }
 }
 
-serve(async (_req) => {
+serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
   const issues: string[] = [];
   const routesFetched: string[] = [];
   const dbMismatches: Array<{ route: string; field: string; expected: string | null; actual: string | null }> = [];
@@ -191,6 +201,9 @@ serve(async (_req) => {
   };
 
   return new Response(JSON.stringify(json), {
-    headers: { "content-type": "application/json" },
+    headers: { 
+      "content-type": "application/json",
+      ...corsHeaders 
+    },
   });
 });
