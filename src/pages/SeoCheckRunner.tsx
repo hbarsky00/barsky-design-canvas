@@ -15,17 +15,18 @@ const SeoCheckRunner: React.FC = () => {
     
     try {
       const FUNCTIONS_URL = "https://ctqttomppgkjbjkckise.functions.supabase.co";
-      const response = await fetch(`${FUNCTIONS_URL}/seo-verify?slug=${encodeURIComponent(targetSlug)}`, {
-        method: "GET",
-      });
+      const slug = (targetSlug || "/").trim() || "/";
+      const url = `${FUNCTIONS_URL}/seo-verify?slug=${encodeURIComponent(slug)}`;
       
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-      
+      const response = await fetch(url, { method: "GET" });
       const data = await response.json();
+      
       setJson(data);
       console.log("[SEO_VERIFY_JSON]", JSON.stringify(data, null, 2));
+      
+      if (!data.ok) {
+        setError(data.error || data.message || "Verification reported an issue.");
+      }
     } catch (e: any) {
       setError(e?.message || "Unknown error");
       console.error("[SEO_VERIFY_ERROR]", e);

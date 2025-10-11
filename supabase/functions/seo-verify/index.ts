@@ -1,51 +1,58 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
-const cors = {
+const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
-function j(data: unknown, status = 200) {
-  return new Response(JSON.stringify(data), {
+const json = (data: unknown, status = 200) =>
+  new Response(JSON.stringify(data), {
     status,
-    headers: { "content-type": "application/json", ...cors },
+    headers: { "content-type": "application/json", ...CORS },
   });
+
+function normalizeSiteUrl(raw?: string | null) {
+  const v = (raw ?? "").trim();
+  if (!v) return "https://barskydesign.pro";
+  return /^https?:\/\//i.test(v) ? v : `https://${v}`;
 }
 
-function buildTarget(slugRaw: string | null, siteUrlEnv: string | undefined) {
-  const slug = (slugRaw ?? "/").trim();
-  const siteUrl = (siteUrlEnv ?? "https://barskydesign.pro").trim();
+function buildTarget(slugRaw: string | null, siteRaw?: string | null) {
+  const slug = (slugRaw ?? "/").trim() || "/";
+  const site = normalizeSiteUrl(siteRaw);
   try {
-    return slug.startsWith("http") ? new URL(slug).toString() : new URL(slug, siteUrl).toString();
+    return new URL(slug, site).toString();
   } catch {
-    return "";
+    try {
+      return new URL("/", site).toString();
+    } catch {
+      return "";
+    }
   }
 }
 
 serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
+  if (req.method === "OPTIONS") return new Response("ok", { headers: CORS });
 
   const url = new URL(req.url);
-  const slug = url.searchParams.get("slug");
-  const siteUrlEnv = Deno.env.get("SITE_URL");
+  const qpSlug = url.searchParams.get("slug");
+  const pathSlug = url.pathname.replace(/\/seo-verify\/?/, "") || null;
 
-  const target = buildTarget(slug, siteUrlEnv);
+  const SITE_URL = Deno.env.get("SITE_URL");
+  const target = buildTarget(qpSlug ?? pathSlug, SITE_URL);
 
   if (!target) {
-    return j(
-      {
-        ok: false,
-        error: "invalid_target_url",
-        details: { slug, SITE_URL: siteUrlEnv ?? null },
-      },
-      400
-    );
+    return json({
+      ok: false,
+      error: "invalid_target_url",
+      diagnostics: { slug: qpSlug ?? pathSlug, SITE_URL: SITE_URL ?? null }
+    });
   }
 
   try {
     const controller = new AbortController();
-    const t = setTimeout(() => controller.abort(), 10_000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
     const res = await fetch(target, {
       redirect: "follow",
@@ -55,8 +62,7 @@ serve(async (req) => {
       throw new Error(`fetch_failed: ${e?.message || e}`);
     });
 
-    clearTimeout(t);
-
+    clearTimeout(timeout);
     const status = res.status;
     const html = await res.text();
 
@@ -68,27 +74,24 @@ serve(async (req) => {
     const ogDesc = pick(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i);
     const ogImage = pick(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
 
-    return j({
+    return json({
       ok: status >= 200 && status < 300,
       status,
       target,
-      env: { SITE_URL: siteUrlEnv ?? null },
+      env: { SITE_URL: SITE_URL ?? null },
       seo: { title, description, canonical, ogTitle, ogDesc, ogImage },
       diagnostics: {
         htmlBytes: html.length,
         hasHead: /<head[\s>]/i.test(html),
-        notes:
-          status >= 200 && status < 300
-            ? "Success"
-            : "Non-200 from target; SEO fields may still be extracted",
-      },
-    }, 200);
+        note: "Edge returns 200 even on non-200 upstream; see status field."
+      }
+    });
   } catch (e) {
-    return j({
+    return json({
       ok: false,
       error: "edge_exception",
       message: String(e?.message ?? e),
-      targetInfo: { slug, SITE_URL: siteUrlEnv ?? null },
-    }, 200);
+      targetInfo: { SITE_URL: SITE_URL ?? null }
+    });
   }
 });
