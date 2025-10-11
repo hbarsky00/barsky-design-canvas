@@ -1,115 +1,139 @@
+// supabase/functions/seo-verify/index.ts
+// Robust SEO verifier with full input normalization and no-throw behavior
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
-const CORS = {
+const cors = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "GET, OPTIONS",
+  "Access-Control-Allow-Methods": "GET,OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-const json = (data: unknown, status = 200) =>
-  new Response(JSON.stringify(data), {
+function json(body: unknown, status = 200, extra: Record<string, string> = {}) {
+  return new Response(JSON.stringify(body), {
     status,
-    headers: { "content-type": "application/json", ...CORS },
+    headers: { "Content-Type": "application/json; charset=utf-8", ...cors, ...extra },
   });
-
-function normalizeSiteUrl(raw?: string | null) {
-  const v = (raw ?? "").trim();
-  if (!v) return "https://barskydesign.pro";
-  const cleaned = v.replace(/\/+$/, "");
-  return /^https?:\/\//i.test(cleaned) ? cleaned : `https://${cleaned}`;
 }
 
-function buildTarget(slugRaw: string | null, siteRaw?: string | null) {
-  const slug = (slugRaw ?? "/").trim() || "/";
-  const site = normalizeSiteUrl(siteRaw);
-  
-  // If slug is already an absolute URL, use it directly
-  if (/^https?:\/\//i.test(slug)) {
-    try {
-      return new URL(slug).toString();
-    } catch {
-      return "";
-    }
+function badInput(hint: string) {
+  return json({ ok: false, error: "invalid_target_url", hint }, 400);
+}
+
+function normalizeTarget(urlParam: string | null, pathParam: string | null): string | null {
+  const site = (Deno.env.get("SITE_URL") || "https://barskydesign.pro").replace(/\/+$/, "");
+  let target = urlParam || null;
+
+  if (!target && pathParam) {
+    target = pathParam.startsWith("/") ? site + pathParam : `${site}/${pathParam}`;
   }
-  
-  // Otherwise, combine with site URL
-  const path = slug.startsWith("/") ? slug : "/" + slug;
+
+  if (!target || target === "/") target = site + "/";
+
+  if (target && !/^https?:\/\//i.test(target)) target = "https://" + target;
+
   try {
-    return new URL(path, site).toString();
+    const u = new URL(target);
+    u.pathname = u.pathname.replace(/\/{2,}/g, "/");
+    return u.toString();
   } catch {
-    try {
-      return new URL("/", site).toString();
-    } catch {
-      return "";
-    }
+    return null;
   }
+}
+
+async function fetchWithTimeout(url: string, ua: string, ms = 8000) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  try {
+    const res = await fetch(url, {
+      redirect: "follow",
+      signal: ctrl.signal,
+      headers: { "User-Agent": ua, "Accept": "text/html,*/*" },
+    });
+    const text = await res.text();
+    return { status: res.status, ok: res.ok, text, url: res.url };
+  } catch (e) {
+    return { status: 0, ok: false, text: "", url, error: String(e) };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function extract(html: string) {
+  const pick = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
+  const has = (re: RegExp) => re.test(html);
+
+  const title = pick(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  const desc = pick(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+  const canonical = pick(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i);
+  const ogTitle = pick(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+  const ogDesc = pick(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+  const ogImg = pick(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+  const ogUrl = pick(/<meta[^>]*property=["']og:url["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+  const noindex = has(/<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex[^"']*["'][^>]*>/i);
+
+  return { title, desc, canonical, ogTitle, ogDesc, ogImg, ogUrl, noindex };
 }
 
 serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response("ok", { headers: CORS });
+  if (req.method === "OPTIONS") return new Response("", { headers: cors });
 
-  const url = new URL(req.url);
-  const qpSlug = url.searchParams.get("slug");
-  const pathSlug = url.pathname.replace(/\/seo-verify\/?/, "") || null;
+  const q = new URL(req.url).searchParams;
+  const ua = q.get("ua") || "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
+  const live = q.get("live") !== "false";
 
-  const SITE_URL = Deno.env.get("SITE_URL");
-  const target = buildTarget(qpSlug ?? pathSlug, SITE_URL);
+  const target = normalizeTarget(q.get("slug") || q.get("target_url"), q.get("path"));
+  if (!target) return badInput("Provide ?slug=<path> or ?target_url=<absolute> (SITE_URL is used as base).");
 
-  if (!target) {
-    return json({
-      ok: false,
-      error: "invalid_target_url",
-      hint: "Provide absolute URL (https://example.com) or relative path (/path)",
-      diagnostics: { 
-        slug: qpSlug ?? pathSlug, 
-        SITE_URL: SITE_URL ?? null,
-        fallback: "https://barskydesign.pro"
-      }
-    });
+  if (!live) {
+    return json({ ok: true, target, dryRun: true });
   }
 
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000);
-
-    const res = await fetch(target, {
-      redirect: "follow",
-      signal: controller.signal,
-      headers: { "user-agent": "supabase-edge-seo-verify/1.0" },
-    }).catch((e) => {
-      throw new Error(`fetch_failed: ${e?.message || e}`);
-    });
-
-    clearTimeout(timeout);
-    const status = res.status;
-    const html = await res.text();
-
-    const pick = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
-    const title = pick(/<title>([\s\S]*?)<\/title>/i);
-    const description = pick(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i);
-    const canonical = pick(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
-    const ogTitle = pick(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
-    const ogDesc = pick(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i);
-    const ogImage = pick(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
-
+  const res = await fetchWithTimeout(target, ua, 10000);
+  if (!res.ok || !res.text) {
     return json({
-      ok: status >= 200 && status < 300,
-      status,
+      ok: false,
+      error: "fetch_failed",
       target,
-      env: { SITE_URL: SITE_URL ?? null },
-      seo: { title, description, canonical, ogTitle, ogDesc, ogImage },
-      diagnostics: {
-        htmlBytes: html.length,
-        hasHead: /<head[\s>]/i.test(html),
-        note: "Edge returns 200 even on non-200 upstream; see status field."
-      }
-    });
-  } catch (e) {
-    return json({
-      ok: false,
-      error: "edge_exception",
-      message: String(e?.message ?? e),
-      targetInfo: { SITE_URL: SITE_URL ?? null }
-    });
+      status: res.status,
+      detail: res.error || "Empty response body",
+      hint: "Confirm URL is reachable and not blocked by auth or CORS.",
+    }, 200, { "Cache-Control": "no-cache" });
   }
-});
+
+  const slice = res.text.slice(0, 200_000);
+  const meta = extract(slice);
+
+  const base = (Deno.env.get("SITE_URL") || "https://barskydesign.pro").replace(/\/+$/, "");
+  const canonicalOk = !!meta.canonical && meta.canonical.startsWith(base);
+  const canonicalSingle = (slice.match(/rel=["']canonical["']/gi) || []).length === 1;
+
+  const report = {
+    ok: true,
+    target,
+    fetchedUrl: res.url,
+    status: res.status,
+    env: { SITE_URL: Deno.env.get("SITE_URL") ?? null },
+    seo: {
+      title: meta.title,
+      description: meta.desc,
+      canonical: meta.canonical,
+      ogTitle: meta.ogTitle,
+      ogDesc: meta.ogDesc,
+      ogImage: meta.ogImg,
+      ogUrl: meta.ogUrl,
+    },
+    diagnostics: {
+      title_ok: !!meta.title,
+      description_ok: !!meta.desc,
+      canonical_ok: canonicalOk,
+      canonical_absolute: /^https?:\/\//i.test(meta.canonical || ""),
+      canonical_single_tag: canonicalSingle,
+      og_tags_ok: !!(meta.ogTitle && meta.ogDesc && meta.ogImg),
+      noindex: !!meta.noindex,
+      htmlBytes: res.text.length,
+    },
+  };
+
+  return json(report, 200, {
+    "Cache-Control": "public, max-age=60, stale-while-revalidate=600",
+  });

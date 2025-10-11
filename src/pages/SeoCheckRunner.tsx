@@ -15,8 +15,15 @@ const SeoCheckRunner: React.FC = () => {
     
     try {
       const FUNCTIONS_URL = "https://ctqttomppgkjbjkckise.functions.supabase.co";
-      const slug = (targetSlug || "/").trim() || "/";
-      const url = `${FUNCTIONS_URL}/seo-verify?slug=${encodeURIComponent(slug)}`;
+      const SITE_URL = "https://barskydesign.pro";
+      
+      // Normalize input
+      let raw = targetSlug.trim();
+      if (!raw) raw = "/";
+      if (raw.startsWith("/")) raw = SITE_URL + raw;
+      if (!/^https?:\/\//i.test(raw)) raw = "https://" + raw;
+      
+      const url = `${FUNCTIONS_URL}/seo-verify?target_url=${encodeURIComponent(raw)}`;
       
       const response = await fetch(url, { method: "GET" });
       const data = await response.json();
@@ -25,7 +32,7 @@ const SeoCheckRunner: React.FC = () => {
       console.log("[SEO_VERIFY_JSON]", JSON.stringify(data, null, 2));
       
       if (!data.ok) {
-        setError(data.error || data.message || "Verification reported an issue.");
+        setError(data.hint || data.error || data.message || "Verification reported an issue.");
       }
     } catch (e: any) {
       setError(e?.message || "Unknown error");
@@ -53,7 +60,7 @@ const SeoCheckRunner: React.FC = () => {
           Quick spot-check for live SEO tags. For comprehensive verification, use build-time scripts.
         </p>
         <p className="text-xs text-muted-foreground">
-          You can enter a full URL (https://barskydesign.pro/) or just a path (/project/herbalink)
+          You can enter a full URL (https://barskydesign.pro/) or just a path (/project/herbalink). We'll normalize it for you.
         </p>
       </div>
 
