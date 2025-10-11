@@ -8,34 +8,25 @@ const SeoCheckRunner: React.FC = () => {
   const [slug, setSlug] = useState("/");
   const [loading, setLoading] = useState(false);
 
-  const runCheck = async (targetSlug: string) => {
+  const runCheck = async (raw: string) => {
     setLoading(true);
     setError(null);
     setJson(null);
     
     try {
       const FUNCTIONS_URL = "https://ctqttomppgkjbjkckise.functions.supabase.co";
-      const SITE_URL = "https://barskydesign.pro";
+      const slug = (raw || "/").trim() || "/";
+      const url = `${FUNCTIONS_URL}/seo-verify?slug=${encodeURIComponent(slug)}`;
       
-      // Normalize input
-      let raw = targetSlug.trim();
-      if (!raw) raw = "/";
-      if (raw.startsWith("/")) raw = SITE_URL + raw;
-      if (!/^https?:\/\//i.test(raw)) raw = "https://" + raw;
-      
-      const url = `${FUNCTIONS_URL}/seo-verify?target_url=${encodeURIComponent(raw)}`;
-      
-      const response = await fetch(url, { method: "GET" });
-      const data = await response.json();
+      const r = await fetch(url, { method: "GET" });
+      const data = await r.json();
       
       setJson(data);
       console.log("[SEO_VERIFY_JSON]", JSON.stringify(data, null, 2));
       
-      if (!data.ok) {
-        setError(data.hint || data.error || data.message || "Verification reported an issue.");
-      }
+      setError(data.ok ? "" : data.error || data.message || "Verification reported an issue.");
     } catch (e: any) {
-      setError(e?.message || "Unknown error");
+      setError(e?.message || "Network error");
       console.error("[SEO_VERIFY_ERROR]", e);
     } finally {
       setLoading(false);

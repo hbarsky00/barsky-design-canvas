@@ -1,140 +1,118 @@
 // supabase/functions/seo-verify/index.ts
-// Robust SEO verifier with full input normalization and no-throw behavior
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
-const cors = {
+const CORS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET,OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
-function json(body: unknown, status = 200, extra: Record<string, string> = {}) {
-  return new Response(JSON.stringify(body), {
+function json(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
     status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...cors, ...extra },
+    headers: { "content-type": "application/json", ...CORS },
   });
 }
 
-function badInput(hint: string) {
-  return json({ ok: false, error: "invalid_target_url", hint }, 400);
+function normalizeSiteUrl(raw?: string | null) {
+  const v = (raw ?? "").trim();
+  if (!v) return "https://barskydesign.pro"; // sane default
+  return /^https?:\/\//i.test(v) ? v : `https://${v}`;
 }
 
-function normalizeTarget(urlParam: string | null, pathParam: string | null): string | null {
-  const site = (Deno.env.get("SITE_URL") || "https://barskydesign.pro").replace(/\/+$/, "");
-  let target = urlParam || null;
-
-  if (!target && pathParam) {
-    target = pathParam.startsWith("/") ? site + pathParam : `${site}/${pathParam}`;
-  }
-
-  if (!target || target === "/") target = site + "/";
-
-  if (target && !/^https?:\/\//i.test(target)) target = "https://" + target;
-
+function buildTarget(slugRaw: string | null, siteRaw?: string | null) {
+  const slug = (slugRaw ?? "/").trim() || "/";
+  const site = normalizeSiteUrl(siteRaw);
   try {
-    const u = new URL(target);
-    u.pathname = u.pathname.replace(/\/{2,}/g, "/");
-    return u.toString();
-  } catch {
-    return null;
-  }
-}
-
-async function fetchWithTimeout(url: string, ua: string, ms = 8000) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), ms);
-  try {
-    const res = await fetch(url, {
-      redirect: "follow",
-      signal: ctrl.signal,
-      headers: { "User-Agent": ua, "Accept": "text/html,*/*" },
-    });
-    const text = await res.text();
-    return { status: res.status, ok: res.ok, text, url: res.url };
+    // Accept absolute slugs as well
+    return slug.startsWith("http") ? new URL(slug).toString() : new URL(slug, site).toString();
   } catch (e) {
-    return { status: 0, ok: false, text: "", url, error: String(e) };
-  } finally {
-    clearTimeout(timer);
+    console.error("[seo-verify] buildTarget failed", { slug, site, e: String(e) });
+    return "";
   }
 }
 
-function extract(html: string) {
-  const pick = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
-  const has = (re: RegExp) => re.test(html);
+serve(async (req: Request) => {
+  // CORS preflight
+  if (req.method === "OPTIONS") return new Response("ok", { headers: CORS });
 
-  const title = pick(/<title[^>]*>([\s\S]*?)<\/title>/i);
-  const desc = pick(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i);
-  const canonical = pick(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i);
-  const ogTitle = pick(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["'][^>]*>/i);
-  const ogDesc = pick(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']+)["'][^>]*>/i);
-  const ogImg = pick(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["'][^>]*>/i);
-  const ogUrl = pick(/<meta[^>]*property=["']og:url["'][^>]*content=["']([^"']+)["'][^>]*>/i);
-  const noindex = has(/<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex[^"']*["'][^>]*>/i);
+  try {
+    const url = new URL(req.url);
 
-  return { title, desc, canonical, ogTitle, ogDesc, ogImg, ogUrl, noindex };
-}
+    // Accept `?slug=` and `/seo-verify/<slug>` forms
+    const qpSlug = url.searchParams.get("slug");
+    const pathSlug = url.pathname.replace(/\/seo-verify\/?/, "") || null;
 
-serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response("", { headers: cors });
+    const SITE_URL = Deno.env.get("SITE_URL"); // set in function env
+    const target = buildTarget(qpSlug ?? pathSlug, SITE_URL);
 
-  const q = new URL(req.url).searchParams;
-  const ua = q.get("ua") || "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
-  const live = q.get("live") !== "false";
+    if (!target) {
+      return json({
+        ok: false,
+        error: "invalid_target_url",
+        diagnostics: { slug: qpSlug ?? pathSlug, SITE_URL: SITE_URL ?? null },
+      });
+    }
 
-  const target = normalizeTarget(q.get("slug") || q.get("target_url"), q.get("path"));
-  if (!target) return badInput("Provide ?slug=<path> or ?target_url=<absolute> (SITE_URL is used as base).");
+    // Time out fast to avoid hanging
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10_000);
 
-  if (!live) {
-    return json({ ok: true, target, dryRun: true });
-  }
+    let res: Response;
+    try {
+      res = await fetch(target, {
+        redirect: "follow",
+        signal: controller.signal,
+        headers: { "user-agent": "supabase-edge-seo-verify/1.0" },
+      });
+    } catch (e) {
+      clearTimeout(timeout);
+      console.error("[seo-verify] fetch failed", { target, e: String(e) });
+      return json({
+        ok: false,
+        error: "fetch_failed",
+        message: String(e),
+        target,
+        env: { SITE_URL: SITE_URL ?? null },
+      });
+    }
 
-  const res = await fetchWithTimeout(target, ua, 10000);
-  if (!res.ok || !res.text) {
+    clearTimeout(timeout);
+
+    const status = res.status;
+    const html = await res.text();
+
+    // Tiny extractors (no JSDOM in Edge)
+    const pick = (re: RegExp) => (html.match(re)?.[1] ?? "").trim();
+    const title = pick(/<title>([\s\S]*?)<\/title>/i);
+    const description = pick(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i);
+    const canonical = pick(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
+    const ogTitle = pick(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
+    const ogDesc = pick(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i);
+    const ogImage = pick(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
+
+    // Always return 200 with diagnostics so the UI never shows a red HTTP error box
+    return json({
+      ok: status >= 200 && status < 300,
+      status,
+      target,
+      env: { SITE_URL: SITE_URL ?? null },
+      seo: { title, description, canonical, ogTitle, ogDesc, ogImage },
+      diagnostics: {
+        htmlBytes: html.length,
+        hasHead: /<head[\s>]/i.test(html),
+        note:
+          status >= 200 && status < 300
+            ? "Success"
+            : "Upstream returned non-200; fields may still parse",
+      },
+    });
+  } catch (e) {
+    console.error("[seo-verify] unhandled", String(e));
     return json({
       ok: false,
-      error: "fetch_failed",
-      target,
-      status: res.status,
-      detail: res.error || "Empty response body",
-      hint: "Confirm URL is reachable and not blocked by auth or CORS.",
-    }, 200, { "Cache-Control": "no-cache" });
+      error: "edge_exception",
+      message: String(e),
+    });
   }
-
-  const slice = res.text.slice(0, 200_000);
-  const meta = extract(slice);
-
-  const base = (Deno.env.get("SITE_URL") || "https://barskydesign.pro").replace(/\/+$/, "");
-  const canonicalOk = !!meta.canonical && meta.canonical.startsWith(base);
-  const canonicalSingle = (slice.match(/rel=["']canonical["']/gi) || []).length === 1;
-
-  const report = {
-    ok: true,
-    target,
-    fetchedUrl: res.url,
-    status: res.status,
-    env: { SITE_URL: Deno.env.get("SITE_URL") ?? null },
-    seo: {
-      title: meta.title,
-      description: meta.desc,
-      canonical: meta.canonical,
-      ogTitle: meta.ogTitle,
-      ogDesc: meta.ogDesc,
-      ogImage: meta.ogImg,
-      ogUrl: meta.ogUrl,
-    },
-    diagnostics: {
-      title_ok: !!meta.title,
-      description_ok: !!meta.desc,
-      canonical_ok: canonicalOk,
-      canonical_absolute: /^https?:\/\//i.test(meta.canonical || ""),
-      canonical_single_tag: canonicalSingle,
-      og_tags_ok: !!(meta.ogTitle && meta.ogDesc && meta.ogImg),
-      noindex: !!meta.noindex,
-      htmlBytes: res.text.length,
-    },
-  };
-
-  return json(report, 200, {
-    "Cache-Control": "public, max-age=60, stale-while-revalidate=600",
-  });
 });
