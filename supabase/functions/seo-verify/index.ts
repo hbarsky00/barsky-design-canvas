@@ -137,3 +137,4 @@ serve(async (req) => {
   return json(report, 200, {
     "Cache-Control": "public, max-age=60, stale-while-revalidate=600",
   });
+});
