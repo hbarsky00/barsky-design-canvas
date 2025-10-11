@@ -36,7 +36,45 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       priority: 0.9
     },
     
+    // Service detail pages - high priority for SEO
+    {
+      url: `${BASE_URL}/design-services/ux-ui-design`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      url: `${BASE_URL}/design-services/mobile-app-design`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      url: `${BASE_URL}/design-services/web-development`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: 0.9
+    },
+    {
+      url: `${BASE_URL}/store`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: 0.7
+    },
+    
     // Case study pages - high priority for SEO
+    {
+      url: `${BASE_URL}/project/smarterhealth`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: `${BASE_URL}/project/crypto`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: 0.8
+    },
     {
       url: `${BASE_URL}/project/herbalink`,
       lastmod: currentDate,
