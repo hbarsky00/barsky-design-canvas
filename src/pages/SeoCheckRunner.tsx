@@ -44,14 +44,14 @@ const SeoCheckRunner: React.FC = () => {
 
   return (
     <main className="container mx-auto p-6 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-4">SEO Verification (Edge Function)</h1>
+      <h1 className="text-3xl font-bold mb-4">SEO Verification (DB-Backed)</h1>
       
       <div className="mb-6 p-4 bg-muted rounded-lg">
         <p className="text-sm text-muted-foreground mb-2">
-          Quick spot-check for live SEO tags. For comprehensive verification, use build-time scripts.
+          Verifies SEO data from your database (source of truth). Live HTML fetch is optional.
         </p>
         <p className="text-xs text-muted-foreground">
-          You can enter a full URL (https://barskydesign.pro/) or just a path (/project/herbalink). We'll normalize it for you.
+          Enter a path like <code>/</code>, <code>/project/herbalink</code>, or <code>/blog/post-slug</code>
         </p>
       </div>
 
@@ -81,46 +81,79 @@ const SeoCheckRunner: React.FC = () => {
             <>
               <div className="p-4 bg-green-500/10 border border-green-500 rounded-lg">
                 <p className="text-sm font-medium text-green-700 dark:text-green-400">
-                  ✓ Successfully checked: {json.target}
+                  ✓ Found in database: {json.slug} ({json.path_input})
                 </p>
               </div>
 
               <div className="grid gap-4">
+                {/* Expected (from DB) */}
                 <div className="p-4 border rounded-lg">
-                  <h3 className="font-semibold mb-2">SEO Tags</h3>
+                  <h3 className="font-semibold mb-2 text-primary">Expected (from DB)</h3>
                   <dl className="space-y-2 text-sm">
                     <div>
                       <dt className="font-medium text-muted-foreground">Title:</dt>
-                      <dd>{json.seo.title || <span className="text-destructive">Missing</span>}</dd>
+                      <dd>{json.expected.title || <span className="text-destructive">Missing</span>}</dd>
                     </div>
                     <div>
                       <dt className="font-medium text-muted-foreground">Description:</dt>
-                      <dd>{json.seo.description || <span className="text-destructive">Missing</span>}</dd>
+                      <dd>{json.expected.description || <span className="text-destructive">Missing</span>}</dd>
                     </div>
                     <div>
                       <dt className="font-medium text-muted-foreground">Canonical:</dt>
-                      <dd>{json.seo.canonical || <span className="text-destructive">Missing</span>}</dd>
+                      <dd className="break-all">{json.expected.canonical || <span className="text-destructive">Missing</span>}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-medium text-muted-foreground">OG Image:</dt>
+                      <dd className="break-all">{json.expected.og_image_url || <span className="text-destructive">Missing</span>}</dd>
                     </div>
                   </dl>
                 </div>
 
-                <div className="p-4 border rounded-lg">
-                  <h3 className="font-semibold mb-2">Open Graph Tags</h3>
-                  <dl className="space-y-2 text-sm">
-                    <div>
-                      <dt className="font-medium text-muted-foreground">OG Title:</dt>
-                      <dd>{json.seo.ogTitle || <span className="text-destructive">Missing</span>}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-muted-foreground">OG Description:</dt>
-                      <dd>{json.seo.ogDesc || <span className="text-destructive">Missing</span>}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-muted-foreground">OG Image:</dt>
-                      <dd className="break-all">{json.seo.ogImage || <span className="text-destructive">Missing</span>}</dd>
-                    </div>
-                  </dl>
-                </div>
+                {/* Live (from HTML) - optional */}
+                {json.live && !json.live.note && (
+                  <div className="p-4 border rounded-lg">
+                    <h3 className="font-semibold mb-2">Live (from HTML)</h3>
+                    <p className="text-xs text-muted-foreground mb-2">Fetched from: {json.live.target} (status: {json.live.status})</p>
+                    <dl className="space-y-2 text-sm">
+                      <div>
+                        <dt className="font-medium text-muted-foreground">Title:</dt>
+                        <dd className={json.live.title !== json.expected.title ? "text-amber-600" : ""}>
+                          {json.live.title || <span className="text-destructive">Missing</span>}
+                          {json.live.title && json.live.title !== json.expected.title && <span className="ml-2 text-xs">⚠️ Differs from DB</span>}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="font-medium text-muted-foreground">Description:</dt>
+                        <dd className={json.live.description !== json.expected.description ? "text-amber-600" : ""}>
+                          {json.live.description || <span className="text-destructive">Missing</span>}
+                          {json.live.description && json.live.description !== json.expected.description && <span className="ml-2 text-xs">⚠️ Differs from DB</span>}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="font-medium text-muted-foreground">Canonical:</dt>
+                        <dd className={`break-all ${json.live.canonical !== json.expected.canonical ? "text-amber-600" : ""}`}>
+                          {json.live.canonical || <span className="text-destructive">Missing</span>}
+                          {json.live.canonical && json.live.canonical !== json.expected.canonical && <span className="ml-2 text-xs">⚠️ Differs from DB</span>}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="font-medium text-muted-foreground">OG Image:</dt>
+                        <dd className={`break-all ${json.live.ogImage !== json.expected.og_image_url ? "text-amber-600" : ""}`}>
+                          {json.live.ogImage || <span className="text-destructive">Missing</span>}
+                          {json.live.ogImage && json.live.ogImage !== json.expected.og_image_url && <span className="ml-2 text-xs">⚠️ Differs from DB</span>}
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                )}
+
+                {json.live?.note && (
+                  <div className="p-4 border border-dashed rounded-lg bg-muted/50">
+                    <p className="text-sm text-muted-foreground">
+                      Live HTML fetch was skipped or failed (non-fatal). Showing DB values only.
+                    </p>
+                  </div>
+                )}
               </div>
 
               <details className="p-4 border rounded-lg">
@@ -131,7 +164,9 @@ const SeoCheckRunner: React.FC = () => {
           ) : (
             <div className="p-4 bg-destructive/10 border border-destructive rounded-lg">
               <h2 className="text-lg font-semibold text-destructive mb-2">Verification Failed</h2>
-              <p className="text-sm">{json.error}</p>
+              <p className="text-sm mb-2">{json.error}</p>
+              {json.tip && <p className="text-xs text-muted-foreground">{json.tip}</p>}
+              {json.slug && <p className="text-xs text-muted-foreground">Searched for slug: {json.slug}</p>}
             </div>
           )}
         </div>
