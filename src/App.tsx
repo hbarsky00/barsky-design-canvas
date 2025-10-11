@@ -40,6 +40,7 @@ const StructuredBarskyJointCaseStudy = React.lazy(() => import("@/pages/Structur
 const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
 // const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
+const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 
 
 const queryClient = new QueryClient();
@@ -100,6 +101,9 @@ function AppContent() {
               
               {/* Hidden content export route */}
               <Route path="/admin/content-export-2024" element={<ContentExport />} />
+
+              {/* SEO verification route */}
+              <Route path="/__seo-check" element={<SeoCheckRunner />} />
               
               {/* Catch all - redirect to home */}
               <Route path="*" element={<Navigate to="/" replace />} />
