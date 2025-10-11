@@ -1,7 +1,8 @@
 
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
+import { getSeoBySlug, type SeoMetaRecord } from "@/lib/supabase/seoQueries";
 import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 import { blogPosts } from "@/data/blogData";
@@ -16,6 +17,26 @@ const devLog = (...args: any[]) => {
 
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
+  const [dbSeo, setDbSeo] = useState<SeoMetaRecord | null>(null);
+
+  // Fetch Supabase SEO data on pathname change
+  useEffect(() => {
+    let slug = location.pathname === '/' ? 'home' : location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    
+    // Extract slug from routes
+    if (location.pathname.startsWith('/project/')) {
+      slug = location.pathname.split('/project/')[1];
+    } else if (location.pathname.startsWith('/blog/')) {
+      slug = location.pathname.split('/blog/')[1];
+    }
+    
+    getSeoBySlug(slug).then(data => {
+      if (data) {
+        console.log('✅ Loaded Supabase SEO for client-side hydration:', slug);
+        setDbSeo(data);
+      }
+    });
+  }, [location.pathname]);
   
   // Generate SEO data using unified builder
   const seoData = useMemo((): BuiltSEO => {
@@ -107,8 +128,21 @@ const UnifiedSEO: React.FC = () => {
     }
     
     // Build final SEO data using unified builder
-    return buildSEO(seoInput);
-  }, [location?.pathname]);
+    const baseSeo = buildSEO(seoInput);
+    
+    // Merge with Supabase data if available
+    if (dbSeo) {
+      return {
+        ...baseSeo,
+        title: dbSeo.title,
+        description: dbSeo.description,
+        canonical: dbSeo.canonical_url || baseSeo.canonical,
+        image: dbSeo.og_image_url || baseSeo.image
+      };
+    }
+    
+    return baseSeo;
+  }, [location?.pathname, dbSeo]);
 
   const structuredData = generateStructuredData(seoData);
 

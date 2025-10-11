@@ -364,6 +364,45 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_meta: {
+        Row: {
+          canonical_url: string | null
+          created_at: string | null
+          description: string
+          id: string
+          keywords: string[] | null
+          og_image_url: string | null
+          path_type: string
+          slug: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          canonical_url?: string | null
+          created_at?: string | null
+          description: string
+          id?: string
+          keywords?: string[] | null
+          og_image_url?: string | null
+          path_type: string
+          slug: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          canonical_url?: string | null
+          created_at?: string | null
+          description?: string
+          id?: string
+          keywords?: string[] | null
+          og_image_url?: string | null
+          path_type?: string
+          slug?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

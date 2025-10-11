@@ -1,9 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createClient } from '@supabase/supabase-js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Supabase configuration for build-time queries
+const SUPABASE_URL = 'https://ctqttomppgkjbjkckise.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0cXR0b21wcGdramJqa2NraXNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Mjg1MzMsImV4cCI6MjA2MDAwNDUzM30.q15G4xYUtQqi7kdlha0C31LaIlYWBqPbIit-e9wq48Q';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Read the structured case studies data
 const structuredCaseStudiesPath = path.join(__dirname, '../src/data/structuredCaseStudies.ts');
@@ -68,25 +75,75 @@ function extractCaseStudyData(content) {
 
 const BASE_URL = 'https://barskydesign.pro';
 
+// Fetch SEO slugs from Supabase
+async function fetchSupabaseSlugs() {
+  try {
+    const { data, error } = await supabase
+      .from('seo_meta')
+      .select('slug, path_type, updated_at');
+    
+    if (error) {
+      console.warn('⚠️ Could not fetch Supabase slugs:', error.message);
+      return [];
+    }
+    
+    console.log(`✅ Loaded ${data?.length || 0} slugs from Supabase`);
+    return data || [];
+  } catch (error) {
+    console.warn('⚠️ Error fetching Supabase slugs:', error.message);
+    return [];
+  }
+}
+
 // Generate main sitemap
-function generateMainSitemap() {
+async function generateMainSitemap() {
   const extractedCaseStudies = extractCaseStudyData(structuredCaseStudiesContent);
   const extractedBlogPosts = extractBlogData(blogDataContent);
+  const supabaseSlugs = await fetchSupabaseSlugs();
+  
+  // Convert Supabase slugs to sitemap entries
+  const supabaseEntries = supabaseSlugs.map(s => {
+    let url;
+    let priority = '0.7';
+    
+    if (s.path_type === 'page') {
+      url = s.slug === 'home' ? `${BASE_URL}/` : `${BASE_URL}/${s.slug}`;
+      priority = s.slug === 'home' ? '1.0' : '0.8';
+    } else if (s.path_type === 'project') {
+      url = `${BASE_URL}/project/${s.slug}`;
+      priority = '0.9';
+    } else if (s.path_type === 'post') {
+      url = `${BASE_URL}/blog/${s.slug}`;
+      priority = '0.7';
+    }
+    
+    return {
+      url,
+      lastmod: new Date(s.updated_at).toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority
+    };
+  }).filter(e => e.url);
+  
+  // Merge with TypeScript entries (Supabase takes precedence)
+  const supabaseUrls = new Set(supabaseEntries.map(e => e.url));
   
   const entries = [
-    // Static pages
-    {
+    ...supabaseEntries,
+    
+    // Static pages (only if not in Supabase)
+    ...(supabaseUrls.has(`${BASE_URL}/`) ? [] : [{
       url: `${BASE_URL}/`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'weekly',
       priority: '1.0'
-    },
-    {
+    }]),
+    ...(supabaseUrls.has(`${BASE_URL}/about`) ? [] : [{
       url: `${BASE_URL}/about`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'monthly',
       priority: '0.8'
-    },
+    }]),
     {
       url: `${BASE_URL}/services`,
       lastmod: new Date().toISOString().split('T')[0],
@@ -106,7 +163,7 @@ function generateMainSitemap() {
       priority: '0.8'
     },
     
-    // Project pages
+    // Project pages (only if not in Supabase)
     ...Object.keys(extractedCaseStudies).map(id => {
       const routeMapping = {
         'herbalink': '/project/herbalink',
@@ -116,12 +173,15 @@ function generateMainSitemap() {
       };
       
       const route = routeMapping[id];
-      return route ? {
-        url: `${BASE_URL}${route}`,
+      if (!route) return null;
+      const url = `${BASE_URL}${route}`;
+      if (supabaseUrls.has(url)) return null;
+      return {
+        url,
         lastmod: new Date().toISOString().split('T')[0],
         changefreq: 'monthly',
         priority: '0.9'
-      } : null;
+      };
     }).filter(Boolean),
     
     // Add fallback business management project
@@ -204,7 +264,7 @@ ${entries.map(entry => `  <url>
 }
 
 // Generate sitemaps and save to dist
-function generateSitemaps() {
+async function generateSitemaps() {
   const distDir = path.join(__dirname, '../dist');
   
   // Ensure dist directory exists
@@ -213,9 +273,9 @@ function generateSitemaps() {
   }
 
   // Generate main sitemap
-  const mainSitemap = generateMainSitemap();
+  const mainSitemap = await generateMainSitemap();
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), mainSitemap);
-  console.log('Generated main sitemap.xml');
+  console.log('✅ Generated main sitemap.xml');
 
   // Generate blog sitemap
   const blogSitemap = generateBlogSitemap();

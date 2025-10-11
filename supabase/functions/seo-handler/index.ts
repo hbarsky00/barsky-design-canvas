@@ -1,5 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
 
 // Public SEO Edge Function - UNIFIED VERSION
 // - Uses shared SEO data sources for consistency
@@ -358,20 +359,60 @@ serve(async (req: Request) => {
     const targetUrlParam = url.searchParams.get("url");
     const pathParam = url.searchParams.get("path");
 
-    // DISABLED: Bot HTML serving - static prerender now handles all SEO
-    // This prevents conflicts between edge function and static HTML
-    // Static files in dist/ now contain proper SEO meta tags
+    // Query Supabase for SEO data if bot detected
+    if (isBot(ua, req.headers)) {
+      const canonical = resolveCanonical(targetUrlParam, pathParam);
+      const pathname = new URL(canonical).pathname;
+      
+      // Extract slug from pathname
+      let slug = pathname === '/' ? 'home' : pathname.replace(/^\//, '').replace(/\/$/, '');
+      if (pathname.startsWith('/project/')) {
+        slug = pathname.split('/project/')[1];
+      } else if (pathname.startsWith('/blog/')) {
+        slug = pathname.split('/blog/')[1];
+      }
+      
+      // Query Supabase for SEO data
+      const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+      const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+      const supabaseClient = createClient(supabaseUrl, supabaseKey);
+      
+      const { data: seoData, error } = await supabaseClient
+        .from('seo_meta')
+        .select('*')
+        .eq('slug', slug)
+        .maybeSingle();
+      
+      let seoConfig;
+      if (seoData && !error) {
+        console.log('✅ seo-handler using Supabase data for:', slug);
+        
+        seoConfig = {
+          title: seoData.title,
+          description: seoData.description,
+          canonical: seoData.canonical_url || canonical,
+          image: toAbsoluteImage(seoData.og_image_url || DEFAULT_IMAGE),
+          type: seoData.path_type === 'post' || seoData.path_type === 'project' ? 'article' : 'website'
+        };
+      } else {
+        console.log('⚠️ seo-handler using fallback for:', slug);
+        seoConfig = getSeoForPath(pathname);
+      }
+      
+      const html = buildHtml(seoConfig);
+      
+      return new Response(html, {
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
+        }
+      });
+    }
     
-    console.log("seo-handler disabled - using static prerender for SEO", { 
-      ua, 
-      canonical: resolveCanonical(targetUrlParam, pathParam),
-      reason: "static-first-seo"
-    });
-
-    // Return simple redirect to let static files handle SEO
+    // For non-bots, redirect to static files
     const canonical = resolveCanonical(targetUrlParam, pathParam);
-    
-    return new Response('SEO handled by static prerender', { 
+    return new Response('Redirecting to static page', { 
       status: 302,
       headers: {
         ...corsHeaders,

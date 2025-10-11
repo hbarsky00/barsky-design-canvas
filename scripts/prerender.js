@@ -1,12 +1,19 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createClient } from '@supabase/supabase-js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const rootDir = join(__dirname, '..');
 const distDir = join(rootDir, 'dist');
+
+// Supabase configuration for build-time SEO queries
+const SUPABASE_URL = 'https://ctqttomppgkjbjkckise.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0cXR0b21wcGdramJqa2NraXNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Mjg1MzMsImV4cCI6MjA2MDAwNDUzM30.q15G4xYUtQqi7kdlha0C31LaIlYWBqPbIit-e9wq48Q';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Ensure dist directory exists
 if (!existsSync(distDir)) {
@@ -98,6 +105,32 @@ function loadProjectData() {
   }
 }
 
+// Fetch SEO data from Supabase at build time
+async function fetchSupabaseSeo() {
+  try {
+    const { data, error } = await supabase
+      .from('seo_meta')
+      .select('*');
+    
+    if (error) {
+      console.warn('⚠️ Could not fetch Supabase SEO data:', error.message);
+      console.warn('⚠️ Falling back to TypeScript data sources');
+      return {};
+    }
+    
+    const seoMap = (data || []).reduce((acc, item) => {
+      acc[item.slug] = item;
+      return acc;
+    }, {});
+    
+    console.log(`✅ Loaded ${Object.keys(seoMap).length} SEO records from Supabase`);
+    return seoMap;
+  } catch (error) {
+    console.warn('⚠️ Error fetching Supabase SEO:', error.message);
+    return {};
+  }
+}
+
 // Load unified SEO data and existing sources  
 const unifiedSeoData = loadUnifiedSeoData();
 const blogPosts = loadBlogData();
@@ -117,9 +150,42 @@ const routes = [
 console.log(`🚀 Starting SSG prerendering for ${routes.length} routes...`);
 
 // Updated SEO configuration using unified data sources
-function getSEOConfig(route) {
+function getSEOConfig(route, supabaseSeoMap = {}) {
   const baseUrl = 'https://barskydesign.pro';
   const defaultImage = 'https://barskydesign.pro/images/hiram-barsky-profile.jpg';
+  
+  // Normalize slug for lookup
+  let slug = route === '/' ? 'home' : route.replace(/^\//, '').replace(/\/$/, '');
+  
+  // For project/blog routes, extract the slug
+  if (route.startsWith('/project/')) {
+    slug = route.split('/project/')[1];
+  } else if (route.startsWith('/blog/')) {
+    slug = route.split('/blog/')[1];
+  }
+  
+  // Check Supabase first
+  if (supabaseSeoMap[slug]) {
+    const seo = supabaseSeoMap[slug];
+    console.log(`✅ Using Supabase SEO for: ${route} (slug: ${slug})`);
+    
+    // Ensure URLs are absolute
+    let imageUrl = seo.og_image_url || defaultImage;
+    if (imageUrl.startsWith('/')) {
+      imageUrl = `${baseUrl}${imageUrl}`;
+    }
+    
+    return {
+      title: seo.title,
+      description: seo.description,
+      canonical: seo.canonical_url || `${baseUrl}${route}`,
+      image: imageUrl,
+      type: seo.path_type === 'post' || seo.path_type === 'project' ? 'article' : 'website'
+    };
+  }
+  
+  // Fallback to existing TypeScript data logic
+  console.log(`⚠️ Using fallback TypeScript data for: ${route}`);
   
   // Homepage
   if (route === '/') {
@@ -243,6 +309,9 @@ function getSEOConfig(route) {
 
 // Main prerender function
 async function prerenderRoutes() {
+  // Fetch Supabase SEO data at build time
+  const supabaseSeoMap = await fetchSupabaseSeo();
+  
   const indexPath = join(distDir, 'index.html');
   
   if (!existsSync(indexPath)) {
@@ -257,7 +326,7 @@ async function prerenderRoutes() {
   // Process each route
   for (const route of routes) {
     try {
-      const seoConfig = getSEOConfig(route);
+      const seoConfig = getSEOConfig(route, supabaseSeoMap);
       
       // Replace meta tags in HTML
       let html = indexContent;
