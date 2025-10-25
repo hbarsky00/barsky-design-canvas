@@ -1,5 +1,23 @@
-
+# Serve static assets first
 /lovable-uploads/*   /lovable-uploads/:splat   200
 /assets/*            /assets/:splat            200
 /static/*            /static/:splat            200
+/images/*            /images/:splat            200
+
+# Serve prerendered project pages
+/project/herbalink              /project/herbalink/index.html              200
+/project/splittime              /project/splittime/index.html              200
+/project/business-management    /project/business-management/index.html    200
+/project/smarterhealth          /project/smarterhealth/index.html          200
+/project/crypto                 /project/crypto/index.html                 200
+/project/daesearchproject       /project/daesearchproject/index.html       200
+/project/investor-loan-app      /project/investor-loan-app/index.html      200
+/project/barskyjoint            /project/barskyjoint/index.html            200
+
+# Serve prerendered static pages
+/design-services                /design-services/index.html                200
+/about                          /about/index.html                          200
+/contact                        /contact/index.html                        200
+
+# Fallback to SPA for all other routes
 /*                   /index.html               200

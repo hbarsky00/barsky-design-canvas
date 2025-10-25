@@ -1,4 +1,5 @@
 
+# Static assets
 [[redirects]]
   from = "/lovable-uploads/*"
   to = "/lovable-uploads/:splat"
@@ -14,6 +15,69 @@
   to = "/static/:splat"
   status = 200
 
+[[redirects]]
+  from = "/images/*"
+  to = "/images/:splat"
+  status = 200
+
+# Prerendered project pages
+[[redirects]]
+  from = "/project/herbalink"
+  to = "/project/herbalink/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/splittime"
+  to = "/project/splittime/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/business-management"
+  to = "/project/business-management/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/smarterhealth"
+  to = "/project/smarterhealth/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/crypto"
+  to = "/project/crypto/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/daesearchproject"
+  to = "/project/daesearchproject/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/investor-loan-app"
+  to = "/project/investor-loan-app/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/barskyjoint"
+  to = "/project/barskyjoint/index.html"
+  status = 200
+
+# Prerendered static pages
+[[redirects]]
+  from = "/design-services"
+  to = "/design-services/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/index.html"
+  status = 200
+
+# SPA fallback for all other routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
