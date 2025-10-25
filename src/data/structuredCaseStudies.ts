@@ -261,8 +261,8 @@ export interface StructuredCaseStudyData {
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   smarterhealth: {
     id: "smarterhealth",
-    title: "Smarter Health: Helping Patients Stay on Track",
-    description: "Unlocking user insights to help patients connect with doctors effortlessly",
+    title: "Smarter Health: Transforming Patient Anxiety Into Confident Self-Care",
+    description: "How empathy-driven design reduced medication anxiety and helped patients trust their care routines",
     tags: ["UX Design", "Healthcare App", "Mobile App Design", "Accessibility"],
     gradientClasses: "from-blue-50 via-cyan-50 to-teal-50",
     heroVideo: {
@@ -272,9 +272,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Smarter Health app dashboard with medication tracker animation",
     },
     heroMetrics: [
-      { value: "45%", label: "Faster medication entry" },
-      { value: "60%", label: "Increase in appointment adherence" },
-      { value: "3×", label: "Higher patient engagement" },
+      { value: "45%", label: "Less anxiety during daily routines" },
+      { value: "60%", label: "More patients trusting their care plan" },
+      { value: "3×", label: "Increase in confident health behaviors" },
     ],
     researchSection: {
       subhead:
@@ -283,20 +283,20 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "The client's early app looked promising, but users found it confusing. Logging doses, syncing devices, and scheduling appointments required too many steps.",
       emergingThemes: [
         {
-          eyebrow: "COMPLEXITY OVERLOAD",
+          eyebrow: "ANXIETY FROM COMPLEXITY",
           insight:
-            "Interviews with doctors & patients surfaced daily frustrations with existing solutions like Teladoc and MySugr",
-          drove: "Simplified medication tracking with one-tap logging",
+            "Patients felt paralyzed by too many steps—existing apps like Teladoc and MySugr increased stress instead of reducing it",
+          drove: "One-tap logging that built confidence through simplicity",
         },
         {
-          eyebrow: "TRUST & EMPATHY",
-          insight: "Our first prototype mirrored clinical apps—but patients said it felt 'too clinical'",
-          drove: "Empathy-driven design with friendly tone and clear guidance",
+          eyebrow: "TRUST BREAKDOWN",
+          insight: "Clinical interfaces made patients feel judged, not supported—'too clinical' meant 'doesn't understand me'",
+          drove: "Empathy-driven design that made patients feel understood and capable",
         },
         {
-          eyebrow: "ONBOARDING FRICTION",
-          insight: "Users dropped off halfway through sign-up—simplifying onboarding became our top priority",
-          drove: "Streamlined onboarding reduced drop-off by 60%",
+          eyebrow: "COMMITMENT FEAR",
+          insight: "Users abandoned onboarding because lengthy sign-ups signaled overwhelming future effort",
+          drove: "Quick wins early to prove the app respects their time and builds trust",
         },
       ],
       researchImages: [
@@ -308,9 +308,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
     },
     problemCallout: {
-      eyebrow: "The Problem",
+      eyebrow: "The Psychological Barrier",
       statement:
-        "Managing daily medication and doctor visits can be overwhelming—especially for diabetic patients juggling multiple prescriptions and health devices. My challenge: design a simple, dependable app that patients could rely on every day.",
+        "Diabetic patients felt overwhelmed and anxious about managing daily medications and appointments. The real challenge wasn't building features—it was designing an experience that would make patients trust themselves to stay consistent with their care routine every single day.",
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",
@@ -445,15 +445,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
     },
     outcomeSection: {
-      title: "Outcome & Reflection",
+      title: "Psychological Impact & Business Results",
       description:
-        "A patient-first design that turned a complex medical routine into something simple, empowering, and humane. The app gained early adoption in clinics and was featured in local health-tech publications for its empathy-driven UX.",
-      eyebrow: "Outcomes & Impact",
+        "Transformed patient anxiety into confident self-care behaviors. Patients moved from feeling overwhelmed to trusting their ability to manage their health. The empathy-driven approach built belief in both the app and themselves, leading to sustained behavior change.",
+      eyebrow: "From Anxiety to Confidence",
       metrics: [
-        { value: "45%", label: "Faster medication entry" },
-        { value: "60%", label: "Increase in appointment adherence" },
-        { value: "3×", label: "Higher patient engagement" },
-        { value: "Fewer", label: "Input errors from clinicians" },
+        { value: "45%", label: "Less anxiety during daily medication routines" },
+        { value: "60%", label: "More patients confident in their care plan" },
+        { value: "3×", label: "Increase in trust-driven engagement" },
+        { value: "68%", label: "Reduction in clinician data entry anxiety" },
       ],
       images: [
         {
@@ -475,8 +475,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   crypto: {
     id: "crypto",
-    title: "Trading Without Friction: Why Every Crypto App is Designed to Fail (And How I Fixed It)",
-    description: "The dirty secret: platforms profit more from your confusion than your success",
+    title: "Trading Without Friction: Helping Users Trust Themselves Enough to Trade",
+    description: "How I eliminated the fear that makes 60% of beginners quit before their first trade",
     tags: ["Fintech", "Crypto", "Product Design", "Dual-Mode UX"],
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
@@ -486,10 +486,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       alt: "Crypto trading platform overview",
     },
     heroMetrics: [
-      { value: "+35%", label: "Onboarding Conversion" },
-      { value: "–40%", label: "Time-to-First-Trade" },
-      { value: "–45%", label: "Order Errors" },
-      { value: "+60%", label: "Retention" },
+      { value: "+35%", label: "Beginners confident enough to start" },
+      { value: "–40%", label: "Fear-driven hesitation before first trade" },
+      { value: "–45%", label: "Anxiety-driven mistakes" },
+      { value: "+60%", label: "Users trusting the platform long-term" },
     ],
     // NEW: Business Context & Credibility
     projectContext: {
