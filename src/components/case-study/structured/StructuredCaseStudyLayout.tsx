@@ -28,6 +28,7 @@ import ProjectContextSection from "../ProjectContextSection";
 import PostLaunchSection from "../PostLaunchSection";
 import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
+import HeadingHierarchy from "@/components/seo/HeadingHierarchy";
 
 
 interface StructuredCaseStudyLayoutProps {
@@ -112,7 +113,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Overview Section - Full width band */}
           <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
             <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-              <h2 id="overview-heading" className="sr-only">Overview Section</h2>
+              <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
               <StructuredCaseStudyOverview projectId={caseStudyData.id} />
             </section>
           </div>
@@ -122,7 +123,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Research Section */}
           {caseStudyData.researchSection && (
             <section id="research" data-section="research" aria-labelledby="research-heading" className="section-snap mb-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-              <h2 id="research-heading" className="sr-only">Research Section</h2>
+              <HeadingHierarchy level="h2" id="research-heading" className="sr-only">Research Section</HeadingHierarchy>
               <ResearchSectionTwoCol researchSection={caseStudyData.researchSection} />
             </section>
           )}
@@ -131,7 +132,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {caseStudyData.problemCallout && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
               <section id="problem" data-section="problem" aria-labelledby="problem-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-                <h2 id="problem-heading" className="sr-only">Problem Section</h2>
+                <HeadingHierarchy level="h2" id="problem-heading" className="sr-only">Problem Section</HeadingHierarchy>
                 <ProblemCallout
                   eyebrow={caseStudyData.problemCallout.eyebrow}
                   statement={caseStudyData.problemCallout.statement}
@@ -155,7 +156,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {/* Key Insights Section */}
           {caseStudyData.keyInsights && (
             <section id="key-insights" data-section="key-insights" aria-labelledby="key-insights-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-              <h2 id="key-insights-heading" className="sr-only">Key Insights Section</h2>
+              <HeadingHierarchy level="h2" id="key-insights-heading" className="sr-only">Key Insights Section</HeadingHierarchy>
               <KeyInsightsRow insights={caseStudyData.keyInsights} video={caseStudyData.keyInsightsVideo} />
             </section>
           )}
@@ -168,7 +169,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               aria-labelledby="my-thought-process-heading" 
               className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
-              <h2 id="my-thought-process-heading" className="sr-only">My Thought Process Section</h2>
+              <HeadingHierarchy level="h2" id="my-thought-process-heading" className="sr-only">My Thought Process Section</HeadingHierarchy>
               <MyThoughtProcessSection 
                 content={caseStudyData.myThoughtProcessSection.content}
                 video={caseStudyData.myThoughtProcessSection.video}
@@ -181,7 +182,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           {caseStudyData.ideationSection && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
               <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-                <h2 id="ideation-heading" className="sr-only">Ideation Section</h2>
+                <HeadingHierarchy level="h2" id="ideation-heading" className="sr-only">Ideation Section</HeadingHierarchy>
                 <IdeationSection ideationData={caseStudyData.ideationSection} />
               </section>
             </div>
@@ -200,7 +201,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               aria-labelledby="what-didnt-work-heading" 
               className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
-              <h2 id="what-didnt-work-heading" className="sr-only">What Didn't Work Section</h2>
+              <HeadingHierarchy level="h2" id="what-didnt-work-heading" className="sr-only">What Didn't Work Section</HeadingHierarchy>
               <WhatDidntWorkSection whatDidntWorkData={caseStudyData.whatDidntWorkSection} />
             </section>
           )}
@@ -213,7 +214,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               aria-labelledby="user-testing-heading" 
               className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
-              <h2 id="user-testing-heading" className="sr-only">{caseStudyData.userTestingSection.title} Section</h2>
+              <HeadingHierarchy level="h2" id="user-testing-heading" className="sr-only">{caseStudyData.userTestingSection.title} Section</HeadingHierarchy>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -224,9 +225,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <div className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-eyebrow text-purple-700 header-spacing">
                   {caseStudyData.userTestingSection.eyebrow || "VALIDATION & TESTING"}
                 </div>
-                <h2 className="text-section-title text-foreground font-display content-rail-center">
+                <HeadingHierarchy level="h3" className="text-section-title text-foreground font-display content-rail-center">
                   {caseStudyData.userTestingSection.title}
-                </h2>
+                </HeadingHierarchy>
               </motion.div>
 
               {/* Video if present */}
@@ -314,7 +315,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               aria-labelledby="final-product-heading" 
               className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
-              <h2 id="final-product-heading" className="sr-only">{caseStudyData.finalProductSection.title} Section</h2>
+              <HeadingHierarchy level="h2" id="final-product-heading" className="sr-only">{caseStudyData.finalProductSection.title} Section</HeadingHierarchy>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -325,9 +326,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <div className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-eyebrow text-green-700 header-spacing">
                   {caseStudyData.finalProductSection.eyebrow || "THE RESULT"}
                 </div>
-                <h2 className="text-section-title text-foreground font-display content-rail-center">
+                <HeadingHierarchy level="h3" className="text-section-title text-foreground font-display content-rail-center">
                   {caseStudyData.finalProductSection.title}
-                </h2>
+                </HeadingHierarchy>
               </motion.div>
 
               <div className="content-rail-left mb-8">

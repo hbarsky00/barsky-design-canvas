@@ -268,19 +268,19 @@ const MinimalHero: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <AnimatedText
-                  text="Hiram Barsky"
-                  tag="h2"
-                  type="character"
-                  animation="elastic"
-                  delay={800}
-                  staggerChildren={0.05}
-                  className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
-                             xl:text-7xl 2xl:text-8xl font-display font-bold 
-                             bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
-                             bg-clip-text text-transparent leading-tight tracking-tight 
-                             whitespace-nowrap mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3"
-                />
+            <AnimatedText
+              text="Hiram Barsky"
+              tag="p"
+              type="character"
+              animation="elastic"
+              delay={800}
+              staggerChildren={0.05}
+              className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
+                         xl:text-7xl 2xl:text-8xl font-display font-bold 
+                         bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
+                         bg-clip-text text-transparent leading-tight tracking-tight 
+                         whitespace-nowrap mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3"
+            />
               </motion.div>
             </div>
             <motion.div
@@ -288,9 +288,13 @@ const MinimalHero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
+            <a 
+              href="https://barskydesign.pro"
+              className="inline-block mb-1 lg:mb-2 xl:mb-2 2xl:mb-3"
+            >
               <AnimatedText
                 text="barskydesign.pro"
-                tag="a"
+                tag="p"
                 type="character"
                 animation="slide"
                 delay={2200}
@@ -298,8 +302,9 @@ const MinimalHero: React.FC = () => {
                 className="text-lg xs:text-xl sm:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl 
                          bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent
                          hover:from-blue-700 hover:to-purple-700 transition-all duration-300 
-                         mb-1 lg:mb-2 xl:mb-2 2xl:mb-3 inline-block font-semibold cursor-pointer"
+                         font-semibold cursor-pointer"
               />
+            </a>
             </motion.div>
             
             <motion.div

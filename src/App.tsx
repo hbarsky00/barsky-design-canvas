@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
+import { HeadingHierarchyProvider } from "@/components/seo/HeadingHierarchyProvider";
 import ScrollToTop from "@/components/ScrollToTop";
 import BuyMeCoffeeButton from "@/components/shared/BuyMeCoffeeButton";
 import { useRoomTransition } from "@/hooks/useRoomTransition";
@@ -120,9 +121,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <ImageMaximizerProvider>
-          <AppContent />
-        </ImageMaximizerProvider>
+        <HeadingHierarchyProvider>
+          <ImageMaximizerProvider>
+            <AppContent />
+          </ImageMaximizerProvider>
+        </HeadingHierarchyProvider>
       </HelmetProvider>
     </QueryClientProvider>
   );
