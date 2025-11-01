@@ -7,6 +7,11 @@ import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
 import { blogPosts } from '@/data/blogData';
 import { InternalLinkEnhancer, RelatedPosts } from './InternalLinkEnhancer';
 import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
+import RealWorldExampleBox from './RealWorldExampleBox';
+import TradeOffDecisionBox from './TradeOffDecisionBox';
+import AIToolStackSidebar from './AIToolStackSidebar';
+import WhatWentWrongBox from './WhatWentWrongBox';
+import DataVoiceCard from './DataVoiceCard';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -130,6 +135,16 @@ const BlogPostPage: React.FC = () => {
                     {metadata?.excerpt || staticPost?.excerpt}
                   </p>
                   
+                  {/* Real-World Example */}
+                  {staticPost?.realWorldExample && (
+                    <RealWorldExampleBox {...staticPost.realWorldExample} />
+                  )}
+                  
+                  {/* AI Tool Stack */}
+                  {staticPost?.aiToolStack && (
+                    <AIToolStackSidebar {...staticPost.aiToolStack} />
+                  )}
+                  
                   {/* Enhanced blog content with internal SEO links */}
                   {staticPost?.content && (
                     <div className="prose prose-lg max-w-none">
@@ -138,6 +153,21 @@ const BlogPostPage: React.FC = () => {
                         currentSlug={staticPost.slug} 
                       />
                     </div>
+                  )}
+                  
+                  {/* Trade-Off Box */}
+                  {staticPost?.tradeOffBox && (
+                    <TradeOffDecisionBox {...staticPost.tradeOffBox} />
+                  )}
+                  
+                  {/* Data + Voice Pairs */}
+                  {staticPost?.dataVoicePairs && staticPost.dataVoicePairs.map((pair, idx) => (
+                    <DataVoiceCard key={idx} {...pair} />
+                  ))}
+                  
+                  {/* What Went Wrong */}
+                  {staticPost?.whatWentWrong && (
+                    <WhatWentWrongBox {...staticPost.whatWentWrong} />
                   )}
                   
                   {/* Related posts section for additional internal linking */}
