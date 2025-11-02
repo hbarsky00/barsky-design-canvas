@@ -28,6 +28,7 @@ import ProjectContextSection from "../ProjectContextSection";
 import PostLaunchSection from "../PostLaunchSection";
 import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
+import PrototypeSessionCard from "../PrototypeSessionCard";
 import HeadingHierarchy from "@/components/seo/HeadingHierarchy";
 import StrategicDecisionsSection from "../StrategicDecisionsSection";
 import AICollaborationSection from "../AICollaborationSection";
@@ -263,10 +264,30 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </motion.div>
               )}
 
-              <div className="content-rail-left mb-8">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {caseStudyData.userTestingSection.description}
-                </p>
+              <div className="content-rail-left mb-8 space-y-6">
+                {caseStudyData.userTestingSection.description.split('\n\n').map((paragraph, index) => {
+                  const isPrototypeSession = 
+                    paragraph.startsWith('Prototype sessions') ||
+                    paragraph.toLowerCase().includes('prototype testing showed') ||
+                    paragraph.toLowerCase().includes('tested with') ||
+                    paragraph.toLowerCase().includes('testing showed') ||
+                    paragraph.toLowerCase().includes('results:');
+                  
+                  if (isPrototypeSession) {
+                    return (
+                      <PrototypeSessionCard
+                        key={index}
+                        content={paragraph}
+                      />
+                    );
+                  }
+                  
+                  return (
+                    <p key={index} className="text-lg text-muted-foreground leading-relaxed">
+                      {paragraph}
+                    </p>
+                  );
+                })}
               </div>
 
               {/* Display dynamic metrics */}
